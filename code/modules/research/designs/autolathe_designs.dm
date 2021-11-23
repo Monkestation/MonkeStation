@@ -168,6 +168,7 @@
 	build_path = /obj/item/storage/toolbox
 	category = list("initial","Tools")
 
+//Monkestation edit start
 /datum/design/navbeacon
 	name = "Navigation Beacon"
 	id = "navbeacon"
@@ -175,6 +176,7 @@
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
 	build_path = /obj/item/navbeacon
 	category = list("initial", "Electronics")
+//Monkestation edit end
 
 /datum/design/apc_board
 	name = "APC Module"

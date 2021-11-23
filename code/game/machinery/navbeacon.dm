@@ -1,6 +1,7 @@
 // Navigation beacon for AI robots
 // No longer exists on the radio controller, it is managed by a global list.
 
+//Monkstation edit start
 /obj/item/navbeacon
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0"
@@ -9,6 +10,7 @@
 	custom_price = 15
 	materials = list(/datum/material/iron=100, /datum/material/glass=50)
 	usesound = 'sound/items/deconstruct.ogg'
+//Monkstation edit end
 
 /obj/machinery/navbeacon
 
@@ -58,6 +60,7 @@
 		GLOB.navbeacons["[new_z]"] += src
 	..()
 
+//Monkestation edit start
 // set the transponder codes assoc list from codes_txt
 /obj/machinery/navbeacon/proc/set_codes()
 
@@ -65,6 +68,7 @@
 
 	if(!codes_txt)
 		return
+//Monkstation edit end
 
 	var/list/entries = splittext(codes_txt, ";")	// entries are separated by semicolons
 
@@ -106,11 +110,13 @@
 
 		update_icon()
 
+//Monkstation edit start
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		to_chat(user, "<span class='notice'>You detach \the [src] from the floor.</span>")
 		I.play_tool_sound(src)
 		new /obj/item/navbeacon( T )
 		qdel(src)
+//Monkstation edit end
 
 	else if (istype(I, /obj/item/card/id)||istype(I, /obj/item/pda))
 		if(open)
@@ -125,6 +131,7 @@
 	else
 		return ..()
 
+//Monkstation edit start
 /obj/item/navbeacon/attackby(obj/item/I, mob/user, params)
 	var/turf/T = loc
 
@@ -141,6 +148,7 @@
 		I.play_tool_sound(src)
 		new /obj/machinery/navbeacon( T )
 		qdel(src)
+//Monkstation edit end
 
 /obj/machinery/navbeacon/attack_ai(mob/user)
 	interact(user, 1)
@@ -202,11 +210,13 @@ Transponder Codes:<UL>"}
 		if(href_list["locedit"])
 			var/newloc = stripped_input(usr, "Enter New Location", "Navigation Beacon", location)
 			if(newloc)
+//Monkstation edit start
 				if(codes["delivery"])
 					GLOB.deliverybeacontags -= location
 				location = newloc
 				if(codes["delivery"])
 					GLOB.deliverybeacontags += location
+//Monkstation edit end
 				updateDialog()
 
 		else if(href_list["edit"])
@@ -225,6 +235,7 @@ Transponder Codes:<UL>"}
 			codes.Remove(codekey)
 			codes[newkey] = newval
 
+//Monkstation edit start
 			if(codes)
 				if(codes["patrol"])
 					if(!GLOB.navbeacons["[z]"])
@@ -250,6 +261,7 @@ Transponder Codes:<UL>"}
 				GLOB.deliverybeacons -= src
 				GLOB.deliverybeacontags -= location
 			updateDialog()
+//Monkstation edit end
 
 		else if(href_list["add"])
 
@@ -267,7 +279,7 @@ Transponder Codes:<UL>"}
 
 			codes[newkey] = newval
 
-
+//Monkstation edit start
 			if(codes["patrol"])
 				if(!GLOB.navbeacons["[z]"])
 					GLOB.navbeacons["[z]"] = list()
@@ -276,3 +288,4 @@ Transponder Codes:<UL>"}
 				GLOB.deliverybeacons += src
 				GLOB.deliverybeacontags += location
 			updateDialog()
+//Monkstation edit end
