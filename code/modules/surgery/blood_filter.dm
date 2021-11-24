@@ -43,8 +43,8 @@
 			var/datum/reagent/chem = blood_chem
 			var/transfer_amount = min(chem.volume * 0.22, 10)
 			target.reagents.remove_reagent(chem.type, transfer_amount) //Removes more reagent for higher amounts //Monkestation edit start
-			if(filter.beakers.len > 0)
-				filter.beakers[1].reagents.add_reagent(chem.type, min(transfer_amount, filter.beakers[1].volume - filter.beakers[1].reagents.total_volume))
+			if(filter.beaker)
+				filter.beaker.reagents.add_reagent(chem.type, min(transfer_amount, filter.beaker.volume - filter.beaker.reagents.total_volume))
 		display_results(user, target, "<span class='notice'>[filter] pings as it finishes filtering [target]'s blood.</span>",
 			"<span class='notice'>[filter] pings as it stops pumping your blood.</span>",
 			"[filter] pings as it stops pumping.")
