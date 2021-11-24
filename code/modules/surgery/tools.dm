@@ -93,7 +93,58 @@
 	attack_verb = list("pumps", "siphons")
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
+	var/load_sound = 'sound/weapons/shotguninsert.ogg' //Monkestation edit start
+	var/list/obj/item/reagent_containers/glass/beakers = list()
+	var/max_beakers = 1
 
+/obj/item/blood_filter/handle_atom_del(atom/A)
+	. = ..()
+	if(A in beakers)
+		beakers.Remove(A)
+
+/obj/item/blood_filter/examine(mob/user)
+	. = ..()
+	if(beakers.len > 0)
+		. += "It has a [beakers[1].name] loaded."
+		if(beakers[1].reagents.total_volume)
+			. += "<span class='notice'>It has [beakers[1].reagents.total_volume] unit\s of reagents.</span>"
+		else
+			. += "<span class='danger'>It's empty.</span>"
+	else
+		. += "It has a receptacle that can hold a beaker."
+
+/obj/item/blood_filter/attack_self(mob/living/user)
+	if(!beakers.len)
+		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		return 0
+
+	var/obj/item/reagent_containers/glass/S = beakers[beakers.len]
+
+	if(!S)
+		return FALSE
+	user.put_in_hands(S)
+
+	beakers.Remove(S)
+	update_icon()
+	to_chat(user, "<span class='notice'>You unload [S] from \the [src].</span>")
+
+	return TRUE
+
+/obj/item/blood_filter/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
+	if(istype(A, /obj/item/reagent_containers/glass))
+		if(beakers.len < 1)
+			if(!user.transferItemToLoc(A, src))
+				return FALSE
+			to_chat(user, "<span class='notice'>You load [A] into \the [src].</span>")
+			beakers += A
+			update_icon()
+			playsound(loc, load_sound, 40)
+			return TRUE
+		else
+			to_chat(user, "<span class='warning'>[src] cannot hold more beakers!</span>")
+	return FALSE
+
+//Monkestation edit end
 
 /obj/item/surgicaldrill
 	name = "surgical drill"
