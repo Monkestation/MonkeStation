@@ -1,3 +1,20 @@
+/datum/reagent/spraytan/overdose_start(mob/living/M) //Spray Tan OD changes
+	. = ..()
+	if(ishuman(M)) //why in the hell was this being called EVERY TIME a spray tan OD would process the chem?
+		var/mob/living/carbon/human/H = M //why was this N?
+		if(!(HAIR in H.dna.species.species_traits)) //No hair? No problem!
+			H.dna.species.species_traits += HAIR
+		H.hair_style = "Spiky"
+		H.facial_hair_style = "Shaved"
+		H.facial_hair_color = "000"
+		H.hair_color = "000"
+		if(H.dna.species.use_skintones)
+			H.skin_tone = "orange"
+		else if(MUTCOLORS in H.dna.species.species_traits) //Aliens with custom colors simply get turned orange
+			H.dna.features["mcolor"] = "f80"
+		H.regenerate_icons()
+		H.grant_language(/datum/language/carotein, TRUE, TRUE, "spray tan")
+
 //The following is all part of the botany chemical rebalance
 /datum/reagent/vaccine
 	random_unrestricted = FALSE //This does nothing without data, so don't synth it.

@@ -27,7 +27,8 @@
 		/datum/language/slime,
 		/datum/language/sylvan,
 		/datum/language/terrum,
-		/datum/language/uncommon))
+		/datum/language/uncommon,
+		/datum/language/carotein))//MonkeStation Edit, adds Carotein
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
