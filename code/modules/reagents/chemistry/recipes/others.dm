@@ -19,17 +19,14 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/spraytan
-	name = "Spray Tan"
-	id = /datum/reagent/spraytan
-	results = list(/datum/reagent/spraytan = 2)
-	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/oil = 1)
-
-/datum/chemical_reaction/spraytan2
-	name = "Spray Tan"
-	id = /datum/reagent/spraytan
-	results = list(/datum/reagent/spraytan = 2)
-	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cornoil = 1)
+//MonkeStation Edit Start
+//Converts Spray Tan to Baja Blast and removes the corn oil recipe
+/datum/chemical_reaction/bajablast
+	name = "Baja Blast"
+	id = /datum/reagent/bajablast
+	results = list(/datum/reagent/bajablast = 3)
+	required_reagents = list(/datum/reagent/consumable/limejuice = 1, /datum/reagent/oil = 1, /datum/reagent/consumable/sugar = 1)
+//MonkeStation Edit End
 
 /datum/chemical_reaction/impedrezene
 	name = "Impedrezene"

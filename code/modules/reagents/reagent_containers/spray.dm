@@ -178,14 +178,14 @@
 	else
 		user.visible_message("<span class='suicide'>[user] decided life was worth living.</span>")
 		return
-
-//spray tan
+//MonkeStation Edit Start
+//Changes Spray Tan to Baja Blast
 /obj/item/reagent_containers/spray/spraytan
-	name = "spray tan"
+	name = "Baja Blast Spray"
 	volume = 50
-	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
-	list_reagents = list(/datum/reagent/spraytan = 50)
-
+	desc = "A sprayer of advanced Gamer Fuel, designed for rapid deployment during gaming sessions."
+	list_reagents = list(/datum/reagent/bajablast = 50)
+//MonkeStation Edit End
 
 //pepperspray
 /obj/item/reagent_containers/spray/pepper

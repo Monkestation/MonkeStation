@@ -379,91 +379,80 @@
 	description = "This \[REDACTED\] has been outlawed after the incident on \[DATA EXPUNGED\]."
 	lube_kind = TURF_WET_SUPERLUBE
 
-
-/datum/reagent/spraytan
-	name = "Spray Tan"
-	description = "A substance applied to the skin to darken the skin."
-	color = "#FFC080" // rgb: 255, 196, 128  Bright orange
+//MonkeStation Edit Start
+//Changes Spray Tan to be Baja Blast
+/datum/reagent/bajablast
+	name = "Baja Blast"
+	description = "A substance applied to the skin by gamers to lighten the skin."
+	color = "#63FFE0" // Teal
 	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
 	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
-	taste_description = "sour oranges"
+	taste_description = "Lime and the tropics"
 
-/datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/bajablast/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(ishuman(M))
 		if(method == PATCH || method == VAPOR)
 			var/mob/living/carbon/human/N = M
-			if(N.dna.species.id == "human")
+			if(N.dna.species.id == "human") //Lighten skin
 				switch(N.skin_tone)
+					if("african2")
+						N.skin_tone = "african1"
 					if("african1")
-						N.skin_tone = "african2"
-					if("indian")
-						N.skin_tone = "african1"
-					if("arab")
 						N.skin_tone = "indian"
-					if("asian2")
+					if("indian")
 						N.skin_tone = "arab"
-					if("asian1")
+					if("arab")
 						N.skin_tone = "asian2"
-					if("mediterranean")
-						N.skin_tone = "african1"
-					if("latino")
+					if("asian2")
+						N.skin_tone = "asian1"
+					if("african1")
 						N.skin_tone = "mediterranean"
-					if("caucasian3")
-						N.skin_tone = "mediterranean"
-					if("caucasian2")
-						N.skin_tone = pick("caucasian3", "latino")
-					if("caucasian1")
+					if("latino", "mediterranean","caucasian3")
 						N.skin_tone = "caucasian2"
-					if ("albino")
+					if("caucasian2")
 						N.skin_tone = "caucasian1"
-
-			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
-				var/newcolor = ""
-				var/string = N.dna.features["mcolor"]
-				var/len = length(string)
-				var/char = ""
-				var/ascii = 0
-				for(var/i=1, i<=len, i += length(char))
-					char = string[i]
-					ascii = text2ascii(char)
-					switch(ascii)
-						if(48)
-							newcolor += "0"
-						if(49 to 57)
-							newcolor += ascii2text(ascii-1)	//numbers 1 to 9
-						if(97)
-							newcolor += "9"
-						if(98 to 102)
-							newcolor += ascii2text(ascii-1)	//letters b to f lowercase
-						if(65)
-							newcolor += "9"
-						if(66 to 70)
-							newcolor += ascii2text(ascii+31)	//letters B to F - translates to lowercase
-						else
-							break
-				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
-					N.dna.features["mcolor"] = newcolor
+					if("caucasian1")
+						N.skin_tone = "albino"
 			N.regenerate_icons()
-
-
-
-		if(method == INGEST)
-			if(show_message)
-				to_chat(M, "<span class='notice'>That tasted horrible.</span>")
 	..()
 
-//MonkeStation Edit Start
-//Spray Tan Overdose Changes
-/datum/reagent/spraytan/overdose_process(mob/living/M)
+/datum/reagent/bajablast/overdose_process(mob/living/M)
 	metabolization_rate = 1 * REAGENTS_METABOLISM
-	var/mob/living/carbon/human/N = M
-	if(prob(7))
-		if(N.w_uniform)
-			M.visible_message(pick("<b>[M]</b>'s collar pops up without warning.</span>", "<b>[M]</b> flexes [M.p_their()] arms."))
-		else
-			M.visible_message("<b>[M]</b> flexes [M.p_their()] arms.")
+	if(prob(5))
+		M.say(pick(	"Poggers.", "Swag.", "Check my ACE 12K HD CRT VR PC CBD HDD bro.",
+					"Bruh.", "You're such a bot.", "You need a nerf, bro.", "El em ay oh",
+					"I need a buff, bro.", "Stop cheesing.", "Rush B.", "Rush A.", "No camping.",
+					"DLC time.", "Look, an easter egg.", "GG no RE!", "Damn RNG!",
+					"I miss hitscan.", "Noob.", "POGCHAMP!!", "A new PB!"), forced = /datum/reagent/bajablast) //This doesn't deserve a string file. I have to repress gamers.
+		return
+	if(prob(5))
+		M.visible_message("<span class = 'warning'>[pick("[M] flexes their gamer skills.",
+														"[M] looks incredibly smug.",
+														"The scent of soda hangs in the air around [M]",
+														"[M] turns to face a precise angle for a glitch skip.",
+														"[M] T-poses threateningly.",
+														"[M] begins building momentum.",
+														"[M] prepares for an accelerated back hop.",
+														"[M] splits the segment here.")]</span>")
+		return
 	..()
 	return
+/datum/reagent/consumable/bajablast/on_mob_life(mob/living/carbon/M)
+	M.Jitter(20)
+	M.dizziness +=1
+	M.drowsyness = 0
+	M.AdjustSleeping(-40, FALSE)
+	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+	..()
+
+/datum/reagent/consumable/bajablast/on_mob_metabolize(mob/living/L)
+	..()
+	if(ismonkey(L))
+		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/consumable/bajablast/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
 //MonkeStation Edit End
 
 #define MUT_MSG_IMMEDIATE 1
