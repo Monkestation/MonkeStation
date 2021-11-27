@@ -178,14 +178,6 @@
 	else
 		user.visible_message("<span class='suicide'>[user] decided life was worth living.</span>")
 		return
-//MonkeStation Edit Start
-//Changes Spray Tan to Baja Blast
-/obj/item/reagent_containers/spray/spraytan
-	name = "Baja Blast Spray"
-	volume = 50
-	desc = "A sprayer of advanced Gamer Fuel, designed for rapid deployment during gaming sessions."
-	list_reagents = list(/datum/reagent/bajablast = 50)
-//MonkeStation Edit End
 
 //pepperspray
 /obj/item/reagent_containers/spray/pepper

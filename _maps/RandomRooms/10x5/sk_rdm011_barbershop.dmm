@@ -85,13 +85,13 @@
 /obj/item/chainsaw,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/clothing/head/wig/random,
-/obj/item/reagent_containers/medspray/spraytan,
+/obj/item/reagent_containers/medspray/gamerspray,
 /obj/item/radio,
 /turf/open/floor/plating,
 /area/template_noop)
 "m" = (
 /obj/structure/table,
-/obj/item/reagent_containers/medspray/spraytan{
+/obj/item/reagent_containers/medspray/gamerspray{
 	pixel_x = 8;
 	pixel_y = 4
 	},

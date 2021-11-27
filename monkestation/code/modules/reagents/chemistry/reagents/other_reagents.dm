@@ -1,22 +1,5 @@
-/datum/reagent/bajablast/overdose_start(mob/living/M) //Spray Tan OD changes
-	. = ..()
-	if(!ishuman(M))
-		return
-	var/mob/living/carbon/human/H = M //why was this N?
-	if(!(HAIR in H.dna.species.species_traits)) //No hair? No problem!
-		H.dna.species.species_traits += HAIR
-	H.hair_style = "Spiky"
-	H.facial_hair_style = "Shaved"
-	H.facial_hair_color = "000"
-	H.hair_color = "0ff"
-	if(H.dna.species.use_skintones)
-		H.skin_tone = "caucasian1"
-	else if(MUTCOLORS in H.dna.species.species_traits)
-		H.dna.features["mcolor"] = "fffbf5"
-	H.regenerate_icons()
-	H.grant_language(/datum/language/zoomercant, TRUE, TRUE, "spray")
-
 //The following is all part of the botany chemical rebalance
+//Move chems from this block if you modify them
 /datum/reagent/vaccine
 	random_unrestricted = FALSE //This does nothing without data, so don't synth it.
 

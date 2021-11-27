@@ -379,81 +379,8 @@
 	description = "This \[REDACTED\] has been outlawed after the incident on \[DATA EXPUNGED\]."
 	lube_kind = TURF_WET_SUPERLUBE
 
-//MonkeStation Edit Start
-//Changes Spray Tan to be Baja Blast
-/datum/reagent/bajablast
-	name = "Baja Blast"
-	description = "A substance applied to the skin by gamers to lighten the skin."
-	color = "#63FFE0" // Teal
-	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
-	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
-	taste_description = "Lime and the tropics"
-
-/datum/reagent/bajablast/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(ishuman(M))
-		if(method == PATCH || method == VAPOR)
-			var/mob/living/carbon/human/N = M
-			if(N.dna.species.id == "human") //Lighten skin
-				switch(N.skin_tone)
-					if("african2")
-						N.skin_tone = "african1"
-					if("african1")
-						N.skin_tone = "indian"
-					if("indian")
-						N.skin_tone = "arab"
-					if("arab")
-						N.skin_tone = "asian2"
-					if("asian2")
-						N.skin_tone = "asian1"
-					if("african1")
-						N.skin_tone = "mediterranean"
-					if("latino", "mediterranean","caucasian3")
-						N.skin_tone = "caucasian2"
-					if("caucasian2")
-						N.skin_tone = "caucasian1"
-					if("caucasian1")
-						N.skin_tone = "albino"
-			N.regenerate_icons()
-	..()
-
-/datum/reagent/bajablast/overdose_process(mob/living/M)
-	metabolization_rate = 1 * REAGENTS_METABOLISM
-	if(prob(5))
-		M.say(pick(	"Poggers.", "Swag.", "Check my ACE 12K HD CRT VR PC CBD HDD bro.",
-					"Bruh.", "You're such a bot.", "You need a nerf, bro.", "El em ay oh",
-					"I need a buff, bro.", "Stop cheesing.", "Rush B.", "Rush A.", "No camping.",
-					"DLC time.", "Look, an easter egg.", "GG no RE!", "Damn RNG!",
-					"I miss hitscan.", "Noob.", "POGCHAMP!!", "A new PB!"), forced = /datum/reagent/bajablast) //This doesn't deserve a string file. I have to repress gamers.
-		return
-	if(prob(5))
-		M.visible_message("<span class = 'warning'>[pick("[M] flexes their gamer skills.",
-														"[M] looks incredibly smug.",
-														"The scent of soda hangs in the air around [M]",
-														"[M] turns to face a precise angle for a glitch skip.",
-														"[M] T-poses threateningly.",
-														"[M] begins building momentum.",
-														"[M] prepares for an accelerated back hop.",
-														"[M] splits the segment here.")]</span>")
-		return
-	..()
-	return
-/datum/reagent/consumable/bajablast/on_mob_life(mob/living/carbon/M)
-	M.Jitter(20)
-	M.dizziness +=1
-	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	..()
-
-/datum/reagent/consumable/bajablast/on_mob_metabolize(mob/living/L)
-	..()
-	if(ismonkey(L))
-		L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
-
-/datum/reagent/consumable/bajablast/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(type)
-	..()
-//MonkeStation Edit End
+//MonkeStation Note
+//Spray Tan is now Baja Blast, found in the monkestation folder.
 
 #define MUT_MSG_IMMEDIATE 1
 #define MUT_MSG_EXTENDED 2
