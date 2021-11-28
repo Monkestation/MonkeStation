@@ -187,6 +187,7 @@
 
 /obj/item/reagent_containers/food/snacks/customizable/bread
 	name = "bread"
+	//ingmax = 6
 	//MonkeStation Edit: Food Limit Removed
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/custom
 	slices_num = 5
@@ -197,6 +198,7 @@
 
 /obj/item/reagent_containers/food/snacks/customizable/cake
 	name = "cake"
+	//ingMax = 6
 	//MonkeStation Edit: Food Limit Removed
 	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/custom
 	slices_num = 5
@@ -211,6 +213,7 @@
 	ingredients_placement = INGREDIENTS_LINE
 	trash = /obj/item/stack/rods
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	//ingMax = 6
 	//MonkeStation Edit: Food Limit Removed
 	icon_state = "rod"
 
@@ -218,6 +221,7 @@
 	name = "spaghetti"
 	desc = "Noodles. With stuff. Delicious."
 	ingredients_placement = INGREDIENTS_SCATTER
+	//ingMax = 6
 	//MonkeStation Edit: Food Limit Removed
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "spaghettiboiled"
@@ -226,6 +230,7 @@
 
 /obj/item/reagent_containers/food/snacks/customizable/pie
 	name = "pie"
+	//ingMax = 6
 	//MonkeStation Edit: Food Limit Removed
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "pie"
@@ -236,6 +241,7 @@
 	name = "pizza"
 	desc = "A personalized pan pizza meant for only one person."
 	ingredients_placement = INGREDIENTS_SCATTER
+	//ingMax = 8
 	//MonkeStation Edit: Food Limit Removed
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/custom
 	slices_num = 6
@@ -248,6 +254,7 @@
 	name = "salad"
 	desc = "Very tasty."
 	trash = /obj/item/reagent_containers/glass/bowl
+	//ingMax = 6
 	//MonkeStation Edit: Food Limit Removed
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
@@ -294,6 +301,7 @@
 	name = "soup"
 	desc = "A bowl with liquid and... stuff in it."
 	trash = /obj/item/reagent_containers/glass/bowl
+	//ingMax = 8
 	//MonkeStation Edit: Food Limit Removed
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "wishsoup"
