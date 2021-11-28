@@ -94,7 +94,7 @@
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
 	var/load_sound = 'sound/weapons/shotguninsert.ogg' //Monkestation edit start
-	var/list/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 
 /obj/item/blood_filter/handle_atom_del(atom/A)
 	. = ..()
