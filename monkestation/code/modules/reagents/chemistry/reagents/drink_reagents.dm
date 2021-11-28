@@ -1,5 +1,3 @@
-//Spray Tan is now Baja Blast
-
 /datum/reagent/bajablast
 	name = "Baja Blast"
 	description = "A substance applied to the skin by gamers to lighten the skin."
@@ -37,14 +35,13 @@
 
 /datum/reagent/bajablast/overdose_process(mob/living/M)
 	metabolization_rate = 1 * REAGENTS_METABOLISM
-	if(prob(5))
-		M.say(pick(	"Poggers.", "Swag.", "Check my ACE 12K HD CRT VR PC CBD HDD bro.",
-					"Bruh.", "You're such a bot.", "You need a nerf, bro.", "El em ay oh",
-					"I need a buff, bro.", "Stop cheesing.", "Rush B.", "Rush A.", "No camping.",
-					"DLC time.", "Look, an easter egg.", "GG no RE!", "Damn RNG!",
-					"I miss hitscan.", "Noob.", "POGCHAMP!!", "A new PB!"), forced = /datum/reagent/bajablast) //This doesn't deserve a string file. I have to repress gamers.
+	if(prob(3))
+		M.say(pick(	"Poggers.", "Swag.", "Bruh.", "You're such a bot.", "You need a nerf, bro.",
+					"I need a buff, bro.", "Stop cheesing.", "Rush B.", "Rush A.",
+					"No camping.", "Look, an easter egg.", "GG no RE!", "Damn RNG!",
+					"Noob.", "POGCHAMP!!", "A new PB!"), forced = /datum/reagent/bajablast) //This doesn't deserve a string file. I have to repress gamers.
 		return
-	if(prob(5))
+	if(prob(3))
 		M.visible_message("<span class = 'warning'>[pick("[M] flexes their gamer skills.",
 														"[M] looks incredibly smug.",
 														"The scent of soda hangs in the air around [M]",
@@ -73,11 +70,11 @@
 	L.remove_movespeed_modifier(type)
 	..()
 
-/datum/reagent/bajablast/overdose_start(mob/living/M) //Spray Tan OD changes
+/datum/reagent/bajablast/overdose_start(mob/living/M)
 	. = ..()
 	if(!ishuman(M))
 		return
-	var/mob/living/carbon/human/H = M //why was this N?
+	var/mob/living/carbon/human/H = M
 	if(!(HAIR in H.dna.species.species_traits)) //No hair? No problem!
 		H.dna.species.species_traits += HAIR
 	H.hair_style = "Spiky"

@@ -91,7 +91,7 @@
 /area/template_noop)
 "m" = (
 /obj/structure/table,
-/obj/item/reagent_containers/medspray/gamerspray{
+/obj/item/reagent_containers/medspray/spraytan{
 	pixel_x = 8;
 	pixel_y = 4
 	},

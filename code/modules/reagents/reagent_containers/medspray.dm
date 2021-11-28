@@ -109,3 +109,11 @@
 	list_reagents = list(/datum/reagent/hair_dye = 60)
 	squirt_amount = 1
 	squirt_mode = 1
+
+/obj/item/reagent_containers/medspray/spraytan
+	name = "spray tan"
+	desc = "A spray tan bottle, jury rigged to deliver just too much spray tan per spray."
+	icon_state = "spraytan"
+	apply_type = TOUCH
+	list_reagents = list(/datum/reagent/spraytan = 55)
+	amount_per_transfer_from_this = 11

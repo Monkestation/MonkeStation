@@ -101,7 +101,7 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/clothing/head/wig/random,
 /obj/item/radio,
-/obj/item/reagent_containers/medspray/gamerspray,
+/obj/item/reagent_containers/medspray/spraytan,
 /turf/open/floor/plating,
 /area/template_noop)
 "M" = (
