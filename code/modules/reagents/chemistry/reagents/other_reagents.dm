@@ -379,8 +379,102 @@
 	description = "This \[REDACTED\] has been outlawed after the incident on \[DATA EXPUNGED\]."
 	lube_kind = TURF_WET_SUPERLUBE
 
-//MonkeStation Note
-//Spray Tan is now Baja Blast, found in the monkestation folder.
+/datum/reagent/spraytan
+	name = "Spray Tan"
+	description = "A substance applied to the skin to darken the skin."
+	color = "#FFC080" // rgb: 255, 196, 128  Bright orange
+	metabolization_rate = 10 * REAGENTS_METABOLISM // very fast, so it can be applied rapidly.  But this changes on an overdose
+	overdose_threshold = 11 //Slightly more than one un-nozzled spraybottle.
+	taste_description = "sour oranges"
+
+/datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+	if(ishuman(M))
+		if(method == PATCH || method == VAPOR)
+			var/mob/living/carbon/human/N = M
+			if(N.dna.species.id == "human")
+				switch(N.skin_tone)
+					if("african1")
+						N.skin_tone = "african2"
+					if("indian")
+						N.skin_tone = "african1"
+					if("arab")
+						N.skin_tone = "indian"
+					if("asian2")
+						N.skin_tone = "arab"
+					if("asian1")
+						N.skin_tone = "asian2"
+					if("mediterranean")
+						N.skin_tone = "african1"
+					if("latino")
+						N.skin_tone = "mediterranean"
+					if("caucasian3")
+						N.skin_tone = "mediterranean"
+					if("caucasian2")
+						N.skin_tone = pick("caucasian3", "latino")
+					if("caucasian1")
+						N.skin_tone = "caucasian2"
+					if ("albino")
+						N.skin_tone = "caucasian1"
+
+			if(MUTCOLORS in N.dna.species.species_traits) //take current alien color and darken it slightly
+				var/newcolor = ""
+				var/string = N.dna.features["mcolor"]
+				var/len = length(string)
+				var/char = ""
+				var/ascii = 0
+				for(var/i=1, i<=len, i += length(char))
+					char = string[i]
+					ascii = text2ascii(char)
+					switch(ascii)
+						if(48)
+							newcolor += "0"
+						if(49 to 57)
+							newcolor += ascii2text(ascii-1)	//numbers 1 to 9
+						if(97)
+							newcolor += "9"
+						if(98 to 102)
+							newcolor += ascii2text(ascii-1)	//letters b to f lowercase
+						if(65)
+							newcolor += "9"
+						if(66 to 70)
+							newcolor += ascii2text(ascii+31)	//letters B to F - translates to lowercase
+						else
+							break
+				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
+					N.dna.features["mcolor"] = newcolor
+			N.regenerate_icons()
+
+
+
+		if(method == INGEST)
+			if(show_message)
+				to_chat(M, "<span class='notice'>That tasted horrible.</span>")
+	..()
+//MonkeStation Edit Start
+//Changes Spray Tan's Overdose
+/datum/reagent/spraytan/overdose_start(mob/living/M)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/N = M
+		N.hair_style = "Spiky"
+		N.facial_hair_style = "Shaved"
+		N.facial_hair_color = "000"
+		N.hair_color = "000"
+		if(!(HAIR in N.dna.species.species_traits)) //No hair? No problem!
+			N.dna.species.species_traits += HAIR
+		if(N.dna.species.use_skintones)
+			N.skin_tone = "orange"
+		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
+			N.dna.features["mcolor"] = "f80"
+		N.regenerate_icons()
+
+/datum/reagent/spraytan/overdose_process(mob/living/M)
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+
+	if(ishuman(M) && prob(5))
+		var/mob/living/carbon/human/H = M
+		H.emote(pick("snap", "laugh", "airguitar", "smug", "grin"))
+//MonkeStation Edit End
 
 #define MUT_MSG_IMMEDIATE 1
 #define MUT_MSG_EXTENDED 2

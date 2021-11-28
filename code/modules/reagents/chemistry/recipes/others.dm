@@ -19,8 +19,18 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
-//MonkeStation Note
-//Spray Tan is now Baja Blast, found in the monkestation drinks listing
+/datum/chemical_reaction/spraytan
+	name = "Spray Tan"
+	id = /datum/reagent/spraytan
+	results = list(/datum/reagent/spraytan = 2)
+	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/oil = 1)
+
+/datum/chemical_reaction/spraytan2
+	name = "Spray Tan"
+	id = /datum/reagent/spraytan
+	results = list(/datum/reagent/spraytan = 2)
+	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/cornoil = 1)
+
 
 /datum/chemical_reaction/impedrezene
 	name = "Impedrezene"
