@@ -10,8 +10,8 @@
 	var/last_grumble_speak = 0
 
 /mob/living/simple_animal/bot/secbot/pizzky/bot_patrol()
-	. = ..()
-	if((last_grumble_speak + 1000) < world.time) //these messages should be fairly rare
+	..()
+	if((last_grumble_speak + 100 SECONDS) < world.time) //these messages should be fairly rare
 		var/list/messagevoice = list("I can't take it anymore I'm gonna beat the fucking piss out of the clown.\
 									  I'm gonna beat him within an inch of his fucking life.  I fucking hate that \
 									  honking bitch." = 'monkestation/sound/voice/pizzky/mumble1.ogg',
@@ -23,8 +23,17 @@
 									 people keep walking around." = 'monkestation/sound/voice/pizzky/mumble4.ogg')
 		var/message = pick(messagevoice)
 		whisper(message)
-		playsound(src, messagevoice[message], 25, 0) //and pretty quiet
+		playsound(src, messagevoice[message], 40, 0) //and pretty quiet
 		last_grumble_speak = world.time
+
+/mob/living/simple_animal/bot/secbot/pizzky/New()
+	..()
+	var/list/messagevoice = list("I AM NOW ALIVE AND I'M ABOUT TO MAKE IT EVERYONE ELSE'S PROBLEM!" = 'monkestation/sound/voice/pizzky/spawn1.ogg',
+								 "WHY THE FUCK WOULD YOU BUILD THIS? WHAT THE FUCK IS WRONG WITH YOU?!" = 'monkestation/sound/voice/pizzky/spawn2.ogg')
+	var/message = pick(messagevoice)
+	say(message)
+	playsound(src,messagevoice[message], 100, 0)
+	sleep(10 SECONDS)
 
 /mob/living/simple_animal/bot/secbot/pizzky/explode()
 	var/atom/Tsec = drop_location()
@@ -33,4 +42,3 @@
 	S.reagents.add_reagent(/datum/reagent/consumable/ethanol/moonshine, 15)
 	S.on_reagent_change(ADD_REAGENT)
 	..()
-

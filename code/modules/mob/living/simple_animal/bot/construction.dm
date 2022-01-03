@@ -390,19 +390,18 @@
 			if(istype(I, /obj/item/melee/baton))
 				if(!can_finish_build(I, user))
 					return
-				if(prob(95))//monkestation edit
+				//monkestation edit
+				var/mob/living/simple_animal/bot/secbot/S
+				if(prob(1))
 					to_chat(user, "<span class='notice'>You complete the Securitron! Beep boop.</span>")
-					var/mob/living/simple_animal/bot/secbot/S = new(Tsec)
-					S.name = created_name
-					S.baton_type = I.type
-					S.robot_arm = robot_arm
+					S = new(Tsec)
 				else
 					to_chat(user, "<span class='notice'>You complete the... Shitcuritron? Are you sure you did that right?</span>")
-					var/mob/living/simple_animal/bot/secbot/pizzky/S = new(Tsec)
-					S.name = created_name
-					S.baton_type = I.type
-					S.robot_arm = robot_arm
-					//monkestation edit end
+					S = new /mob/living/simple_animal/bot/secbot/pizzky(Tsec)
+				S.name = created_name
+				S.baton_type = I.type
+				S.robot_arm = robot_arm
+				//monkestation edit end
 				qdel(I)
 				qdel(src)
 			if(I.tool_behaviour == TOOL_WRENCH)
