@@ -1983,6 +1983,7 @@
 	name = "Snow"
 	icon_state = "snow"
 
+/*
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"
 	icon_state = "angel"
@@ -1991,6 +1992,7 @@
 	center = TRUE
 	dimension_y = 34
 	locked = TRUE
+*/
 
 // IPC accessories.
 
