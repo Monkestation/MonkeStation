@@ -1983,7 +1983,7 @@
 	name = "Snow"
 	icon_state = "snow"
 
-/*
+/* MonkeStation Edit: Commented out nonexistent moth wing
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"
 	icon_state = "angel"
