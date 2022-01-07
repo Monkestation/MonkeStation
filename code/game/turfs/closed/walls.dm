@@ -26,12 +26,12 @@
 
 	canSmoothWith = list(
 	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
+	///turf/closed/wall/r_wall, //MONKESTATION EDIT - WALL RESPRITE
 	/obj/structure/falsewall,
 	/obj/structure/falsewall/brass,
-	/obj/structure/falsewall/reinforced,
+	///obj/structure/falsewall/reinforced, //MONKESTATION EDIT - WALL RESPRITE
 	/turf/closed/wall/rust,
-	/turf/closed/wall/r_wall/rust,
+	///turf/closed/wall/r_wall/rust, //MONKESTATION EDIT - WALL RESPRITE
 	/turf/closed/wall/clockwork)
 	smooth = SMOOTH_TRUE
 

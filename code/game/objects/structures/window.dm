@@ -487,7 +487,8 @@
 /* Full Tile Windows (more obj_integrity) */
 
 /obj/structure/window/fulltile
-	icon = 'icons/obj/smooth_structures/window.dmi'
+	//icon = 'icons/obj/smooth_structures/window.dmi' //ORIGINAL
+	icon = 'monkestation/icons/obj/structure/window/window.dmi' //MONKESTATION EDIT - WINDOW RESPRITE
 	icon_state = "window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 100
@@ -501,7 +502,8 @@
 	anchored = FALSE
 
 /obj/structure/window/plasma/fulltile
-	icon = 'icons/obj/smooth_structures/plasma_window.dmi'
+	//icon = 'icons/obj/smooth_structures/plasma_window.dmi' //ORIGINAL
+	icon = 'monkestation/icons/obj/structure/window/plasma_window.dmi' //MONKESTATION EDIT - WINDOW RESPRITE
 	icon_state = "plasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 600
@@ -515,7 +517,8 @@
 	anchored = FALSE
 
 /obj/structure/window/plasma/reinforced/fulltile
-	icon = 'icons/obj/smooth_structures/rplasma_window.dmi'
+	//icon = 'icons/obj/smooth_structures/rplasma_window.dmi' //ORIGINAL
+	icon = 'monkestation/icons/obj/structure/window/rplasma_window.dmi' //MONKESTATION EDIT - WINDOW RESPRITE
 	icon_state = "rplasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 4000
@@ -528,7 +531,8 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced/fulltile
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
+	//icon = 'icons/obj/smooth_structures/reinforced_window.dmi' //ORIGINAL
+	icon = 'monkestation/icons/obj/structure/window/reinforced_window.dmi' //MONKESTATION EDIT - WINDOW RESPRITE
 	icon_state = "r_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 200
@@ -543,7 +547,8 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced/tinted/fulltile
-	icon = 'icons/obj/smooth_structures/tinted_window.dmi'
+	//icon = 'icons/obj/smooth_structures/tinted_window.dmi' //ORIGINAL
+	icon = 'monkestation/icons/obj/structure/window/tinted_window.dmi' //MONKESTATION EDIT - WINDOW RESPRITE
 	icon_state = "tinted_window"
 	dir = FULLTILE_WINDOW_DIR
 	fulltile = TRUE
