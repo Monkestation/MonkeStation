@@ -26,13 +26,18 @@
 
 	canSmoothWith = list(
 	/turf/closed/wall,
-	///turf/closed/wall/r_wall, //MONKESTATION EDIT - WALL RESPRITE
+	/turf/closed/wall/r_wall,
 	/obj/structure/falsewall,
 	/obj/structure/falsewall/brass,
-	///obj/structure/falsewall/reinforced, //MONKESTATION EDIT - WALL RESPRITE
+	/obj/structure/falsewall/reinforced,
 	/turf/closed/wall/rust,
-	///turf/closed/wall/r_wall/rust, //MONKESTATION EDIT - WALL RESPRITE
-	/turf/closed/wall/clockwork)
+	/turf/closed/wall/r_wall/rust,
+	/turf/closed/wall/clockwork,
+	//MONKESTATION EDIT BEGIN - WINDOW AND WALL RESPRITE
+	/obj/structure/window/fulltile,
+	/obj/structure/window/plasma/fulltile,
+	/obj/structure/window/reinforced/fulltile)
+	//MONKESTATION EDIT END
 	smooth = SMOOTH_TRUE
 
 	var/list/dent_decals
