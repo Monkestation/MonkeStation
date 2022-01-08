@@ -493,7 +493,7 @@
 //MonkeStation Edit: Bad Food can cause disease
 /datum/reagent/toxin/bad_food/reaction_mob(mob/living/M, method = INGEST, reac_volume, show_message, touch_protection)
 	. = ..()
-	if((ishuman(M) || ismonkey(M)) && prob(20))
+	if(prob(20) && (ishuman(M) || ismonkey(M))
 		var/datum/disease/advance/plague = new /datum/disease/advance/random(rand(2,3), 9, 0, /datum/symptom/vomit)
 		plague.name = "Food Poisoning"
 		plague.try_infect(M)
