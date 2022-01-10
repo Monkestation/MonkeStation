@@ -234,6 +234,7 @@
 	icon = 'icons/mob/human_face.dmi'	  // default icon for all hairs
 	icon_state = "hair_vlong"
 	item_state = "pwig"
+	slot_flags = ITEM_SLOT_HEAD | ITEM_SLOT_NECK //MonkeStation Edit: Wigs are now wearable in neck slots
 	flags_inv = HIDEHAIR
 	var/hair_style = "Very Long Hair"
 	var/hair_color = "#000"
