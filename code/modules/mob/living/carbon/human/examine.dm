@@ -17,7 +17,7 @@
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
 	//MONKESTATION EDIT START - FLAVOR TEXT
-	if(flavor_text && !obscure_name)
+	if(flavor_text && !obscure_name && (real_name == name))
 		. += "[flavor_text]\n*---------*"
 	else
 		. += "<span class='notice'>*---------*</span>"
