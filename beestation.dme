@@ -3464,6 +3464,7 @@
 #include "monkestation\code\datums\diseases\advance\symptoms\rodman.dm"
 #include "monkestation\code\datums\traits\negative.dm"
 #include "monkestation\code\game\area\Space_Station_13_areas.dm"
+#include "monkestation\code\game\machinery\doors\airlock.dm"
 #include "monkestation\code\game\objects\effects\misc.dm"
 #include "monkestation\code\game\objects\items\stickables.dm"
 #include "monkestation\code\modules\admin\verbs\testdummy.dm"
