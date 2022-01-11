@@ -1361,7 +1361,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				//MONKESTATION EDIT START - EXAMINE TEXT
 				if("examine_text")
-					var/new_text = input(user, "Please enter new examine text:", "Character Preference") as text|null
+					var/new_text = input(user, "Please enter new examine text: (You can +bold+, |italicize|, and _underline_ things too!)", "Character Preference") as text|null
 					if(!new_text)
 						return
 					if(length(new_text) > MAX_EXAMINE_LEN)
