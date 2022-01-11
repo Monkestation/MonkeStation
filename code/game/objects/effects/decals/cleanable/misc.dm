@@ -218,3 +218,11 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
+
+//monkestation edit begin
+/obj/effect/decal/cleanable/splash
+	name = "liquid"
+	desc = "The floor is filthy with various chemicals."
+	icon = 'icons/effects/crayondecal.dmi'
+	icon_state = "splatter"
+//monkestation edit end
