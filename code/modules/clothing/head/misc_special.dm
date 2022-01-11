@@ -267,8 +267,14 @@
 		. += M
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
-	var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list - "Bald")
+	var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list + "Random")
 	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(new_style == "Random") //Monkestation Edit: Adds random option
+		hair_style = pick(GLOB.hair_styles_list)
+		if(adjustablecolor)
+			hair_color = "#[random_color()]"
+		update_icon()
 		return
 	if(new_style && new_style != hair_style)
 		hair_style = new_style

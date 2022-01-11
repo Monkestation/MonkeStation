@@ -106,7 +106,7 @@
 
 /datum/quirk/bald/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/clothing/head/wig/W = new /obj/item/clothing/head/wig
+	var/obj/item/clothing/head/wig/W = new
 	W.hair_color = "#[H.hair_color]"
 	W.hair_style = H.hair_style
 	log_world(H.hair_color)
