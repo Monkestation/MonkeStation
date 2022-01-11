@@ -62,6 +62,13 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 /datum/reagent/proc/reaction_turf(turf/T, volume)
+	//monkestation edit begin
+	if(!isspaceturf(T))
+		var/obj/effect/decal/cleanable/splash = new/obj/effect/decal/cleanable(T)
+		splash.icon = 'icons/effects/crayondecal.dmi'
+		splash.icon_state = pick("splatter")
+		splash.add_atom_colour(color, WASHABLE_COLOUR_PRIORITY)
+	//monkestation edit end
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
