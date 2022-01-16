@@ -52,6 +52,24 @@
 		qdel(W)
 		qdel(src)
 
+/obj/item/bot_assembly/larry
+	name = "incomplete larry frame"
+	desc = "It's a larry with a sensor attached"
+	icon_state = "larry_proxy"
+	throwforce = 5
+	created_name = "Larry"
+
+/obj/item/bot_assembly/larry/attackby(obj/item/W, mob/user, params)
+	..()
+	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
+		if(!can_finish_build(W, user))
+			return
+		var/mob/living/simple_animal/bot/cleanbot/larry/A = new(drop_location())
+		A.name = created_name
+		A.robot_arm = W.type
+		to_chat(user, "<span class='notice'>You add [W] to [src]. Beep boop!</span>")
+		qdel(W)
+		qdel(src)
 
 //Edbot Assembly
 /obj/item/bot_assembly/ed209
@@ -390,11 +408,18 @@
 			if(istype(I, /obj/item/melee/baton))
 				if(!can_finish_build(I, user))
 					return
-				to_chat(user, "<span class='notice'>You complete the Securitron! Beep boop.</span>")
-				var/mob/living/simple_animal/bot/secbot/S = new(Tsec)
+				//monkestation edit
+				var/mob/living/simple_animal/bot/secbot/S
+				if(prob(1))
+					to_chat(user, "<span class='notice'>You complete the Securitron! Beep boop.</span>")
+					S = new(Tsec)
+				else
+					to_chat(user, "<span class='notice'>You complete the... Shitcuritron? Are you sure you did that right?</span>")
+					S = new /mob/living/simple_animal/bot/secbot/pizzky(Tsec)
 				S.name = created_name
 				S.baton_type = I.type
 				S.robot_arm = robot_arm
+				//monkestation edit end
 				qdel(I)
 				qdel(src)
 			if(I.tool_behaviour == TOOL_WRENCH)
