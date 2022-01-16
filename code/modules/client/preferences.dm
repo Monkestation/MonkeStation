@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain",
 							"ipc_screen" = "Blue", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics(Greyscale)",
 							"insect_type" = "Common Fly")
-  var/examine_text						//MONKESTATION EDIT - EXAMINE TEXT
+	var/examine_text						//MONKESTATION EDIT - EXAMINE TEXT
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
