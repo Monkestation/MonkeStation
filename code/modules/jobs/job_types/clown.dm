@@ -19,6 +19,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	departments = DEPARTMENT_SERVICE
+	rpg_title = "Jester"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/honk
@@ -44,7 +45,10 @@
 		/obj/item/reagent_containers/spray/waterflower = 1,
 		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
 		/obj/item/instrument/bikehorn = 1,
+		/obj/item/storage/box/stickers,
+		/obj/item/sticker_roll/status
 		)
+		//MonkeStation Edit: Clowns roundstart with free stickers
 
 	implants = list(/obj/item/implant/sad_trombone)
 

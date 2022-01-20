@@ -22,7 +22,8 @@
 
 /datum/surgery_step/dissection
 	name = "dissection"
-	implements = list(TOOL_SCALPEL = 60, /obj/item/kitchen/knife = 30, /obj/item/shard = 15)
+	//MonkeStation Edit: Tool chances and choices modified.
+	implements = list(TOOL_SCALPEL = 47, /obj/item/kitchen/knife = 32, /obj/item/toy/cards/singlecard = 32, /obj/item/shard = 16)
 	time = 125
 
 /datum/surgery_step/dissection/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -48,7 +49,7 @@
 
 /datum/surgery_step/dissection/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] dissects [target]!", "<span class='notice'>You dissect [target], and add your discoveries to the research database!</span>")
-	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = check_value(target)))
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_DISCOVERY = check_value(target)))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")
@@ -56,7 +57,7 @@
 
 /datum/surgery_step/dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] dissects [target]!", "<span class='notice'>You dissect [target], but do not find anything particularly interesting.</span>")
-	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = (check_value(target) * 0.2)))
+	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_DISCOVERY = (check_value(target) * 0.2)))
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
 	ADD_TRAIT(target, TRAIT_DISSECTED, "surgery")

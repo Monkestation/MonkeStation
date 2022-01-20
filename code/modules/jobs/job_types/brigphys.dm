@@ -22,6 +22,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYS
 	departments = DEPARTMENT_MEDICAL | DEPARTMENT_SECURITY
+	rpg_title = "Battle Cleric"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/secmed
@@ -38,7 +39,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	suit = /obj/item/clothing/suit/hazardvest/brig_phys
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex //MonkeStation Edit: Lower Quality Gloves
 	suit_store = /obj/item/flashlight/seclite
 	l_hand = /obj/item/storage/firstaid/medical
 	head = /obj/item/clothing/head/soft/sec/brig_phys

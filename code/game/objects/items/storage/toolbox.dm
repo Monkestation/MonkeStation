@@ -14,7 +14,6 @@
 	materials = list(/datum/material/iron = 500)
 	attack_verb = list("robusted")
 	hitsound = 'sound/weapons/smash.ogg'
-	block_upgrade_walk = 1
 	custom_materials = list(/datum/material/iron = 500) //Toolboxes by default use iron as their core, custom material.
 	var/latches = "single_latch"
 	var/has_latches = TRUE
@@ -236,6 +235,7 @@
 	new /obj/item/stack/cable_coil/orange(src)
 	new /obj/item/stack/cable_coil/cyan(src)
 	new /obj/item/stack/cable_coil/white(src)
+	new /obj/item/storage/box/stickers(src) //MonkeStation Edit: Stickers in Artistic Toolboxes
 
 /obj/item/storage/toolbox/ammo
 	name = "ammo box"

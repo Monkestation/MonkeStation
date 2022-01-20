@@ -23,6 +23,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 	departments = DEPARTMENT_MEDICAL
+	rpg_title = "Corpse Runner"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/emt
@@ -36,7 +37,7 @@
 	id = /obj/item/card/id/job/med
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex //MonkeStation Edit: Lower Quality Gloves
 	uniform = /obj/item/clothing/under/rank/medical/emt
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/soft/emt

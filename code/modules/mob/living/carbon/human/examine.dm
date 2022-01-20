@@ -16,6 +16,13 @@
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
+	//MONKESTATION EDIT START - EXAMINE TEXT
+	if(examine_text && !obscure_name && (real_name == name))
+		. += "[examine_text]\n*---------*"
+	else
+		. += "<span class='notice'>*---------*</span>"
+	//MONKESTATION EDIT END
+
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
@@ -55,15 +62,6 @@
 		var/hand_number = get_num_arms(FALSE)
 		if(hand_number)
 			. += "<span class='warning'>[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!</span>"
-
-	//handcuffed?
-
-	//handcuffed?
-	if(handcuffed)
-		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
-			. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!</span>"
-		else
-			. += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!</span>"
 
 	//belt
 	if(belt)
@@ -309,6 +307,17 @@
 
 		if(HAS_TRAIT(src, TRAIT_DIGICAMO))
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+
+	//handcuffed?
+	if(handcuffed)
+		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
+			. += "<span class='warning'>[t_He] [t_is] restrained with cable!</span>"
+		else
+			. += "<span class='warning'>[t_He] [t_is] handcuffed with [handcuffed]!</span>"
+
+	//legcuffed?
+	if(legcuffed)
+		. += "<span class='warning'>[t_He] [t_is] legcuffed with [legcuffed]!</span>"
 
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"

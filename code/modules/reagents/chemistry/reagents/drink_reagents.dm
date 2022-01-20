@@ -152,13 +152,14 @@
 /datum/reagent/consumable/laughter
 	name = "Laughter"
 	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
-	metabolization_rate = INFINITY
 	color = "#FF4DD2"
 	taste_description = "laughter"
 	random_unrestricted = TRUE
 
 /datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
-	M.emote("laugh")
+	//MonkeStation Edit: Laughter lasts longer in the body.
+	if(prob(25))
+		M.emote("laugh")
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_laughter)
 	..()
 
@@ -258,7 +259,7 @@
 	..()
 
 	if (L.client)
-		SSmedals.UnlockMedal(MEDAL_APPLY_REAGENT_SOYMILK,L.client)
+		L.client.give_award(/datum/award/achievement/misc/soy, L)
 
 
 /datum/reagent/consumable/soymilk/on_mob_life(mob/living/carbon/M)
@@ -823,6 +824,14 @@
 	color = "#E78108"
 	taste_description = "peaches"
 	glass_name = "glass of peach juice"
+
+/datum/reagent/consumable/pineapplejuice
+	name = "Pineapple Juice"
+	description = "Tart, tropical, and hotly debated."
+	color = "#F7D435"
+	taste_description = "pineapple"
+	glass_name = "glass of pineapple juice"
+	glass_desc = "Tart, tropical, and hotly debated."
 
 /datum/reagent/consumable/cream_soda
 	name = "Cream Soda"

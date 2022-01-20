@@ -5,7 +5,7 @@
 //Ready states at roundstart for mob/dead/new_player
 #define PLAYER_NOT_READY 0
 #define PLAYER_READY_TO_PLAY 1
-#define PLAYER_READY_TO_OBSERVE 2
+//monkestation edit: remove ready to observe for /tg/ menu port
 
 //Game mode list indexes
 #define CURRENT_LIVING_PLAYERS	"living_players_list"
@@ -346,7 +346,7 @@
 #define WIZARD_AGE_MIN		30	//! youngest a wizard can be
 #define APPRENTICE_AGE_MIN	29	//! youngest an apprentice can be
 #define SHOES_SLOWDOWN		0	//! How much shoes slow you down by default. Negative values speed you up
-#define POCKET_STRIP_DELAY			40	//! time taken (in deciseconds) to search somebody's pockets
+#define POCKET_STRIP_DELAY	(4 SECONDS)	//! time taken to search somebody's pockets
 #define DOOR_CRUSH_DAMAGE	15	//! the amount of damage that airlocks deal when they crush you
 
 #define	HUNGER_FACTOR		0.1	//! factor at which mob nutrition decreases
@@ -415,3 +415,4 @@
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
+

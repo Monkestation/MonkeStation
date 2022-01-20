@@ -93,7 +93,55 @@
 	attack_verb = list("pumps", "siphons")
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
+	var/load_sound = 'sound/weapons/shotguninsert.ogg' //Monkestation edit start
+	var/obj/item/reagent_containers/glass/beaker = null
 
+/obj/item/blood_filter/handle_atom_del(atom/A)
+	. = ..()
+	if(beaker)
+		qdel(beaker)
+
+/obj/item/blood_filter/examine(mob/user)
+	. = ..()
+	if(beaker)
+		. += "It has a [beaker] loaded."
+		if(beaker.reagents.total_volume)
+			. += "<span class='notice'>It has [beaker.reagents.total_volume] unit\s of reagents.</span>"
+		else
+			. += "<span class='danger'>It's empty.</span>"
+	else
+		. += "It has a receptacle that can hold a beaker."
+
+/obj/item/blood_filter/attack_self(mob/living/user)
+	if(!beaker)
+		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		return 0
+
+	var/obj/item/reagent_containers/glass/S = beaker
+
+	if(!S)
+		return FALSE
+	user.put_in_hands(S)
+	to_chat(user, "<span class='notice'>You unload [S] from \the [src].</span>")
+	beaker = null
+
+	return TRUE
+
+/obj/item/blood_filter/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
+	if(istype(A, /obj/item/reagent_containers/glass))
+		if(beaker)
+			to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
+		else
+			if(!user.transferItemToLoc(A, src))
+				return FALSE
+			to_chat(user, "<span class='notice'>You load [A] into \the [src].</span>")
+			beaker = A
+			update_icon()
+			playsound(loc, load_sound, 40)
+			return TRUE
+	return FALSE
+
+//Monkestation edit end
 
 /obj/item/surgicaldrill
 	name = "surgical drill"
@@ -317,25 +365,24 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	force = 16
 	toolspeed = 0.7
+	light_system = MOVABLE_LIGHT
+	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
 	sharpness = IS_SHARP_ACCURATE
 
-/obj/item/scalpel/advanced/Initialize()
-	. = ..()
-	set_light(1)
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
 		to_chat(user, "<span class='notice'>You increase the power of [src], now it can cut bones.</span>")
-		set_light(2)
+		set_light_range(2)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, "<span class='notice'>You lower the power of [src], it can no longer cut bones.</span>")
-		set_light(1)
+		set_light_range(1)
 		force -= 1
 		icon_state = "scalpel_a"
 
@@ -374,10 +421,8 @@
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED
 	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/surgicaldrill/advanced/Initialize()
-	. = ..()
-	set_light(1)
+	light_system = MOVABLE_LIGHT
+	light_range = 1
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
 	playsound(get_turf(user), 'sound/weapons/tap.ogg', 50, TRUE)

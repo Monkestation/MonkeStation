@@ -5,7 +5,8 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to separate rooms."
 	anchored = TRUE
-	icon = 'icons/turf/walls/wall.dmi'
+	//icon = 'icons/turf/walls/wall.dmi' //ORIGINAL
+	icon = 'monkestation/icons/turf/walls/wall.dmi' //MONKESTATION EDIT - WALL RESPRITE
 	icon_state = "wall"
 	layer = LOW_OBJ_LAYER
 	density = TRUE
@@ -20,7 +21,12 @@
 		/obj/structure/falsewall/reinforced,
 		/turf/closed/wall/rust,
 		/turf/closed/wall/r_wall/rust,
-		/turf/closed/wall/clockwork)
+		/turf/closed/wall/clockwork,
+		//MONKESTATION EDIT BEGIN - WINDOW AND WALL RESPRITE
+		/obj/structure/window/fulltile,
+		/obj/structure/window/plasma/fulltile,
+		/obj/structure/window/reinforced/fulltile)
+		//MONKESTATION EDIT END
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -147,7 +153,8 @@
 /obj/structure/falsewall/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
-	icon = 'icons/turf/walls/reinforced_wall.dmi'
+	//icon = 'icons/turf/walls/reinforced_wall.dmi' //ORIGINAL
+	icon = 'monkestation/icons/turf/walls/reinforced_wall.dmi' //MONKESTATION EDIT - WALL RESPRITE
 	icon_state = "r_wall"
 	walltype = /turf/closed/wall/r_wall
 	mineral = /obj/item/stack/sheet/plasteel
@@ -291,6 +298,15 @@
 	mineral = /obj/item/stack/sheet/mineral/wood
 	walltype = /turf/closed/wall/mineral/wood
 	canSmoothWith = list(/obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood)
+
+/obj/structure/falsewall/bamboo
+	name = "bamboo wall"
+	desc = "A wall with bamboo finish. Zen."
+	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon_state = "bamboo"
+	mineral = /obj/item/stack/sheet/mineral/bamboo
+	walltype = /turf/closed/wall/mineral/bamboo
+	canSmoothWith = list(/obj/structure/falsewall/bamboo, /turf/closed/wall/mineral/bamboo)
 
 /obj/structure/falsewall/iron
 	name = "rough iron wall"
