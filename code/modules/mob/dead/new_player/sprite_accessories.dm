@@ -90,12 +90,8 @@
 	name = "Ahoge"
 	icon_state = "hair_antenna"
 
-/datum/sprite_accessory/hair/bald
+/datum/sprite_accessory/hair/bald //Monkestation edit: Removes bald, changes bald2 to bald. for Bald quirk
 	name = "Bald"
-	icon_state = null
-
-/datum/sprite_accessory/hair/bald2
-	name = "Bald 2"
 	icon_state = "hair_bald2"
 
 /datum/sprite_accessory/hair/balding
@@ -1983,6 +1979,7 @@
 	name = "Snow"
 	icon_state = "snow"
 
+/* MonkeStation Edit: Commented out nonexistent moth wing
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"
 	icon_state = "angel"
@@ -1991,6 +1988,7 @@
 	center = TRUE
 	dimension_y = 34
 	locked = TRUE
+*/
 
 // IPC accessories.
 
