@@ -14,7 +14,7 @@
 	slot_flags = ITEM_SLOT_HEAD
 	var/list/sound_effect  = list('sound/misc/fart1.ogg', 'monkestation/sound/effects/fart2.ogg', 'monkestation/sound/effects/fart3.ogg', 'monkestation/sound/effects/fart4.ogg')
 	var/atmos_gas = "miasma=0.25;TEMP=310.15" //310.15 is body temperature
-	var/fart_instability = 0.5 //Percent chance to lose your rear each fart.
+	var/fart_instability = 1 //Percent chance to lose your rear each fart.
 	var/cooling_down = FALSE
 
 //ADMIN ONLY ATOMIC ASS
@@ -22,7 +22,7 @@
 	name = "Atomic Ass"
 	desc = "A highly radioactive and unstable posterior. Anyone with this is a walking war crime."
 	sound_effect = list("sound/items/geiger/low1.ogg", "sound/items/geiger/low2.ogg", "sound/items/geiger/low3.ogg", "sound/items/geiger/low4.ogg")
-	fart_instability = 10
+	fart_instability = 5
 	atmos_gas = "tritium=5;TEMP=600"
 	icon_state = "atomicass"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -54,7 +54,7 @@
 /obj/item/organ/butt/bluespace
 	name = "Bluespace Posterior"
 	desc = "Science isn't about why, it's about why not!"
-	fart_instability = 3
+	fart_instability = 6
 	atmos_gas = "water_vapor=0.75;TEMP=50"
 	icon_state = "blueass"
 
@@ -70,7 +70,7 @@
 /obj/item/organ/butt/clown
 	name = "Clown Butt"
 	desc = "A poor clown has been separated with their most funny organ."
-	fart_instability = 2
+	fart_instability = 3
 	atmos_gas = "n2o=0.25;TEMP=310.15"
 	icon_state = "clownass"
 	sound_effect = list('sound/items/party_horn.ogg', 'sound/items/bikehorn.ogg')
@@ -81,9 +81,9 @@
 
 /obj/item/organ/butt/clown/On_Fart(mob/user)
 	if(!cooling_down)
-		user.visible_message("<span class='danger'>There should be confetti here. But it's not coded yet.</span>")
 		var/turf/Location = get_turf(user)
-		new /obj/item/poster/random_contraband(Location) //PLACEHOLDER
+		if(!locate(/obj/effect/decal/cleanable/confetti) in Location)
+			new /obj/effect/decal/cleanable/confetti(Location)
 	..()
 
 //PROSTHETIC ASS
@@ -128,7 +128,7 @@
 	name = "immovable butt"
 	desc = "No, really, what the fuck is that?"
 	icon = 'monkestation/icons/obj/butts.dmi'
-	icon_state = "ass" //Placeholder?
+	icon_state = "ass"
 
 /obj/effect/immovablerod/butt/Initialize()
 	. = ..()
@@ -250,8 +250,7 @@
 		spawn(15)
 			cooling_down = FALSE
 
-//Commented out for Testmerge
-/* //Buttbot Production
+//Buttbot Production
 /obj/item/organ/butt/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/bodypart/l_arm/robot) || istype(I, /obj/item/bodypart/r_arm/robot))
 		var/mob/living/simple_animal/bot/buttbot/new_butt = new(get_turf(src))
@@ -293,4 +292,4 @@
 
 		playsound(src, pick('sound/misc/fart1.ogg', 'monkestation/sound/effects/fart2.ogg', 'monkestation/sound/effects/fart3.ogg', 'monkestation/sound/effects/fart4.ogg'), 25 ,use_reverb = TRUE)
 		qdel(src)
- */
+
