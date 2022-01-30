@@ -566,7 +566,7 @@
 	if(note && note_attachment == side)
 		var/notetype = note_type()
 		base.add_overlay(get_airlock_overlay(notetype, note_overlay_file))
-///* MONKESTATION EDIT - MOVED TO MODULAR FILE
+
 /obj/machinery/door/airlock/proc/set_airlock_overlays(state)
 	for(var/obj/effect/overlay/airlock_part/part as() in part_overlays)
 		set_side_overlays(part, state == AIRLOCK_CLOSING || state == AIRLOCK_OPENING)
@@ -660,7 +660,7 @@
 			if(lights && hasPower())
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
 	check_unres()
-//*/ //MONKESTATION EDIT END
+
 /proc/get_airlock_overlay(icon_state, icon_file)
 	var/obj/machinery/door/airlock/A
 	pass(A)	//suppress unused warning
