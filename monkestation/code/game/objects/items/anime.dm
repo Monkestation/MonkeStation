@@ -24,6 +24,7 @@
 	user.add_splatter_floor(location)
 	var/msg = "<span class=danger>You feel the power of God and Anime flow through you! </span>"
 	to_chat(user, msg)
+	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
 	qdel(src)
 
 /obj/item/anime/CtrlClick(mob/living/carbon/human/user)

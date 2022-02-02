@@ -151,7 +151,7 @@
 	if(!.)
 		return
 	var/mob/living/carbon/human/H = user
-	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(H)) //Monkestation edit
+	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(H))
 		return
 	if(!H.dna.species.is_wagging_tail())
 		H.dna.species.start_wagging_tail(H)
