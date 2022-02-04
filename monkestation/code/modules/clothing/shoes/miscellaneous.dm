@@ -8,8 +8,8 @@
 	. = ..()
 	if(next_slip <= world.time)
 		var/mob/living/carbon/wearer = loc
+		var/turf/location = get_turf(wearer)
 		to_chat(wearer, "<span class='clowntext'>[pick("You slip flat on your face!", "Your shoes send you flying!", "An invisible leg of the Honkmother trips you!")]</span>")
-		playsound(loc, 'sound/misc/slip.ogg', 25, 1, -1)
 		playsound(loc, 'sound/effects/laughtrack.ogg', 50, 1, -1)
-		wearer.Paralyze(2 SECONDS, TRUE, TRUE)
+		location.handle_slip(wearer, 2 SECONDS)
 		next_slip = world.time + rand(1,5) SECONDS
