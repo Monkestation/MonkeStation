@@ -7,9 +7,8 @@
 	icon_state = "mail_small"
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	//REMOVE ME AFTER WE HAVE PICKUP SOUNDS
-	//drop_sound = 'sound/items/handling/paper_drop.ogg'
-	//pickup_sound =  'sound/items/handling/paper_pickup.ogg'
+	drop_sound = 'sound/items/handling/paper_drop.ogg'
+	pickup_sound =  'sound/items/handling/paper_pickup.ogg'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	/// Destination tagging for the mail sorter.
 	var/sort_tag = 0
@@ -313,9 +312,9 @@
 /// Mailbag.
 /obj/item/storage/bag/mail
 	name = "mail bag"
-	desc = "A bag for letters, envelopes, and other postage."
-	icon = 'icons/obj/library.dmi'
-	icon_state = "bookbag"
+	desc = "A banana themed mail bag. \"Banana Mail, we slip your mail faster than a meth addicted monkey.\" "
+	icon = 'monkestation/icons/obj/mail.dmi'
+	icon_state = "mailbag"
 	resistance_flags = FLAMMABLE
 
 /obj/item/storage/bag/mail/ComponentInitialize()
