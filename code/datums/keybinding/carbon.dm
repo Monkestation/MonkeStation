@@ -21,6 +21,7 @@
 	C.toggle_throw_mode()
 	return TRUE
 
+
 /datum/keybinding/carbon/select_help_intent
 	key = "1"
 	name = "select_help_intent"
