@@ -3477,7 +3477,6 @@
 #include "monkestation\code\datums\diseases\advance\symptoms\gateway.dm"
 #include "monkestation\code\datums\diseases\advance\symptoms\goat.dm"
 #include "monkestation\code\datums\diseases\advance\symptoms\rodman.dm"
-#include "monkestation\code\datums\keybinding.dm"
 #include "monkestation\code\datums\keybinding\human.dm"
 #include "monkestation\code\datums\traits\good.dm"
 #include "monkestation\code\datums\traits\negative.dm"
