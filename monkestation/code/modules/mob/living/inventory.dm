@@ -1,5 +1,5 @@
 //quickswap items!
-/mob/living/quick_equip()
+/mob/living/carbon/human/quick_equip()
 
 	var/obj/item/I = get_active_held_item()
 	if (I)
@@ -12,12 +12,12 @@
 					var/obj/item/store = i
 					if(SEND_SIGNAL(store, COMSIG_TRY_STORAGE_INSERT, I, src))//this prioritizes storing it before swapping
 						return
-				if(putItemFromInventoryInHandIfPossible(inv, get_inactive_hand_index()))
+				if(putItemFromInventoryInHandIfPossible(inv, get_inactive_hand_index(), invdrop = FALSE))
 					I.equip_to_best_slot(src, TRUE)
 					return
  	..()
 
-/mob/living/verb/equip_swap()//to bypass storage and directly swap
+/mob/living/carbon/human/verb/equip_swap()//to bypass storage and directly swap
 	set name = "equip swap"
 	set hidden = 1
 
@@ -26,7 +26,7 @@
 		if(!equip_to_appropriate_slot(I))
 			for(var/obj/item/inv in get_equipped_items())
 				if(I.slot_flags & inv.slot_flags)
-					if(putItemFromInventoryInHandIfPossible(inv, get_inactive_hand_index()))
+					if(putItemFromInventoryInHandIfPossible(inv, get_inactive_hand_index(), invdrop = FALSE))
 						I.equip_to_best_slot(src)
 		else
 			update_inv_hands()
