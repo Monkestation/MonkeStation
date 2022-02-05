@@ -25,6 +25,7 @@
 	var/obj/item/weldingtool/weldtool = null
 	var/obj/item/assembly/igniter/igniter = null
 	var/obj/item/tank/internals/plasma/ptank = null
+	var/obj/item/reagent_containers/glass/bker = null
 	var/warned_admins = FALSE //for the message_admins() when lit
 	//variables for prebuilt flamethrowers
 	var/create_full = FALSE
@@ -39,6 +40,8 @@
 		qdel(igniter)
 	if(ptank)
 		qdel(ptank)
+	if(bker)
+		qdel(bker)
 	return ..()
 
 /obj/item/flamethrower/process()
@@ -63,7 +66,12 @@
 	if(lit)
 		add_overlay("+lit")
 		item_state = "flamethrower_1"
+		if(bker)
+			add_overlay("+beaker")
+			item_state = "flamethrower_2"
 	else
+		if(bker)
+			add_overlay("+beaker")
 		item_state = "flamethrower_0"
 	if(ismob(loc))
 		var/mob/M = loc
@@ -118,16 +126,31 @@
 		update_icon()
 		return
 
+	else if(istype(W, /obj/item/reagent_containers/glass/))
+		if(bker)
+			if(user.transferItemToLoc(W,src))
+				bker.forceMove(get_turf(src))
+				bker = W
+				to_chat(user, "<span class='notice'>You swap [bker] in [src]!</span>")
+			return
+		if(!user.transferItemToLoc(W, src))
+			return
+		bker = W
+		to_chat(user, "<span class='notice'>You attach [bker] to [src]!</span>")
+		update_icon()
+		return
+
 	else if(istype(W, /obj/item/tank/internals/plasma))
 		if(ptank)
 			if(user.transferItemToLoc(W,src))
 				ptank.forceMove(get_turf(src))
 				ptank = W
-				to_chat(user, "<span class='notice'>You swap the plasma tank in [src]!</span>")
+				to_chat(user, "<span class='notice'>You swap [ptank] in [src]!</span>")
 			return
 		if(!user.transferItemToLoc(W, src))
 			return
 		ptank = W
+		to_chat(user, "<span class='notice'>You attach [ptank] to [src]!</span>")
 		update_icon()
 		return
 
@@ -144,15 +167,24 @@
 	toggle_igniter(user)
 
 /obj/item/flamethrower/AltClick(mob/user)
-	if(ptank && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(bker && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		user.put_in_hands(bker)
+		bker = null
+		to_chat(user, "<span class='notice'>You remove [bker] from [src]!</span>")
+		update_icon()
+	else if(ptank && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		user.put_in_hands(ptank)
 		ptank = null
-		to_chat(user, "<span class='notice'>You remove the plasma tank from [src]!</span>")
+		to_chat(user, "<span class='notice'>You remove [ptank] from [src]!</span>")
 		update_icon()
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
-	if(ptank)
+	if(bker)
+		. += "<span class='notice'>\The [src] has \a [bker] attached. Alt-click to remove it.</span>"
+		if(ptank)
+			. += "<span class='notice'>\The [src] has \a [ptank] attached.</span>"
+	else if(ptank)
 		. += "<span class='notice'>\The [src] has \a [ptank] attached. Alt-click to remove it.</span>"
 
 /obj/item/flamethrower/proc/toggle_igniter(mob/user)
@@ -165,17 +197,21 @@
 	to_chat(user, "<span class='notice'>You [lit ? "extinguish" : "ignite"] [src]!</span>")
 	lit = !lit
 	if(lit)
-		set_light(1)
+		set_light_power(1)
+		set_light_range(1)
 		playsound(loc, acti_sound, 50, TRUE)
 		START_PROCESSING(SSobj, src)
 		if(!warned_admins)
 			message_admins("[ADMIN_LOOKUPFLW(user)] has lit a flamethrower.")
 			warned_admins = TRUE
 	else
-		set_light(0)
+		set_light_power(0)
+		set_light_range(0)
 		playsound(loc, deac_sound, 50, TRUE)
 		STOP_PROCESSING(SSobj,src)
 	set_light_on(lit)
+	if(light_system == STATIC_LIGHT)
+		update_light()
 	update_icon()
 
 /obj/item/flamethrower/CheckParts(list/parts_list)
