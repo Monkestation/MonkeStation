@@ -6,6 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	var/mutable_appearance/weed_overlay
+	var/smoking = FALSE
 
 /obj/structure/toilet_bong/Initialize()
 	. = ..()
@@ -31,23 +32,31 @@
 
 /obj/structure/toilet_bong/attack_hand(mob/user)
 	. = ..()
-	if (!LAZYLEN(contents))
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+	if(!smoking)
+		if (LAZYLEN(contents))
+			smoking = !smoking
+			spawn(2 SECONDS)
+				smoking = !smoking
+			if (do_after(user, 2 SECONDS, target = src))
+				var/obj/item/reagent_containers/boof = contents[1]
+				user.visible_message("<span class='boldwarning'>[user] takes a huge rip from [src]!</span>", "<span class='boldnotice'>You take a huge rip from [src]!</span>")
+				var/smoke_spread = 1
+				if (prob(15))
+					user.visible_message("<span class='danger'>[user] coughs while using [src], filling the area with smoke!", "<span class='userdanger'>You cough while using [src], filling the area with smoke!</span>")
+					smoke_spread = 5
+				var/turf/location = get_turf(user)
+				var/datum/effect_system/smoke_spread/chem/smoke = new
+				smoke.attach(location)
+				smoke.set_up(boof.reagents, smoke_spread, location, silent = TRUE)
+				smoke.start()
+				qdel(boof)
+				update_icon()
+		else
+			to_chat(user, "<span class='warning'>[src] is empty!</span>")
+			return
+	else
+		to_chat(user, "<span class='warning'>[src] is being smoked already!</span>")
 		return
-	if (do_after(user, 2 SECONDS, target = src))
-		var/obj/item/reagent_containers/boof = contents[1]
-		user.visible_message("<span class='boldwarning'>[user] takes a huge rip from [src]!</span>", "<span class='boldnotice'>You take a huge rip from [src]!</span>")
-		var/smoke_spread = 1
-		if (prob(15))
-			user.visible_message("<span class='danger'>[user] coughs while using [src], filling the area with smoke!", "<span class='userdanger'>You cough while using [src], filling the area with smoke!</span>")
-			smoke_spread = 5
-		var/turf/location = get_turf(user)
-		var/datum/effect_system/smoke_spread/chem/smoke = new
-		smoke.attach(location)
-		smoke.set_up(boof.reagents, smoke_spread, location, silent = TRUE)
-		smoke.start()
-		qdel(boof)
-		update_icon()
 
 // It's a bong powered by a **flamethrower**, it's definitely an open flame!!
 /obj/structure/toilet_bong/process()
