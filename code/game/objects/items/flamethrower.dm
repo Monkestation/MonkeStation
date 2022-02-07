@@ -224,21 +224,27 @@
 	update_icon()
 
 //Called from turf.dm turf/dblclick
-/obj/item/flamethrower/proc/flame_turf(turflist)
-	if(!lit || operating)
+/obj/item/flamethrower/proc/flame_turf(turflist, release_amount = 0.05)
+	if(operating)
 		return
 	operating = TRUE
 	var/turf/previousturf = get_turf(src)
+	var/datum/reagents/preppedchems = new/datum/reagents
+	if(ptank)
+		playsound(src, 'sound/effects/spray.ogg', 50, 1, -6)
+	if(bker)
+		bker.reagents.trans_to(preppedchems, bker.reagents.total_volume * release_amount)
+		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 	for(var/turf/T in turflist)
 		if(T == previousturf)
 			continue	//so we don't burn the tile we be standin on
 		var/list/turfs_sharing_with_prev = previousturf.GetAtmosAdjacentTurfs(alldir=1)
 		if(!(T in turfs_sharing_with_prev))
 			break
-		if(igniter)
-			igniter.ignite_turf(src,T)
-		else
-			default_ignite(T)
+		if(ptank)
+			project_gas(T, release_amount)
+		if(bker)
+			project_reagents(T, bker.reagents.total_volume * release_amount, preppedchems)
 		sleep(1)
 		previousturf = T
 	operating = FALSE
@@ -246,16 +252,34 @@
 		if((M.client && M.machine == src))
 			attack_self(M)
 
-
-/obj/item/flamethrower/proc/default_ignite(turf/target, release_amount = 0.05)
+/obj/item/flamethrower/proc/project_gas(turf/target, release_amount = 0.05)
 	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
 	air_transfer.set_moles(GAS_PLASMA, air_transfer.get_moles(GAS_PLASMA) * 5)
 	target.assume_air(air_transfer)
-	//Burn it based on transfered gas
-	target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
-	//location.hotspot_expose(1000,500,1)
+	if(lit) //if the igniter's on, we heat up that gas as well!
+		target.hotspot_expose((ptank.air_contents.return_temperature()*2) + 380,500)
+
+
+/obj/item/flamethrower/proc/project_reagents(turf/target, chem_amount, datum/reagents/chemstothrow)
+	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(target)
+	D.create_reagents(chem_amount)
+	chemstothrow.copy_to(D, chem_amount)
+	var/reagentcolor = mix_color_from_reagents(D.reagents.reagent_list)
+	D.color = reagentcolor
+	//Make a visual effect to be slightly more obvious
+	var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
+	W.add_atom_colour(reagentcolor, WASHABLE_COLOUR_PRIORITY)
+	while(get_turf(W) != target)
+		step_towards(W, target)
+	if(lit) //heat the reagents on the turf but before applying them
+		D.reagents.expose_temperature(igniter.is_hot())
+	for(var/atom/A in target)
+		if(!A.invisibility)
+			D.reagents.reaction(A, VAPOR)
+	D.reagents.reaction(target, VAPOR)
+	qdel(D)
 
 
 /obj/item/flamethrower/Initialize(mapload)
@@ -284,13 +308,10 @@
 		owner.visible_message("<span class='danger'>\The [attack_text] hits the fuel tank on [owner]'s [name], rupturing it! What a shot!</span>")
 		var/turf/target_turf = get_turf(owner)
 		log_game("A projectile ([hitby]) detonated a flamethrower tank held by [key_name(owner)] at [COORD(target_turf)]")
-		igniter.ignite_turf(src,target_turf, release_amount = 100)
+		flame_turf(src,target_turf, 1)
 		qdel(ptank)
 		return 1 //It hit the flamethrower, not them
 
 
 /obj/item/assembly/igniter/proc/flamethrower_process(turf/open/location)
 	location.hotspot_expose(700,2)
-
-/obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
-	F.default_ignite(location,release_amount)
