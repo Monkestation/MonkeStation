@@ -25,7 +25,7 @@
 	var/obj/item/weldingtool/weldtool = null
 	var/obj/item/assembly/igniter/igniter = null
 	var/obj/item/tank/internals/plasma/ptank = null
-	var/obj/item/reagent_containers/glass/bker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/warned_admins = FALSE //for the message_admins() when lit
 	//variables for prebuilt flamethrowers
 	var/create_full = FALSE
@@ -40,8 +40,8 @@
 		qdel(igniter)
 	if(ptank)
 		qdel(ptank)
-	if(bker)
-		qdel(bker)
+	if(beaker)
+		qdel(beaker)
 	return ..()
 
 /obj/item/flamethrower/process()
@@ -66,11 +66,11 @@
 	if(lit)
 		add_overlay("+lit")
 		item_state = "flamethrower_1"
-		if(bker)
+		if(beaker)
 			add_overlay("+beaker")
 			item_state = "flamethrower_2"
 	else
-		if(bker)
+		if(beaker)
 			add_overlay("+beaker")
 		item_state = "flamethrower_0"
 	if(ismob(loc))
@@ -127,16 +127,16 @@
 		return
 
 	else if(istype(W, /obj/item/reagent_containers/glass/))
-		if(bker)
+		if(beaker)
 			if(user.transferItemToLoc(W,src))
-				bker.forceMove(get_turf(src))
-				bker = W
-				to_chat(user, "<span class='notice'>You swap [bker] in [src]!</span>")
+				beaker.forceMove(get_turf(src))
+				beaker = W
+				to_chat(user, "<span class='notice'>You swap [beaker] in [src]!</span>")
 			return
 		if(!user.transferItemToLoc(W, src))
 			return
-		bker = W
-		to_chat(user, "<span class='notice'>You attach [bker] to [src]!</span>")
+		beaker = W
+		to_chat(user, "<span class='notice'>You attach [beaker] to [src]!</span>")
 		update_icon()
 		return
 
@@ -167,10 +167,10 @@
 	toggle_igniter(user)
 
 /obj/item/flamethrower/AltClick(mob/user)
-	if(bker && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
-		user.put_in_hands(bker)
-		bker = null
-		to_chat(user, "<span class='notice'>You remove [bker] from [src]!</span>")
+	if(beaker && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		user.put_in_hands(beaker)
+		beaker = null
+		to_chat(user, "<span class='notice'>You remove [beaker] from [src]!</span>")
 		update_icon()
 	else if(ptank && isliving(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		user.put_in_hands(ptank)
@@ -180,8 +180,8 @@
 
 /obj/item/flamethrower/examine(mob/user)
 	. = ..()
-	if(bker)
-		. += "<span class='notice'>\The [src] has \a [bker] attached. Alt-click to remove it.</span>"
+	if(beaker)
+		. += "<span class='notice'>\The [src] has \a [beaker] attached. Alt-click to remove it.</span>"
 		if(ptank)
 			. += "<span class='notice'>\The [src] has \a [ptank] attached.</span>"
 	else if(ptank)
@@ -229,12 +229,16 @@
 		return
 	operating = TRUE
 	var/turf/previousturf = get_turf(src)
+	var/turf/startturf = previousturf
 	var/datum/reagents/preppedchems = new/datum/reagents
 	if(ptank)
-		playsound(src, 'sound/effects/spray.ogg', 50, 1, -6)
-	if(bker)
-		bker.reagents.trans_to(preppedchems, bker.reagents.total_volume * release_amount)
-		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
+		if(ptank.air_contents.return_pressure() > startturf.return_air().return_pressure()) //pressure in the tank must be greater than the pressure outside
+			playsound(src, 'sound/effects/spray.ogg', 50, 1, -6)
+	if(beaker)
+		if(beaker.reagents.total_volume > 0)
+			beaker.reagents.trans_to(preppedchems, beaker.reagents.maximum_volume * release_amount)
+			beaker.reagents.remove_all(beaker.reagents.maximum_volume * release_amount)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 	for(var/turf/T in turflist)
 		if(T == previousturf)
 			continue	//so we don't burn the tile we be standin on
@@ -242,9 +246,11 @@
 		if(!(T in turfs_sharing_with_prev))
 			break
 		if(ptank)
-			project_gas(T, release_amount)
-		if(bker)
-			project_reagents(T, bker.reagents.total_volume * release_amount, preppedchems)
+			if(ptank.air_contents.return_pressure() > startturf.return_air().return_pressure())
+				project_gas(T, release_amount)
+		if(beaker)
+			if(beaker.reagents.total_volume > 0)
+				project_reagents(T, beaker.reagents.maximum_volume * release_amount, preppedchems)
 		sleep(1)
 		previousturf = T
 	operating = FALSE
@@ -253,7 +259,6 @@
 			attack_self(M)
 
 /obj/item/flamethrower/proc/project_gas(turf/target, release_amount = 0.05)
-	//TODO: DEFERRED Consider checking to make sure tank pressure is high enough before doing this...
 	//Transfer 5% of current tank air contents to turf
 	var/datum/gas_mixture/air_transfer = ptank.air_contents.remove_ratio(release_amount)
 	air_transfer.set_moles(GAS_PLASMA, air_transfer.get_moles(GAS_PLASMA) * 5)
