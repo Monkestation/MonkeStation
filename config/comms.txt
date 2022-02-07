@@ -43,3 +43,7 @@
 
 ## Password for the hub page
 #MEDAL_HUB_PASSWORD defaultpass
+
+#BOT_IP 127.0.0.1:8081
+
+#BOT_KEY default_pw
