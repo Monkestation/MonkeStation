@@ -272,7 +272,8 @@
 	var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
 	W.add_atom_colour(reagentcolor, WASHABLE_COLOUR_PRIORITY)
 	while(get_turf(W) != target)
-		step_towards(W, target)
+		if(!step_towards(W, target))
+			break
 	if(lit) //heat the reagents on the turf but before applying them
 		D.reagents.expose_temperature(igniter.is_hot())
 	for(var/atom/A in target)
