@@ -55,23 +55,24 @@ have ways of interacting with a specific mob and control it.
 	RegisterSignal(new_pawn, COMSIG_FOOD_EATEN, .proc/on_eat)
 
 	movement_delay = living_pawn.cached_multiplicative_slowdown
-	AddComponent(/datum/component/connect_loc_behalf, new_pawn, loc_connections)
+	//MonkeStation Edit: Monkeys no longer trip on others.
+	//AddComponent(/datum/component/connect_loc_behalf, new_pawn, loc_connections)
 	return ..() //Run parent at end
 
 /datum/ai_controller/monkey/UnpossessPawn(destroy)
 	UnregisterSignal(pawn, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_ATTACK_PAW, COMSIG_ATOM_BULLET_ACT, COMSIG_ATOM_HITBY, COMSIG_LIVING_START_PULL,\
 	COMSIG_LIVING_TRY_SYRINGE, COMSIG_ATOM_HULK_ATTACK, COMSIG_CARBON_CUFF_ATTEMPTED, COMSIG_MOB_MOVESPEED_UPDATED, COMSIG_ATOM_ATTACK_ANIMAL, COMSIG_MOB_ATTACK_ALIEN))
-	qdel(GetComponent(/datum/component/connect_loc_behalf))
+	//qdel(GetComponent(/datum/component/connect_loc_behalf))
 	return ..() //Run parent at end
 
 // Stops sentient monkeys from being knocked over like weak dunces.
 /datum/ai_controller/monkey/on_sentience_gained()
 	. = ..()
-	qdel(GetComponent(/datum/component/connect_loc_behalf))
+	//qdel(GetComponent(/datum/component/connect_loc_behalf))
 
 /datum/ai_controller/monkey/on_sentience_lost()
 	. = ..()
-	AddComponent(/datum/component/connect_loc_behalf, pawn, loc_connections)
+	//AddComponent(/datum/component/connect_loc_behalf, pawn, loc_connections)
 
 /datum/ai_controller/monkey/able_to_run()
 	. = ..()
