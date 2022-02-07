@@ -37,6 +37,64 @@
 /mob/dead/new_player/prepare_huds()
 	return
 
+/mob/dead/new_player/proc/new_player_panel()
+	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
+	asset_datum.send(client)
+	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		switch(ready)
+			if(PLAYER_NOT_READY)
+				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | <b>Not Ready</b> | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
+			if(PLAYER_READY_TO_PLAY)
+				output += "<p>\[ <b>Ready</b> | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
+			if(PLAYER_READY_TO_OBSERVE)
+				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
+	else
+		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</a></p>"
+		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join Game!</a></p>"
+		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
+
+	if(!IS_GUEST_KEY(src.key))
+		if (SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(client?.holder)
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
+				SELECT id FROM [format_table_name("poll_question")]
+				WHERE (adminonly = 0 OR :isadmin = 1)
+				AND Now() BETWEEN starttime AND endtime
+				AND deleted = 0
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_vote")]
+					WHERE ckey = :ckey
+					AND deleted = 0
+				)
+				AND id NOT IN (
+					SELECT pollid FROM [format_table_name("poll_textreply")]
+					WHERE ckey = :ckey
+					AND deleted = 0
+				)
+			"}, list("isadmin" = isadmin, "ckey" = ckey))
+			var/rs = REF(src)
+			if(!query_get_new_polls.Execute())
+				qdel(query_get_new_polls)
+				return
+			if(query_get_new_polls.NextRow())
+				output += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+			else
+				output += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
+
+	output += "</center>"
+
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
+
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
 		return 0
@@ -234,7 +292,7 @@
 			give_magic(humanc)
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
-			
+
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, humanc, rank)
 
 	GLOB.joined_player_list += character.ckey
