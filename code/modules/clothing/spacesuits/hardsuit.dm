@@ -194,6 +194,10 @@
 /obj/item/clothing/head/helmet/space/hardsuit/engine/atmos
 	name = "atmospherics hardsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has thermal shielding."
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'monkestation/icons/mob/head.dmi'
+	lefthand_file = 'monkestation/icons/mob/inhands/clothing_lefthand.dmi'
+	righthand_file = 'monkestation/icons/mob/inhands/clothing_righthand.dmi'
 	icon_state = "hardsuit0-atmospherics"
 	item_state = "atmo_helm"
 	item_color = "atmospherics"
@@ -204,6 +208,10 @@
 /obj/item/clothing/suit/space/hardsuit/engine/atmos
 	name = "atmospherics hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal shielding."
+	icon = 'monkestation/icons/obj/clothing/suits.dmi'
+	alternate_worn_icon = 'monkestation/icons/mob/suit.dmi'
+	lefthand_file = 'monkestation/icons/mob/inhands/clothing_lefthand.dmi'
+	righthand_file = 'monkestation/icons/mob/inhands/clothing_righthand.dmi'
 	icon_state = "hardsuit-atmospherics"
 	item_state = "atmo_hardsuit"
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 15, "bomb" = 10, "bio" = 100, "rad" = 25, "fire" = 100, "acid" = 75, "stamina" = 20)
