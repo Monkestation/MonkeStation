@@ -119,7 +119,7 @@
 
 /datum/keybinding/mob/face_east
 	key = "Ctrl-D"
-	goon_key = "L"
+	goon_key = "L" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -137,7 +137,7 @@
 
 /datum/keybinding/mob/face_south
 	key = "Ctrl-S"
-	goon_key = "K"
+	goon_key = "K" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -154,7 +154,7 @@
 
 /datum/keybinding/mob/face_west
 	key = "Ctrl-A"
-	goon_key = "J"
+	goon_key = "J" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
@@ -238,7 +238,7 @@
 
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
-	goon_key = "C"
+	goon_key = "C" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"
