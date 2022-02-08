@@ -1,6 +1,6 @@
 /datum/keybinding
 	var/key
-	var/goon_key
+	var/goon_key //MONKESTATION CHANGE: added goon keybinds (#84)
 	var/name
 	var/full_name
 	var/description = ""
@@ -10,7 +10,7 @@
 
 //I don't know why this is done in New() and not down() when it says down(), but that's how it's currently on tg
 /datum/keybinding/New()
-	if (!goon_key && key)
+	if (!goon_key && key) //MONKESTATION CHANGE: added goon keybinds (#84)
 		goon_key = key
 
 	if(!keybind_signal)

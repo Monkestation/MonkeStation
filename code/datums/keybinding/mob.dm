@@ -101,7 +101,7 @@
 
 /datum/keybinding/mob/face_north
 	key = "Ctrl-W"
-	goon_key = "I"
+	goon_key = "I" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -222,7 +222,7 @@
 
 /datum/keybinding/mob/swap_hands
 	key = "X"
-	goon_key = "E"
+	goon_key = "E" //MONKESTATION CHANGE: added goon keybinds (#84)
 	name = "swap_hands"
 	full_name = "Swap hands"
 	description = ""
