@@ -65,24 +65,28 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 			destination = /area/security/checkpoint/supply
 			spawn_point = locate(/obj/effect/landmark/start/depsec/supply) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/cargo
+			outfit = /datum/outfit/job/security/cargo //monkestation edit: add departmental sec outfits
 		if(SEC_DEPT_ENGINEERING)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/engi
 			dep_access = list(ACCESS_CONSTRUCTION, ACCESS_ENGINE, ACCESS_ATMOSPHERICS, ACCESS_AUX_BASE)
 			destination = /area/security/checkpoint/engineering
 			spawn_point = locate(/obj/effect/landmark/start/depsec/engineering) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/engine
+			outfit = /datum/outfit/job/security/engineering//monkestation edit: add departmental sec outfits
 		if(SEC_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/med
 			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CLONING)
 			destination = /area/security/checkpoint/medical
 			spawn_point = locate(/obj/effect/landmark/start/depsec/medical) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/medblue
+			outfit = /datum/outfit/job/security/medical//monkestation edit: add departmental sec outfits
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
 			dep_access = list(ACCESS_RESEARCH, ACCESS_TOX, ACCESS_AUX_BASE)
 			destination = /area/security/checkpoint/science
 			spawn_point = locate(/obj/effect/landmark/start/depsec/science) in GLOB.department_security_spawns
 			accessory = /obj/item/clothing/accessory/armband/science
+			outfit = /datum/outfit/job/security/science//monkestation edit: add departmental sec outfits
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -128,9 +132,9 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/officer
+	head = /obj/item/clothing/head/helmet/hat/cowboy //monkestation edit: cowboy sec
+	suit = /obj/item/clothing/suit/armor/secduster //monkestation edit: cowboy sec
 	gloves = /obj/item/clothing/gloves/color/black
-	head = /obj/item/clothing/head/helmet/sec
-	suit = /obj/item/clothing/suit/armor/vest/alt
 	shoes = /obj/item/clothing/shoes/jackboots
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
@@ -147,6 +151,23 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	chameleon_extras = list(/obj/item/gun/energy/disabler, /obj/item/clothing/glasses/hud/security/sunglasses, /obj/item/clothing/head/helmet)
 	//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
 
+//monkestation edit: add departmental sec outfit datums
+/datum/outfit/job/security/cargo
+	head = /obj/item/clothing/head/helmet/hat/cowboy/cargo
+	suit = /obj/item/clothing/suit/armor/secduster/cargo
+
+/datum/outfit/job/security/engineering
+	head = /obj/item/clothing/head/helmet/hat/cowboy/engineering
+	suit = /obj/item/clothing/suit/armor/secduster/engineering
+
+/datum/outfit/job/security/medical
+	head = /obj/item/clothing/head/helmet/hat/cowboy/medical
+	suit = /obj/item/clothing/suit/armor/secduster/medical
+
+/datum/outfit/job/security/science
+	head = /obj/item/clothing/head/helmet/hat/cowboy/science
+	suit = /obj/item/clothing/suit/armor/secduster/science
+//monkestation edit end
 
 /obj/item/radio/headset/headset_sec/alt/department/Initialize()
 	. = ..()
