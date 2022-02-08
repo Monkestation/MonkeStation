@@ -2,6 +2,7 @@
 
 	desc = "The ultimate in clown shoe technology."
 	name = "boom boots"
+	icon = 'monkestation/icons/obj/clothing/shoes.dmi'
 	alternate_worn_icon = 'monkestation/icons/mob/feet.dmi'
 	icon_state = "boomboot0"
 	item_state = "boomboot0"
