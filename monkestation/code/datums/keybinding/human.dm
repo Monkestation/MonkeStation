@@ -96,7 +96,7 @@
 		..()
 
 /datum/keybinding/human/equip_swap
-	key = "Ctrl+E"
+	key = "Alt+E"
 	name = "equip_swap"
 	full_name = "Quick-Swap Equipment"
 	description = "Directly swaps held equippable item with its equipped counterpart, if possible."
