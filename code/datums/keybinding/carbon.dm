@@ -7,6 +7,7 @@
 
 /datum/keybinding/carbon/toggle_throw_mode
 	key = "R"
+	goon_key = "Unbound"
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
 	description = "Toggle throwing the current item or not."
