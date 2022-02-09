@@ -113,7 +113,6 @@
 #define	FLAG_APID			(1<<4)
 #define FLAG_MOTH			(1<<5)
 #define FLAG_LIZARD			(1<<6)
-<<<<<<< HEAD
 #define FLAG_OOZELING		(1<<7)
 #define FLAG_FLY			(1<<8)
 #define FLAG_DEBUG_SPECIES	(1<<9)
@@ -122,7 +121,6 @@
 #define DIGITIGRADE_NEVER 0
 #define DIGITIGRADE_OPTIONAL 1
 #define DIGITIGRADE_FORCED 2
->>>>>>> b318aa81a80 (BetterLimbs (#5611))
 
 //Reagent Metabolization flags, defines the type of reagents that affect this mob
 #define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
