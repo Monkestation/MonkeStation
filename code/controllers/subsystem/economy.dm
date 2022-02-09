@@ -21,6 +21,32 @@ SUBSYSTEM_DEF(economy)
 	///Multiplied as they go to all department accounts rather than just cargo.
 	var/bounty_modifier = 3
 
+	//Monkestation edit begin
+	/**
+	  * List of normal (no department ones) accounts' identifiers with associated datum accounts, for big O performance.
+	  * A list of sole account datums can be obtained with flatten_list(), another variable would be redundant rn.
+	  */
+	var/list/bank_accounts_by_id = list()
+	/// A var that collects the total amount of credits owned in player accounts on station, reset and recounted on fire()
+	var/station_total = 0
+	/// A var that tracks how much money is expected to be on station at a given time. If less than station_total prices go up in vendors.
+	var/station_target = 1
+	/// A passively increasing buffer to help alliviate inflation later into the shift, but to a lesser degree.
+	var/station_target_buffer = 0
+	/// A var that displays the result of inflation_value for easier debugging and tracking.
+	var/inflation_value = 1
+	/// How many civilain bounties have been completed so far this shift? Affects civilian budget payout values.
+	var/civ_bounty_tracker = 0
+	/// Contains the message to send to newscasters about price inflation and earnings, updated on price_update()
+	var/earning_report
+	///The modifier multiplied to the value of cargo pack prices.
+	var/pack_price_modifier = 1
+	/// Total value of exported materials.
+	var/export_total = 0
+	/// Total value of imported goods.
+	var/import_total = 0
+	//Monkestation edit end
+
 /datum/controller/subsystem/economy/Initialize(timeofday)
 	var/budget_to_hand_out = round(budget_pool / department_accounts.len)
 	for(var/A in department_accounts)

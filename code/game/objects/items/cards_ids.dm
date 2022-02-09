@@ -285,6 +285,13 @@
 				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
 		. += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
 		. += "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>"
+		//monkestation edit begin
+		if(registered_account.civilian_bounty)
+			. += "<span class='info'><b>There is an active civilian bounty.</b>"
+			. += "<span class='info'><i>[registered_account.bounty_text()]</i>"
+			. += "<span class='info'>Quantity: [registered_account.bounty_num()]"
+			. += "<span class='info'>Reward: [registered_account.bounty_value()]"
+		//monkestation edit end
 		if(registered_account.account_holder == user.real_name)
 			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
 	else

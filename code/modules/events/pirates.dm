@@ -251,6 +251,9 @@
 
 	var/status_report = "Ready for delivery."
 	var/obj/machinery/piratepad/pad
+	//Monkestation edit
+	///Reference to the specific pad that the control computer is linked up to.
+	var/datum/weakref/pad_ref
 	var/warmup_time = 100
 	var/sending = FALSE
 	var/points = 0

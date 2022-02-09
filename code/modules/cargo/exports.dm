@@ -97,6 +97,10 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	//All these need to be present in export call parameter for this to apply.
 	var/export_category = EXPORT_CARGO
 
+	//Monkestation edit
+	/// The multiplier of the amount sold shown on the report. Useful for exports, such as material, which costs are not strictly per single units sold.
+	var/amount_report_multiplier = 1
+
 /datum/export/New()
 	..()
 	START_PROCESSING(SSprocessing, src)
