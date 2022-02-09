@@ -37,19 +37,24 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		report = new
 
 	// We go backwards, so it'll be innermost objects sold first
+	var/list/to_delete = list()
 	for(var/i in reverseRange(contents))
 		var/atom/movable/thing = i
 		var/sold = FALSE
-		for(var/datum/export/E in GLOB.exports_list)
-			if(!E)
-				continue
-			if(E.applies_to(thing, allowed_categories, apply_elastic))
-				sold = E.sell_object(thing, report, dry_run, allowed_categories , apply_elastic)
+		for(var/datum/export/export as anything in GLOB.exports_list)
+			if(export.applies_to(thing, apply_elastic))
+				if(!dry_run && (SEND_SIGNAL(thing, COMSIG_ITEM_PRE_EXPORT) & COMPONENT_STOP_EXPORT))
+					break
+				sold = export.sell_object(thing, report, dry_run, apply_elastic)
 				report.exported_atoms += " [thing.name]"
 				break
 		if(!dry_run && (sold || delete_unsold))
 			if(ismob(thing))
 				thing.investigate_log("deleted through cargo export",INVESTIGATE_CARGO)
+			to_delete += thing
+
+	for(var/atom/movable/thing as anything in to_delete)
+		if(!QDELETED(thing))
 			qdel(thing)
 
 	return report
@@ -160,7 +165,15 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	if(amount <=0 || the_cost <=0)
 		return FALSE
 
-	report.total_value[src] += the_cost
+	// If we're not doing a dry run, send COMSIG_ITEM_EXPORTED to the sold item
+	var/export_result
+	if(!dry_run)
+		export_result = SEND_SIGNAL(O, COMSIG_ITEM_EXPORTED, src, report, the_cost)
+
+	// If the signal handled adding it to the report, don't do it now
+	if(!(export_result & COMPONENT_STOP_EXPORT_REPORT))
+		report.total_value[src] += the_cost
+		report.total_amount[src] += amount * amount_report_multiplier
 
 	if(istype(O, /datum/export/material))
 		report.total_amount[src] += amount*MINERAL_MATERIAL_AMOUNT

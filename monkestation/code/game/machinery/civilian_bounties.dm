@@ -14,7 +14,7 @@
 	name = "civilian bounty control terminal"
 	desc = "A console for assigning civilian bounties to inserted ID cards, and for controlling the bounty pad for export."
 	status_report = "Ready for delivery."
-	icon_screen = "civ_bounty"
+	icon_screen = "bounty"
 	icon_keyboard = "id_key"
 	warmup_time = 3 SECONDS
 	circuit = /obj/item/circuitboard/computer/bountypad
@@ -68,6 +68,26 @@
 	status_report += "Not Applicable."
 	playsound(loc, 'sound/machines/synth_no.ogg', 30 , TRUE)
 
+//These two are needed for beecode because of the pad_ref
+/obj/machinery/computer/piratepad_control/civilian/start_sending()
+	if(sending)
+		return
+	sending = TRUE
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
+	status_report = "Sending..."
+	pad.visible_message("<span class='notice'>[pad] starts charging up.</span>")
+	pad.icon_state = pad.warmup_state
+	sending_timer = addtimer(CALLBACK(src,.proc/send),warmup_time, TIMER_STOPPABLE)
+
+/obj/machinery/computer/piratepad_control/civilian/stop_sending()
+	if(!sending)
+		return
+	sending = FALSE
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
+	status_report = "Ready for delivery."
+	pad.icon_state = pad.idle_state
+	deltimer(sending_timer)
+
 /**
  * This fully rewrites base behavior in order to only check for bounty objects, and nothing else.
  */
@@ -110,6 +130,8 @@
 	pad.icon_state = pad.idle_state
 	playsound(loc, 'sound/machines/synth_yes.ogg', 30 , TRUE)
 	sending = FALSE
+	updateUsrDialog()
+	ui_update()
 
 ///Here is where cargo bounties are added to the player's bank accounts, then adjusted and scaled into a civilian bounty.
 /obj/machinery/computer/piratepad_control/civilian/proc/add_bounties()
@@ -148,6 +170,7 @@
 	if(!ui)
 		ui = new(user, src, "CivCargoHoldTerminal", name)
 		ui.open()
+	ui_update()
 
 
 /obj/machinery/computer/piratepad_control/civilian/ui_data(mob/user)
@@ -176,8 +199,7 @@
 	return data
 
 /obj/machinery/computer/piratepad_control/civilian/ui_act(action, params)
-	. = ..()
-	if(.)
+	if(..())
 		return
 	if(!pad_ref?.resolve())
 		return
@@ -221,6 +243,7 @@
 						"<span class='notice'>You insert \the [card_to_insert] into \the [src].")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 	updateUsrDialog()
+	ui_update()
 	return TRUE
 
 ///Removes A stored ID card.
@@ -237,6 +260,7 @@
 		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 		inserted_scan_id = null
 		updateUsrDialog()
+		ui_update()
 		return TRUE
 
 ///Upon completion of a civilian bounty, one of these is created. It is sold to cargo to give the cargo budget bounty money, and the person who completed it cash.
@@ -284,8 +308,9 @@
 	RegisterSignal(radio, COMSIG_ITEM_PRE_EXPORT, .proc/on_export)
 
 /obj/item/bounty_cube/Destroy()
-	UnregisterSignal(radio, COMSIG_ITEM_PRE_EXPORT)
-	QDEL_NULL(radio)
+	if(radio)
+		UnregisterSignal(radio, COMSIG_ITEM_PRE_EXPORT)
+		QDEL_NULL(radio)
 	return ..()
 
 /obj/item/bounty_cube/examine()

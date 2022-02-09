@@ -44,8 +44,6 @@
 //What should vending machines charge when you buy something in-department.
 #define VENDING_DISCOUNT 0.2
 
-#define NO_FREEBIES "commies go home"
-
 //Defines that set what kind of civilian bounties should be applied mid-round.
 #define CIV_JOB_BASIC 1
 #define CIV_JOB_ROBO 2
