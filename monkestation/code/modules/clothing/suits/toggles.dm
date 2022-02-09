@@ -6,7 +6,6 @@
 /obj/item/clothing/suit/armor/secduster/Destroy()
 	if(!QDELETED(mask))
 		mask.suit = null
-		qdel(mask)
 		mask = null
 	return ..()
 
@@ -41,7 +40,6 @@
 	suittoggled = FALSE
 	if(ishuman(mask.loc))
 		var/mob/living/carbon/H = mask.loc
-
 		H.transferItemToLoc(mask, src, TRUE)
 		H.update_inv_wear_suit()
 		to_chat(H, "<span class='notice'>You pull down the bandana.</span>")

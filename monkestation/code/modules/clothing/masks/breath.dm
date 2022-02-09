@@ -10,6 +10,14 @@
 	gas_transfer_coefficient = null
 	permeability_coefficient = null
 
+/obj/item/clothing/mask/breath/sec_bandana/equipped(mob/user, slot)
+	..()
+	if(slot != ITEM_SLOT_MASK)
+		if(suit)
+			suit.RemoveMask()
+		else
+			qdel(src)
+
 /obj/item/clothing/mask/breath/sec_bandana/medical
 	icon_state = "sec_bandana_medical"
 	item_state = "sec_bandana_medical"
