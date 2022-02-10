@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
+	/client/proc/give_disease,
 	/client/proc/set_dynex_scale,
 	/client/proc/drop_dynex_bomb,
 	/client/proc/cinematic,
@@ -191,7 +192,8 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/display_sendmaps,
 	#endif
 	/client/proc/toggle_cdn,
-	/client/proc/check_timer_sources
+	/client/proc/check_timer_sources,
+	/client/proc/test_dview_to_lum_changes
 	)
 
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
@@ -812,7 +814,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	var/bookid = input(usr, "What Book ID would you like to remove:", "Literally Fahrenheit 451") as null|num
 	if(!bookid)
 		return
-	
+
 	var/datum/DBQuery/query_library_print = SSdbcore.NewQuery(
 		"SELECT * FROM [format_table_name("library")] WHERE id=:id AND isnull(deleted)",
 		list("id" = bookid)

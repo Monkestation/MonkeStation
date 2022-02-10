@@ -243,7 +243,7 @@
 	data["map_name"] = SSmapping.config?.map_name || "Loading..."
 
 	data["security_level"] = get_security_level()
-	data["round_duration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
+	data["round_duration"] = SSticker?.round_start_timeofday ? round((world.timeofday - SSticker.round_start_timeofday)/10) : 0
 	// Amount of world's ticks in seconds, useful for calculating round duration
 
 	//Time dilation stats.
@@ -399,3 +399,25 @@
 #undef TOPIC_VERSION_MAJOR
 #undef TOPIC_VERSION_MINOR
 #undef TOPIC_VERSION_PATCH
+
+/datum/world_topic/whois
+	key = "whoIs"
+
+/datum/world_topic/whois/Run(list/input)
+	. = list()
+	.["players"] = GLOB.clients
+
+	return list2params(.)
+
+/datum/world_topic/getadmins
+	key = "getAdmins"
+
+/datum/world_topic/getadmins/Run(list/input)
+	. = list()
+	var/list/adm = get_admin_counts()
+	var/list/presentmins = adm["present"]
+	var/list/afkmins = adm["afk"]
+	.["admins"] = presentmins
+	.["admins"] += afkmins
+
+	return list2params(.)

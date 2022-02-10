@@ -166,6 +166,9 @@ LOG_MANIFEST
 ## log mecha actions
 # LOG_MECHA
 
+## Log all timers on timer auto reset
+# LOG_TIMERS_ON_BUCKET_RESET
+
 ##Log camera pictures - Must have picture logging enabled
 PICTURE_LOGGING_CAMERA
 
@@ -519,7 +522,7 @@ MENU_SQUARE_VIEW
 
 ## Name your perpetual currency here
 ## This is used within the metashop and earned by playing the game.
-METACURRENCY_NAME BeeCoin
+METACURRENCY_NAME MonkeCoin
 
 ## Grant metacurrency
 ## Comment this out if you don't want players to earn metacurrency

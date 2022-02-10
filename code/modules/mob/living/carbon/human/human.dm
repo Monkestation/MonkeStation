@@ -17,8 +17,11 @@
 
 	setup_human_dna()
 
+
+	prepare_huds() //Prevents a nasty runtime on human init
+
 	if(dna.species)
-		set_species(dna.species.type)
+		set_species(dna.species.type) //This generates new limbs based on the species, beware.
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
@@ -106,8 +109,6 @@
 /mob/living/carbon/human/get_stat_tab_status()
 	var/list/tab_data = ..()
 
-	tab_data["Intent"] = GENERATE_STAT_TEXT("[a_intent]")
-	tab_data["Move Mode"] = GENERATE_STAT_TEXT("[m_intent]")
 	if (internal)
 		if (!internal.air_contents)
 			qdel(internal)
@@ -153,7 +154,7 @@
 
 	if(href_list["item"]) //canUseTopic check for this is handled by mob/Topic()
 		var/slot = text2num(href_list["item"])
-		if(slot in check_obscured_slots(TRUE))
+		if(check_obscured_slots(TRUE) & slot)
 			to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
 			return
 
@@ -191,8 +192,7 @@
 				var/status = ""
 				if(getBruteLoss())
 					to_chat(usr, "<b>Physical trauma analysis:</b>")
-					for(var/X in bodyparts)
-						var/obj/item/bodypart/BP = X
+					for(var/obj/item/bodypart/BP as() in bodyparts)
 						var/brutedamage = BP.brute_dam
 						if(brutedamage > 0)
 							status = "received minor physical injuries."
@@ -207,8 +207,7 @@
 							to_chat(usr, "<span class='[span]'>[BP] appears to have [status]</span>")
 				if(getFireLoss())
 					to_chat(usr, "<b>Analysis of skin burns:</b>")
-					for(var/X in bodyparts)
-						var/obj/item/bodypart/BP = X
+					for(var/obj/item/bodypart/BP as() in bodyparts)
 						var/burndamage = BP.burn_dam
 						if(burndamage > 0)
 							status = "signs of minor burns."
@@ -505,7 +504,7 @@
 		threatcount += 2
 
 	//Check for nonhuman scum
-	if(dna && dna.species.id && dna.species.id != "human")
+	if(dna && dna.species.id && dna.species.id != SPECIES_HUMAN)
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
@@ -681,8 +680,7 @@
 			hud_used.healthdoll.cut_overlays()
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
-				for(var/X in bodyparts)
-					var/obj/item/bodypart/BP = X
+				for(var/obj/item/bodypart/BP as() in bodyparts)
 					var/damage = BP.burn_dam + BP.brute_dam + (hallucination ? BP.stamina_dam : 0)
 					var/comparison = (BP.max_damage/5)
 					var/icon_num = 0
@@ -824,26 +822,7 @@
 			var/newtype = GLOB.species_list[result]
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
 			set_species(newtype)
-	if(href_list[VV_HK_PURRBATION])
-		if(!check_rights(R_SPAWN))
-			return
-		if(!ishumanbasic(src))
-			to_chat(usr, "This can only be done to the basic human species at the moment.")
-			return
-		var/success = purrbation_toggle(src)
-		if(success)
-			to_chat(usr, "Put [src] on purrbation.")
-			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
-			var/msg = "<span class='notice'>[key_name_admin(usr)] has put [key_name(src)] on purrbation.</span>"
-			message_admins(msg)
-			admin_ticket_log(src, msg)
 
-		else
-			to_chat(usr, "Removed [src] from purrbation.")
-			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
-			var/msg = "<span class='notice'>[key_name_admin(usr)] has removed [key_name(src)] from purrbation.</span>"
-			message_admins(msg)
-			admin_ticket_log(src, msg)
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling != target || grab_state < GRAB_AGGRESSIVE || stat != CONSCIOUS || a_intent != INTENT_GRAB)
@@ -1068,9 +1047,7 @@
 	return ..()
 
 /mob/living/carbon/human/ZImpactDamage(turf/T, levels)
-	//Non cat-people smash into the ground
-	if(!iscatperson(src))
-		return ..()
+
 	//Check to make sure legs are working
 	var/obj/item/bodypart/left_leg = get_bodypart(BODY_ZONE_L_LEG)
 	var/obj/item/bodypart/right_leg = get_bodypart(BODY_ZONE_R_LEG)
@@ -1117,9 +1094,6 @@
 
 /mob/living/carbon/human/species/ethereal
 	race = /datum/species/ethereal
-
-/mob/living/carbon/human/species/felinid
-	race = /datum/species/human/felinid
 
 /mob/living/carbon/human/species/fly
 	race = /datum/species/fly
@@ -1272,4 +1246,4 @@
 	race = /datum/species/zombie/infectious
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
-	race = /datum/species/krokodil_addict
+	race = /datum/species/human/krokodil_addict
