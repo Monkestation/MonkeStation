@@ -470,7 +470,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
 
-				if(H.dna.species.id == "human")
+				if(H.dna.species.id == SPECIES_HUMAN)
 					if(H.dna.features["tail_human"] == "None" || H.dna.features["ears"] == "None")
 						var/obj/item/organ/ears/cat/ears = new
 						var/obj/item/organ/tail/cat/tail = new
@@ -663,20 +663,7 @@ GLOBAL_DATUM_INIT(admin_secrets, /datum/admin_secrets, new)
 			if(!check_rights(R_ADMIN))
 				return
 			toggle_all_ctf(usr)
-		if("masspurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_purrbation()
-			message_admins("[key_name_admin(usr)] has put everyone on \
-				purrbation!")
-			log_admin("[key_name(usr)] has put everyone on purrbation.")
-		if("massremovepurrbation")
-			if(!check_rights(R_FUN))
-				return
-			mass_remove_purrbation()
-			message_admins("[key_name_admin(usr)] has removed everyone from \
-				purrbation.")
-			log_admin("[key_name(usr)] has removed everyone from purrbation.")
+
 
 		if("massimmerse")
 			if(!check_rights(R_FUN))

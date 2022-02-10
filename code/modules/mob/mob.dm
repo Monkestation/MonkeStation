@@ -336,8 +336,10 @@
   * set disable_warning to disable the 'you are unable to equip that' warning.
   *
   * unset redraw_mob to prevent the mob icons from being redrawn at the end.
+  *
+  * initial is used to indicate whether or not this is the initial equipment (job datums etc) or just a player doing it
   */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, qdel_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, bypass_equip_delay_self = FALSE, initial = FALSE)
 	if(!istype(W))
 		return FALSE
 	if(!W.mob_can_equip(src, null, slot, disable_warning, bypass_equip_delay_self))
@@ -346,7 +348,7 @@
 		else if(!disable_warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that!</span>")
 		return FALSE
-	equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(W, slot, redraw_mob, initial) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -367,9 +369,10 @@
   * equip people when the round starts and when events happen and such.
   *
   * Also bypasses equip delay checks, since the mob isn't actually putting it on.
+  * Initial is used to indicate whether or not this is the initial equipment (job datums etc) or just a player doing it
   */
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, initial = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, TRUE, initial)
 
 /**
   * Auto equip the passed in item the appropriate slot based on equipment priority
@@ -461,11 +464,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
-		return 1
-
-/// Show the mob's inventory to another mob
-/mob/proc/show_inv(mob/user)
-	return
+		return TRUE
 
 /**
   * Examine a mob
@@ -744,11 +743,6 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["refresh"])
-		if(machine && in_range(src, usr))
-			show_inv(machine)
-
-
 	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		var/slot = text2num(href_list["item"])
 		var/hand_index = text2num(href_list["hand_index"])
@@ -763,12 +757,6 @@
 				usr.stripPanelUnequip(what,src,slot)
 		else
 			usr.stripPanelEquip(what,src,slot)
-
-	if(usr.machine == src)
-		if(Adjacent(usr))
-			show_inv(usr)
-		else
-			usr << browse(null,"window=mob[REF(src)]")
 
 // The src mob is trying to strip an item from someone
 // Defined in living.dm
@@ -793,25 +781,10 @@
 		return
 	if(isAI(M))
 		return
-/**
-  * Handle the result of a click drag onto this mob
-  *
-  * For mobs this just shows the inventory
-  */
-/mob/MouseDrop_T(atom/dropping, atom/user)
-	. = ..()
-	if(ismob(dropping) && dropping != user && !isAI(dropping))
-		var/mob/M = dropping
-		if(ismob(user))
-			var/mob/U = user
-			if((!iscyborg(U) || U.a_intent == INTENT_HARM) && !isAI(U))
-				M.show_inv(U)
-		else
-			M.show_inv(user)
 
 ///Is the mob muzzled (default false)
 /mob/proc/is_muzzled()
-	return 0
+	return FALSE
 
 /**
   * Convert a list of spells into a displyable list for the statpanel

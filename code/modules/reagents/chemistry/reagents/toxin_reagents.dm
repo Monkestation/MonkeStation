@@ -161,7 +161,7 @@
 	taste_description = "fish"
 
 /datum/reagent/toxin/carpotoxin/on_mob_metabolize(mob/living/carbon/L)
-	if(iscatperson(L))
+	if(HAS_TRAIT(L,TRAIT_ANIME))//25 years of cheap sushi have prepared them for this
 		toxpwr = 0
 	..()
 
@@ -408,7 +408,7 @@
 
 /datum/reagent/toxin/histamine/overdose_process(mob/living/M)
 	M.adjustOxyLoss(2*REM, 0)
-	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustBruteLoss(2*REM, FALSE, FALSE, BODYTYPE_ORGANIC)
 	M.adjustToxLoss(2*REM, 0)
 	..()
 	. = 1

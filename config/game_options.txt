@@ -478,7 +478,6 @@ SILICON_MAX_LAW_AMOUNT 12
 ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
-ROUNDSTART_RACES felinid
 ROUNDSTART_RACES lizard
 ROUNDSTART_RACES moth
 #ROUNDSTART_RACES fly
@@ -517,7 +516,6 @@ ROUNDSTART_RACES plasmaman
 ##-------------------------------------------------------------------------------------------
 ## Uncommenting races will restrict them behind the patreon paywall
 
-#PAYWALL_RACES felinid
 
 ##-------------------------------------------------------------------------------------------
 
@@ -576,7 +574,7 @@ BOMBCAP 24
 ## of ruins.
 LAVALAND_BUDGET 60
 
-## Space Ruin Budged
+## Space Ruin Budget
 Space_Budget 8
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station

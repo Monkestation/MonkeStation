@@ -234,6 +234,7 @@
 	icon = 'icons/mob/human_face.dmi'	  // default icon for all hairs
 	icon_state = "hair_vlong"
 	item_state = "pwig"
+	slot_flags = ITEM_SLOT_HEAD | ITEM_SLOT_NECK //MonkeStation Edit: Wigs are now wearable in neck slots
 	flags_inv = HIDEHAIR
 	var/hair_style = "Very Long Hair"
 	var/hair_color = "#000"
@@ -254,7 +255,7 @@
 		M.color = hair_color
 		add_overlay(M)
 
-/obj/item/clothing/head/wig/worn_overlays(isinhands = FALSE, file2use)
+/obj/item/clothing/head/wig/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use)
 	. = list()
 	if(!isinhands)
 		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
@@ -266,8 +267,14 @@
 		. += M
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
-	var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list - "Bald")
+	var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list + "Random")
 	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(new_style == "Random") //Monkestation Edit: Adds random option
+		hair_style = pick(GLOB.hair_styles_list)
+		if(adjustablecolor)
+			hair_color = "#[random_color()]"
+		update_icon()
 		return
 	if(new_style && new_style != hair_style)
 		hair_style = new_style
@@ -395,7 +402,7 @@
 /obj/item/clothing/head/speedwagon
 	name = "hat of ultimate masculinity"
 	desc = "Even the mere act of wearing this makes you want to pose menacingly."
-	alternate_worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
+	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "speedwagon"
 	item_state = "speedwagon"
 	worn_x_dimension = 64

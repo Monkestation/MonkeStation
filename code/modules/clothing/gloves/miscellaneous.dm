@@ -17,6 +17,7 @@
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."
 	icon_state = "leather"
 	item_state = "ggloves"
+	worn_icon_state = "ggloves"
 	permeability_coefficient = 0.9
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -30,6 +31,7 @@
 	desc = "These tactical gloves are fireproof and shock resistant."
 	icon_state = "cgloves"
 	item_state = "combatgloves"
+	worn_icon_state = "combatgloves"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	strip_delay = 80
@@ -82,7 +84,7 @@
 	.= FALSE
 
 /obj/item/clothing/gloves/rapid/attack_self(mob/user)
-	var/input = stripped_input(user,"What do you want your battlecry to be? Max length of 6 characters.", ,"", 7)
+	var/input = stripped_input(user,"What do you want your battlecry to be? Max length of 7 characters.", ,"", 8) //monkestation edit *scream
 	if(input == "*me") //If they try to do a *me emote it will stop the attack to prompt them for an emote then they can walk away and enter the emote for a punch from far away
 		to_chat(user, "<span class='warning'>Invalid battlecry, please use another. Battlecry cannot contain *me.</span>")
 	else if(CHAT_FILTER_CHECK(input))

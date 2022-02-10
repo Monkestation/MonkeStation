@@ -5,6 +5,9 @@
 	permeability_coefficient = 0.9
 	slot_flags = ITEM_SLOT_ICLOTHING
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0)
+	equip_sound = 'sound/items/equip/jumpsuit_equip.ogg'
+	drop_sound = 'sound/items/handling/cloth_drop.ogg'
+	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
 	var/has_sensor = HAS_SENSORS // For the crew computer
 	var/random_sensor = TRUE
@@ -14,11 +17,10 @@
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
 	var/obj/item/clothing/accessory/attached_accessory
 	var/mutable_appearance/accessory_overlay
-	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/freshly_laundered = FALSE
 	var/dodgy_colours = FALSE
 
-/obj/item/clothing/under/worn_overlays(isinhands = FALSE)
+/obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = list()
 	if(!isinhands)
 		if(damaged_clothes)
@@ -68,10 +70,8 @@
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
 
-	if(mutantrace_variation && ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(DIGITIGRADE in H.dna.species.species_traits)
-			adjusted = DIGITIGRADE_STYLE
 		H.update_inv_w_uniform()
 
 	if(slot == ITEM_SLOT_ICLOTHING && freshly_laundered)
@@ -155,10 +155,7 @@
 	if(freshly_laundered)
 		. += "It looks fresh and clean."
 	if(can_adjust)
-		if(adjusted == ALT_STYLE)
-			. += "Alt-click on [src] to wear it normally."
-		else
-			. += "Alt-click on [src] to wear it casually."
+		. += "Alt-click on [src] to wear it [adjusted == ALT_STYLE ? "normally" : "casually"]."
 	if (has_sensor == BROKEN_SENSORS)
 		. += "Its sensors appear to be shorted out."
 	else if(has_sensor > NO_SENSORS)

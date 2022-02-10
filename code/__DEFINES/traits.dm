@@ -154,6 +154,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
+#define TRAIT_NOVOMIT			"no_vomit"
 #define TRAIT_RESISTHEAT		"resist_heat"
 #define TRAIT_RESISTHEATHANDS	"resist_heat_handsonly" //For when you want to be able to touch hot things, but still want fire to be an issue.
 #define TRAIT_RESISTCOLD		"resist_cold"
@@ -229,8 +230,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NANITECOMPATIBLE	"nanitecompatible"
 #define TRAIT_WARDED       		"curse_immune"
 #define TRAIT_NONECRODISEASE	"nonecrodisease"
-#define TRAIT_DIGICAMO     		"digital_camo"
-#define TRAIT_DIGINVIS     		"digital_invis"	//note: diginvis grants digitalcamo, but carbons can tell if you have the digicamo trait on examine
 #define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
 #define TRAIT_ALWAYS_STUBS      "always_stubs_toe" //you will always stub your toe on tables, even if you're wearing shoes
 
@@ -279,6 +278,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //MonkeStation Edit Start
 #define TRAIT_JAILBIRD			"jailbird"
 #define TRAIT_STOWAWAY			"stowaway"
+#define TRAIT_ANIME				"anime"
+#define TRAIT_LOUD_ASS			"loud_ass"
+#define TRAIT_UNSTABLE_ASS		"unstable_ass"
+#define TRAIT_STABLE_ASS		"stable_ass"
+#define TRAIT_DUMMY_THICK		"dummy_thick"
 //MonkeStation Edit End
 
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
@@ -368,6 +372,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Monkestation Changes Start
 #define TRAIT_TRASH_EATER "trash_eater" //goat.dm symptom requirement
 // Monkestation Changes End
+#define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
