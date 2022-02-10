@@ -14,6 +14,7 @@
 
 /datum/keybinding/emote/fart
 	key = "Shift-F"
+	goon_key = "F" //time to accidently fart on the bible oh no
 	name = "fart"
 	full_name = "Fart"
 	description = "GAS GAS GAS..."
@@ -28,6 +29,7 @@
 
 /datum/keybinding/emote/scream
 	key = "Shift-R"
+	goon_key = "Ctrl-S"
 	name = "scream"
 	full_name = "Scream"
 	description = "AAAAAAAAaaaaaaaaaAAAAAAAAAA"
@@ -57,6 +59,7 @@
 
 /datum/keybinding/emote/flip
 	key = "Unbound"
+	goon_key = "R"
 	name = "flip"
 	full_name = "Flip"
 	description = "Flip out"
@@ -94,3 +97,19 @@
 			return
 		Player.dizziness++
 		..()
+
+/datum/keybinding/human/equip_swap
+	key = "Alt+E"
+	name = "equip_swap"
+	full_name = "Quick-Swap Equipment"
+	description = "Directly swaps held equippable item with its equipped counterpart, if possible."
+	keybind_signal = COMSIG_KB_HUMAN_EQUIPSWAP_DOWN
+
+/datum/keybinding/human/equip_swap/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/human/H = user.mob
+	H.equip_swap()
+	return TRUE
+
