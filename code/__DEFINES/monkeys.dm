@@ -18,9 +18,9 @@
 /// probability that monkey resist out of restraints
 #define MONKEY_RESIST_PROB 					75
 ///  probability that monkey aggro against the mob pulling it
-#define MONKEY_PULL_AGGRO_PROB 				25
+#define MONKEY_PULL_AGGRO_PROB 				10
 /// probability that monkey will get into mischief, i.e. finding/stealing items
-#define MONKEY_SHENANIGAN_PROB 				100
+#define MONKEY_SHENANIGAN_PROB 				75
 /// probability that monkey will disarm an armed attacker
 #define MONKEY_ATTACK_DISARM_PROB 			50
 /// probability that monkey will get recruited when friend is attacked
