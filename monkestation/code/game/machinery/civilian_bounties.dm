@@ -9,6 +9,19 @@
 	resistance_flags = FIRE_PROOF
 	circuit = /obj/item/circuitboard/machine/bountypad
 
+/obj/machinery/piratepad/attackby(obj/item/O, mob/user, params)
+
+	if(default_deconstruction_screwdriver(user, "lpad-idle-o", "lpad-idle-o", O))
+		updateUsrDialog()
+		return
+
+	if(panel_open && default_deconstruction_crowbar(O))
+		return
+
+	if(user.a_intent == INTENT_HARM) //so we can hit the machine
+		return ..()
+
+
 ///Computer for assigning new civilian bounties, and sending bounties for collection.
 /obj/machinery/computer/piratepad_control/civilian
 	name = "civilian bounty control terminal"
@@ -70,10 +83,18 @@
 
 //These two are needed for beecode because of the pad_ref
 /obj/machinery/computer/piratepad_control/civilian/start_sending()
+	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
+	if(!pad)
+		status_report = "No pad detected. Build or link a pad."
+		audible_message("<span class='notice'>[src] beeps.")
+		return
+	if(pad?.panel_open)
+		status_report = "Please screwdriver pad closed to send. "
+		audible_message("<span class='notice'>[src] beeps.")
+		return
 	if(sending)
 		return
 	sending = TRUE
-	var/obj/machinery/piratepad/pad = pad_ref?.resolve()
 	status_report = "Sending..."
 	pad.visible_message("<span class='notice'>[pad] starts charging up.</span>")
 	pad.icon_state = pad.warmup_state
@@ -241,6 +262,7 @@
 
 	user.visible_message("<span class='notice'>[user] inserts \the [card_to_insert] into \the [src].",
 						"<span class='notice'>You insert \the [card_to_insert] into \the [src].")
+	desc += "\nThere is an ID card inserted. Alt-click to remove it manually."
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 	updateUsrDialog()
 	ui_update()
@@ -257,6 +279,7 @@
 			user.put_in_hands(target)
 		user.visible_message("<span class='notice'>[user] gets \the [target] from \the [src].", \
 							"<span class='notice'>You get \the [target] from \the [src].")
+		desc = "A machine designed to send civilian bounty targets to centcom."
 		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 		inserted_scan_id = null
 		updateUsrDialog()
