@@ -5,6 +5,7 @@
 	icon = 'monkestation/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'monkestation/icons/mob/hands.dmi'
 	icon_state = "haul_gauntlet"
+	worn_icon_state = "haul_gauntlet"
 	var/datum/weakref/pull_component_weakref
 
 
