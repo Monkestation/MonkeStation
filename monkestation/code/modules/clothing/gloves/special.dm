@@ -3,6 +3,7 @@
 	name = "\improper H.A.U.L. gauntlets"
 	desc = "These clunky gauntlets allow you to drag things with more confidence on them not getting nabbed from you."
 	icon = 'monkestation/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'monkestation/icons/mob/hands.dmi'
 	icon_state = "haul_gauntlet"
 	var/datum/weakref/pull_component_weakref
 
