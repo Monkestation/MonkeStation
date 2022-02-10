@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/breath/sec_bandana
 	desc = "An incredibly dense synthetic thread bandana that can be used as an internals mask."
 	name = "sec bandana"
-	alternate_worn_icon = 'monkestation/icons/mob/mask.dmi'
+	worn_icon = 'monkestation/icons/mob/mask.dmi'
 	icon = 'monkestation/icons/obj/clothing/masks.dmi'
 	icon_state = "sec_bandana_default"
 	item_state = "sec_bandana_default"
@@ -17,6 +17,10 @@
 			suit.RemoveMask()
 		else
 			qdel(src)
+
+/obj/item/clothing/mask/breath/sec_bandana/AltClick(mob/user)
+	suit.RemoveMask()
+	return
 
 /obj/item/clothing/mask/breath/sec_bandana/medical
 	icon_state = "sec_bandana_medical"

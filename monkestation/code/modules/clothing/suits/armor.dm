@@ -1,8 +1,8 @@
 /obj/item/clothing/suit/armor/secduster
 	name = "security duster"
 	desc = "A standard-issue armored duster that keeps a security officer protected and fashionable."
-	alternate_worn_icon = 'monkestation/icons/mob/suit.dmi'
-	icon = 'monkestation/icons/obj/clothing/suit.dmi'
+	worn_icon = 'monkestation/icons/mob/suit.dmi'
+	icon = 'monkestation/icons/obj/clothing/suits.dmi'
 	icon_state = "cowboy_sec_default"
 	item_state = "cowboy_sec_default"
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/clothing/mask)
