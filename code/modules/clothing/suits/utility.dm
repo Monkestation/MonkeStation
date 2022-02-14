@@ -48,7 +48,7 @@
 	desc = "An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame."
 	// monkestation start (of course)
 	icon = 'monkestation/icons/obj/clothing/suits.dmi'
-	worn_icon = 'monkestation/icons/mob/suits.dmi'
+	worn_icon = 'monkestation/icons/mob/suit.dmi'
 	// monkestation end
 	icon_state = "atmos_firesuit"
 	item_state = "firesuit_atmos"
