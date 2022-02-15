@@ -37,11 +37,11 @@
 			<font size='2'><b>Current Project Maintainers:</b> <a href='https://github.com/orgs/Monkestation/people'>-Click Here-</a><br></font>
 			<font size='2'><b>Currently Active GitHub contributor list:</b> <a href='https://github.com/Monkestation/MonkeStation/pulse'>-Click Here-</a><br></font>
 			<font size='2'><b>Coders:</b> KoboldCommando, Lmenvs, Lythine, Merlin1230, Pitaden, Zanden, Zonespace27<br></font>
-			<font size='2'><b>Spriters:</b> Lmenvs, Pitaden, Retrino, Psycho<br></font>
+			<font size='2'><b>Spriters:</b> Lmenvs, Pitaden, Psycho, Retrino<br></font>
 			<font size='2'><b>Mappers:</b> Sord<br></font>
-			<font size='2'><b>Sounds:</b> Sord, MechaDH<br></td></font>
+			<font size='2'><b>Sounds:</b> Sord, MechaDH<br></font>
 			<font size='2'><b>Music:</b> Madducks, MechaDH<br></td></font>
-			<font size='2'><b>Thanks to:</b>Crossedfall, Beestation, /tg/Station 13, Baystation 12, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the original SpaceStation developers and Invisty for the title image.<br> Also a thanks to anybody who has contributed who is not listed here :( Ask to be added here on the forums/Discord.</font>
+			<font size='2'><b>Thanks to:</b>Zamujasa, Crossedfall, Beestation, /tg/Station 13, Baystation 12, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs, the original SpaceStation developers and Invisty for the title image.<br> Also a thanks to anybody who has contributed who is not listed here :( Ask to be added here on the forums/Discord.</font>
 			<font size='2' color='red'><b><br>Have a bug to report?</b> Visit our <a href="https://github.com/Monkestation/MonkeStation/issues">Issue Tracker</a>.<br></font>
 			<font size='2'>Please ensure that the bug has not already been reported and use the template provided!</b></a></u>.</font>
 		</td>
@@ -56,6 +56,52 @@
 
 		-->
 		<div class="commit sansserif">
+
+			<h2 class="date">14 February 2022</h2>
+			<h3 class="author">Beestation Upstream updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">You can now take pictures with cameras again! [KubeRoot]</li>
+				<li class="imageadd">Changed the medical belt sprite [ImSynthex]</li>
+				<li class="tweak">When map rotation decides to rotate the map, it will no longer be able to pick the same map. [ike709]</li>
+				<li class="code_imp">Removed a pointless proc call from chameleon changing. [ike709]</li>
+				<li class="bugfix">Chameleon clothing now covers the correct slots of whatever it's mimicking. [ike709]</li>
+				<li class="rscdel">For performance reasons, AI detectors no longer see AI static. [ike709]</li>
+				<li class="bugfix">AI detectors now change appearance when AIs come closer. [ike709]</li>
+				<li class="bugfix">Fixed AI static intermittently deciding to stop working. [ike709]</li>
+				<li class="refactor">Generally cleaned up cameranet code and improved maptick significantly. [ike709]</li>
+				<li class="refactor">Converted a bunch of New() to Initialize(). [ike709]</li>
+				<li class="rscadd">Added a tool to profile atom initialization. [ike709]</li>
+				<li class="bugfix">Fixed plasmamen not actually needing to breathe plasma. [ike709]</li>
+				<li class="tweak">Updated lung code [ike709]</li>
+				<li class="refactor">Made SSrunechat be a subsystem of SStimer [ike709]</li>
+				<li class="bugfix">Fixed crew objectives not being assigned at roundstart</li>
+				<li class="refactor">Cryopods use signals to handle objectives instead of looping through every objective</li>
+				<li class="code_imp">Many minor improvements to objectives [TheChaser212]</li>
+				<li class="rscadd">Adds suspenders to autodrobe [SapphoQueer]</li>
+				<li class="config">Kilo Station is part of the map rotation [dog132-ss13]</li>
+				<li class="rscadd">Kilo Station comes with an exploration shuttle [dog132-ss13]</li>
+				<li class="rscadd">Kilo Station comes with random maint [dog132-ss13]</li>
+				<li class="rscadd">4 random maint rooms from Kilo Station [dog132-ss13]</li>
+				<li class="rscdel">Removed old maint rooms from Kilo Station [dog132-ss13]</li>
+				<li class="bugfix">fixed missing floortile in kilo station atmos airlock [dog132-ss13]</li>
+				<li class="rscdel">Removed deprecated item_color var [Archanial]</li>
+				<li class="bugfix">fixed alt states of suits [Archanial]</li>
+				<li class="bugfix">fixed durathread jumpsuit not having icons [Archanial]</li>
+				<li class="bugfix">fixed a few lawyer skirts having wrong paths. [Archanial]</li>
+				<li class="rscdel">removed unused psyche jumpsuit [Archanial]</li>
+				<li class="bugfix">Fixed the murder door by the bar's maintenance on Fland [PestoVerde322]</li>
+				<li class="bugfix">The tables in the bar are no longer doublestacked on Fland [PestoVerde322]</li>
+				<li class="bugfix">Energetic chromosome now properly applies to active mutations and fire breath. [The-Moon-Itself]</li>
+				<li class="bugfix">fixed Pubby AI SMES not doing almost anything useful. [St0rmC4st3r]</li>
+				<li class="bugfix">fixes another infinite iron duplication exploit [MNarath1]</li>
+				<li class="code_imp">removes a redundant list copy [MNarath1]</li>
+			</ul>
+			<h3 class="author">nednaZ updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">You may no longer fart on ghosts.</li>
+				<li class="bugfix">Fixes the Radio Hotkey's text scrubbing.</li>
+				<li class="bugfix">You no longer believe yourself to be another person while they are opening their mail.</li>
+			</ul>
 
 			<h2 class="date">13 February 2022</h2>
 			<h3 class="author">pitaden updated:</h3>
@@ -997,18 +1043,6 @@
 			<h3 class="author">Crossedfall updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="server">BYOND bumped to 514.1572</li>
-			</ul>
-
-			<h2 class="date">14 December 2021</h2>
-			<h3 class="author">Kapu1178 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Greentexting no longer awards beecoins.</li>
-				<li class="rscadd">IPCs can charge off of ethereals.</li>
-				<li class="tweak">Ethereals no longer call handle_charge() twice per life loop.</li>
-			</ul>
-			<h3 class="author">zeskorion updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">tones down disease mutation. you'll now only get one strain of a virus if it mutates. Remember, even if cures change, vaccines stay the same!</li>
 			</ul>
 		</div>
 
