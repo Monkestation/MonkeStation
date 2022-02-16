@@ -3,6 +3,8 @@
 
 /datum/emote/living/carbon/human/superfart/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
+	if(user.stat > SOFT_CRIT) //Only superfart in softcrit or less.
+		return
 	if(!user.getorgan(/obj/item/organ/butt) || !ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
@@ -13,7 +15,7 @@
 	booty.cooling_down = TRUE
 	var/turf/Location
 
-	//BIBLEFART
+	//BIBLEFART/
 	//This goes above all else because it's an instagib.
 	for(var/obj/item/storage/book/bible/Holy in Location)
 		if(Holy)

@@ -59,7 +59,7 @@
 	flags_cover = HEADCOVERSMOUTH|HEADCOVERSEYES
 	visor_flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR
 
-/obj/item/clothing/head/helmet/space/plasmaman/Initialize()
+/obj/item/clothing/head/helmet/space/plasmaman/Initialize(mapload)
 	. = ..()
 	visor_toggling()
 	update_icon()
@@ -104,11 +104,11 @@
 /obj/item/clothing/head/helmet/space/plasmaman/worn_overlays(mutable_appearance/standing, isinhands)
 	. = ..()
 	if(!isinhands && smile)
-		var/mutable_appearance/M = mutable_appearance('icons/mob/head.dmi', smile_state)
+		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/head.dmi', smile_state)
 		M.color = smile_color
 		. += M
 	if(!isinhands && !up)
-		. += mutable_appearance('icons/mob/head.dmi', visor_icon)
+		. += mutable_appearance('icons/mob/clothing/head.dmi', visor_icon)
 	else
 		cut_overlays()
 
@@ -470,8 +470,8 @@
 /obj/item/clothing/head/helmet/space/plasmaman/mark2
 	name = "Mk.II envirosuit helmet"
 	desc = "A sleek new plasmaman containment helmet, painted in classic Hazardous Orange."
-	icon_state = "assistant_openvirohelm"
-	item_state = "assistant_openvirohelm"
+	icon_state = "openvirohelm"
+	item_state = "openvirohelm"
 	visor_icon = "openvisor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/mark2

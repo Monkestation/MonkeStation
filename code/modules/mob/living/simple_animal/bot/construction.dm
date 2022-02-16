@@ -224,7 +224,7 @@
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = "" //Blank for blue, r for red, y for yellow, etc.
 
-/obj/item/bot_assembly/floorbot/Initialize()
+/obj/item/bot_assembly/floorbot/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -276,7 +276,7 @@
 	var/healthanalyzer = /obj/item/healthanalyzer
 	var/firstaid = /obj/item/storage/firstaid
 
-/obj/item/bot_assembly/medbot/Initialize()
+/obj/item/bot_assembly/medbot/Initialize(mapload)
 	. = ..()
 	spawn(5)
 		if(skin)
@@ -410,7 +410,7 @@
 					return
 				//monkestation edit
 				var/mob/living/simple_animal/bot/secbot/S
-				if(prob(1))
+				if(prob(80))//lol
 					to_chat(user, "<span class='notice'>You complete the Securitron! Beep boop.</span>")
 					S = new(Tsec)
 				else

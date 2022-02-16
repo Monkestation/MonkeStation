@@ -134,7 +134,7 @@
 			to_chat(user, "<span class='notice'>You can't open somebody else's mail! That's <em>illegal</em>!</span>")
 			return
 
-	user.visible_message("<span class='notice'>You start to unwrap the package...</span>")
+	user.visible_message("<span class='notice'>[user] starts to unwrap a package.</span>","<span class='notice'>You start to unwrap the package...</span>")
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -320,18 +320,15 @@
 /obj/item/storage/bag/mail/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
-	storage.max_w_class = WEIGHT_CLASS_NORMAL
-	storage.max_combined_w_class = 42
-	storage.max_items = 21
+	storage.max_w_class = WEIGHT_CLASS_SMALL
+	storage.max_combined_w_class = 30
+	storage.max_items = 30
 	storage.display_numerical_stacking = FALSE
-	storage.can_hold = list(
-		/obj/item/mail,
-		/obj/item/smallDelivery,
-		/obj/item/paper)
+	storage.can_hold = typecacheof(list(/obj/item/mail, /obj/item/smallDelivery, /obj/item/paper))
 
 /obj/item/paper/fluff/junkmail_redpill
 	name = "smudged paper"
-	icon_state = "scrap"
+	icon_state = "paper"
 	var/nuclear_option_odds = 0.1
 
 /obj/item/paper/fluff/junkmail_redpill/Initialize()
@@ -350,7 +347,7 @@
 
 /obj/item/paper/fluff/junkmail_generic
 	name = "important document"
-	icon_state = "paper_words"
+	icon_state = "paper"
 
 /obj/item/paper/fluff/junkmail_generic/Initialize()
 	. = ..()

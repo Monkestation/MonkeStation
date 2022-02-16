@@ -102,9 +102,11 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 	//monkestation edit start: add dept sec outfits (I'm sorry)
 	if(suit)
-		if(H.wear_suit)
-			qdel(H.wear_suit)
-		H.equip_to_slot_or_del(new suit(H),ITEM_SLOT_OCLOTHING)
+		for(var/obj/item/gun/energy/disabler/stored in H.contents)
+			if(H.wear_suit)
+				qdel(H.wear_suit)
+			H.equip_to_slot_or_del(new suit(H),ITEM_SLOT_OCLOTHING)
+			H.equip_to_slot_or_del(stored,ITEM_SLOT_SUITSTORE)
 	if(head)
 		if(H.head)
 			qdel(H.head)
@@ -166,7 +168,7 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 	//The helmet is necessary because /obj/item/clothing/head/helmet/sec is overwritten in the chameleon list by the standard helmet, which has the same name and icon state
 
 
-/obj/item/radio/headset/headset_sec/alt/department/Initialize()
+/obj/item/radio/headset/headset_sec/alt/department/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/radio(src)
 	secure_radio_connections = new
