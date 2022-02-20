@@ -70,6 +70,7 @@
 		if(HAS_BLOOD_DNA(src))
 			. += mutable_appearance('icons/effects/blood.dmi', "helmetblood")
 	//MonkeStation Edit: Hat Stacking
+	//This section handles the worn icon itself, not the item icon.
 		if(contents)
 			var/current_hat = 1
 			for(var/obj/item/clothing/head/selected_hat in contents)
@@ -78,6 +79,7 @@
 					head_icon = selected_hat.icon
 				var/mutable_appearance/hat_adding = selected_hat.build_worn_icon(HEAD_LAYER, head_icon, FALSE, FALSE)
 				hat_adding.pixel_y = ((current_hat * 4) - 1)
+				hat_adding.pixel_x = (rand(-1, 1))
 				current_hat++
 				. += hat_adding
 	//MonkeStation Edit End

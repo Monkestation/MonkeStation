@@ -3,7 +3,7 @@
 #define REMOVE_HAT 1
 
 /obj/item/clothing/head/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/clothing/head))
+	if(istype(I, /obj/item/clothing/head) && !istype(I, /obj/item/clothing/head/mob_holder) && !istype(src, /obj/item/clothing/head/mob_holder)) //No putting Ian on a hat or vice-reversa
 		if(contents) 					//Checking for previous hats and preventing towers that are too large
 			if(I.contents)
 				if(I.contents.len + contents.len + 1 > HAT_CAP)
@@ -36,7 +36,20 @@
 	name = initial(name)
 	desc = initial(desc)
 
+/obj/item/clothing/head/proc/throw_hats(var/hat_count, var/turf/wearer_location, var/mob/user)
+	for(var/obj/item/clothing/head/throwing_hat in contents)
+		var/destination = get_edge_target_turf(wearer_location, pick(GLOB.alldirs))
+		if(!hat_count) //Only throw X number of hats
+			break
+		throwing_hat.forceMove(wearer_location)
+		throwing_hat.throw_at(destination, rand(1,4), 10)
+		hat_count--
+	update_hats(0, user)
+	if(user)
+		user.visible_message("<span class='warning'>[user]'s hats go flying off!</span>")
+
 /obj/item/clothing/head/proc/update_hats(var/hat_removal, var/mob/living/user)
+
 	if(hat_removal)
 		var/obj/item/clothing/head/hat_to_remove = contents[contents.len] //Get the last item in the hat and hand it to the user.
 		hat_to_remove.restore_initial()
@@ -44,7 +57,9 @@
 		user.put_in_hands(hat_to_remove)
 
 	cut_overlays()
+
 	if(contents)
+		//This section prepares the in-hand and on-ground icon states for the hats.
 		var/current_hat = 1
 		for(var/obj/item/clothing/head/selected_hat in contents)
 			selected_hat.cut_overlays()
@@ -53,10 +68,13 @@
 			selected_hat.desc = initial(desc)
 			var/mutable_appearance/hat_adding = mutable_appearance(selected_hat.icon, "[initial(selected_hat.icon_state)]")
 			hat_adding.pixel_y = ((current_hat * 6) - 1)
+			hat_adding.pixel_x = (rand(-1, 1))
 			current_hat++
 			add_overlay(hat_adding)
-		verbs += /obj/item/clothing/head/verb/detach_stacked_hat
-		switch(contents.len)
+
+		verbs += /obj/item/clothing/head/verb/detach_stacked_hat //Verb for removing hats.
+
+		switch(contents.len) //Section for naming/description
 			if(0)
 				name = initial(name)
 				desc = initial(desc)
@@ -84,8 +102,9 @@
 			if(20)
 				name = "The True Hat Tower"
 				desc = "<span class='narsiesmall'>AFTER NINE YEARS IN DEVELOPMENT, HOPEFULLY IT WILL HAVE BEEN WORTH THE WAIT</span>"
-	worn_overlays()
-	user.update_inv_head()
+
+	worn_overlays() //This is where the actual worn icon is generated
+	user.update_inv_head() //Regenerate the wearer's head appearance so that they have real-time hat updates.
 
 
 #undef HAT_CAP
