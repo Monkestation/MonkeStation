@@ -14,7 +14,7 @@
 	if(ishuman(loc) && dynamic_hair_suffix)
 		var/mob/living/carbon/human/H = loc
 		H.update_hair()
-	verbs -= /obj/item/clothing/head/verb/detach_stacked_hat	//MonkeStation Edit: Hat Stacking
+	remove_verb(/obj/item/clothing/head/verb/detach_stacked_hat)//MonkeStation Edit: Hat Stacking
 
 
 ///Special throw_impact for hats to frisbee hats at people to place them on their heads/attempt to de-hat them.

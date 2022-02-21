@@ -53,7 +53,7 @@
 	if(hat_removal)
 		var/obj/item/clothing/head/hat_to_remove = contents[contents.len] //Get the last item in the hat and hand it to the user.
 		hat_to_remove.restore_initial()
-		hat_to_remove.verbs -= /obj/item/clothing/head/verb/detach_stacked_hat
+		hat_to_remove.remove_verb(/obj/item/clothing/head/verb/detach_stacked_hat)
 		user.put_in_hands(hat_to_remove)
 
 	cut_overlays()
@@ -72,12 +72,13 @@
 			current_hat++
 			add_overlay(hat_adding)
 
-		verbs += /obj/item/clothing/head/verb/detach_stacked_hat //Verb for removing hats.
+		add_verb(/obj/item/clothing/head/verb/detach_stacked_hat) //Verb for removing hats.
 
 		switch(contents.len) //Section for naming/description
 			if(0)
 				name = initial(name)
 				desc = initial(desc)
+				remove_verb(/obj/item/clothing/head/verb/detach_stacked_hat)
 			if (1,2)
 				name = "Pile of Hats"
 				desc = "A meagre pile of hats"
