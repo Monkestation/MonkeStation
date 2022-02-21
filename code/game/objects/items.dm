@@ -242,7 +242,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		item_flags |= IN_STORAGE
 
 	if(istype(loc, /obj/item/robot_module))
-		item_flags |= IN_INVENTORY
+		var/obj/item/robot_module/parent_module = loc
+		var/mob/living/silicon/parent_robot = parent_module.loc
+		pickup(parent_robot)
 
 	if(!hitsound)
 		if(damtype == "fire")
@@ -492,7 +494,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return
 
 	remove_outline()
-	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))
 		user.dropItemToGround(src)
@@ -514,7 +515,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 
-	pickup(user)
 	add_fingerprint(user)
 	if(!user.put_in_active_hand(src, FALSE, FALSE))
 		user.dropItemToGround(src)
@@ -661,13 +661,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language, list/message_mods)
 	return ITALICS | REDUCE_RANGE
 
+<<<<<<< HEAD
 /obj/item/proc/dropped(mob/user, silent = FALSE)
+=======
+/obj/item/proc/dropped(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+>>>>>>> 1738b33401f (Fixes some pickup behaviours (#6036))
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(user)
 	if(item_flags & DROPDEL)
 		qdel(src)
-	item_flags &= ~IN_INVENTORY
+	item_flags &= ~PICKED_UP
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 	if(!silent)
 		playsound(src, drop_sound, DROP_SOUND_VOLUME, ignore_walls = FALSE)
@@ -679,8 +684,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
-	item_flags |= IN_INVENTORY
+	item_flags |= PICKED_UP
 	if(verbs && user.client)
 		user.client.add_verbs(verbs)
 
@@ -856,7 +862,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/after_throw(datum/callback/callback)
 	if (callback) //call the original callback
 		. = callback.Invoke()
-	item_flags &= ~IN_INVENTORY
+	item_flags &= ~PICKED_UP
 
 /obj/item/proc/remove_item_from_storage(atom/newLoc) //please use this if you're going to snowflake an item out of a obj/item/storage
 	if(!newLoc)
@@ -1007,7 +1013,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
-	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
+	if((item_flags & PICKED_UP || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
 		var/timedelay = usr.client.prefs.tip_delay/100
 		var/user = usr
 		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
@@ -1027,7 +1033,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	remove_outline()
 
 /obj/item/proc/apply_outline(colour = null)
-	if(!(item_flags & IN_INVENTORY || item_flags & IN_STORAGE) || QDELETED(src) || isobserver(usr))
+	if(!(item_flags & PICKED_UP || item_flags & IN_STORAGE) || QDELETED(src) || isobserver(usr))
 		return
 	if(usr.client)
 		if(!usr.client.prefs.outline_enabled)
