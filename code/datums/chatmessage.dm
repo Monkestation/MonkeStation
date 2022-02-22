@@ -339,6 +339,13 @@ GLOBAL_LIST_INIT(job_colors_pastel, list(
 	// Ensure the list we are using, if present, is a copy so we don't modify the list provided to us
 	spans = spans ? spans.Copy() : list()
 
+	var/handled_message = raw_message
+
+	// Message language override, if no language was spoken emote 'makes a strange noise'
+	if(!message_language && !message_mods[CHATMESSAGE_EMOTE])
+		message_mods[CHATMESSAGE_EMOTE] = TRUE
+		handled_message = "makes a strange sound."
+
 	// Check for virtual speakers (aka hearing a message through a radio)
 	if (istype(speaker, /atom/movable/virtualspeaker))
 		var/atom/movable/virtualspeaker/v = speaker
