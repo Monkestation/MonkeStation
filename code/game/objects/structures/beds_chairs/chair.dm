@@ -1,7 +1,7 @@
 /obj/structure/chair
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
-	icon = 'icons/obj/chairs.dmi'
+	icon = 'icons/obj/chair.dmi'
 	icon_state = "chair"
 	anchored = TRUE
 	can_buckle = 1
@@ -123,6 +123,7 @@
 /obj/structure/chair/wood
 	icon_state = "wooden_chair"
 	name = "wooden chair"
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	desc = "Old is never too old to not be in fashion."
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -143,6 +144,7 @@
 /obj/structure/chair/comfy
 	name = "comfy chair"
 	desc = "It looks comfy."
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
 	resistance_flags = FLAMMABLE
@@ -195,6 +197,7 @@
 /obj/structure/chair/comfy/shuttle
 	name = "shuttle seat"
 	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system for smoother flights."
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "shuttle_chair"
 
 /obj/structure/chair/comfy/shuttle/GetArmrest()
@@ -204,6 +207,7 @@
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "officechair_dark"
 
 
@@ -220,6 +224,7 @@
 /obj/structure/chair/stool
 	name = "stool"
 	desc = "Apply butt."
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "stool"
 	can_buckle = 0
 	buildstackamount = 1
@@ -250,6 +255,7 @@
 /obj/structure/chair/stool/bamboo
 	name = "bamboo stool"
 	desc = "A makeshift bamboo stool with a rustic look."
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "bamboo_stool"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60
@@ -260,7 +266,7 @@
 /obj/item/chair
 	name = "chair"
 	desc = "Bar brawl essential."
-	icon = 'icons/obj/chairs.dmi'
+	icon = 'icons/obj/chair.dmi'
 	icon_state = "chair_toppled"
 	item_state = "chair"
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
@@ -332,6 +338,7 @@
 
 /obj/item/chair/stool
 	name = "stool"
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "stool_toppled"
 	item_state = "stool"
 	origin_type = /obj/structure/chair/stool
@@ -345,6 +352,7 @@
 
 /obj/item/chair/stool/bamboo
 	name = "bamboo stool"
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "bamboo_stool_toppled"
 	item_state = "stool_bamboo"
 	hitsound = 'sound/weapons/genhit1.ogg'
@@ -357,6 +365,7 @@
 
 /obj/item/chair/wood
 	name = "wooden chair"
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	icon_state = "wooden_chair_toppled"
 	item_state = "woodenchair"
 	resistance_flags = FLAMMABLE
@@ -428,6 +437,7 @@
 /obj/structure/chair/bronze
 	name = "brass chair"
 	desc = "A spinny chair made of bronze. It has little cogs for wheels!"
+	icon = 'icons/obj/chairs.dmi' //MonkeStation Edit: Updated Chairs
 	anchored = FALSE
 	icon_state = "brass_chair"
 	buildstacktype = /obj/item/stack/tile/bronze
