@@ -1,7 +1,7 @@
 /obj/structure/chair
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
-	icon = 'icons/obj/chair.dmi'
+	icon = 'monkestation/icons/obj/chair.dmi'
 	icon_state = "chair"
 	anchored = TRUE
 	can_buckle = 1
