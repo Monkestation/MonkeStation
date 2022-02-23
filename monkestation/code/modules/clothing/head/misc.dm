@@ -29,6 +29,11 @@
 	set name = "Remove Stacked Hat"
 	set category = "Object"
 	set src in usr
+
+	if(!isliving(usr))
+		return
+	if(!can_use(usr))
+		return
 	if(src.contents)
 		update_hats(REMOVE_HAT,usr)
 
