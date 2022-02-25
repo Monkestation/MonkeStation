@@ -440,7 +440,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	//Dizziness
 	if(dizziness)
-		shake_camera(src, dizziness/10, 1, 8)
+		shake_camera(src, 8, 1, 8)
 		dizziness = max(dizziness - restingpwr, 0)
 	if(drowsyness)
 		drowsyness = max(drowsyness - restingpwr, 0)
