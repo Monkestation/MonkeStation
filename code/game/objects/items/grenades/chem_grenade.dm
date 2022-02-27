@@ -219,27 +219,56 @@
 	ignition_temp = 25 // Large grenades are slightly more effective at setting off heat-sensitive mixtures than smaller grenades.
 	threatscale = 1.1	// 10% more effective.
 
+//Monkestation edit being
 /obj/item/grenade/chem_grenade/large/prime(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
-		return
+		return FALSE
 
-	for(var/obj/item/slime_extract/S in beakers)
-		if(S.Uses)
-			for(var/obj/item/reagent_containers/glass/G in beakers)
-				G.reagents.trans_to(S, G.reagents.total_volume)
 
-			//If there is still a core (sometimes it's used up)
-			//and there are reagents left, behave normally,
-			//otherwise drop it on the ground for timed reactions like gold.
+	var/extract_total_volume = 0
+	var/extract_maximum_volume = 0
+	var/list/extracts = list()
 
-			if(S)
-				if(S.reagents?.total_volume)
-					for(var/obj/item/reagent_containers/glass/G in beakers)
-						S.reagents.trans_to(G, S.reagents.total_volume)
-				else
-					S.forceMove(get_turf(src))
-					no_splash = TRUE
-	..()
+	var/beaker_total_volume = 0
+	var/list/other_containers = list()
+
+	for(var/obj/item/thing as anything in beakers)
+		if(!thing.reagents)
+			continue
+
+		if(istype(thing, /obj/item/slime_extract))
+			var/obj/item/slime_extract/extract = thing
+			if(!extract.Uses)
+				continue
+
+			extract_total_volume += extract.reagents.total_volume
+			extract_maximum_volume += extract.reagents.maximum_volume
+			extracts += extract
+		else
+			beaker_total_volume += thing.reagents.total_volume
+			other_containers += thing
+
+
+	var/available_extract_volume = extract_maximum_volume - extract_total_volume
+	if(beaker_total_volume <= 0 || available_extract_volume <= 0)
+		return ..()
+
+	var/container_ratio = available_extract_volume / beaker_total_volume
+	var/datum/reagents/tmp_holder = new/datum/reagents(beaker_total_volume)
+	for(var/obj/item/container as anything in other_containers)
+		container.reagents.trans_to(tmp_holder, container.reagents.total_volume * container_ratio, 1, preserve_data = TRUE, no_react = TRUE)
+
+	for(var/obj/item/slime_extract/extract as anything in extracts)
+		var/available_volume = extract.reagents.maximum_volume - extract.reagents.total_volume
+		tmp_holder.trans_to(extract, beaker_total_volume * (available_volume / available_extract_volume), 1, preserve_data = TRUE, no_react = TRUE)
+
+		extract.reagents.handle_reactions() // Reaction handling in the transfer proc is reciprocal and we don't want to blow up the tmp holder early.
+		if(QDELETED(extract))
+			beakers -= extract
+			extracts -= extract
+
+	return ..()
+//Monkestation edit end
 
 	//I tried to just put it in the allowed_containers list but
 	//if you do that it must have reagents.  If you're going to
