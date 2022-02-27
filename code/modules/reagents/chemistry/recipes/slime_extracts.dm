@@ -12,7 +12,7 @@
 
 /datum/chemical_reaction/slime/proc/delete_extract(datum/reagents/holder)
 	var/obj/item/slime_extract/M = holder.my_atom
-	if(M.Uses <= 0 && !results.len) //if the slime doesn't output chemicals
+	if(M?.Uses <= 0 && !results.len) //if the slime doesn't output chemicals //Monkestation edit because M may not exist
 		qdel(M)
 
 //Grey
@@ -437,26 +437,38 @@
 	required_other = TRUE
 	deletes_extract = FALSE
 
+//Monkestation edit begin
+/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion
+	var/datum/reagents/holder
+	var/turf/turf
+	var/lastkey
+
+/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion/proc/move_explosion()
+	SIGNAL_HANDLER
+	if(src.holder.my_atom)
+		src.turf = get_turf(src.holder.my_atom)
+
 /datum/chemical_reaction/slime/slimeexplosion/on_reaction(datum/reagents/holder)
-	var/turf/T = get_turf(holder.my_atom)
-	var/lastkey = holder.my_atom.fingerprintslast
-	var/touch_msg = "N/A"
-	if(lastkey)
-		var/mob/toucher = get_mob_by_ckey(lastkey)
-		touch_msg = "[ADMIN_LOOKUPFLW(toucher)]."
-	message_admins("Slime Explosion reaction started at [ADMIN_VERBOSEJMP(T)]. Last Fingerprint: [touch_msg]")
-	log_game("Slime Explosion reaction started at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"].")
-	T.visible_message("<span class='danger'>The slime extract begins to vibrate violently !</span>")
-	addtimer(CALLBACK(src, .proc/boom, holder), 50)
-	var/obj/item/slime_extract/M = holder.my_atom
-	deltimer(M.qdel_timer)
+	INVOKE_ASYNC(src, /datum/chemical_reaction/slime/slimeexplosion.proc/boom, holder)
 	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
-	if(holder?.my_atom)
-		explosion(get_turf(holder.my_atom), 1 ,3, 6)
-
+	var/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion/kaboom = new()
+	kaboom.holder = holder
+	kaboom.turf = get_turf(holder.my_atom)
+	kaboom.lastkey = holder.my_atom?.fingerprintslast
+	RegisterSignal(kaboom, COMSIG_MOVABLE_MOVED, .in_progress_explosion/proc/move_explosion)
+	var/touch_msg = "N/A"
+	if(kaboom.lastkey)
+		var/mob/toucher = get_mob_by_ckey(kaboom.lastkey)
+		touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
+	message_admins("Slime Explosion reaction started at [ADMIN_VERBOSEJMP(kaboom.turf)]. Last Fingerprint: [touch_msg]")
+	log_game("Slime Explosion reaction started at [AREACOORD(kaboom.turf)]. Last Fingerprint: [kaboom.lastkey ? kaboom.lastkey : "N/A"].")
+	sleep(50)
+	explosion(kaboom.turf, 1 ,3, 6)
+	sleep(5)
+	delete_extract(holder)
+//Monkestation edit end
 
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"
