@@ -12,7 +12,7 @@
 
 /datum/chemical_reaction/slime/proc/delete_extract(datum/reagents/holder)
 	var/obj/item/slime_extract/M = holder.my_atom
-	if(M?.Uses <= 0 && !results.len) //if the slime doesn't output chemicals //Monkestation edit because M may not exist
+	if(M.Uses <= 0 && !results.len) //if the slime doesn't output chemicals
 		qdel(M)
 
 //Grey
@@ -456,6 +456,7 @@
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder?.my_atom)
 		explosion(get_turf(holder.my_atom), 1 ,3, 6)
+
 
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"
