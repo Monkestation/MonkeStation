@@ -438,22 +438,22 @@
 	deletes_extract = FALSE
 
 //Monkestation edit begin
-/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion
+/datum/chemical_reaction/slime/in_progress_explosion
 	var/datum/reagents/holder
 	var/turf/turf
 	var/lastkey
 
-/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion/proc/move_explosion()
+/datum/chemical_reaction/slime/in_progress_explosion/proc/move_explosion()
 	SIGNAL_HANDLER
 	if(src.holder.my_atom)
 		src.turf = get_turf(src.holder.my_atom)
 
 /datum/chemical_reaction/slime/slimeexplosion/on_reaction(datum/reagents/holder)
-	INVOKE_ASYNC(src, /datum/chemical_reaction/slime/slimeexplosion.proc/boom, holder)
+	INVOKE_ASYNC(src, /datum/chemical_reaction/slime.proc/boom, holder)
 	..()
 
-/datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
-	var/datum/chemical_reaction/slime/slimeexplosion/in_progress_explosion/kaboom = new()
+/datum/chemical_reaction/slime/proc/boom(datum/reagents/holder)
+	var/datum/chemical_reaction/slime/in_progress_explosion/kaboom = new()
 	kaboom.holder = holder
 	kaboom.turf = get_turf(holder.my_atom)
 	kaboom.lastkey = holder.my_atom?.fingerprintslast
