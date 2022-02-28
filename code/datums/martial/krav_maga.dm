@@ -198,7 +198,6 @@
 		style.teach(H,1)
 
 /obj/item/clothing/gloves/krav_maga/dropped(mob/user)
-	..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
