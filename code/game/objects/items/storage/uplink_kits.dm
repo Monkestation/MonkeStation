@@ -127,7 +127,7 @@
 
 /obj/item/storage/box/syndie_kit/bundle_B/PopulateContents()
 	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
-		if("bond") // ~25 tc
+		if("bond") // ~30 tc
 			new /obj/item/gun/ballistic/automatic/pistol(src) // 7 tc
 			new /obj/item/suppressor(src) // 2 tc
 			new /obj/item/ammo_box/magazine/m10mm(src) // 1 tc
@@ -138,6 +138,7 @@
 			new /obj/item/reagent_containers/hypospray/medipen/stimulants(src) // 5 tc
 			new /obj/item/reagent_containers/glass/rag(src) // 0 tc
 			new /obj/item/encryptionkey/syndicate(src) // 2 tc
+			new /obj/item/stack/telecrystal/five(src) // 5 tc, for bond gadgets!
 
 		if("ninja") // 29 tc
 			new /obj/item/katana(src) // Based on the esword price it'd be around 8 tc
