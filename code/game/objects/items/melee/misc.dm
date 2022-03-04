@@ -476,16 +476,6 @@
 
 /obj/item/melee/classic_baton/contractor_baton/attack(mob/living/target, mob/living/user)
 
-	if(!owner_data || owner_data?.owner?.current != user)
-		to_chat(user, "<span class='userdanger'>The bio-coded baton shocks you as you attempt to wield it!</span>")
-		user.dropItemToGround(src, TRUE)
-		var/mob/living/carbon/C = user
-		C.Paralyze(10)
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			H.electrocution_animation(20)
-		return
-
 	if(!on)
 		return ..()
 
@@ -597,7 +587,15 @@
 			owner_data = traitor_data
 //MonkeStation Edit Start: Contractor Baton Rework
 			to_chat(user, "<span class='notice'>[src] scans your genetic data as you pick it up, creating an uplink with the syndicate database. Attacking your current target will stun and confuse them, however the baton is weaker against non-targets.</span>")
-
+	if(owner_data?.owner?.current != user)
+		to_chat(user, "<span class='userdanger'>The bio-coded baton shocks you as you attempt to wield it!</span>")
+		user.dropItemToGround(src, TRUE)
+		var/mob/living/carbon/C = user
+		C.Paralyze(10)
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			H.electrocution_animation(20)
+		return
 
 /obj/item/melee/classic_baton/contractor_baton/examine(mob/user)
 	. = ..()
