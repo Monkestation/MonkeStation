@@ -35,7 +35,7 @@
 
 /datum/component/rot/corpse/process()
 	var/mob/living/carbon/C = parent
-	if(C == null) //can't delete what doesnt exist
+	if(!C) //can't delete what doesnt exist
 		return
 
 	if(C.stat != DEAD)
