@@ -269,7 +269,7 @@
 		if (breath.get_moles(GAS_MIASMA))
 			var/miasma_pp = PP(breath,GAS_MIASMA)
 			if(miasma_pp > MINIMUM_MOLES_DELTA_TO_MOVE)
-
+				//MonkeStation Edit: Miasma Rework Issue#183
 				//Miasma sickness
 				if(prob(0.5 * miasma_pp))
 					var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(TRUE, 2, 3)
