@@ -43,7 +43,7 @@
 			new /obj/item/flashlight/emp(src) // 3 tc
 			new /obj/item/jammer(src) // 5 tc
 
-		if("guns") // 28 tc
+		if("guns") // 29 tc
 			new /obj/item/gun/ballistic/revolver(src) // 12 tc
 			new /obj/item/ammo_box/a357(src) // 2 tc
 			new /obj/item/ammo_box/a357(src) // 2 tc
@@ -51,8 +51,8 @@
 			new /obj/item/grenade/plastic/c4(src) // 1 tc
 			new /obj/item/deployablemine/traitor(src) // 4 tc
 			new /obj/item/soap/syndie(src) // 1 tc
+			new /datum/uplink_item/badass/syndiecash(src) //1 tc
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) // 0 tc
-			new /obj/item/clothing/mask/gas/clown_hat(src) // 0 tc
 			new /obj/item/clothing/under/suit/black_really(src) // 0 tc
 
 		if("screwed") // 35 tc
@@ -165,7 +165,7 @@
 			new /obj/item/toy/plush/carpplushie/dehy_carp(src)
 			new /obj/item/slimepotion/slime/sentience(src)
 
-		if("mad_scientist") //who the fuck knows
+		if("mad_scientist") //at least 29 tc, the clusters are random, and the guns are really tough to price
 			new /obj/item/clothing/suit/toggle/labcoat/mad(src) // 0 tc
 			new /obj/item/clothing/shoes/jackboots(src) // 0 tc
 			new /obj/item/megaphone(src) // 0 tc (because how else are they to know you're mad?)
