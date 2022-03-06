@@ -51,7 +51,7 @@
 			new /obj/item/grenade/plastic/c4(src) // 1 tc
 			new /obj/item/deployablemine/traitor(src) // 4 tc
 			new /obj/item/soap/syndie(src) // 1 tc
-			new /datum/uplink_item/badass/syndiecash(src) //1 tc
+			new /obj/item/storage/secure/briefcase/syndie(src) //1 tc
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) // 0 tc
 			new /obj/item/clothing/under/suit/black_really(src) // 0 tc
 
