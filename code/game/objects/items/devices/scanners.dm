@@ -119,6 +119,19 @@ GENE SCANNER
 	user.visible_message("<span class='notice'>[user] analyzes [M]'s vitals.</span>", \
 						"<span class='notice'>You analyze [M]'s vitals.</span>")
 
+	//monkestation edit start
+	if(user.eye_blind) //based on the examinate verb in mob/mob.dm
+		to_chat(user, "<span class='notice'>The scanner engages accessibility mode...</span>") //it's the future, they can incorporate spoken word and tactile feedback surely
+		user.visible_message("<span class='notice'>The scanner begins reading results to [user]...</span>")
+
+		/// how long it takes for the blind person to read the scanner results
+		var/examine_delay_length = rand(1 SECONDS, 2 SECONDS) * (advanced ? 1 : 2) //advanced scanners are faster!
+
+		if(examine_delay_length > 0 && !do_after(user, examine_delay_length, target = M))
+			to_chat(user, "<span class='notice'>The scanner is interrupted before you can understand its readout!</span>")
+			return FALSE
+	//monkestation edit end
+
 	if(scanmode == 0)
 		healthscan(user, M, advanced=advanced)
 	else if(scanmode == 1)
@@ -129,7 +142,7 @@ GENE SCANNER
 
 // Used by the PDA medical scanner too
 /proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
-	if(isliving(user) && (user.incapacitated() || user.eye_blind))
+	if(isliving(user) && user.incapacitated()) //monkestation edit
 		return
 	//Damage specifics
 	var/oxy_loss = M.getOxyLoss()
@@ -473,8 +486,20 @@ GENE SCANNER
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 
-	if(user.stat || user.eye_blind)
+	if(user.stat) //monkestation edit start
 		return
+
+	if(user.eye_blind)
+		to_chat(user, "<span class='notice'>The analyzer engages accessibility mode...</span>")
+		user.visible_message("<span class='notice'>The analyzer begins reading results to [user]...</span>")
+
+		/// how long it takes for the blind person to read the analyzer results
+		var/examine_delay_length = rand(1 SECONDS, 2 SECONDS) * 1.5
+
+		if(examine_delay_length > 0 && !do_after(user, examine_delay_length, target = user))
+			to_chat(user, "<span class='notice'>The analyzer is interrupted before you can understand its readout!</span>")
+			return FALSE
+	//monkestation edit end
 
 	//Functionality moved down to proc/scan_turf()
 	var/turf/location = get_turf(user)
@@ -666,8 +691,19 @@ GENE SCANNER
 	materials = list(/datum/material/iron=30, /datum/material/glass=20)
 
 /obj/item/slime_scanner/attack(mob/living/M, mob/living/user)
-	if(user.stat || user.eye_blind)
+	if(user.stat) //monkestation edit start
 		return
+	if(user.eye_blind)
+		to_chat(user, "<span class='notice'>The scanner engages accessibility mode...</span>")
+		user.visible_message("<span class='notice'>The scanner begins reading results to [user]...</span>")
+
+		/// how long it takes for the blind person to read the scanner results
+		var/examine_delay_length = rand(1 SECONDS, 2 SECONDS) * 1.5
+
+		if(examine_delay_length > 0 && !do_after(user, examine_delay_length, target = M))
+			to_chat(user, "<span class='notice'>The scanner is interrupted before you can understand its readout!</span>")
+			return FALSE
+	//monkestation edit end
 	if(!isslime(M))
 		to_chat(user, "<span class='warning'>This device can only scan slimes!</span>")
 		return

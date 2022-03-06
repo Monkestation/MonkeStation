@@ -11,7 +11,7 @@
 	var/datum/action/innate/shuttle_creator/airlock/airlock_action = new
 
 /obj/machinery/computer/camera_advanced/shuttle_creator/check_eye(mob/user)
-	if(user.eye_blind || user.incapacitated())
+	if(user.incapacitated()) //monkestation edit
 		user.unset_machine()
 
 /obj/machinery/computer/camera_advanced/shuttle_creator/CreateEye()
