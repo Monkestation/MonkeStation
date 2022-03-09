@@ -18,7 +18,7 @@
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "sec_black_gloves", /datum/mood_event/sec_black_gloves)
 
 /obj/item/clothing/gloves/color/black/dropped(mob/user)
-	. = ..()
+	..()
 	if(user.mind?.assigned_role in GLOB.security_positions)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "sec_black_gloves")
 
@@ -31,7 +31,7 @@
 			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "sec_insulated_gloves", /datum/mood_event/sec_insulated_gloves)
 
 /obj/item/clothing/gloves/color/yellow/dropped(mob/user)
-	. = ..()
+	..()
 	if(user.mind?.assigned_role == "Assistant")
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "assistant_insulated_gloves")
 	if(user.mind?.assigned_role in GLOB.security_positions)
@@ -214,23 +214,6 @@
 	worn_icon_state = "nitrilegloves"
 	transfer_prints = FALSE
 	carrytrait = TRAIT_QUICKER_CARRY
-
-//MonkeStation Edit Start
-//Surgeon Trait for CMO gloves
-/obj/item/clothing/gloves/color/latex/nitrile/equipped(mob/user, slot)
-	..()
-	if(slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, TRAIT_SURGEON, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/latex/nitrile/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, TRAIT_SURGEON, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/latex/nitrile/obj_break()
-	..()
-	if(ishuman(loc))
-		REMOVE_TRAIT(loc, TRAIT_SURGEON, CLOTHING_TRAIT)
-//MonkeStation Edit End
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"
