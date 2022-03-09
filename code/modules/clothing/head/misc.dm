@@ -37,6 +37,10 @@
 
 /obj/item/clothing/head/mailman
 	name = "mailman's hat"
+	//MonkeStation Edit: PestoVerde322 Mailman Uniforms
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	worn_icon = 'monkestation/icons/mob/head.dmi'
+	//MonkeStation Edit End
 	icon_state = "mailman"
 	desc = "<i>'Right-on-time'</i> mail service head wear."
 
@@ -129,6 +133,7 @@
 		to_chat(user, "You suddenly know how to speak like a pirate!")
 
 /obj/item/clothing/head/pirate/dropped(mob/user)
+	..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user

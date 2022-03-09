@@ -62,7 +62,7 @@
 
 /obj/structure/closet/update_icon()
 	if(istype(src, /obj/structure/closet/supplypod))
-		return . = ..()
+		return ..()
 	cut_overlays()
 	if(!opened)
 		layer = OBJ_LAYER

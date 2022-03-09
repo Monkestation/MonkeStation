@@ -106,6 +106,8 @@
 				newletter += "[newletter]"
 			if(20)
 				newletter += "[newletter][newletter]"
+			else
+				SWITCH_EMPTY_STATEMENT
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -149,6 +151,8 @@
 				newletter = "nglu"
 			if(5)
 				newletter = "glor"
+			else
+				SWITCH_EMPTY_STATEMENT
 		. += newletter
 	return sanitize(.)
 
@@ -191,6 +195,8 @@
 				newletter = "kth"
 			if(5)
 				newletter = "toc"
+			else
+				SWITCH_EMPTY_STATEMENT
 		. += newletter
 	return sanitize(.)
 
@@ -256,7 +262,7 @@
 	return sanitize(.)
 
 ///Shake the camera of the person viewing the mob SO REAL!
-/proc/shake_camera(mob/M, duration, strength=1)
+/proc/shake_camera(mob/M, duration, strength=1, time=1) //monkestation edit: add time argument for more proc usage
 	if(!M || !M.client || duration < 1)
 		return
 	var/client/C = M.client
@@ -267,10 +273,10 @@
 
 	for(var/i in 0 to duration-1)
 		if (i == 0)
-			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time)
 		else
-			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
-	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time)
+	animate(pixel_x=oldx, pixel_y=oldy, time)
 
 
 ///Find if the message has the real name of any user mob in the mob_list
