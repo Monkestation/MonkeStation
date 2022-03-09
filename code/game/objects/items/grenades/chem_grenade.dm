@@ -191,15 +191,19 @@
 
 	var/turf/detonation_turf = get_turf(src)
 
-	if(!chem_splash(detonation_turf, affected_area, reactants, ignition_temp, threatscale) && !no_splash)
+//monkestation edit start
+	for(var/obj/item/thing as anything in beakers) //unless it's a beaker with shit in it, drop it on the ground
+		if(!istype(thing, /obj/item/reagent_containers/glass) || !thing.reagents)
+			thing.forceMove(drop_location())
+			beakers.Remove(thing) //let go of it so we don't qdel it!
+
+	if(!chem_splash(detonation_turf, affected_area, reactants, ignition_temp, threatscale) && !no_splash) //if there's nothing to splash, the grenade just falls apart unharmed
 		playsound(src, 'sound/items/screwdriver2.ogg', 50, 1)
-		if(beakers.len)
-			for(var/obj/O in beakers)
-				O.forceMove(drop_location())
-			beakers = list()
 		stage_change(GRENADE_EMPTY)
 		active = FALSE
 		return
+//monkestation edit end
+
 //	logs from custom assemblies priming are handled by the wire component
 	log_game("A grenade detonated at [AREACOORD(detonation_turf)]")
 
@@ -219,7 +223,7 @@
 	ignition_temp = 25 // Large grenades are slightly more effective at setting off heat-sensitive mixtures than smaller grenades.
 	threatscale = 1.1	// 10% more effective.
 
-//Monkestation edit being
+//Monkestation edit begin
 /obj/item/grenade/chem_grenade/large/prime(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
 		return FALSE
