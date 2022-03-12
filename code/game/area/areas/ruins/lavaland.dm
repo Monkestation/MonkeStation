@@ -89,3 +89,9 @@
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
 	icon_state = "red"
+
+// Stando Powah
+
+/area/ruin/powered/stand_ruin
+	name = "Mysterious Attic"
+	icon_state = "dk_yellow"
