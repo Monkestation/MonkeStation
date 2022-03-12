@@ -33,6 +33,9 @@
 
 /// Removes all characters in `repl_chars`
 /proc/sanitize_simple(t,list/repl_chars = list("\n"="#","\t"="#"))
+	var/static/regex/all_invalid_symbols = new(@"([𓀀𓐌])+")
+	if(findtext(t,all_invalid_symbols))
+		return "I have just attempted to spam Hieroglyphs, please laugh at me."
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
