@@ -5832,6 +5832,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/security/processing)
+"amN" = (
+/mob/living/simple_animal/pet/dog/australianshepherd/captain,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "amQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -36398,13 +36402,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"ckI" = (
-/obj/machinery/suit_storage_unit/engine,
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ckK" = (
 /obj/structure/tank_dispenser,
 /obj/effect/turf_decal/bot{
@@ -37030,6 +37027,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cmR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 6
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "cmU" = (
 /obj/machinery/light/small,
 /turf/open/floor/engine/n2,
@@ -44260,6 +44265,26 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"gpf" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/science{
+	name = "exploration preparation room";
+	req_access_txt = "49"
+	},
+/turf/open/floor/plasteel/white,
+/area/quartermaster/exploration_prep)
 "gpk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -44344,6 +44369,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"gtF" = (
+/obj/machinery/door/airlock/science{
+	name = "exploration preparation room";
+	req_access_txt = "49"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel,
+/area/quartermaster/exploration_prep)
 "gui" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -45665,14 +45698,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
-"ikS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
-	},
-/obj/machinery/meter,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "ilg" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -46565,26 +46590,6 @@
 	dir = 5
 	},
 /area/science/research)
-"jqP" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 8
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/science{
-	name = "exploration preparation room";
-	req_access_txt = "49"
-	},
-/turf/open/floor/plasteel/white,
-/area/quartermaster/exploration_prep)
 "jrc" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
@@ -46623,6 +46628,10 @@
 	},
 /turf/open/floor/plating,
 /area/lawoffice)
+"jsI" = (
+/obj/effect/spawner/room/engine/box,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "jsS" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/stripes/line{
@@ -49102,6 +49111,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"mcp" = (
+/obj/machinery/suit_storage_unit/engine{
+	storage_type = /obj/item/clothing/shoes/magboots
+	},
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "mcy" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -52131,6 +52149,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"pTR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Incinerator Output Pump"
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "pUh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -53636,10 +53661,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
-"rLo" = (
-/mob/living/simple_animal/pet/dog/australianshepherd/captain,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "rMf" = (
 /obj/machinery/flasher{
 	id = "cell4";
@@ -55494,13 +55515,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"uqm" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Incinerator Output Pump"
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "urZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
@@ -56258,6 +56272,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"vrl" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/disposal/incinerator)
 "vrm" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -57331,10 +57352,6 @@
 "wqQ" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
-"wqU" = (
-/obj/effect/spawner/room/engine/box,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "wrc" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Disposal Access";
@@ -57642,13 +57659,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"wKr" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 1;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/airless,
-/area/maintenance/disposal/incinerator)
 "wKw" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/yellow{
@@ -58184,14 +58194,6 @@
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/hallway)
-"xkt" = (
-/obj/machinery/door/airlock/science{
-	name = "exploration preparation room";
-	req_access_txt = "49"
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plasteel,
-/area/quartermaster/exploration_prep)
 "xkB" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -84068,7 +84070,7 @@ ciZ
 ciZ
 ciZ
 ciZ
-wqU
+jsI
 aaa
 aaa
 aaa
@@ -87642,7 +87644,7 @@ ccw
 cSM
 cjd
 cSW
-ckI
+mcp
 clJ
 cmL
 cBO
@@ -88156,7 +88158,7 @@ ccw
 cdk
 cMC
 cSY
-ckI
+mcp
 clJ
 cmL
 cnv
@@ -89086,7 +89088,7 @@ bkA
 acF
 aes
 avB
-rLo
+amN
 agt
 awN
 aHp
@@ -96899,15 +96901,15 @@ djM
 cpO
 cpQ
 sSr
-ikS
-uqm
+cmR
+pTR
 czJ
 pRN
 pRN
 pRN
 pRN
 pRN
-wKr
+vrl
 aaf
 aoV
 aaa
@@ -107647,7 +107649,7 @@ bgc
 bgc
 kJu
 kch
-jqP
+gpf
 mov
 rWR
 kch
@@ -109962,7 +109964,7 @@ miz
 kch
 qxG
 kch
-xkt
+gtF
 rWR
 kch
 kch
