@@ -36403,7 +36403,9 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ckI" = (
-/obj/machinery/suit_storage_unit/engine,
+/obj/machinery/suit_storage_unit/engine{
+	storage_type = /obj/item/clothing/shoes/magboots
+	},
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
