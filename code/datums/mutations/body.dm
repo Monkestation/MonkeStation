@@ -427,7 +427,6 @@
 	locked = TRUE
 	difficulty = 12
 	instability = 25
-	species_allowed = list(SPECIES_FELINID)
 	var/added_damage = 6
 
 /datum/mutation/human/catclaws/on_acquiring()
