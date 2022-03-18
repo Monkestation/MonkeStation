@@ -110,9 +110,8 @@
 	. = ..()
 	if(.)
 		return
-	if(iscarbon(user.mob))
-		var/mob/living/carbon/carbon_user = user.mob
-		carbon_user.throw_mode_off(THROW_MODE_HOLD)
+	var/mob/living/carbon/carbon_user = user.mob
+	carbon_user.throw_mode_off(THROW_MODE_HOLD)
  //monkestation edit end
 
 /datum/keybinding/carbon/give
