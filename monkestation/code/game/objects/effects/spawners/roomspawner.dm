@@ -5,8 +5,8 @@
 	room_width = 27
 	room_height = 21
 	loot = list(
-				monkestation\_maps\RandomEngines\BoxStation\particle_accelerator.dmm = 40,
-				monkestation\_maps\RandomEngines\BoxStation\supermatter.dmm = 60
+				monkestation\_maps\RandomEngines\BoxStation\particle_accelerator.dmm = 50,
+				monkestation\_maps\RandomEngines\BoxStation\supermatter.dmm = 50
 				)
 	lootcount = 1
 
@@ -17,7 +17,7 @@
 	room_width = 25
 	room_height = 24
 	loot = list(
-				monkestation\_maps\RandomEngines\MetaStation\particle_accelerator.dmm = 40,
-				monkestation\_maps\RandomEngines\MetaStation\supermatter.dmm = 60
+				monkestation\_maps\RandomEngines\MetaStation\particle_accelerator.dmm = 50,
+				monkestation\_maps\RandomEngines\MetaStation\supermatter.dmm = 50
 				)
 	lootcount = 1
