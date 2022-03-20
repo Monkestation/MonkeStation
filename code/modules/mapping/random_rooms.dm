@@ -1478,4 +1478,3 @@
 	centerspawner = FALSE
 	template_height = 11
 	template_width = 5
-
