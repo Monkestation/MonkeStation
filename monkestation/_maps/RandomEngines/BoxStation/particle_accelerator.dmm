@@ -285,6 +285,13 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	req_access_txt = "11";
+	pixel_y = 24
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aE" = (
@@ -1017,12 +1024,20 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/space/basic,
 /area/engine/engineering)
 "cx" = (
 /obj/structure/lattice,
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/space/basic,
 /area/engine/engineering)
@@ -1047,6 +1062,10 @@
 	icon_state = "0-4"
 	},
 /obj/effect/turf_decal/stripes/box,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/machinery/power/emitter,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cC" = (
@@ -1065,9 +1084,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cE" = (
@@ -1080,6 +1096,7 @@
 /area/engine/engineering)
 "cF" = (
 /obj/machinery/camera/autoname,
+/obj/structure/lattice,
 /turf/open/space/basic,
 /area/engine/engineering)
 "cG" = (
@@ -1108,9 +1125,16 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cK" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cL" = (
@@ -1134,26 +1158,32 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/lattice,
-/turf/open/space/basic,
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
 /area/engine/engineering)
 "cO" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /obj/effect/turf_decal/stripes/box,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cP" = (
 /obj/effect/turf_decal/stripes/box,
+/obj/structure/cable/yellow,
+/obj/machinery/power/emitter,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cQ" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1161,6 +1191,7 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
+/obj/structure/lattice,
 /turf/open/space/basic,
 /area/engine/engineering)
 "cS" = (
@@ -1193,11 +1224,12 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cY" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
+	},
+/obj/machinery/field/generator,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1216,6 +1248,9 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1236,21 +1271,18 @@
 	icon_state = "0-8"
 	},
 /obj/structure/window/plasma/reinforced/spawner/east,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dk" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1261,15 +1293,18 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dm" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1292,10 +1327,10 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dq" = (
-/obj/structure/window/plasma/reinforced/spawner/west,
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 9
 	},
+/obj/machinery/field/generator,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dr" = (
@@ -1311,17 +1346,22 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dt" = (
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/item/wirecutters,
+/obj/structure/lattice,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/space/basic,
+/area/engine/engineering)
+"du" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/engine/engineering)
-"du" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1354,10 +1394,12 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dz" = (
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/structure/cable/yellow,
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 10
+	},
+/obj/machinery/field/generator,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -1443,18 +1485,85 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"dV" = (
-/obj/structure/table,
-/obj/item/stack/rods/fifty,
-/obj/item/clothing/gloves/color/yellow,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "dW" = (
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
 /obj/machinery/power/grounding_rod,
 /turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"mj" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+"GD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+"Jv" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+"PI" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/space/basic,
+/area/engine/engineering)
+"QG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+"Ub" = (
+/obj/machinery/door/poddoor{
+	id = "Secure Storage";
+	name = "secure storage"
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"Xp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/field/generator,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"YW" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/random,
+/turf/open/space/basic,
 /area/engine/engineering)
 
 (1,1,1) = {"
@@ -1699,11 +1808,11 @@ bJ
 bL
 bC
 cB
-bC
-bz
+dt
+PI
 cw
-bz
-bC
+PI
+dt
 cP
 bC
 bz
@@ -1726,7 +1835,7 @@ di
 dl
 di
 du
-dr
+GD
 dr
 bc
 dG
@@ -1749,7 +1858,7 @@ dj
 dm
 dj
 dm
-dz
+dm
 bc
 bc
 bc
@@ -1770,7 +1879,7 @@ cz
 cY
 bC
 bz
-bC
+Xp
 bz
 bC
 dp
@@ -1836,13 +1945,13 @@ cr
 cE
 cH
 cM
-bC
+mj
 bC
 do
 bc
 dw
 bC
-bC
+cK
 do
 bc
 be
@@ -1853,7 +1962,7 @@ am
 do
 bw
 bc
-bc
+cJ
 cd
 dw
 bp
@@ -1905,13 +2014,13 @@ bp
 bp
 cG
 cA
-cZ
-bC
+dz
+YW
+bz
+cQ
 bz
 bC
-bz
-bC
-dn
+dq
 bc
 cy
 al
@@ -1928,12 +2037,12 @@ bk
 cN
 cG
 bc
-cK
+cD
 dk
-dq
-dt
 dk
-dq
+dk
+dk
+dk
 bc
 bc
 bc
@@ -1951,13 +2060,13 @@ bl
 cR
 cU
 bJ
-dg
+Jv
 dg
 dg
 dg
 dy
+QG
 ds
-cQ
 bc
 dH
 al
@@ -1973,14 +2082,14 @@ ck
 cu
 bc
 bc
-bC
+bc
 cO
-bC
-bz
+dt
+PI
 cx
-bz
-bC
-cO
+PI
+dt
+cP
 bC
 bz
 al
@@ -1995,8 +2104,8 @@ al
 al
 al
 al
-al
-bp
+Ub
+Ub
 bp
 bp
 al
@@ -2016,7 +2125,7 @@ aF
 dS
 dT
 al
-dV
+bq
 dM
 dW
 dF

@@ -3555,6 +3555,7 @@
 #include "monkestation\code\modules\jobs\mail_goodies\job_mail.dm"
 #include "monkestation\code\modules\language\sippins.dm"
 #include "monkestation\code\modules\language\zoomercant.dm"
+#include "monkestation\code\modules\mapping\random_rooms.dm"
 #include "monkestation\code\modules\mob\living\inventory.dm"
 #include "monkestation\code\modules\mob\living\carbon\death.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\emote.dm"
