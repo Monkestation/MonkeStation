@@ -71,13 +71,3 @@
 	icon_state = "random_room_alternative"
 	room_width = 5
 	room_height = 11
-
-/obj/effect/spawner/room/engine/box
-	name = "box engine spawner"
-	room_width = 27
-	room_height = 21
-
-/obj/effect/spawner/room/engine/meta
-	name = "meta engine spawner"
-	room_width = 25
-	room_height = 24
