@@ -1,4 +1,3 @@
-
 /datum/map_template/random_room/box_supermatter
 	name = "Box Supermatter"
 	room_id = "box_supermatter"
@@ -22,7 +21,7 @@
 	room_id = "meta_supermatter"
 	mappath = "monkestation/_maps/RandomEngines/MetaStation/supermatter.dmm"
 	centerspawner = FALSE
-	template_height = 23
+	template_height = 24
 	template_width = 25
 	weight = 10
 

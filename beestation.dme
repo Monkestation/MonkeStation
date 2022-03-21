@@ -3517,6 +3517,7 @@
 #include "monkestation\code\game\objects\effects\decals\cleanable\chemicalmesses.dm"
 #include "monkestation\code\game\objects\effects\decals\cleanable\misc.dm"
 #include "monkestation\code\game\objects\effects\spawners\lootdrop.dm"
+#include "monkestation\code\game\objects\effects\spawners\roomspawner.dm"
 #include "monkestation\code\game\objects\items\anime.dm"
 #include "monkestation\code\game\objects\items\fluff_papers.dm"
 #include "monkestation\code\game\objects\items\mail.dm"
