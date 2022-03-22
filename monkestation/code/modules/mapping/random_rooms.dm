@@ -1,3 +1,4 @@
+
 /datum/map_template/random_room/box_supermatter
 	name = "Box Supermatter"
 	room_id = "box_supermatter"
@@ -5,7 +6,7 @@
 	centerspawner = FALSE
 	template_height = 21
 	template_width = 27
-	weight = 10
+	weight = 3
 
 /datum/map_template/random_room/box_particle_accelerator
 	name = "Box Particle Accelerator"
@@ -14,7 +15,7 @@
 	centerspawner = FALSE
 	template_height = 21
 	template_width = 27
-	weight = 10
+	weight = 2
 
 /datum/map_template/random_room/meta_supermatter
 	name = "Meta Supermatter"
@@ -23,7 +24,7 @@
 	centerspawner = FALSE
 	template_height = 24
 	template_width = 25
-	weight = 10
+	weight = 3
 
 /datum/map_template/random_room/meta_particle_accelerator
 	name = "Meta Particle Accelerator"
@@ -32,4 +33,4 @@
 	centerspawner = FALSE
 	template_height = 24
 	template_width = 25
-	weight = 10
+	weight = 2
