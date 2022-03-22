@@ -71,3 +71,4 @@
 	icon_state = "random_room_alternative"
 	room_width = 5
 	room_height = 11
+
