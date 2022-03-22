@@ -58,7 +58,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "ag" = (
 /obj/machinery/field/generator,
 /obj/effect/turf_decal/stripes/end{
@@ -66,7 +66,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "ah" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/power/tesla_coil/power,
@@ -109,7 +109,7 @@
 	},
 /obj/machinery/field/generator,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "an" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -155,7 +155,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "as" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -171,7 +171,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "au" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -213,7 +213,7 @@
 	},
 /obj/machinery/power/emitter,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aA" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
@@ -224,7 +224,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -234,7 +234,7 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aC" = (
 /turf/open/floor/plasteel/airless/dark,
 /area/engine/engineering)
@@ -247,7 +247,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aE" = (
 /obj/machinery/field/generator,
 /turf/open/floor/plasteel/airless/dark,
@@ -258,7 +258,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -270,7 +270,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aH" = (
 /obj/effect/spawner/lootdrop/Engines,
 /turf/open/floor/plasteel/airless/dark,
@@ -282,16 +282,12 @@
 	},
 /turf/open/floor/plasteel/airless/dark,
 /area/engine/engineering)
-"aJ" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/engine/engineering)
 "aK" = (
 /obj/structure/cable/white{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aL" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -320,16 +316,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "aO" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
 	name = "PA Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
-"aP" = (
-/turf/open/space/basic,
 /area/engine/engineering)
 "aQ" = (
 /turf/closed/wall/r_wall,
@@ -459,7 +452,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bg" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -485,7 +478,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -536,7 +529,7 @@
 	},
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bp" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/plasma/spawner,
@@ -550,7 +543,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bq" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -569,7 +562,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bs" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -578,7 +571,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bt" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -588,13 +581,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bu" = (
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bv" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -612,7 +605,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "by" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -625,13 +618,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bB" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -640,7 +633,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -668,7 +661,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -683,7 +676,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -699,7 +692,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bK" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/plasma/spawner,
@@ -710,7 +703,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -723,7 +716,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bM" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -733,7 +726,7 @@
 	},
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bN" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -743,11 +736,11 @@
 	dir = 8
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bO" = (
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bP" = (
 /obj/machinery/particle_accelerator/control_box,
 /turf/open/floor/plating,
@@ -786,7 +779,7 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bT" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -796,25 +789,25 @@
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bU" = (
 /obj/structure/cable/white{
 	icon_state = "2-8"
 	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bW" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bX" = (
 /obj/structure/cable/white,
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "bY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -941,13 +934,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "cp" = (
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "cq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -963,7 +956,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "cs" = (
 /obj/structure/sign/warning/nosmoking,
 /turf/closed/wall/r_wall,
@@ -983,7 +976,7 @@
 /obj/structure/lattice,
 /obj/item/stack/cable_coil/random,
 /turf/open/space/basic,
-/area/engine/engineering)
+/area/space/nearstation)
 "cy" = (
 /obj/machinery/button/door{
 	id = "engsm";
@@ -1054,7 +1047,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "cJ" = (
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
@@ -1188,7 +1181,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "cY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -1237,13 +1230,13 @@
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "dg" = (
 /obj/structure/cable/white{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "dh" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -1509,7 +1502,7 @@
 	},
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "ei" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -1520,7 +1513,7 @@
 	dir = 5
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "hn" = (
 /obj/machinery/power/rad_collector,
 /obj/machinery/light{
@@ -1530,14 +1523,14 @@
 /area/engine/engineering)
 "iH" = (
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "km" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "lv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1547,19 +1540,19 @@
 	},
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "lY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "mX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "np" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -1583,18 +1576,18 @@
 	dir = 8
 	},
 /turf/open/space/basic,
-/area/engine/engineering)
+/area/space/nearstation)
 "nH" = (
 /obj/structure/lattice,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/space/basic,
-/area/engine/engineering)
+/area/space/nearstation)
 "pn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "rU" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -1603,20 +1596,20 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "uf" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "ut" = (
 /obj/structure/lattice,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/space/basic,
-/area/engine/engineering)
+/area/space/nearstation)
 "uT" = (
 /obj/structure/lattice/catwalk,
 /turf/closed/wall/r_wall,
@@ -1626,19 +1619,19 @@
 	dir = 10
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "zi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Cn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Eh" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/plasma/spawner,
@@ -1649,17 +1642,17 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "FI" = (
 /obj/structure/lattice,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
 /turf/open/space/basic,
-/area/engine/engineering)
+/area/space/nearstation)
 "Gi" = (
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "HI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1671,7 +1664,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Ks" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1680,17 +1673,17 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "KR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "LO" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Nk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -1699,7 +1692,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "PD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1712,7 +1705,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Qp" = (
 /obj/machinery/power/tesla_coil/power,
 /turf/open/floor/plasteel/airless/dark,
@@ -1720,14 +1713,14 @@
 "QK" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "Sa" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 "VU" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -1737,7 +1730,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/airless,
-/area/engine/engineering)
+/area/space/nearstation)
 
 (1,1,1) = {"
 cP
@@ -2035,11 +2028,11 @@ az
 aD
 bi
 bw
-aJ
-aP
+dv
+aa
 am
-aP
-aJ
+aa
+dv
 bJ
 bS
 bT
@@ -2061,11 +2054,11 @@ nu
 aG
 bp
 FI
-aJ
-aJ
-aJ
-aJ
-aJ
+dv
+dv
+dv
+dv
+dv
 nu
 cq
 bN
@@ -2083,19 +2076,19 @@ aQ
 aQ
 aQ
 aQ
-aP
+aa
 Ks
 Eh
-aP
-aJ
+aa
+dv
 pn
 bA
 yh
-aJ
-aP
+dv
+aa
 PD
 km
-aP
+aa
 aQ
 dv
 dv
@@ -2109,19 +2102,19 @@ aa
 aa
 aa
 di
-aJ
+dv
 lv
 Eh
 aB
-aJ
+dv
 zi
 Gi
 LO
-aJ
+dv
 ar
 PD
 VU
-aJ
+dv
 di
 aa
 aa
@@ -2135,19 +2128,19 @@ aa
 aa
 aa
 aQ
-aP
+aa
 Ks
 Eh
-aP
-aJ
+aa
+dv
 hm
 lY
 Cn
-aJ
-aP
+dv
+aa
 PD
 km
-aP
+aa
 aQ
 dv
 dv
@@ -2165,11 +2158,11 @@ nH
 HI
 bK
 ut
-aJ
-aJ
-aJ
-aJ
-aJ
+dv
+dv
+dv
+dv
+dv
 nH
 bL
 br
@@ -2192,10 +2185,10 @@ aF
 bO
 at
 cx
-aP
+aa
 cX
-aP
-aJ
+aa
+dv
 ag
 bO
 bU
@@ -2239,7 +2232,7 @@ aa
 aa
 aa
 aQ
-aP
+aa
 bu
 bW
 iH
@@ -2251,7 +2244,7 @@ iH
 iH
 bW
 cp
-aP
+aa
 aQ
 dv
 dv
