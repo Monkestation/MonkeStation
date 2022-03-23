@@ -179,11 +179,12 @@
 //Acetone Sticker Removal
 /datum/reagent/acetone/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
 	. = ..()
-	for(var/obj/item/stickable/dummy_holder/dummy_stickable in M.vis_contents)
-		M.visible_message("<span class='notice'>[M]'s stickers slide off!</span>")
-		for(var/obj/item/stickable/dropping in dummy_stickable.contents)
-			dropping.forceMove(get_turf(M))
-		M.vis_contents -= dummy_stickable
+	if(method == TOUCH || VAPOR)
+		for(var/obj/item/stickable/dummy_holder/dummy_stickable in M.vis_contents)
+			M.visible_message("<span class='notice'>[M]'s stickers slide off!</span>")
+			for(var/obj/item/stickable/dropping in dummy_stickable.contents)
+				dropping.forceMove(get_turf(M))
+			M.vis_contents -= dummy_stickable
 
 
 /datum/reagent/acetone/reaction_obj(obj/O, volume)
