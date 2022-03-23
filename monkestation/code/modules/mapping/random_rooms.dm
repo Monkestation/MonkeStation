@@ -4,8 +4,8 @@
 	room_id = "box_supermatter"
 	mappath = "monkestation/_maps/RandomEngines/BoxStation/supermatter.dmm"
 	centerspawner = FALSE
-	template_height = 21
-	template_width = 27
+	template_height = 27
+	template_width = 32
 	weight = 3
 
 /datum/map_template/random_room/box_particle_accelerator
@@ -13,8 +13,8 @@
 	room_id = "box_particle_accelerator"
 	mappath = "monkestation/_maps/RandomEngines/BoxStation/particle_accelerator.dmm"
 	centerspawner = FALSE
-	template_height = 21
-	template_width = 27
+	template_height = 27
+	template_width = 32
 	weight = 2
 
 /datum/map_template/random_room/meta_supermatter
@@ -22,8 +22,8 @@
 	room_id = "meta_supermatter"
 	mappath = "monkestation/_maps/RandomEngines/MetaStation/supermatter.dmm"
 	centerspawner = FALSE
-	template_height = 24
-	template_width = 25
+	template_height = 26
+	template_width = 32
 	weight = 3
 
 /datum/map_template/random_room/meta_particle_accelerator
@@ -31,6 +31,6 @@
 	room_id = "meta_particle_accelerator"
 	mappath = "monkestation/_maps/RandomEngines/MetaStation/particle_accelerator.dmm"
 	centerspawner = FALSE
-	template_height = 24
-	template_width = 25
+	template_height = 26
+	template_width = 32
 	weight = 2
