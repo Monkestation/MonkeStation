@@ -61,9 +61,8 @@
 	flick("protector_pulse", src)
 	//MonkeStation Edit Start: Increase of cooldowns & callback improvement
 	var/turf/target_location = get_turf(target)
+	addtimer(CALLBACK(effect, .proc/trigger, src, get_turf(src), target, target_location), 1 SECONDS)
 	addtimer(CALLBACK(src, .proc/reset_cooldown), 1.5 SECONDS)
-	sleep(1 SECONDS)
-	effect.trigger(src, get_turf(src), target, target_location)
 
 /obj/structure/alien_artifact/protector/proc/reset_cooldown()
 	active = FALSE
@@ -85,25 +84,24 @@
 /datum/protector_effect/hierophant_burst/trigger(obj/source, turf/source_location, atom/movable/target, turf/target_location)
 	playsound(source_location,'sound/machines/airlockopen.ogg', 200, 1)
 	source.visible_message("<span class='hierophant'>\"Irkekmrk hijirwmzi tvsxsgspw.\"</span>")
-	protector_burst(null, get_turf(target), 1) //MonkeStation Edit: Unique, weaker, version of the burst.
+	INVOKE_ASYNC(src, .proc/protector_burst, null, get_turf(target), 1)
 
 /datum/protector_effect/hierophant_burst_self/trigger(obj/source, turf/source_location, atom/movable/target, turf/target_location)
 	playsound(source_location,'sound/machines/airlockopen.ogg', 200, 1)
 	source.visible_message("<span class='hierophant'>\"Yrorsar irxmxc hixigxih.\"</span>")
-	protector_burst(null, source_location, 2) //MonkeStation Edit: Unique, weaker, version of the burst.
+	INVOKE_ASYNC(src, .proc/protector_burst, null, source_location, 2)
 
 //MonkeStation Edit Start: EMP stun removal & dodgeablity...is that a word? You can dodge the attack now.
 /datum/protector_effect/emp_attack/trigger(obj/source, turf/source_location, atom/movable/target, turf/target_location)
 	playsound(source_location,'sound/machines/airlockopen.ogg', 200, 1)
 	source_location.visible_message("<span class='hierophant'>\"Svhivw vigmizih.\"</span>")
-	new /obj/effect/temp_visual/hierophant/blast/defenders(target_location, src, FALSE)
-	sleep(0.5 SECONDS)
-	empulse(target_location, 0, 2)
+	new /obj/effect/temp_visual/hierophant/blast/defenders/emp(target_location, src, FALSE)
+
 //MonkeStation Edit End
 
 //MonkeStation Edit Start: Unique, weaker, version of the burst.
 //expanding square designed for the artifact defenders
-/proc/protector_burst(mob/caster, turf/original, burst_range)
+/datum/protector_effect/proc/protector_burst(mob/caster, turf/original, burst_range)
 	playsound(original,'sound/machines/airlockopen.ogg', 200, 1)
 	var/last_dist = 0
 	for(var/turf/T as() in spiral_range_turfs(burst_range, original))
@@ -119,3 +117,10 @@
 /obj/effect/temp_visual/hierophant/blast/defenders
 	damage = 7
 	duration = 1.2 SECONDS
+
+/obj/effect/temp_visual/hierophant/blast/defenders/emp
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/hierophant/blast/defenders/emp/Initialize(mapload, new_caster, friendly_fire)
+	. = ..()
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/empulse, src.loc, 1, 2), 1 SECONDS)
