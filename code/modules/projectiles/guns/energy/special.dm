@@ -167,7 +167,7 @@
 	if(istype(I, /obj/item/stack/sheet/mineral/plasma))
 		charge_multiplier = 5 // MonkeStation Edit
 	if(istype(I, /obj/item/stack/ore/plasma))
-		charge_multiplier = 3
+		charge_multiplier = 3 //MonkeStation Edit
 	if(charge_multiplier)
 		if(cell.charge == cell.maxcharge)
 			to_chat(user, "<span class='notice'>You try to insert [I] into [src], but it's fully charged.</span>") //my cell is round and full
