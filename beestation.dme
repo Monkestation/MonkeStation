@@ -3565,7 +3565,6 @@
 #include "monkestation\code\modules\mob\living\simple_animal\friendly\dog.dm"
 #include "monkestation\code\modules\mob\living\simple_animal\friendly\honk_platinum.dm"
 #include "monkestation\code\modules\mob\living\simple_animal\hostile\bees.dm"
-#include "monkestation\code\modules\paperwork\paper.dm"
 #include "monkestation\code\modules\projectiles\ammunition\caseless\rocket.dm"
 #include "monkestation\code\modules\projectiles\boxes_magazines\internal\grenade.dm"
 #include "monkestation\code\modules\projectiles\guns\ballistic\launchers.dm"

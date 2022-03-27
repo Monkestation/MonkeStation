@@ -117,8 +117,13 @@
 	return
 
 
-/obj/singularity/bullet_act(obj/item/projectile/P)
-	qdel(P)
+/obj/singularity/bullet_act(obj/item/projectile/bullet/spatialriftnullifier/N, obj/item/projectile/P,/obj/singularity/S)
+	if(N)
+		investigate_log("has been nullified by a spatial rift.", INVESTIGATE_ENGINES)
+		new/obj/singularity/boh_tear
+		QDEL_IN(src, 5 SECONDS)
+	else
+		qdel(P)
 	return BULLET_ACT_HIT //Will there be an impact? Who knows.  Will we see it? No.
 
 

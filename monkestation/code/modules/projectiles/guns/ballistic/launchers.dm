@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/spatialriftnullifier
 	desc = "A rocket designed with the power of bluespace to send a singularity or tesla back to the shadow realm"
-	name = "\improper Spatial Rift Rullifier (SRN) Rocket"
+	name = "\improper Spatial Rift Nullifier (SRN) Rocket"
 	icon_state = "rocketlauncher"
 	item_state = "rocketlauncher"
 	mag_type = /obj/item/ammo_box/magazine/internal/spatialriftnullifier
