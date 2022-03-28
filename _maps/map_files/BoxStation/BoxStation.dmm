@@ -16512,10 +16512,6 @@
 /area/crew_quarters/kitchen)
 "aVE" = (
 /obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
@@ -48262,10 +48258,6 @@
 /area/hydroponics/garden)
 "jac" = (
 /obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "jbf" = (
@@ -49988,10 +49980,6 @@
 /area/crew_quarters/kitchen)
 "kWa" = (
 /obj/structure/table,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
