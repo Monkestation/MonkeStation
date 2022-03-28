@@ -40,7 +40,6 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/helmet/space/plasmaman/mailman
 	uniform = /obj/item/clothing/under/plasmaman/mailman
-	belt = /obj/item/pda/unlicensed
 	r_pocket = /obj/item/pda/unlicensed
 	l_pocket = /obj/item/pinpointer/crew
 
