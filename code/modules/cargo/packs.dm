@@ -2207,7 +2207,7 @@
 	. = ..()
 	if(!anomalous_box_provided)
 		for(var/obj/item/pizzabox/P in C)
-			if(prob(1)) //1% chance for each box, so 4% total chance per order
+			if(prob(0.20)) //0.20% chance for each box, so 1% total chance per order//MonkeStation Edit: Reduced odds
 				var/obj/item/pizzabox/infinite/fourfiveeight = new(C)
 				fourfiveeight.boxtag = P.boxtag
 				qdel(P)
@@ -2489,7 +2489,7 @@
 
 /datum/supply_pack/critter/snake
 	name = "Snake Crate"
-	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes."
+	desc = "Tired of these MOTHER FUCKING snakes on this MOTHER FUCKING space station? Then this isn't the crate for you. Contains three poisonous snakes." //aren't they technically venomous?
 	cost = 3000
 	access_budget = ACCESS_SECURITY
 	contains = list(/mob/living/simple_animal/hostile/retaliate/poison/snake,
