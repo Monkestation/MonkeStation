@@ -1,5 +1,5 @@
-/obj/item/ammo_box/magazine/internal/spatialriftnullifier
-	name = "Spatial Rift Nullifier (SRN) internal magazine"
-	ammo_type = /obj/item/ammo_casing/caseless/spatialriftnullifier
+/obj/item/ammo_box/magazine/internal/SRN_rocket
+	name = "SRN rocket launcher internal magazine"
+	ammo_type = /obj/item/ammo_casing/caseless/SRN_rocket
 	caliber = "84mm"
-	max_ammo = 5
+	max_ammo = 3

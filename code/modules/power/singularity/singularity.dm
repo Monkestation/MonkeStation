@@ -117,11 +117,16 @@
 	return
 
 
-/obj/singularity/bullet_act(obj/item/projectile/bullet/spatialriftnullifier/N, obj/item/projectile/P,/obj/singularity/S)
+/obj/singularity/bullet_act(obj/item/projectile/bullet/SRN_rocket/N, obj/item/projectile/P, mob/living/user)
+	var/turf/T = get_turf(src)
 	if(N)
-		investigate_log("has been nullified by a spatial rift.", INVESTIGATE_ENGINES)
-		new/obj/singularity/boh_tear
-		QDEL_IN(src, 5 SECONDS)
+		for(var/mob/M in GLOB.player_list)
+			if(M.get_virtual_z_level() == get_virtual_z_level())
+				SEND_SOUND(M, 'sound/magic/charge.ogg')
+				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+				shake_camera(M, 15, 3)
+		new/obj/singularity/spatial_rift(T)
 	else
 		qdel(P)
 	return BULLET_ACT_HIT //Will there be an impact? Who knows.  Will we see it? No.

@@ -1,6 +1,7 @@
-/obj/item/ammo_casing/caseless/spatialriftnullifier
-	name = "\improper Spatial Rift Nullifier Rocket"
+/obj/item/ammo_casing/caseless/SRN_rocket
+	name = "\improper Spatial Rift Nullifier Internal Mag"
 	desc = "A prototype Spatial Rift Nullifier (SRN) Rocket. Fire at a rogue singularity or Tesla and pray it hits"
 	caliber = "84mm"
-	icon_state = "srm-8"
-	projectile_type = /obj/item/projectile/bullet/spatialriftnullifier
+	icon = 'monkestation/icons/obj/guns/projectiles.dmi'
+	icon_state = "srn_rocket"
+	projectile_type = /obj/item/projectile/bullet/SRN_rocket
