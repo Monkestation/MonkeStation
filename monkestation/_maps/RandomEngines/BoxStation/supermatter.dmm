@@ -2368,9 +2368,6 @@
 	},
 /turf/closed/wall,
 /area/engine/engineering)
-"qG" = (
-/turf/open/space/basic,
-/area/space)
 "sT" = (
 /obj/machinery/door/airlock/command{
 	name = "MiniSat Access";
@@ -2434,7 +2431,7 @@
 "DS" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "ET" = (
 /obj/structure/table,
 /obj/machinery/camera/autoname{
@@ -2555,24 +2552,24 @@ il
 ci
 aa
 eN
-qG
-qG
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 eN
-qG
-qG
-qG
+aa
+aa
+aa
 eZ
 eZ
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (2,1,1) = {"
 ab
@@ -2596,12 +2593,12 @@ aa
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (3,1,1) = {"
 ac
@@ -2625,12 +2622,12 @@ eN
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (4,1,1) = {"
 ad
@@ -2654,12 +2651,12 @@ aa
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (5,1,1) = {"
 ae
@@ -2683,12 +2680,12 @@ eN
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (6,1,1) = {"
 af
@@ -2712,12 +2709,12 @@ aa
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (7,1,1) = {"
 ag
@@ -2741,12 +2738,12 @@ eN
 eZ
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (8,1,1) = {"
 ah
@@ -2770,12 +2767,12 @@ aa
 eZ
 ff
 eZ
-qG
-qG
-qG
+aa
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 "}
 (9,1,1) = {"
 ai
@@ -2804,7 +2801,7 @@ TZ
 eN
 eN
 eN
-qG
+aa
 "}
 (10,1,1) = {"
 aj
@@ -2829,11 +2826,11 @@ eN
 aa
 aa
 aa
-qG
-qG
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 "}
 (11,1,1) = {"
 ak
@@ -2858,11 +2855,11 @@ al
 al
 al
 aa
-qG
+aa
 ku
 eZ
 ku
-qG
+aa
 "}
 (12,1,1) = {"
 al
@@ -2887,11 +2884,11 @@ cx
 fg
 al
 aa
-qG
+aa
 eZ
 ff
 eZ
-qG
+aa
 "}
 (13,1,1) = {"
 ak
@@ -2916,11 +2913,11 @@ cx
 cx
 al
 aa
-qG
+aa
 eZ
 ff
 eZ
-qG
+aa
 "}
 (14,1,1) = {"
 ak
@@ -2974,11 +2971,11 @@ eW
 eP
 al
 aa
-qG
+aa
 eZ
 ff
 eZ
-qG
+aa
 "}
 (16,1,1) = {"
 al
@@ -3007,7 +3004,7 @@ eN
 eZ
 ff
 eZ
-qG
+aa
 "}
 (17,1,1) = {"
 am
@@ -3036,7 +3033,7 @@ TZ
 eZ
 ff
 eZ
-qG
+aa
 "}
 (18,1,1) = {"
 ak
@@ -3061,11 +3058,11 @@ fc
 fc
 al
 aa
-qG
+aa
 eZ
 ff
 eZ
-qG
+aa
 "}
 (19,1,1) = {"
 am
@@ -3094,7 +3091,7 @@ eN
 eZ
 ff
 eZ
-qG
+aa
 "}
 (20,1,1) = {"
 al
@@ -3123,7 +3120,7 @@ eN
 eZ
 ff
 eZ
-qG
+aa
 "}
 (21,1,1) = {"
 al
@@ -3148,11 +3145,11 @@ eS
 eS
 al
 aa
-qG
+aa
 eZ
 ff
 eZ
-qG
+aa
 "}
 (22,1,1) = {"
 ak
@@ -3210,7 +3207,7 @@ eN
 eZ
 ff
 eZ
-qG
+aa
 "}
 (24,1,1) = {"
 al
@@ -3239,7 +3236,7 @@ eN
 eZ
 ff
 eZ
-qG
+aa
 "}
 (25,1,1) = {"
 ak
@@ -3264,11 +3261,11 @@ al
 al
 al
 aa
-qG
+aa
 eZ
 eZ
 eZ
-qG
+aa
 "}
 (26,1,1) = {"
 an
@@ -3293,11 +3290,11 @@ eN
 aa
 aa
 aa
-qG
-qG
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 "}
 (27,1,1) = {"
 ao
@@ -3350,12 +3347,12 @@ aa
 eN
 ff
 eZ
-qG
-qG
-qG
+aa
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 "}
 (29,1,1) = {"
 al
@@ -3379,12 +3376,12 @@ eN
 eN
 ff
 eZ
-qG
-qG
-qG
+aa
+aa
+aa
 eN
-qG
-qG
+aa
+aa
 "}
 (30,1,1) = {"
 al
@@ -3408,12 +3405,12 @@ ff
 ff
 ff
 eZ
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (31,1,1) = {"
 al
@@ -3430,19 +3427,19 @@ ez
 aa
 aa
 aa
-qG
-qG
-qG
+aa
+aa
+aa
 eZ
 eZ
 eZ
 eZ
-qG
-qG
-qG
+aa
+aa
+aa
 DS
-qG
-qG
+aa
+aa
 "}
 (32,1,1) = {"
 al
@@ -3459,17 +3456,17 @@ ez
 ez
 ez
 ez
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 ku
-qG
-qG
-qG
-qG
-qG
-qG
+aa
+aa
+aa
+aa
+aa
+aa
 "}

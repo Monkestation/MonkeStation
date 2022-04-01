@@ -1737,7 +1737,7 @@
 /area/maintenance/starboard)
 "ee" = (
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "ef" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -1996,7 +1996,7 @@
 "tN" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "uV" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -2177,9 +2177,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"KN" = (
-/turf/open/space/basic,
-/area/space)
 "Nk" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -2318,7 +2315,7 @@
 "VR" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "WJ" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -2605,7 +2602,7 @@ rO
 fE
 dt
 dt
-KN
+aa
 "}
 (10,1,1) = {"
 ew
@@ -2633,7 +2630,7 @@ lQ
 UX
 sJ
 Ji
-KN
+aa
 "}
 (11,1,1) = {"
 aQ
@@ -2661,7 +2658,7 @@ iB
 en
 aw
 ea
-KN
+aa
 "}
 (12,1,1) = {"
 ex
@@ -2689,7 +2686,7 @@ dN
 dN
 dX
 Rk
-KN
+aa
 "}
 (13,1,1) = {"
 ex
@@ -2800,7 +2797,7 @@ em
 dR
 em
 dX
-KN
+aa
 eh
 "}
 (17,1,1) = {"
@@ -2856,7 +2853,7 @@ em
 Vl
 em
 dX
-KN
+aa
 eh
 "}
 (19,1,1) = {"
@@ -2912,7 +2909,7 @@ du
 ei
 ak
 aa
-KN
+aa
 ak
 "}
 (21,1,1) = {"
@@ -2940,7 +2937,7 @@ ei
 ei
 ak
 aa
-KN
+aa
 ak
 "}
 (22,1,1) = {"
@@ -2968,8 +2965,8 @@ ak
 ak
 ak
 aa
-KN
-KN
+aa
+aa
 "}
 (23,1,1) = {"
 aa
@@ -2996,8 +2993,8 @@ aa
 ak
 ak
 aa
-KN
-KN
+aa
+aa
 "}
 (24,1,1) = {"
 aa
@@ -3024,8 +3021,8 @@ aa
 aa
 fU
 aa
-KN
-KN
+aa
+aa
 "}
 (25,1,1) = {"
 aa
@@ -3052,8 +3049,8 @@ fU
 aa
 fU
 aa
-KN
-KN
+aa
+aa
 "}
 (26,1,1) = {"
 aa
@@ -3077,22 +3074,22 @@ gy
 gy
 gy
 AT
-KN
+aa
 IF
-KN
-KN
-KN
+aa
+aa
+aa
 "}
 (27,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -3105,25 +3102,25 @@ dE
 dE
 ei
 fU
-KN
+aa
 eh
-KN
-KN
+aa
+aa
 ee
 "}
 (28,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 dv
 dx
@@ -3135,23 +3132,23 @@ dx
 qJ
 ak
 eh
-KN
-KN
-KN
+aa
+aa
+aa
 "}
 (29,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 AW
 dW
@@ -3161,25 +3158,25 @@ dW
 dW
 dW
 fU
-KN
+aa
 eh
-KN
-KN
-KN
+aa
+aa
+aa
 "}
 (30,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -3189,25 +3186,25 @@ aa
 dv
 AW
 AT
-KN
+aa
 fU
-KN
-KN
-KN
+aa
+aa
+aa
 "}
 (31,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -3217,37 +3214,37 @@ aa
 aa
 dv
 AT
-KN
+aa
 eh
-KN
+aa
 tN
-KN
+aa
 "}
 (32,1,1) = {"
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
-KN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 fU
-KN
+aa
 eh
-KN
-KN
-KN
+aa
+aa
+aa
 "}

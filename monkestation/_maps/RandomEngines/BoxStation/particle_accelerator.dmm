@@ -1838,9 +1838,6 @@
 	},
 /turf/closed/wall,
 /area/engine/engineering)
-"FG" = (
-/turf/open/space/basic,
-/area/space)
 "FK" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/effect/turf_decal/stripes/line{
@@ -2053,7 +2050,7 @@
 "TP" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
-/area/space)
+/area/space/nearstation)
 "Ua" = (
 /obj/structure/lattice,
 /obj/effect/turf_decal/stripes/corner{
@@ -2120,24 +2117,24 @@ qM
 bk
 aa
 bR
-FG
-FG
+aa
+aa
 bR
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 bS
 bS
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (2,1,1) = {"
 ab
@@ -2161,12 +2158,12 @@ aa
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (3,1,1) = {"
 ac
@@ -2190,12 +2187,12 @@ bt
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (4,1,1) = {"
 ad
@@ -2219,12 +2216,12 @@ aa
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (5,1,1) = {"
 ae
@@ -2248,12 +2245,12 @@ bt
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (6,1,1) = {"
 af
@@ -2277,12 +2274,12 @@ aa
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (7,1,1) = {"
 ag
@@ -2306,12 +2303,12 @@ bt
 bS
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (8,1,1) = {"
 ah
@@ -2335,12 +2332,12 @@ aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 "}
 (9,1,1) = {"
 ai
@@ -2368,8 +2365,8 @@ bt
 bR
 bR
 bR
-FG
-FG
+aa
+aa
 "}
 (10,1,1) = {"
 aj
@@ -2393,12 +2390,12 @@ aa
 aa
 aa
 aa
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 "}
 (11,1,1) = {"
 ak
@@ -2422,12 +2419,12 @@ al
 al
 dC
 aa
-FG
+aa
 dQ
 bS
 dQ
-FG
-FG
+aa
+aa
 "}
 (12,1,1) = {"
 ak
@@ -2451,12 +2448,12 @@ GA
 aa
 al
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (13,1,1) = {"
 ak
@@ -2480,12 +2477,12 @@ iY
 dG
 al
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (14,1,1) = {"
 bO
@@ -2514,7 +2511,7 @@ bS
 bT
 bS
 bR
-FG
+aa
 "}
 (15,1,1) = {"
 al
@@ -2538,12 +2535,12 @@ KM
 cy
 al
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (16,1,1) = {"
 al
@@ -2571,8 +2568,8 @@ bR
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (17,1,1) = {"
 am
@@ -2596,12 +2593,12 @@ iY
 Yd
 be
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (18,1,1) = {"
 al
@@ -2625,12 +2622,12 @@ iY
 nI
 be
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (19,1,1) = {"
 am
@@ -2658,8 +2655,8 @@ bR
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (20,1,1) = {"
 al
@@ -2687,8 +2684,8 @@ bR
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (21,1,1) = {"
 al
@@ -2712,12 +2709,12 @@ CU
 cy
 al
 aa
-FG
+aa
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (22,1,1) = {"
 cq
@@ -2746,7 +2743,7 @@ bS
 bT
 bS
 bR
-FG
+aa
 "}
 (23,1,1) = {"
 ak
@@ -2774,8 +2771,8 @@ bR
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (24,1,1) = {"
 ak
@@ -2803,8 +2800,8 @@ bR
 bS
 bT
 bS
-FG
-FG
+aa
+aa
 "}
 (25,1,1) = {"
 ak
@@ -2828,12 +2825,12 @@ al
 al
 dC
 aa
-FG
+aa
 bS
 bS
 bS
-FG
-FG
+aa
+aa
 "}
 (26,1,1) = {"
 ak
@@ -2857,12 +2854,12 @@ aa
 bR
 aa
 aa
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 "}
 (27,1,1) = {"
 ao
@@ -2891,7 +2888,7 @@ bR
 bR
 bR
 bR
-FG
+aa
 "}
 (28,1,1) = {"
 ap
@@ -2915,12 +2912,12 @@ aa
 bR
 bT
 bS
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 "}
 (29,1,1) = {"
 al
@@ -2944,12 +2941,12 @@ bR
 bR
 bT
 bS
-FG
-FG
+aa
+aa
 bR
-FG
-FG
-FG
+aa
+aa
+aa
 "}
 (30,1,1) = {"
 al
@@ -2973,12 +2970,12 @@ bT
 bT
 bT
 bS
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (31,1,1) = {"
 al
@@ -2995,19 +2992,19 @@ ia
 aa
 aa
 aa
-FG
-FG
-FG
+aa
+aa
+aa
 bS
 bS
 bS
 bS
-FG
-FG
-FG
+aa
+aa
+aa
 TP
-FG
-FG
+aa
+aa
 "}
 (32,1,1) = {"
 al
@@ -3024,17 +3021,17 @@ ia
 ia
 ia
 ia
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 dQ
-FG
-FG
-FG
-FG
-FG
-FG
+aa
+aa
+aa
+aa
+aa
+aa
 "}

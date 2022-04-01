@@ -1,4 +1,4 @@
-
+//BOXSTATION ENGINES
 /datum/map_template/random_room/box_supermatter
 	name = "Box Supermatter"
 	room_id = "box_supermatter"
@@ -6,7 +6,7 @@
 	centerspawner = FALSE
 	template_height = 27
 	template_width = 32
-	weight = 3
+	weight = 4
 
 /datum/map_template/random_room/box_particle_accelerator
 	name = "Box Particle Accelerator"
@@ -17,6 +17,8 @@
 	template_width = 32
 	weight = 2
 
+
+//METASTAION ENGINES
 /datum/map_template/random_room/meta_supermatter
 	name = "Meta Supermatter"
 	room_id = "meta_supermatter"
@@ -24,7 +26,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 3
+	weight = 4
 
 /datum/map_template/random_room/meta_particle_accelerator
 	name = "Meta Particle Accelerator"
