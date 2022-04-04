@@ -1322,21 +1322,6 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
-"eX" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
-"fw" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
-/turf/open/space,
-/area/space/nearstation)
 "gh" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -1380,9 +1365,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 6
-	},
 /turf/open/space,
 /area/space/nearstation)
 "iH" = (
@@ -1406,13 +1388,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"jF" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/space,
-/area/space/nearstation)
 "jG" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -1462,13 +1437,6 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
-"mk" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/turf/open/space,
-/area/space/nearstation)
 "mC" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light,
@@ -1513,13 +1481,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"nw" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/space,
-/area/space/nearstation)
 "nE" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -1533,11 +1494,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
-/turf/open/space,
-/area/space/nearstation)
-"oZ" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /turf/open/space,
 /area/space/nearstation)
 "pn" = (
@@ -1568,19 +1524,9 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
-"qm" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space/basic,
-/area/space/nearstation)
 "qB" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
 /turf/open/space,
 /area/space/nearstation)
 "ru" = (
@@ -1640,11 +1586,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"sS" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
 "tF" = (
 /obj/structure/grille,
 /turf/closed/wall/r_wall,
@@ -1677,13 +1618,6 @@
 /obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vx" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
 "vO" = (
 /obj/item/cigbutt,
 /turf/open/floor/plating,
@@ -1700,12 +1634,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"xA" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "yh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -1825,20 +1753,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"GA" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
-"GK" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 5
-	},
-/turf/open/space,
-/area/space/nearstation)
 "HI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -1926,13 +1840,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"KF" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/space,
-/area/space/nearstation)
 "KR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2016,25 +1923,6 @@
 /obj/effect/turf_decal/stripes/end,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"Sf" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 10
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
-"Tb" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
-"TF" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "Vj" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/structure/window/reinforced{
@@ -2048,14 +1936,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
-"VE" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/turf/open/space,
-/area/space/nearstation)
 "VU" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -2324,8 +2204,8 @@ aN
 df
 aR
 aQ
-sS
-jF
+Qc
+ak
 sr
 CX
 dt
@@ -2353,7 +2233,7 @@ dg
 bf
 aQ
 Qc
-vx
+ak
 hR
 qB
 VX
@@ -2381,9 +2261,9 @@ rU
 uf
 ba
 IJ
-vx
-xA
-vx
+ak
+aa
+ak
 Qc
 gh
 aa
@@ -2408,11 +2288,11 @@ bS
 bT
 af
 aQ
-sS
-VE
-VE
-VE
-GK
+Qc
+Qc
+Qc
+Qc
+Qc
 ok
 aa
 "}
@@ -2436,11 +2316,11 @@ cq
 bN
 FI
 aQ
-fw
-eX
-GA
-oZ
-mk
+Qc
+ak
+hy
+ak
+Qc
 gh
 as
 "}
@@ -2464,11 +2344,11 @@ PD
 km
 aa
 aQ
-nw
-eX
-GA
-eX
-GK
+Qc
+ak
+hy
+ak
+Qc
 zD
 ON
 "}
@@ -2492,11 +2372,11 @@ PD
 VU
 dv
 di
-fw
-VE
-VE
-VE
-mk
+Qc
+Qc
+Qc
+Qc
+Qc
 ak
 as
 "}
@@ -2520,11 +2400,11 @@ PD
 km
 aa
 aQ
-nw
-eX
-qm
-eX
-GK
+Qc
+ak
+aa
+ak
+Qc
 aa
 as
 "}
@@ -2548,11 +2428,11 @@ bL
 br
 ut
 aQ
-fw
-eX
-eX
-eX
-mk
+Qc
+ak
+ak
+ak
+Qc
 ak
 as
 "}
@@ -2576,11 +2456,11 @@ bO
 bU
 bX
 aQ
-nw
-eX
-GA
-eX
-GK
+Qc
+ak
+hy
+ak
+Qc
 aa
 as
 "}
@@ -2605,10 +2485,10 @@ KR
 FI
 aQ
 Qc
-Tb
-Tb
-Tb
-Tb
+Qc
+Qc
+Qc
+Qc
 ak
 as
 "}
@@ -2633,10 +2513,10 @@ cp
 aa
 aQ
 pW
-Sf
-TF
-KF
-TF
+aa
+aa
+ak
+aa
 aa
 ak
 "}
