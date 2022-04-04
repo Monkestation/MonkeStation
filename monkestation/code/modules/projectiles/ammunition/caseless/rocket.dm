@@ -1,5 +1,5 @@
 /obj/item/ammo_casing/caseless/SRN_rocket
-	name = "\improper Spatial Rift Nullifier Internal Mag"
+	name = "\improper Spatial Rift Nullifier Rocket"
 	desc = "A prototype Spatial Rift Nullifier (SRN) Rocket. Fire at a rogue singularity or Tesla and pray it hits"
 	caliber = "84mm"
 	icon = 'monkestation/icons/obj/guns/projectiles.dmi'

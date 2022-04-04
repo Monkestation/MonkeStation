@@ -1,10 +1,9 @@
 /obj/item/projectile/bullet/SRN_rocket
 	name = "SRN rocket"
-	desc = "Fire and step back if you hit a singularity, spatial rifts love energy"
 	icon = 'monkestation/icons/obj/guns/projectiles.dmi'
 	icon_state = "srn_rocket"
 	hitsound = "sound/effects/meteorimpact.ogg"
-	damage = 5
+	damage = 20
 
 /obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target)
 	..()
@@ -16,4 +15,4 @@
 		to_chat(M, "<span class='alert'>You are struck by a spatial nullifier! Thankfully it didn't affect you... much.</span>")
 		if (!M.stat)
 			M.emote("scream")
-		return BULLET_ACT_HIT
+	return BULLET_ACT_HIT

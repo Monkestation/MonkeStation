@@ -47,14 +47,16 @@
 		A.singularity_act()
 		return
 	var/atom/movable/AM = A
+	var/turf/T = get_turf(src)
 	if(!istype(AM))
 		return
 	if(isliving(AM))
 		var/mob/living/M = AM
-		var/turf/T = get_turf(src)
 		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		M.ghostize(FALSE)
 	else if(!isobj(AM))
+		var/obj/singularity/S = AM
+		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		return
 	AM.forceMove(src)
 
