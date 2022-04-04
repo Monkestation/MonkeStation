@@ -2,13 +2,12 @@
 	desc = "A rocket designed with the power of bluespace to send a singularity or tesla back to the shadow realm"
 	name = "Spatial Rift Nullifier (SRN) Rocket Launcher"
 	icon = 'monkestation/icons/obj/guns/guns.dmi'
+	icon_state = "srnlauncher"
 	lefthand_file = 'monkestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'monkestation/icons/mob/inhands/weapons/guns_righthand.dmi'
-	icon_state = "srn_launcher"
-	item_state = "srn_launcher"
+	item_state = "srnlauncher"
 	mag_type = /obj/item/ammo_box/magazine/internal/SRN_rocket
 	fire_sound = 'sound/weapons/rocketlaunch.ogg'
-	mag_display_ammo = TRUE
 	w_class = WEIGHT_CLASS_HUGE
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin
@@ -19,6 +18,7 @@
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
 	cartridge_wording = "rocket"
+	empty_indicator = TRUE
 	tac_reloads = FALSE
 
 /obj/item/gun/ballistic/SRN_rocketlauncher/unrestricted
