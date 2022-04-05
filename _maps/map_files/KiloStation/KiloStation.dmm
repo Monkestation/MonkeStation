@@ -7431,16 +7431,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 24
 	},
-/mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
-	health = 200;
-	icon_dead = "magicarp_dead";
-	icon_gib = "magicarp_gib";
-	icon_living = "magicarp";
-	icon_state = "magicarp";
-	maxHealth = 200;
-	name = "Lia"
-	},
+/mob/living/simple_animal/hostile/carp/lia,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
 "amq" = (
@@ -38947,6 +38938,7 @@
 /obj/item/assembly/flash/handheld/weak,
 /obj/item/assembly/flash/handheld/weak,
 /obj/item/assembly/flash/handheld/weak,
+/obj/machinery/ecto_sniffer,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bhC" = (
@@ -99902,6 +99894,21 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/port/fore)
+"rpk" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/mob/living/carbon/monkey{
+	name = "Ook";
+	unique_name = 0
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "rrF" = (
 /obj/machinery/door/firedoor,
 /obj/structure/door_assembly/door_assembly_ext{
@@ -124452,7 +124459,7 @@ cht
 bPE
 cLV
 cwN
-bkT
+rpk
 aiZ
 bWN
 acp

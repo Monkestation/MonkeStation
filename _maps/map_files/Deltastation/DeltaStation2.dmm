@@ -31609,17 +31609,7 @@
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/hos)
 "bmu" = (
-/mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as an authority figure's pet.";
-	health = 200;
-	icon_dead = "magicarp_dead";
-	icon_gib = "magicarp_gib";
-	icon_living = "magicarp";
-	icon_state = "magicarp";
-	maxHealth = 200;
-	melee_damage = 20;
-	name = "Lia"
-	},
+/mob/living/simple_animal/hostile/carp/lia,
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/hos)
 "bmw" = (
@@ -88577,6 +88567,7 @@
 	pixel_y = 38
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/ecto_sniffer,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dzL" = (
@@ -105764,6 +105755,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ivs" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/mob/living/carbon/monkey{
+	name = "Ook";
+	unique_name = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "iwe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -168928,7 +168933,7 @@ bLl
 bNj
 bPo
 bRo
-bLl
+ivs
 bNj
 bXC
 bZL

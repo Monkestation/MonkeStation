@@ -68199,6 +68199,7 @@
 	},
 /obj/item/borg/upgrade/rename,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/ecto_sniffer,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cIO" = (
@@ -79813,6 +79814,21 @@
 "jwW" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/crew_quarters/fitness/recreation)
+"jyc" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/mob/living/carbon/monkey{
+	name = "Ook";
+	unique_name = 0
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jyQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -108796,7 +108812,7 @@ auV
 awb
 axe
 ayx
-azE
+jyc
 arN
 aCl
 aDx
