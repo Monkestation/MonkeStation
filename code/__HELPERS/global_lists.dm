@@ -62,7 +62,7 @@
 		GLOB.keybindings_by_name[initial(instance.name)] = instance
 
 		if (!(initial(instance.key) in GLOB.keybinding_list_by_key))
-			GLOB.keybinding_list_by_key[instance.key] = list()
+			GLOB.keybinding_list_by_key[instance.key] = list() //MONKESTATION CHANGE: made this not use intial. Why did this fix it, and why did it use it in the first place aaaaa (#84)
 
 		if (!(instance.goon_key in GLOB.goon_keybinding_list_by_key)) //MONKESTATION CHANGE: added goon keybinds (#84)
 			GLOB.goon_keybinding_list_by_key[instance.goon_key] = list()
@@ -79,6 +79,7 @@
 		GLOB.goon_keybinding_list_by_key[key] = sortList(GLOB.goon_keybinding_list_by_key[key])
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
+	init_emote_keybinds() //MonkeStation Edit: /tg/ Emote Hotkey Port
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.

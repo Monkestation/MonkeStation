@@ -748,6 +748,12 @@ update_label("John Doe", "Clowny")
 
 ///Job Specific ID Cards///
 
+/obj/item/card/id/job/captain
+	icon_state = "captain"
+
+/obj/item/card/id/job/hop
+	icon_state = "hop"
+
 /obj/item/card/id/job/ce
 	icon_state = "ce"
 
@@ -763,11 +769,29 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/job/med
 	icon_state = "med"
 
+/obj/item/card/id/job/paramed
+	icon_state = "paramed"
+
+/obj/item/card/id/job/viro
+	icon_state = "viro"
+
+/obj/item/card/id/job/chemist
+	icon_state = "chemist"
+
+/obj/item/card/id/job/gene
+	icon_state = "gene"
+
 /obj/item/card/id/job/hos
 	icon_state = "hos"
 
 /obj/item/card/id/job/sec
 	icon_state = "sec"
+
+/obj/item/card/id/job/brigphys
+	icon_state = "brigphys"
+
+/obj/item/card/id/job/deputy
+	icon_state = "deputy"
 
 /obj/item/card/id/job/detective
 	icon_state = "detective"
@@ -778,6 +802,9 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/job/rd
 	icon_state = "rd"
 
+/obj/item/card/id/job/roboticist
+	icon_state = "roboticist"
+
 /obj/item/card/id/job/sci
 	icon_state = "sci"
 
@@ -786,6 +813,9 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/job/chap
 	icon_state = "chap"
+
+/obj/item/card/id/job/janitor
+	icon_state = "janitor"
 
 /obj/item/card/id/job/qm
 	icon_state = "qm"

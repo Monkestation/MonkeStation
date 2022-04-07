@@ -5,6 +5,7 @@
 	metabolization_rate = 5 //fast rate so it disappears fast.
 	taste_description = "iron"
 	taste_mult = 1.3
+	process_flags = ORGANIC | SYNTHETIC //MonkeStation Edit: IPC Virus Fix
 	glass_icon_state = "glass_red"
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
@@ -1621,7 +1622,7 @@
 			var/mob/living/carbon/human/H = M
 			H.hair_color = pick(potential_colors)
 			H.facial_hair_color = pick(potential_colors)
-			H.update_hair()
+			H.update_body() //MonkeStation Edit: Body Update
 
 /datum/reagent/barbers_aid
 	name = "Barber's Aid"
