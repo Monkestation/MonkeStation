@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/SRN_rocketlauncher
 	desc = "A rocket designed with the power of bluespace to send a singularity or tesla back to the shadow realm"
-	name = "Spatial Rift Nullifier (SRN) Rocket Launcher"
+	name = "Spatial Rift Nullifier"
 	icon = 'monkestation/icons/obj/guns/guns.dmi'
 	icon_state = "srnlauncher"
 	lefthand_file = 'monkestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
