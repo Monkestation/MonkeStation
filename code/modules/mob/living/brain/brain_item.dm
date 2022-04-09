@@ -140,7 +140,7 @@
 			if(brain_death || brainmob.health <= HEALTH_THRESHOLD_DEAD)
 				. += "<span class='info'>It's lifeless and severely damaged.</span>"
 			else if(organ_flags & ORGAN_FAILING)
-				. += "<span class='info'>It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b> or <b>solder</b> for a positronic brain.</span>"
+				. += "<span class='info'>It seems to still have a bit of energy within it, but it's rather damaged... You may be able to restore it with some <b>mannitol</b>, or <b>solder</b> for a positronic brain.</span>"
 			else
 				. += "<span class='info'>You can feel the small spark of life still left in this one.</span>"
 		else if(organ_flags & ORGAN_FAILING)
