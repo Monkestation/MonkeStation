@@ -144,7 +144,7 @@
 			else
 				. += "<span class='info'>You can feel the small spark of life still left in this one.</span>"
 		else if(organ_flags & ORGAN_FAILING)
-			. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b> or <b>solder</b> for a positronic brain, incase it becomes functional again later.</span>"
+			. += "<span class='info'>It seems particularly lifeless and is rather damaged... You may be able to restore it with some <b>mannitol</b>, or <b>solder</b> for a positronic brain, in case it becomes functional again later.</span>"
 		else
 			. += "<span class='info'>This one seems particularly lifeless. Perhaps it will regain some of its luster later.</span>"
 	else
