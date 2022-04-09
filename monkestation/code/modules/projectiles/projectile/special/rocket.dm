@@ -3,7 +3,7 @@
 	icon = 'monkestation/icons/obj/guns/projectiles.dmi'
 	icon_state = "srn_rocket"
 	hitsound = "sound/effects/meteorimpact.ogg"
-	damage = 20
+	damage = 10
 
 /obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target)
 	..()
