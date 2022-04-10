@@ -8,25 +8,27 @@
 	item_state = "srnlauncher"
 	mag_type = /obj/item/ammo_box/magazine/internal/SRN_rocket
 	fire_sound = 'sound/weapons/rocketlaunch.ogg'
-	w_class = WEIGHT_CLASS_HUGE
+	fire_sound_volume = 80
+	w_class = WEIGHT_CLASS_BULKY
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin
+	flags_1 = TESLA_IGNORE_1
 	burst_size = 1
 	fire_delay = 0
-	casing_ejector = FALSE
+	fire_rate = 1
+	recoil = 1
+	casing_ejector = TRUE
 	weapon_weight = WEAPON_HEAVY
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
 	cartridge_wording = "rocket"
 	empty_indicator = TRUE
+	empty_alarm = TRUE
 	tac_reloads = FALSE
-
-/obj/item/gun/ballistic/SRN_rocketlauncher/unrestricted
-	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/SRN_rocketlauncher/afterattack()
 	. = ..()
-	magazine.get_round(FALSE) //Hack to clear the mag after it's fired
+	magazine.get_round(FALSE)
 
 /obj/item/gun/ballistic/SRN_rocketlauncher/attack_self_tk(mob/user)
 	return //too difficult to remove the rocket with TK

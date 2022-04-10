@@ -128,7 +128,6 @@
 				shake_camera(M, 15, 3)
 		new/obj/singularity/spatial_rift(T)
 		qdel(src)
-
 	else
 		qdel(P)
 	return BULLET_ACT_HIT

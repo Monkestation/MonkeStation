@@ -28,6 +28,7 @@
 	for(var/atom/movable/content in contents)
 		content.forceMove(old_loc)
 		if(ismob(content))
+			continue
 			var/mob/M = content
 			if(!M.mind)
 				continue
@@ -38,6 +39,14 @@
 					ghost.reenter_corpse()
 					break
 	qdel(src)
+
+/obj/singularity/Bump(atom/A)
+	consume(A)
+	return
+
+/obj/singularity/Bumped(atom/movable/AM)
+	consume(AM)
+	return
 
 /obj/singularity/spatial_rift/process()
 	eat()
@@ -54,8 +63,7 @@
 		var/mob/living/M = AM
 		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		M.ghostize(FALSE)
-	else if(!isobj(AM))
-		var/obj/singularity/S = AM
+	else if(istype(AM, /obj/singularity))
 		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		return
 	AM.forceMove(src)
