@@ -8,7 +8,7 @@
 
 /obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target, mob/living/carbon/human/M)
 	..()
-	if(ishuman(target)
+	if(ishuman(target))
 		playsound(src.loc, "pierce", 100, 1)
 		M.oxyloss = 5
 		M.hallucination = 15
