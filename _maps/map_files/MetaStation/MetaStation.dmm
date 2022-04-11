@@ -68188,6 +68188,20 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"cIN" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/box/bodybags{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/borg/upgrade/rename,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/ecto_sniffer,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "cIO" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -78549,6 +78563,11 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
+"eKF" = (
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/dog/corgi/borgi,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "eLn" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -82141,20 +82160,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
-"skn" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/bodybags{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/borg/upgrade/rename,
-/obj/effect/turf_decal/delivery,
-/obj/machinery/ecto_sniffer,
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "slE" = (
 /obj/machinery/telecomms/receiver/preset_exploration,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -112492,7 +112497,7 @@ cEl
 cFg
 cFg
 cFg
-cHR
+eKF
 cIK
 cJJ
 cCq
@@ -113264,7 +113269,7 @@ cFh
 cFg
 cFf
 cHR
-skn
+cIN
 cJM
 cCq
 tWZ
