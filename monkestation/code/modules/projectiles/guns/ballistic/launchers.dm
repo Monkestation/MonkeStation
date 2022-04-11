@@ -13,11 +13,10 @@
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin
 	flags_1 = TESLA_IGNORE_1
-	burst_size = 1
 	fire_delay = 0
-	fire_rate = 1
+	fire_rate = 1.5
 	recoil = 1
-	casing_ejector = TRUE
+	casing_ejector = FALSE
 	weapon_weight = WEAPON_HEAVY
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
@@ -28,7 +27,7 @@
 
 /obj/item/gun/ballistic/SRN_rocketlauncher/afterattack()
 	. = ..()
-	magazine.get_round(FALSE)
+	magazine.get_round(FALSE) //Hack to clear the mag after it's fired //This does not like more than one shot in the internal mag
 
-/obj/item/gun/ballistic/SRN_rocketlauncher/attack_self_tk(mob/user)
+/obj/item/gun/ballistic/SRN_rocketlauncher/attack_self(mob/user)
 	return //too difficult to remove the rocket with TK
