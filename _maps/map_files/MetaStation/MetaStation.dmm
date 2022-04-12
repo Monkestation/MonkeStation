@@ -67853,10 +67853,8 @@
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "cIf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	external_pressure_bound = 140;
-	name = "server vent";
-	pressure_checks = 0
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	name = "freezer passive vent"
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
@@ -68788,10 +68786,9 @@
 /turf/open/floor/plating,
 /area/science/server)
 "cJW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+/obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 1;
-	external_pressure_bound = 120;
-	name = "server vent"
+	name = "freezer passive vent"
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
@@ -73571,11 +73568,9 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "daR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
+/obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 1;
-	external_pressure_bound = 140;
-	name = "server vent";
-	pressure_checks = 0
+	name = "freezer passive vent"
 	},
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
@@ -74868,14 +74863,6 @@
 	req_access_txt = "55"
 	},
 /turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"ddB" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
 "ddC" = (
 /obj/structure/disposalpipe/trunk{
@@ -78563,6 +78550,11 @@
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/tcommsat/server)
+"eKF" = (
+/obj/effect/turf_decal/stripes/line,
+/mob/living/simple_animal/pet/dog/corgi/borgi,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "eLn" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -112492,7 +112484,7 @@ cEl
 cFg
 cFg
 cFg
-cHR
+eKF
 cIK
 cJJ
 cCq
@@ -117933,7 +117925,7 @@ daK
 cRi
 bIv
 ddz
-ddB
+daR
 cZv
 cRe
 aaa
