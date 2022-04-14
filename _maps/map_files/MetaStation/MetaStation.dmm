@@ -65736,8 +65736,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1{
-	dir = 8
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer1{
+	dir = 8;
+	id = "toxmix_airlock_pump";
+	name = "incinerator_toxmix";
+	frequency = 1449
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
@@ -79443,7 +79446,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer1,
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer1{
+	id = "atmos_incinerator_airlock_pump";
+	name = "incinerator_atmos";
+	frequency = 1449
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
@@ -83771,8 +83778,8 @@
 	pixel_x = 40;
 	pixel_y = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "ylE" = (
