@@ -28,7 +28,6 @@
 	for(var/atom/movable/content in contents)
 		content.forceMove(old_loc)
 		if(ismob(content))
-			continue
 			var/mob/M = content
 			if(!M.mind)
 				continue
