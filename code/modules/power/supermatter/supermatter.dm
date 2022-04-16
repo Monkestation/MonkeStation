@@ -211,6 +211,50 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if (!istype(C.glasses, /obj/item/clothing/glasses/meson) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += "<span class='danger'>You get headaches just from looking at it.</span>"
 
+// SupermatterMonitor UI for ghosts only. Inherited attack_ghost will call this.
+/obj/machinery/power/supermatter_crystal/ui_interact(mob/user, datum/tgui/ui)
+	if(!isobserver(user))
+		return FALSE
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "SupermatterMonitor")
+		ui.open()
+
+/obj/machinery/power/supermatter_crystal/ui_data(mob/user)
+	var/list/data = list()
+	var/turf/local_turf = get_turf(src)
+	var/datum/gas_mixture/air = local_turf.return_air()
+
+	data["singlecrystal"] = TRUE
+	data["active"] = TRUE
+	data["SM_integrity"] = get_integrity()
+	data["SM_power"] = power
+	data["SM_ambienttemp"] = air.return_temperature()
+	data["SM_ambientpressure"] = air.return_pressure()
+	data["SM_uid"] = uid
+	var/area/active_supermatter_area = get_area(src)
+	data["SM_area_name"] = active_supermatter_area.name
+	//data["SM_EPR"] = round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
+	var/list/gasdata = list()
+
+
+	if(air.total_moles())
+		for(var/gasid in air.get_gases())
+			gasdata.Add(list(list(
+			"name"= GLOB.gas_data.names[gasid],
+			"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
+
+	else
+		for(var/gasid in air.get_gases())
+			gasdata.Add(list(list(
+				"name"= GLOB.gas_data.names[gasid],
+				"amount" = 0)))
+
+	data["gases"] = gasdata
+
+	return data
+
 #define CRITICAL_TEMPERATURE 10000
 
 /obj/machinery/power/supermatter_crystal/proc/get_status()
