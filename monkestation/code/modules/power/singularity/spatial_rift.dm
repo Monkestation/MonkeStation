@@ -39,14 +39,6 @@
 					break
 	qdel(src)
 
-/obj/singularity/Bump(atom/A)
-	consume(A)
-	return
-
-/obj/singularity/Bumped(atom/movable/AM)
-	consume(AM)
-	return
-
 /obj/singularity/spatial_rift/process()
 	eat()
 
