@@ -78,7 +78,10 @@
 	consume(user)
 
 /obj/singularity/attackby(obj/item/W, mob/user, params)
-	consume(user)
+	if(istype(W, /obj/item/gun/ballistic/SRN_rocketlauncher))
+		user.client?.give_award(/datum/award/achievement/misc/singularity_buster, user)
+	else
+		consume(user)
 	return 1
 
 /obj/singularity/Process_Spacemove() //The singularity stops drifting for no man!
@@ -117,7 +120,7 @@
 	return
 
 
-/obj/singularity/bullet_act(obj/item/projectile/P, mob/living/user)
+/obj/singularity/bullet_act(obj/item/projectile/P)
 	var/turf/T = get_turf(src)
 	if(istype(P, /obj/item/projectile/bullet/SRN_rocket))
 		for(var/mob/M as() in GLOB.player_list)

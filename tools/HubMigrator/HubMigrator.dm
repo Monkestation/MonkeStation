@@ -6,6 +6,7 @@
 #define MEDAL_CLOWNCARKING 		"Round and Full"
 #define MEDAL_THANKSALOT 		"The Best Driver"
 #define MEDAL_SINGULARITY_DEATH       "Crossing the Horizon" // get eaten by a singularity
+#define MEDAL_SINGULARITY_BUSTER	  "The Lord Dethroned" //Singularity Nullified
 #define MEDAL_GET_CLUWNED             "KILLMEKILLMEKILLME" // get turned into a vile creature known as a cluwne
 #define MEDAL_USE_WEIGHT_MACHINE      "Survival of the Fittest"
 #define MEDAL_UNWRENCH_HIGH_PRESSURE  "WHOOSH!"
@@ -58,6 +59,7 @@
 						MEDAL_CLOWNCARKING,
 						MEDAL_THANKSALOT,
                         MEDAL_SINGULARITY_DEATH,
+						MEDAL_SINGULARITY_BUSTER,
                         MEDAL_GET_CLUWNED,
                         MEDAL_USE_WEIGHT_MACHINE,
                         MEDAL_UNWRENCH_HIGH_PRESSURE,
