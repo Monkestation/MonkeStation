@@ -6,7 +6,7 @@
 	damage = 10
 	ricochets_max = 0 //it's a MISSILE
 
-/obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target, mob/user, blocked = FALSE)
+/obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target, blocked = FALSE)
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
@@ -17,7 +17,6 @@
 		M.emote("scream")
 	else
 		playsound(src.loc, "sparks", 100, 1)
-
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/SRN_rocket/Impact(atom/A)
@@ -26,17 +25,14 @@
 		var/mob/living/user = firer
 		firer = user
 		user.client.give_award(/datum/award/achievement/misc/singularity_buster, user)
-		message_admins("[firer] THIS WORKS")
 		user.emote("scream")
+
+		for(var/mob/player as anything in GLOB.player_list)
+			SEND_SOUND(player, 'sound/magic/charge.ogg')
+			to_chat(player, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+			shake_camera(player, 15, 3)
 
 		new/obj/singularity/spatial_rift(A.loc)
 		qdel(A)
 
-		for(var/mob/M as() in GLOB.player_list)
-			if(M.get_virtual_z_level() == get_virtual_z_level())
-				SEND_SOUND(M, 'sound/magic/charge.ogg')
-				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
-				shake_camera(M, 15, 3)
-				continue
 	return
