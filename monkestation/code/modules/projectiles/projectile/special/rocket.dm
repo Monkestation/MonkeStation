@@ -23,7 +23,6 @@
 	. = ..()
 	if(istype(A, /obj/singularity))
 		var/mob/living/user = firer
-		firer = user
 		user.client.give_award(/datum/award/achievement/misc/singularity_buster, user)
 		user.emote("scream")
 
