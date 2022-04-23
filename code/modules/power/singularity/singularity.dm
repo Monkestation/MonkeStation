@@ -117,18 +117,6 @@
 
 /obj/singularity/bullet_act(obj/item/projectile/P)
 	qdel(P)
-//	if(istype(P, /obj/item/projectile/bullet/SRN_rocket))
-//		for(var/mob/M as() in GLOB.player_list)
-//			if(M.get_virtual_z_level() == get_virtual_z_level())
-//				SEND_SOUND(M, 'sound/magic/charge.ogg')
-//				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-//				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
-//				shake_camera(M, 15, 3)
-//				continue
-//		new/obj/singularity/spatial_rift(src.loc)
-//		qdel(src)
-//	else
-//		qdel(P)
 	return BULLET_ACT_HIT
 
 
