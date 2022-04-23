@@ -8,11 +8,6 @@
 
 /obj/item/projectile/bullet/SRN_rocket/on_hit(atom/target, mob/user, blocked = FALSE)
 	..()
-//	if(istype(target, /obj/singularity))
-//		var/atom/movable/firer = user
-//		user.client.give_award(/datum/award/achievement/misc/singularity_buster, user)
-//		message_admins("[firer] nullified the singularity")
-//		user.emote("scream")
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		playsound(src.loc, "pierce", 100, 1)
