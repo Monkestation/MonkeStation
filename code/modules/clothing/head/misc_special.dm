@@ -258,8 +258,8 @@
 	color = hair_color
 
 /obj/item/clothing/head/wig/equipped(mob/living/carbon/human/user, slot)
-	if(ishuman(user) && slot == ITEM_SLOT_HEAD && natural)
-		color = "#[user.hair_color]"
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD && natural )
+		hair_color = "#[user.hair_color]"
 		update_icon()
 		user.update_inv_head()
 //monkestation edit end
