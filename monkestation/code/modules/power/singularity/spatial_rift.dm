@@ -19,6 +19,15 @@
 
 /obj/singularity/spatial_rift/Initialize(mapload)
 	. = ..()
+
+	for(var/mob/M as() in GLOB.player_list)
+		if(M.get_virtual_z_level() == get_virtual_z_level())
+			SEND_SOUND(M, 'sound/magic/charge.ogg')
+			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+			shake_camera(M, 15, 3)
+			continue
+
 	old_loc = get_turf(src)
 	addtimer(CALLBACK(src, /atom/movable.proc/moveToNullspace), 5 SECONDS) // vanishes after 5 seconds
 	QDEL_IN(src, 10 MINUTES)

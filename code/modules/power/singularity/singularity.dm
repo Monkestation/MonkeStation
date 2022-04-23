@@ -1,5 +1,3 @@
-
-
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -78,10 +76,7 @@
 	consume(user)
 
 /obj/singularity/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/gun/ballistic/SRN_rocketlauncher))
-		user.client?.give_award(/datum/award/achievement/misc/singularity_buster, user)
-	else
-		consume(user)
+	consume(user)
 	return 1
 
 /obj/singularity/Process_Spacemove() //The singularity stops drifting for no man!
@@ -121,18 +116,19 @@
 
 
 /obj/singularity/bullet_act(obj/item/projectile/P)
-	var/turf/T = get_turf(src)
-	if(istype(P, /obj/item/projectile/bullet/SRN_rocket))
-		for(var/mob/M as() in GLOB.player_list)
-			if(M.get_virtual_z_level() == get_virtual_z_level())
-				SEND_SOUND(M, 'sound/magic/charge.ogg')
-				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
-				shake_camera(M, 15, 3)
-		new/obj/singularity/spatial_rift(T)
-		qdel(src)
-	else
-		qdel(P)
+	qdel(P)
+//	if(istype(P, /obj/item/projectile/bullet/SRN_rocket))
+//		for(var/mob/M as() in GLOB.player_list)
+//			if(M.get_virtual_z_level() == get_virtual_z_level())
+//				SEND_SOUND(M, 'sound/magic/charge.ogg')
+//				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+//				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+//				shake_camera(M, 15, 3)
+//				continue
+//		new/obj/singularity/spatial_rift(src.loc)
+//		qdel(src)
+//	else
+//		qdel(P)
 	return BULLET_ACT_HIT
 
 
