@@ -34,7 +34,7 @@
 	name = "yellow half"
 
 /obj/effect/turf_decal/monke/tile/yellow/tile_whole
-	icon_state = "tile_full"
+	icon_state = "tile_whole"
 	name = "yellow whole"
 
 //Red Tiles
@@ -108,6 +108,7 @@
 
 /obj/effect/turf_decal/monke/tile/dark
 	icon = 'icons/turf/decals.dmi'
+	icon_state = "tile_corner"
 	name = "dark corner"
 	color = "#0e0f0f"
 
