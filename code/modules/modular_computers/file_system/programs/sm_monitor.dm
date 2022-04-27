@@ -31,6 +31,7 @@
 	if(!(active in GLOB.machines))
 		active = null
 	refresh()
+
 /datum/computer_file/program/supermatter_monitor/kill_program(forced = FALSE)
 	for(var/supermatter in supermatters)
 		clear_supermatter(supermatter)
@@ -81,7 +82,7 @@
 			if(A)
 				SMS.Add(list(list(
 				"area_name" = A.name,
-				"integrity" = S.get_integrity(),
+				"integrity" = S.get_integrity_percent(),
 				"uid" = S.uid
 				)))
 
