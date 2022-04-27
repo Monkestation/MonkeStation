@@ -379,4 +379,7 @@
 		new /obj/effect/temp_visual/glowing_rune(src)
 	ChangeTurf(/turf/closed/wall/rust)
 
+/turf/closed/wall/metal_foam_base
+	girder_type = /obj/structure/foamedmetal
+
 #undef MAX_DENT_DECALS
