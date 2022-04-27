@@ -9,6 +9,14 @@
 	contains = list(/obj/item/storage/box/stickers)
 	crate_name = "Specialty Sticker Set"
 
+/datum/supply_pack/emergency/spatialriftnullifier
+	name = "Spatial Rift Nullifier Pack"
+	desc = "Everything that the crew needs to take down a rogue Singularity or Tesla."
+	cost = 10000
+	contains = list(/obj/item/gun/ballistic/SRN_rocketlauncher = 3)
+	crate_name = "Spatial Rift Nullifier (SRN)"
+	crate_type = /obj/structure/closet/crate/secure
+
 /datum/supply_pack/engine/fuel_rod
 	name = "Uranium Fuel Rod crate"
 	desc = "Two additional fuel rods for use in a reactor, requires CE access to open. Caution: Radioactive"
@@ -19,11 +27,3 @@
 	crate_name = "Uranium-235 Fuel Rod crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
-
-/datum/supply_pack/emergency/spatialriftnullifier
-	name = "Spatial Rift Nullifier Pack"
-	desc = "Everything that the crew needs to take down a rogue Singularity or Tesla."
-	cost = 10000
-	contains = list(/obj/item/gun/ballistic/SRN_rocketlauncher = 3)
-	crate_name = "Spatial Rift Nullifier (SRN)"
-	crate_type = /obj/structure/closet/crate/secure
