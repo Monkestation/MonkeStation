@@ -1,5 +1,3 @@
-
-
 /obj/singularity
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
@@ -119,7 +117,7 @@
 
 /obj/singularity/bullet_act(obj/item/projectile/P)
 	qdel(P)
-	return BULLET_ACT_HIT //Will there be an impact? Who knows.  Will we see it? No.
+	return BULLET_ACT_HIT
 
 
 /obj/singularity/Bump(atom/A)

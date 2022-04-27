@@ -84,6 +84,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define isapid(A) (is_species(A, /datum/species/apid))
 #define isfelinid(A) (is_species(A, /datum/species/felinid))
+#define issimian(A) (is_species(A, /datum/species/simian))//monkestation edit : add simian species
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))

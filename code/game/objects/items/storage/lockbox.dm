@@ -9,7 +9,7 @@
 	req_access = list(ACCESS_ARMORY)
 	var/broken = FALSE
 	var/open = FALSE
-	var/base_icon_state = "lockbox"
+	base_icon_state = "lockbox"
 
 /obj/item/storage/lockbox/ComponentInitialize()
 	. = ..()
@@ -175,3 +175,12 @@
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
+
+/obj/item/storage/lockbox/medal/med
+	name = "medical medal box"
+	desc = "A locked box used to store medals to be given to members of the medical department."
+	req_access = list(ACCESS_CMO)
+
+/obj/item/storage/lockbox/medal/med/PopulateContents()
+	new /obj/item/clothing/accessory/medal/med_medal(src)
+	new /obj/item/clothing/accessory/medal/med_medal2(src)

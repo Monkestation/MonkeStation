@@ -14,7 +14,8 @@
 //check if all bitflags specified are present
 #define CHECK_MULTIPLE_BITFIELDS(flagvar, flags) (((flagvar) & (flags)) == (flags))
 
-GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768))
+/// Currently covers (1<<0) to (1<<22)
+GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304))
 
 // for /datum/var/datum_flags
 #define DF_USE_TAG (1<<0)
@@ -38,6 +39,24 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define RICOCHET_SHINY			(1<<0)
 /// If the thing can reflect matter (bullets/bomb shrapnel)
 #define RICOCHET_HARD			(1<<1)
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's name
+#define UPDATE_NAME (1<<0)
+/// Update the atom's desc
+#define UPDATE_DESC (1<<1)
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+/// Update the atom's overlays
+#define UPDATE_OVERLAYS (1<<3)
+/// Update the atom's greyscaling
+#define UPDATE_GREYSCALE (1<<4)
+/// Update the atom's smoothing. (More accurately, queue it for an update)
+#define UPDATE_SMOOTHING (1<<5)
+/// Update the atom's icon
+#define UPDATE_ICON (UPDATE_ICON_STATE|UPDATE_OVERLAYS)
+//Redirection component init flags
+#define REDIRECT_TRANSFER_WITH_TURF 1
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -112,9 +131,9 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define TESLA_MOB_STUN				(1<<4)
 
 #define TESLA_DEFAULT_FLAGS ALL
-#define TESLA_ENERGY_PRIMARY_BALL_FLAGS TESLA_MACHINE_EXPLOSIVE | TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN
-#define TESLA_ENERGY_MINI_BALL_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN
-#define TESLA_FUSION_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN
+#define TESLA_ENERGY_PRIMARY_BALL_FLAGS (TESLA_MACHINE_EXPLOSIVE | TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+#define TESLA_ENERGY_MINI_BALL_FLAGS (TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+#define TESLA_FUSION_FLAGS (TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
 
 //EMP protection
 #define EMP_PROTECT_SELF (1<<0)
