@@ -57,6 +57,68 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">26 April 2022</h2>
+			<h3 class="author">lmenvs updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">New roundstart race: Simians</li>
+				<li class="rscadd">New quirk: Kleptomania - Players with this quirk will have a small chance to involuntarily pick up items or pick pockets.</li>
+				<li class="rscadd">New item: Translator.  Simians round start with this, allows the speaker to speak common. (NOT understand)</li>
+				<li class="rscadd">Tons of clothing sprites for Simians.  Normal monkeys are still unable to wear most clothes.</li>
+				<li class="rscadd">New Monkeyfriend Trait! Angry monkeys will be less likely to attack you if you have this trait!</li>
+				<li class="refactor">Skin code is less atrocious and opens up the ability for non human species to use skin tones.</li>
+				<li class="code_imp">GAGS will now work with sprite sheets!</li>
+				<li class="bugfix">some bugs with sprite sheets</li>
+				<li class="bugfix">Ethereals now cause less runtimes!</li>
+			</ul>
+
+			<h2 class="date">24 April 2022</h2>
+			<h3 class="author">DoctorSquishy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">You can use operating computers while lying down, just try not to get blood all over the keyboard</li>
+				<li class="refactor">Separated signals and organized them</li>
+				<li class="bugfix">BoxStation CMO disposals link back into the system properly</li>
+				<li class="code_imp">autonameCameras now autonetwork too</li>
+				<li class="code_imp">network variable added to areas for autonameCameras</li>
+				<li class="rscadd">Achievement for Nullifying Singularities</li>
+				<li class="refactor">Moves code interactions from singularity to SRN_rocket projectile</li>
+				<li class="bugfix">BoxStation bottom right airlock works again</li>
+			</ul>
+			<h3 class="author">KoboldCommando updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">There's now only one type of wig, which can change style, color, and copying the wearer's hair color, using a radial menu!</li>
+			</ul>
+			<h3 class="author">lmenvs updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">New ashwalker egg and nest sprites!</li>
+			</ul>
+
+			<h2 class="date">16 April 2022</h2>
+			<h3 class="author">DoctorSquishy updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Spatial Rift Nullifier Rocket Launcher</li>
+				<li class="rscadd">Spatial Rift Nullifier Rocket Ammo</li>
+				<li class="rscadd">SRN Launcher to CE Engineering locker and RD Science Locker</li>
+				<li class="rscadd">SRN Launcher Pack of 3 can be ordered from cargo</li>
+				<li class="rscadd">Spatial Rift (lighter version of a boh tear)</li>
+				<li class="refactor">base_icon_state is now an atomized variable</li>
+				<li class="code_imp">mechs now use base_icon_state for their icon changes</li>
+				<li class="bugfix">Fixes the Airlocks for Toxins and Incinerator on MetaStation</li>
+				<li class="rscadd">BoxStation and MetaStation no longer only have a Super Matter crystal. You may find yourself having to setup a Singularity engine, or even a Tesla to generate power. All three engine types can spawn at roundstart, but only one WILL spawn.</li>
+				<li class="rscadd">Magboots to Engineer EVA Lockers for both MetaStation and BoxStation</li>
+			</ul>
+			<h3 class="author">nednaZ updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Night Shift should no longer be an issue. Until we find another cause.</li>
+				<li class="rscadd">The Seed Vault Ruin now has more plant trays and has tier 3 parts.</li>
+				<li class="rscadd">MetaStation's tcomms are now wired to the station.</li>
+				<li class="rscadd">Exploration Shuttles have had a few emergency supplies added to them.</li>
+				<li class="tweak">Graverobber's Hats are now armored</li>
+			</ul>
+			<h3 class="author">pitaden updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">message servers no longer send messages if the recipient is turned off</li>
+			</ul>
+
 			<h2 class="date">12 April 2022</h2>
 			<h3 class="author">DoctorSquishy updated:</h3>
 			<ul class="changes bgimages16">
@@ -454,184 +516,6 @@
 				<li class="rscadd">The ability to stack hats.</li>
 				<li class="tweak">Anyone that is living can climb tables</li>
 				<li class="balance">Wheelchairs are faster</li>
-			</ul>
-
-			<h2 class="date">23 February 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Surgeries that require only an open hand will actually succeed now.</li>
-				<li class="bugfix">The Alien Federation has started actually sterilizing their subjects.</li>
-				<li class="bugfix">Cargo manifests now show the station name correctly, unless in error.</li>
-				<li class="bugfix">No longer forces you to speak when you have nothing to say over the radio.</li>
-				<li class="tweak">There is now less mail pouring into the station.</li>
-				<li class="bugfix">Junk Mail is randomly colored as intended.</li>
-				<li class="imageadd">Updates the Mailman's outfit [PestoVerde322]</li>
-			</ul>
-
-			<h2 class="date">22 February 2022</h2>
-			<h3 class="author">Beestation updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="code_imp">SSgarbage should be able to clear most of its queue much faster. [ike709]</li>
-				<li class="server">Bumps ajv to 6.12.3 [Crossedfall]</li>
-				<li class="tweak">The round end report in #ooc will now show which server's round has just ended. [Ivniinvi]</li>
-				<li class="server">Clients using BYOND version 514.1575 will no longer see instability banner [Crossedfall]</li>
-				<li class="tweak">Changed the required amount of adamantine to create a golem shell from 1 to 25 [Fresh341]</li>
-				<li class="tweak">Phobias no longer make you be afraid of your kind. [St0rmC4st3r]</li>
-				<li class="server">Updates various TGUI sub-dependencies [Crossedfall]</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Your station has been moved closer to Space Florida. Expect more visitors.</li>
-				<li class="bugfix">Fixes double messages when farting on someone.</li>
-				<li class="bugfix">Fixes messages not appearing for players when farting.</li>
-				<li class="bugfix">Atomic Asses now reset properly upon detonation.</li>
-				<li class="bugfix">Superfarting on a bible will kill you properly.</li>
-				<li class="rscadd">Bluespace Asses may now be researched and built.</li>
-				<li class="rscadd">Xenomorphs can now be butchered for their ass.</li>
-			</ul>
-
-			<h2 class="date">17 February 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Makes Florida Man slightly less powerful.</li>
-				<li class="rscadd">You may now attach monkey limbs to humans and human limbs to monkeys.</li>
-				<li class="rscadd">Mailman Gimmick Job</li>
-			</ul>
-			<h3 class="author">pitaden updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">birb</li>
-				<li class="bugfix">Fixed the mk2 assistant envirohelm (for real this time)</li>
-				<li class="bugfix">Fixed the atmos hardsuit/firesuit sprites (also for real this time)</li>
-			</ul>
-
-			<h2 class="date">14 February 2022</h2>
-			<h3 class="author">Beestation Upstream updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">You can now take pictures with cameras again! [KubeRoot]</li>
-				<li class="imageadd">Changed the medical belt sprite [ImSynthex]</li>
-				<li class="tweak">When map rotation decides to rotate the map, it will no longer be able to pick the same map. [ike709]</li>
-				<li class="code_imp">Removed a pointless proc call from chameleon changing. [ike709]</li>
-				<li class="bugfix">Chameleon clothing now covers the correct slots of whatever it's mimicking. [ike709]</li>
-				<li class="rscdel">For performance reasons, AI detectors no longer see AI static. [ike709]</li>
-				<li class="bugfix">AI detectors now change appearance when AIs come closer. [ike709]</li>
-				<li class="bugfix">Fixed AI static intermittently deciding to stop working. [ike709]</li>
-				<li class="refactor">Generally cleaned up cameranet code and improved maptick significantly. [ike709]</li>
-				<li class="refactor">Converted a bunch of New() to Initialize(). [ike709]</li>
-				<li class="rscadd">Added a tool to profile atom initialization. [ike709]</li>
-				<li class="bugfix">Fixed plasmamen not actually needing to breathe plasma. [ike709]</li>
-				<li class="tweak">Updated lung code [ike709]</li>
-				<li class="refactor">Made SSrunechat be a subsystem of SStimer [ike709]</li>
-				<li class="bugfix">Fixed crew objectives not being assigned at roundstart</li>
-				<li class="refactor">Cryopods use signals to handle objectives instead of looping through every objective</li>
-				<li class="code_imp">Many minor improvements to objectives [TheChaser212]</li>
-				<li class="rscadd">Adds suspenders to autodrobe [SapphoQueer]</li>
-				<li class="config">Kilo Station is part of the map rotation [dog132-ss13]</li>
-				<li class="rscadd">Kilo Station comes with an exploration shuttle [dog132-ss13]</li>
-				<li class="rscadd">Kilo Station comes with random maint [dog132-ss13]</li>
-				<li class="rscadd">4 random maint rooms from Kilo Station [dog132-ss13]</li>
-				<li class="rscdel">Removed old maint rooms from Kilo Station [dog132-ss13]</li>
-				<li class="bugfix">fixed missing floortile in kilo station atmos airlock [dog132-ss13]</li>
-				<li class="rscdel">Removed deprecated item_color var [Archanial]</li>
-				<li class="bugfix">fixed alt states of suits [Archanial]</li>
-				<li class="bugfix">fixed durathread jumpsuit not having icons [Archanial]</li>
-				<li class="bugfix">fixed a few lawyer skirts having wrong paths. [Archanial]</li>
-				<li class="rscdel">removed unused psyche jumpsuit [Archanial]</li>
-				<li class="bugfix">Fixed the murder door by the bar's maintenance on Fland [PestoVerde322]</li>
-				<li class="bugfix">The tables in the bar are no longer doublestacked on Fland [PestoVerde322]</li>
-				<li class="bugfix">Energetic chromosome now properly applies to active mutations and fire breath. [The-Moon-Itself]</li>
-				<li class="bugfix">fixed Pubby AI SMES not doing almost anything useful. [St0rmC4st3r]</li>
-				<li class="bugfix">fixes another infinite iron duplication exploit [MNarath1]</li>
-				<li class="code_imp">removes a redundant list copy [MNarath1]</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">You may no longer fart on ghosts.</li>
-				<li class="bugfix">Fixes the Radio Hotkey's text scrubbing.</li>
-				<li class="bugfix">You no longer believe yourself to be another person while they are opening their mail.</li>
-			</ul>
-
-			<h2 class="date">13 February 2022</h2>
-			<h3 class="author">pitaden updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixed the atmospherics hardsuit and firesuit icons</li>
-				<li class="bugfix">fixed the MKII assistant envirohelm sprite</li>
-			</ul>
-
-			<h2 class="date">12 February 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Examining an object will now show it's "Force:" value properly.</li>
-				<li class="bugfix">Nanotrasen has remembered to equip their security officers with disablers once again.</li>
-				<li class="bugfix">Mailbags hold letters finally, get out there and deliver!</li>
-				<li class="tweak">Station announcers no longer override announcement messages</li>
-				<li class="tweak">Duke is no longer as loud. We have moved him away from the mic.</li>
-				<li class="bugfix">Fixes being able to fart and superfart at incorrect times.</li>
-			</ul>
-
-			<h2 class="date">11 February 2022</h2>
-			<h3 class="author">MonkeStation Release Day updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">HAPPY RELEASE DAY!</li>
-				<li class="rscadd">Adds a 'Duke Nukem' station announcer (Various)</li>
-				<li class="rscadd">Flamethrowers can hold beakers and shoot chemicals (KoboldCommando)</li>
-				<li class="rscadd">Autolathes can now print navigation beacons (KoboldCommando)</li>
-				<li class="rscadd">Water and fuel tanks and nuclear bombs can now be ridden (KoboldCommando)</li>
-				<li class="rscadd">Added a mess that chemicals create when they're splashed on a tile. This inherits the chemical's color, and also applies to smoke and foam (KoboldCommando)</li>
-				<li class="tweak">Gloves of the North Star can now hold 7 characters (KoboldCommando)</li>
-				<li class="rscadd">You can now hold space to throw items (KoboldCommando)</li>
-				<li class="rscadd">Cowboy Security Dusters (LME)</li>
-				<li class="tweak">Dizziness is less jerky (LME)</li>
-				<li class="tweak">Adds Captain the Dog and removes Walter. RIP (LME)</li>
-				<li class="rscadd">Weeb trait has replaced Felinids (LME)</li>
-				<li class="rscadd">Boomboots, clown traitor item (LME)</li>
-				<li class="rscadd">Equipment Swap Hotkey (LME)</li>
-				<li class="rscadd">Add fancy new /tg/ style menu (LME)</li>
-				<li class="rscadd">Added Shitcuritron (LME)</li>
-				<li class="rscadd">NEW YEAR NEW BEES (LME)</li>
-				<li class="bugfix">Moth wings, lizard spines, and lizard tails no longer disappear in the preferences menu. (Lythine)</li>
-				<li class="rscadd">Adds a new quirk, Bald. (Lythine)</li>
-				<li class="tweak">Wigs can now be worn in both the head slot and the neck slot. (Lythine)</li>
-				<li class="rscadd">Added a button in the keybind menu to set keybinds to goon style (Merlin1230)</li>
-				<li class="imageadd">changed atmos equipment to match its departmental colors (Pitaden)</li>
-				<li class="rscadd">Walls, Windows and Airlocks are resprited and given new sounds (Zonespace27)</li>
-				<li class="rscadd">Flavor text has been added! Edit it in character setup. (Zonespace27)</li>
-				<li class="tweak">ERTs can now be nearly any race except Plasmamen (Zonespace27)</li>
-				<li class="rscadd">Florida Man Antagonist (Zanden)</li>
-				<li class="rscadd">Port and expansion of the /tg/ Mail System (Zanden)</li>
-				<li class="rscadd">Craftable Yes-Slip Shoes (Zanden)</li>
-				<li class="rscadd">Pickup, drop and equip sounds for a number of items. (Zanden)</li>
-				<li class="rscadd">Adds stickers to the game (Zanden)</li>
-				<li class="rscadd">Burnt messes can now get you sick. (Zanden)</li>
-				<li class="rscadd">Adds the Stowaway and Jailbird Traits (Zanden)</li>
-				<li class="rscadd">Signs and posters can be tapped on help intent. (Zanden)</li>
-				<li class="rscadd">Moths lunge for powerful lamps. (Zanden)</li>
-				<li class="rscadd">Floorpills now have a randomly generated name and color (Zanden)</li>
-				<li class="tweak">Surgery success rates modified by sterilizing patients (Zanden)</li>
-				<li class="tweak">Surgery speed is now improved through proper attire and chemicals (Zanden)</li>
-				<li class="tweak">MONKEYS ARE VERY AGGRESSIVE (Zanden)</li>
-				<li class="tweak">Fire Extinguishers can be filled with anything (Zanden)</li>
-				<li class="rscadd">More DIY surgical tools (Zanden)</li>
-				<li class="rscadd">Species-based butts (Zanden)</li>
-				<li class="rscadd">Five Emote Hotkeys (Zanden)</li>
-				<li class="rscadd">Hotkey for Radio Channels (Zanden)</li>
-				<li class="rscadd">Toilet Bong Port (Zanden)</li>
-				<li class="tweak">Customizable food may tower forever. (Zanden)</li>
-				<li class="rscadd">Adds Baja Blast, a new drink (Zanden)</li>
-				<li class="rscadd">Adds Zoomercant and Sippins as languages (Zanden)</li>
-				<li class="rscadd">Four new Virology Symptoms (Zanden)</li>
-				<li class="rscadd">An Ook easter egg mask. (Zanden)</li>
-				<li class="rscadd">Adds a scream/laugh system to clothing. (Zanden)</li>
-				<li class="rscadd">Adds species laughs and screams (Zanden)</li>
-				<li class="rscadd">Restores Strange Seeds and adds a number of safer chemicals to their pool (Zanden)</li>
-				<li class="rscadd">Restores Separated Chemicals (Zanden)</li>
-				<li class="rscadd">Adds a number of new items to Biogenerators (Zanden)</li>
-				<li class="rscdel">Removed a number of dangerous chemicals from the strange seed pool (Zanden)</li>
-				<li class="balance">Biogenerators now have part tiers that unlock various items for generation (Zanden)</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Fire extinguishers can hold any chemical</li>
-				<li class="rscadd">Ports the /tg/ mail system over</li>
 			</ul>
 		</div>
 
