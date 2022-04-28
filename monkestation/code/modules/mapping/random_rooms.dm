@@ -26,7 +26,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 0
+	weight = 5
 
 /datum/map_template/random_room/meta_particle_accelerator
 	name = "Meta Particle Accelerator"
@@ -35,7 +35,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 0
+	weight = 2
 
 /datum/map_template/random_room/meta_rbmk_reactor
 	name = "Meta RBMK Reactor"
@@ -44,4 +44,4 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 5
+	weight = 3
