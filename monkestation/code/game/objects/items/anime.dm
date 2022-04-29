@@ -46,7 +46,7 @@
 //DERMAL IMPLANT SETS//
 /obj/item/anime/cat
 	name = "anime cat dermal implant"
-	desc = "It smells of ammonia"
+	desc = "It smells of ammonia."
 	icon_state = "cat"
 	ears = new /obj/item/organ/ears/cat
 	tail = new /obj/item/organ/tail/cat
