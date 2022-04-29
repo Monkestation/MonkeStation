@@ -6,7 +6,6 @@
 #define AIRLOCK_STATE_OUTOPEN "outopen"
 
 /datum/computer/file/embedded_program/airlock_controller
-	var/id_tag
 	var/exterior_door_tag //Burn chamber facing door
 	var/interior_door_tag //Station facing door
 	var/airpump_tag //See: dp_vent_pump.dm
