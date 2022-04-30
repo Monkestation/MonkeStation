@@ -373,8 +373,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		temperature -= 10 //Nothing to heat us up, so.
 	handle_alerts() //Let's check if they're about to die, and let them know.
 	update_icon()
-	//Radiation Pulse Range Increase to 3 and intensity multiplied by 1.5 //Monkestation Edit
-	radiation_pulse(src, (temperature*radioactivity_spice_multiplier)*1.5, 3)
+	//Radiation Pulse Range Increase to 3 and intensity multiplied by 2 //Monkestation Edit
+	radiation_pulse(src, (temperature*radioactivity_spice_multiplier)*2, 3)
 	//You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 	if(power >= 90 && world.time >= next_flicker)
 		next_flicker = world.time + 1.5 MINUTES
