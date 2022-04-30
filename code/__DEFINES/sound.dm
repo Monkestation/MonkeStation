@@ -8,7 +8,7 @@
 #define CHANNEL_AMBIENT_EFFECTS 1018
 #define CHANNEL_AMBIENT_MUSIC 1017
 #define CHANNEL_BUZZ 1017
-#define CHANNEL_REACTOR_ALERT 1015 //beestation -- reactors sounds
+#define CHANNEL_REACTOR_ALERT 1015 //Monkestation Edit -- RBMK Reactor Sounds
 
 ///Default range of a sound.
 #define SOUND_RANGE 17
@@ -24,7 +24,7 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1014 //beestation -- reactor sounds
+#define CHANNEL_HIGHEST_AVAILABLE 1014 //Monkestation Edi
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 

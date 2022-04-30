@@ -210,12 +210,12 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on
 	on = TRUE
-	icon_state = "volpump_on_map"
+	icon_state = "volpump_on_map-2"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on/layer1
 	piping_layer = 1
-	icon_state = "volpump_map-1"
+	icon_state = "volpump_on_map-1"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/on/layer3
 	piping_layer = 3
-	icon_state = "volpump_map-3"
+	icon_state = "volpump_on_map-3"

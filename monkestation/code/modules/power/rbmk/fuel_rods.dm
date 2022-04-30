@@ -1,6 +1,6 @@
 /obj/item/fuel_rod
 	name = "uranium-238 fuel rod"
-	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder, used to kick off a fission reaction."
+	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder inside, and a breeding blanket of uranium-238 around it, used to kick off a fission reaction and breed plutonium fuel respectivly."
 	icon = 'monkestation/icons/obj/control_rod.dmi'
 	icon_state = "irradiated"
 	w_class = WEIGHT_CLASS_BULKY
@@ -20,7 +20,7 @@
 	var/depleted_final = FALSE // depletion_final should run only once
 	var/depletion_conversion_type = "plutonium"
 
-/obj/item/fuel_rod/Initialize()
+/obj/item/fuel_rod/Initialize(mapload)
 	. = ..()
 	time_created = world.time
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
@@ -186,8 +186,11 @@
 	if(expended)
 		. += "<span class='warning'>The material slots have been slagged by the extreme heat, you can't grow [material_name] in this rod again...</span>"
 		return
-	if(depleted_final)
-		. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name]\s.</span>"
+	else if(depleted_final)
+		if(grown_amount == 1)
+			. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name_singular].</span>"
+		else
+			. += "<span class='warning'>This fuel rod's [material_name] are now fully grown, and it currently bears [grown_amount] harvestable [material_name].</span>"
 		return
 	if(depletion)
 		. += "<span class='danger'>The sample is [min(depletion/depletion_threshold*100,100)]% fissiled.</span>"
@@ -208,13 +211,12 @@
 
 /obj/item/fuel_rod/material/telecrystal/depletion_final(result_rod)
 	..()
-	if(result_rod)
-		return
-	fuel_power = 0.60 // thrice as powerful as plutonium, you'll want to get this one out quick!
-	name = "exhausted [name]"
-	desc = "A highly energetic, disguised titanium sheathed rod containing a number of slots filled with greatly expanded telecrystals which can be removed by hand. It's extremely efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
-	icon_state = "tc_used"
-	AddComponent(/datum/component/radioactive, 3000, src)
+	if(!result_rod)
+		fuel_power = 0.60 // thrice as powerful as plutonium, you'll want to get this one out quick!
+		name = "Exhausted Telecrystal Fuel Rod"
+		desc = "A highly energetic, disguised titanium sheathed rod containing a number of slots filled with greatly expanded telecrystals which can be removed by hand. It's extremely efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
+		icon_state = "telecrystal_used"
+		AddComponent(/datum/component/radioactive, 3000, src)
 
 /obj/item/fuel_rod/material/bananium
 	name = "bananium fuel rod"
@@ -236,10 +238,9 @@
 
 /obj/item/fuel_rod/material/bananium/depletion_final(result_rod)
 	..()
-	if(result_rod)
-		return
-	fuel_power = 0.3 // Be warned
-	name = "exhausted [name]"
-	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing grwoth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
-	icon_state = "bananium_used"
-	AddComponent(/datum/component/radioactive, 1250, src)
+	if(!result_rod)
+		fuel_power = 0.3 // Be warned
+		name = "Fully Grown Bananium Fuel Rod"
+		desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing grwoth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
+		icon_state = "bananium_used"
+		AddComponent(/datum/component/radioactive, 1250, src)

@@ -4,24 +4,28 @@
 #define MODERATOR_INPUT_GATE airs[2]
 #define COOLANT_OUTPUT_GATE airs[3]
 
-#define RBMK_TEMPERATURE_OPERATING 640 //Celsius
-#define RBMK_TEMPERATURE_CRITICAL 1000 //At this point the entire ship is alerted to a meltdown. This may need altering
-#define RBMK_TEMPERATURE_MELTDOWN 1200
+#define RBMK_TEMPERATURE_OPERATING 640 //Celsius	//Default: 640
+//At this point the entire ship is alerted to a meltdown. This may need altering
+#define RBMK_TEMPERATURE_CRITICAL 900 //Celsius		//Default: 800
+#define RBMK_TEMPERATURE_MELTDOWN 1000 //Celsius		//Default: 900
 
-#define RBMK_NO_COOLANT_TOLERANCE 20 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
+//How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
+#define RBMK_NO_COOLANT_TOLERANCE 5	//Default: 5
 
-#define RBMK_PRESSURE_OPERATING 1000 //PSI
-#define RBMK_PRESSURE_CRITICAL 2469.59 //PSI
+#define RBMK_PRESSURE_OPERATING 1000 //PSI		//Default: 1000
+#define RBMK_PRESSURE_CRITICAL 6469.59 //PSI	//Default: 1469.59
 
-#define RBMK_MAX_CRITICALITY 3 //No more criticality than N for now.
+//No more criticality than N for now.
+#define RBMK_MAX_CRITICALITY 3		//Default: 3
 
-#define RBMK_POWER_FLAVOURISER 500 //To turn those KWs into something usable
+//To turn those KWs into something usable
+#define RBMK_POWER_FLAVOURISER 600		//Default: 8000 //I want some use out of turbines for power
 
 //Math. Lame.
 #define KPA_TO_PSI(A) (A/6.895)
 #define PSI_TO_KPA(A) (A*6.895)
 #define KELVIN_TO_CELSIUS(A) (A-273.15)
-#define CELSIUS_TO_KELVIN(A) (A+273.15)
+#define CELSIUS_TO_KELVIN(T_K)	((T_K) + T0C)
 #define MEGAWATTS /1e+6
 
 //Reference: Heaters go up to 500K.
@@ -81,6 +85,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	light_color = LIGHT_COLOR_CYAN
 	dir = 8 //Less headache inducing :))
 	var/id = null //Change me mappers
+
 	//Variables essential to operation
 	var/temperature = 0 //Lose control of this -> Meltdown
 	var/vessel_integrity = 400 //How long can the reactor withstand overpressure / meltdown? This gives you a fair chance to react to even a massive pipe fire
@@ -91,6 +96,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/power = 0 //0-100%. A function of the maximum heat you can achieve within operating temperature
 	var/power_modifier = 1 //Upgrade me with parts, science! Flat out increase to physical power output when loaded with plasma.
 	var/list/fuel_rods = list()
+
 	//Secondary variables.
 	var/next_slowprocess = 0
 	var/gas_absorption_effectiveness = 0.5
@@ -102,11 +108,24 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/next_flicker = 0 //Light flicker timer
 	var/base_power_modifier = RBMK_POWER_FLAVOURISER
 	var/slagged = FALSE //Is this reactor even usable any more?
+
 	//Console statistics.
 	var/last_coolant_temperature = 0
 	var/last_output_temperature = 0
-	var/last_heat_delta = 0 //For administrative cheating only. Knowing the delta lets you know EXACTLY what to set K at.
-	var/no_coolant_ticks = 0	//How many times in succession did we not have enough coolant? Decays twice as fast as it accumulates.
+	//For administrative cheating only. Knowing the delta lets you know EXACTLY what to set K at.
+	var/last_heat_delta = 0
+
+	//How many times in succession did we not have enough coolant? Decays twice as fast as it accumulates.
+	var/no_coolant_ticks = 0
+
+	var/last_user = null
+	var/current_desired_k = null
+
+	var/lastwarning = 0
+	var/obj/item/radio/radio
+	var/radio_key = /obj/item/encryptionkey/headset_eng
+	var/engineering_channel = "Engineering"
+	var/common_channel = null
 
 	var/datum/looping_sound/rbmk_reactor/soundloop
 
@@ -127,16 +146,22 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			var/msg = "<span class='warning'>The reactor looks operational.</span>"
 			switch(percent)
 				if(0 to 10)
+					add_overlay("reactor_damaged_4")
 					msg = "<span class='boldwarning'>[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel! </span>"
 				if(10 to 40)
+					add_overlay("reactor_damaged_3")
 					msg = "<span class='boldwarning'>[src]'s seals are heavily warped and cracked! </span>"
 				if(40 to 60)
+					add_overlay("reactor_damaged_2")
 					msg = "<span class='warning'>[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.</span>"
 				if(60 to 80)
+					add_overlay("reactor_damaged_1")
 					msg = "<span class='warning'>[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.</span>"
 				if(80 to 90)
+					cut_overlay()
 					msg = "<span class='notice'>[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.</span>"
 				if(95 to 100)
+					cut_overlay()
 					msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
 			. += msg
 
@@ -151,11 +176,14 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		to_chat(user, "<span class='notice'>You start to insert [W] into [src]...</span>")
 		radiation_pulse(src, temperature)
 		if(do_after(user, 5 SECONDS, target=src))
-			if(!length(fuel_rods))
+			if(!fuel_rods.len)
 				start_up() //That was the first fuel rod. Let's heat it up.
+				message_admins("Reactor first started up by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+				investigate_log("Reactor first started by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 			fuel_rods += W
 			W.forceMove(src)
 			radiation_pulse(src, temperature) //Wear protective equipment when even breathing near a reactor!
+			investigate_log("Rod added to reactor by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 		return TRUE
 	if(!slagged && istype(W, /obj/item/sealant))
 		if(power >= 20)
@@ -202,29 +230,34 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	slagged = FALSE
 	for(var/I=0;I<5;I++)
 		fuel_rods += new /obj/item/fuel_rod(src)
+	message_admins("Reactor started up by admins in [ADMIN_VERBOSEJMP(src)]")
 	start_up()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/deplete()
 	for(var/obj/item/fuel_rod/FR in fuel_rods)
 		FR.depletion = 100
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/Initialize()
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/Initialize(mapload)
 	. = ..()
 	icon_state = "reactor_off"
 	gas_absorption_effectiveness = rand(5, 6)/10 //All reactors are slightly different. This will result in you having to figure out what the balance is for K.
 	gas_absorption_constant = gas_absorption_effectiveness //And set this up for the rest of the round.
-	soundloop = new(list(src), FALSE)
+	STOP_PROCESSING(SSmachines, src) //We'll handle this one ourselves.
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	if(isliving(arrived) && temperature > 0)
-		var/mob/living/L = arrived
-		L.adjust_bodytemperature(CLAMP(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
+	radio = new(src)
+	radio.keyslot = new radio_key
+	radio.listening = 0
+	radio.recalculateChannels()
+
+	investigate_log("has been created.", INVESTIGATE_ENGINES)
+	soundloop = new(list(src), FALSE)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/process()
 	update_parents() //Update the pipenet to register new gas mixes
 	if(next_slowprocess < world.time)
 		slowprocess()
-		next_slowprocess = world.time + 1 SECONDS //Set to wait for another second before processing again, we don't need to process more than once a second
+		//Set to wait for another second before processing again, we don't need to process more than once a second
+		next_slowprocess = world.time + 1 SECONDS
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/has_fuel()
 	return fuel_rods?.len
@@ -233,9 +266,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(slagged)
 		STOP_PROCESSING(SSmachines, src)
 		return
+
+	soundloop = new(list(src), TRUE)
 	if(power)
-		soundloop = new(list('monkestation/sound/effects/rbmk/reactor_hum.ogg'), TRUE)
-		soundloop.volume = CLAMP((50 + (power / 50)), 50, 100)
+		soundloop.volume = CLAMP((3 + (power / 100)), 3, 40)
 
 	//Let's get our gasses sorted out.
 	var/datum/gas_mixture/coolant_input = COOLANT_INPUT_GATE
@@ -254,7 +288,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		coolant_input.clear() //Clear out anything left in the input gate.
 		color = null
 		no_coolant_ticks = max(0, no_coolant_ticks-2)	//Needs half as much time to recover the ticks than to acquire them
-
 	else
 		if(has_fuel())
 			no_coolant_ticks++
@@ -263,6 +296,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				vessel_integrity -= temperature / 200 //Think fast loser.
 				take_damage(10) //Just for the sound effect, to let you know you've fucked up.
 				color = "[COLOR_RED]"
+				investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_ENGINES)
 	//Now, heat up the output and set our pressure.
 	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)) //Heat the coolant output gas that we just had pass through us.
 	last_output_temperature = KELVIN_TO_CELSIUS(coolant_output.return_temperature())
@@ -283,7 +317,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) / 5 //Chernobyl 2.
 			var/turf/T = get_turf(src)
 			if(power >= 20)
-//				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/60) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/60) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/20) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			var/obj/structure/cable/C = T.get_cable_node()
 			if(!C || !C.powernet)
@@ -320,13 +354,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//Then, hit as much of that goal with our cooling per tick as we possibly can.
 	difference = CLAMP(difference, 0, control_rod_effectiveness) //And we can't instantly zap the K to what we want, so let's zap as much of it as we can manage....
 	if(difference > fuel_power && desired_k > K)
-		message_admins("Not enough fuel to get [difference]. We have fuel [fuel_power]")
+		investigate_log("Reactor has not enough fuel to get [difference]. We have fuel [fuel_power]", INVESTIGATE_ENGINES)
 		difference = fuel_power //Again, to stop you being able to run off of 1 fuel rod.
 	if(K != desired_k)
 		if(desired_k > K)
 			K += difference
 		else if(desired_k < K)
 			K -= difference
+	if(K == desired_k && last_user && current_desired_k != desired_k)
+		current_desired_k = desired_k
+		message_admins("Reactor desired criticality set to [desired_k] by [ADMIN_LOOKUPFLW(last_user)] in [ADMIN_VERBOSEJMP(src)]")
+		investigate_log("reactor desired criticality set to [desired_k] by [key_name(last_user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 
 	K = CLAMP(K, 0, RBMK_MAX_CRITICALITY)
 	if(has_fuel())
@@ -335,22 +373,28 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		temperature -= 10 //Nothing to heat us up, so.
 	handle_alerts() //Let's check if they're about to die, and let them know.
 	update_icon()
-	radiation_pulse(src, temperature*radioactivity_spice_multiplier)
-	if(power >= 90 && world.time >= next_flicker) //You're overloading the reactor. Give a more subtle warning that power is getting out of control.
+	//Radiation Pulse Range Increase to 3 and intensity multiplied by 1.5 //Monkestation Edit
+	radiation_pulse(src, (temperature*radioactivity_spice_multiplier)*1.5, 3)
+	//You're overloading the reactor. Give a more subtle warning that power is getting out of control.
+	if(power >= 90 && world.time >= next_flicker)
 		next_flicker = world.time + 1.5 MINUTES
 		for(var/obj/machinery/light/L in GLOB.machines)
-			if(prob(25) && L.z == z) //If youre running the reactor cold though, no need to flicker the lights.
+		//If youre running the reactor cold though, no need to flicker the lights.
+			if(prob(25) && L.z == z)
 				L.flicker()
+		investigate_log("Reactor overloading at [power]% power", INVESTIGATE_ENGINES)
 	for(var/atom/movable/I in get_turf(src))
 		if(isliving(I))
 			var/mob/living/L = I
-			if(temperature > 0)
-				L.adjust_bodytemperature(CLAMP(temperature, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
+			var/temp_diff = CELSIUS_TO_KELVIN(temperature) - L.bodytemperature
+			if(temp_diff <= 0)
+				continue
+			L.adjust_bodytemperature(CLAMP(temp_diff / 2, 1, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
 		if(istype(I, /obj/item/reagent_containers/food) && !istype(I, /obj/item/reagent_containers/food/drinks))
 			playsound(src, pick('sound/machines/fryer/deep_fryer_1.ogg', 'sound/machines/fryer/deep_fryer_2.ogg'), 100, TRUE)
 			var/obj/item/reagent_containers/food/grilled_item = I
 			if(prob(80))
-				return //To give the illusion that it's actually cooking
+				return //To give the illusion that it's actually cooking omegalul.
 			switch(power)
 				if(20 to 39)
 					grilled_item.name = "grilled [initial(grilled_item.name)]"
@@ -402,6 +446,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(temperature >= RBMK_TEMPERATURE_MELTDOWN)
 			vessel_integrity -= (temperature / 100)
 			if(vessel_integrity <= temperature/100) //It wouldn't be able to tank another hit.
+				investigate_log("Reactor melted down at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_ENGINES)
 				meltdown() //Oops! All meltdown
 				return
 	else
@@ -418,8 +463,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
 		var/turf/T = get_turf(src)
 		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
-		vessel_integrity -= (pressure/100)
-		if(vessel_integrity <= pressure/100) //It wouldn't be able to tank another hit.
+		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60)	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
+		vessel_integrity -= pressure_damage
+		if(vessel_integrity <= pressure_damage) //It wouldn't
+			investigate_log("Reactor blowout at [pressure] PSI with desired criticality at [desired_k]", INVESTIGATE_ENGINES)
 			blowout()
 			return
 	if(warning)
@@ -429,6 +476,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			set_light(0)
 			light_color = LIGHT_COLOR_CYAN
 			set_light(10)
+			investigate_log("Reactor stabilizing at [pressure] PSI and [temperature] C.", INVESTIGATE_ENGINES)
+			message_admins("Reactor stabilizing at [pressure] PSI and [temperature] C. [ADMIN_VERBOSEJMP(src)]")
+			radio.talk_into(src, "REACTOR STABILIZED." , common_channel)
 	else
 		if(!alert)
 			return
@@ -436,7 +486,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			return
 		next_warning = world.time + 30 SECONDS //To avoid engis pissing people off when reaaaally trying to stop the meltdown or whatever.
 		warning = TRUE //Start warning the crew of the imminent danger.
-		relay('monkestation/sound/effects/rbmk/alarm.ogg', null, loop=TRUE, channel = CHANNEL_REACTOR_ALERT)
+		relay('monkestation/sound/effects/rbmk/alarm.ogg', null, loop = TRUE, channel = CHANNEL_REACTOR_ALERT)
 		set_light(0)
 		light_color = LIGHT_COLOR_RED
 		set_light(10)
@@ -468,14 +518,20 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	T.assume_air(coolant_input)
 	T.assume_air(moderator_input)
 	T.assume_air(coolant_output)
-	explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
+	QDEL_NULL(soundloop)
+	//Default explosion was: explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
+	explosion(get_turf(src), 0, 2, 10, 15, TRUE, TRUE, 0, FALSE, 2)
 	empulse(get_turf(src), 25, 15)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
-	explosion(get_turf(src), GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	//Default explosion was: explosion(get_turf(src), 0, MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	explosion(get_turf(src), 0, 6, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 	meltdown() //Double kill.
+	relay('monkestation/sound/effects/rbmk/explode.ogg')
+	sleep(10)
 	SSweather.run_weather("nuclear fallout")
+	priority_announce("High levels of radiation detected. Maintenance is best shielded from radiation.", "Nuclear Blowout Alert", ANNOUNCER_RADIATION)
 	for(var/X in GLOB.landmarks_list)
 		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
@@ -489,17 +545,30 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			icon_state = "reactor_on"
 		if(200 to RBMK_TEMPERATURE_OPERATING)
 			icon_state = "reactor_hot"
-		if(RBMK_TEMPERATURE_OPERATING to 750)
+		if(RBMK_TEMPERATURE_OPERATING to 850)
 			icon_state = "reactor_veryhot"
-		if(750 to RBMK_TEMPERATURE_CRITICAL) //Point of no return.
+		if(850 to RBMK_TEMPERATURE_CRITICAL) //Point of no return.
 			icon_state = "reactor_overheat"
 		if(RBMK_TEMPERATURE_CRITICAL to INFINITY)
 			icon_state = "reactor_meltdown"
+	var/percent = vessel_integrity / initial(vessel_integrity) * 100
+	switch(percent)
+		if(0 to 10)
+			add_overlay("reactor_damaged_4")
+		if(10 to 40)
+			add_overlay("reactor_damaged_3")
+		if(40 to 60)
+			add_overlay("reactor_damaged_2")
+		if(60 to 80)
+			add_overlay("reactor_damaged_1")
+		if(80 to 90)
+			cut_overlay()
+		if(95 to 100)
+			cut_overlay()
 	if(!has_fuel())
 		icon_state = "reactor_off"
 	if(slagged)
 		icon_state = "reactor_slagged"
-
 
 //Startup, shutdown
 
@@ -524,7 +593,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 /obj/item/fuel_rod/Initialize()
 	.=..()
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
+	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/radioactive, 350 , src)
 
 //Controlling the reactor.
@@ -533,6 +602,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	name = "Reactor control console"
 	desc = "Scream"
 	icon = 'icons/obj/computer.dmi'
+	light_power = 1
+	light_range = 3
 	icon_state = "oldcomp"
 	icon_screen = "library"
 	icon_keyboard = null
@@ -561,10 +632,15 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	. = ..()
 	ui_interact(user)
 
+/obj/machinery/computer/reactor/control_rods/ui_state(mob/user)
+	return GLOB.default_state
+
 /obj/machinery/computer/reactor/control_rods/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RbmkControlRods")
 		ui.open()
+		ui.set_autoupdate(TRUE)
 
 /obj/machinery/computer/reactor/control_rods/ui_act(action, params)
 	if(..())
@@ -600,10 +676,15 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	. = ..()
 	ui_interact(user)
 
+/obj/machinery/computer/reactor/stats/ui_state(mob/user)
+	return GLOB.default_state
+
 /obj/machinery/computer/reactor/stats/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RbmkStats")
 		ui.open()
+		ui.set_autoupdate(TRUE)
 
 /obj/machinery/computer/reactor/stats/process()
 	if(world.time >= next_stat_interval)
@@ -682,6 +763,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/newPressure = input(user, "Set new output pressure (kPa)", "Remote pump control", null) as num
 	if(!newPressure)
 		return
+	//Number sanitization is not handled in the pumps themselves, only during their ui_act which this doesn't use.
+	newPressure = clamp(newPressure, 0, MAX_OUTPUT_PRESSURE)
 	signal(on, newPressure) //Number sanitization is handled on the actual pumps themselves.
 
 /obj/machinery/computer/reactor/attack_robot(mob/user)
@@ -884,14 +967,21 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			new /obj/effect/decal/nuclear_waste (floor)
 	qdel(src)
 
-/obj/effect/decal/nuclear_waste/epicenter/Initialize()
+/obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
 	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_entered,
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/decal/nuclear_waste/epicenter/ComponentInitialize()
 	AddComponent(/datum/component/radioactive, 1500, src, 0)
 
-/obj/effect/decal/nuclear_waste/turf/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(isliving(arrived))
-		var/mob/living/L = arrived
+/obj/effect/decal/nuclear_waste/proc/on_entered(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
+
+	if(isliving(AM))
+		var/mob/living/L = AM
 		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
 	radiation_pulse(src, 500, 5) //MORE RADS
 
@@ -900,7 +990,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		radiation_pulse(src, 1000, 5) //MORE RADS
 		to_chat(user, "<span class='notice'>You start to clear [src]...</span>")
 		if(tool.use_tool(src, user, 50, volume=100))
-			to_chat(user, "<span class='notice'>You clear [src]. </span>")
+			to_chat(user, "<span class='notice'>You clear [src].</span>")
 			qdel(src)
 			return
 	. = ..()
@@ -960,6 +1050,25 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	icon_state = "sealant"
 	w_class = 1
 
+// A temporary manual link until I figure out adding an information database on engine setups for tablets/computers
+/datum/config_entry/string/nsv_wikiurl
+	config_entry_value = "https://nsv.beestation13.com/wiki/Guide_to_the_Nuclear_Reactor"
+
+/obj/item/book/manual/wiki/rbmk/attack_self(mob/user)
+	var/nsv_wikiurl = CONFIG_GET(string/nsv_wikiurl)
+	if(!nsv_wikiurl)
+		return
+	if(alert(user, "This will open the wiki page in your browser. Are you sure?", null, "Yes", "No") != "Yes")
+		return
+	DIRECT_OUTPUT(user, link("[nsv_wikiurl]"))
+
+/obj/item/book/manual/wiki/rbmk
+	name = "\improper Haynes nuclear reactor owner's manual"
+	icon_state ="bookEngineering2"
+	author = "CogWerk Engineering Reactor Design Department"
+	title = "Haynes nuclear reactor owner's manual"
+//	page_link = "Guide_to_the_Nuclear_Reactor"
+
 /area/engine/engineering/reactor_core
 	name = "Nuclear Reactor Core"
 	network = list("ss13", "engine")
@@ -967,3 +1076,12 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /area/engine/engineering/reactor_control
 	name = "Reactor Control Room"
 	network = list("ss13", "engine")
+
+/area/engine/engineering/reactor_decontamination
+	name = "Reactor Decontamination Room"
+	network = list("ss13", "engine")
+
+/area/engine/engineering/reactor_turbines
+	name = "Reactor Turbine Room"
+	network = list("ss13", "engine")
+
