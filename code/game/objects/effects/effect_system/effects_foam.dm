@@ -263,7 +263,7 @@
 	plane = GAME_PLANE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	name = "foamed metal"
-	desc = "A lightweight foamed metal wall."
+	desc = "A lightweight foamed metal wall that can be used as a base to construct a wall."
 	gender = PLURAL
 	max_integrity = 20
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -308,26 +308,46 @@
 			to_chat(user, "<span class='warning'> You need two sheets of iron to finish a wall on [src]! </span>")
 			return
 		to_chat(user, "<span class='notice'> You start adding plating to the foam structure... </span>")
-		if (do_after(user, 40*platingmodifier, target = src))
-			if(!sheet_for_plating.use(2))
-				return
-			to_chat(user, "<span class='notice'> You add the plating. </span>")
-			var/turf/T = get_turf(src)
-			T.PlaceOnTop(/turf/closed/wall/metal_foam_base)
-			transfer_fingerprints_to(T)
-			qdel(src)
-		return
 
+		var/turf/T = get_turf(src)
+		if(istype(src, /obj/structure/foamedmetal/resin))	//Slower Build due to its weaker structure
+			if (do_after(user, 40*platingmodifier*1.5, target = src))
+				if(!sheet_for_plating.use(2))
+					return
+				to_chat(user, "<span class='notice'> You add the plating. </span>")
+				T.PlaceOnTop(/turf/closed/wall/resin_foam_base)
+				transfer_fingerprints_to(T)
+				qdel(src)
+			return
+		else if(istype(src, /obj/structure/foamedmetal/iron))
+			if (do_after(user, 40*platingmodifier*0.8, target = src)) //Faster Build due to iron structure
+				if(!sheet_for_plating.use(2))
+					return
+				to_chat(user, "<span class='notice'> You add the plating. </span>")
+				T.PlaceOnTop(/turf/closed/wall/iron_foam_base)
+				transfer_fingerprints_to(T)
+				qdel(src)
+			return
+		else if(istype(src, /obj/structure/foamedmetal))
+			if (do_after(user, 40*platingmodifier, target = src)) //Normal Build
+				if(!sheet_for_plating.use(2))
+					return
+				to_chat(user, "<span class='notice'> You add the plating. </span>")
+				T.PlaceOnTop(/turf/closed/wall/metal_foam_base)
+				transfer_fingerprints_to(T)
+				qdel(src)
+			return
 	add_hiddenprint(user)
 
 /obj/structure/foamedmetal/iron
 	max_integrity = 50
+	desc = "A strong foamed metal wall composed of iron that can be used as a base to construct a wall."
 	icon_state = "ironfoam"
 
 //Atmos Backpack Resin, transparent, prevents atmos and filters the air
 /obj/structure/foamedmetal/resin
 	name = "\improper ATMOS Resin"
-	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as base to construct a wall."
+	desc = "A lightweight, transparent resin used to suffocate fires, scrub the air of toxins, and restore the air to a safe temperature. It can be used as a base to construct a wall, however it is weaker in strength."
 	opacity = FALSE
 	icon_state = "atmos_resin"
 	alpha = 120
