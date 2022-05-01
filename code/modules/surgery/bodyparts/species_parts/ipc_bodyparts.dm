@@ -7,7 +7,7 @@
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC | BODYTYPE_BOXHEAD
 
 	body_damage_coeff = 0.2	//IPC's Head can dismember	//Monkestation Edit
-	max_damage = 40	//Keep in mind that this value is used in the TRAIT_EASYDISMEMBER	//Monkestation Edit
+	max_damage = 40	//Keep in mind that this value is used in the //Monkestation Edit
 
 	light_brute_msg = "scratched"
 	medium_brute_msg = "dented"
