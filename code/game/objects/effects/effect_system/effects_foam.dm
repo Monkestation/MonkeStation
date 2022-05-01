@@ -315,7 +315,7 @@
 				if(!sheet_for_plating.use(2))
 					return
 				to_chat(user, "<span class='notice'> You add the plating. </span>")
-				T.PlaceOnTop(/turf/closed/wall/resin_foam_base)
+				T.PlaceOnTop(/turf/closed/wall/foam_base/resin)
 				transfer_fingerprints_to(T)
 				qdel(src)
 			return
@@ -324,7 +324,7 @@
 				if(!sheet_for_plating.use(2))
 					return
 				to_chat(user, "<span class='notice'> You add the plating. </span>")
-				T.PlaceOnTop(/turf/closed/wall/iron_foam_base)
+				T.PlaceOnTop(/turf/closed/wall/foam_base/iron)
 				transfer_fingerprints_to(T)
 				qdel(src)
 			return
@@ -333,7 +333,7 @@
 				if(!sheet_for_plating.use(2))
 					return
 				to_chat(user, "<span class='notice'> You add the plating. </span>")
-				T.PlaceOnTop(/turf/closed/wall/metal_foam_base)
+				T.PlaceOnTop(/turf/closed/wall/foam_base)
 				transfer_fingerprints_to(T)
 				qdel(src)
 			return

@@ -18,9 +18,9 @@
 	FASTDMM_PROP(\
 		pipe_astar_cost = 35\
 	)
-	// lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	/// lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/hardness = 40
-	// default time taken to slice the wall	//Changed to Seconds for clarity	//Monkestation Edit
+	/// default time taken to slice the wall	//Changed to Seconds for clarity	//Monkestation Edit
 	var/slicing_duration = 10 SECONDS
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
@@ -92,7 +92,10 @@
 	/obj/machinery/door/airlock/sandstone/glass,
 	/obj/machinery/door/airlock/wood/glass,
 	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
+	/obj/machinery/door/airlock/external/glass,
+	/turf/closed/wall/foam_base,
+	/turf/closed/wall/foam_base/iron,
+	/turf/closed/wall/foam_base/resin)
 	//MONKESTATION EDIT END
 	smooth = SMOOTH_TRUE
 
@@ -380,21 +383,5 @@
 	if(prob(70))
 		new /obj/effect/temp_visual/glowing_rune(src)
 	ChangeTurf(/turf/closed/wall/rust)
-
-//Adding unique wall types to represent these better could be cool //Monkestation Edit
-/turf/closed/wall/metal_foam_base
-	girder_type = /obj/structure/foamedmetal
-	hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	slicing_duration = 8 SECONDS
-
-/turf/closed/wall/iron_foam_base
-	girder_type = /obj/structure/foamedmetal/iron
-	hardness = 30 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	slicing_duration = 12 SECONDS
-
-/turf/closed/wall/resin_foam_base
-	girder_type = /obj/structure/foamedmetal/resin
-	hardness = 60 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	slicing_duration = 5 SECONDS
 
 #undef MAX_DENT_DECALS
