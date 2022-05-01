@@ -78,6 +78,8 @@
 	var/obj/item/note //Any papers pinned to the airlock
 	var/detonated = FALSE
 	var/abandoned = FALSE
+	var/cutAiWire = FALSE
+	var/autoname = FALSE
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/airlockclose.ogg'
 	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
@@ -516,7 +518,7 @@
 // returns TRUE if shocked, FALSE otherwise
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if(!hasPower())		// unpowered, no shock
+	if(!istype(user) || !hasPower())	// unpowered, no shock
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, shockCooldown))
 		return FALSE	//Already shocked someone recently?
@@ -529,6 +531,24 @@
 		return TRUE
 	else
 		return FALSE
+
+/obj/machinery/door/airlock/proc/is_secure()
+	return (security_level > 0)
+
+/obj/machinery/door/airlock/update_icon(updates=ALL, state=0, override=FALSE)
+	if(operating && !override)
+		return
+
+	if(!state)
+		state = density ? AIRLOCK_CLOSED : AIRLOCK_OPEN
+	airlock_state = state
+
+	. = ..()
+
+	if(hasPower() && unres_sides)
+		set_light(2, 1)
+	else
+		set_light(0)
 
 /obj/machinery/door/airlock/update_icon(state=0, override=0)
 	cut_overlays() // Needed without it you get like 300 unres indicator overlayers over time
