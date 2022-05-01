@@ -141,31 +141,38 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
+// Without this Arrivals Airlock animated overlay components break
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
 	if (cyclelinkeddir)
 		cyclelinkairlock()
+	if(closeOtherId)
+		update_other_id()
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
-			if(1 to 5)
+			if(1 to 9)
 				var/turf/here = get_turf(src)
-				for(var/turf/closed/T in spiral_range_turfs(2, here))
+				for(var/turf/closed/T in range(2, src))
 					here.PlaceOnTop(T.type)
 					qdel(src)
 					return
 				here.PlaceOnTop(/turf/closed/wall)
 				qdel(src)
 				return
-			if(5 to 6)
+			if(9 to 11)
 				lights = FALSE
 				locked = TRUE
-			if(6 to 8)
+			if(12 to 15)
 				locked = TRUE
-			if(8 to 10)
+			if(16 to 23)
 				welded = TRUE
-			if(10 to 30)
+			if(24 to 30)
 				panel_open = TRUE
+	if(cutAiWire)
+		wires.cut(WIRE_AI)
+	if(autoname)
+		name = get_area_name(src, TRUE)
 	update_icon()
 
 /obj/machinery/door/airlock/ComponentInitialize()
@@ -532,25 +539,7 @@
 	else
 		return FALSE
 
-/obj/machinery/door/airlock/proc/is_secure()
-	return (security_level > 0)
-
-/obj/machinery/door/airlock/update_icon(updates=ALL, state=0, override=FALSE)
-	if(operating && !override)
-		return
-
-	if(!state)
-		state = density ? AIRLOCK_CLOSED : AIRLOCK_OPEN
-	airlock_state = state
-
-	. = ..()
-
-	if(hasPower() && unres_sides)
-		set_light(2, 1)
-	else
-		set_light(0)
-
-/obj/machinery/door/airlock/update_icon(state=0, override=0)
+/obj/machinery/door/airlock/update_icon(state=0, override=FALSE)
 	cut_overlays() // Needed without it you get like 300 unres indicator overlayers over time
 	if(operating && !override)
 		return
