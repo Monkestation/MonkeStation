@@ -25,7 +25,7 @@
 	should_draw_greyscale = FALSE
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 
-	body_damage_coeff = 1	//IPC Chest	//Monkestation Edit
+	body_damage_coeff = 1	//IPC Chest at default	//Monkestation Edit
 	max_damage = 200	//Monkestation Edit
 
 	light_brute_msg = "scratched"
