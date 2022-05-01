@@ -601,7 +601,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/computer/reactor
 	name = "Reactor control console"
 	desc = "Scream"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'monkestation/icons/obj/computer.dmi'
 	light_power = 1
 	light_range = 3
 	icon_state = "oldcomp"
