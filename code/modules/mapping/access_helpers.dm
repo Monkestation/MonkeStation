@@ -180,12 +180,12 @@
 	access_list += ACCESS_RESEARCH
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/science/ordnance/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/science/toxins/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_TOX
 	return access_list
 
-/obj/effect/mapping_helpers/airlock/access/any/science/ordnance_storage/get_access()
+/obj/effect/mapping_helpers/airlock/access/any/science/toxins_storage/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_TOX_STORAGE
 	return access_list
