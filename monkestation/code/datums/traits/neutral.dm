@@ -16,8 +16,7 @@
 
 /datum/quirk/anime
 	name = "Anime"
-	desc = "You are an anime enjoyer! You start the round with an Anime Dermal Implant kit, \
-	which can be used to give yourself a skin-deep modification to make you look like a cat."
+	desc = "You are an anime enjoyer! Show your enthusiasm with some fashionable attire."
 	mob_trait = TRAIT_ANIME
 	value = 0
 
