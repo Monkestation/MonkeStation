@@ -30,7 +30,7 @@
 
 /datum/quirk/gigantism
 	name = "Gigantism"
-	desc = "You're huge! You start the round with an immutable gigantism mutation. Does not affect species without DNA."
+	desc = "You're huge! You start the round with an immutable gigantism mutation. Even works on species without DNA!"
 	value = 4
 
 /datum/quirk/gigantism/post_add()
