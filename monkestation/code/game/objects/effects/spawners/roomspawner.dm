@@ -42,6 +42,6 @@
 	dedicated_rooms = list(/datum/map_template/random_room/pubby_default_bar = 1,
 							/datum/map_template/random_room/pubby_japan_bar = 1,
 							/datum/map_template/random_room/pubby_pool_bar = 1,
-							/datum/map_template/random_room/pubby_hobo_bar = 10)
+							/datum/map_template/random_room/pubby_hobo_bar = 1)
 	room_width = 18
 	room_height = 12
