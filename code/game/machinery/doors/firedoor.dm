@@ -29,6 +29,7 @@
 	open_speed = 2
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 	processing_flags = START_PROCESSING_MANUALLY
+	COOLDOWN_DECLARE(detect_cooldown) //Cooldown to stop firelocks from closing instantly
 	var/emergency_close_timer = 0
 	var/nextstate = null
 	var/boltslocked = TRUE
@@ -38,6 +39,7 @@
 
 /obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY)
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -96,23 +98,6 @@
 	. = ..()
 	if(.)
 		return
-	if (!welded && !operating)
-		if (stat & NOPOWER)
-			user.visible_message("[user] tries to open \the [src] manually.",
-						 "You operate the manual lever on \the [src].")
-			if (!do_after(user, 30, TRUE, src))
-				return FALSE
-		else if (density && !allow_hand_open(user))
-			return FALSE
-
-		add_fingerprint(user)
-		if(density)
-			emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
-			open()
-		else
-			close()
-		return TRUE
-
 	if(operating || !density)
 		return
 
@@ -298,10 +283,13 @@
 	. = ..()
 	if(.)
 		STOP_PROCESSING(SSmachines, src)
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY)
 	latetoggle()
 
 
 /obj/machinery/door/firedoor/close()
+	if(!COOLDOWN_FINISHED(src, detect_cooldown))
+		return
 	if(HAS_TRAIT(loc, TRAIT_FIREDOOR_STOP))
 		return
 	if(!density && !operating) //This is hacky but gets the sound to play on time.
