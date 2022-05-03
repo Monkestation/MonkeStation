@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 			threatcount += 4 //trigger look_for_perp() since they're nonhuman and very likely hostile
 
 	//mindshield implants imply trustworthyness
-	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
+	if(has_mindshield_hud_icon())
 		threatcount -= 1
 
 	return threatcount
@@ -230,7 +230,6 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 	species_traits = list(NOTRANSSTING, NO_DNA_COPY, EYECOLOR, HAIR, FACEHAIR, LIPS)
 	inherent_traits = list(TRAIT_NOHUNGER, TRAIT_RADIMMUNE, TRAIT_BADDNA, TRAIT_NOGUNS, TRAIT_NONECRODISEASE)	//Made of mutated cells
 	default_features = list("mcolor" = "FFF", "wings" = "None")
-	use_skintones = FALSE
 	skinned_type = /obj/item/stack/sheet/animalhide/monkey
 	liked_food = JUNKFOOD | FRIED | GROSS | RAW
 	changesource_flags = MIRROR_BADMIN
@@ -249,7 +248,8 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 /obj/item/organ/brain/tumor/Remove(mob/living/carbon/C, special, no_id_transfer)
 	. = ..()
 	//Removing it deletes it
-	qdel(src)
+	if(!QDELETED(src))
+		qdel(src)
 
 /mob/living/carbon/monkey/tumor/handle_mutations_and_radiation()
 	return

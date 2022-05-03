@@ -28,6 +28,12 @@
 /proc/ooze_name()
 	return "[pick(GLOB.oozeling_first_names)] [pick(GLOB.oozeling_last_names)]"
 
+/proc/simian_name(gender)
+	if(gender == MALE)
+		return "[pick(GLOB.simian_names_male)] [pick(GLOB.simian_last_names)]"
+	else
+		return "[pick(GLOB.simian_names_female)] [pick(GLOB.simian_last_names)]"
+
 GLOBAL_VAR(command_name)
 /proc/command_name()
 	if (GLOB.command_name)
@@ -207,7 +213,7 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 							. += pick(names)
 						else
 							if(prob(10))
-								. += pick(lizard_name(MALE),lizard_name(FEMALE))
+								. += pick(random_lizard_name(MALE),random_lizard_name(FEMALE))
 							else
 								var/new_name = pick(pick(GLOB.first_names_male,GLOB.first_names_female))
 								new_name += " "

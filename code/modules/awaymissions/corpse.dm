@@ -199,9 +199,9 @@
 	else
 		H.facial_hair_style = random_facial_hair_style(H.gender)
 	if(skin_tone)
-		H.skin_tone = skin_tone
+		H.skin_tone = GLOB.skin_tones[H.dna.species.skin_tone_list]
 	else
-		H.skin_tone = random_skin_tone()
+		H.skin_tone = random_skin_tone(H.dna.species.skin_tone_list)
 	H.update_hair()
 	H.update_body()
 	if(outfit)
@@ -220,7 +220,7 @@
 			// Using crew monitors to find corpses while creative makes finding certain ruins too easy.
 			var/obj/item/clothing/under/C = H.w_uniform
 			if(istype(C))
-				C.sensor_mode = NO_SENSORS
+				C.update_sensors(NO_SENSORS)
 
 	var/obj/item/card/id/W = H.wear_id
 	if(W)

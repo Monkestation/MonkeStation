@@ -189,6 +189,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NOSOFTCRIT		"nosoftcrit"
 #define TRAIT_NOSTAMCRIT		"nostamcrit"
 #define TRAIT_MINDSHIELD		"mindshield"
+#define TRAIT_FAKE_MINDSHIELD	"fakemindshield"
 #define TRAIT_DISSECTED			"dissected"
 #define TRAIT_SIXTHSENSE		"sixth_sense" //I can hear dead people
 #define TRAIT_FEARLESS			"fearless"
@@ -220,6 +221,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_XENO_IMMUNE		"xeno_immune" //prevents facehuggers implanting races that wouldn't be able to host an egg
 #define TRAIT_NECROPOLIS_INFECTED "necropolis-infection"
 #define TRAIT_BEEFRIEND 		"beefriend"
+#define TRAIT_MONKEYFRIEND 		"monkeyfriend"//monkestation edit: add simians
 #define TRAIT_MEDICAL_HUD		"med_hud"
 #define TRAIT_SECURITY_HUD		"sec_hud"
 #define TRAIT_MEDIBOTCOMINGTHROUGH "medbot" //Is a medbot healing you
@@ -233,6 +235,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NICE_SHOT			"nice_shot" //hnnnnnnnggggg..... you're pretty good....
 #define TRAIT_ALWAYS_STUBS      "always_stubs_toe" //you will always stub your toe on tables, even if you're wearing shoes
 #define TRAIT_NAIVE				"naive" //All dead people will appear as sleeping.
+#define TRAIT_DROPS_ITEMS_ON_DEATH "drops_items_on_death" //used for battle royale
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -284,6 +287,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_UNSTABLE_ASS		"unstable_ass"
 #define TRAIT_STABLE_ASS		"stable_ass"
 #define TRAIT_DUMMY_THICK		"dummy_thick"
+#define TRAIT_KLEPTOMANIAC 		"kleptomaniac"
 //MonkeStation Edit End
 
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
@@ -310,6 +314,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define ABSTRACT_ITEM_TRAIT "abstract-item"
 #define STATUS_EFFECT_TRAIT "status-effect"
 #define CLOTHING_TRAIT "clothing"
+#define CLOTHING_FEET_TRAIT "feet"
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
 #define GLASSES_TRAIT "glasses"
@@ -320,7 +325,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
-#define CHANGELING_HIVEMIND_MUTE "ling_mute"
 #define MAGIC_BLIND "magic_blind"
 #define HIGHLANDER "highlander"
 #define TRAIT_HULK "hulk"
@@ -372,6 +376,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STICKY_NODROP "sticky-nodrop" //sticky nodrop sounds like a bad soundcloud rapper's name
 // Monkestation Changes Start
 #define TRAIT_TRASH_EATER "trash_eater" //goat.dm symptom requirement
+#define TRAIT_VAULTING "vaulting" //simian trait
 // Monkestation Changes End
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
 
@@ -393,3 +398,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 /// Can use the nuclear device's UI, regardless of a lack of hands
 #define TRAIT_CAN_USE_NUKE "can_use_nuke"
+
+///Mob is being tracked on glob suit sensors list
+#define TRACKED_SENSORS_TRAIT "tracked_sensors"
+///Mob is tracked by suit sensors, and on glob suit sensors list
+#define TRAIT_SUIT_SENSORS "suit_sensors"
+///Mob is tracked by nanites, and on glob suit sensors list
+#define TRAIT_NANITE_SENSORS "nanite_sensors"
