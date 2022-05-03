@@ -130,22 +130,22 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return TRUE
 	return FALSE
 
-/datum/species/proc/random_name(gender, unique, lastname, attempts)
+/datum/species/proc/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_name(gender)
 
+	var/randname
 	if(gender == MALE)
-		. = pick(GLOB.first_names_male)
+		randname = pick(GLOB.first_names_male)
 	else
-		. = pick(GLOB.first_names_female)
+		randname = pick(GLOB.first_names_female)
 
 	if(lastname)
-		. += " [lastname]"
+		randname += " [lastname]"
 	else
-		. += " [pick(GLOB.last_names)]"
+		randname += " [pick(GLOB.last_names)]"
 
-	if(unique && attempts < 10)
-		. = .(gender, TRUE, lastname, ++attempts)
-
-
+	return randname
 
 //Called when cloning, copies some vars that should be kept
 /datum/species/proc/copy_properties_from(datum/species/old_species)

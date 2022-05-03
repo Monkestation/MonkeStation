@@ -18,9 +18,6 @@
 	. = ..()
 	add_overlay("[icon_state]_toy")
 
-/obj/item/gun/ballistic/automatic/toy/before_firing()
-	return
-
 /obj/item/gun/ballistic/automatic/toy/unrestricted
 	pin = /obj/item/firing_pin
 

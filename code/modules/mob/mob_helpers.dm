@@ -283,10 +283,11 @@
 /proc/findname(msg)
 	if(!istext(msg))
 		msg = "[msg]"
-	for(var/mob/M as anything in GLOB.mob_list)
-		if(lowertext(M.real_name) == lowertext(msg))
+	for(var/i in GLOB.mob_list)
+		var/mob/M = i
+		if(M.real_name == msg)
 			return M
-	return FALSE
+	return 0
 
 ///Find the first name of a mob from the real name with regex
 /mob/proc/first_name()

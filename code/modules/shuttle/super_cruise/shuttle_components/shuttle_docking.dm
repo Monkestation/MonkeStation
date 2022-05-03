@@ -73,9 +73,8 @@
 /obj/machinery/computer/shuttle_flight/proc/give_eye_control(mob/user)
 	if(!isliving(user))
 		return
-	if(eyeobj)
-		qdel(eyeobj) //Custom shuttles can be modified, this needs to be updated to catch for that.
-	CreateEye()
+	if(!eyeobj)
+		CreateEye()
 	GrantActions(user)
 	current_user = user
 	eyeobj.eye_user = user

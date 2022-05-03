@@ -36,20 +36,20 @@
 	var/list/possible_colors = list("red", "blue", "green", "purple")
 
 /obj/item/dualsaber/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
 		switch(saber_color)
 			if("red")
-				set_light_color(LIGHT_COLOR_RED)
+				light_color = LIGHT_COLOR_RED
 			if("green")
-				set_light_color(LIGHT_COLOR_GREEN)
+				light_color = LIGHT_COLOR_GREEN
 			if("blue")
-				set_light_color(LIGHT_COLOR_CYAN)
+				light_color = LIGHT_COLOR_LIGHT_CYAN
 			if("purple")
-				set_light_color(LIGHT_COLOR_LAVENDER)
-	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+				light_color = LIGHT_COLOR_LAVENDER
 
 /obj/item/dualsaber/Destroy()
 	STOP_PROCESSING(SSobj, src)

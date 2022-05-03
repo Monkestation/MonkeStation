@@ -157,7 +157,6 @@
 	exp_light = 0
 	exp_flash = 0
 	exp_fire= 4
-	magic = FALSE
 
 /datum/mutation/human/void
 	name = "Void Magnet"
@@ -309,7 +308,7 @@
 		icon_state = icon_right
 
 /obj/item/melee/touch_attack/acidooze/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity || !isoozeling(user))
+	if(!isoozeling(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(!target || user.incapacitated())

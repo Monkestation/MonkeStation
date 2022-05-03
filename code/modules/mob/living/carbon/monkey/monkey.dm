@@ -160,7 +160,7 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 			threatcount += 4 //trigger look_for_perp() since they're nonhuman and very likely hostile
 
 	//mindshield implants imply trustworthyness
-	if(has_mindshield_hud_icon())
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	return threatcount
@@ -249,8 +249,7 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 /obj/item/organ/brain/tumor/Remove(mob/living/carbon/C, special, no_id_transfer)
 	. = ..()
 	//Removing it deletes it
-	if(!QDELETED(src))
-		qdel(src)
+	qdel(src)
 
 /mob/living/carbon/monkey/tumor/handle_mutations_and_radiation()
 	return

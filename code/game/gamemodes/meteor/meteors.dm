@@ -163,8 +163,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	if(istype(loc, /obj/effect/falling_meteor))
 		var/obj/effect/falling_meteor/holder = loc
 		holder.contained_meteor = null
-		if(!QDELETED(holder))
-			qdel(holder)
+		qdel(holder)
 	. = ..()
 
 /obj/effect/meteor/Initialize(mapload, target)
