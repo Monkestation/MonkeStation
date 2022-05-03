@@ -4,7 +4,7 @@
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
 #define CONSTRUCTION_NOCIRCUIT 4 //Circuit board removed, can safely weld apart
 
-#define RECLOSE_DELAY 5 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum.
+#define RECLOSE_DELAY 3 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum.
 #define FIRE_ALARM 2
 /obj/machinery/door/firedoor
 	name = "firelock"
@@ -29,7 +29,8 @@
 	open_speed = 2
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 	processing_flags = START_PROCESSING_MANUALLY
-	COOLDOWN_DECLARE(detect_cooldown) //Cooldown to stop firelocks from closing instantly
+	///Cooldown to stop airlocks from instantly closing when opened
+	COOLDOWN_DECLARE(detect_cooldown)
 	var/emergency_close_timer = 0
 	var/nextstate = null
 	var/boltslocked = TRUE
