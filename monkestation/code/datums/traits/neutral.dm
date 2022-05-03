@@ -37,6 +37,6 @@
 /datum/quirk/gigantism/post_add()
 	. = ..()
 	if(ishuman(quirk_holder))
-		var/mob/living/carbon/human/fishingminigame = quirk_holder
-		if(fishingminigame.dna)
-			fishingminigame.dna.add_mutation(GIGANTISM)
+		var/mob/living/carbon/human/gojira = quirk_holder
+		if(gojira.dna)
+			gojira.dna.add_mutation(GIGANTISM)
