@@ -27,3 +27,13 @@
 	SIGNAL_HANDLER
 	if(prob(33))
 		playsound(quirk_holder, "monkestation/sound/misc/clap_short.ogg", 70, TRUE, 5, ignore_walls = TRUE)
+
+/datum/quirk/gigantism
+	name = "Gigantism"
+	desc = "You're huge! You start the round with an immutable gigantism mutation. Does not affect species without DNA."
+	value = 4
+
+/datum/quirk/gigantism/post_add()
+	. = ..()
+	if(quirk_holder.has_dna) // Sanity check in case someone tries to be cheeky
+		H.dna.add_mutation(GIGANTISM, class = MUT_OTHER)
