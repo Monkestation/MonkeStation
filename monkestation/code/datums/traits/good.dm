@@ -35,5 +35,7 @@
 
 /datum/quirk/gigantism/post_add()
 	. = ..()
-	if(quirk_holder.has_dna) // Sanity check in case someone tries to be cheeky
-		H.dna.add_mutation(GIGANTISM, class = MUT_OTHER)
+	if(ishuman(quirk_holder))
+		var/mob/living/carbon/human/fishingminigame = quirk_holder
+		if(fishingminigame.dna)
+			fishingminigame.dna.add_mutation(GIGANTISM, class = MUT_OTHER)
