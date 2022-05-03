@@ -4,7 +4,7 @@
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
 #define CONSTRUCTION_NOCIRCUIT 4 //Circuit board removed, can safely weld apart
 
-#define RECLOSE_DELAY 3 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum.
+#define RECLOSE_DELAY 3 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum. MONKESTATION EDIT 5 > 3
 #define FIRE_ALARM 2
 /obj/machinery/door/firedoor
 	name = "firelock"
@@ -30,7 +30,7 @@
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 	processing_flags = START_PROCESSING_MANUALLY
 	///Cooldown to stop airlocks from instantly closing when opened
-	COOLDOWN_DECLARE(detect_cooldown)
+	COOLDOWN_DECLARE(detect_cooldown) //MONKESTATION EDIT ADDITION
 	var/emergency_close_timer = 0
 	var/nextstate = null
 	var/boltslocked = TRUE
@@ -40,7 +40,7 @@
 
 /obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
-	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY)
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -284,12 +284,12 @@
 	. = ..()
 	if(.)
 		STOP_PROCESSING(SSmachines, src)
-	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY)
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	latetoggle()
 
 
 /obj/machinery/door/firedoor/close()
-	if(!COOLDOWN_FINISHED(src, detect_cooldown))
+	if(!COOLDOWN_FINISHED(src, detect_cooldown)) //MONKESTATION EDIT ADDITION
 		return
 	if(HAS_TRAIT(loc, TRAIT_FIREDOOR_STOP))
 		return
