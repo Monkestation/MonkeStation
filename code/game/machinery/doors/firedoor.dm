@@ -96,6 +96,22 @@
 	. = ..()
 	if(.)
 		return
+	if (!welded && !operating)
+		if (stat & NOPOWER)
+			user.visible_message("[user] tries to open \the [src] manually.",
+						 "You operate the manual lever on \the [src].")
+			if (!do_after(user, 30, TRUE, src))
+				return FALSE
+		else if (density && !allow_hand_open(user))
+			return FALSE
+
+		add_fingerprint(user)
+		if(density)
+			emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
+			open()
+		else
+			close()
+		return TRUE
 
 	if(operating || !density)
 		return
