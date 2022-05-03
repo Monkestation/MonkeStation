@@ -3,7 +3,7 @@
 /// Rewarded when you earn an achievement
 #define METACOIN_ACHIEVEMENT_REWARD      200
 /// Rewarded when you complete a crew objective
-#define METACOIN_CO_REWARD				500
+#define METACOIN_CO_REWARD				200
 /// Rewarded when you escape on the shuttle
 #define METACOIN_ESCAPE_REWARD           200
 /// Rewarded when you survive the round
