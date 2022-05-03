@@ -141,23 +141,9 @@
 			. = .(gender, ++attempts)
 
 
-GLOBAL_LIST_INIT(skin_tones, sortList(list(
-	"albino",
-	"caucasian1",
-	"caucasian2",
-	"caucasian3",
-	"latino",
-	"mediterranean",
-	"asian1",
-	"asian2",
-	"arab",
-	"indian",
-	"african1",
-	"african2"
-	)))
-=======
 /proc/random_skin_tone(skin_tone_list)
 	return pick(GLOB.skin_tones[skin_tone_list])
+
 GLOBAL_LIST_INIT(skin_tones, list(
 		"human" = sortList(list(
 			"albino" = "fff4e6",
@@ -183,9 +169,9 @@ GLOBAL_LIST_INIT(skin_tones, list(
 			"Cream" = "f4e2d5"
 		))
 		))
->>>>>>> 11c99a65f2e (Upstream 04_30_22 (#306))
 
 GLOBAL_LIST_EMPTY(species_list)
+
 /proc/age2agedescription(age)
 	switch(age)
 		if(0 to 1)
