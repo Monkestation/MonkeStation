@@ -63,15 +63,3 @@
 /datum/quirk/kleptomaniac/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.cure_trauma_type(/datum/brain_trauma/mild/kleptomania, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/gigantism
-	name = "Gigantism"
-	desc = "You're huge! You start the round with an immutable gigantism mutation. Even works on species without DNA!"
-	value = -4
-
-/datum/quirk/gigantism/post_add()
-	. = ..()
-	if(ishuman(quirk_holder))
-		var/mob/living/carbon/human/fishingminigame = quirk_holder
-		if(fishingminigame.dna)
-			fishingminigame.dna.add_mutation(GIGANTISM)
