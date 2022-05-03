@@ -25,8 +25,6 @@
 /// from base of /obj/item/attack(): (mob/M, mob/user)
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"
 	#define COMPONENT_ITEM_NO_ATTACK 1
-#define COMSIG_MOB_EQUIPPED_ITEM "mob_equipped_item"			//! from base of /item/equipped(): (/mob/user, /obj/item, slot)
-#define COMSIG_MOB_DROPPED_ITEM "mob_dropped_item"				//! from base of /item/dropped(): (/mob/user, /obj/item, loc)
 /// from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
 /// from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
@@ -48,12 +46,12 @@
 	#define COMPONENT_UPPERCASE_SPEECH 1
 	/// used to access COMSIG_MOB_SAY argslist
 	#define SPEECH_MESSAGE 1
-	#define SPEECH_BUBBLE_TYPE 2
+	/// #define SPEECH_BUBBLE_TYPE 2
 	#define SPEECH_SPANS 3
-	#define SPEECH_SANITIZE 4
+	/* #define SPEECH_SANITIZE 4
 	#define SPEECH_LANGUAGE 5
 	#define SPEECH_IGNORE_SPAM 6
-	#define SPEECH_FORCED 7
+	#define SPEECH_FORCED 7 */
 /// from /mob/living/emote(): ()
 #define COMSIG_MOB_EMOTE "mob_emote"
 ///from base of mob/swap_hand()

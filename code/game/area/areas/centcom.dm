@@ -104,11 +104,11 @@
 
 /area/tdome/tdomeadmin
 	name = "Thunderdome (Admin.)"
-	icon_state = "thunder_admin"
+	icon_state = "purple"
 
 /area/tdome/tdomeobserve
 	name = "Thunderdome (Observer.)"
-	icon_state = "thunder_observe"
+	icon_state = "purple"
 
 
 //ENEMY

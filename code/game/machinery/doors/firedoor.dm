@@ -87,10 +87,10 @@
 
 /obj/machinery/door/firedoor/power_change()
 	if(powered(power_channel))
-		machine_stat &= ~NOPOWER
+		stat &= ~NOPOWER
 		INVOKE_ASYNC(src, .proc/latetoggle)
 	else
-		machine_stat |= NOPOWER
+		stat |= NOPOWER
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
@@ -148,7 +148,7 @@
 	return ..()
 
 /obj/machinery/door/firedoor/try_to_activate_door(obj/item/I, mob/user)
-	if(!density || welded)
+	if(!density)
 		return
 
 	if(isidcard(I))
@@ -197,9 +197,9 @@
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
 		return
-	
+
 	if(density)
-		if(!(machine_stat & NOPOWER))
+		if(!(stat & NOPOWER))
 			LAZYADD(access_log, "MOTOR_ERR:|MOTOR CONTROLLER REPORTED BACKDRIVE|T_OFFSET:[DisplayTimeText(world.time - SSticker.round_start_time)]")
 			if(length(access_log) > 20) //Unless this is getting spammed this shouldn't happen.
 				access_log.Remove(access_log[1])
@@ -235,7 +235,7 @@
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(welded || operating || machine_stat & NOPOWER)
+	if(welded || operating || stat & NOPOWER)
 		return TRUE
 	if(density)
 		open()
@@ -371,7 +371,7 @@
 
 
 /obj/machinery/door/firedoor/proc/latetoggle()
-	if(operating || machine_stat & NOPOWER || !nextstate)
+	if(operating || stat & NOPOWER || !nextstate)
 		return
 	switch(nextstate)
 		if(FIREDOOR_OPEN)

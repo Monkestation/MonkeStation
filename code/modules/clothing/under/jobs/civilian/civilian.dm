@@ -6,7 +6,6 @@
 	icon_state = "barman"
 	item_state = "bar_suit"
 	alt_covers_chest = TRUE
-	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/civilian/bartender/skirt
 	name = "bartender's skirt"

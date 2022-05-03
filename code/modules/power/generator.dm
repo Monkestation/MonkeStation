@@ -32,7 +32,7 @@
 
 /obj/machinery/power/generator/update_icon()
 
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		cut_overlays()
 	else
 		cut_overlays()

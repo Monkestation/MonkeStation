@@ -138,7 +138,7 @@
 												  took,orig_dev_range,orig_heavy_range,orig_light_range)
 	SIGNAL_HANDLER
 
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return FALSE
 	var/turf/zone = get_turf(src)
 	if(zone.get_virtual_z_level() != epicenter.get_virtual_z_level())
@@ -186,15 +186,15 @@
 	return TRUE
 
 /obj/machinery/doppler_array/power_change()
-	if(machine_stat & BROKEN)
+	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else
 		if(powered() && anchored)
 			icon_state = initial(icon_state)
-			machine_stat &= ~NOPOWER
+			stat &= ~NOPOWER
 		else
 			icon_state = "[initial(icon_state)]-off"
-			machine_stat |= NOPOWER
+			stat |= NOPOWER
 
 //Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
 /obj/machinery/doppler_array/integrated

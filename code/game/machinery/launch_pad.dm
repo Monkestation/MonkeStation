@@ -84,7 +84,7 @@
 	ghost.forceMove(target)
 
 /obj/machinery/launchpad/proc/isAvailable()
-	if(machine_stat & NOPOWER)
+	if(stat & NOPOWER)
 		return FALSE
 	if(panel_open)
 		return FALSE
@@ -235,9 +235,7 @@
     src.briefcase = briefcase
 
 /obj/machinery/launchpad/briefcase/Destroy()
-	if(!QDELETED(briefcase))
-		qdel(briefcase)
-	briefcase = null
+	QDEL_NULL(briefcase)
 	return ..()
 
 /obj/machinery/launchpad/briefcase/isAvailable()

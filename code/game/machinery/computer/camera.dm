@@ -275,7 +275,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(machine_stat & BROKEN)
+	if(stat & BROKEN)
 		icon_state += "b"
 	return
 

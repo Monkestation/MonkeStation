@@ -58,9 +58,9 @@
 		icon_state = "inje_on"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/power_change()
-	var/old_stat = machine_stat
+	var/old_stat = stat
 	..()
-	if(old_stat != machine_stat)
+	if(old_stat != stat)
 		update_icon()
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/process_atmos()

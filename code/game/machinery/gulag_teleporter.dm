@@ -71,13 +71,13 @@ The console is located at computer/gulag_teleporter.dm
 /obj/machinery/gulag_teleporter/update_icon()
 	icon_state = initial(icon_state) + (state_open ? "_open" : "")
 	//no power or maintenance
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		icon_state += "_unpowered"
-		if((machine_stat & MAINT) || panel_open)
+		if((stat & MAINT) || panel_open)
 			icon_state += "_maintenance"
 		return
 
-	if((machine_stat & MAINT) || panel_open)
+	if((stat & MAINT) || panel_open)
 		icon_state += "_maintenance"
 		return
 

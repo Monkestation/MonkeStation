@@ -9,7 +9,7 @@
 	H.facial_hair_style = "Shaved"
 	H.facial_hair_color = "000"
 	H.hair_color = "000"
-	if(SKINTONES in H.dna.species.species_traits)
+	if(H.dna.species.use_skintones)
 		H.skin_tone = "albino"
 	else if(MUTCOLORS in H.dna.species.species_traits)
 		H.dna.features["mcolor"] = "fff"

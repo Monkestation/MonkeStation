@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return
 
 	user.set_machine(src)

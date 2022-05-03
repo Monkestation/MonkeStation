@@ -50,7 +50,5 @@
 
 	if(visualsOnly)
 		return
-	var/complex_tongue = TRUE//monkestation edit: add simians
-	if(issimian(H))
-		complex_tongue = FALSE
-	H.grant_all_languages(TRUE, complex_tongue, TRUE, LANGUAGE_CURATOR)
+
+	H.grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_CURATOR)

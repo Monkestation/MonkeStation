@@ -545,12 +545,15 @@
 
 /obj/machinery/computer/med_data/emp_act(severity)
 	. = ..()
-	if(!(machine_stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
+	if(!(stat & (BROKEN|NOPOWER)) && !(. & EMP_PROTECT_SELF))
 		for(var/datum/data/record/R in GLOB.data_core.medical)
 			if(prob(10/severity))
 				switch(rand(1,6))
 					if(1)
-						R.fields["name"] = random_unique_name(R.fields["sex"],1)
+						if(prob(10))
+							R.fields["name"] = random_unique_lizard_name(R.fields["sex"],1)
+						else
+							R.fields["name"] = random_unique_name(R.fields["sex"],1)
 					if(2)
 						R.fields["sex"]	= pick("Male", "Female")
 					if(3)

@@ -5,7 +5,6 @@
 	item_state = "b_suit"
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/captain/skirt
 	name = "captain's jumpskirt"

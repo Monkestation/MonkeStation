@@ -124,9 +124,9 @@ Possible to do for anyone motivated enough:
 
 /obj/machinery/holopad/power_change()
 	if (powered())
-		machine_stat &= ~NOPOWER
+		stat &= ~NOPOWER
 	else
-		machine_stat |= NOPOWER
+		stat |= NOPOWER
 		if(replay_mode)
 			replay_stop()
 		if(record_mode)

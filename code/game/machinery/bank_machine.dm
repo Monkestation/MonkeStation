@@ -41,7 +41,7 @@
 /obj/machinery/computer/bank_machine/process(delta_time)
 	..()
 	if(siphoning)
-		if (machine_stat & (BROKEN|NOPOWER))
+		if (stat & (BROKEN|NOPOWER))
 			say("Insufficient power. Halting siphon.")
 			end_syphon()
 			ui_update()

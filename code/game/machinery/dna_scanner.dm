@@ -42,11 +42,11 @@
 /obj/machinery/dna_scannernew/update_icon()
 	cut_overlays()
 
-	if((machine_stat & MAINT) || panel_open)
+	if((stat & MAINT) || panel_open)
 		add_overlay("maintenance")
 
 	//no power or maintenance
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		icon_state = initial(icon_state)+ (state_open ? "_open" : "") + "_unpowered"
 		return
 	else if(locked)
@@ -170,7 +170,7 @@
 			target.domutcheck()
 
 /obj/machinery/dna_scannernew/proc/shock(mob/user, prb)
-	if(machine_stat & (BROKEN|NOPOWER))		// unpowered, no shock
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
 		return FALSE
 	if(!prob(prb))
 		return FALSE

@@ -192,7 +192,7 @@
 /obj/machinery/biogenerator/proc/activate(mob/user)
 	if(user.stat != CONSCIOUS)
 		return
-	if(machine_stat != NONE)
+	if(stat != NONE)
 		return
 	if(processing)
 		to_chat(user, "<span class='warning'>The biogenerator is in the process of working.</span>")
@@ -283,7 +283,7 @@
 	ui_update()
 
 /obj/machinery/biogenerator/ui_status(mob/user)
-	if(machine_stat & BROKEN || panel_open)
+	if(stat & BROKEN || panel_open)
 		return UI_CLOSE
 	return ..()
 

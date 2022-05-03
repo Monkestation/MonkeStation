@@ -82,7 +82,7 @@
 
 /obj/machinery/chem_master/update_icon()
 	cut_overlays()
-	if (machine_stat & BROKEN)
+	if (stat & BROKEN)
 		add_overlay("waitlight")
 	if(beaker)
 		icon_state = "mixer1"

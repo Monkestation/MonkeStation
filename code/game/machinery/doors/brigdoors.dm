@@ -66,7 +66,7 @@
 				closets += WEAKREF(C)
 
 	if(!length(doors) && !length(flashers) && length(closets))
-		machine_stat |= BROKEN
+		stat |= BROKEN
 	update_icon()
 
 
@@ -74,7 +74,7 @@
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
 /obj/machinery/door_timer/process()
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return
 
 	if(timing)
@@ -90,7 +90,7 @@
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
 /obj/machinery/door_timer/proc/timer_start()
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return 0
 
 	activation_time = REALTIMEOFDAY
@@ -121,7 +121,7 @@
 
 /obj/machinery/door_timer/proc/timer_end(forced = FALSE)
 
-	if(machine_stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER|BROKEN))
 		return 0
 
 	if(!forced)
@@ -188,11 +188,11 @@
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
 /obj/machinery/door_timer/update_icon()
-	if(machine_stat & (NOPOWER))
+	if(stat & (NOPOWER))
 		icon_state = "frame"
 		return
 
-	if(machine_stat & (BROKEN))
+	if(stat & (BROKEN))
 		set_picture("ai_bsod")
 		return
 

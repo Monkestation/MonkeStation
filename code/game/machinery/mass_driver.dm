@@ -23,7 +23,7 @@
 	. = ..()
 
 /obj/machinery/mass_driver/proc/drive(amount)
-	if(machine_stat & (BROKEN|NOPOWER) || panel_open)
+	if(stat & (BROKEN|NOPOWER) || panel_open)
 		return
 	use_power(power_per_obj)
 	var/O_limit
@@ -68,6 +68,6 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN|NOPOWER))
 		return
 	drive()

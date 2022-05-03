@@ -28,8 +28,6 @@
 
 /datum/computer_file/program/supermatter_monitor/run_program(mob/living/user)
 	. = ..(user)
-	if(!(active in GLOB.machines))
-		active = null
 	refresh()
 
 /datum/computer_file/program/supermatter_monitor/kill_program(forced = FALSE)
@@ -58,7 +56,7 @@
 	for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
 		. = max(., S.get_status())
 
-/datum/computer_file/program/supermatter_monitor/ui_data(mob/user)
+/datum/computer_file/program/supermatter_monitor/ui_data()
 	var/list/data = get_header_data()
 
 	if(istype(active))
@@ -72,9 +70,28 @@
 			active = null
 			return
 
-		data += active.ui_data()
-		data["singlecrystal"] = FALSE
+		data["active"] = TRUE
+		data["SM_integrity"] = active.get_integrity()
+		data["SM_power"] = active.power
+		data["SM_ambienttemp"] = air.return_temperature()
+		data["SM_ambientpressure"] = air.return_pressure()
+		//data["SM_EPR"] = round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
+		var/list/gasdata = list()
 
+
+		if(air.total_moles())
+			for(var/gasid in air.get_gases())
+				gasdata.Add(list(list(
+				"name"= GLOB.gas_data.names[gasid],
+				"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
+
+		else
+			for(var/gasid in air.get_gases())
+				gasdata.Add(list(list(
+					"name"= GLOB.gas_data.names[gasid],
+					"amount" = 0)))
+
+		data["gases"] = gasdata
 	else
 		var/list/SMS = list()
 		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
@@ -82,7 +99,7 @@
 			if(A)
 				SMS.Add(list(list(
 				"area_name" = A.name,
-				"integrity" = S.get_integrity_percent(),
+				"integrity" = S.get_integrity(),
 				"uid" = S.uid
 				)))
 
@@ -92,9 +109,8 @@
 	return data
 
 /datum/computer_file/program/supermatter_monitor/ui_act(action, params)
-	. = ..()
-	if(.)
-		return
+	if(..())
+		return TRUE
 
 	switch(action)
 		if("PRG_clear")

@@ -12875,13 +12875,14 @@
 /area/library)
 "aJT" = (
 /obj/structure/table/wood,
+/obj/item/nullrod,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aJU" = (
 /obj/structure/table/wood,
 /obj/item/pen,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aJV" = (
@@ -13256,11 +13257,6 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/structure/table/wood/fancy,
-/obj/item/soulstone/anybody/chaplain,
-/obj/item/organ/heart,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/item/book/granter/spell/smoke/lesser,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "aLa" = (
@@ -22002,6 +21998,7 @@
 /obj/item/radio/headset/headset_sci{
 	pixel_x = -3
 	},
+/obj/machinery/ecto_sniffer,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bow" = (
@@ -44766,10 +44763,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"hYs" = (
-/obj/machinery/ecto_sniffer,
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
 "hZj" = (
 /obj/structure/disposalpipe/segment,
 /obj/item/cigbutt/roach,
@@ -102452,7 +102445,7 @@ aXq
 bds
 bfV
 bhx
-hYs
+biL
 biL
 cHO
 blG

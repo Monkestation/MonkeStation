@@ -35,7 +35,7 @@ BONUS
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(SKINTONES in H.dna.species.species_traits)
+		if(H.dna.species.use_skintones)
 			cachedcolor = H.skin_tone
 		else if(MUTCOLORS in H.dna.species.species_traits)
 			cachedcolor	= H.dna.features["mcolor"]
@@ -52,7 +52,7 @@ BONUS
 			return
 		switch(A.stage)
 			if(5)
-				if(SKINTONES in H.dna.species.species_traits)
+				if(H.dna.species.use_skintones)
 					H.skin_tone = "albino"
 				else if(MUTCOLORS in H.dna.species.species_traits)
 					H.dna.features["mcolor"] = "EEE" //pure white.
@@ -65,7 +65,7 @@ BONUS
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(SKINTONES in H.dna.species.species_traits)
+		if(H.dna.species.use_skintones)
 			H.skin_tone = cachedcolor
 		else if(MUTCOLORS in H.dna.species.species_traits)
 			H.dna.features["mcolor"] = cachedcolor
@@ -107,7 +107,7 @@ BONUS
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(SKINTONES in H.dna.species.species_traits)
+		if(H.dna.species.use_skintones)
 			cachedcolor = H.skin_tone
 		else if(MUTCOLORS in H.dna.species.species_traits)
 			cachedcolor	= H.dna.features["mcolor"]
@@ -124,7 +124,7 @@ BONUS
 			return
 		switch(A.stage)
 			if(5)
-				if(SKINTONES in H.dna.species.species_traits)
+				if(H.dna.species.use_skintones)
 					H.skin_tone = "african2"
 				else if(MUTCOLORS in H.dna.species.species_traits)
 					H.dna.features["mcolor"] = "000" //pure black.
@@ -137,7 +137,7 @@ BONUS
 	var/mob/living/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(SKINTONES in H.dna.species.species_traits)
+		if(H.dna.species.use_skintones)
 			H.skin_tone = cachedcolor
 		else if(MUTCOLORS in H.dna.species.species_traits)
 			H.dna.features["mcolor"] = cachedcolor

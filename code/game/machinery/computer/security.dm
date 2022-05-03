@@ -1021,7 +1021,7 @@ What a mess.*/
 /obj/machinery/computer/secure_data/emp_act(severity)
 	. = ..()
 
-	if(machine_stat & (BROKEN|NOPOWER) || . & EMP_PROTECT_SELF)
+	if(stat & (BROKEN|NOPOWER) || . & EMP_PROTECT_SELF)
 		return
 
 	for(var/datum/data/record/R in GLOB.data_core.security)
@@ -1029,7 +1029,7 @@ What a mess.*/
 			switch(rand(1,8))
 				if(1)
 					if(prob(10))
-						R.fields["name"] = "[pick(random_lizard_name(MALE),random_lizard_name(FEMALE))]"
+						R.fields["name"] = "[pick(lizard_name(MALE),lizard_name(FEMALE))]"
 					else
 						R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
 				if(2)
