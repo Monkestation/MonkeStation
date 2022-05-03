@@ -131,59 +131,15 @@
 		if(!findname(.))
 			break
 
-/proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(lizard_name(gender))
+/proc/random_lizard_name(gender, attempts)
+	if(gender == MALE)
+		. = "[pick(GLOB.lizard_names_male)]-[pick(GLOB.lizard_names_male)]"
+	else
+		. = "[pick(GLOB.lizard_names_female)]-[pick(GLOB.lizard_names_female)]"
+	if(attempts < 10)
+		if(findname(.))
+			. = .(gender, ++attempts)
 
-		if(!findname(.))
-			break
-
-/proc/random_unique_apid_name(gender, attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(apid_name(gender))
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_plasmaman_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(plasmaman_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_ipc_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(ipc_name())
-
-		if(!findname(.))
-			break
-
-
-/proc/random_unique_ethereal_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(ethereal_name())
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_moth_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
-
-		if(!findname(.))
-			break
-
-/proc/random_unique_ooze_name(attempts_to_find_unique_name=10)
-	for(var/i in 1 to attempts_to_find_unique_name)
-		. = capitalize(pick(GLOB.oozeling_first_names)) + " " + capitalize(pick(GLOB.oozeling_last_names))
-
-		if(!findname(.))
-			break
-
-
-/proc/random_skin_tone()
-	return pick(GLOB.skin_tones)
 
 GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"albino",
@@ -199,9 +155,37 @@ GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"african1",
 	"african2"
 	)))
+=======
+/proc/random_skin_tone(skin_tone_list)
+	return pick(GLOB.skin_tones[skin_tone_list])
+GLOBAL_LIST_INIT(skin_tones, list(
+		"human" = sortList(list(
+			"albino" = "fff4e6",
+			"caucasian1" = "ffe0d1",
+			"caucasian2" = "fcccb3",
+			"caucasian3" = "e8b59b",
+			"latino" = "d9ae96",
+			"mediterranean" = "c79b8b",
+			"asian1" = "ffdeb3",
+			"asian2" = "e3ba84",
+			"arab" = "e3ba84",
+			"indian"= "b87840",
+			"african1" = "754523",
+			"african2" = "471c18"
+		)),
+		"simian" = sortList(list(
+			"albino" = "ffffff",
+			"Chimp" = "ffb089",
+			"Grey" = "aeafb3",
+			"Snow" = "bfd0ca",
+			"Orange" = "ce7d54",
+			"Red" = "c47373",
+			"Cream" = "f4e2d5"
+		))
+		))
+>>>>>>> 11c99a65f2e (Upstream 04_30_22 (#306))
 
 GLOBAL_LIST_EMPTY(species_list)
-
 /proc/age2agedescription(age)
 	switch(age)
 		if(0 to 1)
