@@ -1,6 +1,7 @@
 /obj/item/reagent_containers/food/drinks/attack_self(mob/user)
 	if(!is_drainable())
 		open_drink(user)
+		return
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/proc/open_drink(mob/user, burstopen = FALSE)
@@ -8,6 +9,7 @@
 	playsound(src, "can_open", 50, 1)
 	spillable = TRUE
 	canopened = TRUE
+	possible_transfer_amounts = list(5,10,15,20,25,30,50)
 	if(!burstopen)
 		to_chat(user, "You open \the [src] with an audible pop.") //Ahhhhhhhh
 	else
@@ -35,6 +37,8 @@
 	if(canopened)
 		to_chat(H, "<span class='warning'>You carefully reseal the [src].")
 		canopened = FALSE
+		spillable = FALSE
+		possible_transfer_amounts = list()
 		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 		return ..()
 	else
