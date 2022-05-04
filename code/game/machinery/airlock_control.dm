@@ -2,7 +2,8 @@
 
 // This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
 /obj/machinery/door/airlock
-	var/id_tag
+	/// The current state of the airlock, used to construct the airlock overlays
+	var/airlock_state
 	var/frequency
 	var/datum/radio_frequency/radio_connection
 
@@ -16,10 +17,10 @@
 
 	switch(signal.data["command"])
 		if("open")
-			open(1)
+			open(TRUE)
 
 		if("close")
-			close(1)
+			close(TRUE)
 
 		if("unlock")
 			locked = FALSE
@@ -34,14 +35,14 @@
 			update_icon()
 
 			sleep(2)
-			open(1)
+			open(TRUE)
 
 			locked = TRUE
 			update_icon()
 
 		if("secure_close")
 			locked = FALSE
-			close(1)
+			close(TRUE)
 
 			locked = TRUE
 			sleep(2)
@@ -92,7 +93,6 @@
 
 	power_channel = AREA_USAGE_ENVIRON
 
-	var/id_tag
 	var/master_tag
 	var/frequency = FREQ_AIRLOCK_CONTROL
 

@@ -78,6 +78,8 @@
 	var/obj/item/note //Any papers pinned to the airlock
 	var/detonated = FALSE
 	var/abandoned = FALSE
+	var/cutAiWire = FALSE
+	var/autoname = FALSE
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/airlockclose.ogg'
 	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
@@ -139,31 +141,38 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
+// Without this Arrivals Airlock animated overlay components break
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
 	if (cyclelinkeddir)
 		cyclelinkairlock()
+	if(closeOtherId)
+		update_other_id()
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
-			if(1 to 5)
+			if(1 to 9)
 				var/turf/here = get_turf(src)
-				for(var/turf/closed/T in spiral_range_turfs(2, here))
+				for(var/turf/closed/T in range(2, src))
 					here.PlaceOnTop(T.type)
 					qdel(src)
 					return
 				here.PlaceOnTop(/turf/closed/wall)
 				qdel(src)
 				return
-			if(5 to 6)
+			if(9 to 11)
 				lights = FALSE
 				locked = TRUE
-			if(6 to 8)
+			if(12 to 15)
 				locked = TRUE
-			if(8 to 10)
+			if(16 to 23)
 				welded = TRUE
-			if(10 to 30)
+			if(24 to 30)
 				panel_open = TRUE
+	if(cutAiWire)
+		wires.cut(WIRE_AI)
+	if(autoname)
+		name = get_area_name(src, TRUE)
 	update_icon()
 
 /obj/machinery/door/airlock/ComponentInitialize()
@@ -454,7 +463,7 @@
 /obj/machinery/door/airlock/hasPower()
 	if(protected_door)
 		return TRUE
-	return ((!secondsMainPowerLost || !secondsBackupPowerLost) && !(stat & NOPOWER))
+	return ((!secondsMainPowerLost || !secondsBackupPowerLost) && !(machine_stat & NOPOWER))
 
 /obj/machinery/door/airlock/requiresID()
 	return !(wires.is_cut(WIRE_IDSCAN) || aiDisabledIdScanner)
@@ -516,7 +525,7 @@
 // returns TRUE if shocked, FALSE otherwise
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if(!hasPower())		// unpowered, no shock
+	if(!istype(user) || !hasPower())	// unpowered, no shock
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, shockCooldown))
 		return FALSE	//Already shocked someone recently?
@@ -530,7 +539,7 @@
 	else
 		return FALSE
 
-/obj/machinery/door/airlock/update_icon(state=0, override=0)
+/obj/machinery/door/airlock/update_icon(state=0, override=FALSE)
 	cut_overlays() // Needed without it you get like 300 unres indicator overlayers over time
 	if(operating && !override)
 		return
@@ -705,7 +714,7 @@
 		if("closing")
 			update_icon(AIRLOCK_CLOSING)
 		if("deny")
-			if(!stat)
+			if(!machine_stat)
 				update_icon(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
 				sleep(6)
@@ -748,7 +757,7 @@
 		else
 			. += "It looks very robust."
 
-	if(issilicon(user) && !(stat & BROKEN))
+	if(issilicon(user) && !(machine_stat & BROKEN))
 		. += "<span class='notice'>Shift-click [src] to [ density ? "open" : "close"] it.</span>"
 		. += "<span class='notice'>Ctrl-click [src] to [ locked ? "raise" : "drop"] its bolts.</span>"
 		. += "<span class='notice'>Alt-click [src] to [ secondsElectrified ? "un-electrify" : "permanently electrify"] it.</span>"
@@ -1099,7 +1108,7 @@
 								"<span class='italics'>You hear welding.</span>")
 				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
 					obj_integrity = max_integrity
-					stat &= ~BROKEN
+					machine_stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
 					update_icon()
@@ -1375,7 +1384,7 @@
 
 /obj/machinery/door/airlock/hostile_lockdown(mob/origin)
 	// Must be powered and have working AI wire.
-	if(canAIControl(src) && !stat)
+	if(canAIControl(src) && !machine_stat)
 		locked = FALSE //For airlocks that were bolted open.
 		safe = FALSE //DOOR CRUSH
 		close()
@@ -1387,7 +1396,7 @@
 
 /obj/machinery/door/airlock/disable_lockdown()
 	// Must be powered and have working AI wire.
-	if(canAIControl(src) && !stat)
+	if(canAIControl(src) && !machine_stat)
 		unbolt()
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 		open()
@@ -1396,7 +1405,7 @@
 
 /obj/machinery/door/airlock/obj_break(damage_flag)
 	if(!(flags_1 & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		if(!panel_open)
 			panel_open = TRUE
 		wires.cut_all()

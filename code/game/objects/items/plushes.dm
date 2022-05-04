@@ -454,7 +454,7 @@
 		P.say(pick("Nooooo...", "Not die. To y-", "Die. Ratv-", "Sas tyen re-"))
 		playsound(src, 'sound/magic/clockwork/anima_fragment_attack.ogg', 50, TRUE, frequency = 2)
 		playsound(P, 'sound/magic/demon_dies.ogg', 50, TRUE, frequency = 2)
-		explosion(P, 0, 0, 1)
+		explosion(P, 0, 0, 1, holy = TRUE)
 		qdel(P)
 		clash_target = null
 	else
@@ -462,7 +462,7 @@
 		P.say(pick("Ha.", "Ra'sha fonn dest.", "You fool. To come here."))
 		playsound(src, 'sound/magic/clockwork/anima_fragment_death.ogg', 62, TRUE, frequency = 2)
 		playsound(P, 'sound/magic/demon_attack1.ogg', 50, TRUE, frequency = 2)
-		explosion(src, 0, 0, 1)
+		explosion(src, 0, 0, 1, holy = TRUE)
 		qdel(src)
 		P.clashing = FALSE
 
@@ -545,18 +545,24 @@
 	icon_state = "moffplush"
 	attack_verb = list("fluttered", "flapped")
 	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
-///Used to track how many people killed themselves with item/toy/plush/moth
-	var/suicide_count = 0
+	var/suicide_count = 0 //Used to track how many people killed themselves with item/toy/plush/moth
+	var/suicide_text = "stares deeply into the eyes of" //for modularizing creepy toys
+	var/creepy_plush_type = "mothperson" //for modularizing creepy toys
+	var/has_creepy_icons = FALSE //for updating icons
 
 /obj/item/toy/plush/moth/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] stares deeply into the eyes of [src]. The plush begins to consume [user.p_their()] soul!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message("<span class='suicide'>[user] [suicide_text] [src]! The plush begins to consume [user.p_their()] soul!  It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	suicide_count++
 	if(suicide_count < 3)
-		desc = "An unsettling mothperson plushy. After killing [suicide_count] [suicide_count == 1 ? "person" : "people"] it's not looking so huggable now..."
+		desc = "An unsettling [creepy_plush_type] plushy. After killing [suicide_count] [suicide_count == 1 ? "person" : "people"] it's not looking so huggable now..."
+		if(has_creepy_icons)
+			icon_state = "[initial(icon_state)]_1"
 	else
-		desc = "A creepy mothperson plushy. It has killed [suicide_count] people! I don't think I want to hug it any more!"
+		desc = "A creepy [creepy_plush_type] plushy. It has killed [suicide_count] people! I don't think I want to hug it any more!"
 		divine = TRUE
 		resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+		if(has_creepy_icons)
+			icon_state = "[initial(icon_state)]_2"
 	playsound(src, 'sound/hallucinations/wail.ogg', 50, TRUE, -1)
 	var/list/available_spots = get_adjacent_open_turfs(loc)
 	if(available_spots.len) //If the user is in a confined space the plushie will drop normally as the user dies, but in the open the plush is placed one tile away from the user to prevent squeak spam
