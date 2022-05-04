@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves/color/yellow/catgloves
-	desc = "95% of workplace accidents are caused by cats"
+	desc = "A pair of heavy rubber cosplay gloves, doing basically anything in these would probably be obscenely difficult, including taking them off. At least they might help against shocks, but is it ultimately worth how much people are going to make fun of you?"
 	name = "cat gloves"
 	icon = 'monkestation/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'monkestation/icons/mob/gloves.dmi'
