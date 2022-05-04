@@ -23,10 +23,10 @@
 			var/datum/effect_system/foam_spread/sodafizz = new
 			sodafizz.set_up(1, get_turf(src), reagents)
 			sodafizz.start()
-
-	for(var/mob/living/carbon/C in range(1, get_turf(src)))
-		to_chat(C, "<span class='warning'>You are splattered with [name]!</span>")
-		reagents.reaction(C, TOUCH)
+	if(times_shaken >= 3 && times_shaken < 5)
+		for(var/mob/living/carbon/C in range(1, get_turf(src)))
+			to_chat(C, "<span class='warning'>You are splattered with [name]!</span>")
+			reagents.reaction(C, TOUCH)
 
 	reagents.remove_any(times_shaken / 5 * reagents.total_volume)
 
