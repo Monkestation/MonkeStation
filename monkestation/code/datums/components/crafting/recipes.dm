@@ -46,7 +46,7 @@
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 5,
-				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/sheet/iron = 2,
 				/obj/item/surgicaldrill = 1)
 	tools = list(/obj/item/screwdriver)
 	time = 5 SECONDS
@@ -56,7 +56,7 @@
 	name = "Makeshift exosuit clamp"
 	result = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift
 	reqs = list(/obj/item/stack/cable_coil = 5,
-				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stack/sheet/iron = 2,
 				/obj/item/wirecutters = 1) //Don't ask, its just for the grabby grabby thing
 	tools = list(/obj/item/screwdriver)
 	time = 5 SECONDS
