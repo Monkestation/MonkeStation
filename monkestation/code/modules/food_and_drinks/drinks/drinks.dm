@@ -33,7 +33,9 @@
 	var/mob/living/carbon/human/H
 	H = user
 	if(canopened)
-		to_chat(H, "<span class='warning'>You can't shake up an already opened drink!")
+		to_chat(H, "<span class='warning'>You carefully reseal the [src].")
+		canopened = FALSE
+		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 		return ..()
 	else
 		can_shake = FALSE
@@ -79,3 +81,11 @@
 			open_drink(user, burstopen = TRUE)
 		else
 			open_drink(burstopen = TRUE)
+
+/obj/item/reagent_containers/food/drinks/examine(mob/user)
+	. = ..()
+	if(canopened)
+		. += "<span class='notice'>It has been opened.</span>"
+		. += "<span class='info'>Alt-click to reseal it.</span>"
+	else
+		. += "<span class='info'>Alt-click to shake it up!</span>"

@@ -8,7 +8,7 @@
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	reagent_flags = OPENCONTAINER
+	reagent_flags = NONE //MONKESTATION EDIT
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	possible_transfer_amounts = list(5,10,15,20,25,30,50)
 	volume = 50
@@ -21,6 +21,7 @@
 	var/can_burst = FALSE
 	var/canopened = FALSE
 	var/burst_chance = 0
+	spillable = FALSE
 
 /obj/item/reagent_containers/food/drinks/on_reagent_change(changetype)
 	. = ..()
@@ -101,7 +102,7 @@
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
-			to_chat(user, "<span class='warning'>[src]'s tab isn't open!</span>")
+			to_chat(user, "<span class='warning'>[src] isn't open!</span>") //MONKESTATION EDIT
 			return
 
 		if(!target.reagents.total_volume)
@@ -125,7 +126,13 @@
 /obj/item/reagent_containers/food/drinks/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(!.) //if the bottle wasn't caught
-		smash(hit_atom, throwingdatum?.thrower, TRUE)
+		if(isGlass)
+			smash(hit_atom, throwingdatum?.thrower, TRUE)
+		else
+			if(times_shaken < 5)
+				times_shaken++
+			else
+				handle_bursting()
 
 /obj/item/reagent_containers/food/drinks/proc/smash(atom/target, mob/thrower, ranged = FALSE)
 	if(!isGlass)
@@ -467,8 +474,8 @@
 	name = "soda can"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	reagent_flags = NONE
-	spillable = FALSE
+	//reagent_flags = NONE MONKESTATION EDIT
+	//spillable = FALSE MONKESTAION EDIT
 	isGlass = FALSE
 	custom_price = 10
 
