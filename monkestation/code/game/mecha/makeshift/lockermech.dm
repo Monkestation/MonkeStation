@@ -25,14 +25,6 @@
 			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]", LOG_MECHA)
 	return
 
-/obj/mecha/makeshift/go_out()
-	..()
-	update_icon()
-
-/obj/mecha/makeshift/moved_inside(mob/living/carbon/human/H)
-	..()
-	update_icon()
-
 
 /obj/mecha/makeshift/Exit(atom/movable/O)
 	if(O in cargo)
