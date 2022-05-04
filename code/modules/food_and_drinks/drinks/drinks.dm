@@ -15,6 +15,12 @@
 	resistance_flags = NONE
 	var/isGlass = TRUE //Whether the 'bottle' is made of glass or not so that milk cartons dont shatter when someone gets hit by it
 	var/beingChugged = FALSE //We don't want people downing 100u super fast with drinking glasses
+	//MONKESTATION EDITS START
+	var/times_shaken = 0
+	var/can_shake = TRUE
+	var/can_burst = FALSE
+	var/canopened = FALSE
+	var/burst_chance = 0
 
 /obj/item/reagent_containers/food/drinks/on_reagent_change(changetype)
 	. = ..()
@@ -471,7 +477,7 @@
 		H.visible_message("<span class='warning'>[H] is trying to take a big sip from [src]... The can is empty!</span>")
 		return SHAME
 	if(!is_drainable())
-		open_soda()
+		open_drink() //Monkestation edit
 		sleep(10)
 	H.visible_message("<span class='suicide'>[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!</span>")
 	playsound(H,'sound/items/drink.ogg', 80, 1)
@@ -506,6 +512,7 @@
 		qdel(src)
 		return
 
+/* MONKESTATION EDIT
 /obj/item/reagent_containers/food/drinks/soda_cans/proc/open_soda(mob/user)
 	to_chat(user, "You pull back the tab of \the [src] with a satisfying pop.") //Ahhhhhhhh
 	ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
@@ -516,6 +523,7 @@
 	if(!is_drainable())
 		open_soda(user)
 	return ..()
+*/
 
 /obj/item/reagent_containers/food/drinks/soda_cans/cola
 	name = "Space Cola"
