@@ -579,6 +579,7 @@
 /area/library)
 "dE" = (
 /obj/machinery/firealarm/directional/west,
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "dF" = (
@@ -676,10 +677,9 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "em" = (
-/obj/structure/window/reinforced/spawner/west,
-/obj/machinery/hydroponics/soil,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/obj/machinery/seed_extractor,
+/turf/open/floor/grass,
 /area/security/prison)
 "en" = (
 /obj/effect/turf_decal/trimline/blue/warning,
@@ -1014,10 +1014,9 @@
 /turf/open/openspace,
 /area/engine/atmos)
 "gl" = (
-/obj/structure/window/reinforced/spawner/west,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/biogenerator,
-/turf/open/floor/plasteel,
+/turf/open/floor/grass,
 /area/security/prison)
 "gn" = (
 /obj/structure/lattice/catwalk,
@@ -1119,9 +1118,12 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/fore)
 "gL" = (
-/obj/structure/closet/firecloset/full,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/obj/structure/window,
+/obj/structure/window/spawner/east,
+/obj/item/pickaxe,
+/obj/item/toy/figure/miner,
+/turf/open/floor/grass/fakebasalt,
+/area/engine/engine_smes)
 "gO" = (
 /obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/trimline/blue/corner,
@@ -1168,10 +1170,6 @@
 /obj/machinery/rnd/production/protolathe/department/science,
 /turf/open/floor/plasteel,
 /area/science/lab)
-"gV" = (
-/obj/structure/chair,
-/turf/open/floor/plasteel,
-/area/engine/storage)
 "gX" = (
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
@@ -1730,16 +1728,11 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/plating,
 /area/engine/atmos)
-"ko" = (
-/obj/structure/closet/radiation,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/engine/storage)
 "kp" = (
 /obj/machinery/hydroponics/soil,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shovel/spade,
-/turf/open/floor/plasteel,
+/turf/open/floor/grass,
 /area/security/prison)
 "kq" = (
 /obj/effect/turf_decal/delivery,
@@ -1840,10 +1833,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kM" = (
-/obj/machinery/hydroponics/soil,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/plasteel,
-/area/security/prison)
+/area/engine/engine_smes)
 "kO" = (
 /obj/machinery/door/airlock/maintenance,
 /turf/open/floor/plating,
@@ -2186,7 +2178,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/structure/tank_dispenser,
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "mL" = (
@@ -2799,10 +2790,6 @@
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/carpet,
 /area/maintenance/port/aft)
-"qt" = (
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
-/area/engine/storage)
 "qu" = (
 /obj/machinery/door/airlock/atmos,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -3175,7 +3162,6 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/engine/storage)
 "sH" = (
@@ -3499,10 +3485,6 @@
 	dir = 8
 	},
 /area/medical/morgue)
-"uL" = (
-/obj/item/toy/figure/miner,
-/turf/open/floor/fakepit,
-/area/maintenance/port/aft)
 "uN" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -3539,10 +3521,6 @@
 /obj/structure/ladder,
 /turf/open/floor/plating,
 /area/engine/atmos)
-"va" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "vc" = (
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -4264,13 +4242,11 @@
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
 "zi" = (
-/obj/machinery/suit_storage_unit/engine,
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/spawner/room/threexfive{
 	dir = 4
 	},
-/obj/machinery/airalarm/directional/west,
 /turf/open/floor/plating,
-/area/engine/engine_smes)
+/area/maintenance/port/aft)
 "zj" = (
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plating,
@@ -4391,9 +4367,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "zH" = (
-/obj/item/pickaxe,
-/turf/open/floor/grass/fakebasalt,
-/area/maintenance/port/aft)
+/obj/structure/tank_dispenser,
+/turf/open/floor/plating,
+/area/engine/engine_smes)
 "zI" = (
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/aft)
@@ -4432,7 +4408,8 @@
 /obj/item/cultivator{
 	pixel_x = 8
 	},
-/turf/open/floor/plasteel,
+/obj/item/plant_analyzer,
+/turf/open/floor/grass,
 /area/security/prison)
 "zU" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -4487,12 +4464,11 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "Ao" = (
-/obj/structure/frame/computer{
-	anchored = 1;
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/obj/structure/window/spawner/east,
+/obj/structure/window/spawner/north,
+/obj/structure/flora/rock,
+/turf/open/floor/grass/fakebasalt,
+/area/engine/engine_smes)
 "Ap" = (
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
@@ -4786,11 +4762,9 @@
 	},
 /area/science/research)
 "Cs" = (
-/obj/machinery/hydroponics/soil,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/plant_analyzer,
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
-/area/security/prison)
+/area/engine/storage)
 "Cv" = (
 /obj/machinery/firealarm/directional/east,
 /obj/effect/landmark/start/assistant,
@@ -5089,14 +5063,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"Er" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/ore_box,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "Et" = (
 /turf/open/floor/wood,
 /area/security/brig)
@@ -5343,11 +5309,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
-"FO" = (
-/obj/effect/mapping_helpers/airlock/abandoned,
-/obj/machinery/door/airlock/maintenance_hatch,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "FR" = (
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
@@ -5875,10 +5836,10 @@
 /turf/open/floor/plasteel,
 /area/science/research)
 "IT" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/seed_extractor,
-/turf/open/floor/plasteel,
-/area/security/prison)
+/obj/structure/window/spawner/east,
+/obj/structure/flora/rock/pile,
+/turf/open/floor/grass/fakebasalt,
+/area/engine/engine_smes)
 "IU" = (
 /turf/closed/wall,
 /area/engine/storage)
@@ -5929,9 +5890,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/openspace,
 /area/maintenance/central)
-"Jo" = (
-/turf/open/floor/fakepit,
-/area/maintenance/port/aft)
 "Jp" = (
 /obj/structure/table,
 /obj/item/stack/sheet/iron/fifty,
@@ -6265,7 +6223,7 @@
 /turf/closed/wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "Lc" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/engine/storage)
 "Lh" = (
@@ -6585,7 +6543,7 @@
 /turf/open/space/basic,
 /area/space)
 "Nc" = (
-/obj/structure/girder,
+/obj/effect/spawner/room/fivexfour,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "Nd" = (
@@ -7452,7 +7410,9 @@
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
 "RC" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/spawner/room/fivexthree{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "RE" = (
@@ -7722,7 +7682,6 @@
 /area/quartermaster/warehouse)
 "Tp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/box,
 /obj/machinery/power/deck_relay,
 /turf/open/floor/plating{
@@ -7907,9 +7866,10 @@
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "Up" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/obj/structure/window/spawner/east,
+/obj/item/toy/plush/bubbleplush,
+/turf/open/floor/grass/fakebasalt,
+/area/engine/engine_smes)
 "Ur" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -34117,7 +34077,7 @@ hr
 hr
 hr
 hr
-oF
+uG
 uG
 uG
 uG
@@ -34374,7 +34334,7 @@ XE
 hr
 hr
 hr
-oF
+uG
 SK
 nD
 rP
@@ -34631,7 +34591,7 @@ bV
 bV
 wW
 wW
-oF
+uG
 rb
 Kj
 Kj
@@ -35916,7 +35876,7 @@ Jc
 bV
 Cj
 lz
-ay
+uG
 ay
 ay
 ay
@@ -36173,16 +36133,16 @@ rg
 bV
 Cj
 Cj
-jx
+pk
+zO
+zi
+SF
+SF
+zO
 SF
 SF
 SF
-SF
-SF
-SF
-SF
-SF
-SF
+Nc
 ay
 gl
 zS
@@ -36430,27 +36390,27 @@ YB
 SV
 Cj
 Cj
+pp
+zO
+SF
+SF
+SF
 zO
 SF
 SF
 SF
 SF
-SF
-SF
-SF
-SF
-SF
 ay
-IT
-Cs
-kM
-kM
+ay
+ay
+ay
+ay
 ay
 SF
 SF
 SF
-SF
-SF
+zO
+RC
 SF
 SF
 SF
@@ -36687,26 +36647,26 @@ Cj
 Sd
 xm
 Cj
-zO
-zO
-FO
-zO
-FO
-zO
-zO
-zO
+Cj
+jx
+SF
+SF
+SF
+PX
+SF
+SF
 SF
 SF
 ay
-ay
-ay
-ay
-ay
-ay
+SF
 SF
 SF
 Nc
+PX
 SF
+SF
+SF
+PX
 SF
 SF
 SF
@@ -36945,30 +36905,30 @@ Sd
 Cj
 Cj
 zO
-Er
-va
-zO
-SF
-Rx
-SF
 zO
 SF
 SF
 SF
+zO
 SF
 SF
 SF
 SF
-jx
+PX
+SF
+SF
 SF
 SF
 zO
+SF
+SF
+SF
 zO
-zO
-zO
-zO
-Up
-gL
+SF
+SF
+SF
+SF
+SF
 zO
 ay
 ay
@@ -37204,14 +37164,9 @@ Cj
 zO
 Tp
 SF
-zO
-Ao
 SF
 SF
 zO
-RC
-SF
-SF
 SF
 SF
 SF
@@ -37219,10 +37174,15 @@ SF
 zO
 SF
 SF
+SF
+SF
 zO
-uL
-Jo
-zH
+jx
+ay
+ay
+ay
+ay
+ay
 ay
 Pc
 ay
@@ -37468,19 +37428,19 @@ ay
 ay
 ay
 ay
+zO
+SF
+SF
+SF
+SF
 ay
-ay
-ay
-ay
-ay
-ay
-jx
-ay
-ay
-ay
-ay
-ay
-ay
+FR
+Ao
+Up
+IT
+gL
+zH
+LW
 CV
 qd
 CV
@@ -37725,16 +37685,16 @@ Sr
 vG
 sG
 Lc
-JA
-nK
-nK
-ko
-ko
-kk
-FR
+ay
+SF
+SF
+SF
+SF
+ay
+kM
 PV
 sz
-zi
+Av
 Av
 mK
 LW
@@ -37981,13 +37941,13 @@ Bu
 Sr
 my
 YP
-Lc
-OF
-BQ
-BQ
-BQ
-BQ
-UF
+IU
+ay
+ay
+ay
+ay
+ay
+ay
 FR
 mS
 KO
@@ -38239,9 +38199,9 @@ uq
 BQ
 BQ
 IU
-gV
-th
-th
+JA
+nK
+nK
 BQ
 BQ
 Xd
@@ -38497,8 +38457,8 @@ BQ
 BQ
 FF
 BQ
-BQ
-BQ
+th
+th
 BQ
 BQ
 UF
@@ -39011,7 +38971,7 @@ BQ
 QG
 IU
 fL
-qt
+OF
 JL
 zu
 Wb
@@ -39259,7 +39219,7 @@ Cj
 Cj
 za
 jP
-BQ
+Cs
 dE
 BQ
 BQ
@@ -103261,11 +103221,11 @@ Sr
 SF
 Uw
 ay
-Ud
-Ud
-Ud
-Ud
-Ud
+Ap
+Ap
+Ap
+Ap
+Ap
 LW
 bx
 Pv
