@@ -64,4 +64,8 @@
 
 /obj/mecha/makeshift/Destroy()
 	new /obj/structure/closet(loc)
+	var/obj/O
+	for(O in cargo)
+		O.forceMove(loc)
+		cargo -= O
 	..()
