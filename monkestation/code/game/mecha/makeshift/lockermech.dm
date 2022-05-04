@@ -3,6 +3,7 @@
 	name = "Locker Mech"
 	icon = 'monkestation/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
+	base_icon_state = "lockermech"
 	max_integrity = 100 //its made of scraps
 	lights_power = 5
 	step_in = 4 //Same speed as a ripley, for now.
