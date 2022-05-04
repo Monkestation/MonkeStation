@@ -47,6 +47,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/disk/nuclear/fake/obvious = 1,
 		/obj/item/clothing/shoes/wheelys = 2,
 		/obj/item/clothing/shoes/kindleKicks = 2,
+		/obj/item/toy/plush/goatplushie = 2, //MONKESTATION EDIT
 		/obj/item/toy/plush/moth = 2,
 		/obj/item/toy/plush/rouny = 2,
 		/obj/item/storage/box/heretic_asshole = 1,
