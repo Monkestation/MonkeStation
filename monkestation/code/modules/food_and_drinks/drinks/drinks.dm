@@ -39,6 +39,7 @@
 		canopened = FALSE
 		spillable = FALSE
 		possible_transfer_amounts = list()
+		times_shaken = 0
 		DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
 		return ..()
 	else
