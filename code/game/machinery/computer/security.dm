@@ -21,7 +21,7 @@
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
 	light_color = LIGHT_COLOR_RED
-
+/*  //MONKESTATION EDIT
 /obj/machinery/computer/secure_data/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	AddComponent(/datum/component/usb_port, list(
@@ -196,7 +196,7 @@
 			message_admins("[successful_set] security entries have been set to [status_to_set] by [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
 		for(var/mob/living/carbon/human/human as anything in GLOB.carbon_list)
 			human.sec_hud_set_security_status()
-
+*/
 /obj/machinery/computer/secure_data/examine(mob/user)
 	. = ..()
 	if(scan)

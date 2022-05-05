@@ -1,3 +1,4 @@
+/*  //MONKESTATION EDIT
 SUBSYSTEM_DEF(circuit_component)
 	name = "Circuit Components"
 	wait = 0.1 SECONDS
@@ -32,3 +33,4 @@ SUBSYSTEM_DEF(circuit_component)
  */
 /datum/controller/subsystem/circuit_component/proc/add_callback(datum/callback/to_call)
 	callbacks_to_invoke += to_call
+*/

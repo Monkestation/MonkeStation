@@ -1166,10 +1166,12 @@
   * Must return  parent proc ..() in the end if overridden
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+/*  //MONKESTATION EDIT
 	var/signal_result
 	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I)
 	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
 		return TOOL_ACT_SIGNAL_BLOCKING
+*/
 	switch(tool_type)
 		if(TOOL_CROWBAR)
 			return crowbar_act(user, I)

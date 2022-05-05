@@ -3450,6 +3450,8 @@
 #include "code\modules\vending\toys.dm"
 #include "code\modules\vending\wardrobes.dm"
 #include "code\modules\vending\youtool.dm"
+/*  //MONKESTATION EDIT
+
 #include "code\modules\wiremod\component.dm"
 #include "code\modules\wiremod\component_printer.dm"
 #include "code\modules\wiremod\integrated_circuit.dm"
@@ -3514,6 +3516,7 @@
 #include "code\modules\wiremod\shell\scanner.dm"
 #include "code\modules\wiremod\shell\server.dm"
 #include "code\modules\wiremod\shell\shell_items.dm"
+*/
 #include "code\modules\zombie\items.dm"
 #include "code\modules\zombie\organs.dm"
 #include "interface\interface.dm"

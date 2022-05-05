@@ -1,3 +1,5 @@
+/*  //MONKESTATION EDIT
+
 /// Makes an atom a shell that is able to take in an attached circuit.
 /datum/component/shell
 	dupe_mode = COMPONENT_DUPE_UNIQUE
@@ -242,3 +244,4 @@
 
 	usb_cable.attached_circuit = attached_circuit
 	return COMSIG_USB_CABLE_CONNECTED_TO_CIRCUIT
+*/

@@ -1,7 +1,7 @@
 // Circuit signals. Format:
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
-
+/* //MONKESTATION EDIT - we goin back to monkeytown
 // Component signals
 /// From /datum/port/output/set_output: (output_value)
 #define COMSIG_PORT_SET_OUTPUT "port_set_output"
@@ -39,3 +39,4 @@
 	/// Cancels the attack chain, but without performing any other action.
 	#define COMSIG_CANCEL_USB_CABLE_ATTACK (1<<2)
 
+*/

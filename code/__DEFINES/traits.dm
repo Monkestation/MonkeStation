@@ -395,7 +395,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STATION_TRAIT_STRONG_SUPPLY_LINES "strong_supply_lines"
 
 /// Trait applied when the MMI component is added to an [/obj/item/integrated_circuit]
-#define TRAIT_COMPONENT_MMI "component_mmi"
+//#define TRAIT_COMPONENT_MMI "component_mmi" //MONKESTATION EDIT
 
 /// Can use the nuclear device's UI, regardless of a lack of hands
 #define TRAIT_CAN_USE_NUKE "can_use_nuke"

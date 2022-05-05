@@ -43,12 +43,13 @@
 		"smmon_5.gif" = 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" = 'icons/program_icons/smmon_6.gif',
 	)
+/*  //MONKESTATION EDIT
 
 /datum/asset/simple/circuit_assets
 	assets = list(
 		"grid_background.png" = 'icons/ui_icons/tgui/grid_background.png'
 	)
-
+*/
 /datum/asset/simple/radar_assets
 	assets = list(
 		"ntosradarbackground.png"	= 'icons/UI_Icons/tgui/ntosradar_background.png',

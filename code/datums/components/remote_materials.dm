@@ -155,7 +155,7 @@ handles linking back and forth.
 		return "[mat_container.total_amount] / [mat_container.max_amount == INFINITY ? "Unlimited" : mat_container.max_amount] ([silo ? "remote" : "local"])"
 	else
 		return "0 / 0"
-
+/*  //MONKESTATION EDIT
 /// Ejects the given material ref and logs it, or says out loud the problem.
 /datum/component/remote_materials/proc/eject_sheets(datum/material/material_ref, eject_amount)
 	var/atom/movable/movable_parent = parent
@@ -173,7 +173,7 @@ handles linking back and forth.
 	matlist[material_ref] = eject_amount
 	silo_log(parent, "ejected", -count, "sheets", matlist)
 	return count
-
+*/
 /datum/component/remote_materials/proc/set_silo(obj/machinery/ore_silo/new_silo)
 	if(silo)
 		UnregisterSignal(silo, COMSIG_MATERIAL_CONTAINER_CHANGED)

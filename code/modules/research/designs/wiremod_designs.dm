@@ -1,3 +1,5 @@
+/*  //MONKESTATION EDIT
+
 /datum/design/integrated_circuit
 	name = "Integrated Circuit"
 	desc = "The foundation of all circuits. All Circuitry go onto this."
@@ -401,3 +403,4 @@
 	build_path = /obj/item/assembly/modular
 	build_type = PROTOLATHE | COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
+*/

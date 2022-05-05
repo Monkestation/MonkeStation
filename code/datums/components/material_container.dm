@@ -360,7 +360,7 @@
 	if(!istype(mat))
 		mat = getmaterialref(mat)
 	return materials[mat]
-
+/*  //MONKESTATION EDIT
 /// List format is list(material_name = list(amount = ..., ref = ..., etc.))
 /datum/component/material_container/ui_data(mob/user)
 	var/list/data = list()
@@ -377,3 +377,4 @@
 		))
 
 	return data
+*/

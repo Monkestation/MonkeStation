@@ -81,6 +81,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	pipe_state = "dvalve"
 
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OPEN_SILICON
+/*  //MONKESTATION EDIT
 
 /obj/machinery/atmospherics/components/binary/valve/digital/Initialize(mapload)
 	. = ..()
@@ -143,7 +144,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		attached_valve.set_open(TRUE)
 	if(COMPONENT_TRIGGERED_BY(close, port) && attached_valve.on)
 		attached_valve.set_open(FALSE)
-
+*/
 
 /obj/machinery/atmospherics/components/binary/valve/digital/update_icon_nopipes(animation)
 	if(!is_operational())

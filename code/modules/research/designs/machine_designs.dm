@@ -650,7 +650,7 @@
 	build_path = /obj/item/circuitboard/machine/stasis
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
+/*  //MONKESTATION EDIT
 /datum/design/board/component_printer
 	name = "Machine Design (Component Printer)"
 	desc = "The circuit board for a component printer"
@@ -658,3 +658,4 @@
 	build_path = /obj/item/circuitboard/machine/component_printer
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+*/
