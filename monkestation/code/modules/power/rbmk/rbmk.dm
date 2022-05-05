@@ -521,6 +521,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	QDEL_NULL(soundloop)
 	//Default explosion was: explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
 	explosion(get_turf(src), 0, 2, 10, 15, TRUE, TRUE, 0, FALSE, 2)
+	radiation_pulse(get_turf(src),5 ,15)
 	empulse(get_turf(src), 25, 15)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
@@ -529,14 +530,14 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	explosion(get_turf(src), 0, 6, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 	meltdown() //Double kill.
 	relay('monkestation/sound/effects/rbmk/explode.ogg')
-	sleep(10)
-	SSweather.run_weather("nuclear fallout")
 	priority_announce("High levels of radiation detected. Maintenance is best shielded from radiation.", "Nuclear Blowout Alert", ANNOUNCER_RADIATION)
-	for(var/X in GLOB.landmarks_list)
-		if(istype(X, /obj/effect/landmark/nuclear_waste_spawner))
-			var/obj/effect/landmark/nuclear_waste_spawner/WS = X
-			if(is_station_level(WS.z)) //Begin the SLUDGING
-				WS.fire()
+	sleep(20)
+	SSweather.run_weather("nuclear fallout")
+	for(var/landmark in GLOB.landmarks_list)
+		if(istype(landmark, /obj/effect/landmark/nuclear_waste_spawner))
+			var/obj/effect/landmark/nuclear_waste_spawner/waste_spawner = landmark
+			if(is_station_level(waste_spawner.z)) //Begin the SLUDGING
+				waste_spawner.fire()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon()
 	icon_state = "reactor_off"
