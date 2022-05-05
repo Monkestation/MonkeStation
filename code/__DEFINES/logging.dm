@@ -15,7 +15,7 @@
 #define INVESTIGATE_EXONET			"exonet"
 #define INVESTIGATE_NANITES			"nanites"
 #define INVESTIGATE_PRESENTS		"presents"
-
+#define INVESTIGATE_CIRCUIT 		"circuit" //MONKESTATION EDIT
 // Logging types for log_message()
 #define LOG_ATTACK			(1 << 0)
 #define LOG_SAY				(1 << 1)
