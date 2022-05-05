@@ -49,24 +49,24 @@
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same. Goats never change."
 	squeak_override = list('sound/weapons/punch1.ogg'=1)
 	/// Whether or not this goat is currently taking in a monsterous doink
-	var/going_hard = FALSE
+	var/smoking_blunt = FALSE
 	/// Whether or not this goat has been flattened like a funny pancake
-	var/splat = FALSE
+	var/flattened = FALSE
 
 /obj/item/toy/plush/goatplushie/Initialize(mapload)
 	. = ..()
 	var/static/list/loc_connections = list(
-		COMSIG_TURF_INDUSTRIAL_LIFT_ENTER = .proc/splat,
+		COMSIG_TURF_INDUSTRIAL_LIFT_ENTER = .proc/flatten,
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/item/toy/plush/goatplushie/attackby(obj/item/clothing/mask/cigarette/rollie/fat_dart, mob/user, params)
 	if(!istype(fat_dart))
 		return ..()
-	if(splat)
+	if(flattened)
 		to_chat(user, "<span_class='notice'>[src] doesn't seem to be able to go hard right now.")
 		return
-	if(going_hard)
+	if(smoking_blunt)
 		to_chat(user, "<span_class='notice'>[src] is already going too hard!")
 		return
 	if(!fat_dart.lit)
@@ -74,29 +74,29 @@
 		return
 	to_chat(user, "<span_class='notice'>You put [fat_dart] into [src]'s mouth.")
 	qdel(fat_dart)
-	going_hard = TRUE
+	smoking_blunt = TRUE
 	update_icon(UPDATE_OVERLAYS)
 
-/obj/item/toy/plush/goatplushie/proc/splat(datum/source)
+/obj/item/toy/plush/goatplushie/proc/flatten(datum/source)
 	SIGNAL_HANDLER
-	if(splat)
+	if(flattened)
 		return
-	if(going_hard)
-		going_hard = FALSE
+	if(smoking_blunt)
+		smoking_blunt = FALSE
 		update_icon(UPDATE_OVERLAYS)
 	icon_state = "goat_splat"
 	playsound(src, "desecration", 50, TRUE)
 	visible_message("<span_class='danger'>[src] gets absolutely flattened!")
-	splat = TRUE
+	flattened = TRUE
 
 /obj/item/toy/plush/goatplushie/examine()
 	. = ..()
-	if(splat)
+	if(flattened)
 		. += "<span_class='notice'>[src] might need medical attention."
-	if(going_hard)
+	if(smoking_blunt)
 		. += "<span_class='notice'>[src] is going so hard, feel free to take a picture."
 
 /obj/item/toy/plush/goatplushie/update_overlays()
 	. = ..()
-	if(going_hard)
+	if(smoking_blunt)
 		. += "goat_dart"
