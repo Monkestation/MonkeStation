@@ -2735,10 +2735,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/medical/chemistry)
-"Dd" = (
-/obj/machinery/modular_fabricator/component_printer,
-/turf/open/floor/plasteel,
-/area/medical/chemistry)
 "EG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -7593,7 +7589,7 @@ aj
 hD
 cj
 ct
-Dd
+Ce
 cF
 bE
 bE

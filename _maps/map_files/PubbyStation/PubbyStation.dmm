@@ -46653,7 +46653,6 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/machinery/modular_fabricator/component_printer,
 /turf/open/floor/plasteel/dark,
 /area/science/lab)
 "duQ" = (

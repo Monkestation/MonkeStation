@@ -48149,7 +48149,6 @@
 /obj/machinery/requests_console{
 	pixel_x = 32
 	},
-/obj/machinery/modular_fabricator/component_printer,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "lnx" = (
