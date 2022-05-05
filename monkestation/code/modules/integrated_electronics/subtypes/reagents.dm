@@ -531,7 +531,7 @@
 /obj/item/integrated_circuit/reagent/storage/heater/process()
 	if(!power_draw_idle)
 		return
-	var/target_temperature = CLAMP(get_pin_data(IC_INPUT, 1), 0, 3000)
+	var/target_temperature = get_pin_data(IC_INPUT, 1)
 	if(reagents.chem_temp > target_temperature)
 		reagents.chem_temp += min(-1, (target_temperature - reagents.chem_temp) * heater_coefficient)
 	if(reagents.chem_temp < target_temperature)
@@ -620,7 +620,6 @@
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
-	max_allowed = 2
 	var/busy = FALSE
 
 /obj/item/integrated_circuit/reagent/extinguisher/Initialize()
