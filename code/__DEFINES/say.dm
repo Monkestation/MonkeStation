@@ -90,6 +90,9 @@
 #define MAX_CHARTER_LEN			80
 #define MAX_EXAMINE_LEN			256 //MONKESTATION EDIT - EXAMINE TEXT
 
+//Sets the max string size that can be put in for circuit clonin
+#define MAX_SIZE_CIRCUIT		15000 //MONKESTATION EDIT
+
 // Is something in the IC chat filter? This is config dependent.
 #define CHAT_FILTER_CHECK(T) (CONFIG_GET(flag/ic_filter_enabled) && config.ic_filter_regex && findtext(T, config.ic_filter_regex))
 // Is something in the OOC chat filter?

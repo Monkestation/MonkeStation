@@ -71,7 +71,7 @@
 	set_pin_data(IC_OUTPUT, 2, sqrt((A.x-T.x)*(A.x-T.x)+ (A.y-T.y)*(A.y-T.y)))
 	push_data()
 	activate_pin(2)
-
+/*
 /obj/item/integrated_circuit/smart/advanced_pathfinder
 	name = "advanced pathfinder"
 	desc = "This circuit uses a complex processor for long-range pathfinding."
@@ -115,7 +115,7 @@
 	set_pin_data(IC_OUTPUT, 2, Yn)
 	push_data()
 	activate_pin(2)
-
+*/
 
 // - MMI Tank - //
 /obj/item/integrated_circuit/input/mmi_tank
@@ -236,7 +236,7 @@
 
 /mob/living/brain/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return check_bot_self
-
+/*
 /obj/item/integrated_circuit/smart/advanced_pathfinder/proc/hippie_xor_decrypt()
 	var/Ps = get_pin_data(IC_INPUT, 4)
 	if(!Ps)
@@ -244,7 +244,7 @@
 	var/list/Pl = json_decode(XorEncrypt(hextostr(Ps, TRUE), SScircuit.cipherkey))
 	if(Pl&&islist(Pl))
 		idc.access = Pl
-
+*/
 // - pAI connector circuit - //
 /obj/item/integrated_circuit/input/pAI_connector
 	name = "pAI connector circuit"
