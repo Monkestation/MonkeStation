@@ -1464,7 +1464,7 @@
 	name = "Supermatter Ejection Door"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "auO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/turf_decal/tile/red{
@@ -3348,6 +3348,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"aRe" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating)
 "aRi" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -5888,7 +5891,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bvL" = (
 /obj/structure/railing{
 	dir = 4
@@ -6329,7 +6332,7 @@
 "bCP" = (
 /obj/machinery/air_sensor/atmos/sm_core,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bCU" = (
 /obj/machinery/door/airlock/external{
 	name = "Labour Shuttle";
@@ -6582,7 +6585,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bEQ" = (
 /obj/machinery/door/airlock/mining{
 	name = "Cargo Bay";
@@ -10423,7 +10426,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cyL" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical{
@@ -13074,7 +13077,7 @@
 /area/science/lab)
 "dgg" = (
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dgj" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -13262,7 +13265,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dhZ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -15862,6 +15865,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/grass,
 /area/hallway/secondary/command)
+"dLe" = (
+/turf/closed/wall/r_wall)
 "dLh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -18696,7 +18701,7 @@
 "euu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "euy" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -20804,7 +20809,7 @@
 /area/security/brig)
 "eRk" = (
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "eRn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
@@ -25826,7 +25831,7 @@
 	dir = 10
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "fVz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -25927,7 +25932,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "fWW" = (
 /obj/machinery/door/airlock/external,
 /obj/structure/cable/white{
@@ -26021,7 +26026,7 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "fYf" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -27294,7 +27299,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "gnI" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/spawner/lootdrop/glowstick,
@@ -27581,7 +27586,7 @@
 	pixel_x = -24
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "gqn" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -27613,7 +27618,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "gqL" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -29916,7 +29921,7 @@
 "gRK" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "gRL" = (
 /obj/structure/closet/crate/silvercrate,
 /obj/machinery/light{
@@ -30595,7 +30600,7 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "hbp" = (
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
@@ -39508,7 +39513,7 @@
 /obj/machinery/power/rad_collector/anchored,
 /obj/structure/cable,
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "jkl" = (
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
@@ -46050,7 +46055,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "kLM" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -51644,7 +51649,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "mcj" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -52483,8 +52488,7 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen/coldroom)
 "mmg" = (
-/turf/open/openspace,
-/area/engine/supermatter)
+/turf/open/openspace)
 "mmn" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -60730,7 +60734,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ooa" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -61829,7 +61833,7 @@
 	pixel_x = -25
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "oCB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -63663,7 +63667,7 @@
 	name = "emergency supermatter ejection pad"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "paO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -66425,7 +66429,7 @@
 	dir = 9
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "pIp" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/plating,
@@ -74254,7 +74258,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ryd" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/stripes/line{
@@ -78266,7 +78270,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "sBe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -80900,7 +80904,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "tgg" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/small{
@@ -82112,7 +82116,7 @@
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "tvj" = (
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /turf/open/floor/plasteel/techmaint{
@@ -92966,7 +92970,7 @@
 /obj/effect/turf_decal/caution/stand_clear,
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "vWC" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -94326,7 +94330,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "wmM" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -99212,7 +99216,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "xvi" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -101045,7 +101049,7 @@
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "xSc" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -181825,11 +181829,11 @@ eEB
 rYe
 rYe
 rYe
-dgg
-gRK
-gRK
-gRK
-dgg
+dLe
+aRe
+aRe
+aRe
+dLe
 rYe
 rYe
 rYe
@@ -182082,11 +182086,11 @@ eEB
 uie
 uie
 uie
-gRK
+aRe
 mmg
 mmg
 mmg
-gRK
+aRe
 uie
 uie
 uie
@@ -182339,11 +182343,11 @@ eEB
 rYe
 rYe
 rYe
-gRK
+aRe
 mmg
 mmg
 mmg
-gRK
+aRe
 rYe
 rYe
 rYe
@@ -182596,11 +182600,11 @@ eEB
 rYe
 rYe
 rYe
-gRK
+aRe
 mmg
 mmg
 mmg
-gRK
+aRe
 rYe
 rYe
 rYe
@@ -182853,11 +182857,11 @@ eEB
 rYe
 rYe
 rYe
-dgg
-gRK
-gRK
-gRK
-dgg
+dLe
+aRe
+aRe
+aRe
+dLe
 rYe
 rYe
 rYe

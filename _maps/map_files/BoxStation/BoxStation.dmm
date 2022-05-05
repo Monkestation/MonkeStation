@@ -15208,7 +15208,7 @@
 /area/hallway/secondary/entry)
 "aSq" = (
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/crew_quarters/bar/bar_spawn_area)
 "aSr" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -31033,8 +31033,8 @@
 /area/science/misc_lab)
 "bTq" = (
 /obj/effect/spawner/room/engine/box,
-/turf/open/floor/plating/airless,
-/area/space)
+/turf/open/floor/plating,
+/area/engine/engine_spawn_area)
 "bTr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -50856,7 +50856,7 @@
 "plq" = (
 /obj/effect/spawner/room/bar/box,
 /turf/open/floor/plating,
-/area/crew_quarters/bar)
+/area/crew_quarters/bar/bar_spawn_area)
 "pnq" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 9
@@ -53852,8 +53852,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "tcZ" = (
-/turf/open/floor/plating/airless,
-/area/space)
+/turf/open/floor/plating,
+/area/engine/engine_spawn_area)
 "tdz" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 1

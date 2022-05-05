@@ -9542,18 +9542,18 @@
 "awf" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "awg" = (
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "awh" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "awi" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "awk" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/effect/turf_decal/tile/neutral{
@@ -10103,13 +10103,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axx" = (
 /obj/machinery/power/rad_collector/anchored,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -10122,22 +10122,22 @@
 	dir = 4
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axz" = (
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axB" = (
 /obj/machinery/power/rad_collector/anchored,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -10150,7 +10150,7 @@
 	dir = 8
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -10161,7 +10161,7 @@
 	network = list("engine")
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -10174,7 +10174,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axE" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -10753,11 +10753,11 @@
 	dir = 4
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayK" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayL" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
@@ -10770,7 +10770,7 @@
 	dir = 8
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayM" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -10784,7 +10784,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayN" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -11317,7 +11317,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "azT" = (
 /obj/machinery/power/rad_collector/anchored,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -11330,7 +11330,7 @@
 	dir = 4
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "azU" = (
 /obj/machinery/power/rad_collector/anchored,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -11343,7 +11343,7 @@
 	dir = 8
 	},
 /turf/open/floor/circuit/green,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "azV" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -11866,14 +11866,14 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aAV" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aAW" = (
 /obj/machinery/door/airlock/atmos/glass/critical{
 	heat_proof = 1;
@@ -11882,20 +11882,20 @@
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aAX" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aAY" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aAZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -12402,20 +12402,20 @@
 "aCl" = (
 /obj/structure/sign/warning/radiation,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aCm" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Gas to Filter"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aCn" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
 	name = "Gas to Chamber"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aCo" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/structure/extinguisher_cabinet{
@@ -12891,11 +12891,11 @@
 "aDp" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aDq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aDr" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /obj/effect/turf_decal/bot,
@@ -13361,7 +13361,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aEu" = (
 /obj/machinery/meter,
 /obj/structure/cable{
@@ -115422,7 +115422,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "uYZ" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1

@@ -5223,7 +5223,7 @@
 /obj/structure/cable,
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bns" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
@@ -5530,7 +5530,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bqz" = (
 /obj/machinery/computer/med_data,
 /obj/machinery/airalarm{
@@ -5719,7 +5719,7 @@
 	tag = "sm_in"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bti" = (
 /turf/open/floor/circuit/green{
 	luminosity = 2
@@ -5980,7 +5980,7 @@
 /obj/effect/turf_decal/stripes/red/full,
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "bwQ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -6154,7 +6154,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "byJ" = (
 /obj/item/assembly/timer{
 	pixel_x = 5;
@@ -9598,7 +9598,7 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "chV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -12539,7 +12539,7 @@
 	name = "Gas to Chamber"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cOV" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/firealarm{
@@ -14328,7 +14328,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "djY" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -17974,7 +17974,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dXY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 6
@@ -21343,7 +21343,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/vault,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ePo" = (
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 1
@@ -28930,7 +28930,7 @@
 	network = list("engine")
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "gDk" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
@@ -32513,7 +32513,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "hsP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -35534,7 +35534,7 @@
 	tag = "sm_out"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "idt" = (
 /obj/machinery/cell_charger,
 /obj/structure/table/reinforced,
@@ -37876,7 +37876,7 @@
 	dir = 9
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "iEu" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
@@ -37910,7 +37910,7 @@
 	},
 /obj/machinery/air_sensor/atmos/sm_core,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "iEJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -38218,7 +38218,7 @@
 	tag = "sm_in"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "iHL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -39692,7 +39692,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "iZS" = (
 /obj/machinery/power/apc/auto_name/north{
 	pixel_y = 24
@@ -39835,7 +39835,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "jbc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
@@ -47062,7 +47062,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "kMM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -57061,7 +57061,7 @@
 /obj/structure/cable,
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "njj" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Post - Research Division";
@@ -58069,7 +58069,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "nwe" = (
 /obj/machinery/light{
 	dir = 1
@@ -59401,7 +59401,7 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "nMt" = (
 /obj/structure/table/wood,
 /obj/item/radio/intercom,
@@ -65728,7 +65728,7 @@
 	req_one_access_txt = "10;24"
 	},
 /turf/open/floor/vault,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "puF" = (
 /obj/machinery/airalarm{
 	pixel_y = 22
@@ -70814,7 +70814,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qEC" = (
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
@@ -70828,7 +70828,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qEO" = (
 /obj/effect/turf_decal/loading_area,
 /obj/effect/turf_decal/stripes/corner{
@@ -73679,7 +73679,7 @@
 	tag = "sm_in"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "rjX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output{
 	dir = 1
@@ -78556,7 +78556,7 @@
 	dir = 10
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "sui" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -84102,7 +84102,7 @@
 	name = "Gas to Filter"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "tIQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/guideline/guideline_in/red{
@@ -87651,7 +87651,7 @@
 	tag = "sm_out"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "uwz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -91449,7 +91449,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "vro" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -93081,7 +93081,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "vML" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/vault,
@@ -96169,7 +96169,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/techmaint,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "wDK" = (
 /obj/effect/turf_decal/guideline/guideline_in/red{
 	dir = 8
@@ -97345,7 +97345,7 @@
 	},
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "wSj" = (
 /mob/living/carbon/monkey,
 /turf/open/floor/plasteel/grid/steel,
@@ -98016,7 +98016,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "xao" = (
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/atmospherics_engine)
@@ -100938,7 +100938,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "xNh" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/reagent_containers/glass/bucket,
@@ -101536,7 +101536,7 @@
 	tag = "sm_out"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "xUA" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -102389,7 +102389,7 @@
 /area/science/research)
 "yes" = (
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "yez" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,

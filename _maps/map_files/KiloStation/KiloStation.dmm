@@ -14972,10 +14972,10 @@
 /area/engine/engineering)
 "axT" = (
 /turf/closed/wall/r_wall/rust,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axU" = (
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axV" = (
 /turf/closed/wall/rust,
 /area/engine/engineering)
@@ -14986,7 +14986,7 @@
 "axX" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "axY" = (
 /obj/structure/tank_dispenser,
 /obj/effect/turf_decal/delivery,
@@ -15198,7 +15198,7 @@
 /area/engine/engineering)
 "ayn" = (
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayo" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -15511,7 +15511,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayO" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -15545,7 +15545,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "ayQ" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/item/stack/sheet/mineral/plasma{
@@ -15820,7 +15820,7 @@
 "azm" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "azn" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
@@ -15878,7 +15878,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "azq" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/stripes/corner{
@@ -20459,7 +20459,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aGE" = (
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -21511,7 +21511,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aIo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -23649,37 +23649,37 @@
 "aLs" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLt" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLu" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLx" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -23768,19 +23768,19 @@
 "aLF" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLG" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall/rust,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLH" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLI" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall/rust,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "aLJ" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -72403,7 +72403,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cgi" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -72855,7 +72855,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cgR" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -83169,7 +83169,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cxi" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = -32
@@ -83212,7 +83212,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cxl" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12";
@@ -83709,7 +83709,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cxX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -83744,7 +83744,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cya" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -91203,7 +91203,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cLy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -91218,7 +91218,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cLz" = (
 /obj/machinery/power/rad_collector/anchored,
 /obj/structure/window/plasma/reinforced{
@@ -91234,7 +91234,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cLA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -91415,7 +91415,7 @@
 /turf/open/floor/circuit/green{
 	luminosity = 2
 	},
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cLP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8

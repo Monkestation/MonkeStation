@@ -502,7 +502,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "abf" = (
 /obj/effect/spawner/room/fivexfour,
 /turf/open/floor/plating,
@@ -19305,9 +19305,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
-"aYk" = (
-/turf/open/floor/plating,
-/area/crew_quarters/theatre)
 "aYn" = (
 /obj/machinery/requests_console{
 	department = "Cargo Bay";
@@ -21901,10 +21898,10 @@
 "bgp" = (
 /obj/effect/spawner/room/bar/pubby,
 /turf/open/floor/plating,
-/area/hallway/primary/central)
+/area/crew_quarters/bar/bar_spawn_area)
 "bgx" = (
 /turf/open/floor/plating,
-/area/hallway/primary/central)
+/area/crew_quarters/bar/bar_spawn_area)
 "bgA" = (
 /obj/structure/sign/directions/medical{
 	dir = 8;
@@ -43112,7 +43109,7 @@
 /area/security/main)
 "cnW" = (
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cod" = (
 /obj/structure/table,
 /obj/item/clothing/under/color/grey,
@@ -46011,7 +46008,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/orange/visible,
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "cHS" = (
 /obj/structure/transit_tube,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -46270,7 +46267,7 @@
 	name = "Burn Chamber Emergency Vent"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "daY" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -46365,7 +46362,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dgg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -46894,7 +46891,7 @@
 	},
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dOU" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -46994,14 +46991,14 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "dZj" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 5
 	},
 /obj/machinery/meter,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "eaw" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/cable/yellow{
@@ -47459,7 +47456,7 @@
 	dir = 10
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "eEp" = (
 /obj/structure/grille/broken,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -48068,7 +48065,7 @@
 /obj/machinery/air_sensor/atmos/sm_core,
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "fsA" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 6
@@ -49469,7 +49466,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "hhc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor/window,
@@ -49640,7 +49637,7 @@
 "hrU" = (
 /obj/machinery/igniter/on,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "hsK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -51434,7 +51431,7 @@
 "jMx" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "jMS" = (
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
@@ -51869,7 +51866,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "kzC" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall,
@@ -52524,7 +52521,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "lmM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -52955,7 +52952,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "lOM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53089,7 +53086,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "lZg" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "SupermatterExternal";
@@ -53542,7 +53539,7 @@
 "mIr" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "mJS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -53794,7 +53791,7 @@
 /area/space/nearstation)
 "mZR" = (
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "naq" = (
 /obj/structure/disposaloutlet{
 	dir = 4
@@ -55241,7 +55238,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "oPx" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -55505,7 +55502,7 @@
 	},
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "pex" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -56219,7 +56216,7 @@
 	icon_state = "vent_map_on-2"
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qbZ" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
@@ -56338,7 +56335,7 @@
 	name = "supermatter core blast door"
 	},
 /turf/open/floor/engine/airless,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qgh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -56371,7 +56368,7 @@
 "qgF" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qic" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue{
@@ -56913,7 +56910,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "qVP" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobiomain";
@@ -57690,7 +57687,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "rSD" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -57731,7 +57728,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engineering)
 "rYY" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Supermatter Engine";
@@ -58753,7 +58750,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "tAJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -59019,7 +59016,7 @@
 	dir = 9
 	},
 /turf/closed/wall/r_wall,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "tWw" = (
 /obj/machinery/ecto_sniffer,
 /turf/open/floor/plasteel,
@@ -59569,9 +59566,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
-"uIQ" = (
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "uJg" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -60212,7 +60206,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/engine/engine_core)
 "vSI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/wood,
@@ -60338,7 +60332,7 @@
 "wdK" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "wfs" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
@@ -60892,7 +60886,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/supermatter)
+/area/engine/engine_core)
 "wNq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -92761,17 +92755,17 @@ aQU
 aRT
 aSP
 nCl
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgp
 fOz
 bhN
@@ -93018,17 +93012,17 @@ aQV
 rlr
 aSQ
 aUe
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -93275,17 +93269,17 @@ aPE
 aRU
 aPE
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -93532,17 +93526,17 @@ aLL
 slF
 aSR
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -93789,17 +93783,17 @@ aQX
 aRW
 aSS
 aUg
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 bhf
 cpH
@@ -94046,18 +94040,18 @@ aKY
 aKY
 slF
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 eQl
 cpI
 cpO
@@ -94303,18 +94297,18 @@ aQY
 aKY
 slF
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 tzS
 cpJ
 cpP
@@ -94560,18 +94554,18 @@ aQZ
 aKY
 slF
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 dOU
 bhO
 bio
@@ -94817,18 +94811,18 @@ aRa
 aRX
 aST
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 eQl
 cpK
 cpQ
@@ -95074,18 +95068,18 @@ aRb
 aKY
 rFc
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bhg
 cpL
 cpR
@@ -95331,17 +95325,17 @@ aRc
 aKY
 rFc
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 cpM
@@ -95588,17 +95582,17 @@ aKY
 aKY
 rFc
 aPE
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -95845,17 +95839,17 @@ anX
 aPB
 rFc
 aUf
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -96102,17 +96096,17 @@ anX
 aRY
 rFc
 aUf
-aYk
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -96359,17 +96353,17 @@ anX
 aRZ
 rFc
 aUf
-aYk
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 fOz
 wVC
@@ -96616,17 +96610,17 @@ anX
 aSa
 rFc
 aUf
-aYk
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -96873,17 +96867,17 @@ anX
 aSb
 aSV
 rkD
-aLL
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 wzo
 aDZ
@@ -97130,17 +97124,17 @@ anX
 aKT
 aSW
 aKT
-aYk
-aYk
-aYk
-aYk
-aYk
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
-uIQ
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
+bgx
 bgx
 oWf
 tzG
