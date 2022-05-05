@@ -128,11 +128,12 @@
 	gas_overlay = "miasma"
 	moles_visible = MOLES_GAS_VISIBLE * 60
 
-//NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
-/datum/gas/nucleium //NSV13
+//NUCLEIUM Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
+/datum/gas/nucleium
 	id = "nucleium"
 	specific_heat = 450 //jesus god why
 	name = "Nucleium"
 	gas_overlay = "nucleium"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	fusion_power = 1

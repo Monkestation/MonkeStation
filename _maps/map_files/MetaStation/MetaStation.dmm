@@ -79673,7 +79673,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "sCc" = (
@@ -80100,7 +80099,6 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "uaC" = (
@@ -80390,7 +80388,6 @@
 	dir = 4
 	},
 /obj/structure/bed/roller,
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "vfy" = (
