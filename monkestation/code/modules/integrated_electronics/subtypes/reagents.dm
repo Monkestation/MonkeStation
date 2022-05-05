@@ -54,7 +54,6 @@
 	volume = 30
 
 	complexity = 20
-	max_allowed = 1
 	cooldown_per_use = 6 SECONDS
 	inputs = list(
 		"target" = IC_PINTYPE_REF,
