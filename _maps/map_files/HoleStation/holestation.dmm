@@ -8395,10 +8395,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "Oh" = (
-/obj/machinery/door/poddoor{
-	id = "QMLoaddoor";
-	name = "Supply Dock Loading Door"
-	},
 /obj/structure/fans/tiny,
 /obj/machinery/conveyor{
 	id = "QMLoad";
@@ -8407,6 +8403,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "Oi" = (
@@ -8467,10 +8464,6 @@
 /turf/open/openspace,
 /area/science/research)
 "Ox" = (
-/obj/machinery/door/poddoor{
-	id = "QMLoaddoor2";
-	name = "Supply Dock Loading Door"
-	},
 /obj/structure/fans/tiny,
 /obj/machinery/conveyor{
 	dir = 1;
@@ -8480,6 +8473,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "Oy" = (
