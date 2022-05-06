@@ -320,7 +320,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/60) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/20) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 			var/obj/structure/cable/C = T.get_cable_node()
-			if(!C || !C.powernet)
+			if(!C?.powernet)
 				return
 			else
 				C.powernet.newavail += last_power_produced
@@ -520,24 +520,27 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	T.assume_air(coolant_output)
 	QDEL_NULL(soundloop)
 	//Default explosion was: explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
-	explosion(get_turf(src), 0, 2, 10, 15, TRUE, TRUE, 0, FALSE, 2)
-	radiation_pulse(get_turf(src),5 ,15)
-	empulse(get_turf(src), 25, 15)
+	explosion(get_turf(src), 0, 0, 10, 15, TRUE, TRUE, 0, FALSE, 4)
+	///Added scaling calculations for pulses so you have to put effort with meltdown severity
+	///Power goes from 0 to 100
+	radiation_pulse(get_turf(src), (100+(power*30)), (10+(power*2)), TRUE) //BIG flash of rads
+	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
 	//Default explosion was: explosion(get_turf(src), 0, MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
-	explosion(get_turf(src), 0, 6, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
+	explosion(get_turf(src), 0, 4, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 	meltdown() //Double kill.
 	relay('monkestation/sound/effects/rbmk/explode.ogg')
 	priority_announce("High levels of radiation detected. Maintenance is best shielded from radiation.", "Nuclear Blowout Alert", ANNOUNCER_RADIATION)
-	sleep(20)
-	SSweather.run_weather("nuclear fallout")
 	for(var/landmark in GLOB.landmarks_list)
 		if(istype(landmark, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/waste_spawner = landmark
 			if(is_station_level(waste_spawner.z)) //Begin the SLUDGING
 				waste_spawner.fire()
+	sleep(50)
+	SSweather.run_weather("nuclear fallout") //Maybe replace with a radioactive gas spawn from the sludge spawners if weather is too weird
+
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon()
 	icon_state = "reactor_off"
