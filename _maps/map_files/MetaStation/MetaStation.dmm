@@ -27691,6 +27691,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel{
 	dir = 1
 	},
@@ -76008,7 +76009,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "fEL" = (
@@ -76634,17 +76634,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
-"hLX" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "hPc" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -77370,7 +77359,6 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 5
 	},
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "jWT" = (
@@ -79113,7 +79101,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "pVE" = (
@@ -79858,17 +79845,6 @@
 /mob/living/simple_animal/pet/dog/bullterrier/walter,
 /turf/open/floor/wood,
 /area/lawoffice)
-"sXo" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel,
-/area/hallway/primary/starboard)
 "sYk" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "space-bridge access"
@@ -115676,7 +115652,7 @@ aZt
 aZt
 aZt
 bhI
-hLX
+bjx
 bkX
 bmP
 boQ
@@ -118246,7 +118222,7 @@ bcx
 aZw
 aZw
 bhO
-sXo
+bjC
 bkY
 alq
 bcs
@@ -120302,7 +120278,7 @@ bcE
 bef
 aWw
 bhO
-sXo
+bjC
 tuO
 bmV
 bpd
