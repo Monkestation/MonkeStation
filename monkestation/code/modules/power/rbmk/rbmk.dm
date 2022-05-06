@@ -146,26 +146,21 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			var/msg = "<span class='warning'>The reactor looks operational.</span>"
 			switch(percent)
 				if(0 to 10)
-					add_overlay("reactor_damaged_4")
 					msg = "<span class='boldwarning'>[src]'s seals are dangerously warped and you can see cracks all over the reactor vessel! </span>"
 				if(10 to 40)
-					add_overlay("reactor_damaged_3")
 					msg = "<span class='boldwarning'>[src]'s seals are heavily warped and cracked! </span>"
 				if(40 to 60)
-					add_overlay("reactor_damaged_2")
 					msg = "<span class='warning'>[src]'s seals are holding, but barely. You can see some micro-fractures forming in the reactor vessel.</span>"
 				if(60 to 80)
-					add_overlay("reactor_damaged_1")
 					msg = "<span class='warning'>[src]'s seals are in-tact, but slightly worn. There are no visible cracks in the reactor vessel.</span>"
 				if(80 to 90)
-					cut_overlay()
 					msg = "<span class='notice'>[src]'s seals are in good shape, and there are no visible cracks in the reactor vessel.</span>"
 				if(95 to 100)
-					cut_overlay()
 					msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
 			. += msg
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
+	update_icon()
 	if(istype(W, /obj/item/fuel_rod))
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot insert fuel into [src] when it has been raised above 20% power.</span>")
@@ -207,6 +202,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/I)
+	update_icon()
 	if(slagged)
 		to_chat(user, "<span class='notice'>You can't repair [src], it's completely slagged!</span>")
 		return FALSE
@@ -558,12 +554,16 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/percent = vessel_integrity / initial(vessel_integrity) * 100
 	switch(percent)
 		if(0 to 10)
+			cut_overlay()
 			add_overlay("reactor_damaged_4")
 		if(10 to 40)
+			cut_overlay()
 			add_overlay("reactor_damaged_3")
 		if(40 to 60)
+			cut_overlay()
 			add_overlay("reactor_damaged_2")
 		if(60 to 80)
+			cut_overlay()
 			add_overlay("reactor_damaged_1")
 		if(80 to 90)
 			cut_overlay()
