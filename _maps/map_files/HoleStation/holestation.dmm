@@ -1477,6 +1477,13 @@
 /obj/item/areaeditor/blueprints,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"hb" = (
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/storage)
 "hd" = (
 /obj/structure/rack,
 /obj/item/stack/rods/fifty,
@@ -2641,6 +2648,13 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"mA" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "mB" = (
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood,
@@ -3770,6 +3784,13 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"rZ" = (
+/obj/structure/closet/crate/medical,
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/warehouse)
 "sa" = (
 /obj/structure/sign/painting/library{
 	pixel_y = -32
@@ -3839,6 +3860,10 @@
 "st" = (
 /turf/open/floor/wood,
 /area/library/lounge)
+"su" = (
+/obj/structure/chair/stool,
+/turf/open/floor/engine/airless/light,
+/area/space/nearstation)
 "sw" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
@@ -4181,6 +4206,11 @@
 /obj/machinery/biogenerator,
 /turf/open/floor/plating,
 /area/hydroponics)
+"uh" = (
+/obj/structure/closet/crate/engineering,
+/obj/effect/turf_decal/monke/siding/brown,
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/warehouse)
 "ui" = (
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/carpet,
@@ -6172,6 +6202,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"DF" = (
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/quartermaster/storage)
 "DJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -6465,6 +6501,10 @@
 	},
 /turf/open/floor/wood,
 /area/security/brig)
+"EY" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/warehouse)
 "EZ" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/disposalpipe/segment,
@@ -6619,6 +6659,13 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
+"FQ" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "FR" = (
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
@@ -7440,6 +7487,15 @@
 "JI" = (
 /turf/open/openspace,
 /area/security/prison)
+"JJ" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "JK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -7548,6 +7604,7 @@
 /area/quartermaster/miningdock)
 "Kl" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/chair/stool,
 /obj/item/instrument/guitar,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -8485,6 +8542,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
+"OK" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "OL" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -8550,6 +8613,12 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"Pe" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "Pf" = (
 /obj/effect/turf_decal/trimline/red/warning{
 	dir = 1
@@ -8873,9 +8942,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"Qx" = (
+/obj/structure/closet/crate{
+	name = "spare parts"
+	},
+/obj/effect/turf_decal/monke/siding/brown,
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/warehouse)
 "Qz" = (
 /obj/machinery/airalarm/directional/north,
-/turf/open/floor/plasteel/techmaint,
+/obj/structure/closet/crate{
+	name = "spare parts"
+	},
+/obj/effect/turf_decal/monke/siding/brown,
+/turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
 "QA" = (
 /obj/structure/reflector/single/anchored{
@@ -8973,6 +9053,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
+"QT" = (
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/quartermaster/storage)
 "QX" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -9271,6 +9357,7 @@
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "Sg" = (
+/obj/structure/chair/stool,
 /obj/item/instrument/banjo,
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
@@ -9455,11 +9542,14 @@
 /turf/open/floor/plating,
 /area/security/nuke_storage)
 "Tm" = (
-/obj/structure/closet/crate{
-	name = "spare parts"
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
 	},
 /turf/open/floor/plasteel/techmaint,
-/area/quartermaster/warehouse)
+/area/quartermaster/storage)
 "Tn" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -9524,6 +9614,12 @@
 	id = "QMLoad";
 	name = "off ramp";
 	pixel_y = 5
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
@@ -9616,6 +9712,12 @@
 	id = "QMLoad2";
 	name = "on ramp";
 	pixel_y = 6
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
@@ -9884,6 +9986,12 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
+"Vn" = (
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/storage)
 "Vq" = (
 /obj/effect/landmark/start/cargo_technician,
 /obj/structure/cable/yellow{
@@ -9945,6 +10053,12 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
+"VC" = (
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/warehouse)
 "VE" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -10087,7 +10201,10 @@
 /obj/machinery/computer/bounty{
 	dir = 4
 	},
-/turf/open/floor/plasteel/techmaint,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/quartermaster/storage)
 "Wv" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10397,7 +10514,11 @@
 /area/engine/engine_room)
 "Yo" = (
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/plasteel/techmaint,
+/obj/structure/closet/crate/internals,
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
 "Yp" = (
 /obj/structure/girder,
@@ -10407,12 +10528,12 @@
 /obj/machinery/computer/cargo{
 	dir = 4
 	},
-/turf/open/floor/plasteel/techmaint,
+/turf/open/floor/wood,
 /area/quartermaster/storage)
 "Ys" = (
 /obj/structure/chair/office,
 /obj/effect/landmark/start/cargo_technician,
-/turf/open/floor/plasteel/techmaint,
+/turf/open/floor/wood,
 /area/quartermaster/storage)
 "Yt" = (
 /obj/structure/chair/pew/left,
@@ -10456,7 +10577,10 @@
 	pixel_y = 6
 	},
 /obj/item/multitool,
-/turf/open/floor/plasteel/techmaint,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/quartermaster/storage)
 "YA" = (
 /obj/effect/turf_decal/bot,
@@ -10482,7 +10606,10 @@
 /area/library)
 "YI" = (
 /obj/machinery/rnd/production/techfab/department/cargo,
-/turf/open/floor/plasteel/techmaint,
+/obj/effect/turf_decal/monke/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/storage)
 "YJ" = (
 /obj/machinery/firealarm/directional/north,
@@ -40182,8 +40309,8 @@ KB
 KM
 KM
 xK
+Qx
 LL
-Tm
 LL
 LL
 Yo
@@ -40441,9 +40568,9 @@ MT
 xK
 Qz
 LL
+EY
 LL
-LL
-LL
+VC
 zq
 pE
 Cj
@@ -40696,11 +40823,11 @@ KM
 xK
 KM
 xK
-LL
+uh
 LL
 gv
 wH
-LL
+rZ
 cj
 pE
 Cj
@@ -41468,9 +41595,9 @@ nZ
 nZ
 ZK
 QZ
-Vl
-bb
-Vl
+Tm
+mA
+DF
 Ys
 Zy
 pE
@@ -41725,9 +41852,9 @@ nZ
 nZ
 ZZ
 QZ
-Vl
-bb
-Vl
+Tm
+FQ
+QT
 Yz
 ZK
 pE
@@ -41982,8 +42109,8 @@ nZ
 nZ
 Oh
 Rf
-Vl
-bb
+Pe
+mA
 Vl
 YA
 ZA
@@ -43010,8 +43137,8 @@ nZ
 nZ
 Ox
 Ry
-Vl
-bb
+OK
+mA
 Vl
 YI
 ZZ
@@ -43267,10 +43394,10 @@ nZ
 nZ
 ZZ
 RA
+JJ
+FQ
 Vl
-bb
-Vl
-Vl
+Vn
 ZK
 pE
 Cj
@@ -43524,11 +43651,11 @@ nZ
 nZ
 ZK
 Dc
-Vl
-bb
+JJ
+mA
 GE
-Vl
-ZK
+Vn
+tu
 pE
 Cj
 HA
@@ -43784,8 +43911,8 @@ Dc
 TZ
 bb
 Vl
-Vl
-tu
+hb
+ZK
 pE
 Cj
 HA
@@ -105738,7 +105865,7 @@ dx
 Ap
 Ud
 Ud
-Ud
+su
 Ud
 Ud
 LW
