@@ -80101,6 +80101,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"tuH" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/status_display/evac{
+	pixel_y = 31
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "tuO" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=13.2-Tcommstore";
@@ -80731,6 +80740,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"vOH" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "vRq" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -81100,6 +81116,21 @@
 /obj/item/canvas/twentythree_twentythree,
 /turf/open/floor/plasteel,
 /area/storage/art)
+"xco" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/status_display/evac{
+	pixel_y = 31
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "xdW" = (
 /obj/machinery/vending/wardrobe/jani_wardrobe,
 /turf/open/floor/plasteel,
@@ -135882,8 +135913,8 @@ bnA
 bpN
 bsa
 bjQ
-jOd
-vqv
+xco
+vOH
 btL
 bAW
 bxn
@@ -136910,8 +136941,8 @@ bnE
 bpR
 byM
 bjQ
-dTA
-vqv
+tuH
+vOH
 btL
 bvz
 bxr
