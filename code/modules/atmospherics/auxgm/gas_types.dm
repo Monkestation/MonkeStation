@@ -131,7 +131,7 @@
 //NUCLEIUM Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 /datum/gas/nucleium
 	id = "nucleium"
-	specific_heat = 450 //jesus god why
+	specific_heat = 180 /// Default was 450
 	name = "Nucleium"
 	gas_overlay = "nucleium"
 	moles_visible = MOLES_GAS_VISIBLE

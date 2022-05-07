@@ -149,5 +149,5 @@
 	worth += C.air_contents.get_moles(GAS_TRITIUM)*5
 	worth += C.air_contents.get_moles(GAS_PLUOXIUM)*5
 	//NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
-	worth += C.air_contents.get_moles(GAS_NUCLEIUM)*50
+	worth += C.air_contents.get_moles(GAS_NUCLEIUM)*30
 	return worth
