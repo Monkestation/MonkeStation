@@ -5350,6 +5350,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/machinery/telecomms/relay/preset/exploration,
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "zC" = (
