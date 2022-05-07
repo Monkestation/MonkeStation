@@ -78410,6 +78410,12 @@
 /obj/item/blood_filter,
 /turf/open/floor/plasteel/white/side,
 /area/medical/surgery)
+"mVe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "mWS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -78987,6 +78993,21 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"oEw" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "oGF" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -80050,6 +80071,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"thf" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "tjt" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -80628,6 +80658,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"vnw" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "vox" = (
 /turf/open/floor/engine/vacuum,
 /area/maintenance/starboard)
@@ -134370,7 +134407,7 @@ vUC
 bnu
 bpH
 brU
-pXb
+mVe
 jKm
 pXu
 uet
@@ -135656,8 +135693,8 @@ bjQ
 bpM
 bjQ
 bjQ
-jOd
-vqv
+oEw
+vnw
 btL
 bvu
 bGh
@@ -137198,8 +137235,8 @@ bjQ
 bpS
 bjQ
 bjQ
-dTA
-vqv
+thf
+vnw
 btL
 bvA
 bxs
