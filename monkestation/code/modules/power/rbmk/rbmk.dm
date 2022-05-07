@@ -21,13 +21,6 @@
 //To turn those KWs into something usable
 #define RBMK_POWER_FLAVOURISER 600		//Default: 8000 //I want some use out of turbines for power
 
-//Math. Lame.
-#define KPA_TO_PSI(A) (A/6.895)
-#define PSI_TO_KPA(A) (A*6.895)
-#define KELVIN_TO_CELSIUS(A) (A-273.15)
-#define CELSIUS_TO_KELVIN(T_K)	((T_K) + T0C)
-#define MEGAWATTS /1e+6
-
 //Reference: Heaters go up to 500K.
 //Hot plasmaburn: 14164.95 C.
 
@@ -86,28 +79,47 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	dir = 8 //Less headache inducing :))
 	var/id = null //Change me mappers
 
-	//Variables essential to operation
-	var/temperature = 0 //Lose control of this -> Meltdown
-	var/vessel_integrity = 400 //How long can the reactor withstand overpressure / meltdown? This gives you a fair chance to react to even a massive pipe fire
-	var/pressure = 0 //Lose control of this -> Blowout
-	var/K = 0 //Rate of reaction.
+	// Variables essential to operation
+	/// Lose control of this -> Meltdown
+	var/temperature = 0
+	/// How long can the reactor withstand overpressure / meltdown? This gives you a fair chance to react to even a massive pipe fire
+	var/vessel_integrity = 400
+	/// Lose control of this -> Blowout
+	var/pressure = 0
+	/// Rate of reaction.
+	var/K = 0
+	/// Control rod desired_k
 	var/desired_k = 0
-	var/control_rod_effectiveness = 0.65 //Starts off with a lot of control over K. If you flood this thing with plasma, you lose your ability to control K as easily.
-	var/power = 0 //0-100%. A function of the maximum heat you can achieve within operating temperature
-	var/power_modifier = 1 //Upgrade me with parts, science! Flat out increase to physical power output when loaded with plasma.
+	/// Starts off with a lot of control over K. If you flood this thing with plasma, you lose your ability to control K as easily.
+	var/control_rod_effectiveness = 0.65
+	/// 0-100%. A function of the maximum heat you can achieve within operating temperature
+	var/power = 0
+	/// Used for moderator gasses power modifications
+	var/power_modifier = 1
+	//Amount of Fuels_rods in reactor
 	var/list/fuel_rods = list()
 
-	//Secondary variables.
+	// Secondary variables.
+	/// Used for slowing gas processing in process
 	var/next_slowprocess = 0
+	/// Default gas_absorption before being randomized slightly
 	var/gas_absorption_effectiveness = 0.5
-	var/gas_absorption_constant = 0.5 //We refer to this one as it's set on init, randomized.
+	/// We refer to this one as it's set on init, randomized.
+	var/gas_absorption_constant = 0.5
+	/// The minimum coolant level
 	var/minimum_coolant_level = 5
-	var/warning = FALSE //Have we begun warning the crew of their impending death?
-	var/next_warning = 0 //To avoid spam.
-	var/last_power_produced = 0 //For logging purposes
-	var/next_flicker = 0 //Light flicker timer
+	/// Have we begun warning the crew of their impending death?
+	var/warning = FALSE
+	/// To avoid spam.
+	var/next_warning = 0
+	/// For logging purposes
+	var/last_power_produced = 0
+	/// Light flicker timer
+	var/next_flicker = 0
+	/// Define connection to determine power produced directly from the reactor
 	var/base_power_modifier = RBMK_POWER_FLAVOURISER
-	var/slagged = FALSE //Is this reactor even usable any more?
+	/// Slag that reactor. Is this reactor even usable any more?
+	var/slagged = FALSE
 
 	//Console statistics.
 	var/last_coolant_temperature = 0
@@ -599,493 +611,4 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	.=..()
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	AddComponent(/datum/component/radioactive, 350 , src)
-
-//Controlling the reactor.
-
-/obj/machinery/computer/reactor
-	name = "Reactor control console"
-	desc = "Scream"
-	icon = 'monkestation/icons/obj/computer.dmi'
-	light_power = 1
-	light_range = 3
-	icon_state = "oldcomp"
-	icon_screen = "library"
-	icon_keyboard = null
-	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor = null
-	var/id = "default_reactor_for_lazy_mappers"
-
-/obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
-	. = ..()
-	addtimer(CALLBACK(src, .proc/link_to_reactor), 10 SECONDS)
-
-/obj/machinery/computer/reactor/proc/link_to_reactor()
-	for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/asdf in GLOB.machines)
-		if(asdf.id && asdf.id == id)
-			reactor = asdf
-			return TRUE
-	return FALSE
-
-#define FREQ_RBMK_CONTROL 1439.69
-
-/obj/machinery/computer/reactor/control_rods
-	name = "Control rod management computer"
-	desc = "A computer which can remotely raise / lower the control rods of a reactor."
-	icon_screen = "rbmk_rods"
-
-/obj/machinery/computer/reactor/control_rods/attack_hand(mob/living/user)
-	. = ..()
-	ui_interact(user)
-
-/obj/machinery/computer/reactor/control_rods/ui_state(mob/user)
-	return GLOB.default_state
-
-/obj/machinery/computer/reactor/control_rods/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "RbmkControlRods")
-		ui.open()
-		ui.set_autoupdate(TRUE)
-
-/obj/machinery/computer/reactor/control_rods/ui_act(action, params)
-	if(..())
-		return
-	if(!reactor)
-		return
-	if(action == "input")
-		var/input = text2num(params["target"])
-		reactor.desired_k = CLAMP(input, 0, 3)
-
-/obj/machinery/computer/reactor/control_rods/ui_data(mob/user)
-	var/list/data = list()
-	data["control_rods"] = 0
-	data["k"] = 0
-	data["desiredK"] = 0
-	if(reactor)
-		data["k"] = reactor.K
-		data["desiredK"] = reactor.desired_k
-		data["control_rods"] = 100 - (reactor.desired_k / 3 * 100) //Rod insertion is extrapolated as a function of the percentage of K
-	return data
-
-/obj/machinery/computer/reactor/stats
-	name = "Reactor Statistics Console"
-	desc = "A console for monitoring the statistics of a nuclear reactor."
-	icon_screen = "rbmk_stats"
-	var/next_stat_interval = 0
-	var/list/psiData = list()
-	var/list/powerData = list()
-	var/list/tempInputData = list()
-	var/list/tempOutputdata = list()
-
-/obj/machinery/computer/reactor/stats/attack_hand(mob/living/user)
-	. = ..()
-	ui_interact(user)
-
-/obj/machinery/computer/reactor/stats/ui_state(mob/user)
-	return GLOB.default_state
-
-/obj/machinery/computer/reactor/stats/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "RbmkStats")
-		ui.open()
-		ui.set_autoupdate(TRUE)
-
-/obj/machinery/computer/reactor/stats/process()
-	if(world.time >= next_stat_interval)
-		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		psiData += (reactor) ? reactor.pressure : 0
-		if(psiData.len > 100) //Only lets you track over a certain timeframe.
-			psiData.Cut(1, 2)
-		powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
-		if(powerData.len > 100) //Only lets you track over a certain timeframe.
-			powerData.Cut(1, 2)
-		tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
-			tempInputData.Cut(1, 2)
-		tempOutputdata += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempOutputdata.len > 100) //Only lets you track over a certain timeframe.
-			tempOutputdata.Cut(1, 2)
-
-/obj/machinery/computer/reactor/stats/ui_data(mob/user)
-	var/list/data = list()
-	data["powerData"] = powerData
-	data["psiData"] = psiData
-	data["tempInputData"] = tempInputData
-	data["tempOutputdata"] = tempOutputdata
-	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
-	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
-	data["power"] = reactor ? reactor.power : 0
-	data ["psi"] = reactor ? reactor.pressure : 0
-	return data
-
-/obj/machinery/computer/reactor/fuel_rods
-	name = "Reactor Fuel Management Console"
-	desc = "A console which can remotely raise fuel rods out of nuclear reactors."
-	icon_screen = "rbmk_fuel"
-
-/obj/machinery/computer/reactor/fuel_rods/attack_hand(mob/living/user)
-	. = ..()
-	if(!reactor)
-		return FALSE
-	if(reactor.power > 20)
-		to_chat(user, "<span class='warning'>You cannot remove fuel from [reactor] when it is above 20% power.</span>")
-		return FALSE
-	if(!reactor.fuel_rods.len)
-		to_chat(user, "<span class='warning'>[reactor] does not have any fuel rods loaded.</span>")
-		return FALSE
-	var/atom/movable/fuel_rod = input(usr, "Select a fuel rod to remove", "[src]", null) as null|anything in reactor.fuel_rods
-	if(!fuel_rod)
-		return
-	playsound(src, pick('monkestation/sound/effects/rbmk/switch.ogg','monkestation/sound/effects/rbmk/switch2.ogg','monkestation/sound/effects/rbmk/switch3.ogg'), 100, FALSE)
-	playsound(reactor, 'monkestation/sound/effects/rbmk/crane_1.wav', 100, FALSE)
-	fuel_rod.forceMove(get_turf(reactor))
-	reactor.fuel_rods -= fuel_rod
-
-//Preset pumps for mappers. You can also set the id tags yourself.
-/obj/machinery/atmospherics/components/binary/pump/rbmk_input
-	id = "rbmk_input"
-	frequency = FREQ_RBMK_CONTROL
-
-/obj/machinery/atmospherics/components/binary/pump/rbmk_output
-	id = "rbmk_output"
-	frequency = FREQ_RBMK_CONTROL
-
-/obj/machinery/atmospherics/components/binary/pump/rbmk_moderator
-	id = "rbmk_moderator"
-	frequency = FREQ_RBMK_CONTROL
-
-/obj/machinery/computer/reactor/pump
-	name = "Reactor inlet valve computer"
-	desc = "A computer which controls valve settings on an advanced gas cooled reactor. Alt click it to remotely set pump pressure."
-	icon_screen = "rbmk_input"
-	id = "rbmk_input"
-	var/datum/radio_frequency/radio_connection
-	var/on = FALSE
-
-/obj/machinery/computer/reactor/pump/AltClick(mob/user)
-	. = ..()
-	var/newPressure = input(user, "Set new output pressure (kPa)", "Remote pump control", null) as num
-	if(!newPressure)
-		return
-	//Number sanitization is not handled in the pumps themselves, only during their ui_act which this doesn't use.
-	newPressure = clamp(newPressure, 0, MAX_OUTPUT_PRESSURE)
-	signal(on, newPressure) //Number sanitization is handled on the actual pumps themselves.
-
-/obj/machinery/computer/reactor/attack_robot(mob/user)
-	. = ..()
-	attack_hand(user)
-
-/obj/machinery/computer/reactor/attack_ai(mob/user)
-	. = ..()
-	attack_hand(user)
-
-/obj/machinery/computer/reactor/pump/attack_hand(mob/living/user)
-	. = ..()
-	if(!is_operational())
-		return FALSE
-	playsound(loc, pick('monkestation/sound/effects/rbmk/switch.ogg','monkestation/sound/effects/rbmk/switch2.ogg','monkestation/sound/effects/rbmk/switch3.ogg'), 100, FALSE)
-	visible_message("<span class='notice'>[src]'s switch flips [on ? "off" : "on"].</span>")
-	on = !on
-	signal(on)
-
-/obj/machinery/computer/reactor/pump/Initialize(mapload, obj/item/circuitboard/C)
-	. = ..()
-	radio_connection = SSradio.add_object(src, FREQ_RBMK_CONTROL,filter=RADIO_ATMOSIA)
-
-/obj/machinery/computer/reactor/pump/proc/signal(power, set_output_pressure=null)
-	var/datum/signal/signal
-	if(!set_output_pressure) //Yes this is stupid, but technically if you pass through "set_output_pressure" onto the signal, it'll always try and set its output pressure and yeahhh...
-		signal = new(list(
-			"tag" = id,
-			"frequency" = FREQ_RBMK_CONTROL,
-			"timestamp" = world.time,
-			"power" = power,
-			"sigtype" = "command"
-		))
-	else
-		signal = new(list(
-			"tag" = id,
-			"frequency" = FREQ_RBMK_CONTROL,
-			"timestamp" = world.time,
-			"power" = power,
-			"set_output_pressure" = set_output_pressure,
-			"sigtype" = "command"
-		))
-	radio_connection.post_signal(src, signal, filter=RADIO_ATMOSIA)
-
-//Preset subtypes for mappers
-/obj/machinery/computer/reactor/pump/rbmk_input
-	name = "Reactor inlet valve computer"
-	icon_screen = "rbmk_input"
-	id = "rbmk_input"
-
-/obj/machinery/computer/reactor/pump/rbmk_output
-	name = "Reactor output valve computer"
-	icon_screen = "rbmk_output"
-	id = "rbmk_output"
-
-/obj/machinery/computer/reactor/pump/rbmk_moderator
-	name = "Reactor moderator valve computer"
-	icon_screen = "rbmk_moderator"
-	id = "rbmk_moderator"
-
-//SPENT FUEL POOL
-/turf/open/indestructible/sound/pool/spentfuel
-	name = "Spent fuel pool"
-	desc = "A dumping ground for spent nuclear fuel, can you touch the bottom?"
-	icon = 'icons/obj/pool.dmi'
-	icon_state = "spentfuelpool"
-
-/turf/open/indestructible/sound/pool/spentfuel/wall
-	icon_state = "spentfuelpoolwall"
-
-//Monitoring program.
-/datum/computer_file/program/nuclear_monitor
-	filename = "rbmkmonitor"
-	filedesc = "Nuclear Reactor Monitoring"
-	ui_header = "smmon_0.gif"
-	program_icon_state = "smmon_0"
-	extended_desc = "This program connects to specially calibrated sensors to provide information on the status of nuclear reactors."
-	requires_ntnet = TRUE
-	transfer_access = ACCESS_CONSTRUCTION
-	network_destination = "rbmk monitoring system"
-	size = 2
-	tgui_id = "NtosRbmkStats"
-	var/active = TRUE //Easy process throttle
-	var/next_stat_interval = 0
-	var/list/psiData = list()
-	var/list/powerData = list()
-	var/list/tempInputData = list()
-	var/list/tempOutputdata = list()
-	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor //Our reactor.
-
-/datum/computer_file/program/nuclear_monitor/process_tick()
-	..()
-	if(!reactor || !active)
-		return FALSE
-	var/stage = 0
-	//This is dirty but i'm lazy wahoo!
-	if(reactor.power > 0)
-		stage = 1
-	if(reactor.power >= 40)
-		stage = 2
-	if(reactor.temperature >= RBMK_TEMPERATURE_OPERATING)
-		stage = 3
-	if(reactor.temperature >= RBMK_TEMPERATURE_CRITICAL)
-		stage = 4
-	if(reactor.temperature >= RBMK_TEMPERATURE_MELTDOWN)
-		stage = 5
-		if(reactor.vessel_integrity <= 100) //Bye bye! GET OUT!
-			stage = 6
-	ui_header = "smmon_[stage].gif"
-	program_icon_state = "smmon_[stage]"
-	if(istype(computer))
-		computer.update_icon()
-	if(world.time >= next_stat_interval)
-		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		psiData += (reactor) ? reactor.pressure : 0
-		if(psiData.len > 100) //Only lets you track over a certain timeframe.
-			psiData.Cut(1, 2)
-		powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
-		if(powerData.len > 100) //Only lets you track over a certain timeframe.
-			powerData.Cut(1, 2)
-		tempInputData += (reactor) ? reactor.last_coolant_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempInputData.len > 100) //Only lets you track over a certain timeframe.
-			tempInputData.Cut(1, 2)
-		tempOutputdata += (reactor) ? reactor.last_output_temperature : 0 //We scale up the figure for a consistent:tm: scale
-		if(tempOutputdata.len > 100) //Only lets you track over a certain timeframe.
-			tempOutputdata.Cut(1, 2)
-
-/datum/computer_file/program/nuclear_monitor/run_program(mob/living/user)
-	. = ..(user)
-	//No reactor? Go find one then.
-	if(!reactor)
-		for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-			if(R.z == usr.z)
-				reactor = R
-				break
-	active = TRUE
-
-/datum/computer_file/program/nuclear_monitor/kill_program(forced = FALSE)
-	active = FALSE
-	..()
-
-/datum/computer_file/program/nuclear_monitor/ui_data()
-	var/list/data = get_header_data()
-	data["powerData"] = powerData
-	data["psiData"] = psiData
-	data["tempInputData"] = tempInputData
-	data["tempOutputdata"] = tempOutputdata
-	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
-	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
-	data["power"] = reactor ? reactor.power : 0
-	data ["psi"] = reactor ? reactor.pressure : 0
-	return data
-
-/datum/computer_file/program/nuclear_monitor/ui_act(action, params)
-	if(..())
-		return TRUE
-
-	switch(action)
-		if("swap_reactor")
-			var/list/choices = list()
-			for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-				if(R.z != usr.z)
-					continue
-				choices += R
-			reactor = input(usr, "What reactor do you wish to monitor?", "[src]", null) as null|anything in choices
-			powerData = list()
-			psiData = list()
-			tempInputData = list()
-			tempOutputdata = list()
-			return TRUE
-
-/obj/effect/decal/nuclear_waste
-	name = "Plutonium sludge"
-	desc = "A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this..."
-	icon = 'monkestation/icons/obj/machinery/reactor_parts.dmi'
-	icon_state = "nuclearwaste"
-	alpha = 150
-	light_color = LIGHT_COLOR_CYAN
-	color = "#ff9eff"
-
-/obj/effect/decal/nuclear_waste/Initialize()
-	. = ..()
-	set_light(3)
-
-/obj/effect/decal/nuclear_waste/epicenter //The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
-	name = "Dense nuclear sludge"
-
-/obj/effect/landmark/nuclear_waste_spawner //Clean way of spawning nuclear gunk after a reactor core meltdown.
-	name = "Nuclear waste spawner"
-	var/range = 5 //5 tile radius to spawn goop
-
-/obj/effect/landmark/nuclear_waste_spawner/strong
-	range = 10
-
-/obj/effect/landmark/nuclear_waste_spawner/proc/fire()
-	playsound(loc, 'sound/effects/gib_step.ogg', 100)
-	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
-	for(var/turf/open/floor in orange(range, get_turf(src)))
-		if(prob(35)) //Scatter the sludge, don't smear it everywhere
-			new /obj/effect/decal/nuclear_waste (floor)
-	qdel(src)
-
-/obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
-	. = ..()
-	var/static/list/loc_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/on_entered,
-	)
-	AddElement(/datum/element/connect_loc, loc_connections)
-
-/obj/effect/decal/nuclear_waste/epicenter/ComponentInitialize()
-	AddComponent(/datum/component/radioactive, 1500, src, 0)
-
-/obj/effect/decal/nuclear_waste/proc/on_entered(datum/source, atom/movable/AM)
-	SIGNAL_HANDLER
-
-	if(isliving(AM))
-		var/mob/living/L = AM
-		playsound(loc, 'sound/effects/gib_step.ogg', HAS_TRAIT(L, TRAIT_LIGHT_STEP) ? 20 : 50, 1)
-	radiation_pulse(src, 500, 5) //MORE RADS
-
-/obj/effect/decal/nuclear_waste/attackby(obj/item/tool, mob/user)
-	if(tool.tool_behaviour == TOOL_SHOVEL)
-		radiation_pulse(src, 1000, 5) //MORE RADS
-		to_chat(user, "<span class='notice'>You start to clear [src]...</span>")
-		if(tool.use_tool(src, user, 50, volume=100))
-			to_chat(user, "<span class='notice'>You clear [src].</span>")
-			qdel(src)
-			return
-	. = ..()
-
-/datum/weather/nuclear_fallout
-	name = "nuclear fallout"
-	desc = "Irradiated dust falls down everywhere."
-	telegraph_duration = 50
-	telegraph_message = "<span class='boldwarning'>The air suddenly becomes dusty..</span>"
-	weather_message = "<span class='userdanger'><i>You feel a wave of hot ash fall down on you.</i></span>"
-	weather_overlay = "light_ash"
-	telegraph_overlay = "light_snow"
-	weather_duration_lower = 600
-	weather_duration_upper = 1500
-	weather_color = "green"
-	telegraph_sound = null
-	weather_sound = 'monkestation/sound/effects/rbmk/falloutwind.ogg'
-	end_duration = 100
-	area_type = /area
-	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
-	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle)
-	target_trait = ZTRAIT_STATION
-	end_message = "<span class='notice'>The ash stops falling.</span>"
-	immunity_type = "rad"
-
-/datum/weather/nuclear_fallout/weather_act(mob/living/L)
-	L.rad_act(100)
-
-/datum/weather/nuclear_fallout/telegraph()
-	..()
-	status_alarm(TRUE)
-
-/datum/weather/nuclear_fallout/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.
-	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
-	if(!frequency)
-		return
-
-	var/datum/signal/signal = new
-	if (active)
-		signal.data["command"] = "alert"
-		signal.data["picture_state"] = "radiation"
-	else
-		signal.data["command"] = "shuttle"
-
-	var/atom/movable/virtualspeaker/virt = new(null)
-	frequency.post_signal(virt, signal)
-
-/datum/weather/nuclear_fallout/end()
-	if(..())
-		return
-	status_alarm(FALSE)
-
-/obj/item/sealant
-	name = "Flexi seal"
-	desc = "A neat spray can that can repair torn inflatable segments, and more!"
-	icon = 'monkestation/icons/obj/inflatable.dmi'
-	icon_state = "sealant"
-	w_class = 1
-
-// A temporary manual link until I figure out adding an information database on engine setups for tablets/computers
-/datum/config_entry/string/nsv_wikiurl
-	config_entry_value = "https://nsv.beestation13.com/wiki/Guide_to_the_Nuclear_Reactor"
-
-/obj/item/book/manual/wiki/rbmk/attack_self(mob/user)
-	var/nsv_wikiurl = CONFIG_GET(string/nsv_wikiurl)
-	if(!nsv_wikiurl)
-		return
-	if(alert(user, "This will open the wiki page in your browser. Are you sure?", null, "Yes", "No") != "Yes")
-		return
-	DIRECT_OUTPUT(user, link("[nsv_wikiurl]"))
-
-/obj/item/book/manual/wiki/rbmk
-	name = "\improper Haynes nuclear reactor owner's manual"
-	icon_state ="bookEngineering2"
-	author = "CogWerk Engineering Reactor Design Department"
-	title = "Haynes nuclear reactor owner's manual"
-//	page_link = "Guide_to_the_Nuclear_Reactor"
-
-/area/engine/engineering/reactor_core
-	name = "Nuclear Reactor Core"
-	network = list("ss13", "engine")
-
-/area/engine/engineering/reactor_control
-	name = "Reactor Control Room"
-	network = list("ss13", "engine")
-
-/area/engine/engineering/reactor_decontamination
-	name = "Reactor Decontamination Room"
-	network = list("ss13", "engine")
-
-/area/engine/engineering/reactor_turbines
-	name = "Reactor Turbine Room"
-	network = list("ss13", "engine")
 
