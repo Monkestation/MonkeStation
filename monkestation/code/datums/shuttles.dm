@@ -12,3 +12,8 @@
 	prefix = "monkestation/_maps/shuttles/"
 	suffix = "holestation"
 	name = "mining shuttle (Hole)"
+
+/datum/map_template/shuttle/exploration/holestation
+	prefix = "monkestation/_maps/shuttles/"
+	suffix = "holestation"
+	name = "exploration shuttle (Hole)"

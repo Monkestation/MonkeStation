@@ -183,11 +183,13 @@
 "aQ" = (
 /obj/item/toy/plush/carpplushie,
 /obj/machinery/firealarm/directional/north,
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/captain)
 "aR" = (
 /obj/structure/bed/dogbed/renault,
 /obj/machinery/airalarm/directional/north,
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/captain)
 "aS" = (
@@ -216,6 +218,9 @@
 "aW" = (
 /obj/structure/window/spawner/west,
 /obj/structure/displaycase/captain,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "aX" = (
@@ -1829,6 +1834,10 @@
 /obj/structure/window/spawner,
 /obj/structure/flora/junglebush,
 /obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/turf_decal/monke/siding/thinplating/dark,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/library/lounge)
 "iI" = (
@@ -1962,6 +1971,7 @@
 /area/engine/atmos)
 "jr" = (
 /obj/structure/bed/dogbed/ian,
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/hop)
 "jv" = (
@@ -2288,6 +2298,9 @@
 "kR" = (
 /obj/structure/displaycase/trophy,
 /obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "kS" = (
@@ -2661,6 +2674,9 @@
 /area/library/lounge)
 "mF" = (
 /obj/machinery/bookbinder,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "mG" = (
@@ -2887,6 +2903,9 @@
 /area/library/lounge)
 "nI" = (
 /obj/machinery/libraryscanner,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "nJ" = (
@@ -6209,6 +6228,19 @@
 	},
 /turf/open/floor/wood,
 /area/quartermaster/storage)
+"DI" = (
+/obj/docking_port/stationary{
+	dir = 8;
+	dwidth = 2;
+	height = 13;
+	id = "exploration_home";
+	name = "Exploration Dock";
+	roundstart_template = /datum/map_template/shuttle/exploration/holestation;
+	width = 16;
+	dheight = 1
+	},
+/turf/open/space/basic,
+/area/space)
 "DJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8010,6 +8042,7 @@
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hop)
 "Mk" = (
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/hop)
 "Mn" = (
@@ -8891,7 +8924,7 @@
 	dwidth = 11;
 	height = 18;
 	id = "emergency_home";
-	name = "NRV Holemaker emergency evac bay";
+	name = "NTRV Holemaker emergency evac bay";
 	width = 30
 	},
 /turf/open/space/basic,
@@ -35163,7 +35196,7 @@ nZ
 nZ
 nZ
 nZ
-nZ
+DI
 nZ
 nZ
 nZ
