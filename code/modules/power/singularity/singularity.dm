@@ -10,25 +10,42 @@
 	layer = MASSIVE_OBJ_LAYER
 	light_range = 6
 	appearance_flags = 0
+
+	///How big is the singularity?
 	var/current_size = 1
+	///Current allowed size for the singulo
 	var/allowed_size = 1
-	var/contained = 1 //Are we going to move around?
-	var/energy = 100 //How strong are we?
-	var/dissipate = 1 //Do we lose energy over time?
-	/// How long should it take for us to dissipate in seconds?
-	var/dissipate_delay = 20
-	/// How much energy do we lose every dissipate_delay?
+	///Are we going to move around?
+	var/contained = TRUE
+	///How strong are we?
+	var/energy = 100
+	///Do we lose energy over time?
+	var/dissipate = TRUE
+	///How long should it take for us to dissipate in seconds?
+	var/dissipate_delay = 10
+	///How much energy do we lose every dissipate_delay?
 	var/dissipate_strength = 1
 	/// How long its been (in seconds) since the last dissipation
 	var/time_since_last_dissipiation = 0
-	var/move_self = 1 //Do we move on our own?
-	var/grav_pull = 4 //How many tiles out do we pull?
-	var/consume_range = 0 //How many tiles out do we eat
-	var/event_chance = 10 //Prob for event each tick
-	var/target = null //its target. moves towards the target if it has one
-	var/last_failed_movement = 0//Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
+	///Do we move on our own?
+	var/move_self = TRUE
+	///How many tiles out do we pull?
+	var/grav_pull = 4
+	///How many tiles out do we eat
+	var/consume_range = 0
+	///Prob for event each tick
+	var/event_chance = 10
+	///its target. moves towards the target if it has one
+	var/target = null
+	///Will not move in the same dir if it couldnt before, will help with the getting stuck on fields thing
+	var/last_failed_movement = 0
+	///admin warning
 	var/last_warning
-	var/consumedSupermatter = 0 //If the singularity has eaten a supermatter shard and can go to stage six
+	///If the singularity has eaten a supermatter shard and can go to stage six
+	var/consumed_supermatter = FALSE
+	///The largest stage this singularity has been
+	var/max_singularity_stage = 0
+
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	obj_flags = CAN_BE_HIT | DANGEROUS_POSSESSION
 
@@ -48,10 +65,20 @@
 	AddElement(/datum/element/bsa_blocker)
 	RegisterSignal(src, COMSIG_ATOM_BSA_BEAM, .proc/bluespace_reaction)
 
+/obj/singularity/proc/singularity_shard()
+	if(max_singularity_stage)
+		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
+		var/turf/T = get_turf(src)
+		new shardstage(T, src)
+
 /obj/singularity/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
 	GLOB.singularities.Remove(src)
+	if(max_singularity_stage)
+		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
+		var/turf/T = get_turf(src)
+		spawn(5 SECONDS) (new shardstage(T, src))
 	return ..()
 
 /obj/singularity/Move(atom/newloc, direct)
@@ -60,7 +87,7 @@
 		return ..()
 	else
 		last_failed_movement = direct
-		return 0
+		return FALSE
 
 /obj/singularity/attack_hand(mob/user)
 	consume(user)
@@ -77,10 +104,10 @@
 
 /obj/singularity/attackby(obj/item/W, mob/user, params)
 	consume(user)
-	return 1
+	return TRUE
 
 /obj/singularity/Process_Spacemove() //The singularity stops drifting for no man!
-	return 0
+	return FALSE
 
 /obj/singularity/blob_act(obj/structure/blob/B)
 	return
@@ -100,19 +127,30 @@
 		qdel(rip_u)
 
 /obj/singularity/ex_act(severity, target)
+	var/energy_loss_ratio = 0
+	var/stage_collapse = null
 	switch(severity)
-		if(1)
-			if(current_size <= STAGE_TWO)
-				investigate_log("has been destroyed by a heavy explosion.", INVESTIGATE_ENGINES)
-				qdel(src)
-				return
-			else
-				energy -= round(((energy+1)/2),1)
-		if(2)
-			energy -= round(((energy+1)/3),1)
-		if(3)
-			energy -= round(((energy+1)/4),1)
-	return
+		if(EXPLODE_DEVASTATE)
+			stage_collapse = STAGE_TWO
+			energy_loss_ratio = 0.60
+		if(EXPLODE_HEAVY)
+			stage_collapse = STAGE_ONE
+			energy_loss_ratio = 0.40
+		if(EXPLODE_LIGHT)
+			energy_loss_ratio = 0.30
+
+	if(stage_collapse && current_size <= stage_collapse)
+		investigate_log("has been destroyed by an explosion", INVESTIGATE_ENGINES)
+		qdel(src)
+		return
+
+	energy -= round(energy * energy_loss_ratio)
+	check_energy()
+
+	if(energy <= 60)
+		investigate_log("collapsed due to low energy after an explosion.", INVESTIGATE_ENGINES)
+		qdel(src)
+		return
 
 
 /obj/singularity/bullet_act(obj/item/projectile/P)
@@ -161,14 +199,13 @@
 	// Uses a while in case of especially long delta times
 	while (time_since_last_dissipiation >= dissipate_delay)
 		energy -= dissipate_strength
-
-	time_since_last_dissipiation -= dissipate_delay
+		time_since_last_dissipiation -= dissipate_delay
 
 /obj/singularity/proc/expand(force_size = 0)
 	var/temp_allowed_size = src.allowed_size
 	if(force_size)
 		temp_allowed_size = force_size
-	if(temp_allowed_size >= STAGE_SIX && !consumedSupermatter)
+	if(temp_allowed_size >= STAGE_SIX && !consumed_supermatter)
 		temp_allowed_size = STAGE_FIVE
 	switch(temp_allowed_size)
 		if(STAGE_ONE)
@@ -182,6 +219,8 @@
 			dissipate_delay = 10
 			time_since_last_dissipiation = 0
 			dissipate_strength = 1
+			if(max_singularity_stage < 1)
+				max_singularity_stage = 1
 		if(STAGE_TWO)
 			if(check_cardinals_range(1, TRUE))
 				current_size = STAGE_TWO
@@ -193,7 +232,9 @@
 				consume_range = 1
 				dissipate_delay = 5
 				time_since_last_dissipiation = 0
-				dissipate_strength = 5
+				dissipate_strength = 20
+				if(max_singularity_stage < 2)
+					max_singularity_stage = 2
 		if(STAGE_THREE)
 			if(check_cardinals_range(2, TRUE))
 				current_size = STAGE_THREE
@@ -205,7 +246,9 @@
 				consume_range = 2
 				dissipate_delay = 4
 				time_since_last_dissipiation = 0
-				dissipate_strength = 20
+				dissipate_strength = 40
+				if(max_singularity_stage < 3)
+					max_singularity_stage = 3
 		if(STAGE_FOUR)
 			if(check_cardinals_range(3, TRUE))
 				current_size = STAGE_FOUR
@@ -217,7 +260,9 @@
 				consume_range = 3
 				dissipate_delay = 10
 				time_since_last_dissipiation = 0
-				dissipate_strength = 10
+				dissipate_strength = 60
+				if(max_singularity_stage < 4)
+					max_singularity_stage = 4
 		if(STAGE_FIVE)//this one also lacks a check for gens because it eats everything
 			current_size = STAGE_FIVE
 			icon = 'icons/effects/288x288.dmi'
@@ -226,7 +271,9 @@
 			pixel_y = -128
 			grav_pull = 10
 			consume_range = 4
-			dissipate = 0 //It cant go smaller due to e loss
+			dissipate_strength = 40
+			if(max_singularity_stage < 5)
+				max_singularity_stage = 5
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -235,14 +282,16 @@
 			pixel_y = -160
 			grav_pull = 15
 			consume_range = 5
-			dissipate = 0
+			dissipate = FALSE
+			if(max_singularity_stage < 6)
+				max_singularity_stage = 6
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_ENGINES)
-		return 1
+		return TRUE
 	else if(current_size < (--temp_allowed_size))
 		expand(temp_allowed_size)
 	else
-		return 0
+		return FALSE
 
 
 /obj/singularity/proc/check_energy()
@@ -253,20 +302,20 @@
 	switch(energy)//Some of these numbers might need to be changed up later -Mport
 		if(1 to 199)
 			allowed_size = STAGE_ONE
-		if(200 to 499)
+		if(200 to 999)
 			allowed_size = STAGE_TWO
-		if(500 to 999)
-			allowed_size = STAGE_THREE
 		if(1000 to 1999)
+			allowed_size = STAGE_THREE
+		if(2000 to 3000)
 			allowed_size = STAGE_FOUR
-		if(2000 to INFINITY)
-			if(energy >= 3000 && consumedSupermatter)
+		if(3000 to INFINITY)
+			if(energy >= 4000 && consumed_supermatter)
 				allowed_size = STAGE_SIX
 			else
 				allowed_size = STAGE_FIVE
 	if(current_size != allowed_size)
 		expand()
-	return 1
+	return TRUE
 
 
 /obj/singularity/proc/eat()
@@ -291,26 +340,21 @@
 /obj/singularity/proc/consume(atom/A)
 	var/gain = A.singularity_act(current_size, src)
 	src.energy += gain
-	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumedSupermatter)
+	if(istype(A, /obj/machinery/power/supermatter_crystal) && !consumed_supermatter)
 		desc = "[initial(desc)] It glows fiercely with inner fire."
 		name = "supermatter-charged [initial(name)]"
-		consumedSupermatter = 1
+		consumed_supermatter = TRUE
 		set_light(10)
 	return
 
-
 /obj/singularity/proc/move(force_move = 0)
 	if(!move_self)
-		return 0
-
+		return FALSE
 	var/movement_dir = pick(GLOB.alldirs - last_failed_movement)
-
 	if(force_move)
 		movement_dir = force_move
-
 	if(target && prob(60))
 		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
-
 	step(src, movement_dir)
 
 /obj/singularity/proc/check_cardinals_range(steps, retry_with_move = FALSE)
@@ -326,7 +370,7 @@
 
 /obj/singularity/proc/check_turfs_in(direction = 0, step = 0)
 	if(!direction)
-		return 0
+		return FALSE
 	var/steps = 0
 	if(!step)
 		switch(current_size)
@@ -347,7 +391,7 @@
 	for(var/i = 1 to steps)
 		T = get_step(T,direction)
 	if(!isturf(T))
-		return 0
+		return FALSE
 	turfs.Add(T)
 	var/dir2 = 0
 	var/dir3 = 0
@@ -362,35 +406,35 @@
 	for(var/j = 1 to steps-1)
 		T2 = get_step(T2,dir2)
 		if(!isturf(T2))
-			return 0
+			return FALSE
 		turfs.Add(T2)
 	for(var/k = 1 to steps-1)
 		T = get_step(T,dir3)
 		if(!isturf(T))
-			return 0
+			return FALSE
 		turfs.Add(T)
 	for(var/turf/T3 in turfs)
 		if(isnull(T3))
 			continue
 		if(!can_move(T3))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 
 /obj/singularity/proc/can_move(turf/T)
 	if(!T)
-		return 0
+		return FALSE
 	if((locate(/obj/machinery/field/containment) in T)||(locate(/obj/machinery/shieldwall) in T))
-		return 0
+		return FALSE
 	else if(locate(/obj/machinery/field/generator) in T)
 		var/obj/machinery/field/generator/G = locate(/obj/machinery/field/generator) in T
 		if(G?.active)
-			return 0
+			return FALSE
 	else if(locate(/obj/machinery/shieldwallgen) in T)
 		var/obj/machinery/shieldwallgen/S = locate(/obj/machinery/shieldwallgen) in T
 		if(S?.active)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 
 /obj/singularity/proc/event()
@@ -402,11 +446,11 @@
 			mezzer()
 		if(3,4) //Sets all nearby mobs on fire
 			if(current_size < STAGE_SIX)
-				return 0
+				return FALSE
 			combust_mobs()
 		else
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 
 /obj/singularity/proc/combust_mobs()

@@ -21,6 +21,10 @@
 /obj/singularity/spatial_rift/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 5 SECONDS) // vanishes after 5 seconds
+	if(max_singularity_stage)
+		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
+		var/turf/T = get_turf(src)
+		spawn(10 SECONDS) (new shardstage(T, src))
 
 /obj/singularity/spatial_rift/process()
 	eat()
