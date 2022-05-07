@@ -14,7 +14,6 @@
 "ad" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tank - Air";
-	dir = 8;
 	name = "atmospherics camera";
 	network = list("ss13","engine")
 	},
@@ -68,7 +67,6 @@
 "ao" = (
 /obj/machinery/camera{
 	c_tag = "Head of Personnel's Office";
-	dir = 1;
 	name = "command camera"
 	},
 /obj/effect/turf_decal/delivery,
@@ -299,7 +297,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/camera{
 	c_tag = "Captain's Office";
-	dir = 9;
+	dir = 6;
 	name = "command camera"
 	},
 /turf/open/floor/plasteel/dark,
@@ -2617,7 +2615,6 @@
 "mq" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tank - N2";
-	dir = 8;
 	name = "atmospherics camera";
 	network = list("ss13","engine")
 	},
@@ -2681,6 +2678,10 @@
 /area/library/lounge)
 "mG" = (
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "mH" = (
@@ -3232,6 +3233,10 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ps" = (
+/obj/machinery/door/window/westleft,
+/turf/open/floor/plasteel,
+/area/tcommsat/server)
 "pt" = (
 /obj/machinery/airalarm/directional/east,
 /obj/structure/cable/yellow{
@@ -4737,6 +4742,12 @@
 	},
 /turf/open/openspace,
 /area/maintenance/central/secondary)
+"wJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/tcommsat/server)
 "wL" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -7862,6 +7873,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "Lm" = (
@@ -9398,6 +9412,9 @@
 "Sl" = (
 /obj/machinery/door/airlock/engineering,
 /obj/machinery/door/firedoor/heavy,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "Sn" = (
@@ -9531,7 +9548,6 @@
 "Tb" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics Tank - O2";
-	dir = 8;
 	name = "atmospherics camera";
 	network = list("ss13","engine")
 	},
@@ -10321,6 +10337,10 @@
 /obj/machinery/door/airlock/atmos,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"WU" = (
+/obj/machinery/door/window/eastleft,
+/turf/open/floor/plasteel,
+/area/tcommsat/server)
 "WV" = (
 /obj/structure/railing{
 	dir = 4
@@ -42156,7 +42176,7 @@ BW
 pW
 pW
 jl
-Rz
+ps
 jl
 pW
 rl
@@ -42666,9 +42686,9 @@ UT
 aU
 UT
 Ll
-sl
+UT
 Sl
-Rz
+wJ
 Rz
 Rz
 NO
@@ -43184,7 +43204,7 @@ VP
 pW
 pW
 jl
-Rz
+WU
 jl
 pW
 rl
