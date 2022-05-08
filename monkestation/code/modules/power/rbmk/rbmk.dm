@@ -19,7 +19,7 @@
 #define RBMK_MAX_CRITICALITY 3		//Default: 3
 
 //To turn those KWs into something usable
-#define RBMK_POWER_FLAVOURISER 600		//Default: 8000 //I want some use out of turbines for power
+#define RBMK_POWER_FLAVOURISER 400		//Default: 8000 //I want some use out of turbines for power
 
 //Reference: Heaters go up to 500K.
 //Hot plasmaburn: 14164.95 C.
@@ -380,6 +380,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	else
 		temperature -= 10 //Nothing to heat us up, so.
 	handle_alerts() //Let's check if they're about to die, and let them know.
+	radio_alerts() //New Radio Alert proc since handle_alerts is getting big
 	update_icon()
 	//Radiation Pulse Range Increase to 3 and intensity multiplied by 2 //Monkestation Edit
 	radiation_pulse(src, (temperature*radioactivity_spice_multiplier)*2, 3)
@@ -442,6 +443,22 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
 			M.stop_sound_channel(channel)
+
+// Method for alerting the station on the radio
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alerts()
+	if((REALTIMEOFDAY - lastwarning) / 10 >= WARNING_DELAY)
+
+		if(temperature >= RBMK_TEMPERATURE_CRITICAL)
+			radio.talk_into(src, "Reactor Temperature Critical at [temperature] C.", engineering_channel)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
+
+			if(temperature >= RBMK_TEMPERATURE_MELTDOWN)
+				radio.talk_into(src, "REACTOR MELTDOWN IMMINENT at [temperature] C. Please seek your nearest radiation lockers for protection.", common_channel)
+				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
+
+		if(pressure >= RBMK_PRESSURE_CRITICAL)
+			radio.talk_into(src, "Reactor Pressure Critical at [pressure] PSI. PRESSURE BLOWOUT IMMINENT. Please seek shelter and your nearest radiation lockers for protection.", common_channel)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
 
 //Method to handle sound effects, reactor warnings, all that jazz.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/handle_alerts()
