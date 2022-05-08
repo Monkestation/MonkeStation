@@ -40,7 +40,7 @@
 	dangerous = TRUE
 
 /datum/supply_pack/emergency/radiationkits
-	name = "Spatial Rift Nullifier Pack"
+	name = "Radbgone Pack"
 	desc = "For large radiation exposure incidents. Comes with 4 Radbgone First-Aid Kits"
 	cost = 2000
 	contains = list(/obj/item/storage/firstaid/radbgone = 4)
