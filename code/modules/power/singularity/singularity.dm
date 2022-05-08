@@ -65,12 +65,6 @@
 	AddElement(/datum/element/bsa_blocker)
 	RegisterSignal(src, COMSIG_ATOM_BSA_BEAM, .proc/bluespace_reaction)
 
-/obj/singularity/proc/singularity_shard()
-	if(max_singularity_stage)
-		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
-		var/turf/T = get_turf(src)
-		new shardstage(T, src)
-
 /obj/singularity/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	GLOB.poi_list.Remove(src)
@@ -78,7 +72,7 @@
 	if(max_singularity_stage)
 		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
 		var/turf/T = get_turf(src)
-		spawn(5 SECONDS) (new shardstage(T, src))
+		spawn(6 SECONDS) (new shardstage(T, src)) //Delay so spatial_rift doesn't eat the shard ///Monkestation edit
 	return ..()
 
 /obj/singularity/Move(atom/newloc, direct)
@@ -232,7 +226,7 @@
 				consume_range = 1
 				dissipate_delay = 5
 				time_since_last_dissipiation = 0
-				dissipate_strength = 20
+				dissipate_strength = 10
 				if(max_singularity_stage < 2)
 					max_singularity_stage = 2
 		if(STAGE_THREE)
@@ -246,7 +240,7 @@
 				consume_range = 2
 				dissipate_delay = 4
 				time_since_last_dissipiation = 0
-				dissipate_strength = 40
+				dissipate_strength = 30
 				if(max_singularity_stage < 3)
 					max_singularity_stage = 3
 		if(STAGE_FOUR)
@@ -353,7 +347,7 @@
 	var/movement_dir = pick(GLOB.alldirs - last_failed_movement)
 	if(force_move)
 		movement_dir = force_move
-	if(target && prob(60))
+	if(target && prob(70))
 		movement_dir = get_dir(src,target) //moves to a singulo beacon, if there is one
 	step(src, movement_dir)
 
@@ -389,7 +383,7 @@
 	var/list/turfs = list()
 	var/turf/T = src.loc
 	for(var/i = 1 to steps)
-		T = get_step(T,direction)
+		T = get_step(T, direction)
 	if(!isturf(T))
 		return FALSE
 	turfs.Add(T)
@@ -481,9 +475,9 @@
 						"<span class='userdanger'>You look directly into the [src.name] and feel weak.</span>")
 	return
 
-
+/// Original empulse(src, 8, 10) ///Monkestation Edit
 /obj/singularity/proc/emp_area()
-	empulse(src, 8, 10)
+	empulse(src, 4, 6)
 	return
 
 /obj/singularity/singularity_act()
