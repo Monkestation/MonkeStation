@@ -21,10 +21,6 @@
 /obj/singularity/spatial_rift/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 5 SECONDS) // vanishes after 5 seconds
-	if(max_singularity_stage)
-		var/shardstage = text2path("/obj/item/singularity_shard/stage[max_singularity_stage]")
-		var/turf/T = get_turf(src)
-		spawn(10 SECONDS) (new shardstage(T, src))
 
 /obj/singularity/spatial_rift/process()
 	eat()
@@ -41,6 +37,7 @@
 		var/mob/living/M = AM
 		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		M.ghostize(FALSE)
+		return
 	else if(istype(AM, /obj/singularity))
 		investigate_log("([key_name(A)]) has been consumed by the Spatial rift at [AREACOORD(T)].", INVESTIGATE_ENGINES)
 		return
