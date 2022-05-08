@@ -275,6 +275,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		STOP_PROCESSING(SSmachines, src)
 		return
 
+	//Reactor hum soundloop
 	soundloop = new(list(src), TRUE)
 	if(power)
 		soundloop.volume = CLAMP((3 + (power / 100)), 3, 40)
@@ -289,7 +290,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(input_moles >= minimum_coolant_level)
 		last_coolant_temperature = KELVIN_TO_CELSIUS(coolant_input.return_temperature())
 		//Important thing to remember, once you slot in the fuel rods, this thing will not stop making heat, at least, not unless you can live to be thousands of years old which is when the spent fuel finally depletes fully.
-		var/heat_delta = (KELVIN_TO_CELSIUS(coolant_input.return_temperature()) / 100) * gas_absorption_effectiveness //Take in the gas as a cooled input, cool the reactor a bit. The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
+		//Take in the gas as a cooled input, cool the reactor a bit.
+		//The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
+		var/heat_delta = (KELVIN_TO_CELSIUS(coolant_input.return_temperature()) / 100) * gas_absorption_effectiveness
 		last_heat_delta = heat_delta
 		temperature += heat_delta
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
