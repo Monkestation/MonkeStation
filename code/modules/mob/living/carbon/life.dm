@@ -126,16 +126,7 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
-				var/breath_ratio = 0
-				if(environment)
-					breath_ratio = BREATH_VOLUME/environment.return_volume()
-
-				breath = loc.remove_air_ratio(breath_ratio)
-		else //Breathe from loc as obj again
-			if(istype(loc, /obj/))
-				var/obj/loc_as_obj = loc
-				loc_as_obj.handle_internal_lifeform(src,0)
-				//MONKESTATION EDIT ADDITION
+							//MONKESTATION EDIT ADDITION
 				//Underwater breathing
 				var/turf/T = loc
 				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
@@ -157,6 +148,15 @@
 									"<span class='userdanger'>You're choking on water!</span>")
 					return FALSE
 				//MONKESTATION EDIT END
+				var/breath_ratio = 0
+				if(environment)
+					breath_ratio = BREATH_VOLUME/environment.return_volume()
+
+				breath = loc.remove_air_ratio(breath_ratio)
+			else //Breathe from loc as obj again
+				if(istype(loc, /obj/))
+					var/obj/loc_as_obj = loc
+					loc_as_obj.handle_internal_lifeform(src,0)
 
 	if(breath)
 		breath.set_volume(BREATH_VOLUME)
