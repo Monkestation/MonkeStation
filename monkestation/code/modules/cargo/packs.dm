@@ -11,8 +11,8 @@
 
 /datum/supply_pack/emergency/spatialriftnullifier
 	name = "Spatial Rift Nullifier Pack"
-	desc = "Everything that the crew needs to take down a rogue Singularity or Tesla."
-	cost = 10000
+	desc = "Everything that the crew needs to take down a rogue Singularity or Tesla. Stations cost money, so better do it."
+	cost = 3000
 	contains = list(/obj/item/gun/ballistic/SRN_rocketlauncher = 3)
 	crate_name = "Spatial Rift Nullifier (SRN)"
 	crate_type = /obj/structure/closet/crate/secure
