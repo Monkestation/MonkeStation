@@ -11,7 +11,7 @@
 	light_range = 0
 	light_power = 1
 	light_color = LIGHT_COLOR_FIRE
-
+	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/closed/wall,/obj/structure/falsewall, /turf/closed/indestructible/fakeglass, /obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/effect/abstract/liquid_turf)
 
 	mouse_opacity = FALSE
