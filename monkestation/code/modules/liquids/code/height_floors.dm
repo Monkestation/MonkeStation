@@ -2,20 +2,20 @@
 	name = "elevated floor tile"
 	singular_name = "elevated floor tile"
 	turf_type = /turf/open/floor/iron/elevated
-	icon = 'monkestation/code/modules/liquids/icons/items/tiles.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/items/tiles.dmi'
 	icon_state = "elevated"
 
 /obj/item/stack/tile/iron/lowered
 	name = "lowered floor tile"
 	singular_name = "lowered floor tile"
 	turf_type = /turf/open/floor/iron/lowered
-	icon = 'monkestation/code/modules/liquids/icons/items/tiles.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/items/tiles.dmi'
 	icon_state = "lowered"
 /obj/item/stack/tile/iron/pool
 	name = "pool floor tile"
 	singular_name = "pool floor tile"
 	turf_type = /turf/open/floor/iron/pool
-	icon = 'monkestation/code/modules/liquids/icons/items/tiles.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/items/tiles.dmi'
 	icon_state = "pool"
 
 /turf/open/floor/iron/pool
@@ -39,7 +39,8 @@
 	base_icon_state = "elevated_plasteel"
 	liquid_height = 30
 	turf_height = 30
-
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/iron/elevated)
 
 /turf/open/floor/iron/elevated/rust_heretic_act()
 	return
@@ -52,7 +53,8 @@
 	base_icon_state = "lowered_plasteel"
 	liquid_height = -30
 	turf_height = -30
-
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/iron/lowered)
 
 /turf/open/floor/iron/lowered/rust_heretic_act()
 	return
