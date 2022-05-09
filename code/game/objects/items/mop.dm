@@ -15,7 +15,7 @@
 	resistance_flags = FLAMMABLE
 	var/mopping = 0
 	var/mopcount = 0
-	var/mopcap = 15
+	var/mopcap = 50 //MONKESTATION EDIT CHANGE
 	var/mopspeed = 15
 	force_string = "robust... against germs"
 	var/insertable = TRUE
@@ -95,9 +95,9 @@
 	insertable = FALSE
 
 /obj/item/mop/advanced
-	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this!"
+	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this! Due to the self-wetting technology, it proves very inefficient for cleaning up spills." //MONKESTATION EDIT
 	name = "advanced mop"
-	mopcap = 10
+	mopcap = 100 //MONKESTATION EDIT CHANGE
 	icon_state = "advmop"
 	item_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
