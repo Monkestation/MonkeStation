@@ -68,7 +68,7 @@
 	desc = "A console for monitoring the statistics of a nuclear reactor."
 	icon_screen = "rbmk_stats"
 	var/next_stat_interval = 0
-	var/list/psiData = list()
+	var/list/pressureData = list()
 	var/list/powerData = list()
 	var/list/tempInputData = list()
 	var/list/tempOutputdata = list()
@@ -90,9 +90,9 @@
 /obj/machinery/computer/reactor/stats/process()
 	if(world.time >= next_stat_interval)
 		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		psiData += (reactor) ? reactor.pressure : 0
-		if(psiData.len > 100) //Only lets you track over a certain timeframe.
-			psiData.Cut(1, 2)
+		pressureData += (reactor) ? reactor.pressure : 0
+		if(pressureData.len > 100) //Only lets you track over a certain timeframe.
+			pressureData.Cut(1, 2)
 		powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
 		if(powerData.len > 100) //Only lets you track over a certain timeframe.
 			powerData.Cut(1, 2)
@@ -106,13 +106,13 @@
 /obj/machinery/computer/reactor/stats/ui_data(mob/user)
 	var/list/data = list()
 	data["powerData"] = powerData
-	data["psiData"] = psiData
+	data["pressureData"] = pressureData
 	data["tempInputData"] = tempInputData
 	data["tempOutputdata"] = tempOutputdata
 	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
 	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
 	data["power"] = reactor ? reactor.power : 0
-	data ["psi"] = reactor ? reactor.pressure : 0
+	data["reactorPressure"] = reactor ? reactor.pressure : 0
 	return data
 
 /obj/machinery/computer/reactor/fuel_rods
@@ -240,7 +240,7 @@
 	tgui_id = "NtosRbmkStats"
 	var/active = TRUE //Easy process throttle
 	var/next_stat_interval = 0
-	var/list/psiData = list()
+	var/list/pressureData = list()
 	var/list/powerData = list()
 	var/list/tempInputData = list()
 	var/list/tempOutputdata = list()
@@ -270,9 +270,9 @@
 		computer.update_icon()
 	if(world.time >= next_stat_interval)
 		next_stat_interval = world.time + 1 SECONDS //You only get a slow tick.
-		psiData += (reactor) ? reactor.pressure : 0
-		if(psiData.len > 100) //Only lets you track over a certain timeframe.
-			psiData.Cut(1, 2)
+		pressureData += (reactor) ? reactor.pressure : 0
+		if(pressureData.len > 100) //Only lets you track over a certain timeframe.
+			pressureData.Cut(1, 2)
 		powerData += (reactor) ? reactor.power*10 : 0 //We scale up the figure for a consistent:tm: scale
 		if(powerData.len > 100) //Only lets you track over a certain timeframe.
 			powerData.Cut(1, 2)
@@ -300,13 +300,13 @@
 /datum/computer_file/program/nuclear_monitor/ui_data()
 	var/list/data = get_header_data()
 	data["powerData"] = powerData
-	data["psiData"] = psiData
+	data["pressureData"] = pressureData
 	data["tempInputData"] = tempInputData
 	data["tempOutputdata"] = tempOutputdata
 	data["coolantInput"] = reactor ? reactor.last_coolant_temperature : 0
 	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
 	data["power"] = reactor ? reactor.power : 0
-	data ["psi"] = reactor ? reactor.pressure : 0
+	data["reactorPressure"] = reactor ? reactor.pressure : 0
 	return data
 
 /datum/computer_file/program/nuclear_monitor/ui_act(action, params)
@@ -322,7 +322,7 @@
 				choices += R
 			reactor = input(usr, "What reactor do you wish to monitor?", "[src]", null) as null|anything in choices
 			powerData = list()
-			psiData = list()
+			pressureData = list()
 			tempInputData = list()
 			tempOutputdata = list()
 			return TRUE

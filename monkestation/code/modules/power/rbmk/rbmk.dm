@@ -12,8 +12,8 @@
 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 #define RBMK_NO_COOLANT_TOLERANCE 5	//Default: 5
 
-#define RBMK_PRESSURE_OPERATING 1000 //PSI		//Default: 1000
-#define RBMK_PRESSURE_CRITICAL 6469.59 //PSI	//Default: 1469.59
+#define RBMK_PRESSURE_OPERATING 5000 //kPa		//Default: 1000 PSI //No more PSI
+#define RBMK_PRESSURE_CRITICAL 10000 //kPa	//Default: 1469.59 PSI
 
 //No more criticality than N for now.
 #define RBMK_MAX_CRITICALITY 3		//Default: 3
@@ -311,7 +311,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//Now, heat up the output and set our pressure.
 	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)) //Heat the coolant output gas that we just had pass through us.
 	last_output_temperature = KELVIN_TO_CELSIUS(coolant_output.return_temperature())
-	pressure = KPA_TO_PSI(coolant_output.return_pressure())
+	pressure = coolant_output.return_pressure()
 	power = (temperature / RBMK_TEMPERATURE_CRITICAL) * 100
 	var/radioactivity_spice_multiplier = 1 //Some gasses make the reactor a bit spicy.
 	var/depletion_modifier = 0.035 //How rapidly do your rods decay
@@ -454,14 +454,16 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(temperature >= RBMK_TEMPERATURE_CRITICAL)
 			radio.talk_into(src, "Reactor Temperature Critical at [temperature] C.", engineering_channel)
 			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
-
-			if(temperature >= RBMK_TEMPERATURE_MELTDOWN)
+			if(vessel_integrity <= 200)
 				radio.talk_into(src, "REACTOR MELTDOWN IMMINENT at [temperature] C. Please seek your nearest radiation lockers for protection.", common_channel)
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
 
 		if(pressure >= RBMK_PRESSURE_CRITICAL)
-			radio.talk_into(src, "Reactor Pressure Critical at [pressure] PSI. PRESSURE BLOWOUT IMMINENT. Please seek shelter and your nearest radiation lockers for protection.", common_channel)
+			radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa.", engineering_channel)
 			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 4)
+			if(vessel_integrity <= 200)
+				radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa. PRESSURE BLOWOUT IMMINENT. Please seek shelter and your nearest radiation lockers for protection.", common_channel)
+				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 2)
 
 //Method to handle sound effects, reactor warnings, all that jazz.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/handle_alerts()
@@ -494,7 +496,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60)	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
 		vessel_integrity -= pressure_damage
 		if(vessel_integrity <= pressure_damage) //It wouldn't
-			investigate_log("Reactor blowout at [pressure] PSI with desired criticality at [desired_k]", INVESTIGATE_ENGINES)
+			investigate_log("Reactor blowout at [pressure] kPa with desired criticality at [desired_k]", INVESTIGATE_ENGINES)
 			blowout()
 			return
 	if(warning)
@@ -504,8 +506,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			set_light(0)
 			light_color = LIGHT_COLOR_CYAN
 			set_light(10)
-			investigate_log("Reactor stabilizing at [pressure] PSI and [temperature] C.", INVESTIGATE_ENGINES)
-			message_admins("Reactor stabilizing at [pressure] PSI and [temperature] C. [ADMIN_VERBOSEJMP(src)]")
+			investigate_log("Reactor stabilizing at [pressure] kPa and [temperature] C.", INVESTIGATE_ENGINES)
+			message_admins("Reactor stabilizing at [pressure] kPa and [temperature] C. [ADMIN_VERBOSEJMP(src)]")
 			radio.talk_into(src, "REACTOR STABILIZED." , common_channel)
 	else
 		if(!alert)
