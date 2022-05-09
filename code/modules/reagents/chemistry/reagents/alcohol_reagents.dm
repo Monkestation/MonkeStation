@@ -15,7 +15,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	random_unrestricted = FALSE
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
-	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 
 /*

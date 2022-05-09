@@ -78,3 +78,4 @@
 #define CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT 2
 
 #define SUBMERGEMENT_PERCENT(carbon, liquids) min(1,(!MOBILITY_STAND ? liquids.liquid_state+LYING_DOWN_SUBMERGEMENT_STATE_BONUS : liquids.liquid_state)/TOTAL_LIQUID_STATES)
+

@@ -1037,7 +1037,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
-	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
