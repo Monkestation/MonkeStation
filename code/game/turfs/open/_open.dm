@@ -29,12 +29,11 @@
 		var/mob/living/L = mover
 		var/turf/T = get_turf(newloc)
 		if(T && T.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
-			L.on_fall()
 			L.onZImpact(T, 1)
 
 
 /turf/open/MouseDrop_T(mob/living/M, mob/living/user)
-	if(!isliving(M) || !isliving(user) || !M.has_gravity() || !Adjacent(user) || !M.Adjacent(user) || !(user.stat == CONSCIOUS) || user.body_position == LYING_DOWN)
+	if(!isliving(M) || !isliving(user) || !M.has_gravity() || !Adjacent(user) || !M.Adjacent(user) || !(user.stat == CONSCIOUS) || !MOBILITY_STAND)
 		return
 	if(!M.has_gravity())
 		return

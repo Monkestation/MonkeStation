@@ -55,9 +55,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
 	new/datum/stack_recipe("iron rod", /obj/item/stack/rods, 1, 2, 60), \
 	//MONKESTATION EDIT ADDITION
-	new/datum/stack_recipe("pool floor tile", /obj/item/stack/tile/plasteel/pool, 1, 1, 4), \
-	new/datum/stack_recipe("lowered floor tile", /obj/item/stack/tile/plasteel/lowered, 1, 1, 4), \
-	new/datum/stack_recipe("elevated floor tile", /obj/item/stack/tile/plasteel/elevated, 1, 1, 4), \
+	new/datum/stack_recipe("pool floor tile", /obj/item/stack/tile/iron/pool, 1, 1, 4), \
+	new/datum/stack_recipe("lowered floor tile", /obj/item/stack/tile/iron/lowered, 1, 1, 4), \
+	new/datum/stack_recipe("elevated floor tile", /obj/item/stack/tile/iron/elevated, 1, 1, 4), \
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60), \
 	//MONKESTATION EDIT END
 	null, \

@@ -138,7 +138,7 @@
 				//MONKESTATION EDIT ADDITION
 				//Underwater breathing
 				var/turf/T = loc
-				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((body_position == LYING_DOWN && T.liquids.liquid_state >= LIQUID_STATE_WAIST) || (body_position == STANDING_UP && T.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
+				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
 					//Officially trying to breathe underwater
 					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
 						failed_last_breath = FALSE

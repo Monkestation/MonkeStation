@@ -2,7 +2,7 @@
 /obj/structure/liquid_pump
 	name = "portable liquid pump"
 	desc = "An industrial grade pump, capable of either siphoning or spewing liquids. Needs to be anchored first to work. Has a limited capacity internal storage."
-	icon = 'modular_skyrat/modules/liquids/icons/obj/structures/liquid_pump.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/structures/liquid_pump.dmi'
 	icon_state = "liquid_pump"
 	density = TRUE
 	max_integrity = 500
@@ -34,7 +34,7 @@
 	toggle_working()
 
 /obj/structure/liquid_pump/AltClick(mob/living/user)
-	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERY, FALSE, TRUE))
 		return
 	to_chat(user, span_notice("You flick [src]'s spewing mode [spewing_mode ? "off" : "on"]."))
 	spewing_mode = !spewing_mode

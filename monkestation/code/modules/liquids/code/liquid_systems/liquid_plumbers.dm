@@ -32,7 +32,7 @@
 /obj/machinery/plumbing/liquid_input_pump/CtrlClick(mob/living/user)
 	if(anchored)
 		return ..()
-	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERY, FALSE, TRUE))
 		return
 	var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is above the regulation", "Liquid Pump") as num|null
 	if(QDELETED(src))
@@ -126,7 +126,7 @@
 /obj/machinery/plumbing/liquid_output_pump/CtrlClick(mob/living/user)
 	if(anchored)
 		return ..()
-	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
+	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERY, FALSE, TRUE))
 		return
 	var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is below the regulation", "Liquid Pump") as num|null
 	if(QDELETED(src))
@@ -185,16 +185,3 @@
 	desc = "A type of plumbing constructor designed to rapidly deploy the machines needed for logistics regarding fluids."
 	icon_state = "plumberer_engi"
 	has_ammobar = TRUE
-
-/obj/item/construction/plumbing/engineering/set_plumbing_designs()
-	plumbing_design_types = list(
-	/obj/machinery/plumbing/input = 5,
-	/obj/machinery/plumbing/output = 5,
-	/obj/machinery/plumbing/tank = 20,
-	/obj/machinery/plumbing/acclimator = 10,
-	/obj/machinery/plumbing/filter = 5,
-	/obj/machinery/plumbing/splitter = 5,
-	/obj/machinery/plumbing/disposer = 10,
-	/obj/machinery/plumbing/liquid_input_pump = 20,
-	/obj/machinery/plumbing/liquid_output_pump = 20
-)

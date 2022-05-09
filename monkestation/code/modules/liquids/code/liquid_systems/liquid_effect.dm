@@ -1,6 +1,6 @@
 /obj/effect/abstract/liquid_turf
 	name = "liquid"
-	icon = 'modular_skyrat/modules/liquids/icons/obj/effects/liquid.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/effects/liquid.dmi'
 	icon_state = "water-0"
 	base_icon_state = "water"
 	anchored = TRUE
@@ -12,9 +12,6 @@
 	light_power = 1
 	light_color = LIGHT_COLOR_FIRE
 
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WATER)
-	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WATER)
 
 	mouse_opacity = FALSE
 	var/height = 1
@@ -142,7 +139,6 @@
 				total_reagents -= burn_rate
 
 	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
-	my_turf.PolluteListTurf(list(/datum/pollutant/smoke = 15, /datum/pollutant/carbon_air_pollution = 5), POLLUTION_ACTIVE_EMITTER_CAP)
 	for(var/A in my_turf.contents)
 		var/atom/AT = A
 		if(!QDELETED(AT))
@@ -201,34 +197,34 @@
 	cut_overlays()
 	switch(liquid_state)
 		if(LIQUID_STATE_ANKLES)
-			var/mutable_appearance/overlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_bottom")
-			var/mutable_appearance/underlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_top")
+			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_bottom")
+			var/mutable_appearance/underlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_top")
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			underlay.plane = GAME_PLANE
-			underlay.layer = GATEWAY_UNDERLAY_LAYER
+			underlay.layer = 2.85
 			add_overlay(overlay)
 			add_overlay(underlay)
 		if(LIQUID_STATE_WAIST)
-			var/mutable_appearance/overlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage2_bottom")
-			var/mutable_appearance/underlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage2_top")
+			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage2_bottom")
+			var/mutable_appearance/underlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage2_top")
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			underlay.plane = GAME_PLANE
-			underlay.layer = GATEWAY_UNDERLAY_LAYER
+			underlay.layer = 2.85
 			add_overlay(overlay)
 			add_overlay(underlay)
 		if(LIQUID_STATE_SHOULDERS)
-			var/mutable_appearance/overlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage3_bottom")
-			var/mutable_appearance/underlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage3_top")
+			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage3_bottom")
+			var/mutable_appearance/underlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage3_top")
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			underlay.plane = GAME_PLANE
-			underlay.layer = GATEWAY_UNDERLAY_LAYER
+			underlay.layer = 2.85
 			add_overlay(overlay)
 			add_overlay(underlay)
 		if(LIQUID_STATE_FULLTILE)
-			var/mutable_appearance/overlay = mutable_appearance('modular_skyrat/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage4_bottom")
+			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage4_bottom")
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			add_overlay(overlay)
@@ -355,10 +351,10 @@
 		//Splash
 		if(prob(WATER_HEIGH_DIFFERENCE_SOUND_CHANCE))
 			var/sound_to_play = pick(list(
-				'modular_skyrat/modules/liquids/sound/effects/water_wade1.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade2.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade3.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade4.ogg'
+				'monkestation/code/modules/liquids/sound/effects/water_wade1.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade2.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade3.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade4.ogg'
 				))
 			playsound(my_turf, sound_to_play, 60, 0)
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(my_turf)
@@ -387,7 +383,7 @@
 							var/mob/living/carbon/C = AM
 							if(!(C.shoes && C.shoes.clothing_flags & NOSLIP))
 								step(C, dir)
-								if(prob(60) && C.body_position != LYING_DOWN)
+								if(prob(60) && MOBILITY_STAND)
 									to_chat(C, span_userdanger("The current knocks you down!"))
 									C.Paralyze(60)
 						else
@@ -404,10 +400,10 @@
 	if(liquid_state >= LIQUID_STATE_ANKLES)
 		if(prob(30))
 			var/sound_to_play = pick(list(
-				'modular_skyrat/modules/liquids/sound/effects/water_wade1.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade2.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade3.ogg',
-				'modular_skyrat/modules/liquids/sound/effects/water_wade4.ogg'
+				'monkestation/code/modules/liquids/sound/effects/water_wade1.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade2.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade3.ogg',
+				'monkestation/code/modules/liquids/sound/effects/water_wade4.ogg'
 				))
 			playsound(T, sound_to_play, 50, 0)
 		if(iscarbon(AM))
@@ -424,7 +420,7 @@
 	SIGNAL_HANDLER
 	var/turf/T = source
 	if(liquid_state >= LIQUID_STATE_ANKLES && T.has_gravity(T))
-		playsound(T, 'modular_skyrat/modules/liquids/sound/effects/splash.ogg', 50, 0)
+		playsound(T, 'monkestation/code/modules/liquids/sound/effects/splash.ogg', 50, 0)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(C.wear_mask && C.wear_mask.flags_cover & MASKCOVERSMOUTH)
@@ -455,8 +451,8 @@
 
 	update_liquid_vis()
 	if(z)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		queue_smooth(src)
+		queue_smooth_neighbors(src)
 
 	/* //Cant do it immediately, hmhm
 	if(isspaceturf(my_turf))
@@ -476,7 +472,7 @@
 		SSliquids.add_active_turf(my_turf)
 		my_turf.liquids = null
 		my_turf = null
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		queue_smooth_neighbors(src)
 	else
 		return QDEL_HINT_LETMELIVE
 	return ..()
@@ -489,7 +485,9 @@
 //Exposes my turf with simulated reagents
 /obj/effect/abstract/liquid_turf/proc/ExposeMyTurf()
 	var/datum/reagents/tempr = simulate_reagents_threshold(LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
-	tempr.expose(my_turf, TOUCH, tempr.total_volume)
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/AM in T)
+		tempr.reaction(AM, TOUCH)
 	qdel(tempr)
 
 /obj/effect/abstract/liquid_turf/proc/ChangeToNewTurf(turf/NewT)
@@ -531,10 +529,10 @@
 
 	var/liquid_state_template = liquid_state_messages["[liquid_state]"]
 
-	examine_list += EXAMINE_SECTION_BREAK
+	examine_list +=  "<hr>"
 
 	if(examiner.can_see_reagents())
-		examine_list += EXAMINE_SECTION_BREAK
+		examine_list +=  "<hr>"
 
 		if(length(reagent_list) == 1)
 			// Single reagent text.
@@ -553,14 +551,14 @@
 				examine_list += "&bull; [volume] units of [reagent_name]"
 
 		examine_list += span_notice("The solution has a temperature of [temp]K.")
-		examine_list += EXAMINE_SECTION_BREAK
+		examine_list +=  "<hr>"
 		return
 
 	// Otherwise, just show the total volume
 	examine_list += span_notice("There is [replacetext(liquid_state_template, "$", "liquid")] here.")
 
 /obj/effect/temp_visual/liquid_splash
-	icon = 'modular_skyrat/modules/liquids/icons/obj/effects/splash.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/obj/effects/splash.dmi'
 	icon_state = "splash"
 	layer = FLY_LAYER
 	randomdir = FALSE
@@ -585,7 +583,6 @@
 	UnregisterSignal(T, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL))
 
 /obj/effect/abstract/liquid_turf/immutable/ocean
-	smoothing_flags = NONE
 	icon_state = "ocean"
 	base_icon_state = "ocean"
 	plane = BLACKNESS_PLANE //Same as weather, etc.
