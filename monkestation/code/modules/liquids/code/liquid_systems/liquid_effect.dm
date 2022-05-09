@@ -428,7 +428,7 @@
 				to_chat(C, span_userdanger("You fall in the water!"))
 			else
 				var/datum/reagents/tempr = take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_FALL_AMOUNT)
-				tempr.trans_to(C, tempr.total_volume, methods = INGEST)
+				tempr.trans_to(C, tempr.total_volume, method = INGEST)
 				qdel(tempr)
 				C.adjustOxyLoss(5)
 				//C.emote("cough")
