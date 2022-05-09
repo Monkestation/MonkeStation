@@ -1,0 +1,9 @@
+name: Katmos Build Windows :]
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd tools\tgs4_scripts
+      - run: env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo rustc --release --target=i686-unknown-linux-gnu --features all_reaction_hooks,katmos -- -C target-cpu=native
+      - run: echo "🍏 This job's status is ${{ job.status }}."
