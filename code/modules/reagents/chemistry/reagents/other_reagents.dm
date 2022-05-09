@@ -177,6 +177,7 @@
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	evaporates = TRUE //MONKESTATION EDIT ADDITION
 
 /*
  *	Water reaction to turf
@@ -1035,6 +1036,8 @@
 	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)

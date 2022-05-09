@@ -6,6 +6,8 @@
 	color = "#550000"
 	taste_description = "sweet tasting metal"
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -38,7 +40,8 @@
 	metabolization_rate = 4
 	taste_description = "burning"
 	process_flags = ORGANIC | SYNTHETIC
-
+	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
@@ -137,7 +140,8 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
-
+	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
@@ -160,6 +164,8 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)

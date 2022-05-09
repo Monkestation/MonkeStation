@@ -33,6 +33,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/engineering(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/CE(src)
+	new /obj/item/construction/plumbing/engineering(src) //MONKESTATION EDIT ADDITION
 	new /obj/item/card/id/departmental_budget/eng(src)
 	new /obj/item/storage/bag/construction(src)
 	new /obj/item/construction/rcd/loaded(src)
@@ -52,7 +53,8 @@
 		/obj/item/inducer = 2,
 		/obj/item/storage/toolbox/electrical = 3,
 		/obj/item/electronics/apc = 3,
-		/obj/item/multitool = 3)
+		/obj/item/multitool = 3,
+		/obj/item/construction/plumbing/engineering = 1) //MONKESTATION EDIT ADDITION
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/engineering_welding

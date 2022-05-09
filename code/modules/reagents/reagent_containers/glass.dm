@@ -242,14 +242,28 @@
 		ITEM_SLOT_DEX_STORAGE
 	)
 
-/obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/user, params)
-	if(istype(O, /obj/item/mop))
-		if(reagents.total_volume < 1)
-			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
+#define SQUEEZING_DISPERSAL_PERCENT 0.75 //MONKESTATION EDIT ADDITION
+
+/obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/living/user, params) //MONKESTATION EDIT CHANGE
+	if(istype(O, /obj/item/mop)) //MONKESTATION EDIT CHANGE
+		var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK)
+		if(is_right_clicking)
+			if(O.reagents.total_volume == 0)
+				to_chat(user, "<span class='warning'>[O] is dry, you can't squeeze anything out!</span>")
+				return
+			if(reagents.total_volume == reagents.maximum_volume)
+				to_chat(user, "<span class='warning'>[src] is full!</span>")
+				return
+			O.reagents.remove_any(O.reagents.total_volume*SQUEEZING_DISPERSAL_PERCENT)
+			O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
+			to_chat(user, "<span class='notice'>You squeeze the liquids from [O] to [src].</span>")
 		else
-			reagents.trans_to(O, 5, transfered_by = user)
-			to_chat(user, "<span class='notice'>You wet [O] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			if(reagents.total_volume < 1)
+				to_chat(user, "<span class='warning'>[src] is out of water!</span>")
+			else
+				reagents.trans_to(O, 5, transfered_by = user)
+				to_chat(user, "<span class='notice'>You wet [O] in [src].</span>")
+				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE) //MONKESTATION EDIT CHANGE END
 	else if(isprox(O))
 		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
 		qdel(O)
@@ -257,7 +271,7 @@
 		user.put_in_hands(new /obj/item/bot_assembly/cleanbot)
 	else
 		..()
-
+#undef SQUEEZING_DISPERSAL_PERCENT //SKYRAT EDIT ADDITION
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
 	if (slot == ITEM_SLOT_HEAD)

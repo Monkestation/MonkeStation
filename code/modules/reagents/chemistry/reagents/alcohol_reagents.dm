@@ -14,6 +14,8 @@
 	taste_description = "alcohol"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	random_unrestricted = FALSE
+	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 0.1 //MONKESTATION EDIT ADDITION
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 
 /*
@@ -80,6 +82,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	description = "An alcoholic beverage brewed since ancient times on Old Earth. Still popular today."
 	color = "#664300" // rgb: 102, 67, 0
 	nutriment_factor = 1 * REAGENTS_METABOLISM
+	liquid_fire_power = 2 //MONKESTATION EDIT ADDITION
 	boozepwr = 25
 	taste_description = "piss water"
 	glass_name = "glass of beer"
@@ -269,6 +272,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "threemileislandglass"
 	glass_name = "Three Mile Island Ice Tea"
 	glass_desc = "A glass of this is sure to prevent a meltdown."
+	liquid_fire_power = 0 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/consumable/ethanol/threemileisland/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(50)
@@ -321,6 +325,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Wine"
 	description = "A premium alcoholic beverage made from distilled grape juice."
 	color = "#7E4043" // rgb: 126, 64, 67
+	liquid_fire_power = 2 //MONKESTATION EDIT ADDITION
 	boozepwr = 35
 	taste_description = "bitter sweetness"
 	glass_icon_state = "wineglass"
@@ -332,6 +337,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Lizard wine"
 	description = "An alcoholic beverage from Space China, made by infusing lizard tails in ethanol."
 	color = "#7E4043" // rgb: 126, 64, 67
+	liquid_fire_power = 2 //MONKESTATION EDIT ADDITION
 	boozepwr = 45
 	quality = DRINK_FANTASTIC
 	taste_description = "scaley sweetness"
@@ -427,6 +433,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Gin and Tonic"
 	description = "An all time classic, mild cocktail."
 	color = "#664300" // rgb: 102, 67, 0
+	liquid_fire_power = 2 //MONKESTATION EDIT ADDITION
 	boozepwr = 25
 	quality = DRINK_NICE
 	taste_description = "mild and tart"

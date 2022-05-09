@@ -169,6 +169,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/outfit_manager,
 	/client/proc/modify_goals,
 	/client/proc/debug_huds,
+	/client/proc/toggle_liquid_debug, //MONKESTATION EDIT ADDITION
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
 	/client/proc/jump_to_ruin,

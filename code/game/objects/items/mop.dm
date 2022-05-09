@@ -23,6 +23,21 @@
 /obj/item/mop/Initialize(mapload)
 	. = ..()
 	create_reagents(mopcap)
+	//MONKESTATION EDIT ADDITION
+	AddElement(/datum/element/liquids_interaction, on_interaction_callback = /obj/item/mop/.proc/attack_on_liquids_turf)
+
+/obj/item/mop/proc/attack_on_liquids_turf(obj/item/mop/the_mop, turf/T, mob/user, obj/effect/abstract/liquid_turf/liquids)
+	var/free_space = the_mop.reagents.maximum_volume - the_mop.reagents.total_volume
+	if(free_space <= 0)
+		to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
+		return TRUE
+	var/datum/reagents/tempr = liquids.take_reagents_flat(free_space)
+	tempr.trans_to(the_mop.reagents, tempr.total_volume)
+	to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
+	qdel(tempr)
+	user.changeNext_move(CLICK_CD_MELEE)
+	return TRUE
+	//MONKESTATION EDIT END
 
 /obj/item/mop/proc/clean(turf/A)
 	if(reagents.has_reagent(/datum/reagent/water, 1) || reagents.has_reagent(/datum/reagent/water/holywater, 1) || reagents.has_reagent(/datum/reagent/consumable/ethanol/vodka, 1) || reagents.has_reagent(/datum/reagent/space_cleaner, 1))
@@ -36,6 +51,10 @@
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	. = ..()
+	//MONKESTATION EDIT ADDITION
+	if(.)
+		return
+	//MONKESTATION EDIT END
 	if(!proximity)
 		return
 
