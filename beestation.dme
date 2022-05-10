@@ -3569,7 +3569,6 @@
 #include "monkestation\code\_globalvars\flavor_misc.dm"
 #include "monkestation\code\_globalvars\lists\keybindings.dm"
 #include "monkestation\code\_HELPERS\html_emphasis.dm"
-#include "monkestation\code\_HELPERS\unsorted.dm"
 #include "monkestation\code\_onclick\hud\fullscreen.dm"
 #include "monkestation\code\_onclick\hud\new_player.dm"
 #include "monkestation\code\controllers\subsystem\redbot.dm"
