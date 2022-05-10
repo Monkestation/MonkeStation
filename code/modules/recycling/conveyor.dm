@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	else if(!operable)
 		set_operating(FALSE)
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		set_operating(FALSE)
 	else
 		set_operating(TRUE)
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 	if(!operable)
 		set_operating(FALSE)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_operating(FALSE)
 	icon_state = "conveyor[operating * verted]"
 	if(operating)
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		"<span class='notice'>You struggle to pry up \the [src] with \the [I].</span>")
 		if(I.use_tool(src, user, 40, volume=40))
 			set_operating(FALSE)
-			if(!(stat & BROKEN))
+			if(!(machine_stat & BROKEN))
 				var/obj/item/stack/conveyor/C = new /obj/item/stack/conveyor(loc, 1, TRUE, null, id)
 				if(!QDELETED(C)) //God I hate stacks
 					transfer_fingerprints_to(C)
