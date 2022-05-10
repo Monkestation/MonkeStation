@@ -33,7 +33,7 @@
 
 /obj/item/reagent_containers/food/drinks/AltClick(mob/user)
 	if(!isShakeable)
-	return
+		return
 	var/mob/living/carbon/human/H
 	H = user
 	if(canopened)
