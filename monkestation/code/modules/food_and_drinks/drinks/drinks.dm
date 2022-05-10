@@ -32,9 +32,11 @@
 
 
 /obj/item/reagent_containers/food/drinks/AltClick(mob/user)
+	if(!isShakeable)
+	return
 	var/mob/living/carbon/human/H
 	H = user
-	if(canopened && isShakeable)
+	if(canopened)
 		to_chat(H, "<span class='warning'>You carefully reseal the [src].")
 		canopened = FALSE
 		spillable = FALSE
@@ -46,7 +48,7 @@
 		can_shake = FALSE
 		addtimer(CALLBACK(src, .proc/reset_shakable), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		to_chat(H, "<span class='notice'>You start shaking up [src].</span>")
-		if(do_after(H, 1 SECONDS, target = H) && isShakeable)
+		if(do_after(H, 1 SECONDS, target = H))
 			visible_message("<span class='warning'>[user] shakes up [src]!</span>")
 			if(times_shaken == 0)
 				times_shaken++
