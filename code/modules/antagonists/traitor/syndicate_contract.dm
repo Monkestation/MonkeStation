@@ -189,11 +189,13 @@
 		M.flash_act()
 		M.Unconscious(10 SECONDS)
 		to_chat(M, "<span class='reallybig hypnophrase'>A million voices echo in your head... <i>\"Your mind held many valuable secrets - \
-					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
+					the Elders thank you for providing them. Your value is expended, and you will be ransomed back to your station, mostly intact. We always get paid, \
 					so it's only a matter of time before we ship you back...\"</i></span>")
 		M.blur_eyes(10)
 		M.Dizzy(10)
 		M.confused += 5
+		if(ishuman(M) && M.mind != null && M.ckey != null)
+			M.mind.add_antag_datum(/datum/antagonist/abductee) //Monkestation Edit
 
 // We're returning the victim
 /datum/syndicate_contract/proc/returnVictim(var/mob/living/M)
