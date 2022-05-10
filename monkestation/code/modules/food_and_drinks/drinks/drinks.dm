@@ -34,7 +34,7 @@
 /obj/item/reagent_containers/food/drinks/AltClick(mob/user)
 	var/mob/living/carbon/human/H
 	H = user
-	if(canopened && !istype(src, /obj/item/reagent_containers/food/drinks/drinkingglass))
+	if(canopened && isShakeable))
 		to_chat(H, "<span class='warning'>You carefully reseal the [src].")
 		canopened = FALSE
 		spillable = FALSE

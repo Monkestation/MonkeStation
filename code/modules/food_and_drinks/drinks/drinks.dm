@@ -20,6 +20,7 @@
 	var/can_shake = TRUE
 	var/can_burst = FALSE
 	var/canopened = FALSE
+	var/isShakeable = TRUE
 	var/burst_chance = 0
 	spillable = FALSE
 
