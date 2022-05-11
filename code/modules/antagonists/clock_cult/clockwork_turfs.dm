@@ -148,8 +148,8 @@
 	if(d_state == INTACT)
 		realappearence.icon_state = "clockwork_wall"
 		smooth = SMOOTH_TRUE
-		queue_smooth_neighbors(src)
-		queue_smooth(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH(src)
 	else
 		realappearence.icon_state = "clockwork_wall-[d_state]"
 		smooth = SMOOTH_FALSE

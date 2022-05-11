@@ -17,7 +17,8 @@
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon = 'icons/obj/smooth_structures/table.dmi'
-	icon_state = "table"
+	icon_state = "table-0"
+	base_icon_state = "table"
 	density = TRUE
 	anchored = TRUE
 	pass_flags_self = PASSTABLE | LETPASSTHROW
@@ -33,8 +34,9 @@
 	var/last_bump = 0
 	max_integrity = 100
 	integrity_failure = 30
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TABLES)
+	canSmoothWith = list(SMOOTH_GROUP_TABLES)
 
 /obj/structure/table/Bumped(mob/living/carbon/human/H)
 	. = ..()
@@ -56,9 +58,9 @@
 	return "<span class='notice'>The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.</span>"
 
 /obj/structure/table/update_icon()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 /obj/structure/table/narsie_act()
 	var/atom/A = loc
@@ -537,7 +539,6 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
-	smooth = SMOOTH_FALSE
 	can_buckle = 1
 	buckle_lying = -1
 	buckle_requires_restraints = 1

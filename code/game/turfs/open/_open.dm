@@ -5,6 +5,8 @@
 	)
 	var/slowdown = 0 //negative for faster, positive for slower
 
+	var/list/fixed_underlay = null
+
 	var/postdig_icon_change = FALSE
 	var/postdig_icon
 	var/wet

@@ -343,8 +343,8 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
-	if(smooth)
-		queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 //merges adjacent full-tile windows into one
 /obj/structure/window/update_icon()
@@ -355,8 +355,8 @@
 		var/ratio = obj_integrity / max_integrity
 		ratio = CEILING(ratio*4, 1) * 25
 
-		if(smooth)
-			queue_smooth(src)
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			QUEUE_SMOOTH(src)
 
 		cut_overlay(crack_overlay)
 		if(ratio > 75)
@@ -921,7 +921,7 @@
 		cut_overlay(torn)
 		add_overlay(paper)
 		set_opacity(TRUE)
-	queue_smooth(src)
+	QUEUE_SMOOTH(src)
 
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/user)

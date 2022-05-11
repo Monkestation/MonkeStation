@@ -53,13 +53,15 @@
 	name = "resin"
 	desc = "Looks like some kind of thick resin."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
-	icon_state = "smooth"
+	icon_state = "resin_wall-0"
+	base_icon_state = "resin_wall"
 	density = TRUE
 	opacity = 1
 	anchored = TRUE
-	canSmoothWith = list(/obj/structure/alien/resin)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_RESIN)
 	max_integrity = 200
-	smooth = SMOOTH_TRUE
 	var/resintype = null
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
@@ -77,9 +79,10 @@
 	name = "resin wall"
 	desc = "Thick resin solidified into a wall."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
-	icon_state = "smooth"	//same as resin, but consistency ho!
-	resintype = "wall"
-	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
+	icon_state = "resin_wall-0"
+	base_icon_state = "resin_wall"
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WALLS)
 
 /obj/structure/alien/resin/wall/BlockThermalConductivity()
 	return 1
@@ -88,11 +91,12 @@
 	name = "resin membrane"
 	desc = "Resin just thin enough to let light pass through."
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
-	icon_state = "smooth"
+	icon_state = "resin_membrane-0"
+	base_icon_state = "resin_membrane"
 	opacity = 0
 	max_integrity = 160
-	resintype = "membrane"
-	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WALLS)
 
 /obj/structure/alien/resin/attack_paw(mob/user)
 	return attack_hand(user)
@@ -111,10 +115,14 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
-	icon_state = "weeds"
+	icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
+	icon_state = "weeds1-0"
+	base_icon_state = "weeds1"
 	max_integrity = 15
-	canSmoothWith = list(/obj/structure/alien/weeds, /turf/closed/wall)
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WEEDS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS, SMOOTH_GROUP_WALLS)
+	transform = matrix(1, 0, -4, 0, 1, -4)
 	var/last_expand = 0 //last world.time this weed expanded
 	var/growth_cooldown_low = 150
 	var/growth_cooldown_high = 200
