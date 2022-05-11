@@ -14162,6 +14162,9 @@
 /area/engine/engine_room)
 "SX" = (
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/medical/medbay)
 "SY" = (
@@ -54004,9 +54007,9 @@ Li
 Li
 NB
 NB
-Lm
-Lm
-Lm
+NB
+NB
+NB
 NB
 NB
 NB
