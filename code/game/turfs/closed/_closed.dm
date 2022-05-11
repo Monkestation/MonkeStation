@@ -47,9 +47,10 @@
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone"
+	icon_state = "sandstone_wall-0"
+	base_icon_state = "sandstone_wall"
 	baseturfs = /turf/closed/indestructible/sandstone
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/oldshuttle/corner
 	icon_state = "corner"
@@ -78,17 +79,25 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
-	icon_state = "riveted"
-	smooth = SMOOTH_TRUE
+	icon_state = "riveted-0"
+	base_icon_state = "riveted"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS)
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 
 /turf/closed/indestructible/syndicate
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "map-shuttle"
-	smooth = SMOOTH_MORE
+	icon_state = "plastitanium_wall-0"
+	base_icon_state = "plastitanium_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SYNDICATE_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS,
 
 /turf/closed/indestructible/riveted/uranium
 	icon = 'icons/turf/walls/uranium_wall.dmi'
-	icon_state = "uranium"
+	icon_state = "uranium_wall-0"
+	base_icon_state = "uranium_wall"
+	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/abductor
 	icon_state = "alien1"
@@ -100,7 +109,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "window"
 	icon_state = "fake_window"
 	opacity = 0
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
 
 /turf/closed/indestructible/fakeglass/Initialize(mapload)
@@ -113,7 +122,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "window"
 	icon_state = "plastitanium_window"
 	opacity = 0
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 
 /turf/closed/indestructible/opsglass/Initialize(mapload)

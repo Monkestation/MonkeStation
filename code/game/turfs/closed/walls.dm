@@ -4,7 +4,8 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to separate rooms."
 	icon = 'icons/turf/walls/wall.dmi'
-	icon_state = "wall"
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	explosion_block = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
@@ -26,78 +27,10 @@
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
 
-	canSmoothWith = list(
-	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
-	/obj/structure/falsewall,
-	/obj/structure/falsewall/brass,
-	/obj/structure/falsewall/reinforced,
-	/turf/closed/wall/rust,
-	/turf/closed/wall/r_wall/rust,
-	/turf/closed/wall/clockwork,
-	//MONKESTATION EDIT BEGIN - WINDOW AND WALL RESPRITE
-	/obj/structure/window/fulltile,
-	/obj/structure/window/plasma/fulltile,
-	/obj/structure/window/reinforced/fulltile,
-	/obj/structure/window/reinforced/tinted/fulltile,
-	/obj/machinery/door/airlock, //Hey, did you know that it's purposeful that this list requires strict typing? FUN.
-	/obj/machinery/door/airlock/command,
-	/obj/machinery/door/airlock/security,
-	/obj/machinery/door/airlock/engineering,
-	/obj/machinery/door/airlock/medical,
-	/obj/machinery/door/airlock/maintenance,
-	/obj/machinery/door/airlock/maintenance/external,
-	/obj/machinery/door/airlock/mining,
-	/obj/machinery/door/airlock/atmos,
-	/obj/machinery/door/airlock/research,
-	/obj/machinery/door/airlock/freezer,
-	/obj/machinery/door/airlock/science,
-	/obj/machinery/door/airlock/virology,
-	/obj/machinery/door/airlock/gold,
-	/obj/machinery/door/airlock/silver,
-	/obj/machinery/door/airlock/diamond,
-	/obj/machinery/door/airlock/uranium,
-	/obj/machinery/door/airlock/plasma,
-	/obj/machinery/door/airlock/bananium,
-	/obj/machinery/door/airlock/sandstone,
-	/obj/machinery/door/airlock/wood,
-	/obj/machinery/door/airlock/public,
-	/obj/machinery/door/airlock/external,
-	/obj/machinery/door/airlock/arrivals_external,
-	/obj/machinery/door/airlock/centcom,
-	/obj/machinery/door/airlock/grunge,
-	/obj/machinery/door/airlock/vault,
-	/obj/machinery/door/airlock/hatch,
-	/obj/machinery/door/airlock/maintenance_hatch,
-	/obj/machinery/door/airlock/highsecurity,
-	/obj/machinery/door/airlock/glass_large,
-	/obj/machinery/door/airlock/glass,
-	/obj/machinery/door/airlock/command/glass,
-	/obj/machinery/door/airlock/security/glass,
-	/obj/machinery/door/airlock/engineering/glass,
-	/obj/machinery/door/airlock/medical/glass,
-	/obj/machinery/door/airlock/maintenance/glass,
-	/obj/machinery/door/airlock/maintenance/external/glass,
-	/obj/machinery/door/airlock/mining/glass,
-	/obj/machinery/door/airlock/atmos/glass,
-	/obj/machinery/door/airlock/research/glass,
-	/obj/machinery/door/airlock/science/glass,
-	/obj/machinery/door/airlock/virology/glass,
-	/obj/machinery/door/airlock/gold/glass,
-	/obj/machinery/door/airlock/silver/glass,
-	/obj/machinery/door/airlock/diamond/glass,
-	/obj/machinery/door/airlock/uranium/glass,
-	/obj/machinery/door/airlock/plasma/glass,
-	/obj/machinery/door/airlock/bananium/glass,
-	/obj/machinery/door/airlock/sandstone/glass,
-	/obj/machinery/door/airlock/wood/glass,
-	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass,
-	/turf/closed/wall/foam_base,
-	/turf/closed/wall/foam_base/iron,
-	/turf/closed/wall/foam_base/resin)
-	//MONKESTATION EDIT END
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS)
+
 
 	var/list/dent_decals
 

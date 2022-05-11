@@ -254,13 +254,13 @@
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 
 /turf/closed/wall/mineral/titanium/nodiagonal
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK
 	icon_state = "map-shuttle_nd"
 
 /turf/closed/wall/mineral/titanium/nosmooth
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "wall"
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE
 
 /turf/closed/wall/mineral/titanium/overspace
 	icon_state = "map-overspace"
@@ -294,11 +294,11 @@
 	desc = "An easily-compressable wall used for temporary shelter."
 	icon = 'icons/turf/walls/survival_pod_walls.dmi'
 	icon_state = "smooth"
-	smooth = SMOOTH_MORE|SMOOTH_DIAGONAL_CORNERS
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock, /obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/shuttle, /obj/structure/shuttle/engine)
 
 /turf/closed/wall/mineral/titanium/survival/nodiagonal
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_MORE
 
 /turf/closed/wall/mineral/titanium/survival/pod
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod)
@@ -321,13 +321,13 @@
 	return FALSE
 
 /turf/closed/wall/mineral/plastitanium/nodiagonal
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK
 	icon_state = "map-shuttle_nd"
 
 /turf/closed/wall/mineral/plastitanium/nosmooth
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "wall"
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE
 
 /turf/closed/wall/mineral/plastitanium/overspace
 	icon_state = "map-overspace"

@@ -12,9 +12,11 @@
 /// Smooths with objects, and will thus need to scan turfs for contents.
 #define SMOOTH_OBJ		(1<<5)
 
+#define SMOOTH_CORNERS (1<<0)
+
 DEFINE_BITFIELD(smoothing_flags, list(
 	"SMOOTH_BITMASK" = SMOOTH_BITMASK,
-	"SMOOTH_BITMASK" = SMOOTH_BITMASK,
+	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
 	"SMOOTH_DIAGONAL_CORNERS" = SMOOTH_DIAGONAL_CORNERS,
 	"SMOOTH_BORDER" = SMOOTH_BORDER,
 	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
@@ -80,6 +82,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_PLASTITANIUM_WALLS S_OBJ(13)		///turf/closed/wall/mineral/plastitanium, /obj/structure/falsewall/plastitanium
 #define SMOOTH_GROUP_SURVIVAL_TIANIUM_POD S_OBJ(14)		///turf/closed/wall/mineral/titanium/survival/pod, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod
 #define SMOOTH_GROUP_HIERO_WALL S_OBJ(15)				///obj/effect/temp_visual/elite_tumor_wall, /obj/effect/temp_visual/hierophant/wall
+#define SMOOTH_GROUP_BAMBOO_WALLS S_TURF(16)			//![/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo]
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(20)				///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 
