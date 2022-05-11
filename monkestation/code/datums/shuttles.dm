@@ -18,7 +18,7 @@
 	suffix = "holestation"
 	name = "exploration shuttle (Hole)"
 
-/datum/map_template/shuttle/emergency/box
+/datum/map_template/shuttle/emergency/holestation
 	prefix = "monkestation/_maps/shuttles/"
 	suffix = "holestation"
 	name = "Hole Station Emergency Shuttle"
