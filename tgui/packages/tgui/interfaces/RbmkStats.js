@@ -10,7 +10,7 @@ import { useBackend, useLocalState } from '../backend';
 
 export const RbmkStats = () => {
   return (
-    <Window width={450} height={550} theme="ntos" title="Reactor Monitor">
+    <Window width={450} height={450} theme="ntos" title="Reactor Monitor">
       <Window.Content>
         <RbmkStatsContent />
       </Window.Content>
@@ -38,8 +38,8 @@ export const RbmkStatsContent = (props, context) => {
                   minValue={0}
                   maxValue={100}
                   ranges={{
-                    good: [40, 70],
-                    average: [0, 40],
+                    good: [30, 70],
+                    average: [0, 30],
                     bad: [70, Infinity],
                   }}>
                   {toFixed(data.power) + ' (%)'}
@@ -50,11 +50,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.reactorPressure}
                   minValue={0}
-                  maxValue={10000}
+                  maxValue={100000}
                   ranges={{
-                    good: [1000, 8000],
-                    average: [0, 1000],
-                    bad: [8000, Infinity],
+                    good: [5000, 90000],
+                    average: [0, 5000],
+                    bad: [90000, Infinity],
                   }}>
                   {toFixed(data.reactorPressure) + ' (kPa)'}
                 </ProgressBar>
@@ -64,11 +64,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.coolantInput}
                   minValue={-273.15}
-                  maxValue={1000}
+                  maxValue={10000}
                   ranges={{
                     good: [-Infinity, 0],
-                    average: [0, 200],
-                    bad: [200, Infinity],
+                    average: [0, 300],
+                    bad: [300, Infinity],
                   }}>
                   {toFixed(data.coolantInput) + ' (C°)'}
                 </ProgressBar>
@@ -78,11 +78,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.coolantOutput}
                   minValue={-273.15}
-                  maxValue={1000}
+                  maxValue={10000}
                   ranges={{
-                    good: [0, 800],
-                    average: [-273.15, 0],
-                    bad: [800, 1000],
+                    good: [200, 10000],
+                    average: [-Infinity, 200],
+                    bad: [10000, Infinity],
                   }}>
                   {toFixed(data.coolantOutput) + ' (C°)'}
                 </ProgressBar>
@@ -91,39 +91,39 @@ export const RbmkStatsContent = (props, context) => {
             </LabeledList>
           </Section>
 
-          <Section title="Power Statistics:" height="100px">
+          <Section title="Power Statistics:" height="70px">
             <Chart.Line
               fillPositionedParent
               data={powerData}
               rangeX={[0, powerData.length - 1]}
-              rangeY={[0, 100]}
+              rangeY={[0, 1000]}
               strokeColor="rgba(255, 215,0, 1)"
               fillColor="rgba(255, 215, 0, 0.1)" />
           </Section>
 
-          <Section title="Pressure Statistics:" height="100px">
+          <Section title="Pressure Statistics:" height="70px">
             <Chart.Line
               fillPositionedParent
               data={pressureData}
               rangeX={[0, pressureData.length - 1]}
-              rangeY={[0, 7000]}
+              rangeY={[0, 100000]}
               strokeColor="rgba(255,250,250, 1)"
               fillColor="rgba(255,250,250, 0.1)" />
           </Section>
 
-          <Section title="Temperature Statistics:" height="100px">
+          <Section title="Temperature Statistics:" height="70px">
             <Chart.Line
               fillPositionedParent
               data={tempInputData}
               rangeX={[0, tempInputData.length - 1]}
-              rangeY={[-273.15, 1000]}
+              rangeY={[-273.15, 10000]}
               strokeColor="rgba(127, 179, 255 , 1)"
               fillColor="rgba(127, 179, 255 , 0.1)" />
             <Chart.Line
               fillPositionedParent
               data={tempOutputdata}
               rangeX={[0, tempOutputdata.length - 1]}
-              rangeY={[-273.15, 1000]}
+              rangeY={[-273.15, 10000]}
               strokeColor="rgba(255, 0, 0 , 1)"
               fillColor="rgba(255, 0, 0 , 0.1)" />
           </Section>

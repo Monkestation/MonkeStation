@@ -57,7 +57,7 @@
 /datum/looping_sound/rbmk_reactor
 	mid_sounds = list('monkestation/sound/effects/rbmk/reactor_hum.ogg' = 1)
 	mid_length = 60
-	volume = 40
+	volume = 20
 	extra_range = 10
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

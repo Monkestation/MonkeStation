@@ -147,6 +147,18 @@
 	id = "rbmk_output"
 	frequency = FREQ_RBMK_CONTROL
 
+/obj/machinery/atmospherics/components/binary/pump/rbmk_output/layer1
+	id = "rbmk_output"
+	piping_layer = 1
+	icon_state= "pump_map-1"
+	frequency = FREQ_RBMK_CONTROL
+
+/obj/machinery/atmospherics/components/binary/pump/rbmk_output/layer3
+	id = "rbmk_output"
+	piping_layer = 3
+	icon_state= "pump_map-3"
+	frequency = FREQ_RBMK_CONTROL
+
 /obj/machinery/atmospherics/components/binary/pump/rbmk_moderator
 	id = "rbmk_moderator"
 	frequency = FREQ_RBMK_CONTROL
