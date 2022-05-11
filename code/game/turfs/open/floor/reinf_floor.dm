@@ -30,6 +30,19 @@
 /turf/open/floor/engine/airless/light
 	icon_state = "engine_light"
 
+// MONKE EDIT ADDITION //
+/// RCD-immune plating generated only by shuttle code for shuttle ceilings on multi-z maps, should not be mapped in or creatable in any other way
+/turf/open/floor/engine/ceiling
+	name = "shuttle ceiling plating"
+	desc = "Sturdy exterior hull plating, keeping the shuttle below safe."
+	initial_gas_mix = AIRLESS_ATMOS
+	var/old_turf_type
+
+/turf/open/floor/engine/ceiling/AfterChange(flags, oldType)
+	. = ..()
+	old_turf_type = oldType
+// MONKE EDIT END //
+
 /turf/open/floor/engine/break_tile()
 	return //unbreakable
 
