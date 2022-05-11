@@ -483,7 +483,7 @@
 	},
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/airless,
-/area/template_noop)
+/area/shuttle/escape)
 "Kn" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium/survival,
@@ -672,6 +672,9 @@
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/escape)
+"Xr" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/escape)
 "Xs" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -774,7 +777,7 @@ Sk
 BX
 VC
 xh
-cp
+Xr
 cp
 "}
 (3,1,1) = {"
@@ -813,16 +816,16 @@ ZQ
 fa
 pT
 MP
-cp
+Xr
 uj
-cp
+Xr
 Iv
 QK
 CJ
 CJ
 CJ
 CJ
-cp
+Xr
 Tk
 "}
 (5,1,1) = {"
@@ -909,16 +912,16 @@ Nk
 Nk
 Ex
 hB
-cp
+Xr
 uj
-cp
+Xr
 Lj
 QK
 CJ
 CJ
 CJ
 CJ
-cp
+Xr
 Tk
 "}
 (9,1,1) = {"
@@ -966,7 +969,7 @@ Lu
 Rc
 ug
 RB
-cp
+Xr
 cp
 "}
 (11,1,1) = {"
