@@ -78,10 +78,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/helmet_style = HELMET_DEFAULT
 	var/backbag = DBACKPACK				//backpack type
 	var/jumpsuit_style = PREF_SUIT		//suit/skirt
-	var/hair_style = "Bald"				//Hair type
-	var/hair_color = "000"				//Hair color
-	var/gradient_color = "000"			//Hair gradient color
-	var/gradient_style = "None"			//Hair gradient style
+	var/top_hair_style = "Bald"			// MONKESTATION: top hair slot
+	var/hair_style = "Bald"				// MONKESTATION: middle hair slot. its missing the middle prefix to make it work with old saves.
+	var/bottom_hair_style = "Bald"		// MONKESTATION: bottom hair slot
+	var/top_hair_color = "000"			// MONKESTATION: top hair color
+	var/hair_color = "000"				// MONKESTATION: middle hair color. Missing the prefix for the same reason as the hair.
+	var/bottom_hair_color = "000"		// MONKESTATION: bottom hair color
+	var/top_gradient_color = "000"		// MONKESTATION: top gradient color
+	var/gradient_color = "000"			// MONKESTATION: middle gradient color
+	var/bottom_gradient_color = "000"	// MONKESTATION: bottom gradient color
+	var/top_gradient_style = "None"		// MONKESTATION: top gradient style
+	var/gradient_style = "None"			// MONKESTATION: middle gradient style
+	var/bottom_gradient_style = "None"	// MONKESTATION: bottom gradient style
 	var/facial_hair_style = "Shaved"	//Face hair type
 	var/facial_hair_color = "000"		//Facial hair color
 	var/skin_tone = "caucasian1"		//Skin color
@@ -343,11 +351,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += APPEARANCE_CATEGORY_COLUMN
 
-				dat += "<h3>Hair Style</h3>"
+				dat += "<h4>Top Hair Slot</h4>"
 
-				dat += "<a href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]</a><BR>"
-				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><BR>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input'>Change</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=hair_style;task=input;hair_slot=[TOP_HAIR_SLOT];'>[top_hair_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input;hair_slot=[TOP_HAIR_SLOT];'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input;hair_slot=[TOP_HAIR_SLOT];'>&gt;</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[top_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input;hair_slot=[TOP_HAIR_SLOT];'>Change</a><BR>"
+
+				dat += "<h4>Middle Hair Slot</h4>"
+
+				dat += "<a href='?_src_=prefs;preference=hair_style;task=input;hair_slot=[MIDDLE_HAIR_SLOT];'>[hair_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input;hair_slot=[MIDDLE_HAIR_SLOT];'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input;hair_slot=[MIDDLE_HAIR_SLOT];'>&gt;</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input;hair_slot=[MIDDLE_HAIR_SLOT];'>Change</a><BR>"
+
+				dat += "<h4>Bottom Hair Slot</h4>"
+
+				dat += "<a href='?_src_=prefs;preference=hair_style;task=input;hair_slot=[BOTTOM_HAIR_SLOT];'>[bottom_hair_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input;hair_slot=[BOTTOM_HAIR_SLOT];'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input;hair_slot=[BOTTOM_HAIR_SLOT];'>&gt;</a><BR>"
+				dat += "<span style='border:1px solid #161616; background-color: #[bottom_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=;hair_slot=[BOTTOM_HAIR_SLOT];'>Change</a><BR>"
 
 				dat += "<h3>Gradient Style</h3>"
 
@@ -1456,7 +1476,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						new_hair_style = input(user, "Choose your character's hair style:", "Character Preference")  as null|anything in GLOB.hair_styles_female_list
 					if(new_hair_style)
-						hair_style = new_hair_style
+						switch(href_list["hair_slot"])
+							if(TOP_HAIR_SLOT)
+								top_hair_style = new_hair_style
+							if(MIDDLE_HAIR_SLOT)
+								hair_style = new_hair_style
+							if(BOTTOM_HAIR_SLOT)
+								bottom_hair_style = new_hair_style
 
 				if("gradient_style")
 					var/new_gradient_style
@@ -2086,10 +2112,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(!initial(organ_eyes.eye_color))
 			organ_eyes.eye_color = eye_color
 		organ_eyes.old_eye_color = eye_color
-
+	character.top_hair_color = top_hair_color
 	character.hair_color = hair_color
+	character.bottom_hair_color = bottom_hair_color
+	character.top_gradient_color = top_gradient_color
 	character.gradient_color = gradient_color
+	character.bottom_gradient_color = bottom_gradient_color
+	character.top_gradient_style = top_gradient_style
 	character.gradient_style = gradient_style
+	character.bottom_gradient_style = bottom_gradient_style
 	character.facial_hair_color = facial_hair_color
 	character.skin_tone = skin_tone
 	character.underwear = underwear
@@ -2115,10 +2146,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Because of how set_species replaces all bodyparts with new ones, hair needs to be set AFTER species.
 	character.dna.real_name = character.real_name
+	character.top_hair_color = top_hair_color
 	character.hair_color = hair_color
+	character.bottom_hair_color = bottom_hair_color
 	character.facial_hair_color = facial_hair_color
 
+	character.top_hair_style = top_hair_style
 	character.hair_style = hair_style
+	character.bottom_hair_style = bottom_hair_style
 	character.facial_hair_style = facial_hair_style
 
 	if("tail_lizard" in pref_species.default_features)

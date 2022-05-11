@@ -541,15 +541,56 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			hair_hidden = TRUE
 
 	if(!hair_hidden || dynamic_hair_suffix)
-		var/mutable_appearance/hair_overlay = mutable_appearance(layer = -HAIR_LAYER)
-		var/mutable_appearance/gradient_overlay = mutable_appearance(layer = -HAIR_LAYER)
-		if(!hair_hidden && !H.getorgan(/obj/item/organ/brain)) //Applies the debrained overlay if there is no brain
-			if(!(NOBLOOD in species_traits))
-				hair_overlay.icon = 'icons/mob/human_face.dmi'
-				hair_overlay.icon_state = "debrained"
+		var/list/hair_overlays = list()
+		// It starts with the bottom here in the hopes that it'll be under everything since everything after should just apply itself on top. Hopefully.
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, BOTTOM_HAIR_SLOT)
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, MIDDLE_HAIR_SLOT)
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, TOP_HAIR_SLOT)
 
-		else if(H.hair_style && (HAIR in species_traits))
-			S = GLOB.hair_styles_list[H.hair_style]
+		if(hair_overlays)
+			standing |= hair_overlays
+
+	if(standing.len)
+		H.overlays_standing[HAIR_LAYER] = standing
+
+	H.apply_overlay(HAIR_LAYER)
+
+/datum/species/proc/make_hair_overlay(mob/living/carbon/human/H, var/hair_hidden, var/dynamic_hair_suffix, var/forced_colour, hair_slot)
+	var/datum/sprite_accessory/S
+	var/mutable_appearance/hair_overlay = mutable_appearance(layer = -HAIR_LAYER)
+	var/mutable_appearance/gradient_overlay = mutable_appearance(layer = -HAIR_LAYER)
+
+	if(!hair_hidden && !H.getorgan(/obj/item/organ/brain)) //Applies the debrained overlay if there is no brain
+		if(!(NOBLOOD in species_traits))
+			hair_overlay.icon = 'icons/mob/human_face.dmi'
+			hair_overlay.icon_state = "debrained"
+
+	else
+		var/current_hair_style
+		var/current_hair_color
+		var/gradient_style
+		var/gradient_color
+
+		switch(hair_slot)
+			if(TOP_HAIR_SLOT)
+				current_hair_style = H.top_hair_style
+				current_hair_color = H.top_hair_color
+				gradient_style = H.top_gradient_style
+				gradient_color = H.top_gradient_color
+			if(MIDDLE_HAIR_SLOT)
+				current_hair_style = H.hair_style
+				current_hair_color = H.hair_color
+				gradient_style = H.gradient_style
+				gradient_color = H.gradient_color
+			if(BOTTOM_HAIR_SLOT)
+				current_hair_style = H.bottom_hair_style
+				current_hair_color = H.bottom_hair_color
+				gradient_style = H.bottom_gradient_style
+				gradient_color = H.bottom_gradient_color
+
+		if(current_hair_style && (HAIR in species_traits))
+
+			S = GLOB.hair_styles_list[current_hair_style]
 			if(S)
 
 				//List of all valid dynamic_hair_suffixes
@@ -580,11 +621,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						else
 							hair_overlay.color = "#" + hair_color
 					else
-						hair_overlay.color = "#" + H.hair_color
+						hair_overlay.color = "#" + current_hair_color
 
 					//Gradients
-					var/gradient_style = H.gradient_style
-					var/gradient_color = H.gradient_color
 					if(gradient_style)
 						var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[gradient_style]
 						var/icon/temp = icon(gradient.icon, gradient.icon_state)
@@ -600,14 +639,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				if(OFFSET_FACE in H.dna.species.offset_features)
 					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
 					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
-		if(hair_overlay.icon)
-			standing += hair_overlay
-			standing += gradient_overlay
-
-	if(standing.len)
-		H.overlays_standing[HAIR_LAYER] = standing
-
-	H.apply_overlay(HAIR_LAYER)
+	if (hair_overlay.icon)
+		return list(hair_overlay, gradient_overlay)
 
 /datum/species/proc/handle_body(mob/living/carbon/human/H)
 	H.remove_overlay(BODY_LAYER)

@@ -559,3 +559,10 @@
 #define VOMIT_TOXIC 1
 /// The mob will vomit a purple color
 #define VOMIT_PURPLE 2
+
+/// Top hair slot
+#define TOP_HAIR_SLOT 1
+/// Middle hair slot
+#define MIDDLE_HAIR_SLOT 2
+/// Bottom hair slot
+#define BOTTOM_HAIR_SLOT 3
