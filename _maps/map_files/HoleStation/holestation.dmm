@@ -283,6 +283,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aV" = (
@@ -1102,6 +1103,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "dN" = (
@@ -1134,6 +1136,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/hop,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "dV" = (
@@ -1290,6 +1293,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/hop,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "er" = (
@@ -1359,6 +1363,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "eC" = (
@@ -1611,6 +1616,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "fn" = (
@@ -1835,6 +1841,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "gf" = (
@@ -2135,6 +2142,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "gX" = (
@@ -2540,6 +2548,7 @@
 "ij" = (
 /obj/machinery/door/airlock/command/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
@@ -2766,6 +2775,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ji" = (
@@ -2860,6 +2870,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "jy" = (
@@ -2875,6 +2886,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "jA" = (
@@ -3295,6 +3307,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "kP" = (
@@ -3471,6 +3484,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "ls" = (
@@ -3703,6 +3717,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/plasteel,
 /area/bridge)
 "ma" = (
@@ -4330,6 +4345,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "oc" = (
@@ -4623,6 +4639,7 @@
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/service/hydroponics,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "pf" = (
@@ -5053,6 +5070,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /turf/open/floor/engine,
 /area/engine/atmos)
 "qy" = (
@@ -5332,6 +5351,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "rn" = (
@@ -5341,6 +5361,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/service/general,
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/service)
 "ro" = (
@@ -5764,6 +5785,7 @@
 /area/maintenance/port/aft)
 "sI" = (
 /obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "sK" = (
@@ -6303,6 +6325,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "uv" = (
@@ -6889,6 +6912,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "wm" = (
@@ -7569,6 +7593,7 @@
 	req_access_txt = "46"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/service/theatre,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "yN" = (
@@ -7655,6 +7680,7 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "za" = (
@@ -7744,6 +7770,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/monke/siding/wood,
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "zq" = (
@@ -7861,6 +7888,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "zE" = (
@@ -8522,6 +8550,7 @@
 /obj/effect/turf_decal/monke/siding/thinplating{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/hydroponics,
 /turf/open/floor/plasteel/techmaint,
 /area/hydroponics)
 "BO" = (
@@ -8701,6 +8730,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "Cx" = (
@@ -8988,6 +9018,7 @@
 /obj/effect/turf_decal/monke/siding/thinplating{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/theatre,
 /turf/open/floor/plasteel/techmaint,
 /area/crew_quarters/theatre)
 "Dr" = (
@@ -9228,6 +9259,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "Ec" = (
@@ -9392,6 +9424,7 @@
 "EC" = (
 /obj/machinery/door/airlock/command/glass,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/mapping_helpers/airlock/access/all/science/rd,
 /turf/open/floor/plasteel/dark/airless,
 /area/science/research)
 "ED" = (
@@ -9495,6 +9528,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -9536,6 +9570,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-10"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/hydroponics,
 /turf/open/floor/plating,
 /area/maintenance/port/central)
 "Fa" = (
@@ -9635,6 +9670,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/theatre,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
 "Fu" = (
@@ -9755,6 +9791,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "FL" = (
@@ -9863,6 +9900,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "FZ" = (
@@ -9972,6 +10010,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-9"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "Gp" = (
@@ -10040,6 +10079,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/central)
 "GB" = (
@@ -10346,6 +10386,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/central)
 "Ht" = (
@@ -10453,6 +10494,8 @@
 /obj/machinery/door/airlock/grunge{
 	name = "Morgue"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "HJ" = (
@@ -10471,6 +10514,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "HL" = (
@@ -10947,6 +10991,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -11030,6 +11075,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "JS" = (
@@ -11050,6 +11096,10 @@
 	pixel_y = 13;
 	pixel_x = -5
 	},
+/obj/item/hand_tele{
+	pixel_y = 6
+	},
+/obj/item/hand_tele,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "JU" = (
@@ -11324,10 +11374,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "KK" = (
 /obj/machinery/door/airlock/security/glass,
+/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "KL" = (
@@ -11370,6 +11422,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "KS" = (
@@ -11559,6 +11612,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "LC" = (
@@ -11674,6 +11729,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plating,
 /area/security/main)
 "Mb" = (
@@ -11768,7 +11824,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/item/hand_tele,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Mp" = (
@@ -12271,6 +12326,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Oa" = (
@@ -12324,6 +12380,7 @@
 "Oi" = (
 /obj/machinery/door/airlock/external,
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "Oj" = (
@@ -12420,6 +12477,10 @@
 /area/crew_quarters/heads/captain)
 "OC" = (
 /obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "OD" = (
@@ -12921,6 +12982,7 @@
 /area/security/prison)
 "Qc" = (
 /obj/machinery/door/airlock/research/glass,
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Qd" = (
@@ -13069,6 +13131,7 @@
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Laser Room"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "QF" = (
@@ -13098,6 +13161,7 @@
 /obj/machinery/door/airlock/wood{
 	name = "The Aft-Lock"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "QK" = (
@@ -13606,6 +13670,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "Sn" = (
@@ -14050,6 +14115,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/engine/engine_smes)
 "TR" = (
@@ -14450,6 +14517,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/warehouse)
 "Vf" = (
@@ -14532,6 +14600,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "Vx" = (
@@ -14581,6 +14650,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/supply/mining,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
 "VC" = (
@@ -14730,6 +14800,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/aux_base,
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/central/secondary)
 "We" = (
@@ -14764,6 +14835,7 @@
 /area/crew_quarters/kitchen/coldroom)
 "Wj" = (
 /obj/machinery/door/airlock/research/glass,
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Wl" = (
@@ -14873,6 +14945,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "WC" = (
@@ -14975,6 +15048,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "WU" = (
@@ -15048,6 +15122,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "Xe" = (
@@ -15095,6 +15170,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "Xq" = (
@@ -15319,6 +15395,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "Yi" = (
@@ -15397,6 +15474,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "Yx" = (
@@ -15439,6 +15517,7 @@
 "YC" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "YD" = (
@@ -15583,6 +15662,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/openspace,
 /area/maintenance/central)
+"YW" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/science/general,
+/turf/open/floor/plating,
+/area/maintenance/department/science)
 "Za" = (
 /obj/machinery/firealarm/directional/west,
 /obj/structure/cable/yellow{
@@ -15754,6 +15841,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ZE" = (
@@ -15763,6 +15851,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
 "ZF" = (
@@ -43236,7 +43325,7 @@ uZ
 JZ
 Ec
 Ec
-rm
+YW
 Ec
 oD
 rg
