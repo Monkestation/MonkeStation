@@ -8,7 +8,7 @@
 /obj/item/stack/tile/lowered
 	name = "lowered floor tile"
 	singular_name = "lowered floor tile"
-	turf_type = /turf/open/floor/iron/lowered
+	turf_type = /turf/open/floor/lowered
 	icon = 'monkestation/code/modules/liquids/icons/obj/items/tiles.dmi'
 	icon_state = "lowered"
 
@@ -41,7 +41,7 @@
 	liquid_height = 30
 	turf_height = 30
 	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/iron/elevated)
+	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/elevated)
 
 /turf/open/floor/elevated/rust_heretic_act()
 	return
@@ -55,7 +55,7 @@
 	liquid_height = -30
 	turf_height = -30
 	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/iron/lowered)
+	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/lowered)
 
 /turf/open/floor/lowered/rust_heretic_act()
 	return
