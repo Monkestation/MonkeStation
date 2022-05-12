@@ -344,9 +344,6 @@
 "bd" = (
 /obj/structure/closet/secure_closet/captains,
 /obj/effect/turf_decal/delivery,
-/obj/item/card/id/departmental_budget/car,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/clothing/suit/armor/reactive/teleport,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "be" = (
@@ -5408,6 +5405,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/clothing/suit/armor/laserproof,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "rc" = (
@@ -5654,6 +5652,7 @@
 "rP" = (
 /obj/structure/closet/secure_closet/warden,
 /obj/item/gun/energy/e_gun/hos,
+/obj/item/card/id/departmental_budget/sec,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "rR" = (
@@ -5739,6 +5738,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/auto_name/north,
+/obj/item/clothing/suit/armor/reactive/teleport{
+	pixel_y = 6
+	},
+/obj/item/card/id/departmental_budget/sci,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "sh" = (
@@ -8477,6 +8480,7 @@
 /area/construction/mining/aux_base)
 "AY" = (
 /obj/structure/table,
+/obj/item/card/id/departmental_budget/eng,
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "AZ" = (
@@ -14528,6 +14532,7 @@
 	},
 /obj/effect/turf_decal/tile/blue/tile_marquee,
 /obj/item/wrench/medical,
+/obj/item/card/id/departmental_budget/med,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "TZ" = (
@@ -15880,6 +15885,7 @@
 /obj/effect/turf_decal/monke/siding/wood{
 	dir = 4
 	},
+/obj/item/card/id/departmental_budget/car,
 /turf/open/floor/wood,
 /area/quartermaster/storage)
 "YA" = (
