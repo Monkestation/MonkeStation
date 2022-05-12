@@ -31,7 +31,7 @@
 	icon_state = "engine_light"
 
 // MONKE EDIT ADDITION //
-/// RCD-immune plating generated only by shuttle code for shuttle ceilings on multi-z maps, should not be mapped in or creatable in any other way
+/// plating generated only by shuttle code for shuttle ceilings on multi-z maps, should not be mapped in or creatable in any other way
 /turf/open/floor/engine/ceiling
 	name = "shuttle ceiling plating"
 	desc = "Sturdy exterior hull plating, keeping the shuttle below safe."
