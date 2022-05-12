@@ -62,12 +62,6 @@
 //Height at which we consider the tile "full" and dont drop liquids on it from the upper Z level
 #define LIQUID_HEIGHT_CONSIDER_FULL_TILE 50
 
-#define SSLIQUIDS_RUN_TYPE_TURFS 1
-#define SSLIQUIDS_RUN_TYPE_GROUPS 2
-#define SSLIQUIDS_RUN_TYPE_IMMUTABLES 3
-#define SSLIQUIDS_RUN_TYPE_EVAPORATION 4
-#define SSLIQUIDS_RUN_TYPE_FIRE 5
-
 #define LIQUID_GROUP_DECAY_TIME 3
 
 //Scaled with how much a person is submerged

@@ -271,7 +271,7 @@
 		user.put_in_hands(new /obj/item/bot_assembly/cleanbot)
 	else
 		..()
-#undef SQUEEZING_DISPERSAL_PERCENT //SKYRAT EDIT ADDITION
+#undef SQUEEZING_DISPERSAL_PERCENT //MONKESTATION EDIT ADDITION
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
 	if (slot == ITEM_SLOT_HEAD)
