@@ -5,30 +5,57 @@ SUBSYSTEM_DEF(icon_smooth)
 	priority = FIRE_PRIOTITY_SMOOTHING
 	flags = SS_TICKER
 
+	var/list/blueprint_queue = list()
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
 
 /datum/controller/subsystem/icon_smooth/fire()
-	while(smooth_queue.len)
-		var/atom/A = smooth_queue[smooth_queue.len]
-		smooth_queue.len--
-		A.smooth_icon()
-		if(MC_TICK_CHECK)
+	var/list/smooth_queue_cache = smooth_queue
+	while(length(smooth_queue_cache))
+		var/atom/smoothing_atom = smooth_queue_cache[length(smooth_queue_cache)]
+		smooth_queue_cache.len--
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED))
+			continue
+		if(smoothing_atom.flags_1 & INITIALIZED_1)
+			smoothing_atom.smooth_icon()
+		else
+			deferred += smoothing_atom
+		if (MC_TICK_CHECK)
 			return
-	if(!smooth_queue.len)
-		can_fire = 0
+
+	if (!length(smooth_queue_cache))
+		if (deferred.len)
+			smooth_queue = deferred
+			deferred = smooth_queue_cache
+		else
+			can_fire = FALSE
 
 
 /datum/controller/subsystem/icon_smooth/Initialize()
-	// Smooth EVERYTHING in the world
-	for(var/turf/T in world)
-		if(T.smoothing_flags)
-			T.smooth_icon()
-		for(var/A in T)
-			var/atom/AA = A
-			if(AA.smoothing_flags)
-				AA.smooth_icon()
-				CHECK_TICK
+	smooth_zlevel(1, TRUE)
+	smooth_zlevel(2, TRUE)
+
+	var/list/queue = smooth_queue
+	smooth_queue = list()
+
+	while(length(queue))
+		var/atom/smoothing_atom = queue[length(queue)]
+		queue.len--
+		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED) || smoothing_atom.z <= 2)
+			continue
+		smoothing_atom.smooth_icon()
+		CHECK_TICK
+
+	queue = blueprint_queue
+	blueprint_queue = null
+
+	for(var/atom/movable/movable_item as anything in queue)
+		if(!isturf(movable_item.loc))
+			continue
+		var/turf/item_loc = movable_item.loc
+		item_loc.add_blueprints(movable_item)
+
+	return ..()
 
 /datum/controller/subsystem/icon_smooth/proc/add_to_queue(atom/thing)
 	if(thing.smoothing_flags & SMOOTH_QUEUED)
@@ -41,3 +68,6 @@ SUBSYSTEM_DEF(icon_smooth)
 /datum/controller/subsystem/icon_smooth/proc/remove_from_queues(atom/thing)
 	thing.smoothing_flags &= ~SMOOTH_QUEUED
 	smooth_queue -= thing
+	if(blueprint_queue)
+		blueprint_queue -= thing
+	deferred -= thing
