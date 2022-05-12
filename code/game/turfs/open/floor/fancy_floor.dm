@@ -10,11 +10,12 @@
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
-	icon_state = "bamboo"
+	icon_state = "mat-0"
+	base_icon_state = "mat"
 	floor_tile = /obj/item/stack/tile/bamboo
-	broken_states = list("damaged")
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/bamboo)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_BAMBOO_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_FLOOR)
 	flags_1 = NONE
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
@@ -241,11 +242,13 @@
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
-	icon_state = "carpet"
+	icon_state = "carpet-255"
+	base_icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
 	broken_states = list("damaged")
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/carpet)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_CARPET)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET)
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_CARPET
@@ -355,10 +358,12 @@
 
 /turf/open/floor/fakepit
 	desc = "A clever illusion designed to look like a bottomless pit."
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/fakepit)
+	base_icon_state = "chasms"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_TURF_CHASM)
+	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
 	icon = 'icons/turf/floors/Chasms.dmi'
-	icon_state = "smooth"
+	icon_state = "chasms-0"
 	tiled_dirt = FALSE
 
 /turf/open/floor/fakepit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)

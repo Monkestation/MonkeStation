@@ -298,7 +298,7 @@
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock, /obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/shuttle, /obj/structure/shuttle/engine)
 
 /turf/closed/wall/mineral/titanium/survival/nodiagonal
-	smoothing_flags = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/mineral/titanium/survival/pod
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod)

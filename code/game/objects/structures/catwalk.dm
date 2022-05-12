@@ -6,8 +6,8 @@
 	base_icon_state = "catwalk"
 	number_of_rods = 2
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_FLOOR)
-	canSmoothWith = list(SMOOTH_GROUP_LATTICE)
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_CATWALK, SMOOTH_GROUP_OPEN_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_CATWALK)
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
 	//Negates the effect of space and openspace.
 	//Shouldn't be placed above anything else.

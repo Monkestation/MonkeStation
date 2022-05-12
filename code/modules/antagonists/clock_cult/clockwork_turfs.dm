@@ -147,12 +147,12 @@
 	. = ..()
 	if(d_state == INTACT)
 		realappearence.icon_state = "clockwork_wall"
-		smooth = SMOOTH_TRUE
+		smoothing_flags = SMOOTH_BITMASK
 		QUEUE_SMOOTH_NEIGHBORS(src)
 		QUEUE_SMOOTH(src)
 	else
 		realappearence.icon_state = "clockwork_wall-[d_state]"
-		smooth = SMOOTH_FALSE
+		smoothing_flags = NONE
 		clear_smooth_overlays()
 	realappearence.update_icon()
 	return
@@ -307,7 +307,7 @@
 	/turf/open/floor,
 	/turf/closed/wall,
 	/obj/structure/falsewall)
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK
 
 /obj/structure/lattice/catwalk/clockwork/Initialize(mapload)
 	. = ..()
@@ -557,7 +557,7 @@
 
 /obj/structure/window/reinforced/clockwork/fulltile
 	icon_state = "clockwork_window"
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_BITMASK
 	canSmoothWith = null
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1

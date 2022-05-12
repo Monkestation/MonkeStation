@@ -8,7 +8,7 @@
 	layer = SPACEVINE_MOB_LAYER
 	opacity = 0
 	canSmoothWith = list()
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE
 	var/growth_time = 1200
 
 
