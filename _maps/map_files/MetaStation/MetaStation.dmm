@@ -73121,7 +73121,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel{
 	dir = 1
 	},
@@ -77539,19 +77538,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
-"jZw" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/effect/landmark/nuclear_waste_spawner,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "jZN" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -122355,7 +122341,7 @@ aNr
 aOP
 dCw
 aRq
-jZw
+aSw
 aFr
 yfS
 aBI

@@ -464,6 +464,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/monotile/steel,
 /area/engine/engineering/reactor_core)
 "bi" = (
@@ -982,6 +983,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/effect/landmark/nuclear_waste_spawner/strong,
 /turf/open/floor/engine,
 /area/engine/engineering/reactor_core)
 "dj" = (
@@ -1129,7 +1131,6 @@
 	id = "nturbine_shutters";
 	name = "Turbine Shutters"
 	},
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering/reactor_turbines)
 "dW" = (
@@ -2835,6 +2836,9 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
 /turf/open/floor/monotile/steel,
 /area/engine/engineering/reactor_core)
 "WJ" = (
@@ -2950,6 +2954,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
+/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering/reactor_turbines)
 "Zx" = (

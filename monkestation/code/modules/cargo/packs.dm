@@ -39,10 +39,3 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
-/datum/supply_pack/emergency/radiationkits
-	name = "Radbgone Pack"
-	desc = "For large radiation exposure incidents. Comes with 4 Radbgone First-Aid Kits"
-	cost = 2000
-	contains = list(/obj/item/storage/firstaid/radbgone = 4)
-	crate_name = "Radiation Treatment Kits"
-	crate_type = /obj/structure/closet/crate/medical

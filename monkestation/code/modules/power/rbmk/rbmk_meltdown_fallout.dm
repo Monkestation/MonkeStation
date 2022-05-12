@@ -18,16 +18,16 @@
 /// Clean way of spawning nuclear gunk after a reactor core meltdown.
 /obj/effect/landmark/nuclear_waste_spawner
 	name = "Nuclear waste spawner"
-	var/range = 5 //5 tile radius to spawn goop
+	var/range = 10 //5 tile radius to spawn goop
 
 /obj/effect/landmark/nuclear_waste_spawner/strong
-	range = 10
+	range = 100
 
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
 	for(var/turf/open/floor in orange(range, get_turf(src)))
-		if(prob(35)) //Scatter the sludge, don't smear it everywhere
+		if(prob(25)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 	qdel(src)
 

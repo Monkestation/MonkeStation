@@ -457,7 +457,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 // Method for alerting the station on the radio
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alerts()
-	if((REALTIMEOFDAY - lastwarning) / 10 >= WARNING_DELAY)
+	if((REALTIMEOFDAY - lastwarning) / 8 >= WARNING_DELAY)
 
 		if(temperature >= RBMK_TEMPERATURE_CRITICAL)
 			radio.talk_into(src, "Reactor Temperature Critical at [temperature] C.", engineering_channel)
@@ -483,7 +483,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		alert = TRUE
 		if(temperature >= RBMK_TEMPERATURE_MELTDOWN)
 			vessel_integrity -= (temperature / 100)
-			if(vessel_integrity <= temperature/100) //It wouldn't be able to tank another hit.
+			if(vessel_integrity <= temperature / 100) //It wouldn't be able to tank another hit.
 				investigate_log("Reactor melted down at [temperature] C with desired criticality at [desired_k]", INVESTIGATE_ENGINES)
 				meltdown() //Oops! All meltdown
 				return
@@ -561,7 +561,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	explosion(get_turf(src), 0, 0, 10, 15, TRUE, TRUE, 0, FALSE, 4)
 	///Added scaling calculations for pulses so you have to put effort with meltdown severity
 	///Power goes from 0 to 100
-	radiation_pulse(get_turf(src), (100+(power*30)), (10+(power*2)), TRUE) //BIG flash of rads
+	radiation_pulse(get_turf(src), (100+(power*60)), (10+(power*3)), TRUE) //BIG flash of rads
 	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
