@@ -1816,6 +1816,11 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/maintenance/starboard/fore)
+"eB" = (
+/turf/open/floor/engine,
+/area/engine/engine_core{
+	name = "Supermatter Chamber"
+	})
 "eZ" = (
 /obj/structure/cable/white{
 	icon_state = "1-8"
@@ -2532,7 +2537,7 @@ bx
 bG
 bL
 bS
-cb
+eB
 cm
 cv
 cB
