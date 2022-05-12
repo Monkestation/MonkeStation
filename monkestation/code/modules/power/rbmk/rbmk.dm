@@ -4,22 +4,22 @@
 #define MODERATOR_INPUT_GATE airs[2]
 #define COOLANT_OUTPUT_GATE airs[3]
 
-#define RBMK_TEMPERATURE_OPERATING 640 //Celsius	//Default: 640
+#define RBMK_TEMPERATURE_OPERATING 600 //Celsius	//Default: 640
 //At this point the entire ship is alerted to a meltdown. This may need altering
-#define RBMK_TEMPERATURE_CRITICAL 10000 //Celsius		//Default: 800
-#define RBMK_TEMPERATURE_MELTDOWN 11000 //Celsius		//Default: 900
+#define RBMK_TEMPERATURE_CRITICAL 950 //Celsius		//Default: 800
+#define RBMK_TEMPERATURE_MELTDOWN 1000 //Celsius		//Default: 900
 
 //How many process()ing ticks the reactor can sustain without coolant before slowly taking damage
 #define RBMK_NO_COOLANT_TOLERANCE 5	//Default: 5
 
-#define RBMK_PRESSURE_OPERATING 5000 //kPa		//Default: 1000 PSI //No more PSI
-#define RBMK_PRESSURE_CRITICAL 100000 //kPa	//Default: 1469.59 PSI
+#define RBMK_PRESSURE_OPERATING 2000 //kPa		//Default: 1000 PSI //No more PSI
+#define RBMK_PRESSURE_CRITICAL 10000 //kPa	//Default: 1469.59 PSI
 
 //No more criticality than N for now.
 #define RBMK_MAX_CRITICALITY 3		//Default: 3
 
 //To turn those KWs into something usable
-#define RBMK_POWER_FLAVOURISER 300		//Default: 8000 //I want some use out of turbines for power
+#define RBMK_POWER_FLAVOURISER 10		//Default: 8000 //I want some use out of turbines for power
 
 //Reference: Heaters go up to 500K.
 //Hot plasmaburn: 14164.95 C.
@@ -96,8 +96,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/power = 0
 	/// Used for moderator gasses power modifications
 	var/power_modifier = 1
-	/// Used for moderator gasses effect on reactor temps
-	var/temperature_modifier = 100
 	//Amount of Fuels_rods in reactor
 	var/list/fuel_rods = list()
 
@@ -296,7 +294,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		//The optimum, 100% balanced reaction sits at K=1, coolant input temp of 200K / -73 celsius.
 		var/heat_delta = (KELVIN_TO_CELSIUS(coolant_input.return_temperature()) / 100) * gas_absorption_effectiveness
 		last_heat_delta = heat_delta
-		temperature += (heat_delta)
+		temperature += heat_delta
 		coolant_output.merge(coolant_input) //And now, shove the input into the output.
 		coolant_input.clear() //Clear out anything left in the input gate.
 		color = null
@@ -305,8 +303,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		if(has_fuel())
 			no_coolant_ticks++
 			if(no_coolant_ticks > RBMK_NO_COOLANT_TOLERANCE)
-				temperature += ((temperature / RBMK_TEMPERATURE_CRITICAL) * 50) //This isn't really harmful early game, but when your reactor is up to full power, this can get out of hand quite quickly.
-				vessel_integrity -= ((temperature / RBMK_TEMPERATURE_CRITICAL) * 100) //Think fast loser.
+				temperature += temperature / 250//This isn't really harmful early game, but when your reactor is up to full power, this can get out of hand quite quickly.
+				vessel_integrity -= temperature / 400 //Think fast loser.
 				take_damage(10) //Just for the sound effect, to let you know you've fucked up.
 				color = "[COLOR_RED]"
 				investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_ENGINES)
@@ -314,25 +312,27 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)) //Heat the coolant output gas that we just had pass through us.
 	last_output_temperature = KELVIN_TO_CELSIUS(coolant_output.return_temperature())
 	pressure = coolant_output.return_pressure()
-	power = clamp(((temperature / RBMK_TEMPERATURE_CRITICAL) * 20), 0, 1000)
+	power = clamp(((temperature / RBMK_TEMPERATURE_CRITICAL) * 110), 0, 1000)
 	var/radioactivity_spice_multiplier = 1 //Some gasses make the reactor a bit spicy.
 	var/depletion_modifier = 0.035 //How rapidly do your rods decay
 	gas_absorption_effectiveness = gas_absorption_constant
 	//Next up, handle moderators!
 	if(moderator_input.total_moles() >= minimum_coolant_level)
 
-		var/total_fuel_moles = (moderator_input.get_moles(GAS_PLASMA)) + (moderator_input.get_moles(GAS_TRITIUM)*5)
+		var/total_fuel_moles = moderator_input.get_moles(GAS_PLASMA) + (moderator_input.get_moles(GAS_TRITIUM)*10)
 		var/power_modifier = max((moderator_input.get_moles(GAS_O2) / moderator_input.total_moles() * 10), 1) //You can never have negative IPM. For now.
 		if(total_fuel_moles >= minimum_coolant_level) //You at least need SOME fuel.
-			var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 10), 1)
+			var/power_produced = max((total_fuel_moles / moderator_input.total_moles() * 50), 1)
 			last_power_produced = max(0,((power_produced*power_modifier)*moderator_input.total_moles()))
 			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
 			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 			radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) / 5 //Chernobyl 2.
 			var/turf/T = get_turf(src)
-			if(power >= 20)
-				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/60) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
-				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/20) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+			if(power >= 5)
+				var/nucleium_output = clamp((110 - power), 5, 100) //Increases Waste ouput which helps tell the turbines to be more efficient
+				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/100) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/nucleium_output) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
+
 			var/obj/structure/cable/C = T.get_cable_node()
 			if(!C?.powernet)
 				return
@@ -359,6 +359,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		//From this point onwards, we clear out the remaining gasses.
 		moderator_input.clear() //Woosh. And the soul is gone.
 		K += total_fuel_moles / 1000
+
 	var/fuel_power = 0 //So that you can't magically generate K with your control rods.
 	if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up boys.
 		K = 0
@@ -460,14 +461,14 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 		if(temperature >= RBMK_TEMPERATURE_CRITICAL)
 			radio.talk_into(src, "Reactor Temperature Critical at [temperature] C.", engineering_channel)
-			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 3)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 2)
 			if(vessel_integrity <= 200)
 				radio.talk_into(src, "REACTOR MELTDOWN IMMINENT at [temperature] C. Please seek your nearest radiation lockers for protection.", common_channel)
-				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 3)
+				lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
 
 		if(pressure >= RBMK_PRESSURE_CRITICAL)
 			radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa.", engineering_channel)
-			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 3)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 2)
 			if(vessel_integrity <= 200)
 				radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa. PRESSURE BLOWOUT IMMINENT. Please seek shelter and your nearest radiation lockers for protection.", common_channel)
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
@@ -582,13 +583,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon()
 	icon_state = "reactor_off"
 	switch(temperature)
-		if(0 to 200)
+		if(0 to 100)
 			icon_state = "reactor_on"
-		if(200 to RBMK_TEMPERATURE_OPERATING)
+		if(100 to RBMK_TEMPERATURE_OPERATING)
 			icon_state = "reactor_hot"
-		if(RBMK_TEMPERATURE_OPERATING to 9000)
+		if(RBMK_TEMPERATURE_OPERATING to 800)
 			icon_state = "reactor_veryhot"
-		if(9000 to RBMK_TEMPERATURE_CRITICAL) //Point of no return.
+		if(800 to RBMK_TEMPERATURE_CRITICAL) //Point of no return.
 			icon_state = "reactor_overheat"
 		if(RBMK_TEMPERATURE_CRITICAL to INFINITY)
 			icon_state = "reactor_meltdown"

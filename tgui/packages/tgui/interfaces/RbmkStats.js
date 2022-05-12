@@ -24,6 +24,9 @@ export const RbmkStatsContent = (props, context) => {
   const pressureData = data.pressureData.map((value, i) => [i, value]);
   const tempInputData = data.tempInputData.map((value, i) => [i, value]);
   const tempOutputdata = data.tempOutputdata.map((value, i) => [i, value]);
+  const {
+    pressureMax, temperatureMax,
+  } = data;
 
   return (
     <Section>
@@ -50,11 +53,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.reactorPressure}
                   minValue={0}
-                  maxValue={100000}
+                  maxValue={pressureMax}
                   ranges={{
-                    good: [5000, 90000],
-                    average: [0, 5000],
-                    bad: [90000, Infinity],
+                    good: [0, 5000],
+                    average: [5000, 10000],
+                    bad: [10000, Infinity],
                   }}>
                   {toFixed(data.reactorPressure) + ' (kPa)'}
                 </ProgressBar>
@@ -64,11 +67,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.coolantInput}
                   minValue={-273.15}
-                  maxValue={10000}
+                  maxValue={temperatureMax}
                   ranges={{
                     good: [-Infinity, 0],
-                    average: [0, 300],
-                    bad: [300, Infinity],
+                    average: [0, 100],
+                    bad: [100, Infinity],
                   }}>
                   {toFixed(data.coolantInput) + ' (C°)'}
                 </ProgressBar>
@@ -78,11 +81,11 @@ export const RbmkStatsContent = (props, context) => {
                 <ProgressBar
                   value={data.coolantOutput}
                   minValue={-273.15}
-                  maxValue={10000}
+                  maxValue={temperatureMax}
                   ranges={{
-                    good: [200, 10000],
-                    average: [-Infinity, 200],
-                    bad: [10000, Infinity],
+                    good: [300, 800],
+                    average: [-Infinity, 300],
+                    bad: [800, Infinity],
                   }}>
                   {toFixed(data.coolantOutput) + ' (C°)'}
                 </ProgressBar>
@@ -106,7 +109,7 @@ export const RbmkStatsContent = (props, context) => {
               fillPositionedParent
               data={pressureData}
               rangeX={[0, pressureData.length - 1]}
-              rangeY={[0, 100000]}
+              rangeY={[0, pressureMax]}
               strokeColor="rgba(255,250,250, 1)"
               fillColor="rgba(255,250,250, 0.1)" />
           </Section>
@@ -116,14 +119,14 @@ export const RbmkStatsContent = (props, context) => {
               fillPositionedParent
               data={tempInputData}
               rangeX={[0, tempInputData.length - 1]}
-              rangeY={[-273.15, 10000]}
+              rangeY={[-273.15, temperatureMax]}
               strokeColor="rgba(127, 179, 255 , 1)"
               fillColor="rgba(127, 179, 255 , 0.1)" />
             <Chart.Line
               fillPositionedParent
               data={tempOutputdata}
               rangeX={[0, tempOutputdata.length - 1]}
-              rangeY={[-273.15, 10000]}
+              rangeY={[-273.15, temperatureMax]}
               strokeColor="rgba(255, 0, 0 , 1)"
               fillColor="rgba(255, 0, 0 , 0.1)" />
           </Section>

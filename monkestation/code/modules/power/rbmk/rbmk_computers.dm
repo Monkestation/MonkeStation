@@ -113,6 +113,8 @@
 	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
 	data["power"] = reactor ? reactor.power : 0
 	data["reactorPressure"] = reactor ? reactor.pressure : 0
+	data["pressureMax"] = RBMK_PRESSURE_CRITICAL
+	data["temperatureMax"] = RBMK_TEMPERATURE_MELTDOWN
 	return data
 
 /obj/machinery/computer/reactor/fuel_rods
@@ -319,6 +321,8 @@
 	data["coolantOutput"] = reactor ? reactor.last_output_temperature : 0
 	data["power"] = reactor ? reactor.power : 0
 	data["reactorPressure"] = reactor ? reactor.pressure : 0
+	data["pressureMax"] = RBMK_PRESSURE_CRITICAL
+	data["temperatureMax"] = RBMK_TEMPERATURE_MELTDOWN
 	return data
 
 /datum/computer_file/program/nuclear_monitor/ui_act(action, params)
