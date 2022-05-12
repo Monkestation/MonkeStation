@@ -85,7 +85,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 100
+	weight = 0
 
 //Metastation Bars
 /datum/map_template/random_room/meta_default_bar
