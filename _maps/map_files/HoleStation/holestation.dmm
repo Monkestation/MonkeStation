@@ -190,6 +190,9 @@
 /area/science/research)
 "aF" = (
 /obj/structure/closet/emcloset/anchored,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aG" = (
@@ -3822,6 +3825,7 @@
 /area/hallway/primary/central)
 "md" = (
 /obj/machinery/light,
+/obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "mf" = (
@@ -5616,6 +5620,9 @@
 "rL" = (
 /obj/machinery/airalarm/directional/north,
 /obj/structure/chair,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "rM" = (
@@ -9888,6 +9895,9 @@
 /area/chapel/main)
 "Fx" = (
 /obj/structure/closet/firecloset/full,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "Fy" = (
@@ -12022,6 +12032,7 @@
 /area/construction/mining/aux_base)
 "LY" = (
 /obj/effect/landmark/secequipment,
+/obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel,
 /area/security/main)
 "LZ" = (
@@ -12884,6 +12895,10 @@
 	luminosity = 2
 	},
 /area/engine/supermatter)
+"OR" = (
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "OS" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -15316,6 +15331,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "WC" = (
@@ -16077,6 +16093,12 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
+"Zc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "Ze" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -106703,7 +106725,7 @@ Td
 YS
 Fx
 aF
-hr
+Zc
 aF
 YS
 Td
@@ -106963,7 +106985,7 @@ aY
 aY
 aY
 Gj
-hr
+OR
 oF
 nZ
 rj
@@ -107477,7 +107499,7 @@ Wr
 Wr
 Wr
 zc
-hr
+OR
 Iz
 Qq
 wy
