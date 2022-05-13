@@ -94,6 +94,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/suit_storage_unit/standard_unit,
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
 "ap" = (
@@ -112,6 +113,7 @@
 /obj/structure/closet/secure_closet/hop,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/airalarm/directional/north,
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
 "as" = (
@@ -253,6 +255,7 @@
 /obj/structure/bed/dogbed/renault,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/monke/siding/wood,
+/mob/living/simple_animal/pet/fox/Renault,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/captain)
 "aS" = (
@@ -347,6 +350,9 @@
 "bd" = (
 /obj/structure/closet/secure_closet/captains,
 /obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "be" = (
@@ -444,6 +450,7 @@
 	dir = 6;
 	name = "command camera"
 	},
+/obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "bv" = (
@@ -2898,6 +2905,7 @@
 "jr" = (
 /obj/structure/bed/dogbed/ian,
 /obj/effect/turf_decal/monke/siding/wood,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
 /turf/open/floor/grass,
 /area/crew_quarters/heads/hop)
 "jv" = (
@@ -3394,6 +3402,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
+"kV" = (
+/mob/living/simple_animal/pet/cat/Runtime,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
 "kW" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
@@ -7352,6 +7364,12 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel/techmaint,
 /area/construction/mining/aux_base)
+"xp" = (
+/obj/effect/turf_decal/monke/siding/thinplating/dark,
+/obj/effect/turf_decal/stripes/red/line,
+/mob/living/simple_animal/pet/dog/corgi/borgi,
+/turf/open/floor/mineral/plastitanium,
+/area/science/research)
 "xr" = (
 /obj/machinery/light{
 	dir = 8
@@ -13949,6 +13967,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "RW" = (
@@ -53006,7 +53025,7 @@ uJ
 EJ
 Lu
 Nr
-Nl
+kV
 RZ
 Uu
 Nl
@@ -109034,7 +109053,7 @@ Ud
 HT
 Pp
 EI
-fn
+xp
 Oq
 bT
 hc
