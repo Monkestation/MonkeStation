@@ -185,7 +185,7 @@
 		if(old_ceiling && istype(old_ceiling, /turf/open/floor/engine/ceiling)) // check if a ceiling was generated previously
 			// remove old ceiling
 			var/turf/open/floor/engine/ceiling/old_shuttle_ceiling = old_ceiling
-			old_shuttle_ceiling.ChangeTurf(old_shuttle_ceiling.old_turf_type)
+			old_shuttle_ceiling.ChangeTurf(/turf/baseturf_bottom)
 		// MONKE ADDITION END //
 
 	for(var/i in 1 to moved_atoms.len)
