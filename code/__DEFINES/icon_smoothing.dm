@@ -13,6 +13,16 @@
 #define SMOOTH_OBJ		(1<<5)
 
 
+DEFINE_BITFIELD(smoothing_flags, list(
+	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
+	"SMOOTH_BITMASK" = SMOOTH_BITMASK,
+	"SMOOTH_DIAGONAL_CORNERS" = SMOOTH_DIAGONAL_CORNERS,
+	"SMOOTH_BORDER" = SMOOTH_BORDER,
+	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
+	"SMOOTH_OBJ" = SMOOTH_OBJ,
+))
+
+
 /*smoothing macros*/
 
 #define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) {SSicon_smooth.add_to_queue(thing_to_queue)}
