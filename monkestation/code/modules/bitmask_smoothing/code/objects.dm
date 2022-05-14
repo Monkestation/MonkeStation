@@ -13,3 +13,10 @@
 	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WEEDS)
 	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS, SMOOTH_GROUP_WALLS)
 	transform = matrix(1, 0, -4, 0, 1, -4)
+
+/obj/structure/alien/resin/membrane
+	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
+	icon_state = "resin_membrane-0"
+	base_icon_state = "resin_membrane"
+	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WALLS)

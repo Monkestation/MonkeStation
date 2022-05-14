@@ -88,14 +88,14 @@
 /obj/structure/alien/resin/membrane
 	name = "resin membrane"
 	desc = "Resin just thin enough to let light pass through."
-	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
-	icon_state = "resin_membrane-0"
-	base_icon_state = "resin_membrane"
+	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
+	icon_state = "smooth"
 	opacity = 0
 	max_integrity = 160
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WALLS)
-
+	/* //MONKESTATION REMOVAL
+	resintype = "membrane"
+	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
+	*/
 /obj/structure/alien/resin/attack_paw(mob/user)
 	return attack_hand(user)
 
