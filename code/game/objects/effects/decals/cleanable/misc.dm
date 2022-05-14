@@ -49,21 +49,21 @@
 	name = "dirt"
 	desc = "Someone should clean that up."
 	icon_state = "dirt"
-	base_icon_state = "dirt"
-	smoothing_flags = NONE
-	smoothing_groups = list(SMOOTH_GROUP_CLEANABLE_DIRT)
-	canSmoothWith = list(SMOOTH_GROUP_CLEANABLE_DIRT, SMOOTH_GROUP_WALLS)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/effect/decal/cleanable/dirt/Initialize()
+	/* //MONKESTATION REMOVAL
+	canSmoothWith = list(/obj/effect/decal/cleanable/dirt, /turf/closed/wall, /obj/structure/falsewall)
+	base_icon_state = "dirt"
+	smooth = SMOOTH_FALSE
+	*/
+/obj/effect/decal/cleanable/dirt/Initialize() //MONKESTATION CHANGE
 	. = ..()
 	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /obj/effect/decal/cleanable/dirt/Destroy()
 	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()
 
