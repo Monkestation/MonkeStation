@@ -436,11 +436,11 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/turf_decal/box,
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
 "bs" = (
@@ -571,6 +571,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/structure/window/plasma/reinforced/spawner/east,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "bP" = (
@@ -3715,9 +3716,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lp" = (
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/structure/window/plasma/reinforced/spawner,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -6127,6 +6125,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
+/obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "st" = (
@@ -7250,6 +7249,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vM" = (
+/obj/structure/window/plasma/reinforced/spawner/west,
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "vN" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/bar/lounge)
@@ -7846,6 +7849,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
+/obj/structure/window/plasma/reinforced/spawner/west,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "xH" = (
@@ -8002,6 +8006,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
 	},
+/obj/structure/window/plasma/reinforced/spawner/east,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "yg" = (
@@ -8726,9 +8731,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on{
 	dir = 1
 	},
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/structure/window/plasma/reinforced/spawner/east,
-/obj/structure/window/plasma/reinforced/spawner/north,
 /turf/open/floor/engine/light,
 /area/engine/supermatter)
 "An" = (
@@ -13348,6 +13350,11 @@
 "Oc" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
+"Od" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/window/plasma/reinforced/spawner/north,
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "Oe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -14071,8 +14078,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "Qj" = (
-/obj/structure/window/plasma/reinforced/spawner/west,
-/obj/structure/window/plasma/reinforced/spawner/east,
 /obj/machinery/igniter/on,
 /turf/open/floor/engine/light,
 /area/engine/supermatter)
@@ -113845,7 +113850,7 @@ ss
 Am
 Qj
 lp
-fP
+Od
 PF
 PF
 PF
@@ -114099,8 +114104,8 @@ PF
 Cc
 wN
 Bl
-LJ
-LJ
+vM
+vM
 xG
 fP
 PF
