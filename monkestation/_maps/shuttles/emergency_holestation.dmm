@@ -143,6 +143,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"li" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "lz" = (
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
@@ -172,6 +178,12 @@
 	dir = 10
 	},
 /turf/open/floor/carpet/royalblue,
+/area/shuttle/escape)
+"nk" = (
+/obj/machinery/status_display/ai{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "np" = (
 /obj/machinery/door/airlock/security/glass,
@@ -211,6 +223,9 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
 	pixel_y = 12;
 	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/orangejuice{
+	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/pod,
@@ -708,6 +723,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
+"Yy" = (
+/obj/effect/turf_decal/monke/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "ZB" = (
 /obj/machinery/computer/communications{
 	dir = 8
@@ -855,10 +876,10 @@ Tk
 (6,1,1) = {"
 fa
 mB
-OH
-OH
+db
+Yy
 HX
-OH
+nk
 Cu
 OH
 Yd
@@ -879,10 +900,10 @@ cp
 (7,1,1) = {"
 fa
 rU
+db
+Yy
 OH
-OH
-OH
-OH
+li
 DY
 Rj
 db
@@ -903,8 +924,8 @@ Tk
 (8,1,1) = {"
 fa
 yX
-OH
-OH
+db
+Yy
 Kn
 Nk
 Nk
