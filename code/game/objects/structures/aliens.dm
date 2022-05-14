@@ -52,15 +52,15 @@
 /obj/structure/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of thick resin."
-	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
-	icon_state = "resin_wall-0"
-	base_icon_state = "resin_wall"
+	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
+	/* //MONKESTATION REMOVAL
+	canSmoothWith = list(/obj/structure/alien/resin)
+	smooth = SMOOTH_TRUE
+	*/
+	icon_state = "smooth"
 	density = TRUE
 	opacity = 1
 	anchored = TRUE
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_RESIN)
 	max_integrity = 200
 	var/resintype = null
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -78,12 +78,12 @@
 /obj/structure/alien/resin/wall
 	name = "resin wall"
 	desc = "Thick resin solidified into a wall."
-	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
-	icon_state = "resin_wall-0"
-	base_icon_state = "resin_wall"
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WALLS)
-
+	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
+	icon_state = "smooth"	//same as resin, but consistency ho!
+	/* //MONKESTATION REMOVAL
+	resintype = "wall"
+	canSmoothWith = list(/obj/structure/alien/resin/wall, /obj/structure/alien/resin/membrane)
+	*/
 /obj/structure/alien/resin/wall/BlockThermalConductivity()
 	return 1
 
@@ -115,14 +115,13 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
-	icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
-	icon_state = "weeds1-0"
-	base_icon_state = "weeds1"
+	icon = 'icons/obj/smooth_structures/alien/weeds1.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
+	icon_state = "weeds"
 	max_integrity = 15
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WEEDS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS, SMOOTH_GROUP_WALLS)
-	transform = matrix(1, 0, -4, 0, 1, -4)
+	/* //MONKESTATION REMOVAL
+	canSmoothWith = list(/obj/structure/alien/weeds, /turf/closed/wall)
+	smooth = SMOOTH_MORE
+	*/
 	var/last_expand = 0 //last world.time this weed expanded
 	var/growth_cooldown_low = 150
 	var/growth_cooldown_high = 200
