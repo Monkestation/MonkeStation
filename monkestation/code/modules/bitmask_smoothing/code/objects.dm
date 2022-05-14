@@ -27,3 +27,11 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ALIEN_NEST)
 	canSmoothWith = list(SMOOTH_GROUP_ALIEN_NEST)
+
+/obj/structure/lattice/catwalk
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/catwalk.dmi'
+	icon_state = "catwalk-0"
+	base_icon_state = "catwalk"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_CATWALK, SMOOTH_GROUP_OPEN_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_CATWALK)
