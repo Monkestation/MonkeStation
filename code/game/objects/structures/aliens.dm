@@ -53,15 +53,13 @@
 	name = "resin"
 	desc = "Looks like some kind of thick resin."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
-	/* //MONKESTATION REMOVAL
-	canSmoothWith = list(/obj/structure/alien/resin)
-	smooth = SMOOTH_TRUE
-	*/
 	icon_state = "smooth"
 	density = TRUE
 	opacity = 1
 	anchored = TRUE
+	//canSmoothWith = list(/obj/structure/alien/resin) //MONKESTATION REMOVAL
 	max_integrity = 200
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	var/resintype = null
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
