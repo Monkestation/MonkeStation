@@ -197,6 +197,9 @@
 		return
 	cut_overlays()
 	switch(liquid_state)
+		if(LIQUID_STATE_PUDDLE)
+			queue_smooth(src)
+			queue_smooth_neighbors(src)
 		if(LIQUID_STATE_ANKLES)
 			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_bottom")
 			var/mutable_appearance/underlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_top")
@@ -229,7 +232,6 @@
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			add_overlay(overlay)
-
 /obj/effect/abstract/liquid_turf/proc/update_liquid_vis()
 	if(no_effects)
 		return
