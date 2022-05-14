@@ -21,10 +21,11 @@
 	A non null 'fixed_underlay' list var will skip copying the previous turf appearance and always use the list. If the list is
 	not set properly, the underlay will default to regular floor plating.
 
-	To see an example of a diagonal wall, see '/turf/simulated/wall/mineral/titanium' and its subtypes.
+	To see an example of a diagonal wall, see '/turf/closed/wall/mineral/titanium' and its subtypes.
 */
 
 //Redefinitions of the diagonal directions so they can be stored in one var without conflicts
+//MONKESTATION ADDITIONS START
 #define NORTH_JUNCTION		NORTH //(1<<0)
 #define SOUTH_JUNCTION		SOUTH //(1<<1)
 #define EAST_JUNCTION		EAST  //(1<<2)
@@ -49,11 +50,22 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define NO_ADJ_FOUND 0
 #define ADJ_FOUND 1
 #define NULLTURF_BORDER 2
-
+//MONKESTATION ADDITIONS END
 #define DEFAULT_UNDERLAY_ICON 			'icons/turf/floors.dmi'
 #define DEFAULT_UNDERLAY_ICON_STATE 	"plating"
 
+/* MONKESTATION REMOVAL START
+/atom/var/smooth = SMOOTH_FALSE
+/atom/var/top_left_corner
+/atom/var/top_right_corner
+/atom/var/bottom_left_corner
+/atom/var/bottom_right_corner
+/atom/var/list/canSmoothWith = null // TYPE PATHS I CAN SMOOTH WITH~~~~~ If this is null and atom is smooth, it smooths only with itself
+/atom/movable/var/can_be_unanchored = FALSE
+/turf/var/list/fixed_underlay = null
+*/ //MONKESTATION REMOVAL END
 
+//MONKESTATION ADDITION START
 #define SET_ADJ_IN_DIR(source, junction, direction, direction_flag) \
 	do { \
 		var/turf/neighbor = get_step(source, direction); \
@@ -91,8 +103,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			}; \
 		}; \
 	} while(FALSE)
-
-
+//MONKESTATION ADDITION END
+//MONKESTATION CHANGES START
 ///Scans all adjacent turfs to find targets to smooth with.
 /atom/proc/calculate_adjacencies()
 	. = NONE
@@ -141,8 +153,9 @@ DEFINE_BITFIELD(smoothing_junction, list(
 						. |= SOUTHEAST_JUNCTION
 				if(ADJ_FOUND)
 					. |= SOUTHEAST_JUNCTION
+//MONKESTATION CHANGES END
 
-
+//MONKESTATION ADDITION START
 /atom/movable/calculate_adjacencies()
 	if(can_be_unanchored && !anchored)
 		return NONE
@@ -161,36 +174,36 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			corners_cardinal_smooth(src, calculate_adjacencies())
 	else if(smoothing_flags & SMOOTH_BITMASK)
 		bitmask_smooth()
+//MONKESTATION ADDITION END
 
-
-/atom/proc/corners_diagonal_smooth(adjacencies)
+/atom/proc/corners_diagonal_smooth(adjacencies) //MONKESTATION CHANGE
 	switch(adjacencies)
-		if(NORTH_JUNCTION|WEST_JUNCTION)
+		if(NORTH_JUNCTION|WEST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-se","d-se-0")
-		if(NORTH_JUNCTION|EAST_JUNCTION)
+		if(NORTH_JUNCTION|EAST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-sw","d-sw-0")
-		if(SOUTH_JUNCTION|WEST_JUNCTION)
+		if(SOUTH_JUNCTION|WEST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-ne","d-ne-0")
-		if(SOUTH_JUNCTION|EAST_JUNCTION)
+		if(SOUTH_JUNCTION|EAST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-nw","d-nw-0")
 
-		if(NORTH_JUNCTION|WEST_JUNCTION|NORTHWEST_JUNCTION)
+		if(NORTH_JUNCTION|WEST_JUNCTION|NORTHWEST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-se","d-se-1")
-		if(NORTH_JUNCTION|EAST_JUNCTION|NORTHEAST_JUNCTION)
+		if(NORTH_JUNCTION|EAST_JUNCTION|NORTHEAST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-sw","d-sw-1")
-		if(SOUTH_JUNCTION|WEST_JUNCTION|SOUTHWEST_JUNCTION)
+		if(SOUTH_JUNCTION|WEST_JUNCTION|SOUTHWEST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-ne","d-ne-1")
-		if(SOUTH_JUNCTION|EAST_JUNCTION|SOUTHEAST_JUNCTION)
+		if(SOUTH_JUNCTION|EAST_JUNCTION|SOUTHEAST_JUNCTION) //MONKESTATION CHANGE
 			replace_smooth_overlays("d-nw","d-nw-1")
 
 		else
-			corners_cardinal_smooth(src, adjacencies)
+			corners_cardinal_smooth(src, adjacencies) //MONKESTATION CHANGE
 			return
 
 	icon_state = ""
 	return adjacencies
 
-
+//MONKESTATION REPLACE START > diagonal_smooth to corners_cardinal_smooth
 /atom/proc/corners_cardinal_smooth(atom/A, adjacencies)
 	//NW CORNER
 	var/nw = "1-i"
@@ -268,16 +281,17 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 	if(new_overlays.len)
 		A.add_overlay(new_overlays)
-
+//MONKESTATION REPLACE END
 
 ///Scans direction to find targets to smooth with.
-/atom/proc/find_type_in_direction(direction)
-	var/turf/target_turf = get_step(src, direction)
+/atom/proc/find_type_in_direction(direction)  //MONKESTATION CHANGE
+	var/turf/target_turf = get_step(src, direction) //MONKESTATION CHANGE
 	if(!target_turf)
 		return NULLTURF_BORDER
 
 	var/area/target_area = get_area(target_turf)
-	var/area/source_area = get_area(src)
+	var/area/source_area = get_area(src) //MONKESTATION CHANGE
+	 //MONKESTATION CHANGE START
 	if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing)))
 		return NO_ADJ_FOUND
 
@@ -304,8 +318,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 				return ADJ_FOUND
 
 	return NO_ADJ_FOUND
-
-
+	 //MONKESTATION CHANGE END
+//MONKESTATION ADDITION START
 /**
   * Basic smoothing proc. The atom checks for adjacent directions to smooth with and changes the icon_state based on that.
   *
@@ -381,25 +395,25 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	if(broken || burnt)
 		return
 	return ..()
-
+//MONKESTATION ADDITION END
 
 //Icon smoothing helpers
-/proc/smooth_zlevel(zlevel, now = FALSE)
+/proc/smooth_zlevel(zlevel, now = FALSE) //MONKESTATION CHANGE
 	var/list/away_turfs = block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel))
 	for(var/V in away_turfs)
 		var/turf/T = V
-		if(T.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		if(T.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 			if(now)
-				T.smooth_icon()
+				T.smooth_icon() //MONKESTATION CHANGE
 			else
-				QUEUE_SMOOTH(T)
+				QUEUE_SMOOTH(T) //MONKESTATION CHANGE
 		for(var/R in T)
 			var/atom/A = R
-			if(A.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+			if(A.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 				if(now)
-					A.smooth_icon()
+					A.smooth_icon() //MONKESTATION CHANGE
 				else
-					QUEUE_SMOOTH(A)
+					QUEUE_SMOOTH(A) //MONKESTATION CHANGE
 
 
 /atom/proc/clear_smooth_overlays()
@@ -429,65 +443,82 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 /proc/reverse_ndir(ndir)
 	switch(ndir)
-		if(NORTH_JUNCTION)
+		if(NORTH_JUNCTION) //MONKESTATION CHANGE
 			return NORTH
-		if(SOUTH_JUNCTION)
+		if(SOUTH_JUNCTION) //MONKESTATION CHANGE
 			return SOUTH
-		if(WEST_JUNCTION)
+		if(WEST_JUNCTION) //MONKESTATION CHANGE
 			return WEST
-		if(EAST_JUNCTION)
+		if(EAST_JUNCTION) //MONKESTATION CHANGE
 			return EAST
-		if(NORTHWEST_JUNCTION)
+		if(NORTHWEST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHWEST
-		if(NORTHEAST_JUNCTION)
+		if(NORTHEAST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHEAST
-		if(SOUTHEAST_JUNCTION)
+		if(SOUTHEAST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHEAST
-		if(SOUTHWEST_JUNCTION)
+		if(SOUTHWEST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHWEST
-		if(NORTH_JUNCTION | WEST_JUNCTION)
+		if(NORTH_JUNCTION | WEST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHWEST
-		if(NORTH_JUNCTION | EAST_JUNCTION)
+		if(NORTH_JUNCTION | EAST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHEAST
-		if(SOUTH_JUNCTION | WEST_JUNCTION)
+		if(SOUTH_JUNCTION | WEST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHWEST
-		if(SOUTH_JUNCTION | EAST_JUNCTION)
+		if(SOUTH_JUNCTION | EAST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHEAST
-		if(NORTH_JUNCTION | WEST_JUNCTION | NORTHWEST_JUNCTION)
+		if(NORTH_JUNCTION | WEST_JUNCTION | NORTHWEST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHWEST
-		if(NORTH_JUNCTION | EAST_JUNCTION | NORTHEAST_JUNCTION)
+		if(NORTH_JUNCTION | EAST_JUNCTION | NORTHEAST_JUNCTION) //MONKESTATION CHANGE
 			return NORTHEAST
-		if(SOUTH_JUNCTION | WEST_JUNCTION | SOUTHWEST_JUNCTION)
+		if(SOUTH_JUNCTION | WEST_JUNCTION | SOUTHWEST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHWEST
-		if(SOUTH_JUNCTION | EAST_JUNCTION | SOUTHEAST_JUNCTION)
+		if(SOUTH_JUNCTION | EAST_JUNCTION | SOUTHEAST_JUNCTION) //MONKESTATION CHANGE
 			return SOUTHEAST
 		else
-			return NONE
+			return NONE //MONKESTATION CHANGE
 
+/* MONKESTATION REMOVAL START
+//SSicon_smooth
+/proc/queue_smooth_neighbors(atom/A)
+	for(var/atom/T as() in orange(1,A))
+		if(T.smooth)
+			queue_smooth(T)
+
+//SSicon_smooth
+/proc/queue_smooth(atom/A)
+	if(!A.smooth || A.smooth & SMOOTH_QUEUED)
+		return
+
+	SSicon_smooth.smooth_queue += A
+	SSicon_smooth.can_fire = 1
+	A.smooth |= SMOOTH_QUEUED
+*/ //MONKESTATION REMOVAL END
 
 //Example smooth wall
 /turf/closed/wall/smooth
 	name = "smooth wall"
 	icon = 'icons/turf/smooth_wall.dmi'
 	icon_state = "smooth"
-	smoothing_flags = SMOOTH_CORNERS|SMOOTH_DIAGONAL_CORNERS|SMOOTH_BORDER
-	smoothing_groups = null
+	//smooth = SMOOTH_TRUE|SMOOTH_DIAGONAL|SMOOTH_BORDER //MONKESTATION REMOVAL
+	smoothing_flags = SMOOTH_CORNERS|SMOOTH_DIAGONAL_CORNERS|SMOOTH_BORDER //MONKESTATION ADDITION
+	smoothing_groups = null  //MONKESTATION ADDITION
 	canSmoothWith = null
 
-#undef NORTH_JUNCTION
-#undef SOUTH_JUNCTION
-#undef EAST_JUNCTION
-#undef WEST_JUNCTION
-#undef NORTHEAST_JUNCTION
-#undef NORTHWEST_JUNCTION
-#undef SOUTHEAST_JUNCTION
-#undef SOUTHWEST_JUNCTION
+#undef NORTH_JUNCTION //MONKESTATION ADDITION
+#undef SOUTH_JUNCTION //MONKESTATION ADDITION
+#undef EAST_JUNCTION //MONKESTATION ADDITION
+#undef WEST_JUNCTION //MONKESTATION ADDITION
+#undef NORTHEAST_JUNCTION //MONKESTATION ADDITION
+#undef NORTHWEST_JUNCTION //MONKESTATION ADDITION
+#undef SOUTHEAST_JUNCTION //MONKESTATION ADDITION
+#undef SOUTHWEST_JUNCTION //MONKESTATION ADDITION
 
-#undef NO_ADJ_FOUND
-#undef ADJ_FOUND
-#undef NULLTURF_BORDER
+#undef NO_ADJ_FOUND //MONKESTATION ADDITION
+#undef ADJ_FOUND //MONKESTATION ADDITION
+#undef NULLTURF_BORDER //MONKESTATION ADDITION
 
-#undef DEFAULT_UNDERLAY_ICON
-#undef DEFAULT_UNDERLAY_ICON_STATE
+#undef DEFAULT_UNDERLAY_ICON //MONKESTATION ADDITION
+#undef DEFAULT_UNDERLAY_ICON_STATE //MONKESTATION ADDITION
 
-#undef SET_ADJ_IN_DIR
+#undef SET_ADJ_IN_DIR //MONKESTATION ADDITION
