@@ -75,7 +75,7 @@
 			smoothing_flags = SMOOTH_CORNERS
 			icon_state = "[base_icon_state]-[smoothing_junction]"
 			smoothing_flags = SMOOTH_BITMASK
-			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 		else
 			icon_state = "fwall_open"
 

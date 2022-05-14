@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(turbolifts)
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/turbolift/afterShuttleMove()
-	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 	..()
 
 /obj/machinery/computer/turbolift/Destroy()

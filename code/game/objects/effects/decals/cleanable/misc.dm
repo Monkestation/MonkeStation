@@ -57,14 +57,14 @@
 
 /obj/effect/decal/cleanable/dirt/Initialize()
 	. = ..()
-	QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /obj/effect/decal/cleanable/dirt/Destroy()
-	QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()
 
 /obj/effect/decal/cleanable/dirt/dust

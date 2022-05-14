@@ -148,8 +148,8 @@
 	if(d_state == INTACT)
 		realappearence.icon_state = "clockwork_wall"
 		smoothing_flags = SMOOTH_BITMASK
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 	else
 		realappearence.icon_state = "clockwork_wall-[d_state]"
 		smoothing_flags = NONE

@@ -60,8 +60,8 @@
 /obj/structure/table/update_icon(updates=ALL)
 	. = ..()
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /obj/structure/table/narsie_act()
 	var/atom/A = loc

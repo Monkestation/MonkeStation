@@ -347,11 +347,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/effect/temp_visual/elite_tumor_wall/Initialize(mapload, new_caster)
 	. = ..()
-	QUEUE_SMOOTH_NEIGHBORS(src)
-	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 /obj/effect/temp_visual/elite_tumor_wall/Destroy()
-	QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	activator = null
 	ourelite = null
 	return ..()

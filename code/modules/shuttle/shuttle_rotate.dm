@@ -13,7 +13,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 
 	//resmooth if need be.
 	if(params & ROTATE_SMOOTH && smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 	//rotate the pixel offsets too.
 	if((pixel_x || pixel_y) && (params & ROTATE_OFFSET))

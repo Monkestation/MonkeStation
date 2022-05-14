@@ -35,11 +35,11 @@
 
 /obj/effect/clockwork/overlay/wall/Initialize(mapload)
 	. = ..()
-	QUEUE_SMOOTH_NEIGHBORS(src)
-	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 /obj/effect/clockwork/overlay/wall/Destroy()
-	QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()
 
 /obj/effect/clockwork/overlay/floor

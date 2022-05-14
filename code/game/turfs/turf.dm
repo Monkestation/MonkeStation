@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			smoothing_flags |= SMOOTH_OBJ
 		SET_BITFLAG_LIST(canSmoothWith)
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 	visibilityChanged()
 
 	for(var/atom/movable/content as anything in src)

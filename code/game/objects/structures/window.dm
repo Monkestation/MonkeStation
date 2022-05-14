@@ -344,7 +344,7 @@
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH_NEIGHBORS(src)
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 //merges adjacent full-tile windows into one
 /obj/structure/window/update_icon()
@@ -356,7 +356,7 @@
 		ratio = CEILING(ratio*4, 1) * 25
 
 		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 		cut_overlay(crack_overlay)
 		if(ratio > 75)
@@ -694,7 +694,7 @@
 		cut_overlay(torn)
 		add_overlay(paper)
 		set_opacity(TRUE)
-	QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/user)

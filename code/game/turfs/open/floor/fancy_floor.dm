@@ -270,11 +270,11 @@
 		return 0
 	if(!broken && !burnt)
 		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 	else
 		make_plating()
 		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-			QUEUE_SMOOTH_NEIGHBORS(src)
+			QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /turf/open/floor/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'

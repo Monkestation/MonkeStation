@@ -648,7 +648,7 @@
 		return
 	//MONKESTATION ADDITION END
 	update_atom_colour()
-	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE //MONKESTATION CHANGE
 
 /**
   * An atom we are buckled or is contained within us has tried to move
