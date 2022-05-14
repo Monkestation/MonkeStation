@@ -5,10 +5,10 @@ SUBSYSTEM_DEF(icon_smooth)
 	priority = FIRE_PRIOTITY_SMOOTHING
 	flags = SS_TICKER
 
-	var/list/blueprint_queue = list()
+	var/list/blueprint_queue = list() //MONKESTATION ADDITION
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
-
+//MONKESTATION ADDITION START
 /datum/controller/subsystem/icon_smooth/fire()
 	var/list/smooth_queue_cache = smooth_queue
 	while(length(smooth_queue_cache))
@@ -71,3 +71,4 @@ SUBSYSTEM_DEF(icon_smooth)
 	if(blueprint_queue)
 		blueprint_queue -= thing
 	deferred -= thing
+//MONKESTATION ADDITION END
