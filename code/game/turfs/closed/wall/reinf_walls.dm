@@ -2,10 +2,11 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
-	icon_state = "r_wall"
+	icon_state = "reinforced_wall-0"
+	base_icon_state = "reinforced_wall"
 	opacity = 1
 	density = TRUE
-
+	smoothing_flags = SMOOTH_BITMASK
 	var/d_state = INTACT
 	hardness = 10
 	sheet_type = /obj/item/stack/sheet/plasteel
@@ -199,11 +200,13 @@
 /turf/closed/wall/r_wall/update_icon(updates=ALL)
 	. = ..()
 	if(d_state != INTACT)
+		icon_state = "r_wall-[d_state]"
 		smoothing_flags = NONE
 		return
 	if (!(updates & UPDATE_SMOOTHING))
 		return
 	smoothing_flags = SMOOTH_BITMASK
+	icon_state = "[base_icon_state]-[smoothing_junction]"
 	QUEUE_SMOOTH_NEIGHBORS(src)
 	QUEUE_SMOOTH(src)
 

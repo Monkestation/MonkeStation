@@ -28,6 +28,7 @@
 #define SOUTHWEST_JUNCTION	(1<<6)
 #define NORTHWEST_JUNCTION	(1<<7)
 
+
 DEFINE_BITFIELD(smoothing_junction, list(
 	"NORTH_JUNCTION" = NORTH_JUNCTION,
 	"SOUTH_JUNCTION" = SOUTH_JUNCTION,
@@ -43,6 +44,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define NO_ADJ_FOUND 0
 #define ADJ_FOUND 1
 #define NULLTURF_BORDER 2
+
 #define DEFAULT_UNDERLAY_ICON 			'icons/turf/floors.dmi'
 #define DEFAULT_UNDERLAY_ICON_STATE 	"plating"
 
@@ -89,8 +91,10 @@ DEFINE_BITFIELD(smoothing_junction, list(
 ///Scans all adjacent turfs to find targets to smooth with.
 /atom/proc/calculate_adjacencies()
 	. = NONE
+
 	if(!loc)
 		return
+
 	for(var/direction in GLOB.cardinals)
 		switch(find_type_in_direction(direction))
 			if(NULLTURF_BORDER)
@@ -134,10 +138,12 @@ DEFINE_BITFIELD(smoothing_junction, list(
 					. |= SOUTHEAST_JUNCTION
 
 
+
 /atom/movable/calculate_adjacencies()
 	if(can_be_unanchored && !anchored)
 		return NONE
 	return ..()
+
 //do not use, use QUEUE_SMOOTH(atom)
 /atom/proc/smooth_icon()
 	smoothing_flags &= ~SMOOTH_QUEUED
@@ -182,6 +188,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 
 /atom/proc/corners_cardinal_smooth(adjacencies)
+	var/mutable_appearance/temp_ma
+
 	//NW CORNER
 	var/nw = "1-i"
 	if((adjacencies & NORTH_JUNCTION) && (adjacencies & WEST_JUNCTION))
@@ -194,6 +202,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			nw = "1-n"
 		else if(adjacencies & WEST_JUNCTION)
 			nw = "1-w"
+	temp_ma = mutable_appearance(icon, nw)
+	nw = temp_ma.appearance
 
 	//NE CORNER
 	var/ne = "2-i"
@@ -207,6 +217,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			ne = "2-n"
 		else if(adjacencies & EAST_JUNCTION)
 			ne = "2-e"
+	temp_ma = mutable_appearance(icon, ne)
+	ne = temp_ma.appearance
 
 	//SW CORNER
 	var/sw = "3-i"
@@ -220,6 +232,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			sw = "3-s"
 		else if(adjacencies & WEST_JUNCTION)
 			sw = "3-w"
+	temp_ma = mutable_appearance(icon, sw)
+	sw = temp_ma.appearance
 
 	//SE CORNER
 	var/se = "4-i"
@@ -233,45 +247,57 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			se = "4-s"
 		else if(adjacencies & EAST_JUNCTION)
 			se = "4-e"
+	temp_ma = mutable_appearance(icon, se)
+	se = temp_ma.appearance
 
 	var/list/new_overlays
+
 	if(top_left_corner != nw)
 		cut_overlay(top_left_corner)
 		top_left_corner = nw
 		LAZYADD(new_overlays, nw)
+
 	if(top_right_corner != ne)
 		cut_overlay(top_right_corner)
 		top_right_corner = ne
 		LAZYADD(new_overlays, ne)
+
 	if(bottom_right_corner != sw)
 		cut_overlay(bottom_right_corner)
 		bottom_right_corner = sw
 		LAZYADD(new_overlays, sw)
+
 	if(bottom_left_corner != se)
 		cut_overlay(bottom_left_corner)
 		bottom_left_corner = se
 		LAZYADD(new_overlays, se)
+
 	if(new_overlays)
 		add_overlay(new_overlays)
+
 ///Scans direction to find targets to smooth with.
 /atom/proc/find_type_in_direction(direction)
 	var/turf/target_turf = get_step(src, direction)
 	if(!target_turf)
 		return NULLTURF_BORDER
+
 	var/area/target_area = get_area(target_turf)
 	var/area/source_area = get_area(src)
 	if((source_area.area_limited_icon_smoothing && !istype(target_area, source_area.area_limited_icon_smoothing)) || (target_area.area_limited_icon_smoothing && !istype(source_area, target_area.area_limited_icon_smoothing)))
 		return NO_ADJ_FOUND
+
 	if(isnull(canSmoothWith)) //special case in which it will only smooth with itself
 		if(isturf(src))
 			return (type == target_turf.type) ? ADJ_FOUND : NO_ADJ_FOUND
 		var/atom/matching_obj = locate(type) in target_turf
 		return (matching_obj && matching_obj.type == type) ? ADJ_FOUND : NO_ADJ_FOUND
+
 	if(!isnull(target_turf.smoothing_groups))
 		for(var/target in canSmoothWith)
 			if(!(canSmoothWith[target] & target_turf.smoothing_groups[target]))
 				continue
 			return ADJ_FOUND
+
 	if(smoothing_flags & SMOOTH_OBJ)
 		for(var/am in target_turf)
 			var/atom/movable/thing = am
@@ -281,7 +307,9 @@ DEFINE_BITFIELD(smoothing_junction, list(
 				if(!(canSmoothWith[target] & thing.smoothing_groups[target]))
 					continue
 				return ADJ_FOUND
+
 	return NO_ADJ_FOUND
+
 
 
 /**
@@ -317,11 +345,11 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	set_smoothed_icon_state(new_junction)
 
 
-///Changes the icon state based on the new junction bitmask.
+///Changes the icon state based on the new junction bitmask. Returns the old junction value.
 /atom/proc/set_smoothed_icon_state(new_junction)
+	. = smoothing_junction
 	smoothing_junction = new_junction
 	icon_state = "[base_icon_state]-[smoothing_junction]"
-
 
 /turf/closed/set_smoothed_icon_state(new_junction)
 	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && new_junction != smoothing_junction)
@@ -385,6 +413,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	bottom_right_corner = null
 	cut_overlay(bottom_left_corner)
 	bottom_left_corner = null
+
 /atom/proc/replace_smooth_overlays(nw, ne, sw, se)
 	clear_smooth_overlays()
 	var/list/O = list()

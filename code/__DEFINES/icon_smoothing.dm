@@ -1,8 +1,8 @@
 /* smoothing_flags */
 /// Smoothing system in where adjacencies are calculated and used to build an image by mounting each corner at runtime.
-#define SMOOTH_BITMASK	(1<<0)
+#define SMOOTH_CORNERS (1<<0)
 /// Smoothing system in where adjacencies are calculated and used to select a pre-baked icon_state, encoded by bitmasking.
-#define SMOOTH_BITMASK		(1<<1)
+#define SMOOTH_BITMASK (1<<1)
 /// Atom has diagonal corners, with underlays under them.
 #define SMOOTH_DIAGONAL_CORNERS	(1<<2)
 /// Atom will smooth with the borders of the map.
@@ -12,23 +12,12 @@
 /// Smooths with objects, and will thus need to scan turfs for contents.
 #define SMOOTH_OBJ		(1<<5)
 
-#define SMOOTH_CORNERS (1<<0)
-
-DEFINE_BITFIELD(smoothing_flags, list(
-	"SMOOTH_BITMASK" = SMOOTH_BITMASK,
-	"SMOOTH_CORNERS" = SMOOTH_CORNERS,
-	"SMOOTH_DIAGONAL_CORNERS" = SMOOTH_DIAGONAL_CORNERS,
-	"SMOOTH_BORDER" = SMOOTH_BORDER,
-	"SMOOTH_QUEUED" = SMOOTH_QUEUED,
-	"SMOOTH_OBJ" = SMOOTH_OBJ,
-))
-
 
 /*smoothing macros*/
 
-#define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & (SMOOTH_BITMASK|SMOOTH_BITMASK)) {SSicon_smooth.add_to_queue(thing_to_queue)}
+#define QUEUE_SMOOTH(thing_to_queue) if(thing_to_queue.smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) {SSicon_smooth.add_to_queue(thing_to_queue)}
 
-#define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/neighbor in orange(1, thing_to_queue)) {var/atom/atom_neighbor = neighbor; QUEUE_SMOOTH(atom_neighbor)}
+#define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) for(var/atom/atom_neighbor as anything in orange(1, thing_to_queue)) {QUEUE_SMOOTH(atom_neighbor)}
 
 /**SMOOTHING GROUPS
  * Groups of things to smooth with.
@@ -57,6 +46,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_CARPET_RED	S_TURF(17)				///turf/open/floor/carpet/red
 #define SMOOTH_GROUP_CARPET_ROYAL_BLACK S_TURF(18)		///turf/open/floor/carpet/royalblack
 #define SMOOTH_GROUP_CARPET_ROYAL_BLUE S_TURF(19)		///turf/open/floor/carpet/royalblue
+#define SMOOTH_GROUP_CARPET_GRIMY S_TURF(20)			///turf/open/floor/carpet/grimy
 #define SMOOTH_GROUP_BAMBOO_FLOOR S_TURF(52) 			//![/turf/open/floor/bamboo]
 #define SMOOTH_GROUP_CATWALK  S_OBJ(31) 				///obj/structure/lattice/catwalk
 #define SMOOTH_GROUP_CLOSED_TURFS S_TURF(24)			///turf/closed
@@ -85,6 +75,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_SURVIVAL_TIANIUM_POD S_OBJ(14)		///turf/closed/wall/mineral/titanium/survival/pod, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod
 #define SMOOTH_GROUP_HIERO_WALL S_OBJ(15)				///obj/effect/temp_visual/elite_tumor_wall, /obj/effect/temp_visual/hierophant/wall
 #define SMOOTH_GROUP_BAMBOO_WALLS S_TURF(16)			//![/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo]
+#define SMOOTH_GROUP_COPPER_WALLS S_TURF(17)			///turf/closed/wall/mineral/copper
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(20)				///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 

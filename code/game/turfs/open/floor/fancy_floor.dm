@@ -279,54 +279,54 @@
 /turf/open/floor/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/black
-	canSmoothWith = list(/turf/open/floor/carpet/black)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_BLACK)
 
 /turf/open/floor/carpet/blue
 	icon = 'icons/turf/floors/carpet_blue.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/blue
-	canSmoothWith = list(/turf/open/floor/carpet/blue)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_BLUE)
 
 /turf/open/floor/carpet/cyan
 	icon = 'icons/turf/floors/carpet_cyan.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/cyan
-	canSmoothWith = list(/turf/open/floor/carpet/cyan)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_CYAN)
 
 /turf/open/floor/carpet/green
 	icon = 'icons/turf/floors/carpet_green.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/green
-	canSmoothWith = list(/turf/open/floor/carpet/green)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_GREEN)
 
 /turf/open/floor/carpet/orange
 	icon = 'icons/turf/floors/carpet_orange.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/orange
-	canSmoothWith = list(/turf/open/floor/carpet/orange)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_ORANGE)
 
 /turf/open/floor/carpet/purple
 	icon = 'icons/turf/floors/carpet_purple.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/purple
-	canSmoothWith = list(/turf/open/floor/carpet/purple)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_PURPLE)
 
 /turf/open/floor/carpet/red
 	icon = 'icons/turf/floors/carpet_red.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/red
-	canSmoothWith = list(/turf/open/floor/carpet/red)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_RED)
 
 /turf/open/floor/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/royalblack
-	canSmoothWith = list(/turf/open/floor/carpet/royalblack)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_ROYAL_BLACK)
 
 /turf/open/floor/carpet/royalblue
 	icon = 'icons/turf/floors/carpet_royalblue.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/royalblue
-	canSmoothWith = list(/turf/open/floor/carpet/royalblue)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_ROYAL_BLUE)
 
 /turf/open/floor/carpet/grimy
 	name = "grimy carpet"
 	desc = "Hold on, wasn't this made with steel once?"
 	icon = 'icons/turf/floors/carpet_grimy.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/grimy
-	canSmoothWith = list(/turf/open/floor/carpet/grimy)
+	canSmoothWith = list(SMOOTH_GROUP_CARPET_GRIMY) //add grimy carpet later
 
 /turf/open/floor/eighties
 	name = "retro floor"
