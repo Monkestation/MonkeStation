@@ -76581,7 +76581,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "gET" = (
-/obj/effect/spawner/room/engine/meta,
+/obj/effect/spawner/random_engines/meta,
 /turf/open/floor/plating/airless,
 /area/security/checkpoint/engineering)
 "gJs" = (
@@ -81523,7 +81523,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
 "xUu" = (
-/obj/effect/spawner/room/bar/meta,
+/obj/effect/spawner/random_bars/meta,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "xVl" = (

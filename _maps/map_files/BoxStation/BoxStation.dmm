@@ -31029,7 +31029,7 @@
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "bTq" = (
-/obj/effect/spawner/room/engine/box,
+/obj/effect/spawner/random_engines/box,
 /turf/open/floor/plating/airless,
 /area/space)
 "bTr" = (
@@ -50857,7 +50857,7 @@
 	},
 /area/chapel/main)
 "plq" = (
-/obj/effect/spawner/room/bar/box,
+/obj/effect/spawner/random_bars/box,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "pnq" = (

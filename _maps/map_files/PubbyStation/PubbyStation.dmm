@@ -21899,7 +21899,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bgp" = (
-/obj/effect/spawner/room/bar/pubby,
+/obj/effect/spawner/random_bars/pubby,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
 "bgx" = (

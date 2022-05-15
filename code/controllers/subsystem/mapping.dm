@@ -23,9 +23,15 @@ SUBSYSTEM_DEF(mapping)
 
 	///Random rooms template list, gets initialized and filled when server starts.
 	var/list/random_room_templates = list()
+	var/list/random_bar_templates = list()
+	var/list/random_engine_templates = list()
+
+	var/list/holodeck_templates = list()
+
 	///Temporary list, where room spawners are kept roundstart. Not used later.
 	var/list/random_room_spawners = list()
-	var/list/holodeck_templates = list()
+	var/list/random_bar_spawners = list()
+	var/list/random_engine_spawners = list()
 
 	var/list/areas_in_z = list()
 
@@ -170,6 +176,8 @@ SUBSYSTEM_DEF(mapping)
 	lava_ruins_templates = SSmapping.lava_ruins_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	random_room_templates = SSmapping.random_room_templates
+	random_bar_templates = SSmapping.random_bar_templates
+	random_engine_templates = SSmapping.random_engine_templates
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
@@ -260,6 +268,46 @@ SUBSYSTEM_DEF(mapping)
 	random_room_spawners = null
 	INIT_ANNOUNCE("Loaded Random Rooms in [(REALTIMEOFDAY - start_time)/10]s!")
 
+/datum/controller/subsystem/mapping/proc/load_random_bars()
+	var/start_time = REALTIMEOFDAY
+	for(var/obj/effect/spawner/random_bars/bar_spawner as() in random_bar_spawners)
+		var/list/possible_bar_templates = list()
+		var/datum/map_template/random_bars/bar_candidate
+		shuffle_inplace(random_bar_templates)
+		for(var/ID in random_bar_templates)
+			bar_candidate = random_bar_templates[ID]
+			if(config.map_name != bar_candidate.station_name || bar_candidate.weight == 0 || bar_spawner.room_height != bar_candidate.template_height || bar_spawner.room_width != bar_candidate.template_width)
+				bar_candidate = null
+				continue
+			possible_bar_templates[bar_candidate] = bar_candidate.weight
+		if(possible_bar_templates.len)
+			var/datum/map_template/random_bars/template = pickweightAllowZero(possible_bar_templates)
+			template.stationinitload(get_turf(bar_spawner), centered = template.centerspawner)
+		SSmapping.random_bar_spawners -= bar_spawner
+		qdel(bar_spawner)
+	random_bar_spawners = null
+	INIT_ANNOUNCE("Loaded Random Bar in [(REALTIMEOFDAY - start_time)/10]s!")
+
+/datum/controller/subsystem/mapping/proc/load_random_engines()
+	var/start_time = REALTIMEOFDAY
+	for(var/obj/effect/spawner/random_engines/engine_spawner as() in random_engine_spawners)
+		var/list/possible_engine_templates = list()
+		var/datum/map_template/random_engines/engine_candidate
+		shuffle_inplace(random_engine_templates)
+		for(var/ID in random_engine_templates)
+			engine_candidate = random_engine_templates[ID]
+			if(config.map_name != engine_candidate.station_name || engine_candidate.weight == 0 || engine_spawner.room_height != engine_candidate.template_height || engine_spawner.room_width != engine_candidate.template_width)
+				engine_candidate = null
+				continue
+			possible_engine_templates[engine_candidate] = engine_candidate.weight
+		if(possible_engine_templates.len)
+			var/datum/map_template/random_engines/template = pickweightAllowZero(possible_engine_templates)
+			template.stationinitload(get_turf(engine_spawner), centered = template.centerspawner)
+		SSmapping.random_engine_spawners -= engine_spawner
+		qdel(engine_spawner)
+	random_engine_spawners = null
+	INIT_ANNOUNCE("Loaded Random Engine in [(REALTIMEOFDAY - start_time)/10]s!")
+
 /datum/controller/subsystem/mapping/proc/loadWorld()
 	//if any of these fail, something has gone horribly, HORRIBLY, wrong
 	var/list/FailedZs = list()
@@ -274,6 +322,8 @@ SUBSYSTEM_DEF(mapping)
 
 	LoadStationRoomTemplates()
 	LoadStationRooms()
+	load_random_bars()
+	load_random_engines()
 
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery({"
@@ -413,6 +463,24 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/random_room/R = new room_type()
 		random_room_templates[R.room_id] = R
 		map_templates[R.room_id] = R
+
+	for(var/item in subtypesof(/datum/map_template/random_bars))
+		var/datum/map_template/random_bars/room_type = item
+		if(!(initial(room_type.mappath)))
+			message_admins("Bar Template [initial(room_type.name)] found without mappath. Yell at coders")
+			continue
+		var/datum/map_template/random_bars/B = new room_type()
+		random_bar_templates[B.room_id] = B
+		map_templates[B.room_id] = B
+
+	for(var/item in subtypesof(/datum/map_template/random_engines))
+		var/datum/map_template/random_engines/room_type = item
+		if(!(initial(room_type.mappath)))
+			message_admins("Engine Template [initial(room_type.name)] found without mappath. Yell at coders")
+			continue
+		var/datum/map_template/random_engines/E = new room_type()
+		random_engine_templates[E.room_id] = E
+		map_templates[E.room_id] = E
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
