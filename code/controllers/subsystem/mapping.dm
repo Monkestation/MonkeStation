@@ -23,8 +23,11 @@ SUBSYSTEM_DEF(mapping)
 
 	///Random rooms template list, gets initialized and filled when server starts.
 	var/list/random_room_templates = list()
+
+	/// New Random Bars and Engines Template Lists - MonkeStation Edit
 	var/list/random_bar_templates = list()
 	var/list/random_engine_templates = list()
+	/// New Random Bars and Engines Template Lists - MonkeStation Edit End
 
 	var/list/holodeck_templates = list()
 
@@ -176,8 +179,12 @@ SUBSYSTEM_DEF(mapping)
 	lava_ruins_templates = SSmapping.lava_ruins_templates
 	shuttle_templates = SSmapping.shuttle_templates
 	random_room_templates = SSmapping.random_room_templates
+
+	/// New Random Bars and Engines Templates - MonkeStation Edit
 	random_bar_templates = SSmapping.random_bar_templates
 	random_engine_templates = SSmapping.random_engine_templates
+	/// New Random Bars and Engines Templates - MonkeStation Edit End
+
 	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
@@ -268,6 +275,7 @@ SUBSYSTEM_DEF(mapping)
 	random_room_spawners = null
 	INIT_ANNOUNCE("Loaded Random Rooms in [(REALTIMEOFDAY - start_time)/10]s!")
 
+/// New Random Bars and Engines Spawning - MonkeStation Edit
 /datum/controller/subsystem/mapping/proc/load_random_bars()
 	var/start_time = REALTIMEOFDAY
 	for(var/obj/effect/spawner/random_bars/bar_spawner as() in random_bar_spawners)
@@ -307,6 +315,8 @@ SUBSYSTEM_DEF(mapping)
 		qdel(engine_spawner)
 	random_engine_spawners = null
 	INIT_ANNOUNCE("Loaded Random Engine in [(REALTIMEOFDAY - start_time)/10]s!")
+/// New Random Bars and Engines Spawning - MonkeStation Edit End
+
 
 /datum/controller/subsystem/mapping/proc/loadWorld()
 	//if any of these fail, something has gone horribly, HORRIBLY, wrong
@@ -464,6 +474,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		random_room_templates[R.room_id] = R
 		map_templates[R.room_id] = R
 
+	/// New Random Bars and Engines Template Load - MonkeStation Edit
 	for(var/item in subtypesof(/datum/map_template/random_bars))
 		var/datum/map_template/random_bars/room_type = item
 		if(!(initial(room_type.mappath)))
@@ -481,6 +492,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/random_engines/E = new room_type()
 		random_engine_templates[E.room_id] = E
 		map_templates[E.room_id] = E
+	/// New Random Bars and Engines Template Load - MonkeStation Edit End
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
