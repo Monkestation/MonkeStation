@@ -12,7 +12,7 @@
 	//Factor in swimming skill here?
 	var/turf/T = get_turf(owner)
 	var/slowdown_amount = T.liquids.liquid_state * 0.5
-	owner.add_or_update_variable_actionspeed_modifier(/datum/movespeed_modifier/status_effect/water_slowdown, TRUE, 100, multiplicative_slowdown = slowdown_amount, movetypes=(~FLYING))
+	owner.add_or_update_variable_actionspeed_modifier(/datum/movespeed_modifier/status_effect/water_slowdown, TRUE, 100, multiplicative_slowdown = slowdown_amount)
 /datum/status_effect/water_affected/tick()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.liquids || T.liquids.liquid_state == LIQUID_STATE_PUDDLE)
