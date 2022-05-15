@@ -179,3 +179,95 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
+
+/////////////////////////////////////////
+//             TABLES            	  //
+///////////////////////////////////////
+
+/obj/structure/table
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/table.dmi'
+	icon_state = "table-0"
+	base_icon_state = "table"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TABLES)
+	canSmoothWith = list(SMOOTH_GROUP_TABLES)
+
+/obj/structure/table/glass
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/glass_table.dmi'
+	icon_state = "glass_table-0"
+	bas_icon_state = "glass_table"
+	smoothing_groups = list(SMOOTH_GROUP_GLASS_TABLES)
+	canSmoothWith = list(SMOOTH_GROUP_GLASS_TABLES)
+
+/obj/structure/table/wood
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/wood_table.dmi'
+	icon_state = "wood_table-0"
+	base_icon_state = "wood_table"
+	smoothing_groups = list(SMOOTH_GROUP_WOOD_TABLES)
+	canSmoothWith = list(SMOOTH_GROUP_WOOD_TABLES)
+
+/obj/structure/table/wood/poker
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/poker_table.dmi'
+	icon_state = "poker_table-0"
+	base_icon_state = "poker_table"
+
+/obj/structure/table/wood/fancy
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/structures.dmi'
+	base_icon_state = "fancy_table"
+	smoothing_groups = list(SMOOTH_GROUP_FANCY_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
+	canSmoothWith = list(SMOOTH_GROUP_FANCY_WOOD_TABLES)
+
+/obj/structure/table/wood/fancy/black
+	base_icon_state = "fancy_table_black"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_black.dmi'
+
+/obj/structure/table/wood/fancy/blue
+	base_icon_state = "fancy_table_blue"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_blue.dmi'
+
+/obj/structure/table/wood/fancy/cyan
+	base_icon_state = "fancy_table_cyan"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_cyan.dmi'
+
+/obj/structure/table/wood/fancy/green
+	base_icon_state = "fancy_table_green"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_green.dmi'
+
+/obj/structure/table/wood/fancy/orange
+	base_icon_state = "fancy_table_orange"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_orange.dmi'
+
+/obj/structure/table/wood/fancy/purple
+	base_icon_state = "fancy_table_purple"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_purple.dmi'
+
+/obj/structure/table/wood/fancy/red
+	base_icon_state = "fancy_table_red"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_red.dmi'
+
+/obj/structure/table/wood/fancy/royalblack
+	base_icon_state = "fancy_table_royalblack"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_royalblack.dmi'
+
+/obj/structure/table/wood/fancy/royalblue
+	base_icon_state = "fancy_table_royalblue"
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table_royalblue.dmi'
+
+/obj/structure/table/reinforced
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/reinforced_table.dmi'
+	icon_state = "reinforced_table-0"
+	base_icon_state = "reinforced_table"
+
+/obj/structure/table/brass
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/brass_table.dmi'
+	icon_state = "brass_table-0"
+	base_icon_state = "brass_table"
+	smoothing_groups = list(SMOOTH_GROUP_BRONZE_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
+	canSmoothWith = list(SMOOTH_GROUP_BRONZE_TABLES)
+
+/obj/structure/table/bronze
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/brass_table.dmi'
+	icon_state = "brass_table-0"
+	base_icon_state = "brass_table"
+	smoothing_groups = list(SMOOTH_GROUP_BRONZE_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
+	canSmoothWith = list(SMOOTH_GROUP_BRONZE_TABLES)
