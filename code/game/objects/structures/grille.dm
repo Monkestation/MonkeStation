@@ -33,7 +33,7 @@
 	var/ratio = obj_integrity / max_integrity
 	ratio = CEILING(ratio*4, 1) * 25
 
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 	if(ratio > 50)
