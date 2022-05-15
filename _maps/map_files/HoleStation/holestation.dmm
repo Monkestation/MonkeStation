@@ -1767,6 +1767,7 @@
 "fn" = (
 /obj/effect/turf_decal/monke/siding/thinplating/dark,
 /obj/effect/turf_decal/stripes/red/line,
+/obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "fo" = (
@@ -3028,6 +3029,11 @@
 	},
 /turf/open/openspace,
 /area/ai_monitored/turret_protected/ai)
+"jf" = (
+/obj/item/storage/box/disks_nanite,
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "jg" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
@@ -4984,6 +4990,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/cult,
 /area/library)
+"oL" = (
+/obj/effect/turf_decal/monke/siding/thinplating/dark,
+/obj/effect/turf_decal/stripes/red/line,
+/obj/machinery/aug_manipulator,
+/obj/structure/railing,
+/turf/open/floor/mineral/plastitanium,
+/area/science/research)
 "oM" = (
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/tile/bar/tile_marquee,
@@ -5154,6 +5167,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"pn" = (
+/obj/machinery/nanite_chamber,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "po" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -6811,6 +6828,9 @@
 "uh" = (
 /obj/structure/closet/crate/engineering,
 /obj/effect/turf_decal/monke/siding/brown,
+/obj/item/stack/sheet/mineral/copper/five,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
 "ui" = (
@@ -7977,7 +7997,6 @@
 /turf/open/floor/mineral/plastitanium/airless,
 /area/space/nearstation)
 "xI" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
@@ -7985,6 +8004,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/auto_name/north,
+/obj/machinery/nanite_programmer,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "xJ" = (
@@ -9450,6 +9470,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/item/stack/sheet/mineral/copper/five,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "BY" = (
@@ -11979,6 +12000,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/stack/sheet/mineral/copper/five,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Jq" = (
@@ -12906,6 +12928,13 @@
 /obj/structure/grille,
 /turf/open/openspace/airless,
 /area/space/nearstation)
+"LU" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "LV" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
@@ -13697,9 +13726,11 @@
 /area/engine/engine_room)
 "Oq" = (
 /obj/machinery/firealarm/directional/west,
+/obj/machinery/computer/nanite_chamber_control,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "Or" = (
+/obj/machinery/ecto_sniffer,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "Os" = (
@@ -14242,7 +14273,6 @@
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "PQ" = (
-/obj/effect/landmark/start/scientist,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14415,6 +14445,7 @@
 /area/security/main)
 "Qs" = (
 /obj/machinery/airalarm/directional/east,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Qt" = (
@@ -16014,9 +16045,15 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "Vb" = (
-/obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/science/lab)
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/nanite_program_hub,
+/turf/open/floor/plasteel/dark,
+/area/science/research)
 "Vc" = (
 /obj/effect/landmark/start/ai,
 /obj/effect/turf_decal/stripes/line,
@@ -16622,10 +16659,10 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "WQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/turf_decal/tile/purple/tile_side{
 	dir = 6
 	},
+/obj/machinery/computer/nanite_cloud_controller,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
 "WR" = (
@@ -44273,7 +44310,7 @@ cp
 NX
 bV
 Jp
-Xi
+LU
 UY
 hL
 xi
@@ -44790,7 +44827,7 @@ rg
 Xi
 Qs
 PQ
-Vb
+rg
 rg
 Jc
 bV
@@ -110324,7 +110361,7 @@ Ud
 HT
 Pp
 EI
-Qy
+oL
 Oq
 bT
 hc
@@ -110582,7 +110619,7 @@ HT
 mg
 Or
 fn
-bT
+pn
 KA
 Jt
 Eu
@@ -110838,10 +110875,10 @@ Ud
 HT
 ab
 Zb
-fn
+Qy
 bT
 bT
-hc
+Vb
 qc
 HT
 fe
@@ -111354,7 +111391,7 @@ Ud
 Ud
 HT
 WQ
-bT
+jf
 AJ
 Bi
 HT
