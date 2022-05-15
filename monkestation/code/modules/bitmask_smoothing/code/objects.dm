@@ -101,7 +101,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_PLASMA_WALLS)
 
 /obj/structure/falsewall/bananium
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/banaium_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/bananium_wall.dmi'
 	icon_state = "bananium_wall-0"
 	base_icon_state = "bananium_wall"
 	smoothing_flags = SMOOTH_BITMASK
@@ -157,9 +157,9 @@
 	canSmoothWith = list(SMOOTH_GROUP_PLASTITANIUM_WALLS)
 
 /obj/structure/falsewall/titanium
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/titanium_wall.dmi'
-	icon_state = "titanium_wall-0"
-	base_icon_state = "titanium_wall"
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/shuttle_wall.dmi'
+	icon_state = "shuttle_wall-0"
+	base_icon_state = "shuttle_wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_TITANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS)

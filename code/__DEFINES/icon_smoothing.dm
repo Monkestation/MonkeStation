@@ -86,6 +86,7 @@ DEFINE_BITFIELD(smoothing_flags, list(
 #define SMOOTH_GROUP_HIERO_WALL S_OBJ(15)				///obj/effect/temp_visual/elite_tumor_wall, /obj/effect/temp_visual/hierophant/wall
 #define SMOOTH_GROUP_BAMBOO_WALLS S_TURF(16)			//![/turf/closed/wall/mineral/bamboo, /obj/structure/falsewall/bamboo]
 #define SMOOTH_GROUP_COPPER_WALLS S_TURF(17)			///turf/closed/wall/mineral/copper
+#define SMOOTH_GROUP_BRASS_WALLS S_TURF(18)				///turf/closed/wall/mineral/brass
 
 #define SMOOTH_GROUP_PAPERFRAME S_OBJ(20)				///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 
