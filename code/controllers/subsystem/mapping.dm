@@ -332,8 +332,11 @@ SUBSYSTEM_DEF(mapping)
 
 	LoadStationRoomTemplates()
 	LoadStationRooms()
+
+/// Load new random bar and engine procs - MonkeStation Edit End
 	load_random_bars()
 	load_random_engines()
+/// Load new random bar and engine procs- MonkeStation Edit End
 
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery({"
