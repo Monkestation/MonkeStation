@@ -104,6 +104,13 @@
 		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 	)
 
+//MONKESTATION ADDITION START
+/obj/machinery/airalarm/proc/regenerate_TLV()
+	var/list/TLVs = GLOB.gas_data.TLVs
+	for(var/g in TLVs)
+		TLV[g] = TLVs[g]
+//MONKESTATION ADDITION END
+
 /obj/machinery/airalarm/server // No checks here.
 	TLV = list(
 		"pressure"					= new/datum/tlv/no_checks,
@@ -122,6 +129,13 @@
 		GAS_NITRYL			= new/datum/tlv/no_checks,
 		GAS_PLUOXIUM			= new/datum/tlv/no_checks
 	)
+
+	//MONKESTATION ADDITION START
+/obj/machinery/airalarm/server/regenerate_TLV()
+	var/list/TLVs = GLOB.gas_data.TLVs
+	for(var/g in TLVs)
+		TLV[g] = new/datum/tlv/no_checks
+	//MONKESTATION ADDITION END
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -20°C or 253.15°K.
 	TLV = list(
@@ -195,6 +209,8 @@
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
 	. = ..()
+	regenerate_TLV() //MONKESTATION ADDITION
+	RegisterSignal(SSdcs,COMSIG_GLOB_NEW_GAS,.proc/regenerate_TLV) //MONKESTATION ADDITION
 	wires = new /datum/wires/airalarm(src)
 	if(ndir)
 		setDir(ndir)
@@ -523,22 +539,11 @@
 					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_CONTAMINATED)
+			var/list/all_gases = GLOB.gas_data.get_by_flag(GAS_FLAG_DANGEROUS)
 			for(var/device_id in A.air_scrub_names)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(
-						GAS_CO2,
-						GAS_MIASMA,
-						GAS_PLASMA,
-						GAS_H2O,
-						GAS_HYPERNOB,
-						GAS_NITROUS,
-						GAS_NITRYL,
-						GAS_TRITIUM,
-						GAS_BZ,
-						GAS_STIMULUM,
-						GAS_PLUOXIUM
-					),
+					"set_filters" = all_gases,
 					"scrubbing" = 1,
 					"widenet" = 1
 				), signal_source)

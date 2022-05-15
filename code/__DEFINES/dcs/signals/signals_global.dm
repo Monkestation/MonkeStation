@@ -42,3 +42,6 @@
 
 ///global mob logged in signal! (/mob/added_player)
 #define COMSIG_GLOB_MOB_LOGGED_IN "!mob_logged_in"
+
+/// called by auxgm add_gas: (gas_id)
+#define COMSIG_GLOB_NEW_GAS "!new_gas" //MONKESTATION ADDITION
