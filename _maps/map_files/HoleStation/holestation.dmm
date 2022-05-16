@@ -4395,6 +4395,9 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"mV" = (
+/turf/closed/wall/r_wall,
+/area/hallway/primary/central)
 "mW" = (
 /obj/structure/cable/yellow{
 	icon_state = "6-8"
@@ -4641,6 +4644,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "nE" = (
@@ -5751,10 +5755,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"qU" = (
-/obj/machinery/vending/security,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "qV" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -11257,7 +11257,6 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
 "GS" = (
-/obj/machinery/firealarm/directional/north,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/space/basic,
@@ -12411,9 +12410,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
-"Kw" = (
-/turf/closed/wall/r_wall,
-/area/hallway/primary/central)
 "Kx" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
 	dir = 8
@@ -12539,10 +12535,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "KJ" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/closet/secure_closet/security/sec,
+/obj/machinery/vending/security,
 /turf/open/floor/plasteel,
-/area/security/main)
+/area/security/brig)
 "KK" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
@@ -13327,6 +13322,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Nb" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel,
+/area/security/main)
 "Nc" = (
 /obj/effect/spawner/room/fivexfour,
 /turf/open/floor/plating,
@@ -43615,7 +43615,7 @@ ZH
 AH
 AH
 WA
-qU
+KJ
 aO
 Uk
 BV
@@ -43866,7 +43866,7 @@ SV
 bV
 CI
 Cj
-Kw
+mV
 GS
 TU
 HJ
@@ -44894,7 +44894,7 @@ Jc
 bV
 CI
 lz
-Kw
+mV
 ay
 ay
 ay
@@ -109663,7 +109663,7 @@ Iz
 XU
 aT
 zW
-KJ
+Nb
 yS
 sA
 CJ
