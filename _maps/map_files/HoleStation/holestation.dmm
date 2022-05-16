@@ -333,9 +333,6 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
-"ba" = (
-/turf/closed/wall/r_wall,
-/area/hallway/primary/central)
 "bb" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1572,10 +1569,8 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/machinery/light,
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "eO" = (
@@ -1799,6 +1794,10 @@
 /obj/machinery/suit_storage_unit/atmos,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"fs" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/engine/light,
+/area/engine/supermatter)
 "ft" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -1851,12 +1850,8 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "fD" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
-	dir = 1
-	},
-/turf/open/openspace/airless,
-/area/space/nearstation)
+/turf/closed/wall/r_wall,
+/area/hallway/primary/central)
 "fE" = (
 /obj/structure/window/spawner/west,
 /obj/structure/toilet{
@@ -2137,11 +2132,6 @@
 /obj/effect/landmark/start/head_of_personnel,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
-"gu" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/closet/secure_closet/security/sec,
-/turf/open/floor/plasteel,
-/area/security/main)
 "gv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -3135,6 +3125,11 @@
 	},
 /turf/open/openspace/airless,
 /area/space/nearstation)
+"jt" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel,
+/area/security/main)
 "jv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -4735,10 +4730,8 @@
 /area/crew_quarters/bar/atrium)
 "nQ" = (
 /obj/effect/turf_decal/stripes/corner,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
 /obj/machinery/light,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "nR" = (
@@ -5171,6 +5164,7 @@
 /area/hydroponics)
 "pj" = (
 /obj/machinery/light,
+/obj/structure/lattice,
 /turf/open/openspace,
 /area/engine/engine_room)
 "pk" = (
@@ -6704,6 +6698,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
+"tF" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/engine/engine_room)
 "tH" = (
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/plasteel,
@@ -8187,6 +8188,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"yh" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/binary/pressure_valve{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/engine/engine_room)
 "yi" = (
 /obj/structure/closet/firecloset/full,
 /obj/effect/turf_decal/tile/neutral{
@@ -8949,8 +8957,8 @@
 /turf/open/floor/engine/light,
 /area/engine/supermatter)
 "An" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
 	},
 /turf/open/floor/engine/light,
 /area/engine/supermatter)
@@ -9211,6 +9219,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"Bc" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/engine,
+/area/engine/engine_room)
 "Bd" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -11092,6 +11104,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"Gx" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 1
+	},
+/turf/open/floor/engine/light,
+/area/engine/supermatter)
 "Gy" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -11599,6 +11617,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/research)
+"HO" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/turf/open/openspace,
+/area/engine/engine_room)
 "HQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -12540,9 +12563,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "KJ" = (
-/obj/machinery/vending/security,
-/turf/open/floor/plasteel,
-/area/security/brig)
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "KK" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
@@ -12941,6 +12967,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"LO" = (
+/obj/machinery/vending/security,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "LS" = (
 /obj/machinery/door/airlock/external{
 	name = "Brig Shuttle Airlock";
@@ -14047,12 +14077,10 @@
 /area/hallway/primary/central)
 "Pj" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "Pk" = (
@@ -16942,10 +16970,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/spawner/room/threexthree,
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "XB" = (
@@ -43615,7 +43645,7 @@ ZH
 AH
 AH
 WA
-KJ
+LO
 aO
 Uk
 BV
@@ -43866,7 +43896,7 @@ SV
 bV
 CI
 Cj
-ba
+fD
 GS
 TU
 HJ
@@ -44894,7 +44924,7 @@ Jc
 bV
 CI
 lz
-ba
+fD
 ay
 ay
 ay
@@ -45688,7 +45718,7 @@ Yh
 JE
 oB
 Ge
-SF
+VL
 tb
 zO
 bW
@@ -45945,7 +45975,7 @@ zO
 No
 SF
 xF
-SF
+VL
 tb
 zO
 ay
@@ -46202,7 +46232,7 @@ ay
 ay
 ay
 ay
-Pc
+KJ
 ay
 ay
 ay
@@ -46459,7 +46489,7 @@ IT
 gL
 zH
 LW
-CV
+Yx
 qd
 CV
 qd
@@ -49022,7 +49052,7 @@ ps
 jl
 pW
 rl
-BT
+Bc
 eN
 vV
 vV
@@ -50050,7 +50080,7 @@ WU
 jl
 pW
 rl
-BT
+Bc
 nQ
 vV
 vV
@@ -109663,7 +109693,7 @@ Iz
 XU
 aT
 zW
-gu
+jt
 yS
 sA
 CJ
@@ -113538,8 +113568,8 @@ PF
 PF
 PF
 lf
-PF
-PF
+zy
+zy
 zy
 PF
 qz
@@ -115849,8 +115879,8 @@ PF
 zy
 JO
 An
-lg
-lg
+Gx
+fs
 Pj
 PF
 PF
@@ -116621,10 +116651,10 @@ PF
 PF
 PF
 PF
-XZ
-PF
-PF
-XZ
+tF
+Go
+yh
+HO
 PF
 qz
 Ud
@@ -118163,7 +118193,7 @@ SY
 GF
 bH
 HA
-fD
+cR
 gm
 cR
 gm
