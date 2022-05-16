@@ -301,7 +301,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /obj/structure/window/reinforced/fulltile
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/reinforced_window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window.dmi' //OVERRIDEN - SEE MODULAR FILE
 	icon_state = "reinforced_window-0"
 	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
