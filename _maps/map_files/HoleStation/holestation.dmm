@@ -7807,6 +7807,12 @@
 /obj/machinery/atmospherics/pipe/simple/multiz/layer3,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"xd" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
 "xe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel/dark/corner,
@@ -15435,6 +15441,12 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engine_smes)
+"To" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room)
 "Tp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/box,
@@ -48714,7 +48726,7 @@ AZ
 Kr
 vV
 SW
-jy
+To
 lH
 ck
 DM
@@ -49228,7 +49240,7 @@ Tc
 Tc
 vV
 wb
-jy
+xd
 lH
 ck
 GY
