@@ -5,7 +5,6 @@
 	)
 	var/slowdown = 0 //negative for faster, positive for slower
 
-
 	var/postdig_icon_change = FALSE
 	var/postdig_icon
 	var/wet
@@ -115,7 +114,7 @@
 	icon = 'icons/turf/floors/hierophant_floor.dmi'
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/indestructible/hierophant
-	smoothing_flags = SMOOTH_BITMASK
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	tiled_dirt = FALSE
 
 /turf/open/indestructible/hierophant/two
