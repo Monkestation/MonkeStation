@@ -916,6 +916,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/item/door_remote/chief_medical_officer,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/blue/tile_side{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "cT" = (
@@ -3627,6 +3632,7 @@
 /obj/structure/sign/departments/engineering{
 	pixel_y = -32
 	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kQ" = (
@@ -5152,7 +5158,10 @@
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white/corner,
 /area/hallway/primary/central)
 "pl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -5183,6 +5192,9 @@
 /area/engine/gravity_generator)
 "pp" = (
 /obj/structure/closet/firecloset/full,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "pq" = (
@@ -5275,6 +5287,17 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/door_remote/head_of_security,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/red/tile_side{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/nuke_storage)
 "pG" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -7527,6 +7550,11 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
+/obj/item/door_remote/chief_engineer,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/yellow/tile_side{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "wi" = (
@@ -8050,6 +8078,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "xP" = (
@@ -8429,6 +8460,15 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
+	},
+/obj/item/door_remote/civillian{
+	pixel_y = 5
+	},
+/obj/item/door_remote/quartermaster,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
@@ -12943,7 +12983,10 @@
 /area/science/lab)
 "LV" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white/corner,
 /area/hallway/primary/central)
 "LW" = (
 /turf/closed/wall/r_wall,
@@ -13533,7 +13576,10 @@
 /obj/machinery/camera/autoname{
 	dir = 10
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/white/corner{
+	dir = 8
+	},
 /area/hallway/primary/central)
 "NJ" = (
 /obj/structure/sign/departments/security,
@@ -15946,6 +15992,11 @@
 /area/engine/engine_smes)
 "UG" = (
 /obj/machinery/airalarm/directional/west,
+/obj/item/door_remote/research_director,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "UI" = (
@@ -43043,7 +43094,7 @@ sL
 Wj
 SC
 hr
-hr
+OR
 ft
 HV
 uG
@@ -113180,7 +113231,7 @@ ns
 xx
 xx
 xx
-bS
+pF
 Ku
 Zw
 KT
