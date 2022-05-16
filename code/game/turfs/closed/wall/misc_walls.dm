@@ -2,10 +2,9 @@
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
 	icon = 'icons/turf/walls/cult_wall.dmi'
-	icon_state = "cult_wall-0"
-	base_icon_state = "cult_wall"
-	smoothing_flags = SMOOTH_BITMASK
+	icon_state = "cult"
 	canSmoothWith = null
+	//smooth = SMOOTH_NONE //MONKESTATION REMOVAL
 	sheet_type = /obj/item/stack/sheet/runed_metal
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/cult

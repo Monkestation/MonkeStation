@@ -104,6 +104,12 @@
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
+/turf/closed/wall/mineral/cult
+	icon = 'icons/turf/walls/cult_wall.dmi'
+	icon_state = "cult_wall-0"
+	base_icon_state = "cult_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
 ////////////////////////////////////////
 // MINERAL WALL
 ///////////////////////////////////////
