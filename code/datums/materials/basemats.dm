@@ -40,7 +40,7 @@
 	desc = "Gold"
 	color = "#f0972b"
 	greyscale_colors = "#f0972b"
-	strength_modifier = 1.2
+	strength_modifier = 0.8 //MONKESTATION CHANGE um gold is like one of the weakest metals my guy
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	coin_type = /obj/item/coin/gold
@@ -51,6 +51,7 @@
 	id = "diamond"
 	desc = "Highly pressurized carbon"
 	color = "#22c2d4"
+	strength_modifier = 1.1 //MONKESTATION ADDITION
 	greyscale_colors = "#22c2d4"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
@@ -104,6 +105,7 @@
 	id = "bluespace_crystal"
 	desc = "Crystals with bluespace properties"
 	color = "#506bc7"
+	integrity_modifier = 0.2 //MONKESTATION ADDITION
 	greyscale_colors = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
 	sheet_type = /obj/item/stack/sheet/bluespace_crystal

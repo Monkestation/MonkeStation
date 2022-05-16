@@ -61,3 +61,58 @@
 	tools = list(/obj/item/screwdriver)
 	time = 5 SECONDS
 	category = CAT_ROBOT
+
+
+/datum/crafting_recipe/furnace
+	name = "Sandstone Furnace"
+	result = /obj/structure/furnace
+	time = 300
+	reqs = list(/obj/item/stack/sheet/mineral/sandstone = 15,
+	/obj/item/stack/sheet/iron = 4,
+	/obj/item/stack/rods = 2)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+
+/datum/crafting_recipe/tableanvil
+	name = "Table Anvil"
+	result = /obj/structure/anvil/obtainable/table
+	time = 300
+	reqs = list(/obj/item/stack/sheet/iron = 4,
+		        /obj/item/stack/rods = 2)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	category = CAT_MISC
+
+/datum/crafting_recipe/sandvil
+	name = "Sandstone Anvil"
+	result = /obj/structure/anvil/obtainable/sandstone
+	time = 300
+	reqs = list(/obj/item/stack/sheet/mineral/sandstone = 24)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+
+/datum/crafting_recipe/basaltblock
+	name = "Sintered Basalt Block"
+	result = /obj/item/basaltblock
+	time = 200
+	reqs = list(/obj/item/stack/ore/glass/basalt = 50)
+	tools = list(TOOL_WELDER)
+	category = CAT_MISC
+
+/datum/crafting_recipe/basaltanvil
+	name = "Basalt Anvil"
+	result = /obj/structure/anvil/obtainable/basalt
+	time = 200
+	reqs = list(/obj/item/basaltblock = 5)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_MISC
+
+/datum/crafting_recipe/twinsheath
+	name = "Twin Sword Sheath"
+	result = /obj/item/storage/belt/sabre/twin
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 3,
+				/obj/item/stack/sheet/leather = 8)
+	tools = list(TOOL_WIRECUTTER)
+	time = 70
+	category = CAT_CLOTHING
+
+

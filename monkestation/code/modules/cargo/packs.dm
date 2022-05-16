@@ -16,3 +16,9 @@
 	contains = list(/obj/item/gun/ballistic/SRN_rocketlauncher = 3)
 	crate_name = "Spatial Rift Nullifier (SRN)"
 	crate_type = /obj/structure/closet/crate/secure
+
+/datum/supply_pack/misc/anvil
+	name = "Anvil Crate"
+	desc = "An anvil in a crate, we had to dig this out of the old warehouse. It's got wheels on it so you can move it."
+	cost = 7500
+	contains = list(/obj/structure/anvil/obtainable/basic)
