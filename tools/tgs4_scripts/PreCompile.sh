@@ -87,7 +87,7 @@ if [ -d "build" ]; then
 	rm -R build
 fi
 #note, if FUSION is ever fixed this needs changed to "all_reaction_hooks"
-cargo rustc --release --target=i686-unknown-linux-gnu --features trit_fire_hook,plasma_fire_hook,generic_fire_hook ,katmos -- -C target-cpu=native
+cargo rustc --release --target=i686-unknown-linux-gnu --features all_reaction_hooks,katmos -- -C target-cpu=native
 mv -f target/i686-unknown-linux-gnu/release/libauxmos.so "$1/libauxmos.so"
 cd ../../..
 
