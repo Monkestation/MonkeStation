@@ -10,12 +10,13 @@
 /turf/open/floor/bamboo
 	desc = "A bamboo mat with a decorative trim."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
-	icon_state = "mat-0"
-	base_icon_state = "mat"
+	icon_state = "bamboo"
 	floor_tile = /obj/item/stack/tile/bamboo
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_BAMBOO_FLOOR)
-	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_FLOOR)
+	/* //MONKESTATION REMOVAL
+	broken_states = list("damaged")
+	smooth = SMOOTH_TRUE
+	canSmoothWith = list(/turf/open/floor/bamboo)
+	*/ //MONKESTATION REMOVAL END
 	flags_1 = NONE
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
@@ -31,7 +32,7 @@
 	desc = "Stylish dark wood."
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
-	broken_states = list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+	//broken_states = list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7") //MONKESTATION REMOVAL
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -242,13 +243,11 @@
 	name = "carpet"
 	desc = "Soft velvet carpeting. Feels good between your toes."
 	icon = 'icons/turf/floors/carpet.dmi'
-	icon_state = "carpet-255"
-	base_icon_state = "carpet"
+	icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
-	broken_states = list("damaged")
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_CARPET)
-	canSmoothWith = list(SMOOTH_GROUP_CARPET)
+	//broken_states = list("damaged") //MONKESTATION REMOVAL
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	//anSmoothWith = list(/turf/open/floor/carpet) //MONKESTATION REMOVAL
 	flags_1 = NONE
 	bullet_bounce_sound = null
 	footstep = FOOTSTEP_CARPET
@@ -269,65 +268,71 @@
 	if(!..())
 		return 0
 	if(!broken && !burnt)
-		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 			QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 	else
 		make_plating()
-		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 			QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /turf/open/floor/carpet/black
 	icon = 'icons/turf/floors/carpet_black.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/black
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_BLACK)
+	//canSmoothWith = list(/turf/open/floor/carpet/black) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/blue
 	icon = 'icons/turf/floors/carpet_blue.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/blue
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_BLUE)
+	//canSmoothWith = list(/turf/open/floor/carpet/blue) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/cyan
 	icon = 'icons/turf/floors/carpet_cyan.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/cyan
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_CYAN)
+	//canSmoothWith = list(/turf/open/floor/carpet/cyan) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/green
 	icon = 'icons/turf/floors/carpet_green.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/green
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_GREEN)
+	//canSmoothWith = list(/turf/open/floor/carpet/green) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/orange
 	icon = 'icons/turf/floors/carpet_orange.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/orange
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_ORANGE)
+	//canSmoothWith = list(/turf/open/floor/carpet/orange) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/purple
 	icon = 'icons/turf/floors/carpet_purple.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/purple
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_PURPLE)
+	//canSmoothWith = list(/turf/open/floor/carpet/purple) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/red
 	icon = 'icons/turf/floors/carpet_red.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/red
 	canSmoothWith = list(SMOOTH_GROUP_CARPET_RED)
+	//canSmoothWith = list(/turf/open/floor/carpet/red) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/royalblack
 	icon = 'icons/turf/floors/carpet_royalblack.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/royalblack
-	canSmoothWith = list(SMOOTH_GROUP_CARPET_ROYAL_BLACK)
+	//canSmoothWith = list(/turf/open/floor/carpet/royalblack) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/royalblue
 	icon = 'icons/turf/floors/carpet_royalblue.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/royalblue
-	canSmoothWith = list(SMOOTH_GROUP_CARPET_ROYAL_BLUE)
+	//canSmoothWith = list(/turf/open/floor/carpet/royalblue) //MONKESTATION REMOVAL
 
 /turf/open/floor/carpet/grimy
 	name = "grimy carpet"
 	desc = "Hold on, wasn't this made with steel once?"
 	icon = 'icons/turf/floors/carpet_grimy.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/grimy
-	canSmoothWith = list(SMOOTH_GROUP_CARPET_GRIMY) //add grimy carpet later
-
+	//canSmoothWith = list(/turf/open/floor/carpet/grimy) //MONKESTATION REMOVAL
 /turf/open/floor/eighties
 	name = "retro floor"
 	desc = "This one takes you back."
@@ -358,12 +363,10 @@
 
 /turf/open/floor/fakepit
 	desc = "A clever illusion designed to look like a bottomless pit."
-	base_icon_state = "chasms"
-	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_TURF_CHASM)
-	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
 	icon = 'icons/turf/floors/Chasms.dmi'
-	icon_state = "chasms-0"
+	//smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE //MONKESTATION REMOVAL
+	//canSmoothWith = list(/turf/open/floor/fakepit) //MONKESTATION REMOVAL
+	icon_state = "smooth"
 	tiled_dirt = FALSE
 
 /turf/open/floor/fakepit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
