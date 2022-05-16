@@ -5287,17 +5287,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"pF" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/item/door_remote/head_of_security,
-/obj/structure/rack,
-/obj/effect/turf_decal/tile/red/tile_side{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/nuke_storage)
 "pG" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -16917,6 +16906,17 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"Xu" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/door_remote/head_of_security,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/red/tile_side{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/nuke_storage)
 "Xv" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-10"
@@ -113231,7 +113231,7 @@ ns
 xx
 xx
 xx
-pF
+Xu
 Ku
 Zw
 KT
