@@ -71,5 +71,5 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_TURF_CHASM)
 	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
-	icon = 'icons/turf/floors/Chasms.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors/Chasms.dmi'
 	icon_state = "chasms-0"
