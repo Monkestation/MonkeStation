@@ -180,7 +180,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_SILVER_WALLS)
 
 /turf/closed/wall/mineral/copper
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/copper_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/copper_wall.dmi' // Something something salt comment, in all seriousness this has caused me more issues than this entire pr. Yes this is a salt comment!
 	icon_state = "copper_wall-0"
 	base_icon_state = "copper_wall"
 	smoothing_flags = SMOOTH_BITMASK
