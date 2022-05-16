@@ -275,3 +275,33 @@
 	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
 
+/obj/effect/clockwork/overlay/wall
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
+	icon_state = "clockwork_wall-0"
+	base_icon_state = "clockwork_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
+
+/obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/hierophant_wall_temp.dmi'
+	icon_state = "hierophant_wall_temp-0"
+	base_icon_state = "hierophant_wall_temp"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_HIERO_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_HIERO_WALL)
+
+/obj/effect/temp_visual/elite_tumor_wall
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/hierophant_wall_temp.dmi'
+	icon_state = "hierophant_wall_temp-0"
+	base_icon_state = "hierophant_wall_temp"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_HIERO_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_HIERO_WALL)
+
+/turf/closed/indestructible/hotelwall
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_HOTEL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_HOTEL_WALLS)
+
+/turf/closed/indestructible/turbolift
+	smoothing_flags = SMOOTH_BITMASK

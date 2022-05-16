@@ -316,6 +316,14 @@
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
+/obj/structure/window/shuttle/survival_pod
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/pod_window.dmi'
+	icon_state = "pod_window-0"
+	base_icon_state = "pod_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
+	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
+
 /obj/structure/window/reinforced/fulltile/ice
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/rice_window.dmi'
 	icon_state = "rice_window-0"
@@ -351,3 +359,9 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
+
+/obj/structure/table/survival_pod
+	smoothing_flags = NONE
+
+/obj/structure/alien/resin/flower_bud_enemy //inheriting basic attack/damage stuff from alien structures
+	smoothing_flags = NONE

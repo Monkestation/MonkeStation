@@ -134,7 +134,8 @@ GLOBAL_LIST_EMPTY(turbolifts)
 	desc = "A turbolift wall. One of the strongest walls known to man."
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
-	smoothing_flags = SMOOTH_BITMASK
+	//canSmoothWith = list(/turf/closed/indestructible/turbolift) //MONKESTATION REMOVAL
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/turbolift/afterShuttleMove()
 	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
