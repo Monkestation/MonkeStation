@@ -7,7 +7,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_ALIEN_RESIN)
 
 /obj/structure/alien/resin/wall
-	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin_wall-0"
 	base_icon_state = "resin_wall"
 	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WALLS)
@@ -42,7 +42,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/fakeglass
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/reinforced_window.dmi'
 	icon_state = "fake_window"
 	base_icon_state = "reinforced_window"
 	opacity = FALSE
@@ -51,7 +51,7 @@
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /turf/closed/indestructible/opsglass
-	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window-0"
 	base_icon_state = "plastitanium_window"
 	opacity = FALSE
@@ -77,7 +77,7 @@
 	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
 
 /turf/closed/mineral/diamond/ice
-	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/icerock_wall.dmi'
 	base_icon_state = "icerock_wall"
 
 /turf/closed/mineral/plasma/ice
@@ -85,36 +85,50 @@
 	base_icon_state = "icerock_wall"
 
 /turf/closed/mineral/ash_rock //wall piece
-	icon = 'icons/turf/mining.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/mining.dmi'
 	smooth_icon = 'icon/turf/walls/rock_wall.dmi'
 	base_icon_state = "rock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 
 /turf/closed/mineral/snowmountain
-	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/mining.dmi'
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/mountain_wall.dmi'
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 
 /turf/closed/mineral/snowmountain/cavern
-	icon = 'icons/turf/mining.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/mining.dmi'
 	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
 /turf/closed/wall/mineral/cult
-	icon = 'icons/turf/walls/cult_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/cult_wall.dmi'
 	icon_state = "cult_wall-0"
 	base_icon_state = "cult_wall"
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/wall/ice
-	icon = 'icons/turf/walls/icedmetal_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/icedmetal_wall.dmi'
 	icon_state = "icedmetal_wall-0"
 	base_icon_state = "icedmetal_wall"
 	smoothing_flags = SMOOTH_BITMASK
+
+/turf/closed/wall/r_wall
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/reinforced_wall.dmi'
+	icon_state = "reinforced_wall-0"
+	base_icon_state = "reinforced_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
+/turf/closed/wall/r_wall/syndicate
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/plastitanium_wall.dmi'
+	icon_state = "plastitanium_wall-0"
+	base_icon_state = "plastitanium_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_DIAGONAL_CORNERS
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SYNDICATE_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_PLASTITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 
 ////////////////////////////////////////
 // MINERAL WALL
