@@ -271,3 +271,83 @@
 	base_icon_state = "brass_table"
 	smoothing_groups = list(SMOOTH_GROUP_BRONZE_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
 	canSmoothWith = list(SMOOTH_GROUP_BRONZE_TABLES)
+
+/////////////////////////////////////////
+//             WINDOWS            	  //
+///////////////////////////////////////
+
+/obj/structure/window/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "window-0"
+	base_icon_state = "window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+
+/obj/structure/window/plasma/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "plasma_window-0"
+	base_icon_state = "plasma_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+
+/obj/structure/window/plasma/reinforced/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/rplasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "rplasma_window-0"
+	base_icon_state = "rplasma_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+
+/obj/structure/window/reinforced/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/reinforced_window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "reinforced_window-0"
+	base_icon_state = "reinforced_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+
+/obj/structure/window/reinforced/tinted/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/tinted_window.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "tinted_window-0"
+	base_icon_state = "tinted_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+
+/obj/structure/window/reinforced/fulltile/ice
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/rice_window.dmi'
+	icon_state = "rice_window-0"
+	base_icon_state = "rice_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+/obj/structure/window/shuttle
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/shuttle_window.dmi'
+	icon_state = "shuttle_window-0"
+	base_icon_state = "shuttle_window"
+
+/obj/structure/window/plastitanium
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plastitanium_window.dmi'
+	icon_state = "plastitanium_window-0"
+	base_icon_state = "plastitanium_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
+
+/obj/structure/window/paperframe
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/paperframes.dmi'
+	icon_state = "paperframes-0"
+	base_icon_state = "paperframes"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_PAPERFRAME)
+	canSmoothWith = list(SMOOTH_GROUP_PAPERFRAME)
+
+/obj/structure/window/bronze/fulltile
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/clockwork_window.dmi'
+	icon_state = "clockwork_window-0"
+	base_icon_state = "clockwork_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)

@@ -343,7 +343,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 //merges adjacent full-tile windows into one
@@ -355,7 +355,7 @@
 		var/ratio = obj_integrity / max_integrity
 		ratio = CEILING(ratio*4, 1) * 25
 
-		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)) //MONKESTATION CHANGE
 			QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 		cut_overlay(crack_overlay)
@@ -488,15 +488,76 @@
 
 /obj/structure/window/fulltile
 	icon = 'icons/obj/smooth_structures/window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "window-0"
-	base_icon_state = "window"
+	icon_state = "window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 100
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	/* //MONKESTATIONN REMOVAL
+	smooth = SMOOTH_TRUE
+	//MONKESTATION EDIT: WALL AND WINDOW RESPRITE
+	canSmoothWith = list(/obj/structure/window/fulltile,
+	/obj/structure/window/reinforced/fulltile,
+	/obj/structure/window/reinforced/tinted/fulltile,
+	/obj/structure/window/plasma/fulltile,
+	/obj/structure/window/plasma/reinforced/fulltile,
+	/turf/closed/wall,
+	/turf/closed/wall/r_wall,
+	/obj/machinery/door/airlock,
+	/obj/machinery/door/airlock/command,
+	/obj/machinery/door/airlock/security,
+	/obj/machinery/door/airlock/engineering,
+	/obj/machinery/door/airlock/medical,
+	/obj/machinery/door/airlock/maintenance,
+	/obj/machinery/door/airlock/maintenance/external,
+	/obj/machinery/door/airlock/mining,
+	/obj/machinery/door/airlock/atmos,
+	/obj/machinery/door/airlock/research,
+	/obj/machinery/door/airlock/freezer,
+	/obj/machinery/door/airlock/science,
+	/obj/machinery/door/airlock/virology,
+	/obj/machinery/door/airlock/gold,
+	/obj/machinery/door/airlock/silver,
+	/obj/machinery/door/airlock/diamond,
+	/obj/machinery/door/airlock/uranium,
+	/obj/machinery/door/airlock/plasma,
+	/obj/machinery/door/airlock/bananium,
+	/obj/machinery/door/airlock/sandstone,
+	/obj/machinery/door/airlock/wood,
+	/obj/machinery/door/airlock/public,
+	/obj/machinery/door/airlock/external,
+	/obj/machinery/door/airlock/arrivals_external,
+	/obj/machinery/door/airlock/centcom,
+	/obj/machinery/door/airlock/grunge,
+	/obj/machinery/door/airlock/vault,
+	/obj/machinery/door/airlock/hatch,
+	/obj/machinery/door/airlock/maintenance_hatch,
+	/obj/machinery/door/airlock/highsecurity,
+	/obj/machinery/door/airlock/glass_large,
+	/obj/machinery/door/airlock/glass,
+	/obj/machinery/door/airlock/command/glass,
+	/obj/machinery/door/airlock/security/glass,
+	/obj/machinery/door/airlock/engineering/glass,
+	/obj/machinery/door/airlock/medical/glass,
+	/obj/machinery/door/airlock/maintenance/glass,
+	/obj/machinery/door/airlock/maintenance/external/glass,
+	/obj/machinery/door/airlock/mining/glass,
+	/obj/machinery/door/airlock/atmos/glass,
+	/obj/machinery/door/airlock/research/glass,
+	/obj/machinery/door/airlock/science/glass,
+	/obj/machinery/door/airlock/virology/glass,
+	/obj/machinery/door/airlock/gold/glass,
+	/obj/machinery/door/airlock/silver/glass,
+	/obj/machinery/door/airlock/diamond/glass,
+	/obj/machinery/door/airlock/uranium/glass,
+	/obj/machinery/door/airlock/plasma/glass,
+	/obj/machinery/door/airlock/bananium/glass,
+	/obj/machinery/door/airlock/sandstone/glass,
+	/obj/machinery/door/airlock/wood/glass,
+	/obj/machinery/door/airlock/public/glass,
+	/obj/machinery/door/airlock/external/glass)
+	//MONKESTATION EDIT END
+	*/ //MONKESTATION REMOVAL END
 	glass_amount = 2
 
 /obj/structure/window/fulltile/unanchored
@@ -504,15 +565,76 @@
 
 /obj/structure/window/plasma/fulltile
 	icon = 'icons/obj/smooth_structures/plasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "plasma_window-0"
-	base_icon_state = "plasma_window"
+	icon_state = "plasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 600
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	/* //MONKESTATION REMOVAL
+	smooth = SMOOTH_TRUE
+	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
+	canSmoothWith = list(/obj/structure/window/fulltile,
+	/obj/structure/window/reinforced/fulltile,
+	/obj/structure/window/reinforced/tinted/fulltile,
+	/obj/structure/window/plasma/fulltile,
+	/obj/structure/window/plasma/reinforced/fulltile,
+	/turf/closed/wall,
+	/turf/closed/wall/r_wall,
+	/obj/machinery/door/airlock,
+	/obj/machinery/door/airlock/command,
+	/obj/machinery/door/airlock/security,
+	/obj/machinery/door/airlock/engineering,
+	/obj/machinery/door/airlock/medical,
+	/obj/machinery/door/airlock/maintenance,
+	/obj/machinery/door/airlock/maintenance/external,
+	/obj/machinery/door/airlock/mining,
+	/obj/machinery/door/airlock/atmos,
+	/obj/machinery/door/airlock/research,
+	/obj/machinery/door/airlock/freezer,
+	/obj/machinery/door/airlock/science,
+	/obj/machinery/door/airlock/virology,
+	/obj/machinery/door/airlock/gold,
+	/obj/machinery/door/airlock/silver,
+	/obj/machinery/door/airlock/diamond,
+	/obj/machinery/door/airlock/uranium,
+	/obj/machinery/door/airlock/plasma,
+	/obj/machinery/door/airlock/bananium,
+	/obj/machinery/door/airlock/sandstone,
+	/obj/machinery/door/airlock/wood,
+	/obj/machinery/door/airlock/public,
+	/obj/machinery/door/airlock/external,
+	/obj/machinery/door/airlock/arrivals_external,
+	/obj/machinery/door/airlock/centcom,
+	/obj/machinery/door/airlock/grunge,
+	/obj/machinery/door/airlock/vault,
+	/obj/machinery/door/airlock/hatch,
+	/obj/machinery/door/airlock/maintenance_hatch,
+	/obj/machinery/door/airlock/highsecurity,
+	/obj/machinery/door/airlock/glass_large,
+	/obj/machinery/door/airlock/glass,
+	/obj/machinery/door/airlock/command/glass,
+	/obj/machinery/door/airlock/security/glass,
+	/obj/machinery/door/airlock/engineering/glass,
+	/obj/machinery/door/airlock/medical/glass,
+	/obj/machinery/door/airlock/maintenance/glass,
+	/obj/machinery/door/airlock/maintenance/external/glass,
+	/obj/machinery/door/airlock/mining/glass,
+	/obj/machinery/door/airlock/atmos/glass,
+	/obj/machinery/door/airlock/research/glass,
+	/obj/machinery/door/airlock/science/glass,
+	/obj/machinery/door/airlock/virology/glass,
+	/obj/machinery/door/airlock/gold/glass,
+	/obj/machinery/door/airlock/silver/glass,
+	/obj/machinery/door/airlock/diamond/glass,
+	/obj/machinery/door/airlock/uranium/glass,
+	/obj/machinery/door/airlock/plasma/glass,
+	/obj/machinery/door/airlock/bananium/glass,
+	/obj/machinery/door/airlock/sandstone/glass,
+	/obj/machinery/door/airlock/wood/glass,
+	/obj/machinery/door/airlock/public/glass,
+	/obj/machinery/door/airlock/external/glass)
+	//MONKESTATION EDIT END
+	*/ //MONKESTATION REMOVAL END
 	glass_amount = 2
 
 /obj/structure/window/plasma/fulltile/unanchored
@@ -520,15 +642,12 @@
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/rplasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "rplasma_window-0"
-	base_icon_state = "rplasma_window"
+	icon_state = "rplasmawindow"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 4000
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	glass_amount = 2
 
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
@@ -536,15 +655,76 @@
 
 /obj/structure/window/reinforced/fulltile
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "reinforced_window-0"
-	base_icon_state = "reinforced_window"
+	icon_state = "r_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 200
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	/* //MONKESTATION REMOVAL
+	smooth = SMOOTH_TRUE
+	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
+	canSmoothWith = list(/obj/structure/window/fulltile,
+	/obj/structure/window/reinforced/fulltile,
+	/obj/structure/window/reinforced/tinted/fulltile,
+	/obj/structure/window/plasma/fulltile,
+	/obj/structure/window/plasma/reinforced/fulltile,
+	/turf/closed/wall,
+	/turf/closed/wall/r_wall,
+	/obj/machinery/door/airlock,
+	/obj/machinery/door/airlock/command,
+	/obj/machinery/door/airlock/security,
+	/obj/machinery/door/airlock/engineering,
+	/obj/machinery/door/airlock/medical,
+	/obj/machinery/door/airlock/maintenance,
+	/obj/machinery/door/airlock/maintenance/external,
+	/obj/machinery/door/airlock/mining,
+	/obj/machinery/door/airlock/atmos,
+	/obj/machinery/door/airlock/research,
+	/obj/machinery/door/airlock/freezer,
+	/obj/machinery/door/airlock/science,
+	/obj/machinery/door/airlock/virology,
+	/obj/machinery/door/airlock/gold,
+	/obj/machinery/door/airlock/silver,
+	/obj/machinery/door/airlock/diamond,
+	/obj/machinery/door/airlock/uranium,
+	/obj/machinery/door/airlock/plasma,
+	/obj/machinery/door/airlock/bananium,
+	/obj/machinery/door/airlock/sandstone,
+	/obj/machinery/door/airlock/wood,
+	/obj/machinery/door/airlock/public,
+	/obj/machinery/door/airlock/external,
+	/obj/machinery/door/airlock/arrivals_external,
+	/obj/machinery/door/airlock/centcom,
+	/obj/machinery/door/airlock/grunge,
+	/obj/machinery/door/airlock/vault,
+	/obj/machinery/door/airlock/hatch,
+	/obj/machinery/door/airlock/maintenance_hatch,
+	/obj/machinery/door/airlock/highsecurity,
+	/obj/machinery/door/airlock/glass_large,
+	/obj/machinery/door/airlock/glass,
+	/obj/machinery/door/airlock/command/glass,
+	/obj/machinery/door/airlock/security/glass,
+	/obj/machinery/door/airlock/engineering/glass,
+	/obj/machinery/door/airlock/medical/glass,
+	/obj/machinery/door/airlock/maintenance/glass,
+	/obj/machinery/door/airlock/maintenance/external/glass,
+	/obj/machinery/door/airlock/mining/glass,
+	/obj/machinery/door/airlock/atmos/glass,
+	/obj/machinery/door/airlock/research/glass,
+	/obj/machinery/door/airlock/science/glass,
+	/obj/machinery/door/airlock/virology/glass,
+	/obj/machinery/door/airlock/gold/glass,
+	/obj/machinery/door/airlock/silver/glass,
+	/obj/machinery/door/airlock/diamond/glass,
+	/obj/machinery/door/airlock/uranium/glass,
+	/obj/machinery/door/airlock/plasma/glass,
+	/obj/machinery/door/airlock/bananium/glass,
+	/obj/machinery/door/airlock/sandstone/glass,
+	/obj/machinery/door/airlock/wood/glass,
+	/obj/machinery/door/airlock/public/glass,
+	/obj/machinery/door/airlock/external/glass)
+	//MONKESTATION EDIT END
+	*/ //MONKESTATION REMOVAL END
 	level = 3
 	glass_amount = 2
 
@@ -553,14 +733,75 @@
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'icons/obj/smooth_structures/tinted_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "tinted_window-0"
-	base_icon_state = "tinted_window"
+	icon_state = "tinted_window"
 	dir = FULLTILE_WINDOW_DIR
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	/* //MONKESTATION REMOVAL
+	smooth = SMOOTH_TRUE
+	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
+	canSmoothWith = list(/obj/structure/window/fulltile,
+	/obj/structure/window/reinforced/fulltile,
+	/obj/structure/window/reinforced/tinted/fulltile,
+	/obj/structure/window/plasma/fulltile,
+	/obj/structure/window/plasma/reinforced/fulltile,
+	/turf/closed/wall,
+	/turf/closed/wall/r_wall,
+	/obj/machinery/door/airlock,
+	/obj/machinery/door/airlock/command,
+	/obj/machinery/door/airlock/security,
+	/obj/machinery/door/airlock/engineering,
+	/obj/machinery/door/airlock/medical,
+	/obj/machinery/door/airlock/maintenance,
+	/obj/machinery/door/airlock/maintenance/external,
+	/obj/machinery/door/airlock/mining,
+	/obj/machinery/door/airlock/atmos,
+	/obj/machinery/door/airlock/research,
+	/obj/machinery/door/airlock/freezer,
+	/obj/machinery/door/airlock/science,
+	/obj/machinery/door/airlock/virology,
+	/obj/machinery/door/airlock/gold,
+	/obj/machinery/door/airlock/silver,
+	/obj/machinery/door/airlock/diamond,
+	/obj/machinery/door/airlock/uranium,
+	/obj/machinery/door/airlock/plasma,
+	/obj/machinery/door/airlock/bananium,
+	/obj/machinery/door/airlock/sandstone,
+	/obj/machinery/door/airlock/wood,
+	/obj/machinery/door/airlock/public,
+	/obj/machinery/door/airlock/external,
+	/obj/machinery/door/airlock/arrivals_external,
+	/obj/machinery/door/airlock/centcom,
+	/obj/machinery/door/airlock/grunge,
+	/obj/machinery/door/airlock/vault,
+	/obj/machinery/door/airlock/hatch,
+	/obj/machinery/door/airlock/maintenance_hatch,
+	/obj/machinery/door/airlock/highsecurity,
+	/obj/machinery/door/airlock/glass_large,
+	/obj/machinery/door/airlock/glass,
+	/obj/machinery/door/airlock/command/glass,
+	/obj/machinery/door/airlock/security/glass,
+	/obj/machinery/door/airlock/engineering/glass,
+	/obj/machinery/door/airlock/medical/glass,
+	/obj/machinery/door/airlock/maintenance/glass,
+	/obj/machinery/door/airlock/maintenance/external/glass,
+	/obj/machinery/door/airlock/mining/glass,
+	/obj/machinery/door/airlock/atmos/glass,
+	/obj/machinery/door/airlock/research/glass,
+	/obj/machinery/door/airlock/science/glass,
+	/obj/machinery/door/airlock/virology/glass,
+	/obj/machinery/door/airlock/gold/glass,
+	/obj/machinery/door/airlock/silver/glass,
+	/obj/machinery/door/airlock/diamond/glass,
+	/obj/machinery/door/airlock/uranium/glass,
+	/obj/machinery/door/airlock/plasma/glass,
+	/obj/machinery/door/airlock/bananium/glass,
+	/obj/machinery/door/airlock/sandstone/glass,
+	/obj/machinery/door/airlock/wood/glass,
+	/obj/machinery/door/airlock/public/glass,
+	/obj/machinery/door/airlock/external/glass)
+	//MONKESTATION EDIT END
+	*/ //MONKESTATION REMOVAL END
 	level = 3
 	glass_amount = 2
 
@@ -576,8 +817,7 @@
 	name = "shuttle window"
 	desc = "A reinforced, air-locked pod window."
 	icon = 'icons/obj/smooth_structures/shuttle_window.dmi'
-	icon_state = "shuttle_window-0"
-	base_icon_state = "shuttle_window"
+	icon_state = "shuttle_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 500
 	wtype = "shuttle"
@@ -586,9 +826,8 @@
 	reinf = TRUE
 	heat_resistance = 1600
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "stamina" = 0)
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	//canSmoothWith = null //MONKESTATION REMOVAL
 	explosion_block = 3
 	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
@@ -608,8 +847,7 @@
 	name = "plastitanium window"
 	desc = "A durable looking window made of an alloy of of plasma and titanium."
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window-0"
-	base_icon_state = "plastitanium_window"
+	icon_state = "plastitanium_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 200
 	wtype = "shuttle"
@@ -618,9 +856,8 @@
 	reinf = TRUE
 	heat_resistance = 1600
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "stamina" = 0)
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM)
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	//canSmoothWith = null //MONKESTATION REMOVAL
 	explosion_block = 3
 	level = 3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
@@ -633,16 +870,14 @@
 	name = "paper frame"
 	desc = "A fragile separator made of thin wood and paper."
 	icon = 'icons/obj/smooth_structures/paperframes.dmi'
-	icon_state = "paperframes-0"
-	base_icon_state = "paperframes"
+	icon_state = "frame"
 	dir = FULLTILE_WINDOW_DIR
 	opacity = TRUE
 	max_integrity = 15
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_PAPERFRAME)
-	canSmoothWith = list(SMOOTH_GROUP_PAPERFRAME)
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	//canSmoothWith = list(/obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe) //MONKESTATION REMOVAL
 	glass_amount = 2
 	glass_type = /obj/item/stack/sheet/paperframes
 	heat_resistance = 233
@@ -726,11 +961,9 @@
 	anchored = FALSE
 
 /obj/structure/window/bronze/fulltile
-	icon_state = "clockwork_window-0"
-	base_icon_state = "clockwork_window"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
+	icon_state = "clockwork_window"
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	//canSmoothWith = null //MONKESTATION REMOVAL
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	dir = FULLTILE_WINDOW_DIR
