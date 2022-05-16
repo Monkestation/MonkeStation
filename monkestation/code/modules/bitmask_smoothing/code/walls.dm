@@ -110,6 +110,12 @@
 	base_icon_state = "cult_wall"
 	smoothing_flags = SMOOTH_BITMASK
 
+/turf/closed/wall/ice
+	icon = 'icons/turf/walls/icedmetal_wall.dmi'
+	icon_state = "icedmetal_wall-0"
+	base_icon_state = "icedmetal_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
 ////////////////////////////////////////
 // MINERAL WALL
 ///////////////////////////////////////
