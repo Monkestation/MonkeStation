@@ -67,6 +67,43 @@
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_BOSS_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BOSS_WALLS)
 
+/turf/closed/mineral //wall piece
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
+
+/turf/closed/mineral/iron/ice
+	base_icon_state = "icerock_wall"
+	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+
+/turf/closed/mineral/diamond/ice
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	base_icon_state = "icerock_wall"
+
+/turf/closed/mineral/plasma/ice
+	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	base_icon_state = "icerock_wall"
+
+/turf/closed/mineral/ash_rock //wall piece
+	icon = 'icons/turf/mining.dmi'
+	smooth_icon = 'icon/turf/walls/rock_wall.dmi'
+	base_icon_state = "rock_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
+
+/turf/closed/mineral/snowmountain
+	icon = 'icons/turf/mining.dmi'
+	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
+	base_icon_state = "mountain_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
+
+/turf/closed/mineral/snowmountain/cavern
+	icon = 'icons/turf/mining.dmi'
+	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	base_icon_state = "icerock_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+
 ////////////////////////////////////////
 // MINERAL WALL
 ///////////////////////////////////////
