@@ -241,7 +241,7 @@
 /turf/closed/mineral/iron/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_iron"
-	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	initial_gas_mix = FROZEN_ATMOS
@@ -273,7 +273,7 @@
 /turf/closed/mineral/diamond/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_iron"
-	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	initial_gas_mix = FROZEN_ATMOS
@@ -339,7 +339,7 @@
 /turf/closed/mineral/plasma/ice
 	environment_type = "snow_cavern"
 	icon_state = "icerock_plasma"
-	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	initial_gas_mix = FROZEN_ATMOS
@@ -380,7 +380,7 @@
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icon/turf/walls/rock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
 	icon_state = "rock2"
 	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
 	//canSmoothWith = list (/turf/closed) //MONKESTATION REMOVAL
@@ -406,7 +406,7 @@
 /turf/closed/mineral/snowmountain/cavern
 	name = "ice cavern rock"
 	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icon/turf/walls/icerock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock"
 	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
 	//canSmoothWith = list (/turf/closed) //MONKESTATION REMOVAL

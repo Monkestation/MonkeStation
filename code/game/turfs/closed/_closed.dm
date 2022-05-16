@@ -46,7 +46,7 @@
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	icon = 'icon/turf/walls/sandstone_wall.dmi'
+	icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone"
 	baseturfs = /turf/closed/indestructible/sandstone
 	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
@@ -82,12 +82,12 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/syndicate
-	icon = 'icon/turf/walls/plastitanium_wall.dmi'
+	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "map-shuttle"
 	//smooth = SMOOTH_MORE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/riveted/uranium
-	icon = 'icon/turf/walls/uranium_wall.dmi'
+	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium"
 	//smooth = SMOOTH_MORE //MONKESTATION REMOVAL
 
@@ -170,7 +170,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/riveted/boss
 	name = "necropolis wall"
 	desc = "A thick, seemingly indestructible stone wall."
-	icon = 'icon/turf/walls/boss_wall.dmi'
+	icon = 'icons/turf/walls/boss_wall.dmi'
 	icon_state = "wall"
 	//canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through) //MONKESTATION REMOVAL
 	explosion_block = 50
