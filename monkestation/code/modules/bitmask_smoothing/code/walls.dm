@@ -42,7 +42,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 
 /turf/closed/indestructible/fakeglass
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/reinforced_window.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window.dmi'
 	icon_state = "fake_window"
 	base_icon_state = "reinforced_window"
 	opacity = FALSE
