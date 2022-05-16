@@ -46,11 +46,10 @@
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating. Rough."
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone_wall-0"
-	base_icon_state = "sandstone_wall"
+	icon = 'icon/turf/walls/sandstone_wall.dmi'
+	icon_state = "sandstone"
 	baseturfs = /turf/closed/indestructible/sandstone
-	smoothing_flags = SMOOTH_BITMASK
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/oldshuttle/corner
 	icon_state = "corner"
@@ -78,26 +77,19 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 				SStitle.icon = icon
 
 /turf/closed/indestructible/riveted
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/riveted.dmi'
-	icon_state = "riveted-0"
-	base_icon_state = "riveted"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS)
-	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
+	icon = 'icons/turf/walls/riveted.dmi'
+	icon_state = "riveted"
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/syndicate
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/plastitanium_wall.dmi'
-	icon_state = "plastitanium_wall-0"
-	base_icon_state = "plastitanium_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SYNDICATE_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SYNDICATE_WALLS, SMOOTH_GROUP_PLASTITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
+	icon = 'icon/turf/walls/plastitanium_wall.dmi'
+	icon_state = "map-shuttle"
+	//smooth = SMOOTH_MORE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/riveted/uranium
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/uranium_wall.dmi'
-	icon_state = "uranium_wall-0"
-	base_icon_state = "uranium_wall"
-	smoothing_flags = SMOOTH_BITMASK
+	icon = 'icon/turf/walls/uranium_wall.dmi'
+	icon_state = "uranium"
+	//smooth = SMOOTH_MORE //MONKESTATION REMOVAL
 
 /turf/closed/indestructible/abductor
 	icon_state = "alien1"
@@ -109,7 +101,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "window"
 	icon_state = "fake_window"
 	opacity = 0
-	smoothing_flags = SMOOTH_BITMASK
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
 
 /turf/closed/indestructible/fakeglass/Initialize(mapload)
@@ -122,7 +114,7 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 	name = "window"
 	icon_state = "plastitanium_window"
 	opacity = 0
-	smoothing_flags = SMOOTH_BITMASK
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 
 /turf/closed/indestructible/opsglass/Initialize(mapload)
@@ -178,12 +170,9 @@ INITIALIZE_IMMEDIATE(/turf/closed/indestructible/splashscreen)
 /turf/closed/indestructible/riveted/boss
 	name = "necropolis wall"
 	desc = "A thick, seemingly indestructible stone wall."
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/boss_wall.dmi'
-	icon_state = "boss_wall-0"
-	base_icon_state = "boss_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_BOSS_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_BOSS_WALLS)
+	icon = 'icon/turf/walls/boss_wall.dmi'
+	icon_state = "wall"
+	//canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through) //MONKESTATION REMOVAL
 	explosion_block = 50
 	baseturfs = /turf/closed/indestructible/riveted/boss
 
