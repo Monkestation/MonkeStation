@@ -195,7 +195,7 @@
 /obj/structure/table/glass
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/glass_table.dmi'
 	icon_state = "glass_table-0"
-	bas_icon_state = "glass_table"
+	base_icon_state = "glass_table"
 	smoothing_groups = list(SMOOTH_GROUP_GLASS_TABLES)
 	canSmoothWith = list(SMOOTH_GROUP_GLASS_TABLES)
 
