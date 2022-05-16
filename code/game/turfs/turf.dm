@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
 
-	var/list/fixed_underlay = null
+	var/list/fixed_underlay = null //MONKESTATION ADDITION
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
@@ -76,6 +76,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	assemble_baseturfs()
 
 	levelupdate()
+	//if(smooth) //MONKESTATION REMOVAL
+		//queue_smooth(src) //MONKESTATION REMOVAL
+//MONKESTATION ADDITION START
 	if(length(smoothing_groups))
 		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
 		SET_BITFLAG_LIST(smoothing_groups)
@@ -86,6 +89,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		SET_BITFLAG_LIST(canSmoothWith)
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+//MONKESTATION ADDITION START END
 	visibilityChanged()
 
 	for(var/atom/movable/content as anything in src)
