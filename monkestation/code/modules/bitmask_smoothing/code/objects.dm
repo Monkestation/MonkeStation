@@ -285,17 +285,17 @@
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /obj/structure/window/plasma/fulltile
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "plasma_window-0"
-	base_icon_state = "plasma_window"
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/window_plasma.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "window-0"
+	base_icon_state = "window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /obj/structure/window/plasma/reinforced/fulltile
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/rplasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "rplasma_window-0"
-	base_icon_state = "rplasma_window"
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window_plasma.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "reinforced_window-0"
+	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
@@ -309,9 +309,9 @@
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /obj/structure/window/reinforced/tinted/fulltile
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/tinted_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "tinted_window-0"
-	base_icon_state = "tinted_window"
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window_tinted.dmi' //OVERRIDEN - SEE MODULAR FILE
+	icon_state = "reinforced_window-0"
+	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
