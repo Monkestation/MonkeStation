@@ -333,6 +333,9 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"ba" = (
+/turf/closed/wall/r_wall,
+/area/hallway/primary/central)
 "bb" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2134,6 +2137,11 @@
 /obj/effect/landmark/start/head_of_personnel,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
+"gu" = (
+/obj/effect/turf_decal/bot_red,
+/obj/structure/closet/secure_closet/security/sec,
+/turf/open/floor/plasteel,
+/area/security/main)
 "gv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -4395,9 +4403,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
-"mV" = (
-/turf/closed/wall/r_wall,
-/area/hallway/primary/central)
 "mW" = (
 /obj/structure/cable/yellow{
 	icon_state = "6-8"
@@ -13322,11 +13327,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Nb" = (
-/obj/effect/turf_decal/bot_red,
-/obj/structure/closet/secure_closet/security/sec,
-/turf/open/floor/plasteel,
-/area/security/main)
 "Nc" = (
 /obj/effect/spawner/room/fivexfour,
 /turf/open/floor/plating,
@@ -43866,14 +43866,14 @@ SV
 bV
 CI
 Cj
-mV
+ba
 GS
 TU
 HJ
-uG
+ES
 yR
 ES
-yB
+aO
 NQ
 zb
 ME
@@ -44130,8 +44130,8 @@ Kj
 fJ
 wp
 SO
-ME
-ME
+aO
+aO
 tp
 ME
 ud
@@ -44894,7 +44894,7 @@ Jc
 bV
 CI
 lz
-mV
+ba
 ay
 ay
 ay
@@ -109663,7 +109663,7 @@ Iz
 XU
 aT
 zW
-Nb
+gu
 yS
 sA
 CJ
