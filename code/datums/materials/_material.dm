@@ -49,8 +49,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 	// This is to keep the same damage relative to the max integrity of the object
 	o.obj_integrity = (o.obj_integrity / o.max_integrity) * new_max_integrity
 	o.max_integrity = new_max_integrity
-	o.force *= strength_modifier
-	o.throwforce *= strength_modifier
+	if(!istype(o, /obj/item/melee/smith))//MONKESTATION ADDITION
+		o.force *= strength_modifier //MONKESTATION CHANGE
+		o.throwforce *= strength_modifier  //MONKESTATION CHANGE
 
 	if(!isitem(o))
 		return

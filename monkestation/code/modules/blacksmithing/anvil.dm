@@ -162,7 +162,7 @@
 		artifactchance = (1+ rand(1, 25)/2500)
 		artifactrolled = TRUE
 	var/artifact = max(prob(artifactchance), debug)
-	var/finalfailchance = outrightfailchance
+	var/finalfailchance = (outrightfailchance * workpiece_material[1].fail_multipler)
 	finalfailchance = max(0, finalfailchance / anvilquality) //lv 2 gives 20% less to fail, 3 30%, etc
 	if((currentsteps > 10 || (rng && prob(finalfailchance))) && !artifact)
 		to_chat(user, "<span class='warning'?You overwork the metal, causing it to turn into useless slag!</span>")
