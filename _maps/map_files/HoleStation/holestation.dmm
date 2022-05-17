@@ -3005,6 +3005,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iZ" = (
@@ -10340,6 +10341,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "Er" = (
