@@ -200,6 +200,7 @@
 					finisheditem.desc =  "It looks to be better than average."
 			workpiece_state = FALSE
 			finisheditem.set_custom_materials(workpiece_material)
+			finisheditem.set_smithing_vars(workpiece_material)
 			currentquality = anvilquality
 			stepsdone = ""
 			currentsteps = 0

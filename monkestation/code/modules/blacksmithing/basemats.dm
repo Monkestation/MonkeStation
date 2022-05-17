@@ -1,5 +1,15 @@
 //Place for all the material datums used because we overwrite alot of strength modifers also we add a few more variables ourselfs to these bad boys for future use like armours, blunt weapons, wealth, the sort
 
+/atom/proc/set_smithing_vars(var/list/materials)
+	for(var/x in materials)
+		var/datum/material/custom_material = x
+		custom_material.transfer_smithing_vars(src)
+
+/datum/material/proc/transfer_smithing_vars(obj/item/smithing/Object)
+	Object.blunt_mult = blunt_strength
+	Object.sharp_mult = sharp_strength
+	Object.wealth_mult = wealth_bonus
+
 /datum/material //all new variables declared here
 	//these are multipliers to quality for bonus don't go overboard
 	var/blunt_strength = 1

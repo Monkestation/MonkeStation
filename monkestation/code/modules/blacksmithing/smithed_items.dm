@@ -17,7 +17,6 @@
 	var/obj/item/finalitem
 	var/artifact = FALSE
 
-
 /obj/item/ingot
 	name = "ingot"
 	icon = 'monkestation/icons/obj/smith.dmi'
@@ -89,7 +88,7 @@
 
 
 /obj/item/smithing/attackby(obj/item/I, mob/user)
-	if(istype(I, finishingitem)
+	if(istype(I, finishingitem))
 		qdel(I)
 		startfinish()
 	else
