@@ -225,8 +225,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 100), \
-	new/datum/stack_recipe("sword handle", /obj/item/swordhandle, 2, time = 20), \
-	new/datum/stack_recipe("stick", /obj/item/stick, 1, time = 100=), \
+	new/datum/stack_recipe("stick", /obj/item/stick, 2, time = 30), \
+	new/datum/stack_recipe("sword handle", /obj/item/swordhandle, 5, time = 40), \
+	null, \
 	new/datum/stack_recipe_list("pews", list(
 		new /datum/stack_recipe("pew (middle)", /obj/structure/chair/pew, 3, one_per_turf = TRUE, on_floor = TRUE),
 		new /datum/stack_recipe("pew (left)", /obj/structure/chair/pew/left, 3, one_per_turf = TRUE, on_floor = TRUE),
