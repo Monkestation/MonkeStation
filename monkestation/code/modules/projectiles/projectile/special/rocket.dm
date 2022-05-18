@@ -31,7 +31,7 @@
 			to_chat(player, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			shake_camera(player, 15, 3)
 
-		new/obj/anomaly/singularity/spatial_rift(A.loc)
+		new/obj/spatial_rift(A.loc)
 		qdel(A)
 
 	return
