@@ -401,6 +401,12 @@
 	finalitem = finalforreal
 	..()
 
+
+/obj/item/smithing/anvilplate
+	name = "smited anvil plating"
+	desc = "A forged anvil plating used on an anvil to increase it's quality"
+	icon_state = "slag" //fix this i don't got me a sprite
+
 /obj/item/stick
 	name = "wooden rod"
 	desc = "It's a rod, suitable for use of a handle of a tool. Also could serve as a weapon, in a pinch."

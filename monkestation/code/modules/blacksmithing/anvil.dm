@@ -29,6 +29,8 @@
 #define RECIPE_GLAIVE "usfp" //upset shrink fold punch
 #define RECIPE_PIKE "ddbf" //draw draw bend fold
 
+#define RECIPE_ANVILPLATE "ddpdf" //draw draw punch draw fold
+
 /obj/structure/anvil
 	name = "anvil"
 	desc = "Base class of anvil. This shouldn't exist, but is useable."
@@ -65,13 +67,20 @@
 	RECIPE_KATANA = /obj/item/smithing/katanablade,
 	RECIPE_HALBERD = /obj/item/smithing/halberdhead,
 	RECIPE_GLAIVE = /obj/item/smithing/glaivehead,
-	RECIPE_PIKE = /obj/item/smithing/pikehead)
+	RECIPE_PIKE = /obj/item/smithing/pikehead,
+	RECIPE_ANVILPLATE = /obj/item/smithing/anvilplate)
 
 /obj/structure/anvil/Initialize()
 	..()
 	currentquality = anvilquality
 
 /obj/structure/anvil/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/smithing/anvilplate))
+		var/obj/item/smithing/update = I
+		var/update_quality = (update.quality * update.blunt_mult)/20
+		anvilquality += update_quality
+		to_chat(user, "You apply the anvil plate to the anvil increasing its quality by: [update_quality], the current anvil quality is: [anvilquality]")
+		qdel(update)
 	if(istype(I, /obj/item/ingot))
 		var/obj/item/ingot/notsword = I
 		if(workpiece_state)
@@ -102,6 +111,9 @@
 	default_unfasten_wrench(user, I, 5)
 	return TRUE
 
+/obj/structure/anvil/examine(mob/user)
+	. = ..()
+	. += "The quality of this anvil is [anvilquality]"
 
 /obj/structure/anvil/proc/do_shaping(mob/user, var/qualitychange)
 	currentquality += qualitychange
@@ -163,7 +175,7 @@
 		artifactrolled = TRUE
 	var/artifact = max(prob(artifactchance), debug)
 	var/finalfailchance = (outrightfailchance * workpiece_material[1].fail_multipler)
-	finalfailchance = max(0, finalfailchance / anvilquality) //lv 2 gives 20% less to fail, 3 30%, etc
+	finalfailchance = max(0, finalfailchance / (1 + anvilquality)) //lv 2 gives 20% less to fail, 3 30%, etc
 	if((currentsteps > 10 || (rng && prob(finalfailchance))) && !artifact)
 		to_chat(user, "<span class='warning'?You overwork the metal, causing it to turn into useless slag!</span>")
 		var/turf/T = get_turf(user)
