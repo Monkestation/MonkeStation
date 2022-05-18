@@ -63,7 +63,8 @@
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 7
-	cost = 5
+	cost = 10
+	minimum_players = 10
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
 
@@ -85,7 +86,8 @@
 	required_candidates = 1
 	weight = 2
 	delay = 1 MINUTES	// Prevents rule start while head is offstation.
-	cost = 20
+	cost = 40
+	minimum_players = 35
 	requirements = list(101,101,70,40,30,20,20,20,20,20)
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
@@ -159,5 +161,6 @@
 	required_candidates = 1
 	weight = 4
 	cost = 10
+	minimum_players = 15
 	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
