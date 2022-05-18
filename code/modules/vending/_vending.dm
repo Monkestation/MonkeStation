@@ -831,9 +831,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			flick(icon_deny, src)
 			vend_ready = TRUE
 			return
-			flick(icon_deny,src)
-			vend_ready = TRUE
-			return
 		var/datum/bank_account/account = C.registered_account
 		if(account.account_job && account.account_job.paycheck_department == payment_department)
 			price_to_use = max(round(price_to_use), 1) //No longer free, but signifigantly cheaper.
