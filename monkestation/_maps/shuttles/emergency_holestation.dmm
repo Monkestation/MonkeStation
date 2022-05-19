@@ -188,6 +188,7 @@
 "np" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/turf_decal/monke/siding/thinplating/dark,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "pF" = (
@@ -458,6 +459,7 @@
 "HX" = (
 /obj/machinery/door/airlock/glass_large,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Iv" = (
@@ -634,6 +636,18 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
+"Rs" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/door/airlock/survival_pod/glass,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "RB" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular{
@@ -705,6 +719,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Yu" = (
@@ -761,7 +776,7 @@ ZC
 CJ
 CJ
 CJ
-EB
+Rs
 CJ
 QT
 CJ
