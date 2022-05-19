@@ -147,6 +147,7 @@
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "lz" = (
@@ -457,9 +458,9 @@
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "HX" = (
-/obj/machinery/door/airlock/glass_large,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Iv" = (
@@ -714,12 +715,12 @@
 /turf/open/floor/carpet/green,
 /area/shuttle/escape)
 "Yd" = (
-/obj/machinery/door/airlock/glass_large,
 /obj/effect/turf_decal/monke/siding/wood,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Yu" = (
@@ -917,11 +918,11 @@ fa
 rU
 db
 Yy
-OH
+fa
 li
 DY
 Rj
-db
+fa
 pT
 Be
 uj
