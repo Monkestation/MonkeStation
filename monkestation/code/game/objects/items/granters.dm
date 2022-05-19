@@ -15,7 +15,9 @@
 					"How do we keep coming back to the same stations, even after they get entirely destroyed?",
 					"The AI is just a brain in a box...",
 					"This is all a simulation...",
-					"Why did Nanotrasen hire that confirmed infiltrator for another shift...")
+					"Why did Nanotrasen hire that confirmed infiltrator for another shift...",
+					"The year 25XX has arrived. A horde of ashwalkers. Are rushing from lavaland. Tiding rates skyrocketed! Space Station 13 is ruined! Therefore, Central Command called Mr. Nanotrasen's relative \"John\". For the massacre of the ashwalkers, John is a killer machine. Wipe out all 17 of the ashwalkers! However, in lavaland, there was a secret project in progress! A project to transform the deceased captain into an ultimate weapon!",
+					"Floor Pills unlock the secrets of the universe...")
 
 /obj/item/book/granter/martial/psychotic_brawl/onlearned(mob/living/carbon/user)
 	..()

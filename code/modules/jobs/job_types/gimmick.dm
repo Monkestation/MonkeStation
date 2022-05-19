@@ -127,7 +127,6 @@
 	var/chosen_drugs = pick(possible_drugs)
 	var/obj/item/storage/pill_bottle/I = new chosen_drugs(src)
 	H.equip_to_slot_or_del(I,ITEM_SLOT_BACKPACK)
-	junkie.teach(H)
 	ADD_TRAIT(H, TRAIT_APPRAISAL, JOB_TRAIT)
 
 
