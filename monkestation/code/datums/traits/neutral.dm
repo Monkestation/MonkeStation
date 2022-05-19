@@ -40,23 +40,3 @@
 		var/mob/living/carbon/human/gojira = quirk_holder
 		if(gojira.dna)
 			gojira.dna.add_mutation(GIGANTISM)
-
-/datum/quirk/fluffy_tongue
-	name = "Fluffy Tongue"
-	desc = "After spending to much time watching anime you have developed UwU speak."
-	value = 0
-
-/datum/quirk/fluffy_tongue/on_spawn()
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
-
-/datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
-	var/message = speech_args[SPEECH_MESSAGE]
-	if(message[1] != "*")
-		message = replacetext(message, "ne", "nye")
-		message = replacetext(message, "nu", "nyu")
-		message = replacetext(message, "na", "nya")
-		message = replacetext(message, "no", "nyo")
-		message = replacetext(message, "ove", "uv")
-		message = replacetext(message, "r", "w")
-		message = replacetext(message, "l", "w")
-	speech_args[SPEECH_MESSAGE] = message
