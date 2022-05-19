@@ -35,11 +35,13 @@
 	name = "Crossing the Horizon"
 	desc = "Someone submit an OSHA complaint about that CE!"
 	database_id = MEDAL_SINGULARITY_DEATH
+	reward = 1000
 
 /datum/award/achievement/misc/god_buster
 	name = "The Lord Dethroned"
 	desc = "You spared reality from the tyrants destructive reign! Someone is getting a holiday bonus."
 	database_id = MEDAL_GOD_BUSTER
+	reward = 2000
 
 /datum/award/achievement/misc/singularity_buster
 	name = "Scrungularity"
