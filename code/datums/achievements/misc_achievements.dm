@@ -36,9 +36,14 @@
 	desc = "Someone submit an OSHA complaint about that CE!"
 	database_id = MEDAL_SINGULARITY_DEATH
 
-/datum/award/achievement/misc/singularity_buster
+/datum/award/achievement/misc/god_buster
 	name = "The Lord Dethroned"
-	desc = "You spared the station from the tyrants destructive reign! Someone is getting a holiday bonus."
+	desc = "You spared reality from the tyrants destructive reign! Someone is getting a holiday bonus."
+	database_id = MEDAL_GOD_BUSTER
+
+/datum/award/achievement/misc/singularity_buster
+	name = "Scrungularity"
+	desc = "Wow you saved the station, well at least what is left. Someone is getting a holiday bonus."
 	database_id = MEDAL_SINGULARITY_BUSTER
 
 /datum/award/achievement/misc/cluwne
