@@ -47,7 +47,7 @@
 		new/obj/spatial_rift(A.loc)
 		qdel(A)
 
-	if(istype(A, /obj/eldritch/narsie))
+	if(istype(A, /obj/eldritch)) //This should allow Rat'Var and Nar'Sie to be nullified
 		var/mob/living/user = firer
 		user.client.give_award(/datum/award/achievement/misc/god_buster, user) //Good luck hitting it
 		user.emote("scream")
