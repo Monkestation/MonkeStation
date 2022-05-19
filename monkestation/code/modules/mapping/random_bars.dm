@@ -60,6 +60,26 @@
 	weight = 1
 	station_name = "Box Station"
 
+/datum/map_template/random_room/box_bloody_bar
+	name = "Box Station Bloody Bar"
+	room_id = "box_bloody_bar"
+	mappath = "monkestation/_maps/RandomRooms/_Bars/Box/bloody_bar.dmm"
+	centerspawner = FALSE
+	template_width = 15
+	template_height = 9
+	weight = 1
+	station_name = "Box Station"
+
+/datum/map_template/random_room/box_clockwork_bar
+	name = "Box Station Clockwork Bar"
+	room_id = "box_clockwork_bar"
+	mappath = "monkestation/_maps/RandomRooms/_Bars/Box/clockwork_bar.dmm"
+	centerspawner = FALSE
+	template_width = 15
+	template_height = 9
+	weight = 1
+	station_name = "Box Station"
+
 
 /// METASTATION BARS
 /datum/map_template/random_bars/meta_default_bar
@@ -102,6 +122,17 @@
 	weight = 1
 	station_name = "MetaStation"
 
+/datum/map_template/random_room/meta_magical_bar
+	name = "Metastation Wiz-Bar"
+	room_id = "meta_magical_bar"
+	mappath = "monkestation/_maps/RandomRooms/_Bars/Meta/magical_bar.dmm"
+	centerspawner = FALSE
+	template_height = 9
+	template_width = 9
+	weight = 1
+	station_name = "MetaStation"
+
+
 
 /// PUBBYSTATION BARS
 /datum/map_template/random_bars/pubby_default_bar
@@ -143,3 +174,4 @@
 	template_width = 18
 	weight = 1
 	station_name = "PubbyStation"
+
