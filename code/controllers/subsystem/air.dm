@@ -63,6 +63,10 @@ SUBSYSTEM_DEF(air)
 	var/excited_group_pressure_goal = 1
 
 	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
+	//MONKESTATION ADDITION
+	// If this is set to 0, monstermos won't process planet atmos
+	var/planet_equalize_enabled = 0
+	//MONKESTATION ADDITION END
 
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
