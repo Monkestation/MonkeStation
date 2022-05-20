@@ -236,7 +236,7 @@
 	weight = 3
 	cost = 30
 	minimum_players = 25
-	requirements = list(101,101,80,70,60,60,50,50,40,40)
+	requirements = list(101,101,101,101,50,40,30,30,30,30)
 	required_type = /mob/living/silicon/ai
 
 /datum/dynamic_ruleset/midround/malf/trim_candidates()
