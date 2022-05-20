@@ -223,7 +223,7 @@ SUBSYSTEM_DEF(zclear)
 						nullspaced_mob_names += " - [M.name]\n"
 						valid = TRUE
 				if(valid)
-					priority_announce("A mass casualty has occured on your nearest priority waypoint. You are reccomended to fly out and rescue the following personnel: \n[nullspaced_mob_names]", "Nanotrasen Long Range Sensors", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
+					priority_announce("A mass casualty has occured on your nearest priority waypoint. You are recommended to fly out and rescue the following personnel: \n[nullspaced_mob_names]", "Nanotrasen Long Range Sensors", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
 	cleardata.process_num ++
 
 /*
