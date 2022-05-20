@@ -167,10 +167,10 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
-	minimum_players = 10
+	minimum_players = 8
 	weight = 7
 	cost = 10
-	requirements = list(50,40,30,20,10,10,10,10,10,10)
+	requirements = list(20,20,20,20,20,20,20,20,20,20)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/autotraitor/acceptable(population = 0, threat = 0)
@@ -235,7 +235,7 @@
 	required_candidates = 1
 	weight = 3
 	cost = 30
-	minimum_players = 30
+	minimum_players = 25
 	requirements = list(101,101,80,70,60,60,50,50,40,40)
 	required_type = /mob/living/silicon/ai
 
@@ -282,12 +282,12 @@
 	antag_datum = /datum/antagonist/wizard
 	antag_flag = ROLE_WIZARD
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain", "Research Director") //RD doesn't believe in magic
-	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_enemies = list(2,2,1,1,1,1,1,1,1,1)
 	required_candidates = 1
 	weight = 1
 	cost = 20
-	minimum_players = 35
-	requirements = list(90,90,70,40,30,20,10,10,10,10)
+	minimum_players = 30
+	requirements = list(101,101,101,101,40,30,10,10,10,10)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
@@ -318,8 +318,8 @@
 	required_candidates = 3
 	weight = 5
 	cost = 20
-	minimum_players = 35
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	minimum_players = 30
+	requirements = list(101,101,101,101,101,40,30,20,10,10)
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
 	flags = HIGH_IMPACT_RULESET
@@ -361,7 +361,7 @@
 	required_candidates = 1
 	weight = 4
 	cost = 10
-	minimum_players = 40
+	minimum_players = 30
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 
@@ -384,7 +384,7 @@
 	required_candidates = 1
 	weight = 3
 	cost = 10
-	minimum_players = 40
+	minimum_players = 30
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	repeatable = TRUE
 	var/list/vents = list()
@@ -479,7 +479,7 @@
 	weight = 4
 	cost = 10
 	minimum_players = 20
-	requirements = list(101,101,101,80,60,50,30,20,10,10)
+	requirements = list(101,101,101,40,30,30,30,20,10,10)
 	repeatable = TRUE
 	var/datum/team/abductor_team/new_team
 

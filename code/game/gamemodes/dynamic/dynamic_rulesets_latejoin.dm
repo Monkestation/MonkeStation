@@ -64,8 +64,8 @@
 	required_candidates = 1
 	weight = 7
 	cost = 10
-	minimum_players = 10
-	requirements = list(40,30,20,10,10,10,10,10,10,10)
+	minimum_players = 8
+	requirements = list(101,20,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
 
 //////////////////////////////////////////////
@@ -162,5 +162,5 @@
 	weight = 4
 	cost = 10
 	minimum_players = 15
-	requirements = list(40,30,20,10,10,10,10,10,10,10)
+	requirements = list(101,101,20,20,10,10,10,10,10,10)
 	repeatable = TRUE

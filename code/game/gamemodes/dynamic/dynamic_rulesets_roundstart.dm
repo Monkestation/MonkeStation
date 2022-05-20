@@ -17,7 +17,7 @@
 	weight = 5
 	cost = 10	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
 	scaling_cost = 10
-	minimum_players = 10 //10, 20(30), 30(60), 40(100)
+	minimum_players = 8
 	requirements = list(101,10,10,10,10,10,10,10,10,10)
 	antag_cap = 1
 	var/autotraitor_cooldown = (15 MINUTES)
@@ -181,10 +181,10 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
-	minimum_players = 35
+	minimum_players = 30
 	weight = 2
-	cost = 50
-	requirements = list(90,90,70,40,30,20,10,10,10,10)
+	cost = 40
+	requirements = list(101,101,101,101,101,50,40,30,30,30)
 	var/list/roundstart_wizards = list()
 
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
@@ -225,10 +225,10 @@
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 2
-	minimum_players = 35
+	minimum_players = 30
 	weight = 3
-	cost = 20
-	requirements = list(100,90,80,60,40,30,10,10,10,10)
+	cost = 30
+	requirements = list(101,101,101,101,101,30,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = 4
 	var/datum/team/cult/main_cult
@@ -282,10 +282,10 @@
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a nukie getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 5
-	minimum_players = 35
+	minimum_players = 30
 	weight = 3
 	cost = 50
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	requirements = list(101,101,101,101,101,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
 	var/datum/team/nuclear/nuke_team
@@ -371,7 +371,7 @@
 	weight = 3
 	delay = 7 MINUTES
 	cost = 20
-	requirements = list(101,101,70,40,30,20,10,10,10,10)
+	requirements = list(101,101,101,101,101,20,10,10,10,10)
 	antag_cap = 3
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
@@ -449,7 +449,7 @@
 	antag_datum = null
 	restricted_roles = list()
 	required_candidates = 0
-	maximum_players = 5
+	maximum_players = 4
 	weight = 3
 	cost = 0
 	requirements = list(1,101,101,101,101,101,101,101,101,101)
@@ -471,10 +471,10 @@
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops
 	name = "Clown Ops"
-	minimum_players = 35
+	minimum_players = 30
 	antag_datum = /datum/antagonist/nukeop/clownop
 	antag_leader_datum = /datum/antagonist/nukeop/leader/clownop
-	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	requirements = list(101,101,101,101,101,40,30,20,10,10)
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops/pre_execute()
 	. = ..()
@@ -650,10 +650,10 @@
 	antag_datum = /datum/antagonist/servant_of_ratvar
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective","Head of Security", "Captain", "Chaplain", "Head of Personnel")
 	required_candidates = 4
-	minimum_players = 35
+	minimum_players = 30
 	weight = 3
-	cost = 50
-	requirements = list(100,90,80,70,60,50,30,30,30,30)
+	cost = 40
+	requirements = list(101,101,101,101,101,50,30,30,30,30)
 	flags = HIGH_IMPACT_RULESET
 	var/datum/team/clock_cult/main_cult
 	var/list/selected_servants = list()
