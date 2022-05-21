@@ -80,6 +80,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/execute()
+	cost = round(cost * 1.25) //Extra cost to the rule every time it rolls.
 	var/list/possible_candidates = list()
 	possible_candidates.Add(dead_players)
 	possible_candidates.Add(list_observers)

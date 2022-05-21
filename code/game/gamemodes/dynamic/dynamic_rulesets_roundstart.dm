@@ -17,7 +17,7 @@
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
-	cost = 8	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
+	cost = 7	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
 	scaling_cost = 12
 	minimum_players = 8
 	requirements = list(101,10,10,10,10,10,10,10,10,10)

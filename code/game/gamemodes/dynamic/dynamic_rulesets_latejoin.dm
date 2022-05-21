@@ -43,6 +43,7 @@
 	return ..()
 
 /datum/dynamic_ruleset/latejoin/execute()
+	cost = round(cost * 1.25) //Extra cost to the rule every time it rolls.
 	var/mob/M = pick(candidates)
 	assigned += M.mind
 	M.mind.special_role = antag_flag
@@ -63,9 +64,9 @@
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 7
-	cost = 10
+	cost = 8
 	minimum_players = 8
-	requirements = list(101,20,20,10,10,10,10,10,10,10)
+	requirements = list(101,30,20,20,20,20,20,10,10,10)
 	repeatable = TRUE
 
 //////////////////////////////////////////////
