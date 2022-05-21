@@ -2534,7 +2534,6 @@
 	pixel_x = -6;
 	pixel_y = -1
 	},
-/obj/item/areaeditor/blueprints,
 /obj/machinery/light,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
