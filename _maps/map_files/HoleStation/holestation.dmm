@@ -14486,6 +14486,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/telecomms/relay/preset/exploration,
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "Ol" = (
@@ -115802,7 +115803,7 @@ nt
 ce
 ly
 GW
-WO
+iH
 PF
 PF
 PF
@@ -116059,7 +116060,7 @@ mP
 Ov
 wa
 lg
-iH
+WO
 PF
 PF
 PF
