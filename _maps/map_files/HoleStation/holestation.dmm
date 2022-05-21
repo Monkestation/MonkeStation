@@ -673,6 +673,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "bT" = (
@@ -1010,11 +1011,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/item/door_remote/chief_medical_officer,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/blue/tile_side{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "cT" = (
@@ -8021,11 +8022,11 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/item/door_remote/chief_engineer,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/yellow/tile_side{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "wi" = (
@@ -8952,15 +8953,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
 	},
-/obj/item/door_remote/civillian{
-	pixel_y = 5
-	},
-/obj/item/door_remote/quartermaster,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "yX" = (
@@ -9576,6 +9574,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "AH" = (
@@ -10148,6 +10147,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "Ch" = (
@@ -14134,6 +14134,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
+"Nj" = (
+/obj/structure/railing,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/security/nuke_storage)
 "Nk" = (
 /obj/effect/turf_decal/tile/bar/tile_marquee,
 /obj/structure/cable/yellow{
@@ -16697,6 +16705,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "Un" = (
@@ -16844,7 +16853,6 @@
 /area/engine/engine_smes)
 "UG" = (
 /obj/machinery/airalarm/directional/west,
-/obj/item/door_remote/research_director,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -17845,7 +17853,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/item/door_remote/head_of_security,
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/red/tile_side{
 	dir = 4
@@ -114210,7 +114217,7 @@ xx
 xx
 xx
 Xu
-Ku
+Nj
 Zw
 KT
 IL
