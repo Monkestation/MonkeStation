@@ -309,6 +309,10 @@
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 10
 	},
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow{
+	icon_state = "0-10"
+	},
 /turf/open/floor/plating,
 /area/shuttle/exploration)
 "GM" = (
@@ -320,6 +324,15 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
+/area/shuttle/exploration)
+"GU" = (
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "5-8"
+	},
+/turf/open/floor/plating,
 /area/shuttle/exploration)
 "JM" = (
 /obj/effect/turf_decal/monke/siding/thinplating{
@@ -483,6 +496,10 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/shuttle/exploration)
 
@@ -626,7 +643,7 @@ Po
 Qv
 vG
 hV
-uQ
+GU
 TN
 vy
 "}
