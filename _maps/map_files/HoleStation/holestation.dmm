@@ -14463,10 +14463,13 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/captain)
 "OC" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/access/all/supply/general,
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Mining Dock Airlock";
+	req_access_txt = "48";
+	shuttledocked = 1
 	},
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
@@ -16998,7 +17001,6 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "VB" = (
-/obj/machinery/door/airlock/mining/glass,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -17008,8 +17010,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/supply/mining,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/mining{
+	req_access_txt = "48"
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
 "VC" = (
