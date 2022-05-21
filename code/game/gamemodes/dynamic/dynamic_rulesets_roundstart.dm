@@ -5,6 +5,8 @@
 //                                          //
 //////////////////////////////////////////////
 
+#define TRAITOR_COOLDOWN 10 MINUTES
+
 /datum/dynamic_ruleset/roundstart/traitor
 	name = "Traitors"
 	persistent = TRUE
@@ -15,17 +17,16 @@
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
-	cost = 10	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
-	scaling_cost = 10
+	cost = 8	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
+	scaling_cost = 12
 	minimum_players = 8
 	requirements = list(101,10,10,10,10,10,10,10,10,10)
 	antag_cap = 1
-	var/autotraitor_cooldown = (15 MINUTES)
 	COOLDOWN_DECLARE(autotraitor_cooldown_check)
 
 /datum/dynamic_ruleset/roundstart/traitor/pre_execute(population)
 	. = ..()
-	COOLDOWN_START(src, autotraitor_cooldown_check, autotraitor_cooldown)
+	COOLDOWN_START(src, autotraitor_cooldown_check, TRAITOR_COOLDOWN)
 	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_traitors)
 		var/mob/M = pick_n_take(candidates)
@@ -36,9 +37,11 @@
 
 /datum/dynamic_ruleset/roundstart/traitor/rule_process()
 	if (COOLDOWN_FINISHED(src, autotraitor_cooldown_check))
-		COOLDOWN_START(src, autotraitor_cooldown_check, autotraitor_cooldown)
+		COOLDOWN_START(src, autotraitor_cooldown_check, TRAITOR_COOLDOWN)
 		log_game("DYNAMIC: Checking if we can turn someone into a traitor.")
 		mode.picking_specific_rule(/datum/dynamic_ruleset/midround/autotraitor)
+
+#undef TRAITOR_COOLDOWN
 
 //////////////////////////////////////////
 //                                      //
