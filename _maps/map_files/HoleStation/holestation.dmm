@@ -13534,10 +13534,10 @@
 	},
 /area/crew_quarters/heads/chief)
 "Kx" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+/obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/machinery/camera/autoname{
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 8
 	},
 /turf/open/floor/plating,
