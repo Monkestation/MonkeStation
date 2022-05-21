@@ -278,6 +278,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/survival_pod/glass,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "tY" = (
@@ -436,6 +437,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/survival_pod/glass,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "EG" = (
@@ -622,6 +624,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/survival_pod/glass,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "Rc" = (
@@ -648,6 +651,7 @@
 	},
 /obj/machinery/door/airlock/survival_pod/glass,
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "RB" = (
