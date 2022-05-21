@@ -857,6 +857,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"cu" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "cw" = (
 /obj/structure/chair/office{
 	dir = 4
@@ -6398,6 +6405,9 @@
 /obj/structure/chair,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -109856,7 +109866,7 @@ Wr
 Wr
 Wr
 zc
-OR
+cu
 Iz
 Qq
 wy
