@@ -7756,10 +7756,6 @@
 /area/chapel/main)
 "vA" = (
 /obj/structure/table/wood/fancy,
-/obj/item/nullrod{
-	pixel_x = 4;
-	pixel_y = 4
-	},
 /obj/item/organ/heart,
 /obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/wood,
@@ -12196,10 +12192,9 @@
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
 "HI" = (
-/obj/machinery/door/airlock/medical{
-	name = "Morgue";
-	req_access_txt = "6"
-	},
+/obj/machinery/door/airlock/grunge,
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "HJ" = (
