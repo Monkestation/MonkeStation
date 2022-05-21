@@ -18441,12 +18441,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"Xm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on{
-	dir = 1
-	},
-/turf/open/floor/engine/airless/light,
-/area/space/nearstation)
 "Xn" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -114973,7 +114967,7 @@ Sg
 Ud
 kQ
 Ud
-Xm
+Ud
 qz
 uH
 qz
