@@ -4822,15 +4822,16 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "ob" = (
-/obj/machinery/door/airlock/research/glass,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/research{
+	name = "Research Division Access";
+	req_access_txt = "47"
+	},
 /turf/open/floor/plasteel,
 /area/science/lab)
 "oc" = (
@@ -5872,23 +5873,24 @@
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
 "rm" = (
-/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "47"
+	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "rn" = (
-/obj/machinery/door/airlock,
 /obj/effect/turf_decal/monke/siding/thinplating{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/mapping_helpers/airlock/access/all/service/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/service)
 "ro" = (
@@ -10826,7 +10828,6 @@
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage)
 "FK" = (
-/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -10836,8 +10837,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "47"
+	},
 /turf/open/floor/plating,
 /area/maintenance/central)
 "FL" = (
@@ -11619,12 +11621,10 @@
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
 "HI" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Morgue"
+/obj/machinery/door/airlock/medical{
+	name = "Morgue";
+	req_access_txt = "6"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
-/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
-/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "HJ" = (
@@ -12912,14 +12912,14 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "LB" = (
-/obj/machinery/door/airlock/grunge,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/morgue,
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/effect/turf_decal/monke/siding/thinplating/light,
+/obj/machinery/door/airlock/medical{
+	name = "Morgue";
+	req_access_txt = "6"
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "LC" = (
@@ -13719,7 +13719,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "NZ" = (
-/obj/machinery/door/airlock/research/glass,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -13729,8 +13728,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/research{
+	name = "Research Division Access";
+	req_access_txt = "47"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Oa" = (
@@ -14455,9 +14456,10 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "Qc" = (
-/obj/machinery/door/airlock/research/glass,
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
+/obj/machinery/door/airlock/research{
+	name = "Research Division Access";
+	req_access_txt = "47"
+	},
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Qd" = (
@@ -16577,10 +16579,11 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "Wj" = (
-/obj/machinery/door/airlock/research/glass,
-/obj/effect/mapping_helpers/airlock/access/all/science/general,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/structure/railing/corner,
+/obj/machinery/door/airlock/research{
+	name = "Research Division Access";
+	req_access_txt = "47"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Wl" = (
