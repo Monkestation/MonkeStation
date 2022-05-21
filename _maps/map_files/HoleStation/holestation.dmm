@@ -2948,6 +2948,14 @@
 	},
 /turf/open/floor/grass,
 /area/library/lounge)
+"iH" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/telecomms/relay/preset/station,
+/turf/open/floor/engine,
+/area/engine/engine_core)
 "iI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4059,6 +4067,13 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"lV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/effect/landmark/start/emt,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
 "lW" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4360,6 +4375,7 @@
 	},
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/stripes/line,
+/obj/effect/landmark/start/chief_engineer,
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "mQ" = (
@@ -6189,6 +6205,10 @@
 "sl" = (
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"sm" = (
+/obj/effect/landmark/start/quartermaster,
+/turf/open/floor/plasteel/techmaint,
+/area/quartermaster/storage)
 "sn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -7655,6 +7675,10 @@
 "wB" = (
 /turf/open/openspace,
 /area/ai_monitored/turret_protected/ai)
+"wC" = (
+/obj/effect/landmark/start/brig_phys,
+/turf/open/floor/plasteel,
+/area/security/main)
 "wD" = (
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -9914,6 +9938,11 @@
 "Dg" = (
 /turf/open/floor/plating,
 /area/security/prison)
+"Dh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/start/janitor,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "Di" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -10356,6 +10385,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
+/obj/effect/landmark/start/research_director,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "Et" = (
@@ -11562,6 +11592,19 @@
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/wood,
 /area/chapel/main)
+"HF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/start/lawyer,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "HG" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -15925,6 +15968,7 @@
 /area/crew_quarters/kitchen/coldroom)
 "Uu" = (
 /obj/machinery/holopad,
+/obj/effect/landmark/start/chief_medical_officer,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "Uv" = (
@@ -16399,6 +16443,12 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
+"VR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/start/head_of_security,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "VT" = (
 /obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plating,
@@ -16649,6 +16699,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/effect/landmark/start/geneticist,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "WD" = (
@@ -17491,6 +17542,7 @@
 /area/engine/engine_room)
 "Zb" = (
 /obj/effect/turf_decal/bot_red,
+/obj/effect/landmark/start/roboticist,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "Zc" = (
@@ -44421,7 +44473,7 @@ JK
 MB
 JR
 BP
-CL
+VR
 Yw
 CL
 uW
@@ -47237,7 +47289,7 @@ LL
 LL
 Yo
 cj
-CI
+HF
 Cj
 Sr
 ST
@@ -49288,7 +49340,7 @@ nZ
 MX
 Oi
 Vl
-Vl
+sm
 bb
 Vl
 Ru
@@ -53917,7 +53969,7 @@ RW
 kz
 cY
 YU
-Vk
+lV
 RW
 FP
 Xq
@@ -54453,7 +54505,7 @@ ig
 Nx
 JB
 io
-Sz
+Dh
 Sz
 ch
 JB
@@ -109694,7 +109746,7 @@ qy
 Iz
 XU
 aT
-zW
+wC
 jt
 yS
 sA
@@ -115112,7 +115164,7 @@ mP
 Ov
 wa
 lg
-WO
+iH
 PF
 PF
 PF
