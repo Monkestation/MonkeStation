@@ -1904,6 +1904,9 @@
 "fn" = (
 /obj/effect/turf_decal/monke/siding/thinplating/dark,
 /obj/effect/turf_decal/stripes/red/line,
+/obj/machinery/computer/rdconsole/robotics{
+	dir = 1
+	},
 /obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
