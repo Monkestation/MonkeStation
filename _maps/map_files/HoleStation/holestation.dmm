@@ -935,6 +935,9 @@
 /area/hallway/primary/central)
 "cI" = (
 /obj/structure/closet/secure_closet/engineering_chief,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -1740,6 +1743,9 @@
 /obj/machinery/computer/station_alert,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -3694,6 +3700,9 @@
 "kq" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/reagent_dispensers/watertank,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/central)
 "kr" = (
@@ -3914,6 +3923,9 @@
 /area/crew_quarters/heads/hos)
 "kW" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "kX" = (
@@ -6067,6 +6079,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "qN" = (
@@ -7234,6 +7249,9 @@
 /obj/item/stack/sheet/mineral/copper/five,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/glass/fifty,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
 "ui" = (
@@ -14926,6 +14944,9 @@
 	},
 /obj/machinery/camera/autoname,
 /obj/effect/turf_decal/tile/neutral,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "Ps" = (
@@ -17743,6 +17764,21 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"Xk" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -45053,7 +45089,7 @@ gT
 GB
 Pq
 bV
-CI
+Xk
 Cj
 KK
 Kj
