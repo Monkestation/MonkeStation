@@ -16463,7 +16463,6 @@
 	},
 /obj/effect/turf_decal/tile/blue/tile_marquee,
 /obj/item/wrench/medical,
-/obj/item/card/id/departmental_budget/med,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "TZ" = (

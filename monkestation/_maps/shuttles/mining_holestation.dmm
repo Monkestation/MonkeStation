@@ -15,34 +15,7 @@
 /obj/machinery/door/airlock/survival_pod/glass,
 /turf/open/floor/pod,
 /area/shuttle/mining)
-"l" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 8
-	},
-/obj/structure/closet/crate,
-/turf/open/floor/pod,
-/area/shuttle/mining)
-"t" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/machinery/light/small,
-/obj/structure/ore_box,
-/turf/open/floor/pod,
-/area/shuttle/mining)
-"u" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/pod,
-/area/shuttle/mining)
-"N" = (
-/turf/open/floor/pod,
-/area/shuttle/mining)
-"P" = (
+"k" = (
 /obj/structure/window/reinforced/survival_pod{
 	dir = 8
 	},
@@ -51,22 +24,7 @@
 	},
 /turf/open/floor/pod,
 /area/shuttle/mining)
-"T" = (
-/obj/structure/window/reinforced/survival_pod{
-	dir = 4
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 1
-	},
-/obj/structure/window/reinforced/survival_pod{
-	dir = 5
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 8
-	},
-/turf/open/floor/pod,
-/area/shuttle/mining)
-"W" = (
+"n" = (
 /obj/structure/window/reinforced/survival_pod{
 	dir = 8
 	},
@@ -81,6 +39,48 @@
 	},
 /turf/open/floor/pod,
 /area/shuttle/mining)
+"o" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"u" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/structure/ore_box,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"w" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 5
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"N" = (
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"W" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/pod,
+/area/shuttle/mining)
 "Y" = (
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
@@ -90,9 +90,9 @@
 /area/shuttle/mining)
 
 (1,1,1) = {"
+n
+k
 W
-P
-l
 a
 "}
 (2,1,1) = {"
@@ -102,8 +102,8 @@ N
 b
 "}
 (3,1,1) = {"
-T
+w
+o
 u
-t
 a
 "}
