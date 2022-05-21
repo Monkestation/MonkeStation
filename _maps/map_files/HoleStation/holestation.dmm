@@ -17188,10 +17188,10 @@
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
 "VG" = (
-/obj/structure/showcase/machinery/cloning_pod,
 /obj/effect/turf_decal/monke/siding/thinplating/dark{
 	dir = 4
 	},
+/obj/machinery/clonepod/prefilled,
 /turf/open/floor/plating,
 /area/medical/morgue)
 "VH" = (
