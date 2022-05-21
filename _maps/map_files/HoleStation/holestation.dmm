@@ -9702,7 +9702,6 @@
 /area/construction/mining/aux_base)
 "AY" = (
 /obj/structure/table,
-/obj/item/card/id/departmental_budget/eng,
 /obj/machinery/light{
 	dir = 4
 	},
