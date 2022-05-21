@@ -45,7 +45,8 @@
 /turf/open/floor/carpet/purple,
 /area/shuttle/escape)
 "fa" = (
-/obj/effect/spawner/structure/window/survival_pod,
+/obj/structure/grille,
+/obj/structure/window/shuttle/survival_pod,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ga" = (
