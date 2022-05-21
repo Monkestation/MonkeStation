@@ -447,6 +447,12 @@
 	},
 /turf/open/openspace/airless,
 /area/space)
+"bm" = (
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/turf/open/openspace,
+/area/engine/engine_room)
 "bn" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -4601,6 +4607,15 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mE" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/autoname,
+/turf/open/openspace,
+/area/engine/engine_room)
 "mF" = (
 /obj/machinery/bookbinder,
 /obj/effect/turf_decal/monke/siding/wood{
@@ -8391,6 +8406,14 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plasteel/techmaint,
 /area/construction/mining/aux_base)
+"xq" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing,
+/obj/machinery/camera/autoname{
+	dir = 6
+	},
+/turf/open/openspace,
+/area/engine/engine_room)
 "xr" = (
 /obj/machinery/light{
 	dir = 8
@@ -8896,6 +8919,12 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"yP" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/openspace,
+/area/engine/engine_room)
 "yQ" = (
 /obj/structure/railing{
 	dir = 1
@@ -114517,7 +114546,7 @@ Ud
 Ud
 Ud
 qz
-dR
+mE
 PF
 PF
 PF
@@ -114528,7 +114557,7 @@ lf
 zy
 zy
 zy
-PF
+yP
 qz
 Ud
 Ud
@@ -117601,7 +117630,7 @@ gi
 gi
 ZF
 qz
-yb
+xq
 PF
 PF
 PF
@@ -117612,7 +117641,7 @@ tF
 Go
 yh
 HO
-PF
+bm
 qz
 Ud
 Ud
