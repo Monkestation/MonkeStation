@@ -18204,7 +18204,14 @@
 /obj/effect/turf_decal/monke/siding/wood{
 	dir = 4
 	},
-/obj/item/card/id/departmental_budget/car,
+/obj/item/stamp{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/obj/item/stamp/denied{
+	pixel_x = -8;
+	pixel_y = -2
+	},
 /turf/open/floor/wood,
 /area/quartermaster/storage)
 "YA" = (
