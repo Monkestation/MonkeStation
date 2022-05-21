@@ -382,6 +382,9 @@
 /obj/effect/turf_decal/monke/siding/wood{
 	dir = 10
 	},
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "be" = (
@@ -758,6 +761,12 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engine_room)
+"cc" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/library)
 "cd" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -2029,6 +2038,9 @@
 "fz" = (
 /obj/structure/bookcase/random/adult,
 /obj/machinery/camera/autoname,
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
 /turf/open/floor/wood,
 /area/library/lounge)
 "fA" = (
@@ -3449,6 +3461,9 @@
 /obj/structure/bed/dogbed/ian,
 /obj/effect/turf_decal/monke/siding/wood,
 /mob/living/simple_animal/pet/dog/corgi/Ian,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
 /turf/open/floor/grass,
 /area/crew_quarters/heads/hop)
 "js" = (
@@ -4809,6 +4824,9 @@
 	},
 /area/engine/engine_smes)
 "mT" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/construction/mining/aux_base)
 "mU" = (
@@ -5352,6 +5370,9 @@
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/cult,
 /area/library)
 "ok" = (
@@ -6063,6 +6084,9 @@
 /obj/effect/turf_decal/tile/bar/tile_marquee,
 /obj/machinery/camera/autoname{
 	dir = 5
+	},
+/obj/machinery/newscaster{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
@@ -15691,6 +15715,12 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"PT" = (
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "PU" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/yellow{
@@ -18075,6 +18105,9 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "Wq" = (
+/obj/machinery/newscaster{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/science/research)
 "Wr" = (
@@ -18677,6 +18710,9 @@
 /obj/effect/turf_decal/monke/siding/thinplating{
 	dir = 8
 	},
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/main)
 "XV" = (
@@ -18934,6 +18970,9 @@
 	},
 /obj/item/storage/lockbox/loyalty,
 /obj/item/grenade/barrier,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "YG" = (
@@ -110320,7 +110359,7 @@ hr
 BK
 ZW
 gG
-hr
+PT
 YS
 Wr
 Wr
@@ -121358,7 +121397,7 @@ FU
 FU
 Bk
 fB
-fB
+cc
 Co
 cq
 Fs
