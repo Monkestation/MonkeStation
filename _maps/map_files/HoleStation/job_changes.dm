@@ -40,7 +40,7 @@
 	spawn_positions = 0
 
 /datum/job/janitor
-	..()
+	. = ..()
 	MAP_JOB_CHECK
 	total_positions = 0
 	spawn_positions = 0
