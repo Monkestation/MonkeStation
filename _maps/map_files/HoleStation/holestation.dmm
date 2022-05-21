@@ -17855,10 +17855,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"VM" = (
-/obj/machinery/power/apc/auto_name/east,
-/turf/closed/wall/r_wall,
-/area/maintenance/port/aft)
 "VN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -113698,7 +113694,7 @@ LW
 LW
 LW
 ay
-VM
+ay
 ay
 ay
 rj
