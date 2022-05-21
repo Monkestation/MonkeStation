@@ -2103,7 +2103,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "gd" = (
@@ -7118,7 +7117,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "tY" = (
-/obj/effect/turf_decal/bot/right,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "tZ" = (
@@ -10378,7 +10378,6 @@
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "Dj" = (
@@ -10709,8 +10708,8 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/department/science)
 "Ee" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /obj/machinery/camera/autoname,
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "Ef" = (
@@ -11681,15 +11680,10 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "GH" = (
-/obj/effect/turf_decal/box/white,
-/obj/effect/turf_decal/arrows/white{
-	color = "#0000FF";
-	pixel_y = 15
+/obj/machinery/computer/atmos_control/tank/oxygen_tank{
+	dir = 8
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/atmos)
 "GI" = (
 /obj/effect/turf_decal/stripes/line,
@@ -14103,9 +14097,7 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay)
 "Nu" = (
-/obj/effect/turf_decal/box/white{
-	color = "#EFB341"
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "Nv" = (
@@ -14707,7 +14699,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
 "Pa" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/hidden{
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
 	dir = 1
 	},
 /turf/open/floor/engine,
@@ -15054,7 +15046,8 @@
 	},
 /area/maintenance/port/aft)
 "PS" = (
-/obj/effect/turf_decal/bot/left,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "PU" = (
@@ -15189,11 +15182,11 @@
 /turf/open/floor/mineral/plastitanium/airless,
 /area/space/nearstation)
 "Qp" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/computer/atmos_control/tank/nitrogen_tank{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/atmos)
 "Qq" = (
 /obj/machinery/rnd/production/techfab/department/security,
@@ -17647,10 +17640,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "Xl" = (
-/obj/effect/turf_decal/box/white{
-	color = "#52B4E9"
+/obj/machinery/computer/atmos_control/tank/air_tank{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/engine/atmos)
 "Xm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/on{
@@ -18062,7 +18055,6 @@
 	icon_state = "0-1"
 	},
 /obj/machinery/power/apc/auto_name/south,
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "Yz" = (
@@ -18398,13 +18390,9 @@
 /turf/open/openspace,
 /area/engine/engine_room)
 "Zs" = (
-/obj/effect/turf_decal/box/white{
-	color = "#9FED58"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plating,
 /area/engine/atmos)
 "Zt" = (
 /turf/closed/wall,
@@ -51908,7 +51896,7 @@ ZM
 ZM
 ZM
 aA
-ZM
+Zs
 ZM
 yI
 ZM
@@ -52157,15 +52145,15 @@ Ht
 Cj
 HA
 qf
-XO
+GH
 pr
 Dj
 UD
-Dj
+Qp
 jq
 dc
 eM
-CY
+Xl
 tU
 dc
 eM
@@ -52687,8 +52675,8 @@ XO
 Gi
 bn
 tY
-Xl
-PS
+tY
+Nu
 bn
 dA
 HA
@@ -52943,9 +52931,9 @@ IA
 Qm
 lh
 rs
-Zs
-Qp
-GH
+dl
+dl
+dl
 dl
 Yy
 HA
@@ -53202,7 +53190,7 @@ FT
 eU
 PS
 Nu
-tY
+Nu
 bn
 gc
 HA
