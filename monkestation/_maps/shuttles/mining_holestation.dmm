@@ -13,6 +13,7 @@
 	width = 3
 	},
 /obj/machinery/door/airlock/survival_pod/glass,
+/obj/structure/fans/tiny,
 /turf/open/floor/pod,
 /area/shuttle/mining)
 "k" = (

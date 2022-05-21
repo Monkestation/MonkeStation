@@ -613,6 +613,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engine_core)
+"bO" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/tcommsat/server)
 "bP" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
@@ -2006,6 +2012,12 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
+"fN" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/tcommsat/server)
 "fO" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2969,6 +2981,9 @@
 "in" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
@@ -4531,11 +4546,12 @@
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "mG" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+/obj/machinery/power/smes{
+	charge = 5e+006
 	},
-/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "mH" = (
@@ -5501,6 +5517,9 @@
 /area/engine/atmos)
 "ps" = (
 /obj/machinery/door/window/westleft,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "pt" = (
@@ -8085,11 +8104,12 @@
 /turf/open/openspace,
 /area/maintenance/central/secondary)
 "wJ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "wL" = (
@@ -14471,6 +14491,7 @@
 	req_access_txt = "48";
 	shuttledocked = 1
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "OD" = (
@@ -15606,6 +15627,10 @@
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "Rz" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "RA" = (
@@ -15858,6 +15883,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"Sj" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/telecomms,
+/area/tcommsat/server)
 "Sk" = (
 /obj/structure/window/spawner/west,
 /obj/structure/table,
@@ -49563,9 +49595,9 @@ IU
 IU
 IU
 pW
-cz
-cz
-cz
+Sj
+fN
+bO
 cz
 sP
 rl
