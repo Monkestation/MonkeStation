@@ -5602,6 +5602,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "pv" = (
