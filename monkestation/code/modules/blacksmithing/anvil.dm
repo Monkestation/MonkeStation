@@ -258,7 +258,7 @@
 	custom_materials = list(/datum/material/bronze=8000)
 	icon_state = "ratvaranvil"
 	anvilquality = -0.5
-	itemqualitymax = 2
+
 
 /obj/structure/anvil/obtainable/sandstone
 	name = "sandstone brick anvil"
@@ -266,20 +266,19 @@
 	custom_materials = list(/obj/item/stack/sheet/mineral/sandstone=8000)
 	icon_state = "sandvil"
 	anvilquality = -1
-	itemqualitymax = 2
+
 
 /obj/structure/anvil/obtainable/basalt
 	name = "basalt brick anvil"
 	desc = "A big block of basalt. Useable as an anvil, better than sandstone. Igneous!"
 	icon_state = "sandvilnoir"
 	anvilquality = -0.5
-	itemqualitymax = 4
+
 
 /obj/structure/anvil/obtainable/basic
 	name = "anvil"
 	desc = "An anvil. It's got wheels bolted to the bottom."
 	anvilquality = 0
-	itemqualitymax = 6
 
 /obj/structure/anvil/obtainable/ratvar
 	name = "brass anvil"
@@ -287,7 +286,6 @@
 	custom_materials = list(/datum/material/bronze=8000)
 	icon_state = "ratvaranvil"
 	anvilquality = 1
-	itemqualitymax = 8
 
 /obj/structure/anvil/obtainable/ratvar/attackby(obj/item/I, mob/user)
 	if(is_servant_of_ratvar(user))
@@ -302,7 +300,6 @@
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "evil"
 	anvilquality = 1
-	itemqualitymax = 8
 
 /obj/structure/anvil/obtainable/narsie/attackby(obj/item/I, mob/user)
 	if(iscultist(user))
