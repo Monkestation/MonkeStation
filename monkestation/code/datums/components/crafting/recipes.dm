@@ -146,8 +146,8 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
 	category = CAT_SMITH
 
-/datum/crafting_recipe/swordhandle
-	name = "Stick"
+/datum/crafting_recipe/stick
+	name = "Wooden Rod"
 	result = /obj/item/stick
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
 	category = CAT_SMITH
