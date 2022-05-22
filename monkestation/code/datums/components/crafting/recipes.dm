@@ -62,7 +62,7 @@
 	time = 5 SECONDS
 	category = CAT_ROBOT
 
-
+//SMITHING RECIPES
 /datum/crafting_recipe/furnace
 	name = "Sandstone Furnace"
 	result = /obj/structure/furnace
@@ -71,24 +71,14 @@
 	/obj/item/stack/sheet/iron = 4,
 	/obj/item/stack/rods = 2)
 	tools = list(TOOL_CROWBAR)
-	category = CAT_MISC
+	category = CAT_SMITH
 
-/datum/crafting_recipe/tableanvil
-	name = "Table Anvil"
-	result = /obj/structure/anvil/obtainable/table
-	time = 300
-	reqs = list(/obj/item/stack/sheet/iron = 4,
-		        /obj/item/stack/rods = 2)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
-	category = CAT_MISC
-
-/datum/crafting_recipe/sandvil
-	name = "Sandstone Anvil"
-	result = /obj/structure/anvil/obtainable/sandstone
-	time = 300
-	reqs = list(/obj/item/stack/sheet/mineral/sandstone = 24)
+/datum/crafting_recipe/clock_furnace
+	name = "Clockwork Furnace"
+	result = /obj/structure/furnace/infinite/ratvar
+	reqs = list(/obj/item/stack/tile/bronze = 10)
 	tools = list(TOOL_CROWBAR)
-	category = CAT_MISC
+	category = CAT_SMITH
 
 /datum/crafting_recipe/basaltblock
 	name = "Sintered Basalt Block"
@@ -96,15 +86,7 @@
 	time = 200
 	reqs = list(/obj/item/stack/ore/glass/basalt = 50)
 	tools = list(TOOL_WELDER)
-	category = CAT_MISC
-
-/datum/crafting_recipe/basaltanvil
-	name = "Basalt Anvil"
-	result = /obj/structure/anvil/obtainable/basalt
-	time = 200
-	reqs = list(/obj/item/basaltblock = 5)
-	tools = list(TOOL_CROWBAR)
-	category = CAT_MISC
+	category = CAT_SMITH
 
 /datum/crafting_recipe/twinsheath
 	name = "Twin Sword Sheath"
@@ -115,4 +97,149 @@
 	time = 70
 	category = CAT_CLOTHING
 
+//anvils
+/datum/crafting_recipe/tableanvil
+	name = "Table Anvil"
+	result = /obj/structure/anvil/obtainable/table
+	time = 300
+	reqs = list(/obj/item/stack/sheet/iron = 4,
+		        /obj/item/stack/rods = 2)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	category = CAT_SMITH
 
+/datum/crafting_recipe/sandvil
+	name = "Sandstone Anvil"
+	result = /obj/structure/anvil/obtainable/sandstone
+	time = 300
+	reqs = list(/obj/item/stack/sheet/mineral/sandstone = 24)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/basaltanvil
+	name = "Basalt Anvil"
+	result = /obj/structure/anvil/obtainable/basalt
+	time = 200
+	reqs = list(/obj/item/basaltblock = 5)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/clockanvil
+	name = "Clockwork Anvil"
+	result = /obj/structure/anvil/obtainable/ratvar
+	time = 200
+	reqs = list(/obj/item/stack/tile/bronze = 10)
+	tools = list(TOOL_CROWBAR)
+	category = CAT_SMITH
+
+//misc
+/datum/crafting_recipe/clockhammer
+	name = "Brass Smith's Hammer"
+	result = /obj/item/melee/smith/hammer/ratvar
+	time = 30
+	reqs = list(/obj/item/stack/tile/bronze = 6,
+				/obj/item/stick = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/swordhandle
+	name = "Sword Handle"
+	result = /obj/item/swordhandle
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/swordhandle
+	name = "Stick"
+	result = /obj/item/stick
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	category = CAT_SMITH
+
+//ingots
+/datum/crafting_recipe/ingot_iron
+	name  = "Iron Ingot"
+	result = /obj/item/ingot/iron
+	time = 15
+	reqs = list(/obj/item/stack/sheet/iron = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_diamond
+	name  = "Diamond Ingot"
+	result = /obj/item/ingot/diamond
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/diamond = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_uranium
+	name  = "Uranium Ingot"
+	result = /obj/item/ingot/uranium
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/uranium = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_plasma
+	name  = "Plasma Ingot"
+	result = /obj/item/ingot/plasma
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/plasma = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_copper
+	name  = "Copper Ingot"
+	result = /obj/item/ingot/copper
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/copper = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_gold
+	name  = "Gold Ingot"
+	result = /obj/item/ingot/gold
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/gold = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_silver
+	name  = "Silver Ingot"
+	result = /obj/item/ingot/silver
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/silver = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_bananium
+	name  = "Hilarious Ingot"
+	result = /obj/item/ingot/bananium
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/bananium = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_titanium
+	name  = "Titanium Ingot"
+	result = /obj/item/ingot/titanium
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/titanium = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_adamantine
+	name  = "Adamant Ingot"
+	result = /obj/item/ingot/adamantine
+	time = 15
+	reqs = list(/obj/item/stack/sheet/mineral/adamantine = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_cult
+	name  = "Runed-Metal Ingot"
+	result = /obj/item/ingot/cult
+	time = 15
+	reqs = list(/obj/item/stack/sheet/runed_metal = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_bronze
+	name  = "Brass Ingot"
+	result = /obj/item/ingot/bronze
+	time = 15
+	reqs = list(/obj/item/stack/tile/brass = 1)
+	category = CAT_SMITH
+
+/datum/crafting_recipe/ingot_ratvar
+	name  = "Bronze Ingot"
+	result = /obj/item/ingot/bronze/ratvar
+	time = 15
+	reqs = list(/obj/item/stack/tile/bronze = 1)
+	category = CAT_SMITH

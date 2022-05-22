@@ -97,6 +97,7 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK "Drinks"
+#define CAT_SMITH "Smithing" //MONKESTATION ADDITION
 
 
 // rcd buildtype defines

@@ -103,7 +103,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("floodlight frame", /obj/structure/floodlight_frame, 5, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("shower frame", /obj/structure/showerframe, 2, time = 2 SECONDS), \
 	new/datum/stack_recipe("sink frame", /obj/structure/sinkframe, 2, time = 2 SECONDS), \
-	new/datum/stack_recipe("iron ingot", /obj/item/ingot/iron, 6, time = 100), \
 ))
 
 /obj/item/stack/sheet/iron
@@ -225,8 +224,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("loom", /obj/structure/loom, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("mortar", /obj/item/reagent_containers/glass/mortar, 3), \
 	new/datum/stack_recipe("firebrand", /obj/item/match/firebrand, 2, time = 100), \
-	new/datum/stack_recipe("stick", /obj/item/stick, 2, time = 30), \
-	new/datum/stack_recipe("sword handle", /obj/item/swordhandle, 5, time = 40), \
 	null, \
 	new/datum/stack_recipe_list("pews", list(
 		new /datum/stack_recipe("pew (middle)", /obj/structure/chair/pew, 3, one_per_turf = TRUE, on_floor = TRUE),
@@ -603,10 +600,6 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("brass skewer", /obj/structure/destructible/clockwork/trap/skewer, 12, time=40, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("brass flipper", /obj/structure/destructible/clockwork/trap/flipper, 10, time=40, one_per_turf = TRUE, on_floor = TRUE), \
-	//MONKESTATION ADDITION START
-	new/datum/stack_recipe("brass smith's hammer", /obj/item/melee/smith/hammer/ratvar, 6), \
-	new/datum/stack_recipe("brass ingot", /obj/item/ingot/bronze/ratvar, 6, time = 100), \
-	//MONKESTATION ADDITION END
 ))
 
 /obj/item/stack/tile/brass
@@ -667,12 +660,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	new/datum/stack_recipe("bronze boots", /obj/item/clothing/shoes/bronze), \
 	null,
 	new/datum/stack_recipe("bronze chair", /obj/structure/chair/bronze, 1, time = 0, one_per_turf = TRUE, on_floor = TRUE), \
-	//MONKESTATION ADDITON START
-	new/datum/stack_recipe("bronze anvil",/obj/structure/anvil/obtainable/bronze, 20, time = 110, one_per_turf = TRUE, on_floor = TRUE), \
-	null,
-	new/datum/stack_recipe("bronze ingot", /obj/item/ingot/bronze, 6, time = 100), \
 	new/datum/stack_recipe("bronze floor tiles", /obj/item/stack/tile/bronze, 1, 4, 20), \
-	//MONKESTATION ADDITION END
+
 ))
 
 /obj/item/stack/tile/bronze

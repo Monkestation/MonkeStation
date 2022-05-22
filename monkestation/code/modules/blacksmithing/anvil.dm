@@ -286,6 +286,7 @@
 	custom_materials = list(/datum/material/bronze=8000)
 	icon_state = "ratvaranvil"
 	anvilquality = 1
+	max_integrity = 500
 
 /obj/structure/anvil/obtainable/ratvar/attackby(obj/item/I, mob/user)
 	if(is_servant_of_ratvar(user))
@@ -300,6 +301,7 @@
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "evil"
 	anvilquality = 1
+	max_integrity = 500
 
 /obj/structure/anvil/obtainable/narsie/attackby(obj/item/I, mob/user)
 	if(iscultist(user))
