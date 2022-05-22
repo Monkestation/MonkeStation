@@ -287,12 +287,14 @@
 	icon_state = "ratvaranvil"
 	anvilquality = 1
 	max_integrity = 500
+	obj_integrity = 500
 
 /obj/structure/anvil/obtainable/ratvar/attackby(obj/item/I, mob/user)
-	if(is_servant_of_ratvar(user))
-		return ..()
-	else
-		to_chat(user, "<span class='neovgre'>KNPXWN, QNJCQNW!</span>") //rot13 then rot22 if anyone wants to decode
+	if(istype(I, /obj/item/melee/smith/hammer))
+		if(is_servant_of_ratvar(user))
+			return ..()
+		else
+			to_chat(user, "<span class='neovgre'>KNPXWN, QNJCQNW!</span>") //rot13 then rot22 if anyone wants to decode
 
 /obj/structure/anvil/obtainable/narsie
 	name = "runic anvil"
@@ -302,12 +304,14 @@
 	icon_state = "evil"
 	anvilquality = 1
 	max_integrity = 500
+	obj_integrity = 500
 
 /obj/structure/anvil/obtainable/narsie/attackby(obj/item/I, mob/user)
-	if(iscultist(user))
-		return ..()
-	else
-		to_chat(user, "<span class='narsiesmall'>That is not yours to use!</span>")
+	if(istype(I, /obj/item/melee/smith/hammer))
+		if(iscultist(user))
+			return ..()
+		else
+			to_chat(user, "<span class='narsiesmall'>That is not yours to use!</span>")
 
 #undef WORKPIECE_PRESENT
 #undef WORKPIECE_INPROGRESS
