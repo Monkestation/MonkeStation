@@ -154,6 +154,7 @@
 /obj/item/smithing/hammerhead/startfinish()
 	var/obj/item/melee/smith/hammer/finalforreal = new /obj/item/melee/smith/hammer(src)
 	finalforreal.force = ((finalforreal.force+quality/2)) * blunt_mult
+	finalitem.throwforce = finalitem.force/4
 	finalforreal.qualitymod = quality/4
 	finalitem = finalforreal
 	..()
@@ -168,6 +169,7 @@
 /obj/item/smithing/scytheblade/startfinish()
 	finalitem = new /obj/item/scythe/smithed(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/shovelhead
@@ -178,6 +180,7 @@
 /obj/item/smithing/shovelhead/startfinish()
 	finalitem = new /obj/item/shovel/smithed(src)
 	finalitem.force = ((finalitem.force+quality)/2) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	if(quality > 0)
 		finalitem.toolspeed = max(0.05,(1-(quality/10)))
 	else
@@ -192,6 +195,7 @@
 /obj/item/smithing/cogheadclubhead/startfinish()
 	finalitem = new /obj/item/melee/smith/cogheadclub(src)
 	finalitem.force = (finalitem.force+quality) * blunt_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/javelinhead
@@ -230,6 +234,7 @@
 /obj/item/smithing/pickaxehead/startfinish()
 	var/obj/item/pickaxe/smithed/finalforreal = new /obj/item/pickaxe/smithed(src)
 	finalforreal.force = ((finalforreal.force+quality)/2) * sharp_mult
+	finalforreal.throwforce = finalforreal.force/4
 	if(quality > 0)
 		finalforreal.toolspeed = max(0.05,(1-(quality/10)))
 	else
@@ -247,6 +252,7 @@
 	var/obj/item/mining_scanner/prospector/finalforreal = new /obj/item/mining_scanner/prospector(src)
 	finalforreal.range = 2 + quality
 	finalforreal.force *= sharp_mult
+	finalforreal.throwforce = finalforreal.force/4
 	if(quality)
 		finalforreal.cooldown = 100/quality
 	finalitem = finalforreal
@@ -262,6 +268,7 @@
 /obj/item/smithing/shortswordblade/startfinish()
 	finalitem = new /obj/item/melee/smith/shortsword(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/scimitarblade
@@ -273,6 +280,7 @@
 /obj/item/smithing/scimitarblade/startfinish()
 	finalitem = new /obj/item/melee/smith/shortsword/scimitar(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/wakiblade
@@ -284,6 +292,7 @@
 /obj/item/smithing/wakiblade/startfinish()
 	finalitem = new /obj/item/melee/smith/wakizashi(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/sabreblade
@@ -295,6 +304,7 @@
 /obj/item/smithing/sabreblade/startfinish()
 	finalitem = new /obj/item/melee/smith/sabre(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/rapierblade
@@ -306,6 +316,7 @@
 /obj/item/smithing/rapierblade/startfinish()
 	finalitem = new /obj/item/melee/smith/sabre/rapier(src)
 	finalitem.force = (finalitem.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	..()
 
 /obj/item/smithing/knifeblade
@@ -317,6 +328,7 @@
 /obj/item/smithing/knifeblade/startfinish()
 	finalitem = new /obj/item/kitchen/knife(src)
 	finalitem.force = ((finalitem.force+quality/2)) * sharp_mult
+	finalitem.throwforce = finalitem.force
 	finalitem.icon = 'monkestation/icons/obj/smith.dmi'
 	finalitem.icon_state = "dagger"
 	finalitem.name = "dagger"
@@ -337,6 +349,7 @@
 /obj/item/smithing/broadblade/startfinish()
 	var/obj/item/melee/smith/twohand/broadsword/finalforreal = new /obj/item/melee/smith/twohand/broadsword(src)
 	finalforreal.force = (finalforreal.force+quality) * sharp_mult
+	finalitem.throwforce = finalitem.force/4
 	finalforreal.wield_force = finalforreal.force*finalforreal.wielded_mult
 	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
 	finalitem = finalforreal
@@ -351,7 +364,7 @@
 /obj/item/smithing/zweiblade/startfinish()
 	var/obj/item/melee/smith/twohand/zweihander/finalforreal = new /obj/item/melee/smith/twohand/zweihander(src)
 	finalforreal.force = (finalforreal.force+quality) * sharp_mult
-	finalforreal.force *= sharp_mult
+	finalforreal.throwforce = finalforreal.force/4
 	finalforreal.wield_force = finalforreal.force*finalforreal.wielded_mult
 	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
 	finalitem = finalforreal
@@ -396,6 +409,7 @@
 	var/obj/item/melee/smith/twohand/katana/finalforreal = new /obj/item/melee/smith/twohand/katana(src)
 	finalforreal.force += quality
 	finalforreal.force *= sharp_mult
+	finalforreal.throwforce = finalforreal.force/4
 	finalforreal.wield_force = finalforreal.force*finalforreal.wielded_mult
 	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
 	finalitem = finalforreal
