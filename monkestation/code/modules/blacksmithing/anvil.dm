@@ -258,6 +258,7 @@
 	custom_materials = list(/datum/material/bronze=8000)
 	icon_state = "ratvaranvil"
 	anvilquality = -0.5
+	obj_integrity = 300
 
 
 /obj/structure/anvil/obtainable/sandstone
