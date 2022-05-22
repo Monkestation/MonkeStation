@@ -278,6 +278,7 @@ GLOBAL_LIST_EMPTY(vending_products)
   * * startempty - should we set vending_product record amount from the product list (so it's prefilled at roundstart)
   */
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
+	default_price = initial(default_price)
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		if(isnull(amount))
@@ -833,7 +834,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return
 		var/datum/bank_account/account = C.registered_account
 		if(account.account_job && account.account_job.paycheck_department == payment_department)
-			price_to_use = max(round(price_to_use), 1) //No longer free, but signifigantly cheaper.
+			price_to_use = 0
 		if(coin_records.Find(R) || hidden_records.Find(R))
 			price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
 		if(price_to_use && !account.adjust_money(-price_to_use))
