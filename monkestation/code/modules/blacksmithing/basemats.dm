@@ -31,17 +31,19 @@
 
 /datum/material/silver
 	wealth_bonus = 1.5
+	sharp_strength = 0.5
+	blunt_strength = 1.1
 
 /datum/material/gold
 	wealth_bonus = 3
 	fail_multipler = 2
-	blunt_strength = 0.8
+	blunt_strength = 0.45
 	sharp_strength = 1.1
 
 /datum/material/diamond
 	wealth_bonus = 3.25
 	blunt_strength = 1.1
-	sharp_strength = 1.1
+	sharp_strength = 0.75
 
 /datum/material/uranium
 	wealth_bonus = 0.25
@@ -60,7 +62,7 @@
 	fail_multipler = 4
 
 /datum/material/bananium
-	blunt_strength = 0.5
+	blunt_strength = 0.3
 	sharp_strength = 0.5
 
 /datum/material/titanium
