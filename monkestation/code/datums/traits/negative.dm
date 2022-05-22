@@ -66,7 +66,7 @@
 
 /datum/quirk/fluffy_tongue
 	name = "Fluffy Tongue"
-	desc = "After spending to much time watching anime you have developed UwU speak."
+	desc = "After spending too much time watching anime you have developed a horrible speech impediment."
 	value = 5
 
 /datum/quirk/fluffy_tongue/on_spawn()
