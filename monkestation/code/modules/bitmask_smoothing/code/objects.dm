@@ -369,3 +369,8 @@
 
 /obj/structure/alien/resin/flower_bud_enemy //inheriting basic attack/damage stuff from alien structures
 	smoothing_flags = NONE
+
+/obj/structure/table/glass/plasmaglass
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plasmaglass_table.dmi'
+	icon_state = "plasmaglass_table-0"
+	base_icon_state = "plasmaglass_table"
