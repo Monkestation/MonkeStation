@@ -801,15 +801,6 @@
 	},
 /turf/closed/wall,
 /area/awaymission/undergroundoutpost45/central)
-"bW" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid{
-	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
-	heat_capacity = 1e+006;
-	name = "Cave Floor";
-	initial_temperature = 351.9
-	},
-/area/awaymission/undergroundoutpost45/caves)
 "bX" = (
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
@@ -3055,15 +3046,6 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
-"gf" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid{
-	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
-	heat_capacity = 1e+006;
-	name = "Cave Floor";
-	initial_temperature = 363.9
-	},
-/area/awaymission/undergroundoutpost45/caves)
 "gg" = (
 /turf/closed/wall/r_wall/rust,
 /area/awaymission/undergroundoutpost45/crew_quarters)
@@ -13753,17 +13735,6 @@
 	initial_temperature = 363.9
 	},
 /area/awaymission/undergroundoutpost45/caves)
-"yl" = (
-/obj/structure/alien/weeds,
-/obj/structure/glowshroom,
-/obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/floor/plating/asteroid{
-	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
-	heat_capacity = 1e+006;
-	name = "Cave Floor";
-	initial_temperature = 363.9
-	},
-/area/awaymission/undergroundoutpost45/caves)
 "ym" = (
 /obj/structure/alien/weeds,
 /obj/effect/decal/cleanable/blood/gibs/core,
@@ -13814,16 +13785,6 @@
 /area/awaymission/undergroundoutpost45/caves)
 "yr" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
-/turf/open/floor/plating/asteroid{
-	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
-	heat_capacity = 1e+006;
-	name = "Cave Floor";
-	initial_temperature = 363.9
-	},
-/area/awaymission/undergroundoutpost45/caves)
-"yt" = (
-/obj/structure/alien/weeds,
-/obj/structure/glowshroom,
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "co2=173.4;n2=135.1;plasma=229.8;TEMP=351.9";
 	heat_capacity = 1e+006;
@@ -32864,7 +32825,7 @@ ad
 ad
 ad
 ad
-yt
+yn
 yn
 eJ
 yz
@@ -34153,7 +34114,7 @@ yo
 ad
 ad
 ad
-gf
+eJ
 eJ
 yq
 ad
@@ -34403,7 +34364,7 @@ ad
 ad
 ad
 ad
-yl
+yA
 eJ
 yq
 ym
@@ -35127,7 +35088,7 @@ gK
 gw
 gv
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -35186,7 +35147,7 @@ eJ
 yC
 yz
 yr
-gf
+eJ
 yq
 eJ
 yo
@@ -36145,7 +36106,7 @@ gL
 gv
 gv
 gv
-gf
+eJ
 eJ
 eJ
 gv
@@ -36156,7 +36117,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -36671,7 +36632,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -36913,9 +36874,9 @@ ad
 ad
 ad
 ad
-gf
 eJ
-gf
+eJ
+eJ
 eJ
 eJ
 eJ
@@ -37439,10 +37400,10 @@ ly
 gU
 eJ
 eJ
-gf
 eJ
 eJ
-gf
+eJ
+eJ
 eJ
 ad
 ad
@@ -37685,7 +37646,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -38203,16 +38164,16 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 gw
 kH
 lC
 gv
 eJ
-gf
 eJ
 eJ
-gf
+eJ
+eJ
 ad
 ad
 ad
@@ -38458,7 +38419,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 gz
 gw
@@ -40578,7 +40539,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -40838,7 +40799,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -41282,7 +41243,7 @@ ad
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -41347,7 +41308,7 @@ ad
 ad
 ad
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -41536,7 +41497,7 @@ ad
 ad
 ad
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -41800,7 +41761,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 hH
 kV
@@ -42055,7 +42016,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 gz
@@ -42119,10 +42080,10 @@ eJ
 ad
 ad
 ad
-gf
 eJ
 eJ
-gf
+eJ
+eJ
 ad
 ad
 ad
@@ -42894,7 +42855,7 @@ ad
 ad
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -43084,7 +43045,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 ad
 gz
@@ -43141,7 +43102,7 @@ ad
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -43334,7 +43295,7 @@ fC
 fS
 aC
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -43610,17 +43571,6 @@ nu
 nX
 eJ
 eJ
-gf
-eJ
-eJ
-eJ
-ad
-ad
-ad
-eJ
-eJ
-eJ
-eJ
 eJ
 eJ
 eJ
@@ -43628,31 +43578,42 @@ eJ
 ad
 ad
 ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-gf
 eJ
 eJ
-gf
+eJ
+eJ
+eJ
+eJ
+eJ
+eJ
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+eJ
+eJ
+eJ
+eJ
 ad
 ad
 ad
@@ -43856,7 +43817,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 ad
 gy
 lb
@@ -43871,7 +43832,6 @@ eJ
 eJ
 eJ
 eJ
-gf
 eJ
 eJ
 eJ
@@ -43880,7 +43840,8 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
+eJ
 eJ
 ad
 ad
@@ -44384,17 +44345,17 @@ pl
 gr
 gr
 eJ
-gf
-eJ
-eJ
-eJ
-gf
 eJ
 eJ
 eJ
 eJ
 eJ
-gf
+eJ
+eJ
+eJ
+eJ
+eJ
+eJ
 ad
 ad
 ad
@@ -45140,7 +45101,7 @@ hh
 eJ
 eJ
 eJ
-gf
+eJ
 gg
 gg
 ko
@@ -45156,7 +45117,7 @@ pP
 gr
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -45417,7 +45378,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -45649,10 +45610,10 @@ aP
 eJ
 eJ
 eJ
-gf
 eJ
 eJ
-gf
+eJ
+eJ
 eJ
 eJ
 eJ
@@ -46420,7 +46381,7 @@ an
 eJ
 eJ
 eJ
-gf
+eJ
 gg
 gr
 gr
@@ -46446,7 +46407,6 @@ eJ
 eJ
 eJ
 eJ
-gf
 eJ
 eJ
 eJ
@@ -46455,7 +46415,8 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
+eJ
 eJ
 eJ
 eJ
@@ -46673,7 +46634,7 @@ fd
 ae
 ad
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -46700,7 +46661,6 @@ qZ
 fN
 ad
 ad
-gf
 eJ
 eJ
 eJ
@@ -46714,7 +46674,8 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
+eJ
 eJ
 eJ
 eJ
@@ -47444,7 +47405,7 @@ ff
 aP
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -48201,7 +48162,7 @@ ad
 ad
 ad
 bX
-bW
+bX
 ae
 cN
 df
@@ -48217,7 +48178,7 @@ fJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 gg
 hn
@@ -48456,7 +48417,7 @@ ad
 ad
 ad
 ad
-bW
+bX
 bX
 bX
 an
@@ -49228,7 +49189,7 @@ ad
 ad
 ad
 ad
-bW
+bX
 bX
 aP
 cQ
@@ -49329,7 +49290,7 @@ ad
 ad
 eJ
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -49583,7 +49544,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -49999,7 +49960,7 @@ ad
 ad
 ad
 ad
-bW
+bX
 bX
 an
 cT
@@ -50095,7 +50056,7 @@ ad
 ad
 ad
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -50613,7 +50574,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 ad
 ad
@@ -56242,7 +56203,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 ad
 ad
 ad
@@ -56753,7 +56714,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 ad
 ad
@@ -57013,7 +56974,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -57276,7 +57237,7 @@ eJ
 eJ
 eJ
 eJ
-gf
+eJ
 eJ
 ad
 eJ
@@ -57780,7 +57741,7 @@ ad
 ad
 ad
 ad
-gf
+eJ
 eJ
 eJ
 eJ
@@ -58038,7 +57999,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 eJ
 eJ
@@ -58302,7 +58263,7 @@ ad
 ad
 ad
 eJ
-gf
+eJ
 eJ
 eJ
 eJ

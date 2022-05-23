@@ -43,12 +43,6 @@
 	name = "dirt"
 	},
 /area/ruin/powered)
-"k" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid{
-	name = "dirt"
-	},
-/area/ruin/powered)
 "m" = (
 /obj/structure/rack,
 /obj/item/seeds/reishi,
@@ -70,10 +64,6 @@
 /obj/item/storage/bag/ore,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plating/asteroid/basalt,
-/area/ruin/powered)
-"q" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating,
 /area/ruin/powered)
 "r" = (
 /obj/structure/rack,
@@ -317,7 +307,7 @@ c
 c
 f
 o
-q
+o
 o
 o
 z
@@ -385,7 +375,7 @@ s
 c
 c
 f
-k
+g
 W
 c
 c

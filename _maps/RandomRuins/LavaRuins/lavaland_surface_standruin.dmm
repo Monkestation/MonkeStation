@@ -19,10 +19,6 @@
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
-/obj/structure/glowshroom{
-	icon_state = "glowshroom3";
-	dir = 4
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
 "af" = (
@@ -59,17 +55,6 @@
 /obj/structure/stone_tile/cracked{
 	dir = 4
 	},
-/obj/structure/glowshroom,
-/obj/structure/glowshroom{
-	icon_state = "glowshroom3"
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/standruin)
-"aj" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/glowshroom{
-	icon_state = "glowshroom3"
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
 "ak" = (
@@ -104,14 +89,6 @@
 "ao" = (
 /obj/structure/stone_tile/center/burnt,
 /turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered/standruin)
-"ap" = (
-/obj/structure/stone_tile/slab/cracked,
-/obj/structure/glowshroom{
-	icon_state = "glowshroom1";
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
 "aq" = (
 /obj/structure/stone_tile/slab,
@@ -417,17 +394,11 @@
 /obj/item/candle/infinite,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
-"bh" = (
-/obj/structure/stone_tile/slab/burnt,
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/unpowered/standruin)
 "bi" = (
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
 /obj/structure/flora/ash/tall_shroom,
-/obj/structure/glowshroom,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
 "bj" = (
@@ -452,7 +423,6 @@
 /area/ruin/unpowered/standruin)
 "bn" = (
 /obj/structure/stone_tile/center,
-/obj/structure/glowshroom,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/standruin)
 "bo" = (
@@ -542,7 +512,7 @@ ab
 ab
 ab
 ad
-ap
+ak
 aw
 aF
 aP
@@ -577,7 +547,7 @@ aa
 ac
 ab
 ad
-aj
+ak
 ac
 ay
 aG
@@ -673,7 +643,7 @@ aD
 aL
 aD
 ak
-bh
+aD
 ab
 bo
 ab

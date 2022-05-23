@@ -170,7 +170,6 @@
 	icon_state = "snowgrassall[rand(1, 3)]"
 	. = ..()
 
-
 //bushes
 /obj/structure/flora/bush
 	name = "bush"

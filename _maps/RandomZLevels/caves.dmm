@@ -1035,12 +1035,6 @@
 	initial_gas_mix = "n2=23;o2=14;TEMP=2.7"
 	},
 /area/awaymission/caves/research)
-"cY" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plasteel{
-	initial_gas_mix = "n2=23;o2=14;TEMP=2.7"
-	},
-/area/awaymission/caves/research)
 "cZ" = (
 /obj/structure/sign/warning/vacuum{
 	name = "\improper LOW AIR AREA";
@@ -1782,12 +1776,6 @@
 /obj/item/reagent_containers/blood/OPlus,
 /turf/open/floor/plasteel,
 /area/awaymission/caves/BMP_asteroid)
-"fv" = (
-/obj/structure/glowshroom,
-/turf/open/floor/plating/asteroid/basalt{
-	initial_gas_mix = "n2=23;o2=14;TEMP=2.7"
-	},
-/area/awaymission/caves/BMP_asteroid/level_two)
 "fw" = (
 /obj/item/gun/energy/laser/captain/scattershot,
 /turf/open/floor/plating/asteroid/basalt{
@@ -10422,7 +10410,7 @@ cu
 cD
 cu
 cn
-cY
+cn
 cn
 dd
 cg
@@ -53888,7 +53876,7 @@ bK
 bK
 bJ
 bJ
-fv
+bJ
 bJ
 fl
 gn
@@ -59279,7 +59267,7 @@ bK
 bK
 bJ
 bJ
-fv
+bJ
 bJ
 bK
 bK

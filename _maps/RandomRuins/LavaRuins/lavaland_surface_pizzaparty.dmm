@@ -82,13 +82,6 @@
 	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
 	},
 /area/ruin/unpowered)
-"n" = (
-/obj/structure/glowshroom,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
-	},
-/area/ruin/unpowered)
 "o" = (
 /obj/item/trash/plate,
 /obj/effect/decal/cleanable/dirt,
@@ -133,12 +126,6 @@
 	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
 	},
 /area/ruin/unpowered)
-"u" = (
-/obj/structure/glowshroom,
-/turf/open/floor/wood{
-	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
-	},
-/area/ruin/unpowered)
 "v" = (
 /obj/structure/lattice,
 /obj/item/chair/wood/wings,
@@ -167,7 +154,6 @@
 /area/ruin/unpowered)
 "z" = (
 /obj/structure/table/wood,
-/obj/structure/glowshroom,
 /obj/item/a_gift,
 /turf/open/floor/wood{
 	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
@@ -226,13 +212,6 @@
 /area/ruin/unpowered)
 "I" = (
 /obj/item/kitchen/fork,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating{
-	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
-	},
-/area/ruin/unpowered)
-"J" = (
-/obj/structure/glowshroom,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{
 	initial_gas_mix = "o2=14;n2=5;co2=13;TEMP=300"
@@ -396,7 +375,7 @@ b
 b
 d
 f
-n
+h
 h
 h
 c
@@ -420,7 +399,7 @@ o
 h
 h
 C
-J
+e
 h
 d
 b
@@ -537,11 +516,11 @@ b
 d
 k
 h
-u
+s
 s
 s
 o
-n
+h
 d
 b
 b
