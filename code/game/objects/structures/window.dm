@@ -817,7 +817,8 @@
 	name = "shuttle window"
 	desc = "A reinforced, air-locked pod window."
 	icon = 'icons/obj/smooth_structures/shuttle_window.dmi'
-	icon_state = "shuttle_window"
+	icon_state = "shuttle_window-0"
+	base_icon_state = "shuttle_window"
 	dir = FULLTILE_WINDOW_DIR
 	max_integrity = 500
 	wtype = "shuttle"
@@ -826,8 +827,9 @@
 	reinf = TRUE
 	heat_resistance = 1600
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "stamina" = 0)
-	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
-	//canSmoothWith = null //MONKESTATION REMOVAL
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
 	explosion_block = 3
 	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass

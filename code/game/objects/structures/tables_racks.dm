@@ -543,7 +543,9 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
-	//smooth = FALSE //MONKESTATION REMOVAL
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 	can_buckle = 1
 	buckle_lying = -1
 	buckle_requires_restraints = 1

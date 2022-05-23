@@ -382,8 +382,9 @@
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
 	icon_state = "rock2"
-	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
-	//canSmoothWith = list (/turf/closed) //MONKESTATION REMOVAL
+	base_icon_state = "rock_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock
 	initial_gas_mix = OPENTURF_LOW_PRESSURE
 	environment_type = "waste"
@@ -395,8 +396,9 @@
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
 	icon_state = "mountainrock"
-	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
-	//canSmoothWith = list (/turf/closed) //MONKESTATION REMOVAL
+	base_icon_state = "mountain_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	initial_gas_mix = FROZEN_ATMOS
 	environment_type = "snow"
