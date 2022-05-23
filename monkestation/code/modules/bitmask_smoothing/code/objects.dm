@@ -282,7 +282,7 @@
 	base_icon_state = "window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/plasma/fulltile
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/window_plasma.dmi' //OVERRIDEN - SEE MODULAR FILE
@@ -290,7 +290,7 @@
 	base_icon_state = "window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/plasma/reinforced/fulltile
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window_plasma.dmi' //OVERRIDEN - SEE MODULAR FILE
@@ -298,7 +298,7 @@
 	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/reinforced/fulltile
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window.dmi' //OVERRIDEN - SEE MODULAR FILE
@@ -306,7 +306,7 @@
 	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/r_window_tinted.dmi' //OVERRIDEN - SEE MODULAR FILE
@@ -314,7 +314,7 @@
 	base_icon_state = "reinforced_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/window/shuttle/survival_pod
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/pod_window.dmi'
@@ -331,10 +331,14 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+
 /obj/structure/window/shuttle
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/shuttle_window.dmi'
 	icon_state = "shuttle_window-0"
 	base_icon_state = "shuttle_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
 
 /obj/structure/window/plastitanium
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plastitanium_window.dmi'
@@ -358,7 +362,7 @@
 	base_icon_state = "clockwork_window"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 
 /obj/structure/table/survival_pod
 	smoothing_flags = NONE

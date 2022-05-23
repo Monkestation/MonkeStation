@@ -493,71 +493,6 @@
 	max_integrity = 100
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	/* //MONKESTATIONN REMOVAL
-	smooth = SMOOTH_TRUE
-	//MONKESTATION EDIT: WALL AND WINDOW RESPRITE
-	canSmoothWith = list(/obj/structure/window/fulltile,
-	/obj/structure/window/reinforced/fulltile,
-	/obj/structure/window/reinforced/tinted/fulltile,
-	/obj/structure/window/plasma/fulltile,
-	/obj/structure/window/plasma/reinforced/fulltile,
-	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
-	/obj/machinery/door/airlock,
-	/obj/machinery/door/airlock/command,
-	/obj/machinery/door/airlock/security,
-	/obj/machinery/door/airlock/engineering,
-	/obj/machinery/door/airlock/medical,
-	/obj/machinery/door/airlock/maintenance,
-	/obj/machinery/door/airlock/maintenance/external,
-	/obj/machinery/door/airlock/mining,
-	/obj/machinery/door/airlock/atmos,
-	/obj/machinery/door/airlock/research,
-	/obj/machinery/door/airlock/freezer,
-	/obj/machinery/door/airlock/science,
-	/obj/machinery/door/airlock/virology,
-	/obj/machinery/door/airlock/gold,
-	/obj/machinery/door/airlock/silver,
-	/obj/machinery/door/airlock/diamond,
-	/obj/machinery/door/airlock/uranium,
-	/obj/machinery/door/airlock/plasma,
-	/obj/machinery/door/airlock/bananium,
-	/obj/machinery/door/airlock/sandstone,
-	/obj/machinery/door/airlock/wood,
-	/obj/machinery/door/airlock/public,
-	/obj/machinery/door/airlock/external,
-	/obj/machinery/door/airlock/arrivals_external,
-	/obj/machinery/door/airlock/centcom,
-	/obj/machinery/door/airlock/grunge,
-	/obj/machinery/door/airlock/vault,
-	/obj/machinery/door/airlock/hatch,
-	/obj/machinery/door/airlock/maintenance_hatch,
-	/obj/machinery/door/airlock/highsecurity,
-	/obj/machinery/door/airlock/glass_large,
-	/obj/machinery/door/airlock/glass,
-	/obj/machinery/door/airlock/command/glass,
-	/obj/machinery/door/airlock/security/glass,
-	/obj/machinery/door/airlock/engineering/glass,
-	/obj/machinery/door/airlock/medical/glass,
-	/obj/machinery/door/airlock/maintenance/glass,
-	/obj/machinery/door/airlock/maintenance/external/glass,
-	/obj/machinery/door/airlock/mining/glass,
-	/obj/machinery/door/airlock/atmos/glass,
-	/obj/machinery/door/airlock/research/glass,
-	/obj/machinery/door/airlock/science/glass,
-	/obj/machinery/door/airlock/virology/glass,
-	/obj/machinery/door/airlock/gold/glass,
-	/obj/machinery/door/airlock/silver/glass,
-	/obj/machinery/door/airlock/diamond/glass,
-	/obj/machinery/door/airlock/uranium/glass,
-	/obj/machinery/door/airlock/plasma/glass,
-	/obj/machinery/door/airlock/bananium/glass,
-	/obj/machinery/door/airlock/sandstone/glass,
-	/obj/machinery/door/airlock/wood/glass,
-	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
-	//MONKESTATION EDIT END
-	*/ //MONKESTATION REMOVAL END
 	glass_amount = 2
 
 /obj/structure/window/fulltile/unanchored
@@ -570,71 +505,6 @@
 	max_integrity = 600
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	/* //MONKESTATION REMOVAL
-	smooth = SMOOTH_TRUE
-	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
-	canSmoothWith = list(/obj/structure/window/fulltile,
-	/obj/structure/window/reinforced/fulltile,
-	/obj/structure/window/reinforced/tinted/fulltile,
-	/obj/structure/window/plasma/fulltile,
-	/obj/structure/window/plasma/reinforced/fulltile,
-	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
-	/obj/machinery/door/airlock,
-	/obj/machinery/door/airlock/command,
-	/obj/machinery/door/airlock/security,
-	/obj/machinery/door/airlock/engineering,
-	/obj/machinery/door/airlock/medical,
-	/obj/machinery/door/airlock/maintenance,
-	/obj/machinery/door/airlock/maintenance/external,
-	/obj/machinery/door/airlock/mining,
-	/obj/machinery/door/airlock/atmos,
-	/obj/machinery/door/airlock/research,
-	/obj/machinery/door/airlock/freezer,
-	/obj/machinery/door/airlock/science,
-	/obj/machinery/door/airlock/virology,
-	/obj/machinery/door/airlock/gold,
-	/obj/machinery/door/airlock/silver,
-	/obj/machinery/door/airlock/diamond,
-	/obj/machinery/door/airlock/uranium,
-	/obj/machinery/door/airlock/plasma,
-	/obj/machinery/door/airlock/bananium,
-	/obj/machinery/door/airlock/sandstone,
-	/obj/machinery/door/airlock/wood,
-	/obj/machinery/door/airlock/public,
-	/obj/machinery/door/airlock/external,
-	/obj/machinery/door/airlock/arrivals_external,
-	/obj/machinery/door/airlock/centcom,
-	/obj/machinery/door/airlock/grunge,
-	/obj/machinery/door/airlock/vault,
-	/obj/machinery/door/airlock/hatch,
-	/obj/machinery/door/airlock/maintenance_hatch,
-	/obj/machinery/door/airlock/highsecurity,
-	/obj/machinery/door/airlock/glass_large,
-	/obj/machinery/door/airlock/glass,
-	/obj/machinery/door/airlock/command/glass,
-	/obj/machinery/door/airlock/security/glass,
-	/obj/machinery/door/airlock/engineering/glass,
-	/obj/machinery/door/airlock/medical/glass,
-	/obj/machinery/door/airlock/maintenance/glass,
-	/obj/machinery/door/airlock/maintenance/external/glass,
-	/obj/machinery/door/airlock/mining/glass,
-	/obj/machinery/door/airlock/atmos/glass,
-	/obj/machinery/door/airlock/research/glass,
-	/obj/machinery/door/airlock/science/glass,
-	/obj/machinery/door/airlock/virology/glass,
-	/obj/machinery/door/airlock/gold/glass,
-	/obj/machinery/door/airlock/silver/glass,
-	/obj/machinery/door/airlock/diamond/glass,
-	/obj/machinery/door/airlock/uranium/glass,
-	/obj/machinery/door/airlock/plasma/glass,
-	/obj/machinery/door/airlock/bananium/glass,
-	/obj/machinery/door/airlock/sandstone/glass,
-	/obj/machinery/door/airlock/wood/glass,
-	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
-	//MONKESTATION EDIT END
-	*/ //MONKESTATION REMOVAL END
 	glass_amount = 2
 
 /obj/structure/window/plasma/fulltile/unanchored
@@ -734,74 +604,12 @@
 /obj/structure/window/reinforced/tinted/fulltile
 	icon = 'icons/obj/smooth_structures/tinted_window.dmi' //OVERRIDEN - SEE MODULAR FILE
 	icon_state = "tinted_window"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
 	dir = FULLTILE_WINDOW_DIR
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	/* //MONKESTATION REMOVAL
-	smooth = SMOOTH_TRUE
-	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
-	canSmoothWith = list(/obj/structure/window/fulltile,
-	/obj/structure/window/reinforced/fulltile,
-	/obj/structure/window/reinforced/tinted/fulltile,
-	/obj/structure/window/plasma/fulltile,
-	/obj/structure/window/plasma/reinforced/fulltile,
-	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
-	/obj/machinery/door/airlock,
-	/obj/machinery/door/airlock/command,
-	/obj/machinery/door/airlock/security,
-	/obj/machinery/door/airlock/engineering,
-	/obj/machinery/door/airlock/medical,
-	/obj/machinery/door/airlock/maintenance,
-	/obj/machinery/door/airlock/maintenance/external,
-	/obj/machinery/door/airlock/mining,
-	/obj/machinery/door/airlock/atmos,
-	/obj/machinery/door/airlock/research,
-	/obj/machinery/door/airlock/freezer,
-	/obj/machinery/door/airlock/science,
-	/obj/machinery/door/airlock/virology,
-	/obj/machinery/door/airlock/gold,
-	/obj/machinery/door/airlock/silver,
-	/obj/machinery/door/airlock/diamond,
-	/obj/machinery/door/airlock/uranium,
-	/obj/machinery/door/airlock/plasma,
-	/obj/machinery/door/airlock/bananium,
-	/obj/machinery/door/airlock/sandstone,
-	/obj/machinery/door/airlock/wood,
-	/obj/machinery/door/airlock/public,
-	/obj/machinery/door/airlock/external,
-	/obj/machinery/door/airlock/arrivals_external,
-	/obj/machinery/door/airlock/centcom,
-	/obj/machinery/door/airlock/grunge,
-	/obj/machinery/door/airlock/vault,
-	/obj/machinery/door/airlock/hatch,
-	/obj/machinery/door/airlock/maintenance_hatch,
-	/obj/machinery/door/airlock/highsecurity,
-	/obj/machinery/door/airlock/glass_large,
-	/obj/machinery/door/airlock/glass,
-	/obj/machinery/door/airlock/command/glass,
-	/obj/machinery/door/airlock/security/glass,
-	/obj/machinery/door/airlock/engineering/glass,
-	/obj/machinery/door/airlock/medical/glass,
-	/obj/machinery/door/airlock/maintenance/glass,
-	/obj/machinery/door/airlock/maintenance/external/glass,
-	/obj/machinery/door/airlock/mining/glass,
-	/obj/machinery/door/airlock/atmos/glass,
-	/obj/machinery/door/airlock/research/glass,
-	/obj/machinery/door/airlock/science/glass,
-	/obj/machinery/door/airlock/virology/glass,
-	/obj/machinery/door/airlock/gold/glass,
-	/obj/machinery/door/airlock/silver/glass,
-	/obj/machinery/door/airlock/diamond/glass,
-	/obj/machinery/door/airlock/uranium/glass,
-	/obj/machinery/door/airlock/plasma/glass,
-	/obj/machinery/door/airlock/bananium/glass,
-	/obj/machinery/door/airlock/sandstone/glass,
-	/obj/machinery/door/airlock/wood/glass,
-	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
-	//MONKESTATION EDIT END
-	*/ //MONKESTATION REMOVAL END
 	level = 3
 	glass_amount = 2
 
