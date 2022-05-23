@@ -1868,8 +1868,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
+/obj/machinery/atmospherics/pipe/multiz/layer2,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
 /turf/open/openspace,
 /area/maintenance/starboard/fore)
 "aAO" = (
@@ -13412,11 +13412,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"djz" = (
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/obj/structure/lattice/catwalk,
-/turf/open/openspace/airless,
-/area/space/nearstation)
 "djF" = (
 /obj/machinery/power/smes{
 	charge = 5e+006
@@ -18521,11 +18516,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"esT" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
-/turf/open/space/basic,
-/area/space/nearstation)
 "esU" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -22412,11 +22402,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/shuttle)
-"fkb" = (
-/obj/structure/lattice/catwalk,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/turf/open/space/basic,
-/area/space/nearstation)
 "fkh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -26901,11 +26886,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"giB" = (
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
-/obj/structure/lattice/catwalk,
-/turf/open/openspace/airless,
-/area/space/nearstation)
 "giK" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -36604,8 +36584,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
+/obj/machinery/atmospherics/pipe/multiz/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "iyi" = (
@@ -57321,9 +57301,9 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "nxX" = (
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
 /obj/structure/disposalpipe/trunk/multiz/down,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
+/obj/machinery/atmospherics/pipe/multiz/layer2,
 /turf/open/openspace,
 /area/maintenance/upper/fore)
 "nyc" = (
@@ -70631,13 +70611,6 @@
 	},
 /turf/open/floor/wood,
 /area/vacant_room/office)
-"qDA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/multiz,
-/turf/open/floor/engine,
-/area/engine/engine_room)
 "qDC" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -77198,9 +77171,9 @@
 /area/maintenance/solars/port/fore)
 "skv" = (
 /obj/effect/spawner/lootdrop/glowstick/lit,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer2,
-/obj/machinery/atmospherics/pipe/simple/multiz/layer4,
 /obj/structure/disposalpipe/trunk/multiz,
+/obj/machinery/atmospherics/pipe/multiz/layer2,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "skz" = (
@@ -94561,10 +94534,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/upper/secondary/service)
-"woT" = (
-/obj/machinery/atmospherics/pipe/simple/multiz,
-/turf/open/openspace,
-/area/engine/engine_room)
 "woW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -118603,7 +118572,7 @@ kDD
 uBI
 kDD
 pPk
-qDA
+paP
 bVd
 nOr
 waK
@@ -128357,7 +128326,7 @@ kDD
 kDD
 kDD
 kDD
-esT
+bOU
 jKr
 jKr
 jKr
@@ -129385,7 +129354,7 @@ kDD
 kDD
 kDD
 kDD
-fkb
+bOU
 kRJ
 kRJ
 kRJ
@@ -184139,7 +184108,7 @@ czn
 mzC
 czn
 hIl
-woT
+rYe
 cWF
 rYe
 nSE
@@ -193893,7 +193862,7 @@ czn
 czn
 czn
 czn
-giB
+qgw
 rht
 rht
 rht
@@ -194921,7 +194890,7 @@ czn
 czn
 czn
 czn
-djz
+qgw
 sch
 sch
 sch
