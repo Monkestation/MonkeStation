@@ -33,9 +33,8 @@
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_CATWALK, SMOOTH_GROUP_OPEN_FLOOR)
-	canSmoothWith = list(SMOOTH_GROUP_CATWALK)
-
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
+	canSmoothWith = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_OPEN_FLOOR, SMOOTH_GROUP_WALLS)
 /obj/structure/lattice
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/lattice.dmi'
 	icon_state = "lattice-255"
