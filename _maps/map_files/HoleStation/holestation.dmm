@@ -2619,6 +2619,7 @@
 	pixel_y = -1
 	},
 /obj/machinery/light,
+/obj/item/hand_tele,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "hb" = (
@@ -6993,10 +6994,6 @@
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"sJ" = (
-/obj/machinery/vending/wardrobe/science_wardrobe,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "sK" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -13398,9 +13395,6 @@
 	pixel_y = 13;
 	pixel_x = -5
 	},
-/obj/item/hand_tele{
-	pixel_y = 6
-	},
 /obj/item/hand_tele,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -19114,6 +19108,10 @@
 "YS" = (
 /turf/closed/wall,
 /area/hallway/secondary/entry)
+"YT" = (
+/obj/machinery/vending/wardrobe/science_wardrobe,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "YU" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -46651,7 +46649,7 @@ Ut
 BH
 jH
 bV
-sJ
+YT
 Xi
 Qs
 PQ
