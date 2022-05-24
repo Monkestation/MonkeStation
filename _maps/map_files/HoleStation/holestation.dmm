@@ -6322,6 +6322,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "qV" = (
@@ -6992,6 +6993,10 @@
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"sJ" = (
+/obj/machinery/vending/wardrobe/science_wardrobe,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "sK" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -8052,9 +8057,8 @@
 /turf/open/floor/wood,
 /area/chapel/main)
 "vA" = (
-/obj/structure/table/wood/fancy,
-/obj/item/organ/heart,
 /obj/effect/turf_decal/monke/siding/wood,
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/wood,
 /area/chapel/main)
 "vB" = (
@@ -10772,6 +10776,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/auto_name/south,
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "CS" = (
@@ -10874,6 +10879,7 @@
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
+/obj/machinery/vending/wardrobe/atmos_wardrobe,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "Dj" = (
@@ -13437,7 +13443,7 @@
 /area/engine/engine_room)
 "Kc" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "Kd" = (
@@ -14208,10 +14214,14 @@
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "LY" = (
-/obj/effect/landmark/secequipment,
-/obj/effect/turf_decal/bot_red,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/vending/wallmed{
+	pixel_y = -30
+	},
 /turf/open/floor/plasteel,
-/area/security/main)
+/area/hallway/primary/central)
 "LZ" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
@@ -14833,11 +14843,11 @@
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "NI" = (
-/obj/item/kirbyplants/random,
 /obj/machinery/camera/autoname{
 	dir = 10
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
@@ -18668,6 +18678,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/det_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "XM" = (
@@ -46640,7 +46651,7 @@ Ut
 BH
 jH
 bV
-rg
+sJ
 Xi
 Qs
 PQ
@@ -54613,7 +54624,7 @@ Iu
 ot
 dP
 Cj
-aM
+LY
 Sd
 CI
 Cj
@@ -111676,7 +111687,7 @@ yS
 DV
 vj
 zW
-LY
+jt
 yS
 sA
 IR
@@ -111933,7 +111944,7 @@ Iz
 sc
 az
 zW
-LY
+jt
 gS
 ov
 XK
