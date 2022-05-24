@@ -11,7 +11,7 @@
 	base_icon_state = "weeds1"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_ALIEN_RESIN, SMOOTH_GROUP_ALIEN_WEEDS)
-	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_ALIEN_WEEDS)
 	transform = matrix(1, 0, -4, 0, 1, -4)
 
 /obj/structure/alien/resin/membrane
