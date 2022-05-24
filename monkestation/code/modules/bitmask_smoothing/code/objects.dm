@@ -212,6 +212,7 @@
 
 /obj/structure/table/wood/fancy
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table.dmi'
+	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table.dmi'
 	icon_state = "fancy_table-0"
 	base_icon_state = "fancy_table"
 	smoothing_groups = list(SMOOTH_GROUP_FANCY_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
