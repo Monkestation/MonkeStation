@@ -9443,6 +9443,13 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"zi" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 8
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "zj" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -13797,12 +13804,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "KJ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/open/space/basic,
+/area/space/nearstation)
 "KK" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
@@ -14934,6 +14939,16 @@
 	},
 /turf/closed/wall,
 /area/hallway/secondary/exit)
+"NK" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "NM" = (
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel,
@@ -18720,9 +18735,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/orange/visible{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "XB" = (
@@ -47588,7 +47601,7 @@ oB
 oB
 PX
 Ge
-VL
+SF
 SF
 zO
 bW
@@ -47845,7 +47858,7 @@ SF
 SF
 zO
 xF
-VL
+SF
 SF
 zO
 ay
@@ -48102,7 +48115,7 @@ ay
 ay
 ay
 ay
-KJ
+Pc
 ay
 ay
 ay
@@ -48359,14 +48372,14 @@ IT
 gL
 zH
 LW
-Yx
+le
 qd
 CV
-qd
-Ji
-Ji
-Ji
-Ji
+zi
+wL
+le
+wL
+te
 nZ
 nZ
 nZ
@@ -48620,11 +48633,11 @@ Yv
 hO
 Cz
 hO
-nZ
-Ji
-nZ
-Ji
-nZ
+Cz
+Ul
+Cz
+Ul
+KJ
 nZ
 xC
 nZ
@@ -48877,11 +48890,11 @@ Yv
 Yv
 Yv
 Yv
-nZ
-Ji
-nZ
-Ji
-nZ
+te
+te
+te
+te
+KJ
 nZ
 nZ
 nZ
@@ -49134,11 +49147,11 @@ Cz
 hO
 Cz
 hO
-nZ
-Ji
-Ji
-Ji
-nZ
+Cz
+Ul
+Ul
+Ul
+KJ
 nZ
 nZ
 nZ
@@ -49391,10 +49404,10 @@ Yv
 bP
 wx
 Yv
-zt
-Ji
-nZ
-Ji
+NK
+YO
+GQ
+YO
 nZ
 nZ
 nZ
