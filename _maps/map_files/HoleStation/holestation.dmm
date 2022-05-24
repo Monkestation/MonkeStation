@@ -4380,6 +4380,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
+"lK" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel,
+/area/crew_quarters/dorms)
 "lL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass,
@@ -55647,7 +55654,7 @@ Gv
 dF
 dF
 dF
-nB
+lK
 JB
 Nx
 lO
