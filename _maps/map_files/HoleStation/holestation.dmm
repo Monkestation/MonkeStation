@@ -7049,6 +7049,19 @@
 /obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel/techmaint,
 /area/construction/mining/aux_base)
+"sS" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "sT" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -13363,6 +13376,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door/window/eastleft,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "JT" = (
@@ -119858,7 +119872,7 @@ Ud
 jR
 jR
 OH
-KX
+sS
 Tv
 TI
 wI
