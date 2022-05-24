@@ -141,13 +141,13 @@
 	if(icon == initial(icon))
 		switch(rand(1,3))
 			if(1)
-				icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
+				icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structuress/alien/weeds1.dmi'
 				base_icon_state = "weeds1"
 			if(2)
-				icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
+				icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/alien/weeds2.dmi'
 				base_icon_state = "weeds2"
 			if(3)
-				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+				icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/alien/weeds3.dmi'
 				base_icon_state = "weeds3"
 
 /obj/structure/alien/weeds/proc/expand()
