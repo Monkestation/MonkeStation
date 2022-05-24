@@ -54,4 +54,4 @@
 	if(!prob(1)) // 1% chance to be a different name
 		floridan.fully_replace_character_name(null, "Florida Man")
 	else
-		floridan.fully_replace_character_name(null, pick(strings("florida_names.txt")))
+		floridan.fully_replace_character_name(null, pick(file2list("florida_names.txt")))
