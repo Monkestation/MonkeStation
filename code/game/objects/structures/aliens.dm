@@ -142,10 +142,13 @@
 		switch(rand(1,3))
 			if(1)
 				icon = 'icons/obj/smooth_structures/alien/weeds1.dmi'
+				base_icon_state = "weeds1"
 			if(2)
 				icon = 'icons/obj/smooth_structures/alien/weeds2.dmi'
+				base_icon_state = "weeds2"
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
+				base_icon_state = "weeds3"
 
 /obj/structure/alien/weeds/proc/expand()
 	var/turf/U = get_turf(src)
@@ -171,7 +174,8 @@
 /obj/structure/alien/weeds/node
 	name = "glowing resin"
 	desc = "Blue bioluminescence shines from beneath the surface."
-	icon_state = "weednode"
+	icon_state = "weednode-0"
+	base_icon_state = "weednode"
 	light_color = LIGHT_COLOR_BLUE
 	light_power = 0.5
 	var/lon_range = 4
