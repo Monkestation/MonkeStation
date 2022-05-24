@@ -182,7 +182,7 @@
 	var/node_range = NODERANGE
 
 /obj/structure/alien/weeds/node/Initialize(mapload)
-	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/alien/weednode.dmi'
 	. = ..()
 	set_light(lon_range)
 	var/obj/structure/alien/weeds/W = locate(/obj/structure/alien/weeds) in loc
