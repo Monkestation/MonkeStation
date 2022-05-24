@@ -212,7 +212,7 @@
 	base_icon_state = "poker_table"
 
 /obj/structure/table/wood/fancy
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/structures.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/fancy_table.dmi'
 	base_icon_state = "fancy_table"
 	smoothing_groups = list(SMOOTH_GROUP_FANCY_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES or SMOOTH_GROUP_WOOD_TABLES
 	canSmoothWith = list(SMOOTH_GROUP_FANCY_WOOD_TABLES)
@@ -374,3 +374,6 @@
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plasmaglass_table.dmi'
 	icon_state = "plasmaglass_table-0"
 	base_icon_state = "plasmaglass_table"
+
+/obj/machinery/door/airlock
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
