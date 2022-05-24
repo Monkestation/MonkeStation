@@ -105,6 +105,7 @@
 	//damage calc
 	force = (baseforce * fisto_setting)
 	attack_weight = fisto_setting
+	target.apply_damage(force, BRUTE)
 	//Shield check
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
