@@ -3301,12 +3301,12 @@
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "iN" = (
-/obj/machinery/atmospherics/components/binary/pump/layer1{
-	dir = 4
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "iO" = (
@@ -4442,11 +4442,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "lN" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer1{
-	dir = 8
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/delivery,
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "lO" = (
@@ -9464,17 +9464,6 @@
 /obj/effect/turf_decal/monke/siding/wood,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"zl" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "zm" = (
 /obj/structure/altar_of_gods,
 /obj/item/storage/book/bible{
@@ -16329,11 +16318,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "Rj" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible/layer1{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/pump,
 /obj/effect/turf_decal/delivery,
+/obj/structure/railing,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "Rk" = (
@@ -18433,12 +18423,15 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "WJ" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer1{
-	dir = 8
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/machinery/portable_atmospherics/pump,
-/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "WK" = (
@@ -47591,9 +47584,9 @@ sB
 RF
 cA
 cA
-cA
-cA
-zl
+WJ
+iN
+sB
 av
 PX
 oB
@@ -47847,10 +47840,10 @@ SF
 SF
 zO
 Fw
-Fw
 Cl
-iN
 Ya
+SF
+SF
 lx
 zO
 SF
@@ -48106,7 +48099,7 @@ zO
 Iy
 Rj
 lN
-WJ
+ku
 ay
 jx
 ay
