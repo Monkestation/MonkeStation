@@ -4605,16 +4605,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"me" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/warden,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/grenade/barrier,
-/turf/open/floor/plasteel,
-/area/ai_monitored/security/armory)
 "mf" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -4829,15 +4819,6 @@
 /obj/effect/turf_decal/tile/bar/tile_marquee,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/lounge)
-"mJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "mK" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -4848,6 +4829,15 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"mM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -7366,6 +7356,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"tq" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/warden,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/grenade/barrier,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "tr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -7667,8 +7667,12 @@
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "up" = (
-/obj/structure/chair/office{
-	dir = 8
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-1"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -11505,9 +11509,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "Ez" = (
-/obj/item/storage/toolbox/drone,
-/obj/structure/rack,
-/obj/item/multitool,
+/obj/structure/chair/office{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "EA" = (
@@ -12810,16 +12814,6 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/openspace,
 /area/engine/engine_room)
-"HP" = (
-/obj/machinery/power/apc/auto_name/east,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "HQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -13247,6 +13241,10 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/plating,
 /area/maintenance/port/central)
+"Jf" = (
+/obj/effect/landmark/start/depsec/science,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "Jg" = (
 /obj/effect/spawner/room/fivexfour,
 /turf/open/floor/plating,
@@ -13635,6 +13633,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/start/depsec/supply,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
 "Kj" = (
@@ -17529,6 +17528,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/start/depsec/medical,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "Ui" = (
@@ -18004,6 +18004,12 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"Vv" = (
+/obj/item/storage/toolbox/drone,
+/obj/structure/rack,
+/obj/item/multitool,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "Vw" = (
 /obj/machinery/door/airlock/mining,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -19329,6 +19335,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/start/depsec/engineering,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "YL" = (
@@ -46419,7 +46426,7 @@ LU
 UY
 hL
 xi
-rg
+Jf
 ho
 bV
 WZ
@@ -111715,10 +111722,10 @@ VU
 Ib
 Bx
 Wo
-mJ
+mM
 oS
+Vv
 Ez
-up
 OY
 OE
 HF
@@ -112490,7 +112497,7 @@ VV
 JI
 pw
 bu
-HP
+up
 pw
 Ih
 hF
@@ -112746,7 +112753,7 @@ vf
 BX
 RC
 pu
-me
+tq
 BN
 XM
 xY
