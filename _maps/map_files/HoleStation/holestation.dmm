@@ -4605,6 +4605,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"me" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/warden,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/grenade/barrier,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "mf" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -4783,16 +4793,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/library/lounge)
-"mC" = (
-/obj/machinery/power/apc/auto_name/east,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "mD" = (
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
@@ -4829,6 +4829,15 @@
 /obj/effect/turf_decal/tile/bar/tile_marquee,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/lounge)
+"mJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mK" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -7658,14 +7667,11 @@
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "up" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/red/line{
+/obj/structure/chair/office{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/security/brig)
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "uq" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable/yellow{
@@ -12804,6 +12810,16 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/openspace,
 /area/engine/engine_room)
+"HP" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "HQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -15549,12 +15565,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"Pd" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "Pe" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -16056,16 +16066,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"Qn" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/warden,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/grenade/barrier,
-/turf/open/floor/plasteel,
-/area/ai_monitored/security/armory)
 "Qo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -111715,10 +111715,10 @@ VU
 Ib
 Bx
 Wo
-up
+mJ
 oS
 Ez
-Pd
+up
 OY
 OE
 HF
@@ -112490,7 +112490,7 @@ VV
 JI
 pw
 bu
-mC
+HP
 pw
 Ih
 hF
@@ -112746,7 +112746,7 @@ vf
 BX
 RC
 pu
-Qn
+me
 BN
 XM
 xY
