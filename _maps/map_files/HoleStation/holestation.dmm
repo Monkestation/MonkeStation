@@ -16745,7 +16745,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/mob/living/simple_animal/parrot/Poly,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "RW" = (
