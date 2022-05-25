@@ -2803,15 +2803,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"hx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "hy" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -4084,10 +4075,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
-"kT" = (
-/obj/effect/landmark/start/depsec/science,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "kU" = (
 /obj/effect/turf_decal/monke/siding/wood{
 	dir = 4
@@ -4361,16 +4348,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"lB" = (
-/obj/machinery/power/apc/auto_name/east,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "lC" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
@@ -6711,6 +6688,16 @@
 /obj/effect/turf_decal/monke/siding/wood/corner,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
+"rI" = (
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "rJ" = (
 /obj/effect/turf_decal/stripes/box,
 /obj/machinery/power/deck_relay,
@@ -7671,15 +7658,14 @@
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "up" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/warden,
-/obj/item/storage/lockbox/loyalty,
-/obj/item/grenade/barrier,
 /turf/open/floor/plasteel,
-/area/ai_monitored/security/armory)
+/area/security/brig)
 "uq" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/cable/yellow{
@@ -11513,9 +11499,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "Ez" = (
-/obj/item/storage/toolbox/drone,
-/obj/structure/rack,
-/obj/item/multitool,
+/obj/structure/chair/office{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "EA" = (
@@ -11657,6 +11643,16 @@
 	dir = 4
 	},
 /area/medical/medbay)
+"ER" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/warden,
+/obj/item/storage/lockbox/loyalty,
+/obj/item/grenade/barrier,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
 "ES" = (
 /turf/closed/wall,
 /area/security/brig)
@@ -14225,6 +14221,12 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"LA" = (
+/obj/item/storage/toolbox/drone,
+/obj/structure/rack,
+/obj/item/multitool,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "LB" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17749,6 +17751,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
+"UL" = (
+/obj/effect/landmark/start/depsec/science,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "UM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -19446,12 +19452,6 @@
 	dir = 4
 	},
 /area/crew_quarters/heads/chief)
-"YX" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "Za" = (
 /obj/machinery/firealarm/directional/west,
 /obj/structure/cable/yellow{
@@ -46426,7 +46426,7 @@ LU
 UY
 hL
 xi
-kT
+UL
 ho
 bV
 WZ
@@ -111722,10 +111722,10 @@ VU
 Ib
 Bx
 Wo
-hx
+up
 oS
+LA
 Ez
-YX
 OY
 OE
 HF
@@ -112497,7 +112497,7 @@ VV
 JI
 pw
 bu
-lB
+rI
 pw
 Ih
 hF
@@ -112753,7 +112753,7 @@ vf
 BX
 RC
 pu
-up
+ER
 BN
 XM
 xY
