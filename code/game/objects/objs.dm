@@ -43,7 +43,7 @@
 
 	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
 
-	/// Map tag for Atmos Machines mainly.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
+	/// Map tag for objs. Moved here for some semblance of a standard.
 	var/id_tag = null
 	/// Network id. If set it can be found by either its hardware id or by the id tag if thats set.  It can also be
 	/// broadcasted to as long as the other guys network is on the same branch or above.
@@ -353,7 +353,7 @@
 
 /obj/AltClick(mob/user)
 	. = ..()
-	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
+	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
 		reskin_obj(user)
 
 /obj/proc/reskin_obj(mob/M)

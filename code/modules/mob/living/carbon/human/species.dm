@@ -133,22 +133,22 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return TRUE
 	return FALSE
 
-/datum/species/proc/random_name(gender,unique,lastname)
-	if(unique)
-		return random_unique_name(gender)
+/datum/species/proc/random_name(gender, unique, lastname, attempts)
 
-	var/randname
 	if(gender == MALE)
-		randname = pick(GLOB.first_names_male)
+		. = pick(GLOB.first_names_male)
 	else
-		randname = pick(GLOB.first_names_female)
+		. = pick(GLOB.first_names_female)
 
 	if(lastname)
-		randname += " [lastname]"
+		. += " [lastname]"
 	else
-		randname += " [pick(GLOB.last_names)]"
+		. += " [pick(GLOB.last_names)]"
 
-	return randname
+	if(unique && attempts < 10)
+		. = .(gender, TRUE, lastname, ++attempts)
+
+
 
 /datum/species/proc/update_color(mob/living/carbon/C) //empty proc for updating colors if there's a better way please tell me
 	return
@@ -719,6 +719,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else if ("tail_human" in mutant_bodyparts)
 			bodyparts_to_add -= "waggingtail_human"
 
+
 	if("spines" in mutant_bodyparts)
 		if(!H.dna.features["spines"] || H.dna.features["spines"] == "None" || H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT))
 			bodyparts_to_add -= "spines"
@@ -886,7 +887,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 							accessory_overlay.color = "#[H.facial_hair_color]"
 						if(EYECOLOR)
 							accessory_overlay.color = "#[H.eye_color]"
-
+						//monkestation edit - add custom color for sprite accessories
+						if(CUSTOM)
+							if(!H.custom_color) //if they don't have one, we just return random.  TODO: make sprite accessories and bodyparts inherit their owners colors.
+								H.custom_color = random_short_color()
+							accessory_overlay.color = "#[H.custom_color]"
+						//monkestation edit end
 				else
 					accessory_overlay.color = forced_colour
 			standing += accessory_overlay

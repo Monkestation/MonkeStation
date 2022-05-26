@@ -100,7 +100,7 @@
 
 	if(get_dist_euclidian(here_turf, target_turf) > 24)
 		userot = TRUE
-		rot = round(Get_Angle(here_turf, target_turf))
+		rot = round(get_angle(here_turf, target_turf))
 	else
 		if(target_turf.z > here_turf.z)
 			pointer="caret-up"
@@ -244,7 +244,7 @@
 	if(!humanoid || !istype(humanoid))
 		return FALSE
 	if(..())
-		if(humanoid in SSnanites.nanite_monitored_mobs)
+		if(HAS_TRAIT(humanoid, TRAIT_NANITE_SENSORS))
 			if(humanoid.is_jammed())
 				return FALSE
 			return TRUE
