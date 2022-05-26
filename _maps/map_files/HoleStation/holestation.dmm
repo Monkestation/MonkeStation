@@ -363,7 +363,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "aX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "aY" = (
@@ -453,13 +453,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bh" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/brig)
 "bi" = (
@@ -632,7 +632,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "bG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "bH" = (
@@ -1120,6 +1120,13 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine/light,
 /area/engine/engine_core)
+"cU" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "cV" = (
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/autoname,
@@ -1342,7 +1349,7 @@
 /turf/closed/wall/r_wall,
 /area/library/lounge)
 "dD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/library)
 "dE" = (
@@ -1361,7 +1368,7 @@
 /area/crew_quarters/dorms)
 "dG" = (
 /obj/machinery/telecomms/relay/preset/exploration,
-/turf/open/floor/plasteel/telecomms,
+/turf/open/floor/plasteel/airless,
 /area/tcommsat/relay)
 "dH" = (
 /obj/structure/table/wood,
@@ -1535,7 +1542,7 @@
 /obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 1
 	},
-/turf/open/floor/plasteel/telecomms,
+/turf/open/floor/plasteel/airless,
 /area/tcommsat/relay)
 "ee" = (
 /obj/effect/turf_decal/tile/bar/tile_marquee,
@@ -1979,10 +1986,10 @@
 /turf/open/floor/plasteel/techmaint,
 /area/crew_quarters/bar/lounge)
 "fc" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "fd" = (
@@ -2395,13 +2402,13 @@
 /turf/open/floor/carpet/blue,
 /area/library)
 "gh" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/nuke_storage)
 "gi" = (
@@ -2829,7 +2836,12 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
 /area/maintenance/disposal/incinerator)
 "hl" = (
 /obj/machinery/computer/card{
@@ -3310,10 +3322,10 @@
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
 "ir" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "is" = (
@@ -3329,10 +3341,10 @@
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "it" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "iu" = (
@@ -3368,6 +3380,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engine_room)
+"iz" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "iA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -3545,7 +3561,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/relay)
 "jb" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/lounge)
 "jc" = (
@@ -3878,6 +3894,9 @@
 "jW" = (
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
+/obj/structure/cable/yellow{
+	icon_state = "1-10"
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "jX" = (
@@ -3978,7 +3997,7 @@
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/central)
 "kk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "km" = (
@@ -4245,7 +4264,7 @@
 /turf/open/floor/plasteel/dark,
 /area/library/lounge)
 "kS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
 "kU" = (
@@ -4295,10 +4314,10 @@
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "lb" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "lc" = (
@@ -5186,6 +5205,10 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
+"ng" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/quartermaster/exploration_dock)
 "nh" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -6225,7 +6248,7 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "pI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "pJ" = (
@@ -6871,6 +6894,9 @@
 "ru" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
 	icon_state = "0-1"
 	},
 /turf/open/floor/plating,
@@ -7303,7 +7329,12 @@
 /area/space/nearstation)
 "sv" = (
 /obj/machinery/airalarm/directional/west,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
 /area/maintenance/disposal/incinerator)
 "sw" = (
 /obj/effect/landmark/blobstart,
@@ -7581,7 +7612,7 @@
 /turf/open/space/basic,
 /area/space)
 "td" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "te" = (
@@ -7702,6 +7733,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"tq" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "tr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8282,6 +8317,9 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable/yellow{
+	icon_state = "5-10"
+	},
 /turf/open/floor/plasteel,
 /area/security/prison)
 "uX" = (
@@ -8808,10 +8846,10 @@
 /turf/open/openspace,
 /area/ai_monitored/turret_protected/ai)
 "wn" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "wo" = (
@@ -9120,10 +9158,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "xh" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "xi" = (
@@ -9289,10 +9327,10 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "xE" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "xF" = (
@@ -9591,10 +9629,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "yv" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "yw" = (
@@ -9625,7 +9663,16 @@
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "yB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plating,
 /area/security/prison)
 "yC" = (
@@ -10208,6 +10255,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"zV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "zW" = (
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -10542,7 +10594,7 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "AP" = (
-/turf/open/floor/plasteel/telecomms,
+/turf/open/floor/plasteel/airless,
 /area/tcommsat/relay)
 "AQ" = (
 /obj/structure/lattice/catwalk,
@@ -10661,6 +10713,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/nuke_storage)
+"Bg" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "Bh" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -11204,8 +11260,8 @@
 /turf/open/floor/wood,
 /area/library/lounge)
 "Cy" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
 /obj/structure/cable/yellow,
+/obj/effect/spawner/structure/window/reinforced/tinted/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "Cz" = (
@@ -11365,7 +11421,7 @@
 /turf/open/floor/wood,
 /area/library)
 "CU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "CV" = (
@@ -11875,8 +11931,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "Em" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "En" = (
@@ -12582,6 +12638,9 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/tile/blue/tile_marquee,
 /obj/structure/closet/crate/trashcart,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "Ga" = (
@@ -13225,6 +13284,10 @@
 "HA" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"HB" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engine_room)
 "HC" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -13508,6 +13571,10 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"Io" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "Ip" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
 /turf/open/floor/plating,
@@ -13751,6 +13818,11 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/engine/engine_core)
+"IZ" = (
+/obj/structure/sign/warning/vacuum/external,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/exit)
 "Ja" = (
 /turf/open/floor/plasteel,
 /area/maintenance/central/secondary)
@@ -14109,10 +14181,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "Kd" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "Ke" = (
@@ -14410,6 +14482,9 @@
 "KL" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/tile/blue/tile_marquee,
+/obj/structure/cable/yellow{
+	icon_state = "5-8"
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "KM" = (
@@ -14511,7 +14586,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "KV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/library/lounge)
 "KW" = (
@@ -14672,7 +14747,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "Lm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "Ln" = (
@@ -15006,8 +15081,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "Me" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/exploration_dock)
 "Mf" = (
@@ -15031,8 +15106,8 @@
 /turf/open/floor/wood,
 /area/chapel/main)
 "Mh" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "Mi" = (
@@ -15442,8 +15517,8 @@
 	},
 /area/engine/engine_core)
 "No" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/components/binary/temperature_pump,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/tcommsat/relay)
 "Np" = (
@@ -15571,10 +15646,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "NG" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "NH" = (
@@ -15611,6 +15686,15 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"NL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/maintenance/disposal/incinerator)
 "NM" = (
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel,
@@ -15720,7 +15804,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Oa" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/bridge)
 "Ob" = (
@@ -15895,7 +15979,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft/secondary)
 "OB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/captain)
 "OC" = (
@@ -15911,10 +15995,10 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "OD" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/nuke_storage)
 "OE" = (
@@ -16136,6 +16220,10 @@
 /obj/machinery/atmospherics/components/unary/passive_vent,
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"Pb" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/chapel/main)
 "Pc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -18110,7 +18198,7 @@
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "TV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "TW" = (
@@ -18443,8 +18531,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "UM" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/security/brig)
 "UN" = (
@@ -18839,6 +18927,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"VM" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/security/prison)
 "VN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -19012,8 +19105,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/cargo)
 "Wh" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/docking,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
 "Wi" = (
@@ -19281,7 +19374,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "WS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "WT" = (
@@ -19895,7 +19988,12 @@
 "Yl" = (
 /obj/structure/rack,
 /obj/item/pipe_dispenser,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
 /area/maintenance/disposal/incinerator)
 "Ym" = (
 /obj/machinery/meter,
@@ -20168,7 +20266,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
 /area/maintenance/disposal/incinerator)
 "YU" = (
 /obj/structure/table,
@@ -20384,6 +20484,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"Zr" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/maintenance/disposal/incinerator)
 "Zs" = (
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 8
@@ -45171,11 +45279,11 @@ nZ
 nZ
 nZ
 nZ
-vp
+ng
 RM
 Me
 RM
-vp
+ng
 SM
 nZ
 SM
@@ -45428,11 +45536,11 @@ nZ
 nZ
 nZ
 nZ
-vp
+ng
 EN
 hR
 XY
-vp
+ng
 Ji
 Ji
 Ji
@@ -45689,8 +45797,8 @@ iQ
 RM
 Af
 RM
-vp
-vp
+ng
+ng
 UP
 WS
 WS
@@ -46199,7 +46307,7 @@ nZ
 nZ
 nZ
 nZ
-vp
+ng
 Il
 DO
 GG
@@ -46480,9 +46588,9 @@ Uk
 BV
 ME
 ME
+cU
 yB
-yB
-yB
+VM
 ME
 ME
 nZ
@@ -47510,7 +47618,7 @@ ru
 jW
 Jb
 Mp
-Ep
+zV
 Dg
 aO
 xa
@@ -57243,8 +57351,8 @@ ue
 ue
 vE
 vE
-xl
-xl
+Pb
+Pb
 vE
 vE
 HL
@@ -59573,7 +59681,7 @@ nZ
 SM
 Lm
 Qg
-NR
+IZ
 Qg
 Lm
 nZ
@@ -114843,8 +114951,8 @@ xz
 ay
 ay
 ay
-Pc
-Pc
+Bg
+Bg
 ay
 LW
 LW
@@ -116142,7 +116250,7 @@ qz
 wn
 qz
 qz
-ck
+HB
 qz
 qz
 Ap
@@ -116902,7 +117010,7 @@ Ud
 Ud
 Ud
 Ud
-ck
+HB
 dR
 PF
 PF
@@ -117686,7 +117794,7 @@ WO
 PF
 PF
 PF
-ck
+HB
 Ud
 Ud
 Oc
@@ -117943,7 +118051,7 @@ WO
 PF
 PF
 PF
-ck
+HB
 Ud
 xv
 Oc
@@ -118200,7 +118308,7 @@ Ok
 PF
 PF
 PF
-ck
+HB
 Ud
 Ud
 Oc
@@ -118432,7 +118540,7 @@ qy
 qy
 SE
 HA
-Lz
+iz
 HA
 HA
 Ud
@@ -118693,7 +118801,7 @@ zf
 Le
 HA
 HA
-Lz
+iz
 HA
 HA
 HA
@@ -120723,7 +120831,7 @@ JE
 Ud
 Ud
 Ud
-mL
+tq
 Bs
 pN
 yK
@@ -121001,15 +121109,15 @@ Kz
 wI
 Vg
 fm
-jR
+Tv
 LP
 jD
 Sw
 YT
-Nb
+NL
 sv
 hk
-mu
+Zr
 Yl
 BY
 BY
@@ -122545,7 +122653,7 @@ vk
 LM
 Ja
 Ja
-jR
+Io
 LR
 IM
 Vu
