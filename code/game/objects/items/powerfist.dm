@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 40, "stamina" = 0)
 	resistance_flags = FIRE_PROOF
-	var/click_delay = 1.5
+	var/click_delay = 2.5
 	var/fisto_setting = 1
 	var/gasperfist = 3
 	var/obj/item/tank/internals/tank = null //Tank used for the gauntlet's piston-ram.
@@ -127,4 +127,5 @@
 	target.throw_at(throw_target, 5 * fisto_setting, 0.5 + (fisto_setting / 2))
 	//log and end
 	log_combat(user, target, "power fisted", src)
+	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 	return TRUE
