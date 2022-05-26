@@ -2364,6 +2364,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/multiz{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "gd" = (
@@ -7212,6 +7215,12 @@
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plasteel,
 /area/science/lab)
+"sg" = (
+/obj/machinery/atmospherics/pipe/multiz{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/atmos)
 "sh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -120847,7 +120856,7 @@ SY
 SY
 SY
 ak
-XO
+sg
 HA
 kn
 js
