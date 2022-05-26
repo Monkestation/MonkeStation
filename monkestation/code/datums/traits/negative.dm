@@ -67,7 +67,7 @@
 /datum/quirk/fluffy_tongue
 	name = "Fluffy Tongue"
 	desc = "After spending too much time watching anime you have developed a horrible speech impediment."
-	value = 5
+	value = 2
 
 /datum/quirk/fluffy_tongue/on_spawn()
 	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
@@ -82,6 +82,7 @@
 		message = replacetext(message, "ne", "nye")
 		message = replacetext(message, "nu", "nyu")
 		message = replacetext(message, "na", "nya")
+		message = replacetext(message, "ni", "nyi")
 		message = replacetext(message, "no", "nyo")
 		message = replacetext(message, "ove", "uv")
 		message = replacetext(message, "r", "w")
