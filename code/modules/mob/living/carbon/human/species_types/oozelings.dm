@@ -29,16 +29,16 @@
 	species_l_leg = /obj/item/bodypart/l_leg/oozeling
 	species_r_leg = /obj/item/bodypart/r_leg/oozeling
 
-/datum/species/oozeling/random_name(gender, unique, lastname, attempts)
-	. = "[pick(GLOB.oozeling_first_names)]"
-	if(lastname)
-		. += " [lastname]"
-	else
-		. += " [pick(GLOB.oozeling_last_names)]"
+/datum/species/oozeling/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_ooze_name()
 
-	if(unique && attempts < 10)
-		if(findname(.))
-			. = .(gender, TRUE, lastname, ++attempts)
+	var/randname = ooze_name()
+
+	if(lastname)
+		randname += " [lastname]"
+
+	return randname
 
 /datum/species/oozeling/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)

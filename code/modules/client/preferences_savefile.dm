@@ -430,7 +430,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	real_name = reject_bad_name(real_name, pref_species.allow_numbers_in_name)
 	gender = sanitize_gender(gender)
-	real_name ||= pref_species.random_name(gender, TRUE)
+	if(!real_name)
+		real_name = random_unique_name(gender)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		var/namedata = GLOB.preferences_custom_names[custom_name_id]

@@ -72,10 +72,10 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		if(T.z == z_original)
 			special_target_valid = TRUE_THRESHOLD
 	if(special_target_valid)
-		SSmove_manager.home_onto(src, special_target)
+		walk_towards(src, special_target, 1)
 		previous_distance = get_dist(src, special_target)
 	else if(end && end.z==z_original)
-		SSmove_manager.home_onto(src, destination)
+		walk_towards(src, destination, 1)
 		previous_distance = get_dist(src, destination)
 
 /obj/effect/immovablerod/Destroy()
@@ -105,7 +105,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	//We hit what we wanted to hit, time to go
 	special_target = null
 	destination = get_edge_target_turf(src, dir)
-	SSmove_manager.home_onto(src, destination)
+	walk(src,0)
+	walk_towards(src, destination, 1)
 
 /obj/effect/immovablerod/ex_act(severity, target)
 	return 0
@@ -143,9 +144,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		smoke.start()
 		qdel(src)
 		qdel(other)
-
-/obj/effect/immovablerod/Process_Spacemove()
-	return TRUE
 
 /obj/effect/immovablerod/proc/penetrate(mob/living/L)
 	L.visible_message("<span class='danger'>[L] is penetrated by an immovable rod!</span>" , "<span class='userdanger'>The rod penetrates you!</span>" , "<span class ='danger'>You hear a CLANG!</span>")

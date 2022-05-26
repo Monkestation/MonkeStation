@@ -714,7 +714,7 @@
 
 	if(has_limbs)
 		var/turf/T = get_step(src, angle2dir(dir2angle(direction)+90))
-		if(T)
+		if (T)
 			turfs_to_check += T
 
 		T = get_step(src, angle2dir(dir2angle(direction)-90))
@@ -726,11 +726,12 @@
 			if(T.density)
 				pressure_resistance_prob_delta -= 20
 				continue
-			for(var/atom/movable/AM in T)
-				if(AM.density && AM.anchored)
+			for (var/atom/movable/AM in T)
+				if (AM.density && AM.anchored)
 					pressure_resistance_prob_delta -= 20
 					break
-	. = ..(pressure_difference, direction, pressure_resistance_prob_delta)
+	if(!force_moving)
+		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
@@ -786,7 +787,7 @@
 		else
 			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>")
 		if(moving_resist && client) //we resisted by trying to move
-			client.move_delay = world.time + 2 SECONDS
+			client.move_delay = world.time + 20
 	else
 		pulledby.stop_pulling()
 		return FALSE
@@ -810,7 +811,7 @@
 		if(has_gravity == 1)
 			clear_alert("gravity")
 		else
-			if(has_gravity >= GRAVITY_DAMAGE_THRESHOLD)
+			if(has_gravity >= GRAVITY_DAMAGE_TRESHOLD)
 				throw_alert("gravity", /atom/movable/screen/alert/veryhighgravity)
 			else
 				throw_alert("gravity", /atom/movable/screen/alert/highgravity)
@@ -920,6 +921,9 @@
 /mob/living/proc/get_standard_pixel_y_offset(lying = 0)
 	return initial(pixel_y)
 
+/mob/living/cancel_camera()
+	..()
+	cameraFollow = null
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
@@ -980,8 +984,8 @@
 	return TRUE
 
 /mob/living/proc/return_soul()
+	hellbound = 0
 	if(mind)
-		mind.hellbound = FALSE
 		var/datum/antagonist/devil/devilInfo = mind.soulOwner.has_antag_datum(/datum/antagonist/devil)
 		if(devilInfo)//Not sure how this could be null, but let's just try anyway.
 			devilInfo.remove_soul(mind)

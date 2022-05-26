@@ -209,12 +209,11 @@
 
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
-	if(area)
-		area.power_light = FALSE
-		area.power_equip = FALSE
-		area.power_environ = FALSE
-		area.power_change()
-		area.poweralert(FALSE, src)
+	area.power_light = FALSE
+	area.power_equip = FALSE
+	area.power_environ = FALSE
+	area.power_change()
+	area.poweralert(FALSE, src)
 	if(occupier)
 		malfvacate(1)
 	qdel(wires)
@@ -942,7 +941,7 @@
 		"powerCellStatus" = cell ? cell.percent() : null,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
-		"totalLoad" = display_power(lastused_total),
+		"totalLoad" = DisplayPower(lastused_total),
 		"coverLocked" = coverlocked,
 		"siliconUser" = user.has_unlimited_silicon_privilege || user.using_power_flow_console(),
 		"malfStatus" = get_malf_status(user),
@@ -952,7 +951,7 @@
 		"powerChannels" = list(
 			list(
 				"title" = "Equipment",
-				"powerLoad" = display_power(lastused_equip),
+				"powerLoad" = DisplayPower(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
 					"auto" = list("eqp" = 3),
@@ -962,7 +961,7 @@
 			),
 			list(
 				"title" = "Lighting",
-				"powerLoad" = display_power(lastused_light),
+				"powerLoad" = DisplayPower(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
 					"auto" = list("lgt" = 3),
@@ -972,7 +971,7 @@
 			),
 			list(
 				"title" = "Environment",
-				"powerLoad" = display_power(lastused_environ),
+				"powerLoad" = DisplayPower(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
 					"auto" = list("env" = 3),

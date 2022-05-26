@@ -1,3 +1,12 @@
+#define LAW_VALENTINES "valentines"
+#define LAW_DEVIL "devil"
+#define LAW_ZEROTH "zeroth"
+#define LAW_INHERENT "inherent"
+#define LAW_SUPPLIED "supplied"
+#define LAW_ION "ion"
+#define LAW_HACKED "hacked"
+
+
 /datum/ai_laws
 	var/name = "Unknown Laws"
 	var/zeroth = null
@@ -487,12 +496,12 @@
 
 	for(var/law in hacked)
 		if (length(law) > 0)
-			var/num = ion_num()
+			var/num = ionnum()
 			data += "[show_numbers ? "[num]:" : ""] <font color='#660000'>[law]</font>"
 
 	for(var/law in ion)
 		if (length(law) > 0)
-			var/num = ion_num()
+			var/num = ionnum()
 			data += "[show_numbers ? "[num]:" : ""] <font color='#547DFE'>[law]</font>"
 
 	var/number = 1

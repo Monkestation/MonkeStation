@@ -7,6 +7,3 @@
 
 //Car trait flags
 #define CAN_KIDNAP 1
-
-/// The vehicle being ridden requires pixel offsets for all directions
-#define RIDING_OFFSET_ALL "ALL"

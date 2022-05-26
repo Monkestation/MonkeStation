@@ -24,12 +24,9 @@
 #define REALTIMEOFDAY (world.timeofday + (MIDNIGHT_ROLLOVER * MIDNIGHT_ROLLOVER_CHECK))
 #define MIDNIGHT_ROLLOVER_CHECK ( GLOB.rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : GLOB.midnight_rollovers )
 
-/// Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive
-#define SIGN(x) ( ((x) > 0) - ((x) < 0) )
+#define SIGN(x) ( (x)!=0 ? (x) / abs(x) : 0 )
 
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
-
-#define ROUND_UP(x) ( -round(-(x)))
 
 /// `round()` acts like `floor(x, 1)` by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
@@ -40,7 +37,7 @@
 #define WRAP(val, min, max) ( min == max ? min : (val) - (round(((val) - (min))/((max) - (min))) * ((max) - (min))) )
 
 /// Real modulus that handles decimals
-#define MODULUS(x, y) ( (x) - FLOOR(x, y))
+#define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
 
 /// Tangent
 #define TAN(x) tan(x)

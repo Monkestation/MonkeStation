@@ -654,9 +654,8 @@
   * default behaviour is to send the COMSIG_ATOM_BLOB_ACT signal
   */
 /atom/proc/blob_act(obj/structure/blob/B)
-	if(SEND_SIGNAL(src, COMSIG_ATOM_BLOB_ACT, B) & COMPONENT_CANCEL_BLOB_ACT)
-		return FALSE
-	return TRUE
+	SEND_SIGNAL(src, COMSIG_ATOM_BLOB_ACT, B)
+	return
 
 /atom/proc/fire_act(exposed_temperature, exposed_volume)
 	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, exposed_temperature, exposed_volume)
@@ -758,7 +757,7 @@
   *
   * Default behaviour is to send COMSIG_ATOM_SING_PULL and return
   */
-/atom/proc/singularity_pull(obj/anomaly/singularity/S, current_size)
+/atom/proc/singularity_pull(obj/singularity/S, current_size)
 	SEND_SIGNAL(src, COMSIG_ATOM_SING_PULL, S, current_size)
 
 

@@ -115,7 +115,7 @@
 
 		t += "<div class='statusDisplay'>"
 
-		t += "Output: [display_power(lastgenlev)]"
+		t += "Output: [DisplayPower(lastgenlev)]"
 
 		t += "<BR>"
 

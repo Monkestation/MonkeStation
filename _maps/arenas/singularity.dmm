@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
-/obj/anomaly/singularity/academy,
+/obj/singularity/academy,
 /turf/open/space,
 /area/tdome/arena)
 "ad" = (

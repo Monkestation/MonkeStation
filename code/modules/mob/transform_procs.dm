@@ -59,6 +59,8 @@
 
 	if(suiciding)
 		O.set_suicide(suiciding)
+	if(hellbound)
+		O.hellbound = hellbound
 	O.a_intent = INTENT_HARM
 
 	//keep viruses?
@@ -219,6 +221,8 @@
 
 	if(suiciding)
 		O.set_suicide(suiciding)
+	if(hellbound)
+		O.hellbound = hellbound
 	O.a_intent = INTENT_HARM
 
 	//keep viruses?
@@ -382,6 +386,8 @@
 
 	if(suiciding)
 		O.set_suicide(suiciding)
+	if(hellbound)
+		O.hellbound = hellbound
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
@@ -577,7 +583,7 @@
 			R.mmi.brainmob.name = real_name
 
 	R.job = "Cyborg"
-	R.notify_ai(AI_NOTIFICATION_NEW_BORG)
+	R.notify_ai(NEW_BORG)
 
 	. = R
 	qdel(src)

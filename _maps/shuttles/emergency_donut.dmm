@@ -484,9 +484,7 @@
 	},
 /obj/docking_port/mobile/emergency{
 	name = "Donut emergency shuttle";
-	dwidth = 15;
-	width = 34;
-	height = 14
+	width = 34
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,

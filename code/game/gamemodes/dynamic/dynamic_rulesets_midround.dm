@@ -80,7 +80,6 @@
 	return TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/execute()
-	cost = round(cost * 1.25) //Extra cost to the rule every time it rolls.
 	var/list/possible_candidates = list()
 	possible_candidates.Add(dead_players)
 	possible_candidates.Add(list_observers)
@@ -168,10 +167,9 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
-	minimum_players = 8
 	weight = 7
 	cost = 10
-	requirements = list(20,20,20,20,20,20,20,20,20,20)
+	requirements = list(50,40,30,20,10,10,10,10,10,10)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/autotraitor/acceptable(population = 0, threat = 0)
@@ -223,9 +221,6 @@
 //                              		    //
 //////////////////////////////////////////////
 
-#define REPLACE_LAW_CHANCE 10
-#define ANNOUNCE_ION_LAW_CHANCE 33
-
 /datum/dynamic_ruleset/midround/malf
 	name = "Malfunctioning AI"
 	antag_datum = /datum/antagonist/traitor
@@ -235,10 +230,11 @@
 	required_enemies = list(4,4,4,4,4,4,2,2,2,0)
 	required_candidates = 1
 	weight = 3
-	cost = 30
-	minimum_players = 25
-	requirements = list(101,101,101,101,50,40,30,30,30,30)
+	cost = 20
+	requirements = list(101,101,80,70,60,60,50,50,40,40)
 	required_type = /mob/living/silicon/ai
+	var/ion_announce = 33
+	var/removeDontImproveChance = 10
 
 /datum/dynamic_ruleset/midround/malf/trim_candidates()
 	..()
@@ -261,16 +257,13 @@
 	var/datum/antagonist/traitor/AI = new
 	M.mind.special_role = antag_flag
 	M.mind.add_antag_datum(AI)
-	if(prob(ANNOUNCE_ION_LAW_CHANCE))
+	if(prob(ion_announce))
 		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
-		if(prob(REPLACE_LAW_CHANCE))
+		if(prob(removeDontImproveChance))
 			M.replace_random_law(generate_ion_law(), list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
 		else
 			M.add_ion_law(generate_ion_law())
 	return TRUE
-
-#undef REPLACE_LAW_CHANCE
-#undef ANNOUNCE_ION_LAW_CHANCE
 
 //////////////////////////////////////////////
 //                                          //
@@ -283,12 +276,11 @@
 	antag_datum = /datum/antagonist/wizard
 	antag_flag = ROLE_WIZARD
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain", "Research Director") //RD doesn't believe in magic
-	required_enemies = list(2,2,1,1,1,1,1,1,1,1)
+	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 1
 	cost = 20
-	minimum_players = 30
-	requirements = list(101,101,101,101,40,30,10,10,10,10)
+	requirements = list(90,90,70,40,30,20,10,10,10,10)
 	repeatable = TRUE
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
@@ -316,11 +308,10 @@
 	antag_datum = /datum/antagonist/nukeop
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	required_enemies = list(3,3,3,3,3,2,1,1,0,0)
-	required_candidates = 3
+	required_candidates = 5
 	weight = 5
 	cost = 20
-	minimum_players = 30
-	requirements = list(101,101,101,101,101,40,30,20,10,10)
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
 	var/datum/team/nuclear/nuke_team
 	flags = HIGH_IMPACT_RULESET
@@ -362,7 +353,6 @@
 	required_candidates = 1
 	weight = 4
 	cost = 10
-	minimum_players = 30
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 
@@ -385,7 +375,6 @@
 	required_candidates = 1
 	weight = 3
 	cost = 10
-	minimum_players = 30
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	repeatable = TRUE
 	var/list/vents = list()
@@ -432,7 +421,6 @@
 	required_candidates = 1
 	weight = 3
 	cost = 10
-	minimum_players = 30
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	repeatable = TRUE
 	var/list/spawn_locs = list()
@@ -479,8 +467,7 @@
 	required_candidates = 2
 	weight = 4
 	cost = 10
-	minimum_players = 20
-	requirements = list(101,101,101,40,30,30,30,20,10,10)
+	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
 	var/datum/team/abductor_team/new_team
 

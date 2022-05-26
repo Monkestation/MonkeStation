@@ -43,7 +43,6 @@
 	return ..()
 
 /datum/dynamic_ruleset/latejoin/execute()
-	cost = round(cost * 1.25) //Extra cost to the rule every time it rolls.
 	var/mob/M = pick(candidates)
 	assigned += M.mind
 	M.mind.special_role = antag_flag
@@ -64,9 +63,8 @@
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
 	weight = 7
-	cost = 8
-	minimum_players = 8
-	requirements = list(101,30,20,20,20,20,20,10,10,10)
+	cost = 5
+	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE
 
 //////////////////////////////////////////////
@@ -87,8 +85,7 @@
 	required_candidates = 1
 	weight = 2
 	delay = 1 MINUTES	// Prevents rule start while head is offstation.
-	cost = 40
-	minimum_players = 35
+	cost = 20
 	requirements = list(101,101,70,40,30,20,20,20,20,20)
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
@@ -162,6 +159,5 @@
 	required_candidates = 1
 	weight = 4
 	cost = 10
-	minimum_players = 15
-	requirements = list(101,101,20,20,10,10,10,10,10,10)
+	requirements = list(40,30,20,10,10,10,10,10,10,10)
 	repeatable = TRUE

@@ -33,7 +33,7 @@
 /obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
 	. = ..()
 	if(isliving(target))
-		if(target.ishellbound())
+		if(target.hellbound)
 			return BULLET_ACT_BLOCK
 		if(target.anti_magic_check())
 			target.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
@@ -168,7 +168,7 @@
 		var/mob/living/silicon/robot/Robot = M
 		if(Robot.mmi)
 			qdel(Robot.mmi)
-		Robot.notify_ai(AI_NOTIFICATION_NEW_BORG)
+		Robot.notify_ai(NEW_BORG)
 	else
 		for(var/obj/item/W in contents)
 			if(!M.dropItemToGround(W))
@@ -668,8 +668,6 @@
 	var/exp_light = 2
 	var/exp_flash = 3
 	var/exp_fire = 2
-	var/magic = TRUE
-	var/holy = FALSE
 
 /obj/item/projectile/magic/aoe/fireball/New(loc, spell_level)
 	. = ..()
@@ -687,7 +685,7 @@
 			return BULLET_ACT_BLOCK
 		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, your at about 65 damage if you stop drop and roll immediately
 	var/turf/T = get_turf(target)
-	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire, magic = magic, holy = holy)
+	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
 
 /obj/item/projectile/magic/aoe/fireball/infernal
 	name = "infernal fireball"
@@ -695,8 +693,6 @@
 	exp_light = -1
 	exp_flash = 4
 	exp_fire= 5
-	magic = FALSE
-	holy = TRUE
 
 /obj/item/projectile/magic/aoe/fireball/infernal/on_hit(target)
 	. = ..()
@@ -706,7 +702,7 @@
 			return BULLET_ACT_BLOCK
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, FALSE, TRUE), i)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
 
 //still magic related, but a different path
 

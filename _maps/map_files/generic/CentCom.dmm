@@ -7606,7 +7606,7 @@
 /turf/open/floor/wood,
 /area/centcom/holding)
 "wg" = (
-/obj/tear_in_reality,
+/obj/singularity/wizard/mapped,
 /turf/open/indestructible/binary,
 /area/tear_in_reality)
 "wk" = (

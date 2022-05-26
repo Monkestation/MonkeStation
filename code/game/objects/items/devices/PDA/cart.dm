@@ -65,7 +65,7 @@
 	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	access = CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = list(FLOOR_BOT, FIRE_BOT, ATMOS_BOT)
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/medical
 	name = "\improper Med-U cartridge"
@@ -112,7 +112,7 @@
 /obj/item/cartridge/roboticist
 	name = "\improper B.O.O.P. Remote Control cartridge"
 	desc = "Packed with heavy duty quad-bot interlink!"
-	bot_access_flags = list(FLOOR_BOT, CLEAN_BOT, MED_BOT, FIRE_BOT, ATMOS_BOT)
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	access = CART_DRONEPHONE
 
 /obj/item/cartridge/signal
@@ -147,7 +147,7 @@
 	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_SECURITY | CART_NEWSCASTER | CART_QUARTERMASTER | CART_DRONEPHONE
-	bot_access_flags = list(MULE_BOT, CLEAN_BOT)
+	bot_access_flags = MULE_BOT | CLEAN_BOT
 
 /obj/item/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
@@ -160,7 +160,7 @@
 	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_ENGINE | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = list(FLOOR_BOT, FIRE_BOT, ATMOS_BOT)
+	bot_access_flags = FLOOR_BOT | FIRE_BOT
 
 /obj/item/cartridge/cmo
 	name = "\improper Med-U DELUXE cartridge"
@@ -172,7 +172,7 @@
 	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_REAGENT_SCANNER | CART_ATMOS | CART_DRONEPHONE
-	bot_access_flags = list(FLOOR_BOT, CLEAN_BOT, MED_BOT, FIRE_BOT, ATMOS_BOT)
+	bot_access_flags = FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 
 /obj/item/cartridge/rd/Initialize(mapload)
 	. = ..()
@@ -183,7 +183,7 @@
 	desc = "Now with 350% more value!" //Give the Captain...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
-	bot_access_flags = list(SEC_BOT, MULE_BOT, FLOOR_BOT, CLEAN_BOT, MED_BOT, FIRE_BOT, ATMOS_BOT)
+	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	spam_enabled = 1
 
 /obj/item/cartridge/captain/Initialize(mapload)
@@ -295,7 +295,7 @@ Code:
 						var/obj/machinery/power/apc/A = term.master
 						L += A
 
-				menu += "<PRE>Location: [get_area_name(powmonitor, TRUE)]<BR>Total power: [display_power(connected_powernet.viewavail)]<BR>Total load:  [display_power(connected_powernet.viewload)]<BR>"
+				menu += "<PRE>Location: [get_area_name(powmonitor, TRUE)]<BR>Total power: [DisplayPower(connected_powernet.viewavail)]<BR>Total load:  [DisplayPower(connected_powernet.viewload)]<BR>"
 
 				menu += "<FONT SIZE=-1>"
 
@@ -312,9 +312,9 @@ Code:
 					for(var/obj/machinery/power/apc/A in L)
 						menu += copytext_char(add_trailing(A.area.name, 30, " "), 1, 30)
 						if(A.integration_cog)
-							menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(display_power(A.lastused_total), 6, " ")]  100% F<BR>"
+							menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  100% F<BR>"
 						else
-							menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(display_power(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading("[round(A.cell.percent())]", 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+							menu += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(DisplayPower(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading("[round(A.cell.percent())]", 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 
 				menu += "</FONT></PRE>"
 

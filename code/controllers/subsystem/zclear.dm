@@ -91,16 +91,13 @@ SUBSYSTEM_DEF(zclear)
 		living_levels["[docking_level]"] = TRUE
 
 	for(var/datum/space_level/level as() in autowipe)
-		if(!level)
-			autowipe -= level
-
 		//Check if free
 		if(active_levels["[level.z_value]"])
 			if(!living_levels["[level.z_value]"] && mob_levels["[level.z_value]"] && !announced_zombie_levels["[level.z_value]"])
 				//Zombie level detected.
 				announced_zombie_levels["[level.z_value]"] = TRUE
 				if(level.orbital_body)
-					priority_announce("All sentient life forms at [level.orbital_body.name] have perished. You are recommended to establish a rescue operation to recover the bodies.", "Exploration Crew Monitor", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
+					priority_announce("Nanotrasen long ranged sensors have indicated that all sentient life forms at priority waypoint [level.orbital_body.name] have ceased life functions. Command is recommended to establish a rescue operation to recover the bodies. Due to the nature of the threat at this location, security personnel armed with lethal weaponry is recommended to accompany the rescue team.", "Nanotrasen Long Range Sensors")
 			continue
 		//Level is free, do the wiping thing.
 		LAZYREMOVE(autowipe, level)
@@ -223,7 +220,7 @@ SUBSYSTEM_DEF(zclear)
 						nullspaced_mob_names += " - [M.name]\n"
 						valid = TRUE
 				if(valid)
-					priority_announce("A mass casualty has occured on your nearest priority waypoint. You are recommended to fly out and rescue the following personnel: \n[nullspaced_mob_names]", "Exploration Crew Monitor", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
+					priority_announce("Sensors indicate that multiple crewmembers have been lost at an abandoned station. They can potentially be recovered by flying to the nearest derelict station and locating their bodies.\n[nullspaced_mob_names]")
 	cleardata.process_num ++
 
 /*
@@ -296,10 +293,6 @@ SUBSYSTEM_DEF(zclear)
 	for(var/datum/space_level/D as() in SSmapping.z_list)
 		if (D.linkage == CROSSLINKED)
 			possible_transtitons += D.z_value
-
-	if(!possible_transtitons)
-		possible_transtitons = list(SSmapping.empty_space)
-
 	var/_z = pick(possible_transtitons)
 
 	//now select coordinates for a border turf

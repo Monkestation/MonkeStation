@@ -411,12 +411,3 @@
 		return TRUE
 	else
 		return FALSE
-
-/mob/living/proc/sethellbound()
-	if(mind)
-		mind.hellbound = TRUE
-		return TRUE
-	return FALSE
-
-/mob/living/proc/ishellbound()
-	return mind && mind.hellbound

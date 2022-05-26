@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/outline_enabled = TRUE
 	var/outline_color = COLOR_BLUE_GRAY
 	var/buttons_locked = FALSE
-	var/hotkeys = TRUE //MONKESTATION CHANGE: makes hotkey mode on by default
+	var/hotkeys = FALSE
 
 	///Runechat preference. If true, certain messages will be displayed on the map, not ust on the chat area. Boolean.
 	var/chat_on_map = TRUE
@@ -169,8 +169,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			unlock_content = C.IsByondMember()
 			if(unlock_content)
 				max_save_slots = 8
-		else if(!length(key_bindings)) // Guests need default keybinds
-			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if("6030fe461e610e2be3a2c3e75c06067e" in purchased_gear) //MD5 hash of, "extra character slot"
@@ -611,7 +609,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>See Balloon alerts: </b> <a href='?_src_=prefs;preference=see_balloon_alerts;task=input'>[see_balloon_alerts]</a>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
-			dat += "<b>Hotkey Mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "No Hotkeys"]</a><br>" //MONKESTATION CHANGE: makes hotkey mode on by default
+			dat += "<b>Hotkey Mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
 			dat += "<br>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"

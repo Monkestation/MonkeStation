@@ -50,7 +50,6 @@
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	QDEL_LIST(bioware)
-	GLOB.suit_sensors_list -= src
 	return ..()
 
 
@@ -142,7 +141,7 @@
 	spreadFire(AM)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
+	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		var/obj/item/bodypart/L = locate(href_list["embedded_limb"]) in bodyparts
 		if(!L)
 			return
@@ -408,11 +407,8 @@
 
 /mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone, var/penetrate_thick = 0)
 	. = 1 // Default to returning true.
-	if(!target_zone)
-		if(user)
-			target_zone = user.zone_selected
-		else
-			target_zone = BODY_ZONE_CHEST
+	if(user && !target_zone)
+		target_zone = user.zone_selected
 	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
@@ -511,7 +507,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(has_mindshield_hud_icon())
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -996,13 +992,6 @@
 	stop_pulling()
 	riding_datum.handle_vehicle_layer()
 	. = ..(target, force, check_loc)
-
-	//Something went wrong with buckling, remove inhands and restore target's position!
-	if(!.)
-		riding_datum.unequip_buckle_inhands(src)
-		riding_datum.unequip_buckle_inhands(target)
-		riding_datum.restore_position(target)
-		to_chat(src, "<span class='warning'>You seem to be unable to carry [target]!</span>")
 
 /mob/living/carbon/human/proc/is_shove_knockdown_blocked() //If you want to add more things that block shove knockdown, extend this
 	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)

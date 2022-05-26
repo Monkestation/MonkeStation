@@ -712,9 +712,7 @@
 "bw" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -724,9 +722,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "by" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -750,9 +746,7 @@
 	name = "Gas to Chamber"
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bC" = (
 /obj/structure/cable/white,
 /turf/open/floor/plating,
@@ -773,17 +767,13 @@
 /area/engine/engineering)
 "bF" = (
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -809,9 +799,7 @@
 	dir = 6
 	},
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bL" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -820,9 +808,7 @@
 /obj/structure/cable,
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bM" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -831,9 +817,7 @@
 /obj/structure/cable,
 /obj/structure/window/plasma/reinforced,
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/reflector/double/anchored{
@@ -861,9 +845,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bQ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -887,23 +869,17 @@
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bT" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "bU" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -951,9 +927,7 @@
 "bZ" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "ca" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -970,14 +944,10 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cb" = (
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cc" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -994,15 +964,11 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cd" = (
 /obj/machinery/power/supermatter_crystal/engine,
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "ce" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable/white{
@@ -1043,47 +1009,35 @@
 	dir = 8
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cj" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "ck" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
 	name = "Gas to Filter"
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cl" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cn" = (
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "co" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -1135,9 +1089,7 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cv" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/machinery/power/rad_collector/anchored,
@@ -1148,9 +1100,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -1163,9 +1113,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/engine,
@@ -1206,9 +1154,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1248,9 +1194,7 @@
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
-/area/engine/engine_core{
-	name = "Supermatter Crystal"
-	})
+/area/engine/supermatter)
 "cH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
