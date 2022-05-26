@@ -943,12 +943,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"cv" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "cw" = (
 /obj/structure/chair/office{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"cx" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/maintenance/disposal/incinerator)
 "cy" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
@@ -1120,13 +1132,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine/light,
 /area/engine/engine_core)
-"cU" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/security/prison)
 "cV" = (
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/effect/mapping_helpers/airlock/autoname,
@@ -3380,10 +3385,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engine_room)
-"iz" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "iA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -4235,6 +4236,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engine_smes)
+"kN" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
+/turf/open/floor/plating,
+/area/engine/engine_room)
 "kO" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
@@ -5205,10 +5210,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
-"ng" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/quartermaster/exploration_dock)
 "nh" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
@@ -6706,6 +6707,10 @@
 /obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qT" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "qU" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -7733,10 +7738,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"tq" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/maintenance/central/secondary)
 "tr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8035,6 +8036,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"ul" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "um" = (
 /obj/effect/turf_decal/tile/yellow/tile_marquee,
 /turf/open/floor/plasteel/techmaint,
@@ -9100,7 +9105,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
-/area/maintenance/disposal/incinerator)
+/area/maintenance/central/secondary)
 "wZ" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
@@ -9171,6 +9176,11 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/science/lab)
+"xj" = (
+/obj/structure/sign/warning/vacuum/external,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/hallway/secondary/exit)
 "xk" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -9664,15 +9674,7 @@
 /area/engine/gravity_generator)
 "yB" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/prison)
 "yC" = (
@@ -10255,11 +10257,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"zV" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/mouse/brown/Tom,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "zW" = (
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -10713,10 +10710,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/nuke_storage)
-"Bg" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "Bh" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -12141,6 +12134,19 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/openspace,
 /area/maintenance/central/secondary)
+"EM" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/security/prison)
 "EN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/caution/stand_clear{
@@ -13284,10 +13290,6 @@
 "HA" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
-"HB" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
-/area/engine/engine_room)
 "HC" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -13571,10 +13573,6 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"Io" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/central/secondary)
 "Ip" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
 /turf/open/floor/plating,
@@ -13818,11 +13816,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/engine/engine_core)
-"IZ" = (
-/obj/structure/sign/warning/vacuum/external,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/hallway/secondary/exit)
 "Ja" = (
 /turf/open/floor/plasteel,
 /area/maintenance/central/secondary)
@@ -13924,6 +13917,10 @@
 "Jr" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
+"Js" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/chapel/main)
 "Jt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 8
@@ -14974,7 +14971,7 @@
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/openspace/airless,
-/area/maintenance/disposal/incinerator)
+/area/space/nearstation)
 "LS" = (
 /obj/machinery/door/airlock/external{
 	name = "Brig Shuttle Airlock";
@@ -15322,6 +15319,10 @@
 /obj/machinery/telecomms/server/presets/common/birdstation,
 /turf/open/floor/circuit/telecomms,
 /area/tcommsat/server)
+"MP" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/quartermaster/exploration_dock)
 "MQ" = (
 /obj/structure/window/reinforced/survival_pod{
 	dir = 4
@@ -15412,6 +15413,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Na" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "Nb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
@@ -15686,15 +15692,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"NL" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 8
-	},
-/area/maintenance/disposal/incinerator)
 "NM" = (
 /obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel,
@@ -16220,10 +16217,6 @@
 /obj/machinery/atmospherics/components/unary/passive_vent,
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
-"Pb" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/chapel/main)
 "Pc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -17959,6 +17952,15 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/engine/engine_room)
+"Ts" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/maintenance/disposal/incinerator)
 "Tt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/oxygen_output{
 	dir = 8
@@ -18555,6 +18557,10 @@
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall,
 /area/quartermaster/exploration_dock)
+"UQ" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/central/secondary)
 "UR" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -18927,11 +18933,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"VM" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/security/prison)
 "VN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -20485,13 +20486,12 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
 "Zr" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 8
-	},
-/area/maintenance/disposal/incinerator)
+/turf/open/floor/plating,
+/area/security/prison)
 "Zs" = (
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 8
@@ -45279,11 +45279,11 @@ nZ
 nZ
 nZ
 nZ
-ng
+MP
 RM
 Me
 RM
-ng
+MP
 SM
 nZ
 SM
@@ -45536,11 +45536,11 @@ nZ
 nZ
 nZ
 nZ
-ng
+MP
 EN
 hR
 XY
-ng
+MP
 Ji
 Ji
 Ji
@@ -45797,8 +45797,8 @@ iQ
 RM
 Af
 RM
-ng
-ng
+MP
+MP
 UP
 WS
 WS
@@ -46307,7 +46307,7 @@ nZ
 nZ
 nZ
 nZ
-ng
+MP
 Il
 DO
 GG
@@ -46588,9 +46588,9 @@ Uk
 BV
 ME
 ME
-cU
+Zr
+EM
 yB
-VM
 ME
 ME
 nZ
@@ -47618,7 +47618,7 @@ ru
 jW
 Jb
 Mp
-zV
+Na
 Dg
 aO
 xa
@@ -57351,8 +57351,8 @@ ue
 ue
 vE
 vE
-Pb
-Pb
+Js
+Js
 vE
 vE
 HL
@@ -59681,7 +59681,7 @@ nZ
 SM
 Lm
 Qg
-IZ
+xj
 Qg
 Lm
 nZ
@@ -114951,8 +114951,8 @@ xz
 ay
 ay
 ay
-Bg
-Bg
+ul
+ul
 ay
 LW
 LW
@@ -116250,7 +116250,7 @@ qz
 wn
 qz
 qz
-HB
+kN
 qz
 qz
 Ap
@@ -117010,7 +117010,7 @@ Ud
 Ud
 Ud
 Ud
-HB
+kN
 dR
 PF
 PF
@@ -117794,7 +117794,7 @@ WO
 PF
 PF
 PF
-HB
+kN
 Ud
 Ud
 Oc
@@ -118051,7 +118051,7 @@ WO
 PF
 PF
 PF
-HB
+kN
 Ud
 xv
 Oc
@@ -118308,7 +118308,7 @@ Ok
 PF
 PF
 PF
-HB
+kN
 Ud
 Ud
 Oc
@@ -118540,7 +118540,7 @@ qy
 qy
 SE
 HA
-iz
+cv
 HA
 HA
 Ud
@@ -118801,7 +118801,7 @@ zf
 Le
 HA
 HA
-iz
+cv
 HA
 HA
 HA
@@ -120831,7 +120831,7 @@ JE
 Ud
 Ud
 Ud
-tq
+UQ
 Bs
 pN
 yK
@@ -121114,10 +121114,10 @@ LP
 jD
 Sw
 YT
-NL
+Ts
 sv
 hk
-Zr
+cx
 Yl
 BY
 BY
@@ -122653,7 +122653,7 @@ vk
 LM
 Ja
 Ja
-Io
+qT
 LR
 IM
 Vu
@@ -122911,8 +122911,8 @@ LM
 ET
 Ja
 jR
-CM
-CM
+jR
+jR
 CM
 oA
 CM
