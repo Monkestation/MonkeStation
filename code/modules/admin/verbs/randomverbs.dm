@@ -1072,7 +1072,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_WEREGORILLA) //Monkestation edit: weregorilla
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_WEREGORILLA, ADMIN_PUNISHMENT_FLUFFY) //Monkestation edit: weregorilla
 	if(istype(target, /mob/living/carbon))
 		punishment_list += ADMIN_PUNISHMENT_NUGGET
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in sortList(punishment_list)
@@ -1205,7 +1205,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				target.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/weregorilla)
 			playsound(target, 'sound/creatures/gorilla.ogg', 50)
 		if(ADMIN_PUNISHMENT_FLUFFY)
-			RegisterSignal(target, COMSIG_MOB_SAY, /datum/quirk/fluffy_tongue/proc/handle_speech)
+			ADD_TRAIT(target, TRAIT_FLUFFY, source)
 		//monkestation edit end: weregorilla
 
 	punish_log(target, punishment)
