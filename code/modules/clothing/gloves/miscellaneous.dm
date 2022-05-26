@@ -113,7 +113,7 @@
 	var/mob/living/user = loc
 	if(get_dist(target, user) <= 1)
 		return FALSE
-	if(istype(target, /obj/structure/pool_ladder))
+	if(istype(target, /obj/structure))
 		return FALSE
 	if(user in viewers(range, target))
 		user.visible_message("<span_class ='danger'>[user] waves their hands at [target]</span>", "<span_class ='notice'>You begin manipulating [target].</span>")
