@@ -19,6 +19,7 @@
 	var/gasperfist = 3
 	var/obj/item/tank/internals/tank = null //Tank used for the gauntlet's piston-ram.
 	var/baseforce = 20
+	var/lock //if this is locked to the user
 
 
 /obj/item/melee/powerfist/examine(mob/user)
@@ -37,6 +38,10 @@
 			if(IT.volume <= 3)
 				to_chat(user, "<span class='warning'>\The [IT] is too small for \the [src].</span>")
 				return
+			if(!lock)
+				ADD_TRAIT(src, TRAIT_NODROP, POWERFIST_STICK)
+				lock ++
+				to_chat(user, "The Powerfist seals to your arm, removal is unlikely.")
 			updateTank(W, 0, user)
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		switch(fisto_setting)
@@ -88,7 +93,7 @@
 		attack_weight = 1
 		playsound(loc, 'sound/weapons/punch1.ogg', 50, 1)
 		target.visible_message("<span class='danger'>[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!</span>", \
-		"<span class='userdanger'>[user]'s punches you!</span>")
+		"<span class='userdanger'>[user] punches you!</span>")
 		return
 	//less than the amount needed
 	if(tank.air_contents.total_moles() < moles_used)
