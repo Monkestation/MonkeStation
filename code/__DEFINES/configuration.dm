@@ -20,6 +20,9 @@
 /// Folder directory for config
 #define CONFIG_DIRECTORY "config"
 
+/// Force the config directory to be something other than "config"
+#define OVERRIDE_CONFIG_DIRECTORY_PARAMETER "config-directory"
+
 /// File defines, most of them are loaded from STRING_DIRECTORY
 #define DSAY_NICKNAME_FILE "admin_nicknames.json"	//loaded from CONFIG_DIRECTORY
 #define PHOBIA_FILE "phobia.json"
@@ -36,3 +39,6 @@
 #define REVENANT_NAME_FILE "revenant_names.json"
 #define ITALIAN_TALK_FILE "italian_replacement.json"
 #define VALENTINE_FILE "valentines.json"
+#define GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/gimmick_objectives.txt"
+#define DEPT_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/dept_gimmick_objectives.txt"
+#define TARGET_GIMMICK_OBJ_FILE "[STRING_DIRECTORY]/target_gimmick_objectives.txt"
