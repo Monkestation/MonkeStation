@@ -1205,7 +1205,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				target.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/weregorilla)
 			playsound(target, 'sound/creatures/gorilla.ogg', 50)
 		if(ADMIN_PUNISHMENT_FLUFFY)
-			ADD_TRAIT(target, TRAIT_FLUFFY, source)
+			ADD_TRAIT(target, TRAIT_FLUFFY)
 		//monkestation edit end: weregorilla
 
 	punish_log(target, punishment)
