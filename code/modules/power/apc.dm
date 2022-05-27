@@ -1051,6 +1051,7 @@
 	switch(action)
 		if("reboot")
 			if(failure_timer)
+				playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 30, 1)
 				failure_timer = 0
 				update_icon()
 				update()
@@ -1073,8 +1074,10 @@
 			. = TRUE
 		if("breaker")
 			toggle_breaker(usr)
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 30, 1)
 			. = TRUE
 		if("toggle_nightshift")
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 			toggle_nightshift_lights()
 			. = TRUE
 		if("charge")
@@ -1086,14 +1089,17 @@
 		if("channel")
 			if(params["eqp"])
 				equipment = setsubsystem(text2num(params["eqp"]))
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else if(params["lgt"])
 				lighting = setsubsystem(text2num(params["lgt"]))
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else if(params["env"])
 				environ = setsubsystem(text2num(params["env"]))
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else
@@ -1101,6 +1107,7 @@
 			. = TRUE
 		if("overload")
 			if(usr.has_unlimited_silicon_privilege)
+				playsound(src, 'sound/machines/defib_zap.ogg', 20, 2)
 				overload_lighting()
 				. = TRUE
 		if("hack")
@@ -1117,6 +1124,7 @@
 				. = TRUE
 		if("emergency_lighting")
 			emergency_lights = !emergency_lights
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 			for(var/obj/machinery/light/L in area)
 				if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
 					L.no_emergency = emergency_lights
@@ -1263,7 +1271,7 @@
 	if(terminal)
 		return terminal.surplus()
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/power/apc/add_load(amount)
 	if(terminal && terminal.powernet)
@@ -1273,7 +1281,7 @@
 	if(terminal)
 		return terminal.avail(amount)
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/power/apc/process()
 	if(icon_update_needed)
@@ -1335,6 +1343,7 @@
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
+				playsound(src, 'monkestation/sound/machines/apc/PowerDown_001.ogg', 40, 1)
 
 
 		// set channels depending on how much charge we have left
@@ -1347,7 +1356,7 @@
 
 		var/power_alert_fine = TRUE
 
-		if(cell.charge <= 0)					// zero charge, turn all off
+		if(cell.charge <= 0) // zero charge, turn all off
 			equipment = autoset(equipment, 0)
 			lighting = autoset(lighting, 0)
 			environ = autoset(environ, 0)
