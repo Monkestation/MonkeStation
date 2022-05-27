@@ -35,9 +35,12 @@
 	var/list/affecting_areas
 	var/list/access_log
 	var/process_ticker //Ratelimit process to one check ~5 process ticks
+	///Cooldown to stop airlocks from instantly closing when opened
+	COOLDOWN_DECLARE(detect_cooldown) //MONKESTATION EDIT ADDITION
 
 /obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -78,19 +81,10 @@
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
-	if(panel_open || operating || welded || (stat & NOPOWER))
+	if(panel_open || operating)
 		return
-	if(ismob(AM))
-		var/mob/user = AM
-		if(allow_hand_open(user))
-			add_fingerprint(user)
-			open()
-			return TRUE
-	if(ismecha(AM))
-		var/obj/mecha/M = AM
-		if(M.occupant && allow_hand_open(M.occupant))
-			open()
-			return TRUE
+	if(!density)
+		return ..()
 	return FALSE
 
 
@@ -101,37 +95,14 @@
 	else
 		machine_stat |= NOPOWER
 
-/obj/machinery/door/firedoor/power_change()
-	if(powered(power_channel))
-		stat &= ~NOPOWER
-		INVOKE_ASYNC(src, .proc/latetoggle)
-	else
-		stat |= NOPOWER
-
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	if (!welded && !operating)
-		if (stat & NOPOWER)
-			user.visible_message("[user] tries to open \the [src] manually.",
-						 "You operate the manual lever on \the [src].")
-			if (!do_after(user, 30, TRUE, src))
-				return FALSE
-		else if (density && !allow_hand_open(user))
-			return FALSE
-
-		add_fingerprint(user)
-		if(density)
-			emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
-			open()
-		else
-			close()
-		return TRUE
-
 	if(operating || !density)
 		return
+
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	user.visible_message("[user] bangs on \the [src].",
@@ -314,10 +285,13 @@
 	. = ..()
 	if(.)
 		STOP_PROCESSING(SSmachines, src)
+	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	latetoggle()
 
 
 /obj/machinery/door/firedoor/close()
+	if(!COOLDOWN_FINISHED(src, detect_cooldown)) //MONKESTATION EDIT ADDITION
+		return
 	if(HAS_TRAIT(loc, TRAIT_FIREDOOR_STOP))
 		return
 	if(!density && !operating) //This is hacky but gets the sound to play on time.
