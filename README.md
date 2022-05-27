@@ -38,8 +38,6 @@ For More Information Please see [HARDDELETES.md](.github/guides/HARDDELETES.md).
 The MC tab hold information on how the game is performing.
 For More Information Please see [MC_tab.md](.github/guides/MC_tab.md).
 
-Policy configuration is a json file that the administrators of a server can edit, which contains a dictionary of keywords -> string message.
-For More Information Please see [POLICYCONFIG.md](.github/guides/POLICYCONFIG.md).
 
 ## LICENSE
 
