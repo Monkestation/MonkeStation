@@ -26,16 +26,16 @@ Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## CODING STANDARD GUIDES
 
-Coding Standards following tgstation
+Coding Standards following tgstation.
 For More Information Please see  [STANDARDS.md](.github/guides/STANDARDS.md).
 
-Style Guide for writing code following tg standards
+Style Guide for writing code following tgstation standards.
 For More Information Please see [STYLE.md](.github/guides/STYLE.md).
 
-Hard deletion is a very expensive operation that basically clears all references to some "thing" from memory.
+Hard deletion is a very expensive operation that basically clears all references to some "thing" from memory, so avoid hard deletes.
 For More Information Please see [HARDDELETES.md](.github/guides/HARDDELETES.md).
 
-The MC tab hold information on how the game is performing.
+The MC tab holds information on how the game is performing.
 For More Information Please see [MC_tab.md](.github/guides/MC_tab.md).
 
 
