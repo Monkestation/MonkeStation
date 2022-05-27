@@ -1,4 +1,4 @@
-#define IS_LOCKED
+#define IS_LOCKED "LOCKED"
 
 /obj/item/melee/powerfist
 	name = "power-fist"
