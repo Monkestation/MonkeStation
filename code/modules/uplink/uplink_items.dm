@@ -617,7 +617,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			deal extra damage and hit targets further. Use a screwdriver to take out any attached tanks."
 	item = /obj/item/melee/powerfist
 	cost = 8
-	restricted_roles = list("Chief Engineer", "Scientist", "Research Director", "Atmospheric Technician")
+	restricted_roles = list( "Scientist", "Atmospheric Technician")
 
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"

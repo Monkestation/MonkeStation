@@ -1,3 +1,5 @@
+#define IS_LOCKED
+
 /obj/item/melee/powerfist
 	name = "power-fist"
 	desc = "A metal gauntlet with a piston-powered ram ontop for that extra 'ompfh' in your punch."
@@ -11,7 +13,7 @@
 	attack_weight = 1
 	throwforce = 10
 	throw_range = 7
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 40, "stamina" = 0)
 	resistance_flags = FIRE_PROOF
 	var/click_delay = 2.5
@@ -40,8 +42,8 @@
 				return
 			if(!lock)
 				ADD_TRAIT(src, TRAIT_NODROP, POWERFIST_STICK)
-				lock ++
-				to_chat(user, "The Powerfist seals to your arm, removal is unlikely.")
+				lock = IS_LOCKED
+				to_chat(user, "<span class='warning'>The Powerfist seals to your arm, removal is unlikely.</span>")
 			updateTank(W, 0, user)
 	else if(W.tool_behaviour == TOOL_WRENCH)
 		switch(fisto_setting)
@@ -129,3 +131,5 @@
 	log_combat(user, target, "power fisted", src)
 	user.changeNext_move(CLICK_CD_MELEE * click_delay)
 	return TRUE
+
+#undef IS_LOCKED
