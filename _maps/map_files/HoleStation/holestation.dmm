@@ -2117,7 +2117,7 @@
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
-/area/ai_monitored/turret_protected/ai_upload_foyer)
+/area/ai_monitored/turret_protected/ai_upload)
 "fp" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/mix_input{
 	dir = 8
