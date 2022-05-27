@@ -184,7 +184,6 @@
 /area/ai_monitored/turret_protected/ai)
 "ax" = (
 /obj/structure/table/reinforced,
-/obj/item/hand_tele,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "ay" = (
