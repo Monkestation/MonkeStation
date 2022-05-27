@@ -78,10 +78,19 @@
 	return ..()
 
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
-	if(panel_open || operating)
+	if(panel_open || operating || welded || (stat & NOPOWER))
 		return
-	if(!density)
-		return ..()
+	if(ismob(AM))
+		var/mob/user = AM
+		if(allow_hand_open(user))
+			add_fingerprint(user)
+			open()
+			return TRUE
+	if(ismecha(AM))
+		var/obj/mecha/M = AM
+		if(M.occupant && allow_hand_open(M.occupant))
+			open()
+			return TRUE
 	return FALSE
 
 
@@ -92,14 +101,37 @@
 	else
 		machine_stat |= NOPOWER
 
+/obj/machinery/door/firedoor/power_change()
+	if(powered(power_channel))
+		stat &= ~NOPOWER
+		INVOKE_ASYNC(src, .proc/latetoggle)
+	else
+		stat |= NOPOWER
+
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 
+	if (!welded && !operating)
+		if (stat & NOPOWER)
+			user.visible_message("[user] tries to open \the [src] manually.",
+						 "You operate the manual lever on \the [src].")
+			if (!do_after(user, 30, TRUE, src))
+				return FALSE
+		else if (density && !allow_hand_open(user))
+			return FALSE
+
+		add_fingerprint(user)
+		if(density)
+			emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
+			open()
+		else
+			close()
+		return TRUE
+
 	if(operating || !density)
 		return
-
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	user.visible_message("[user] bangs on \the [src].",
@@ -197,7 +229,7 @@
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
 		return
-	
+
 	if(density)
 		if(!(machine_stat & NOPOWER))
 			LAZYADD(access_log, "MOTOR_ERR:|MOTOR CONTROLLER REPORTED BACKDRIVE|T_OFFSET:[DisplayTimeText(world.time - SSticker.round_start_time)]")
