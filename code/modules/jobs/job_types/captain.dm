@@ -52,11 +52,7 @@
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/caphat
-	backpack_contents = list(/obj/item/melee/classic_baton/police/telescopic=1,
-		/obj/item/station_charter=1,
-		/obj/item/modular_computer/tablet/preset/advanced/command=1,
-		/obj/item/gun/energy/e_gun/mini/heads
-		)
+	backpack_contents = list(/obj/item/melee/classic_baton/police/telescopic=1, /obj/item/station_charter=1, /obj/item/modular_computer/tablet/preset/advanced/command=1)
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap
