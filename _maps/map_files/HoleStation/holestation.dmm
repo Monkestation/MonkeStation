@@ -8558,7 +8558,8 @@
 /area/chapel/main)
 "vA" = (
 /obj/effect/turf_decal/monke/siding/wood,
-/obj/machinery/vending/wardrobe/chap_wardrobe,
+/obj/structure/table/wood/fancy,
+/obj/item/fakeartefact,
 /turf/open/floor/wood,
 /area/chapel/main)
 "vB" = (
