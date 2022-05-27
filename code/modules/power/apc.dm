@@ -1,3 +1,43 @@
+//update_state
+#define UPSTATE_CELL_IN		(1<<0)
+#define UPSTATE_OPENED1		(1<<1)
+#define UPSTATE_OPENED2		(1<<2)
+#define UPSTATE_MAINT		(1<<3)
+#define UPSTATE_BROKE		(1<<4)
+#define UPSTATE_BLUESCREEN	(1<<5)
+#define UPSTATE_WIREEXP		(1<<6)
+#define UPSTATE_ALLGOOD		(1<<7)
+
+#define APC_RESET_EMP "emp"
+
+//update_overlay
+#define APC_UPOVERLAY_CHARGEING0	(1<<0)
+#define APC_UPOVERLAY_CHARGEING1	(1<<1)
+#define APC_UPOVERLAY_CHARGEING2	(1<<2)
+#define APC_UPOVERLAY_EQUIPMENT0	(1<<3)
+#define APC_UPOVERLAY_EQUIPMENT1	(1<<4)
+#define APC_UPOVERLAY_EQUIPMENT2	(1<<5)
+#define APC_UPOVERLAY_LIGHTING0		(1<<6)
+#define APC_UPOVERLAY_LIGHTING1		(1<<7)
+#define APC_UPOVERLAY_LIGHTING2		(1<<8)
+#define APC_UPOVERLAY_ENVIRON0		(1<<9)
+#define APC_UPOVERLAY_ENVIRON1		(1<<10)
+#define APC_UPOVERLAY_ENVIRON2		(1<<11)
+#define APC_UPOVERLAY_LOCKED		(1<<12)
+#define APC_UPOVERLAY_OPERATING		(1<<13)
+
+#define APC_ELECTRONICS_MISSING 0 // None
+#define APC_ELECTRONICS_INSTALLED 1 // Installed but not secured
+#define APC_ELECTRONICS_SECURED 2 // Installed and secured
+
+#define APC_COVER_CLOSED 0
+#define APC_COVER_OPENED 1
+#define APC_COVER_REMOVED 2
+
+#define APC_NOT_CHARGING 0
+#define APC_CHARGING 1
+#define APC_FULLY_CHARGED 2
+
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire connection to power network through a terminal
 
@@ -1031,19 +1071,17 @@
 					. = TRUE
 		if("cover")
 			coverlocked = !coverlocked
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Off3.ogg', 5, 3)
 			. = TRUE
 		if("breaker")
 			toggle_breaker(usr)
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 30, 2)
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 30, 1)
 			. = TRUE
 		if("toggle_nightshift")
-			playsound(src, 'sound/machines/click.ogg', 50, 3)
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 			toggle_nightshift_lights()
 			. = TRUE
 		if("charge")
 			chargemode = !chargemode
-			playsound(src, 'sound/machines/click.ogg', 50, 3)
 			if(!chargemode)
 				charging = APC_NOT_CHARGING
 				update_icon()
@@ -1051,17 +1089,17 @@
 		if("channel")
 			if(params["eqp"])
 				equipment = setsubsystem(text2num(params["eqp"]))
-				playsound(src, 'sound/machines/click.ogg', 50, 4)
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else if(params["lgt"])
 				lighting = setsubsystem(text2num(params["lgt"]))
-				playsound(src, 'sound/machines/click.ogg', 50, 4)
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else if(params["env"])
 				environ = setsubsystem(text2num(params["env"]))
-				playsound(src, 'sound/machines/click.ogg', 50, 4)
+				playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 				update_icon()
 				update()
 			else
@@ -1069,7 +1107,7 @@
 			. = TRUE
 		if("overload")
 			if(usr.has_unlimited_silicon_privilege)
-				playsound(src, 'sound/machines/defib_zap.ogg', 10, 3)
+				playsound(src, 'sound/machines/defib_zap.ogg', 20, 2)
 				overload_lighting()
 				. = TRUE
 		if("hack")
@@ -1086,7 +1124,7 @@
 				. = TRUE
 		if("emergency_lighting")
 			emergency_lights = !emergency_lights
-			playsound(src, 'sound/machines/click.ogg', 50, 3)
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 2)
 			for(var/obj/machinery/light/L in area)
 				if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
 					L.no_emergency = emergency_lights
@@ -1305,6 +1343,8 @@
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
+				playsound(src, 'monkestation/sound/machines/apc/PowerDown_001.ogg', 40, 1)
+
 
 		// set channels depending on how much charge we have left
 
@@ -1389,6 +1429,7 @@
 		area.poweralert(0, src)
 
 	// update icon & area power if anything changed
+
 	if(last_lt != lighting || last_eq != equipment || last_en != environ || force_update)
 		force_update = 0
 		queue_icon_update()
@@ -1396,14 +1437,9 @@
 	else if (last_ch != charging)
 		queue_icon_update()
 
-	if(cell.charge == 0)
-
-	if(cell.charge == 1)
-		playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 30, 1)
-
-
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
+
 /obj/machinery/power/apc/proc/autoset(val, on)
 	if(on==0)
 		if(val==2)			// if on, return off
