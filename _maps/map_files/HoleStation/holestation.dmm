@@ -890,7 +890,7 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "co" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_smes)
 "cp" = (
@@ -1597,10 +1597,10 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "ek" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "el" = (
@@ -2805,7 +2805,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 8
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "hg" = (
@@ -5060,10 +5060,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engine_smes)
-"mL" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/central/secondary)
 "mN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -5153,7 +5149,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "mX" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
 "mY" = (
@@ -6165,6 +6161,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
+/obj/item/clothing/suit/armor/laserproof,
 /obj/effect/spawner/lootdrop/armory_contraband,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
@@ -6262,9 +6259,11 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "pJ" = (
-/obj/effect/turf_decal/loading_area,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
+	},
+/obj/effect/turf_decal/caution{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
@@ -7259,10 +7258,10 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "sj" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 8
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "sk" = (
@@ -9355,6 +9354,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/auto_name/east,
+/obj/structure/railing,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "xG" = (
@@ -16145,12 +16145,16 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "OO" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
-	dir = 4
+/obj/structure/railing{
+	dir = 8
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
-/area/engine/engine_room)
+/area/maintenance/port/aft)
 "OP" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -19171,7 +19175,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
 "Wk" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "Wl" = (
@@ -47156,7 +47160,7 @@ PR
 fV
 ay
 ay
-Pc
+kN
 ay
 ay
 nZ
@@ -48956,7 +48960,7 @@ SF
 zO
 xF
 SF
-SF
+rK
 zO
 ay
 ay
@@ -49212,7 +49216,7 @@ ay
 ay
 ay
 ay
-Pc
+kN
 ay
 ay
 ay
@@ -54352,10 +54356,10 @@ Lz
 Lz
 BY
 HA
-OO
+xE
 qz
 qz
-OO
+xE
 Rh
 qz
 qz
@@ -55379,7 +55383,7 @@ WR
 WR
 zG
 gc
-Lz
+Ti
 Yv
 Ul
 Cz
@@ -113721,7 +113725,7 @@ Gk
 xY
 cC
 QH
-QH
+OO
 zO
 zF
 Tf
@@ -120622,10 +120626,10 @@ dT
 Df
 jR
 jR
-mL
-mL
-mL
-mL
+Iq
+Iq
+Iq
+Iq
 jR
 fh
 fh
