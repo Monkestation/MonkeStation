@@ -3019,6 +3019,9 @@
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/multiz{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_room)
 "hI" = (
@@ -3883,6 +3886,10 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/server)
+"jU" = (
+/obj/machinery/atmospherics/pipe/multiz/layer2,
+/turf/open/space/basic,
+/area/space)
 "jV" = (
 /turf/closed/wall,
 /area/crew_quarters/bar/atrium)
@@ -10758,6 +10765,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"Bn" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/multiz,
+/turf/open/openspace,
+/area/engine/engine_room)
 "Bo" = (
 /obj/structure/table/wood,
 /obj/item/lipstick/random{
@@ -12283,6 +12295,8 @@
 /area/library/lounge)
 "Fi" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
+/obj/machinery/atmospherics/pipe/multiz/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "Fj" = (
@@ -17273,6 +17287,11 @@
 "RC" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
+"RD" = (
+/obj/machinery/atmospherics/pipe/multiz/layer2,
+/obj/machinery/atmospherics/pipe/multiz/layer4,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "RE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -47615,7 +47634,7 @@ dK
 hh
 SI
 zO
-SF
+RD
 PC
 yL
 ay
@@ -58151,7 +58170,7 @@ Ro
 nZ
 nZ
 nZ
-nZ
+jU
 nZ
 nZ
 nZ
@@ -117256,7 +117275,7 @@ wC
 dR
 PF
 PF
-zy
+Bn
 ss
 Am
 Qj
