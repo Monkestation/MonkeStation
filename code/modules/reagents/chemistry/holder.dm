@@ -46,7 +46,8 @@
 		var/list/reagents = list()
 		var/list/product_names = list()
 		var/bitflags = D.reaction_tags
-		if(!bitflags)
+
+		if(!bitflags) //Filters out all reactions with no bitflags
 			continue
 		if(!D.required_reagents || !D.required_reagents.len) //Skip impossible reactions
 			continue
