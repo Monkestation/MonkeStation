@@ -46,11 +46,12 @@
 		var/list/product_names = list()
 		var/bitflags = D.reaction_tags
 
-		if(D.required_reagents && D.required_reagents.len)
-			for(var/reaction in D.required_reagents)
-				reaction_ids += reaction
-				var/datum/reagent/reagent = find_reagent_object_from_type(reaction)
-				reagents += list(list("name" = reagent.name, "id" = reagent.type))
+		if(!D.required_reagents || !D.required_reagents.len) //Skip impossible reactions
+			continue
+		for(var/reaction in D.required_reagents)
+			reaction_ids += reaction
+			var/datum/reagent/reagent = find_reagent_object_from_type(reaction)
+			reagents += list(list("name" = reagent.name, "id" = reagent.type))
 
 		for(var/product in D.results)
 			var/datum/reagent/reagent = find_reagent_object_from_type(product)
