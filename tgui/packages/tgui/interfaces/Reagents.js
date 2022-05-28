@@ -11,7 +11,6 @@ const matchBitflag = (a, b) => (a & b) && (a | b) === b;
 export const Reagents = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    beakerSync,
     reagent_mode_recipe,
     reagent_mode_reagent,
     bitflags = {},
@@ -55,18 +54,11 @@ export const Reagents = (props, context) => {
                   title="Recipe lookup"
                   minWidth="353px"
                   buttons={(
-                    <>
-                      <Button
-                        content="Beaker Sync"
-                        icon="atom"
-                        color={beakerSync ? "green" : "red"}
-                        onClick={() => act('beaker_sync')} />
-                      <Button
-                        content="Search recipes"
-                        icon="search"
-                        color="purple"
-                        onClick={() => act('search_recipe')} />
-                    </>
+                    <Button
+                      content="Search recipes"
+                      icon="search"
+                      color="purple"
+                      onClick={() => act('search_recipe')} />
                   )}>
                   <RecipeLookup
                     recipe={reagent_mode_recipe}
@@ -305,12 +297,6 @@ const RecipeLibrary = (props, context) => {
       buttons={(
         <>
           Linked beaker: {linkedBeaker+"  "}
-          <Button
-            content="Filter by reagents in beaker"
-            icon="search"
-            disabled={bookmarkMode}
-            color={reagentFilter ? "green" : "red"}
-            onClick={() => setReagentFilter(!reagentFilter)} />
           <Button
             content="Bookmarks"
             icon="book"

@@ -34,8 +34,9 @@
 
 	var/paths = subtypesof(/datum/chemical_reaction)
 	GLOB.chemical_reactions_list = list()
-	GLOB.chemical_reactions_results_lookup_list = list()
-	GLOB.chemical_reactions_list_product_index = list()
+	GLOB.chemical_reactions_list_reactant_index = list() //reagents to reaction list
+	GLOB.chemical_reactions_results_lookup_list = list() //UI glob
+	GLOB.chemical_reactions_list_product_index = list() //product to reaction list
 
 	for(var/path in paths)
 
@@ -75,12 +76,11 @@
 
 		GLOB.chemical_reactions_results_lookup_list += list(list("name" = product_name, "id" = D.type, "bitflags" = bitflags, "reactants" = reagents))
 
-		// Create filters based on each reagent id in the required reagents list
+				// Create filters based on each reagent id in the required reagents list - this is used to speed up handle_reactions()
 		for(var/id in reaction_ids)
-			if(!GLOB.chemical_reactions_list[id])
-				GLOB.chemical_reactions_list[id] = list()
-			GLOB.chemical_reactions_list[id] += D
-			break // Don't bother adding ourselves to other reagent ids, it is redundant
+			if(!GLOB.chemical_reactions_list_reactant_index[id])
+				GLOB.chemical_reactions_list_reactant_index[id] = list()
+			GLOB.chemical_reactions_list_reactant_index[id] += D
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +171,7 @@
 	var/list/possible_reactions = list()
 	if(!length(cached_reagents))
 		return null
-	cached_reactions = GLOB.chemical_reactions_list
+	cached_reactions = GLOB.chemical_reactions_list_reactant_index
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/reagent = _reagent
 		for(var/_reaction in cached_reactions[reagent.type]) // Was a big list but now it should be smaller since we filtered it with our reagent id
@@ -231,6 +231,7 @@
 		var/datum/chemical_reaction/reaction = get_chemical_reaction(ui_reaction_id)
 		if(!reaction)
 			to_chat(user, "Could not find reaction!")
+			to_chat(user, "[ui_reaction_id]")
 			ui_reaction_id = null
 			return data
 		//Required holder
@@ -762,7 +763,7 @@
 		return //Yup, no reactions here. No siree.
 
 	var/list/cached_reagents = reagent_list
-	var/list/cached_reactions = GLOB.chemical_reactions_list
+	var/list/cached_reactions = GLOB.chemical_reactions_list_reactant_index
 	var/datum/cached_my_atom = my_atom
 
 	var/reaction_occurred = 0
