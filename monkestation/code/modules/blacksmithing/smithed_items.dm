@@ -9,19 +9,19 @@
 	name = "base class /obj/item/smithing"
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "unfinished"
-	var/quality = 0 //quality. Changed by the smithing process.
-	var/blunt_mult = 0 //Changed by the smithing process
-	var/sharp_mult = 0 //Changed by the smithing process
-	var/wealth_mult = 0 //Changed by the smithing process
+	var/quality = 0 //quality. Changed by the smithing process. the quality of the item determines damage and other stats
+	var/blunt_mult = 0 //Changed by the smithing process the blunt multipler of the item
+	var/sharp_mult = 0 //Changed by the smithing process the sharp multipler of the item
+	var/wealth_mult = 0 //Changed by the smithing process the wealth multipler of the item
 	var/obj/item/finishingitem = /obj/item/stick //What this item needs to be hit by to create finalitem
-	var/obj/item/finalitem
-	var/artifact = FALSE
+	var/obj/item/finalitem //the actual final item
+	var/artifact = FALSE // if its an artifiact
 
 /obj/item/ingot
 	name = "ingot"
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "ingot"
-	var/workability = 0
+	var/workability = 0 //if the ingot is workable heat it in furnace to make it so
 
 /obj/item/ingot/attack_hand(mob/user)
 	var/mob/living/carbon/human/H
