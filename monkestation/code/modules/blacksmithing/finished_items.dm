@@ -9,11 +9,11 @@
 	force = 6
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	var/quality
-	var/overlay_state = "stick"
-	var/mutable_appearance/overlay
-	var/wielded_mult = 1
-	var/wield_force = 15
+	var/quality //The end products quality determined from the smited item piece
+	var/overlay_state = "stick" //the overlay state used to overlay the handle over our blade otherwise the colors would be off
+	var/mutable_appearance/overlay //the actual overlay
+	var/wielded_mult = 1 //how much the damage gets multipled by when two handed
+	var/wield_force = 15 //base two handed damage
 
 /obj/item/melee/smith/Initialize()
 	..()
