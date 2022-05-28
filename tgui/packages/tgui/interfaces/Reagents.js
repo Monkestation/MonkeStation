@@ -274,7 +274,7 @@ const RecipeLibrary = (props, context) => {
       return true;
     }
     let matches = reaction.reactants
-      .filter(reactant => currentReagents.includes(reactant.id))
+      .filter(reactant => currentReagents.includes(reactant.type))
       .length;
     return matches === currentReagents.length;
   };
@@ -335,7 +335,7 @@ const RecipeLibrary = (props, context) => {
           </Table.Cell>
         </Table.Row>
         {visibleReactions.map(reaction => (
-          <Table.Row key={reaction.id} className="candystripe">
+          <Table.Row key={reaction.type} className="candystripe">
             <>
               <Table.Cell bold color="label">
                 <Button
@@ -344,20 +344,20 @@ const RecipeLibrary = (props, context) => {
                   color="purple"
                   content={reaction.name}
                   onClick={() => act('recipe_click', {
-                    id: reaction.id,
+                    id: reaction.type,
                   })} />
               </Table.Cell>
               <Table.Cell>
                 {reaction.reactants.map(reactant => (
                   <Button
-                    key={reactant.id}
+                    key={reactant.type}
                     mt={0.1}
                     icon="vial"
                     textColor="white"
-                    color={currentReagents?.includes(reactant.id) && "green"} // check here
+                    color={currentReagents?.includes(reactant.type) && "green"} // check here
                     content={reactant.name}
                     onClick={() => act('reagent_click', {
-                      id: reactant.id,
+                      id: reactant.type,
                     })} />
                 ))}
               </Table.Cell>

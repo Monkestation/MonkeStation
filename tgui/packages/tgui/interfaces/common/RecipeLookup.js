@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Chart, Flex, Icon, LabeledList, Tooltip } from '../../components';
+import { Box, Button, Flex, Icon, LabeledList, Tooltip } from '../../components';
 
 export const RecipeLookup = (props, context) => {
   const { recipe, bookmarkedReactions } = props;
@@ -12,9 +12,9 @@ export const RecipeLookup = (props, context) => {
     );
   }
 
-  const getReaction = id => {
+  const getReaction = type => {
     return data.master_reaction_list.filter(reaction => (
-      reaction.id === id
+      reaction.type === type
     ));
   };
 
@@ -32,21 +32,21 @@ export const RecipeLookup = (props, context) => {
           ml={3}
           disabled={recipe.subReactIndex === 1}
           onClick={() => act('reduce_index', {
-            id: recipe.name,
+            type: recipe.name,
           })} />
         <Button
           icon="arrow-right"
           disabled={recipe.subReactIndex === recipe.subReactLen}
           onClick={() => act('increment_index', {
-            id: recipe.name,
+            type: recipe.name,
           })} />
         {bookmarkedReactions && (
           <Button
             icon="book"
             color="green"
-            disabled={bookmarkedReactions.has(getReaction(recipe.id)[0])}
+            disabled={bookmarkedReactions.has(getReaction(recipe.type)[0])}
             onClick={() => {
-              addBookmark(getReaction(recipe.id)[0]);
+              addBookmark(getReaction(recipe.type)[0]);
               act('update_ui');
             }} />
         )}
@@ -60,20 +60,20 @@ export const RecipeLookup = (props, context) => {
               disabled={product.hasProduct}
               content={product.ratio + "u " + product.name}
               onClick={() => act('reagent_click', {
-                id: product.id,
+                type: product.type,
               })} />
           ))}
         </LabeledList.Item>
       )}
       <LabeledList.Item bold label="Reactants">
         {recipe.reactants.map(reactant => (
-          <Box key={reactant.id}>
+          <Box key={reactant.type}>
             <Button
               icon="vial"
               color={reactant.color}
               content={reactant.ratio + "u " + reactant.name}
               onClick={() => act('reagent_click', {
-                id: reactant.id,
+                type: reactant.type,
               })} />
             {!!reactant.tooltipBool && (
               <Button
@@ -82,7 +82,7 @@ export const RecipeLookup = (props, context) => {
                 tooltip={reactant.tooltip}
                 tooltipPosition="right"
                 onClick={() => act('find_reagent_reaction', {
-                  id: reactant.id,
+                  type: reactant.type,
                 })} />
             )}
           </Box>
@@ -91,7 +91,7 @@ export const RecipeLookup = (props, context) => {
       {recipe.catalysts && (
         <LabeledList.Item bold label="Catalysts">
           {recipe.catalysts.map(catalyst => (
-            <Box key={catalyst.id}>
+            <Box key={catalyst.type}>
               {catalyst.tooltipBool && (
                 <Button
                   icon="vial"
@@ -100,7 +100,7 @@ export const RecipeLookup = (props, context) => {
                   tooltip={catalyst.tooltip}
                   tooltipPosition={"right"}
                   onClick={() => act('reagent_click', {
-                    id: catalyst.id,
+                    type: catalyst.type,
                   })} />
               ) || (
                 <Button
@@ -108,7 +108,7 @@ export const RecipeLookup = (props, context) => {
                   color={catalyst.color}
                   content={catalyst.ratio + "u " + catalyst.name}
                   onClick={() => act('reagent_click', {
-                    id: catalyst.id,
+                    type: catalyst.type,
                   })} />
               )}
             </Box>
@@ -131,25 +131,7 @@ export const RecipeLookup = (props, context) => {
           position="relative"
           style={{
             'background-color': 'black',
-          }}>
-          <Chart.Line
-            fillPositionedParent
-            data={recipe.thermodynamics}
-            strokeWidth={0}
-            fillColor={"#3cf072"} />
-          {recipe.explosive && (
-            <Chart.Line
-              position="absolute"
-              justify="right"
-              top={0.01}
-              bottom={0}
-              right={recipe.isColdRecipe ? null : 0}
-              width="28px"
-              data={recipe.explosive}
-              strokeWidth={0}
-              fillColor={"#d92727"} />
-          )}
-        </Box>
+          }} />
         <Flex
           justify="space-between">
           <Flex.Item
@@ -157,34 +139,11 @@ export const RecipeLookup = (props, context) => {
             textColor={recipe.isColdRecipe && "red"}>
             <Tooltip
               content={recipe.isColdRecipe
-                ? "The temperature at which it is underheated, causing negative effects on the reaction."
-                : "The minimum temperature needed for this reaction to start. Heating it up past this point will increase the reaction rate."} />
+              + "The minimum temperature needed for this reaction to start."} />
             {recipe.isColdRecipe
-              ? recipe.explodeTemp + "K"
-              : recipe.tempMin + "K"}
+              + recipe.tempMin + "K"}
           </Flex.Item>
-          {recipe.explosive && (
-            <Flex.Item
-              position="relative"
-              textColor={!recipe.isColdRecipe && "red"}>
-              <Tooltip
-                content={recipe.isColdRecipe
-                  ? "The minimum temperature needed for this reaction to start. Heating it up past this point will increase the reaction rate."
-                  : "The temperature at which it is overheated, causing negative effects on the reaction."} />
-              {recipe.isColdRecipe
-                ? recipe.tempMin + "K"
-                : recipe.explodeTemp + "K"}
-            </Flex.Item>
-          )}
         </Flex>
-      </LabeledList.Item>
-      <LabeledList.Item bold label="Dynamics">
-        <Box
-          position="relative">
-          <Tooltip
-            content="The heat generated by a reaction - exothermic produces heat, endothermic consumes heat." />
-          {recipe.thermics}
-        </Box>
       </LabeledList.Item>
     </LabeledList>
   );
