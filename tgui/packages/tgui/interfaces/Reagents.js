@@ -255,7 +255,7 @@ const RecipeLibrary = (props, context) => {
     linkedBeaker,
   } = data;
 
-  const [reagentFilter, setReagentFilter] = useLocalState(
+  const [reagentFilter] = useLocalState(
     context, 'reagentFilter', true);
   const [bookmarkMode, setBookmarkMode] = useLocalState(
     context, 'bookmarkMode', false);

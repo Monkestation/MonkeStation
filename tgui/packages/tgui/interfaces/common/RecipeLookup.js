@@ -27,29 +27,6 @@ export const RecipeLookup = (props, context) => {
       <LabeledList.Item bold label="Recipe">
         <Icon name="circle" mr={1} color={recipe.reagentCol} />
         {recipe.name}
-        <Button
-          icon="arrow-left"
-          ml={3}
-          disabled={recipe.subReactIndex === 1}
-          onClick={() => act('reduce_index', {
-            id: recipe.name,
-          })} />
-        <Button
-          icon="arrow-right"
-          disabled={recipe.subReactIndex === recipe.subReactLen}
-          onClick={() => act('increment_index', {
-            id: recipe.name,
-          })} />
-        {bookmarkedReactions && (
-          <Button
-            icon="book"
-            color="green"
-            disabled={bookmarkedReactions.has(getReaction(recipe.id)[0])}
-            onClick={() => {
-              addBookmark(getReaction(recipe.id)[0]);
-              act('update_ui');
-            }} />
-        )}
       </LabeledList.Item>
       {recipe.products && (
         <LabeledList.Item bold label="Products">
@@ -126,12 +103,6 @@ export const RecipeLookup = (props, context) => {
         </LabeledList.Item>
       )}
       <LabeledList.Item bold label="Required Minimum Heat" width="10px">
-        <Box
-          height="50px"
-          position="relative"
-          style={{
-            'background-color': 'black',
-          }} />
         <Flex
           justify="space-between">
           <Flex.Item
@@ -143,17 +114,6 @@ export const RecipeLookup = (props, context) => {
             {recipe.isColdRecipe
               + recipe.tempMin + "K"}
           </Flex.Item>
-          {recipe.explosive && (
-            <Flex.Item
-              position="relative"
-              textColor={!recipe.isColdRecipe && "red"}>
-              <Tooltip
-                content={recipe.isColdRecipe
-                  + "The minimum temperature needed for this reaction to start."} />
-              {recipe.isColdRecipe
-                + recipe.tempMin + "K"}
-            </Flex.Item>
-          )}
         </Flex>
       </LabeledList.Item>
     </LabeledList>
