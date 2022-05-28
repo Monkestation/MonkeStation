@@ -32,6 +32,7 @@
 	if(GLOB.chemical_reactions_list)
 		return
 
+
 	var/paths = subtypesof(/datum/chemical_reaction)
 	GLOB.chemical_reactions_list = list()
 	GLOB.chemical_reactions_list_reactant_index = list() //reagents to reaction list
