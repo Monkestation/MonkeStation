@@ -210,7 +210,7 @@
 /turf/closed/wall/mineral/snow
 	name = "packed snow wall"
 	desc = "A wall made of densely packed snow blocks."
-	icon = 'icons/turf/walls/snow_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/snow_wall.dmi'
 	icon_state = "snow_wall-0"
 	base_icon_state = "snow_wall"
 	smoothing_flags = SMOOTH_BITMASK

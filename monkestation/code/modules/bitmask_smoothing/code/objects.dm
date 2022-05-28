@@ -133,8 +133,8 @@
 
 /obj/structure/falsewall/bamboo
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/bamboo_wall.dmi'
-	icon_state = "bamboo_wall-0"
-	base_icon_state = "bamboo_wall"
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BAMBOO_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_WALLS)
@@ -172,6 +172,14 @@
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS)
 
 /obj/structure/falsewall/brass
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
+	icon_state = "clockwork_wall-0"
+	base_icon_state = "clockwork_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
+
+/obj/structure/falsewall/bronze
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
 	base_icon_state = "clockwork_wall"

@@ -96,6 +96,7 @@
 /turf/closed/mineral/snowmountain
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/mining.dmi'
 	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/mountain_wall.dmi'
+	icon_state = "mountain_wall-0"
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
@@ -103,6 +104,7 @@
 /turf/closed/mineral/snowmountain/cavern
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/mining.dmi'
 	smooth_icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/icerock_wall.dmi'
+	icon_state = "icerock_wall-0"
 	base_icon_state = "icerock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
@@ -281,6 +283,14 @@
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 
 /turf/closed/wall/mineral/brass
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
+	icon_state = "clockwork_wall-0"
+	base_icon_state = "clockwork_wall"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
+
+/turf/closed/wall/mineral/bronze
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
 	base_icon_state = "clockwork_wall"
