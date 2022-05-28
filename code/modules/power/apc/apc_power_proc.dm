@@ -31,18 +31,16 @@
 /obj/machinery/power/apc/surplus()
 	if(terminal)
 		return terminal.surplus()
-	else
-		return 0
+	return 0
 
 /obj/machinery/power/apc/add_load(amount)
-	if(terminal && terminal.powernet)
+	if(terminal?.powernet)
 		terminal.add_load(amount)
 
 /obj/machinery/power/apc/avail(amount)
 	if(terminal)
 		return terminal.avail(amount)
-	else
-		return 0
+	return 0
 
 /**
  * Returns the new status value for an APC channel.
@@ -111,28 +109,27 @@
 	wires.ui_update()
 
 // overload all the lights in this APC area
-
 /obj/machinery/power/apc/proc/overload_lighting()
-	if(/* !get_connection() || */ !operating || shorted)
+	if(!operating || shorted)
 		return
 	if( cell && cell.charge>=20)
 		cell.use(20)
 		INVOKE_ASYNC(src, .proc/break_lights)
 
 /obj/machinery/power/apc/proc/break_lights()
-	for(var/obj/machinery/light/L in area)
-		L.on = TRUE
-		L.break_light_tube()
-		L.on = FALSE
+	for(var/obj/machinery/light/breaked_light in area)
+		breaked_light.on = TRUE
+		breaked_light.break_light_tube()
+		breaked_light.on = FALSE
 		stoplag()
 
 /obj/machinery/power/apc/proc/energy_fail(duration)
-	for(var/obj/machinery/M in area.contents)
-		if(M.critical_machine)
+	for(var/obj/machinery/failing_machine in area.contents)
+		if(failing_machine.critical_machine)
 			return
-	for(var/A in GLOB.ai_list)
-		var/mob/living/silicon/ai/I = A
-		if(get_area(I) == area)
+
+	for(var/mob/living/silicon/ai as anything in GLOB.ai_list)
+		if(get_area(ai) == area)
 			return
 
 	failure_timer = max(failure_timer, round(duration))
@@ -163,6 +160,15 @@
 	last_nightshift_switch = world.time
 	set_nightshift(!nightshift_lights)
 
+/obj/machinery/power/apc/proc/set_nightshift(on)
+	set waitfor = FALSE
+	nightshift_lights = on
+	for(var/obj/machinery/light/night_light in area)
+		if(night_light.nightshift_allowed)
+			night_light.nightshift_enabled = nightshift_lights
+			night_light.update(FALSE)
+		CHECK_TICK
+
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted && !failure_timer)
 		area.power_light = (lighting > 1)
@@ -178,12 +184,3 @@
 	if(damage_flag == "melee" && damage_amount < 10 && (!(machine_stat & BROKEN) || malfai))
 		return 0
 	. = ..()
-
-/obj/machinery/power/apc/proc/set_nightshift(on)
-	set waitfor = FALSE
-	nightshift_lights = on
-	for(var/obj/machinery/light/L in area)
-		if(L.nightshift_allowed)
-			L.nightshift_enabled = nightshift_lights
-			L.update(FALSE)
-		CHECK_TICK
