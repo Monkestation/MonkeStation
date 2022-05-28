@@ -262,7 +262,6 @@
 		return
 	else
 		return ..()
-	..()
 
 /obj/item/melee/smith/hammer/ratvar
 	name = "brass hammer"
@@ -283,7 +282,6 @@
 		return
 	else
 		return ..()
-	..()
 
 /obj/item/melee/smith/hammer/debug
 	name = "debugging hammer"
