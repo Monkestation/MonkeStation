@@ -51,6 +51,13 @@ export const ReagentLookup = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </LabeledList.Item>
+      <LabeledList.Item label="Special Properties">
+        {reagent.deadProcess && (
+          <Box>
+            This reagent works on the dead.
+          </Box>
+        )}
+      </LabeledList.Item>
       <LabeledList.Item>
         <Button
           icon="flask"
@@ -58,7 +65,7 @@ export const ReagentLookup = (props, context) => {
           content={"Find associated reaction"}
           color="purple"
           onClick={() => act('find_reagent_reaction', {
-            type: reagent.type,
+            id: reagent.id,
           })} />
       </LabeledList.Item>
     </LabeledList>
