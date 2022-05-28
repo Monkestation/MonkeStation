@@ -31,7 +31,7 @@
 	if(ishuman(user))
 		H = user
 		if(H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves
+			var/obj/item/clothing/gloves/G = H.gloves //check if you have gloves otherwise burn city
 			if(G.max_heat_protection_temperature)
 				prot = (G.max_heat_protection_temperature > 360)
 		else
