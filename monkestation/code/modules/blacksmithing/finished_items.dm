@@ -61,7 +61,7 @@
 
 /obj/item/pickaxe/smithed
 	name = "pickaxe"
-	desc = "A pickaxe."
+	desc = "A large tool for cracking rock walls and digging up dirt."
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "pickaxe"
 	sharpness = IS_SHARP
@@ -81,7 +81,7 @@
 
 /obj/item/shovel/smithed
 	name = "shovel"
-	desc = "A shovel."
+	desc = "A large tool for digging and moving dirt."
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "shovel"
 	sharpness = IS_SHARP //it cuts through the earth
