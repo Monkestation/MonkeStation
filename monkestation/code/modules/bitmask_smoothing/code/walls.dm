@@ -231,8 +231,8 @@
 
 /turf/closed/wall/mineral/bamboo
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/bamboo_wall.dmi'
-	icon_state = "bamboo_wall-0"
-	base_icon_state = "bamboo_wall"
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BAMBOO_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_BAMBOO_WALLS)

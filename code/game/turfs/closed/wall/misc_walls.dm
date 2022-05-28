@@ -117,6 +117,7 @@
 	girder_type = /obj/structure/foamedmetal
 	hardness = 50	//lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	slicing_duration = 8 SECONDS
+	smoothing_flags = SMOOTH_CORNERS
 
 /turf/closed/wall/foam_base/iron
 	icon_state = "iron_foam_base"

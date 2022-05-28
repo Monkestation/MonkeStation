@@ -187,7 +187,7 @@
 /turf/closed/wall/mineral/bamboo
 	name = "bamboo wall"
 	desc = "A wall with a bamboo finish."
-	icon = 'icons/turf/walls/bamboo_wall.dmi'
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/bamboo_wall.dmi'
 	icon_state = "bamboo"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BAMBOO_WALLS)
