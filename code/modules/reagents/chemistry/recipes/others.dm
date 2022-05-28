@@ -168,7 +168,7 @@
 	id = /datum/reagent/mulligan
 	results = list(/datum/reagent/mulligan = 1)
 	required_reagents = list(/datum/reagent/mutationtoxin/jelly = 1, /datum/reagent/toxin/mutagen = 1)
-	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQU
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
 
 ////////////////////////////////// VIROLOGY //////////////////////////////////////////
 
