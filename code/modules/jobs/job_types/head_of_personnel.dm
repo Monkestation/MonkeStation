@@ -17,6 +17,8 @@
 	exp_type = EXP_TYPE_COMMAND
 	exp_type_department = EXP_TYPE_COMMAND
 
+	liver_traits = list(TRAIT_ROYAL_METABOLISM)
+
 	outfit = /datum/outfit/job/hop
 
 	access = list(ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_WEAPONS,

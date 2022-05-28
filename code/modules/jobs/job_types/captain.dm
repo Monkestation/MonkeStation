@@ -21,6 +21,7 @@
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
 	paycheck = PAYCHECK_COMMAND
+	liver_traits = list(TRAIT_ROYAL_METABOLISM)
 	paycheck_department = ACCOUNT_SEC
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
