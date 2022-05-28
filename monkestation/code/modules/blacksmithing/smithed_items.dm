@@ -83,7 +83,7 @@
 	custom_materials = list(/datum/material/bronze=12000)
 
 /obj/item/ingot/bronze/ratvar
-	name = "brass ingnot"
+	name = "brass ingot"
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-smithing brass is actually more structurally stable bronze. Ratvar must have transformed the brass into bronze. Somehow."
 
 

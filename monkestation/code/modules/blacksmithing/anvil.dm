@@ -39,17 +39,17 @@
 	density = TRUE
 	anchored = TRUE
 	max_integrity = 300
-	var/workpiece_state = FALSE
-	var/datum/material/workpiece_material
-	var/anvilquality = 0
-	var/currentquality = 0 //lolman? what the fuck do these vars do?
-	var/currentsteps = 0 //even i don't know
-	var/outrightfailchance = 1 //todo: document this shit
-	var/stepsdone = ""
-	var/rng = FALSE
-	var/debug = FALSE //vv this if you want an artifact
-	var/artifactrolled = FALSE
-	var/itemqualitymax = 100
+	var/workpiece_state = FALSE //the current state of working if there is an ingot on it will be true
+	var/datum/material/workpiece_material //The current material that is being worked on
+	var/anvilquality = 0 //quality of the anvil, helps determine the end products quality
+	var/currentquality = 0 //current quality of the workpiece at any given time
+	var/currentsteps = 0 //how many steps have been done to this workpiece used for fail chance and checking recipes
+	var/outrightfailchance = 1 //the chance this just fails regardless
+	var/stepsdone = "" //the string of steps done to the workpiece used to match recipes
+	var/rng = FALSE //if fail chance should be rolled defaulted to on with obtainable anvils
+	var/debug = FALSE //vv this if you want an artifact, skips the artifact roll phase
+	var/artifactrolled = FALSE //if the workpiece rolled as an artifact
+	var/itemqualitymax = 100 //the max quality of any given item produced on an anvil
 	var/list/smithrecipes = list(RECIPE_HAMMER = /obj/item/smithing/hammerhead,
 	RECIPE_SCYTHE = /obj/item/smithing/scytheblade,
 	RECIPE_SHOVEL = /obj/item/smithing/shovelhead,

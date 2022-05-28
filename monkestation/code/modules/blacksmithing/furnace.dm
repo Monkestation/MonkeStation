@@ -1,6 +1,6 @@
 /obj/structure/furnace
 	name = "furnace"
-	desc = "A furnace."
+	desc = "A furnace, used for heating up ingots for smithing."
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "furnace0"
 	density = TRUE
@@ -33,10 +33,10 @@
 
 /obj/structure/furnace/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/ingot))
-		var/obj/item/ingot/notsword = I
+		var/obj/item/ingot/worked_ingot = I
 		if(working)
-			to_chat(user, "You heat the [notsword] in the [src].")
-			notsword.workability = "shapeable"
+			to_chat(user, "You heat the [worked_ingot] in the [src].")
+			worked_ingot.workability = "shapeable"
 		else
 			to_chat(user, "The furnace isn't working!.")
 	else
@@ -59,6 +59,8 @@
 		to_chat(user, "<span class='notice'>You finish plunging the [name].")
 		reagents.reaction(get_turf(src), TOUCH) //splash on the floor
 		reagents.clear_reagents()
+	else
+		return
 
 /obj/structure/furnace/infinite
 	name = "fuelless furnace"
