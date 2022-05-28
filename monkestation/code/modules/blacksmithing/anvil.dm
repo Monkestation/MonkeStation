@@ -172,7 +172,7 @@
 /obj/structure/anvil/proc/tryfinish(mob/user)
 	var/artifactchance = 0
 	if(!artifactrolled)
-		artifactchance = (1+ rand(1, 25)/2500)
+		artifactchance = (1+ rand(1, 25) / 2500)
 		artifactrolled = TRUE
 	var/artifact = max(prob(artifactchance), debug)
 	var/finalfailchance = (outrightfailchance * workpiece_material[1].fail_multipler)
@@ -187,8 +187,8 @@
 		currentsteps = 0
 		outrightfailchance = 1
 		artifactrolled = FALSE
-	for(var/i in smithrecipes)
-		if(i == stepsdone)
+	for(var/recipe in smithrecipes)
+		if(recipe == stepsdone)
 			var/turf/T = get_turf(user)
 			var/obj/item/smithing/create = smithrecipes[stepsdone]
 			var/obj/item/smithing/finisheditem = new create(T)

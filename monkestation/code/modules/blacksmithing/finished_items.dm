@@ -17,7 +17,7 @@
 
 /obj/item/melee/smith/Initialize()
 	..()
-	if(desc == "cringe")
+	if(desc == initial(desc))
 		desc = "A handmade [name]."
 	overlay = mutable_appearance(icon, overlay_state)
 	overlay.appearance_flags = RESET_COLOR
@@ -157,7 +157,7 @@
 	name = "hammer"
 	icon_state = "hammer"
 	overlay_state = "hammerhandle"
-	var/qualitymod = 0
+	var/qualitymod = 0 //modifer used in the creation of tools higher number means higher quality
 
 /obj/item/scythe/smithed //we need to inherit scythecode, but that's about it.
 
