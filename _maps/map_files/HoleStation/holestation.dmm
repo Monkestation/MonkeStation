@@ -1826,6 +1826,7 @@
 "eJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed/roller,
+/obj/item/toy/plush/lizardplushie,
 /turf/open/floor/grass/fakebasalt,
 /area/maintenance/starboard/aft)
 "eK" = (
@@ -6138,6 +6139,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/window/eastleft,
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "pt" = (
@@ -6385,6 +6387,10 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"pY" = (
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "pZ" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -6829,8 +6835,11 @@
 /turf/closed/wall,
 /area/hallway/secondary/service)
 "rl" = (
-/turf/closed/wall/r_wall,
-/area/tcommsat/server)
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/autoname,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "rm" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -19444,10 +19453,14 @@
 /area/engine/atmos)
 "WU" = (
 /obj/machinery/door/window/eastleft,
+/obj/machinery/door/window/westleft,
 /turf/open/floor/plasteel,
 /area/tcommsat/server)
 "WV" = (
 /obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -48959,7 +48972,7 @@ SF
 SF
 zO
 xF
-SF
+uR
 rK
 zO
 ay
@@ -50750,7 +50763,7 @@ qO
 IB
 IB
 yq
-LW
+UF
 TQ
 UF
 pG
@@ -51007,7 +51020,7 @@ OF
 JL
 zu
 Wb
-za
+IU
 Ml
 zg
 Un
@@ -51264,7 +51277,7 @@ jl
 pW
 jl
 pW
-rl
+pW
 Cr
 uf
 Ch
@@ -51521,7 +51534,7 @@ fx
 CF
 ty
 uI
-rl
+pW
 NH
 gE
 pJ
@@ -51778,7 +51791,7 @@ fN
 bO
 cz
 sP
-rl
+pW
 BT
 ji
 tE
@@ -52035,7 +52048,7 @@ jl
 ps
 jl
 pW
-rl
+pW
 Bc
 eN
 vV
@@ -53063,7 +53076,7 @@ jl
 WU
 jl
 pW
-rl
+pW
 Bc
 nQ
 vV
@@ -53320,7 +53333,7 @@ cz
 cz
 cz
 sP
-rl
+pW
 BT
 Lq
 kt
@@ -53577,7 +53590,7 @@ MO
 Hk
 pv
 pX
-rl
+pW
 UT
 Lq
 kt
@@ -53834,7 +53847,7 @@ jl
 pW
 jl
 pW
-rl
+pW
 DP
 oe
 Hn
@@ -54091,7 +54104,7 @@ ZM
 yI
 ZM
 QP
-HA
+BY
 XB
 BT
 BT
@@ -54348,7 +54361,7 @@ tU
 dc
 eM
 OP
-HA
+BY
 qu
 BY
 Lz
@@ -114979,8 +114992,8 @@ gq
 gq
 gq
 gq
-mN
 gq
+mN
 Pk
 gq
 no
@@ -115236,8 +115249,8 @@ qy
 qy
 qy
 qy
-KZ
 qy
+KZ
 qy
 qy
 Jl
@@ -115493,8 +115506,8 @@ TV
 SE
 Fz
 fh
-dI
 fh
+dI
 fh
 fh
 fh
@@ -115750,8 +115763,8 @@ Ud
 Ud
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ND
 fh
@@ -116007,8 +116020,8 @@ Ap
 Ap
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -116264,8 +116277,8 @@ Ap
 Ud
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -116521,8 +116534,8 @@ Ap
 Ls
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -116778,8 +116791,8 @@ rj
 rj
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -117035,8 +117048,8 @@ rj
 rj
 Fz
 ww
+ww
 Hu
-wF
 wF
 wF
 We
@@ -117292,8 +117305,8 @@ rj
 rj
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -117549,8 +117562,8 @@ rj
 rj
 Fz
 ww
-Wg
 ww
+Wg
 ww
 ww
 fh
@@ -117806,8 +117819,8 @@ rj
 rj
 Fz
 LD
+wF
 yl
-ww
 ww
 ww
 fh
@@ -118320,8 +118333,8 @@ rj
 rj
 Fz
 fh
-cV
 fh
+cV
 fh
 fh
 fh
@@ -119094,7 +119107,7 @@ ww
 ww
 Gf
 ww
-fh
+rl
 Ra
 xt
 px
@@ -119350,7 +119363,7 @@ Fz
 ww
 ww
 ww
-ww
+pY
 fh
 Ra
 mf
