@@ -1955,7 +1955,6 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engine_core/reactor_turbines)
 "xO" = (
-/obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer4{
 	dir = 8
 	},
