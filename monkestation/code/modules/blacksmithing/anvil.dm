@@ -78,7 +78,7 @@
 /obj/structure/anvil/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/smithing/anvilplate))
 		var/obj/item/smithing/update = I
-		var/update_quality = (update.quality * update.blunt_mult)/20
+		var/update_quality = (update.quality * update.blunt_mult) / 20
 		anvilquality += update_quality
 		to_chat(user, "You apply the anvil plate to the anvil increasing its quality by: [update_quality], the current anvil quality is: [anvilquality]")
 		qdel(update)
