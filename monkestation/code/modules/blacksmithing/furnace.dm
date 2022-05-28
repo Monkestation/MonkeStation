@@ -5,9 +5,9 @@
 	icon_state = "furnace0"
 	density = TRUE
 	anchored = TRUE
-	var/debug = FALSE //debugging only
-	var/working = TRUE
-	var/fueluse = 1
+	var/debug = FALSE //debugging only adds fuel on its own
+	var/working = TRUE //if the furnace is on
+	var/fueluse = 1 //if the furnace uses fuel
 
 
 /obj/structure/furnace/Initialize()
