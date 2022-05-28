@@ -93,18 +93,17 @@
 			to_chat(user, "You place the [notsword] on the [src].")
 			currentquality = anvilquality
 			qdel(notsword)
-		else
-			to_chat(user, "The ingot isn't workable yet!")
-			return FALSE
-		return
+			return
+		to_chat(user, "The ingot isn't workable yet!")
+		return FALSE
+
 	else if(istype(I, /obj/item/melee/smith/hammer))
 		var/obj/item/melee/smith/hammer/hammertime = I
 		if(workpiece_state == WORKPIECE_PRESENT || workpiece_state == WORKPIECE_INPROGRESS)
 			do_shaping(user, hammertime.qualitymod)
 			return
-		else
-		 to_chat(user, "You can't work an empty anvil!")
-		 return FALSE
+		to_chat(user, "You can't work an empty anvil!")
+		return FALSE
 	return ..()
 
 /obj/structure/anvil/wrench_act(mob/living/user, obj/item/I)
