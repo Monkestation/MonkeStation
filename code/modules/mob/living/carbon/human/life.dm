@@ -309,14 +309,17 @@
 
 	return min(1,thermal_protection)
 
-/mob/living/carbon/human/handle_random_events()
+/mob/living/carbon/human/handle_random_events(delta_time, times_fired)
 	//Puke if toxloss is too high
-	if(!stat)
-		if(getToxLoss() >= 45 && nutrition > 20)
-			lastpuke += prob(50)
-			if(lastpuke >= 50) // about 25 second delay I guess
-				vomit(20, toxic = TRUE)
-				lastpuke = 0
+	if(stat)
+		return
+	if(getToxLoss() < 45 || nutrition <= 20)
+		return
+
+	lastpuke += DT_PROB(30, delta_time)
+	if(lastpuke >= 50) // about 25 second delay I guess // This is actually closer to 150 seconds
+		vomit(20)
+		lastpuke = 0
 
 
 /mob/living/carbon/human/has_smoke_protection()

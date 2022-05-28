@@ -26,23 +26,22 @@
 	species_l_leg = /obj/item/bodypart/l_leg/fly
 	species_r_leg = /obj/item/bodypart/r_leg/fly
 
-/datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == /datum/reagent/toxin/pestkiller)
-		H.adjustToxLoss(3)
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
-		return TRUE
-	if(istype(chem, /datum/reagent/consumable))
-		var/datum/reagent/consumable/nutri_check = chem
-		if(nutri_check.nutriment_factor > 0)
-			var/turf/pos = get_turf(H)
-			H.vomit(0, FALSE, FALSE, 2, TRUE)
-			playsound(pos, 'sound/effects/splat.ogg', 50, 1)
-			H.visible_message("<span class='danger'>[H] vomits on the floor!</span>", \
-						"<span class='userdanger'>You throw up on the floor!</span>")
-		return TRUE
-	return ..()
-
 /datum/species/fly/check_species_weakness(obj/item/weapon, mob/living/attacker)
 	if(istype(weapon, /obj/item/melee/flyswatter))
 		return 29 //Flyswatters deal 30x damage to flypeople.
 	return 0
+
+/obj/item/organ/stomach/fly/on_life()
+	for(var/bile in reagents.reagent_list)
+		if(!istype(bile, /datum/reagent/consumable))
+			continue
+		var/datum/reagent/consumable/chunk = bile
+		if(chunk.nutriment_factor <= 0)
+			continue
+		var/mob/living/carbon/body = owner
+		var/turf/pos = get_turf(owner)
+		body.vomit(reagents.total_volume, FALSE, FALSE, 2, TRUE)
+		playsound(pos, 'sound/effects/splat.ogg', 50, TRUE)
+		body.visible_message("<span class='danger'>[body] vomits on the floor!</span>", \
+					"<span class='userdanger'>You throw up on the floor!</span>")
+	return ..()

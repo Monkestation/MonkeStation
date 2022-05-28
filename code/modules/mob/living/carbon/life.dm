@@ -526,6 +526,27 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
 			return min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
 
+///////////
+//Stomach//
+///////////
+
+/mob/living/carbon/get_fullness()
+	var/fullness = nutrition
+
+	var/obj/item/organ/stomach/belly = getorganslot(ORGAN_SLOT_STOMACH)
+	if(!belly) //nothing to see here if we do not have a stomach
+		return fullness
+
+	for(var/bile in belly.reagents.reagent_list)
+		var/datum/reagent/bits = bile
+		if(istype(bits, /datum/reagent/consumable))
+			var/datum/reagent/consumable/goodbit = bile
+			fullness += goodbit.nutriment_factor * goodbit.volume / goodbit.metabolization_rate
+			continue
+		fullness += 0.6 * bits.volume / bits.metabolization_rate //not food takes up space
+
+	return fullness
+
 /////////
 //LIVER//
 /////////
@@ -595,3 +616,4 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		return
 
 	heart.beating = !status
+

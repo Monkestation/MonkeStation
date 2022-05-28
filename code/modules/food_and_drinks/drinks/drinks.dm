@@ -72,9 +72,8 @@
 		log_combat(user, M, "fed", reagents.log_list())
 
 	var/fraction = min(gulp_amount/reagents.total_volume, 1)
+	reagents.trans_to(M, gulp_amount, transfered_by = user, method = INGEST)
 	checkLiked(fraction, M)
-	reagents.reaction(M, INGEST, fraction)
-	reagents.trans_to(M, gulp_amount, transfered_by = user)
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	return 1
 

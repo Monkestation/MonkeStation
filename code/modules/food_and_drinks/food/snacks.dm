@@ -96,9 +96,7 @@ All foods are distributed among various categories. Use common sense.
 		if(!canconsume(M, user))
 			return FALSE
 
-		var/fullness = M.nutrition + 10
-		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
-			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
+		var/fullness = M.get_fullness() + 10 //The theoretical fullness of the person eating if they were to eat this
 
 		if(M == user)								//If you're eating it yourself.
 			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
@@ -144,8 +142,8 @@ All foods are distributed among various categories. Use common sense.
 			if(reagents.total_volume)
 				SEND_SIGNAL(src, COMSIG_FOOD_EATEN, M, user)
 				var/fraction = min(bitesize / reagents.total_volume, 1)
-				reagents.reaction(M, INGEST, fraction)
-				reagents.trans_to(M, bitesize, transfered_by = user)
+
+				reagents.trans_to(M, bitesize, transfered_by = user, method = INGEST)
 				bitecount++
 				On_Consume(M)
 				checkLiked(fraction, M)
