@@ -457,18 +457,18 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 // Method for alerting the station on the radio
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alerts()
-	if((REALTIMEOFDAY - lastwarning) / 8 >= WARNING_DELAY)
+	if((REALTIMEOFDAY - lastwarning) / 6 >= WARNING_DELAY)
 
 		if(temperature >= RBMK_TEMPERATURE_CRITICAL)
 			radio.talk_into(src, "Reactor Temperature Critical at [temperature] C.", engineering_channel)
-			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 2)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
 			if(vessel_integrity <= 200)
 				radio.talk_into(src, "REACTOR MELTDOWN IMMINENT at [temperature] C. Please seek your nearest radiation lockers for protection.", common_channel)
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
 
 		if(pressure >= RBMK_PRESSURE_CRITICAL)
 			radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa.", engineering_channel)
-			lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 2)
+			lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
 			if(vessel_integrity <= 200)
 				radio.talk_into(src, "Reactor Pressure Critical at [pressure] kPa. PRESSURE BLOWOUT IMMINENT. Please seek shelter and your nearest radiation lockers for protection.", common_channel)
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY)
@@ -539,7 +539,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	STOP_PROCESSING(SSmachines, src)
 	icon_state = "reactor_slagged"
 	AddComponent(/datum/component/radioactive, 15000 , src)
-	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
+	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner(get_turf(src))
 	relay('monkestation/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
 	stop_relay(CHANNEL_REACTOR_ALERT)
 	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.

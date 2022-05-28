@@ -49,7 +49,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 0
+	weight = 8
 	station_name = "MetaStation"
 
 /datum/map_template/random_engines/meta_particle_accelerator
@@ -59,7 +59,7 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 0
+	weight = 2
 	station_name = "MetaStation"
 
 /datum/map_template/random_engines/meta_rbmk_reactor

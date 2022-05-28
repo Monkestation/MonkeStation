@@ -10,7 +10,7 @@ import { useBackend, useLocalState } from '../backend';
 
 export const RbmkStats = () => {
   return (
-    <Window width={450} height={450} theme="ntos" title="Reactor Monitor">
+    <Window width={450} height={580} theme="ntos" title="Reactor Monitor">
       <Window.Content>
         <RbmkStatsContent />
       </Window.Content>
@@ -94,9 +94,9 @@ export const RbmkStatsContent = (props, context) => {
             </LabeledList>
           </Section>
 
-          <Section title="Power Statistics:" height="70px">
+          <Section title="Power Statistics:" height="100px">
             <Chart.Line
-              fillPositionedParent
+              height="60px"
               data={powerData}
               rangeX={[0, powerData.length - 1]}
               rangeY={[0, 1000]}
@@ -104,9 +104,9 @@ export const RbmkStatsContent = (props, context) => {
               fillColor="rgba(255, 215, 0, 0.1)" />
           </Section>
 
-          <Section title="Pressure Statistics:" height="70px">
+          <Section title="Pressure Statistics:" height="100px">
             <Chart.Line
-              fillPositionedParent
+              height="60px"
               data={pressureData}
               rangeX={[0, pressureData.length - 1]}
               rangeY={[0, pressureMax]}
@@ -114,9 +114,9 @@ export const RbmkStatsContent = (props, context) => {
               fillColor="rgba(255,250,250, 0.1)" />
           </Section>
 
-          <Section title="Temperature Statistics:" height="70px">
+          <Section title="Temperature Statistics:" height="200px">
             <Chart.Line
-              fillPositionedParent
+              height="60px"
               data={tempInputData}
               rangeX={[0, tempInputData.length - 1]}
               rangeY={[-273.15, temperatureMax]}

@@ -7,7 +7,7 @@ export const NtosRbmkStats = (props, context) => {
     <NtosWindow
       resizable
       width={450}
-      height={500}>
+      height={650}>
       <NtosWindow.Content scrollable>
         <RbmkStatsContent />
       </NtosWindow.Content>
