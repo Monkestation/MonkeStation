@@ -121,6 +121,9 @@
 	//Clockcult - The integration cog inserted inside of us
 	var/integration_cog = null
 
+	/// To prevent sound loop bugs
+	var/apc_sound_stage = null
+
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	if (!req_access)
 		req_access = list(ACCESS_ENGINE_EQUIP)
@@ -371,7 +374,7 @@
 					. = TRUE
 		if("cover")
 			coverlocked = !coverlocked
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Off3.ogg', 10, 5)
+			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Cover.ogg', 10, 5)
 			. = TRUE
 		if("breaker")
 			toggle_breaker(usr)
@@ -595,12 +598,19 @@
 		queue_icon_update()
 
 	/// Sounds for power off and on stages in APCs
-	if(ISINRANGE(cell.percent(), 14, 16) && charging == APC_NOT_CHARGING)
+	if(ISINRANGE(cell.percent(), 14, 16) && charging == APC_NOT_CHARGING && apc_sound_stage != 1)
 		playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 1)
-	if(ISINRANGE(cell.percent(), 29, 31) && charging == APC_NOT_CHARGING)
-		playsound(src, 'monkestation/sound/machines/apc/PowerDown_001.ogg', 20, 1)
-	if(cell.percent() == 1 && charging == APC_CHARGING)
-		playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 20, 1)
+		apc_sound_stage = 1
+	if(ISINRANGE(cell.percent(), 29, 31) && charging == APC_NOT_CHARGING && apc_sound_stage != 2)
+		playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Off.ogg', 10, 1)
+		apc_sound_stage = 2
+	if(ISINRANGE(cell.percent(), 1, 3) && charging == APC_NOT_CHARGING  && apc_sound_stage != 3)
+		playsound(src, 'monkestation/sound/machines/apc/PowerDown_001.ogg', 10, 1)
+		apc_sound_stage = 3
+	if(ISINRANGE(cell.percent(), 1, 3) && charging == APC_CHARGING && apc_sound_stage != 4)
+		playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 10, 1)
+		apc_sound_stage = 4
+
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc

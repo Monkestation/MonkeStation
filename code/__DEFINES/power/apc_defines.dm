@@ -70,6 +70,7 @@
 #define APC_LOW_POWER 1
 /// The APCs external powernet has enough power to charge the APC.
 #define APC_HAS_POWER 2
+
 #define APC_AI_NO_MALF 0
 #define APC_AI_NO_HACK 1
 #define APC_AI_HACK_NO_SHUNT 2
