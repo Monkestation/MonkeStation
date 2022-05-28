@@ -105,6 +105,7 @@
 /obj/item/melee/smith/twohand/halberd
 	name = "halberd"
 	icon_state = "halberd"
+	desc = "A long axe."
 	w_class = WEIGHT_CLASS_HUGE
 	overlay_state = "spearhandle"
 	slot_flags = ITEM_SLOT_BACK
@@ -116,6 +117,7 @@
 
 /obj/item/melee/smith/twohand/javelin
 	name = "javelin"
+	desc = "A spear primarly used for throwing"
 	icon_state = "javelin"
 	overlay_state = "longhandle"
 	wielded_mult = 1.5
@@ -129,6 +131,7 @@
 
 /obj/item/melee/smith/twohand/glaive
 	name = "glaive"
+	desc = "A long spear like weapon."
 	icon_state = "glaive"
 	overlay_state = "longhandle"
 	slot_flags = ITEM_SLOT_BACK
@@ -141,6 +144,7 @@
 
 /obj/item/melee/smith/twohand/pike
 	name = "pike"
+	desc =  "A very long thrusting spear."
 	icon_state = "pike"
 	w_class = WEIGHT_CLASS_HUGE
 	overlay_state = "longhandle"
