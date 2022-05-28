@@ -44,8 +44,6 @@ export const ChemDispenser = (props, context) => {
                 icon="book"
                 disabled={!data.isBeakerLoaded}
                 content={"Reaction search"}
-                tooltip={data.isBeakerLoaded ? "Look up recipes and reagents!" : "Please insert a beaker!"}
-                tooltipPosition="bottom-left"
                 onClick={() => act('reaction_lookup')} />
             </>
           )}>

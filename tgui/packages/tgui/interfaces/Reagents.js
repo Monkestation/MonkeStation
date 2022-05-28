@@ -60,7 +60,6 @@ export const Reagents = (props, context) => {
                         content="Beaker Sync"
                         icon="atom"
                         color={beakerSync ? "green" : "red"}
-                        tooltip="When enabled the displayed reaction will automatically display ongoing reactions in the associated beaker."
                         onClick={() => act('beaker_sync')} />
                       <Button
                         content="Search recipes"
