@@ -1300,3 +1300,29 @@
 		new /obj/item/clothing/accessory/armband/deputy(src)
 		new /obj/item/card/id/pass/deputy(src)
 
+//SKILLCHIPS
+/obj/item/storage/box/skillchips
+	name = "box of skillchips"
+	desc = "Contains one copy of every skillchip"
+
+/obj/item/storage/box/skillchips/PopulateContents()
+	var/list/skillchips = subtypesof(/obj/item/skillchip)
+
+	for(var/skillchip in skillchips)
+		new skillchip(src)
+
+/obj/item/storage/box/skillchips/science
+	name = "box of science job skillchips"
+	desc = "Contains spares of every science job skillchip."
+
+/obj/item/storage/box/skillchips/science/PopulateContents()
+	new/obj/item/skillchip/job/roboticist(src)
+	new/obj/item/skillchip/job/roboticist(src)
+
+/obj/item/storage/box/skillchips/engineering
+	name = "box of engineering job skillchips"
+	desc = "Contains spares of every engineering job skillchip."
+
+/obj/item/storage/box/skillchips/engineering/PopulateContents()
+	new/obj/item/skillchip/job/engineer(src)
+	new/obj/item/skillchip/job/engineer(src)

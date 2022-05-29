@@ -384,6 +384,16 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //SKILLCHIP STUFF START
 #define TRAIT_WINE_TASTER "wine_taster"
 #define TRAIT_BONSAI "bonsai"
+#define TRAIT_KNOW_CYBORG_WIRES "know_cyborg_wires"
+#define TRAIT_KNOW_ENGI_WIRES "know_engi_wires"
+#define TRAIT_CONSTRUCTION		"construction" //Having this trait makes you build/craft faster; Skillchipped
+#define TRAIT_CHEMISTRY			"chemistry"  //Reagents can be dispensed in 1u amounts; Skillchipped
+#define TRAIT_SURGICAL_EXPERT	"surgical_expertise"//Better surgical outcomes when performing; Skillchipped
+#define TRAIT_QUICKER_CARRY_CHIP "quicker-carry-chip" //Faster Fireman carry; Skillchipped
+#define TRAIT_LIGHTBULB_REMOVER "lightbulb_remover"
+#define TRAIT_ENTRAILS_READER "entrails_reader"
+/// this skillchip trait lets you wash brains in washing machines to heal them
+#define TRAIT_BRAINWASHING "brainwashing"
 //SKILLCHIP STUFF END
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

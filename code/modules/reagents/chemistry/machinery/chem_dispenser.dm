@@ -34,6 +34,9 @@
 	var/nopower_state = "dispenser_nopower"
 	var/has_panel_overlay = TRUE
 	var/obj/item/reagent_containers/beaker = null
+	//Contain Transfer Settings determined dispense amounts. This is dumb, since it limits chem dispensers having hard set/dynamic dispense amounts. Thus these were born.
+	var/list/possible_dispense_amounts = list(5,10,15,20,25,30,50)
+	var/list/possible_dispense_amounts_chemists = list(1,5,10,15,20,25,30,50)
 	//dispensable_reagents is copypasted in plumbing synthesizers. Please update accordingly. (I didn't make it global because that would limit custom chem dispensers)
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
@@ -204,7 +207,10 @@
 	if (beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume
 		data["beakerMaxVolume"] = beaker.volume
-		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
+		if(HAS_TRAIT(user, TRAIT_CHEMISTRY))
+			data["beakerTransferAmounts"] = possible_dispense_amounts_chemists
+		else
+			data["beakerTransferAmounts"] = possible_dispense_amounts
 	else
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
