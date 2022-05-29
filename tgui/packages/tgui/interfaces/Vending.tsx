@@ -6,7 +6,6 @@ import { Window } from '../layouts';
 type VendingData = {
   onstation: boolean;
   department: string;
-  jobDiscount: number;
   product_records: ProductRecord[];
   coin_records: CoinRecord[];
   hidden_records: HiddenRecord[];
@@ -73,19 +72,17 @@ const VendingRow = (props, context) => {
     onstation,
     department,
     user,
-    jobDiscount,
   } = data;
   const free = (
-    !onstation
+    !data.onstation
     || product.price === 0
     || (
       !product.premium
-      && department
-      && user
+      && data.department
+      && data.user
+      && data.department === data.user.department
     )
   );
-  const discount = department === user?.department;
-  const redPrice = Math.round(product.price * jobDiscount);
   return (
     <Table.Row>
       <Table.Cell collapsing>
@@ -134,14 +131,13 @@ const VendingRow = (props, context) => {
           <Button
             fluid
             disabled={(
-              productStock.amount === 0
+              productStock === 0
               || !free && (
-                !user
-                || product.price > user.cash
+                !data.user
+                || product.price > data.user.cash
               )
             )}
-            content={(free && discount)
-              ? `${redPrice} cr` : `${product.price} cr`}
+            content={free ? 'FREE' : product.price + ' cr'}
             onClick={() => act('vend', {
               'ref': product.ref,
             })} />
