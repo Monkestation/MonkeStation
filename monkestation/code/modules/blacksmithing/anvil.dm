@@ -75,30 +75,30 @@
 	..()
 	currentquality = anvilquality
 
-/obj/structure/anvil/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/smithing/anvilplate))
-		var/obj/item/smithing/update = I
+/obj/structure/anvil/attackby(obj/item/Item, mob/user)
+	if(istype(Item, /obj/item/smithing/anvilplate))
+		var/obj/item/smithing/update = Item
 		var/update_quality = (update.quality * update.blunt_mult) / 20
 		anvilquality += update_quality
 		to_chat(user, "You apply the anvil plate to the anvil increasing its quality by: [update_quality], the current anvil quality is: [anvilquality]")
 		qdel(update)
-	if(istype(I, /obj/item/ingot))
-		var/obj/item/ingot/notsword = I
+	if(istype(Item, /obj/item/ingot))
+		var/obj/item/ingot/working_ingot = Item
 		if(workpiece_state)
 			to_chat(user, "There's already a workpiece! Finish it or take it off.")
 			return FALSE
-		if(notsword.workability == "shapeable")
+		if(working_ingot.workability == "shapeable")
 			workpiece_state = WORKPIECE_PRESENT
-			workpiece_material = notsword.custom_materials
-			to_chat(user, "You place the [notsword] on the [src].")
+			workpiece_material = working_ingot.custom_materials
+			to_chat(user, "You place the [working_ingot] on the [src].")
 			currentquality = anvilquality
-			qdel(notsword)
+			qdel(working_ingot)
 			return
 		to_chat(user, "The ingot isn't workable yet!")
 		return FALSE
 
-	else if(istype(I, /obj/item/melee/smith/hammer))
-		var/obj/item/melee/smith/hammer/hammertime = I
+	else if(istype(Item, /obj/item/melee/smith/hammer))
+		var/obj/item/melee/smith/hammer/hammertime = Item
 		if(workpiece_state == WORKPIECE_PRESENT || workpiece_state == WORKPIECE_INPROGRESS)
 			do_shaping(user, hammertime.qualitymod)
 			return
@@ -106,9 +106,9 @@
 		return FALSE
 	return ..()
 
-/obj/structure/anvil/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/anvil/wrench_act(mob/living/user, obj/item/Item)
 	..()
-	default_unfasten_wrench(user, I, 5)
+	default_unfasten_wrench(user, Item, 5)
 	return TRUE
 
 /obj/structure/anvil/examine(mob/user)
@@ -178,9 +178,9 @@
 	finalfailchance = max(0, finalfailchance / (1 + anvilquality)) //lv 2 gives 20% less to fail, 3 30%, etc
 	if((currentsteps > 10 || (rng && prob(finalfailchance))) && !artifact)
 		to_chat(user, "<span class='warning'?You overwork the metal, causing it to turn into useless slag!</span>")
-		var/turf/T = get_turf(user)
+		var/turf/Turf = get_turf(user)
 		workpiece_state = FALSE
-		new /obj/item/stack/ore/slag(T)
+		new /obj/item/stack/ore/slag(Turf)
 		currentquality = anvilquality
 		stepsdone = ""
 		currentsteps = 0
@@ -188,9 +188,9 @@
 		artifactrolled = FALSE
 	for(var/recipe in smithrecipes)
 		if(recipe == stepsdone)
-			var/turf/T = get_turf(user)
+			var/turf/Turf = get_turf(user)
 			var/obj/item/smithing/create = smithrecipes[stepsdone]
-			var/obj/item/smithing/finisheditem = new create(T)
+			var/obj/item/smithing/finisheditem = new create(Turf)
 			to_chat(user, "You finish your [finisheditem]!")
 			if(artifact)
 				to_chat(user, "It is an artifact, a creation whose legacy shall live on forevermore.") //todo: SSblackbox
@@ -289,8 +289,8 @@
 	max_integrity = 500
 	obj_integrity = 500
 
-/obj/structure/anvil/obtainable/ratvar/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/melee/smith/hammer))
+/obj/structure/anvil/obtainable/ratvar/attackby(obj/item/Item, mob/user)
+	if(istype(Item, /obj/item/melee/smith/hammer))
 		if(is_servant_of_ratvar(user))
 			return ..()
 		else
@@ -306,8 +306,8 @@
 	max_integrity = 500
 	obj_integrity = 500
 
-/obj/structure/anvil/obtainable/narsie/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/melee/smith/hammer))
+/obj/structure/anvil/obtainable/narsie/attackby(obj/item/Item, mob/user)
+	if(istype(Item, /obj/item/melee/smith/hammer))
 		if(iscultist(user))
 			return ..()
 		else

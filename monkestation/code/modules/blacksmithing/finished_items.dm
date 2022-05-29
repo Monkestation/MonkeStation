@@ -259,8 +259,8 @@
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
 							 "<span class='cultlarge'>\"You shouldn't be touching tools that aren't yours.\"</span>")
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(rand(force / 2, force), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			var/mob/living/carbon/human/Human = user
+			Human.apply_damage(rand(force / 2, force), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		else
 			user.adjustBruteLoss(rand(force / 2,force))
 		return
@@ -279,8 +279,8 @@
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", "<span class='neovgre'>\"You shouldn't be touching tools that aren't yours.\"</span>")
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(rand(force / 2, force), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			var/mob/living/carbon/human/Human = user
+			Human.apply_damage(rand(force / 2, force), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		else
 			user.adjustBruteLoss(rand(force / 2,force))
 		return

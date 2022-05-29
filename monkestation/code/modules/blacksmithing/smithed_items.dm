@@ -24,14 +24,14 @@
 	var/workability = 0 //if the ingot is workable heat it in furnace to make it so
 
 /obj/item/ingot/attack_hand(mob/user)
-	var/mob/living/carbon/human/H
+	var/mob/living/carbon/human/Human
 	if(workability != "shapeable")
 		return ..()
 	var/prot = 0
 	if(ishuman(user))
-		H = user
-		if(H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves //check if you have gloves otherwise burn city
+		Human = user
+		if(Human.gloves)
+			var/obj/item/clothing/gloves/G = Human.gloves //check if you have gloves otherwise burn city
 			if(G.max_heat_protection_temperature)
 				prot = (G.max_heat_protection_temperature > 360)
 		else
@@ -41,10 +41,10 @@
 		return ..()
 	else
 		to_chat(user, "<span class='warning'>You try to move the [src], but you burn your hand on it!</span>")
-	if(H)
-		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+	if(Human)
+		var/obj/item/bodypart/affecting = Human.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
-			H.update_damage_overlays()
+			Human.update_damage_overlays()
 
 /obj/item/ingot/iron
 	custom_materials = list(/datum/material/iron=12000)
@@ -87,9 +87,9 @@
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-smithing brass is actually more structurally stable bronze. Ratvar must have transformed the brass into bronze. Somehow."
 
 
-/obj/item/smithing/attackby(obj/item/I, mob/user)
-	if(istype(I, finishingitem))
-		qdel(I)
+/obj/item/smithing/attackby(obj/item/Item, mob/user)
+	if(istype(Item, finishingitem))
+		qdel(Item)
 		startfinish()
 	else
 		return ..()

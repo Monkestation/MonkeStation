@@ -31,9 +31,9 @@
 		working = FALSE
 		icon_state = "furnace0"
 
-/obj/structure/furnace/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/ingot))
-		var/obj/item/ingot/worked_ingot = I
+/obj/structure/furnace/attackby(obj/item/Item, mob/user)
+	if(istype(Item, /obj/item/ingot))
+		var/obj/item/ingot/worked_ingot = Item
 		if(working)
 			to_chat(user, "You heat the [worked_ingot] in the [src].")
 			worked_ingot.workability = "shapeable"
@@ -42,14 +42,14 @@
 	else
 		..()
 
-/obj/structure/furnace/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/furnace/wrench_act(mob/living/user, obj/item/Item)
 	..()
-	default_unfasten_wrench(user, I, 5)
+	default_unfasten_wrench(user, Item, 5)
 	return TRUE
 
-/obj/structure/furnace/attackby(obj/item/W, mob/user, params)
-	if(W.reagents)
-		W.reagents.trans_to(src, 250)
+/obj/structure/furnace/attackby(obj/item/Fuel, mob/user, params)
+	if(Fuel.reagents)
+		Fuel.reagents.trans_to(src, 250)
 	else
 		return ..()
 
