@@ -9,7 +9,7 @@
 	var/modifystate = 0
 	var/list/ammo_type = list(/obj/item/ammo_casing/energy)
 	///The state of the select fire switch. Determines from the ammo_type list what kind of shot is fired next.
-	var/select = 1 
+	var/select = 1
 	///Can it be charged in a recharger?
 	var/can_charge = TRUE
 	///Do we handle overlays with base update_icon()?
@@ -18,7 +18,7 @@
 	ammo_x_offset = 2
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
-	var/selfcharge = 0
+	var/selfcharge = FALSE //selfcharging guns
 	var/charge_timer = 0
 	var/charge_delay = 8
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge

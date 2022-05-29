@@ -55,7 +55,7 @@
 	backpack_contents = list(/obj/item/melee/classic_baton/police/telescopic=1,
 		/obj/item/station_charter=1,
 		/obj/item/modular_computer/tablet/preset/advanced/command=1,
-		/obj/item/gun/energy/e_gun/mini/heads
+		/obj/item/gun/energy/e_gun/heads
 		)
 
 	backpack = /obj/item/storage/backpack/captain
