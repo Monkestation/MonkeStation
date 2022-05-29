@@ -11,7 +11,8 @@
 #define EPILEPSY	/datum/mutation/human/epilepsy
 #define MUTATE		/datum/mutation/human/bad_dna
 #define COUGH		/datum/mutation/human/cough
-#define DWARFISM	/datum/mutation/human/dwarfism
+#define DWARFISM /datum/mutation/human/dwarfism
+#define DEWARF /datum/mutation/human/dewarf
 #define GIGANTISM	/datum/mutation/human/gigantism
 #define CLOWNMUT	/datum/mutation/human/clumsy
 #define TOURETTES	/datum/mutation/human/tourettes
@@ -25,7 +26,7 @@
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
 #define STONER		/datum/mutation/human/stoner
-#define UNINTELLIGIBLE		/datum/mutation/human/unintelligible
+#define UNINTELLIGIBLE /datum/mutation/human/unintelligible
 #define SWEDISH		/datum/mutation/human/swedish
 #define CHAV		/datum/mutation/human/chav
 #define ELVIS		/datum/mutation/human/elvis
@@ -47,7 +48,7 @@
 #define BADBLINK	/datum/mutation/human/badblink
 #define SPASTIC		/datum/mutation/human/spastic
 #define EXTRASTUN	/datum/mutation/human/extrastun
-#define GELADIKINESIS		/datum/mutation/human/geladikinesis
+#define GELADIKINESIS /datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 #define CLUWNEMUT   /datum/mutation/human/cluwne
 #define WAXSALIVA   /datum/mutation/human/wax_saliva

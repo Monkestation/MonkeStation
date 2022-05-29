@@ -280,6 +280,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FRIENDLY			"friendly"
 #define TRAIT_GRABWEAKNESS		"grab_weakness"
 //MonkeStation Edit Start
+#define TRAIT_DEWARF "dewarf"
 #define TRAIT_JAILBIRD			"jailbird"
 #define TRAIT_STOWAWAY			"stowaway"
 #define TRAIT_ANIME				"anime"

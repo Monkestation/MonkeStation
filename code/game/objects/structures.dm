@@ -81,6 +81,8 @@
 	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
 		adjusted_climb_time *= 0.8
 	// Monkestation Change Start
+	if(HAS_TRAIT(user, TRAIT_DEWARF)) //Why are these tables so tall?
+		adjusted_climb_time *= 1.6
 	if(HAS_TRAIT(user, TRAIT_TRASH_EATER)) //Bonus from goat.dm disease symptom
 		adjusted_climb_time *= 0.6
 	// Monkestation Change End

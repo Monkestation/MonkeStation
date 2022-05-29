@@ -87,7 +87,7 @@
 	difficulty = 16
 	instability = 5
 	conflicts = list(GIGANTISM)
-	locked = TRUE    // Default intert species for now, so locked from regular pool.
+	locked = TRUE // Default intert species for now, so locked from regular pool.
 
 /datum/mutation/human/dwarfism/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

@@ -141,6 +141,16 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+/obj/item/dnainjector/antidewarf
+	name = "\improper DNA injector (Anti-Dwarfism)"
+	desc = "Helps you grow big and strong."
+	remove_mutations = list(DEWARF)
+
+/obj/item/dnainjector/dwarf
+	name = "\improper DNA injector (Dwarfism)"
+	desc = "It's a small world after all."
+	add_mutations = list(DEWARF)
+
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"
 	desc = "Makes clown minions."

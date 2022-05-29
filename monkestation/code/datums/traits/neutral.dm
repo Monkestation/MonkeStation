@@ -41,14 +41,15 @@
 		if(gojira.dna)
 			gojira.dna.add_mutation(GIGANTISM)
 
-/datum/quirk/dwarfism
-	name = "Dwarfism"
-	desc = "You're dewarf! You start the round with the dwarfism mutation. Even works on species without DNA!"
+/datum/quirk/dewarf
+	name = "Dewarf"
+	desc = "You're dewarf and small! Tables are slower to climb! You start the round with the dewarfism mutation. Even works on species without DNA!"
+	mob_trait = TRAIT_DEWARF
 	value = 0
 
-/datum/quirk/dwarfism/post_add()
+/datum/quirk/dewarf/post_add()
 	. = ..()
 	if(ishuman(quirk_holder))
 		var/mob/living/carbon/human/user = quirk_holder
 		if(user.dna)
-			user.dna.add_mutation(DWARFISM)
+			user.dna.add_mutation(DEWARF)
