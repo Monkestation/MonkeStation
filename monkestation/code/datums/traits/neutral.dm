@@ -40,3 +40,15 @@
 		var/mob/living/carbon/human/gojira = quirk_holder
 		if(gojira.dna)
 			gojira.dna.add_mutation(GIGANTISM)
+
+/datum/quirk/dwarfism
+	name = "Dwarfism"
+	desc = "You're dewarf! You start the round with the dwarfism mutation. Even works on species without DNA!"
+	value = 0
+
+/datum/quirk/dwarfism/post_add()
+	. = ..()
+	if(ishuman(quirk_holder))
+		var/mob/living/carbon/human/user = quirk_holder
+		if(user.dna)
+			user.dna.add_mutation(DWARFISM)
