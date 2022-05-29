@@ -293,9 +293,8 @@
 /area/maintenance/starboard/aft)
 "abk" = (
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "8-16"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -3731,9 +3730,8 @@
 /area/science/xenobiology)
 "aon" = (
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "8-32"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -6738,10 +6736,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "azF" = (
-/obj/machinery/power/deck_relay,
 /obj/effect/turf_decal/stripes/box,
 /obj/structure/cable/yellow{
-	icon_state = "0-4"
+	icon_state = "4-16"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -6942,9 +6939,8 @@
 /area/engine/engine_core)
 "aAB" = (
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
 /obj/structure/cable/yellow{
-	icon_state = "0-2"
+	icon_state = "2-16"
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
@@ -12074,11 +12070,10 @@
 "aTp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
 /obj/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "2-16"
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -12211,10 +12206,9 @@
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "aTN" = (
-/obj/machinery/power/deck_relay,
 /obj/effect/turf_decal/stripes/box,
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "8-32"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft/secondary)
@@ -13030,9 +13024,8 @@
 /area/quartermaster/miningdock)
 "aWE" = (
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "8-32"
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
@@ -13217,10 +13210,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aXt" = (
-/obj/machinery/atmospherics/pipe/multiz/layer2,
-/turf/open/space/basic,
-/area/space)
 "aXu" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -13614,9 +13603,8 @@
 /area/engine/storage)
 "aYQ" = (
 /obj/effect/turf_decal/stripes/box,
-/obj/machinery/power/deck_relay,
 /obj/structure/cable/yellow{
-	icon_state = "0-4"
+	icon_state = "4-32"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -58305,7 +58293,7 @@ aRo
 anZ
 anZ
 anZ
-aXt
+anZ
 anZ
 anZ
 anZ
