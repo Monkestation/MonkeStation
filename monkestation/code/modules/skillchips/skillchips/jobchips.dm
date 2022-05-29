@@ -27,4 +27,14 @@
 	skill_description = "Improved handling of chemical dispensers lets you dispense at 1 unit increments."
 	skill_icon = "flask"
 	activate_message = "<span class='notice'>You suddenly comprehend the inner workings of chemical dispensers.</span>"
-	deactivate_message "<span class='notice'>The diagram of the chemical dispenser fades from your mind.</span>"
+	deactivate_message = "<span class='notice'>The diagram of the chemical dispenser fades from your mind.</span>"
+
+/obj/item/skillchip/job/bartender
+	name = "Bartender B334-B40 skillchip"
+	desc = "With this you can get everyone drunk."
+	auto_traits = list(TRAIT_CHEMISTRY, TRAIT_BOOZE_SLIDER)
+	skill_name = "Improved Bartending"
+	skill_description = "Lets you slide beers like in the movies, also lets you dispense in 1 unit increments."
+	skill_icon = "beer"
+	activate_message = "<span class='notice'>Hours of movies flood into your mind, you feel the ability to slide beers appear in your mind.</span>"
+	deactivate_message = "<span class='notice'>You can feel your head go blank, and try as you might you have lost the ability to slide beers.</span>"

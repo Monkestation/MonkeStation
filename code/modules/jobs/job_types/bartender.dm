@@ -36,4 +36,5 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	backpack_contents = list(/obj/item/storage/box/beanbag=1)
 	shoes = /obj/item/clothing/shoes/laceup
+	skillchip = /obj/item/skillchip/job/bartender
 
