@@ -36,7 +36,7 @@
 	else
 		return
 
-	var/selected_channel = input(L, "Choose a channel", "Radio Channel") in channel_options
+	var/selected_channel = input(L, "Choose a channel", "Radio Channel",null) as null|anything in channel_options
 	if(selected_channel)
 		var/spoken_text = input(L, "Speaking into [selected_channel]", "Radio Communication") as text|null
 		switch(selected_channel) //This feels like jank. But it probably is the best method I can do.
