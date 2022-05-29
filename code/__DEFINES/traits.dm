@@ -321,6 +321,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define GLASSES_TRAIT "glasses"
 #define CURSE_TRAIT "eldritch"
 #define STATION_TRAIT "station-trait"
+#define SKILLCHIP_TRAIT "skillchip"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -380,7 +381,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VAULTING "vaulting" //simian trait
 // Monkestation Changes End
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
-
+//SKILLCHIP STUFF START
+#define TRAIT_WINE_TASTER "wine_taster"
+#define TRAIT_BONSAI "bonsai"
+//SKILLCHIP STUFF END
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
 #define STATION_TRAIT_CARP_INFESTATION "station_trait_carp_infestation"

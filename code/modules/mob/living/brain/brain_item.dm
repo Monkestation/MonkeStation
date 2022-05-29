@@ -26,6 +26,10 @@
 
 
 	var/list/datum/brain_trauma/traumas = list()
+	/// List of skillchip items, their location should be this brain.
+	var/list/obj/item/skillchip/skillchips
+
+
 
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
@@ -55,10 +59,15 @@
 		BT.owner = owner
 		BT.on_gain()
 
+	for(var/obj/item/skillchip/skill_chip in skillchips)
+		skill_chip.on_apply(owner)
+
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
 
 /obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+	for(var/obj/item/skillchip/skill_chip in skillchips)
+		skill_chip.on_removal(owner)
 	..()
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X
@@ -124,6 +133,18 @@
 		O.reagents.clear_reagents()
 		return
 
+	// Cutting out skill chips.
+	if(length(skillchips) && O.sharpness == IS_SHARP)
+		to_chat(user,"<span class='notice'>You begin to excise skillchips from [src].</span>")
+		if(do_after(user, 15 SECONDS, target = src))
+			for(var/obj/item/skillchip/skill_chip in skillchips)
+				if(skill_chip.removable)
+					skill_chip.forceMove(drop_location())
+				else
+					qdel(skill_chip)
+			skillchips = null
+		return
+
 	if(brainmob) //if we aren't trying to heal the brain, pass the attack onto the brainmob.
 		O.attack(brainmob, user) //Oh noooeeeee
 
@@ -132,6 +153,8 @@
 
 /obj/item/organ/brain/examine(mob/user)
 	. = ..()
+	if(length(skillchips))
+		. += "<span class='info'>It has a skillchip embedded in it.</span>"
 
 	if(suicided)
 		. += "<span class='info'>It's started turning slightly grey. They must not have been able to handle the stress of it all.</span>"
@@ -160,6 +183,7 @@
 	if(brainmob)
 		QDEL_NULL(brainmob)
 	QDEL_LIST(traumas)
+	QDEL_LIST(skillchips)
 
 	if(owner?.mind) //You aren't allowed to return to brains that don't exist
 		owner.mind.set_current(null)
@@ -201,6 +225,19 @@
 				. += "\n[brain_message]"
 			else
 				return brain_message
+
+/obj/item/organ/brain/before_organ_replacement(obj/item/organ/replacement)
+	. = ..()
+	var/obj/item/organ/brain/replacement_brain = replacement
+	if(!istype(replacement_brain))
+		return
+	for(var/obj/item/skillchip/skill_chip in src)
+		if(skill_chip in skillchips)
+			if(owner)
+				skill_chip.on_removal(owner)
+			LAZYREMOVE(skillchips, skill_chip)
+			LAZYADD(replacement_brain.skillchips, skill_chip) //No need to call on_apply here, since it will be inserted in organ replacement soon.
+		skill_chip.forceMove(replacement)
 
 /obj/item/organ/brain/alien
 	name = "alien brain"

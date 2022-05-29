@@ -177,6 +177,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		to_chat(M, "<span class='boldannounce'>You're not feeling good at all! You really need some [name].</span>")
 	return
 
+/// Should return a associative list where keys are taste descriptions and values are strength ratios
+/datum/reagent/proc/get_taste_description(mob/living/taster)
+	return list("[taste_description]" = 1)
+
 /proc/pretty_string_from_reagent_list(list/reagent_list)
 	//Convert reagent list to a printable string for logging etc
 	var/list/rs = list()

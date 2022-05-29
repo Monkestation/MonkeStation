@@ -226,3 +226,7 @@
 		if(!getorganslot(ORGAN_SLOT_EARS))
 			var/obj/item/organ/ears/ears = new()
 			ears.Insert(src)
+
+/// Called before organs are replaced in regenerate_organs with new ones
+/obj/item/organ/proc/before_organ_replacement(obj/item/organ/replacement)
+	return

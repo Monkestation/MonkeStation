@@ -74,3 +74,9 @@
 
 	/// Timer id of any transformation
 	var/transformation_timer
+
+	///SKILL CHIPS
+	/// Maximum number of skillchips slots we can support before they stop working
+	var/max_skillchip_slots = 2
+	/// Currently used skillchip slots
+	var/used_skillchip_slots = 0

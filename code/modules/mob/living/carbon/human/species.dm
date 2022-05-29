@@ -266,6 +266,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(C.get_bodypart(BODY_ZONE_HEAD))
 		if(brain && (replace_current || !should_have_brain))
 			if(!brain.decoy_override)//Just keep it if it's fake
+				brain.before_organ_replacement(mutant_brain)
 				brain.Remove(C,TRUE,TRUE)
 				QDEL_NULL(brain)
 		if(should_have_brain && !brain)
