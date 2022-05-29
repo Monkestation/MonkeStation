@@ -26,5 +26,5 @@
 	skill_name = "Improved Dispensing"
 	skill_description = "Improved handling of chemical dispensers lets you dispense at 1 unit increments."
 	skill_icon = "flask"
-	active_message = "<span class='notice'>You suddenly comprehend the inner workings of chemical dispensers.</span>"
-	deactive_message "<span class='notice'>The diagram of the chemical dispenser fades from your mind.</span>"
+	activate_message = "<span class='notice'>You suddenly comprehend the inner workings of chemical dispensers.</span>"
+	deactivate_message "<span class='notice'>The diagram of the chemical dispenser fades from your mind.</span>"
