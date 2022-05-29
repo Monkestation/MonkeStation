@@ -282,6 +282,17 @@
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_TITANIUM_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTLE_PARTS)
 
+/turf/closed/wall/mineral/titanium/nodiagonal
+	icon = 'icons/turf/walls/shuttle_wall.dmi'
+	icon_state = "map-shuttle_nd"
+	base_icon_state = "shuttle_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
+/turf/closed/wall/mineral/titanium/nosmooth
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "wall"
+	smoothing_flags = NONE
+
 /turf/closed/wall/mineral/brass
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
