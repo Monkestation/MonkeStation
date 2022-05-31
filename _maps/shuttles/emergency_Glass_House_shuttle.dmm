@@ -6,25 +6,25 @@
 	},
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "aG" = (
 /obj/machinery/door/window/southright,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "aV" = (
 /obj/machinery/computer/station_alert{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "aX" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "ba" = (
 /obj/machinery/door/window/southleft,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "bk" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east{
@@ -34,19 +34,19 @@
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "bn" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketpizza,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "cd" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "ce" = (
 /obj/item/clothing/suit/hazardvest{
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
@@ -128,14 +128,14 @@
 	},
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "cn" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /obj/structure/table,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "dV" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -146,26 +146,26 @@
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketteriyaki,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "eh" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "gn" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "gr" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "gT" = (
 /obj/machinery/stasis,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "gZ" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -183,20 +183,20 @@
 	pixel_y = 1
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "hl" = (
 /obj/machinery/computer/communications{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "hp" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
 	},
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "hq" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/window/reinforced/spawner/north{
@@ -204,21 +204,21 @@
 	},
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "hz" = (
 /turf/template_noop,
-/area/space)
+/area/shuttle/escape)
 "iG" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "iH" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/recharge_station,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "kf" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -230,25 +230,25 @@
 	},
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "kZ" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/computer/security,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "lD" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/shuttle/escape)
 "mH" = (
 /obj/machinery/door/window/westleft{
 	name = "Bridge Deliveries";
 	req_access_txt = "19"
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "nz" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -259,13 +259,13 @@
 /obj/item/folder/yellow,
 /obj/item/clipboard,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "nA" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "nG" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -277,22 +277,22 @@
 	use_power = 0
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "ou" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "oN" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 9
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "pb" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/stasis,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "pj" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -300,7 +300,7 @@
 /obj/structure/table,
 /obj/item/storage/box/donkpockets/donkpocketspicy,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "qp" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -308,29 +308,29 @@
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "qw" = (
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "qN" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "qY" = (
 /obj/machinery/door/window/westleft,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "rv" = (
 /obj/machinery/computer/warrant{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "rF" = (
 /obj/structure/table,
 /obj/item/folder/blue,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "tB" = (
 /obj/structure/tank_dispenser/oxygen{
 	layer = 2.7;
@@ -339,13 +339,13 @@
 	},
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "uV" = (
 /obj/machinery/door/window/northleft{
 	name = "Reception Window"
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "vQ" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -356,7 +356,7 @@
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/tank/internals/oxygen/red,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "wa" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -366,14 +366,14 @@
 	pixel_y = 3
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "wz" = (
 /obj/structure/table,
 /obj/item/stack/medical/gauze,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/ointment,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "wD" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -385,21 +385,21 @@
 /obj/item/wrench,
 /obj/item/crowbar,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "wH" = (
 /obj/structure/chair/office,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "wJ" = (
 /obj/structure/chair/office{
 	dir = 1
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "xS" = (
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "xU" = (
 /obj/machinery/door/window/westleft{
 	dir = 1;
@@ -407,21 +407,21 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "yk" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
 /obj/machinery/advanced_airlock_controller{
 	pixel_y = 24
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "yr" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 10
 	},
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "yL" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -442,7 +442,7 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "zv" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -450,12 +450,12 @@
 	pixel_y = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Ae" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "An" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -472,19 +472,19 @@
 	pixel_x = 3
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "BF" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "BU" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /obj/structure/sink,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "CI" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -493,7 +493,7 @@
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "CX" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -502,18 +502,18 @@
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Dj" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency{
 	pixel_y = 3
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Eh" = (
 /obj/machinery/holopad,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "El" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -525,39 +525,39 @@
 	},
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "EW" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Fz" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Gb" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Gg" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/recharge_station,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "GB" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "ID" = (
 /obj/structure/chair/office{
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "IZ" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/north{
@@ -565,7 +565,7 @@
 	},
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Jo" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -586,7 +586,7 @@
 	},
 /obj/item/circular_saw,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Ka" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -596,7 +596,7 @@
 	},
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "KC" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -624,12 +624,12 @@
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Lj" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/computer/crew,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Lv" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east{
@@ -637,23 +637,23 @@
 	},
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "LA" = (
 /obj/machinery/computer/emergency_shuttle{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "LH" = (
 /obj/machinery/door/window/northright,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "MN" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "MP" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -690,7 +690,7 @@
 	pixel_y = -2
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "MX" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -701,7 +701,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Nn" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -711,20 +711,20 @@
 	req_access_txt = "1"
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Np" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "NE" = (
 /obj/machinery/door/window/northleft{
 	name = "Reception Window";
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Oi" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -734,37 +734,37 @@
 	},
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "PG" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 6
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Rn" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Rs" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/shower{
 	pixel_y = -8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Rw" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Su" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Td" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -772,25 +772,25 @@
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Tf" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /obj/machinery/space_heater,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Tu" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "TQ" = (
 /obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "TY" = (
 /obj/structure/table,
 /obj/machinery/recharger{
@@ -800,7 +800,7 @@
 	use_power = 0
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "UB" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/east{
@@ -809,37 +809,37 @@
 /obj/structure/table,
 /obj/item/defibrillator/loaded,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Vi" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/closet/emcloset,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Vz" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs{
 	pixel_y = 3
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "VF" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/hidden,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Wj" = (
 /obj/machinery/door/window/northleft{
 	name = "Reception Window"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Wp" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "WS" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -855,7 +855,7 @@
 	pixel_y = -1
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "WT" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -864,20 +864,20 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/shuttle/escape)
 "Xl" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Xy" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "YD" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
@@ -885,7 +885,7 @@
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 "Zb" = (
 /obj/machinery/door/window/northleft{
 	name = "Reception Window"
@@ -899,7 +899,7 @@
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/fakespace,
-/area/space)
+/area/shuttle/escape)
 
 (1,1,1) = {"
 hz
