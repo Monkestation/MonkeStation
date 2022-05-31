@@ -1,6 +1,6 @@
 /*
         Ported from /vg/station:
-        https://github.com/vgstation-coders/vgstation13/blob/Bleeding-Edge/code/game/objects/items/devices/sound_synth.dm
+        https://github.com/vgstation-coders/vgstation13/blob/Bleeding-Edge/code/game/objects/items/devices/soundsynth.dm
 */
 
 /obj/item/soundsynth
