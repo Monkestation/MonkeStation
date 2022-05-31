@@ -1,17 +1,25 @@
 /obj/item/implant/hardspear
 	name = "hardlight spear implant"
-	icon = 'icons/obj/implants.dmi'
-	icon_state = "generic" //Shows up as the action button icon
+	icon = 'monkestation/icons/obj/implants.dmi'
+	icon_state = "lightspear" //Shows up as the action button icon
 	implant_color = "b"
 	uses = -1
+	COOLDOWN_DECLARE(hardlight_implant_cooldown)
 
 /obj/item/implant/hardspear/activate()
-	///The Spear that gets summoned, nothing special for now
+	if(!COOLDOWN_FINISHED(src, hardlight_implant_cooldown)) //Thanks implant_abductor.dm for the help <3
+		to_chat(imp_in, "<span class='warning'>You must wait [COOLDOWN_TIMELEFT(src, hardlight_implant_cooldown)*0.1] seconds to use [src] again!</span>")
+		return
+
 	var/obj/item/spear/awesomespear
 	awesomespear = new /obj/item/spear/hardlightspear(imp_in.loc)
-	imp_in.put_in_hands(awesomespear)
-	to_chat(imp_in, "A spear manifests in your hand.")
-	//SEND_SIGNAL(src, COMSIG_IMPLANT_ACTIVATED)
+	if(imp_in.put_in_hands(awesomespear))
+		to_chat(imp_in, "A spear manifests in your hand.")
+		COOLDOWN_START(src, hardlight_implant_cooldown, 30 SECONDS)
+	else
+		to_chat(imp_in, "Your hands must be free to summon a spear!")
+		qdel(awesomespear) //not so awesome anymore, are you buddy?
+		return
 
 /obj/item/implanter/hardspear
 	name = "implanter (hardlight spear)"
@@ -26,8 +34,8 @@
 	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
 	icon_prefix = "lightspear"
 	icon_state = "lightspear0"
-	lefthand_file = 'monkestation/icons/mob/inhands/weapons/polearms_lefthand.dmi'
-	righthand_file = 'monkestation/icons/mob/inhands/weapons/polearms_righthand.dmi'
+	lefthand_file = 'monkestation/icons/mob/inhands/polearms_lefthand.dmi'
+	righthand_file = 'monkestation/icons/mob/inhands/polearms_righthand.dmi'
 	name = "hardlight spear"
 	desc = "A spear made out of hardened light."
 	force = 15
@@ -39,7 +47,6 @@
 	block_upgrade_walk = 1
 	throwforce = 25
 	throw_speed = 6
-	embedding = list("armour_block" = 90)
 	armour_penetration = 18
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list()
@@ -50,12 +57,6 @@
 	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=20, \
 				block_power_wielded=25, icon_wielded="[icon_prefix]1")
 
-/obj/item/spear/hardlightspear/dropped()
-	. = ..()
-	return
-	// if (thrownby == null)
-		// qdel(src) //Makes it so dropping deletes it, but throwing won't. DOESNT WORK. I THINK THROWING COUNTS AS DROPPING
-
 /obj/item/spear/hardlightspear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	if(hit_atom && !QDELETED(hit_atom))
@@ -63,21 +64,13 @@
 		if(is_hot() && isliving(hit_atom))
 			var/mob/living/L = hit_atom
 			L.IgniteMob()
-		var/itempush = 0 //too light to push anything
+		var/itempush = 0 //too light to push anything (haha)
 		if(istype(hit_atom, /mob/living)) //Living mobs handle hit sounds differently.
 			var/volume = get_volume_by_throwforce_and_or_w_class()
-			if (throwforce > 0)
-				if (mob_throw_hit_sound)
-					playsound(hit_atom, mob_throw_hit_sound, volume, TRUE, -1)
-				else if(hitsound)
-					playsound(hit_atom, hitsound, volume, TRUE, -1)
-				else
-					playsound(hit_atom, 'sound/weapons/genhit.ogg',volume, TRUE, -1)
-			else
-				playsound(hit_atom, 'sound/weapons/throwtap.ogg', 1, volume, -1)
+			playsound(hit_atom, 'sound/weapons/genhit.ogg',volume, TRUE, -1)
 		else
 			playsound(src, drop_sound, THROW_SOUND_VOLUME, ignore_walls = FALSE)
-		qdel(src)
+		qdel(src) //Deletes when it gets thrown at somethign
 		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
 
 /obj/item/spear/hardlightspear/unembedded()
