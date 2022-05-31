@@ -141,15 +141,17 @@
 	desc = "It's a small world after all."
 	add_mutations = list(DWARFISM)
 
+///MonkeStation Edit Begin
 /obj/item/dnainjector/antidewarf
-	name = "\improper DNA injector (Anti-Dwarfism)"
+	name = "\improper DNA injector (Anti-Dewarf)"
 	desc = "Helps you grow big and strong."
 	remove_mutations = list(DEWARF)
 
-/obj/item/dnainjector/dwarf
-	name = "\improper DNA injector (Dwarfism)"
+/obj/item/dnainjector/dewarf
+	name = "\improper DNA injector (Dewarf)"
 	desc = "It's a small world after all."
 	add_mutations = list(DEWARF)
+///MonkeStation Edit End
 
 /obj/item/dnainjector/clumsymut
 	name = "\improper DNA injector (Clumsy)"

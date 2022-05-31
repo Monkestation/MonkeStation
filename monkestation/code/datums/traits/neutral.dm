@@ -43,7 +43,7 @@
 
 /datum/quirk/dewarf
 	name = "Dewarf"
-	desc = "You're dewarf and small! Tables are slower to climb! You start the round with the dewarfism mutation. Even works on species without DNA!"
+	desc = "You're dewarf and small! Tables are slower to climb and your smaller legs cause you to move slower. You start the round with the dewarf mutation. Even works on species without DNA!"
 	mob_trait = TRAIT_DEWARF
 	value = 0
 
