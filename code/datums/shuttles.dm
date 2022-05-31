@@ -193,6 +193,12 @@
 	P.special_enabled = TRUE
 
 
+/datum/map_template/shuttle/emergency/Glass_House_shuttle
+	suffix = "Glass_House_shuttle"
+	name = "Glass House shuttle"
+	description = "Rocks forbidden."
+	credit_cost = 1000
+
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"
