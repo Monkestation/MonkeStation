@@ -1,0 +1,88 @@
+/obj/item/implant/hardspear
+	name = "hardlight spear implant"
+	icon = 'icons/obj/implants.dmi'
+	icon_state = "generic" //Shows up as the action button icon
+	implant_color = "b"
+	uses = -1
+
+/obj/item/implant/hardspear/activate()
+	///The Spear that gets summoned, nothing special for now
+	var/obj/item/spear/awesomespear
+	awesomespear = new /obj/item/spear/hardlightspear(imp_in.loc)
+	imp_in.put_in_hands(awesomespear)
+	to_chat(imp_in, "A spear manifests in your hand.")
+	//SEND_SIGNAL(src, COMSIG_IMPLANT_ACTIVATED)
+
+/obj/item/implanter/hardspear
+	name = "implanter (hardlight spear)"
+	imp_type = /obj/item/implant/hardspear
+
+/obj/item/implantcase/hardspear
+	name = "implant case - 'Hardlight Spear'"
+	desc = "A glass case containing a freedom implant."
+	imp_type = /obj/item/implant/hardspear
+
+/obj/item/spear/hardlightspear
+	icon = 'icons/obj/transforming_energy.dmi'
+	icon_prefix = "lightspear"
+	icon_state = "lightspear0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "hardlight spear"
+	desc = "A spear made out of hardened light."
+	force = 15
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 1
+	block_upgrade_walk = 1
+	throwforce = 25
+	throw_speed = 6
+	embedding = list("armour_block" = 90)
+	armour_penetration = 18
+	hitsound = 'sound/weapons/blade1.ogg'
+	attack_verb = list()
+	sharpness = IS_SHARP
+
+/obj/item/spear/hardlightspear/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=20, \
+				block_power_wielded=25, icon_wielded="[icon_prefix]1")
+
+/obj/item/spear/hardlightspear/dropped()
+	. = ..()
+	return
+	// if (thrownby == null)
+		// qdel(src) //Makes it so dropping deletes it, but throwing won't. DOESNT WORK. I THINK THROWING COUNTS AS DROPPING
+
+/obj/item/spear/hardlightspear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(hit_atom && !QDELETED(hit_atom))
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
+		if(is_hot() && isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			L.IgniteMob()
+		var/itempush = 0 //too light to push anything
+		if(istype(hit_atom, /mob/living)) //Living mobs handle hit sounds differently.
+			var/volume = get_volume_by_throwforce_and_or_w_class()
+			if (throwforce > 0)
+				if (mob_throw_hit_sound)
+					playsound(hit_atom, mob_throw_hit_sound, volume, TRUE, -1)
+				else if(hitsound)
+					playsound(hit_atom, hitsound, volume, TRUE, -1)
+				else
+					playsound(hit_atom, 'sound/weapons/genhit.ogg',volume, TRUE, -1)
+			else
+				playsound(hit_atom, 'sound/weapons/throwtap.ogg', 1, volume, -1)
+		else
+			playsound(src, drop_sound, THROW_SOUND_VOLUME, ignore_walls = FALSE)
+		qdel(src)
+		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
+
+/obj/item/spear/hardlightspear/unembedded()
+	. = ..()
+	QDEL_NULL(src) //Deletes itself when unembedded
+	return TRUE
+
+
