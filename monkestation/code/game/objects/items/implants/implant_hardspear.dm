@@ -17,7 +17,7 @@
 		to_chat(imp_in, "A spear manifests in your hand.")
 		COOLDOWN_START(src, hardlight_implant_cooldown, 30 SECONDS)
 	else
-		to_chat(imp_in, "Your hands must be free to summon a spear!")
+		to_chat(imp_in, "You must have a free hand to summon a spear!")
 		qdel(awesomespear) //not so awesome anymore, are you buddy?
 		return
 
