@@ -127,9 +127,6 @@
 	name = "lifejackets"
 	},
 /obj/structure/window/reinforced/spawner/east,
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "cn" = (
@@ -157,100 +154,15 @@
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"eN" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"fm" = (
-/obj/item/clothing/suit/hazardvest{
-	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
-	name = "emergency lifejacket"
-	},
-/obj/item/clothing/suit/hazardvest{
-	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
-	name = "emergency lifejacket"
-	},
-/obj/item/clothing/suit/hazardvest{
-	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
-	name = "emergency lifejacket"
-	},
-/obj/item/clothing/suit/hazardvest{
-	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
-	name = "emergency lifejacket"
-	},
-/obj/item/clothing/suit/hazardvest{
-	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
-	name = "emergency lifejacket"
-	},
-/obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
-	},
-/obj/item/tank/internals/emergency_oxygen{
-	pixel_x = 3
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/clothing/mask/breath{
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/clothing/head/hardhat/orange{
-	name = "protective hat";
-	pixel_y = 9
-	},
-/obj/item/clothing/head/hardhat/orange{
-	name = "protective hat";
-	pixel_y = 9
-	},
-/obj/item/clothing/head/hardhat/orange{
-	name = "protective hat";
-	pixel_y = 9
-	},
-/obj/item/clothing/head/hardhat/orange{
-	name = "protective hat";
-	pixel_y = 9
-	},
-/obj/item/clothing/head/hardhat/orange{
-	name = "protective hat";
-	pixel_y = 9
-	},
-/obj/structure/closet/crate{
-	name = "lifejackets"
-	},
-/obj/structure/window/reinforced/spawner/east,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"fO" = (
+"el" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
 	},
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "gn" = (
@@ -318,6 +230,12 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"kc" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "kf" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -345,6 +263,16 @@
 /obj/machinery/door/window/westleft{
 	name = "Bridge Deliveries";
 	req_access_txt = "19"
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"ng" = (
+/obj/structure/window/reinforced/spawner/east{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = 7
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -384,6 +312,13 @@
 "oN" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 9
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"oO" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -428,6 +363,10 @@
 "rF" = (
 /obj/structure/table,
 /obj/item/folder/blue,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"rP" = (
+/obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "tB" = (
@@ -583,13 +522,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"BT" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
 "BU" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -664,8 +596,10 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"HL" = (
-/obj/structure/window/reinforced/spawner/east,
+"GC" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "ID" = (
@@ -764,13 +698,14 @@
 /obj/machinery/door/window/northright,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"Mr" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "MN" = (
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = 7
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -822,6 +757,91 @@
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"Nd" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate{
+	name = "lifejackets"
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "Nn" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -855,23 +875,24 @@
 /obj/structure/closet/crate,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"OC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "PG" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
 	dir = 6
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"Qw" = (
+"Rn" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"Rn" = (
-/obj/structure/window/reinforced/spawner/north,
-/obj/structure/chair/comfy/shuttle,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Rs" = (
@@ -884,12 +905,6 @@
 "Rw" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
-	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"RT" = (
-/obj/structure/window/reinforced/spawner/east{
-	dir = 8
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -923,9 +938,6 @@
 /area/shuttle/escape)
 "TQ" = (
 /obj/structure/window/reinforced/spawner/east,
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "TY" = (
@@ -1006,6 +1018,7 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Xy" = (
@@ -1021,15 +1034,6 @@
 	},
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"YO" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Zb" = (
@@ -1069,10 +1073,10 @@ Ka
 WT
 WT
 WT
-HL
+TQ
 WT
 WT
-HL
+TQ
 WT
 WT
 WT
@@ -1146,14 +1150,14 @@ aG
 (7,1,1) = {"
 Su
 Vz
-YO
+OC
+rP
 qw
-qw
-qw
-YO
+rP
+OC
 qw
 xU
-eN
+kc
 xS
 aX
 aX
@@ -1161,13 +1165,13 @@ Fz
 "}
 (8,1,1) = {"
 Tu
-RT
 MN
-RT
+ng
+MN
 mH
-RT
 MN
-RT
+ng
+MN
 bk
 CX
 CX
@@ -1208,15 +1212,15 @@ qw
 nG
 "}
 (11,1,1) = {"
-Rn
+Mr
 qw
 qw
-Xl
+GC
 aj
 gr
 qw
-Xl
-Rn
+GC
+Mr
 qw
 qw
 qw
@@ -1227,12 +1231,12 @@ MX
 Wj
 qw
 qw
-Xl
+GC
 Wp
 gr
 qw
-Xl
-Rn
+GC
+Mr
 Np
 Np
 Np
@@ -1240,18 +1244,18 @@ Np
 pj
 "}
 (13,1,1) = {"
-Qw
+Rn
 qw
 qw
-Xl
+GC
 Wp
 gr
 qw
-BT
+Xl
 UB
 MP
-fO
 YD
+el
 Jo
 dV
 "}
@@ -1259,11 +1263,11 @@ dV
 Wj
 qw
 qw
-Xl
+GC
 Wp
 gr
 qw
-Xl
+GC
 xS
 qw
 qw
@@ -1272,14 +1276,14 @@ qw
 cn
 "}
 (15,1,1) = {"
-Rn
+Mr
 qw
 qw
-Xl
+GC
 IZ
 gr
 qw
-Xl
+GC
 Rs
 qw
 qw
@@ -1288,7 +1292,7 @@ qw
 BU
 "}
 (16,1,1) = {"
-Rn
+Mr
 qw
 qw
 qw
@@ -1304,14 +1308,14 @@ qw
 El
 "}
 (17,1,1) = {"
-Rn
+Mr
 qw
 qw
-Xl
+GC
 qp
 gr
 qw
-Xl
+GC
 pb
 gT
 gT
@@ -1320,14 +1324,14 @@ gT
 kf
 "}
 (18,1,1) = {"
-Rn
+Mr
 qw
 qw
-Xl
+GC
 eh
 gr
 qw
-Xl
+GC
 Lv
 wD
 gZ
@@ -1336,14 +1340,14 @@ hp
 Oi
 "}
 (19,1,1) = {"
-Qw
+Rn
 qw
 qw
-Xl
+GC
 eh
 gr
 qw
-BT
+Xl
 EW
 qw
 qw
@@ -1355,11 +1359,11 @@ vQ
 Zb
 qw
 qw
-Xl
+GC
 eh
 gr
 qw
-Xl
+GC
 GB
 qw
 qw
@@ -1368,14 +1372,14 @@ qw
 Tf
 "}
 (21,1,1) = {"
-Rn
+Mr
 qw
 qw
-Xl
+GC
 Td
 gr
 qw
-Xl
+GC
 Ae
 qw
 qw
@@ -1400,7 +1404,7 @@ qw
 KC
 "}
 (23,1,1) = {"
-Rn
+Mr
 qw
 Np
 Np
@@ -1416,7 +1420,7 @@ qw
 cd
 "}
 (24,1,1) = {"
-Rn
+Mr
 qw
 qw
 qw
@@ -1433,13 +1437,13 @@ nz
 "}
 (25,1,1) = {"
 Gb
-ce
+Nd
 tB
-fm
-HL
-HL
-HL
+ce
 TQ
+TQ
+TQ
+oO
 iH
 BF
 BF
