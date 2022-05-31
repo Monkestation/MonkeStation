@@ -127,6 +127,9 @@
 	name = "lifejackets"
 	},
 /obj/structure/window/reinforced/spawner/east,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "cn" = (
@@ -152,6 +155,102 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"eN" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"fm" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate{
+	name = "lifejackets"
+	},
+/obj/structure/window/reinforced/spawner/east,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"fO" = (
+/obj/structure/window/reinforced/spawner/east{
+	dir = 8
+	},
+/obj/structure/table/optable,
+/obj/item/surgical_drapes,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "gn" = (
@@ -420,6 +519,9 @@
 	dir = 10
 	},
 /obj/structure/window/reinforced/spawner/north,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "yL" = (
@@ -454,6 +556,9 @@
 "Ae" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "An" = (
@@ -476,6 +581,13 @@
 "BF" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/closet/crate,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"BT" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "BU" = (
@@ -550,6 +662,10 @@
 "GB" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"HL" = (
+/obj/structure/window/reinforced/spawner/east,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "ID" = (
@@ -652,6 +768,10 @@
 /obj/structure/window/reinforced/spawner/east{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = 7
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "MP" = (
@@ -741,6 +861,14 @@
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
+"Qw" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
 "Rn" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/chair/comfy/shuttle,
@@ -756,6 +884,12 @@
 "Rw" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"RT" = (
+/obj/structure/window/reinforced/spawner/east{
+	dir = 8
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
@@ -789,6 +923,9 @@
 /area/shuttle/escape)
 "TQ" = (
 /obj/structure/window/reinforced/spawner/east,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "TY" = (
@@ -884,6 +1021,15 @@
 	},
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/fakespace,
+/area/shuttle/escape)
+"YO" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Zb" = (
@@ -923,10 +1069,10 @@ Ka
 WT
 WT
 WT
-TQ
+HL
 WT
 WT
-TQ
+HL
 WT
 WT
 WT
@@ -1000,14 +1146,14 @@ aG
 (7,1,1) = {"
 Su
 Vz
+YO
 qw
 qw
 qw
-qw
-qw
+YO
 qw
 xU
-qw
+eN
 xS
 aX
 aX
@@ -1015,13 +1161,13 @@ Fz
 "}
 (8,1,1) = {"
 Tu
+RT
 MN
-MN
-MN
+RT
 mH
+RT
 MN
-MN
-MN
+RT
 bk
 CX
 CX
@@ -1094,17 +1240,17 @@ Np
 pj
 "}
 (13,1,1) = {"
-Rn
+Qw
 qw
 qw
 Xl
 Wp
 gr
 qw
-Xl
+BT
 UB
 MP
-YD
+fO
 YD
 Jo
 dV
@@ -1190,14 +1336,14 @@ hp
 Oi
 "}
 (19,1,1) = {"
-Rn
+Qw
 qw
 qw
 Xl
 eh
 gr
 qw
-Xl
+BT
 EW
 qw
 qw
@@ -1289,10 +1435,10 @@ nz
 Gb
 ce
 tB
-ce
-TQ
-TQ
-TQ
+fm
+HL
+HL
+HL
 TQ
 iH
 BF
