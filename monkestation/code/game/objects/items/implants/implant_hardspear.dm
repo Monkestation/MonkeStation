@@ -67,6 +67,9 @@
 		qdel(src) //Deletes when it gets thrown at somethign
 		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
 
+/obj/item/spear/hardlightspear/update_icon()
+	return //Fixes spear turning invisible on attack
+
 /obj/item/spear/hardlightspear/unembedded()
 	. = ..()
 	QDEL_NULL(src) //Deletes itself when unembedded
