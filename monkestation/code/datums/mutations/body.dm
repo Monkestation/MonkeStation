@@ -15,7 +15,7 @@
 	owner.add_movespeed_modifier(MOVESPEED_ID_DEWARF, update=TRUE, priority=100, multiplicative_slowdown=1.1)
 	owner.visible_message("<span class='danger'>[owner] suddenly shrinks!</span>", "<span class='notice'>Everything around you seems to grow..</span>")
 
-/datum/mutation/human/dewarf/on_losing(mob/living/carbon/human/owner, /datum/species/s_owner)
+/datum/mutation/human/dewarf/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
 	owner.remove_movespeed_modifier(MOVESPEED_ID_DEWARF)
