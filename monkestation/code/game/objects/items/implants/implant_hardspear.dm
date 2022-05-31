@@ -23,11 +23,11 @@
 	imp_type = /obj/item/implant/hardspear
 
 /obj/item/spear/hardlightspear
-	icon = 'icons/obj/transforming_energy.dmi'
+	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
 	icon_prefix = "lightspear"
 	icon_state = "lightspear0"
-	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	lefthand_file = 'monkestation/icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'monkestation/icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "hardlight spear"
 	desc = "A spear made out of hardened light."
 	force = 15
