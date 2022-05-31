@@ -561,7 +561,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	explosion(get_turf(src), 0, 0, 10, 15, TRUE, TRUE, 0, FALSE, 4)
 	///Added scaling calculations for pulses so you have to put effort with meltdown severity
 	///Power goes from 0 to 100
-	radiation_pulse(get_turf(src), (100+(power*60)), (10+(power*3)), TRUE) //BIG flash of rads
+	radiation_pulse(get_turf(src), (500+(power*60)), (10+(power)), TRUE) //BIG flash of rads
 	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
