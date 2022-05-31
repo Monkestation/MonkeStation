@@ -1,4 +1,5 @@
 /datum/map_template/shuttle/emergency/glass_house_shuttle
+	prefix = "monkestation/_maps/shuttles/"
 	suffix = "Glass_House_Shuttle"
 	name = "Glass House Shuttle"
 	description = "Made of high density poly-carbonates with every surface polished to a fine finish. Only company approved \
