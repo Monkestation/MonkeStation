@@ -32,8 +32,7 @@
 
 /obj/item/spear/hardlightspear
 	icon = 'monkestation/icons/obj/items_and_weapons.dmi'
-	icon_prefix = "lightspear"
-	icon_state = "lightspear0"
+	icon_state = "lightspear"
 	lefthand_file = 'monkestation/icons/mob/inhands/polearms_lefthand.dmi'
 	righthand_file = 'monkestation/icons/mob/inhands/polearms_righthand.dmi'
 	name = "hardlight spear"
@@ -51,11 +50,6 @@
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list()
 	sharpness = IS_SHARP
-
-/obj/item/spear/hardlightspear/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=20, \
-				block_power_wielded=25, icon_wielded="[icon_prefix]1")
 
 /obj/item/spear/hardlightspear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
