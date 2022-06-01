@@ -9,6 +9,7 @@
 /area/shuttle/escape)
 "aG" = (
 /obj/machinery/door/window/southright,
+/obj/structure/fans/tiny,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "aV" = (
@@ -23,16 +24,7 @@
 /area/shuttle/escape)
 "ba" = (
 /obj/machinery/door/window/southleft,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"bk" = (
-/obj/structure/window/reinforced/spawner/north,
-/obj/structure/window/reinforced/spawner/east{
-	dir = 8
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4
-	},
+/obj/structure/fans/tiny,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "bn" = (
@@ -169,10 +161,6 @@
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"gn" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
 "gr" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/fakespace,
@@ -210,6 +198,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "hq" = (
@@ -218,6 +207,7 @@
 	dir = 2
 	},
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "hz" = (
@@ -281,12 +271,6 @@
 /obj/item/clipboard,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"nA" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 4
-	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
 "nG" = (
 /obj/structure/window/reinforced/spawner/north{
 	dir = 2
@@ -301,12 +285,6 @@
 /area/shuttle/escape)
 "ou" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"oN" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 9
-	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "pb" = (
@@ -331,10 +309,6 @@
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "qw" = (
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"qN" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "qY" = (
@@ -429,17 +403,7 @@
 	},
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
-"yk" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden,
-/obj/machinery/advanced_airlock_controller{
-	pixel_y = 24
-	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
 "yr" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 10
-	},
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/light{
 	dir = 1
@@ -510,6 +474,7 @@
 "BF" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "BU" = (
@@ -686,6 +651,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "LA" = (
@@ -787,12 +753,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate,
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"PG" = (
-/obj/machinery/atmospherics/pipe/simple/orange/hidden{
-	dir = 6
-	},
+/obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Rn" = (
@@ -877,10 +838,6 @@
 /obj/item/restraints/handcuffs{
 	pixel_y = 3
 	},
-/turf/open/floor/fakespace,
-/area/shuttle/escape)
-"VF" = (
-/obj/machinery/atmospherics/pipe/manifold/orange/hidden,
 /turf/open/floor/fakespace,
 /area/shuttle/escape)
 "Wj" = (
@@ -1096,7 +1053,7 @@ Xy
 Rw
 Rw
 Rw
-qN
+qw
 CI
 "}
 (4,1,1) = {"
@@ -1112,7 +1069,7 @@ xS
 qw
 qw
 qw
-nA
+qw
 Fz
 "}
 (5,1,1) = {"
@@ -1126,9 +1083,9 @@ qw
 zv
 xS
 qw
-PG
-gn
-VF
+qw
+qw
+qw
 ba
 "}
 (6,1,1) = {"
@@ -1143,8 +1100,8 @@ rF
 Tu
 qY
 yr
-yk
-oN
+qw
+qw
 aG
 "}
 (7,1,1) = {"
@@ -1172,7 +1129,7 @@ mH
 bE
 MN
 bE
-bk
+Tu
 CX
 CX
 CX
@@ -1220,7 +1177,7 @@ aj
 gr
 qw
 Xl
-GN
+xS
 qw
 qw
 qw
@@ -1236,7 +1193,7 @@ Wp
 gr
 qw
 Xl
-GN
+xS
 Np
 Np
 Np
@@ -1317,10 +1274,10 @@ gr
 qw
 Xl
 pb
-gT
-gT
 qw
 gT
+qw
+qw
 kf
 "}
 (18,1,1) = {"
