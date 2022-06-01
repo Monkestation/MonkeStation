@@ -242,7 +242,7 @@
 
 /datum/design/wirebrush
 	name = "Wirebrush"
-	desc = "A tool to remove rust from walls."
+	desc = "A tool to remove rust from surfaces."
 	id = "wirebrush"
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list("initial", "Tools")
