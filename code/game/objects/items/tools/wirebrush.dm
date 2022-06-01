@@ -36,7 +36,7 @@
 	. = ..()
 	. += "<span class='danger'>There is a warning label that indicates extended use of [src] may result in loss of hair, yellowing skin, and death.</span>"
 
-/obj/item/wirebrush/advanced/pre_attack(atom/A, mob/living/user)
+/obj/item/wirebrush/advanced/pre_attack(atom/A, mob/living/carbon/user)
 	. = ..()
 
 	if(!istype(user))
@@ -45,7 +45,7 @@
 	user.rad_act(RADIATION_ON_USE) //Apply rads on user
 
 	if(user.radiation > 100) //To warn the user
-		if(prob(25))
+		if(prob(10))
 			to_chat(user, "<span class='danger'>You feel an odd warm tingling sensation coming from the brush.</span>")
 
 	if(prob(CRIT_FAIL_PROB))
@@ -55,10 +55,9 @@
 			return
 
 		to_chat(user, "<span class='danger'>You feel a sharp pain as your entire body grows oddly warm.</span>")
-		user.emote("coughs uncontrollably")
-		user.rad_act(CRIT_FAIL_RADS)
+		user.emote("cough")
 		if(user.radiation > CRIT_FAIL_RADS_THRESHOLD) // If you ignore the warning signs you get punished
-			user.emote("vomit")
+			user.vomit()
 			user.adjustToxLoss(CRIT_FAIL_DAMAGE, forced=TRUE)
 			user.adjustOxyLoss(CRIT_FAIL_DAMAGE, forced=TRUE)
 		return
