@@ -1,3 +1,15 @@
+/// The amount of radiation to give to the user of this tool; regardless of what they did with it.
+#define CRIT_FAIL_PROB 1
+/// The amount of damage to take in BOTH Tox and Oxy on critical fail
+#define CRIT_FAIL_DAMAGE 15
+/// The amount of radiation to give to the user of this tool; regardless of what they did with it.
+#define RADIATION_ON_USE 20
+/// The amount of radiation to give to the user if they roll the worst effects. Negative numbers will heal radiation instead!
+#define CRIT_FAIL_RADS 50
+/// We only apply damage and force vomit if the user has OVER this many rads
+#define CRIT_FAIL_RADS_THRESHOLD 300
+
+
 /**
  * The wirebrush is a tool whose sole purpose is to remove rust from anything that is rusty.
  * Because of the inherent nature of hard countering rust heretics it does it very slowly.
@@ -20,21 +32,6 @@
 	icon_state = "wirebrush_adv"
 	toolspeed = 0.1
 
-	/// The amount of radiation to give to the user of this tool; regardless of what they did with it.
-	var/radiation_on_use = 20
-
-	/// How likely is a critical fail?
-	var/crit_fail_prob = 1
-
-	/// The amount of radiation to give to the user if they roll the worst effects. Negative numbers will heal radiation instead!
-	var/crit_fail_rads = 50
-
-	/// The amount of damage to take in BOTH Tox and Oxy on critical fail
-	var/crit_fail_damage = 15
-
-	/// We only apply damage and force vomit if the user has OVER this many rads
-	var/crit_fail_rads_threshold = 300
-
 /obj/item/wirebrush/advanced/examine(mob/user)
 	. = ..()
 	. += "<span class='danger'>There is a warning label that indicates extended use of [src] may result in loss of hair, yellowing skin, and death.</span>"
@@ -45,16 +42,30 @@
 	if(!istype(user))
 		return
 
-	if(prob(crit_fail_prob))
+	user.rad_act(RADIATION_ON_USE) //Apply rads on user
+
+	if(user.radiation > 100) //To warn the user
+		if(prob(25))
+			to_chat(user, "<span class='danger'>You feel an odd warm tingling sensation coming from the brush.</span>")
+
+	if(prob(CRIT_FAIL_PROB))
+		if(HAS_TRAIT(user, TRAIT_RADIMMUNE)) // For those with radimmunity
+			to_chat(user, "<span class='danger'>You feel oddly warmer.</span>")
+			user.rad_act(CRIT_FAIL_RADS)
+			return
+
 		to_chat(user, "<span class='danger'>You feel a sharp pain as your entire body grows oddly warm.</span>")
-		user.radiation += crit_fail_rads
-		if(user.radiation > crit_fail_rads_threshold) // If you ignore the warning signs you get punished
+		user.emote("coughs uncontrollably")
+		user.rad_act(CRIT_FAIL_RADS)
+		if(user.radiation > CRIT_FAIL_RADS_THRESHOLD) // If you ignore the warning signs you get punished
 			user.emote("vomit")
-			user.adjustToxLoss(crit_fail_damage, forced=TRUE)
-			user.adjustOxyLoss(crit_fail_damage, forced=TRUE)
+			user.adjustToxLoss(CRIT_FAIL_DAMAGE, forced=TRUE)
+			user.adjustOxyLoss(CRIT_FAIL_DAMAGE, forced=TRUE)
 		return
 
-	user.radiation += radiation_on_use
 
-	if(prob(25))
-		user.emote("cough")
+#undef CRIT_FAIL_PROB
+#undef CRIT_FAIL_DAMAGE
+#undef RADIATION_ON_USE
+#undef CRIT_FAIL_RADS
+#undef CRIT_FAIL_RADS_THRESHOLD
