@@ -1,5 +1,5 @@
-/obj/item/storage/box/syndie_kit/imp_hardspear
+/obj/item/storage/box/syndie_kit/imp_hard_spear
 	name = "hardlight spear implant box"
 
-/obj/item/storage/box/syndie_kit/imp_hardspear/PopulateContents()
-	new /obj/item/implanter/hardspear(src)
+/obj/item/storage/box/syndie_kit/imp_hard_spear/PopulateContents()
+	new /obj/item/implanter/hard_spear(src)
