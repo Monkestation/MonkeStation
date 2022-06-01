@@ -172,8 +172,8 @@ Circuitry Stuff Below Here
 	if(COMPONENT_TRIGGERED_BY(swap, port))
 		shell.attack_self(shell)
 	else if(COMPONENT_TRIGGERED_BY(breaklink, port))
-		if(!QDELETED(shell?.linked_swapper))
-			shell?.linked_swapper.linked_swapper = null
-			shell?.linked_swapper.update_icon()
-			shell?.linked_swapper = null
-		shell?.update_icon()
+		if(!QDELETED(shell.linked_swapper))
+			shell.linked_swapper.linked_swapper = null
+			shell.linked_swapper.update_icon()
+			shell.linked_swapper = null
+		shell.update_icon()

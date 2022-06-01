@@ -1,3 +1,4 @@
+#define MOVE_DELAY 0.75 //Move delay for circuits only
 
 /obj/vehicle/ridden/secway
 	name = "secway"
@@ -71,8 +72,6 @@
 	COOLDOWN_DECLARE(south_delay)
 	COOLDOWN_DECLARE(west_delay)
 
-	/// Delay between each movement
-	var/move_delay = 0.75
 
 /obj/item/circuit_component/secway/Initialize(mapload)
 	. = ..()
@@ -80,6 +79,7 @@
 	east = add_input_port("Move East", PORT_TYPE_SIGNAL)
 	south = add_input_port("Move South", PORT_TYPE_SIGNAL)
 	west = add_input_port("Move West", PORT_TYPE_SIGNAL)
+
 
 /obj/item/circuit_component/secway/input_received(datum/port/input/port)
 	. = ..()
@@ -94,19 +94,21 @@
 
 	if(COMPONENT_TRIGGERED_BY(north, port) && COOLDOWN_FINISHED(src, north_delay))
 		direction = NORTH
-		COOLDOWN_START(src, north_delay, move_delay)
+		COOLDOWN_START(src, north_delay, MOVE_DELAY)
 	else if(COMPONENT_TRIGGERED_BY(east, port) && COOLDOWN_FINISHED(src, east_delay))
 		direction = EAST
-		COOLDOWN_START(src, east_delay, move_delay)
+		COOLDOWN_START(src, east_delay, MOVE_DELAY)
 	else if(COMPONENT_TRIGGERED_BY(south, port) && COOLDOWN_FINISHED(src, south_delay))
 		direction = SOUTH
-		COOLDOWN_START(src, south_delay, move_delay)
+		COOLDOWN_START(src, south_delay, MOVE_DELAY)
 	else if(COMPONENT_TRIGGERED_BY(west, port) && COOLDOWN_FINISHED(src, west_delay))
 		direction = WEST
-		COOLDOWN_START(src, west_delay, move_delay)
+		COOLDOWN_START(src, west_delay, MOVE_DELAY)
 
 	if(!direction)
 		return
 
 	if(shell.Process_Spacemove(direction))
 		step(shell, direction)
+
+#undef MOVE_DELAY

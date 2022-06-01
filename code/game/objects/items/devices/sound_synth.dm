@@ -126,11 +126,11 @@
 	if(!shell)
 		return
 	if(COMPONENT_TRIGGERED_BY(play, port))
-		if(shell?.spam_flag + 2 SECONDS < world.timeofday)
+		if(shell.spam_flag + 2 SECONDS < world.timeofday)
 			SEND_SIGNAL(src, COMSIG_SOUNDSYNTH_USED)
-			var/list/assblast = params2list(shell?.sound_list[soundtoplay.input_value])
-			shell?.selected_sound = assblast["selected_sound"]
-			shell?.shiftpitch = text2num(assblast["shiftpitch"])
-			shell?.volume = text2num(assblast["volume"])
-			playsound(shell, shell?.selected_sound, shell?.volume, shell?.shiftpitch)
-			shell?.spam_flag = world.timeofday
+			var/list/sound_list_data = params2list(shell.sound_list[soundtoplay.input_value])
+			shell.selected_sound = sound_list_data["selected_sound"]
+			shell.shiftpitch = text2num(sound_list_data["shiftpitch"])
+			shell.volume = text2num(sound_list_data["volume"])
+			playsound(shell, shell.selected_sound, shell.volume, shell.shiftpitch)
+			shell.spam_flag = world.timeofday
