@@ -2164,9 +2164,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 20
 
 /datum/uplink_item/role_restricted/anxiety
-	name = "Anxiety Culture Bottle"
-	desc = "A bottle of pure contagious autism.\
-			At least, that's what the label says"
+	name = "Severe Anxiety Culture Bottle"
+	desc = "Designed to take the concept of anxiety very literally, \
+	this culture bottle will cause the host to vomit butterflies uncontrollably."
 	item = /obj/item/reagent_containers/glass/bottle/anxiety
 	cost = 4
 	restricted_roles = list("Virologist")
