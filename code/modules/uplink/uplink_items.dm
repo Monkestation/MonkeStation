@@ -2166,7 +2166,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/anxiety
 	name = "Severe Anxiety Culture Bottle"
 	desc = "Designed to take the concept of anxiety very literally, \
-	this culture bottle will cause the host to vomit butterflies uncontrollably."
+	this culture bottle will cause the host to produce fully-grown \
+	specimins of Arthropoda Rhopalocera in large quantities."
 	item = /obj/item/reagent_containers/glass/bottle/anxiety
 	cost = 4
 	restricted_roles = list("Virologist")
