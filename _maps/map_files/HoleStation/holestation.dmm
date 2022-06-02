@@ -13162,10 +13162,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aXt" = (
-/obj/machinery/atmospherics/pipe/multiz/layer2,
-/turf/open/space/basic,
-/area/space)
 "aXu" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -59233,7 +59229,7 @@ aRo
 anZ
 anZ
 anZ
-aXt
+anZ
 anZ
 anZ
 anZ
