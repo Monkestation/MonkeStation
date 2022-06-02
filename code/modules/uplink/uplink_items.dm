@@ -2166,7 +2166,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/anxiety
 	name = "Severe Anxiety Culture Bottle"
 	desc = "This culture bottle will cause the host to produce fully-grown \
-	specimins of Arthropoda Rhopalocera in large quantities upon injection \
+	specimens of Arthropoda Rhopalocera in large quantities upon injection \
 	into a suitable host."
 	item = /obj/item/reagent_containers/glass/bottle/anxiety
 	cost = 4
