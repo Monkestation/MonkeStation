@@ -10,6 +10,12 @@
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_TURF_CHASM)
 	canSmoothWith = list(SMOOTH_GROUP_TURF_CHASM)
 
+/turf/open/floor
+	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors.dmi'
+	base_icon_state = "floor"
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_OPEN_FLOOR, SMOOTH_GROUP_TURF_OPEN)
+
 /turf/open/floor/bamboo
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors/bamboo_mat.dmi'
 	icon_state = "mat-0"
@@ -159,3 +165,6 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_CARPET)
 	canSmoothWith = list(SMOOTH_GROUP_CARPET)
+
+/turf/open/floor/grass
+	icon_state = "grass0"
