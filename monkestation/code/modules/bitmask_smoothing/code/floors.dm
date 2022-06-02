@@ -12,7 +12,6 @@
 
 /turf/open/floor
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors.dmi'
-	base_icon_state = "floor"
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_OPEN_FLOOR)
 	canSmoothWith = list(SMOOTH_GROUP_OPEN_FLOOR, SMOOTH_GROUP_TURF_OPEN)
 
