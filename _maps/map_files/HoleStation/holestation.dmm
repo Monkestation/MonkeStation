@@ -8538,6 +8538,10 @@
 	pixel_x = -4
 	},
 /obj/item/stock_parts/cell/high/plus,
+/obj/item/reagent_containers/dropper{
+	pixel_y = -7;
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/medical/office)
 "aGN" = (
@@ -11981,6 +11985,7 @@
 	pixel_y = 2
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/item/storage/box/syringes,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/office)
 "aSY" = (
