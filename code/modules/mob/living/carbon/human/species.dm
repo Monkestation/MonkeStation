@@ -543,9 +543,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!hair_hidden || dynamic_hair_suffix)
 		var/list/hair_overlays = list()
 		// It starts with the bottom here in the hopes that it'll be under everything since everything after should just apply itself on top. Hopefully.
-		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, BOTTOM_HAIR_SLOT)
-		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, MIDDLE_HAIR_SLOT)
-		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, TOP_HAIR_SLOT)
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, \
+		H.bottom_hair_style, H.bottom_hair_color, H.bottom_gradient_style, H.bottom_gradient_color)
+
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, \
+		H.hair_style, H.hair_color, H.gradient_style, H.gradient_color)
+
+		hair_overlays |= make_hair_overlay(H, hair_hidden, dynamic_hair_suffix, forced_colour, \
+		H.top_hair_style, H.top_hair_color, H.top_gradient_style, H.gradient_color)
 
 		if(hair_overlays)
 			standing |= hair_overlays
@@ -555,7 +560,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	H.apply_overlay(HAIR_LAYER)
 
-/datum/species/proc/make_hair_overlay(mob/living/carbon/human/H, var/hair_hidden, var/dynamic_hair_suffix, var/forced_colour, hair_slot)
+/datum/species/proc/make_hair_overlay(mob/living/carbon/human/H, var/hair_hidden, var/dynamic_hair_suffix, var/forced_colour, current_hair_style, current_hair_color, gradient_style, gradient_color)
 	var/datum/sprite_accessory/S
 	var/mutable_appearance/hair_overlay = mutable_appearance(layer = -HAIR_LAYER)
 	var/mutable_appearance/gradient_overlay = mutable_appearance(layer = -HAIR_LAYER)
@@ -565,80 +570,57 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			hair_overlay.icon = 'icons/mob/human_face.dmi'
 			hair_overlay.icon_state = "debrained"
 
-	else
-		var/current_hair_style
-		var/current_hair_color
-		var/gradient_style
-		var/gradient_color
+	else if(current_hair_style && (HAIR in species_traits))
 
-		switch(hair_slot)
-			if(TOP_HAIR_SLOT)
-				current_hair_style = H.top_hair_style
-				current_hair_color = H.top_hair_color
-				gradient_style = H.top_gradient_style
-				gradient_color = H.top_gradient_color
-			if(MIDDLE_HAIR_SLOT)
-				current_hair_style = H.hair_style
-				current_hair_color = H.hair_color
-				gradient_style = H.gradient_style
-				gradient_color = H.gradient_color
-			if(BOTTOM_HAIR_SLOT)
-				current_hair_style = H.bottom_hair_style
-				current_hair_color = H.bottom_hair_color
-				gradient_style = H.bottom_gradient_style
-				gradient_color = H.bottom_gradient_color
+		S = GLOB.hair_styles_list[current_hair_style]
+		if(S)
 
-		if(current_hair_style && (HAIR in species_traits))
+			//List of all valid dynamic_hair_suffixes
+			var/static/list/extensions
+			if(!extensions)
+				var/icon/hair_extensions = icon('icons/mob/hair_extensions.dmi') //hehe
+				extensions = list()
+				for(var/s in hair_extensions.IconStates(1))
+					extensions[s] = TRUE
+				qdel(hair_extensions)
 
-			S = GLOB.hair_styles_list[current_hair_style]
-			if(S)
+			//Is hair+dynamic_hair_suffix a valid iconstate?
+			var/hair_state = S.icon_state
+			var/hair_file = S.icon
+			if(extensions[hair_state+dynamic_hair_suffix])
+				hair_state += dynamic_hair_suffix
+				hair_file = 'icons/mob/hair_extensions.dmi'
 
-				//List of all valid dynamic_hair_suffixes
-				var/static/list/extensions
-				if(!extensions)
-					var/icon/hair_extensions = icon('icons/mob/hair_extensions.dmi') //hehe
-					extensions = list()
-					for(var/s in hair_extensions.IconStates(1))
-						extensions[s] = TRUE
-					qdel(hair_extensions)
+			hair_overlay.icon = hair_file
+			hair_overlay.icon_state = hair_state
 
-				//Is hair+dynamic_hair_suffix a valid iconstate?
-				var/hair_state = S.icon_state
-				var/hair_file = S.icon
-				if(extensions[hair_state+dynamic_hair_suffix])
-					hair_state += dynamic_hair_suffix
-					hair_file = 'icons/mob/hair_extensions.dmi'
-
-				hair_overlay.icon = hair_file
-				hair_overlay.icon_state = hair_state
-
-				if(!forced_colour)
-					if(hair_color)
-						if(hair_color == "mutcolor")
-							hair_overlay.color = "#" + H.dna.features["mcolor"]
-						else if(hair_color == "fixedmutcolor")
-							hair_overlay.color = "#[fixed_mut_color]"
-						else
-							hair_overlay.color = "#" + hair_color
+			if(!forced_colour)
+				if(hair_color)
+					if(hair_color == "mutcolor")
+						hair_overlay.color = "#" + H.dna.features["mcolor"]
+					else if(hair_color == "fixedmutcolor")
+						hair_overlay.color = "#[fixed_mut_color]"
 					else
-						hair_overlay.color = "#" + current_hair_color
-
-					//Gradients
-					if(gradient_style)
-						var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[gradient_style]
-						var/icon/temp = icon(gradient.icon, gradient.icon_state)
-						var/icon/temp_hair = icon(hair_file, hair_state)
-						temp.Blend(temp_hair, ICON_ADD)
-						gradient_overlay.icon = temp
-						gradient_overlay.color = "#" + gradient_color
-
+						hair_overlay.color = "#" + hair_color
 				else
-					hair_overlay.color = forced_colour
+					hair_overlay.color = "#" + current_hair_color
 
-				hair_overlay.alpha = hair_alpha
-				if(OFFSET_FACE in H.dna.species.offset_features)
-					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
-					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
+				//Gradients
+				if(gradient_style)
+					var/datum/sprite_accessory/gradient = GLOB.hair_gradients_list[gradient_style]
+					var/icon/temp = icon(gradient.icon, gradient.icon_state)
+					var/icon/temp_hair = icon(hair_file, hair_state)
+					temp.Blend(temp_hair, ICON_ADD)
+					gradient_overlay.icon = temp
+					gradient_overlay.color = "#" + gradient_color
+
+			else
+				hair_overlay.color = forced_colour
+
+			hair_overlay.alpha = hair_alpha
+			if(OFFSET_FACE in H.dna.species.offset_features)
+				hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_FACE][1]
+				hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_FACE][2]
 	if (hair_overlay.icon)
 		return list(hair_overlay, gradient_overlay)
 
