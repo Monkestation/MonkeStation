@@ -231,8 +231,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		animate(user, 0, flags = ANIMATION_END_NOW)
 		return
 	if(isliving(user))
-		var/mob/living/L = user
-		if(L.incorporeal_move) // Allow most jaunting
+		var/mob/living/living_user = user
+		if(living_user.incorporeal_move) // Allow most jaunting
 			user.client?.Process_Incorpmove(upwards ? UP : DOWN)
 			return
 	// You can push off of or land on the floor, but not go through it
@@ -254,21 +254,21 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// Returns TRUE if the turf cannot be moved onto
 /proc/is_blocked_turf(turf/T, exclude_mobs)
 	if(T.density)
-		return 1
+		return TRUE
 	for(var/i in T)
 		var/atom/A = i
 		if(A.density && (!exclude_mobs || !ismob(A)))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
 	if(T.density)
-		return 1
+		return TRUE
 	for(var/i in T)
 		var/atom/movable/A = i
 		if(A.density && A.anchored)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 //zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air
@@ -287,70 +287,72 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/zAirOut(direction, turf/source)
 	return FALSE
 
-/turf/proc/zImpact(atom/movable/A, levels = 1, turf/prev_turf)
+///Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.
+/turf/proc/zImpact(atom/movable/falling_atom, levels = 1, turf/prev_turf)
 	var/flags = NONE
-	var/mov_name = A.name
+	var/mov_name = falling_atom.name
 	for(var/i in contents)
 		var/atom/thing = i
-		flags |= thing.intercept_zImpact(A, levels)
+		flags |= thing.intercept_zImpact(falling_atom, levels)
 		if(flags & FALL_STOP_INTERCEPTING)
 			break
 	if(prev_turf && !(flags & FALL_NO_MESSAGE))
 		prev_turf.visible_message("<span class='danger'>[mov_name] falls through [prev_turf]!</span>")
 	if(flags & FALL_INTERCEPTED)
 		return
-	if(zFall(A, ++levels))
+	if(zFall(falling_atom, ++levels))
 		return FALSE
-	A.visible_message("<span class='danger'>[A] crashes into [src]!</span>")
-	A.onZImpact(src, levels)
+	falling_atom.visible_message("<span class='danger'>[falling_atom] crashes into [src]!</span>")
+	falling_atom.onZImpact(src, levels)
 	return TRUE
 
-/turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
-	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
+/turf/proc/can_zFall(atom/movable/falling_atom, levels = 1, turf/target)
+	return zPassOut(falling_atom, DOWN, target) && target.zPassIn(falling_atom, DOWN, src)
 
-/turf/proc/zFall(atom/movable/A, levels = 1, force = FALSE, old_loc = null)
+/// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()
+/turf/proc/zFall(atom/movable/falling_atom, levels = 1, force = FALSE, old_loc = null)
 	var/turf/target = get_step_multiz(src, DOWN)
-	if(!target || (!isobj(A) && !ismob(A)))
+	if(!target || (!isobj(falling_atom) && !ismob(falling_atom)))
 		return FALSE
-	if(!force && (!can_zFall(A, levels, target) || !A.can_zFall(src, levels, target, DOWN)))
+	if(!force && (!can_zFall(falling_atom, levels, target) || !falling_atom.can_zFall(src, levels, target, DOWN)))
 		return FALSE
 	. = TRUE
-	if(!A.zfalling)
-		A.zfalling = TRUE
-		if(A.pulling && old_loc) // Moves whatever we're pulling to where we were before so we're still adjacent
-			A.pulling.moving_from_pull = A
-			A.pulling.Move(old_loc)
-			A.pulling.moving_from_pull = null
-		if(!A.Move(target))
-			A.doMove(target)
-		. = target.zImpact(A, levels, src)
-		A.zfalling = FALSE
+	if(!falling_atom.zfalling)
+		falling_atom.zfalling = TRUE
+		if(falling_atom.pulling && old_loc) // Moves whatever we're pulling to where we were before so we're still adjacent
+			falling_atom.pulling.moving_from_pull = falling_atom
+			falling_atom.pulling.Move(old_loc)
+			falling_atom.pulling.moving_from_pull = null
+		if(!falling_atom.Move(target))
+			falling_atom.doMove(target)
+		. = target.zImpact(falling_atom, levels, src)
+		falling_atom.zfalling = FALSE
 
-/turf/proc/handleRCL(obj/item/rcl/C, mob/user)
-	if(C.loaded)
+/turf/proc/handleRCL(obj/item/rcl/rcl_tool, mob/user)
+	if(rcl_tool.loaded)
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
-				LC.handlecable(C, user)
+				LC.handlecable(rcl_tool, user)
 				return
-		C.loaded.place_turf(src, user)
-		if(C.wiring_gui_menu)
-			C.wiringGuiUpdate(user)
-		C.is_empty(user)
+		rcl_tool.loaded.place_turf(src, user)
+		if(rcl_tool.wiring_gui_menu)
+			rcl_tool.wiringGuiUpdate(user)
+		rcl_tool.is_empty(user)
 
-/turf/attackby(obj/item/C, mob/user, params)
+/turf/attackby(obj/item/cable_item, mob/user, params)
 	if(..())
 		return TRUE
-	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = C
+	if(can_lay_cable() && istype(cable_item, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = cable_item
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
-				LC.attackby(C,user)
+				LC.attackby(cable_item,user)
 				return
 		coil.place_turf(src, user)
 		return TRUE
 
-	else if(istype(C, /obj/item/rcl))
-		handleRCL(C, user)
+	else if(istype(cable_item, /obj/item/rcl))
+		handleRCL(cable_item, user)
 
 	return FALSE
 
