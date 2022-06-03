@@ -245,7 +245,7 @@
 		ITEM_SLOT_DEX_STORAGE
 	)
 
-#define SQUEEZING_DISPERSAL_PERCENT 0.75 //MONKESTATION EDIT ADDITION
+#define SQUEEZING_DISPERSAL_PERCENT 0.10 //MONKESTATION EDIT ADDITION
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/living/user, params) //MONKESTATION EDIT CHANGE
 	if(istype(O, /obj/item/mop)) //MONKESTATION EDIT CHANGE
