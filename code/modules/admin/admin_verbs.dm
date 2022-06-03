@@ -19,7 +19,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/mark_datum_mapview,
-	/client/proc/requests
+	/client/proc/requests,
+	/client/proc/remove_liquid //MONKESTATION ADDITION
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -113,6 +114,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/admin_away,
 	/client/proc/healall,
 	/client/proc/spawn_floor_cluwne,
+	/client/proc/spawn_liquid, //MONKESTATION ADDITION
 	/client/proc/spawnhuman
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -267,7 +269,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/spawn_liquid //MONKESTATION ADDITION
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
