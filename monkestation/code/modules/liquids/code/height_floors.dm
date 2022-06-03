@@ -25,6 +25,7 @@
 	icon = 'monkestation/code/modules/liquids/icons/turf/pool_tile.dmi'
 	base_icon_state = "pool_tile"
 	icon_state = "pool_tile"
+	smoothing_flags = NONE
 	liquid_height = -30
 	turf_height = -30
 
