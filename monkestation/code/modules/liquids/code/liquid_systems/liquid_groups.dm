@@ -205,6 +205,22 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(new_liquids)
 			cached_liquids.ExposeMyTurf()
 
+		T.create_reagents(10000)
+		T.reagents.add_reagent_list(T.liquids.reagent_list, no_react = TRUE)
+
+		T.reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		T.liquids.reagent_list = list()
+		T.liquids.total_reagents = 0
+		for(var/r in T.reagents.reagent_list)
+			var/datum/reagent/R = r
+			T.liquids.reagent_list[R.type] = R.volume
+			T.liquids.total_reagents += R.volume
+
+		T.liquids.temp = T.reagents.chem_temp
+		qdel(T.reagents)
+		//Expose turf
+		T.liquids.ExposeMyTurf()
+
 /datum/liquid_group/proc/process_cell(turf/T)
 	if(T.liquids.height <= 1) //Causes a bug when the liquid hangs in the air and is supposed to fall down a level
 		return FALSE

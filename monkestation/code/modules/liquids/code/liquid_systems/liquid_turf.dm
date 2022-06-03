@@ -50,7 +50,7 @@
 		var/volume_change = liquids.reagent_list[r_type] * fraction
 		liquids.reagent_list[r_type] -= volume_change
 		liquids.total_reagents -= volume_change
-		T.add_liquid(r_type, volume_change, TRUE, liquids.temp)
+		T.add_liquid(r_type, volume_change, FALSE, liquids.temp)
 	liquids.has_cached_share = FALSE
 
 /turf/proc/liquid_update_turf()
@@ -86,7 +86,6 @@
 		liquids = new(src)
 	if(liquids.immutable)
 		return
-
 	var/prev_total_reagents = liquids.total_reagents
 	var/prev_thermal_energy = prev_total_reagents * liquids.temp
 
@@ -104,19 +103,18 @@
 		create_reagents(10000) //Reagents are on turf level, should they be on liquids instead?
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 		reagents.chem_temp = liquids.temp
-		if(reagents.handle_reactions())//Any reactions happened, so re-calculate our reagents
-			liquids.reagent_list = list()
-			liquids.total_reagents = 0
-			for(var/r in reagents.reagent_list)
-				var/datum/reagent/R = r
-				liquids.reagent_list[R.type] = R.volume
-				liquids.total_reagents += R.volume
-
-			liquids.temp = reagents.chem_temp
-			if(!liquids.total_reagents) //Our reaction exerted all of our reagents, remove self
-				qdel(reagents)
-				qdel(liquids)
-				return
+		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		liquids.reagent_list = list()
+		liquids.total_reagents = 0
+		for(var/r in reagents.reagent_list)
+			var/datum/reagent/R = r
+			liquids.reagent_list[R.type] = R.volume
+			liquids.total_reagents += R.volume
+		liquids.temp = reagents.chem_temp
+		if(!liquids.total_reagents) //Our reaction exerted all of our reagents, remove self
+			qdel(reagents)
+			qdel(liquids)
+			return
 		qdel(reagents)
 		//Expose turf
 		liquids.ExposeMyTurf()
@@ -147,14 +145,16 @@
 		//We do react so, make a simulation
 		create_reagents(10000)
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
-		if(reagents.handle_reactions())//Any reactions happened, so re-calculate our reagents
-			liquids.reagent_list = list()
-			liquids.total_reagents = 0
-			for(var/r in reagents.reagent_list)
-				var/datum/reagent/R = r
-				liquids.reagent_list[R.type] = R.volume
-				liquids.total_reagents += R.volume
-			liquids.temp = reagents.chem_temp
+
+		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		liquids.reagent_list = list()
+		liquids.total_reagents = 0
+		for(var/r in reagents.reagent_list)
+			var/datum/reagent/R = r
+			liquids.reagent_list[R.type] = R.volume
+			liquids.total_reagents += R.volume
+
+		liquids.temp = reagents.chem_temp
 		qdel(reagents)
 		//Expose turf
 		liquids.ExposeMyTurf()
