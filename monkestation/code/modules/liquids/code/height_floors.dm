@@ -40,7 +40,7 @@
 	icon_state = "elevated_plasteel-0"
 	base_icon_state = "elevated_plasteel-0"
 	smoothing_flags = SMOOTH_CORNERS
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_ELEVATED_PLASTEEL)
+	smoothing_groups = list(SMOOTH_GROUP_ELEVATED_PLASTEEL)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_ELEVATED_PLASTEEL)
 	liquid_height = 30
 	turf_height = 30
@@ -55,7 +55,7 @@
 	icon_state = "lowered_plasteel-0"
 	base_icon_state = "lowered_plasteel-0"
 	smoothing_flags = SMOOTH_CORNERS
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_LOWERED_PLASTEEL)
+	smoothing_groups = list(SMOOTH_GROUP_LOWERED_PLASTEEL)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_LOWERED_PLASTEEL)
 	liquid_height = -30
 	turf_height = -30
