@@ -164,5 +164,3 @@
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_CARPET)
 	canSmoothWith = list(SMOOTH_GROUP_CARPET)
 
-/turf/open/floor/grass
-	icon_state = "grass0"
