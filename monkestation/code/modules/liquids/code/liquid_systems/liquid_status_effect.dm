@@ -23,6 +23,16 @@
 	var/fraction = SUBMERGEMENT_PERCENT(owner, T.liquids)
 	var/datum/reagents/tempr = T.liquids.simulate_reagents_flat(SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction)
 	tempr.reaction(owner, TOUCH)
+
+	tempr.trans_to(owner, ((SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction/20)), transfered_by = owner)
+	for(var/liquids in T.liquids.reagent_list)
+		T.liquids.reagent_list[liquids] -= (SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction)/20
+		T.liquids.total_reagents -= (SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction)/20
+		if(T.liquids.reagent_list[liquids] <= 0)
+			T.liquids.reagent_list.Remove(liquids)
+	var/new_height = CEILING(T.liquids.total_reagents, 1)/LIQUID_HEIGHT_DIVISOR
+	T.liquids.set_height(new_height)
+
 	qdel(tempr)
 	return ..()
 
