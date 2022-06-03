@@ -200,8 +200,8 @@
 	cut_overlays()
 	switch(liquid_state)
 		if(LIQUID_STATE_PUDDLE)
-			queue_smooth(src)
-			queue_smooth_neighbors(src)
+			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH_NEIGHBORS(src)
 		if(LIQUID_STATE_ANKLES)
 			var/mutable_appearance/overlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_bottom")
 			var/mutable_appearance/underlay = mutable_appearance('monkestation/code/modules/liquids/icons/obj/effects/liquid_overlays.dmi', "stage1_top")
@@ -456,8 +456,8 @@
 
 	update_liquid_vis()
 	if(z)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	/* //Cant do it immediately, hmhm
 	if(isspaceturf(my_turf))
@@ -477,7 +477,7 @@
 		SSliquids.add_active_turf(my_turf)
 		my_turf.liquids = null
 		my_turf = null
-		queue_smooth_neighbors(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
 	else
 		return QDEL_HINT_LETMELIVE
 	return ..()
