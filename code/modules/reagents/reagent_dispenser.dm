@@ -43,7 +43,8 @@
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
 	desc = "A water tank."
-	icon_state = "water"
+	icon_state = "watertank"
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/objects.dmi'
 	can_buckle = 1 //Monkestation edit start
 	buckle_lying = 0
 
@@ -60,7 +61,7 @@
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
 	desc = "A highly pressurized water tank made to hold gargantuan amounts of water."
-	icon_state = "water_high" //I was gonna clean my room...
+	icon_state = "hvwatertank" //I was gonna clean my room...
 	tank_volume = 100000
 	can_buckle = 1 //Monkestation edit start
 	buckle_lying = 0
@@ -97,7 +98,8 @@
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
 	desc = "A tank full of industrial welding fuel. Do not consume."
-	icon_state = "fuel"
+	icon_state = "weldtank"
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/objects.dmi'
 	reagent_id = /datum/reagent/fuel
 	can_buckle = 1 //Monkestation edit start
 	buckle_lying = 0

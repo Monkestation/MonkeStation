@@ -2,7 +2,7 @@
 /obj/structure/disposaloutlet
 	name = "disposal outlet"
 	desc = "An outlet for the pneumatic disposal system."
-	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/pipes/disposal.dmi'
 	icon_state = "outlet"
 	density = TRUE
 	anchored = TRUE

@@ -343,7 +343,7 @@
 /obj/item/stock_parts/cell/high/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with plasma, it crackles with power."
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/mob/slimes.dmi' //monkestation change
 	icon_state = "yellow slime extract"
 	materials = list()
 	rating = 5 //self-recharge makes these desirable

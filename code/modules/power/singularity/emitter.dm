@@ -6,7 +6,7 @@
 /obj/machinery/power/emitter
 	name = "emitter"
 	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/singularity.dmi'
 	icon_state = "emitter"
 
 	anchored = FALSE

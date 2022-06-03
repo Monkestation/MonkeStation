@@ -26,8 +26,8 @@ field_generator power level display
 /obj/machinery/field/generator
 	name = "field generator"
 	desc = "A large thermal battery that projects a high amount of energy when powered."
-	icon = 'icons/obj/machines/field_generator.dmi'
-	icon_state = "Field_Gen"
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/excelsior/field.dmi'
+	icon_state = "Shield_Gen"
 	anchored = FALSE
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -54,14 +54,6 @@ field_generator power level display
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
-/obj/machinery/field/generator/update_icon()
-	cut_overlays()
-	if(warming_up)
-		add_overlay("+a[warming_up]")
-	if(fields.len)
-		add_overlay("+on")
-	if(power_level)
-		add_overlay("+p[power_level]")
 
 /obj/machinery/field/generator/process()
 	if(active == FG_ONLINE)
@@ -178,7 +170,6 @@ field_generator power level display
 	var/new_level = round(6 * power / field_generator_max_power)
 	if(new_level != power_level)
 		power_level = new_level
-		update_icon()
 
 /obj/machinery/field/generator/proc/turn_off()
 	active = FG_OFFLINE
@@ -187,7 +178,7 @@ field_generator power level display
 		while (warming_up>0 && !active)
 			sleep(50)
 			warming_up--
-			update_icon()
+			icon_state = "Shield_Gen"
 
 /obj/machinery/field/generator/proc/turn_on()
 	active = FG_CHARGING
@@ -195,7 +186,7 @@ field_generator power level display
 		while (warming_up<3 && active)
 			sleep(50)
 			warming_up++
-			update_icon()
+			icon_state = "Shield_Gen_active"
 			if(warming_up >= 3)
 				start_fields()
 
@@ -308,7 +299,6 @@ field_generator power level display
 
 	connected_gens |= G
 	G.connected_gens |= src
-	update_icon()
 
 
 /obj/machinery/field/generator/proc/cleanup()
@@ -329,7 +319,6 @@ field_generator power level display
 			FG.cleanup()
 		connected_gens -= FG
 	clean_up = 0
-	update_icon()
 	move_resist = initial(move_resist)
 	loose_message(dist) //we forward the distance of the furtest away generator
 
