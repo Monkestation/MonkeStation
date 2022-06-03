@@ -87,6 +87,9 @@
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
+		if(istype(target, /turf/open))
+				var/turf/T = get_turf(target)
+				T.add_liquid_from_reagents(reagents)
 			user.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [target]!</span>", \
 								"<span class='notice'>You splash the contents of [src] onto [target].</span>")
 			reagents.reaction(target, TOUCH)
