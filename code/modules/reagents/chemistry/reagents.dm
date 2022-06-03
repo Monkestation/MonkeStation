@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 /datum/reagent/proc/reaction_turf(turf/T, volume)
-	//monkestation edit begin
+	/*//monkestation edit begin
 	if(!isspaceturf(T))
 		var/obj/effect/decal/cleanable/puddle/S = locate() in T.contents
 		if(!S)
@@ -85,6 +85,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		S.transform = S.transform.Turn(rand(0, 360))
 		S.add_atom_colour(color, WASHABLE_COLOUR_PRIORITY)
 	//monkestation edit end
+	*/
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
