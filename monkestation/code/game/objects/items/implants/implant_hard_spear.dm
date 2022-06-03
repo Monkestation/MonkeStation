@@ -15,8 +15,9 @@
 	summoned_spear = new /obj/item/spear/hardlight_spear(imp_in.loc)
 	if(imp_in.put_in_hands(summoned_spear,TRUE))
 		to_chat(imp_in, "<span class='notice'>A spear manifests in your hand.</span>")
+		playsound(imp_in, 'sound/weapons/saberon.ogg', 35, 1)
 		QDEL_IN(summoned_spear, 10 SECONDS)
-		COOLDOWN_START(src, hardlight_implant_cooldown, 30 SECONDS)
+		COOLDOWN_START(src, hardlight_implant_cooldown, 20 SECONDS)
 	else
 		to_chat(imp_in, "<span class='warning'>You must have a free hand to summon a spear!</span>")
 		return
