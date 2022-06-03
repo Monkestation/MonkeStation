@@ -143,13 +143,13 @@
 		return
 
 	else
-		if(isturf(target)) //MONKESTATION EDIT CHANGE
+		if(isturf(target))
 			var/turf/T = target
 			T.add_liquid_from_reagents(reagents)
-			if(reagents.reagent_list.len && thrownby)
-				log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
-				log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
-				message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+			if(reagents.reagent_list.len && thrown_by)
+				log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
+				log_game("[key_name(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
+				message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
 		else
 			reagents.reaction(target, TOUCH)
 		//MONKESTATION EDIT END
