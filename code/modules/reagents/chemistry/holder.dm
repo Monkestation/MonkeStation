@@ -732,7 +732,7 @@
 			amount = CLAMP(amount, 0, R.volume)
 			R.volume -= amount
 			update_total()
-			if(!safety || !no_react)//So it does not handle reactions when it need not to //MONKESTATION EDIT CHANGE
+			if(!safety)//So it does not handle reactions when it need not to //MONKESTATION EDIT CHANGE
 				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change(REM_REAGENT)
