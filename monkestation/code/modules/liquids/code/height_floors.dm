@@ -35,13 +35,14 @@
 /turf/open/floor/elevated
 	name = "elevated floor"
 	floor_tile = /obj/item/stack/tile/elevated
-	icon = 'monkestation/code/modules/liquids/icons/turf/elevated_iron.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/turf/elevated_plasteel.dmi'
 	icon_state = "elevated_plasteel-0"
 	base_icon_state = "elevated_plasteel"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_ELEVATED_PLASTEEL)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_ELEVATED_PLASTEEL)
 	liquid_height = 30
 	turf_height = 30
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/elevated)
 
 /turf/open/floor/elevated/rust_heretic_act()
 	return
@@ -49,13 +50,15 @@
 /turf/open/floor/lowered
 	name = "lowered floor"
 	floor_tile = /obj/item/stack/tile/lowered
-	icon = 'monkestation/code/modules/liquids/icons/turf/lowered_iron.dmi'
+	icon = 'monkestation/code/modules/liquids/icons/turf/lowered_plasteel.dmi'
 	icon_state = "lowered_plasteel-0"
 	base_icon_state = "lowered_plasteel"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_LOWERED_PLASTEEL)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_LOWERED_PLASTEEL)
 	liquid_height = -30
 	turf_height = -30
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/closed/wall, /obj/structure/falsewall, /turf/open/floor/lowered)
+
 
 /turf/open/floor/lowered/rust_heretic_act()
 	return
