@@ -249,14 +249,14 @@
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/living/user, params) //MONKESTATION EDIT CHANGE
 	if(istype(O, /obj/item/mop)) //MONKESTATION EDIT CHANGE
-			if(reagents.total_volume < 1)
-				to_chat(user, "<span class='warning'>[src] is out of water!</span>")
-				return
-			else
-				reagents.trans_to(O, 5, transfered_by = user)
-				to_chat(user, "<span class='notice'>You wet [O] in [src].</span>")
-				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE) //MONKESTATION EDIT CHANGE END
-				return
+		if(reagents.total_volume < 1)
+			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
+			return
+		else
+			reagents.trans_to(O, 5, transfered_by = user)
+			to_chat(user, "<span class='notice'>You wet [O] in [src].</span>")
+			playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE) //MONKESTATION EDIT CHANGE END
+			return
 
 		if(reagents.total_volume == reagents.maximum_volume)
 			to_chat(user, "<span class='warning'>[src] is full!</span>")
