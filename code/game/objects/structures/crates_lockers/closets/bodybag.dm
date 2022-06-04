@@ -2,7 +2,7 @@
 /obj/structure/closet/body_bag
 	name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
-	icon = 'icons/obj/bodybag.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/bodybag.dmi'
 	icon_state = "bodybag"
 	density = FALSE
 	mob_storage_capacity = 2

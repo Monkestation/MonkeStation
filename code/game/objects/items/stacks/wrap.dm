@@ -40,7 +40,7 @@
 	user.visible_message("<span class='suicide'>[user] begins wrapping [user.p_them()]self in \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	if(use(3))
 		var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(user.loc))
-		P.icon_state = "deliverypackage5"
+		P.icon_state = "deliverycrate5"
 		user.forceMove(P)
 		P.add_fingerprint(user)
 		return OXYLOSS
@@ -89,7 +89,7 @@
 			P.name = "[weight_class_to_text(size)] parcel"
 			P.w_class = size
 			size = min(size, 5)
-			P.icon_state = "deliverypackage[size]"
+			P.icon_state = "deliverycrate[size]"
 
 	else if(istype (target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
