@@ -29,10 +29,3 @@ SUBSYSTEM_DEF(sun)
 	. = ..()
 	if(var_name == NAMEOF(src, azimuth))
 		complete_movement()
-
-
-
-
-
-
-
