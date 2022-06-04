@@ -633,31 +633,31 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/AllowDrop()
 	return TRUE
 
-/turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE, purge_ratio = 0.1)
+/turf/proc/add_vomit_floor(mob/living/Mob, toxvomit = NONE, purge_ratio = 0.1)
 
-	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
+	var/obj/effect/decal/cleanable/vomit/Vomit = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
 
 	//if the vomit combined, apply toxicity and reagents to the old vomit
-	if (QDELETED(V))
-		V = locate() in src
-	if(!V)
+	if (QDELETED(Vomit))
+		Vomit = locate() in src
+	if(!Vomit)
 		return
 	// Apply the proper icon set based on vomit type
 	if(toxvomit == VOMIT_PURPLE)
-		V.icon_state = "vomitpurp_[pick(1,4)]"
+		Vomit.icon_state = "vomitpurp_[pick(1,4)]"
 	else if (toxvomit == VOMIT_TOXIC)
-		V.icon_state = "vomittox_[pick(1,4)]"
-	if (purge_ratio && iscarbon(M))
-		clear_reagents_to_vomit_pool(M, V, purge_ratio)
+		Vomit.icon_state = "vomittox_[pick(1,4)]"
+	if (purge_ratio && iscarbon(Mob))
+		clear_reagents_to_vomit_pool(Mob, Vomit, purge_ratio)
 
-/proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V, purge = FALSE)
-	var/obj/item/organ/stomach/belly = M.getorganslot(ORGAN_SLOT_STOMACH)
+/proc/clear_reagents_to_vomit_pool(mob/living/carbon/Mob, obj/effect/decal/cleanable/vomit/Vomit, purge = FALSE)
+	var/obj/item/organ/stomach/belly = Mob.getorganslot(ORGAN_SLOT_STOMACH)
 	if(!belly)
 		return
 	var/chemicals_lost = belly.reagents.total_volume * 0.1
 	if(purge)
 		chemicals_lost = belly.reagents.total_volume * 0.67 //For detoxification surgery, we're manually pumping the stomach out of chemcials, so it's far more efficient.
-	belly.reagents.trans_to(V, chemicals_lost, transfered_by = M)
+	belly.reagents.trans_to(Vomit, chemicals_lost, transfered_by = Mob)
 	//clear the stomach of anything even not food
 	for(var/bile in belly.reagents.reagent_list)
 		var/datum/reagent/reagent = bile
