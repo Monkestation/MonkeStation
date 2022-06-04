@@ -194,6 +194,7 @@
 			A.lighteater_act(light_eater)
 
 /mob/living/lighteater_act(obj/item/light_eater/light_eater)
+	..()
 	if(on_fire)
 		ExtinguishMob()
 		playsound(src, 'sound/items/cig_snuff.ogg', 50, 1)
@@ -212,6 +213,7 @@
 		to_chat(src, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
 
 /obj/structure/bonfire/lighteater_act(obj/item/light_eater/light_eater)
+	..()
 	if(burning)
 		extinguish()
 		playsound(src, 'sound/items/cig_snuff.ogg', 50, 1)
