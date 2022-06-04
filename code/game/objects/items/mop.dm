@@ -110,29 +110,37 @@
 	/// Amount of reagent to refill per second
 	var/refill_rate = 0.5
 	var/refill_reagent = /datum/reagent/water //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
-
+	var/drying_mode = FALSE
 /obj/item/mop/advanced/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/mop/advanced/attack_self(mob/user)
+	if(drying_mode)
+		to_chat(user, "<span class = 'notice'> Please turn off drying mode before enabling the condenser.</span>")
+		return
 	refill_enabled = !refill_enabled
-	if(refill_enabled)
-		START_PROCESSING(SSobj, src)
-	else
-		STOP_PROCESSING(SSobj,src)
 	to_chat(user, "<span class='notice'>You set the condenser switch to the '[refill_enabled ? "ON" : "OFF"]' position.</span>")
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/mop/advanced/process(delta_time)
-	var/amadd = min(mopcap - reagents.total_volume, refill_rate * delta_time)
-	if(amadd > 0)
-		reagents.add_reagent(refill_reagent, amadd)
-
+	if(refill_enabled)
+		var/amadd = min(mopcap - reagents.total_volume, refill_rate * delta_time)
+		if(amadd > 0)
+			reagents.add_reagent(refill_reagent, amadd)
+	else if(drying_mode)
+		reagents.remove_all(mopcap)
+/obj/item/mop/advanced/AltClick(mob/user)
+	if(refill_enabled)
+		to_chat(user, "<span class = 'notice'> Please turn off the condenser before enabling drying mode.</span>")
+		return
+	drying_mode = !drying_mode
+	to_chat(user, "<span class = 'notice'>You set the drying switch to the '[drying_mode ? "ON" : "OFF"] position.'</span>" )
+	playsound(user, 'sound/machines/click.ogg', 30, 1)
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.</span>"
-
+	. += "<span class='notice'>The drying switch is set to <b>[drying_mode ? "ON" : "OFF"]</b>.</span>"
 /obj/item/mop/advanced/Destroy()
 	if(refill_enabled)
 		STOP_PROCESSING(SSobj, src)
