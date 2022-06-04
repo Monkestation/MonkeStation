@@ -117,8 +117,8 @@
 	var/obj/item/organ/liver/liver = H.getorganslot(ORGAN_SLOT_LIVER)
 
 	if(liver)
-		for(var/t in liver_traits)
-			ADD_TRAIT(liver, t, JOB_TRAIT)
+		for(var/trait in liver_traits)
+			ADD_TRAIT(liver, trait, JOB_TRAIT)
 
 	if(!ishuman(H))
 		return
