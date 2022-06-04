@@ -1,7 +1,7 @@
 //Controlling the reactor.
 /obj/machinery/computer/reactor
 	name = "Reactor control console"
-	desc = "Scream"
+	desc = "You should not be able to see this Reactor control console description, please report as issue."
 	icon = 'monkestation/icons/obj/computer.dmi'
 	light_power = 1
 	light_range = 3

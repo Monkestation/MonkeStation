@@ -149,6 +149,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	icon_state = "reactor_slagged"
 	slagged = TRUE
 	vessel_integrity = 0
+	color = null
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
 	. = ..()
@@ -306,7 +307,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				temperature += temperature / 250//This isn't really harmful early game, but when your reactor is up to full power, this can get out of hand quite quickly.
 				vessel_integrity -= temperature / 400 //Think fast loser.
 				take_damage(10) //Just for the sound effect, to let you know you've fucked up.
-				color = "[COLOR_RED]"
+				color = COLOR_RED
 				investigate_log("Reactor taking damage from the lack of coolant", INVESTIGATE_ENGINES)
 	//Now, heat up the output and set our pressure.
 	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)) //Heat the coolant output gas that we just had pass through us.
@@ -593,6 +594,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			icon_state = "reactor_overheat"
 		if(RBMK_TEMPERATURE_CRITICAL to INFINITY)
 			icon_state = "reactor_meltdown"
+
 	var/percent = vessel_integrity / initial(vessel_integrity) * 100
 	switch(percent)
 		if(0 to 10)
