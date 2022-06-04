@@ -328,6 +328,7 @@
 	. = ..()
 	if(ismob(thing))
 		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, .proc/update_user_sight)
+		RegisterSignal(thing, COMSIG_ATOM_LIGHTEATER_ACT, .proc/on_lighteater_act)
 		var/mob/being = thing
 		being.update_sight()
 		to_chat(thing, "<span class='notice'>The wisp enhances your vision.</span>")
@@ -336,6 +337,7 @@
 	. = ..()
 	if(ismob(orbits.parent))
 		UnregisterSignal(orbits.parent, COMSIG_MOB_UPDATE_SIGHT)
+		UnregisterSignal(orbits.parent, COMSIG_ATOM_LIGHTEATER_ACT)
 		to_chat(orbits.parent, "<span class='notice'>Your vision returns to normal.</span>")
 
 /obj/effect/wisp/proc/update_user_sight(mob/user)
