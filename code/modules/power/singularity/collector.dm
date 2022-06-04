@@ -9,7 +9,7 @@
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
 	desc = "A device which uses Hawking Radiation and plasma to produce power."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/singularity.dmi'
 	icon_state = "ca"
 	anchored = FALSE
 	density = TRUE
@@ -227,7 +227,7 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		add_overlay("on")
+		add_overlay(loaded_tank ? "on" : "error")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
