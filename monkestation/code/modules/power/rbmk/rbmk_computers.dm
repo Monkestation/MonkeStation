@@ -1,3 +1,6 @@
+#define FREQ_RBMK_CONTROL 1439.69
+
+
 //Controlling the reactor.
 /obj/machinery/computer/reactor
 	name = "Reactor control console"
@@ -21,8 +24,6 @@
 			reactor = asdf
 			return TRUE
 	return FALSE
-
-#define FREQ_RBMK_CONTROL 1439.69
 
 /obj/machinery/computer/reactor/control_rods
 	name = "Control rod management computer"
@@ -342,3 +343,5 @@
 			tempInputData = list()
 			tempOutputdata = list()
 			return TRUE
+
+#undef FREQ_RBMK_CONTROL

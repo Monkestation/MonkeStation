@@ -539,7 +539,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
 	icon_state = "reactor_slagged"
-	AddComponent(/datum/component/radioactive, 15000 , src)
+	AddComponent(/datum/component/radioactive, (temperature*20), src)
 	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner(get_turf(src))
 	relay('monkestation/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
 	stop_relay(CHANNEL_REACTOR_ALERT)
