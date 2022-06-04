@@ -1,6 +1,8 @@
+#define SLUDGE_SHORT_RANGE 5
+#define SLUDGE_LONG_RANGE 60
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
-	desc = "A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this..."
+	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up, though you probably shouldn't step through this..."
 	icon = 'monkestation/icons/obj/machinery/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
 	alpha = 150
@@ -18,19 +20,17 @@
 /// Clean way of spawning nuclear gunk after a reactor core meltdown.
 /obj/effect/landmark/nuclear_waste_spawner
 	name = "Nuclear waste spawner"
-	var/short_range = 5 // Default was 5
-	var/long_range = 60 // Default was 5
 
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
-	for(var/turf/open/floor in orange(short_range, get_turf(src)))
+	for(var/turf/open/floor in orange(SLUDGE_SHORT_RANGE, get_turf(src)))
 		if(prob(40)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 			continue
 
 	sleep(10)
-	for(var/turf/open/floor in orange(long_range, get_turf(src)))
+	for(var/turf/open/floor in orange(SLUDGE_LONG_RANGE, get_turf(src)))
 		if(prob(10)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 			continue
@@ -112,3 +112,6 @@
 	if(..())
 		return
 	status_alarm(FALSE)
+
+#undef SLUDGE_SHORT_RANGE
+#undef SLUDGE_LONG_RANGE
