@@ -16,6 +16,7 @@
 	minimal_access = list(ACCESS_THEATRE)
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV
+	liver_traits = list(TRAIT_SILENCE_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_MIME
 	departments = DEPARTMENT_SERVICE

@@ -144,10 +144,10 @@
 	random_unrestricted = TRUE
 
 /datum/reagent/consumable/nothing/on_mob_life(mob/living/carbon/M)
-	if(ishuman(M) && M.job == "Mime")
-		M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
-		M.heal_bodypart_damage(1,1, 0)
-		. = 1
+	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
+	if((liver && HAS_TRAIT(liver, TRAIT_SILENCE_METABOLISM)) || ismonkey(M))
+		M.heal_bodypart_damage(brute = 1, burn = 1)
+		. = TRUE
 	..()
 
 /datum/reagent/consumable/laughter

@@ -306,6 +306,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law_enforcement_metabolism"
 #define TRAIT_CULINARY_METABOLISM "culinary_metabolism"
 #define TRAIT_COMEDY_METABOLISM "comedy_metabolism"
+#define TRAIT_SILENCE_METABOLISM "silence_metabolism"
 #define TRAIT_MEDICAL_METABOLISM "medical_metabolism"
 #define TRAIT_GREYTIDE_METABOLISM "greytide_metabolism"
 #define TRAIT_ENGINEER_METABOLISM "engineer_metabolism"
