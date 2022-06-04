@@ -3682,6 +3682,7 @@
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_groups.dm"
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_height.dm"
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_interaction.dm"
+#include "monkestation\code\modules\liquids\code\liquid_systems\liquid_plumbers.dm"
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_pump.dm"
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_status_effect.dm"
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_turf.dm"
