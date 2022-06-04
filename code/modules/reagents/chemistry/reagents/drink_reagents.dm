@@ -219,6 +219,18 @@
 		. = 1
 	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
 		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
+
+	//BONE AND PLASMAMAN EXCLUSIVE REACTION
+	var/obj/item/organ/stomach/stomach = M.getorganslot(ORGAN_SLOT_STOMACH)
+	if((istype(stomach, /obj/item/organ/stomach/plasmaman) || istype(stomach, /obj/item/organ/stomach/bone)))
+		var/datum/reagent/consumable/milk/milk = locate(/datum/reagent/consumable/milk) in M.reagents.reagent_list
+		if(milk)
+			var/mob/living/carbon/body = M
+			if(milk.volume > 10)
+				M.reagents.remove_reagent(milk.type, milk.volume - 10)
+				to_chat(M, "<span class='warning'>The excess milk is dripping off your bones!</span>")
+			body.heal_bodypart_damage(1.5,0, 0)
+			M.reagents.remove_reagent(milk.type, milk.metabolization_rate)
 	..()
 
 /*See block comment in ../milk/overdose_process(mob/living/M) for calculation and explanation of why this exists and why 5 was chosen

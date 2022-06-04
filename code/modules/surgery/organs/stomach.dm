@@ -104,17 +104,6 @@
 	icon_state = "stomach-p"
 	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
 
-/obj/item/organ/stomach/plasmaman/on_life()
-	var/datum/reagent/consumable/milk/milk = locate(/datum/reagent/consumable/milk) in reagents.reagent_list
-	if(milk)
-		var/mob/living/carbon/body = owner
-		if(milk.volume > 10)
-			reagents.remove_reagent(milk.type, milk.volume - 10)
-			to_chat(owner, "<span class='warning'>The excess milk is dripping off your bones!</span>")
-		body.heal_bodypart_damage(1.5,0, 0)
-		reagents.remove_reagent(milk.type, milk.metabolization_rate)
-	return ..()
-
 /obj/item/organ/stomach/battery
 	name = "implantable battery"
 	icon_state = "implant-power"
@@ -212,14 +201,3 @@
 
 /obj/item/organ/stomach/bone
 	desc = "You have no idea what this strange ball of bones does."
-
-/obj/item/organ/stomach/bone/on_life()
-	var/datum/reagent/consumable/milk/milk = locate(/datum/reagent/consumable/milk) in reagents.reagent_list
-	if(milk)
-		var/mob/living/carbon/body = owner
-		if(milk.volume > 10)
-			reagents.remove_reagent(milk.type, milk.volume - 10)
-			to_chat(owner, "<span class='warning'>The excess milk is dripping off your bones!</span>")
-		body.heal_bodypart_damage(1.5,0, 0)
-		reagents.remove_reagent(milk.type, milk.metabolization_rate)
-	return ..()
