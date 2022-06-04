@@ -3718,4 +3718,5 @@
 #include "monkestation\code\modules\surgery\organs\tails.dm"
 #include "monkestation\code\modules\surgery\organs\tongue.dm"
 #include "monkestation\code\modules\uplink\uplink_items.dm"
+#include "monkestation\code\modules\wiremod\components\atom\sec_status.dm"
 // END_INCLUDE
