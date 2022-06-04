@@ -145,7 +145,7 @@
 
 /datum/reagent/consumable/nothing/on_mob_life(mob/living/carbon/M)
 	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
-	if((liver && HAS_TRAIT(liver, TRAIT_SILENCE_METABOLISM)))
+	if(liver && HAS_TRAIT(liver, TRAIT_SILENCE_METABOLISM))
 		M.heal_bodypart_damage(brute = 1, burn = 1)
 		. = TRUE
 	..()
