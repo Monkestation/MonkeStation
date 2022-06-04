@@ -10,7 +10,7 @@
  */
 
 /obj/item/kitchen
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/kitchen.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 
@@ -71,6 +71,7 @@
 
 /obj/item/kitchen/knife
 	name = "kitchen knife"
+	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	item_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
@@ -118,9 +119,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/butcher
+	icon = 'monkestation/code/modules/eris-respriting/icons/obj/kitchen.dmi'
 	name = "butcher's cleaver"
-	icon_state = "butch"
-	item_state = "butch"
+	icon_state = "cleaver"
+	item_state = "cleaver"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."
 	flags_1 = CONDUCT_1
 	force = 15

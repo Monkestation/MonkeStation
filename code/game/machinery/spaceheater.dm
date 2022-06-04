@@ -7,7 +7,7 @@
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
 	icon = 'icons/obj/atmos.dmi'
-	icon_state = "sheater-off"
+	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater/cooler is guaranteed not to set the station on fire. Warranty void if used in engines."
 	max_integrity = 250
@@ -58,9 +58,9 @@
 
 /obj/machinery/space_heater/update_icon()
 	if(on)
-		icon_state = "sheater-[mode]"
+		icon_state = "sheater1"
 	else
-		icon_state = "sheater-off"
+		icon_state = "sheater0"
 
 	cut_overlays()
 	if(panel_open)

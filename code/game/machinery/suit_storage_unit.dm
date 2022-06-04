@@ -3,7 +3,8 @@
 	name = "suit storage unit"
 	desc = "An industrial unit made to hold and decontaminate irradiated equipment. It comes with a built-in UV cauterization mechanism. A small warning label advises that organic matter should not be placed into the unit."
 	icon = 'icons/obj/machines/suit_storage.dmi'
-	icon_state = "close"
+	icon_state = "classic"
+	base_icon_state = "classic"
 	use_power = ACTIVE_POWER_USE
 	active_power_usage = 60
 	power_channel = AREA_USAGE_EQUIP
@@ -54,6 +55,12 @@
 	/// How fast it charges cells in a suit
 	var/charge_rate = 250
 
+
+/obj/machinery/suit_storage_unit/industrial
+	name = "industrial suit storage unit"
+	icon_state = "industrial"
+	base_icon_state = "industrial"
+
 /obj/machinery/suit_storage_unit/standard_unit
 	suit_type = /obj/item/clothing/suit/space/eva
 	helmet_type = /obj/item/clothing/head/helmet/space/eva
@@ -65,11 +72,15 @@
 	storage_type = /obj/item/tank/jetpack/oxygen/captain
 
 /obj/machinery/suit_storage_unit/engine
+	icon_state = "industrial"
+	base_icon_state = "industrial"
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine
 	mask_type = /obj/item/clothing/mask/breath
 	storage_type = /obj/item/clothing/shoes/magboots
 
 /obj/machinery/suit_storage_unit/ce
+	icon_state = "industrial"
+	base_icon_state = "industrial"
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/elite
 	mask_type = /obj/item/clothing/mask/breath
 	storage_type= /obj/item/clothing/shoes/magboots/advance
@@ -163,26 +174,30 @@
 /obj/machinery/suit_storage_unit/update_icon()
 	cut_overlays()
 
+	if(panel_open)
+		add_overlay("[base_icon_state]_panel")
+
 	if(uv)
-		if(uv_super || (obj_flags & EMAGGED))
-			add_overlay("super")
-		else if(occupant)
-			add_overlay("uvhuman")
+		if(uv_super)
+			add_overlay("[base_icon_state]_uvstrong")
+			add_overlay("[base_icon_state]_super")
 		else
-			add_overlay("uv")
-	else if(state_open)
-		if(machine_stat & BROKEN)
-			add_overlay("broken")
-		else
-			add_overlay("open")
-			if(suit)
-				add_overlay("suit")
-			if(helmet)
-				add_overlay("helm")
-			if(storage)
-				add_overlay("storage")
-	else if(occupant)
-		add_overlay("human")
+			add_overlay("[base_icon_state]_uv")
+		add_overlay("[base_icon_state]_lights_red")
+		return
+
+	if(state_open)
+		add_overlay("[base_icon_state]_open")
+		add_overlay("[base_icon_state]_ready")
+		if(suit)
+			add_overlay("[base_icon_state]_suit")
+		if(helmet)
+			add_overlay("[base_icon_state]_helm")
+		if(storage)
+			add_overlay("[base_icon_state]_storage")
+		return
+	add_overlay("[base_icon_state]_ready")
+	add_overlay("[base_icon_state]_lights_closed")
 
 /obj/machinery/suit_storage_unit/power_change()
 	. = ..()
@@ -416,7 +431,7 @@
 		wires.interact(user)
 		return
 	if(!state_open)
-		if(default_deconstruction_screwdriver(user, "panel", "close", I))
+		if(default_deconstruction_screwdriver(user, "[base_icon_state]", "[base_icon_state]", I))
 			ui_update() // Wires might've changed availability of decontaminate button
 			return
 	if(default_pry_open(I))
