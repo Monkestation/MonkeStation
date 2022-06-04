@@ -35,7 +35,7 @@
 		if(prob(25))
 			var/turf/Spillzone = get_turf(vent)
 			if(Spillzone && Spillzone.loc)
-				var/datum/reagents/R = new/datum/reagents(1000)
+				var/datum/reagents/R = new/datum/reagents(10000)
 				R.my_atom = Spillzone
 				if (prob(randomProbability))
 					R.add_reagent(get_random_reagent_id(), reagentsAmount)
@@ -86,7 +86,7 @@
 	max_occurrences = 0
 
 /datum/round_event/vent_clog/beer
-	reagentsAmount = 100
+	reagentsAmount = 1000
 
 /datum/round_event/vent_clog/beer/announce()
 	priority_announce("The scrubbers network is experiencing an unexpected surge of pressurized beer. Some ejection of contents may occur.", "Atmospherics alert", SSstation.announcer.get_rand_alert_sound())
@@ -94,13 +94,14 @@
 /datum/round_event/vent_clog/beer/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent in vents)
 		if(vent?.loc)
-			var/datum/reagents/R = new/datum/reagents(1000)
-			R.my_atom = vent
-			R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
+			var/turf/Spillzone = get_turf(vent)
+			if(Spillzone && Spillzone.loc)
+				var/datum/reagents/R = new/datum/reagents(1000)
+				R.my_atom = Spillzone
+				R.add_reagent(/datum/reagent/consumable/ethanol/beer, reagentsAmount)
 
-			var/datum/effect_system/foam_spread/foam = new
-			foam.set_up(200, get_turf(vent), R)
-			foam.start()
+				Spillzone.add_liquid_from_reagents(R)
+
 		CHECK_TICK
 
 /datum/round_event/vent_clog/plasma_decon/announce()

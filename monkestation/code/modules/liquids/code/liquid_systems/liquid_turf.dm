@@ -100,7 +100,7 @@
 
 	if(!no_react)
 		//We do react so, make a simulation
-		create_reagents(10000) //Reagents are on turf level, should they be on liquids instead?
+		create_reagents(100000) //Reagents are on turf level, should they be on liquids instead?
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 		reagents.chem_temp = liquids.temp
 		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
@@ -143,7 +143,7 @@
 
 	if(!no_react)
 		//We do react so, make a simulation
-		create_reagents(10000)
+		create_reagents(100000)
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 
 		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents

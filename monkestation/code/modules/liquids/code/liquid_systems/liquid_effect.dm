@@ -140,6 +140,7 @@
 			else
 				reagent_list[reagent_type] -= burn_rate
 				total_reagents -= burn_rate
+			my_turf.atmos_spawn_air("co2=[burn_rate/5];TEMP=[temp]")
 
 	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
 	for(var/A in my_turf.contents)
