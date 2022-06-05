@@ -116,7 +116,7 @@
 			liquids.total_reagents += R.volume
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
-		liquids.alpha = max(round(alpha_setting / alpha_divisor), 255)
+		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
 		liquids.temp = reagents.chem_temp
 		if(!liquids.total_reagents) //Our reaction exerted all of our reagents, remove self
 			qdel(reagents)
@@ -166,7 +166,7 @@
 			liquids.total_reagents += R.volume
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
-		liquids.alpha = max(round(alpha_setting / alpha_divisor), 255)
+		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
 		liquids.temp = reagents.chem_temp
 		qdel(reagents)
 		//Expose turf
