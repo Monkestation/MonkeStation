@@ -35,7 +35,8 @@
 	for(var/turf/temp in view(5, T))
 		if(temp.liquids)
 			range_random += temp
-	var/datum/reagents/tempr = pick(range_random).liquids.take_reagents_flat(free_space)
+	var/turf/choice_turf = get_turf(pick(range_random))
+	var/datum/reagents/tempr = choice_turf.liquids.take_reagents_flat(free_space)
 	tempr.trans_to(the_mop.reagents, tempr.total_volume)
 	to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
 	qdel(tempr)
