@@ -82,7 +82,7 @@
 		spawn(20)
 			booty.cooling_down = FALSE
 
-
+/* DISABLED UNTIL PREFS
 /datum/emote/living/carbon/human/urinate
 	key = "pee"
 	key_third_person = "pees"
@@ -95,4 +95,4 @@
 			return
 		var/obj/item/organ/bladder/tank = user.getorgan(/obj/item/organ/bladder)
 		tank.output_waste(user)
-
+*/
