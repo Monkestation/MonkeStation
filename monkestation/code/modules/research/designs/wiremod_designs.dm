@@ -1,5 +1,5 @@
 /datum/design/component/security_record
-	name = "Security Record"
+	name = "Security Record Component"
 	id = "comp_sec"
 	build_path = /obj/item/circuit_component/sec_status
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
@@ -8,7 +8,7 @@
 	name = "Circuit Goggles Shell"
 	desc = "A wearable shell."
 	id = "circuit_goggles_shell"
-	build_path = /obj/item/clothing/glasses/circuit
+	build_path = /obj/item/clothing/glasses/circuit_goggles
 	materials = list(/datum/material/glass = 3000, /datum/material/iron = 5000)
 	build_type = PROTOLATHE | COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)

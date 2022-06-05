@@ -383,6 +383,14 @@
 		. += "<span class='info'><b>Traits:</b> [traitstring]</span>"
 	. += "*---------*</span>"
 
+	//MONKESTATION EDIT
+	if(user.circuit_goggles && iscarbon(user))
+		var/mob/living/carbon/living_user = user
+		SEND_SIGNAL(living_user.glasses, COMSIG_CIRCUIT_GOGGLES_USED, src, user)
+		log_world(living_user)
+		log_world(living_user.glasses)
+	//MONKESTATION EDIT END
+
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
 	if(!pronoun_replacement)

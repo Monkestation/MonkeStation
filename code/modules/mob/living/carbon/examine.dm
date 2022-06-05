@@ -132,3 +132,11 @@
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				. += "[t_He] look[p_s()] ecstatic."
 	. += "*---------*</span>"
+
+	//MONKESTATION EDIT
+	if(user.circuit_goggles && iscarbon(user))
+		var/mob/living/carbon/living_user = user
+		SEND_SIGNAL(living_user.glasses, COMSIG_CIRCUIT_GOGGLES_USED, src, user)
+		log_world(living_user)
+		log_world(living_user.glasses)
+	//MONKESTATION EDIT END

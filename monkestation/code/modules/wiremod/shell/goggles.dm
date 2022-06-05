@@ -13,7 +13,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
-/obj/item/clothing/glasses/circuit/Initialize(mapload)
+/obj/item/clothing/glasses/circuit_goggles/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/circuit_goggles()
@@ -46,7 +46,7 @@
 /obj/item/circuit_component/circuit_goggles/unregister_shell(atom/movable/shell)
 	UnregisterSignal(shell, COMSIG_CIRCUIT_GOGGLES_USED)
 
-/obj/item/circuit_component/circuit_goggles/proc/send_trigger(atom/source, mob/returned_target, mob/living/carbon/wearer)
+/obj/item/circuit_component/circuit_goggles/proc/send_trigger(atom/source, mob/returned_target, mob/wearer)
 	SIGNAL_HANDLER
 	user.set_output(wearer)
 	target.set_output(returned_target)
