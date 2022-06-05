@@ -418,7 +418,7 @@
 	else if (isliving(AM))
 		var/mob/living/L = AM
 		if(prob(7) && !(L.movement_type & FLYING))
-			L.slip(60, T, NO_SLIP_WHEN_WALKING, 20, TRUE)
+			L.slip(30, F, NO_SLIP_WHEN_WALKING, 20, TRUE)
 	if(fire_state)
 		AM.fire_act((T20C+50) + (50*fire_state), 125)
 
