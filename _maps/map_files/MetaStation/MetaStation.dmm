@@ -58091,7 +58091,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "kub" = (
-/obj/structure/closet/radiation,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -66497,7 +66497,7 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "oXe" = (
-/obj/structure/closet/radiation,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
 "oXj" = (
@@ -68274,7 +68274,6 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "qhJ" = (
@@ -74069,7 +74068,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/obj/structure/closet/radiation,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "tXK" = (
