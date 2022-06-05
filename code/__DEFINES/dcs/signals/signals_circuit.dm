@@ -39,8 +39,13 @@
 	/// Cancels the attack chain, but without performing any other action.
 	#define COMSIG_CANCEL_USB_CABLE_ATTACK (1<<2)
 
+//MONKESTATION EDIT
 /// Sent when a QSI teleports itself/the mobs
 #define COMSIG_SWAPPER_USED "swapper_used"
 
 /// Sent when a Sound Synth plays its sound
 #define COMSIG_SOUNDSYNTH_USED "soundsynth_used"
+
+/// Sent when someone with circuit goggles turned on examines something
+#define COMSIG_CIRCUIT_GOGGLES_USED "circuit_goggles_used"
+//MONKESTATION EDIT END

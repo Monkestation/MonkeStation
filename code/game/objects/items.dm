@@ -386,6 +386,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			set_force_string()
 		. += "Force: [force_string]"
 
+	//MONKESTATION EDIT
+	if(user.circuit_goggles && iscarbon(user))
+		var/mob/living/carbon/living_user = user
+		SEND_SIGNAL(living_user.glasses, COMSIG_CIRCUIT_GOGGLES_USED, src, living_user)
+		log_world(living_user)
+		log_world(living_user.glasses)
+	//MONKESTATION EDIT END
 
 	if(!user.research_scanner)
 		return
