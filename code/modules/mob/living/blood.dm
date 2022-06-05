@@ -256,7 +256,7 @@
 	if(small_drip)
 
 		if(T.liquids)
-			var/list/blood_drop = list(/datum/reagent/blood = 0.5)
+			var/list/blood_drop = list(/datum/reagent/blood = 0.1) //lower this bad boy
 			T.add_liquid_list(blood_drop, FALSE, 300)
 			return
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
@@ -282,7 +282,7 @@
 		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
 	if(QDELETED(B)) //Give it up
 		return
-	if(B.count < 5 )
+	if(B.count < 10 )
 		B.count ++
 		B.transfer_mob_blood_dna(src)
 	if (B.bloodiness < MAX_SHOE_BLOODINESS) //add more blood, up to a limit
@@ -291,7 +291,7 @@
 	if(temp_blood_DNA)
 		B.add_blood_DNA(temp_blood_DNA)
 
-	if(B.count > 4)
+	if(B.count > 9)
 		qdel(B)
 		var/list/blood_large = list(/datum/reagent/blood = 20)
 		T.add_liquid_list(blood_large, FALSE, 300)
