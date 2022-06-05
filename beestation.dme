@@ -3724,6 +3724,7 @@
 #include "monkestation\code\modules\spells\spell_types\weregorilla.dm"
 #include "monkestation\code\modules\surgery\bodyparts\species_parts\simian_bodyparts.dm"
 #include "monkestation\code\modules\surgery\organs\augments_arms.dm"
+#include "monkestation\code\modules\surgery\organs\bladder.dm"
 #include "monkestation\code\modules\surgery\organs\butts.dm"
 #include "monkestation\code\modules\surgery\organs\ears.dm"
 #include "monkestation\code\modules\surgery\organs\tails.dm"

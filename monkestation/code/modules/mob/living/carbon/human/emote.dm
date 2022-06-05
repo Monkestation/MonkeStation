@@ -81,3 +81,18 @@
 						Struck.apply_damage(20, "brute", BODY_ZONE_HEAD)
 		spawn(20)
 			booty.cooling_down = FALSE
+
+
+/datum/emote/living/carbon/human/urinate
+	key = "pee"
+	key_third_person = "pees"
+
+/datum/emote/living/carbon/human/urinate/run_emote(mob/user, params, type_override, intentional)
+	.=..()
+	if(user.stat == CONSCIOUS)
+		if(!user.getorgan(/obj/item/organ/bladder))
+			to_chat(user, "<span class='warning'>No matter how much you try nothing seems to come out!</span>")
+			return
+		var/obj/item/organ/bladder/tank = user.getorgan(/obj/item/organ/bladder)
+		tank.output_waste(user)
+

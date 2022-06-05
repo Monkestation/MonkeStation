@@ -75,6 +75,15 @@
 	checkLiked(fraction, M)
 	reagents.reaction(M, INGEST, fraction)
 	reagents.trans_to(M, gulp_amount, transfered_by = user)
+	//BLADDER STUFF
+	if(M.getorgan(/obj/item/organ/bladder))
+		var/obj/item/organ/bladder/tank = M.getorgan(/obj/item/organ/bladder)
+		if(tank.fullness == tank.max_capacity)
+			return
+		if(tank.max_capacity >= tank.fullness + gulp_amount)
+			tank.fullness += gulp_amount
+		else
+			tank.fullness = tank.max_capacity
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	return 1
 

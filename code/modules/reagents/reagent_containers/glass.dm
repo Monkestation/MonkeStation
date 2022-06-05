@@ -50,6 +50,17 @@
 				to_chat(user, "<span class='notice'>You swallow a gulp of [src].</span>")
 			var/fraction = min(5/reagents.total_volume, 1)
 			reagents.reaction(M, INGEST, fraction)
+
+			//BLADDER STUFF
+			if(M.getorgan(/obj/item/organ/bladder))
+				var/obj/item/organ/bladder/tank = M.getorgan(/obj/item/organ/bladder)
+				if(tank.fullness == tank.max_capacity)
+					return
+				if(tank.max_capacity >= tank.fullness + 5)
+					tank.fullness +=  5
+				else
+					tank.fullness = tank.max_capacity
+
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, 5), 5)
 			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 

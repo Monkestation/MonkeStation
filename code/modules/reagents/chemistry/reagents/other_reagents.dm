@@ -1998,3 +1998,11 @@
 	L.set_light(-1)
 
 	..()
+
+//PEE
+/datum/reagent/urine
+	name = "Urine"
+	description = "It's urine enough said"
+	color = "#ceb619"
+	taste_description = "piss"
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
