@@ -52,6 +52,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/liquid_fire_burnrate = 0
 	///Whether a fire from this requires oxygen in the atmosphere
 	var/fire_needs_oxygen = TRUE
+	///The opacity of the chems used to determine the alpha of liquid turfs
+	var/opacity = 175
 	//MONKESTATION EDIT END
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()

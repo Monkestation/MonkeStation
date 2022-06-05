@@ -211,11 +211,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		T.reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
 		T.liquids.reagent_list = list()
 		T.liquids.total_reagents = 0
+		//alpha stuff
+		var/alpha_setting = 0
+		var/alpha_divisor = 0
+
 		for(var/r in T.reagents.reagent_list)
 			var/datum/reagent/R = r
 			T.liquids.reagent_list[R.type] = R.volume
 			T.liquids.total_reagents += R.volume
-
+			alpha_setting += R.opacity * R.volume
+			alpha_divisor += 1 * R.volume
+		T.liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
 		T.liquids.temp = T.reagents.chem_temp
 		qdel(T.reagents)
 		//Expose turf
