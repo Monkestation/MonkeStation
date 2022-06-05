@@ -1,5 +1,6 @@
 #define SLUDGE_SHORT_RANGE 5
 #define SLUDGE_LONG_RANGE 60
+
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
 	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up, though you probably shouldn't step through this..."
@@ -25,13 +26,12 @@
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
 	for(var/turf/open/floor in orange(SLUDGE_SHORT_RANGE, get_turf(src)))
-		if(prob(40)) //Scatter the sludge, don't smear it everywhere
+		if(prob(60)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 			continue
 
-	sleep(10)
 	for(var/turf/open/floor in orange(SLUDGE_LONG_RANGE, get_turf(src)))
-		if(prob(10)) //Scatter the sludge, don't smear it everywhere
+		if(prob(20)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste (floor)
 			continue
 
