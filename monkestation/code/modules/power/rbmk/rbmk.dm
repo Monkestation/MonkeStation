@@ -532,10 +532,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	STOP_PROCESSING(SSmachines, src)
 	icon_state = "reactor_slagged"
 	AddComponent(/datum/component/radioactive, (temperature*15), src)
-	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner(get_turf(src))
 	relay('monkestation/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
 	stop_relay(CHANNEL_ENGINE_ALERT)
-	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
 	for(var/obj/machinery/power/apc/apc in GLOB.apcs_list)
 		if(prob(70))
 			apc.overload_lighting()
@@ -558,6 +556,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
 	radio = null
 	radio_key = null
+	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
+	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
@@ -566,14 +566,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	meltdown() //Double kill.
 	relay('monkestation/sound/effects/rbmk/explode.ogg')
 	priority_announce("High levels of radiation detected. Maintenance is best shielded from radiation.", "Nuclear Blowout Alert", ANNOUNCER_RADIATION)
+
+	sleep(50)
+	SSweather.run_weather("nuclear fallout") //Maybe replace with a radioactive gas spawn from the sludge spawners if weather is too weird
+	sludge_spawner_preload()
+
+	sleep(60)
 	for(var/landmark in GLOB.landmarks_list)
 		if(istype(landmark, /obj/effect/landmark/nuclear_waste_spawner))
 			var/obj/effect/landmark/nuclear_waste_spawner/waste_spawner = landmark
 			if(is_station_level(waste_spawner.z)) //Begin the SLUDGING
 				waste_spawner.fire()
-	sleep(50)
-	SSweather.run_weather("nuclear fallout") //Maybe replace with a radioactive gas spawn from the sludge spawners if weather is too weird
-
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/update_icon()
 	icon_state = "reactor_off"
@@ -622,10 +625,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/startup_sound = pick('monkestation/sound/effects/rbmk/startup.ogg', 'monkestation/sound/effects/rbmk/startup2.ogg')
 	playsound(loc, startup_sound, 80)
 	soundloop = new(list(src), TRUE)
-
-	if(sludge_spawned == FALSE)
-		sludge_spawner_preload()
-		sludge_spawned = TRUE
 
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()

@@ -1,7 +1,3 @@
-/// Spawn Distance for sludge spawners
-#define SLUDGE_SPAWNER_SHORT_RANGE 10
-#define SLUDGE_SPAWNER_LONG_RANGE 100
-
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
 	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up, though you probably shouldn't step through this..."
@@ -10,35 +6,47 @@
 	alpha = 150
 	light_color = LIGHT_COLOR_CYAN
 	color = "#ff9eff"
+	var/random_icon_states = list("waste1")
 
-/obj/effect/decal/nuclear_waste/Initialize()
+/obj/effect/decal/nuclear_waste/Initialize(mapload)
 	. = ..()
+	if(random_icon_states && (icon_state == initial(icon_state)) && length(random_icon_states) > 0)
+		icon_state = pick(random_icon_states)
 	set_light(3)
 
 /// The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
 /obj/effect/decal/nuclear_waste/epicenter
 	name = "Dense nuclear sludge"
 
-/// Clean way of spawning nuclear gunk after a reactor core meltdown.
+/// Clean way of spawning nuclear gunk after a reactor wastecore meltdown.
 /obj/effect/landmark/nuclear_waste_spawner
-	name = "Nuclear waste spawner"
+	name = "Nuclear Waste Spawner"
+	var/range = 3
 
-//Spawns nuclear_waste_spawners on map using vents
+/obj/effect/landmark/nuclear_waste_spawner/strong
+	name = "Nuclear Waste Spawner Strong"
+	range = 8
+
+//Spawns nuclear_waste_spawners on map
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/sludge_spawner_preload()
-	for(var/turf/open/floor/floor in orange(SLUDGE_SPAWNER_SHORT_RANGE, get_turf(src)))
-		if(prob(10)) //Prob of Spawn for sludge spawner
+	/// Smaller scale spawn for spawning range to power output
+	var/short_range = CLAMP(power/10, 5, 30)
+	for(var/turf/open/floor in orange(short_range, get_turf(src)))
+		if(prob(1)) //Prob of Spawn for sludge spawner
 			new /obj/effect/landmark/nuclear_waste_spawner(floor)
-			continue
+		continue
 
-	for(var/turf/open/floor/floor in orange(SLUDGE_SPAWNER_LONG_RANGE, get_turf(src)))
-		if(prob(4)) //Prob of Spawn for sludge spawner
+	/// Larger scale spawn for spawning range to power output
+	var/longe_range = CLAMP(power, 5, 200)
+	for(var/turf/open/floor in orange(longe_range, get_turf(src)))
+		if(prob(5)) //Prob of Spawn for sludge spawner
 			new /obj/effect/landmark/nuclear_waste_spawner(floor)
-			continue
+		continue
 
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
-	for(var/turf/open/floor in orange(3, get_turf(src)))
+	for(var/turf/open/floor in orange(range, get_turf(src)))
 		if(prob(20)) //Scatter the sludge, don't smear it everywhere
 			new /obj/effect/decal/nuclear_waste(floor)
 			continue
@@ -120,5 +128,3 @@
 		return
 	status_alarm(FALSE)
 
-#undef SLUDGE_SPAWNER_SHORT_RANGE
-#undef SLUDGE_SPAWNER_LONG_RANGE

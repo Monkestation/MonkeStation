@@ -10,14 +10,15 @@
 	for(var/obj/item/fuel_rod/FR in fuel_rods)
 		FR.depletion = 100
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/debug_meltdown()
-	message_admins("Reactor meltdown triggered by admins in [ADMIN_VERBOSEJMP(src)]")
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/debug_meltdown(var/new_power)
+	power = new_power
+	message_admins("Reactor meltdown triggered by admins in [ADMIN_VERBOSEJMP(src)] with power of [power]")
 	start_up()
-	sleep(20)
 	meltdown()
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/debug_blowout()
-	message_admins("Reactor blowout triggered by admins in [ADMIN_VERBOSEJMP(src)]")
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/debug_blowout(var/new_power)
 	start_up()
-	sleep(20)
+	power = new_power
+	message_admins("Reactor blowout triggered by admins in [ADMIN_VERBOSEJMP(src)] with power of [power]")
+	meltdown()
 	blowout()

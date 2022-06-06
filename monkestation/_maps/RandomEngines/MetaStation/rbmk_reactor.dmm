@@ -567,7 +567,7 @@
 "bF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
-	filter_types = list("nucleium", "no2")
+	filter_types = list("nucleium","no2")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -978,6 +978,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/effect/landmark/nuclear_waste_spawner/strong,
 /turf/open/floor/engine,
 /area/engine/engine_core/reactor_core)
 "dj" = (
@@ -2519,7 +2520,7 @@
 "OD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8;
-	filter_types = list("nucleium", "no2")
+	filter_types = list("nucleium","no2")
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
