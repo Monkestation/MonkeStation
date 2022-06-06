@@ -172,6 +172,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
+	tank_volume = 100
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
