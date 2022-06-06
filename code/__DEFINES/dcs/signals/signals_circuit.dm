@@ -48,4 +48,14 @@
 
 /// Sent when someone with circuit goggles turned on examines something
 #define COMSIG_CIRCUIT_GOGGLES_USED "circuit_goggles_used"
+
+/// Sent when someone activates a bluespace launchpad with the send option
+#define COMSIG_LAUNCHPAD_SENT "launchpad_sent"
+
+/// Sent when someone activates a bluespace launchpad with the retrieve option
+#define COMSIG_LAUNCHPAD_RETRIEVED "launchpad_retrieved"
+
+/// Sent when data is received from another shell
+#define COMSIG_DATA_RECEIVED "data_received"
+
 //MONKESTATION EDIT END

@@ -3719,6 +3719,11 @@
 #include "monkestation\code\modules\surgery\organs\tails.dm"
 #include "monkestation\code\modules\surgery\organs\tongue.dm"
 #include "monkestation\code\modules\uplink\uplink_items.dm"
+#include "monkestation\code\modules\wiremod\components\atom\pinpointer.dm"
+#include "monkestation\code\modules\wiremod\components\atom\receive_data.dm"
 #include "monkestation\code\modules\wiremod\components\atom\sec_status.dm"
+#include "monkestation\code\modules\wiremod\components\atom\send_data.dm"
+#include "monkestation\code\modules\wiremod\components\atom\viewer.dm"
+#include "monkestation\code\modules\wiremod\components\list\find_name.dm"
 #include "monkestation\code\modules\wiremod\shell\goggles.dm"
 // END_INCLUDE
