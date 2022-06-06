@@ -410,7 +410,7 @@
 	deltimer(sending_timer)
 
 /datum/export/pirate
-	export_category = EXPORT_PIRATE
+
 
 //Attempts to find the thing on station
 /datum/export/pirate/proc/find_loot()
