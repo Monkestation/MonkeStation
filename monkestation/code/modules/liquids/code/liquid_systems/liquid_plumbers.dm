@@ -135,6 +135,14 @@
 	if(. == SUCCESSFUL_UNFASTEN)
 		turned_on = FALSE
 
+/obj/machinery/plumbing/liquid_output_pump/attacked_by(obj/item/I, mob/user, params)
+	add_fingerprint(user)
+	if(default_deconstruction_screwdriver(user, "pump", "pump", I))
+		return
+	if(default_deconstruction_crowbar(I))
+		return
+	return ..()
+
 /obj/machinery/plumbing/liquid_output_pump/attack_hand(mob/user)
 	if(!anchored)
 		to_chat(user, span_warning("[src] needs to be anchored first!"))
@@ -143,15 +151,17 @@
 	turned_on = !turned_on
 
 /obj/machinery/plumbing/liquid_output_pump/CtrlClick(mob/living/user)
-	if(anchored)
-		return ..()
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 		return
-	var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is below the regulation", "Liquid Pump") as num|null
-	if(QDELETED(src))
+	if(anchored)
+		var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is below the regulation", "Liquid Pump") as num|null
+		if(QDELETED(src))
+			return
+		if(new_height)
+			height_regulator = sanitize_integer(new_height, 0, LIQUID_HEIGHT_CONSIDER_FULL_TILE, 0)
+		return ..()
+	else
 		return
-	if(new_height)
-		height_regulator = sanitize_integer(new_height, 0, LIQUID_HEIGHT_CONSIDER_FULL_TILE, 0)
 
 /obj/machinery/plumbing/liquid_output_pump/examine(mob/user)
 	. = ..()
