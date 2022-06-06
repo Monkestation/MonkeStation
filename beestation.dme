@@ -3692,6 +3692,7 @@
 #include "monkestation\code\modules\mob\living\simple_animal\hostile\bees.dm"
 #include "monkestation\code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\pandora_exploration.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk.dm"
+#include "monkestation\code\modules\power\rbmk\rbmk_admin_procs.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk_areas.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk_computers.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk_fuel_rods.dm"

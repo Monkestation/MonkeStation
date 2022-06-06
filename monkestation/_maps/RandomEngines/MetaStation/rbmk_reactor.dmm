@@ -978,7 +978,6 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/effect/landmark/nuclear_waste_spawner,
 /turf/open/floor/engine,
 /area/engine/engine_core/reactor_core)
 "dj" = (

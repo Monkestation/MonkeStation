@@ -141,6 +141,9 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 	var/datum/looping_sound/rbmk_reactor/soundloop
 
+	///Spawn state of if sludge spawners have been spawned
+	var/sludge_spawned = FALSE
+
 //Use this in your maps if you want everything to be preset.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/preset
 	id = "default_reactor_for_lazy_mappers"
@@ -150,6 +153,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	slagged = TRUE
 	vessel_integrity = 0
 	color = null
+	radio = null
+	radio_key = null
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/examine(mob/user)
 	. = ..()
@@ -232,20 +237,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		vessel_integrity += 20
 		to_chat(user, "<span class='notice'>You weld together some of [src]'s cracks. This'll do for now.</span>")
 	return TRUE
-
-
-//Admin procs to mess with the reaction environment.
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/lazy_startup()
-	slagged = FALSE
-	for(var/I=0;I<5;I++)
-		fuel_rods += new /obj/item/fuel_rod(src)
-	message_admins("Reactor started up by admins in [ADMIN_VERBOSEJMP(src)]")
-	start_up()
-
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/deplete()
-	for(var/obj/item/fuel_rod/FR in fuel_rods)
-		FR.depletion = 100
-
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/Initialize(mapload)
 	. = ..()
@@ -565,6 +556,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	///Power goes from 0 to 100
 	radiation_pulse(get_turf(src), (500+(power*60)), (10+(power)), TRUE) //BIG flash of rads
 	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
+	radio = null
+	radio_key = null
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()
@@ -620,7 +613,6 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		icon_state = "reactor_slagged"
 
 //Startup, shutdown
-
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/start_up()
 	if(slagged)
 		return // No :)
@@ -631,6 +623,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	playsound(loc, startup_sound, 80)
 	soundloop = new(list(src), TRUE)
 
+	if(sludge_spawned == FALSE)
+		sludge_spawner_preload()
+		sludge_spawned = TRUE
+
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
 	STOP_PROCESSING(SSmachines, src)
@@ -640,5 +636,3 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	temperature = 0
 	update_icon()
 	QDEL_NULL(soundloop)
-
-

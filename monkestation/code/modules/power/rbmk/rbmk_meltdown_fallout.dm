@@ -1,5 +1,6 @@
-#define SLUDGE_SHORT_RANGE 5
-#define SLUDGE_LONG_RANGE 60
+/// Spawn Distance for sludge spawners
+#define SLUDGE_SPAWNER_SHORT_RANGE 10
+#define SLUDGE_SPAWNER_LONG_RANGE 100
 
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
@@ -22,19 +23,25 @@
 /obj/effect/landmark/nuclear_waste_spawner
 	name = "Nuclear waste spawner"
 
+//Spawns nuclear_waste_spawners on map using vents
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/sludge_spawner_preload()
+	for(var/turf/open/floor/floor in orange(SLUDGE_SPAWNER_SHORT_RANGE, get_turf(src)))
+		if(prob(10)) //Prob of Spawn for sludge spawner
+			new /obj/effect/landmark/nuclear_waste_spawner(floor)
+			continue
+
+	for(var/turf/open/floor/floor in orange(SLUDGE_SPAWNER_LONG_RANGE, get_turf(src)))
+		if(prob(4)) //Prob of Spawn for sludge spawner
+			new /obj/effect/landmark/nuclear_waste_spawner(floor)
+			continue
+
 /obj/effect/landmark/nuclear_waste_spawner/proc/fire()
 	playsound(loc, 'sound/effects/gib_step.ogg', 100)
 	new /obj/effect/decal/nuclear_waste/epicenter(get_turf(src))
-	for(var/turf/open/floor in orange(SLUDGE_SHORT_RANGE, get_turf(src)))
-		if(prob(60)) //Scatter the sludge, don't smear it everywhere
-			new /obj/effect/decal/nuclear_waste (floor)
-			continue
-
-	for(var/turf/open/floor in orange(SLUDGE_LONG_RANGE, get_turf(src)))
+	for(var/turf/open/floor in orange(3, get_turf(src)))
 		if(prob(20)) //Scatter the sludge, don't smear it everywhere
-			new /obj/effect/decal/nuclear_waste (floor)
+			new /obj/effect/decal/nuclear_waste(floor)
 			continue
-
 	qdel(src)
 
 /obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)
@@ -113,5 +120,5 @@
 		return
 	status_alarm(FALSE)
 
-#undef SLUDGE_SHORT_RANGE
-#undef SLUDGE_LONG_RANGE
+#undef SLUDGE_SPAWNER_SHORT_RANGE
+#undef SLUDGE_SPAWNER_LONG_RANGE
