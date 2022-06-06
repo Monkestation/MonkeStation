@@ -7368,7 +7368,9 @@
 /turf/open/floor/carpet/blue,
 /area/library)
 "aCq" = (
-/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -10522,7 +10524,6 @@
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "aOq" = (
-/obj/machinery/firealarm/directional/west,
 /obj/machinery/computer/nanite_chamber_control,
 /turf/open/floor/plasteel/dark,
 /area/science/research)
@@ -10823,6 +10824,7 @@
 /area/crew_quarters/heads/cmo)
 "aPp" = (
 /obj/machinery/modular_fabricator/exosuit_fab,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "aPq" = (
@@ -13950,6 +13952,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"beA" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/science/research)
 "beV" = (
 /obj/machinery/pdapainter,
 /obj/effect/turf_decal/trimline/blue/corner,
@@ -16288,7 +16299,6 @@
 "hJL" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/vending/wardrobe/robo_wardrobe,
-/obj/structure/railing/corner,
 /obj/effect/turf_decal/monke/siding/thinplating/dark{
 	dir = 10
 	},
@@ -16296,6 +16306,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/structure/railing,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "hKL" = (
@@ -18785,7 +18796,6 @@
 	},
 /area/bridge)
 "oMA" = (
-/obj/machinery/door/firedoor/heavy,
 /obj/structure/railing/corner{
 	dir = 8
 	},
@@ -18797,6 +18807,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
@@ -114672,7 +114685,7 @@ adB
 fNI
 cKG
 hJL
-agz
+beA
 aCq
 oMA
 agz
