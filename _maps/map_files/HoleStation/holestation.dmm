@@ -5859,6 +5859,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/directional/east,
+/obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "aws" = (
@@ -9041,6 +9042,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supplymain/visible{
 	dir = 1
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "aID" = (
@@ -9596,6 +9598,9 @@
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "security"
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aKL" = (
@@ -10677,6 +10682,7 @@
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "aOW" = (
@@ -14867,6 +14873,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"dUJ" = (
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
+/obj/structure/closet/secure_closet/atmospherics,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "dVc" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16584,6 +16597,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "security"
+	},
 /turf/open/floor/plasteel,
 /area/security/brig)
 "iCK" = (
@@ -122568,7 +122584,7 @@ aSY
 aSY
 atm
 awr
-abH
+dUJ
 aHA
 acR
 agm
