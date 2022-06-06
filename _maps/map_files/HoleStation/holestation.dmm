@@ -1211,9 +1211,6 @@
 /area/engine/atmos)
 "aeX" = (
 /obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -2040,9 +2037,11 @@
 /area/crew_quarters/heads/chief)
 "aij" = (
 /obj/machinery/door/airlock/command/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "Bridge"
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
@@ -3080,11 +3079,11 @@
 /area/hallway/primary/central)
 "alZ" = (
 /obj/machinery/door/airlock/command/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "Bridge"
+	},
 /turf/open/floor/plasteel,
 /area/bridge)
 "amb" = (
@@ -4975,11 +4974,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
-"asO" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/hallway/secondary/entry)
 "asP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -5781,9 +5775,6 @@
 /area/engine/engine_core)
 "avW" = (
 /obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "avX" = (
@@ -9885,9 +9876,6 @@
 	name = "Brig Shuttle Airlock";
 	req_one_access_txt = "63"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
@@ -9932,9 +9920,6 @@
 /area/engine/atmos)
 "aMc" = (
 /obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -9950,22 +9935,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/quartermaster/exploration_dock)
-"aMf" = (
-/obj/machinery/door/airlock/external{
-	name = "Brig Shuttle Airlock";
-	req_one_access_txt = "63"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aMg" = (
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood,
@@ -10142,9 +10111,6 @@
 /area/engine/atmos)
 "aMT" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -10152,9 +10118,6 @@
 /area/maintenance/port/central)
 "aMU" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 9
 	},
@@ -11033,21 +10996,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"aPY" = (
-/obj/machinery/door/airlock/external{
-	name = "Departure Shuttle Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aPZ" = (
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
@@ -11085,9 +11033,6 @@
 "aQg" = (
 /obj/machinery/door/airlock/external{
 	name = "Departure Shuttle Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
@@ -11468,9 +11413,6 @@
 "aRg" = (
 /obj/machinery/door/airlock/external{
 	name = "Port Shuttle Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 8
@@ -12041,18 +11983,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engine_core)
-"aTd" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Port Shuttle Airlock"
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "aTh" = (
 /obj/machinery/camera/autoname{
 	dir = 5
@@ -13053,16 +12983,18 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "aXc" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
 /obj/machinery/door/airlock/atmos,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 8
+	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/engine_equipment,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /obj/effect/mapping_helpers/airlock/autoname,
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "aXg" = (
@@ -13140,17 +13072,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aXr" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "aXs" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/tile/neutral,
@@ -14516,9 +14437,6 @@
 /area/security/brig)
 "cIn" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/structure/railing/corner{
 	dir = 1
 	},
@@ -14702,7 +14620,6 @@
 /area/hallway/primary/central)
 "deN" = (
 /obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -18287,17 +18204,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/airless,
 /area/space/nearstation)
-"nJl" = (
-/obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
-/turf/open/floor/plating,
-/area/maintenance/central/secondary)
 "nJE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -19497,17 +19403,6 @@
 /obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
-"roC" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/science/minisat,
-/turf/open/floor/plating,
-/area/ai_monitored/turret_protected/ai_upload_foyer)
 "rrj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -20974,9 +20869,6 @@
 /area/maintenance/starboard/aft/secondary)
 "uXN" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -21062,9 +20954,6 @@
 /area/maintenance/central/secondary)
 "vgI" = (
 /obj/machinery/door/airlock/external/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -22037,7 +21926,6 @@
 /area/engine/atmos)
 "xFs" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/railing/corner{
 	dir = 8
 	},
@@ -60712,15 +60600,15 @@ anZ
 aLi
 aLS
 twH
-aPY
+aQg
 aLm
 aLm
 aWh
 aLm
 aLm
-aPY
+aQg
 nDD
-aPY
+aQg
 aLi
 anZ
 anZ
@@ -61224,7 +61112,7 @@ anZ
 anZ
 anZ
 aLm
-aMf
+aLS
 aNR
 aQg
 aLm
@@ -112628,14 +112516,14 @@ aAp
 aoF
 aoF
 axh
-aTd
+aRg
 aQi
 aFx
 aaF
 aZc
 aaF
 aQi
-aTd
+aRg
 aDp
 aFo
 aFo
@@ -113136,7 +113024,7 @@ arj
 arj
 arj
 abl
-asO
+avW
 acW
 avW
 ahr
@@ -117013,7 +116901,7 @@ afu
 afu
 aay
 aay
-aXr
+aMc
 aay
 aay
 aCt
@@ -119555,7 +119443,7 @@ qvG
 etj
 bbb
 trI
-roC
+uXN
 xBw
 uXN
 ipf
@@ -125232,7 +125120,7 @@ ajR
 agW
 tDu
 uXW
-nJl
+vgI
 cAX
 vgI
 jAv
