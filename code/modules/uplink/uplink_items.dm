@@ -2164,9 +2164,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 20
 
 /datum/uplink_item/role_restricted/anxiety
-	name = "Anxiety Culture Bottle"
-	desc = "A bottle of pure contagious autism.\
-			At least, that's what the label says"
+	name = "Severe Anxiety Culture Bottle"
+	desc = "This culture bottle will cause the host to produce fully-grown \
+	specimens of Arthropoda Rhopalocera in large quantities upon injection \
+	into a suitable host."
 	item = /obj/item/reagent_containers/glass/bottle/anxiety
 	cost = 4
 	restricted_roles = list("Virologist")
@@ -2271,7 +2272,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	head after three seconds uninterrupted."
 	cost = 4
 	item = /obj/item/reverse_bear_trap
-	restricted_roles = list("Clown")
+	restricted_roles = list("Clown", "Curator") //MonkeStation Edit
 
 /datum/uplink_item/role_restricted/reverse_revolver
 	name = "Reverse Revolver"

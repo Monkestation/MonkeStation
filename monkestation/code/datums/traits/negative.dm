@@ -48,3 +48,42 @@
 	desc = "For reasons unknown, your posterior is unstable and will fall off more often."
 	value = -1
 	//All effects are handled directly in butts.dm
+
+/datum/quirk/kleptomaniac
+	name = "Kleptomaniac"
+	desc = "The station's just full of free stuff!  Nobody would notice if you just... took it, right?"
+	mob_trait = TRAIT_KLEPTOMANIAC
+	value = -2
+
+/datum/quirk/kleptomaniac/add()
+	var/datum/brain_trauma/mild/kleptomania/T = new()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/quirk/kleptomaniac/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.cure_trauma_type(/datum/brain_trauma/mild/kleptomania, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/quirk/fluffy_tongue
+	name = "Fluffy Tongue"
+	desc = "After spending too much time watching anime you have developed a horrible speech impediment."
+	value = 5
+
+/datum/quirk/fluffy_tongue/on_spawn()
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+
+/datum/quirk/fluffy_tongue/remove()
+	UnregisterSignal(quirk_holder, COMSIG_MOB_SAY)
+
+
+/datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = replacetext(message, "ne", "nye")
+		message = replacetext(message, "nu", "nyu")
+		message = replacetext(message, "na", "nya")
+		message = replacetext(message, "no", "nyo")
+		message = replacetext(message, "ove", "uv")
+		message = replacetext(message, "r", "w")
+		message = replacetext(message, "l", "w")
+	speech_args[SPEECH_MESSAGE] = message

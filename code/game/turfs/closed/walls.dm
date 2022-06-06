@@ -8,7 +8,8 @@
 	explosion_block = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	//a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	heat_capacity = 312500
 
 	baseturfs = /turf/open/floor/plating
 
@@ -17,13 +18,14 @@
 	FASTDMM_PROP(\
 		pipe_astar_cost = 35\
 	)
-
-	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
-	var/slicing_duration = 100  //default time taken to slice the wall
+	/// lower numbers are harder. Used to determine the probability of a hulk smashing through.
+	var/hardness = 40
+	/// default time taken to slice the wall	//Changed to Seconds for clarity	//Monkestation Edit
+	var/slicing_duration = 10 SECONDS
 	var/sheet_type = /obj/item/stack/sheet/iron
 	var/sheet_amount = 2
 	var/girder_type = /obj/structure/girder
-
+	/* //MONKESTATION REMOVAL
 	canSmoothWith = list(
 	/turf/closed/wall,
 	/turf/closed/wall/r_wall,
@@ -90,9 +92,14 @@
 	/obj/machinery/door/airlock/sandstone/glass,
 	/obj/machinery/door/airlock/wood/glass,
 	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
+	/obj/machinery/door/airlock/external/glass,
+	/turf/closed/wall/foam_base,
+	/turf/closed/wall/foam_base/iron,
+	/turf/closed/wall/foam_base/resin)
 	//MONKESTATION EDIT END
 	smooth = SMOOTH_TRUE
+	*/ //MONKESTATION REMOVAL END
+
 
 	var/list/dent_decals
 
@@ -100,6 +107,19 @@
 	. = ..()
 	if(is_station_level(z))
 		GLOB.station_turfs += src
+	//MONKESTATION ADDITION START
+	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
+		if(fixed_underlay["space"])
+			underlay_appearance.icon = 'icons/turf/space.dmi'
+			underlay_appearance.icon_state = SPACE_ICON_STATE
+			underlay_appearance.plane = PLANE_SPACE
+		else
+			underlay_appearance.icon = fixed_underlay["icon"]
+			underlay_appearance.icon_state = fixed_underlay["icon_state"]
+		fixed_underlay = string_assoc_list(fixed_underlay)
+		underlays += underlay_appearance
+	//MONKESTATION ADDITION END
 
 /turf/closed/wall/Destroy()
 	if(is_station_level(z))

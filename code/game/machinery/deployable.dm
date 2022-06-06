@@ -73,7 +73,9 @@
 			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
 			if(do_after(user, 50, target=src))
 				W.use(5)
-				new /turf/closed/wall/mineral/wood/nonmetal(get_turf(src))
+				var/turf/T = get_turf(src)
+				T.PlaceOnTop(/turf/closed/wall/mineral/wood/nonmetal)
+				transfer_fingerprints_to(T)
 				qdel(src)
 				return
 	return ..()
@@ -98,16 +100,17 @@
 /obj/structure/barricade/sandbags
 	name = "sandbags"
 	desc = "Bags of sand. Self explanatory."
-	icon = 'icons/obj/smooth_structures/sandbags.dmi'
+	icon = 'icons/obj/smooth_structures/sandbags.dmi' //MONKESTATION OVERRIDE SEE monkestation/code/modules/bitmask_smoothing/code for all code pertaining to new smooth objects
 	icon_state = "sandbags"
 	max_integrity = 280
 	proj_pass_rate = 20
 	pass_flags_self = LETPASSTHROW
 	bar_material = SAND
 	climbable = TRUE
+	/* //MONKESTATION REMOVAL
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/barricade/sandbags, /turf/closed/wall, /turf/closed/wall/r_wall, /obj/structure/falsewall, /obj/structure/falsewall/reinforced, /turf/closed/wall/rust, /turf/closed/wall/r_wall/rust, /obj/structure/barricade/security)
-
+	*/
 /obj/structure/barricade/security
 	name = "security barrier"
 	desc = "A deployable barrier. Provides good cover in fire fights."

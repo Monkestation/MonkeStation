@@ -3,7 +3,7 @@
 	Lets you read PDA and request console messages.
 */
 
-#define LINKED_SERVER_NONRESPONSIVE  (!linkedServer || (linkedServer.stat & (NOPOWER|BROKEN)))
+#define LINKED_SERVER_NONRESPONSIVE  (!linkedServer || (linkedServer.machine_stat & (NOPOWER|BROKEN)))
 
 #define MSG_MON_SCREEN_MAIN 		0
 #define MSG_MON_SCREEN_LOGS 		1
@@ -418,6 +418,10 @@
 
 						if(isnull(custommessage) || custommessage == "")
 							message = "<span class='notice'>NOTICE: No message entered!</span>"
+							return attack_hand(usr)
+
+						if(customrecepient.toff)
+							message = "<span class='notice'>NOTICE: Recepient has messages turned off!</span>"
 							return attack_hand(usr)
 
 						var/datum/signal/subspace/messaging/pda/signal = new(src, list(

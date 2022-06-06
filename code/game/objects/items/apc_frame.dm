@@ -24,7 +24,7 @@
 	if(A.always_unpowered)
 		to_chat(user, "<span class='warning'>You cannot place [src] in this area!</span>")
 		return
-	if(gotwallitem(T, ndir, inverse*2))
+	if(check_wall_item(T, ndir, inverse*2))
 		to_chat(user, "<span class='warning'>There's already an item on this wall!</span>")
 		return
 
@@ -93,7 +93,7 @@
 		return
 	var/turf/T = get_turf(on_wall) //the user is not where it needs to be.
 	var/area/A = get_area(user)
-	if(A.get_apc())
+	if(A.apc)
 		to_chat(user, "<span class='warning'>This area already has an APC!</span>")
 		return //only one APC per area
 	if(!A.requires_power)

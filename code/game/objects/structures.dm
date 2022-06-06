@@ -19,16 +19,16 @@
 	if (!armor)
 		armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 0)
 	. = ..()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))  //MONKESTATION CHANGE
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 		icon_state = ""
 	GLOB.cameranet.updateVisibility(src)
 
 /obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
-	if(smooth)
-		queue_smooth_neighbors(src)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))  //MONKESTATION CHANGE
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()
 
 /obj/structure/attack_hand(mob/user)
@@ -87,7 +87,14 @@
 	structureclimber = user
 	if(do_mob(user, user, adjusted_climb_time))
 		if(src.loc) //Checking if structure has been destroyed
-			if(do_climb(user))
+			if(istype(src, /obj/structure/table) && HAS_TRAIT(user, TRAIT_VAULTING) && user.m_intent == MOVE_INTENT_RUN)//monkestation edit: simians can fling themselves off climbable structures
+				vault_over_object(user, src)
+				if(climb_stun)
+					user.Stun(climb_stun)
+					user.visible_message("<span class='warning'>[user] flips over [src]!</span>", \
+									"<span class='notice'>You flip over [src]!</span>")
+				. = 1
+			else if(do_climb(user))
 				user.visible_message("<span class='warning'>[user] climbs onto [src].</span>", \
 									"<span class='notice'>You climb onto [src].</span>")
 				log_combat(user, src, "climbed onto")

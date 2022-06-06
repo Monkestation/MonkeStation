@@ -17,19 +17,20 @@
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
 
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!</span>")
 
-	//MONKESTATION EDIT START - EXAMINE TEXT
-	if(examine_text && !obscure_name && (real_name == name))
-		. += "[examine_text]\n*---------*"
-	else
-		. += "<span class='notice'>*---------*</span>"
-	//MONKESTATION EDIT END
 
 	var/apparent_species
 	if(dna?.species && !skipface)
 		apparent_species = ", \an [dna.species.name]"
-	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"][apparent_species]</EM>!")
+	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"][apparent_species]</EM>!</span>")
+
+	//MONKESTATION EDIT START - EXAMINE TEXT
+	if(examine_text && !obscure_name && (real_name == name))
+		. += "[examine_text]\n<span class='notice'>*---------*"
+	else
+		. += "<span class='notice'>*---------*"
+	//MONKESTATION EDIT END
 
 	//uniform
 	if(w_uniform && !(obscured & ITEM_SLOT_ICLOTHING))
@@ -121,7 +122,7 @@
 		if(!just_sleeping)
 			if(suiciding)
 				. += "<span class='warning'>[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.</span>"
-			if(hellbound)
+			if(ishellbound())
 				. += "<span class='warning'>[t_His] soul seems to have been ripped out of [t_his] body. Revival is impossible.</span>"
 			. += ""
 			if(getorgan(/obj/item/organ/brain) && !key && !get_ghost(FALSE, TRUE))
@@ -181,7 +182,7 @@
 
 	for(var/obj/item/bodypart/BP as() in bodyparts)
 		if(BP.limb_id != (dna.species.examine_limb_id ? dna.species.examine_limb_id : dna.species.id))
-			msg += "<span class='info'>[t_He] has \an [BP.name].</span>\n"
+			msg += "<span class='info'>[t_He] [t_has] \an [BP.name].</span>\n"
 
 	var/list/harm_descriptors = dna?.species.get_harm_descriptors()
 	var/brute_msg = harm_descriptors?["brute"]

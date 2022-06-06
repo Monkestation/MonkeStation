@@ -132,7 +132,7 @@
 			break
 
 	if(target)
-		walk_away(living_pawn, target, MONKEY_ENEMY_VISION, 5)
+		SSmove_manager.move_away(living_pawn, target, max_dist = MONKEY_ENEMY_VISION, delay = 5)
 	else
 		finish_action(controller, TRUE)
 
@@ -166,7 +166,7 @@
 /datum/ai_behavior/monkey_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	walk(living_pawn, 0)
+	SSmove_manager.stop_looping(living_pawn)
 	controller.blackboard[BB_MONKEY_CURRENT_ATTACK_TARGET] = null
 
 /// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
@@ -219,14 +219,14 @@
 	living_pawn.a_intent = INTENT_HELP
 
 	// no de-aggro
-	if(controller.blackboard[BB_MONKEY_AGGRESSIVE])
+	if(controller.blackboard[BB_MONKEY_AGGRESSIVE]  && !(HAS_TRAIT(target, TRAIT_MONKEYFRIEND))) //monkestation edit: so aggro can drop
 		return
 
 	if(DT_PROB(MONKEY_HATRED_REDUCTION_PROB, delta_time))
 		controller.blackboard[BB_MONKEY_ENEMIES][target]--
 
 	// if we are not angry at our target, go back to idle
-	if(controller.blackboard[BB_MONKEY_ENEMIES][target] <= 0)
+	if(controller.blackboard[BB_MONKEY_ENEMIES][target] <= 0  || (HAS_TRAIT(target, TRAIT_MONKEYFRIEND))) //monkestation edit: so aggro can drop
 		var/list/enemies = controller.blackboard[BB_MONKEY_ENEMIES]
 		enemies.Remove(target)
 		if(controller.blackboard[BB_MONKEY_CURRENT_ATTACK_TARGET] == target)

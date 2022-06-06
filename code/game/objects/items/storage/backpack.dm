@@ -20,6 +20,8 @@
 	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
+	species_restricted = null
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/storage/backpack/ComponentInitialize()
 	. = ..()
@@ -545,6 +547,7 @@
 	item_state = "duffel-syndiemed"
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery/PopulateContents()
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/scalpel(src)
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)

@@ -51,15 +51,9 @@
 	return holy_item_list
 
 /obj/item/choice_beacon/holy/spawn_option(obj/choice,mob/living/M)
-	if(!GLOB.holy_armor_type)
-		..()
-		playsound(src, 'sound/effects/pray_chaplain.ogg', 40, 1)
-		SSblackbox.record_feedback("tally", "chaplain_armor", 1, "[choice]")
-		GLOB.holy_armor_type = choice
-	else
-		to_chat(M, "<span class='warning'>A selection has already been made. Self-Destructing...</span>")
-		return
-
+	..()
+	playsound(src, 'sound/effects/pray_chaplain.ogg', 40, 1)
+	SSblackbox.record_feedback("tally", "chaplain_armor", 1, "[choice]")
 
 /obj/item/storage/box/holy
 	name = "Templar Kit"
@@ -140,7 +134,7 @@
 /obj/item/storage/box/holy/graverobber/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/graverobber_coat(src)
 	new /obj/item/clothing/under/rank/civilian/graverobber_under(src)
-	new /obj/item/clothing/head/chaplain/graverobber_hat(src)
+	new /obj/item/clothing/head/helmet/chaplain/graverobber_hat(src)
 	new /obj/item/clothing/gloves/graverobber_gloves(src)
 
 /obj/item/clothing/suit/armor/riot/chaplain/graverobber_coat
@@ -150,7 +144,7 @@
 	item_state = "graverobber_coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
-/obj/item/clothing/head/chaplain/graverobber_hat
+/obj/item/clothing/head/helmet/chaplain/graverobber_hat
 	name = "grave robber hat"
 	desc = "A tattered leather hat. It reeks of death."
 	icon_state = "graverobber_hat"
@@ -268,8 +262,6 @@
 		reskin_holy_weapon(user)
 
 /obj/item/nullrod/proc/reskin_holy_weapon(mob/M)
-	if(GLOB.holy_weapon_type)
-		return
 	var/obj/item/nullrod/holy_weapon
 	var/list/holy_weapons_list = typesof(/obj/item/nullrod)
 	var/list/display_names = list()
@@ -284,8 +276,6 @@
 
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
 	holy_weapon = new A
-
-	GLOB.holy_weapon_type = holy_weapon.type
 
 	SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[choice]")
 

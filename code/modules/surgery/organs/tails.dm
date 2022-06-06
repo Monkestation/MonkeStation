@@ -74,3 +74,4 @@
 		tail_type = H.dna.features["tail_lizard"]
 		spines = H.dna.features["spines"]
 		H.update_body()
+

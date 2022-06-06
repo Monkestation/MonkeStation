@@ -34,11 +34,31 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ADMIN_SPAWNED_1				(1<<15) 		//! was this spawned by an admin? used for stat tracking stuff.
 #define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
 #define UNPAINTABLE_1 				(1<<17)
+/// Does the supermatter skip over this atom?
+#define SUPERMATTER_IGNORES_1 (1 << 18) //set this to 18 because tg has some other flags appearantly too if that gets ever ported fix this !!!!
 
 /// If the thing can reflect light (lasers/energy)
 #define RICOCHET_SHINY			(1<<0)
 /// If the thing can reflect matter (bullets/bomb shrapnel)
 #define RICOCHET_HARD			(1<<1)
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's name
+#define UPDATE_NAME (1<<0)
+/// Update the atom's desc
+#define UPDATE_DESC (1<<1)
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+/// Update the atom's overlays
+#define UPDATE_OVERLAYS (1<<3)
+/// Update the atom's greyscaling
+#define UPDATE_GREYSCALE (1<<4)
+/// Update the atom's smoothing. (More accurately, queue it for an update)
+#define UPDATE_SMOOTHING (1<<5)
+/// Update the atom's icon
+#define UPDATE_ICON (UPDATE_ICON_STATE|UPDATE_OVERLAYS)
+//Redirection component init flags
+#define REDIRECT_TRANSFER_WITH_TURF 1
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -86,6 +106,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSSTRUCTURE 	(1<<8)
 #define PASSFLAPS 		(1<<9)
 #define PASSDOORS 		(1<<10)
+#define PASSANOMALY		(1<<11)
 
 //! ## Movement Types
 #define GROUND			(1<<0)
@@ -141,6 +162,20 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //alternate appearance flags
 #define AA_TARGET_SEE_APPEARANCE (1<<0)
 #define AA_MATCH_TARGET_OVERLAYS (1<<1)
+
+//dir macros
+///Returns true if the dir is diagonal, false otherwise
+#define ISDIAGONALDIR(d) (d&(d-1))
+///True if the dir is north or south, false therwise
+#define NSCOMPONENT(d)   (d&(NORTH|SOUTH))
+///True if the dir is east/west, false otherwise
+#define EWCOMPONENT(d)   (d&(EAST|WEST))
+///Flips the dir for north/south directions
+#define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
+///Flips the dir for east/west directions
+#define EWDIRFLIP(d)     (d^(EAST|WEST))
+///Turns the dir by 180 degrees
+#define DIRFLIP(d)       turn(d, 180)
 
 /// 33554431 (2^24 - 1) is the maximum value our bitflags can reach.
 #define MAX_BITFLAG_DIGITS 8

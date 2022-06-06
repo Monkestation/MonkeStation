@@ -545,7 +545,7 @@
 	if(.)
 		return
 
-	var/atom/backup = get_spacemove_backup()
+	var/atom/backup = get_spacemove_backup(movement_dir)
 	if(backup && movement_dir)
 		if(isturf(backup)) //get_spacemove_backup() already checks if a returned turf is solid, so we can just go
 			return TRUE
@@ -781,7 +781,7 @@
 			card.AI = AI
 			AI.controlled_mech = null
 			AI.remote_control = null
-			icon_state = initial(icon_state)+"-open"
+			icon_state = "[base_icon_state]-open"
 			to_chat(AI, "You have been downloaded to a mobile storage device. Wireless connection offline.")
 			to_chat(user, "<span class='boldnotice'>Transfer successful</span>: [AI.name] ([rand(1000,9999)].exe) removed from [name] and stored within local memory.")
 
@@ -819,7 +819,7 @@
 	AI.forceMove(src)
 	occupant = AI
 	silicon_pilot = TRUE
-	icon_state = initial(icon_state)
+	icon_state = base_icon_state
 	update_icon()
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 	if(!internal_damage)
@@ -843,7 +843,7 @@
 	if(pilot_mob && pilot_mob.Adjacent(src))
 		if(occupant)
 			return
-		icon_state = initial(icon_state)
+		icon_state = base_icon_state
 		occupant = pilot_mob
 		pilot_mob.mecha = src
 		pilot_mob.forceMove(src)
@@ -854,7 +854,7 @@
 		occupant = null
 	if(pilot_mob.mecha == src)
 		pilot_mob.mecha = null
-	icon_state = "[initial(icon_state)]-open"
+	icon_state = "[base_icon_state]-open"
 	pilot_mob.forceMove(get_turf(src))
 	RemoveActions(pilot_mob)
 
@@ -956,7 +956,7 @@
 		GrantActions(H, human_occupant=1)
 		forceMove(loc)
 		log_message("[H] moved in as pilot.", LOG_MECHA)
-		icon_state = initial(icon_state)
+		icon_state = base_icon_state
 		setDir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!internal_damage)
@@ -1011,7 +1011,7 @@
 	brainmob.remote_control = src
 	brainmob.update_mobility()
 	brainmob.update_mouse_pointer()
-	icon_state = initial(icon_state)
+	icon_state = base_icon_state
 	update_icon()
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
@@ -1098,7 +1098,7 @@
 			mmi.mecha = null
 			mmi.update_icon()
 			L.mobility_flags = NONE
-		icon_state = initial(icon_state)+"-open"
+		icon_state = "[base_icon_state]-open"
 		setDir(dir_in)
 
 	if(L?.client)
@@ -1170,10 +1170,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	take_damage(500,  BRUTE)
 
 /obj/mecha/lighteater_act(obj/item/light_eater/light_eater)
+	..()
 	if(!lights_power)
 		return
 	lights = FALSE
 	lights_power = 0
-	set_light(0)
+	set_light_on(FALSE)
 	visible_message(src, "<span class='danger'>The lights on [src] short out!</span>")
 	playsound(src, 'sound/items/welder.ogg', 50, 1)

@@ -59,7 +59,7 @@
 	INVOKE_ASYNC(src, .proc/auto_scan, AM)
 
 /obj/machinery/scanner_gate/proc/auto_scan(atom/movable/AM)
-	if(!(stat & (BROKEN|NOPOWER)) && isliving(AM))
+	if(!(machine_stat & (BROKEN|NOPOWER)) && isliving(AM))
 		perform_scan(AM)
 
 /obj/machinery/scanner_gate/proc/set_scanline(type, duration)
@@ -114,7 +114,7 @@
 				if(!R || (R.fields["criminal"] == "*Arrest*"))
 					beep = TRUE
 		if(SCANGATE_MINDSHIELD)
-			if(HAS_TRAIT(M, TRAIT_MINDSHIELD))
+			if(M.has_mindshield_hud_icon())
 				beep = TRUE
 		if(SCANGATE_NANITES)
 			if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))

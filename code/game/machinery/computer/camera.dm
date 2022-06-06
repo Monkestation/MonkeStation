@@ -127,7 +127,7 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
+		var/c_tag = format_text(params["name"])
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/C = cameras[c_tag]
 		active_camera = C
@@ -275,7 +275,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
 	return
 
@@ -323,7 +323,7 @@
 /obj/machinery/computer/security/telescreen/ce
 	name = "\improper Chief Engineer's telescreen"
 	desc = "Used for watching the engine, telecommunications and the minisat."
-	network = list("engine", "singularity", "tcomms", "minisat")
+	network = list("engine", "singularity", "tcomms", "minisat", "solar", "gravgen", "atmos")
 
 /obj/machinery/computer/security/telescreen/cmo
 	name = "\improper Chief Medical Officer's telescreen"
