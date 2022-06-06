@@ -30,7 +30,7 @@
 	turned_on = !turned_on
 
 /obj/machinery/plumbing/liquid_input_pump/CtrlClick(mob/living/user)
-	if(anchored)
+	if(!anchored)
 		return ..()
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 		return
@@ -153,15 +153,13 @@
 /obj/machinery/plumbing/liquid_output_pump/CtrlClick(mob/living/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, TRUE))
 		return
-	if(anchored)
-		var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is below the regulation", "Liquid Pump") as num|null
-		if(QDELETED(src))
-			return
-		if(new_height)
-			height_regulator = sanitize_integer(new_height, 0, LIQUID_HEIGHT_CONSIDER_FULL_TILE, 0)
+	if(!anchored)
 		return ..()
-	else
+	var/new_height = input(user, "Set new height regulation:\n([0]-[LIQUID_HEIGHT_CONSIDER_FULL_TILE]. Use 0 to disable the regulation)\nThe pump will only siphon if environment is below the regulation", "Liquid Pump") as num|null
+	if(QDELETED(src))
 		return
+	if(new_height)
+		height_regulator = sanitize_integer(new_height, 0, LIQUID_HEIGHT_CONSIDER_FULL_TILE, 0)
 
 /obj/machinery/plumbing/liquid_output_pump/examine(mob/user)
 	. = ..()
