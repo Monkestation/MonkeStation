@@ -54,6 +54,10 @@
 	if(!COOLDOWN_FINISHED(src, find_cooldown))
 		return
 
+	if(length(input_list.input_value) < 1)
+		failed.set_output(COMPONENT_SIGNAL)
+		return
+
 	COOLDOWN_START(src, find_cooldown, 1 SECONDS)
 
 	for(var/atom/i in input_list.input_value)

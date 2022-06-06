@@ -149,10 +149,10 @@
 
 /obj/item/circuit_component/cell_charger/Initialize(mapload)
 	. = ..()
-	eject_battery = add_input_port("Eject Battery", PORT_TYPE_SIGNAL)
+	eject_battery = add_input_port("Eject Cell", PORT_TYPE_SIGNAL)
 	trigger = add_input_port("Trigger", PORT_TYPE_SIGNAL)
 
-	battery_charge = add_output_port("Battery Charge", PORT_TYPE_NUMBER)
+	battery_charge = add_output_port("Cell Charge", PORT_TYPE_NUMBER)
 	triggered = add_output_port("Triggered", PORT_TYPE_SIGNAL)
 
 
