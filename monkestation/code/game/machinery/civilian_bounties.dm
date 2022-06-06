@@ -224,7 +224,7 @@
 		return
 	if(!pad_ref?.resolve())
 		return
-	if(!usr.canUseTopic(src, BE_CLOSE) || (stat & (NOPOWER|BROKEN)))
+	if(!usr.canUseTopic(src, BE_CLOSE) || (usr.stat & (NOPOWER|BROKEN)))
 		return
 	switch(action)
 		if("recalc")
