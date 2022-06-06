@@ -9382,6 +9382,11 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "QMLoad2";
+	name = "on ramp";
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
 "aJL" = (
@@ -12010,6 +12015,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/dorms)
 "aTa" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "aTb" = (
@@ -12072,6 +12079,12 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/conveyor_switch/oneway{
+	dir = 8;
+	id = "QMLoad";
+	name = "off ramp";
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
 "aTo" = (
@@ -12121,12 +12134,6 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "aTA" = (
-/obj/machinery/conveyor_switch/oneway{
-	dir = 8;
-	id = "QMLoad";
-	name = "off ramp";
-	pixel_y = 5
-	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -12136,6 +12143,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
 "aTC" = (
@@ -12223,11 +12231,6 @@
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/central)
 "aTZ" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "QMLoad2";
-	name = "on ramp";
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -12236,6 +12239,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 1
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/storage)
