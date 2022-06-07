@@ -9,7 +9,7 @@
 	icon_state = "circuit_goggles"
 	item_state = "electronic"
 	glass_colour_type = /datum/client_colour/glass_colour/green
-	actions_types = list(/datum/action/item_action/toggle_circuit_goggles)
+	actions_types = list(/datum/action/item_action/use_circuit_goggles)
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 

@@ -15,6 +15,8 @@
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
+	var/max_range = 10
+
 /obj/item/circuit_component/tostring/Initialize(mapload)
 	. = ..()
 	input_port = add_input_port("Input", PORT_TYPE_ANY)
@@ -32,7 +34,13 @@
 		return
 
 	var/input_value = input_port.input_value
+	if(isatom(input_value))
+		var/turf/location = get_turf(src)
+		var/atom/object = input_value
+		if(object.z != location.z || get_dist(location, object) > max_range)
+			output.set_output(PORT_TYPE_ATOM)
+			return
 
 	output.set_output("[input_value]")
 
-//MONKESTATION EDIT: Removed max range, makes sense on some other components, but not this one
+//MONKESTATION EDIT: Upped max range to 10, the shorter range makes sense on some other components, but not this one

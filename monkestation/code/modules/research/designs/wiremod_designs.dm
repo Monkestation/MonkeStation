@@ -2,7 +2,7 @@
 	name = "Security Record Component"
 	id = "comp_sec"
 	build_path = /obj/item/circuit_component/sec_status
-	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
+	category = list("initial", "Security")
 
 /datum/design/component/send_data
 	name = "Send Data Component"
@@ -39,6 +39,6 @@
 	desc = "A wearable shell."
 	id = "circuit_goggles_shell"
 	build_path = /obj/item/clothing/glasses/circuit_goggles
-	materials = list(/datum/material/glass = 3000, /datum/material/iron = 5000)
+	materials = list(/datum/material/glass = 3000, /datum/material/iron = 5000, /datum/material/copper = 1000)
 	build_type = PROTOLATHE | COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)

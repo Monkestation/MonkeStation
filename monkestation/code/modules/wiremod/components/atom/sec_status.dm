@@ -17,7 +17,7 @@
 	/// Criminal Status
 	var/datum/port/output/criminal
 	/// Crimes
-	var/datum/port/output/crim
+	var/datum/port/output/crimes
 	/// Notes
 	var/datum/port/output/notes
 
@@ -36,7 +36,7 @@
 	target_name = add_output_port("Name", PORT_TYPE_STRING)
 	id = add_output_port("ID", PORT_TYPE_STRING)
 	criminal = add_output_port("Criminal Status", PORT_TYPE_STRING)
-	crim = add_output_port("Crimes", PORT_TYPE_LIST)
+	crimes = add_output_port("Crimes", PORT_TYPE_LIST)
 	notes = add_output_port("Notes", PORT_TYPE_STRING)
 
 /obj/item/circuit_component/sec_status/Destroy()
@@ -44,7 +44,7 @@
 	target_name = null
 	id = null
 	criminal = null
-	crim = null
+	crimes = null
 	notes = null
 	return ..()
 
@@ -63,7 +63,7 @@
 		target_name.set_output(null)
 		id.set_output(null)
 		criminal.set_output(null)
-		crim.set_output(null)
+		crimes.set_output(null)
 		notes.set_output(null)
 		return
 
@@ -71,5 +71,5 @@
 	target_name.set_output(record.fields["name"])
 	id.set_output(record.fields["id"])
 	criminal.set_output(record.fields["criminal"])
-	crim.set_output(record.fields["crim"])
+	crimes.set_output(record.fields["crim"])
 	notes.set_output(record.fields["notes"])
