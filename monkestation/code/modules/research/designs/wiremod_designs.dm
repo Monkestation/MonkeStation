@@ -1,8 +1,11 @@
 /datum/design/component/security_record
 	name = "Security Record Component"
 	id = "comp_sec"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 500, /datum/material/copper = 1500)
 	build_path = /obj/item/circuit_component/sec_status
-	category = list("initial", "Security")
+	category = list(WIREMOD_CIRCUITRY, "initial", "Security")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/component/send_data
 	name = "Send Data Component"
