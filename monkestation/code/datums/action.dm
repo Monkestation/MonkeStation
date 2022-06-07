@@ -15,7 +15,6 @@
 
 /datum/action/item_action/use_circuit_goggles/proc/InterceptClickOn(mob/living/carbon/caller, params, atom/target)
 	caller.click_intercept = null
-	log_world("Click Called!")
 	SEND_SIGNAL(caller.glasses, COMSIG_CIRCUIT_GOGGLES_USED, target, caller)
 
 /datum/action/item_action/use_circuit_goggles/Remove(mob/M)
