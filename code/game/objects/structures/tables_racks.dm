@@ -471,7 +471,7 @@
 //MONKESTATION EDIT ADDITION
 /obj/structure/table/reinforced/Initialize()
 	. = ..()
-	AddElement(/datum/element/liquids_height, 20)
+	//AddElement(/datum/element/liquids_height, 20)
 //MONKESTATION EDIT END
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
