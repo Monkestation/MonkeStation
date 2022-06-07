@@ -19,7 +19,7 @@
 #define RBMK_MAX_CRITICALITY 3		//Default: 3
 
 //To turn those KWs into something usable
-#define RBMK_POWER_FLAVOURISER 15		//Default: 8000 //I want some use out of turbines for power
+#define RBMK_POWER_FLAVOURISER 10		//Default: 8000 //I want some use out of turbines for power
 
 //Reference: Heaters go up to 500K.
 //Hot plasmaburn: 14164.95 C.
@@ -325,11 +325,11 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/100) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/nucleium_output) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 
-			var/obj/structure/cable/C = reactor_turf.get_cable_node()
-			if(!C?.powernet)
+			var/obj/structure/cable/cable_node = reactor_turf.get_cable_node()
+			if(!cable_node?.powernet)
 				return
 			else
-				C.powernet.newavail += last_power_produced
+				cable_node.powernet.newavail += last_power_produced
 
 		var/total_control_moles = moderator_input.get_moles(GAS_N2) + (moderator_input.get_moles(GAS_CO2)*2) + (moderator_input.get_moles(GAS_PLUOXIUM)*3) //N2 helps you control the reaction at the cost of making it absolutely blast you with rads. Pluoxium has the same effect but without the rads!
 		if(total_control_moles >= minimum_coolant_level)
@@ -356,10 +356,10 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(!has_fuel())  //Reactor must be fuelled and ready to go before we can heat it up boys.
 		K = 0
 	else
-		for(var/obj/item/fuel_rod/FR in fuel_rods)
-			K += FR.fuel_power
-			fuel_power += FR.fuel_power
-			FR.deplete(depletion_modifier)
+		for(var/obj/item/fuel_rod/fuel_rod in fuel_rods)
+			K += fuel_rod.fuel_power
+			fuel_power += fuel_rod.fuel_power
+			fuel_rod.deplete(depletion_modifier)
 	//Firstly, find the difference between the two numbers.
 	var/difference = abs(K - desired_k)
 	//Then, hit as much of that goal with our cooling per tick as we possibly can.
@@ -509,7 +509,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			set_light(10)
 			investigate_log("Reactor stabilizing at [pressure] kPa and [temperature] C.", INVESTIGATE_ENGINES)
 			message_admins("Reactor stabilizing at [pressure] kPa and [temperature] C. [ADMIN_VERBOSEJMP(src)]")
-			radio.talk_into(src, "REACTOR STABILIZED at [pressure] kPa and [temperature] C." , engineering_channel)
+			radio.talk_into(src, "REACTOR STABILIZED at [pressure] kPa and [temperature] C." , common_channel)
 	else
 		if(!alert)
 			return
@@ -627,9 +627,23 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
 	STOP_PROCESSING(SSmachines, src)
+	stop_relay(CHANNEL_ENGINE_ALERT)
+
+	investigate_log("Reactor shutdown at [pressure] kPa and [temperature] C.", INVESTIGATE_ENGINES)
+	message_admins("Reactor shutdown at [pressure] kPa and [temperature] C. [ADMIN_VERBOSEJMP(src)]")
+	radio.talk_into(src, "REACTOR SHUTDOWN INITIATED at [pressure] kPa and [temperature] C. Venting remaining gasses and stablizating reactions. Please eject fuel rods and make any necessary repairs before restarting the reactor." , engineering_channel)
+
+	playsound(loc, 'sound/effects/turbolift/turbolift-close.ogg', 100)
 	set_light(0)
+
+	sleep(20)
+	playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
+	var/turf/reactor_turf = get_turf(src)
+	reactor_turf.atmos_spawn_air("water_vapor=[pressure/10];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
+
 	K = 0
 	desired_k = 0
 	temperature = 0
+	pressure = 0
 	update_icon()
 	QDEL_NULL(soundloop)

@@ -140,6 +140,7 @@
 	playsound(reactor, 'monkestation/sound/effects/rbmk/crane_1.wav', 100, FALSE)
 	fuel_rod.forceMove(get_turf(reactor))
 	reactor.fuel_rods -= fuel_rod
+	reactor.update_icon()
 
 //Preset pumps for mappers. You can also set the id tags yourself.
 /obj/machinery/atmospherics/components/binary/pump/rbmk_input
