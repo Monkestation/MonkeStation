@@ -69,5 +69,5 @@
 	centerspawner = FALSE
 	template_height = 26
 	template_width = 32
-	weight = 8
+	weight = 4
 	station_name = "MetaStation"
