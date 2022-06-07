@@ -1,6 +1,6 @@
 /obj/effect/decal/nuclear_waste
 	name = "Plutonium sludge"
-	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up, though you probably shouldn't step through this..."
+	desc = "A writhing pool of heavily irradiated, spent reactor fuel. A shovel should clear it up! Just sprinkle a little graphite on it, it will be fine. though you probably shouldn't step through this..."
 	icon = 'monkestation/icons/obj/machinery/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
 	alpha = 150
@@ -30,7 +30,7 @@
 //Spawns nuclear_waste_spawners on map
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/sludge_spawner_preload()
 	/// Smaller scale spawn for spawning range to power output
-	var/short_range = CLAMP(power/10, 5, 30)
+	var/short_range = CLAMP(power/10, 5, 25)
 	for(var/turf/open/floor in orange(short_range, get_turf(src)))
 		if(prob(1)) //Prob of Spawn for sludge spawner
 			new /obj/effect/landmark/nuclear_waste_spawner(floor)

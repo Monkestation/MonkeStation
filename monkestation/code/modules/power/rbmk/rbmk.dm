@@ -177,28 +177,28 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 					msg = "<span class='notice'>[src]'s seals look factory new, and the reactor's in excellent shape.</span>"
 			. += msg
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/W, mob/user, params)
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/attackby(obj/item/obj_item, mob/user, params)
 	update_icon()
-	if(istype(W, /obj/item/fuel_rod))
+	if(istype(obj_item, /obj/item/fuel_rod))
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot insert fuel into [src] when it has been raised above 20% power.</span>")
 			return FALSE
 		if(fuel_rods.len >= 5)
 			to_chat(user, "<span class='warning'>[src] is already at maximum fuel load.</span>")
 			return FALSE
-		to_chat(user, "<span class='notice'>You start to insert [W] into [src]...</span>")
+		to_chat(user, "<span class='notice'>You start to insert [obj_item] into [src]...</span>")
 		radiation_pulse(src, temperature)
 		if(do_after(user, 5 SECONDS, target=src))
 			if(!fuel_rods.len)
 				start_up() //That was the first fuel rod. Let's heat it up.
 				message_admins("Reactor first started up by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
 				investigate_log("Reactor first started by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
-			fuel_rods += W
-			W.forceMove(src)
+			fuel_rods += obj_item
+			obj_item.forceMove(src)
 			radiation_pulse(src, temperature) //Wear protective equipment when even breathing near a reactor!
 			investigate_log("Rod added to reactor by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 		return TRUE
-	if(!slagged && istype(W, /obj/item/sealant))
+	if(!slagged && istype(obj_item, /obj/item/sealant))
 		if(power >= 20)
 			to_chat(user, "<span class='notice'>You cannot repair [src] while it is running at above 20% power.</span>")
 			return FALSE
@@ -219,7 +219,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		return TRUE
 	return ..()
 
-/obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/components/trinary/nuclear_reactor/welder_act(mob/living/user, obj/item/item_tool)
 	update_icon()
 	if(slagged)
 		to_chat(user, "<span class='notice'>You can't repair [src], it's completely slagged!</span>")
@@ -230,7 +230,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	if(vessel_integrity > 0.5 * initial(vessel_integrity))
 		to_chat(user, "<span class='notice'>[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant.</span>")
 		return FALSE
-	if(I.use_tool(src, user, 0, volume=40))
+	if(item_tool.use_tool(src, user, 0, volume=40))
 		if(vessel_integrity > 0.5 * initial(vessel_integrity))
 			to_chat(user, "<span class='notice'>[src] is free from cracks. Further repairs must be carried out with flexi-seal sealant.</span>")
 			return FALSE
@@ -319,13 +319,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 			last_power_produced *= (power/100) //Aaaand here comes the cap. Hotter reactor => more power.
 			last_power_produced *= base_power_modifier //Finally, we turn it into actual usable numbers.
 			radioactivity_spice_multiplier += moderator_input.get_moles(GAS_TRITIUM) / 5 //Chernobyl 2.
-			var/turf/T = get_turf(src)
+			var/turf/reactor_turf = get_turf(src)
 			if(power >= 5)
 				var/nucleium_output = clamp((110 - power), 5, 100) //Increases Waste ouput which helps tell the turbines to be more efficient
 				coolant_output.adjust_moles(GAS_NITRYL, total_fuel_moles/100) //Shove out nitryl into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 				coolant_output.adjust_moles(GAS_NUCLEIUM, total_fuel_moles/nucleium_output) //Shove out nucleium into the air when it's fuelled. You need to filter this off, or you're gonna have a bad time.
 
-			var/obj/structure/cable/C = T.get_cable_node()
+			var/obj/structure/cable/C = reactor_turf.get_cable_node()
 			if(!C?.powernet)
 				return
 			else
@@ -390,32 +390,32 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	//You're overloading the reactor. Give a more subtle warning that power is getting out of control.
 	if(power >= 90 && world.time >= next_flicker)
 		next_flicker = world.time + 1.5 MINUTES
-		for(var/obj/machinery/light/L in GLOB.machines)
+		for(var/obj/machinery/light/lights in GLOB.machines)
 		//If youre running the reactor cold though, no need to flicker the lights.
-			if(prob(25) && L.z == z)
-				L.flicker()
+			if(prob(25) && lights.z == z)
+				lights.flicker()
 		investigate_log("Reactor overloading at [power]% power", INVESTIGATE_ENGINES)
-	for(var/atom/movable/I in get_turf(src))
-		if(isliving(I))
-			var/mob/living/L = I
-			var/temp_diff = CELSIUS_TO_KELVIN(temperature) - L.bodytemperature
+	for(var/atom/movable/atom_on_reactor in get_turf(src))
+		if(isliving(atom_on_reactor))
+			var/mob/living/living_mob = atom_on_reactor
+			var/temp_diff = CELSIUS_TO_KELVIN(temperature) - living_mob.bodytemperature
 			if(temp_diff <= 0)
 				continue
-			L.adjust_bodytemperature(CLAMP(temp_diff / 2, 1, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
-		if(istype(I, /obj/item/reagent_containers/food) && !istype(I, /obj/item/reagent_containers/food/drinks))
+			living_mob.adjust_bodytemperature(CLAMP(temp_diff / 2, 1, BODYTEMP_HEATING_MAX)) //If you're on fire, you heat up!
+		if(istype(atom_on_reactor, /obj/item/reagent_containers/food) && !istype(atom_on_reactor, /obj/item/reagent_containers/food/drinks))
 			playsound(src, pick('sound/machines/fryer/deep_fryer_1.ogg', 'sound/machines/fryer/deep_fryer_2.ogg'), 100, TRUE)
-			var/obj/item/reagent_containers/food/grilled_item = I
+			var/obj/item/reagent_containers/food/grilled_item = atom_on_reactor
 			if(prob(80))
 				return //To give the illusion that it's actually cooking omegalul.
 			switch(power)
 				if(20 to 39)
 					grilled_item.name = "grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "[initial(I.desc)] It's been grilled over a nuclear reactor."
+					grilled_item.desc = "[initial(atom_on_reactor.desc)] It's been grilled over a nuclear reactor."
 					if(!(grilled_item.foodtype & FRIED))
 						grilled_item.foodtype |= FRIED
 				if(40 to 70)
 					grilled_item.name = "heavily grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "[initial(I.desc)] It's been heavily grilled through the magic of nuclear fission."
+					grilled_item.desc = "[initial(atom_on_reactor.desc)] It's been heavily grilled through the magic of nuclear fission."
 					if(!(grilled_item.foodtype & FRIED))
 						grilled_item.foodtype |= FRIED
 				if(70 to 95)
@@ -430,22 +430,22 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 						grilled_item.foodtype |= FRIED
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/relay(var/sound, var/message=null, loop = FALSE, channel = null) //Sends a sound + text message to the crew of a ship
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
-			var/area/A = get_area(M)
+	for(var/mob/mobs in GLOB.player_list)
+		if(mobs.z == z)
+			var/area/A = get_area(mobs)
 			if(A != subtypesof(/area/space))
 				if(sound)
 					if(channel) //Doing this forbids overlapping of sounds
-						SEND_SOUND(M, sound(sound, repeat = loop, wait = 0, volume = 100, channel = channel))
+						SEND_SOUND(mobs, sound(sound, repeat = loop, wait = 0, volume = 100, channel = channel))
 					else
-						SEND_SOUND(M, sound(sound, repeat = loop, wait = 0, volume = 100))
+						SEND_SOUND(mobs, sound(sound, repeat = loop, wait = 0, volume = 100))
 				if(message)
-					to_chat(M, message)
+					to_chat(mobs, message)
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/stop_relay(channel) //Stops all playing sounds for crewmen on N channel.
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z)
-			M.stop_sound_channel(channel)
+	for(var/mob/mobs in GLOB.player_list)
+		if(mobs.z == z)
+			mobs.stop_sound_channel(channel)
 
 // Method for alerting the station on the radio
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/radio_alerts()
@@ -492,8 +492,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 		alert = TRUE
 		shake_animation(0.5)
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
-		var/turf/T = get_turf(src)
-		T.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
+		var/turf/reactor_turf = get_turf(src)
+		reactor_turf.atmos_spawn_air("water_vapor=[pressure/100];TEMP=[CELSIUS_TO_KELVIN(temperature)]")
 		var/pressure_damage = min(pressure/100, initial(vessel_integrity)/60)	//You get 60 seconds (if you had full integrity), worst-case. But hey, at least it can't be instantly nuked with a pipe-fire.. though it's still very difficult to save.
 		vessel_integrity -= pressure_damage
 		if(vessel_integrity <= pressure_damage) //It wouldn't
@@ -540,13 +540,13 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	var/datum/gas_mixture/coolant_input = COOLANT_INPUT_GATE
 	var/datum/gas_mixture/moderator_input = MODERATOR_INPUT_GATE
 	var/datum/gas_mixture/coolant_output = COOLANT_OUTPUT_GATE
-	var/turf/T = get_turf(src)
+	var/turf/reactor_turf = get_turf(src)
 	coolant_input.set_temperature(CELSIUS_TO_KELVIN(temperature)*2)
 	moderator_input.set_temperature(CELSIUS_TO_KELVIN(temperature)*2)
 	coolant_output.set_temperature(CELSIUS_TO_KELVIN(temperature)*2)
-	T.assume_air(coolant_input)
-	T.assume_air(moderator_input)
-	T.assume_air(coolant_output)
+	reactor_turf.assume_air(coolant_input)
+	reactor_turf.assume_air(moderator_input)
+	reactor_turf.assume_air(coolant_output)
 	QDEL_NULL(soundloop)
 	//Default explosion was: explosion(get_turf(src), 0, 5, 10, 20, TRUE, TRUE)
 	explosion(get_turf(src), 0, 0, 10, 15, TRUE, TRUE, 0, FALSE, 4)
@@ -554,10 +554,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	///Power goes from 0 to 100
 	radiation_pulse(get_turf(src), (500+(power*60)), (10+(power)), TRUE) //BIG flash of rads
 	empulse(get_turf(src), (10+(power/5)), (5+(power/5)), TRUE)
-	radio = null
-	radio_key = null
-	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
-	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
+	var/obj/effect/landmark/nuclear_waste_spawner/nuclear_waste_spawner = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
+	nuclear_waste_spawner.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
 
 //Failure condition 2: Blowout. Achieved by reactor going over-pressured. This is a round-ender because it requires more fuckery to achieve.
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/blowout()

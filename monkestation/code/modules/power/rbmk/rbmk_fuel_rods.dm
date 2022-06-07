@@ -46,25 +46,25 @@
 /obj/item/fuel_rod/proc/depletion_final(result_rod)
 	if(!result_rod)
 		return
-	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/N = loc
+	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/nuclear_reactor = loc
 	// Rod conversion is moot when you can't find the reactor
-	if(istype(N))
-		var/obj/item/fuel_rod/R
+	if(istype(nuclear_reactor))
+		var/obj/item/fuel_rod/fuel_rod
 		// You can add your own depletion scheme and not override this proc if you are going to convert a fuel rod into another type
 		switch(result_rod)
 			if("plutonium")
-				R = new /obj/item/fuel_rod/plutonium(loc)
-				R.depletion = depletion
+				fuel_rod = new /obj/item/fuel_rod/plutonium(loc)
+				fuel_rod.depletion = depletion
 			if("depleted")
 				if(fuel_power < 10)
 					fuel_power = 0
 					playsound(loc, 'sound/effects/supermatter.ogg', 100, TRUE)
-					R = new /obj/item/fuel_rod/depleted(loc)
-					R.depletion = depletion
+					fuel_rod = new /obj/item/fuel_rod/depleted(loc)
+					fuel_rod.depletion = depletion
 
 		// Finalization of conversion
-		if(istype(R))
-			N.fuel_rods += R
+		if(istype(fuel_rod))
+			nuclear_reactor.fuel_rods += fuel_rod
 			qdel(src)
 	else
 		depleted_final = FALSE // Maybe try again later?
@@ -106,6 +106,7 @@
 	// The name of material that'll be used for texts
 	var/material_name
 	var/material_name_singular
+	/// Initial Material in fuel rod
 	var/initial_amount = 0
 	// The maximum amount of material the rod can hold
 	var/max_initial_amount = 10
@@ -138,20 +139,20 @@
 	else
 		grown_amount = initial_amount * multiplier
 
-/obj/item/fuel_rod/material/attackby(obj/item/W, mob/user, params)
-	var/obj/item/stack/M = W
-	if(istype(M, material_type))
+/obj/item/fuel_rod/material/attackby(obj/item/obj_item, mob/user, params)
+	var/obj/item/stack/material_stack = obj_item
+	if(istype(material_stack, material_type))
 		if(!check_material_input(user))
 			return
 		if(initial_amount < max_initial_amount)
-			var/adding = min((max_initial_amount - initial_amount), M.amount)
-			M.amount -= adding
+			var/adding = min((max_initial_amount - initial_amount), material_stack.amount)
+			material_stack.amount -= adding
 			initial_amount += adding
 			if(adding == 1)
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name_singular] into \the [src].</span>")
 			else
 				to_chat(user, "<span class='notice'>You insert [adding] [material_name] into \the [src].</span>")
-			M.zero_amount()
+			material_stack.zero_amount()
 		else
 			to_chat(user, "<span class='warning'>\The [src]'s material slots are full!</span>")
 			return

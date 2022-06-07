@@ -14,14 +14,14 @@
 	var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactor = null
 	var/id = "default_reactor_for_lazy_mappers"
 
-/obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/C)
+/obj/machinery/computer/reactor/Initialize(mapload, obj/item/circuitboard/item_circuitboard)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/link_to_reactor), 10 SECONDS)
 
 /obj/machinery/computer/reactor/proc/link_to_reactor()
-	for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/asdf in GLOB.machines)
-		if(asdf.id && asdf.id == id)
-			reactor = asdf
+	for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/rbmk_id in GLOB.machines)
+		if(rbmk_id.id && rbmk_id.id == id)
+			reactor = rbmk_id
 			return TRUE
 	return FALSE
 
@@ -200,7 +200,7 @@
 	on = !on
 	signal(on)
 
-/obj/machinery/computer/reactor/pump/Initialize(mapload, obj/item/circuitboard/C)
+/obj/machinery/computer/reactor/pump/Initialize(mapload, obj/item/circuitboard/item_circuitboard)
 	. = ..()
 	radio_connection = SSradio.add_object(src, FREQ_RBMK_CONTROL,filter=RADIO_ATMOSIA)
 
@@ -302,9 +302,9 @@
 	. = ..(user)
 	//No reactor? Go find one then.
 	if(!reactor)
-		for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-			if(R.z == usr.z)
-				reactor = R
+		for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactors_on_zlevel in GLOB.machines)
+			if(reactors_on_zlevel.z == usr.z)
+				reactor = reactors_on_zlevel
 				break
 	active = TRUE
 
@@ -333,10 +333,10 @@
 	switch(action)
 		if("swap_reactor")
 			var/list/choices = list()
-			for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/R in GLOB.machines)
-				if(R.z != usr.z)
+			for(var/obj/machinery/atmospherics/components/trinary/nuclear_reactor/reactors_on_zlevel in GLOB.machines)
+				if(reactors_on_zlevel.z != usr.z)
 					continue
-				choices += R
+				choices += reactors_on_zlevel
 			reactor = input(usr, "What reactor do you wish to monitor?", "[src]", null) as null|anything in choices
 			powerData = list()
 			pressureData = list()
