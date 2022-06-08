@@ -102,7 +102,7 @@
 	if(!no_react)
 		//We do react so, make a simulation
 		create_reagents(100000) //Reagents are on turf level, should they be on liquids instead?
-		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE, T.liquids.temp)
+		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 		reagents.chem_temp = liquids.temp
 		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
 		liquids.reagent_list = list()
@@ -208,6 +208,15 @@
 	return FALSE
 
 /turf/proc/process_liquid_cell()
+	if(liquids)
+		var/turf/open/temp = get_turf(src)
+		var/datum/gas_mixture/temp_gas = temp.air
+		if(temp_gas)
+			if(liquids.temp)
+				var/equalized = temp_gas.return_temperature() + liquids.temp / 2
+				temp = equalized
+				temp_gas.set_temperature(equalized)
+				temp_gas.react()
 	if(!liquids)
 		if(!lgroup)
 			for(var/tur in GetAtmosAdjacentTurfs())
