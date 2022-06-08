@@ -96,7 +96,6 @@
 		liquids.total_reagents += reagent_list[reagent]
 
 	var/recieved_thermal_energy = (liquids.total_reagents - prev_total_reagents) * chem_temp
-	message_admins("[recieved_thermal_energy] [prev_thermal_energy]")
 	liquids.temp = (recieved_thermal_energy + prev_thermal_energy) / liquids.total_reagents
 
 	if(!no_react)
