@@ -207,6 +207,24 @@
 	return FALSE
 
 /turf/proc/process_liquid_cell()
+
+	if(liquids)
+		var/turf/open/temp_turf = get_turf(src)
+		var/datum/gas_mixture/gas = temp_turf.air
+		if(gas)
+			if(gas.return_temperature() > liquids.temp)
+				var/increaser =(gas.return_temperature() + liquids.temp) / 2
+				if(increaser > liquids.temp + 3)
+					gas.set_temperature(increaser)
+					liquids.temp = increaser
+					gas.react()
+			else if(liquids.temp > gas.return_temperature())
+				var/increaser = (liquids.temp + gas.return_temperature()) / 2
+				if(increaser > gas.return_temperature() + 3)
+					liquids.temp = increaser
+					gas.set_temperature(increaser)
+					gas.react()
+
 	if(!liquids)
 		if(!lgroup)
 			for(var/tur in GetAtmosAdjacentTurfs())
