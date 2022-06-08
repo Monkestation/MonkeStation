@@ -92,7 +92,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/override_float = FALSE
 	//MonkeStation Edit: Butt Organ
 	var/obj/item/organ/butt/mutant_butt = /obj/item/organ/butt
-	var/obj/item/organ/bladder/mutant_bladder = /obj/item/organ/bladder
 
 	//Bitflag that controls what in game ways can select this species as a spawnable source
 	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
@@ -179,7 +178,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/obj/item/organ/wings/wings = C.getorganslot(ORGAN_SLOT_WINGS)
 	//MonkeStation Edit: Butt Organ
 	var/obj/item/organ/butt/butt = C.getorganslot(ORGAN_SLOT_BUTT)
-	var/obj/item/organ/bladder/bladder = C.getorganslot(ORGAN_SLOT_BLADDER)
 
 	var/should_have_brain = TRUE
 	var/should_have_heart = !(NOBLOOD in species_traits)
@@ -194,7 +192,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/should_have_wings = mutantwings
 	//MonkeStation Edit: Butt Organ
 	var/should_have_butt = mutant_butt
-	var/should_have_bladder = TRUE
 
 	if(heart && (!should_have_heart || replace_current))
 		heart.Remove(C,1)
@@ -251,15 +248,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			butt = new()
 		butt.Insert(C)
 
-	if(bladder && (!should_have_bladder || replace_current))
-		bladder.Remove(C, 1)
-		QDEL_NULL(bladder)
-	if(should_have_bladder && !bladder)
-		if(mutant_bladder)
-			bladder = new mutant_bladder
-		else
-			bladder = new()
-		bladder.Insert(C)
 	//MonkeStation Edit End
 
 	if(tail && (!should_have_tail || replace_current))

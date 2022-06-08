@@ -159,7 +159,6 @@
 #define ORGAN_SLOT_WINGS "wings"
 //MonkeStation Edit: Butt Organ
 #define ORGAN_SLOT_BUTT "butt"
-#define ORGAN_SLOT_BLADDER "bladder"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
