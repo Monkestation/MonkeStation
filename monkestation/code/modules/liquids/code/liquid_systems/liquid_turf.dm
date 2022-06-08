@@ -208,15 +208,6 @@
 	return FALSE
 
 /turf/proc/process_liquid_cell()
-	if(liquids)
-		var/turf/open/temp = get_turf(src)
-		var/datum/gas_mixture/temp_gas = temp.air
-		if(temp_gas)
-			if(liquids.temp)
-				var/equalized = temp_gas.return_temperature() + liquids.temp / 2
-				temp = equalized
-				temp_gas.set_temperature(equalized)
-				temp_gas.react()
 	if(!liquids)
 		if(!lgroup)
 			for(var/tur in GetAtmosAdjacentTurfs())
