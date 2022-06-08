@@ -89,6 +89,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	//monkestation edit end
 	*/
 	return
+/datum/reagent/proc/reaction_liquid(obj/O, volume)
+	return
 
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
 	current_cycle++

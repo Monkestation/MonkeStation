@@ -193,6 +193,12 @@
 		M.adjust_bodytemperature(-15)
 	..()
 
+/datum/reagent/cryostylane/reaction_turf(turf/O, reac_volume)
+	var/turf/T = get_turf(O)
+	if(reac_volume >= 5)
+		for(var/mob/living/simple_animal/slime/M in T)
+			M.adjustToxLoss(rand(15,30))
+
 /datum/reagent/cryostylane/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 5)
 		for(var/mob/living/simple_animal/slime/M in T)

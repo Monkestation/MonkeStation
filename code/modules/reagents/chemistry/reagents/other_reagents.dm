@@ -304,6 +304,15 @@
 			return
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
+/datum/reagent/water/holywater/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if (!istype(T))
+		return
+	if(reac_volume>=10)
+		for(var/obj/effect/rune/R in T)
+			qdel(R)
+	T.Bless()
+
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
 	if(!istype(T))
 		return
@@ -369,7 +378,7 @@
 	taste_description = "cherry" // by popular demand
 	var/lube_kind = TURF_WET_LUBE ///What kind of slipperiness gets added to turfs.
 
-/datum/reagent/lube/reaction_obj(obj/O, reac_volume)
+/datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
 	var/turf/open/T = get_turf(O)
 	if (!istype(T))
 		return
@@ -1056,6 +1065,17 @@
 			O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 
+/datum/reagent/space_cleaner/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if(reac_volume >= 1)
+		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+		for(var/obj/effect/decal/cleanable/C in T)
+			qdel(C)
+
+		for(var/mob/living/simple_animal/slime/M in T)
+			M.adjustToxLoss(rand(5,10))
+
 /datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
 		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
@@ -1512,6 +1532,12 @@
 	color = "#771100"
 	taste_description = "carpet" // Your tounge feels furry.
 
+/datum/reagent/carpet/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
+		var/turf/open/floor/F = T
+		F.PlaceOnTop(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
+
 /datum/reagent/carpet/reaction_turf(turf/T, reac_volume)
 	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
 		var/turf/open/floor/F = T
@@ -1575,6 +1601,11 @@
 	..()
 
 /datum/reagent/colorful_reagent/reaction_turf(turf/T, reac_volume)
+	if(T)
+		T.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
+
+/datum/reagent/colorful_reagent/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
 	if(T)
 		T.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
 

@@ -222,7 +222,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
 		T.liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
-		T.liquids.temp = T.reagents.chem_temp
 		qdel(T.reagents)
 		//Expose turf
 		T.liquids.ExposeMyTurf()

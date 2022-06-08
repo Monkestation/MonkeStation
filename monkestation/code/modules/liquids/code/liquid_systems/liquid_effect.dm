@@ -492,7 +492,7 @@
 	var/datum/reagents/tempr = simulate_reagents_threshold(LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in T)
-		tempr.reaction(AM, TOUCH)
+		tempr.reaction(AM, TOUCH, liquid = TRUE)
 	qdel(tempr)
 
 /obj/effect/abstract/liquid_turf/proc/ChangeToNewTurf(turf/NewT)

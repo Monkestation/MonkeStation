@@ -587,7 +587,7 @@
 			can_process = TRUE
 	return can_process
 
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, liquid = FALSE)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -598,6 +598,8 @@
 		react_type = "TURF"
 	else if(isobj(A))
 		react_type = "OBJ"
+	else if(liquid == TRUE)
+		react_type = "LIQUID"
 	else
 		return
 	var/list/cached_reagents = reagent_list
@@ -617,6 +619,8 @@
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")
 				R.reaction_obj(A, R.volume * volume_modifier, show_message)
+			if("LIQUID")
+				R.reaction_liquid(A, R.volume * volume_modifier, show_message)
 
 /datum/reagents/proc/holder_full()
 	if(total_volume >= maximum_volume)

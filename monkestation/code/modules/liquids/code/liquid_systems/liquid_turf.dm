@@ -81,7 +81,7 @@
 	add_liquid_list(compiled_list, no_react, giver.chem_temp)
 
 //More efficient than add_liquid for multiples
-/turf/proc/add_liquid_list(reagent_list, no_react = FALSE, chem_temp = 300)
+/turf/proc/add_liquid_list(reagent_list, no_react = FALSE, chem_temp)
 	if(!liquids)
 		liquids = new(src)
 	if(liquids.immutable)
@@ -96,12 +96,13 @@
 		liquids.total_reagents += reagent_list[reagent]
 
 	var/recieved_thermal_energy = (liquids.total_reagents - prev_total_reagents) * chem_temp
+	message_admins("[recieved_thermal_energy] [prev_thermal_energy]")
 	liquids.temp = (recieved_thermal_energy + prev_thermal_energy) / liquids.total_reagents
 
 	if(!no_react)
 		//We do react so, make a simulation
 		create_reagents(100000) //Reagents are on turf level, should they be on liquids instead?
-		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
+		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE, T.liquids.temp)
 		reagents.chem_temp = liquids.temp
 		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
 		liquids.reagent_list = list()
@@ -167,7 +168,6 @@
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
 		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
-		liquids.temp = reagents.chem_temp
 		qdel(reagents)
 		//Expose turf
 		liquids.ExposeMyTurf()
