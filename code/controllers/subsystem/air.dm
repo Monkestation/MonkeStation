@@ -258,6 +258,14 @@ SUBSYSTEM_DEF(air)
 	*/
 	currentpart = SSAIR_REBUILD_PIPENETS
 
+/datum/controller/subsystem/air/Recover()
+	hotspots = SSair.hotspots
+	networks = SSair.networks
+	atmos_machinery = SSair.atmos_machinery
+	pipe_init_dirs_cache = SSair.pipe_init_dirs_cache
+	gas_reactions = SSair.gas_reactions
+	high_pressure_delta = SSair.high_pressure_delta
+	currentrun = SSair.currentrun
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
