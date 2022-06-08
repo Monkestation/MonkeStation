@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(decomission_bombs)
 	if(timing)
 		detonation_timer = world.time + (timer_set * 10)
 		countdown.start()
-		radio.talk_into(src, "Nuclear fission explosive armed at [loc]. Vacate area immediately.", list("Exploration"))
+		radio.talk_into(src, "Nuclear fission explosive armed. Vacate area immediately.", list("Exploration"))
 	else
 		detonation_timer = null
 		countdown.stop()
