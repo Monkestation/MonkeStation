@@ -24,10 +24,14 @@
 #define COMSIG_ATOM_NARSIE_ACT "atom_narsie_act"
 /// from base of atom/ratvar_act(): ()
 #define COMSIG_ATOM_RATVAR_ACT "atom_ratvar_act"
+/// from base of atom/light_eater_act(): (obj/item/light_eater/light_eater)
+#define COMSIG_ATOM_LIGHTEATER_ACT "atom_lighteater_act"
 /// from base of atom/eminence_act(): ()
 #define COMSIG_ATOM_EMINENCE_ACT "atom_eminence_act"
 /// from base of atom/blob_act(): (/obj/structure/blob)
 #define COMSIG_ATOM_BLOB_ACT "atom_blob_act"
+/// if returned, forces nothing to happen when the atom is attacked by a blob
+	#define COMPONENT_CANCEL_BLOB_ACT (1<<0)
 
 /// from base of atom/rcd_act(): (/mob, /obj/item/construction/rcd, passed_mode)
 #define COMSIG_ATOM_RCD_ACT "atom_rcd_act"

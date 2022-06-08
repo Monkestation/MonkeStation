@@ -516,15 +516,15 @@ Difficulty: Hard
 	icon_state = "wall"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	duration = 100
-	smooth = SMOOTH_TRUE
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 
 /obj/effect/temp_visual/hierophant/wall/Initialize(mapload, new_caster)
 	. = ..()
-	queue_smooth_neighbors(src)
-	queue_smooth(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 /obj/effect/temp_visual/hierophant/wall/Destroy()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()
 
 /obj/effect/temp_visual/hierophant/wall/CanAllowThrough(atom/movable/mover, turf/target)
@@ -689,7 +689,7 @@ Difficulty: Hard
 					if(get_dist(H, caster) <= H.aggro_vision_range)
 						H.FindTarget(list(caster), 1)
 					else
-						INVOKE_ASYNC(H, /mob/living/simple_animal/hostile/proc/Goto, get_turf(caster), H.move_to_delay, 3)
+						H.Goto(get_turf(caster), H.move_to_delay, 3)
 		if(monster_damage_boost && (ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)))
 			L.adjustBruteLoss(damage)
 		if(caster)
