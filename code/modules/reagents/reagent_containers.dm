@@ -30,6 +30,10 @@
 //MONKESTATION EDIT ADDITION
 	AddElement(/datum/element/liquids_interaction, on_interaction_callback = /obj/item/reagent_containers/glass/beaker/.proc/attack_on_liquids_turf)
 
+/obj/item/reagent_containers/Destroy()
+	. = ..()
+	RemoveElement(/datum/element/liquids_interaction, on_interaction_callback = /obj/item/reagent_containers/glass/beaker/.proc/attack_on_liquids_turf)
+
 /obj/item/reagent_containers/proc/attack_on_liquids_turf(obj/item/reagent_containers/my_beaker, turf/T, mob/living/user, obj/effect/abstract/liquid_turf/liquids)
 	if(!user.Adjacent(T))
 		return FALSE
@@ -158,7 +162,6 @@
 			reagents.reaction(target, TOUCH)
 		//MONKESTATION EDIT END
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
-		//reagents.reaction(target, TOUCH) //MONKESTATION EDIT CHANGE
 		if(QDELETED(src))
 			return
 
