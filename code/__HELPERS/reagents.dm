@@ -37,10 +37,10 @@
 
 ///Returns reagent datum from reagent name string
 /proc/get_chem_id(chem_name)
-	for(var/X in GLOB.chemical_reagents_list)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[X]
-		if(ckey(chem_name) == ckey(lowertext(R.name)))
-			return X
+	for(var/chemical in GLOB.chemical_reagents_list)
+		var/datum/reagent/Reagent = GLOB.chemical_reagents_list[chemical]
+		if(ckey(chem_name) == ckey(lowertext(Reagent.name)))
+			return chemical
 
 ///Takes a type in and returns a list of associated recipes
 /proc/get_recipe_from_reagent_product(input_type)
