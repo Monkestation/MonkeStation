@@ -32,23 +32,6 @@
 	else
 		add_overlay("mmi_dead")
 
-/obj/item/mmi/proc/debug_icon(var/new_brain)
-	new_brain = brain
-	var/obj/item/organ/brain/alien/alien
-	var/obj/item/organ/brain/positron/ipc
-	var/obj/item/organ/brain/human
-	if(brain == alien)
-		icon_state = "mmi_brain_alien"
-		braintype = "Xenoborg" //HISS....Beep.
-	if(brain == ipc)
-		icon_state = "posibrain-ipc"
-		braintype = "IPC"
-	if(brain == human)
-		icon_state = "mmi_brain"
-		braintype = "Cyborg"
-	add_overlay("mmi_alive")
-
-
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
 	radio = new(src) //Spawns a radio inside the MMI.
