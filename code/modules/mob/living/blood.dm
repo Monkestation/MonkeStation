@@ -256,7 +256,7 @@
 	if(small_drip)
 
 		if(T.liquids)
-			var/list/blood_drop = list(/datum/reagent/blood = 0.1) //lower this bad boy
+			var/list/blood_drop = list(/datum/reagent/blood = 0.1)
 			T.add_liquid_list(blood_drop, FALSE, 300)
 			return
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
