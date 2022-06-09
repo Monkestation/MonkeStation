@@ -104,6 +104,9 @@
 
 	LAZYADDASSOC(affected_carbon.mind.active_addictions, type, 1 * delta_time) //Next cycle!
 
+
+//These function very similar to disease stages, so if anyone wants to add a new addiction that does cool things look at how diseases do them
+
 /// Called when addiction enters stage 1
 /datum/addiction/proc/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
 	SEND_SIGNAL(affected_carbon, COMSIG_ADD_MOOD_EVENT, "[type]_addiction", light_withdrawal_moodlet, name)

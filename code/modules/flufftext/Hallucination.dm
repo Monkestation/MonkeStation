@@ -994,7 +994,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		specific_limb = pick(list(SCREWYDOLL_HEAD, SCREWYDOLL_CHEST, SCREWYDOLL_L_ARM, SCREWYDOLL_R_ARM, SCREWYDOLL_L_LEG, SCREWYDOLL_R_LEG))
 	if(!severity)
 		severity = rand(1, 5)
-	LAZYSET(human_mob.hal_screwydoll, specific_limb, severity)
+	LAZYSET(human_mob.hallucination_screwydoll, specific_limb, severity)
 	human_mob.update_health_hud()
 
 	timer_id = addtimer(CALLBACK(src, .proc/cleanup), duration, TIMER_STOPPABLE)
@@ -1004,8 +1004,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(!ishuman(target))
 		stack_trace("Somehow [target] managed to get a fake health doll hallucination, while not being a human mob.")
 	var/mob/living/carbon/human/human_mob = target
-	for(var/entry in human_mob.hal_screwydoll)
-		human_mob.hal_screwydoll[entry] = clamp(human_mob.hal_screwydoll[entry]+1, 1, 5)
+	for(var/entry in human_mob.hallucination_screwydoll)
+		human_mob.hallucination_screwydoll[entry] = clamp(human_mob.hallucination_screwydoll[entry]+1, 1, 5)
 	human_mob.update_health_hud()
 
 ///Adds a fake limb to the hallucination datum effect
@@ -1015,7 +1015,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(!severity)
 		severity = rand(1, 5)
 	var/mob/living/carbon/human/human_mob = target
-	LAZYSET(human_mob.hal_screwydoll, specific_limb, severity)
+	LAZYSET(human_mob.hallucination_screwydoll, specific_limb, severity)
 	target.update_health_hud()
 
 
@@ -1028,7 +1028,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(!ishuman(target))
 		stack_trace("Somehow [target] managed to get a fake health doll hallucination, while not being a human mob.")
 	var/mob/living/carbon/human/human_mob = target
-	LAZYNULL(human_mob.hal_screwydoll)
+	LAZYNULL(human_mob.hallucination_screwydoll)
 	human_mob.update_health_hud()
 	return ..()
 

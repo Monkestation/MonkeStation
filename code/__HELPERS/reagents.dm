@@ -25,9 +25,13 @@
 	else
 		return null
 
-///Returns a random reagent object minus blacklisted reagents
-/proc/get_random_reagent_id()
+/proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents and most foods and drinks
 	var/static/list/random_reagents = list()
+	if(!random_reagents.len)
+		for(var/thing  in subtypesof(/datum/reagent))
+			var/datum/reagent/R = thing
+			if(initial(R.can_synth) && initial(R.random_unrestricted))
+				random_reagents += R
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
 
