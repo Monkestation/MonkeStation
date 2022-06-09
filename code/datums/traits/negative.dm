@@ -546,8 +546,6 @@
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] of [initial(reagent_type.name)] [where_drug]. Better hope you don't run out...</span>")
 
 /datum/quirk/junkie/on_process()
-	if(HAS_TRAIT(quirk_holder, TRAIT_NOMETABOLISM))
-		return
 	var/mob/living/carbon/human/H = quirk_holder
 	if(world.time > next_process)
 		next_process = world.time + process_interval
