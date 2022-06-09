@@ -82,6 +82,3 @@
 		spawn(20)
 			booty.cooling_down = FALSE
 
-/* DISABLED UNTIL PREFS
-
-*/

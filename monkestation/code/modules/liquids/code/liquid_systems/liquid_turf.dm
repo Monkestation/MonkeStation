@@ -213,13 +213,13 @@
 		var/datum/gas_mixture/gas = temp_turf.air
 		if(gas)
 			if(gas.return_temperature() > liquids.temp)
-				var/increaser =(gas.return_temperature() + liquids.temp) / 2
+				var/increaser =((gas.return_temperature() * gas.total_moles()) + (liquids.temp * liquids.total_reagents)) / (2 + liquids.total_reagents + gas.total_moles())
 				if(increaser > liquids.temp + 3)
 					gas.set_temperature(increaser)
 					liquids.temp = increaser
 					gas.react()
 			else if(liquids.temp > gas.return_temperature())
-				var/increaser = (liquids.temp + gas.return_temperature()) / 2
+				var/increaser =((gas.return_temperature() * gas.total_moles()) + (liquids.temp * liquids.total_reagents)) / (2 + liquids.total_reagents + gas.total_moles())
 				if(increaser > gas.return_temperature() + 3)
 					liquids.temp = increaser
 					gas.set_temperature(increaser)
