@@ -1515,7 +1515,6 @@
 	taste_mult = 1.5
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
-	addiction_types = null
 
 /datum/reagent/stable_plasma/on_mob_life(mob/living/carbon/C)
 	C.adjustPlasma(10)
