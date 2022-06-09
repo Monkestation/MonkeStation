@@ -618,6 +618,11 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
+"abw" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/turf/open/space,
+/area/solar/starboard/fore)
 "abx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -776,22 +781,10 @@
 	icon_state = "0-8"
 	},
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/space,
 /area/solar/starboard/fore)
 "abR" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /turf/open/space,
 /area/solar/starboard/fore)
 "abS" = (
@@ -799,9 +792,6 @@
 	icon_state = "0-4"
 	},
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/space,
 /area/solar/starboard/fore)
 "abT" = (
@@ -1085,9 +1075,6 @@
 "acz" = (
 /obj/item/stack/cable_coil,
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/space,
 /area/solar/starboard/fore)
 "acB" = (
@@ -2299,9 +2286,6 @@
 "aeF" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /turf/open/space,
 /area/solar/starboard/fore)
 "aeG" = (
@@ -5412,10 +5396,10 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "ake" = (
-/obj/structure/lattice/catwalk,
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "0-2"
 	},
+/obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
 "akf" = (
@@ -79988,7 +79972,7 @@
 /obj/machinery/camera{
 	c_tag = "Incinerator";
 	dir = 8;
-	network = list("ss13","turbine")
+	network = list("ss13", "turbine")
 	},
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 10
@@ -125892,20 +125876,20 @@ aaa
 aaN
 aaY
 aaY
-ake
+abw
 abR
-ake
+abR
 acz
-ake
 abR
-ake
-ake
+abR
+abR
+abR
 aeF
 abR
-ake
-ake
-ake
-ake
+abR
+abR
+abR
+abR
 ake
 alw
 lvJ
