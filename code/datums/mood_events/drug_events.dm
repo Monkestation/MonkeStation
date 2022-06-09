@@ -4,7 +4,7 @@
 
 /datum/mood_event/stoned
 	mood_change = 6
-	description = "I'm sooooo stooooooooooooned..."
+	description = "<span class='nicegreen'>I'm sooooo stooooooooooooned...</span>\n"
 
 /datum/mood_event/smoked
 	description = "<span class='nicegreen'>I have had a smoke recently.</span>\n"
@@ -64,9 +64,9 @@
 	special_screen_obj = "mood_happiness_bad"
 
 /datum/mood_event/nicotine_withdrawal_moderate
-	description = "Haven't had a smoke in a while. Feeling a little on edge... "
+	description = "<span class='boldwarning'>Haven't had a smoke in a while. Feeling a little on edge...</span>\n"
 	mood_change = -5
 
 /datum/mood_event/nicotine_withdrawal_severe
-	description = "Head pounding. Cold sweating. Feeling anxious. Need a smoke to calm down!"
+	description = "<span class='boldwarning'>Head pounding. Cold sweating. Feeling anxious. Need a smoke to calm down!</span>\n"
 	mood_change = -8
