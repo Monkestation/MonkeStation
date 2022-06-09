@@ -598,7 +598,7 @@
 			if(method)
 				R.react_single(T, target_atom, method, part, show_message)
 				T.on_transfer(target_atom, method, transfer_amount * multiplier)
-			remove_reagent(T.type, transfer_amount)
+			remove_reagent(T.type, transfer_amount, no_react) //MONKESTATION EDIT CHANGE
 			transfer_log[T.type] = transfer_amount
 	else
 		var/to_transfer = amount
@@ -632,7 +632,7 @@
 		src.handle_reactions()
 	return amount
 
-/datum/reagents/proc/copy_to(obj/target, amount=1, multiplier=1, preserve_data=1)
+/datum/reagents/proc/copy_to(obj/target, amount=1, multiplier=1, preserve_data=1, no_react=0) //MONKESTATION EDIT CHANGE
 	var/list/cached_reagents = reagent_list
 	if(!target || !total_volume)
 		return
@@ -659,8 +659,11 @@
 
 	src.update_total()
 	R.update_total()
-	R.handle_reactions()
-	src.handle_reactions()
+	//MONKESTATION EDIT CHANGE BEGIN
+	if(!no_react)
+		R.handle_reactions()
+		src.handle_reactions()
+	//MONKESTATION EDIT CHANGE END
 	return amount
 
 /datum/reagents/proc/trans_id_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
@@ -948,7 +951,7 @@
 			can_process = TRUE
 	return can_process
 
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, liquid = FALSE)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -959,6 +962,8 @@
 		react_type = "TURF"
 	else if(isobj(A))
 		react_type = "OBJ"
+	else if(liquid == TRUE)
+		react_type = "LIQUID"
 	else
 		return
 	var/list/cached_reagents = reagent_list
@@ -978,6 +983,8 @@
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")
 				R.reaction_obj(A, R.volume * volume_modifier, show_message)
+			if("LIQUID")
+				R.reaction_liquid(A, R.volume * volume_modifier, show_message)
 
 /datum/reagents/proc/holder_full()
 	if(total_volume >= maximum_volume)
@@ -1062,12 +1069,16 @@
 		handle_reactions()
 	return TRUE
 
-/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) // Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, "beer" = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null, no_react = FALSE) //MONKESTATION EDIT CHANGE Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, "beer" = 15)
 	for(var/r_id in list_reagents)
 		var/amt = list_reagents[r_id]
-		add_reagent(r_id, amt, data)
+	//MONKESTATION CHANGE BEGIN
+		add_reagent(r_id, amt, data, no_react = TRUE)
+	if(!no_react)
+		handle_reactions()
+	//MONKESTATION EDIT CHANGE END
 
-/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
+/datum/reagents/proc/remove_reagent(reagent, amount, safety = TRUE, no_react = FALSE)// MONKESTATION EDIT CHANGE Added a safety check for the trans_id_to
 
 	if(isnull(amount))
 		amount = 0
@@ -1089,7 +1100,7 @@
 			amount = CLAMP(amount, 0, R.volume)
 			R.volume -= amount
 			update_total()
-			if(!safety)//So it does not handle reactions when it need not to
+			if(!safety)//So it does not handle reactions when it need not to //MONKESTATION EDIT CHANGE
 				handle_reactions()
 			if(my_atom)
 				my_atom.on_reagent_change(REM_REAGENT)

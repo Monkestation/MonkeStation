@@ -292,6 +292,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STABLE_ASS		"stable_ass"
 #define TRAIT_DUMMY_THICK		"dummy_thick"
 #define TRAIT_KLEPTOMANIAC 		"kleptomaniac"
+#define TRAIT_WATER_BREATHING "water_breathing"
+
 //MonkeStation Edit End
 
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
@@ -324,6 +326,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define GLASSES_TRAIT "glasses"
 #define CURSE_TRAIT "eldritch"
 #define STATION_TRAIT "station-trait"
+#define TRAIT_RUSTY "rust_trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"

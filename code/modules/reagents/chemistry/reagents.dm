@@ -42,6 +42,18 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/metabolizing = FALSE
 	var/list/addiction_types = null
 
+	//MONKESTATION EDIT ADDITION
+	///Whether it will evaporate if left untouched on a liquids simulated puddle
+	var/evaporates = FALSE
+	///How much fire power does the liquid have, for burning on simulated liquids. Not enough fire power/unit of entire mixture may result in no fire
+	var/liquid_fire_power = 0
+	///How fast does the liquid burn on simulated turfs, if it does
+	var/liquid_fire_burnrate = 0
+	///Whether a fire from this requires oxygen in the atmosphere
+	var/fire_needs_oxygen = TRUE
+	///The opacity of the chems used to determine the alpha of liquid turfs
+	var/opacity = 175
+	//MONKESTATION EDIT END
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
 	holder = null
@@ -61,7 +73,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 /datum/reagent/proc/reaction_turf(turf/T, volume)
-	//monkestation edit begin
+	/*//monkestation edit begin
 	if(!isspaceturf(T))
 		var/obj/effect/decal/cleanable/puddle/S = locate() in T.contents
 		if(!S)
@@ -74,6 +86,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		S.transform = S.transform.Turn(rand(0, 360))
 		S.add_atom_colour(color, WASHABLE_COLOUR_PRIORITY)
 	//monkestation edit end
+	*/
+	return
+/datum/reagent/proc/reaction_liquid(obj/O, volume)
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M)
