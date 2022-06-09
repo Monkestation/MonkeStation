@@ -468,11 +468,6 @@
 	integrity_failure = 50
 	armor = list("melee" = 10, "bullet" = 30, "laser" = 30, "energy" = 100, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70, "stamina" = 0)
 
-//MONKESTATION EDIT ADDITION
-/obj/structure/table/reinforced/Initialize()
-	. = ..()
-	//AddElement(/datum/element/liquids_height, 20)
-//MONKESTATION EDIT END
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)
