@@ -1,7 +1,7 @@
 /obj/item/mmi
 	name = "\improper Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'monkestation/icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/braintype = "Cyborg"
@@ -21,6 +21,9 @@
 	if(istype(brain, /obj/item/organ/brain/alien))
 		icon_state = "mmi_brain_alien"
 		braintype = "Xenoborg" //HISS....Beep.
+	if(istype(brain, /obj/item/organ/brain/positron))
+		icon_state = "posibrain-ipc"
+		braintype = "IPC"
 	else
 		icon_state = "mmi_brain"
 		braintype = "Cyborg"
@@ -28,6 +31,23 @@
 		add_overlay("mmi_alive")
 	else
 		add_overlay("mmi_dead")
+
+/obj/item/mmi/proc/debug_icon(var/new_brain)
+	new_brain = brain
+	var/obj/item/organ/brain/alien/alien
+	var/obj/item/organ/brain/positron/ipc
+	var/obj/item/organ/brain/human
+	if(brain == alien)
+		icon_state = "mmi_brain_alien"
+		braintype = "Xenoborg" //HISS....Beep.
+	if(brain == ipc)
+		icon_state = "posibrain-ipc"
+		braintype = "IPC"
+	if(brain == human)
+		icon_state = "mmi_brain"
+		braintype = "Cyborg"
+	add_overlay("mmi_alive")
+
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()
