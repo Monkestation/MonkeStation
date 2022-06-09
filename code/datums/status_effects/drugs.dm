@@ -28,7 +28,7 @@
 /datum/status_effect/high_blood_pressure/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		human_owner.physiology.bleed_mod /= 1.25
+		human_owner.physiology.bleed_mod *= 0.80
 
 /atom/movable/screen/alert/status_effect/high_blood_pressure
 	name = "High blood pressure"
