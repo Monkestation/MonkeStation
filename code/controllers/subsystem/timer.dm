@@ -141,12 +141,14 @@ SUBSYSTEM_DEF(timer)
 		clienttime_timers.Cut(1, next_clienttime_timer_index + 1)
 		next_clienttime_timer_index = 0
 
-	var/static/list/invoked_timers = list()
+	// Check for when we need to loop the buckets, this occurs when
+	// the head_offset is approaching BUCKET_LEN ticks in the past
 	if (practical_offset > BUCKET_LEN)
 		head_offset += TICKS2DS(BUCKET_LEN)
 		practical_offset = 1
 		resumed = FALSE
 
+	// Check for when we have to reset buckets, typically from auto-reset
 	if ((length(bucket_list) != BUCKET_LEN) || (world.tick_lag != bucket_resolution))
 		reset_buckets()
 		bucket_list = src.bucket_list
@@ -260,6 +262,7 @@ SUBSYSTEM_DEF(timer)
 	alltimers += second_queue
 
 	for (var/datum/timedevent/t as anything in alltimers)
+		t.timer_subsystem = src // Recovered timers need to be reparented
 		t.bucket_joined = FALSE
 		t.bucket_pos = -1
 		t.prev = null
@@ -334,10 +337,14 @@ SUBSYSTEM_DEF(timer)
 	for(var/global_var in global.vars)
 		if (istype(global.vars[global_var],src.type))
 			timerSS = global.vars[global_var]
+
 	second_queue |= timerSS.second_queue
 	hashes |= timerSS.hashes
 	timer_id_dict |= timerSS.timer_id_dict
 	bucket_list |= timerSS.bucket_list
+
+	// The buckets are FUBAR
+	reset_buckets()
 
 /**
   * # Timed Event
@@ -578,11 +585,9 @@ SUBSYSTEM_DEF(timer)
 	// Generate hash if relevant for timed events with the TIMER_UNIQUE flag
 	var/hash
 	if (flags & TIMER_UNIQUE)
-		var/list/hashlist
-		if(flags & TIMER_NO_HASH_WAIT)
-			hashlist = list(callback.object, "([REF(callback.object)])", callback.delegate, flags & TIMER_CLIENT_TIME)
-		else
-			hashlist = list(callback.object, "([REF(callback.object)])", callback.delegate, wait, flags & TIMER_CLIENT_TIME)
+		var/list/hashlist = list(callback.object, "([REF(callback.object)])", callback.delegate, flags & TIMER_CLIENT_TIME)
+		if(!(flags & TIMER_NO_HASH_WAIT))
+			hashlist += wait
 		hashlist += callback.arguments
 		hash = hashlist.Join("|||||||")
 
@@ -615,10 +620,9 @@ SUBSYSTEM_DEF(timer)
 		return FALSE
 	if (id == TIMER_ID_NULL)
 		CRASH("Tried to delete a null timerid. Use TIMER_STOPPABLE flag")
-	if (!istext(id))
-		if (istype(id, /datum/timedevent))
-			qdel(id)
-			return TRUE
+	if (istype(id, /datum/timedevent))
+		qdel(id)
+		return TRUE
 	timer_subsystem = timer_subsystem || SStimer
 	//id is string
 	var/datum/timedevent/timer = timer_subsystem.timer_id_dict[id]
