@@ -62,7 +62,7 @@
 	name = "high-capacity water tank"
 	desc = "A highly pressurized water tank made to hold gargantuan amounts of water."
 	icon_state = "hvwatertank" //I was gonna clean my room...
-	tank_volume = 100000
+	tank_volume = 3000 //MONKESTATION EDIT CHANGE yeah yeah no more station flooding the soul is gone
 	can_buckle = 1 //Monkestation edit start
 	buckle_lying = 0
 
@@ -174,6 +174,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
+	tank_volume = 100
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
