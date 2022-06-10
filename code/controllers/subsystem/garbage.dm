@@ -290,7 +290,7 @@ SUBSYSTEM_DEF(garbage)
 
 	var/time = MS2DS(tick_usage)
 
-	if (time > 0.1 SECONDS)
+	if (time > 1 SECONDS)
 		postpone(time)
 	var/threshold = CONFIG_GET(number/hard_deletes_overrun_threshold)
 	if (threshold && (time > threshold SECONDS))
