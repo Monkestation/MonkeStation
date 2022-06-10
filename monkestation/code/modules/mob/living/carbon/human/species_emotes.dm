@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(default_emote_sounds, list(
 ))
 
 GLOBAL_LIST_INIT(male_laughs, list(
-						"apid" 		= 	GLOB.default_emote_sounds['default_male_laughs'],
+						"apid" 		= 	new/list(GLOB.default_emote_sounds['default_male_laughs']),
 						"ethereal" 	= 	GLOB.default_emote_sounds['default_male_laughs'],
 						"human" 	= 	GLOB.default_emote_sounds['default_male_laughs'],
 						"ipc" 		= 	list('monkestation/sound/voice/laugh/silicon/laugh_siliconE1M0.ogg','monkestation/sound/voice/laugh/silicon/laugh_siliconE1M1.ogg','monkestation/sound/voice/laugh/silicon/laugh_siliconM2.ogg'),
