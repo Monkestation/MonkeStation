@@ -192,7 +192,7 @@
 		azimuth += 360
 	azimuth_target = azimuth
 
-	for(var/obj/machinery/power/solar/S in connected_panels)
-		S.queue_turn(azimuth)
+	for(var/obj/machinery/power/solar/machinery_solar in connected_panels)
+		machinery_solar.queue_turn(azimuth)
 
 	update_icon()

@@ -4,8 +4,6 @@
 #define SOLAR_TRACK_TIMED   1
 #define SOLAR_TRACK_AUTO    2
 
-#define SOLAR_GEN_RATE 1500
-
 ///conversion ratio from joules to watts
 #define WATTS / 0.002
 ///conversion ratio from watts to joules
