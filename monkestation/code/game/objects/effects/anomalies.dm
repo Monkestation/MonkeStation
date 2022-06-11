@@ -84,10 +84,57 @@
 
 //Storm Anomaly (Lightning)
 
+#define STORM_MIN_RANGE 3
+#define STORM_MAX_RANGE 5
+#define STORM_POWER_LEVEL 1000
+
+
 /obj/effect/anomaly/storm
 	name = "Storm Anomaly"
-	desc = "An unstable mass of crackling electrical energy."
+	desc = "The power of a tesla contained in an anomalous crackling orb."
 	icon_state = "electricity2"
+	lifespan = 30 SECONDS //Way too strong to give a full 99 seconds.
+	var/active = TRUE
+
+
+/obj/effect/anomaly/storm/Initialize(mapload, new_lifespan)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_entered,
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/anomaly/storm/Destroy()
+	. = ..()
+	RemoveElement(/datum/element/connect_loc)
+
+/obj/effect/anomaly/storm/proc/on_entered(datum/source, atom/movable/atom_movable)
+	SIGNAL_HANDLER
+
+	if(active && iscarbon(atom_movable))
+		var/mob/living/carbon/target = atom_movable
+		active = FALSE
+		target.electrocute_act(10, "[name]", safety=1)
+		target.adjustFireLoss(10)
+
+/obj/effect/anomaly/storm/anomalyEffect(delta_time)
+	..()
+	if(!active) //Only works every other tick
+		active = TRUE
+		return
+	active = FALSE
+
+	tesla_zap(src, rand(STORM_MIN_RANGE, STORM_MAX_RANGE), STORM_POWER_LEVEL)
+
+	if(isinspace(src)) //No clouds in space
+		return
+	var/turf/location = get_turf(src)
+	location.atmos_spawn_air("water_vapor=10;TEMP=320")
+
+
+#undef STORM_MIN_RANGE
+#undef STORM_MAX_RANGE
+#undef STORM_POWER_LEVEL
 
 //Vaporous Anomaly (Slippery)
 
