@@ -10,4 +10,4 @@
 	anomaly_path = /obj/effect/anomaly/storm
 
 /datum/round_event/anomaly/anomaly_storm/announce(fake)
-	priority_announce("Storming anomaly detected on long range scanners. Expected location: [impact_area.name].", "Anomaly Alert", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Powerful Storm anomaly detected on long range scanners. Expected location: [impact_area.name].", "Anomaly Alert", SSstation.announcer.get_rand_alert_sound())

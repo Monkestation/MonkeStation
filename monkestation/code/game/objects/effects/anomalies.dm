@@ -129,26 +129,66 @@
 	if(isinspace(src)) //No clouds in space
 		return
 	var/turf/location = get_turf(src)
-	location.atmos_spawn_air("water_vapor=10;TEMP=320")
+	location.atmos_spawn_air("water_vapor=10;TEMP=340")
 
 
 #undef STORM_MIN_RANGE
 #undef STORM_MAX_RANGE
 #undef STORM_POWER_LEVEL
 
-//Vaporous Anomaly (Slippery)
-
-/obj/effect/anomaly/vaporous
-	name = "Vaporous Anomaly"
-	desc = "An anomalous collection of water vapor streaming out into your station."
-	icon_state = "smoke"
 
 //Frost Anomaly (Freezing)
+//THE STATION MUST SURVIVE
+
+#define MIN_REPLACEMENT 2
+#define MAX_REPLACEMENT 5
+#define MAX_RANGE 5
 
 /obj/effect/anomaly/frost
-	name = "Chilling Anomaly"
-	desc = "A mass of frozen gasses found in this region of space."
+	name = "Freezing Anomaly"
+	desc = "An frigid anomaly that coats all in thick snow. Prepare the furnace, the station must survive."
 	icon_state = "impact_laser_blue"
+
+/obj/effect/anomaly/frost/anomalyEffect(delta_time)
+	..()
+	if(isinspace(src))
+		return
+
+	var/turf/current_location = get_turf(src)
+	var/list/valid_turfs = list()
+	var/static/list/blacklisted_turfs = typecacheof(list(
+		/turf/closed,
+		/turf/open/space,
+		/turf/open/lava,
+		/turf/open/chasm,
+		/turf/open/floor/plating/asteroid/snow))
+
+	current_location.atmos_spawn_air("water_vapor=10;TEMP=180")
+
+	for(var/searched_turfs in circleviewturfs(src, MAX_RANGE))
+		if(is_type_in_typecache(searched_turfs, blacklisted_turfs))
+			continue
+		else
+			valid_turfs |= searched_turfs
+	for(var/i = 1, i <= rand(MIN_REPLACEMENT, MAX_REPLACEMENT), i++) //Replace 2-5 tiles with snow
+		var/turf/searched_turfs = safepick(valid_turfs)
+		if(searched_turfs)
+			if(istype(searched_turfs, /turf/open/floor/plating))
+				searched_turfs.PlaceOnTop(/turf/open/floor/plating/asteroid/snow)
+			else
+				searched_turfs.ChangeTurf(/turf/open/floor/plating/asteroid/snow)
+
+/obj/effect/anomaly/frost/detonate()
+	//The station holds its breath, waiting for whatever the end will bring.
+	if(isinspace(src))
+		return
+
+	var/turf/current_location = get_turf(src)
+	current_location.atmos_spawn_air("water_vapor=200;TEMP=180") //The cold will be brutal. The water in hydroponics will freeze. We'll have to make do with the food we've stockpiled.
+
+#undef MIN_REPLACEMENT
+#undef MAX_REPLACEMENT
+#undef MAX_RANGE
 
 //Pet Anomaly (Random Pets)
 
