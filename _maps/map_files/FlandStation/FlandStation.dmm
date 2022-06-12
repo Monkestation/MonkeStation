@@ -46795,7 +46795,7 @@
 	pixel_y = 4
 	},
 /obj/item/pen,
-/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/food/cookie,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -68451,7 +68451,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "qdq" = (
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/food/donut,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -79698,7 +79698,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
-/obj/item/reagent_containers/food/snacks/donut/jelly/choco,
+/obj/item/food/donut/jelly/choco,
 /obj/item/lighter,
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
@@ -85487,7 +85487,7 @@
 /area/hallway/primary/port)
 "tWp" = (
 /obj/structure/closet/crate/bin,
-/obj/item/reagent_containers/food/snacks/donut/chaos,
+/obj/item/food/donut/chaos,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -92582,7 +92582,7 @@
 /obj/effect/turf_decal/tile/bar/tile_marquee{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/item/food/hotdog,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "vFU" = (

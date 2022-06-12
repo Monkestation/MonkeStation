@@ -53,8 +53,8 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/hypospray/medipen = 20,
 		/obj/item/storage/fancy/cigarettes = 15,
-		/obj/item/reagent_containers/food/snacks/donut = 10,
-		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
+		/obj/item/food/donut = 10,
+		/obj/item/food/donut/caramel = 10,
 		/obj/item/reagent_containers/hypospray/medipen/survival = 5
 	)
 
@@ -97,7 +97,7 @@
 //CHIEF ENGINEER
 /datum/job/chief_engineer
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
+		/obj/item/food/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,
 		/obj/item/stack/sheet/mineral/uranium/five = 15,
 		/obj/item/stack/sheet/mineral/plasma/five = 15,
@@ -216,9 +216,9 @@
 //DEPUTY...IS THIS JOB EVEN ACTIVE? I DON'T THINK IT IS
 /datum/job/deputy //Copy of the sec officer, since this one may not even be active.
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut = 10,
-		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
-		/obj/item/reagent_containers/food/snacks/donut/chaos = 5,
+		/obj/item/food/donut = 10,
+		/obj/item/food/donut/caramel = 10,
+		/obj/item/food/donut/chaos = 5,
 		/obj/item/melee/baton = 1
 	)
 //EXPLORATION CREW
@@ -255,9 +255,9 @@
 /datum/job/hos
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/drinks/coffee = 20,
-		/obj/item/reagent_containers/food/snacks/donut = 10,
-		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
-		/obj/item/reagent_containers/food/snacks/donut/chaos = 5,
+		/obj/item/food/donut = 10,
+		/obj/item/food/donut/caramel = 10,
+		/obj/item/food/donut/chaos = 5,
 		/obj/item/shield/riot/tele = 5,
 		/obj/item/melee/baton = 1
 	)
@@ -375,9 +375,9 @@
 //SECURITY OFFICER
 /datum/job/officer
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donut = 10,
-		/obj/item/reagent_containers/food/snacks/donut/caramel = 10,
-		/obj/item/reagent_containers/food/snacks/donut/chaos = 5,
+		/obj/item/food/donut = 10,
+		/obj/item/food/donut/caramel = 10,
+		/obj/item/food/donut/chaos = 5,
 		/obj/item/melee/baton = 1
 	)
 

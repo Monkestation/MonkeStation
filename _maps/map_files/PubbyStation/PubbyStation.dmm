@@ -3647,7 +3647,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ajr" = (
-/obj/item/reagent_containers/food/snacks/donut/chaos,
+/obj/item/food/donut/chaos,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "ajs" = (
@@ -9386,7 +9386,7 @@
 	name = "Brig Desk";
 	req_access_txt = "1"
 	},
-/obj/item/reagent_containers/food/snacks/donut{
+/obj/item/food/donut{
 	layer = 3
 	},
 /obj/machinery/door/poddoor/preopen{
@@ -17092,10 +17092,10 @@
 /area/quartermaster/sorting)
 "aRm" = (
 /obj/structure/closet/crate,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/item/reagent_containers/food/snacks/donut,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/food/donut,
+/obj/item/food/donut,
+/obj/item/food/donut,
+/obj/item/food/donut,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
 "aRn" = (
@@ -53871,7 +53871,7 @@
 /area/maintenance/department/security/brig)
 "niy" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/food/cookie,
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
@@ -57525,7 +57525,7 @@
 /area/maintenance/department/crew_quarters/bar)
 "rFq" = (
 /obj/structure/chair,
-/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/food/donkpocket,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -58558,7 +58558,7 @@
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "tpb" = (
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/food/donut,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},

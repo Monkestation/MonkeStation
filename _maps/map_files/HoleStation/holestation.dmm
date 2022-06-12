@@ -1052,7 +1052,7 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aej" = (
-/obj/item/reagent_containers/food/snacks/cracker,
+/obj/item/food/cracker,
 /obj/structure/cable/yellow{
 	icon_state = "1-10"
 	},
