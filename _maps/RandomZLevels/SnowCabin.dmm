@@ -1826,7 +1826,7 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin/caves/mountain)
 "fk" = (
-/obj/item/reagent_containers/food/snacks/burger/ghost{
+/obj/item/food/burger/ghost{
 	desc = "I killed a burger for you. Hope you're grateful, bastards.";
 	pixel_x = -2;
 	pixel_y = 4
@@ -2455,7 +2455,7 @@
 "gt" = (
 /obj/structure/sign/poster/contraband/pwr_game{
 	pixel_x = 32;
-	
+
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/engine,
@@ -3276,7 +3276,7 @@
 "io" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24;
-	
+
 	},
 /turf/open/floor/wood,
 /area/awaymission/cabin)
