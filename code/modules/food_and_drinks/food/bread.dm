@@ -8,10 +8,10 @@
 /obj/item/food/bread/Initialize()
 	. = ..()
 	AddElement(/datum/element/dunkable, 10)
+	AddComponent(/datum/component/food_storage)
 
 /obj/item/food/breadslice
 	icon = 'icons/obj/food/burgerbread.dmi'
-	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	slot_flags = ITEM_SLOT_HEAD
 	foodtypes = GRAIN
 	eat_time = 0.5 SECONDS
@@ -24,11 +24,11 @@
 	name = "bread"
 	desc = "Some plain old earthen bread."
 	icon_state = "bread"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 17)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("bread" = 10)
 	foodtypes = GRAIN
 
-/obj/item/food/bread/plain/Initialize()
+/obj/item/food/bread/plain/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/plain, 5, 30)
 
@@ -37,6 +37,7 @@
 	desc = "A slice of home."
 	icon_state = "breadslice"
 	foodtypes = GRAIN
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 
 /obj/item/food/breadslice/moldy
 	name = "moldy bread slice"
@@ -54,7 +55,7 @@
 	tastes = list("bread" = 10, "meat" = 10)
 	foodtypes = GRAIN | MEAT
 
-/obj/item/food/bread/meat/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/meat, 5, 30)
 
@@ -72,7 +73,7 @@
 	tastes = list("bread" = 10, "acid" = 10)
 	foodtypes = GRAIN | MEAT
 
-/obj/item/food/bread/xenomeat/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/xenomeat, 5, 30)
 
@@ -91,7 +92,7 @@
 	tastes = list("bread" = 10, "cobwebs" = 5)
 	foodtypes = GRAIN | MEAT | TOXIC
 
-/obj/item/food/bread/spidermeat/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/spidermeat, 5, 30)
 
@@ -110,7 +111,7 @@
 	tastes = list("bread" = 10) // bananjuice will also flavour
 	foodtypes = GRAIN | FRUIT
 
-/obj/item/food/bread/banana/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/banana, 5, 30)
 
@@ -129,7 +130,7 @@
 	tastes = list("bread" = 10, "tofu" = 10)
 	foodtypes = GRAIN | VEGETABLES
 
-/obj/item/food/bread/tofu/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/tofu, 5, 30)
 
@@ -148,7 +149,7 @@
 	tastes = list("bread" = 10, "cheese" = 10)
 	foodtypes = GRAIN | DAIRY
 
-/obj/item/food/bread/creamcheese/Initialize()
+/obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/creamcheese, 5, 30)
 

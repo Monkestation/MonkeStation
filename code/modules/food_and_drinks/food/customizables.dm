@@ -65,7 +65,7 @@
 		if(I.w_class > WEIGHT_CLASS_SMALL)
 			to_chat(user, "<span class='warning'>The ingredient is too big for [src]!</span>")
 		//MonkeStation Edit: Food Limit Removed
-		else if(istype(I, /obj/item/reagent_containers/food/snacks/pizzaslice/custom) || istype(I, /obj/item/reagent_containers/food/snacks/cakeslice/custom))
+		else if(istype(I, /obj/item/reagent_containers/food/snacks/pizzaslice/custom))
 			to_chat(user, "<span class='warning'>Adding [I.name] to [src] would make a mess.</span>")
 		else
 			if(!user.transferItemToLoc(I, src))
@@ -185,16 +185,6 @@
 	foodtype = GRAIN
 
 
-
-/obj/item/reagent_containers/food/snacks/customizable/cake
-	name = "cake"
-	//ingMax = 6
-	//MonkeStation Edit: Food Limit Removed
-	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/custom
-	slices_num = 5
-	icon = 'icons/obj/food/piecake.dmi'
-	icon_state = "plaincake"
-	foodtype = GRAIN | DAIRY
 
 
 /obj/item/reagent_containers/food/snacks/customizable/kebab
