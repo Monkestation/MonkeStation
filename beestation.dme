@@ -3674,6 +3674,7 @@
 #include "monkestation\code\modules\clothing\under\jobs\plasmaman\civilian_service.dm"
 #include "monkestation\code\modules\events\anomaly_fluidic.dm"
 #include "monkestation\code\modules\events\anomaly_frost.dm"
+#include "monkestation\code\modules\events\anomaly_petsplosion.dm"
 #include "monkestation\code\modules\events\anomaly_radioactive.dm"
 #include "monkestation\code\modules\events\anomaly_storm.dm"
 #include "monkestation\code\modules\food_and_drinks\drinks\drinks.dm"

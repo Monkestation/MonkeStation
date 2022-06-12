@@ -38,7 +38,7 @@
 	if(!locate(/obj/effect/decal/nuclear_waste) in src.loc)
 		playsound(src, pick('sound/misc/desecration-01.ogg','sound/misc/desecration-02.ogg', 'sound/misc/desecration-03.ogg'), 50, 1)
 		new /obj/effect/decal/nuclear_waste(src.loc)
-		if(prob(25))
+		if(prob(33))
 			new /obj/effect/decal/nuclear_waste/epicenter(src.loc)
 
 /obj/effect/anomaly/radioactive/detonate()
@@ -191,12 +191,46 @@
 #undef MAX_RANGE
 
 //Pet Anomaly (Random Pets)
+//Amazingly, this could be the ultimate powergamer's anomaly.
+//Your mood will shoot sky high petting all of these animals.
 
-/obj/effect/anomaly/petsplosion
+/obj/effect/anomaly/petsplosion //LMAO 2CAT
 	name = "Lifebringer Anomaly"
-	desc = "An odd anomalous gateway that seemingly creates new life out of nowhere."
+	desc = "An anomalous gateway that seemingly creates new life out of nowhere. Known by Lavaland Dwarves as the \"Petsplosion\"."
 	icon_state = "bluestream_fade"
+	lifespan = 30 SECONDS //I don't want too many mobs swarming the area
+	var/active = TRUE
+	var/list/pet_type_cache
 
+/obj/effect/anomaly/petsplosion/Initialize(mapload, new_lifespan)
+	. = ..()
+	pet_type_cache = subtypesof(/mob/living/simple_animal/pet)
+	pet_type_cache -= list(/mob/living/simple_animal/pet/penguin, //Removing the risky and broken ones.
+		/mob/living/simple_animal/pet/dog/corgi/narsie,
+		/mob/living/simple_animal/pet/gondola/gondolapod,
+		/mob/living/simple_animal/pet/gondola,
+		/mob/living/simple_animal/pet/dog)
+
+	pet_type_cache += list(/mob/living/simple_animal/cow, //Adding the ones that should be under /pet, but aren't. Maybe I need to fix that.
+		/mob/living/simple_animal/sloth,
+		/mob/living/simple_animal/mouse,
+		/mob/living/simple_animal/parrot,
+		/mob/living/simple_animal/chicken,
+		/mob/living/simple_animal/cockroach,
+		/mob/living/simple_animal/crab)
+
+/obj/effect/anomaly/petsplosion/anomalyEffect(delta_time)
+	..()
+	if(isinspace(src))
+		return
+
+	if(active)
+		var/mob/living/simple_animal/pet/chosen_pet = pick(pet_type_cache)
+		new chosen_pet(src.loc)
+		active = FALSE
+		return
+
+	active = TRUE
 
 //Clown Anomaly (Clowns and Banana Peels)
 

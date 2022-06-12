@@ -1,7 +1,7 @@
 /datum/round_event_control/anomaly/anomaly_frost
 	name = "Anomaly: Frost"
 	typepath = /datum/round_event/anomaly/anomaly_frost
-
+	min_players = 20
 	max_occurrences = 3
 	weight = 10
 
