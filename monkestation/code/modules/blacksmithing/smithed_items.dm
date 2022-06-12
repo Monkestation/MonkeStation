@@ -47,43 +47,55 @@
 			Human.update_damage_overlays()
 
 /obj/item/ingot/iron
+	name = "Iron Ingot"
 	custom_materials = list(/datum/material/iron=12000)
 
 /obj/item/ingot/diamond
+	name = "Diamond Ingot"
 	custom_materials = list(/datum/material/diamond=12000) //yeah ok
 
 /obj/item/ingot/uranium
+	name = "Uranium Ingot"
 	custom_materials = list(/datum/material/uranium=12000)
 
 /obj/item/ingot/plasma
+	name = "Plasma Ingot"
 	custom_materials = list(/datum/material/plasma=12000)//yeah ok
 
 /obj/item/ingot/copper
+	name = "Copper Ingot"
 	custom_materials = list(/datum/material/copper=12000)//yeah ok
 
 /obj/item/ingot/gold
+	name = "Gold Ingot"
 	custom_materials = list(/datum/material/gold=12000)
 
 /obj/item/ingot/silver
+	name = "Silver Ingot"
 	custom_materials = list(/datum/material/silver=12000)
 
 /obj/item/ingot/bananium
+	name = "Hilarious Ingot"
 	custom_materials = list(/datum/material/bananium=12000)
 
 /obj/item/ingot/titanium
+	name = "Titanium Ingot"
 	custom_materials = list(/datum/material/titanium=12000)
 
 /obj/item/ingot/adamantine
+	name = "Adamant Ingot"
 	custom_materials = list(/datum/material/adamantine=12000)
 
 /obj/item/ingot/cult
+	name = "Runed-Metal Ingot"
 	custom_materials = list(/datum/material/runedmetal=12000)
 
 /obj/item/ingot/bronze
+	name = "Bronze Ingot"
 	custom_materials = list(/datum/material/bronze=12000)
 
 /obj/item/ingot/bronze/ratvar
-	name = "brass ingot"
+	name = "Brass ingot"
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-smithing brass is actually more structurally stable bronze. Ratvar must have transformed the brass into bronze. Somehow."
 
 
