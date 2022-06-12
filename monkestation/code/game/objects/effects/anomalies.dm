@@ -36,13 +36,13 @@
 		return
 	radiation_pulse(src, 50)
 	if(!locate(/obj/effect/decal/nuclear_waste) in src.loc)
-		playsound(src, pick('sound/misc/desecration-01.ogg','sound/misc/desecration-02.ogg', 'sound/misc/desecration-03.ogg'), 50, 1)
+		playsound(src, pick('sound/misc/desecration-01.ogg','sound/misc/desecration-02.ogg', 'sound/misc/desecration-03.ogg'), vol = 50, vary = 1)
 		new /obj/effect/decal/nuclear_waste(src.loc)
 		if(prob(33))
 			new /obj/effect/decal/nuclear_waste/epicenter(src.loc)
 
 /obj/effect/anomaly/radioactive/detonate()
-	playsound(src, 'sound/effects/empulse.ogg', 100, 1)
+	playsound(src, 'sound/effects/empulse.ogg', vol = 100, vary = 1)
 	radiation_pulse(src, 500)
 
 
@@ -221,7 +221,7 @@
 
 /obj/effect/anomaly/petsplosion/anomalyEffect(delta_time)
 	..()
-	if(isinspace(src))
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
 
 	if(active)
@@ -232,14 +232,53 @@
 
 	active = TRUE
 
-//Clown Anomaly (Clowns and Banana Peels)
+//Clown Anomaly (H O N K)
+#define HONK_RANGE 3
 
 /obj/effect/anomaly/clown
 	name = "Honking Anomaly"
 	desc = "An anomaly that smells faintly of bananas and lubricant."
 	icon_state = "static"
+	lifespan = 40 SECONDS //Rapid, chaotic and slippery.
+	var/active = TRUE
+	var/static/list/clown_spawns = list(
+		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown = 6,
+		/mob/living/simple_animal/hostile/retaliate/clown = 33,
+		/obj/item/grown/bananapeel = 33,
+		/obj/item/stack/ore/bananium = 12,
+		/obj/item/bikehorn = 15)
 
-//Monkey Anomaly (Group of angry monkeys)
+/obj/effect/anomaly/clown/anomalyEffect(delta_time)
+	..()
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
+		return
+
+	var/turf/open/current_location = get_turf(src)
+	current_location.MakeSlippery(TURF_WET_LUBE, min_wet_time = 20 SECONDS, wet_time_to_add = 5 SECONDS)
+	if(active)
+		active = FALSE
+		playsound(src, 'sound/items/bikehorn.ogg', vol = 50)
+		var/selected_spawn = pickweight(clown_spawns)
+		new selected_spawn(src.loc)
+		return
+	active = TRUE
+
+/obj/effect/anomaly/clown/detonate()
+
+	playsound(src, 'sound/items/airhorn.ogg', vol = 100, vary = 1)
+
+	for(var/mob/living/carbon/target in (hearers(HONK_RANGE, src))) //5x5 around the anomaly
+		to_chat(target, "<font color='red' size='7'>HONK</font>")
+		target.SetSleeping(0)
+		target.stuttering += 2 SECONDS
+		target.adjustEarDamage(ddmg = 0, ddeaf = 2 SECONDS)
+		target.Knockdown(2 SECONDS)
+		target.Jitter(50)
+
+#undef HONK_RANGE
+
+//Monkey Anomaly (Random Chimp Event)
 
 /obj/effect/anomaly/monkey
 	name = "Screeching Anomaly"

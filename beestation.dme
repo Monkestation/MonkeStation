@@ -3672,6 +3672,7 @@
 #include "monkestation\code\modules\clothing\under\miscellaneous.dm"
 #include "monkestation\code\modules\clothing\under\jobs\civilian\civilian.dm"
 #include "monkestation\code\modules\clothing\under\jobs\plasmaman\civilian_service.dm"
+#include "monkestation\code\modules\events\anomaly_clown.dm"
 #include "monkestation\code\modules\events\anomaly_fluidic.dm"
 #include "monkestation\code\modules\events\anomaly_frost.dm"
 #include "monkestation\code\modules\events\anomaly_petsplosion.dm"
