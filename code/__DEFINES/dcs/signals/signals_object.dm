@@ -54,8 +54,6 @@
 /// from base of obj/item/hit_reaction(): (list/args)
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
-//called on item when microwaved (): (obj/machinery/microwave/M)
-#define COMSIG_ITEM_MICROWAVE_ACT "microwave_act"
 /// from base of item/sharpener/attackby(): (amount, max)
 #define COMSIG_ITEM_SHARPEN_ACT "sharpen_act"
 	#define COMPONENT_BLOCK_SHARPEN_APPLIED (1<<0)
