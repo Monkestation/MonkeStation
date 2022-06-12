@@ -317,7 +317,7 @@
 /datum/job/mime
 	mail_goodies = list(
 		/obj/item/food/baguette = 15,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 10,
+		/obj/item/food/cheesewedge = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 10,
 		/obj/item/book/mimery = 1,
 	)

@@ -130,7 +130,7 @@
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/reagent_containers/food/snacks/grown/chili = 2,
-		/obj/item/reagent_containers/food/snacks/tortilla = 2
+		/obj/item/food/tortilla = 2
 	)
 	result = /obj/item/food/enchiladas
 	subcategory = CAT_MEAT
@@ -176,7 +176,7 @@
 	name = "Pig in a Blanket"
 	reqs = list(
 		/obj/item/food/bun = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1,
+		/obj/item/food/butter = 1,
 		/obj/item/food/meat/cutlet = 1
 	)
 	result = /obj/item/food/pigblanket

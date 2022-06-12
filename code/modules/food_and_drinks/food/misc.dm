@@ -5,7 +5,7 @@
 	name = "cheese wheel"
 	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
-	food_reagents =  = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("cheese" = 1)
 	foodtypes = DAIRY
@@ -74,7 +74,7 @@
 	bite_consumption = 0.1
 	tastes = list("popcorn" = 3, "butter" = 1)
 	foodtypes = JUNKFOOD
-	eatverb = pick("bite","nibble","gnaw","gobble","chomp")
+	eatverbs = list("bite","nibble","gnaw","gobble","chomp")
 
 /obj/item/food/loadedbakedpotato
 	name = "loaded baked potato"
@@ -187,7 +187,7 @@
 	tastes = list("cobwebs" = 1, "guts" = 2)
 	foodtypes = MEAT | TOXIC
 
-/obj/item/reagent_containers/food/snacks/spiderlollipop
+/obj/item/food/spiderlollipop
 	name = "spider lollipop"
 	desc = "Still gross, but at least it has a mountain of sugar on it."
 	icon_state = "spiderlollipop"
@@ -195,7 +195,7 @@
 	tastes = list("cobwebs" = 1, "sugar" = 2)
 	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/chococoin
+/obj/item/food/chococoin
 	name = "chocolate coin"
 	desc = "A completely edible but nonflippable festive coin."
 	icon_state = "chococoin"
@@ -203,7 +203,7 @@
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/fudgedice
+/obj/item/food/fudgedice
 	name = "fudge dice"
 	desc = "A little cube of chocolate that tends to have a less intense taste if you eat too many at once."
 	icon_state = "chocodice"
@@ -212,7 +212,7 @@
 	tastes = list("fudge" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/chocoorange
+/obj/item/food/chocoorange
 	name = "chocolate orange"
 	desc = "A festive chocolate orange."
 	icon_state = "chocoorange"
@@ -229,7 +229,7 @@
 	tastes = list("eggplant" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | DAIRY
 
-/obj/item/reagent_containers/food/snacks/tortilla
+/obj/item/food/tortilla
 	name = "tortilla"
 	desc = "The base for all your burritos."
 	icon = 'icons/obj/food/food_ingredients.dmi'
@@ -246,7 +246,7 @@
 	tastes = list("torilla" = 2, "meat" = 3)
 	foodtypes = GRAIN | MEAT
 
-/obj/item/reagent_containers/food/snacks/cheesyburrito
+/obj/item/food/cheesyburrito
 	name = "cheesy burrito"
 	desc = "It's a burrito filled with cheese."
 	icon_state = "cheesyburrito"
@@ -254,7 +254,7 @@
 	tastes = list("torilla" = 2, "meat" = 3, "cheese" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY
 
-/obj/item/reagent_containers/food/snacks/carneburrito
+/obj/item/food/carneburrito
 	name = "carne asada burrito"
 	desc = "The best burrito for meat lovers."
 	icon_state = "carneburrito"
@@ -262,7 +262,7 @@
 	tastes = list("torilla" = 2, "meat" = 4)
 	foodtypes = GRAIN | MEAT
 
-/obj/item/reagent_containers/food/snacks/fuegoburrito
+/obj/item/food/fuegoburrito
 	name = "fuego plasma burrito"
 	desc = "A super spicy burrito."
 	icon_state = "fuegoburrito"
@@ -270,7 +270,7 @@
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
 	foodtypes = GRAIN | MEAT
 
-/obj/item/reagent_containers/food/snacks/yakiimo
+/obj/item/food/yakiimo
 	name = "yaki imo"
 	desc = "Made with roasted sweet potatoes!"
 	icon_state = "yakiimo"
@@ -280,7 +280,7 @@
 	tastes = list("sweet potato" = 1)
 	foodtypes = GRAIN | VEGETABLES | SUGAR
 
-/obj/item/reagent_containers/food/snacks/roastparsnip
+/obj/item/food/roastparsnip
 	name = "roast parsnip"
 	desc = "Sweet and crunchy."
 	icon_state = "roastparsnip"
@@ -306,7 +306,7 @@
 	tastes = list("nachos" = 1)
 	foodtypes = VEGETABLES | FRIED
 
-/obj/item/reagent_containers/food/snacks/cheesynachos
+/obj/item/food/cheesynachos
 	name = "cheesy nachos"
 	desc = "The delicious combination of nachos and melting cheese."
 	icon_state = "cheesynachos"
@@ -314,7 +314,7 @@
 	tastes = list("nachos" = 2, "cheese" = 1)
 	foodtypes = VEGETABLES | FRIED | DAIRY
 
-/obj/item/reagent_containers/food/snacks/cubannachos
+/obj/item/food/cubannachos
 	name = "Cuban nachos"
 	desc = "That's some dangerously spicy nachos."
 	icon_state = "cubannachos"
@@ -322,7 +322,7 @@
 	tastes = list("nachos" = 2, "hot pepper" = 1)
 	foodtypes = VEGETABLES | FRIED | DAIRY
 
-/obj/item/reagent_containers/food/snacks/melonkeg
+/obj/item/food/melonkeg
 	name = "melon keg"
 	desc = "Who knew vodka was a fruit?"
 	icon_state = "melonkeg"
@@ -332,7 +332,7 @@
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
 	foodtypes = FRUIT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/honeybar
+/obj/item/food/honeybar
 	name = "honey nut bar"
 	desc = "Oats and nuts compressed together into a bar, held together with a honey glaze."
 	icon_state = "honeybar"
@@ -340,7 +340,7 @@
 	tastes = list("oats" = 3, "nuts" = 2, "honey" = 1)
 	foodtypes = FRUIT | SUGAR
 
-/obj/item/reagent_containers/food/snacks/stuffedlegion
+/obj/item/food/stuffedlegion
 	name = "stuffed legion"
 	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
 	icon_state = "stuffed_legion"
@@ -348,7 +348,7 @@
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
 
-/obj/item/reagent_containers/food/snacks/powercrepe
+/obj/item/food/powercrepe
 	name = "Powercrepe"
 	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
 	icon_state = "powercrepe"
@@ -365,7 +365,7 @@
 	tastes = list("cherry" = 1, "crepe" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
 
-/obj/item/reagent_containers/food/snacks/lollipop
+/obj/item/food/lollipop
 	name = "lollipop"
 	desc = "A delicious lollipop. Makes for a great Valentine's present."
 	icon = 'icons/obj/lollipop.dmi'
@@ -376,38 +376,38 @@
 	tastes = list("candy" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/lollipop/Initialize(mapload)
+/obj/item/food/lollipop/Initialize(mapload)
 	. = ..()
 	head = mutable_appearance('icons/obj/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
 
-/obj/item/reagent_containers/food/snacks/lollipop/proc/change_head_color(C)
+/obj/item/food/lollipop/proc/change_head_color(C)
 	headcolor = C
 	cut_overlay(head)
 	head.color = C
 	add_overlay(head)
 
-/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/food/lollipop/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..(hit_atom)
 	throw_speed = 1
 	throwforce = 0
 
-/obj/item/reagent_containers/food/snacks/lollipop/cyborg
+/obj/item/food/lollipop/cyborg
 	var/spamchecking = TRUE
 
-/obj/item/reagent_containers/food/snacks/lollipop/cyborg/Initialize(mapload)
+/obj/item/food/lollipop/cyborg/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/spamcheck), 1200)
 
-/obj/item/reagent_containers/food/snacks/lollipop/cyborg/equipped(mob/living/user, slot)
+/obj/item/food/lollipop/cyborg/equipped(mob/living/user, slot)
 	. = ..(user, slot)
 	spamchecking = FALSE
 
-/obj/item/reagent_containers/food/snacks/lollipop/cyborg/proc/spamcheck()
+/obj/item/food/lollipop/cyborg/proc/spamcheck()
 	if(spamchecking)
 		qdel(src)
 
-/obj/item/reagent_containers/food/snacks/gumball
+/obj/item/food/gumball
 	name = "gumball"
 	desc = "A colorful, sugary gumball."
 	icon = 'icons/obj/lollipop.dmi'
@@ -416,26 +416,26 @@
 	tastes = list("candy")
 	foodtypes = JUNKFOOD
 
-/obj/item/reagent_containers/food/snacks/gumball/Initialize(mapload)
+/obj/item/food/gumball/Initialize(mapload)
 	. = ..()
 	color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 
-/obj/item/reagent_containers/food/snacks/gumball/cyborg
+/obj/item/food/gumball/cyborg
 	var/spamchecking = TRUE
 
-/obj/item/reagent_containers/food/snacks/gumball/cyborg/Initialize(mapload)
+/obj/item/food/gumball/cyborg/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/spamcheck), 1200)
 
-/obj/item/reagent_containers/food/snacks/gumball/cyborg/equipped(mob/living/user, slot)
+/obj/item/food/gumball/cyborg/equipped(mob/living/user, slot)
 	. = ..(user, slot)
 	spamchecking = FALSE
 
-/obj/item/reagent_containers/food/snacks/gumball/cyborg/proc/spamcheck()
+/obj/item/food/gumball/cyborg/proc/spamcheck()
 	if(spamchecking)
 		qdel(src)
 
-/obj/item/reagent_containers/food/snacks/taco
+/obj/item/food/taco
 	name = "taco"
 	desc = "A traditional taco with meat, cheese, and lettuce."
 	icon_state = "taco"
@@ -443,14 +443,14 @@
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
 	foodtypes = MEAT | DAIRY | GRAIN | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/taco/plain
+/obj/item/food/taco/plain
 	desc = "A traditional taco with meat and cheese, minus the rabbit food."
 	icon_state = "taco_plain"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
 
-/obj/item/reagent_containers/food/snacks/branrequests
+/obj/item/food/branrequests
 	name = "Bran Requests Cereal"
 	desc = "A dry cereal that satiates your requests for bran. Tastes uniquely like raisins and salt."
 	icon_state = "bran_requests"
@@ -458,7 +458,7 @@
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
 	foodtypes = GRAIN | FRUIT | BREAKFAST
 
-/obj/item/reagent_containers/food/snacks/butter
+/obj/item/food/butter
 	name = "stick of butter"
 	desc = "A stick of delicious, golden, fatty goodness."
 	icon_state = "butter"
@@ -466,18 +466,18 @@
 	tastes = list("butter" = 1)
 	foodtypes = DAIRY
 
-/obj/item/reagent_containers/food/snacks/butter/examine(mob/user)
+/obj/item/food/butter/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>If you had a rod you could make <b>butter on a stick</b>.</span>"
 
-/obj/item/reagent_containers/food/snacks/butter/attackby(obj/item/W, mob/user, params)
+/obj/item/food/butter/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = W
 		if(!R.use(1))//borgs can still fail this if they have no metal
 			to_chat(user, "<span class='warning'>You do not have enough metal to put [src] on a stick!</span>")
 			return ..()
 		to_chat(user, "<span class='notice'>You stick the rod into the stick of butter.</span>")
-		var/obj/item/reagent_containers/food/snacks/butter/on_a_stick/new_item = new(usr.loc)
+		var/obj/item/food/butter/on_a_stick/new_item = new(usr.loc)
 		var/replace = (user.get_inactive_held_item() == R)
 		if(!R && replace)
 			user.put_in_hands(new_item)
@@ -485,13 +485,13 @@
 		return TRUE
 	..()
 
-/obj/item/reagent_containers/food/snacks/butter/on_a_stick //there's something so special about putting it on a stick.
+/obj/item/food/butter/on_a_stick //there's something so special about putting it on a stick.
 	name = "butter on a stick"
 	desc = "delicious, golden, fatty goodness on a stick."
 	icon_state = "butteronastick"
 	trash_type = /obj/item/stack/rods
 
-/obj/item/reagent_containers/food/snacks/onionrings
+/obj/item/food/onionrings
 	name = "onion rings"
 	desc = "Onion slices coated in batter."
 	icon_state = "onionrings"
@@ -500,7 +500,7 @@
 	tastes = list("batter" = 3, "onion" = 1)
 	foodtypes = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/pineappleslice
+/obj/item/food/pineappleslice
 	name = "pineapple slice"
 	desc = "A sliced piece of juicy pineapple."
 	icon_state = "pineapple_slice"
@@ -508,7 +508,7 @@
 	tastes = list("pineapple" = 1)
 	foodtypes = FRUIT | PINEAPPLE
 
-/obj/item/reagent_containers/food/snacks/tinychocolate
+/obj/item/food/tinychocolate
 	name = "chocolate"
 	desc = "A tiny and sweet chocolate."
 	icon_state = "tiny_chocolate"
@@ -516,30 +516,26 @@
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/canned
+/obj/item/food/canned
 	name = "Canned Air"
 	desc = "If you ever wondered where air came from..."
 	food_reagents = list(/datum/reagent/oxygen = 6, /datum/reagent/nitrogen = 24)
 	icon_state = "peachcan"
-	in_container = TRUE
-	reagent_flags = NONE
-	spillable = FALSE
 	w_class = WEIGHT_CLASS_NORMAL
 	max_volume = 30
 
-/obj/item/reagent_containers/food/snacks/canned/proc/open_can(mob/user)
+/obj/item/food/canned/proc/open_can(mob/user)
 	to_chat(user, "You pull back the tab of \the [src].")
 	playsound(user.loc, 'sound/items/foodcanopen.ogg', 50)
 	ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
-	spillable = TRUE
 
-/obj/item/reagent_containers/food/snacks/canned/attack_self(mob/user)
+/obj/item/food/canned/attack_self(mob/user)
 	if(!is_drainable())
 		open_can(user)
 		icon_state = "[icon_state]_open"
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/canned/attack(mob/living/M, mob/user, def_zone)
+/obj/item/food/canned/attack(mob/living/M, mob/user, def_zone)
 	if (!is_drainable())
 		to_chat(user, "<span class='warning'>[src]'s lid hasn't been opened!</span>")
 		return 0
@@ -554,7 +550,7 @@
 	tastes = list("beans" = 1)
 	foodtypes = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/canned/peaches
+/obj/item/food/canned/peaches
 	name = "canned peaches"
 	desc = "Just a nice can of ripe peaches swimming in their own juices."
 	icon_state = "peachcan"
@@ -563,14 +559,14 @@
 	tastes = list("peaches" = 7, "tin" = 1)
 	foodtypes = FRUIT | SUGAR
 
-/obj/item/reagent_containers/food/snacks/canned/peaches/maint
+/obj/item/food/canned/peaches/maint
 	name = "Maintenance Peaches"
 	desc = "I have a mouth and I must eat."
 	icon_state = "peachcanmaint"
 	trash_type = /obj/item/trash/can/food/peaches/maint
 	tastes = list("peaches" = 1, "tin" = 7)
 
-/obj/item/reagent_containers/food/snacks/crab_rangoon
+/obj/item/food/crab_rangoon
 	name = "Crab Rangoon"
 	desc = "Has many names, like crab puffs, cheese wontons, crab dumplings? Whatever you call them, they're a fabulous blast of cream cheesy crab."
 	icon_state = "crabrangoon"
@@ -579,7 +575,7 @@
 	tastes = list("cream cheese" = 4, "crab" = 3, "crispiness" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
 
-/obj/item/reagent_containers/food/snacks/cornchips
+/obj/item/food/cornchips
 	name = "boritos corn chips"
 	desc = "Triangular corn chips. They do seem a bit bland but would probably go well with some kind of dipping sauce."
 	icon_state = "boritos"
@@ -590,7 +586,11 @@
 	tastes = list("fried corn" = 1)
 	foodtypes = JUNKFOOD | FRIED
 
-/obj/item/reagent_containers/food/snacks/canned/beefbroth
+/obj/item/food/cornchips/MakeLeaveTrash()
+	if(trash_type)
+		AddElement(/datum/element/food_trash, trash_type, FOOD_TRASH_POPABLE)
+
+/obj/item/food/canned/beefbroth
 	name = "canned beef broth"
 	desc = "Why does this exist?"
 	icon_state = "beefcan"

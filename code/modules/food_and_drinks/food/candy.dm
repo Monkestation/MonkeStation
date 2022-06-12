@@ -74,6 +74,10 @@
 	tastes = list("salt" = 1, "crisps" = 1)
 	foodtypes = JUNKFOOD | FRIED
 
+/obj/item/food/chips/MakeLeaveTrash()
+	if(trash_type)
+		AddElement(/datum/element/food_trash, trash_type, FOOD_TRASH_POPABLE)
+
 /obj/item/food/no_raisin
 	name = "4no raisins"
 	icon_state = "4no_raisins"

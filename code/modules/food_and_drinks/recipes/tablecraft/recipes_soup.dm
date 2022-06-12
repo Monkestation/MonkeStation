@@ -153,7 +153,7 @@
 		/obj/item/food/badrecipe = 1,
 		/obj/item/food/tofu = 1,
 		/obj/item/food/boiledegg = 1,
-		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,
+		/obj/item/food/cheesewedge = 1,
 	)
 	result = /obj/item/food/soup/mystery
 	subcategory = CAT_SOUP

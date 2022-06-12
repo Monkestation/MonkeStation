@@ -18,7 +18,7 @@
 
 /datum/food_processor_process/sweetpotato
 	input = /obj/item/reagent_containers/food/snacks/grown/potato/sweet
-	output = /obj/item/reagent_containers/food/snacks/yakiimo
+	output = /obj/item/food/yakiimo
 
 /datum/food_processor_process/potato
 	input = /obj/item/reagent_containers/food/snacks/grown/potato
@@ -38,15 +38,15 @@
 
 /datum/food_processor_process/corn
 	input = /obj/item/reagent_containers/food/snacks/grown/corn
-	output = /obj/item/reagent_containers/food/snacks/tortilla
+	output = /obj/item/food/tortilla
 
 /datum/food_processor_process/tortilla
-	input = /obj/item/reagent_containers/food/snacks/tortilla
-	output = /obj/item/reagent_containers/food/snacks/cornchips
+	input = /obj/item/food/tortilla
+	output = /obj/item/food/cornchips
 
 /datum/food_processor_process/parsnip
 	input = /obj/item/reagent_containers/food/snacks/grown/parsnip
-	output = /obj/item/reagent_containers/food/snacks/roastparsnip
+	output = /obj/item/food/roastparsnip
 
 /datum/food_processor_process/mob/slime
 	input = /mob/living/simple_animal/slime
