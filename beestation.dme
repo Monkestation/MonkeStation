@@ -3675,6 +3675,7 @@
 #include "monkestation\code\modules\events\anomaly_clown.dm"
 #include "monkestation\code\modules\events\anomaly_fluidic.dm"
 #include "monkestation\code\modules\events\anomaly_frost.dm"
+#include "monkestation\code\modules\events\anomaly_monkey.dm"
 #include "monkestation\code\modules\events\anomaly_petsplosion.dm"
 #include "monkestation\code\modules\events\anomaly_radioactive.dm"
 #include "monkestation\code\modules\events\anomaly_storm.dm"
