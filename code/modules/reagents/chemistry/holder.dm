@@ -47,8 +47,6 @@
 		var/list/product_names = list()
 		var/bitflags = D.reaction_tags
 
-		if(!bitflags) //Filters out all reactions with no bitflags
-			continue
 		if(!D.required_reagents || !D.required_reagents.len) //Skip impossible reactions
 			continue
 		for(var/reaction in D.required_reagents)
@@ -75,7 +73,8 @@
 			GLOB.chemical_reactions_list_product_index[id] += D
 
 		//Master list of ALL reactions that is used in the UI lookup table. This is expensive to make, and we don't want to lag the server by creating it on UI request, so it's cached to send to UIs instantly.
-		GLOB.chemical_reactions_results_lookup_list += list(list("name" = product_name, "id" = D.type, "bitflags" = bitflags, "reactants" = reagents))
+		if(bitflags)
+			GLOB.chemical_reactions_results_lookup_list += list(list("name" = product_name, "id" = D.type, "bitflags" = bitflags, "reactants" = reagents))
 
 				// Create filters based on each reagent id in the required reagents list - this is used to speed up handle_reactions()
 		for(var/id in reaction_ids)
