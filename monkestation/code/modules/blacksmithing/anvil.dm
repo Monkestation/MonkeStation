@@ -80,6 +80,7 @@
 		var/obj/item/smithing/update = Item
 		var/update_quality = (update.quality * update.blunt_mult) / 20
 		anvilquality += update_quality
+		itemqualitymax += update_quality
 		to_chat(user, "You apply the anvil plate to the anvil increasing its quality by: [update_quality], the current anvil quality is: [anvilquality]")
 		qdel(update)
 	if(istype(Item, /obj/item/ingot))
@@ -233,6 +234,7 @@
 	desc = "Base class of anvil. This shouldn't exist, but is useable."
 	anvilquality = 0
 	outrightfailchance = 5
+	itemqualitymax = 5
 	rng = TRUE
 
 /obj/structure/anvil/obtainable/table
@@ -241,7 +243,6 @@
 	icon_state = "tablevil"
 	anvilquality = -2
 	itemqualitymax = 0
-
 
 /obj/structure/anvil/obtainable/table/do_shaping(mob/user, var/qualitychange)
 	if(prob(5))
@@ -258,6 +259,7 @@
 	icon_state = "ratvaranvil"
 	anvilquality = -0.5
 	obj_integrity = 300
+	itemqualitymax = 10
 
 
 /obj/structure/anvil/obtainable/sandstone
@@ -266,6 +268,7 @@
 	custom_materials = list(/obj/item/stack/sheet/mineral/sandstone=8000)
 	icon_state = "sandvil"
 	anvilquality = -1
+	itemqualitymax = 3
 
 
 /obj/structure/anvil/obtainable/basalt
@@ -273,6 +276,7 @@
 	desc = "A big block of basalt. Useable as an anvil, better than sandstone. Igneous!"
 	icon_state = "sandvilnoir"
 	anvilquality = -0.5
+	itemqualitymax = 3
 
 
 /obj/structure/anvil/obtainable/basic
@@ -288,6 +292,7 @@
 	anvilquality = 1
 	max_integrity = 500
 	obj_integrity = 500
+	itemqualitymax = 10
 
 /obj/structure/anvil/obtainable/ratvar/attackby(obj/item/Item, mob/user)
 	if(istype(Item, /obj/item/melee/smith/hammer))
@@ -305,6 +310,7 @@
 	anvilquality = 1
 	max_integrity = 500
 	obj_integrity = 500
+	itemqualitymax = 10
 
 /obj/structure/anvil/obtainable/narsie/attackby(obj/item/Item, mob/user)
 	if(istype(Item, /obj/item/melee/smith/hammer))
