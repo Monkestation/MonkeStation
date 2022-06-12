@@ -1,16 +1,20 @@
 /*!
+
 This component makes it possible to make things edible. What this means is that you can take a bite or force someone to take a bite (in the case of items).
 These items take a specific time to eat, and can do most of the things our original food items could.
+
 Behavior that's still missing from this component that original food items had that should either be put into seperate components or somewhere else:
 	Components:
 	Drying component (jerky etc)
 	Customizable component (custom pizzas etc)
 	Processable component (Slicing and cooking behavior essentialy, making it go from item A to B when conditions are met.)
-	Dunkable component (Dunking things into reagent containers to absorb a specific amount of reagents)
+
 	Misc:
 	Something for cakes (You can store things inside)
+
 */
 /datum/component/edible
+	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	///Amount of reagents taken per bite
 	var/bite_consumption = 2
 	///Amount of bites taken so far
@@ -27,10 +31,22 @@ Behavior that's still missing from this component that original food items had t
 	var/list/eatverbs
 	///Callback to be ran for when you take a bite of something
 	var/datum/callback/after_eat
+	///Callback to be ran for when you take a bite of something
+	var/datum/callback/on_consume
 	///Last time we checked for food likes
 	var/last_check_time
 
-/datum/component/edible/Initialize(list/initial_reagents, food_flags = NONE, foodtypes = NONE, volume = 50, eat_time = 30, list/tastes, list/eatverbs = list("bite","chew","nibble","gnaw","gobble","chomp"), bite_consumption = 2, datum/callback/after_eat)
+/datum/component/edible/Initialize(list/initial_reagents,
+								food_flags = NONE,
+								foodtypes = NONE,
+								volume = 50,
+								eat_time = 30,
+								list/tastes,
+								list/eatverbs = list("bite","chew","nibble","gnaw","gobble","chomp"),
+								bite_consumption = 2,
+								datum/callback/after_eat,
+								datum/callback/on_consume)
+
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -38,6 +54,7 @@ Behavior that's still missing from this component that original food items had t
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_ANIMAL, .proc/UseByAnimal)
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/UseFromHand)
+		RegisterSignal(parent, COMSIG_ITEM_FRIED, .proc/OnFried)
 	else if(isturf(parent))
 		RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/TryToEatTurf)
 
@@ -48,10 +65,12 @@ Behavior that's still missing from this component that original food items had t
 	src.eatverbs = eatverbs
 	src.junkiness = junkiness
 	src.after_eat = after_eat
+	src.on_consume = on_consume
 
 	var/atom/owner = parent
 
 	owner.create_reagents(volume, INJECTABLE)
+
 	if(initial_reagents)
 		for(var/rid in initial_reagents)
 			var/amount = initial_reagents[rid]
@@ -60,7 +79,38 @@ Behavior that's still missing from this component that original food items had t
 			else
 				owner.reagents.add_reagent(rid, amount)
 
+/datum/component/edible/InheritComponent(datum/component/C,
+	i_am_original,
+	list/initial_reagents,
+	food_flags = NONE,
+	foodtypes = NONE,
+	volume = 50,
+	eat_time = 30,
+	list/tastes,
+	list/eatverbs = list("bite","chew","nibble","gnaw","gobble","chomp"),
+	bite_consumption = 2,
+	datum/callback/after_eat,
+	datum/callback/on_consume
+	)
+
+	. = ..()
+	src.bite_consumption = bite_consumption
+	src.food_flags = food_flags
+	src.foodtypes = foodtypes
+	src.eat_time = eat_time
+	src.eatverbs = eatverbs
+	src.junkiness = junkiness
+	src.after_eat = after_eat
+	src.on_consume = on_consume
+
+/datum/component/edible/Destroy(force, silent)
+	QDEL_NULL(after_eat)
+	QDEL_NULL(on_consume)
+	return ..()
+
 /datum/component/edible/proc/examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+
 	if(!(food_flags & FOOD_IN_CONTAINER))
 		switch (bitecount)
 			if (0)
@@ -73,13 +123,26 @@ Behavior that's still missing from this component that original food items had t
 				examine_list += "[parent] was bitten multiple times!"
 
 /datum/component/edible/proc/UseFromHand(obj/item/source, mob/living/M, mob/living/user)
+	SIGNAL_HANDLER
+
 	return TryToEat(M, user)
 
 /datum/component/edible/proc/TryToEatTurf(datum/source, mob/user)
+	SIGNAL_HANDLER
+
 	return TryToEat(user, user)
+
+/datum/component/edible/proc/OnFried(fry_object)
+	SIGNAL_HANDLER
+	var/atom/our_atom = parent
+	our_atom.reagents.trans_to(fry_object, our_atom.reagents.total_volume)
+	qdel(our_atom)
+	return COMSIG_FRYING_HANDLED
 
 ///All the checks for the act of eating itself and
 /datum/component/edible/proc/TryToEat(mob/living/eater, mob/living/feeder)
+
+	set waitfor = FALSE
 
 	var/atom/owner = parent
 
@@ -87,7 +150,12 @@ Behavior that's still missing from this component that original food items had t
 		return
 	if(!owner.reagents.total_volume)//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(feeder, "<span class='warning'>None of [owner] left, oh no!</span>")
-		qdel(parent)
+		on_consume?.Invoke(eater, feeder)
+		if(isturf(parent))
+			var/turf/T = parent
+			T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
+		else
+			qdel(parent)
 		return
 	if(!CanConsume(eater, feeder))
 		return
@@ -140,7 +208,7 @@ Behavior that's still missing from this component that original food items had t
 
 	var/atom/owner = parent
 
-	if(!owner.reagents)
+	if(!owner?.reagents)
 		return FALSE
 	if(eater.satiety > -200)
 		eater.satiety -= junkiness
@@ -176,7 +244,7 @@ Behavior that's still missing from this component that original food items had t
 	return TRUE
 
 ///Check foodtypes to see if we should send a moodlet
-/datum/component/edible/proc/checkLiked(var/fraction, mob/M)
+/datum/component/edible/proc/checkLiked(fraction, mob/M)
 	if(last_check_time + 50 > world.time)
 		return FALSE
 	if(!ishuman(M))
@@ -210,21 +278,28 @@ Behavior that's still missing from this component that original food items had t
 	if(!eater)
 		return
 	if(!owner.reagents.total_volume)
-		qdel(parent)
+		if(isturf(parent))
+			var/turf/T = parent
+			T.ScrapeAway(1, CHANGETURF_INHERIT_AIR)
+		else
+			qdel(parent)
 
 ///Ability to feed food to puppers
 /datum/component/edible/proc/UseByAnimal(datum/source, mob/user)
+
+	SIGNAL_HANDLER
+
 
 	var/atom/owner = parent
 
 	var/mob/living/L = user
 	if(bitecount == 0 || prob(50))
-		L.emote("me", 1, "nibbles away at \the [parent]")
+		L.manual_emote("nibbles away at \the [parent]")
 	bitecount++
 	. = COMPONENT_ITEM_NO_ATTACK
 	L.taste(owner.reagents) // why should carbons get all the fun?
 	if(bitecount >= 5)
 		var/sattisfaction_text = pick("burps from enjoyment", "yaps for more", "woofs twice", "looks at the area where \the [parent] was")
 		if(sattisfaction_text)
-			L.emote("me", 1, "[sattisfaction_text]")
+			L.manual_emote(sattisfaction_text)
 		qdel(parent)

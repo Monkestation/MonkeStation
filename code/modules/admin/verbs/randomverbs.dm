@@ -1215,7 +1215,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	punish_log(target, punishment)
 //MONKESTATION ADDITION
 /proc/breadify(atom/movable/target)
-	var/obj/item/reagent_containers/food/snacks/store/bread/plain/bread = new(get_turf(target))
+	var/obj/item/food/bread/plain/bread = new(get_turf(target))
 	target.forceMove(bread)
 //MONKESTATION ADDITION END
 /client/proc/punish_log(var/whom, var/punishment)

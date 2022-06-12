@@ -7701,7 +7701,7 @@
 "aDK" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/baguette/mime,
+/obj/item/food/baguette/mime,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aDM" = (
