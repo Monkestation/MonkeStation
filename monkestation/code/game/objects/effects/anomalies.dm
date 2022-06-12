@@ -131,6 +131,8 @@
 	var/turf/location = get_turf(src)
 	location.atmos_spawn_air("water_vapor=10;TEMP=340")
 
+//No detonation because it's strong enough as it is
+
 
 #undef STORM_MIN_RANGE
 #undef STORM_MAX_RANGE
@@ -248,6 +250,27 @@
 		/obj/item/stack/ore/bananium = 12,
 		/obj/item/bikehorn = 15)
 
+
+/obj/effect/anomaly/clown/Initialize(mapload, new_lifespan)
+	. = ..()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_entered,
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/effect/anomaly/clown/Destroy()
+	. = ..()
+	RemoveElement(/datum/element/connect_loc)
+
+/obj/effect/anomaly/clown/proc/on_entered(datum/source, atom/movable/atom_movable)
+	SIGNAL_HANDLER
+
+	if(active && iscarbon(atom_movable))
+		var/mob/living/carbon/target = atom_movable
+		active = FALSE
+		target.slip(2 SECONDS, src)
+		playsound(src, 'sound/effects/laughtrack.ogg', vol = 50, vary = 1)
+
 /obj/effect/anomaly/clown/anomalyEffect(delta_time)
 	..()
 
@@ -280,8 +303,36 @@
 
 //Monkey Anomaly (Random Chimp Event)
 
+#define MONKEY_SOUNDS list('sound/creatures/monkey/monkey_screech_1.ogg', 'sound/creatures/monkey/monkey_screech_2.ogg', 'sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')
+
 /obj/effect/anomaly/monkey
 	name = "Screeching Anomaly"
 	desc = "An anomalous one-way gateway that leads straight to Monkey Planet"
 	icon_state = "bhole3"
+	lifespan = 20 SECONDS //Rapid swarm of maybe ten monkeys.
+	var/active = TRUE
 
+/obj/effect/anomaly/monkey/anomalyEffect(delta_time)
+	..()
+
+	playsound(src, pick(MONKEY_SOUNDS), vol = 33, vary = 1)
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
+		return
+
+	if(!active)
+		active = TRUE
+		return
+
+	if(prob(10))
+		new /mob/living/carbon/monkey/angry(src.loc)
+	else
+		new /mob/living/carbon/monkey(src.loc)
+	active = FALSE
+
+/obj/effect/anomaly/monkey/detonate()
+	if(prob(10))
+		new /mob/living/simple_animal/hostile/gorilla(src.loc)
+
+
+#undef MONKEY_SOUNDS
