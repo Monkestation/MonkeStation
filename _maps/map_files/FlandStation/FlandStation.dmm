@@ -4929,7 +4929,7 @@
 	dir = 10
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/popcorn,
+/obj/item/food/popcorn,
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
 	pixel_x = 4;
 	pixel_y = 6

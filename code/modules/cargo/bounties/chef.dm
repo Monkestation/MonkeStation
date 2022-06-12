@@ -16,7 +16,7 @@
 	description = "Upper management wants to host a movie night. Ship bags of popcorn for the occasion."
 	reward = 3000
 	required_count = 3
-	wanted_types = list(/obj/item/reagent_containers/food/snacks/popcorn)
+	wanted_types = list(/obj/item/food/popcorn)
 
 /datum/bounty/item/chef/onionrings
 	name = "Onion Rings"
