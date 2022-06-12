@@ -154,7 +154,7 @@
 /obj/item/smithing/hammerhead/startfinish()
 	var/obj/item/melee/smith/hammer/finalforreal = new /obj/item/melee/smith/hammer(src)
 	finalforreal.force = ((finalforreal.force + quality / 2)) * blunt_mult
-	finalitem.throwforce = finalitem.force / 4
+	finalforreal.throwforce = finalforreal.force / 4
 	finalforreal.qualitymod = quality / 4
 	finalitem = finalforreal
 	..()
@@ -349,7 +349,7 @@
 /obj/item/smithing/broadblade/startfinish()
 	var/obj/item/melee/smith/twohand/broadsword/finalforreal = new /obj/item/melee/smith/twohand/broadsword(src)
 	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
+	finalforreal.throwforce = finalforreal.force / 4
 	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
 	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
 	finalitem = finalforreal
