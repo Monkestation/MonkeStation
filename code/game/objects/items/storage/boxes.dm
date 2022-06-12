@@ -999,7 +999,7 @@
 							  /obj/item/reagent_containers/food/snacks/grown/potato,
 							  /obj/item/reagent_containers/food/snacks/grown/potato/sweet,
 							  /obj/item/reagent_containers/food/snacks/grown/apple,
-							  /obj/item/reagent_containers/food/snacks/chocolatebar,
+							  /obj/item/food/chocolatebar,
 							  /obj/item/reagent_containers/food/snacks/grown/cherries,
 							  /obj/item/reagent_containers/food/snacks/grown/banana,
 							  /obj/item/reagent_containers/food/snacks/grown/cabbage,
@@ -1068,7 +1068,7 @@
 	for(var/i in 1 to 2)
 		new /obj/item/reagent_containers/food/snacks/grown/cherries(src)
 		new /obj/item/reagent_containers/food/snacks/grown/banana(src)
-	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
+	new /obj/item/food/chocolatebar(src)
 	new /obj/item/reagent_containers/food/snacks/grown/cocoapod(src)
 	new /obj/item/reagent_containers/food/snacks/grown/apple(src)
 

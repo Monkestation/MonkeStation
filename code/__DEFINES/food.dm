@@ -32,6 +32,9 @@
 
 #define IS_EDIBLE(O) (istype(O, /obj/item/reagent_containers/food/snacks) || O.GetComponent(/datum/component/edible))
 
+///Food trash flags
+#define FOOD_TRASH_POPABLE (1<<0)
+
 ///Food preference enums
 #define FOOD_LIKED 1
 #define FOOD_DISLIKED 2

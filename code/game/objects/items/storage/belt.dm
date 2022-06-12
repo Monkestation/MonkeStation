@@ -481,7 +481,7 @@
 		/obj/item/food/syndicake,
 		/obj/item/food/spacetwinkie,
 		/obj/item/food/cheesiehonkers,
-		/obj/item/reagent_containers/food/snacks/nachos,
+		/obj/item/food/nachos,
 		/obj/item/reagent_containers/food/snacks/cheesynachos,
 		/obj/item/reagent_containers/food/snacks/cubannachos,
 		/obj/item/food/nugget,

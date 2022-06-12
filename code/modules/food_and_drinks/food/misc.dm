@@ -1,33 +1,36 @@
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/store/cheesewheel
+/obj/item/food/cheesewheel
 	name = "cheese wheel"
 	desc = "A big wheel of delcious Cheddar."
 	icon_state = "cheesewheel"
-	slice_path = /obj/item/reagent_containers/food/snacks/cheesewedge
-	slices_num = 5
-	list_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5)
+	food_reagents =  = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("cheese" = 1)
-	foodtype = DAIRY
+	foodtypes = DAIRY
 
-/obj/item/reagent_containers/food/snacks/cheesewedge
+/obj/item/food/cheesewheel/Initialize()
+	. = ..()
+	AddComponent(/datum/component/food_storage)
+
+/obj/item/food/cheesewheel/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cheesewedge, 5, 30)
+
+/obj/item/food/cheesewedge
 	name = "cheese wedge"
 	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
 	icon_state = "cheesewedge"
-	filling_color = "#FFD700"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cheese" = 1)
-	foodtype = DAIRY
+	foodtypes = DAIRY
 
-/obj/item/reagent_containers/food/snacks/watermelonslice
+/obj/item/food/watermelonslice
 	name = "watermelon slice"
 	desc = "A slice of watery goodness."
 	icon_state = "watermelonslice"
-	filling_color = "#FF1493"
 	tastes = list("watermelon" = 1)
-	foodtype = FRUIT
+	foodtypes = FRUIT
 	juice_results = list(/datum/reagent/consumable/watermelonjuice = 5)
 
 /obj/item/food/candy_corn
@@ -46,117 +49,103 @@
 	tastes = list("bitter wax" = 1)
 	foodtypes = GROSS
 
-/obj/item/reagent_containers/food/snacks/chocolatebar
+/obj/item/food/chocolatebar
 	name = "chocolate bar"
 	desc = "Such sweet, fattening food."
 	icon_state = "chocolatebar"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/cocoa = 2)
-	filling_color = "#A0522D"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/cocoa = 2)
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/hugemushroomslice
+/obj/item/food/hugemushroomslice
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
 	icon_state = "hugemushroomslice"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("mushroom" = 1)
-	foodtype = VEGETABLES
+	foodtypes = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/popcorn
 	name = "popcorn"
 	desc = "Now let's find some cinema."
 	icon_state = "popcorn"
-	trash = /obj/item/trash/popcorn
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
-	filling_color = "#FFEFD5"
+	trash_type = /obj/item/trash/popcorn
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	bite_consumption = 0.1
 	tastes = list("popcorn" = 3, "butter" = 1)
-	foodtype = JUNKFOOD
-
-/obj/item/reagent_containers/food/snacks/popcorn/Initialize(mapload)
-	. = ..()
+	foodtypes = JUNKFOOD
 	eatverb = pick("bite","nibble","gnaw","gobble","chomp")
 
-/obj/item/reagent_containers/food/snacks/loadedbakedpotato
+/obj/item/food/loadedbakedpotato
 	name = "loaded baked potato"
 	desc = "Totally baked."
 	icon_state = "loadedbakedpotato"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-	filling_color = "#D2B48C"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("potato" = 1)
-	foodtype = VEGETABLES | DAIRY
+	foodtypes = VEGETABLES | DAIRY
 
-/obj/item/reagent_containers/food/snacks/fries
+/obj/item/food/fries
 	name = "space fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
 	icon_state = "fries"
-	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	filling_color = "#FFD700"
+	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("fries" = 3, "salt" = 1)
-	foodtype = VEGETABLES | GRAIN | FRIED
+	foodtypes = VEGETABLES | GRAIN | FRIED
 
 
-/obj/item/reagent_containers/food/snacks/tatortot
+/obj/item/food/tatortot
 	name = "tator tot"
 	desc = "A large fried potato nugget that may or may not try to valid you."
 	icon_state = "tatortot"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
-	filling_color = "FFD700"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("potato" = 3, "valids" = 1)
-	foodtype = FRIED | VEGETABLES
+	foodtypes = FRIED | VEGETABLES
 
 
-/obj/item/reagent_containers/food/snacks/soydope
+/obj/item/food/soydope
 	name = "soy dope"
 	desc = "Dope from a soy."
 	icon_state = "soydope"
-	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	filling_color = "#DEB887"
+	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("soy" = 1)
-	foodtype = VEGETABLES
+	foodtypes = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/cheesyfries
+/obj/item/food/cheesyfries
 	name = "cheesy fries"
 	desc = "Fries. Covered in cheese. Duh."
 	icon_state = "cheesyfries"
-	trash = /obj/item/trash/plate
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
-	filling_color = "#FFD700"
+	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("fries" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | GRAIN
+	foodtypes = VEGETABLES | GRAIN
 
-/obj/item/reagent_containers/food/snacks/cheesyfries/Initialize()
+/obj/item/food/cheesyfries/Initialize()
 	. = ..()
 	AddElement(/datum/element/dunkable, 10)
 
-/obj/item/reagent_containers/food/snacks/badrecipe
+/obj/item/food/badrecipe
 	name = "burned mess"
 	desc = "Someone should be demoted from cook for this."
 	icon_state = "badrecipe"
-	list_reagents = list(/datum/reagent/toxin/bad_food = 30)
-	filling_color = "#8B4513"
-	foodtype = GROSS
+	food_reagents = list(/datum/reagent/toxin/bad_food = 30)
+	foodtypes = GROSS
 
-/obj/item/reagent_containers/food/snacks/carrotfries
+/obj/item/food/carrotfries
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."
 	icon_state = "carrotfries"
 	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
-	filling_color = "#FFA500"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("carrots" = 3, "salt" = 1)
-	foodtype = VEGETABLES
+	foodtypes = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/carrotfries/Initialize()
+/obj/item/food/carrotfries/Initialize()
 	. = ..()
 	AddElement(/datum/element/dunkable, 10)
 
-/obj/item/reagent_containers/food/snacks/candiedapple
+/obj/item/food/candiedapple
 	name = "candied apple"
 	desc = "An apple coated in sugary sweetness."
 	icon_state = "candiedapple"
@@ -167,7 +156,7 @@
 	tastes = list("apple" = 2, "caramel" = 3)
 	foodtype = JUNKFOOD | FRUIT | SUGAR
 
-/obj/item/reagent_containers/food/snacks/mint
+/obj/item/food/mint
 	name = "mint"
 	desc = "It is only wafer thin."
 	icon_state = "mint"
@@ -194,7 +183,7 @@
 	tastes = list("cobwebs" = 1)
 	foodtype = MEAT | TOXIC
 
-/obj/item/reagent_containers/food/snacks/spiderling
+/obj/item/food/spiderling
 	name = "spiderling"
 	desc = "It's slightly twitching in your hand. Ew..."
 	icon_state = "spiderling"
@@ -262,7 +251,7 @@
 	tastes = list("tortilla" = 1)
 	foodtype = GRAIN
 
-/obj/item/reagent_containers/food/snacks/burrito
+/obj/item/food/burrito
 	name = "burrito"
 	desc = "Tortilla wrapped goodness."
 	icon_state = "burrito"
@@ -322,7 +311,7 @@
 	tastes = list("parsnip" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/melonfruitbowl
+/obj/item/food/melonfruitbowl
 	name = "melon fruit bowl"
 	desc = "For people who wants edible fruit bowls."
 	icon_state = "melonfruitbowl"
@@ -333,7 +322,7 @@
 	tastes = list("melon" = 1)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/snacks/nachos
+/obj/item/food/nachos
 	name = "nachos"
 	desc = "Chips from Space Mexico."
 	icon_state = "nachos"
@@ -600,7 +589,7 @@
 		return 0
 	return ..()
 
-/obj/item/reagent_containers/food/snacks/canned/beans
+/obj/item/food/canned/beans
 	name = "tin of beans"
 	desc = "Musical fruit in a slightly less musical container."
 	icon_state = "beans"

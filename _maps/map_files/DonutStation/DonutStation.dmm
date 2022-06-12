@@ -6473,7 +6473,7 @@
 /area/maintenance/port/aft)
 "aqb" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/food/mint,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},

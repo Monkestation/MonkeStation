@@ -4,7 +4,6 @@
 		/obj/item/food/breadslice,
 		/obj/item/food/cake,
 		/obj/item/food/cakeslice,
-		/obj/item/reagent_containers/food/snacks/store,
 		/obj/item/food/pie,
 		/obj/item/food/kebab,
 		/obj/item/food/pizza,

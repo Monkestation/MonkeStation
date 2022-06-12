@@ -108,7 +108,7 @@
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/reagent_containers/food/snacks/soydope = 2,
+		/obj/item/food/soydope = 2,
 		/obj/item/food/tofu = 2
 	)
 	result = /obj/item/food/soup/milo
@@ -150,7 +150,7 @@
 	reqs = list(
 		/datum/reagent/water = 10,
 		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/reagent_containers/food/snacks/badrecipe = 1,
+		/obj/item/food/badrecipe = 1,
 		/obj/item/food/tofu = 1,
 		/obj/item/food/boiledegg = 1,
 		/obj/item/reagent_containers/food/snacks/cheesewedge = 1,

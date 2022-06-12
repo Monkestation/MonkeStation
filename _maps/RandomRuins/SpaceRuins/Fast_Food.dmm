@@ -414,7 +414,7 @@
 /area/ruin/space/has_grav/powered/macspace)
 "bG" = (
 /obj/structure/table/wood/fancy/red,
-/obj/item/reagent_containers/food/snacks/carrotfries,
+/obj/item/food/carrotfries,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/macspace)
 "bH" = (
@@ -431,7 +431,7 @@
 /area/ruin/space/has_grav/powered/macspace)
 "bJ" = (
 /obj/structure/table/wood/fancy/red,
-/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/food/fries,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/macspace)
 "bK" = (
@@ -715,7 +715,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/macspace)
 "cK" = (
-/obj/item/reagent_containers/food/snacks/burrito,
+/obj/item/food/burrito,
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/macspace)

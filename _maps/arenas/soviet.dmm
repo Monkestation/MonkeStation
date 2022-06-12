@@ -33,7 +33,7 @@
 /area/tdome/arena)
 "g" = (
 /obj/machinery/deepfryer,
-/obj/item/reagent_containers/food/snacks/badrecipe,
+/obj/item/food/badrecipe,
 /turf/open/floor/plasteel/yellowsiding,
 /area/tdome/arena)
 "h" = (

@@ -14,7 +14,7 @@
 
 /datum/food_processor_process/potatowedges
 	input = /obj/item/reagent_containers/food/snacks/grown/potato/wedges
-	output = /obj/item/reagent_containers/food/snacks/fries
+	output = /obj/item/food/fries
 
 /datum/food_processor_process/sweetpotato
 	input = /obj/item/reagent_containers/food/snacks/grown/potato/sweet
@@ -22,15 +22,15 @@
 
 /datum/food_processor_process/potato
 	input = /obj/item/reagent_containers/food/snacks/grown/potato
-	output = /obj/item/reagent_containers/food/snacks/tatortot
+	output = /obj/item/food/tatortot
 
 /datum/food_processor_process/carrot
 	input = /obj/item/reagent_containers/food/snacks/grown/carrot
-	output = /obj/item/reagent_containers/food/snacks/carrotfries
+	output = /obj/item/food/carrotfries
 
 /datum/food_processor_process/soybeans
 	input = /obj/item/reagent_containers/food/snacks/grown/soybeans
-	output = /obj/item/reagent_containers/food/snacks/soydope
+	output = /obj/item/food/soydope
 
 /datum/food_processor_process/spaghetti
 	input = /obj/item/food/doughslice

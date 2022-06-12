@@ -71,7 +71,7 @@
 /area/crew_quarters/bar)
 "cm" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/food/chocolatebar,
 /obj/item/kitchen/fork,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
