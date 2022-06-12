@@ -5,7 +5,7 @@
 		/obj/item/food/cake,
 		/obj/item/food/cakeslice,
 		/obj/item/reagent_containers/food/snacks/store,
-		/obj/item/reagent_containers/food/snacks/pie,
+		/obj/item/food/pie,
 		/obj/item/reagent_containers/food/snacks/kebab,
 		/obj/item/food/pizza,
 		/obj/item/food/pizzaslice,

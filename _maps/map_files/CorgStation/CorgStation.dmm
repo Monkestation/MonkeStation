@@ -35802,7 +35802,7 @@
 /area/chapel/main/monastery)
 "inA" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/food/dough,
 /obj/item/kitchen/rollingpin,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -53790,8 +53790,8 @@
 "mDT" = (
 /obj/structure/table/wood,
 /obj/item/pneumatic_cannon/pie,
-/obj/item/reagent_containers/food/snacks/pie/cream,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
+/obj/item/food/pie/cream,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/theatre)
 "mEb" = (

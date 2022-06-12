@@ -70667,7 +70667,7 @@
 /area/maintenance/disposal)
 "qBY" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spaghetti,
+/obj/item/food/spaghetti,
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = 4;
 	pixel_y = 4
@@ -79679,7 +79679,7 @@
 /area/science/explab)
 "sGH" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/bar/tile_marquee{
 	dir = 1
@@ -94720,7 +94720,7 @@
 /area/maintenance/starboard/aft)
 "wkz" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
 /obj/item/clothing/head/lobsterhat,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26

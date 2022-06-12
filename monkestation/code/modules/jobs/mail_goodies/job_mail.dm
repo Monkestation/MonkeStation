@@ -139,7 +139,7 @@
 /datum/job/clown
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
-		/obj/item/reagent_containers/food/snacks/pie/cream = 50,
+		/obj/item/food/pie/cream = 50,
 		/obj/item/storage/box/donkpockets/donkpockethonk = 10,
 		/obj/item/clothing/shoes/clown_shoes/combat = 10,
 		/obj/item/reagent_containers/spray/waterflower/lube = 20, 		// lube

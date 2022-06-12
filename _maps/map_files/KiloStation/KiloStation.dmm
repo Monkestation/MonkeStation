@@ -42534,8 +42534,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/dough,
-/obj/item/reagent_containers/food/snacks/dough,
+/obj/item/food/dough,
+/obj/item/food/dough,
 /obj/item/kitchen/rollingpin,
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/dark,
@@ -43722,7 +43722,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "Serving Hatch"
@@ -44959,7 +44959,7 @@
 /obj/structure/mirror{
 	pixel_x = -26
 	},
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
 /obj/item/clothing/head/lobsterhat,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -60970,7 +60970,7 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/snacks/spaghetti/copypasta{
+/obj/item/food/spaghetti/copypasta{
 	pixel_y = 5
 	},
 /obj/item/kitchen/fork,
@@ -100345,7 +100345,7 @@
 "sHM" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spaghetti/copypasta{
+/obj/item/food/spaghetti/copypasta{
 	name = "rotten copypasta";
 	pixel_y = 4
 	},

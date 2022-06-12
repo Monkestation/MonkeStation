@@ -571,7 +571,7 @@
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle,
+/obj/item/food/spaghetti/beefnoodle,
 /obj/structure/railing{
 	dir = 1
 	},
@@ -1342,7 +1342,7 @@
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spaghetti/chowmein,
+/obj/item/food/spaghetti/chowmein,
 /obj/machinery/light/small,
 /obj/structure/railing{
 	dir = 1
