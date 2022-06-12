@@ -134,7 +134,7 @@
 /area/shuttle/escape/luxury)
 "ay" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/notasandwich,
+/obj/item/food/notasandwich,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "az" = (
@@ -144,17 +144,17 @@
 /area/shuttle/escape/luxury)
 "aA" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/kebab/tofu,
+/obj/item/food/kebab/tofu,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aB" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/honkdae,
+/obj/item/food/honkdae,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aC" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/enchiladas,
+/obj/item/food/enchiladas,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aD" = (
@@ -169,7 +169,7 @@
 /area/shuttle/escape/luxury)
 "aF" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/benedict,
+/obj/item/food/benedict,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aG" = (
@@ -189,7 +189,7 @@
 /area/shuttle/escape/luxury)
 "aJ" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/salad/validsalad,
+/obj/item/food/salad/validsalad,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aK" = (
@@ -220,12 +220,12 @@
 /area/shuttle/escape/luxury)
 "aP" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/food/grilledcheese,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aQ" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/jelliedtoast/cherry,
+/obj/item/food/jelliedtoast/cherry,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aR" = (
@@ -235,7 +235,7 @@
 /area/shuttle/escape/luxury)
 "aS" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/eggplantparm,
+/obj/item/food/eggplantparm,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aT" = (
@@ -245,7 +245,7 @@
 /area/shuttle/escape/luxury)
 "aU" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/bearsteak,
+/obj/item/food/bearsteak,
 /turf/open/floor/carpet,
 /area/shuttle/escape/luxury)
 "aV" = (

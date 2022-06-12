@@ -45,7 +45,7 @@
 		/obj/item/reagent_containers/glass/bottle/diethylamine = 20,
 		/obj/item/gun/energy/floragun = 10,
 		/obj/item/seeds/random = 5,
-		/obj/item/reagent_containers/food/snacks/monkeycube/bee = 2
+		/obj/item/food/monkeycube/bee = 2
 	)
 
 //BRIG PHYSICIAN

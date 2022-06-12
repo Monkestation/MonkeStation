@@ -5,15 +5,15 @@
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
 	//MonkeStation Edit Start: Reduction of Junk Food
-	products = list(/obj/item/reagent_containers/food/snacks/spacetwinkie = 2,
-					/obj/item/reagent_containers/food/snacks/cheesiehonkers = 2,
-					/obj/item/reagent_containers/food/snacks/candy = 2,
-		            /obj/item/reagent_containers/food/snacks/chips = 2,
-		            /obj/item/reagent_containers/food/snacks/sosjerky = 2,
-					/obj/item/reagent_containers/food/snacks/no_raisin = 2,
+	products = list(/obj/item/food/spacetwinkie = 2,
+					/obj/item/food/cheesiehonkers = 2,
+					/obj/item/food/candy = 2,
+		            /obj/item/food/chips = 2,
+		            /obj/item/food/sosjerky = 2,
+					/obj/item/food/no_raisin = 2,
 					/obj/item/reagent_containers/food/drinks/dry_ramen = 2,
-					/obj/item/reagent_containers/food/snacks/energybar = 6)
-	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 2)
+					/obj/item/food/energybar = 6)
+	contraband = list(/obj/item/food/syndicake = 2)
 	//MonkeStation Edit End
 	refill_canister = /obj/item/vending_refill/snack
 	var/chef_compartment_access = "28" //ACCESS_KITCHEN

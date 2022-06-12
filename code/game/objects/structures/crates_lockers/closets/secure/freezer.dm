@@ -65,7 +65,7 @@
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
 	..()
 	for(var/i = 0, i < 8, i++) //MonkeStation Edit: Doubled Meat
-		new /obj/item/reagent_containers/food/snacks/meat/slab/monkey(src)
+		new /obj/item/food/meat/slab/monkey(src)
 
 /obj/structure/closet/secure_closet/freezer/meat/open
 	req_access = null

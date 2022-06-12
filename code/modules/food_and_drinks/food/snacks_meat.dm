@@ -3,7 +3,7 @@
 
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/cubancarp
+/obj/item/food/cubancarp
 	name = "\improper Cuban carp"
 	desc = "A grifftastic sandwich that burns your tongue and then leaves it numb!"
 	icon_state = "cubancarp"
@@ -15,7 +15,7 @@
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/carpmeat
+/obj/item/food/carpmeat
 	name = "carp fillet"
 	desc = "A fillet of spess carp meat."
 	icon_state = "fishfillet"
@@ -25,21 +25,21 @@
 	tastes = list("fish" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/carpmeat/Initialize(mapload)
+/obj/item/food/carpmeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","gnaw","swallow","chomp")
 
-/obj/item/reagent_containers/food/snacks/carpmeat/imitation
+/obj/item/food/carpmeat/imitation
 	name = "imitation carp fillet"
 	desc = "Almost just like the real thing, kinda."
 
-/obj/item/reagent_containers/food/snacks/carpmeat/icantbeliveitsnotcarp
+/obj/item/food/carpmeat/icantbeliveitsnotcarp
 	name = "fish fillet"
 	desc = "A fillet of unspecified fish meat."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2) //No carpotoxin
 
 
-/obj/item/reagent_containers/food/snacks/fishfingers
+/obj/item/food/fishfingers
 	name = "fish fingers"
 	desc = "A finger of fish."
 	icon_state = "fishfingers"
@@ -50,7 +50,7 @@
 	tastes = list("fish" = 1, "breadcrumbs" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/fishandchips
+/obj/item/food/fishandchips
 	name = "fish and chips"
 	desc = "I do say so myself chap."
 	icon_state = "fishandchips"
@@ -62,7 +62,7 @@
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/tofu
+/obj/item/food/tofu
 	name = "tofu"
 	desc = "We all love tofu."
 	icon_state = "tofu"
@@ -71,13 +71,13 @@
 	tastes = list("tofu" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/tofu/prison
+/obj/item/food/tofu/prison
 	name = "soggy tofu"
 	desc = "You refuse to eat this strange bean curd."
 	tastes = list("sour, rotten water" = 1)
 	foodtype = GROSS
 
-/obj/item/reagent_containers/food/snacks/spiderleg
+/obj/item/food/spiderleg
 	name = "spider leg"
 	desc = "A still twitching leg of a giant spider... you don't really want to eat this, do you?"
 	icon_state = "spiderleg"
@@ -87,7 +87,7 @@
 	tastes = list("cobwebs" = 1)
 	foodtype = MEAT | TOXIC
 
-/obj/item/reagent_containers/food/snacks/cornedbeef
+/obj/item/food/cornedbeef
 	name = "corned beef and cabbage"
 	desc = "Now you can feel like a real tourist vacationing in Ireland."
 	icon_state = "cornedbeef"
@@ -97,7 +97,7 @@
 	tastes = list("meat" = 1, "cabbage" = 1)
 	foodtype = MEAT | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/bearsteak
+/obj/item/food/bearsteak
 	name = "Filet migrawr"
 	desc = "Because eating bear wasn't manly enough."
 	icon_state = "bearsteak"
@@ -107,7 +107,7 @@
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtype = MEAT | ALCOHOL
 
-/obj/item/reagent_containers/food/snacks/meatball
+/obj/item/food/meatball
 	name = "meatball"
 	desc = "A great meal all round. Not a cord of wood."
 	icon_state = "meatball"
@@ -116,7 +116,7 @@
 	tastes = list("meat" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/sausage
+/obj/item/food/sausage
 	name = "sausage"
 	desc = "A piece of mixed, long meat."
 	icon_state = "sausage"
@@ -127,11 +127,11 @@
 	foodtype = MEAT | BREAKFAST
 	var/roasted = FALSE
 
-/obj/item/reagent_containers/food/snacks/sausage/Initialize(mapload)
+/obj/item/food/sausage/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
-/obj/item/reagent_containers/food/snacks/rawkhinkali
+/obj/item/food/rawkhinkali
 	name = "raw khinkali"
 	desc = "One hundred khinkalis? Do I look like a pig?"
 	icon_state = "khinkali"
@@ -150,7 +150,7 @@
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/monkeycube
+/obj/item/food/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
 	icon_state = "monkeycube"
@@ -162,7 +162,7 @@
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
 
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
+/obj/item/food/monkeycube/proc/Expand()
 	if(GLOB.total_cube_monkeys >= CONFIG_GET(number/max_cube_monkeys))
 		visible_message("<span class='warning'>[src] refuses to expand!</span>")
 		return
@@ -177,10 +177,10 @@
 		visible_message("<span class='notice'>[src] fails to expand!</span>")
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/syndicate
+/obj/item/food/monkeycube/syndicate
 	faction = list("neutral", ROLE_SYNDICATE)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/gorilla
+/obj/item/food/monkeycube/gorilla
 	name = "gorilla cube"
 	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules!"
 	bitesize = 20
@@ -188,7 +188,7 @@
 	tastes = list("the jungle" = 1, "bananas" = 1, "jimmies" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
 
-/obj/item/reagent_containers/food/snacks/enchiladas
+/obj/item/food/enchiladas
 	name = "enchiladas"
 	desc = "Viva La Mexico!"
 	icon_state = "enchiladas"
@@ -199,7 +199,7 @@
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/stewedsoymeat
+/obj/item/food/stewedsoymeat
 	name = "stewed soy meat"
 	desc = "Even non-vegetarians will LOVE this!"
 	icon_state = "stewedsoymeat"
@@ -210,7 +210,7 @@
 	tastes = list("soy" = 1, "vegetables" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/stewedsoymeat/Initialize(mapload)
+/obj/item/food/stewedsoymeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
@@ -225,7 +225,7 @@
 	tastes = list("hot peppers" = 1, "cobwebs" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/spidereggsham
+/obj/item/food/spidereggsham
 	name = "green eggs and ham"
 	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
 	icon_state = "spidereggsham"
@@ -237,7 +237,7 @@
 	tastes = list("meat" = 1, "the colour green" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/sashimi
+/obj/item/food/sashimi
 	name = "carp sashimi"
 	desc = "Celebrate surviving attack from hostile alien lifeforms by hospitalising yourself."
 	icon_state = "sashimi"
@@ -247,7 +247,7 @@
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtype = MEAT | TOXIC
 
-/obj/item/reagent_containers/food/snacks/nugget
+/obj/item/food/nugget
 	name = "chicken nugget"
 	filling_color = "#B22222"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -255,13 +255,13 @@
 	tastes = list("\"chicken\"" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/nugget/Initialize(mapload)
+/obj/item/food/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
 
-/obj/item/reagent_containers/food/snacks/pigblanket
+/obj/item/food/pigblanket
 	name = "pig in a blanket"
 	desc = "A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it."
 	icon_state = "pigblanket"
@@ -270,7 +270,7 @@
 	filling_color = "#800000"
 	tastes = list("meat" = 1, "butter" = 1)
 
-/obj/item/reagent_containers/food/snacks/bbqribs
+/obj/item/food/bbqribs
 	name = "bbq ribs"
 	desc = "BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist."
 	icon_state = "ribs"
@@ -280,7 +280,7 @@
 	tastes = list("meat" = 3, "smokey sauce" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meatclown
+/obj/item/food/meatclown
 	name = "meat clown"
 	desc = "A delicious, round piece of meat clown. How horrifying."
 	icon_state = "meatclown"
@@ -289,13 +289,13 @@
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meatclown/ComponentInitialize()
+/obj/item/food/meatclown/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 
 //////////////////////////////////////////// KEBABS AND OTHER SKEWERS ////////////////////////////////////////////
 
-/obj/item/reagent_containers/food/snacks/kebab
+/obj/item/food/kebab
 	trash = /obj/item/stack/rods
 	icon_state = "kebab"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -303,21 +303,21 @@
 	tastes = list("meat" = 3, "metal" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/kebab/human
+/obj/item/food/kebab/human
 	name = "human-kebab"
 	desc = "A human meat, on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("tender meat" = 3, "metal" = 1)
 	foodtype = MEAT | GROSS
 
-/obj/item/reagent_containers/food/snacks/kebab/monkey
+/obj/item/food/kebab/monkey
 	name = "meat-kebab"
 	desc = "Delicious meat, on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("meat" = 3, "metal" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/kebab/tofu
+/obj/item/food/kebab/tofu
 	name = "tofu-kebab"
 	desc = "Vegan meat, on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
@@ -325,14 +325,14 @@
 	foodtype = VEGETABLES
 
 
-/obj/item/reagent_containers/food/snacks/kebab/tail
+/obj/item/food/kebab/tail
 	name = "lizard-tail kebab"
 	desc = "Severed lizard tail on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("meat" = 8, "metal" = 4, "scales" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/kebab/rat
+/obj/item/food/kebab/rat
 	name = "rat-kebab"
 	desc = "Not so delicious rat meat, on a stick."
 	icon_state = "ratkebab"
@@ -341,26 +341,27 @@
 	tastes = list("rat meat" = 1, "metal" = 1)
 	foodtype = MEAT | GROSS
 
-/obj/item/reagent_containers/food/snacks/kebab/rat/double
+/obj/item/food/kebab/rat/double
 	name = "double rat-kebab"
 	icon_state = "doubleratkebab"
 	tastes = list("rat meat" = 2, "metal" = 1)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 
-/obj/item/reagent_containers/food/snacks/meat/steak/ashflake
+/obj/item/food/meat/steak/ashflake
 	name = "ashflaked steak"
 	desc = "A common delicacy among miners."
 	icon_state = "ashsteak"
 	bonus_reagents = list(/datum/reagent/consumable/vitfro = 2)
 	tastes = list("tough meat" = 2, "bubblegum" = 1)
 	foodtype = MEAT
-/obj/item/reagent_containers/food/snacks/kebab/fiesta
+
+/obj/item/food/kebab/fiesta
 	name = "fiesta skewer"
 	icon_state = "fiestaskewer"
 	tastes = list("tex-mex" = 3, "cumin" = 2)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 3)
 
-/obj/item/reagent_containers/food/snacks/dolphinmeat
+/obj/item/food/dolphinmeat
   name = "dolphin fillet"
   desc = "A fillet of spess dolphin meat."
   icon_state = "fishfillet"
@@ -370,12 +371,12 @@
   tastes = list("fish" = 1,"cruelty" = 2)
   foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize(mapload)
+/obj/item/food/dolphinmeat/Initialize(mapload)
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
 
 
-/obj/item/reagent_containers/food/snacks/bbqribs
+/obj/item/food/bbqribs
 	name = "bbq ribs"
 	desc = "BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist."
 	icon_state = "ribs"

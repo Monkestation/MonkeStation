@@ -5982,7 +5982,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/open/floor/carpet/grimy,
 /area/hallway/primary/port)
 "bxb" = (
@@ -34609,7 +34609,7 @@
 	},
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance,
 /obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/snacks/tofu/prison,
+/obj/item/food/tofu/prison,
 /turf/open/floor/plasteel/dark,
 /area/vacant_room/commissary/commissaryFood)
 "hSB" = (
@@ -41594,7 +41594,7 @@
 /area/medical/medbay/central)
 "jxX" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/asteroid)
 "jyb" = (
@@ -52271,11 +52271,11 @@
 /area/science/xenobiology)
 "lYF" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/no_raisin{
+/obj/item/food/no_raisin{
 	pixel_x = 7;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/food/chips,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/xenobiology)
 "lYG" = (

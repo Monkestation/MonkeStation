@@ -2,8 +2,12 @@
 /obj/item/food
 	name = "food"
 	desc = "you eat this"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = null
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_NORMAL
+	obj_flags = UNIQUE_RENAME
+	grind_results = list()
 	///List of reagents this food gets on creation
 	var/list/food_reagents
 	///Extra flags for things such as if the food is in a container or not
@@ -24,6 +28,8 @@
 	var/microwaved_type
 	///Type of atom thats spawned after eating this item
 	var/trash_type
+	///How much junkiness this food has? God I should remove junkiness soon
+	var/junkiness
 
 
 /obj/item/food/Initialize()
@@ -49,7 +55,8 @@
 				tastes = tastes,\
 				eatverbs = eatverbs,\
 				bite_consumption = bite_consumption,\
-				microwaved_type = microwaved_type)
+				microwaved_type = microwaved_type,\
+				junkiness = junkiness)
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else
 

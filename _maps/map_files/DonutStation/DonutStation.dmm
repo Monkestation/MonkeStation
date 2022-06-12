@@ -55574,7 +55574,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_prep)
 "oAn" = (
-/obj/item/reagent_containers/food/snacks/salad/validsalad,
+/obj/item/food/salad/validsalad,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "oAP" = (

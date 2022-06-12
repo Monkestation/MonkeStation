@@ -30,22 +30,21 @@
 	foodtype = FRUIT
 	juice_results = list(/datum/reagent/consumable/watermelonjuice = 5)
 
-/obj/item/reagent_containers/food/snacks/candy_corn
+/obj/item/food/candy_corn
 	name = "candy corn"
 	desc = "It's a handful of candy corn. Can be stored in a detective's hat."
 	icon_state = "candy_corn"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2)
-	filling_color = "#FF8C00"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 2)
 	tastes = list("candy corn" = 1)
-	foodtype = JUNKFOOD | SUGAR
+	foodtypes = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/candy_corn/prison
+/obj/item/food/candy_corn/prison
 	name = "desiccated candy corn"
 	desc = "If this candy corn were any harder Security would confiscate it for being a potential shiv."
 	force = 1 // the description isn't lying
 	throwforce = 1 // if someone manages to bust out of jail with candy corn god bless them
 	tastes = list("bitter wax" = 1)
-	foodtype = GROSS
+	foodtypes = GROSS
 
 /obj/item/reagent_containers/food/snacks/chocolatebar
 	name = "chocolate bar"
@@ -178,15 +177,13 @@
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 
-/obj/item/reagent_containers/food/snacks/eggwrap
+/obj/item/food/eggwrap
 	name = "egg wrap"
 	desc = "The precursor to Pigs in a Blanket."
 	icon_state = "eggwrap"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	filling_color = "#F0E68C"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN
+	foodtypes = MEAT | GRAIN
 
 /obj/item/reagent_containers/food/snacks/spidereggs
 	name = "spider eggs"
@@ -246,16 +243,14 @@
 	tastes = list("chocolate" = 3, "oranges" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/eggplantparm
+/obj/item/food/eggplantparm
 	name = "eggplant parmigiana"
 	desc = "The only good recipe for eggplant."
 	icon_state = "eggplantparm"
-	trash = /obj/item/trash/plate
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
-	filling_color = "#BA55D3"
+	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("eggplant" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | DAIRY
+	foodtypes = VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/tortilla
 	name = "tortilla"
