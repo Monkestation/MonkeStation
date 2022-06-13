@@ -185,7 +185,7 @@
 //DEBTOR
 /datum/job/gimmick/hobo
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/deadmouse = 30,
+		/obj/item/food/deadmouse = 30,
 		/obj/item/reagent_containers/food/drinks/bottle/hooch = 10,
 		/obj/item/radio = 10,
 		/obj/item/storage/pill_bottle/floorpill = 10,

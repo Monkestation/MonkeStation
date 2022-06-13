@@ -43,7 +43,7 @@
 /area/tdome/arena)
 "i" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/yellowsiding,
 /area/tdome/arena)
 "j" = (
@@ -123,7 +123,7 @@
 /area/tdome/arena)
 "u" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/telecomms,
 /area/tdome/arena)
 "v" = (
@@ -201,7 +201,7 @@
 /area/tdome/arena)
 "H" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 1
 	},
@@ -247,7 +247,7 @@
 /area/tdome/arena)
 "Q" = (
 /obj/effect/turf_decal/stripes/red/line,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/telecomms,
 /area/tdome/arena)
 "T" = (
@@ -255,11 +255,11 @@
 	icon_state = "warningline_red";
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/telecomms,
 /area/tdome/arena)
 "V" = (
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/telecomms,
 /area/tdome/arena)
 "W" = (

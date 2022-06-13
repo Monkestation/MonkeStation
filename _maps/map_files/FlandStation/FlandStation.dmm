@@ -45152,8 +45152,8 @@
 /area/engine/atmos)
 "ksa" = (
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/snacks/hotcrossbun,
-/obj/item/reagent_containers/food/snacks/hotcrossbun{
+/obj/item/food/hotcrossbun,
+/obj/item/food/hotcrossbun{
 	pixel_y = 5
 	},
 /turf/open/floor/carpet/grimy,

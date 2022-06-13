@@ -89,16 +89,16 @@
 	..()
 
 
-/obj/item/reagent_containers/food/snacks/clothing
+/obj/item/food/clothing
 	name = "temporary moth clothing snack item"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("dust" = 1, "lint" = 1)
-	foodtype = CLOTH
+	foodtypes = CLOTH
 
 /obj/item/clothing/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent != INTENT_HARM && ismoth(M) && !(clothing_flags & NOTCONSUMABLE) && !(resistance_flags & INDESTRUCTIBLE) && (armor.getRating("melee") == 0))
-		var/obj/item/reagent_containers/food/snacks/clothing/clothing_as_food = new
+		var/obj/item/food/clothing/clothing_as_food = new
 		clothing_as_food.name = name
 		if(clothing_as_food.attack(M, user, def_zone))
 			take_damage(15, sound_effect=FALSE)

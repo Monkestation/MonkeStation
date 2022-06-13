@@ -45,6 +45,7 @@
 	create_reagents(100, INJECTABLE | DRAWABLE)
 
 /obj/item/slime_extract/on_grind()
+	. = ..()
 	if(Uses)
 		grind_results[/datum/reagent/toxin/slimejelly] = 20
 
