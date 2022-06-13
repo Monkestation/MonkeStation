@@ -25,9 +25,8 @@
 	var/filling_color
 
 /obj/item/food/grown/Initialize(mapload, obj/item/seeds/new_seed)
-	. = ..()
 	if(!tastes)
-		tastes = list("[name]" = 1)
+		tastes = list("[name]" = 1) //This happens first else the component already inits
 
 	if(new_seed)
 		seed = new_seed.Copy()
