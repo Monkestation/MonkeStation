@@ -13232,7 +13232,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aEP" = (
-/obj/machinery/food_cart/coffee,
+/obj/machinery/food_cart,
 /obj/machinery/light/small{
 	dir = 1
 	},
