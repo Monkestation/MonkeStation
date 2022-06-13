@@ -21,6 +21,7 @@
 	cart_griddle = new(src)
 	cart_smartfridge = new(src)
 	cart_table = new(src)
+	cart_table.icon_state = "table-0"
 	cart_tent = new(src)
 	packed_things = list(cart_table, cart_smartfridge, cart_tent, cart_griddle) //middle, left, left, right
 	RegisterSignal(cart_griddle, COMSIG_PARENT_QDELETING, .proc/lost_part)
