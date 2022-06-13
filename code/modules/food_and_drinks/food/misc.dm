@@ -88,7 +88,7 @@
 	name = "space fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
 	icon_state = "fries"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("fries" = 3, "salt" = 1)
 	foodtypes = VEGETABLES | GRAIN | FRIED
@@ -107,7 +107,7 @@
 	name = "soy dope"
 	desc = "Dope from a soy."
 	icon_state = "soydope"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("soy" = 1)
 	foodtypes = VEGETABLES
@@ -116,7 +116,7 @@
 	name = "cheesy fries"
 	desc = "Fries. Covered in cheese. Duh."
 	icon_state = "cheesyfries"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("fries" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | GRAIN
@@ -144,7 +144,7 @@
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."
 	icon_state = "carrotfries"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("carrots" = 3, "salt" = 1)
 	foodtypes = VEGETABLES
@@ -167,7 +167,7 @@
 	desc = "It is only wafer thin."
 	icon_state = "mint"
 	bite_consumption = 1
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/toxin/minttoxin = 2)
 	foodtypes = TOXIC | SUGAR
 
@@ -232,7 +232,7 @@
 	name = "eggplant parmigiana"
 	desc = "The only good recipe for eggplant."
 	icon_state = "eggplantparm"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("eggplant" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | DAIRY
@@ -282,7 +282,7 @@
 	name = "yaki imo"
 	desc = "Made with roasted sweet potatoes!"
 	icon_state = "yakiimo"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
 
 	tastes = list("sweet potato" = 1)
@@ -292,7 +292,7 @@
 	name = "roast parsnip"
 	desc = "Sweet and crunchy."
 	icon_state = "roastparsnip"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("parsnip" = 1)
 	foodtypes = VEGETABLES

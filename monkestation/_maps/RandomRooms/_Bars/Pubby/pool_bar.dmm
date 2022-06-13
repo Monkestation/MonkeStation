@@ -225,7 +225,7 @@
 	dir = 5
 	},
 /obj/structure/table/glass,
-/obj/item/trash/plate,
+/obj/item/plate,
 /obj/item/kitchen/fork{
 	pixel_y = 2
 	},

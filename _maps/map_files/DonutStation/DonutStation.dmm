@@ -12570,7 +12570,7 @@
 /obj/structure/closet/crate,
 /obj/item/kitchen/fork,
 /obj/item/kitchen/fork,
-/obj/item/trash/plate,
+/obj/item/plate,
 /obj/item/clothing/head/bowler,
 /turf/open/floor/plating,
 /area/maintenance/port)

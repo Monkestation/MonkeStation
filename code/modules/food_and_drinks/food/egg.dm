@@ -15,7 +15,7 @@
 	icon_state = "egg"
 	food_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	microwaved_type = /obj/item/food/boiledegg
-	foodtypes = MEAT
+	foodtypes = MEAT | RAW
 	var/static/chick_count = 0 //I copied this from the chicken_count (note the "en" in there) variable from chicken code.
 
 /obj/item/food/egg/gland
@@ -103,7 +103,7 @@
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
 	icon_state = "omelette"
-	trash_type = /obj/item/trash/plate
+
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3)
 	bite_consumption = 1
 	w_class = WEIGHT_CLASS_NORMAL
@@ -133,7 +133,7 @@
 	desc = "There is only one egg on this, how rude."
 	icon_state = "benedict"
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/nutriment = 3)
-	trash_type = /obj/item/trash/plate
+
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
 	foodtypes = MEAT | BREAKFAST | GRAIN
