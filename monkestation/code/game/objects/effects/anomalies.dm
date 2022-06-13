@@ -32,8 +32,10 @@
 /obj/effect/anomaly/radioactive/anomalyEffect(delta_time)
 	..()
 	active = TRUE
-	if(isinspace(src))
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
+
 	radiation_pulse(src, 50)
 	if(!locate(/obj/effect/decal/nuclear_waste) in src.loc)
 		playsound(src, pick('sound/misc/desecration-01.ogg','sound/misc/desecration-02.ogg', 'sound/misc/desecration-03.ogg'), vol = 50, vary = 1)
@@ -68,14 +70,18 @@
 
 /obj/effect/anomaly/fluid/anomalyEffect(delta_time)
 	..()
-	if(isinspace(src))
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
+
 	var/turf/spawn_point = get_turf(src)
 	spawn_point.add_liquid(pick(fluid_choices), dangerous ? DANGEROUS_FLUID_AMOUNT : NORMAL_FLUID_AMOUNT, chem_temp = rand(BODYTEMP_COLD_DAMAGE_LIMIT, BODYTEMP_HEAT_DAMAGE_LIMIT))
 
 /obj/effect/anomaly/fluid/detonate()
-	if(isinspace(src))
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
+
 	var/turf/spawn_point = get_turf(src)
 	spawn_point.add_liquid(pick(fluid_choices), (dangerous ? DANGEROUS_FLUID_AMOUNT : NORMAL_FLUID_AMOUNT) * 5, chem_temp = rand(BODYTEMP_COLD_DAMAGE_LIMIT, BODYTEMP_HEAT_DAMAGE_LIMIT))
 
@@ -84,8 +90,8 @@
 
 //Storm Anomaly (Lightning)
 
-#define STORM_MIN_RANGE 3
-#define STORM_MAX_RANGE 5
+#define STORM_MIN_RANGE 2
+#define STORM_MAX_RANGE 4
 #define STORM_POWER_LEVEL 1000
 
 
@@ -126,8 +132,9 @@
 
 	tesla_zap(src, rand(STORM_MIN_RANGE, STORM_MAX_RANGE), STORM_POWER_LEVEL)
 
-	if(isinspace(src)) //No clouds in space
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
+
 	var/turf/location = get_turf(src)
 	location.atmos_spawn_air("water_vapor=10;TEMP=340")
 
@@ -143,8 +150,8 @@
 //THE STATION MUST SURVIVE
 
 #define MIN_REPLACEMENT 2
-#define MAX_REPLACEMENT 5
-#define MAX_RANGE 5
+#define MAX_REPLACEMENT 7
+#define MAX_RANGE 7
 
 /obj/effect/anomaly/frost
 	name = "Freezing Anomaly"
@@ -153,7 +160,8 @@
 
 /obj/effect/anomaly/frost/anomalyEffect(delta_time)
 	..()
-	if(isinspace(src))
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
 
 	var/turf/current_location = get_turf(src)
@@ -172,7 +180,7 @@
 			continue
 		else
 			valid_turfs |= searched_turfs
-	for(var/i = 1, i <= rand(MIN_REPLACEMENT, MAX_REPLACEMENT), i++) //Replace 2-5 tiles with snow
+	for(var/i = 1, i <= rand(MIN_REPLACEMENT, MAX_REPLACEMENT), i++) //Replace 2-7 tiles with snow
 		var/turf/searched_turfs = safepick(valid_turfs)
 		if(searched_turfs)
 			if(istype(searched_turfs, /turf/open/floor/plating))
@@ -182,11 +190,12 @@
 
 /obj/effect/anomaly/frost/detonate()
 	//The station holds its breath, waiting for whatever the end will bring.
-	if(isinspace(src))
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
 
 	var/turf/current_location = get_turf(src)
-	current_location.atmos_spawn_air("water_vapor=200;TEMP=180") //The cold will be brutal. The water in hydroponics will freeze. We'll have to make do with the food we've stockpiled.
+	current_location.atmos_spawn_air("water_vapor=400;TEMP=140") //The cold will be brutal. The water in hydroponics will freeze. We'll have to make do with the food we've stockpiled.
 
 #undef MIN_REPLACEMENT
 #undef MAX_REPLACEMENT
@@ -223,6 +232,7 @@
 
 /obj/effect/anomaly/petsplosion/anomalyEffect(delta_time)
 	..()
+
 	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return
 
@@ -245,7 +255,7 @@
 	var/active = TRUE
 	var/static/list/clown_spawns = list(
 		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown = 6,
-		/mob/living/simple_animal/hostile/retaliate/clown = 33,
+		/mob/living/simple_animal/hostile/retaliate/clown = 66,
 		/obj/item/grown/bananapeel = 33,
 		/obj/item/stack/ore/bananium = 12,
 		/obj/item/bikehorn = 15)
@@ -291,7 +301,7 @@
 
 	playsound(src, 'sound/items/airhorn.ogg', vol = 100, vary = 1)
 
-	for(var/mob/living/carbon/target in (hearers(HONK_RANGE, src))) //5x5 around the anomaly
+	for(var/mob/living/carbon/target in (hearers(HONK_RANGE, src)))
 		to_chat(target, "<font color='red' size='7'>HONK</font>")
 		target.SetSleeping(0)
 		target.stuttering += 2 SECONDS
@@ -307,9 +317,9 @@
 
 /obj/effect/anomaly/monkey
 	name = "Screeching Anomaly"
-	desc = "An anomalous one-way gateway that leads straight to Monkey Planet"
+	desc = "An anomalous one-way gateway that leads straight to some sort of a planet of apes"
 	icon_state = "bhole3"
-	lifespan = 20 SECONDS //Rapid swarm of maybe ten monkeys.
+	lifespan = 35 SECONDS //Rapid swarm of maybe ten monkeys.
 	var/active = TRUE
 
 /obj/effect/anomaly/monkey/anomalyEffect(delta_time)
