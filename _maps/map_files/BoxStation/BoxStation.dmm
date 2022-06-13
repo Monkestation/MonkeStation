@@ -15467,6 +15467,10 @@
 "aTM" = (
 /obj/structure/table,
 /obj/item/food/mint,
+/obj/item/stack/packageWrap,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aTN" = (
@@ -16025,11 +16029,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aVB" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/stack/packageWrap,
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aVD" = (
@@ -40566,7 +40566,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/camera{
 	c_tag = "Incinerator";
-	network = list("ss13", "turbine")
+	network = list("ss13","turbine")
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
@@ -49341,6 +49341,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"ofp" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "ofA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -96497,7 +96501,7 @@ aJI
 aRB
 aSL
 aTN
-cCq
+ofp
 aVz
 cAg
 kVI

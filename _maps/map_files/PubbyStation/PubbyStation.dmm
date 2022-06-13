@@ -18068,7 +18068,6 @@
 "aTX" = (
 /obj/structure/kitchenspike,
 /obj/item/assembly/mousetrap,
-/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
 "aTZ" = (
@@ -20534,17 +20533,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "bce" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_x = -3;
-	pixel_y = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bcg" = (
@@ -20957,12 +20952,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bdp" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/large,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bdq" = (

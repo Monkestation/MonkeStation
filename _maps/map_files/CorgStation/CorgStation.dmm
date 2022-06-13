@@ -11933,25 +11933,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry/upper)
 "cSf" = (
-/obj/machinery/deepfryer,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 2
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
 "cSr" = (
@@ -29248,8 +29236,6 @@
 /turf/open/floor/plating,
 /area/science/shuttledock)
 "gKM" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -29268,6 +29254,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
 "gKS" = (
@@ -32363,7 +32350,7 @@
 	moveable = 1
 	},
 /obj/machinery/mass_driver{
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 70);
+	armor = list("melee"=10,"bullet"=10,"laser"=10,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=100,"acid"=70);
 	critical_machine = 1;
 	dir = 8;
 	id = "smeject";
@@ -51443,7 +51430,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
+/obj/machinery/oven,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
 "maa" = (
@@ -60765,8 +60752,6 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "opb" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/bag/tray,
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
@@ -60783,6 +60768,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/deepfryer,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
 "oph" = (
@@ -138730,7 +138716,7 @@ kfa
 qqf
 oOR
 tez
-cSf
+gKM
 sMl
 lio
 kfa
@@ -138985,7 +138971,7 @@ qag
 oBZ
 kfa
 eIs
-oOR
+cSf
 lZV
 udp
 wLH

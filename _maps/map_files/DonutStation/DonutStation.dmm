@@ -6472,8 +6472,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "aqb" = (
-/obj/structure/table,
-/obj/item/food/mint,
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -25894,7 +25893,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bfR" = (
-/obj/machinery/food_cart,
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -55647,6 +55646,10 @@
 /obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+"oFz" = (
+/obj/machinery/food_cart,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/kitchen/coldroom)
 "oGu" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/aisat/service";
@@ -91279,7 +91282,7 @@ xhI
 xhI
 xhI
 xhI
-pBI
+oFz
 dwg
 xhI
 bba

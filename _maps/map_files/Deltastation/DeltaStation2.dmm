@@ -18591,13 +18591,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"aPl" = (
-/obj/structure/table,
-/obj/item/food/deadmouse{
-	pixel_y = 5
-	},
-/turf/open/floor/plating,
-/area/security/prison)
 "aPm" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -28203,12 +28196,31 @@
 /obj/item/storage/bag/tray,
 /obj/effect/turf_decal/bot,
 /obj/item/reagent_containers/food/condiment/flour,
+/obj/item/book/manual/wiki/cooking_to_serve_man,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bgu" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
 /obj/machinery/dish_drive,
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
+/obj/item/storage/box/papersack{
+	icon_state = "paperbag_NanotrasenStandard_closed"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bgv" = (
@@ -28920,35 +28932,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bhQ" = (
-/obj/structure/table/reinforced,
-/obj/item/food/dough,
 /obj/effect/turf_decal/bot,
+/obj/machinery/griddle,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bhR" = (
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
-/obj/item/book/manual/wiki/cooking_to_serve_man,
-/turf/open/floor/plasteel,
-/area/crew_quarters/kitchen)
-"bhS" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/item/storage/box/papersack{
-	icon_state = "paperbag_NanotrasenStandard_closed"
-	},
-/obj/effect/turf_decal/bot,
+/obj/machinery/oven,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bhT" = (
@@ -67659,7 +67649,7 @@
 	name = "Replica CentCom officer's jumpsuit"
 	},
 /obj/item/clothing/head/centhat{
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "stamina" = 0);
+	armor = list("melee"=0,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"stamina"=0);
 	desc = "A replica hat of a Central Commander's attire. It has a small tag on it saying, 'It's good to be emperor.'";
 	name = "Replica CentCom hat"
 	},
@@ -67735,7 +67725,7 @@
 /obj/item/folder/red,
 /obj/item/toy/gun,
 /obj/item/clothing/head/beret/sec{
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "stamina" = 0);
+	armor = list("melee"=0,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"stamina"=0);
 	desc = "A replica beret resembling that of a special operations officer under Nanotrasen.";
 	name = "replica officer's beret"
 	},
@@ -68001,7 +67991,7 @@
 /obj/item/reagent_containers/food/drinks/beer{
 	desc = "Whatever it is, it reeks of foul, putrid froth.";
 	icon_state = "beer";
-	list_reagents = list(/datum/reagent/consumable/ethanol/bacchus_blessing = 15);
+	list_reagents = list(/datum/reagent/consumable/ethanol/bacchus_blessing=15);
 	name = "Delta-Down";
 	pixel_x = 5;
 	pixel_y = 5
@@ -109389,6 +109379,7 @@
 "nZF" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/bot,
+/obj/item/food/dough,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "oaD" = (
@@ -156282,7 +156273,7 @@ bcj
 bdJ
 bfg
 bgu
-bhS
+bhQ
 bjF
 blA
 bnq
@@ -171690,7 +171681,7 @@ aJz
 aKW
 aMh
 aND
-aPl
+xtU
 aRd
 aKV
 aUy

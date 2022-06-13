@@ -7701,7 +7701,6 @@
 "aDK" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/table/wood,
-/obj/item/food/baguette/mime,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aDM" = (
@@ -18164,6 +18163,10 @@
 	},
 /turf/closed/wall,
 /area/hallway/secondary/exit)
+"nEl" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "nEZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -22130,11 +22133,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "ybW" = (
-/obj/structure/table,
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "yco" = (
@@ -49556,7 +49556,7 @@ ask
 ybW
 vhY
 axT
-axT
+nEl
 rRN
 aCR
 amH
