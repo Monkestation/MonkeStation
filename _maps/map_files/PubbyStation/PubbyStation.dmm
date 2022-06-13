@@ -18740,8 +18740,8 @@
 /area/crew_quarters/kitchen)
 "aVZ" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/reagent_containers/food/snacks/grown/potato,
-/obj/item/reagent_containers/food/snacks/grown/potato,
+/obj/item/food/grown/potato,
+/obj/item/food/grown/potato,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
 "aWb" = (
@@ -20967,7 +20967,7 @@
 /area/crew_quarters/kitchen)
 "bdq" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/food/grown/tomato,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bdr" = (
@@ -24956,7 +24956,7 @@
 /area/medical/genetics)
 "bpw" = (
 /obj/structure/flora/grass/jungle,
-/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/food/grown/banana,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "bpx" = (
@@ -25615,7 +25615,7 @@
 "bqT" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/food/grown/banana,
 /obj/machinery/camera{
 	c_tag = "Genetics Monkey Pen Fore";
 	dir = 4;
@@ -26880,7 +26880,7 @@
 "btT" = (
 /obj/structure/flora/junglebush,
 /obj/structure/flora/ausbushes/sunnybush,
-/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/food/grown/banana,
 /mob/living/carbon/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
@@ -29225,7 +29225,7 @@
 	name = "Monkey Pen";
 	req_one_access_txt = "9"
 	},
-/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/food/grown/banana,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -43765,7 +43765,7 @@
 /area/chapel/office)
 "crx" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
+/obj/item/food/grown/harebell,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "cry" = (
@@ -43845,7 +43845,7 @@
 /area/chapel/office)
 "crH" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/item/food/grown/poppy,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "crK" = (
@@ -45088,8 +45088,8 @@
 /area/library/lounge)
 "cww" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/harebell,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "cwx" = (

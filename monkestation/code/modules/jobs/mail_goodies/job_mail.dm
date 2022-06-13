@@ -138,7 +138,7 @@
 //CLOWN
 /datum/job/clown
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
+		/obj/item/food/grown/banana = 100,
 		/obj/item/food/pie/cream = 50,
 		/obj/item/storage/box/donkpockets/donkpockethonk = 10,
 		/obj/item/clothing/shoes/clown_shoes/combat = 10,

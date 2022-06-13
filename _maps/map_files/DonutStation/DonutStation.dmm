@@ -1431,12 +1431,12 @@
 /obj/structure/sign/plaques/kiddie/badger{
 	pixel_x = -32
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy{
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
+/obj/item/food/grown/poppy{
 	pixel_x = -1;
 	pixel_y = 3
 	},
@@ -32505,12 +32505,12 @@
 /area/hydroponics/garden)
 "bsv" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy{
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy{
+/obj/item/food/grown/poppy{
 	pixel_x = -1
 	},
 /turf/open/floor/plasteel/dark,

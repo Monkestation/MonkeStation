@@ -2582,11 +2582,11 @@
 /area/engine/engine_room)
 "aIl" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/poppy/lily,
-/obj/item/reagent_containers/food/snacks/grown/poppy/lily,
-/obj/item/reagent_containers/food/snacks/grown/poppy/lily,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
+/obj/item/food/grown/poppy/lily,
+/obj/item/food/grown/poppy/lily,
+/obj/item/food/grown/poppy/lily,
+/obj/item/food/grown/harebell,
+/obj/item/food/grown/harebell,
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
@@ -13084,9 +13084,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "dgF" = (
@@ -62315,11 +62315,11 @@
 /area/medical/medbay/central)
 "oIs" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/harebell,
+/obj/item/food/grown/harebell,
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
@@ -66308,7 +66308,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/item/food/grown/poppy,
 /obj/item/nullrod,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -82730,9 +82730,9 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
-/obj/item/reagent_containers/food/snacks/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
+/obj/item/food/grown/poppy,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/chapel/monastery)
 "tBX" = (
@@ -93025,8 +93025,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/grown/harebell,
-/obj/item/reagent_containers/food/snacks/grown/harebell,
+/obj/item/food/grown/harebell,
+/obj/item/food/grown/harebell,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "vXk" = (

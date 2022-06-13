@@ -40,8 +40,8 @@
 		new /obj/item/reagent_containers/food/condiment/flour(src)
 		new /obj/item/reagent_containers/food/condiment/rice(src)
 	for(var/i = 0, i < 3, i++)
-		new /obj/item/reagent_containers/food/snacks/grown/potato(src)
-		new /obj/item/reagent_containers/food/snacks/grown/tomato(src)
+		new /obj/item/food/grown/potato(src)
+		new /obj/item/food/grown/tomato(src)
 	new /obj/item/reagent_containers/food/condiment/sugar(src)
 	new /obj/item/storage/box/ingredients/wildcard(src)
 	//MonkeStation Edit End

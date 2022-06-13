@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/head/cone = 2,
 	/obj/item/grenade/smokebomb = 2,
 	/obj/item/geiger_counter = 3,
-	/obj/item/reagent_containers/food/snacks/grown/citrus/orange = 1,
+	/obj/item/food/grown/citrus/orange = 1,
 	/obj/item/radio/headset = 1,
 	/obj/item/assembly/infra = 1,
 	/obj/item/assembly/igniter = 2,
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/reagent_containers/pill/floorpill = 4,
 	/obj/item/food/canned/peaches/maint = 1,
 	/obj/item/reagent_containers/food/drinks/bottle/homemaderum = 1,
-	/obj/item/reagent_containers/food/snacks/grown/poppy = 10,
+	/obj/item/food/grown/poppy = 10,
 	/obj/item/throwing_star = 1,
 	//monkestation edit begin
 	/mob/living/simple_animal/hostile/poison/bees/friendly = 1,
