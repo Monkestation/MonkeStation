@@ -26228,7 +26228,7 @@
 	},
 /area/crew_quarters/kitchen)
 "bOT" = (
-/obj/structure/table,
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -72275,7 +72275,7 @@
 /obj/machinery/camera{
 	c_tag = "Incinerator";
 	dir = 8;
-	network = list("ss13", "turbine")
+	network = list("ss13","turbine")
 	},
 /obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 10

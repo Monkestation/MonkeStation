@@ -132,6 +132,14 @@
 	food_reagents = list(/datum/reagent/toxin/bad_food = 30)
 	foodtypes = GROSS
 
+/obj/item/food/badrecipe/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_GRILLED, .proc/OnGrill)
+
+///Prevents grilling burnt shit from well, burning.
+/obj/item/food/badrecipe/proc/OnGrill()
+	return COMPONENT_HANDLED_GRILLING
+
 /obj/item/food/carrotfries
 	name = "carrot fries"
 	desc = "Tasty fries from fresh carrots."

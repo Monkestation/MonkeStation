@@ -30,4 +30,3 @@
 #define IGNORE_HELD_ITEM (1<<2)
 /// Used to prevent important slowdowns from being abused by drugs like kronkaine
 #define IGNORE_SLOWDOWNS (1<<4)
-
