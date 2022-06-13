@@ -1,7 +1,7 @@
 /obj/machinery/griddle
 	name = "griddle"
 	desc = "Because using pans is for pansies."
-	icon = 'icons/obj/machines/griddle.dmi'
+	icon = 'icons/obj/machines/kitchenmachines.dmi'
 	icon_state = "griddle1_off"
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -25,6 +25,15 @@
 /obj/machinery/griddle/Initialize()
 	. = ..()
 	grill_loop = new(list(src), FALSE)
+	if(isnum(variant))
+		variant = rand(1,3)
+
+/obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(flags_1 & NODECONSTRUCT_1)
+		return
+	if(default_deconstruction_crowbar(I, ignore_panel = TRUE))
+		return
 	variant = rand(1,3)
 
 /obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
@@ -108,3 +117,12 @@
 /obj/machinery/griddle/update_icon_state()
 	. = ..()
 	icon_state = "griddle[variant]_[on ? "on" : "off"]"
+
+/obj/machinery/griddle/stand
+	name = "griddle stand"
+	desc = "A more commercialized version of your traditional griddle. What happened to the good old days where people griddled with passion?"
+	variant = "stand"
+
+/obj/machinery/griddle/stand/update_overlays()
+	. = ..()
+	. += "front_bar"
