@@ -297,8 +297,8 @@
 /datum/controller/subsystem/Recover()
 
 /datum/controller/subsystem/vv_edit_var(var_name, var_value)
-	switch (var_name)
-		if (NAMEOF(src, can_fire))
+	switch(var_name)
+		if(NAMEOF(src, can_fire))
 			//this is so the subsystem doesn't rapid fire to make up missed ticks causing more lag
 			if (var_value)
 				update_nextfire(reset_time = TRUE)
