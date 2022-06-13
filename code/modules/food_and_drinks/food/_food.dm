@@ -24,7 +24,7 @@
 	var/list/eatverbs
 	///How much reagents per bite
 	var/bite_consumption
-	///What you get if you microwave the food, this should be replaced once I fully re-work cooking.
+	///What you get if you microwave the food. Use baking for raw things, use microwaving for already cooked things
 	var/microwaved_type
 	///Type of atom thats spawned after eating this item
 	var/trash_type
@@ -32,7 +32,8 @@
 	var/junkiness
 	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
 	var/burns_on_grill = FALSE
-
+	///Will this food turn into badrecipe in an oven? Don't use this for everything; preferably mostly for food that is made in an oven to begin with so it burns after some time
+	var/burns_in_oven = FALSE
 
 /obj/item/food/Initialize()
 	. = ..()
@@ -46,6 +47,7 @@
 	MakeProcessable()
 	MakeLeaveTrash()
 	MakeGrillable()
+	MakeBakeable()
 
 ///This proc adds the edible component, overwrite this if you for some reason want to change some specific args like callbacks.
 /obj/item/food/proc/MakeEdible()
@@ -75,4 +77,10 @@
 /obj/item/food/proc/MakeGrillable()
 	if(burns_on_grill)
 		AddComponent(/datum/component/grillable, /obj/item/food/badrecipe, rand(20 SECONDS, 30 SECONDS), FALSE)
+	return
+
+///This proc handles bakeable components, overwrite if you want different bake results etc.
+/obj/item/food/proc/MakeBakeable()
+	if(burns_in_oven)
+		AddComponent(/datum/component/bakeable, /obj/item/food/badrecipe, rand(25 SECONDS, 40 SECONDS), FALSE)
 	return

@@ -30,7 +30,7 @@
 		I.pixel_y = min(text2num(LAZYACCESS(modifiers, ICON_Y)) + placement_offset, max_height_offset)
 		to_chat(user, "<span class='notice'>You place [I] on [src].</span>")
 		AddToPlate(I, user)
-		update_icon()
+		update_icon() //this might be the cause of food being under plates need to port update_apperance
 	else
 		return ..()
 

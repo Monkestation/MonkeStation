@@ -28,6 +28,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("bread" = 10)
 	foodtypes = GRAIN
+	burns_in_oven = TRUE
 
 /obj/item/food/bread/plain/Initialize()
 	. = ..()

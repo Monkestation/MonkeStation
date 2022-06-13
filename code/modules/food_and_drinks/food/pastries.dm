@@ -412,6 +412,10 @@
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
 
+//donk pockets cook quick... try not to burn them for using an unoptimal tool
+/obj/item/food/donkpocket/MakeBakeable()
+	AddComponent(/datum/component/bakeable, microwaved_type, rand(25 SECONDS, 30 SECONDS), TRUE, TRUE)
+
 /obj/item/food/donkpocket/warm
 	name = "warm Donk-pocket"
 	desc = "The heated food of choice for the seasoned traitor."
@@ -419,6 +423,10 @@
 	microwaved_type = null
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
+
+///Override for fast-burning food
+/obj/item/food/donkpocket/warm/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
 /obj/item/food/dankpocket
 	name = "\improper Dank-pocket"
