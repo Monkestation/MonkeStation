@@ -191,9 +191,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
-	#ifdef SENDMAPS_PROFILE
 	/client/proc/display_sendmaps,
-	#endif
 	/client/proc/toggle_cdn,
 	/client/proc/check_timer_sources,
 	/client/proc/test_dview_to_lum_changes
@@ -843,10 +841,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		qdel(query_burn_book)
 		qdel(query_library_print)
 
-#ifdef SENDMAPS_PROFILE
 /client/proc/display_sendmaps()
 	set name = "Send Maps Profile"
 	set category = "Debug"
 
 	src << link("?debug=profile&type=sendmaps&window=test")
-#endif
