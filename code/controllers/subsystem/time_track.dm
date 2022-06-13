@@ -72,9 +72,12 @@ SUBSYSTEM_DEF(time_track)
 			"air_hotspot_count",
 			"air_network_count",
 			"air_delta_count",
-			"air_superconductive_count"
+			"air_superconductive_count",
+			"all_queries",
+			"queries_active",
+			"queries_standby"
 		) + sendmaps_shorthands
-		)
+	)
 
 /datum/controller/subsystem/time_track/fire()
 
@@ -129,8 +132,13 @@ SUBSYSTEM_DEF(time_track)
 			length(SSair.hotspots),
 			length(SSair.networks),
 			length(SSair.high_pressure_delta),
+			SSdbcore.all_queries_num,
+			SSdbcore.queries_active_num,
+			SSdbcore.queries_standby_num
 		) + send_maps_values
 	)
+
+	SSdbcore.reset_tracking()
 
 /datum/controller/subsystem/time_track/proc/scream_maptick_data()
 	var/current_profile_data = world.Profile(PROFILE_REFRESH, type = "sendmaps", format="json")

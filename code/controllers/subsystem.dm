@@ -13,6 +13,7 @@
 	/// Name of the subsystem - you must change this
 	name = "fire coderbus"
 
+	/// SSmetrics, which allows ingame metrics to be ingested straight into ElasticSearch
 	var/ss_id = "fire_coderbus_again"
 
 	/// Order of initialization. Higher numbers are initialized first, lower numbers later. Use or create defines such as [INIT_ORDER_DEFAULT] so we can see the order in one file.
@@ -268,11 +269,27 @@
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/controller/subsystem/stat_entry(msg)
-	if(can_fire && !(SS_NO_FIRE & flags) && init_stage <= Master.init_stage_completed)
+	var/list/tab_data = list()
+
+	if(can_fire && !(SS_NO_FIRE & flags))
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
 		msg = "OFFLINE\t[msg]"
-	return msg
+
+	var/title = name
+	if (can_fire)
+		title = "\[[state_letter()]][title]"
+
+	tab_data["[title]"] = list(
+		text="[msg]",
+		action = "statClickDebug",
+		params=list(
+			"targetRef" = REF(src),
+			"class"="subsystem",
+		),
+		type=STAT_BUTTON,
+	)
+	return tab_data
 
 /datum/controller/subsystem/proc/state_letter()
 	switch (state)
@@ -297,8 +314,8 @@
 /datum/controller/subsystem/Recover()
 
 /datum/controller/subsystem/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if(NAMEOF(src, can_fire))
+	switch (var_name)
+		if (NAMEOF(src, can_fire))
 			//this is so the subsystem doesn't rapid fire to make up missed ticks causing more lag
 			if (var_value)
 				update_nextfire(reset_time = TRUE)

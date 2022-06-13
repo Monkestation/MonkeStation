@@ -1,7 +1,7 @@
 /**
-  * Failsafe
-  *
-  * Pretty much pokes the MC to make sure it's still alive.
+ * Failsafe
+ *
+ * Pretty much pokes the MC to make sure it's still alive.
  **/
 
 GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
@@ -15,7 +15,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	// The alert level. For every failed poke, we drop a DEFCON level. Once we hit DEFCON 1, restart the MC.
 	var/defcon = 5
 	//the world.time of the last check, so the mc can restart US if we hang.
-	//	(Real friends look out for *eachother*)
+	// (Real friends look out for *eachother*)
 	var/lasttick = 0
 
 	// Track the MC iteration to make sure its still on track.
@@ -176,7 +176,15 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 /datum/controller/failsafe/proc/defcon_pretty()
 	return defcon
 
-/datum/controller/failsafe/stat_entry(msg)
-	msg = "Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])"
-	return msg
-
+/datum/controller/failsafe/stat_entry()
+	var/list/tab_data = list()
+	tab_data["Failsafe Controller"] = list(
+		text="Defcon: [defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])",
+		action = "statClickDebug",
+		params=list(
+			"targetRef" = REF(src),
+			"class"="controller",
+		),
+		type=STAT_BUTTON,
+	)
+	return tab_data
