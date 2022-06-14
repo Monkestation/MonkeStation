@@ -30,15 +30,14 @@
 		I.pixel_y = min(text2num(LAZYACCESS(modifiers, ICON_Y)) + placement_offset, max_height_offset)
 		to_chat(user, "<span class='notice'>You place [I] on [src].</span>")
 		AddToPlate(I, user)
-		update_icon() //this might be the cause of food being under plates need to port update_apperance
 	else
 		return ..()
 
 /obj/item/plate/pre_attack(atom/A, mob/living/user, params)
 	if(!iscarbon(A))
-		return
+		return ..()
 	if(!contents.len)
-		return
+		return ..()
 	var/obj/item/object_to_eat = contents[1]
 	A.attackby(object_to_eat, user)
 	return TRUE //No normal attack
@@ -49,6 +48,7 @@
 	item_to_plate.flags_1 |= IS_ONTOP_1
 	RegisterSignal(item_to_plate, COMSIG_MOVABLE_MOVED, .proc/ItemMoved)
 	RegisterSignal(item_to_plate, COMSIG_PARENT_QDELETING, .proc/ItemMoved)
+	update_icon() //this might be the cause of food being under plates need to port update_apperance
 
 ///This proc cleans up any signals on the item when it is removed from a plate, and ensures it has the correct state again.
 /obj/item/plate/proc/ItemRemovedFromPlate(obj/item/removed_item)
@@ -107,4 +107,4 @@
 	base_icon_state = "plate_shard"
 	force = 5
 	throwforce = 5
-	sharpness = SHARP_EDGED
+	sharpness = IS_SHARP_ACCURATE

@@ -1,5 +1,5 @@
 //Food
-/// from base of obj/item/reagent_containers/food/snacks/attack(): (mob/living/eater, mob/feeder)
+/// from base of obj/item/food/attack(): (mob/living/eater, mob/feeder)
 #define COMSIG_FOOD_EATEN "food_eaten"
 ///from base of datum/component/edible/oncrossed: (mob/crosser, bitecount)
 #define COMSIG_FOOD_CROSSED "food_crossed"
