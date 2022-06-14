@@ -26,8 +26,8 @@
 	prefix = "monkestation/_maps/shuttles/"
 	suffix = "brass"
 	name = "Ratvarian Emergency Shuttle"
-	credit_cost = 10000
+	credit_cost = 50000
 	description = "This shuttle came from a portal with the message: His light shall save us all. Message ends."
 	can_be_bought = FALSE
 	admin_notes = "Currently an admin only shuttle. Has working cogscarab shells however they lack the power to start the ark \
-	and cannot teleport unless Reebe is loaded. Shuttle thruster rotation is currently broken."
+	and cannot teleport unless Reebe is loaded."
