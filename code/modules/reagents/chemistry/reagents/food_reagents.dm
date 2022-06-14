@@ -158,6 +158,10 @@
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
 
+/datum/reagent/consumable/sugar/on_mob_life(mob/living/carbon/Mob, delta_time, times_fired)
+	Mob.satiety = max(Mob.satiety - (30 * REM * delta_time), 30)
+	return ..()
+
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
 	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
 	M.AdjustSleeping(600, FALSE)
