@@ -282,17 +282,17 @@
 	desc = "Contains plasma."
 	list_reagents = list(/datum/reagent/toxin/plasma = 15)
 
-/obj/item/reagent_containers/syringe/lethal
-	name = "lethal injection syringe"
-	desc = "A syringe used for lethal injections. It can hold up to 50 units."
+/obj/item/reagent_containers/syringe/meta //monkestation edit
+	name = "metamaterial syringe" //monkestation edit
+	desc = "A large syringe reinforced with titanium and designed for swift injections. It can hold up to 50 units." //monkestation edit
 	shootable = FALSE //monkestation edit
 	amount_per_transfer_from_this = 50
 	volume = 50
 
-/obj/item/reagent_containers/syringe/lethal/choral
+/obj/item/reagent_containers/syringe/meta/choral //monkestation edit
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_containers/syringe/lethal/execution
+/obj/item/reagent_containers/syringe/meta/execution //monkestation edit
 	list_reagents = list(/datum/reagent/toxin/plasma = 15, /datum/reagent/toxin/formaldehyde = 15, /datum/reagent/toxin/cyanide = 10, /datum/reagent/toxin/acid/fluacid = 10)
 
 /obj/item/reagent_containers/syringe/mulligan
