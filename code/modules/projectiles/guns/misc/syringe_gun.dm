@@ -61,7 +61,8 @@
 
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe))
-		if(istype(A, /obj/item/reagent_containers/syringe/lethal) || istype(A, /obj/item/reagent_containers/syringe/bluespace)) //monkestation edit: no more lethal or bluespace syringes
+		var/obj/item/reagent_containers/syringe/S = A //to check shootability //monkestation edit
+		if(!S.shootable) //monkestation edit: no more lethal or bluespace syringes
 			to_chat(user, "<span class='warning'>[A] is too large to fit in the [src]!</span>") //monkestation edit
 			return FALSE //monkestation edit
 		if(syringes.len < max_syringes)

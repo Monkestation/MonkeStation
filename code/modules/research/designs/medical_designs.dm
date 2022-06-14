@@ -62,18 +62,6 @@
 	build_path = /obj/item/reagent_containers/glass/beaker/meta
 	category = list("Medical Designs")
 
-//monkestation edit begin
-/datum/design/lethalsyringe
-	name = "Lethal Injection Syringe"
-	desc = "A syringe used for lethal injections. It can hold up to 50 units."
-	id = "lethalsyringe"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/glass = 2000, /datum/material/plastic = 1000, /datum/material/gold = 1000, /datum/material/titanium = 1000)
-	build_path = /obj/item/reagent_containers/syringe/lethal
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-//monkestation edit end
-
 /datum/design/bluespacesyringe
 	name = "Bluespace Syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals"
