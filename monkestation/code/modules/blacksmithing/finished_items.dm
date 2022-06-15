@@ -1,6 +1,6 @@
 /obj/item/melee/smith
 	name = "base class obj/item/melee/smith" //tin. handles overlay and quality and shit.
-	desc = "cringe"
+	desc = "Inform a coder if you see this"
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "claymore"
 	item_state = "claymore"
