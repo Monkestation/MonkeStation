@@ -39,7 +39,7 @@
 	var/workability = FALSE //if the ingot is workable heat it in furnace to make it so
 
 /obj/item/ingot/attack_hand(mob/user)
-	if(workability = FALSE)
+	if(!workability)
 		return ..()
 	var/prot = 0
 	var/mob/living/carbon/human/Smither

@@ -2,6 +2,10 @@
 #define MEDIUM_FAIL_CHANCE 9.5
 #define LARGE_FAIL_CHANCE 12.5
 
+#define LOWEST_QUALITY -7
+#define MAX_QUALITY 0
+#define MID_QUALITY -6
+
 #define MEDIUM_INCREASE 2
 #define LARGE_INCREASE 3
 
@@ -217,15 +221,15 @@
 			else
 				finisheditem.quality = min(currentquality, itemqualitymax)
 			switch(finisheditem.quality)
-				if(-1000 to -7)
+				if(-1000 to LOWEST_QUALITY)
 					finisheditem.desc =  "It looks to be the most awfully made object you've ever seen."
-				if(-8)
+				if(MID_QUALITY)
 					finisheditem.desc =  "It looks to be the second most awfully made object you've ever seen."
-				if(-8 to 0)
+				if(MID_QUALITY to MAX_QUALITY)
 					finisheditem.desc =  "It looks to be barely passable as... whatever it's trying to pass for."
-				if(0)
+				if(MAX_QUALITY)
 					finisheditem.desc =  "It looks to be totally average."
-				if(0 to INFINITY)
+				if(MAX_QUALITY to INFINITY)
 					finisheditem.desc =  "It looks to be better than average."
 			workpiece_state = FALSE
 			finisheditem.set_custom_materials(workpiece_material)
