@@ -20,6 +20,8 @@
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L) // should only be used for lazy lists. Using this with non-lazy lists is bad
 #define LAZYCLEARLIST(L) if(L) L.Cut()
+///Sets a list to null
+#define LAZYNULL(L) L = null
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += V;
@@ -437,7 +439,7 @@
 	return (result + R.Copy(Ri, 0))
 
 /// Converts a bitfield to a list of numbers (or words if a wordlist is provided)
-/proc/bitfield2list(bitfield = 0, list/wordlist)
+/proc/bitfield_to_list(bitfield = 0, list/wordlist)
 	var/list/r = list()
 	if(islist(wordlist))
 		var/max = min(wordlist.len,16)
