@@ -3,6 +3,6 @@
 		if(!iscultist(user))
 			to_chat(user, "<span class='warning'>The heat radiating from [src] pushes you back.</span>")
 			return
-		var/obj/item/ingot/notsword = I
-		to_chat(user, "You heat the [notsword] in the [src].")
-		notsword.workability = "shapeable"
+		var/obj/item/ingot/worked_ingot = I
+		to_chat(user, "You heat the [worked_ingot] in the [src].")
+		worked_ingot.workability = TRUE

@@ -36,7 +36,7 @@
 		var/obj/item/ingot/worked_ingot = Item
 		if(working)
 			to_chat(user, "You heat the [worked_ingot] in the [src].")
-			worked_ingot.workability = "shapeable"
+			worked_ingot.workability = TRUE
 		else
 			to_chat(user, "The furnace isn't working!.")
 	else

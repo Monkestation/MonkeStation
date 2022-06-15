@@ -9,29 +9,44 @@
 	name = "base class /obj/item/smithing"
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "unfinished"
-	var/quality = 0 //quality. Changed by the smithing process. the quality of the item determines damage and other stats
-	var/blunt_mult = 0 //Changed by the smithing process the blunt multipler of the item
-	var/sharp_mult = 0 //Changed by the smithing process the sharp multipler of the item
-	var/wealth_mult = 0 //Changed by the smithing process the wealth multipler of the item
-	var/obj/item/finishingitem = /obj/item/stick //What this item needs to be hit by to create finalitem
-	var/obj/item/finalitem //the actual final item
-	var/artifact = FALSE // if its an artifiact
+	///quality. Changed by the smithing process. the quality of the item determines damage and other stats
+	var/quality = 0
+	///Changed by the smithing process the blunt multipler of the item
+	var/blunt_mult = 0
+	///Changed by the smithing process the sharp multipler of the item
+	var/sharp_mult = 0
+	///Changed by the smithing process the wealth multipler of the item
+	var/wealth_mult = 0
+	///What this item needs to be hit by to create finalitem
+	var/obj/item/finishingitem = /obj/item/stick
+	///the actual final item
+	var/obj/item/finalitem
+	/// if its an artifiact
+	var/artifact = FALSE
+	///If sharp or blunt
+	var/sharp_type
+	/// the modifer to total damage
+	var/divisor = 1
+	///the modifer to total throwing damage
+	var/throw_divisor = 4
+	///if the item is two handable
+	var/two_hand = FALSE
 
 /obj/item/ingot
 	name = "ingot"
 	icon = 'monkestation/icons/obj/smith.dmi'
 	icon_state = "ingot"
-	var/workability = 0 //if the ingot is workable heat it in furnace to make it so
+	var/workability = FALSE //if the ingot is workable heat it in furnace to make it so
 
 /obj/item/ingot/attack_hand(mob/user)
-	var/mob/living/carbon/human/Human
-	if(workability != "shapeable")
+	if(workability = FALSE)
 		return ..()
 	var/prot = 0
+	var/mob/living/carbon/human/Smither
 	if(ishuman(user))
-		Human = user
-		if(Human.gloves)
-			var/obj/item/clothing/gloves/G = Human.gloves //check if you have gloves otherwise burn city
+		Smither = user
+		if(Smither.gloves)
+			var/obj/item/clothing/gloves/G = Smither.gloves //check if you have gloves otherwise burn city
 			if(G.max_heat_protection_temperature)
 				prot = (G.max_heat_protection_temperature > 360)
 		else
@@ -41,10 +56,10 @@
 		return ..()
 	else
 		to_chat(user, "<span class='warning'>You try to move the [src], but you burn your hand on it!</span>")
-	if(Human)
-		var/obj/item/bodypart/affecting = Human.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+	if(Smither)
+		var/obj/item/bodypart/affecting = Smither.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 		if(affecting && affecting.receive_damage( 0, 5 ))		// 5 burn damage
-			Human.update_damage_overlays()
+			Smither.update_damage_overlays()
 
 /obj/item/ingot/iron
 	name = "Iron Ingot"
@@ -107,37 +122,57 @@
 		return ..()
 
 /obj/item/smithing/proc/startfinish()
+	var/obj/item/melee/smith/finished_product = new finalitem
+	var/modifer = sharp_mult
+	if(sharp_type == "blunt")
+		modifer = blunt_mult
+	finished_product.force = ((finished_product.force + quality) / divisor) * modifer
+	finished_product.throwforce = ((finished_product.force + quality) / (throw_divisor)) * modifer
+	if(istype(finished_product, /obj/item/melee/smith/hammer))
+		finished_product.qualitymod = quality / 4
+	if(istype(finished_product, /obj/item/shovel/smithed) || istype(finished_product, /obj/item/pickaxe/smithed))
+		if(quality > 0)
+			finalitem.toolspeed = max(0.05, (1 - (quality / 10)))
+		else
+			finalitem.toolspeed *= max(1, (quality * - 1))
+	if(two_hand)
+		finished_product.AddComponent(/datum/component/two_handed, force_unwielded=finished_product.force, force_wielded=finished_product.wield_force, icon_wielded="[icon_state]")
+	if(finished_product.force > 50)
+		finished_product.force = 50
+	if(finished_product.throwforce > 50)
+		finished_product.throwforce = 50
+	finalitem = finished_product
 	dofinish()
 
 /obj/item/smithing/proc/dofinish()
-	var/qualname
+	var/quality_name
 	switch(quality)
 		if(-1000 to -5)
-			qualname = "awful"
+			quality_name = "awful"
 		if(-1000 to -2)
-			qualname = "shoddy"
+			quality_name = "shoddy"
 		if(-1000 to -1)
-			qualname =  "poor"
+			quality_name =  "poor"
 		if(-1 to 1)
-			qualname = "normal"
+			quality_name = "normal"
 		if(10 to INFINITY)
-			qualname = "legendary"
+			quality_name = "legendary"
 		if(7.5 to 10)
-			qualname = "masterwork"
+			quality_name = "masterwork"
 		if(5.5 to 7.5)
-			qualname = "excellent"
+			quality_name = "excellent"
 		if(3.5 to 5.5)
-			qualname = "good"
+			quality_name = "good"
 		if(0 to 3.5)
-			qualname = "above-average"
+			quality_name = "above-average"
 	var/datum/material/mat = custom_materials[1]
 	finalitem.set_custom_materials(custom_materials)
 	mat = mat.name
 	if(artifact)
 		dwarfyartifact(finalitem, mat)
 	else
-		finalitem.name = "[qualname] [mat] [initial(finalitem.name)]"
-		finalitem.desc = "A [qualname] [initial(finalitem.name)]. Its quality is [quality]."
+		finalitem.name = "[quality_name] [mat] [initial(finalitem.name)]"
+		finalitem.desc = "A [quality_name] [initial(finalitem.name)]. Its quality is [quality]."
 	finalitem.forceMove(get_turf(src))
 	qdel(src)
 
@@ -162,185 +197,105 @@
 	name = "smithed hammer head"
 	finalitem = /obj/item/melee/smith/hammer
 	icon_state = "hammer"
-
-/obj/item/smithing/hammerhead/startfinish()
-	var/obj/item/melee/smith/hammer/finalforreal = new /obj/item/melee/smith/hammer(src)
-	finalforreal.force = ((finalforreal.force + quality / 2)) * blunt_mult
-	finalforreal.throwforce = finalforreal.force / 4
-	finalforreal.qualitymod = quality / 4
-	finalitem = finalforreal
-	..()
-
-
+	divisor = 2
+	sharp_type = "blunt"
 
 /obj/item/smithing/scytheblade
 	name = "smithed scythe head"
 	finalitem = /obj/item/scythe/smithed
 	icon_state = "scythe"
+	sharp_type = "sharp"
 
-/obj/item/smithing/scytheblade/startfinish()
-	finalitem = new /obj/item/scythe/smithed(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
 
 /obj/item/smithing/shovelhead
 	name = "smithed shovel head"
 	finalitem = /obj/item/shovel/smithed
 	icon_state = "shovel"
-
-/obj/item/smithing/shovelhead/startfinish()
-	finalitem = new /obj/item/shovel/smithed(src)
-	finalitem.force = ((finalitem.force + quality) /2) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	if(quality > 0)
-		finalitem.toolspeed = max(0.05, (1 - (quality / 10)))
-	else
-		finalitem.toolspeed *= max(1, (quality * - 1))
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/cogheadclubhead
 	name = "smithed coghead club head"
 	finalitem = /obj/item/melee/smith/cogheadclub
 	icon_state = "coghead"
-
-/obj/item/smithing/cogheadclubhead/startfinish()
-	finalitem = new /obj/item/melee/smith/cogheadclub(src)
-	finalitem.force = (finalitem.force + quality) * blunt_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "blunt"
 
 /obj/item/smithing/javelinhead
 	name = "smithed javelin head"
 	finalitem = /obj/item/melee/smith/twohand/javelin
 	icon_state = "javelin"
-
-/obj/item/smithing/javelinhead/startfinish()
-	var/obj/item/melee/smith/twohand/javelin/finalforreal = new /obj/item/melee/smith/twohand/javelin(src)
-	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalforreal.throwforce = finalforreal.force * 2
-	finalitem = finalforreal
-	..()
+	sharp_type = "sharp"
+	throw_divisor = 0.5
+	two_hand = TRUE
 
 /obj/item/smithing/pikehead
 	name = "smithed pike head"
 	finalitem = /obj/item/melee/smith/twohand/pike
 	icon_state = "pike"
-
-/obj/item/smithing/pikehead/startfinish()
-	var/obj/item/melee/smith/twohand/pike/finalforreal = new /obj/item/melee/smith/twohand/pike(src)
-	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalforreal.throwforce = finalforreal.force / 10 //its a pike not a javelin
-	finalitem = finalforreal
-	..()
+	two_hand = TRUE
+	throw_divisor = 10
+	sharp_type = "sharp"
 
 /obj/item/smithing/pickaxehead
 	name = "smithed pickaxe head"
 	finalitem = /obj/item/pickaxe/smithed
 	icon_state = "pickaxe"
-
-/obj/item/smithing/pickaxehead/startfinish()
-	var/obj/item/pickaxe/smithed/finalforreal = new /obj/item/pickaxe/smithed(src)
-	finalforreal.force = ((finalforreal.force+quality)/2) * sharp_mult
-	finalforreal.throwforce = finalforreal.force/4
-	if(quality > 0)
-		finalforreal.toolspeed = max(0.05, (1 - (quality / 10)))
-	else
-		finalforreal.toolspeed *= max(1, (quality * -1))
-	finalitem = finalforreal
-	..()
-
+	sharp_type = "sharp"
+	divisor = 2
+	throw_divisor = 4
 
 /obj/item/smithing/prospectingpickhead
 	name = "smithed prospector's pickaxe head"
 	finalitem = /obj/item/mining_scanner/prospector
 	icon_state = "minipick"
-
-/obj/item/smithing/prospectingpickhead/startfinish()
-	var/obj/item/mining_scanner/prospector/finalforreal = new /obj/item/mining_scanner/prospector(src)
-	finalforreal.range = 2 + quality
-	finalforreal.force *= sharp_mult
-	finalforreal.throwforce = finalforreal.force / 4
-	if(quality)
-		finalforreal.cooldown = 100 / quality
-	finalitem = finalforreal
-	..()
-
+	sharp_type = "sharp"
+	divisor = 2
+	throw_divisor = 4
 
 /obj/item/smithing/shortswordblade
 	name = "smithed gladius blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/shortsword
 	icon_state = "gladius"
-
-/obj/item/smithing/shortswordblade/startfinish()
-	finalitem = new /obj/item/melee/smith/shortsword(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/scimitarblade
 	name = "smithed scimitar blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/shortsword/scimitar
 	icon_state = "scimitar"
-
-/obj/item/smithing/scimitarblade/startfinish()
-	finalitem = new /obj/item/melee/smith/shortsword/scimitar(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/wakiblade
 	name = "smithed wakizashi blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/wakizashi
 	icon_state = "waki"
-
-/obj/item/smithing/wakiblade/startfinish()
-	finalitem = new /obj/item/melee/smith/wakizashi(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/sabreblade
 	name = "smithed sabre blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/sabre
 	icon_state = "sabre"
-
-/obj/item/smithing/sabreblade/startfinish()
-	finalitem = new /obj/item/melee/smith/sabre(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/rapierblade
 	name = "smithed rapier blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/sabre/rapier
 	icon_state = "rapier"
-
-/obj/item/smithing/rapierblade/startfinish()
-	finalitem = new /obj/item/melee/smith/sabre/rapier(src)
-	finalitem.force = (finalitem.force + quality) * sharp_mult
-	finalitem.throwforce = finalitem.force / 4
-	..()
+	sharp_type = "sharp"
 
 /obj/item/smithing/knifeblade
 	name = "smithed knife blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/kitchen/knife
 	icon_state = "dagger"
+	sharp_type = "sharp"
+	divisor = 2
+	throw_divisor = 1
 
 /obj/item/smithing/knifeblade/startfinish()
-	finalitem = new /obj/item/kitchen/knife(src)
-	finalitem.force = ((finalitem.force + quality/2)) * sharp_mult
-	finalitem.throwforce = finalitem.force
 	finalitem.icon = 'monkestation/icons/obj/smith.dmi'
 	finalitem.icon_state = "dagger"
 	finalitem.name = "dagger"
@@ -357,76 +312,40 @@
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/twohand/broadsword
 	icon_state = "broadsword"
-
-/obj/item/smithing/broadblade/startfinish()
-	var/obj/item/melee/smith/twohand/broadsword/finalforreal = new /obj/item/melee/smith/twohand/broadsword(src)
-	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalforreal.throwforce = finalforreal.force / 4
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalitem = finalforreal
-	..()
+	sharp_type = "sharp"
+	two_hand = TRUE
 
 /obj/item/smithing/zweiblade
 	name = "smithed zweihander blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/twohand/zweihander
 	icon_state = "zwei"
-
-/obj/item/smithing/zweiblade/startfinish()
-	var/obj/item/melee/smith/twohand/zweihander/finalforreal = new /obj/item/melee/smith/twohand/zweihander(src)
-	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalforreal.throwforce = finalforreal.force / 4
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalitem = finalforreal
-	..()
+	sharp_type = "sharp"
+	two_hand = TRUE
 
 /obj/item/smithing/halberdhead
 	name = "smithed halberd head"
 	finalitem = /obj/item/melee/smith/twohand/halberd
 	icon_state = "halberd"
-
-/obj/item/smithing/halberdhead/startfinish()
-	var/obj/item/melee/smith/twohand/halberd/finalforreal = new /obj/item/melee/smith/twohand/halberd(src)
-	finalforreal.force = (finalforreal.force + quality) * sharp_mult
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.throwforce = finalforreal.force / 3
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalitem = finalforreal
-	..()
+	throw_divisor = 3
+	sharp_type = "sharp"
+	two_hand = TRUE
 
 /obj/item/smithing/glaivehead
 	name = "smithed glaive head"
 	finalitem = /obj/item/melee/smith/twohand/glaive
 	icon_state = "glaive"
-
-/obj/item/smithing/glaive/startfinish()
-	var/obj/item/melee/smith/twohand/glaive/finalforreal = new /obj/item/melee/smith/twohand/glaive(src)
-	finalforreal.force = (quality+finalforreal.force) * sharp_mult
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.throwforce = finalforreal.force * sharp_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalitem = finalforreal
-	..()
+	throw_divisor = 1
+	sharp_type = "sharp"
+	two_hand = TRUE
 
 /obj/item/smithing/katanablade
 	name = "smithed katana blade"
 	finishingitem = /obj/item/swordhandle
 	finalitem = /obj/item/melee/smith/twohand/katana
 	icon_state = "katana"
-
-
-/obj/item/smithing/katanablade/startfinish()
-	var/obj/item/melee/smith/twohand/katana/finalforreal = new /obj/item/melee/smith/twohand/katana(src)
-	finalforreal.force += quality
-	finalforreal.force *= sharp_mult
-	finalforreal.throwforce = finalforreal.force / 4
-	finalforreal.wield_force = finalforreal.force * finalforreal.wielded_mult
-	finalforreal.AddComponent(/datum/component/two_handed, force_unwielded=finalforreal.force, force_wielded=finalforreal.wield_force, icon_wielded="[icon_state]")
-	finalitem = finalforreal
-	..()
-
+	two_hand = TRUE
+	sharp_type = "sharp"
 
 /obj/item/smithing/anvilplate
 	name = "smited anvil plating"

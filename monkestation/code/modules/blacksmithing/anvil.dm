@@ -88,7 +88,7 @@
 		if(workpiece_state)
 			to_chat(user, "There's already a workpiece! Finish it or take it off.")
 			return FALSE
-		if(working_ingot.workability == "shapeable")
+		if(working_ingot.workability == TRUE)
 			workpiece_state = WORKPIECE_PRESENT
 			workpiece_material = working_ingot.custom_materials
 			to_chat(user, "You place the [working_ingot] on the [src].")
@@ -99,9 +99,9 @@
 		return FALSE
 
 	else if(istype(Item, /obj/item/melee/smith/hammer))
-		var/obj/item/melee/smith/hammer/hammertime = Item
+		var/obj/item/melee/smith/hammer/used_hammer = Item
 		if(workpiece_state == WORKPIECE_PRESENT || workpiece_state == WORKPIECE_INPROGRESS)
-			do_shaping(user, hammertime.qualitymod)
+			do_shaping(user, used_hammer.qualitymod)
 			return
 		to_chat(user, "You can't work an empty anvil!")
 		return FALSE
@@ -118,9 +118,12 @@
 
 /obj/structure/anvil/proc/do_shaping(mob/user, var/qualitychange)
 	currentquality += qualitychange
-	var/list/shapingsteps = list("weak hit", "strong hit", "heavy hit", "fold", "draw", "shrink", "bend", "punch", "upset") //weak/strong/heavy hit affect strength. All the other steps shape.
+	///weak/strong/heavy hit affect strength. All the other steps shape.
+	var/list/shapingsteps = list("weak hit", "strong hit", "heavy hit", "fold", "draw", "shrink", "bend", "punch", "upset")
 	workpiece_state = WORKPIECE_INPROGRESS
+	///What step you are choosing
 	var/stepdone = input(user, "How would you like to work the metal?") in shapingsteps
+	//The duration in deciseconds it takes
 	var/steptime = 50
 	playsound(src, 'sound/effects/clang.ogg',40, 2)
 	if(!do_after(user, steptime, target = src))
@@ -170,18 +173,21 @@
 		tryfinish(user)
 
 /obj/structure/anvil/proc/tryfinish(mob/user)
+	///The chance this ends up as a an artifact
 	var/artifactchance = 0
 	if(!artifactrolled)
 		artifactchance = (1+ rand(1, 25) / 2500)
 		artifactrolled = TRUE
-	var/artifact = max(prob(artifactchance), debug)
+	///if the item is an artifact
+	var/artifact = debug ? TRUE : prob(artifactchance)
+	///fail chance after everything is done
 	var/finalfailchance = (outrightfailchance * workpiece_material[1].fail_multipler)
 	finalfailchance = max(0, finalfailchance / (1 + anvilquality)) //lv 2 gives 20% less to fail, 3 30%, etc
 	if((currentsteps > 10 || (rng && prob(finalfailchance))) && !artifact)
 		to_chat(user, "<span class='warning'?You overwork the metal, causing it to turn into useless slag!</span>")
-		var/turf/Turf = get_turf(user)
+		var/turf/user_location = get_turf(user)
 		workpiece_state = FALSE
-		new /obj/item/stack/ore/slag(Turf)
+		new /obj/item/stack/ore/slag(user_location)
 		currentquality = anvilquality
 		stepsdone = ""
 		currentsteps = 0
@@ -189,9 +195,12 @@
 		artifactrolled = FALSE
 	for(var/recipe in smithrecipes)
 		if(recipe == stepsdone)
-			var/turf/Turf = get_turf(user)
+			///the location of the user used to drop the smithed item
+			var/turf/user_location = get_turf(user)
+			///checking if an item can be created
 			var/obj/item/smithing/create = smithrecipes[stepsdone]
-			var/obj/item/smithing/finisheditem = new create(Turf)
+			///the finished item that was created
+			var/obj/item/smithing/finisheditem = new create(user_location)
 			to_chat(user, "You finish your [finisheditem]!")
 			if(artifact)
 				to_chat(user, "It is an artifact, a creation whose legacy shall live on forevermore.") //todo: SSblackbox
@@ -201,7 +210,7 @@
 			else
 				finisheditem.quality = min(currentquality, itemqualitymax)
 			switch(finisheditem.quality)
-				if(-1000 to -8)
+				if(-1000 to -7)
 					finisheditem.desc =  "It looks to be the most awfully made object you've ever seen."
 				if(-8)
 					finisheditem.desc =  "It looks to be the second most awfully made object you've ever seen."

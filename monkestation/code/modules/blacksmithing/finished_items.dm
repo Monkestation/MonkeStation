@@ -14,6 +14,7 @@
 	var/mutable_appearance/overlay //the actual overlay
 	var/wielded_mult = 1 //how much the damage gets multipled by when two handed
 	var/wield_force = 15 //base two handed damage
+	var/qualitymod = 0 //modifer used in the creation of tools higher number means higher quality
 
 /obj/item/melee/smith/Initialize()
 	..()
@@ -37,6 +38,11 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 
+/obj/item/melee/smith/twohand/Destroy()
+	.=..()
+	qdel(GetComponent(/datum/component/butchering))
+	if(GetComponent(/datum/component/two_handed))
+		qdel(GetComponent(/datum/component/two_handed))
 
 
 ///////////////////////////
@@ -75,9 +81,6 @@
 	add_overlay(overlay)
 	if(force < 0)
 		force = 0
-
-/obj/item/pickaxe/smithed/attack_self(mob/user)
-		to_chat(user, "<span class='notice'>Tool does not have a configureable dig range.</span>")
 
 /obj/item/shovel/smithed
 	name = "shovel"
@@ -161,7 +164,6 @@
 	name = "hammer"
 	icon_state = "hammer"
 	overlay_state = "hammerhandle"
-	var/qualitymod = 0 //modifer used in the creation of tools higher number means higher quality
 
 /obj/item/scythe/smithed //we need to inherit scythecode, but that's about it.
 
@@ -254,7 +256,7 @@
 
 /obj/item/melee/smith/hammer/narsie/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!iscultist(user))
-		user.Paralyze(100)
+		user.Paralyze(10 SECONDS)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
 							 "<span class='cultlarge'>\"You shouldn't be touching tools that aren't yours.\"</span>")
@@ -275,7 +277,7 @@
 
 /obj/item/melee/smith/hammer/ratvar/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!is_servant_of_ratvar(user))
-		user.Paralyze(100)
+		user.Paralyze(10 SECONDS)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", "<span class='neovgre'>\"You shouldn't be touching tools that aren't yours.\"</span>")
 		if(ishuman(user))
