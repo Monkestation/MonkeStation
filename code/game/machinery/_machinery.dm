@@ -555,10 +555,10 @@ Class Procs:
 	. = 1
 
 /obj/machinery/zap_act(power, zap_flags)
+	if(prob(50) && (zap_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
+		explosion(src, 0, 0, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(zap_flags & ZAP_OBJ_DAMAGE)
 		take_damage(power * 0.0005, BURN, "energy")
-		if(prob(60) && !(resistance_flags & INDESTRUCTIBLE))
-			explosion(src, 0, 0, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 		if(prob(20))
 			emp_act(EMP_LIGHT)
 		power -= power * 0.0005

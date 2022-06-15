@@ -53,7 +53,7 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		power_multiplier += C.rating
 		zap_cooldown -= (C.rating * 20)
-	input_power_multiplier = max(1 * (power_multiplier / 6), 0.25) //Max out at 50% efficency.
+	input_power_multiplier = max(1 * (power_multiplier / 8), 0.25) //Max out at 50% efficency.
 
 /obj/machinery/power/energy_accumulator/tesla_coil/examine(mob/user)
 	. = ..()
@@ -127,7 +127,7 @@
 	tesla_zap(src, 10, power, zap_flags)
 	zap_buckle_check(power)
 
-// Tesla R&D researcher
+/// Tesla R&D researcher ///This needs an overhaul or complete removal
 /obj/machinery/power/energy_accumulator/tesla_coil/research
 	name = "Tesla Corona Analyzer"
 	desc = "A modified Tesla Coil used to study the effects of Edison's Bane for research."
@@ -175,6 +175,7 @@
 /obj/machinery/power/energy_accumulator/tesla_coil/research/on_construction()
 	if(anchored)
 		connect_to_network()
+
 
 /obj/machinery/power/energy_accumulator/grounding_rod
 	name = "grounding rod"

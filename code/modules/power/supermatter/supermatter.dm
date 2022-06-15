@@ -900,7 +900,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 200)
 
-/obj/machinery/proc/supermatter_zap(atom/zapstart = src, range = 5, zap_str = 4000, zap_flags = ZAP_POWERPRODUCE_FLAGS, list/targets_hit = list())
+/obj/machinery/proc/supermatter_zap(atom/zapstart = src, range = 5, zap_str = 4000, zap_flags = ZAP_PRODUCE_POWER_FLAGS, list/targets_hit = list())
 	if(QDELETED(zapstart))
 		return
 	. = zapstart.dir
@@ -957,13 +957,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			var/obj/machinery/power/energy_accumulator/tesla_coil/coil = target
 			//In the best situation we can expect this to grow up to 540kw before a delam/IT'S GONE TOO FAR FRED SHUT IT DOWN
 			//The formula for power gen is zap_str * 15 / 2 * capacitor rating, between 1 and 4
-			zap_str = coil.zap_act(zap_str * 15, ZAP_POWERPRODUCE_FLAGS, list()) //Coils should take a lot out of the power of the zap
+			zap_str = coil.zap_act(zap_str * 15, ZAP_PRODUCE_POWER_FLAGS, list()) //Coils should take a lot out of the power of the zap
 
 		else if(istype(target, /obj/machinery/power/energy_accumulator/grounding_rod))
 			var/obj/machinery/power/energy_accumulator/grounding_rod/rod = target
 			//We can expect this to do very little, maybe shock the poor soul buckled to it, but that's all.
 			//This is one of our endpoints, if the bolt hits a grounding rod, it stops jumping
-			rod.zap_act(zap_str, ZAP_POWERPRODUCE_FLAGS, list())
+			rod.zap_act(zap_str, ZAP_PRODUCE_POWER_FLAGS, list())
 			return
 
 		else if(isliving(target))//If we got a fleshbag on our hands
@@ -975,7 +975,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		else if(isobj(target))
 			var/obj/junk = target
-			junk.zap_act(zap_str, ZAP_POWERPRODUCE_FLAGS, list())
+			junk.zap_act(zap_str, ZAP_PRODUCE_POWER_FLAGS, list())
 			zap_str /= 1.8 // worse then living things, better then coils
 		//Then we finish it all up
 		//This gotdamn variable is a boomer and keeps giving me problems

@@ -1,5 +1,5 @@
-#define TESLA_DEFAULT_POWER 1738260
-#define TESLA_MINI_POWER 869130
+#define TESLA_DEFAULT_POWER 13826
+#define TESLA_MINI_POWER 6913
 
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
@@ -109,7 +109,7 @@
 			dirs += get_dir(src, real_thing) //Carry some momentum yeah? Just a bit tho
 	for (var/i in 0 to move_amount)
 		var/move_dir = pick(dirs) //ensures teslas don't just sit around
-		if (target && prob(10))
+		if (target && prob(20))
 			move_dir = get_dir(src, target)
 		var/turf/turf_to_move = get_step(src, move_dir)
 		if (can_move(turf_to_move))
@@ -158,8 +158,10 @@
 
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
-		//MonkeStation Edit: Moths leap for teslas
+
+	//MonkeStation Edit: Moths leap for teslas
 	Grab_Moths(get_turf(miniball), 10)
+
 	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
 /obj/anomaly/energy_ball/Bump(atom/A)
@@ -234,7 +236,7 @@
 	if(!QDELETED(src))
 		qdel(src)
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, zap_flags = ZAP_DEFAULT_FLAGS, list/shocked_targets = list())
+/proc/tesla_zap(atom/source, zap_range = 3, power, zap_flags = ZAP_DEFAULT_FLAGS | ZAP_GENERATES_POWER | ZAP_MACHINE_EXPLOSIVE, list/shocked_targets = list())
 	if(QDELETED(source))
 		return
 	if(!(zap_flags & ZAP_ALLOW_DUPLICATES))
@@ -365,9 +367,9 @@
 	if(zapdir)
 		. = zapdir
 
-	var/next_range = 2
+	var/next_range = 3
 	if(closest_type == COIL)
-		next_range = 3
+		next_range = 5
 
 	if(closest_type == LIVING)
 		var/mob/living/closest_mob = closest_atom
@@ -388,8 +390,8 @@
 		power = closest_atom.zap_act(power, zap_flags)
 	if(prob(20))//I know I know
 		var/list/shocked_copy = shocked_targets.Copy()
-		tesla_zap(closest_atom, next_range, power * 0.5, zap_flags, shocked_copy)//Normally I'd copy here so grounding rods work properly, but it fucks with movement
-		tesla_zap(closest_atom, next_range, power * 0.5, zap_flags, shocked_targets)
+		tesla_zap(closest_atom, next_range, power * 0.1, zap_flags, shocked_copy)//Normally I'd copy here so grounding rods work properly, but it fucks with movement
+		tesla_zap(closest_atom, next_range, power * 0.1, zap_flags, shocked_targets)
 		shocked_targets += shocked_copy
 	else
 		tesla_zap(closest_atom, next_range, power, zap_flags, shocked_targets)
