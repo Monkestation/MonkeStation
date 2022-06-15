@@ -94,6 +94,12 @@
 		return "[round(units * 0.000001, 0.001)] MJ"
 	return "[round(units * 0.000000001, 0.0001)] GJ"
 
+/proc/joules_to_energy(joules)
+	return joules * (1 SECONDS) / SSmachines.wait
+
+/proc/energy_to_joules(energy_units)
+	return energy_units * SSmachines.wait / (1 SECONDS)
+
 /// Format an energy value measured in Power Cell units.
 /proc/display_energy(units)
 	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
