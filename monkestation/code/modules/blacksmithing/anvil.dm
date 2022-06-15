@@ -1,3 +1,10 @@
+#define SMALL_FAIL_CHANCE 5
+#define MEDIUM_FAIL_CHANCE 9.5
+#define LARGE_FAIL_CHANCE 12.5
+
+#define MEDIUM_INCREASE 2
+#define LARGE_INCREASE 3
+
 #define WORKPIECE_PRESENT 1
 #define WORKPIECE_INPROGRESS 2
 #define WORKPIECE_FINISHED 3
@@ -130,41 +137,41 @@
 		return FALSE
 	switch(stepdone)
 		if("weak hit")
-			currentsteps += 1
-			outrightfailchance += 5
-			currentquality += 1
+			currentsteps ++
+			outrightfailchance += SMALL_FAIL_CHANCE
+			currentquality ++
 		if("strong hit")
-			currentsteps += 2
-			outrightfailchance += 9.5
-			currentquality += 2
+			currentsteps += MEDIUM_INCREASE
+			outrightfailchance += MEDIUM_FAIL_CHANCE
+			currentquality += MEDIUM_INCREASE
 		if("heavy hit")
-			currentsteps += 3
-			outrightfailchance += 12.5
-			currentquality += 3
+			currentsteps += LARGE_INCREASE
+			outrightfailchance += LARGE_FAIL_CHANCE
+			currentquality += LARGE_INCREASE
 		if("fold")
 			stepsdone += "f"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 		if("draw")
 			stepsdone += "d"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 		if("shrink")
 			stepsdone += "s"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 		if("bend")
 			stepsdone += "b"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 		if("punch")
 			stepsdone += "p"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 		if("upset")
 			stepsdone += "u"
-			currentsteps += 1
-			currentquality -= 1
+			currentsteps ++
+			currentquality --
 	user.visible_message("<span class='notice'>[user] works the metal on the anvil with their hammer with a loud clang!</span>", \
 						"<span class='notice'>You [stepdone] the metal with a loud clang!</span>")
 	playsound(src, 'sound/effects/clang.ogg',40, 2)
