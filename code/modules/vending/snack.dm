@@ -11,6 +11,10 @@
 		            /obj/item/food/chips = 2,
 		            /obj/item/food/sosjerky = 2,
 					/obj/item/food/no_raisin = 2,
+					/obj/item/food/peanuts = 6,
+					/obj/item/food/peanuts/random = 3,
+					/obj/item/food/cnds = 6,
+					/obj/item/food/cnds/random = 3,
 					/obj/item/reagent_containers/food/drinks/dry_ramen = 2,
 					/obj/item/food/energybar = 6)
 	contraband = list(/obj/item/food/syndicake = 2)

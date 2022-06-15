@@ -124,3 +124,12 @@
 	visible_message("[src] fuses into a diamond! Someone wasn't so naughty after all...")
 	new /obj/item/stack/ore/diamond(loc)
 	qdel(src)
+
+/obj/item/trash/peanuts
+	name = "\improper Gallery peanuts packet"
+	desc = "This thread is trash!"
+	icon_state = "peanuts"
+
+/obj/item/trash/cnds
+	name = "\improper C&Ds packet"
+	icon_state = "cnds"
