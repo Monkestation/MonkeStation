@@ -18,6 +18,9 @@
 /datum/reagent/mutationtoxin/apid
 	can_synth = TRUE
 
+/datum/reagent/mutationtoxin/squid
+	can_synth = TRUE
+
 /datum/reagent/mutationtoxin/skeleton
 	can_synth = TRUE //Roundstart species
 
