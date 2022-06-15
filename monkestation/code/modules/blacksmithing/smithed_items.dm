@@ -155,16 +155,16 @@
 			quality_name =  "poor"
 		if(-1 to 1)
 			quality_name = "normal"
-		if(10 to INFINITY)
-			quality_name = "legendary"
-		if(7.5 to 10)
-			quality_name = "masterwork"
-		if(5.5 to 7.5)
-			quality_name = "excellent"
+		if(1 to 3.5)
+			quality_name = "above-average"
 		if(3.5 to 5.5)
 			quality_name = "good"
-		if(0 to 3.5)
-			quality_name = "above-average"
+		if(5.5 to 7.5)
+			quality_name = "excellent"
+		if(7.5 to 10)
+			quality_name = "masterwork"
+		if(10 to INFINITY)
+			quality_name = "legendary"
 	var/datum/material/mat = custom_materials[1]
 	finalitem.set_custom_materials(custom_materials)
 	mat = mat.name
