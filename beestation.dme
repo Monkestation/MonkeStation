@@ -2907,6 +2907,7 @@
 #include "code\modules\power\apc\apc_mapping.dm"
 #include "code\modules\power\apc\apc_power_proc.dm"
 #include "code\modules\power\apc\apc_tool_act.dm"
+#include "code\modules\power\energy_accumulator\energy_accumulator.dm"
 #include "code\modules\power\singularity\anomaly.dm"
 #include "code\modules\power\singularity\boh_tear.dm"
 #include "code\modules\power\singularity\collector.dm"

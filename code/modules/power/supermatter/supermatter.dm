@@ -137,12 +137,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/powerloss_dynamic_scaling= 0
 	var/power_transmission_bonus = 0
 	var/mole_heat_penalty = 0
-
+	///The cutoff for a bolt jumping, grows with heat, lowers with higher mol count,
+	var/zap_cutoff = 1500
 
 	var/matter_power = 0
-
-	//The cutoff for a bolt jumping, grows with heat, lowers with higher mol count,
-	var/zap_cutoff = 1500
 
 	//Temporary values so that we can optimize this
 	//How much the bullets damage should be multiplied by when it is added to the internal variables
@@ -902,11 +900,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(L, 200)
 
-/obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart, range = 5, zap_str, list/targets_hit = list())
-	. = zapstart.dir
-	//If the strength of the zap decays past the cutoff, we stop
-	if(zap_str < zap_cutoff)
+/obj/machinery/proc/supermatter_zap(atom/zapstart = src, range = 5, zap_str = 4000, zap_flags = ZAP_POWERPRODUCE_FLAGS, list/targets_hit = list())
+	if(QDELETED(zapstart))
 		return
+	. = zapstart.dir
 
 	var/target
 	var/list/arctargets = list()
@@ -920,12 +917,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			arctargets += bike
 
 	if(!arctargets.len)
-		for(var/obj/machinery/power/tesla_coil/coil in oview(zapstart, range))
+		for(var/obj/machinery/power/energy_accumulator/tesla_coil/coil in oview(zapstart, range))
 			if(!(coil in targets_copy) && coil.anchored && !(coil.obj_flags & BEING_SHOCKED) && !coil.panel_open && prob(70))//Diversity of death
 				arctargets += coil
 
 	if(!arctargets.len)
-		for(var/obj/machinery/power/grounding_rod/rod in oview(zapstart, range))
+		for(var/obj/machinery/power/energy_accumulator/grounding_rod/rod in oview(zapstart, range))
 			//2 rods are safer then one, intended to keep the bolts dangourus
 			//If the sm puts out 2 bolts every half second, then a rod gets ignored every 5 seconds or so.
 			if(rod.anchored && !rod.panel_open && prob(90))
@@ -956,17 +953,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(zapdir)
 			. = zapdir
 
-		if(istype(target, /obj/machinery/power/tesla_coil))
-			var/obj/machinery/power/tesla_coil/coil = target
+		if(istype(target, /obj/machinery/power/energy_accumulator/tesla_coil))
+			var/obj/machinery/power/energy_accumulator/tesla_coil/coil = target
 			//In the best situation we can expect this to grow up to 540kw before a delam/IT'S GONE TOO FAR FRED SHUT IT DOWN
 			//The formula for power gen is zap_str * 15 / 2 * capacitor rating, between 1 and 4
-			zap_str = coil.zap_act(zap_str * 15, ZAP_SUPERMATTER_FLAGS, list()) //Coils should take a lot out of the power of the zap
+			zap_str = coil.zap_act(zap_str * 15, ZAP_POWERPRODUCE_FLAGS, list()) //Coils should take a lot out of the power of the zap
 
-		else if(istype(target, /obj/machinery/power/grounding_rod))
-			var/obj/machinery/power/grounding_rod/rod = target
+		else if(istype(target, /obj/machinery/power/energy_accumulator/grounding_rod))
+			var/obj/machinery/power/energy_accumulator/grounding_rod/rod = target
 			//We can expect this to do very little, maybe shock the poor soul buckled to it, but that's all.
 			//This is one of our endpoints, if the bolt hits a grounding rod, it stops jumping
-			rod.zap_act(zap_str, ZAP_SUPERMATTER_FLAGS, list())
+			rod.zap_act(zap_str, ZAP_POWERPRODUCE_FLAGS, list())
 			return
 
 		else if(isliving(target))//If we got a fleshbag on our hands
@@ -978,7 +975,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 		else if(isobj(target))
 			var/obj/junk = target
-			junk.zap_act(zap_str, ZAP_SUPERMATTER_FLAGS, list())
+			junk.zap_act(zap_str, ZAP_POWERPRODUCE_FLAGS, list())
 			zap_str /= 1.8 // worse then living things, better then coils
 		//Then we finish it all up
 		//This gotdamn variable is a boomer and keeps giving me problems

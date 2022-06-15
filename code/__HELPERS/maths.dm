@@ -106,7 +106,7 @@
 	// excess power into GLOB.CELLRATE energy units when charging cells.
 	// With the current configuration of wait=20 and CELLRATE=0.002, this
 	// means that one unit is 1 kJ.
-	return display_joules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
+	return display_joules(energy_to_joules(units) WATTS)
 
 ///counts the number of bits in Byond's 16-bit width field, in constant time and memory!
 /proc/bit_count(bit_field)

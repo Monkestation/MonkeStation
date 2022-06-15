@@ -57737,7 +57737,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/power/tesla_coil,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "ckz" = (
@@ -60747,7 +60747,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/power/tesla_coil,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "crJ" = (
@@ -61489,7 +61489,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ctB" = (
-/obj/machinery/power/tesla_coil,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -62235,7 +62235,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cvb" = (
-/obj/machinery/power/tesla_coil,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Engineering - Secure Storage";
@@ -64122,7 +64122,7 @@
 	icon_state = "0-2"
 	},
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/power/tesla_coil,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "czr" = (
