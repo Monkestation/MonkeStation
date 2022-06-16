@@ -13,7 +13,6 @@
 	/// The turf where the camera was last updated.
 	var/turf/last_camera_turf
 	var/list/concurrent_users = list()
-	var/long_ranged = FALSE
 
 	// Stuff needed to render the map
 	var/map_name
@@ -21,7 +20,6 @@
 	/// All the plane masters that need to be applied.
 	var/list/cam_plane_masters
 	var/atom/movable/screen/background/cam_background
-
 
 /obj/machinery/computer/security/Initialize(mapload)
 	. = ..()
@@ -41,7 +39,7 @@
 	cam_screen.screen_loc = "[map_name]:1,1"
 	cam_plane_masters = list()
 	for(var/plane in subtypesof(/atom/movable/screen/plane_master))
-		var/atom/movable/screen/plane_master/instance= new plane()
+		var/atom/movable/screen/plane_master/instance = new plane()
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -179,6 +177,7 @@
 	cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/machinery/computer/security/ui_close(mob/user, datum/tgui/tgui)
+	. = ..()
 	var/user_ref = REF(user)
 	var/is_living = isliving(user)
 	// Living creature or not, we remove you anyway.
@@ -275,11 +274,11 @@
 	broken_overlay_emissive = TRUE
 	light_power = 0
 
-/obj/machinery/computer/security/telescreen/update_icon()
+/obj/machinery/computer/security/telescreen/update_icon_state()
 	icon_state = initial(icon_state)
 	if(machine_stat & BROKEN)
 		icon_state += "b"
-	return
+	return ..()
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
@@ -289,17 +288,19 @@
 	network = list("thunder")
 	density = FALSE
 	circuit = null
-	long_ranged = TRUE
+	interaction_flags_atom = NONE  // interact() is called by BigClick()
 	var/icon_state_off = "entertainment_blank"
 	var/icon_state_on = "entertainment"
 
-//Can use this telescreen at long range.
-/obj/machinery/computer/security/telescreen/entertainment/ui_state(mob/user)
-	return GLOB.not_incapacitated_state
-
-/obj/machinery/computer/security/telescreen/entertainment/examine(mob/user)
+/obj/machinery/computer/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
-	interact(usr)
+	RegisterSignal(src, COMSIG_CLICK, .proc/BigClick)
+
+// Bypass clickchain to allow humans to use the telescreen from a distance
+/obj/machinery/computer/security/telescreen/entertainment/proc/BigClick()
+	SIGNAL_HANDLER
+
+	INVOKE_ASYNC(src, /atom.proc/interact, usr)
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/notify(on)
 	if(on && icon_state == icon_state_off)
