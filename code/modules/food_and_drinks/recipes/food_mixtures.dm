@@ -7,6 +7,11 @@
 	parts |= reqs
 
 //////////////////////////////////////////FOOD MIXTURES////////////////////////////////////
+/datum/chemical_reaction/whipped_cream
+	name = "Whipped Cream"
+	id = /datum/reagent/consumable/whipped_cream
+	required_reagents = list(/datum/reagent/consumable/cream = 10, /datum/reagent/consumable/sugar = 15)
+	reaction_tags = REACTION_TAG_FOOD | REACTION_TAG_EASY
 
 /datum/chemical_reaction/tofu
 	name = "Tofu"

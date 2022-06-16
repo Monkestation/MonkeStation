@@ -197,7 +197,7 @@
 	color = "#731008" // rgb: 115, 16, 8
 	taste_description = "ketchup"
 
-/datum/reagent/consumable/cream
+/datum/reagent/consumable/whipped_cream
 	name = "Whipped Cream"
 	description = "A perfect topping for icecream and pancakes"
 	taste_description = "sugary"
