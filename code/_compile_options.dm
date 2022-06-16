@@ -74,19 +74,14 @@
 #define FORCE_MAP "runtimestation"
 #endif
 
+
 //Update this whenever you need to take advantage of more recent byond features
 #define MIN_COMPILER_VERSION 514
 #define MIN_COMPILER_BUILD 1584
 #if (DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD) && !defined(SPACEMAN_DMM)
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 514.1583 or higher.
-#endif
-
-#if (DM_VERSION == 514 && DM_BUILD > 1575 && DM_BUILD <= 1577)
-#error Your version of BYOND currently has a crashing issue that will prevent you from running Dream Daemon test servers.
-#error We require developers to test their content, so an inability to test means we cannot allow the compile.
-#error Please consider changing to build 514.1584.
+#error You need version 514.1584 or higher.
 #endif
 
 //Update this whenever the byond version is stable so people stop updating to hilariously broken versions
