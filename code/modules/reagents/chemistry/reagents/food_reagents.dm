@@ -209,7 +209,7 @@
 
 /datum/reagent/consumable/cloth/on_mob_life(mob/living/carbon/Consumer)
 	if(ismoth(Consumer))
-		M.heal_bodypart_damage(1,1, 0)
+		Consumer.heal_bodypart_damage(1,1, 0)
 		.= 1
 	..()
 
