@@ -35,7 +35,7 @@
 	 /datum/reagent/consumable/frostoil = list("icon_state" = "coldsauce", "item_state" = "", "icon_empty" = "", "name" = "coldsauce bottle", "desc" = "Leaves the tongue numb from its passage."),
 	 /datum/reagent/consumable/cornoil = list("icon_state" = "oliveoil", "item_state" = "", "icon_empty" = "", "name" = "corn oil bottle", "desc" = "A delicious oil used in cooking. Made from corn."),
 	 /datum/reagent/consumable/bbqsauce = list("icon_state" = "bbqsauce", "item_state" = "", "icon_empty" = "", "name" = "bbq sauce bottle", "desc" = "Hand wipes not included.", "condiment_overlay" = "caramel"),
-
+	 /datum/reagent/consumable/cream = list("condiment_overlay" = "cream")
 	 )
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 	var/icon_empty = ""
@@ -52,12 +52,18 @@
 	if(reagents.reagent_list.len > 0 && possible_states.len)
 		var/main_reagent = reagents.get_master_reagent_id()
 		if(main_reagent in possible_states)
-			condiment_overlay = possible_states[main_reagent]["condiment_overlay"]
-			icon_state = possible_states[main_reagent]["icon_state"]
-			item_state = possible_states[main_reagent]["item_state"]
-			icon_empty = possible_states[main_reagent]["icon_empty"]
-			name = possible_states[main_reagent]["name"]
-			desc = possible_states[main_reagent]["desc"]
+			if(possible_states[main_reagent]["condiment_overlay"])
+				condiment_overlay = possible_states[main_reagent]["condiment_overlay"]
+			if(possible_states[main_reagent]["icon_state"])
+				icon_state = possible_states[main_reagent]["icon_state"]
+			if(possible_states[main_reagent]["item_state"])
+				item_state = possible_states[main_reagent]["item_state"]
+			if(possible_states[main_reagent]["icon_empty"])
+				icon_empty = possible_states[main_reagent]["icon_empty"]
+			if(possible_states[main_reagent]["name"])
+				name = possible_states[main_reagent]["name"]
+			if(possible_states[main_reagent]["desc"])
+				desc = possible_states[main_reagent]["desc"]
 			return ..(TRUE) // Don't fill normally
 		else
 			name = "condiment bottle"
