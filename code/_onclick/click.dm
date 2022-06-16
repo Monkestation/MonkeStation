@@ -98,16 +98,6 @@
 		CtrlClickOn(A)
 		return
 
-	if(modifiers["shift"] && modifiers["right"])
-		ShiftRightClickOn(A)
-		return
-
-	if(modifiers["alt"] && modifiers["right"])
-		return
-
-	if(modifiers["right"] && RightClickOn(A))
-		return
-
 	if(incapacitated(ignore_restraints = 1))
 		return
 
