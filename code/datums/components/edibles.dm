@@ -484,7 +484,7 @@ Behavior that's still missing from this component that original food items had t
 	var/list/recipes_craft = list()
 	for(var/recipe in GLOB.crafting_recipes)
 		var/datum/crafting_recipe/potential_recipe = recipe
-		if(parent.type in potential_recipe.reqs) // dont show recipes that don't involve this item
+		if((parent.type in potential_recipe.reqs) || (potential_recipe.type in GLOB.generic_recipes)) // dont show recipes that don't involve this item
 			if(crafting_menu.check_contents(chef, potential_recipe, surroundings)) // don't show recipes we can't actually make
 				available_recipes.Add(potential_recipe)
 	for(var/available_recipe in available_recipes)
