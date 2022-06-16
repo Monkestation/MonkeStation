@@ -202,6 +202,17 @@
 	description = "A perfect topping for icecream and pancakes"
 	taste_description = "sugary"
 
+/datum/reagent/consumable/cloth
+	name = "Shredded Cloth"
+	description = "Moths love this stuff"
+	taste_description = "lint"
+
+/datum/reagent/consumable/cloth/on_mob_life(mob/living/carbon/Consumer)
+	if(ismoth(Consumer))
+		M.heal_bodypart_damage(1,1, 0)
+		.= 1
+	..()
+
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
 	description = "This is what makes chilis hot."
