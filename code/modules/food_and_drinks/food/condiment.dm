@@ -37,6 +37,7 @@
 	 /datum/reagent/consumable/bbqsauce = list("icon_state" = "bbqsauce", "item_state" = "", "icon_empty" = "", "name" = "bbq sauce bottle", "desc" = "Hand wipes not included.", "condiment_overlay" = "caramel"),
 	 /datum/reagent/consumable/whipped_cream = list("condiment_overlay" = "cream")
 	 /datum/reagent/consumable/sprinkles = list("condiment_overlay" = "sprinkles")
+	 /datum/reagent/consumable/cloth = list("condiment_overlay" = "cloth")
 	 )
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 	var/icon_empty = ""
