@@ -132,7 +132,7 @@
 		if(!reagents.total_volume)
 			to_chat(user, "<span class='warning'>[src] is empty!</span>")
 			return
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+		if(target.reagents.total_volume >= target.reagents.maximum_volume * 4) //I want to add more mayo
 			to_chat(user, "<span class='warning'>you can't add anymore to [target]!</span>")
 			return
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
