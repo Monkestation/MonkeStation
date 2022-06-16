@@ -151,7 +151,7 @@
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
 	density = TRUE
-	var/canshock = 0
+	var/canshock = FALSE
 	var/shockdamage = 20
 	var/explosive = TRUE
 
@@ -165,7 +165,7 @@
 
 /obj/effect/anomaly/flux/anomalyEffect()
 	..()
-	canshock = 1
+	canshock = TRUE
 	for(var/mob/living/M in get_turf(src))
 		mobShock(M)
 
