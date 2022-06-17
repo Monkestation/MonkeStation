@@ -13,7 +13,14 @@
 	taste_mult = 4
 	var/nutriment_factor = 1 * REAGENTS_METABOLISM
 	var/quality = 0	//affects mood, typically higher for mixed drinks with more complex recipes
+	///The amount a robot will pay for a glass of this (20 units but can be higher if you pour more, be frugal!)
+	var/glass_price
 	random_unrestricted = FALSE
+
+/datum/reagent/consumable/New()
+	. = ..()
+	if(glass_price)
+		AddElement(/datum/element/venue_price, glass_price)
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++

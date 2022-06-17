@@ -25,6 +25,7 @@
 	tastes = list("pie" = 1)
 	foodtypes = GRAIN
 	burns_in_oven = TRUE
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/pie/cream
 	name = "banana cream pie"
@@ -75,6 +76,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/consumable/berryjuice = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pie" = 1, "blackberries" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/pie/bearypie
 	name = "beary pie"

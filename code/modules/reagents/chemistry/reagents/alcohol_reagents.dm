@@ -92,6 +92,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "piss water"
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
+	fallback_icon_state = "beer"
+	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/ftliver
 	name = "Faster-Than-Liver"
@@ -751,6 +753,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "B-52"
 	glass_desc = "Kahlua, Irish Cream, and cognac. You will get bombed."
 	shot_glass_icon_state = "b52glass"
+	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/b52/on_mob_metabolize(mob/living/M)
 	playsound(M, 'sound/effects/explosion_distant.ogg', 100, FALSE)
@@ -802,6 +805,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Manhattan"
 	glass_desc = "The Detective's undercover drink of choice. He never could stomach gin."
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_EASY
 
 
 /datum/reagent/consumable/ethanol/manhattan_proj
@@ -1286,6 +1290,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "atomicbombglass"
 	glass_name = "Atomic Bomb"
 	glass_desc = "Nanotrasen cannot take legal responsibility for your actions after imbibing."
+	glass_price = DRINK_PRICE_HIGH
 
 /datum/reagent/consumable/ethanol/atomicbomb/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(50)
@@ -1740,6 +1745,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Sidecar"
 	glass_desc = "The one ride you'll gladly give up the wheel for."
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/between_the_sheets
 	name = "Between the Sheets"
@@ -1787,6 +1793,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Mojito"
 	glass_desc = "A drink that looks as refreshing as it tastes."
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/fernet
 	name = "Fernet"
@@ -1834,6 +1841,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "glass of fanciulli"
 	glass_desc = "A glass of Fanciulli. It's just Manhattan with Fernet."
 	liquid_fire_power = 0 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_HIGH
 
 /datum/reagent/consumable/ethanol/fanciulli/on_mob_life(mob/living/carbon/M)
 	M.adjust_nutrition(-5)
@@ -1857,7 +1865,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state= "minted_fernet"
 	glass_name = "glass of branca menta"
 	glass_desc = "A glass of Branca Menta, perfect for those lazy and hot sunday summer afternoons." //Get lazy literally by drinking this
-
+	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/branca_menta/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, T0C)
@@ -2004,6 +2012,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "champagne_glass"
 	glass_name = "Champagne"
 	glass_desc = "The flute clearly displays the slowly rising bubbles."
+	glass_price = DRINK_PRICE_EASY
 
 
 /datum/reagent/consumable/ethanol/wizz_fizz

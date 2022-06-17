@@ -8,6 +8,7 @@
 	tastes = list("tasteless soup" = 1)
 	foodtypes = VEGETABLES
 	eatverbs = list("slurp","sip","inhale","drink")
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/soup/wish
 	name = "wish soup"
@@ -31,6 +32,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/water = 5)
 	tastes = list("meat" = 1)
 	foodtypes = MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/slime
 	name = "slime soup"
@@ -39,6 +41,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/toxin/slimejelly = 10, /datum/reagent/consumable/nutriment/vitamin = 9, /datum/reagent/water = 5)
 	tastes = list("slime" = 1)
 	foodtypes = TOXIC | SUGAR
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/blood
 	name = "tomato soup"
@@ -72,6 +75,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 8)
 	tastes = list("vegetables" = 1)
 	foodtypes = VEGETABLES
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/nettle
 	name = "nettle soup"
@@ -80,6 +84,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 9, /datum/reagent/medicine/omnizine = 5)
 	tastes = list("nettles" = 1)
 	foodtypes = VEGETABLES
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/mystery
 	name = "mystery soup"
@@ -102,6 +107,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 3, /datum/reagent/consumable/tomatojuice = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("hot peppers" = 1)
 	foodtypes = VEGETABLES | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/coldchili
 	name = "cold chili"
@@ -110,6 +116,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/frostoil = 3, /datum/reagent/consumable/tomatojuice = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("tomato" = 1, "mint" = 1)
 	foodtypes = VEGETABLES | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/clownchili
 	name = "chili con carnival"
@@ -207,6 +214,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("sweet potato" = 1)
 	foodtypes = VEGETABLES | SUGAR
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/beet/red
 	name = "red beet soup"
@@ -230,7 +238,8 @@
 	icon_state = "bisque"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("creamy texture" = 1, "crab" = 4)
-	foodtypes = MEAT
+	foodtypes = SEAFOOD
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/soup/electron
 	name = "electron soup"

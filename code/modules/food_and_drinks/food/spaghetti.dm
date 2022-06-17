@@ -3,6 +3,7 @@
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/spaghetti/Initialize()
 	. = ..()

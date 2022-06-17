@@ -12,6 +12,7 @@
 	desc = "The cornerstone of every nutritious breakfast."
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/plain/Initialize()
 	. = ..()
@@ -33,6 +34,7 @@
 	foodtypes = MEAT | GRAIN | GROSS
 	var/subjectname = ""
 	var/subjectjob = null
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/human/CheckParts(list/parts_list)
 	..()
@@ -52,6 +54,7 @@
 	desc = "You monster."
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | MEAT | GROSS
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/appendix
 	name = "appendix burger"
@@ -60,6 +63,7 @@
 	icon_state = "appendixburger"
 	tastes = list("bun" = 4, "grass" = 2)
 	foodtypes = GRAIN | MEAT | GROSS
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/fish
 	name = "fillet -o- carp sandwich"
@@ -68,6 +72,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 4, "fish" = 4)
 	foodtypes = GRAIN | SEAFOOD
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/tofu
 	name = "tofu burger"
@@ -76,6 +81,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("bun" = 4, "tofu" = 4)
 	foodtypes = GRAIN | VEGETABLES
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/roburger
 	name = "roburger"
@@ -84,6 +90,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/nanomachines = 7, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("bun" = 4, "lettuce" = 2, "sludge" = 1)
 	foodtypes = GRAIN | TOXIC
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/roburgerbig
 	name = "roburger"
@@ -101,6 +108,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 7)
 	tastes = list("bun" = 4, "acid" = 4)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/bearger
 	name = "bearger"
@@ -108,6 +116,7 @@
 	icon_state = "bearger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 7)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/clown
 	name = "clown burger"
@@ -115,6 +124,7 @@
 	icon_state = "clownburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/mannitol = 11, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | FRUIT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/mime
 	name = "mime burger"
@@ -122,6 +132,7 @@
 	icon_state = "mimeburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 7, /datum/reagent/consumable/nothing = 6)
 	foodtypes = GRAIN
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/brain
 	name = "brainburger"
@@ -130,6 +141,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/medicine/mannitol = 11, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("bun" = 4, "brains" = 2)
 	foodtypes = GRAIN | MEAT | GROSS
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/ghost
 	name = "ghost burger"
@@ -141,6 +153,7 @@
 	alpha = 170
 	verb_say = "moans"
 	verb_yell = "wails"
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/ghost/Initialize()
 	. = ..()
@@ -241,6 +254,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 11)
 	tastes = list("bun" = 4, "magic" = 2)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/bigbite
 	name = "big bite burger"
@@ -249,6 +263,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtypes = GRAIN | MEAT | DAIRY
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/jelly
 	name = "jelly burger"
@@ -256,6 +271,7 @@
 	icon_state = "jellyburger"
 	tastes = list("bun" = 4, "jelly" = 2)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/jelly/slime
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/toxin/slimejelly = 10, /datum/reagent/consumable/nutriment/vitamin = 6)
@@ -275,6 +291,7 @@
 	max_volume = 100
 	tastes = list("bun" = 4, "type two diabetes" = 10)
 	foodtypes = GRAIN | MEAT | DAIRY
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/fivealarm
 	name = "five alarm burger"
@@ -282,6 +299,7 @@
 	icon_state = "fivealarmburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/rat
 	name = "rat burger"
@@ -289,6 +307,7 @@
 	icon_state = "ratburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GRAIN | MEAT | GROSS
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/baseball
 	name = "home run baseball burger"
@@ -296,6 +315,7 @@
 	icon_state = "baseball"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GRAIN | GROSS
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/baconburger
 	name = "bacon burger"
@@ -304,6 +324,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bacon" = 4, "bun" = 2)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/empoweredburger
 	name = "empowered burger"
@@ -312,6 +333,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/liquidelectricity = 5)
 	tastes = list("bun" = 2, "pure electricity" = 4)
 	foodtypes = GRAIN | TOXIC
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/crab
 	name = "crab burger"
@@ -320,6 +342,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 2, "crab meat" = 4)
 	foodtypes = GRAIN | SEAFOOD
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/soylent
 	name = "soylent burger"
@@ -328,6 +351,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 2, "assistant" = 4)
 	foodtypes = GRAIN | MEAT | DAIRY
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/burger/rib
 	name = "mcrib"
@@ -336,6 +360,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/bbqsauce = 1)
 	tastes = list("bun" = 2, "pork patty" = 4)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/mcguffin
 	name = "mcguffin"
@@ -344,6 +369,7 @@
 	tastes = list("muffin" = 2, "bacon" = 3)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/eggyolk = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN | MEAT | BREAKFAST
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/chicken
 	name = "chicken sandwich" //Apparently the proud people of Americlapstan object to this thing being called a burger. Apparently McDonald's just calls it a burger in Europe as to not scare and confuse us.
@@ -352,6 +378,7 @@
 	tastes = list("bun" = 2, "chicken" = 4, "God's covenant" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/mayonnaise = 3, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 2)
 	foodtypes = GRAIN | MEAT | FRIED
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/burger/cheese
 	name = "cheese burger"
@@ -360,6 +387,7 @@
 	tastes = list("bun" = 2, "beef patty" = 4, "cheese" = 3)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GRAIN | MEAT | DAIRY
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/burger/cheese/Initialize()
 	. = ..()

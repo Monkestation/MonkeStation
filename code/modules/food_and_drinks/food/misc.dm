@@ -92,6 +92,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("fries" = 3, "salt" = 1)
 	foodtypes = VEGETABLES | GRAIN | FRIED
+	venue_value = FOOD_PRICE_CHEAP
 
 
 /obj/item/food/tatortot
@@ -120,6 +121,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("fries" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | GRAIN
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/cheesyfries/Initialize()
 	. = ..()

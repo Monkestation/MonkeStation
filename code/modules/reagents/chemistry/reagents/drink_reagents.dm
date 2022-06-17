@@ -339,6 +339,7 @@
 	glass_icon_state = "lemonpitcher"
 	glass_name = "pitcher of lemonade"
 	glass_desc = "This drink leaves you feeling nostalgic for some reason."
+	glass_price = DRINK_PRICE_EASY
 
 
 /datum/reagent/consumable/tea/arnold_palmer

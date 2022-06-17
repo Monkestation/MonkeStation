@@ -1262,7 +1262,11 @@
 
 
 //Misc
-
+/obj/item/circuitboard/machine/restaurant_portal
+	name = "Restaurant Portal"
+	icon_state = "service"
+	build_path = /obj/machinery/restaurant_portal
+	needs_anchored = TRUE
 
 /obj/item/circuitboard/machine/abductor
 	name = "alien board (Report This)"

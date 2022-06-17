@@ -9,6 +9,7 @@
 	armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20, "stamina" = 0)
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/holosign_creator/projector
+	var/use_vis_overlay = TRUE
 
 /obj/structure/holosign/emp_act(severity)
 	take_damage(max_integrity/severity, BRUTE, "melee", 1)
@@ -21,8 +22,9 @@
 
 /obj/structure/holosign/Initialize(mapload)
 	. = ..()
-	alpha = 0
-	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
+	if(use_vis_overlay)
+		alpha = 0
+		SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
 
 /obj/structure/holosign/Destroy()
 	if(projector)
@@ -30,10 +32,13 @@
 		projector = null
 	return ..()
 
-/obj/structure/holosign/attack_hand(mob/living/user)
+/obj/structure/holosign/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
+	attack_holosign(user, modifiers)
+
+/obj/structure/holosign/proc/attack_holosign(mob/living/user, list/modifiers)
 	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 	user.changeNext_move(CLICK_CD_MELEE)
 	take_damage(5 , BRUTE, "melee", 1)

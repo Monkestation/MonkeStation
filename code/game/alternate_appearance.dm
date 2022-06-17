@@ -191,6 +191,8 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	seer = M
 	add_hud_to(seer)
 
+/datum/atom_hud/alternate_appearance/basic/food_demands
+
 /datum/atom_hud/alternate_appearance/basic/heretics
 	add_ghost_version = FALSE //just in case, to prevent infinite loops
 

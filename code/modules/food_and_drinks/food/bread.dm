@@ -29,6 +29,7 @@
 	tastes = list("bread" = 10)
 	foodtypes = GRAIN
 	burns_in_oven = TRUE
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/plain/Initialize()
 	. = ..()
@@ -64,6 +65,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 35, /datum/reagent/consumable/nutriment/vitamin = 15)
 	tastes = list("bread" = 10, "meat" = 10)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
@@ -139,6 +141,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 15)
 	tastes = list("bread" = 10, "tofu" = 10)
 	foodtypes = GRAIN | VEGETABLES
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
@@ -201,6 +204,7 @@
 	attack_verb = list("touche")
 	tastes = list("bread" = 1)
 	foodtypes = GRAIN
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/garlicbread
 	name = "garlic bread"
@@ -211,6 +215,7 @@
 	bite_consumption = 3
 	tastes = list("bread" = 1, "garlic" = 1, "butter" = 1)
 	foodtypes = GRAIN
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
@@ -294,6 +299,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
 	foodtypes = GRAIN | BREAKFAST
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/butterdog
 	name = "butterdog"

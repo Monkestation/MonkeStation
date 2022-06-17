@@ -530,3 +530,23 @@
 	build_path = /obj/item/plate/oven_tray
 	category = list("initial","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/holosign/restaurant
+	name = "Restaurant Seating Projector"
+	desc = "A holographic projector that creates seating designation for restaurants."
+	id = "holosignrestaurant"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	build_path = /obj/item/holosign_creator/robot_seat/restaurant
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/holosign/bar
+	name = "Bar Seating Projector"
+	desc = "A holographic projector that creates seating designation for bars."
+	id = "holosignbar"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
+	build_path = /obj/item/holosign_creator/robot_seat/bar
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE

@@ -9,6 +9,7 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 	burns_in_oven = TRUE
+	venue_value = FOOD_PRICE_CHEAP
 	/// type is spawned 6 at a time and replaces this pizza when processed by cutting tool
 	var/obj/item/food/pizzaslice/slice_type
 	///What label pizza boxes use if this pizza spawns in them.
@@ -142,6 +143,7 @@
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/vegetable
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/pizza/vegetable/Initialize()
 	. = ..()
