@@ -34,13 +34,18 @@
 	var/list/stored_products = list()
 	///max amount of pills allowed on our tile before we start storing them instead
 	var/max_floor_products = 10
+	///Is pill press actively transporting to nearby Smart Fridge?
+	var/active_transfer_state = FALSE
+	///Pill Press no power
+	var/no_power_state = FALSE
 
 /obj/machinery/plumbing/pill_press/examine(mob/user)
 	. = ..()
-	. += span_notice("The [name] currently has [stored_products.len] stored. There needs to be less than [max_floor_products] on the floor to continue dispensing.")
+	. += span_notice("The [name] currently has [stored_products.len] stored. With the power of bluespace, it materializes the product into the nearest Nanotrasen brand Smart Chemical Storage Unit.")
 
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
 	. = ..()
+	update_icon()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 
 	//expertly copypasted from chemmasters
@@ -60,10 +65,14 @@
 		patch_style["class_name"] = patches_assets.icon_class_name(raw_patch_style)
 		patch_styles += list(patch_style)
 
-
 /obj/machinery/plumbing/pill_press/process(delta_time)
 	if(machine_stat & NOPOWER)
+		active_transfer_state = FALSE
+		no_power_state = TRUE
+		update_icon()
 		return
+
+	no_power_state = FALSE
 	if(reagents.total_volume >= current_volume)
 		if (product == "pill")
 			var/obj/item/reagent_containers/pill/P = new(src)
@@ -87,19 +96,38 @@
 			reagents.trans_to(P, current_volume)
 			P.name = trim("[product_name] bottle")
 			stored_products += P
+
 	if(stored_products.len)
 		var/pill_amount = 0
-		for(var/thing in loc)
+		for(var/thing in loc) ///Keeping loc floor product logic in case others in the future have some clever plans
 			if(!istype(thing, /obj/item/reagent_containers/glass/bottle) && !istype(thing, /obj/item/reagent_containers/pill))
 				continue
 			pill_amount++
 			if(pill_amount >= max_floor_products) //too much so just stop
 				break
 		if(pill_amount < max_floor_products)
-			var/atom/movable/AM = stored_products[1] //AM because forceMove is all we need
+			var/atom/movable/AM = stored_products[1] //AM load product o chemfridge
 			stored_products -= AM
-			AM.forceMove(drop_location())
+			for(var/obj/machinery/smartfridge/chemistry/chem_fridge in orange(4, src))
+				if(chem_fridge.contents.len >= chem_fridge.max_n_of_items)
+					active_transfer_state = FALSE
+					update_icon()
+					break
+				if(chem_fridge.accept_check(AM))
+					active_transfer_state = TRUE
+					chem_fridge.load(AM)
+					update_icon()
 
+/obj/machinery/plumbing/pill_press/update_icon()
+	. = ..()
+	if(active_transfer_state)
+		icon_state = initial(icon_state) + "-on"
+		return
+	if(no_power_state)
+		icon_state = initial(icon_state) + "-off"
+		return
+	else
+		icon_state = initial(icon_state) //Default Idle State
 
 /obj/machinery/plumbing/pill_press/ui_assets(mob/user)
 	return list(
