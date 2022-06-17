@@ -23,11 +23,11 @@ var/list/newlaw = list("alcohol is",
 					   "hats are",
 					   "upper floor tiles are",
 					   "windows are",
-					   "COINTAINED CHIMPS are",
+					   "CONTAINED CHIMPS are",
 					   "UNCONTAINED ASSISTANTS are",
 					   "free stuff is",
 					   "clowns without AA are",
-					   "non hardsuit outerwere is.",
+					   "non hardsuit outerwear is.",
 					   "having a butt is",
 					   "non sentient bots are")
 
