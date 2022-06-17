@@ -104,7 +104,7 @@
 	if(stored_products.len)
 		if(next_slowtransfer < world.time)
 			slow_transfer()
-			//Set to wait for half a second before transfering again
+			//Set to wait for a second before transfering again
 			next_slowtransfer = world.time + 1 SECONDS
 
 
@@ -117,19 +117,24 @@
 		if(pill_amount >= max_floor_products) //too much so just stop
 			break
 	if(pill_amount < max_floor_products)
-		var/atom/movable/AM = stored_products[1] //AM load product o chemfridge
+		var/atom/movable/AM = stored_products[1] //AM load product to chemfridge
 		stored_products -= AM
-		for(var/obj/machinery/smartfridge/chemistry/chem_fridge in orange(4, src))
-			if(chem_fridge.contents.len >= chem_fridge.max_n_of_items)
-				active_transfer_state = FALSE
-				update_icon()
-				break
-			if(chem_fridge.accept_check(AM))
-				active_transfer_state = TRUE
-				chem_fridge.load(AM)
-				update_icon()
-				playsound(src, 'sound/items/pshoom.ogg', 10, 10)
-				src.Beam(chem_fridge.loc, icon_state="item_transfer", time=5)
+		var/obj/machinery/smartfridge/chemistry/chem_fridge = locate(/obj/machinery/smartfridge/chemistry) in orange(4, src)
+		if(!chem_fridge)
+			active_transfer_state = FALSE
+			update_icon()
+			return
+		if(chem_fridge.contents.len >= chem_fridge.max_n_of_items)
+			active_transfer_state = FALSE
+			update_icon()
+			return
+		if(chem_fridge.accept_check(AM))
+			active_transfer_state = TRUE
+			chem_fridge.load(AM)
+			update_icon()
+			playsound(src, 'sound/items/pshoom.ogg', 15, 10)
+			src.Beam(chem_fridge.loc, icon_state="item_transfer", time=4)
+
 
 /obj/machinery/plumbing/pill_press/update_icon()
 	. = ..()
