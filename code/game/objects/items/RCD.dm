@@ -829,7 +829,6 @@ RLD
 	//Above are the most common machinery which is shown on the first cycle. Keep new additions below THIS line, unless they're probably gonna be needed alot
 	/obj/machinery/plumbing/pill_press = 20,
 	/obj/machinery/plumbing/acclimator = 10,
-	/obj/machinery/plumbing/bottle_dispenser = 50,
 	/obj/machinery/plumbing/disposer = 10,
 	/obj/machinery/plumbing/filter = 5,
 	/obj/machinery/plumbing/grinder_chemical = 30,
