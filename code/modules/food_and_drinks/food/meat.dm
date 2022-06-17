@@ -56,6 +56,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("tofu" = 1)
 	foodtypes = VEGETABLES
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/tofu/prison
 	name = "soggy tofu"
@@ -406,6 +407,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/capsaicin = 9, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtypes = MEAT | TOXIC
+	venue_value = FOOD_PRICE_EXOTIC
 
 
 /obj/item/food/nugget
@@ -1161,3 +1163,14 @@
 	icon = 'icons/obj/food/lizard.dmi'
 	icon_state = "armorfish_fillet"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3)
+
+/obj/item/food/beef_stroganoff
+	name = "beef stroganoff"
+	desc = "A russian dish that consists of beef and sauce. Really popular in japan, or at least that's what my animes would allude to."
+	icon_state = "beefstroganoff"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 16, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("beef" = 3, "sour cream" = 1, "salt" = 1, "pepper" = 1)
+	foodtypes = MEAT | VEGETABLES | DAIRY
+	w_class = WEIGHT_CLASS_SMALL
+	//basic ingredients, but a lot of them. just covering costs here
+	venue_value = FOOD_PRICE_NORMAL

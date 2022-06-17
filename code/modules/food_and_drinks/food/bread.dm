@@ -45,6 +45,7 @@
 	icon_state = "breadslice"
 	foodtypes = GRAIN
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	venue_value = FOOD_PRICE_TRASH
 
 /obj/item/food/breadslice/plain/Initialize()
 	. = ..()
@@ -153,6 +154,7 @@
 	icon_state = "tofubreadslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN | VEGETABLES
+	venue_value = FOOD_PRICE_TRASH
 
 /obj/item/food/bread/creamcheese
 	name = "cream cheese bread"

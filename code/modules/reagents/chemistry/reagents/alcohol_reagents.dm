@@ -1031,6 +1031,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Aloe"
 	glass_desc = "Very, very, very good."
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/andalusia
 	name = "Andalusia"
@@ -1587,6 +1588,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	shot_glass_icon_state = "shotglassgreen"
 	random_unrestricted = TRUE
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_HIGH
 
 /datum/reagent/consumable/ethanol/bastion_bourbon/on_mob_metabolize(mob/living/L)
 	var/heal_points = 10
@@ -1683,6 +1685,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "sakecup"
 	glass_name = "cup of sake"
 	glass_desc = "A traditional cup of sake."
+	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/peppermint_patty
 	name = "Peppermint Patty"
@@ -1757,6 +1760,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "between_the_sheets"
 	glass_name = "Between the Sheets"
 	glass_desc = "The only drink that comes with a label reminding you of Nanotrasen's zero-tolerance promiscuity policy."
+	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/ethanol/between_the_sheets/on_mob_life(mob/living/L)
 	..()

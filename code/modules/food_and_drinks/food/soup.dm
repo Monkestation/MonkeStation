@@ -151,12 +151,13 @@
 	foodtypes = MEAT | GROSS
 
 /obj/item/food/soup/milo
-	name = "milosoup"
+	name = "miso soup"
 	desc = "The universes best soup! Yum!!!"
 	icon_state = "milosoup"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("milo" = 1) // wtf is milo
+	tastes = list("miso" = 1) // wtf is milo
 	foodtypes = VEGETABLES
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/soup/mushroom
 	name = "chantrelle soup"
