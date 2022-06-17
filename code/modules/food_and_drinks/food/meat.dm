@@ -11,7 +11,7 @@
 	bite_consumption = 3
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
-	foodtypes = MEAT
+	foodtypes = SEAFOOD
 
 /obj/item/food/carpmeat
 	name = "carp fillet"
@@ -20,7 +20,7 @@
 	food_reagents = list(/datum/reagent/toxin/carpotoxin = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	bite_consumption = 6
 	tastes = list("fish" = 1)
-	foodtypes = MEAT
+	foodtypes = SEAFOOD
 	eatverbs = list("bite","chew","gnaw","swallow","chomp")
 
 
@@ -35,7 +35,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	bite_consumption = 1
 	tastes = list("fish" = 1, "breadcrumbs" = 1)
-	foodtypes = MEAT
+	foodtypes = SEAFOOD
 
 /obj/item/food/fishandchips
 	name = "fish and chips"
@@ -43,7 +43,7 @@
 	icon_state = "fishandchips"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("fish" = 1, "chips" = 1)
-	foodtypes = MEAT | VEGETABLES | FRIED
+	foodtypes = SEAFOOD | VEGETABLES | FRIED
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 

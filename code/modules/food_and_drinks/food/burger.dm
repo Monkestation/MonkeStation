@@ -67,7 +67,7 @@
 	icon_state = "fishburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 4, "fish" = 4)
-	foodtypes = GRAIN | MEAT
+	foodtypes = GRAIN | SEAFOOD
 
 /obj/item/food/burger/tofu
 	name = "tofu burger"
@@ -319,7 +319,7 @@
 	icon_state = "crabburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 2, "crab meat" = 4)
-	foodtypes = GRAIN | MEAT
+	foodtypes = GRAIN | SEAFOOD
 
 /obj/item/food/burger/soylent
 	name = "soylent burger"
