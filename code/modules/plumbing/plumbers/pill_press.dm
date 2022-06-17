@@ -42,7 +42,6 @@
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
 	. = ..()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
-	AddComponent(/datum/component/remote_materials, "modfab", mapload, TRUE, auto_link)
 
 	//expertly copypasted from chemmasters
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
@@ -61,24 +60,11 @@
 		patch_style["class_name"] = patches_assets.icon_class_name(raw_patch_style)
 		patch_styles += list(patch_style)
 
-/obj/machinery/plumbing/pill_press/proc/get_material_container()
-	var/datum/component/remote_materials/materials = GetComponent(/datum/component/remote_materials)
-	if(materials?.mat_container)
-		return materials.mat_container
-
-/obj/machinery/plumbing/pill_press/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
-	. = ..()
-	flick("autolathe_r",src)//plays glass insertion animation by default otherwise
-
-
-
 
 /obj/machinery/plumbing/pill_press/process(delta_time)
 	if(machine_stat & NOPOWER)
 		return
 	if(reagents.total_volume >= current_volume)
-		var/datum/component/material_container/materials = get_material_container()
-
 		if (product == "pill")
 			var/obj/item/reagent_containers/pill/P = new(src)
 			reagents.trans_to(P, current_volume)

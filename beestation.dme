@@ -1788,7 +1788,6 @@
 #include "code\modules\asset_cache\asset_cache_item.dm"
 #include "code\modules\asset_cache\asset_list.dm"
 #include "code\modules\asset_cache\asset_list_items.dm"
-#include "code\modules\asset_cache\assets\condiments.dm"
 #include "code\modules\asset_cache\assets\patches.dm"
 #include "code\modules\asset_cache\assets\pills.dm"
 #include "code\modules\asset_cache\transports\asset_transport.dm"
