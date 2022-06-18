@@ -24,7 +24,7 @@
 	throw_speed = 3
 	throw_range = 7
 	grind_results = list(/datum/reagent/lye = 10)
-	var/cleanspeed = 35 //slower than mop
+	var/cleanspeed = 3.5 SECONDS //slower than mop
 	force_string = "robust... against germs"
 	var/uses = 100
 
@@ -55,23 +55,26 @@
 	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
 	grind_results = list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
 	icon_state = "soapnt"
-	cleanspeed = 28 //janitor gets this
+	cleanspeed = 2.8 SECONDS //janitor gets this
 	uses = 300
 
 /obj/item/soap/homemade
 	desc = "A homemade bar of soap. Smells of... well...."
+	grind_results = list(/datum/reagent/liquidgibs = 9, /datum/reagent/lye = 9)
 	icon_state = "soapgibs"
-	cleanspeed = 30 // faster to reward chemists for going to the effort
+	cleanspeed = 3 SECONDS // faster to reward chemists for going to the effort
 
 /obj/item/soap/deluxe
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of high-class luxury."
+	grind_results = list(/datum/reagent/consumable/vanilla = 10, /datum/reagent/lye = 10)
 	icon_state = "soapdeluxe"
-	cleanspeed = 20 //captain gets one of these
+	cleanspeed = 2 SECONDS //captain gets one of these
 
 /obj/item/soap/syndie
 	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood faster."
+	grind_results = list(/datum/reagent/toxin/acid = 10, /datum/reagent/lye = 10)
 	icon_state = "soapsyndie"
-	cleanspeed = 5 //faster than mop so it is useful for traitors who want to clean crime scenes
+	cleanspeed = 0.5 SECONDS //faster than mop so it is useful for traitors who want to clean crime scenes
 
 /obj/item/soap/suicide_act(mob/user)
 	user.say(";FFFFFFFFFFFFFFFFUUUUUUUDGE!!", forced="soap suicide")

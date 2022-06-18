@@ -13,16 +13,15 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	resistance_flags = FLAMMABLE
-	var/mopping = 0
-	var/mopcount = 0
-	var/mopcap = 50 //MONKESTATION EDIT CHANGE
-	var/mopspeed = 15
+	///Maximum volume of reagents it can hold.
+	var/max_reagent_volume = 50 //MONKESTATION EDIT CHANGE
+	var/mopspeed = 1.5 SECONDS
 	force_string = "robust... against germs"
 	var/insertable = TRUE
 
 /obj/item/mop/Initialize(mapload)
 	. = ..()
-	create_reagents(mopcap)
+	create_reagents(max_reagent_volume)
 	//MONKESTATION EDIT ADDITION
 	AddElement(/datum/element/liquids_interaction, on_interaction_callback = /obj/item/mop/.proc/attack_on_liquids_turf)
 
@@ -106,7 +105,7 @@
 /obj/item/mop/advanced
 	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this! Due to the self-wetting technology, also comes equipped with a self drying mode toggle with ALT." //MONKESTATION EDIT
 	name = "advanced mop"
-	mopcap = 100 //MONKESTATION EDIT CHANGE
+	max_reagent_volume = 100 //MONKESTATION EDIT CHANGE
 	icon_state = "advmop"
 	item_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -114,12 +113,13 @@
 	force = 12
 	throwforce = 14
 	throw_range = 4
-	mopspeed = 8
+	mopspeed = 0.8 SECONDS
 	var/refill_enabled = TRUE //Self-refill toggle for when a janitor decides to mop with something other than water.
 	/// Amount of reagent to refill per second
-	var/refill_rate = 0.5
+	var/refill_rate = 0.5 SECONDS
 	var/refill_reagent = /datum/reagent/water //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
 	var/drying_mode = FALSE
+
 /obj/item/mop/advanced/New()
 	..()
 	START_PROCESSING(SSobj, src)
@@ -134,11 +134,12 @@
 
 /obj/item/mop/advanced/process(delta_time)
 	if(refill_enabled)
-		var/amadd = min(mopcap - reagents.total_volume, refill_rate * delta_time)
+		var/amadd = min(max_reagent_volume - reagents.total_volume, refill_rate * delta_time)
 		if(amadd > 0)
 			reagents.add_reagent(refill_reagent, amadd)
 	else if(drying_mode)
-		reagents.remove_all(mopcap)
+		reagents.remove_all(max_reagent_volume)
+
 /obj/item/mop/advanced/AltClick(mob/user)
 	if(refill_enabled)
 		to_chat(user, "<span class = 'notice'> Please turn off the condenser before enabling drying mode.</span>")
@@ -146,10 +147,12 @@
 	drying_mode = !drying_mode
 	to_chat(user, "<span class = 'notice'>You set the drying switch to the '[drying_mode ? "ON" : "OFF"] position.'</span>" )
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
+
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.</span>"
-	. += "<span class='notice'>The drying switch is set to <b>[drying_mode ? "ON" : "OFF"]</b>.</span>"
+	. += "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b> Toggle with a <b>Click</b>.</span>"
+	. += "<span class='notice'>The drying switch is set to <b>[drying_mode ? "ON" : "OFF"]</b>. Toggle with <b>AltClick</b>.</span>"
+
 /obj/item/mop/advanced/Destroy()
 	if(refill_enabled)
 		STOP_PROCESSING(SSobj, src)
