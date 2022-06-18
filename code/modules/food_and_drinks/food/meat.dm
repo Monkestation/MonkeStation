@@ -407,7 +407,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/capsaicin = 9, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtypes = MEAT | TOXIC
-	venue_value = FOOD_PRICE_EXOTIC
+	venue_value = FOOD_PRICE_NORMAL
 
 
 /obj/item/food/nugget
