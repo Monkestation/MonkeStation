@@ -99,6 +99,16 @@
 	tastes = list("egg" = 1)
 	foodtypes = MEAT | BREAKFAST
 
+
+/obj/item/food/eggsausage
+	name = "egg with sausage"
+	desc = "A good egg with a side of sausages."
+	icon_state = "eggsausage"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/nutriment = 4)
+	foodtypes = MEAT | FRIED | BREAKFAST
+	tastes = list("egg" = 4, "meat" = 4)
+	venue_value = FOOD_PRICE_NORMAL
+
 /obj/item/food/omelette	//FUCK THIS
 	name = "omelette du fromage"
 	desc = "That's all you can say!"
@@ -138,3 +148,4 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
 	foodtypes = MEAT | BREAKFAST | GRAIN
+	venue_value = FOOD_PRICE_NORMAL

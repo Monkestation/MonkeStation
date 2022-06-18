@@ -45,7 +45,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtypes = SEAFOOD | VEGETABLES | FRIED
-	venue_value = FOOD_PRICE_EXOTIC
+	venue_value = FOOD_PRICE_NORMAL
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
@@ -1174,3 +1174,37 @@
 	w_class = WEIGHT_CLASS_SMALL
 	//basic ingredients, but a lot of them. just covering costs here
 	venue_value = FOOD_PRICE_NORMAL
+
+
+/obj/item/food/beef_wellington
+	name = "beef wellington"
+	desc = "A luxurious log of beef, covered in a fine mushroom duxelle and pancetta ham, then bound in puff pastry."
+	icon_state = "beef_wellington"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 21, /datum/reagent/consumable/nutriment/vitamin = 6)
+	tastes = list("beef" = 3, "mushrooms" = 1, "pancetta" = 1)
+	foodtypes = MEAT | VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_NORMAL
+	venue_value = FOOD_PRICE_EXOTIC
+
+/obj/item/food/beef_wellington/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE,  /obj/item/food/beef_wellington_slice, 3, 30, table_required = TRUE)
+
+/obj/item/food/beef_wellington_slice
+	name = "beef wellington slice"
+	desc = "A slice of beef wellington, topped with a rich gravy. Simply delicious."
+	icon_state = "beef_wellington_slice"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("beef" = 3, "mushrooms" = 1, "pancetta" = 1)
+	foodtypes = MEAT | VEGETABLES | GRAIN
+	w_class = WEIGHT_CLASS_SMALL
+	venue_value = FOOD_PRICE_NORMAL
+
+/obj/item/food/full_english
+	name = "full english breakfast"
+	desc = "A hearty plate with all the trimmings, representing the pinnacle of the breakfast art."
+	icon_state = "full_english"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("sausage" = 1, "bacon" = 1, "egg" = 1, "tomato" = 1, "mushrooms" = 1, "bread" = 1, "beans" = 1)
+	foodtypes = MEAT | VEGETABLES | GRAIN | BREAKFAST
+	w_class = WEIGHT_CLASS_SMALL
+	venue_value = FOOD_PRICE_EXOTIC

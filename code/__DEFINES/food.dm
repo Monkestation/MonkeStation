@@ -54,6 +54,8 @@
 
 #define DEFAULT_MAX_ICE_CREAM_SCOOPS 100000 //basically unlimited
 
+#define ICE_CREAM_SCOOP_OFFSET 4
+
 GLOBAL_LIST_INIT(generic_recipes, list(
 	/datum/crafting_recipe/food/headcheese,
 	/datum/crafting_recipe/food/breadcat,

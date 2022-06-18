@@ -161,3 +161,4 @@ GLOBAL_LIST_INIT(huds, list(
 
 /mob/dead/new_player/add_click_catcher()
 	return
+

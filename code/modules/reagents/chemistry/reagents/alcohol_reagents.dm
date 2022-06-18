@@ -295,6 +295,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "ginvodkaglass"
 	glass_name = "glass of gin"
 	glass_desc = "A crystal clear glass of Griffeater gin."
+	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/rum
 	name = "Rum"
@@ -350,6 +351,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 45
 	quality = DRINK_FANTASTIC
 	taste_description = "scaley sweetness"
+	glass_price = DRINK_PRICE_STOCK
 
 /datum/reagent/consumable/ethanol/grappa
 	name = "Grappa"
@@ -450,6 +452,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "gintonicglass"
 	glass_name = "Gin and Tonic"
 	glass_desc = "A mild but still great cocktail. Drink up, like a true Englishman."
+	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/rum_coke
 	name = "Rum and Coke"
@@ -505,6 +508,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "martiniglass"
 	glass_name = "Classic Martini"
 	glass_desc = "Damn, the bartender even stirred it, not shook it."
+	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/vodkamartini
 	name = "Vodka Martini"
@@ -1062,6 +1066,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Allies cocktail"
 	glass_desc = "A drink made from your allies. Not as sweet as those made from your enemies."
 	liquid_fire_power = 3 //MONKESTATION EDIT ADDITION
+	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/ethanol/acid_spit
 	name = "Acid Spit"
