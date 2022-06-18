@@ -255,6 +255,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("torilla" = 2, "meat" = 3)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/cheesyburrito
 	name = "cheesy burrito"
@@ -263,6 +264,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("torilla" = 2, "meat" = 3, "cheese" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/carneburrito
 	name = "carne asada burrito"
@@ -271,6 +273,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("torilla" = 2, "meat" = 4)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/fuegoburrito
 	name = "fuego plasma burrito"
@@ -279,6 +282,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
 	foodtypes = GRAIN | MEAT
+	venue_value = FOOD_PRICE_LEGENDARY
 
 /obj/item/food/yakiimo
 	name = "yaki imo"
@@ -315,6 +319,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("nachos" = 1)
 	foodtypes = VEGETABLES | FRIED
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/cheesynachos
 	name = "cheesy nachos"
@@ -323,6 +328,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("nachos" = 2, "cheese" = 1)
 	foodtypes = VEGETABLES | FRIED | DAIRY
+	venue_value = FOOD_PRICE_EXOTIC
 
 /obj/item/food/cubannachos
 	name = "Cuban nachos"
@@ -357,6 +363,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
+	venue_value = FOOD_PRICE_LEGENDARY
 
 /obj/item/food/powercrepe
 	name = "Powercrepe"
@@ -452,6 +459,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
 	foodtypes = MEAT | DAIRY | GRAIN | VEGETABLES
+	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/taco/plain
 	desc = "A traditional taco with meat and cheese, minus the rabbit food."
@@ -459,6 +467,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
+	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/branrequests
 	name = "Bran Requests Cereal"
