@@ -32,7 +32,14 @@
 /obj/vehicle/ridden/janicart/examine(mob/user)
 	. = ..()
 	if(installed_upgrade)
-		. += "It has been upgraded with [installed_upgrade], which can be removed with a screwdriver."
+		. += span_info("It has been upgraded with [installed_upgrade], which can be removed with a screwdriver.")
+	if(trash_bag)
+		. += span_info("<b>Ctrl-click</b> to remove [trash_bag] from [src].")
+	if(!trash_bag)
+		. += span_info("Click to add a trash bag to [src].")
+
+/obj/vehicle/ridden/janicart/CtrlClick(mob/user, list/modifiers)
+	try_remove_bag(user)
 
 /obj/vehicle/ridden/janicart/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/bag/trash))
@@ -84,12 +91,6 @@
 		overlay.icon_state = "janicart_upgrade"
 		. += overlay
 
-/obj/vehicle/ridden/janicart/attack_hand(mob/user, list/modifiers)
-	// right click removes bag without unbuckling when possible
-	. = (LAZYACCESS(modifiers, RIGHT_CLICK) && try_remove_bag(user)) || ..()
-	if (!.)
-		try_remove_bag(user)
-
 
 /**
  * Called if the attached bag is being qdeleted, ensures appearance is maintained properly
@@ -105,11 +106,14 @@
  * * remover - The (optional) mob attempting to remove the bag
  */
 /obj/vehicle/ridden/janicart/proc/try_remove_bag(mob/remover = null)
-	if (!trash_bag)
+	if(!trash_bag)
+		to_chat(remover, span_notice("There is no trash bag currently hooked on [src]."))
 		return FALSE
-	if (remover)
+	if(remover)
 		trash_bag.forceMove(get_turf(remover))
 		remover.put_in_hands(trash_bag)
+		to_chat(remover, span_notice("You unhook the [trash_bag] from [src]."))
+
 	UnregisterSignal(trash_bag, COMSIG_PARENT_QDELETING)
 	trash_bag = null
 	SEND_SIGNAL(src, COMSIG_VACUUM_BAG_DETACH)
