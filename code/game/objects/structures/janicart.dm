@@ -18,7 +18,7 @@
 
 /obj/structure/janitorialcart/Initialize(mapload)
 	. = ..()
-	create_reagents(100, OPENCONTAINER)
+	create_reagents(500, OPENCONTAINER)
 
 /obj/structure/janitorialcart/proc/wet_mop(obj/item/mop, mob/user)
 	if(reagents.total_volume < 1)

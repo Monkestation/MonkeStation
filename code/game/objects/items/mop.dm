@@ -14,7 +14,7 @@
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	resistance_flags = FLAMMABLE
 	///Maximum volume of reagents it can hold.
-	var/max_reagent_volume = 50 //MONKESTATION EDIT CHANGE
+	var/max_reagent_volume = 80 //MONKESTATION EDIT CHANGE
 	var/mopspeed = 1.5 SECONDS
 	force_string = "robust... against germs"
 	var/insertable = TRUE
