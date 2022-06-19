@@ -149,8 +149,10 @@
 		user.visible_message(span_notice("[user] begins to empty the contents of [src]."), span_notice("You begin to empty the contents of [src]..."))
 		if(Item.use_tool(src, user, 5 SECONDS))
 			to_chat(usr, span_notice("You empty the contents of [src]'s mop bucket onto the floor."))
-			reagents.reaction(src.loc)
-			src.reagents.clear_reagents()
+			log_game("[user] emptied [src]'s mop bucket contents of [reagents.total_volume] units onto [get_turf(src)].")
+			var/turf/epicenter = src.loc
+			epicenter.add_liquid_from_reagents(reagents)
+			src.reagents.clear_reagents() //Clears any potential remaining reagents from mop bucket
 			update_icon()
 		return
 
