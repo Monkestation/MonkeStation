@@ -41,7 +41,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/squeaking_stir_fry
-	name = "Skeklitmischtpoppl (Squeaking stir fry)"
+	name = "Squeaking stir fry"
 	reqs = list(
 		/obj/item/food/cheese_curds = 1,
 		/obj/item/food/tofu = 1,
@@ -66,7 +66,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/loaded_curds
-	name = "Ozlsettitæloskekllön ede pommes (Loaded curds and fries)"
+	name = "Loaded curds and fries"
 	reqs = list(
 		/obj/item/food/cheese_curds = 1,
 		/obj/item/food/soup/vegetarian_chili = 1,
@@ -78,7 +78,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/baked_cheese_platter
-	name = "Stanntkraktælo (Baked cheese platter)"
+	name = "Baked cheese platter"
 	reqs = list(
 		/obj/item/food/baked_cheese = 1,
 		/obj/item/food/griddle_toast = 3
@@ -153,7 +153,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/raw_stuffed_peppers
-	name = "Voltölpapriken (Stuffed peppers)"
+	name = "Stuffed peppers"
 	reqs = list(
 		/obj/item/food/grown/bell_pepper = 1,
 		/obj/item/food/herby_cheese = 1,
@@ -175,7 +175,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/mac_balls
-	name = "Macheronirölen (Mac balls)"
+	name = "Mac balls"
 	reqs = list(
 		/obj/item/food/ready_donk/warm/mac_n_cheese = 1,
 		/obj/item/food/tomato_sauce = 1,
@@ -185,7 +185,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_cotton_soup
-	name = "Flöfrölenmæsch (Cottonball soup)"
+	name = "Cottonball soup"
 	reqs = list(
 		/obj/item/grown/cotton = 1,
 		/obj/item/food/grown/onion = 1,
@@ -199,7 +199,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_cheese_soup
-	name = "Ælosterrmæsch (Cheese soup)"
+	name = "Cheese soup"
 	reqs = list(
 		/obj/item/food/cheesewedge = 2,
 		/obj/item/food/butter = 1,
@@ -212,7 +212,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_seed_soup
-	name = "Misklmæsch (Seed soup)"
+	name = "Seed soup"
 	reqs = list(
 		/obj/item/seeds/sunflower = 1,
 		/obj/item/seeds/poppy/lily = 1,
@@ -225,7 +225,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_bean_stew
-	name = "Prickeldröndolhaskl (Spicy bean stew)"
+	name = "Spicy bean stew"
 	reqs = list(
 		/obj/item/food/canned/beans = 1,
 		/obj/item/food/grown/cabbage = 1,
@@ -240,7 +240,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_oat_stew
-	name = "Häfmisklhaskl (Oat stew)"
+	name = "Oat stew"
 	reqs = list(
 		/obj/item/food/grown/oat = 1,
 		/obj/item/food/grown/potato/sweet = 1,
@@ -253,7 +253,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_fire_soup
-	name = "Tömpröttkrakklmæsch (Heartburn soup)"
+	name = "Heartburn soup"
 	reqs = list(
 		/obj/item/food/grown/ghost_chili = 1,
 		/obj/item/food/tofu = 1,
@@ -341,7 +341,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/fleet_salad
-	name = "Lörtonknusksolt (Fleet salad)"
+	name = "Fleet salad"
 	reqs = list(
 		/obj/item/food/mothic_salad = 1,
 		/obj/item/food/grilled_cheese = 1,
@@ -354,7 +354,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/cotton_salad
-	name = "Flöfrölenknusksolt (Cotton salad)"
+	name = "Cotton salad"
 	reqs = list(
 		/obj/item/food/mothic_salad = 1,
 		/obj/item/grown/cotton = 2,
@@ -366,7 +366,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_kachumbari
-	name = "Kæniatknusksolt (Kenyan salad)"
+	name = "Kenyan salad"
 	reqs = list(
 		/obj/item/food/oven_baked_corn = 1,
 		/obj/item/food/grown/chili = 1,
@@ -452,7 +452,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/moth_cheese_cakes
-	name = "Ælorölen (Cheesecake balls)"
+	name = "Cheesecake balls"
 	reqs = list(
 		/obj/item/food/curd_cheese = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -475,7 +475,7 @@
 	subcategory = CAT_MOTH
 
 /datum/crafting_recipe/food/red_porridge
-	name = "Eltsløsk ül a priktæolk (Red Porridge and Yoghurt)"
+	name = "Red Porridge and Yoghurt"
 	reqs = list(
 		/obj/item/food/grown/redbeet = 1,
 		/datum/reagent/consumable/vanilla = 5,
