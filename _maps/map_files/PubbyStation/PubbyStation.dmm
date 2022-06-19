@@ -49295,6 +49295,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"gYa" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/computer/piratepad_control/civilian{
+	pad = 6936340175258684837;
+	pad_ref = 6936340175258684837;
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "gYo" = (
 /obj/structure/grille,
 /turf/open/space/basic,
@@ -58610,6 +58619,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"tsX" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/piratepad/civilian,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "tsZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -98938,7 +98952,7 @@ aSc
 aPY
 aUm
 aPY
-aWu
+tsX
 aXt
 aYp
 nDJ
@@ -99195,7 +99209,7 @@ lAs
 aTb
 yls
 sen
-aWu
+gYa
 aPW
 aYq
 tGd
