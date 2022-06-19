@@ -29,7 +29,6 @@
 	tastes = list("bread" = 10)
 	foodtypes = GRAIN
 	burns_in_oven = TRUE
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/plain/Initialize()
 	. = ..()
@@ -39,16 +38,12 @@
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/plain, 5, 30)
 
-/obj/item/food/breadslice/plain/MakeGrillable()
-	AddComponent(/datum/component/grillable, /obj/item/food/griddle_toast, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
-
 /obj/item/food/breadslice/plain
 	name = "bread slice"
 	desc = "A slice of home."
 	icon_state = "breadslice"
 	foodtypes = GRAIN
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	venue_value = FOOD_PRICE_TRASH
 
 /obj/item/food/breadslice/plain/Initialize()
 	. = ..()
@@ -69,7 +64,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 35, /datum/reagent/consumable/nutriment/vitamin = 15)
 	tastes = list("bread" = 10, "meat" = 10)
 	foodtypes = GRAIN | MEAT
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/meat/MakeProcessable()
 	. = ..()
@@ -145,7 +139,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 15)
 	tastes = list("bread" = 10, "tofu" = 10)
 	foodtypes = GRAIN | VEGETABLES
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/bread/tofu/MakeProcessable()
 	. = ..()
@@ -157,7 +150,6 @@
 	icon_state = "tofubreadslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN | VEGETABLES
-	venue_value = FOOD_PRICE_TRASH
 
 /obj/item/food/bread/creamcheese
 	name = "cream cheese bread"
@@ -209,7 +201,6 @@
 	attack_verb = list("touche")
 	tastes = list("bread" = 1)
 	foodtypes = GRAIN
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/garlicbread
 	name = "garlic bread"
@@ -220,7 +211,6 @@
 	bite_consumption = 3
 	tastes = list("bread" = 1, "garlic" = 1, "butter" = 1)
 	foodtypes = GRAIN
-	venue_value = FOOD_PRICE_NORMAL
 
 /obj/item/food/deepfryholder
 	name = "Deep Fried Foods Holder Obj"
@@ -249,7 +239,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
 	foodtypes = GRAIN | BREAKFAST
-	venue_value = FOOD_PRICE_CHEAP
 
 /obj/item/food/butterdog
 	name = "butterdog"
