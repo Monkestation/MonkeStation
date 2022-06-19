@@ -1,3 +1,10 @@
+#define MIN_FULLNESS 50
+#define MAX_FULLNESS 600
+#define NEAR_FULLNESS 500
+#define MID_FULLNESS 150
+
+
+
 /*!
 
 This component makes it possible to make things edible. What this means is that you can take a bite or force someone to take a bite (in the case of items).
@@ -312,22 +319,22 @@ Behavior that's still missing from this component that original food items had t
 		if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			to_chat(eater, "<span class='warning'>You don't feel like eating any more junk food at the moment!</span>")
 			return
-		else if(fullness <= 50)
+		else if(fullness <= MIN_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] hungrily [eatverb]s \the [parent], gobbling it down!</span>", "<span class='notice'>You hungrily [eatverb] \the [parent], gobbling it down!</span>")
-		else if(fullness > 50 && fullness < 150)
+		else if(fullness > MIN_FULLNESS && fullness < MID_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] hungrily [eatverb]s \the [parent].</span>", "<span class='notice'>You hungrily [eatverb] \the [parent].</span>")
-		else if(fullness > 150 && fullness < 500)
+		else if(fullness > MID_FULLNESS && fullness < NEAR_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] [eatverb]s \the [parent].</span>", "<span class='notice'>You [eatverb] \the [parent].</span>")
-		else if(fullness > 500 && fullness < 600)
+		else if(fullness > NEAR_FULLNESS && fullness < MAX_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] unwillingly [eatverb]s a bit of \the [parent].</span>", "<span class='notice'>You unwillingly [eatverb] a bit of \the [parent].</span>")
-		else if(fullness > (600 * (1 + eater.overeatduration / 2000)))	// The more you eat - the more you can eat
+		else if(fullness > (MAX_FULLNESS * (1 + eater.overeatduration / 2000)))	// The more you eat - the more you can eat
 			eater.visible_message("<span class='warning'>[eater] cannot force any more of \the [parent] to go down [eater.p_their()] throat!</span>", "<span class='warning'>You cannot force any more of \the [parent] to go down your throat!</span>")
 			return
 	else //If you're feeding it to someone else.
 		if(isbrain(eater))
 			to_chat(feeder, "<span class='warning'>[eater] doesn't seem to have a mouth!</span>")
 			return
-		if(fullness <= (600 * (1 + eater.overeatduration / 1000)))
+		if(fullness <= (MAX_FULLNESS * (1 + eater.overeatduration / 1000)))
 			eater.visible_message("<span class='danger'>[feeder] attempts to feed [eater] [parent].</span>", \
 									"<span class='userdanger'>[feeder] attempts to feed you [parent].</span>")
 		else
@@ -492,10 +499,10 @@ Behavior that's still missing from this component that original food items had t
 		var/atom/craftable_atom = available_recipe_datum.result
 		recipes_radial.Add(list(initial(craftable_atom.name) = image(icon = initial(craftable_atom.icon), icon_state = initial(craftable_atom.icon_state))))
 		recipes_craft.Add(list(initial(craftable_atom.name) = available_recipe_datum))
-	INVOKE_ASYNC(src, .proc/hate_signals_holy_shit, recipes_radial, recipes_craft, chef, crafting_menu)
+	INVOKE_ASYNC(src, .proc/finalize_radial, recipes_radial, recipes_craft, chef, crafting_menu)
 	return
 
-/datum/component/edible/proc/hate_signals_holy_shit(list/recipes_radial, list/recipes_craft, mob/chef, datum/component/personal_crafting/crafting_menu)
+/datum/component/edible/proc/finalize_radial(list/recipes_radial, list/recipes_craft, mob/chef, datum/component/personal_crafting/crafting_menu)
 	var/recipe_chosen = show_radial_menu(chef, chef, recipes_radial, custom_check = CALLBACK(src, .proc/check_menu, chef), require_near = TRUE, tooltips = TRUE)
 	if(!recipe_chosen)
 		return
