@@ -33,4 +33,4 @@ var/list/newlaw = list("alcohol is",
 
 
 /datum/round_event/new_space_law/announce(fake)
-	priority_announce("Due to recent events in space politics [pick(newlaw)] now 1xx illegal.")
+	priority_announce("Due to recent events in space politics; [pick(newlaw)] now 1xx illegal under Space Law.")
