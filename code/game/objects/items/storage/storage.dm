@@ -60,3 +60,32 @@
 		var/custom_data = item.on_object_saved(depth++)
 		dat += "[custom_data ? ",\n[custom_data]" : ""]"
 	return dat
+
+//Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
+/obj/item/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
+	if(!istype(W))
+		return
+
+	if(istype(src, /obj/item/storage/fancy))
+		var/obj/item/storage/fancy/F = src
+		F.update_icon(1)
+
+	if(new_location)
+		W.loc = new_location
+	else
+		W.loc = get_turf(src)
+
+	if(W.maptext)
+		W.maptext = ""
+
+	W.on_exit_storage(src)
+	update_icon()
+
+//Useful for spilling the contents of containers all over the floor
+/obj/item/storage/proc/spill(dist = 2, turf/T)
+	if(!istype(T))//If its not on the floor this might cause issues
+		T = get_turf(src)
+
+	for (var/obj/O in contents)
+		remove_from_storage(O, T)
+		O.tumble(2)

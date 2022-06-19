@@ -3,20 +3,21 @@
 	desc = "This is the alpha and omega of sanitation."
 	icon = 'monkestation/icons/obj/janitor/janitorial_cart.dmi'
 	icon_state = "cart"
+	max_integrity = 400
 	anchored = FALSE
 	density = TRUE
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 	//Is there a trash bag in the cart?
-	var/obj/item/storage/bag/trash/mybag
+	var/obj/item/storage/bag/trash/mybag = null
 	//Is there a mop in the cart?
-	var/obj/item/mop/mymop
+	var/obj/item/mop/mymop = null
 	//Is there a broom in the cart?
-	var/obj/item/pushbroom/mybroom
+	var/obj/item/pushbroom/mybroom = null
 	//Is there cleaner spray in the cart?
-	var/obj/item/reagent_containers/spray/cleaner/myspray
+	var/obj/item/reagent_containers/spray/cleaner/myspray = null
 	//Is there a light replacer in the cart?
-	var/obj/item/lightreplacer/myreplacer
+	var/obj/item/lightreplacer/myreplacer = null
 	//Is there signs in the cart?
 	var/signs = 0
 	//The max amount of signs the cart can store
@@ -24,13 +25,22 @@
 	//Allows for mop to insert into cart after drying
 	var/mop_insert_double_click = FALSE
 
+/obj/structure/janitorialcart/Destroy()
+	spill() //Spill out some contents
+	drop_cart_contents() //Drop the rest at location
+	new /obj/structure/janitorialcart/broken(get_turf(src))
+	return ..()
 
 /obj/structure/janitorialcart/Initialize(mapload)
 	. = ..()
+	if(broken)
+		return
 	create_reagents(400, OPENCONTAINER)
 
 /obj/structure/janitorialcart/examine(mob/user)
 	. = ..()
+	if(broken)
+		return
 	. += span_info("<b>Click</b> with a wet mop to wring out the fluids into the mop bucket.")
 	if(reagents.total_volume > 1)
 		. += span_info("<b>Click</b> with a mop to wet it.")
@@ -66,6 +76,7 @@
 	to_chat(user, span_notice("You wring [your_mop] out into the mop bucket using the wringer."))
 	playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 	mop_insert_double_click = TRUE
+	update_icon()
 	return TRUE
 
 /obj/structure/janitorialcart/proc/put_in_cart(obj/item/Item, mob/user)
@@ -75,9 +86,77 @@
 	update_icon()
 	return TRUE
 
+//This is called if the cart is caught in an explosion, or destroyed by weapon fire
+/obj/structure/janitorialcart/proc/spill(var/chance = 100)
+	var/turf/dropspot = get_turf(src)
+	if(mymop && prob(chance))
+		mymop.forceMove(dropspot)
+		mymop.tumble(2)
+		mymop = null
+
+	if(myspray && prob(chance))
+		myspray.forceMove(dropspot)
+		myspray.tumble(3)
+		myspray = null
+
+	if(myreplacer && prob(chance))
+		myreplacer.forceMove(dropspot)
+		myreplacer.tumble(3)
+		myreplacer = null
+
+	if(signs)
+		for(var/obj/item/clothing/suit/caution/Sign in src)
+			if(prob(min((chance*2),100)))
+				signs--
+				Sign.forceMove(dropspot)
+				Sign.tumble(3)
+				if(signs < 0)//safety for something that shouldn't happen
+					signs = 0
+					update_icon()
+					return
+
+	if(mybag && prob(min((chance*2),100)))//Bag is flimsy
+		mybag.forceMove(dropspot)
+		mybag.tumble(1)
+		mybag.spill()//trashbag spills its contents too
+		mybag = null
+
+	update_icon()
+
+//Explosion spills a bit of everything out of the cart
+/obj/structure/janitorialcart/ex_act(severity)
+	if(broken)
+		return
+	spill(100 / severity)
+	..()
+
+//Drops the carts contents at turf location
+/obj/structure/janitorialcart/proc/drop_cart_contents()
+	var/turf/epicenter = src.loc
+	if(reagents.total_volume > 0)
+		epicenter.add_liquid_from_reagents(reagents)
+		src.reagents.clear_reagents() //Clears any potential remaining reagents from mop bucket
+	if(mybag)
+		src.mybag.forceMove(epicenter)
+	if(mymop)
+		src.mymop.forceMove(epicenter)
+	if(mybroom)
+		src.mybroom.forceMove(epicenter)
+	if(myspray)
+		src.myspray.forceMove(epicenter)
+	if(myreplacer)
+		src.myreplacer.forceMove(epicenter)
+	if(signs)
+		for(var/obj/item/clothing/suit/caution/Sign in src)
+			signs--
+			Sign.forceMove(epicenter)
+	update_icon()
+	return
+
 /obj/structure/janitorialcart/attackby(obj/item/Item, mob/user, params)
 	var/fail_msg = span_warning("There is already a [Item] in [src]!")
-
+	if(broken)
+		return
 	if(istype(Item, /obj/item/mop))
 		if(mymop)
 			to_chat(user, fail_msg)
@@ -160,6 +239,7 @@
 		mybag.attackby(Item, user)
 
 	if(Item.is_drainable())
+		update_icon()
 		return FALSE //so we can fill the cart via our afterattack without bludgeoning it
 
 	return ..()
@@ -167,9 +247,10 @@
 
 /obj/structure/janitorialcart/attack_hand(mob/user, list/modifiers)
 	. = ..()
+	if(broken)
+		return
 	if(.)
 		return
-
 	var/list/items = list()
 	if(mybag)
 		items += list("Trash bag" = image(icon = mybag.icon, icon_state = mybag.icon_state))
@@ -269,3 +350,80 @@
 		. += "cart_sign[signs]"
 	if(reagents.total_volume > 0)
 		. += "cart_water"
+
+
+
+
+//Cart States for Mapping fun. It just works.
+///Loaded Cart
+/obj/structure/janitorialcart/loaded
+	name = "janitorial cart"
+	icon_state = "cart_loaded"
+	max_integrity = 400
+	anchored = FALSE
+	density = TRUE
+
+/obj/structure/janitorialcart/loaded/Initialize(mapload)
+	. = ..()
+	mybag = new /obj/item/storage/bag/trash
+	mymop = new /obj/item/mop
+	mybroom = new /obj/item/pushbroom
+	myspray = new /obj/item/reagent_containers/spray/cleaner
+	myreplacer = new /obj/item/lightreplacer
+	signs = new /obj/item/clothing/suit/caution
+	signs = new /obj/item/clothing/suit/caution
+	signs = new /obj/item/clothing/suit/caution
+	signs = new /obj/item/clothing/suit/caution
+	icon_state = "cart"
+	update_icon()
+
+///Random Load Cart
+/obj/structure/janitorialcart/random_load
+	name = "janitorial cart"
+	icon_state = "cart_loaded"
+	max_integrity = 400
+	anchored = FALSE
+	density = TRUE
+
+/obj/structure/janitorialcart/random_load/Initialize(mapload)
+	. = ..()
+	if(!mybag && prob(30))
+		mybag = new /obj/item/storage/bag/trash
+
+	if(!mymop && prob(50))
+		mymop = new /obj/item/mop
+
+	if(!mybroom && prob(50))
+		mybroom = new /obj/item/pushbroom
+
+	if(!myspray && prob(40))
+		myspray = new /obj/item/reagent_containers/spray/cleaner
+
+	if(!myreplacer && prob(30))
+		myreplacer = new /obj/item/lightreplacer
+
+	if(!signs && prob(50))
+		signs = new /obj/item/clothing/suit/caution
+		if(prob(30))
+			signs = new /obj/item/clothing/suit/caution
+		if(prob(30))
+			signs = new /obj/item/clothing/suit/caution
+		if(prob(30))
+			signs = new /obj/item/clothing/suit/caution
+
+	if(reagents.total_volume <= 0 && prob(50))
+		var/random_amount = roll("50d4") //Could randomize reagents types later
+		reagents.add_reagent(/datum/reagent/water, random_amount)
+
+	icon_state = "cart"
+	update_icon()
+
+/// Broken Cart
+/obj/structure/janitorialcart/broken
+	name = "broken janitorial cart"
+	desc = "A broken down cart, not much of an alpha and omega of sanitation now."
+	icon_state = "cart_destroyed"
+	anchored = FALSE
+	density = TRUE
+	broken = TRUE
+	max_integrity = 200
