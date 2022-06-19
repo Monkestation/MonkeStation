@@ -412,7 +412,7 @@
 			signs = new /obj/item/clothing/suit/caution
 
 	if(reagents.total_volume <= 0 && prob(50))
-		var/random_amount = roll("50d4") //Could randomize reagents types later
+		var/random_amount = roll("10d40") //Could randomize reagents types later
 		reagents.add_reagent(/datum/reagent/water, random_amount)
 
 	icon_state = "cart"
