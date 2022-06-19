@@ -547,6 +547,13 @@
 	color = "#FFB500"
 	taste_description = "egg"
 
+/datum/reagent/consumable/eggwhite
+	name = "Egg White"
+	description = "It's full of even more protein."
+	nutriment_factor = 1.5 * REAGENTS_METABOLISM
+	color = "#fffdf7"
+	taste_description = "bland egg"
+
 /datum/reagent/consumable/corn_starch
 	name = "Corn Starch"
 	description = "A slippery solution."
@@ -835,4 +842,25 @@
 	description = "A high quality oil, suitable for dishes where the oil is a key flavour."
 	taste_description = "olive oil"
 	color = "#DBCF5C"
+
+/datum/reagent/consumable/cornmeal
+	name = "Cornmeal"
+	description = "Ground cornmeal, for making corn related things."
+	taste_description = "raw cornmeal"
+	color = "#ebca85"
+
+
+/datum/reagent/consumable/yoghurt
+	name = "Yoghurt"
+	description = "Creamy natural yoghurt, with applications in both food and drinks."
+	taste_description = "yoghurt"
+	color = "#efeff0"
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+
+
+/datum/reagent/consumable/cornmeal_batter
+	name = "Cornmeal Batter"
+	description = "An eggy, milky, corny mixture that's not very good raw."
+	taste_description = "raw batter"
+	color = "#ebca85"
 

@@ -39,6 +39,9 @@
 	. = ..()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/plain, 5, 30)
 
+/obj/item/food/breadslice/plain/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/griddle_toast, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
+
 /obj/item/food/breadslice/plain
 	name = "bread slice"
 	desc = "A slice of home."

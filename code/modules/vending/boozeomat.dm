@@ -25,6 +25,8 @@
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/navy_rum = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/curacao = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/wine = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5,
@@ -34,7 +36,8 @@
 					/obj/item/reagent_containers/food/drinks/bottle/sake = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/applejack = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/blank = 15,
-					/obj/item/reagent_containers/food/drinks/bottle/blank/small = 15
+					/obj/item/reagent_containers/food/drinks/bottle/blank/small = 15,
+					/obj/item/reagent_containers/food/drinks/bottle/bitters = 5
 					)
 	contraband = list(/obj/item/reagent_containers/food/drinks/mug/tea = 12,
 					 /obj/item/reagent_containers/food/drinks/bottle/fernet = 5)
