@@ -40,7 +40,7 @@
 #define CIV_JOB_ROBO 2
 #define CIV_JOB_CHEF 3
 #define CIV_JOB_SEC 4
-#define CIV_JOB_DRINK 5
+#define CIV_JOB_BAR 5
 #define CIV_JOB_CHEM 6
 #define CIV_JOB_VIRO 7
 #define CIV_JOB_SCI 8
