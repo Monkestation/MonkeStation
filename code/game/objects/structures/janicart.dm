@@ -20,6 +20,15 @@
 	. = ..()
 	create_reagents(500, OPENCONTAINER)
 
+/obj/structure/janitorialcart/examine(mob/user)
+	. = ..()
+	if(reagents.total_volume > 1)
+		. += span_info("There is currently [reagents.total_volume] in the [src].")
+		. += span_info("<b>Click</b> with a mop to wet it.")
+		. += span_info("<b>Crowbar</b> it to empty it onto [get_turf(src)].")
+	if(mybag)
+		. += span_info("<b>Click</b> with an object to put it in [mybag].")
+
 /obj/structure/janitorialcart/proc/wet_mop(obj/item/mop, mob/user)
 	if(reagents.total_volume < 1)
 		to_chat(user, span_warning("[src] is out of water!"))
