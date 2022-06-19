@@ -216,18 +216,6 @@ Slimecrossing Items
 	desc = "Despite others' urgings, you probably shouldn't taste this."
 	icon_state = "rainbowbarrier"
 
-//Ration pack - Chilling Silver
-/obj/item/food/rationpack
-	name = "ration pack"
-	desc = "A square bar that sadly <i>looks</i> like chocolate, packaged in a nondescript grey wrapper. Has saved soldiers' lives before - usually by stopping bullets."
-	icon_state = "rationpack"
-	bite_consumption = 3
-	junkiness = 15
-	tastes = list("cardboard" = 3, "sadness" = 3)
-	foodtypes = null //Don't ask what went into them. You're better off not knowing.
-	food_reagents = list(/datum/reagent/consumable/nutriment/stabilized = 10, /datum/reagent/consumable/nutriment = 2) //Won't make you fat. Will make you question your sanity.
-
-
 //Ice stasis block - Chilling Dark Blue
 /obj/structure/ice_stasis
 	name = "ice block"
