@@ -288,18 +288,3 @@
 		A.forceMove(T)
 		A.throw_at(T, 1, 1)
 	. = ..()
-
-/* FOR NOW THIS WILL PROBABLY NEED SNOWFLAKE CODE
-/obj/item/food/pie/cream/body/On_Consume(mob/living/carbon/M)
-	if(!reagents.total_volume) //so that it happens on the last bite
-		if(iscarbon(M) && contents.len)
-			var/turf/T = get_turf(src)
-			for(var/atom/movable/A in contents)
-				A.forceMove(T)
-				A.throw_at(T, 1, 1)
-				M.visible_message("[src] bursts out of [M]!</span>")
-			M.emote("scream")
-			M.Knockdown(40)
-			M.adjustBruteLoss(60)
-	return ..()
-*/

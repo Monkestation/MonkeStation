@@ -93,7 +93,7 @@
 
 /obj/item/food/raw_meatball
 	name = "raw meatball"
-	desc = "A great meal all round. Not a cord of wood. Kinda raw"
+	desc = "A great meal all round. Kinda raw"
 	icon_state = "raw_meatball"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("meat" = 1)
@@ -261,6 +261,9 @@
 	name = "american sausage"
 	desc = "Snip."
 	icon_state = "american_sausage"
+
+/obj/item/food/sausage/american/MakeProcessable()
+	return
 
 /obj/item/food/salami
 	name = "salami"

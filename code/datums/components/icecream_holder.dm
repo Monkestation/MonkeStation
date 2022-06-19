@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/ethanol/singulo)
 	reagent_type = /datum/reagent/consumable/ethanol/singulo
 
-/datum/ice_cream_flavour/mob
+/datum/ice_cream_flavour/gibs
 	name = ICE_CREAM_MOB
 	icon_state = "icecream_mob"
 	desc = "filled with bright red ice cream. That's probably not strawberry..."

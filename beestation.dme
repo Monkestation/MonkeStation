@@ -2171,6 +2171,7 @@
 #include "code\modules\food_and_drinks\food\condiment.dm"
 #include "code\modules\food_and_drinks\food\dough.dm"
 #include "code\modules\food_and_drinks\food\egg.dm"
+#include "code\modules\food_and_drinks\food\fried.dm"
 #include "code\modules\food_and_drinks\food\frozen.dm"
 #include "code\modules\food_and_drinks\food\lizard.dm"
 #include "code\modules\food_and_drinks\food\meat.dm"
