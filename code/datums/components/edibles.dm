@@ -384,6 +384,8 @@ Behavior that's still missing from this component that original food items had t
 /datum/component/edible/proc/CanConsume(mob/living/eater, mob/living/feeder)
 	if(!iscarbon(eater))
 		return FALSE
+	if(isipc(eater))
+		return FALSE
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
