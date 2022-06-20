@@ -301,6 +301,7 @@
 	bite_consumption = 12
 	tastes = list("the jungle" = 1, "bananas" = 1)
 	foodtypes = MEAT | SUGAR
+	w_class = WEIGHT_CLASS_TINY
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
 
