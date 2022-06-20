@@ -15,6 +15,7 @@
 	slot_flags = ITEM_SLOT_HEAD
 	foodtypes = GRAIN
 	eat_time = 0.5 SECONDS
+	tastes = list("bread" = 5)
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/breadslice/Initialize()
