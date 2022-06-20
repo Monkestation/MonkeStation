@@ -146,7 +146,6 @@ Behavior that's still missing from this component that original food items had t
 	QDEL_NULL(on_consume)
 	return ..()
 
-
 ///Response to being used to customize something
 /datum/component/edible/proc/used_to_customize(datum/source, atom/customized)
 	SIGNAL_HANDLER
