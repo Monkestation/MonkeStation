@@ -1,7 +1,7 @@
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/pill_press
 	name = "chemical press"
-	desc = "A press that makes pills, patches and bottles."
+	desc = "A press that makes pills, patches and bottles"
 	icon_state = "pill_press"
 	use_power = IDLE_POWER_USE
 	layer = BELOW_OBJ_LAYER
@@ -42,17 +42,20 @@
 	///Pill Press no power
 	var/no_power_state = FALSE
 
+/obj/machinery/plumbing/pill_press/Destroy()
+	. = ..()
+	QDEL_LIST(stored_products)
+	QDEL_LIST(contents)
 
 /obj/machinery/plumbing/pill_press/examine(mob/user)
 	. = ..()
-	. += span_notice("The [name] currently has [stored_products.len] stored. With the power of bluespace, it materializes the product into the nearest Nanotrasen brand Smart Chemical Storage Unit.")
+	. += span_infoplain("The [name] uses precision injection tools to fill a variety of bottles, pills, and even the microcapsules that align the patented NanoTrasen chemical delivery patches. And with the power of bluespace it can materialize the products into the nearest Nanotrasen brand Smart Chemical Storage Unit.")
 
 /obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
 	. = ..()
 	update_icon()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
 
-	//expertly copypasted from chemmasters
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()
 	for (var/x in 1 to PILL_STYLE_COUNT)
@@ -77,36 +80,40 @@
 		return
 
 	no_power_state = FALSE
+	if(next_slowtransfer < world.time) //Less processes needed to transfer or create products
+		slow_production() //Produce and fill pills, patches, or bottles
+		if(stored_products.len)
+			slow_transfer() //Transfer to nearest SmartFridge
+			use_power(active_power_usage * delta_time) //Lets use more of that power
+		next_slowtransfer = world.time + 1 SECONDS //Set to wait for a second before processing again
+		QDEL_LIST(contents) //So contents doesn't store insane amounts of product. No infinite magical contents allowed
+
+/obj/machinery/plumbing/pill_press/proc/slow_production()
 	if(reagents.total_volume >= current_volume)
-		if (product == "pill")
-			var/obj/item/reagent_containers/pill/P = new(src)
-			reagents.trans_to(P, current_volume)
-			P.name = trim("[product_name] pill")
-			stored_products += P
+		if(product == "pill")
+			var/obj/item/reagent_containers/pill/Pill = new(src)
+			reagents.trans_to(Pill, current_volume)
+			Pill.name = trim("[product_name] pill")
+			stored_products += Pill
 			if(pill_number == RANDOM_PILL_STYLE)
-				P.icon_state = "pill[rand(1,21)]"
+				Pill.icon_state = "pill[rand(1,21)]"
 			else
-				P.icon_state = "pill[pill_number]"
-			if(P.icon_state == "pill4") //mirrored from chem masters
-				P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
-		else if (product == "patch")
-			var/obj/item/reagent_containers/pill/patch/P = new(src)
-			reagents.trans_to(P, current_volume)
-			P.name = trim("[product_name] patch")
-			P.icon_state = patch_style
-			stored_products += P
-		else if (product == "bottle")
-			var/obj/item/reagent_containers/glass/bottle/P = new(src)
-			reagents.trans_to(P, current_volume)
-			P.name = trim("[product_name] bottle")
-			stored_products += P
+				Pill.icon_state = "pill[pill_number]"
+			if(Pill.icon_state == "pill4") //mirrored from chem masters
+				Pill.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty, and the brutal truths of reality."
 
-	if(stored_products.len)
-		if(next_slowtransfer < world.time)
-			slow_transfer()
-			//Set to wait for a second before transfering again
-			next_slowtransfer = world.time + 1 SECONDS
+		else if(product == "patch")
+			var/obj/item/reagent_containers/pill/patch/Patch = new(src)
+			reagents.trans_to(Patch, current_volume)
+			Patch.name = trim("[product_name] patch")
+			Patch.icon_state = patch_style
+			stored_products += Patch
 
+		else if(product == "bottle")
+			var/obj/item/reagent_containers/glass/bottle/Bottle = new(src)
+			reagents.trans_to(Bottle, current_volume)
+			Bottle.name = trim("[product_name] bottle")
+			stored_products += Bottle
 
 /obj/machinery/plumbing/pill_press/proc/slow_transfer()
 	var/pill_amount = 0
