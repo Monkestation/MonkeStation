@@ -630,7 +630,7 @@
 
 /obj/item/food/meat/slab/synthmeat
 	name = "synthmeat"
-	icon_state = "meat_old"
+	icon_state = "synthmeat"
 	desc = "A synthetic slab of meat."
 	foodtypes = RAW | MEAT //hurr durr chemicals we're harmed in the production of this meat thus its non-vegan.
 
