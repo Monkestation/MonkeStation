@@ -53624,8 +53624,6 @@
 	dir = 8
 	},
 /obj/machinery/computer/piratepad_control/civilian{
-	pad = 6936340175258684837;
-	pad_ref = 6936340175258684837;
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,

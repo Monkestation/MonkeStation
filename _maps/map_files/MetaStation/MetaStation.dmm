@@ -14933,8 +14933,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/piratepad_control/civilian{
-	pad_ref = 6936340175258684837;
-	pad = 6936340175258684837;
 	dir = 8
 	},
 /turf/open/floor/plasteel,

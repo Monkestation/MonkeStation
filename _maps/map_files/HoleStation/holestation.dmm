@@ -1707,8 +1707,6 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/machinery/computer/piratepad_control/civilian{
-	pad = 6936340175258684837;
-	pad_ref = 6936340175258684837;
 	dir = 8
 	},
 /turf/open/floor/plasteel/tech/grid,

@@ -50040,9 +50040,7 @@
 /area/hallway/primary/central)
 "peq" = (
 /obj/machinery/computer/piratepad_control/civilian{
-	dir = 1;
-	pad_ref = 6936340175258684837;
-	pad = 6936340175258684837
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)

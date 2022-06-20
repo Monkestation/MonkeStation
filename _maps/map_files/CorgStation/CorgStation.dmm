@@ -17040,9 +17040,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/computer/piratepad_control/civilian{
-	dir = 1;
-	pad = 6936340175258684837;
-	pad_ref = 6936340175258684837
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
