@@ -100,9 +100,6 @@
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/mushroom
 
-/obj/item/food/pizza/mushroom/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/mushroom, 6, 30)
 
 /obj/item/food/pizza/mushroom/raw
 	name = "raw mushroom pizza"
