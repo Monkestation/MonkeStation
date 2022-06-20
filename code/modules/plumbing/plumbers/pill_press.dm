@@ -1,5 +1,5 @@
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
-/obj/machinery/plumbing/pill_press
+/obj/machinery/plumbing/chemical_press
 	name = "chemical press"
 	desc = "A press that makes pills, patches and bottles"
 	icon_state = "pill_press"
@@ -42,16 +42,16 @@
 	///Pill Press no power
 	var/no_power_state = FALSE
 
-/obj/machinery/plumbing/pill_press/Destroy()
+/obj/machinery/plumbing/chemical_press/Destroy()
 	. = ..()
 	QDEL_LIST(stored_products)
 	QDEL_LIST(contents)
 
-/obj/machinery/plumbing/pill_press/examine(mob/user)
+/obj/machinery/plumbing/chemical_press/examine(mob/user)
 	. = ..()
 	. += span_infoplain("The [name] uses precision injection tools to fill a variety of bottles, pills, and even the microcapsules that align the patented NanoTrasen chemical delivery patches. And with the power of bluespace it can materialize the products into the nearest Nanotrasen brand Smart Chemical Storage Unit.")
 
-/obj/machinery/plumbing/pill_press/Initialize(mapload, bolt)
+/obj/machinery/plumbing/chemical_press/Initialize(mapload, bolt)
 	. = ..()
 	update_icon()
 	AddComponent(/datum/component/plumbing/simple_demand, bolt)
@@ -72,7 +72,7 @@
 		patch_style["class_name"] = patches_assets.icon_class_name(raw_patch_style)
 		patch_styles += list(patch_style)
 
-/obj/machinery/plumbing/pill_press/process(delta_time)
+/obj/machinery/plumbing/chemical_press/process(delta_time)
 	if(machine_stat & NOPOWER)
 		active_transfer_state = FALSE
 		no_power_state = TRUE
@@ -88,7 +88,7 @@
 		next_slowtransfer = world.time + 1 SECONDS //Set to wait for a second before processing again
 		QDEL_LIST(contents) //So contents doesn't store insane amounts of product. No infinite magical contents allowed
 
-/obj/machinery/plumbing/pill_press/proc/slow_production()
+/obj/machinery/plumbing/chemical_press/proc/slow_production()
 	if(reagents.total_volume >= current_volume)
 		if(product == "pill")
 			var/obj/item/reagent_containers/pill/Pill = new(src)
@@ -115,7 +115,7 @@
 			Bottle.name = trim("[product_name] bottle")
 			stored_products += Bottle
 
-/obj/machinery/plumbing/pill_press/proc/slow_transfer()
+/obj/machinery/plumbing/chemical_press/proc/slow_transfer()
 	var/pill_amount = 0
 	for(var/thing in loc) ///Keeping loc floor product logic in case others in the future have some clever plans
 		if(!istype(thing, /obj/item/reagent_containers/glass/bottle) && !istype(thing, /obj/item/reagent_containers/pill))
@@ -143,7 +143,7 @@
 			src.Beam(chem_fridge.loc, icon_state="item_transfer", time=4)
 
 
-/obj/machinery/plumbing/pill_press/update_icon()
+/obj/machinery/plumbing/chemical_press/update_icon()
 	. = ..()
 	if(active_transfer_state)
 		icon_state = initial(icon_state) + "-on"
@@ -154,19 +154,19 @@
 	else
 		icon_state = initial(icon_state) //Default Idle State
 
-/obj/machinery/plumbing/pill_press/ui_assets(mob/user)
+/obj/machinery/plumbing/chemical_press/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/simple/pills),
 		get_asset_datum(/datum/asset/spritesheet/simple/patches),
 	)
 
-/obj/machinery/plumbing/pill_press/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/plumbing/chemical_press/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ChemPress", name)
 		ui.open()
 
-/obj/machinery/plumbing/pill_press/ui_data(mob/user)
+/obj/machinery/plumbing/chemical_press/ui_data(mob/user)
 	var/list/data = list()
 	data["pill_style"] = pill_number
 	data["current_volume"] = current_volume
@@ -179,7 +179,7 @@
 	data["patch_styles"] = patch_styles
 	return data
 
-/obj/machinery/plumbing/pill_press/ui_act(action, params)
+/obj/machinery/plumbing/chemical_press/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
