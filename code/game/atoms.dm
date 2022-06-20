@@ -1208,26 +1208,30 @@
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
 	var/list/processing_recipes = list() //List of recipes that can be mutated by sending the signal
-	. |= SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I, processing_recipes)
+	var/signal_result
+	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I, processing_recipes)
 	if(processing_recipes.len)
 		process_recipes(user, I, processing_recipes)
 	if(QDELETED(I))
 		return TRUE
+	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
+		return TOOL_ACT_SIGNAL_BLOCKING
 	switch(tool_type)
 		if(TOOL_CROWBAR)
-			crowbar_act(user, I)
+			return crowbar_act(user, I)
 		if(TOOL_MULTITOOL)
-			multitool_act(user, I)
+			return multitool_act(user, I)
 		if(TOOL_SCREWDRIVER)
-			screwdriver_act(user, I)
+			return screwdriver_act(user, I)
 		if(TOOL_WRENCH)
-			wrench_act(user, I)
+			return wrench_act(user, I)
 		if(TOOL_WIRECUTTER)
-			wirecutter_act(user, I)
+			return wirecutter_act(user, I)
 		if(TOOL_WELDER)
-			welder_act(user, I)
+			return welder_act(user, I)
 		if(TOOL_ANALYZER)
-			analyzer_act(user, I)
+			return analyzer_act(user, I)
+
 	if(. & COMPONENT_BLOCK_TOOL_ATTACK)
 		return TRUE
 
