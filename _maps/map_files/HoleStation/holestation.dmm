@@ -2449,11 +2449,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ajH" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/structure/cable/yellow{
 	icon_state = "0-1"
 	},
 /obj/machinery/power/apc/auto_name/south,
+/obj/machinery/computer/chef_order{
+	dir = 1
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "ajJ" = (
@@ -9391,10 +9393,10 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "aJM" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/structure/sign/poster/official/cleanliness{
 	pixel_y = -32
 	},
+/obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen/coldroom)
 "aJO" = (

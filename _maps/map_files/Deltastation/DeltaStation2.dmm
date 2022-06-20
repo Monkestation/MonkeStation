@@ -25158,8 +25158,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "bay" = (
-/obj/structure/kitchenspike,
 /obj/effect/turf_decal/bot,
+/obj/machinery/computer/chef_order,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "baz" = (
