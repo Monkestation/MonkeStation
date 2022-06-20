@@ -283,6 +283,14 @@ Behavior that's still missing from this component that original food items had t
 		else
 			this_food.reagents.add_reagent(r_id, amount)
 
+///Makes sure the thing hasn't been destroyed or fully eaten to prevent eating phantom edibles
+/datum/component/edible/proc/IsFoodGone(atom/owner, mob/living/feeder)
+	if(QDELETED(owner)|| !(IS_EDIBLE(owner)))
+		return TRUE
+	if(owner.reagents.total_volume)
+		return FALSE
+	return TRUE
+
 ///All the checks for the act of eating itself and
 /datum/component/edible/proc/TryToEat(mob/living/eater, mob/living/feeder)
 
@@ -294,6 +302,9 @@ Behavior that's still missing from this component that original food items had t
 		return
 
 	if(!owner)
+		return
+
+	if(IsFoodGone(owner, feeder))
 		return
 
 	if(!owner.reagents.total_volume)//Shouldn't be needed but it checks to see if it has anything left in it.
@@ -314,6 +325,8 @@ Behavior that's still missing from this component that original food items had t
 
 	if(eater == feeder)//If you're eating it yourself.
 		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
+			return
+		if(IsFoodGone(owner, feeder))
 			return
 		var/eatverb = pick(eatverbs)
 		if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(eater, TRAIT_VORACIOUS))
@@ -342,6 +355,9 @@ Behavior that's still missing from this component that original food items had t
 									"<span class='warning'>[feeder] cannot force any more of [parent] down your throat!</span>")
 			return
 		if(!do_mob(feeder, eater)) //Wait 3 seconds before you can feed
+			return
+
+		if(IsFoodGone(owner, feeder))
 			return
 
 		log_combat(feeder, eater, "fed", owner.reagents.log_list())
