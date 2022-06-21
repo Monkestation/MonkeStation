@@ -46,6 +46,7 @@
 	. = ..()
 
 /obj/machinery/microwave/RefreshParts()
+	. = ..()
 	efficiency = 0
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		efficiency += M.rating

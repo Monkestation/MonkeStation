@@ -27,6 +27,7 @@
 	req_one_access = get_all_accesses() + get_all_centcom_access()
 
 /obj/machinery/recycler/RefreshParts()
+	. = ..()
 	var/amt_made = 0
 	var/mat_mod = 0
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)

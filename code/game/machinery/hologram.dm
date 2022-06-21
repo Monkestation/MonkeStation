@@ -140,6 +140,7 @@ Possible to do for anyone motivated enough:
 		outgoing_call.ConnectionFailure(src)
 
 /obj/machinery/holopad/RefreshParts()
+	. = ..()
 	var/holograph_range = 4
 	for(var/obj/item/stock_parts/capacitor/B in component_parts)
 		holograph_range += 1 * B.rating

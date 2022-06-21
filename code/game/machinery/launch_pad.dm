@@ -20,6 +20,7 @@
 	var/indicator_icon = "launchpad_target"
 
 /obj/machinery/launchpad/RefreshParts()
+	. = ..()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating

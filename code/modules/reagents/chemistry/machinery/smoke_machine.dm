@@ -54,6 +54,7 @@
 	return ..()
 
 /obj/machinery/smoke_machine/RefreshParts()
+	. = ..()
 	var/new_volume = REAGENTS_BASE_VOLUME
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		new_volume += REAGENTS_BASE_VOLUME * B.rating

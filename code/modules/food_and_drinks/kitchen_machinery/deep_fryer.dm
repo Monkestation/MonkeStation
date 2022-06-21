@@ -69,6 +69,7 @@ God bless America.
 	return ..()
 
 /obj/machinery/deepfryer/RefreshParts()
+	. = ..()
 	var/oil_efficiency
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		oil_efficiency += M.rating

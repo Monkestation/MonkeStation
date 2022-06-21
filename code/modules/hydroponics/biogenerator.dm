@@ -56,6 +56,7 @@
 		ui_update()
 
 /obj/machinery/biogenerator/RefreshParts()
+	. = ..()
 	var/E = 0
 	var/P = 0
 	var/max_storage = 40

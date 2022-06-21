@@ -219,6 +219,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	return !shut_up
 
 /obj/machinery/vending/RefreshParts()         //Better would be to make constructable child
+	. = ..()
 	if(!component_parts)
 		return
 

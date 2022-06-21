@@ -19,9 +19,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// How hot the turf is, in kelvin
 	var/initial_temperature = T20C
 
-	/// Used for fire, if a melting temperature was reached, it will be destroyed
+	///Used for fire, if a melting temperature was reached, it will be destroyed
 	var/to_be_destroyed = 0
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	///The max temperature of the fire which it was subjected to
+	var/max_fire_temperature_sustained = 0
 
 	//If true, turf will allow users to float up and down in 0 grav.
 	var/allow_z_travel = FALSE

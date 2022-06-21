@@ -62,6 +62,7 @@
 	..(dir, dir)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/RefreshParts()
+	. = ..()
 	var/C
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		C += M.rating

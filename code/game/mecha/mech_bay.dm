@@ -41,6 +41,7 @@
 	recharging_turf = get_step(loc, dir)
 
 /obj/machinery/mech_bay_recharge_port/RefreshParts()
+	. = ..()
 	var/MC
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		MC += C.rating

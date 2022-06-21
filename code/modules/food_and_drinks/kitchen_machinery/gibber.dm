@@ -21,6 +21,7 @@
 	add_overlay("grjam")
 
 /obj/machinery/gibber/RefreshParts()
+	. = ..()
 	gibtime = 40
 	meat_produced = 0
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)

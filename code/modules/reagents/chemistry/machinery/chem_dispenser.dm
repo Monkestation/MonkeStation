@@ -393,6 +393,7 @@
 	visible_message("<span class='danger'>[src] malfunctions, spraying chemicals everywhere!</span>")
 
 /obj/machinery/chem_dispenser/RefreshParts()
+	. = ..()
 	recharge_amount = initial(recharge_amount)
 	var/newpowereff = 0.0666666
 	for(var/obj/item/stock_parts/cell/P in component_parts)

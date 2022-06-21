@@ -23,6 +23,7 @@
 
 
 /obj/machinery/recharge_station/RefreshParts()
+	. = ..()
 	recharge_speed = 0
 	repairs = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)

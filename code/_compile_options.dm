@@ -108,6 +108,10 @@
 #define CBT
 #endif
 
+// A reasonable number of maximum overlays an object needs
+// If you think you need more, rethink it
+#define MAX_ATOM_OVERLAYS 100
+
 #if !defined(CBT) && !defined(SPACEMAN_DMM)
 #error Building with Dream Maker is no longer supported and will result in errors.
 #error Switch to VSCode and when prompted install the recommended extensions, you can then either use the UI or press Ctrl+Shift+B to build the codebase.
