@@ -251,3 +251,9 @@ DEFINE_BITFIELD(vis_flags, list(
 	"VIS_UNDERLAY" = VIS_UNDERLAY,
 ))
 
+DEFINE_BITFIELD(machine_stat, list(
+	"BROKEN" = BROKEN,
+	"EMPED" = EMPED,
+	"MAINT" = MAINT,
+	"NOPOWER" = NOPOWER,
+))
