@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 					if(A.fire)
 						cont = FALSE
 						break
-			if(cont && D.is_operational())
+			if(cont && D.is_operational)
 				if(D.operating)
 					D.nextstate = opening ? FIREDOOR_OPEN : FIREDOOR_CLOSED
 				else if(!(D.density ^ opening))
@@ -535,24 +535,25 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		icon_state = null
 
 /**
-  * Update the icon of the area (overridden to always be null for space
-  */
+ * Update the icon of the area (overridden to always be null for space
+ */
 /area/space/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
 
 
 /**
-  * Returns int 1 or 0 if the area has power for the given channel
-  *
-  * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
-  * per channel power_equip, power_light, power_environ
-  */
-/area/proc/powered(chan)		// return true if the area has power to given channel
+ * Returns int 1 or 0 if the area has power for the given channel
+ *
+ * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
+ * per channel power_equip, power_light, power_environ
+ */
+/area/proc/powered(chan) // return true if the area has power to given channel
 
 	if(!requires_power)
-		return 1
+		return TRUE
 	if(always_unpowered)
-		return 0
+		return FALSE
 	switch(chan)
 		if(AREA_USAGE_EQUIP)
 			return power_equip
@@ -561,47 +562,60 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(AREA_USAGE_ENVIRON)
 			return power_environ
 
-	return 0
+	return FALSE
 
 /**
-  * Space is not powered ever, so this returns 0
-  */
+ * Space is not powered ever, so this returns false
+ */
 /area/space/powered(chan) //Nope.avi
-	return 0
+	return FALSE
 
 /**
-  * Called when the area power status changes
-  *
-  * Updates the area icon, calls power change on all machinees in the area, and sends the `COMSIG_AREA_POWER_CHANGE` signal.
-  */
+ * Called when the area power status changes
+ *
+ * Updates the area icon, calls power change on all machinees in the area, and sends the `COMSIG_AREA_POWER_CHANGE` signal.
+ */
 /area/proc/power_change()
-	for(var/obj/machinery/M in src)	// for each machine in the area
-		M.power_change()				// reverify power status (to update icons etc.)
 	SEND_SIGNAL(src, COMSIG_AREA_POWER_CHANGE)
 	update_icon()
 
 
 /**
-  * Add a static amount of power load to an area
-  *
-  * Possible channels
-  * *AREA_USAGE_STATIC_EQUIP
-  * *AREA_USAGE_STATIC_LIGHT
-  * *AREA_USAGE_STATIC_ENVIRON
-  */
+ * Add a static amount of power load to an area
+ *
+ * Possible channels
+ * *AREA_USAGE_STATIC_EQUIP
+ * *AREA_USAGE_STATIC_LIGHT
+ * *AREA_USAGE_STATIC_ENVIRON
+ */
 /area/proc/addStaticPower(value, powerchannel)
 	switch(powerchannel)
 		if(AREA_USAGE_STATIC_START to AREA_USAGE_STATIC_END)
 			power_usage[powerchannel] += value
 
 /**
-  * Clear all power usage in area
-  *
-  * Clears all power used for equipment, light and environment channels
-  */
+ * Remove a static amount of power load to an area
+ *
+ * Possible channels
+ * *AREA_USAGE_STATIC_EQUIP
+ * *AREA_USAGE_STATIC_LIGHT
+ * *AREA_USAGE_STATIC_ENVIRON
+ */
+/area/proc/removeStaticPower(value, powerchannel)
+	switch(powerchannel)
+		if(AREA_USAGE_STATIC_START to AREA_USAGE_STATIC_END)
+			power_usage[powerchannel] -= value
+
+/**
+ * Clear all non-static power usage in area
+ *
+ * Clears all power used for the dynamic equipment, light and environment channels
+ */
 /area/proc/clear_usage()
-	for(var/i in AREA_USAGE_DYNAMIC_START to AREA_USAGE_DYNAMIC_END)
-		power_usage[i] = 0
+	power_usage[AREA_USAGE_EQUIP] = 0
+	power_usage[AREA_USAGE_LIGHT] = 0
+	power_usage[AREA_USAGE_ENVIRON] = 0
+
 
 /**
   * Add a power value amount to the stored used_x variables
@@ -631,6 +645,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /area/Exited(atom/movable/gone, direction)
 	SEND_SIGNAL(src, COMSIG_AREA_EXITED, gone, direction)
 	SEND_SIGNAL(gone, COMSIG_EXIT_AREA, src) //The atom that exits the area
+
+///Setter for the `density` variable to append behavior related to its changing.
+/atom/proc/set_density(new_value)
+	SHOULD_CALL_PARENT(TRUE)
+	if(density == new_value)
+		return
+	. = density
+	density = new_value
 
 /**
   * Returns true if this atom has gravity for the passed in turf or other gravity-mimicking behaviors

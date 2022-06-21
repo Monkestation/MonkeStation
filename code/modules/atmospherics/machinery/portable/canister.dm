@@ -309,7 +309,7 @@
 	T.assume_air(air_contents)
 	air_update_turf()
 
-	machine_stat |= BROKEN
+	set_machine_stat(machine_stat | BROKEN)
 	density = FALSE
 	playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	update_icon()

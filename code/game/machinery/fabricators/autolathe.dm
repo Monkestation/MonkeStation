@@ -40,7 +40,7 @@
 	wires = new /datum/wires/autolathe(src)
 
 /obj/machinery/modular_fabricator/autolathe/ui_interact(mob/user, datum/tgui/ui = null)
-	if(!is_operational())
+	if(!is_operational)
 		return
 
 	if(shocked && !(machine_stat & NOPOWER))

@@ -162,7 +162,7 @@
 		opened = APC_COVER_OPENED
 		operating = FALSE
 		name = "\improper [get_area_name(area, TRUE)] APC"
-		machine_stat |= MAINT
+		set_machine_stat(machine_stat | MAINT)
 		update_icon()
 		addtimer(CALLBACK(src, .proc/update), 5)
 
@@ -460,9 +460,10 @@
 		force_update = 1
 		return
 
-	lastused_light = area.power_usage[AREA_USAGE_LIGHT] + area.power_usage[AREA_USAGE_STATIC_LIGHT]
-	lastused_equip = area.power_usage[AREA_USAGE_EQUIP] + area.power_usage[AREA_USAGE_STATIC_EQUIP]
-	lastused_environ = area.power_usage[AREA_USAGE_ENVIRON] + area.power_usage[AREA_USAGE_STATIC_ENVIRON]
+	//dont use any power from that channel if we shut that power channel off
+	lastused_light = APC_CHANNEL_IS_ON(lighting) ? area.power_usage[AREA_USAGE_LIGHT] + area.power_usage[AREA_USAGE_STATIC_LIGHT] : 0
+	lastused_equip = APC_CHANNEL_IS_ON(equipment) ? area.power_usage[AREA_USAGE_EQUIP] + area.power_usage[AREA_USAGE_STATIC_EQUIP] : 0
+	lastused_environ = APC_CHANNEL_IS_ON(environ) ? area.power_usage[AREA_USAGE_ENVIRON] + area.power_usage[AREA_USAGE_STATIC_ENVIRON] : 0
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ
@@ -503,9 +504,9 @@
 				charging = APC_NOT_CHARGING
 				chargecount = 0
 				// This turns everything off in the case that there is still a charge left on the battery, just not enough to run the room.
-				equipment = autoset(equipment, 0)
-				lighting = autoset(lighting, 0)
-				environ = autoset(environ, 0)
+				equipment = autoset(equipment, AUTOSET_FORCE_OFF)
+				lighting = autoset(lighting, AUTOSET_FORCE_OFF)
+				environ = autoset(environ, AUTOSET_FORCE_OFF)
 
 		// set channels depending on how much charge we have left
 
@@ -518,35 +519,36 @@
 		var/power_alert_fine = TRUE
 
 		if(cell.charge <= 0) // zero charge, turn all off
-			equipment = autoset(equipment, 0)
-			lighting = autoset(lighting, 0)
-			environ = autoset(environ, 0)
+			equipment = autoset(equipment, AUTOSET_FORCE_OFF)
+			lighting = autoset(lighting, AUTOSET_FORCE_OFF)
+			environ = autoset(environ, AUTOSET_FORCE_OFF)
 			power_alert_fine = FALSE
-		else if(cell.percent() < 15 && long_term_power < 0)	// <15%, turn off lighting & equipment
-			equipment = autoset(equipment, 2)
-			lighting = autoset(lighting, 2)
-			environ = autoset(environ, 1)
+		else if(cell.percent() < 15 && long_term_power < 0) // <15%, turn off lighting & equipment
+			equipment = autoset(equipment, AUTOSET_OFF)
+			lighting = autoset(lighting, AUTOSET_OFF)
+			environ = autoset(environ, AUTOSET_ON)
 			power_alert_fine = FALSE
-		else if(cell.percent() < 30 && long_term_power < 0)			// <30%, turn off equipment
-			equipment = autoset(equipment, 2)
-			lighting = autoset(lighting, 1)
-			environ = autoset(environ, 1)
+		else if(cell.percent() < 30 && long_term_power < 0) // <30%, turn off equipment
+			equipment = autoset(equipment, AUTOSET_OFF)
+			lighting = autoset(lighting, AUTOSET_ON)
+			environ = autoset(environ, AUTOSET_ON)
 			power_alert_fine = FALSE
-		else									// otherwise all can be on
-			equipment = autoset(equipment, 1)
-			lighting = autoset(lighting, 1)
-			environ = autoset(environ, 1)
+		else // otherwise all can be on
+			equipment = autoset(equipment, AUTOSET_ON)
+			lighting = autoset(lighting, AUTOSET_ON)
+			environ = autoset(environ, AUTOSET_ON)
 
 		if(integration_cog)
 			power_alert_fine = TRUE
+
 		area.poweralert(power_alert_fine, src)
 
 		// now trickle-charge the cell
 		if(chargemode && charging == APC_CHARGING && operating)
-			if(excess > 0)		// check to make sure we have enough to charge
+			if(excess > 0) // check to make sure we have enough to charge
 				// Max charge is capped to % per second constant
-				var/ch = min(excess * GLOB.CELLRATE, cell.maxcharge * GLOB.CHARGELEVEL)
-				add_load(ch/GLOB.CELLRATE) // Removes the power we're taking from the grid
+				var/ch = min(excess JOULES, cell.maxcharge JOULES)
+				add_load(ch WATTS) // Removes the power we're taking from the grid
 				cell.give(ch) // actually recharge the cell
 
 			else
@@ -571,7 +573,7 @@
 					charging = APC_CHARGING
 
 		else // chargemode off
-			charging = 0
+			charging = APC_NOT_CHARGING
 			chargecount = 0
 
 		//=====Clock Cult=====
@@ -598,9 +600,9 @@
 
 		charging = APC_NOT_CHARGING
 		chargecount = 0
-		equipment = autoset(equipment, 0)
-		lighting = autoset(lighting, 0)
-		environ = autoset(environ, 0)
+		equipment = autoset(equipment, AUTOSET_FORCE_OFF)
+		lighting = autoset(lighting, AUTOSET_FORCE_OFF)
+		environ = autoset(environ, AUTOSET_FORCE_OFF)
 		area.poweralert(0, src)
 
 	// update icon & area power if anything changed

@@ -87,10 +87,10 @@
 
 /obj/machinery/door/firedoor/power_change()
 	if(powered(power_channel))
-		machine_stat &= ~NOPOWER
+		set_machine_stat(machine_stat & ~NOPOWER)
 		INVOKE_ASYNC(src, .proc/latetoggle)
 	else
-		machine_stat |= NOPOWER
+		set_machine_stat(machine_stat | NOPOWER)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
@@ -197,7 +197,7 @@
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
 		return
-	
+
 	if(density)
 		if(!(machine_stat & NOPOWER))
 			LAZYADD(access_log, "MOTOR_ERR:|MOTOR CONTROLLER REPORTED BACKDRIVE|T_OFFSET:[DisplayTimeText(world.time - SSticker.round_start_time)]")

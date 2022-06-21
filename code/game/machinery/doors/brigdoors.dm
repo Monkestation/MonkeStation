@@ -66,7 +66,7 @@
 				closets += WEAKREF(C)
 
 	if(!length(doors) && !length(flashers) && length(closets))
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 	update_icon()
 
 

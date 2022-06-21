@@ -20,7 +20,7 @@
 		terminal = null
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
-	if(!is_operational() || failure_timer)
+	if(!is_operational || failure_timer)
 		return
 	operating = !operating
 	add_hiddenprint(user)

@@ -11,12 +11,16 @@
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/cyborgrecharger
 	occupant_typecache = list(/mob/living/silicon/robot, /mob/living/carbon/human)
+	processing_flags = NONE
 	var/recharge_speed
 	var/repairs
 
 /obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
 	update_icon()
+	if(is_operational)
+		begin_processing()
+
 
 /obj/machinery/recharge_station/RefreshParts()
 	recharge_speed = 0
@@ -35,12 +39,16 @@
 		if(repairs)
 			. += "<span class='notice'>[src] has been upgraded to support automatic repairs.</span>"
 
+/obj/machinery/recharge_station/on_set_is_operational(old_value)
+	if(old_value) //Turned off
+		end_processing()
+	else //Turned on
+		begin_processing()
+
 /obj/machinery/recharge_station/process(delta_time)
-	if(!is_operational())
-		return
 	if(occupant)
 		process_occupant(delta_time)
-	return 1
+	return TRUE
 
 /obj/machinery/recharge_station/relaymove(mob/user)
 	if(user.stat)
@@ -79,16 +87,16 @@
 
 /obj/machinery/recharge_station/open_machine()
 	. = ..()
-	use_power = IDLE_POWER_USE
+	update_use_power(IDLE_POWER_USE)
 
 /obj/machinery/recharge_station/close_machine()
 	. = ..()
 	if(occupant)
-		use_power = ACTIVE_POWER_USE //It always tries to charge, even if it can't.
+		update_use_power(ACTIVE_POWER_USE) //It always tries to charge, even if it can't.
 		add_fingerprint(occupant)
 
 /obj/machinery/recharge_station/update_icon()
-	if(is_operational())
+	if(is_operational)
 		if(state_open)
 			icon_state = "borgcharger0"
 		else

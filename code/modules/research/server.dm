@@ -141,13 +141,13 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	machine_stat |= EMPED
+	set_machine_stat(machine_stat | EMPED)
 	// Side note, make a little status screen on the server to show the reboot
 	addtimer(CALLBACK(src, .proc/unemp), 600)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/unemp()
-	machine_stat &= ~EMPED
+	set_machine_stat(machine_stat & ~EMPED)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/toggle_disable()

@@ -110,7 +110,7 @@
 	if(circuit && !(flags_1 & NODECONSTRUCT_1)) //no circuit, no breaking
 		if(!(machine_stat & BROKEN))
 			playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 			update_icon()
 			set_light(0)
 

@@ -194,7 +194,7 @@
 
 /obj/machinery/computer/reactor/pump/attack_hand(mob/living/user)
 	. = ..()
-	if(!is_operational())
+	if(!is_operational)
 		return FALSE
 	playsound(loc, pick('monkestation/sound/effects/rbmk/switch.ogg','monkestation/sound/effects/rbmk/switch2.ogg','monkestation/sound/effects/rbmk/switch3.ogg'), 100, FALSE)
 	visible_message("<span class='notice'>[src]'s switch flips [on ? "off" : "on"].</span>")

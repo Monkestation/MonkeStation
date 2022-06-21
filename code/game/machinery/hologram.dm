@@ -83,7 +83,7 @@ Possible to do for anyone motivated enough:
 /obj/machinery/holopad/tutorial/attack_hand(mob/user)
 	if(!istype(user))
 		return
-	if(user.incapacitated() || !is_operational())
+	if(user.incapacitated() || !is_operational)
 		return
 	if(replay_mode)
 		replay_stop()
@@ -124,9 +124,9 @@ Possible to do for anyone motivated enough:
 
 /obj/machinery/holopad/power_change()
 	if (powered())
-		machine_stat &= ~NOPOWER
+		set_machine_stat(machine_stat & ~NOPOWER)
 	else
-		machine_stat |= NOPOWER
+		set_machine_stat(machine_stat | NOPOWER)
 		if(replay_mode)
 			replay_stop()
 		if(record_mode)
@@ -182,7 +182,7 @@ Possible to do for anyone motivated enough:
 	if(!istype(user))
 		return
 
-	if(outgoing_call || user.incapacitated() || !is_operational())
+	if(outgoing_call || user.incapacitated() || !is_operational)
 		return
 
 	user.set_machine(src)
@@ -243,7 +243,7 @@ Possible to do for anyone motivated enough:
 	if(..() || isAI(usr))
 		return
 	add_fingerprint(usr)
-	if(!is_operational())
+	if(!is_operational)
 		return
 	if (href_list["AIrequest"])
 		if(last_request + 200 < world.time)
@@ -345,15 +345,12 @@ Possible to do for anyone motivated enough:
 	else//If there is a hologram, remove it.
 		clear_holo(user)
 
+//this really should not be processing by default with how common holopads are
+//everything in here can start processing if need be once first set and stop processing after being unset
 /obj/machinery/holopad/process()
 	if(LAZYLEN(masters))
-		for(var/I in masters)
-			var/mob/living/master = I
-			var/mob/living/silicon/ai/AI = master
-			if(!istype(AI))
-				AI = null
-
-			if(!is_operational() || !validate_user(master))
+		for(var/mob/living/master as anything in masters)
+			if(!is_operational || !validate_user(master))
 				clear_holo(master)
 
 	if(outgoing_call)
@@ -361,17 +358,18 @@ Possible to do for anyone motivated enough:
 
 	ringing = FALSE
 
-	for(var/I in holo_calls)
-		var/datum/holocall/HC = I
-		if(HC.connected_holopad != src)
-			if(force_answer_call && world.time > (HC.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
-				HC.Answer(src)
-				break
-			if(outgoing_call)
-				HC.Disconnect(src)//can't answer calls while calling
-			else
-				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
-				ringing = TRUE
+	for(var/datum/holocall/holocall as anything in holo_calls)
+		if(holocall.connected_holopad == src)
+			continue
+
+		if(force_answer_call && world.time > (holocall.call_start_time + (HOLOPAD_MAX_DIAL_TIME / 2)))
+			holocall.Answer(src)
+			break
+		if(outgoing_call)
+			holocall.Disconnect(src)//can't answer calls while calling
+		else
+			playsound(src, 'sound/machines/twobeep.ogg', 100) //bring, bring!
+			ringing = TRUE
 
 	update_icon()
 
@@ -380,7 +378,7 @@ Possible to do for anyone motivated enough:
 	if(!istype(AI))
 		AI = null
 
-	if(is_operational() && (!AI || AI.eyeobj.loc == loc))//If the projector has power and client eye is on it
+	if(is_operational && (!AI || AI.eyeobj.loc == loc))//If the projector has power and client eye is on it
 		if (AI && istype(AI.current, /obj/machinery/holopad))
 			to_chat(user, "<span class='danger'>ERROR:</span> \black Image feed in progress.")
 			return
@@ -435,8 +433,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/holopad/proc/SetLightsAndPower()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
-	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
-	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
+	update_use_power(total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE)
+	update_mode_power_usage(ACTIVE_POWER_USE, active_power_usage + HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users))
 	if(total_users || replay_mode)
 		set_light(2)
 	else

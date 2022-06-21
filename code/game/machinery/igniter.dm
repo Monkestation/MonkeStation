@@ -94,7 +94,7 @@
 
 /obj/machinery/sparker/power_change()
 	if ( powered() && disable == 0 )
-		machine_stat &= ~NOPOWER
+		set_machine_stat(machine_stat & ~NOPOWER)
 		icon_state = "[base_state]"
 //		src.sd_SetLuminosity(2)
 	else

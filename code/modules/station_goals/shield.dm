@@ -97,7 +97,7 @@
 	icon_state = "sat_inactive"
 	anchored = FALSE
 	density = TRUE
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	var/mode = "NTPROBEV0.8"
 	var/active = FALSE
 	var/static/gid = 0

@@ -77,12 +77,12 @@
 			switch (has_electronics)
 				if (APC_ELECTRONICS_INSTALLED)
 					has_electronics = APC_ELECTRONICS_SECURED
-					machine_stat &= ~MAINT
+					set_machine_stat(machine_stat | MAINT)
 					W.play_tool_sound(src)
 					to_chat(user, "<span class='notice'>You screw the circuit electronics into place.</span>")
 				if (APC_ELECTRONICS_SECURED)
 					has_electronics = APC_ELECTRONICS_INSTALLED
-					machine_stat |= MAINT
+					set_machine_stat(machine_stat | MAINT)
 					W.play_tool_sound(src)
 					to_chat(user, "<span class='notice'>You unfasten the electronics.</span>")
 				else

@@ -364,7 +364,7 @@
 
 /obj/machinery/porta_turret/obj_break(damage_flag)
 	if(!(flags_1 & NODECONSTRUCT_1) && !(machine_stat & BROKEN))
-		machine_stat |= BROKEN	//enables the BROKEN bit
+		set_machine_stat(machine_stat | BROKEN)	//enables the BROKEN bit
 		power_change()
 		invisibility = 0
 		spark_system.start()	//creates some sparks because they look cool

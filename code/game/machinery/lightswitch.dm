@@ -51,9 +51,9 @@
 /obj/machinery/light_switch/power_change()
 	if(area == get_area(src))
 		if(powered(AREA_USAGE_LIGHT))
-			machine_stat &= ~NOPOWER
+			set_machine_stat(machine_stat & ~NOPOWER)
 		else
-			machine_stat |= NOPOWER
+			set_machine_stat(machine_stat | NOPOWER)
 
 		update_icon()
 

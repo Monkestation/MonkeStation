@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	if(. & EMP_PROTECT_SELF)
 		return
 	if(prob(100/severity) && !(machine_stat & EMPED))
-		machine_stat |= EMPED
+		set_machine_stat(machine_stat | EMPED)
 		var/duration = (300 * 10)/severity
 		addtimer(CALLBACK(src, .proc/de_emp), rand(duration - 20, duration + 20))
 
@@ -170,4 +170,4 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	update_power()
 
 /obj/machinery/telecomms/proc/de_emp()
-	machine_stat &= ~EMPED
+	set_machine_stat(machine_stat & ~EMPED)

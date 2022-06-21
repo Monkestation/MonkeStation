@@ -324,7 +324,7 @@
 		if(prob(max(iron / 2, 33)))
 			explosion(loc, 0, 1, 2)
 	else
-		dropContents(ingredients)
+		dump_inventory_contents()
 		ingredients.Cut()
 
 	after_finish_loop()

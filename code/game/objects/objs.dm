@@ -380,6 +380,10 @@
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	return
 
+// Should move all contained objects to it's location.
+/obj/proc/dump_contents()
+	CRASH("Unimplemented.")
+
 //For returning special data when the object is saved
 //For example, or silos will return a list of their materials which will be dumped on top of them
 //Can be customised if you have something that contains something you want saved
