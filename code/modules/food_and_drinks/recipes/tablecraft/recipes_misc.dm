@@ -333,3 +333,14 @@
 	)
 	result = /obj/item/food/crab_rangoon
 	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/royalcheese
+	name = "Royal Cheese"
+	reqs = list(
+		/obj/item/food/cheesewheel = 1,
+		/obj/item/clothing/head/crown = 1,
+		/datum/reagent/medicine/strange_reagent = 5,
+		/datum/reagent/toxin/mutagen = 5
+	)
+	result = /obj/item/food/royalcheese
+	subcategory = CAT_MISCFOOD
