@@ -29,8 +29,8 @@ GLOBAL_LIST_INIT(female_laughs, list(
 ))
 
 GLOBAL_LIST_INIT(male_screams, list(
-						"apid" 		= 	list('monkestation/sound/voice/apid/apid_scream_1.ogg','monkestation/sound/voice/apid/apid_scream_2.ogg','monkestation/sound/voice/apid/apid_scream_3.ogg'),
-						"ethereal" 	= 	list('monkestation/sound/voice/ethereal/ethereal_scream_1.ogg','monkestation/sound/voice/ethereal/ethereal_scream_2.ogg'),
+						"apid" 		= 	list('monkestation/sound/voice/screams/apid/apid_scream_1.ogg','monkestation/sound/voice/screams/apid/apid_scream_2.ogg','monkestation/sound/voice/screams/apid/apid_scream_3.ogg'),
+						"ethereal" 	= 	list('monkestation/sound/voice/screams/ethereal/ethereal_scream_1.ogg','monkestation/sound/voice/screams/ethereal/ethereal_scream_2.ogg'),
 						"human" 	= 	list('sound/voice/human/malescream_1.ogg','sound/voice/human/malescream_2.ogg','sound/voice/human/malescream_3.ogg','sound/voice/human/malescream_4.ogg','sound/voice/human/malescream_5.ogg'),
 						"ipc" 		= 	list('monkestation/sound/voice/screams/silicon/scream_silicon.ogg'),
 						"jelly" 	= 	list('sound/voice/human/malescream_1.ogg','sound/voice/human/malescream_2.ogg','sound/voice/human/malescream_3.ogg','sound/voice/human/malescream_4.ogg','sound/voice/human/malescream_5.ogg'),
@@ -43,8 +43,8 @@ GLOBAL_LIST_INIT(male_screams, list(
 ))
 
 GLOBAL_LIST_INIT(female_screams, list(
-						"apid" 		= 	list('monkestation/sound/voice/apid/apid_scream_1.ogg','monkestation/sound/voice/apid/apid_scream_2.ogg','monkestation/sound/voice/apid/apid_scream_3.ogg'),
-						"ethereal" 	= 	list('monkestation/sound/voice/ethereal/ethereal_scream_1.ogg','monkestation/sound/voice/ethereal/ethereal_scream_2.ogg'),
+						"apid" 		= 	list('monkestation/sound/voice/screams/apid/apid_scream_1.ogg','monkestation/sound/voice/screams/apid/apid_scream_2.ogg','monkestation/sound/voice/screams/apid/apid_scream_3.ogg'),
+						"ethereal" 	= 	list('monkestation/sound/voice/screams/ethereal/ethereal_scream_1.ogg','monkestation/sound/voice/screams/ethereal/ethereal_scream_2.ogg'),
 						"human" 	= 	list('sound/voice/human/femalescream_1.ogg','sound/voice/human/femalescream_2.ogg','sound/voice/human/femalescream_3.ogg','sound/voice/human/femalescream_4.ogg'),
 						"ipc" 		= 	list('monkestation/sound/voice/screams/silicon/scream_silicon.ogg'),
 						"jelly" 	= 	list('sound/voice/human/femalescream_1.ogg','sound/voice/human/femalescream_2.ogg','sound/voice/human/femalescream_3.ogg','sound/voice/human/femalescream_4.ogg'),
