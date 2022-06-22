@@ -377,8 +377,7 @@
 
 /obj/effect/anomaly/walterverse/detonate()
 	if(prob(10))
-		to_chat(target, "<font color='red' size='7'>Walter</font>")
-		var/big_walter = new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
+		var/mob/living/big_walter = new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
 		if(prob(10))
 			big_walter.resize = 4
 		else
