@@ -59,3 +59,6 @@ GLOBAL_LIST_INIT(generic_recipes, list(
 	/datum/crafting_recipe/food/cak,
 	/datum/crafting_recipe/food/butterbear,
 ))
+
+/// Involves being eaten
+#define CONSUME "consume"
