@@ -346,3 +346,40 @@
 
 
 #undef MONKEY_SOUNDS
+
+//Walter Anomaly (The Walterverse Opens...)
+
+/obj/effect/anomaly/walterverse
+	name = "Walter Anomaly"
+	desc = "An anomaly that summons Walters from all throughout the walterverse"
+	icon_state = "bhole3"
+	lifespan = 35 SECONDS
+	var/active = TRUE
+	var/static/list/walter_spawns = list(
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/saulter = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/negative = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/syndicate = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/doom = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter = 1,)
+
+/obj/effect/anomaly/walterverse/anomalyEffect(delta_time)
+	..()
+
+	if(isinspace(src) || !isopenturf(get_turf(src)))
+		return
+
+	if(active)
+		active = FALSE
+		var/selected_spawn = pickweight(walter_spawns)
+		new selected_spawn(src.loc)
+		return
+	active = TRUE
+
+/obj/effect/anomaly/walterverse/detonate()
+	if(prob(10))
+		to_chat(target, "<font color='red' size='7'>Walter</font>")
+		var/big_walter = new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
+		if(prob(10))
+			big_walter.resize = 4
+		else
+			big_walter.resize = 2
