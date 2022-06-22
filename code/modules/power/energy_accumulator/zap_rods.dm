@@ -46,6 +46,11 @@
 	wires = new /datum/wires/tesla_coil(src)
 	linked_techweb = SSresearch.science_tech
 
+/obj/machinery/power/energy_accumulator/tesla_coil/Destroy()
+	linked_techweb = null //This shouldn't harddel even if not nulled but let's be tidy
+	QDEL_NULL(wires)
+	return ..()
+
 /obj/machinery/power/energy_accumulator/tesla_coil/RefreshParts()
 	. = ..()
 	var/power_multiplier = 0
