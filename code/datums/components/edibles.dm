@@ -377,8 +377,7 @@ Behavior that's still missing from this component that original food items had t
 
 	if(!owner?.reagents)
 		return FALSE
-	if(eater.satiety > -200)
-		eater.satiety -= junkiness
+
 	playsound(eater.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	if(owner.reagents.total_volume)
 		SEND_SIGNAL(parent, COMSIG_FOOD_EATEN, eater, feeder, bitecount, bite_consumption)
