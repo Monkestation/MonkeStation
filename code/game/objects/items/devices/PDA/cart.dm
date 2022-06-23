@@ -14,6 +14,11 @@
 #define CART_HYDROPONICS		(1<<12)
 #define CART_DRONEPHONE			(1<<13)
 
+#define MESSAGE_DELAY_1_MINUTE 1
+#define MESSAGE_DELAY_2_MINUTES 2
+#define MESSAGE_DELAY_3_MINUTES 3
+#define MESSAGE_DELAY_4_MINUTES 4
+#define MESSAGE_DELAY_5_MINUTES 5
 
 /obj/item/cartridge
 	name = "generic cartridge"
@@ -32,7 +37,7 @@
 	var/remote_door_id = ""
 
 	var/bot_access_flags = 0 //Bit flags. Selection: SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
-	var/spam_delay = 0 //Enables "Send to All" Option. 1=1 min, 2=2mins, 2.5=2 min 30 seconds
+	var/spam_delay = 0 //Enables "Send to All" Option. Uses #define MESSAGE_DELAY_1_MINUTE
 
 	var/obj/item/pda/host_pda = null
 	var/menu
@@ -102,13 +107,13 @@
 	name = "\improper P.R.O.V.E. cartridge"
 	icon_state = "cart-prove"
 	access = CART_SECURITY
-	spam_delay = 2.5
+	spam_delay = MESSAGE_DELAY_2_MINUTES
 
 /obj/item/cartridge/curator
 	name = "\improper Lib-Tweet cartridge"
 	icon_state = "cart-cur"
 	access = CART_NEWSCASTER
-	spam_delay = 3.5
+	spam_delay = MESSAGE_DELAY_3_MINUTES
 
 /obj/item/cartridge/roboticist
 	name = "\improper B.O.O.P. Remote Control cartridge"
@@ -184,7 +189,7 @@
 	icon_state = "cart-cap"
 	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR)
 	bot_access_flags = list(SEC_BOT, MULE_BOT, FLOOR_BOT, CLEAN_BOT, MED_BOT, FIRE_BOT, ATMOS_BOT)
-	spam_delay = 2
+	spam_delay = MESSAGE_DELAY_2_MINUTES
 
 /obj/item/cartridge/captain/Initialize(mapload)
 	. = ..()
@@ -193,12 +198,12 @@
 /obj/item/cartridge/annoyance //the only purpose of this cartridge is to allow the VIP to be annoying
 	name = "\improper TWIT cartridge"
 	icon_state = "cart-twit"
-	spam_delay = 1.5
+	spam_delay = MESSAGE_DELAY_1_MINUTE
 
 /obj/item/cartridge/annoyance/lesser //HoP can give you this
 	name = "\improper FACEBUCKS cartridge"
 	icon_state = "cart-signal" // might need a new sprite
-	spam_delay = 5
+	spam_delay = MESSAGE_DELAY_5_MINUTES
 
 /obj/item/cartridge/proc/post_status(command, data1, data2)
 
@@ -692,3 +697,9 @@ Code:
 
 //This is called for special abilities of cartridges
 /obj/item/cartridge/proc/special(mob/living/user, list/params)
+
+#undef MESSAGE_DELAY_1_MINUTE
+#undef MESSAGE_DELAY_2_MINUTES
+#undef MESSAGE_DELAY_3_MINUTES
+#undef MESSAGE_DELAY_4_MINUTES
+#undef MESSAGE_DELAY_5_MINUTES
