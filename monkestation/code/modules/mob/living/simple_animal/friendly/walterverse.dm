@@ -46,3 +46,18 @@
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	speak = list("...")
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/space
+	name = "Space Walter"
+	real_name = "Space Walter"
+	desc = "Exploration of the galaxies is nothing for this star loving dog."
+	icon = 'monkestation/icons/mob/walterverse.dmi'
+	icon_state = "space"
+	icon_living = "space"
+	icon_dead = "space_dead"
+	unsuitable_atmos_damage = 0
+	minbodytemp = TCMB
+	maxbodytemp = T0C + 40
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	speak = list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships")
