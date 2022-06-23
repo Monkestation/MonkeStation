@@ -35,7 +35,7 @@
 	. = ..()
 	if(broken)
 		return
-	create_reagents(400, OPENCONTAINER)
+	create_reagents(400, OPENCONTAINER) //Let this be better than a normal bucket for a better early game
 
 /obj/structure/janitorialcart/examine(mob/user)
 	. = ..()
@@ -52,17 +52,17 @@
 		. += span_info("<b>Click</b> with an object to put it in [mybag].")
 
 /obj/structure/janitorialcart/proc/wet_mop(obj/item/mop/your_mop, mob/user)
-	if(your_mop.reagents.total_volume >= your_mop.reagents.maximum_volume)
-		to_chat(user, span_warning("[your_mop] is already soaked!"))
-		return FALSE
 	if(reagents.total_volume < 1)
 		to_chat(user, span_warning("[src]'s mop bucket is empty!"))
 		mop_insert_double_click = TRUE
+		update_icon()
 		return FALSE
+	your_mop.reagents.remove_any(your_mop.reagents.total_volume*0.5)
 	reagents.trans_to(your_mop, your_mop.reagents.maximum_volume, transfered_by = user)
 	to_chat(user, span_notice("You wet [your_mop] in [src]."))
 	playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 	mop_insert_double_click = FALSE
+	update_icon()
 	return TRUE
 
 /obj/structure/janitorialcart/proc/dry_mop(obj/item/mop/your_mop, mob/user)
@@ -221,20 +221,6 @@
 			signs--
 		return
 
-	else if(Item.tool_behaviour == TOOL_CROWBAR)
-		if(reagents.total_volume < 1)
-			to_chat(user, span_warning("[src]'s mop bucket is empty!"))
-			return
-		user.visible_message(span_notice("[user] begins to empty the contents of [src]."), span_notice("You begin to empty the contents of [src]..."))
-		if(Item.use_tool(src, user, 5 SECONDS))
-			to_chat(usr, span_notice("You empty the contents of [src]'s mop bucket onto the floor."))
-			log_game("[user] emptied [src]'s mop bucket contents of [reagents.total_volume] units onto [get_turf(src)].")
-			var/turf/epicenter = src.loc
-			epicenter.add_liquid_from_reagents(reagents)
-			src.reagents.clear_reagents() //Clears any potential remaining reagents from mop bucket
-			update_icon()
-		return
-
 	else if(mybag)
 		mybag.attackby(Item, user)
 
@@ -244,6 +230,22 @@
 
 	return ..()
 
+/obj/structure/janitorialcart/crowbar_act(mob/living/user, obj/item/Crowbar)
+	..()
+	. = TRUE
+	if(user.a_intent == INTENT_HARM)
+		return
+	if(reagents.total_volume < 1)
+		to_chat(user, span_warning("[src]'s mop bucket is empty!"))
+		return
+	user.visible_message(span_notice("[user] begins to empty the contents of [src]."), span_notice("You begin to empty the contents of [src]..."))
+	if(Crowbar.use_tool(src, user, 5 SECONDS))
+		to_chat(usr, span_notice("You empty the contents of [src]'s mop bucket onto the floor."))
+		log_game("[user] emptied [src]'s mop bucket contents of [reagents.total_volume] units onto [get_turf(src)].")
+		var/turf/epicenter = src.loc
+		epicenter.add_liquid_from_reagents(reagents)
+		src.reagents.clear_reagents() //Clears any potential remaining reagents from mop bucket
+	update_icon()
 
 /obj/structure/janitorialcart/attack_hand(mob/user, list/modifiers)
 	. = ..()
