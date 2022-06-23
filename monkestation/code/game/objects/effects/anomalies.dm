@@ -361,6 +361,7 @@
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/syndicate = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/doom = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/space = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/sus = 1, //:(
 		/mob/living/simple_animal/pet/dog/bullterrier/walter = 1,)
 
 /obj/effect/anomaly/walterverse/anomalyEffect(delta_time)

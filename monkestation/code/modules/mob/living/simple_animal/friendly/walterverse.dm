@@ -50,7 +50,7 @@
 /mob/living/simple_animal/pet/dog/bullterrier/walter/space
 	name = "Space Walter"
 	real_name = "Space Walter"
-	desc = "Exploration of the galaxies is nothing for this star loving dog."
+	desc = "Exploring the galaxies is nothing for this star loving dog."
 	icon = 'monkestation/icons/mob/walterverse.dmi'
 	icon_state = "space"
 	icon_living = "space"
@@ -61,3 +61,29 @@
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships")
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/sus
+	name = "Suspicious Walter"
+	real_name = "Suspicious Walter"
+	desc = "This vent loving dog is a little suspicious..."
+	icon = 'monkestation/icons/mob/walterverse.dmi'
+	icon_state = "sus"
+	icon_living = "sus"
+	icon_dead = "sus_dead"
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	ventcrawler = VENTCRAWLER_ALWAYS
+	deathmessage = "gets ejected"
+	speak = list("barks!", "woofs!", "sus!", "Walter", "firetrucks", "monstertrucks", "tasks")
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/clown
+	name = "Clown Walter"
+	real_name = "Clown Walter"
+	desc = "Seccies and staff members are nothing compared to the might of this banana loving loving dog."
+	icon = 'monkestation/icons/mob/walterverse.dmi'
+	icon_state = "clown"
+	icon_living = "clown"
+	icon_dead = "clown_dead"
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	speak = list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks")
