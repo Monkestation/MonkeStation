@@ -6,7 +6,7 @@
 	icon_state = "saulter"
 	icon_living = "saulter"
 	icon_dead = "saulter_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "Hi, i'm Saul Goodman.", "Did you know you have rights?", "Based!")
 
@@ -18,7 +18,7 @@
 	icon_state = "negative"
 	icon_living = "negative"
 	icon_dead = "negative_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	deathmessage = "starts moving"
 	speak = list("skrab!", "sfoow!", "retlaW", "skcurterif", "skcurtretsnom")
@@ -31,7 +31,7 @@
 	icon_state = "syndie"
 	icon_living = "syndie"
 	icon_dead = "syndie_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "Walter", "Down with Nanotrasen!", "For the Syndicate!")
 
@@ -43,7 +43,7 @@
 	icon_state = "doom"
 	icon_living = "doom"
 	icon_dead = "doom_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("...")
 
@@ -58,7 +58,7 @@
 	unsuitable_atmos_damage = 0
 	minbodytemp = TCMB
 	maxbodytemp = T0C + 40
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships")
 
@@ -70,7 +70,7 @@
 	icon_state = "sus"
 	icon_living = "sus"
 	icon_dead = "sus_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	deathmessage = "gets ejected"
@@ -84,7 +84,7 @@
 	icon_state = "clown"
 	icon_living = "clown"
 	icon_dead = "clown_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks")
 
@@ -97,7 +97,7 @@
 	icon_state = "french"
 	icon_living = "french"
 	icon_dead = "french_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("aboiement!", "aboyer!", "Walter", "camions de pompiers", "camions monstres")
 
@@ -105,7 +105,7 @@
 	name = "Bri'ish Wal'ah"
 	real_name = "Bri'ish Wal'ah"
 	desc = "Nar'sie and like ra''var are naw'hin' compared 'o 'he migh' of 'hiz mons'er'ruck lovin' dog."
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "Wal'ah", "fire'rucks", "mons'er'rucks")
 
@@ -117,6 +117,6 @@
 	icon_state = "wizard"
 	icon_living = "wizard"
 	icon_dead = "wizard_dead"
-	gold_core_spawnable = NO_SPAWN
+	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
 	speak = list("ONI SOMA", "CLANG!", "UN'LTD P'WAH", "AULIE OXIN FIERA", "GIN'YU`CAPAN")
