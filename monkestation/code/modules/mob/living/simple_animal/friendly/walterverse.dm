@@ -87,3 +87,36 @@
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	speak = list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks")
+
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/french
+	name = "French Walter"
+	real_name = "French Walter"
+	desc = "Nar'sie et rat'var ne sont rien comparés à la puissance de ce chien qui aime les monstertrucks."
+	icon = 'monkestation/icons/mob/walterverse.dmi'
+	icon_state = "french"
+	icon_living = "french"
+	icon_dead = "french_dead"
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	speak = list("aboiement!", "aboyer!", "Walter", "camions de pompiers", "camions monstres")
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/british
+	name = "Bri'ish Wal'ah"
+	real_name = "Bri'ish Wal'ah"
+	desc = "Nar'sie and like ra''var are naw'hin' compared 'o 'he migh' of 'hiz mons'er'ruck lovin' dog."
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	speak = list("barks!", "woofs!", "Wal'ah", "fire'rucks", "mons'er'rucks")
+
+/mob/living/simple_animal/pet/dog/bullterrier/walter/wizard
+	name = "Magic Walter"
+	real_name = "Magic Walter"
+	desc = "Assistants and secoffs are nothing compared to the might of this magic loving dog."
+	icon = 'monkestation/icons/mob/walterverse.dmi'
+	icon_state = "wizard"
+	icon_living = "wizard"
+	icon_dead = "wizard_dead"
+	gold_core_spawnable = NO_SPAWN
+	unique_pet = TRUE
+	speak = list("ONI SOMA", "CLANG!", "UN'LTD P'WAH", "AULIE OXIN FIERA", "GIN'YU`CAPAN")

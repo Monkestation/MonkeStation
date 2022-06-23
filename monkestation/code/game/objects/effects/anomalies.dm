@@ -353,7 +353,7 @@
 	name = "Walter Anomaly"
 	desc = "An anomaly that summons Walters from all throughout the walterverse"
 	icon_state = "bhole3"
-	lifespan = 35 SECONDS
+	lifespan = 20 SECONDS //about maybe 5 walters
 	var/active = TRUE
 	var/static/list/walter_spawns = list(
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/saulter = 5,
@@ -361,8 +361,12 @@
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/syndicate = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/doom = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/space = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/clown = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/french = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/british = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/wizard = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/sus = 1, //:(
-		/mob/living/simple_animal/pet/dog/bullterrier/walter = 1,)
+		)
 
 /obj/effect/anomaly/walterverse/anomalyEffect(delta_time)
 	..()
@@ -379,8 +383,4 @@
 
 /obj/effect/anomaly/walterverse/detonate()
 	if(prob(10))
-		var/mob/living/big_walter = new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
-		if(prob(10))
-			big_walter.resize = 4
-		else
-			big_walter.resize = 2
+		new /mob/living/simple_animal/pet/dog/bullterrier/walter(src.loc)
