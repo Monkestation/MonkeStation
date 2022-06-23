@@ -2056,6 +2056,11 @@
 	icon_state = "punished"
 	locked = TRUE
 
+/datum/sprite_accessory/moth_wingsopen/punished
+	name = "Burnt Off"
+	icon_state = "punished"
+	locked = TRUE
+
 /datum/sprite_accessory/moth_wings/firewatch
 	name = "Firewatch"
 	icon_state = "firewatch"
