@@ -6,6 +6,7 @@
 
 /datum/round_event/new_space_law
 	announceWhen = 1
+	fakeable = FALSE
 
 var/list/new_space_laws = world.file2list("monkestation/strings/new_space_laws.txt")
 
