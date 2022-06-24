@@ -919,7 +919,7 @@
 				SEND_SIGNAL(replacer_tool, COMSIG_TRY_STORAGE_INSERT, primary_part, null, null, TRUE)
 				component_parts -= primary_part
 				to_chat(user, span_notice("[capitalize(primary_part.name)] replaced with [secondary_part.name]."))
-				shouldplaysound = 1 //Only play the sound when parts are actually replaced!
+				shouldplaysound = TRUE //Only play the sound when parts are actually replaced!
 				break
 
 	RefreshParts()
