@@ -18,6 +18,7 @@
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 	///When you take a bite you cant jam it in for surgery anymore.
 	var/useable = TRUE
+	var/reagent_vol = 10
 	///Organ variables for determining what we alert the owner with when they pass/clear the damage thresholds
 	var/prev_damage = 0
 	var/low_threshold_passed
@@ -31,7 +32,11 @@
 /obj/item/organ/Initialize()
 	. = ..()
 	if(organ_flags & ORGAN_EDIBLE)
-		AddComponent(/datum/component/edible, food_reagents, null, RAW | MEAT | GROSS, null, 10, null, null, null, null, CALLBACK(src, .proc/OnEatFrom))
+		AddComponent(/datum/component/edible,\
+			initial_reagents = food_reagents,\
+			foodtypes = RAW | MEAT | GROSS,\
+			volume = reagent_vol,\
+			after_eat = CALLBACK(src, .proc/OnEatFrom))
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	if(!iscarbon(M) || owner == M)

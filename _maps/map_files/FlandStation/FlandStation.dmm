@@ -65805,7 +65805,9 @@
 /area/hallway/primary/starboard)
 "pvh" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/structure/kitchenspike,
+/obj/machinery/computer/chef_order{
+	dir = 1
+	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen/coldroom)
 "pvl" = (

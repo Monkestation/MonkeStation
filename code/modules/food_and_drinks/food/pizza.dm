@@ -33,11 +33,6 @@
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
 
-
-/obj/item/food/pizzaslice/Initialize()
-	. = ..()
-	//AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/stack/sheet/pizza, 1, 10)
-
 /obj/item/food/pizza/margherita
 	name = "pizza margherita"
 	desc = "The most cheezy pizza in galaxy."
@@ -47,10 +42,6 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/margherita
-
-/obj/item/food/pizza/margherita/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/margherita, 6, 30)
 
 /obj/item/food/pizza/margherita/raw
 	name = "raw pizza margherita"
@@ -94,10 +85,6 @@
 /obj/item/food/pizza/meat/raw/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/meat, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
-/obj/item/food/pizza/meat/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/meat, 6, 30)
-
 /obj/item/food/pizzaslice/meat
 	name = "meatpizza slice"
 	desc = "A nutritious slice of meatpizza."
@@ -114,9 +101,6 @@
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/mushroom
 
-/obj/item/food/pizza/mushroom/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/mushroom, 6, 30)
 
 /obj/item/food/pizza/mushroom/raw
 	name = "raw mushroom pizza"
@@ -145,10 +129,6 @@
 	slice_type = /obj/item/food/pizzaslice/vegetable
 	venue_value = FOOD_PRICE_NORMAL
 
-/obj/item/food/pizza/vegetable/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/vegetable, 6, 30)
-
 /obj/item/food/pizzaslice/vegetable
 	name = "vegetable pizza slice"
 	desc = "A slice of the most green pizza of all pizzas not containing green ingredients."
@@ -175,9 +155,6 @@
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
 	slice_type = /obj/item/food/pizzaslice/donkpocket
 
-/obj/item/food/pizza/donkpocket/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/donkpocket, 6, 30)
 
 /obj/item/food/pizza/donkpocket/raw
 	name = "raw donkpocket pizza"
@@ -215,10 +192,6 @@
 /obj/item/food/pizza/dank/raw/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/food/pizza/dank, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
-/obj/item/food/pizza/dank/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/dank, 6, 30)
-
 /obj/item/food/pizzaslice/dank
 	name = "dank pizza slice"
 	desc = "So good, man..."
@@ -234,10 +207,6 @@
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 	slice_type = /obj/item/food/pizzaslice/sassysage
-
-/obj/item/food/pizza/sassysage/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/sassysage, 6, 30)
 
 /obj/item/food/pizza/sassysage/raw
 	name = "raw sassysage pizza"
@@ -265,10 +234,6 @@
 	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | FRUIT | PINEAPPLE
 	slice_type = /obj/item/food/pizzaslice/pineapple
 
-/obj/item/food/pizza/pineapple/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/pineapple, 6, 30)
-
 /obj/item/food/pizza/pineapple/raw
 	name = "raw Hawaiian pizza"
 	icon_state = "pineapplepizza_raw"
@@ -293,10 +258,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/iron = 10, /datum/reagent/medicine/omnizine = 30)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "pepperoni" = 2, "9 millimeter bullets" = 2)
 	slice_type = /obj/item/food/pizzaslice/arnold
-
-/obj/item/food/pizza/arnold/Initialize()
-	. = ..()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/pizzaslice/arnold, 6, 30)
 
 /obj/item/food/pizza/arnold/raw
 	name = "raw Arnold pizza"

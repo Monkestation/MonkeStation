@@ -59,7 +59,6 @@
 	if(popper.mob_size < MOB_SIZE_HUMAN)
 		return
 
-	//playsound(source, 'sound/effects/chipbagpop.ogg', 100)
 
 	popper.visible_message("<span class='danger'>[popper] steps on \the [source], popping the bag!</span>", "<span class='danger'>You step on \the [source], popping the bag!</span>", "<span class='danger'>You hear a sharp crack!</span>", COMBAT_MESSAGE_RANGE)
 	INVOKE_ASYNC(src, .proc/async_generate_trash, source)

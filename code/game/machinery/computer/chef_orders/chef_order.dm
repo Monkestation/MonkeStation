@@ -86,8 +86,7 @@
 				say("Sorry, but you do not have enough money.")
 				return
 			say("Thank you for your purchase! It will arrive on the next cargo shuttle!")
-			var/message = "The kitchen has ordered groceries which will arrive on the cargo shuttle! Please make sure it gets to them as soon as possible!"
-			radio.talk_into(src, message, radio_channel)
+			radio.talk_into(src, "The kitchen has ordered groceries which will arrive on the cargo shuttle! Please make sure it gets to them as soon as possible!", radio_channel)
 			COOLDOWN_START(src, order_cooldown, 60 SECONDS)
 			for(var/datum/orderable_item/ordered_item in grocery_list)
 				if(ordered_item in SSshuttle.chef_groceries)

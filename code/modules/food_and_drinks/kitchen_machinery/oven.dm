@@ -32,7 +32,7 @@
 
 /obj/machinery/oven/Initialize()
 	. = ..()
-	oven_loop = new(src)
+	oven_loop = new(list(src), FALSE)
 	add_tray_to_oven(new /obj/item/plate/oven_tray(src)) //Start with a tray
 
 /obj/machinery/oven/Destroy()
@@ -142,6 +142,8 @@
 	return TRUE
 
 /obj/machinery/oven/proc/update_baking_audio()
+	if(!oven_loop)
+		return
 	if(!open && used_tray?.contents.len)
 		oven_loop.start()
 	else

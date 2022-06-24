@@ -14187,7 +14187,9 @@
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "aOI" = (
-/obj/structure/kitchenspike,
+/obj/machinery/computer/chef_order{
+	dir = 4
+	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
 "aOJ" = (

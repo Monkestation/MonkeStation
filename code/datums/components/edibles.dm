@@ -1,3 +1,10 @@
+#define MIN_FULLNESS 50
+#define MAX_FULLNESS 600
+#define NEAR_FULLNESS 500
+#define MID_FULLNESS 150
+
+
+
 /*!
 
 This component makes it possible to make things edible. What this means is that you can take a bite or force someone to take a bite (in the case of items).
@@ -139,7 +146,6 @@ Behavior that's still missing from this component that original food items had t
 	QDEL_NULL(on_consume)
 	return ..()
 
-
 ///Response to being used to customize something
 /datum/component/edible/proc/used_to_customize(datum/source, atom/customized)
 	SIGNAL_HANDLER
@@ -245,9 +251,8 @@ Behavior that's still missing from this component that original food items had t
 
 	if(!microwaved_type)
 		new /obj/item/food/badrecipe(parent_turf)
-		qdel(src)
+		qdel(parent)
 		return
-
 
 	var/obj/item/result
 
@@ -258,6 +263,8 @@ Behavior that's still missing from this component that original food items had t
 	SEND_SIGNAL(result, COMSIG_ITEM_MICROWAVE_COOKED, parent, efficiency)
 
 	SSblackbox.record_feedback("tally", "food_made", 1, result.type)
+	qdel(parent)
+	return
 
 ///Corrects the reagents on the newly cooked food
 /datum/component/edible/proc/OnMicrowaveCooked(datum/source, obj/item/source_item, cooking_efficiency = 1)
@@ -276,6 +283,14 @@ Behavior that's still missing from this component that original food items had t
 		else
 			this_food.reagents.add_reagent(r_id, amount)
 
+///Makes sure the thing hasn't been destroyed or fully eaten to prevent eating phantom edibles
+/datum/component/edible/proc/IsFoodGone(atom/owner, mob/living/feeder)
+	if(QDELETED(owner)|| !(IS_EDIBLE(owner)))
+		return TRUE
+	if(owner.reagents.total_volume)
+		return FALSE
+	return TRUE
+
 ///All the checks for the act of eating itself and
 /datum/component/edible/proc/TryToEat(mob/living/eater, mob/living/feeder)
 
@@ -287,6 +302,9 @@ Behavior that's still missing from this component that original food items had t
 		return
 
 	if(!owner)
+		return
+
+	if(IsFoodGone(owner, feeder))
 		return
 
 	if(!owner.reagents.total_volume)//Shouldn't be needed but it checks to see if it has anything left in it.
@@ -308,26 +326,28 @@ Behavior that's still missing from this component that original food items had t
 	if(eater == feeder)//If you're eating it yourself.
 		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
 			return
+		if(IsFoodGone(owner, feeder))
+			return
 		var/eatverb = pick(eatverbs)
 		if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			to_chat(eater, "<span class='warning'>You don't feel like eating any more junk food at the moment!</span>")
 			return
-		else if(fullness <= 50)
+		else if(fullness <= MIN_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] hungrily [eatverb]s \the [parent], gobbling it down!</span>", "<span class='notice'>You hungrily [eatverb] \the [parent], gobbling it down!</span>")
-		else if(fullness > 50 && fullness < 150)
+		else if(fullness > MIN_FULLNESS && fullness < MID_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] hungrily [eatverb]s \the [parent].</span>", "<span class='notice'>You hungrily [eatverb] \the [parent].</span>")
-		else if(fullness > 150 && fullness < 500)
+		else if(fullness > MID_FULLNESS && fullness < NEAR_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] [eatverb]s \the [parent].</span>", "<span class='notice'>You [eatverb] \the [parent].</span>")
-		else if(fullness > 500 && fullness < 600)
+		else if(fullness > NEAR_FULLNESS && fullness < MAX_FULLNESS)
 			eater.visible_message("<span class='notice'>[eater] unwillingly [eatverb]s a bit of \the [parent].</span>", "<span class='notice'>You unwillingly [eatverb] a bit of \the [parent].</span>")
-		else if(fullness > (600 * (1 + eater.overeatduration / 2000)))	// The more you eat - the more you can eat
+		else if(fullness > (MAX_FULLNESS * (1 + eater.overeatduration / 2000)))	// The more you eat - the more you can eat
 			eater.visible_message("<span class='warning'>[eater] cannot force any more of \the [parent] to go down [eater.p_their()] throat!</span>", "<span class='warning'>You cannot force any more of \the [parent] to go down your throat!</span>")
 			return
 	else //If you're feeding it to someone else.
 		if(isbrain(eater))
 			to_chat(feeder, "<span class='warning'>[eater] doesn't seem to have a mouth!</span>")
 			return
-		if(fullness <= (600 * (1 + eater.overeatduration / 1000)))
+		if(fullness <= (MAX_FULLNESS * (1 + eater.overeatduration / 1000)))
 			eater.visible_message("<span class='danger'>[feeder] attempts to feed [eater] [parent].</span>", \
 									"<span class='userdanger'>[feeder] attempts to feed you [parent].</span>")
 		else
@@ -335,6 +355,9 @@ Behavior that's still missing from this component that original food items had t
 									"<span class='warning'>[feeder] cannot force any more of [parent] down your throat!</span>")
 			return
 		if(!do_mob(feeder, eater)) //Wait 3 seconds before you can feed
+			return
+
+		if(IsFoodGone(owner, feeder))
 			return
 
 		log_combat(feeder, eater, "fed", owner.reagents.log_list())
@@ -354,8 +377,7 @@ Behavior that's still missing from this component that original food items had t
 
 	if(!owner?.reagents)
 		return FALSE
-	if(eater.satiety > -200)
-		eater.satiety -= junkiness
+
 	playsound(eater.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	if(owner.reagents.total_volume)
 		SEND_SIGNAL(parent, COMSIG_FOOD_EATEN, eater, feeder, bitecount, bite_consumption)
@@ -376,6 +398,8 @@ Behavior that's still missing from this component that original food items had t
 /datum/component/edible/proc/CanConsume(mob/living/eater, mob/living/feeder)
 	if(!iscarbon(eater))
 		return FALSE
+	if(isipc(eater))
+		return FALSE
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
@@ -390,7 +414,7 @@ Behavior that's still missing from this component that original food items had t
 
 ///Check foodtypes to see if we should send a moodlet
 /datum/component/edible/proc/checkLiked(fraction, mob/M)
-	if(last_check_time + 50 > world.time)
+	if(last_check_time + 5 SECONDS > world.time)
 		return FALSE
 	if(!ishuman(M))
 		return FALSE
@@ -458,9 +482,9 @@ Behavior that's still missing from this component that original food items had t
 	. = COMPONENT_ITEM_NO_ATTACK
 	L.taste(owner.reagents) // why should carbons get all the fun?
 	if(bitecount >= 5)
-		var/sattisfaction_text = pick("burps from enjoyment", "yaps for more", "woofs twice", "looks at the area where \the [parent] was")
-		if(sattisfaction_text)
-			L.manual_emote(sattisfaction_text)
+		var/satisfaction_text = pick("burps from enjoyment", "yaps for more", "woofs twice", "looks at the area where \the [parent] was")
+		if(satisfaction_text)
+			L.manual_emote(satisfaction_text)
 		qdel(parent)
 
 /datum/component/edible/proc/check_menu(mob/user)
@@ -492,10 +516,10 @@ Behavior that's still missing from this component that original food items had t
 		var/atom/craftable_atom = available_recipe_datum.result
 		recipes_radial.Add(list(initial(craftable_atom.name) = image(icon = initial(craftable_atom.icon), icon_state = initial(craftable_atom.icon_state))))
 		recipes_craft.Add(list(initial(craftable_atom.name) = available_recipe_datum))
-	INVOKE_ASYNC(src, .proc/hate_signals_holy_shit, recipes_radial, recipes_craft, chef, crafting_menu)
+	INVOKE_ASYNC(src, .proc/finalize_radial, recipes_radial, recipes_craft, chef, crafting_menu)
 	return
 
-/datum/component/edible/proc/hate_signals_holy_shit(list/recipes_radial, list/recipes_craft, mob/chef, datum/component/personal_crafting/crafting_menu)
+/datum/component/edible/proc/finalize_radial(list/recipes_radial, list/recipes_craft, mob/chef, datum/component/personal_crafting/crafting_menu)
 	var/recipe_chosen = show_radial_menu(chef, chef, recipes_radial, custom_check = CALLBACK(src, .proc/check_menu, chef), require_near = TRUE, tooltips = TRUE)
 	if(!recipe_chosen)
 		return

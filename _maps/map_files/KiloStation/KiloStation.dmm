@@ -44881,13 +44881,15 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red,
-/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/button/door{
 	id = "coldroom";
 	name = "Coldroom Shutter Toggle";
 	pixel_x = -24;
 	pixel_y = 6;
 	req_access_txt = "28"
+	},
+/obj/machinery/computer/chef_order{
+	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)

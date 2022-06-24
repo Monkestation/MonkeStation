@@ -81,3 +81,5 @@ GLOBAL_LIST_INIT(generic_recipes, list(
 #define DRINK_PRICE_EASY 35
 #define DRINK_PRICE_MEDIUM 80
 #define DRINK_PRICE_HIGH 200
+/// Involves being eaten
+#define CONSUME "consume"

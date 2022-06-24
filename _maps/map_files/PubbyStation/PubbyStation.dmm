@@ -21573,15 +21573,15 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bfp" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/machinery/button/door{
 	id = "kitchenwindowshutters";
 	name = "Kitchen Window Shutters Control";
 	pixel_x = -26;
 	pixel_y = 5;
 	req_access_txt = "28"
+	},
+/obj/machinery/computer/chef_order{
+	dir = 1
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -43294,7 +43294,6 @@
 /area/crew_quarters/kitchen)
 "cpn" = (
 /obj/structure/table,
-/obj/item/food/spaghetti,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "cpq" = (

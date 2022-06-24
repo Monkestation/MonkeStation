@@ -58336,6 +58336,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"vSt" = (
+/obj/machinery/computer/chef_order{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/kitchen/coldroom)
 "vSP" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = -32
@@ -91797,7 +91803,7 @@ xhI
 pBI
 nuq
 xyz
-pBI
+vSt
 xhI
 hYj
 bYW

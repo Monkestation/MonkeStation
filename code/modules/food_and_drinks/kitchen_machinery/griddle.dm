@@ -28,6 +28,10 @@
 	if(isnum(variant))
 		variant = rand(1,3)
 
+/obj/machinery/griddle/Destroy()
+	QDEL_NULL(grill_loop)
+	. = ..()
+
 /obj/machinery/griddle/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(flags_1 & NODECONSTRUCT_1)

@@ -56,12 +56,7 @@
 
 	RegisterSignal(owner, COMSIG_ITEM_ATTACK_OBJ, .proc/on_item_attack_obj)
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, .proc/on_update_overlays)
-	if(change_name)
-		RegisterSignal(owner, COMSIG_ATOM_UPDATE_NAME, .proc/on_update_name)
-	if(!change_desc)
-		RegisterSignal(owner, COMSIG_PARENT_EXAMINE, .proc/on_examine_more)
-	else
-		RegisterSignal(owner, COMSIG_ATOM_UPDATE_DESC, .proc/on_update_desc)
+	RegisterSignal(owner, COMSIG_PARENT_EXAMINE, .proc/on_examine)
 
 	RegisterSignal(owner, COMSIG_ITEM_IS_CORRECT_CUSTOM_ORDER, .proc/check_food_order)
 
@@ -105,7 +100,7 @@
 	else /// Many flavours.
 		source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] icecream. That's as many as [scoops_len] scoops!"
 
-/datum/component/ice_cream_holder/proc/on_examine_more(atom/source, mob/mob, list/examine_list)
+/datum/component/ice_cream_holder/proc/on_examine(atom/source, mob/mob, list/examine_list)
 	var/scoops_len = length(scoops)
 	if(scoops_len == 1 || length(uniqueList(scoops)) == 1) /// Only one flavour.
 		var/key = scoops[1]
@@ -146,6 +141,8 @@
 			to_chat(user, "<span class='warning'>There is not enough ice cream left!</span>")
 	else
 		to_chat(user, "<span class='warning'>[source] can't hold anymore ice cream!</span>")
+	on_update_desc(source)
+	on_update_name(source)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /////ICE CREAM FLAVOUR DATUM STUFF
@@ -267,7 +264,7 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/ethanol/singulo)
 	reagent_type = /datum/reagent/consumable/ethanol/singulo
 
-/datum/ice_cream_flavour/mob
+/datum/ice_cream_flavour/gibs
 	name = ICE_CREAM_MOB
 	icon_state = "icecream_mob"
 	desc = "filled with bright red ice cream. That's probably not strawberry..."

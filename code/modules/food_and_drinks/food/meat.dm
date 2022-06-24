@@ -97,7 +97,7 @@
 
 /obj/item/food/raw_meatball
 	name = "raw meatball"
-	desc = "A great meal all round. Not a cord of wood. Kinda raw"
+	desc = "A great meal all round. Kinda raw"
 	icon_state = "raw_meatball"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("meat" = 1)
@@ -268,6 +268,9 @@
 	desc = "Snip."
 	icon_state = "american_sausage"
 
+/obj/item/food/sausage/american/MakeProcessable()
+	return
+
 /obj/item/food/salami
 	name = "salami"
 	desc = "A slice of cured salami."
@@ -304,6 +307,7 @@
 	bite_consumption = 12
 	tastes = list("the jungle" = 1, "bananas" = 1)
 	foodtypes = MEAT | SUGAR
+	w_class = WEIGHT_CLASS_TINY
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
 
@@ -638,7 +642,7 @@
 
 /obj/item/food/meat/slab/synthmeat
 	name = "synthmeat"
-	icon_state = "meat_old"
+	icon_state = "synthmeat"
 	desc = "A synthetic slab of meat."
 	foodtypes = RAW | MEAT //hurr durr chemicals we're harmed in the production of this meat thus its non-vegan.
 
