@@ -878,7 +878,7 @@
 	if((flags_1 & NODECONSTRUCT_1) && !replacer_tool.works_from_distance)
 		return FALSE
 
-	var/shouldplaysound = 0
+	var/shouldplaysound = FALSE
 	if(!component_parts)
 		return FALSE
 
