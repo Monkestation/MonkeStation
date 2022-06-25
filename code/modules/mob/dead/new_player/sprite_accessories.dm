@@ -2361,7 +2361,7 @@
 	limbs_id = "zhpipc"
 	
 // MONKESTATION CHANGE: Adds staripc chassis by MilkForever
-/datum/sprite_accessory/ipc_chassis/starindustrialcorporation
+/datum/sprite_accessory/ipc_chassis/starindustrial
 	name = "Star Industrial"
 	limbs_id = "staripc"
 // MONKESTATION CHANGE END
