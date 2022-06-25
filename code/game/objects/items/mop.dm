@@ -53,7 +53,7 @@
 			to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
 			qdel(tempr)
 		else
-			return
+			return FALSE
 	user.changeNext_move(CLICK_CD_MELEE)
 	return TRUE
 	//MONKESTATION EDIT END
