@@ -2360,6 +2360,8 @@
 	name = "Zeng-Hu Pharmaceuticals"
 	limbs_id = "zhpipc"
 	
+// MONKESTATION CHANGE: Adds staripc chassis by MilkForever
 /datum/sprite_accessory/ipc_chassis/starindustrialcorporation
 	name = "Star Industrial"
 	limbs_id = "staripc"
+// MONKESTATION CHANGE END
