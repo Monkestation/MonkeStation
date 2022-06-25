@@ -178,7 +178,7 @@
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
-	evaporates = TRUE //MONKESTATION EDIT ADDITION
+	evaporation_rate = 3
 
 /*
  *	Water reaction to turf
@@ -377,6 +377,7 @@
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
 	var/lube_kind = TURF_WET_LUBE ///What kind of slipperiness gets added to turfs.
+	evaporation_rate = 2.5 //slightly slower than water
 
 /datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
 	var/turf/open/T = get_turf(O)

@@ -174,8 +174,10 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			total_reagents -= reagent_list[reagent_type]
-			reagent_list -= reagent_type
+			total_reagents -= initial(R.evaporation_rate)
+			reagent_list[reagent_type] -= initial(R.evaporation_rate)
+			if(reagent_list[reagent_type] <= 0)
+				reagent_list -= reagent_type
 			any_change = TRUE
 	if(!any_change)
 		SSliquids.evaporation_queue -= my_turf
@@ -186,7 +188,6 @@
 	//Reagents still left. Recalculte height and color and remove us from the queue
 	else
 		has_cached_share = FALSE
-		SSliquids.evaporation_queue -= my_turf
 		calculate_height()
 		set_reagent_color_for_liquid()
 
