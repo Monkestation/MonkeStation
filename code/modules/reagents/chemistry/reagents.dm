@@ -74,6 +74,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /datum/reagent/proc/reaction_obj(obj/O, volume)
 	return
 
+/datum/reagent/proc/reaction_evaporation(turf/T, volume)
+	return
+
 /datum/reagent/proc/reaction_turf(turf/T, volume)
 	/*//monkestation edit begin
 	if(!isspaceturf(T))

@@ -759,6 +759,13 @@
 	taste_mult = 0 // oderless and tasteless
 	random_unrestricted = FALSE
 
+/datum/reagent/oxygen/reaction_evaporation(turf/open/exposed_turf, reac_volume)
+	. = ..()
+	if(istype(exposed_turf))
+		var/temp = holder ? holder.chem_temp : T20C
+		exposed_turf.atmos_spawn_air("o2=[reac_volume/20];TEMP=[temp]")
+	return
+
 /datum/reagent/copper
 	name = "Copper"
 	description = "A highly ductile metal. Things made out of copper aren't very durable, but it makes a decent material for electrical wiring."
