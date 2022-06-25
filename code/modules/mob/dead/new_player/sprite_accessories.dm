@@ -2359,3 +2359,6 @@
 /datum/sprite_accessory/ipc_chassis/zenghupharmaceuticals
 	name = "Zeng-Hu Pharmaceuticals"
 	limbs_id = "zhpipc"
+/datum/sprite_accessory/ipc_chassis/starindustrialcorporation
+	name = "Star Industrial"
+	limbs_id = "staripc"
