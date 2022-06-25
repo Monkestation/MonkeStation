@@ -103,7 +103,7 @@
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
-		//NO_USE_POWER = dont run the auto
+		//NO_USE_POWER = dont run, the auto
 		//IDLE_POWER_USE = run auto, use idle
 		//ACTIVE_POWER_USE = run auto, use active
 	/// the amount of static power load this machine adds to its area's power_usage list when use_power = IDLE_POWER_USE
