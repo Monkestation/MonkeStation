@@ -410,8 +410,8 @@ Ported from /tg/station:
 	return ..()
 
 /obj/item/circuit_component/firealarm/register_shell(atom/movable/shell)
-	RegisterSignal(shell, COMSIG_FIREALARM_SET, .proc/on_launchpad_sent)
-	RegisterSignal(shell, COMSIG_FIREALARM_RESET, .proc/on_launchpad_retrieved)
+	RegisterSignal(shell, COMSIG_FIREALARM_SET, .proc/on_firealarm_triggered)
+	RegisterSignal(shell, COMSIG_FIREALARM_RESET, .proc/on_firealarm_reset)
 
 /obj/item/circuit_component/firealarm/unregister_shell(atom/movable/shell)
 	UnregisterSignal(shell, COMSIG_FIREALARM_SET)
@@ -434,11 +434,11 @@ Ported from /tg/station:
 	if(.)
 		return
 
-	var/obj/machinery/computer/firealarm/shell = parent.shell
+	var/obj/machinery/firealarm/shell = parent.shell
 	if(!istype(shell))
 		return
-	if(COMPONENT_TRIGGERED_BY(alarm_trigger, port))
+	if(COMPONENT_TRIGGERED_BY(input_set, port))
 		shell.alarm()
 
-	if(COMPONENT_TRIGGERED_BY(reset_trigger, port))
+	if(COMPONENT_TRIGGERED_BY(input_reset, port))
 		shell.reset()
