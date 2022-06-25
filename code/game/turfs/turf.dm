@@ -1,7 +1,6 @@
 GLOBAL_LIST_EMPTY(station_turfs)
 /turf
 	icon = 'icons/turf/floors.dmi'
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE // Important for interaction with and visualization of openspace.
 	level = 1
 
 	/// If this is TRUE, that means this floor is on top of plating so pipes and wires and stuff will appear under it... or something like that it's not entirely clear.
@@ -53,6 +52,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Should we used the smooth tiled dirt decal or not
 	var/tiled_dirt = FALSE
 
+	vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_ID	//when this be added to vis_contents of something it inherit something.plane and be associated with something on clicking, important for visualisation of turf in openspace and interraction with openspace that show you turf.
 
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
@@ -221,6 +221,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			travel_z(user, below, FALSE)
 
 /turf/proc/travel_z(mob/user, turf/target, upwards = TRUE)
+	if(!target)
+		to_chat(user, "<span class='warning'>There is nothing in that direction!</span>")
+		return
+	//Check if we can travel in that direction
+	if((upwards && !target.allow_z_travel) || (!upwards && !allow_z_travel))
+		to_chat(user, "<span class='warning'>Something is blocking you!</span>")
+		return
 	user.visible_message("<span class='notice'>[user] begins floating [upwards ? "upwards" : "downwards"]!</span>", "<span class='notice'>You begin floating [upwards ? "upwards" : "downwards"].")
 	var/matrix/M = user.transform
 	//Animation is inverted due to immediately resetting user vars.

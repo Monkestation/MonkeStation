@@ -147,6 +147,7 @@
 	display_name = "Data Theory"
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
+	design_ids = list("bounty_pad", "bounty_pad_control") //Monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -673,11 +674,24 @@
 
 /datum/techweb_node/ipc_organs
 	id = "ipc_organs"
-	tech_tier = 3
+	tech_tier = 4
 	display_name = "IPC Parts"
 	description = "We have the technology to replace him."
 	prereq_ids = list("cyber_organs","robotics")
-	design_ids = list("robotic_liver", "robotic_eyes", "robotic_tongue", "robotic_stomach", "robotic_ears", "power_cord")
+	design_ids = list("robotic_liver",
+						"robotic_eyes",
+						"robotic_tongue",
+						"robotic_stomach",
+						"robotic_ears",
+						"power_cord",
+						"ipc_chest",
+						"ipc_head",
+						"ipc_left_arm",
+						"ipc_right_arm",
+						"ipc_left_leg",
+						"ipc_right_leg",
+						"ipc_rear_cover"
+						)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 5000
 
@@ -742,7 +756,7 @@
 	display_name = "Mining Technology"
 	description = "Better than Efficiency V."
 	prereq_ids = list("engineering", "basic_plasma")
-	design_ids = list("drill", "superresonator", "triggermod", "damagemod", "cooldownmod", "rangemod", "ore_redemption", "mining_equipment_vendor", "exploration_equipment_vendor", "cargoexpress", "plasmacutter")//e a r l y    g a  m e)
+	design_ids = list("drill", "superresonator", "triggermod", "damagemod", "cooldownmod", "rangemod", "ore_redemption", "mining_equipment_vendor", "exploration_equipment_vendor", "cargoexpress", "haul_gauntlet", "plasmacutter")//e a r l y    g a  m e) //Monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -896,7 +910,7 @@
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
 	prereq_ids = list("adv_biotech", "weaponry")
-	design_ids = list("rapidsyringe")
+	design_ids = list("rapidsyringe", "metasyringe") //monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

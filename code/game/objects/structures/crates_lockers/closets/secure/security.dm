@@ -47,6 +47,8 @@
 	new /obj/item/storage/lockbox/medal/service(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
+	new /obj/item/clothing/under/rank/civilian/head_of_personnel/alt(src)
+	new /obj/item/clothing/under/rank/civilian/head_of_personnel/alt/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/cartridge/hop(src)
 	new /obj/item/radio/headset/heads/hop(src)
@@ -243,7 +245,7 @@
 /obj/structure/closet/secure_closet/injection/PopulateContents()
 	..()
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/syringe/lethal/execution(src)
+		new /obj/item/reagent_containers/syringe/meta/execution(src) //monkestation edit
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
