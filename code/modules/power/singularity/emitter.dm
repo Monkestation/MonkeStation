@@ -112,6 +112,7 @@
 		log_game("Emitter deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_ENGINES)
 	QDEL_NULL(sparks)
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/power/emitter/update_icon()
