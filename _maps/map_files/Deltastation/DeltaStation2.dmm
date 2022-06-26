@@ -26894,9 +26894,6 @@
 /turf/closed/wall,
 /area/hallway/primary/fore)
 "bdO" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -26912,19 +26909,18 @@
 /obj/item/radio/intercom{
 	pixel_y = 26
 	},
+/obj/machinery/computer/piratepad_control/civilian,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "bdP" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
+/obj/machinery/piratepad/civilian,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "bdQ" = (

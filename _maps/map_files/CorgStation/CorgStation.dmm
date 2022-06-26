@@ -17027,6 +17027,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/piratepad_control/civilian{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "eda" = (
@@ -62426,7 +62429,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/cargo/request{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
@@ -73344,6 +73347,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/piratepad/civilian,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "rlL" = (
