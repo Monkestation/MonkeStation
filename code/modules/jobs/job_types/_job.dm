@@ -35,7 +35,7 @@
 	//Supervisors, who this person answers to directly
 	var/supervisors = ""
 
-	//Sellection screen color
+	//Selection screen color
 	var/selection_color = "#ffffff"
 
 	//Overhead chat message colour
@@ -64,6 +64,8 @@
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+
+	var/bounty_types = CIV_JOB_BASIC //Monkestation edit
 
 	var/gimmick = FALSE //least hacky way i could think of for this
 
