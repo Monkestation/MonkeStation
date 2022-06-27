@@ -15,7 +15,7 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 200
-	STR.max_items = 15
+	STR.max_items = 20
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.insert_preposition = "in"
 	//Whitelist for items that can be held
@@ -36,9 +36,17 @@
 		/obj/item/wrench,
 		/obj/item/wirecutters,
 		/obj/item/rcl,
+		/obj/item/assembly/flash/handheld,
 	))
 
 /obj/item/storage/toolbox/ce/PopulateContents()
+	new /obj/item/screwdriver(src)
+	new /obj/item/wrench(src)
+	new /obj/item/weldingtool(src)
+	new /obj/item/crowbar(src)
+	new /obj/item/analyzer(src)
+	new /obj/item/wirecutters(src)
+	new /obj/item/multitool(src)
 	new /obj/item/airlock_painter(src)
 	new /obj/item/holosign_creator/engineering(src)
 	new /obj/item/holosign_creator/atmos(src)
@@ -47,5 +55,4 @@
 	new /obj/item/construction/plumbing/engineering(src)
 	new /obj/item/construction/rcd/loaded(src)
 	new /obj/item/rcd_ammo/large(src)
-	new /obj/item/multitool(src)
-	new /obj/item/analyzer(src)
+	new /obj/item/assembly/flash/handheld(src)
