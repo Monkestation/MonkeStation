@@ -45,3 +45,12 @@
 	materials = list(/datum/material/glass = 3000, /datum/material/iron = 5000, /datum/material/copper = 1000)
 	build_type = PROTOLATHE | COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
+
+/datum/design/terminal_shell
+	name = "Terminal"
+	desc = "A shell that allows a user to input text."
+	id = "terminal_shell"
+	build_path = /obj/item/shell/terminal
+	build_type = PROTOLATHE | COMPONENT_PRINTER
+	materials = list(/datum/material/glass = 2000, /datum/material/iron = 11000, /datum/material/gold = 50)
+	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
