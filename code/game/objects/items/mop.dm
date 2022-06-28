@@ -42,16 +42,17 @@
 		if(temp.liquids)
 			range_random += temp
 	for(var/turf in range_random)
-		if(do_after(user, src.mopspeed, target = T) && choice_turf.liquids)
+		if(do_after(user, src.mopspeed, target = T))
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
 				to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
 				return TRUE
 			var/turf/choice_turf = get_turf(pick(range_random))
-			var/datum/reagents/tempr = choice_turf.liquids.take_reagents_flat(free_space)
-			tempr.trans_to(the_mop.reagents, tempr.total_volume)
-			range_random -= choice_turf
-			to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
-			qdel(tempr)
+			if(choice_turf.liquids)
+				var/datum/reagents/tempr = choice_turf.liquids.take_reagents_flat(free_space)
+				tempr.trans_to(the_mop.reagents, tempr.total_volume)
+				range_random -= choice_turf
+				to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
+				qdel(tempr)
 		else
 			return FALSE
 	user.changeNext_move(CLICK_CD_MELEE)
