@@ -10,7 +10,7 @@
 		//Never meant to be created, errors out the ass for mobcode reasons
 		/mob/living/carbon,
 		//Nother template type, doesn't like being created with no seed
-		/obj/item/reagent_containers/food/snacks/grown,
+		/obj/item/food/grown,
 		//And another
 		/obj/item/slimecross/recurring,
 		//This should be obvious
@@ -38,11 +38,11 @@
 	//We can't pass a mind into this
 	ignore += typesof(/obj/item/phylactery)
 	//This expects a seed, we can't pass it
-	ignore += typesof(/obj/item/reagent_containers/food/snacks/grown)
+	ignore += typesof(/obj/item/food/grown)
 	//Nothing to hallucinate if there's nothing to hallicinate
 	ignore += typesof(/obj/effect/hallucination)
 	//These want fried food to take on the shape of, we can't pass that in
-	ignore += typesof(/obj/item/reagent_containers/food/snacks/deepfryholder)
+	ignore += typesof(/obj/item/food/deepfryholder)
 	//Can't pass in a thing to glow
 	ignore += typesof(/obj/effect/abstract/eye_lighting)
 	//It wants a lot more context then we have
@@ -82,6 +82,8 @@
 	ignore += typesof(/obj/structure/alien/resin/flower_bud_enemy)
 	//Expects a mob to holderize, we have nothing to give
 	ignore += typesof(/obj/item/clothing/head/mob_holder)
+	//Expects a hud, generally created for player occupied mobs. There won't be any and this causes issues for us.
+	ignore += typesof(/atom/movable/plane_master_controller)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/baseturf_count = length(spawn_at.baseturfs)
