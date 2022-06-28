@@ -41,6 +41,14 @@
 #define COMSIG_ITEM_EQUIPPED "item_equip"
 /// from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_DROPPED "item_drop"
+///Called when an item is dried by a drying rack:
+#define COMSIG_ITEM_DRIED "item_dried"
+///from base of obj/item/on_grind(): ())
+#define COMSIG_ITEM_ON_GRIND "on_grind"
+///from base of obj/item/on_juice(): ()
+#define COMSIG_ITEM_ON_JUICE "on_juice"
+///from /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params) when an object is used as compost: (mob/user)
+#define COMSIG_ITEM_ON_COMPOSTED "on_composted"
 /// from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
 /// from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
@@ -80,6 +88,31 @@
 /// used to check if the item is wielded for special effects
 #define COMSIG_ITEM_CHECK_WIELDED "item_check_wielded"
   #define COMPONENT_IS_WIELDED 1
+
+// /obj signals for economy
+///called when the payment component tries to charge an account.
+#define COMSIG_OBJ_ATTEMPT_CHARGE "obj_attempt_simple_charge"
+	#define COMPONENT_OBJ_CANCEL_CHARGE  (1<<0)
+///Called when a payment component changes value
+#define COMSIG_OBJ_ATTEMPT_CHARGE_CHANGE "obj_attempt_simple_charge_change"
+
+// /obj/item signals for economy
+///called before an item is sold by the exports system.
+#define COMSIG_ITEM_PRE_EXPORT "item_pre_sold"
+	/// Stops the export from calling sell_object() on the item, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT (1<<0)
+///called when an item is sold by the exports subsystem
+#define COMSIG_ITEM_EXPORTED "item_sold"
+	/// Stops the export from adding the export information to the report, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT_REPORT (1<<0)
+///called when a wrapped up structure is opened by hand
+#define COMSIG_STRUCTURE_UNWRAPPED "structure_unwrapped"
+///called when a wrapped up item is opened by hand
+#define COMSIG_ITEM_UNWRAPPED "item_unwrapped"
+///called when getting the item's exact ratio for cargo's profit.
+#define COMSIG_ITEM_SPLIT_PROFIT "item_split_profits"
+///called when getting the item's exact ratio for cargo's profit, without selling the item.
+#define COMSIG_ITEM_SPLIT_PROFIT_DRY "item_split_profits_dry"
 
 
 // /obj/item/clothing signals

@@ -503,7 +503,7 @@
 
 /mob/living/carbon/update_stamina(extend_stam_crit = FALSE)
 	var/stam = getStaminaLoss()
-	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat && !HAS_TRAIT(src, TRAIT_NOSTAMCRIT))
+	if(stam >= DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat && !HAS_TRAIT(src, TRAIT_NOSTAMCRIT))
 		if(extend_stam_crit || !stam_paralyzed)
 			enter_stamcrit()
 	else if(stam_paralyzed)
@@ -759,6 +759,9 @@
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	if(reagents)
 		reagents.clear_reagents()
+	if(mind)
+		for(var/addiction_type in subtypesof(/datum/addiction))
+			mind.remove_addiction_points(addiction_type, MAX_ADDICTION_POINTS) //Remove the addiction!
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
@@ -777,8 +780,6 @@
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory
 			qdel(R)
 		update_handcuffed()
-		if(reagents)
-			reagents.addiction_list = list()
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	..()
 	// heal ears after healing traits, since ears check TRAIT_DEAF trait

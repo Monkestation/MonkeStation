@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/mobile = list()
@@ -40,6 +40,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/discoveredPlants = list()	//Typepaths for unusual plants we've already sent CentCom, associated with their potencies
 
 	var/list/supply_packs = list()
+	var/list/chef_groceries = list()
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
 	var/list/orderhistory = list()
@@ -513,6 +514,7 @@ SUBSYSTEM_DEF(shuttle)
 	return new_transit_dock
 
 /datum/controller/subsystem/shuttle/Recover()
+	initialized = SSshuttle.initialized
 	if (istype(SSshuttle.mobile))
 		mobile = SSshuttle.mobile
 	if (istype(SSshuttle.stationary))

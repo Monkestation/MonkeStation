@@ -192,7 +192,7 @@
 			if(closed[target] || isarea(target))  // avoid infinity situations
 				continue
 			closed[target] = TRUE
-			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
+			if(isturf(target) || isturf(target.loc) || (target in direct_access) || (isobj(target) && target.flags_1 & IS_ONTOP_1)) //Directly accessible atoms
 				if(Adjacent(target) || (tool && CheckToolReach(src, target, tool.reach))) //Adjacent or reaching attacks
 					return TRUE
 
@@ -479,14 +479,14 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && iscarbon(usr))
+	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
-		var/turf/T = parse_caught_click_modifiers(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
-		params += "&catcher=1"
-		if(T)
-			T.Click(location, control, params)
+		var/turf/click_turf = parse_caught_click_modifiers(modifiers, get_turf(usr.client ? usr.client.eye : usr), usr.client)
+		if (click_turf)
+			modifiers["catcher"] = TRUE
+			click_turf.Click(click_turf, control, list2params(modifiers))
 	. = 1
 
 /* MouseWheelOn */
@@ -506,7 +506,7 @@
 
 /mob/proc/check_click_intercept(params,A)
 	//Client level intercept
-	if(client && client.click_intercept)
+	if(client?.click_intercept)
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
 			return TRUE
 

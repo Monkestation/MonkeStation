@@ -46,6 +46,11 @@
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 
+	if(mind)
+		for(var/key in mind.addiction_points)
+			var/datum/addiction/addiction = SSaddiction.all_addictions[key]
+			addiction.process_addiction(src)
+
 	//Updates the number of stored chemicals for changeling powers
 	if(hud_used?.lingchemdisplay && !isalien(src) && mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
@@ -326,7 +331,7 @@
 	//Find how many bodyparts we have with stamina damage
 	if(stam_regen)
 		for(var/obj/item/bodypart/BP as() in bodyparts)
-			if(BP.stamina_dam > DAMAGE_PRECISION)
+			if(BP.stamina_dam >= DAMAGE_PRECISION)
 				bodyparts_with_stam++
 				total_stamina_loss += BP.stamina_dam * BP.stam_damage_coeff
 		//Force bodyparts to heal if we have more than 120 stamina damage (6 seconds)

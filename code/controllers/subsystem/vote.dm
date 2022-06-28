@@ -181,6 +181,12 @@ SUBSYSTEM_DEF(vote)
 	return vote
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, forced=FALSE, popup=FALSE)
+	//Server is still intializing.
+	if(!MC_RUNNING(init_stage))
+		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
+		return FALSE
+
+	var/datum/votesounds/votesound = new() //monkestation edit
 	if(!mode)
 		if(started_time)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
@@ -201,8 +207,10 @@ SUBSYSTEM_DEF(vote)
 		switch(vote_type)
 			if("restart")
 				choices.Add("Restart Round","Continue Playing")
+				sound_to_playing_players(votesound.get_restart_sound()) //monkestation edit
 			if("gamemode")
 				choices.Add(config.votable_modes)
+				sound_to_playing_players(votesound.get_gamemode_sound()) //monkestation edit
 			if("map")
 				// Randomizes the list so it isn't always METASTATION
 				var/list/maps = list()
@@ -214,8 +222,10 @@ SUBSYSTEM_DEF(vote)
 					shuffle_inplace(maps)
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
+				sound_to_playing_players(votesound.get_mapvote_sound()) //monkestation edit
 			if("transfer")
 				choices.Add("Initiate Crew Transfer", "Continue Playing")
+				sound_to_playing_players(votesound.get_transfer_sound()) //monkestation edit
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
@@ -225,6 +235,7 @@ SUBSYSTEM_DEF(vote)
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
+				sound_to_playing_players(votesound.get_custom_sound()) //monkestation edit
 			else
 				return 0
 		mode = vote_type
@@ -235,7 +246,7 @@ SUBSYSTEM_DEF(vote)
 			text += "\n[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font>")
+		to_chat(world, "\n<font color='purple'><span class='colossus'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font>") //monkestation edit
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c
@@ -263,7 +274,7 @@ SUBSYSTEM_DEF(vote)
 /mob/verb/vote()
 	set category = "OOC"
 	set name = "Vote"
-	SSvote.ui_interact(usr)
+	SSvote.ui_interact(src)
 
 /datum/controller/subsystem/vote/ui_state()
 	return GLOB.always_state

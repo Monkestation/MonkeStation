@@ -190,6 +190,8 @@ SUBSYSTEM_DEF(mapping)
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
 	holodeck_templates = SSmapping.holodeck_templates
+	transit = SSmapping.transit
+	areas_in_z = SSmapping.areas_in_z
 
 	config = SSmapping.config
 	next_map_config = SSmapping.next_map_config
@@ -339,7 +341,7 @@ SUBSYSTEM_DEF(mapping)
 /// Load new random bar and engine procs- MonkeStation Edit End
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery({"
+		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
 			UPDATE [format_table_name("round")] SET map_name = :map_name WHERE id = :round_id
 		"}, list("map_name" = config.map_name, "round_id" = GLOB.round_id))
 		query_round_map_name.Execute()

@@ -80,7 +80,6 @@
 	screen_map |= screen_obj
 	screen |= screen_obj
 
-
 /**
  * Clears the map of registered screen objects.
  */

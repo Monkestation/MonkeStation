@@ -716,7 +716,7 @@
 	else if(href_list["messageedits"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery(
+		var/datum/db_query/query_get_message_edits = SSdbcore.NewQuery(
 			"SELECT edits FROM [format_table_name("messages")] WHERE id = :message_id",
 			list("message_id" = href_list["messageedits"])
 		)
@@ -1204,7 +1204,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
 			return
 
-		var/obj/item/reagent_containers/food/snacks/cookie/cookie = new(H)
+		var/obj/item/food/cookie/cookie = new(H)
 		if(H.put_in_hands(cookie))
 			H.update_inv_hands()
 		else
