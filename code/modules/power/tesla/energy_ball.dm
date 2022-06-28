@@ -37,9 +37,7 @@
 	var/miniball = FALSE
 
 	dissipate = TRUE //Do we lose energy over time?
-	dissipate_delay = 5
-	time_since_last_dissipiation = 0
-	dissipate_strength = 1
+	dissipate_delay = 10 SECONDS
 
 	var/produced_power
 	var/energy_to_raise = 32
