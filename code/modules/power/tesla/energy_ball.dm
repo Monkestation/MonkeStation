@@ -1,5 +1,7 @@
 #define TESLA_DEFAULT_POWER 13826
 #define TESLA_MINI_POWER 6913
+#define TESLA_MAX_BALLS 10
+
 
 //Zap constants, speeds up targeting
 #define BIKE (COIL + 1)
@@ -33,6 +35,12 @@
 	var/target
 	var/list/orbiting_balls = list()
 	var/miniball = FALSE
+
+	dissipate = TRUE //Do we lose energy over time?
+	dissipate_delay = 5
+	time_since_last_dissipiation = 0
+	dissipate_strength = 1
+
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
@@ -65,11 +73,11 @@
 /obj/anomaly/energy_ball/ex_act(severity, target)
 	return
 
-/obj/anomaly/energy_ball/process()
+/obj/anomaly/energy_ball/process(delta_time)
 	if(orbiting)
 		energy = 0 // ensure we dont have miniballs of miniballs
 	else
-		handle_energy()
+		handle_energy(delta_time)
 
 	//MonkeStation Edit Start: Slows the tesla a bit
 	if(last_move <= world.time + 4 SECONDS)
@@ -77,7 +85,7 @@
 		move(4 + (orbiting_balls.len * 1.5 ))
 		//MonkeStation Edit End
 
-		playsound(src.loc, 'sound/magic/lightningbolt.ogg', 100, TRUE, extrarange = 30)
+		playsound(src.loc, 'sound/magic/lightningbolt.ogg', 70, TRUE, extrarange = 30)
 
 		pixel_x = 0
 		pixel_y = 0
@@ -129,12 +137,15 @@
 
 	return TRUE
 
-/obj/anomaly/energy_ball/proc/handle_energy()
+/obj/anomaly/energy_ball/proc/handle_energy(delta_time)
+	if(!COOLDOWN_FINISHED(src, RESTART_DISSIPATE))
+		return
+
 	if(energy >= energy_to_raise)
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
-		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, TRUE, extrarange = 30)
+		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 70, TRUE, extrarange = 30)
 		addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
 	else if(energy < energy_to_lower && orbiting_balls.len)
 		energy_to_raise = energy_to_raise / 1.25
@@ -143,8 +154,13 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
+	else if(orbiting_balls.len)
+		dissipate(delta_time)
+
 /obj/anomaly/energy_ball/proc/new_mini_ball()
 	if(!loc)
+		return
+	if(orbiting_balls.len >= TESLA_MAX_BALLS)
 		return
 
 	var/obj/anomaly/energy_ball/miniball = new /obj/anomaly/energy_ball(
@@ -202,7 +218,7 @@
 			return
 	if(!iscarbon(A))
 		return
-	for(var/obj/machinery/power/energy_accumulator/grounding_rod/GR in orange(src, 2))
+	for(var/obj/machinery/power/energy_accumulator/grounding_rod/GR in orange(2, src))
 		if(GR.anchored)
 			return
 	var/mob/living/carbon/C = A
