@@ -42,7 +42,7 @@
 		if(temp.liquids)
 			range_random += temp
 	for(var/turf in range_random)
-		if(do_after(user, src.mopspeed, target = T))
+		if(do_after(user, src.mopspeed, target = T) && choice_turf.liquids)
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
 				to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
 				return TRUE
