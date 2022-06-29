@@ -32,9 +32,9 @@
 	display_name = "Terminal"
 	display_desc = "Allows someone to input a text string."
 
-	/// returns who activated the shell
+	/// Returns the text inputted.
 	var/datum/port/output/input_text
-	/// Called when attack_hand is called on the shell.
+	/// Called when text is entered.
 	var/datum/port/output/signal
 
 /obj/item/circuit_component/terminal/Initialize(mapload)
