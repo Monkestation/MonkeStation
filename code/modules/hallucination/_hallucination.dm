@@ -31,7 +31,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 	//This system used to shit bricks with decimal values. Fuck it.
 	if(hallucination <= 0)
-		hallucin
+		hallucination = 0
+		return
 
 	hallucination = max(hallucination - (0.5 * delta_time), 0)
 	if(world.time < next_hallucination)
