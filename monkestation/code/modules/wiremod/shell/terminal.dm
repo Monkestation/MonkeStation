@@ -46,18 +46,6 @@
 	signal = null
 	return ..()
 
-// /obj/item/circuit_component/terminal/register_shell(atom/movable/shell)
-// 	RegisterSignal(shell, COMSIG_ATOM_ATTACK_HAND, .proc/on_attack_hand)
-
-// /obj/item/circuit_component/terminal/unregister_shell(atom/movable/shell)
-// 	UnregisterSignal(shell, COMSIG_ATOM_ATTACK_HAND)
-
-// /obj/item/circuit_component/terminal/proc/on_attack_hand(atom/source, mob/user)
-// 	SIGNAL_HANDLER
-// 	var/message = stripped_input(user, "Input:", "Terminal")
-// 	input_text.set_output(message)
-// 	signal.set_output(COMPONENT_SIGNAL)
-
 /obj/item/circuit_component/terminal/proc/get_input(mob/user)
 	var/message = stripped_input(user, "Terminal Input:", "Terminal")
 	input_text.set_output(message)
