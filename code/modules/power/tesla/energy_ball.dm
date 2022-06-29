@@ -115,7 +115,7 @@
 			dirs += get_dir(src, real_thing) //Carry some momentum yeah? Just a bit tho
 	for (var/i in 0 to move_amount)
 		var/move_dir = pick(dirs) //ensures teslas don't just sit around
-		if (target && prob(10))
+		if (target && prob(25)) //Make the energy_ball movement more erratic by raising the prob
 			move_dir = get_dir(src, target)
 		var/turf/turf_to_move = get_step(src, move_dir)
 		if (can_move(turf_to_move))
