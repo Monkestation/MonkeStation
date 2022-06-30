@@ -3674,6 +3674,7 @@
 #include "monkestation\code\game\objects\effects\spawners\engine_spawner.dm"
 #include "monkestation\code\game\objects\effects\spawners\lootdrop.dm"
 #include "monkestation\code\game\objects\items\anime.dm"
+#include "monkestation\code\game\objects\items\hacked_anime.dm"
 #include "monkestation\code\game\objects\items\fluff_papers.dm"
 #include "monkestation\code\game\objects\items\granters.dm"
 #include "monkestation\code\game\objects\items\ipc_construction.dm"

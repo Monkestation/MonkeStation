@@ -126,7 +126,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndie_kit/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
+	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "anime" = 2)))
 		if("bond") // ~30 tc
 			new /obj/item/gun/ballistic/automatic/pistol(src) // 7 tc
 			new /obj/item/suppressor(src) // 2 tc
@@ -196,7 +196,7 @@
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon(src) // <1 tc
 			new /obj/item/clothing/suit/hooded/wintercoat(src) // 0 tc
-			new /obj/item/clothing/shoes/winterboots/noslip(src) // 0 tc
+			new /obj/item/clothing/shoes/winterboots/noslip(src) // 0 tc(these are noslip so they are closer to 3 tc)
 			new /obj/item/grenade/gluon(src) // part of grenadier's belt, ~1 tc each?
 			new /obj/item/grenade/gluon(src)
 			new /obj/item/grenade/gluon(src)
@@ -205,6 +205,16 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/pin(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) // 8 tc //see see it fits the theme bc its blue and ice is blue
+
+		if("anime") //[put cost here]
+			new /obj/item/clothing/suit/armor/vest/leather(src) // ~1 tc
+			new /obj/item/clothing/head/fedora(src) // ~1-3 tc? has the 30 throw damage of the null rod version
+			new /obj/item/clothing/shoes/chameleon/noslip(src) // 3 tc
+			new /obj/item/choice_beacon/hacked_anime(src) // unique item however it has almost 0 non joke uses
+			new /obj/item/choice_beacon/hacked_anime(src)
+
+
+
 //monkestation end
 
 /obj/item/storage/box/syndie_kit/contract_kit
