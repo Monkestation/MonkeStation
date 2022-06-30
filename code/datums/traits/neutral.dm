@@ -97,3 +97,19 @@
 
 /datum/quirk/monochromatic/remove()
 	quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
+
+/datum/quirk/nudist
+	name = "Nudist"
+	desc = "You managed to get a rare invisible jumpsuit, it stills works as a normal jumpsuit."
+	value = 0
+	gain_text = "<span class='notice'>You have an invisible jumpsuit in your backpack</span>"
+	lose_text = "<span class='danger'>You... don't have an invisible jumpsuit?</span>"
+
+/datum/quirk/nudist/on_spawn()
+    var/mob/living/carbon/human/H = quirk_holder
+    var/obj/item/clothing/under/invisible/Clothing = new(get_turf(H))
+    var/list/slots = list (
+        "backpack" = ITEM_SLOT_BACKPACK,
+        "hands" = ITEM_SLOT_HANDS,
+    )
+    H.equip_in_one_of_slots(Clothing , slots , qdel_on_fail = TRUE)
