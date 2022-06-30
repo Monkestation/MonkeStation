@@ -48,7 +48,7 @@
 
 /datum/quirk/nudist/on_spawn()
     var/mob/living/carbon/human/person = quirk_holder
-    var/obj/item/clothing/under/invisible/clothing = new(get_turf(H))
+    var/obj/item/clothing/under/invisible/clothing = new(get_turf(person))
     var/list/slots = list (
         "backpack" = ITEM_SLOT_BACKPACK,
         "hands" = ITEM_SLOT_HANDS,
