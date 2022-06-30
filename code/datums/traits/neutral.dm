@@ -97,7 +97,7 @@
 
 /datum/quirk/monochromatic/remove()
 	quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
-
+//Monkestation change: Nudist Quirk by MilkForever, special thanks to dwasint
 /datum/quirk/nudist
 	name = "Nudist"
 	desc = "You managed to get a rare invisible jumpsuit, it stills works as a normal jumpsuit."
@@ -113,3 +113,4 @@
         "hands" = ITEM_SLOT_HANDS,
     )
     H.equip_in_one_of_slots(Clothing , slots , qdel_on_fail = TRUE)
+//Monkestation change end
