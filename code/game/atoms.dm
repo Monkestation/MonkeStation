@@ -1537,9 +1537,19 @@
 
 //Update the screentip to reflect what we're hoverin over
 /atom/MouseEntered(location, control, params)
-	. = ..()
-	if(usr?.hud_used)
-		if(!usr.client?.prefs.screentip_pref || (flags_1 & NO_SCREENTIPS_1))
-			usr.hud_used.screentip_text.maptext = ""
+	SSmouse_entered.hovers[usr.client] = src
+
+/// Fired whenever this atom is the most recent to be hovered over in the tick.
+/// Preferred over MouseEntered if you do not need information such as the position of the mouse.
+/// Especially because this is deferred over a tick, do not trust that `client` is not null.
+/atom/proc/on_mouse_enter(client/client)
+	SHOULD_NOT_SLEEP(TRUE)
+
+	var/mob/user = client?.mob
+	var/datum/hud/active_hud = user.hud_used
+	if(active_hud)
+		if(!user.client?.prefs.screentip_pref || (flags_1 & NO_SCREENTIPS_1))
+			active_hud.screentip_text.maptext = ""
 		else
-			usr.hud_used.screentip_text.maptext = MAPTEXT("<span style='text-align: center'><span style='font-size: 32px'><span style='color:[usr.client.prefs.screentip_color]: 32px'>[name]</span>")
+			//We inline a MAPTEXT() here, because there's no good way to statically add to a string like this
+			active_hud.screentip_text.maptext = "<span class='maptext' style='text-align: center; font-size: 32px; color: [user.client.prefs.screentip_color]'>[name]</span>"
