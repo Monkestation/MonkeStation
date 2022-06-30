@@ -387,7 +387,7 @@
 	display_name = "Movable Shell Research"
 	description = "Grants access to movable shells."
 	prereq_ids = list("adv_shells", "robotics")
-	design_ids = list("comp_pull", "drone_shell")
+	design_ids = list("comp_pull", "drone_shell","scout_drone_shell") //Monkestation edit: Added "scout_drone_shell"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 /datum/techweb_node/server_shell_tech

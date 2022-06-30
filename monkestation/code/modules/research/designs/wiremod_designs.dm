@@ -54,3 +54,16 @@
 	build_type = PROTOLATHE | COMPONENT_PRINTER
 	materials = list(/datum/material/glass = 2000, /datum/material/iron = 11000, /datum/material/gold = 50)
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
+
+/datum/design/drone_shell
+	name = "Scout Shell"
+	desc = "A drone with that can move fast, but can't use the pull component."
+	id = "scout_drone_shell"
+	build_path = /obj/item/shell/scout
+	build_type = PROTOLATHE | COMPONENT_PRINTER
+	materials = list(
+		/datum/material/glass = 2250,
+		/datum/material/iron = 10000,
+		/datum/material/gold = 250,
+	)
+	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
