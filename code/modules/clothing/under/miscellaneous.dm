@@ -129,6 +129,16 @@
 	icon_state = "plasmarefill"
 	icon = 'icons/obj/device.dmi'
 
+//Monkestation change: Nudist quirk, invisible jumpsuit by MilkForever
+/obj/item/clothing/under/invisible
+	name = "invisible jumpsuit"
+	desc = "Some sort of jumpsuit that dissapears when worn, but still behaves as a normal jumpsuit."
+	icon_state = "invisible"
+	item_state = "invisible"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	can_adjust = FALSE
+//Monkestation change end
+
 /////////////////
 //DONATOR ITEMS//
 /////////////////
