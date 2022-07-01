@@ -44,13 +44,15 @@
 /datum/quirk/nudist
 	name = "Nudist"
 	desc = "You managed to get a rare invisible jumpsuit, it stills works as a normal jumpsuit."
+	mob_trait = TRAIT_NUDIST
 	value = 0
+	gain_text = "<span class='notice'>You have an invisible jumpsuit.</span>"
 
 /datum/quirk/nudist/on_spawn()
-    var/mob/living/carbon/human/person = quirk_holder
-    var/obj/item/clothing/under/invisible/clothing = new(get_turf(person))
-    var/list/slots = list (
-        "backpack" = ITEM_SLOT_BACKPACK,
-        "hands" = ITEM_SLOT_HANDS,
-    )
-    person.equip_in_one_of_slots(clothing , slots , qdel_on_fail = TRUE)
+	var/mob/living/carbon/human/person = quirk_holder
+	var/obj/item/clothing/under/invisible/clothing = new(get_turf(person))
+	var/list/slots = list (
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"hands" = ITEM_SLOT_HANDS,
+	)
+	person.equip_in_one_of_slots(clothing , slots , qdel_on_fail = TRUE)
