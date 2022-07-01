@@ -42,6 +42,8 @@
 	var/decomp_type = /obj/item/food/badrecipe/moldy
 	///Food that needs to be picked up in order to decompose.
 	var/decomp_req_handle = FALSE
+	///Used to set custom decomposition times for food. Set to 0 to have it automatically set via the food's flags.
+	var/decomposition_time = 0
 
 /obj/item/food/Initialize()
 	. = ..()
@@ -80,7 +82,7 @@
 ///This proc makes things decompose. Set preserved_food to TRUE to make it never decompose.
 /obj/item/food/proc/MakeDecompose()
 	if(!preserved_food)
-		AddComponent(/datum/component/decomposition, decomp_req_handle, decomp_flags = foodtypes, decomp_result = decomp_type, ant_attracting = ant_attracting)
+		AddComponent(/datum/component/decomposition, decomp_req_handle, decomp_flags = foodtypes, decomp_result = decomp_type, ant_attracting = ant_attractin, custom_time = decomposition_time)
 
 ///This proc handles trash components, overwrite this if you want the object to spawn trash
 /obj/item/food/proc/MakeLeaveTrash()
