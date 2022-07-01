@@ -917,18 +917,20 @@
 	var/ants_remaining = 0
 
 /datum/status_effect/ants/on_creation(mob/living/new_owner, amount_left)
-	if(isnum(amount_left))
-		to_chat(new_owner, "<span class='userdanger'>You're covered in ants!</span>")
+	if(isnum(amount_left) && new_owner.stat < DEAD)
+		if(new_owner.stat < UNCONSCIOUS) // Unconcious people won't get messages
+			to_chat(new_owner, "<span class='userdanger'>You're covered in ants!</span>")
 		ants_remaining += amount_left
 	. = ..()
 
 /datum/status_effect/ants/refresh(effect, amount_left)
 	var/mob/living/carbon/human/victim = owner
-	if(isnum(amount_left) && ants_remaining >= 1)
-		if(!prob(1)) // 99%
-			to_chat(victim, "<span class='userdanger'>You're covered in MORE ants!</span>")
-		else // 1%
-			victim.say("AAHH! THIS SITUATION HAS ONLY BEEN MADE WORSE WITH THE ADDITION OF YET MORE ANTS!!", forced = /datum/status_effect/ants)
+	if(isnum(amount_left) && ants_remaining >= 1 && victim.stat < DEAD)
+		if(victim.stat < UNCONSCIOUS) // Unconcious people won't get messages
+			if(!prob(1)) // 99%
+				to_chat(victim, "<span class='userdanger'>You're covered in MORE ants!</span>")
+			else // 1%
+				victim.say("AAHH! THIS SITUATION HAS ONLY BEEN MADE WORSE WITH THE ADDITION OF YET MORE ANTS!!", forced = /datum/status_effect/ants)
 		ants_remaining += amount_left
 	. = ..()
 
@@ -958,15 +960,15 @@
 				if (1 to 8) //16% Chance
 					var/obj/item/bodypart/head/hed = victim.get_bodypart(BODY_ZONE_HEAD)
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your scalp!.</span>")
-					hed.receive_damage(0.1,0)
+					hed.receive_damage(1,0)
 				if (9 to 29) //40% chance
 					var/obj/item/bodypart/arm = victim.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your arms!</span>")
-					arm.receive_damage(0.1,0)
+					arm.receive_damage(3,0)
 				if (30 to 49) //38% chance
 					var/obj/item/bodypart/leg = victim.get_bodypart(pick(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG))
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your leg!</span>")
-					leg.receive_damage(0.1,0)
+					leg.receive_damage(3,0)
 				if(50) // 2% chance
 					to_chat(victim, "<span class='danger'>You rub some ants away from your eyes!</span>")
 					victim.blur_eyes(3)

@@ -2058,7 +2058,7 @@
 	var/amount_left = 0
 
 /datum/reagent/ants/on_mob_life(mob/living/carbon/victim, delta_time)
-	victim.adjustBruteLoss(max(0.1, round((ant_damage * 0.005),0.1))) //Scales with time. Around 12.5 brute for 50 seconds.
+	victim.adjustBruteLoss(max(0.1, round((ant_damage * 0.025),0.1))) //Scales with time. Roughly 32 brute with 100u.
 	if(DT_PROB(5, delta_time))
 		if(DT_PROB(5, delta_time)) //Super rare statement
 			victim.say("AUGH NO NOT THE ANTS! NOT THE ANTS! AAAAUUGH THEY'RE IN MY EYES! MY EYES! AUUGH!!", forced = /datum/reagent/ants)
@@ -2066,15 +2066,40 @@
 			victim.say(pick("THEY'RE UNDER MY SKIN!!", "GET THEM OUT OF ME!!", "HOLY HELL THEY BURN!!", "MY GOD THEY'RE INSIDE ME!!", "GET THEM OUT!!"), forced = /datum/reagent/ants)
 	if(DT_PROB(15, delta_time))
 		victim.emote("scream")
-	if(DT_PROB(2, delta_time))
-		victim.vomit(rand(1, 2), stun = FALSE)
-	ant_damage += 1
+	if(DT_PROB(2, delta_time)) // Stuns, but purges ants.
+		victim.vomit(rand(5,10), FALSE, TRUE, 1, TRUE, FALSE)
+	ant_damage++
 	return ..()
 
 /datum/reagent/ants/on_mob_end_metabolize(mob/living/living_anthill)
 	ant_damage = 0
 	to_chat(living_anthill, "<span class='notice'>You feel like the last of the ants are out of your system.</span>")
 	return ..()
+
+/datum/reagent/ants/reaction_turf(turf/exposed_turf, reac_volume)
+	. = ..()
+	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
+		return
+	if((reac_volume <= 10)) // Makes sure people don't duplicate ants.
+		return
+
+	var/obj/effect/decal/cleanable/ants/pests = locate() in exposed_turf.contents
+	if(!pests)
+		pests = new(exposed_turf)
+	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
+	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
+	pests.update_ant_damage(spilled_ants)
+
+
+/datum/reagent/ants/reaction_obj(obj/exposed_obj, reac_volume)
+	. = ..()
+	var/turf/open/my_turf = exposed_obj.loc // No dumping ants on an object in a storage slot
+	if(!istype(my_turf)) //Are we actually in an open turf?
+		return
+	var/static/list/accepted_types = typecacheof(list(/obj/machinery/atmospherics, /obj/structure/cable, /obj/structure/disposalpipe))
+	if(!accepted_types[exposed_obj.type]) // Bypasses pipes, vents, and cables to let people create ant mounds on top easily.
+		return
+	expose_turf(my_turf, reac_volume)
 
 /datum/reagent/ants/reaction_mob(mob/living/exposed_mob, method=TOUCH, reac_volume, show_message = 1)
 	. = ..()

@@ -36,6 +36,8 @@
 	var/burns_in_oven = FALSE
 	///Food that's immune to decomposition.
 	var/preserved_food = FALSE
+	///Food that needs to be picked up in order to decompose.
+	var/decomp_req_handle = FALSE
 
 /obj/item/food/Initialize()
 	. = ..()
@@ -74,7 +76,7 @@
 ///This proc makes things decompose. Set preserved_food to TRUE to make it never decompose.
 /obj/item/food/proc/MakeDecompose()
 	if(!preserved_food)
-		AddComponent(/datum/component/decomposition, decomp_flags = foodtypes)
+		AddComponent(/datum/component/decomposition, decomp_req_handle, decomp_flags = foodtypes)
 
 ///This proc handles trash components, overwrite this if you want the object to spawn trash
 /obj/item/food/proc/MakeLeaveTrash()
