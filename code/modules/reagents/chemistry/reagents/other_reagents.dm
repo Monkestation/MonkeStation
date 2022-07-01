@@ -2109,7 +2109,5 @@
 	if(!iscarbon(exposed_mob) || (method in list(INGEST,INJECT)))
 		return
 	if(method in list(PATCH,TOUCH,VAPOR))
-		message_admins("WORKING")
 		amount_left = round(reac_volume,0.1)
-		message_admins("AMOUNT LEFT: [amount_left]")
 		exposed_mob.apply_status_effect(STATUS_EFFECT_ANTS, amount_left)
