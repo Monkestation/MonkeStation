@@ -2091,7 +2091,7 @@
 		pests = new(exposed_turf)
 	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
 	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
-	pests.update_ant_damage(spilled_ants)
+	pests.update_ant_damage()
 
 
 /datum/reagent/ants/reaction_obj(obj/exposed_obj, reac_volume)

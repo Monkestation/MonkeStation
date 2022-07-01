@@ -23,11 +23,11 @@
 	/// Use for determining what kind of item the food decomposes into.
 	var/decomp_result
 	/// Does our food attract ants?
-	var/produce_ants = TRUE
+	var/produce_ants = FALSE
 	/// Used for examining
 	var/examine_type = DECOMP_EXAM_NORMAL
 
-/datum/component/decomposition/Initialize(mapload, decomp_req_handle, decomp_flags = NONE, decomp_result, ant_attracting = TRUE)
+/datum/component/decomposition/Initialize(mapload, decomp_req_handle, decomp_flags = NONE, decomp_result, ant_attracting = FALSE)
 	if(!isobj(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -35,8 +35,7 @@
 	src.decomp_result = decomp_result
 	if(mapload || decomp_req_handle)
 		handled = FALSE
-	if(!ant_attracting)
-		produce_ants = FALSE
+	src.produce_ants = ant_attracting
 
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/handle_movement)
 	RegisterSignal(parent, list(
@@ -109,8 +108,9 @@
 	var/obj/decomp = parent //Lets us spawn things at decomp
 	if(produce_ants)
 		new /obj/effect/decal/cleanable/ants(decomp.loc)
-	new decomp_result(decomp.loc)
-	decomp.visible_message("<span class='notice'>[decomp] gets overtaken by mold and ants! Gross!</span>")
+	if(decomp_result)
+		new decomp_result(decomp.loc)
+	decomp.visible_message("<span class='notice'>[decomp] gets overtaken by mold[produce_ants ? " and ants":""]! Gross!</span>")
 	qdel(decomp)
 	return
 

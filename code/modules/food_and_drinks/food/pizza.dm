@@ -320,7 +320,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/toxin/amatoxin = 2)
 	tastes = list("stale crust" = 1, "rancid cheese" = 2, "mushroom" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | GROSS
-	preserved_food = TRUE
+	preserved_food = FALSE
+	ant_attracting = TRUE
+	decomp_type = null
+	decomposition_time = 30 SECONDS
 
 // Ant Pizza, now with more ants.
 /obj/item/food/pizza/ants

@@ -68,6 +68,8 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	mergeable_decal = FALSE
 	turf_loc_check = FALSE
+	decal_reagent = /datum/reagent/liquidgibs
+	reagent_amount = 5
 
 	var/already_rotting = FALSE
 		///Information about the diseases our streaking spawns
@@ -75,7 +77,6 @@
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	reagents.add_reagent(/datum/reagent/liquidgibs, 5)
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, .proc/on_pipe_eject)
 	if(already_rotting)
 		start_rotting(rename=FALSE)

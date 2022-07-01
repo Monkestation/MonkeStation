@@ -155,6 +155,10 @@
 	name = "moldy mess"
 	desc = "A rancid, disgusting culture of mold and ants. Somewhere under there, at <i>some point,</i> there was food."
 	food_reagents = list(/datum/reagent/toxin/bad_food = 30)
+	preserved_food = FALSE
+	ant_attracting = TRUE
+	decomp_type = null
+	decomposition_time = 30 SECONDS
 
 /obj/item/food/carrotfries
 	name = "carrot fries"

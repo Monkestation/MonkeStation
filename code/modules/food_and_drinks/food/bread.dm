@@ -58,7 +58,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("decaying fungus" = 1)
 	foodtypes = GROSS
-	preserved_food = TRUE
+	preserved_food = FALSE
+	ant_attracting = TRUE
+	decomp_type = null
+	decomposition_time = 30 SECONDS
 
 /obj/item/food/bread/meat
 	name = "meatbread loaf"
