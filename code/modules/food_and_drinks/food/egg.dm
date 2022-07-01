@@ -22,7 +22,7 @@
 	decomp_req_handle = TRUE //so laid eggs can actually become chickens
 
 /obj/item/food/egg/rotten
-	food_reagents = list(/datum/reagent/consumable/eggrot = 10, /datum/reagent/consumable/mold = 10)
+	food_reagents = list(/datum/reagent/consumable/eggrot = 10)
 	microwaved_type = /obj/item/food/boiledegg/rotten
 	foodtypes = GROSS
 	preserved_food = TRUE
