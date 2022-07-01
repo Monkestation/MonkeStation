@@ -4,11 +4,10 @@
 #define DECOMPOSITION_TIME_RAW 5 MINUTES
 #define DECOMPOSITION_TIME_GROSS 7 MINUTES
 
-
 /datum/component/decomposition
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	/// Makes sure food only starts decomposing if a player's EVER picked it up before
-	var/handled = FALSE
+	/// Makes sure maploaded food only starts decomposing if a player's EVER picked it up before
+	var/handled = TRUE
 	/// Used to stop food in someone's hand & in storage slots from decomposing.
 	var/protected = FALSE
 	/// Used to stop the timer & check for the examine proc
@@ -54,6 +53,9 @@
 
 	time_remaining = original_time
 
+	handle_movement()
+
+
 /datum/component/decomposition/UnregisterFromParent()
 	UnregisterSignal(parent, list(
 		COMSIG_ITEM_PICKUP,
@@ -64,13 +66,14 @@
 		COMSIG_PARENT_EXAMINE))
 
 /datum/component/decomposition/proc/handle_movement()
-	if(!handled) // Has someone touched this previously?
+	SIGNAL_HANDLER
+	if(!handled) // If maploaded, has someone touched this previously?
 		return
 	var/obj/food = parent // Doesn't HAVE to be food, that's just what it's intended for
 
 	var/turf/open/open_turf = food.loc
 
-	if(!istype(open_turf) || istype(open_turf, /turf/open/lava)) //Are we actually in a valid open turf?
+	if(!istype(open_turf) || islava(open_turf)) //Are we actually in a valid open turf?
 		remove_timer()
 		return
 
@@ -131,4 +134,3 @@
 #undef DECOMPOSITION_TIME
 #undef DECOMPOSITION_TIME_GROSS
 #undef DECOMPOSITION_TIME_RAW
-
