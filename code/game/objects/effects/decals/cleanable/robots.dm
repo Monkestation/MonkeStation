@@ -75,7 +75,7 @@
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	blood_state = BLOOD_STATE_OIL
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
-	decal_reagent = /datum/reagent/fuel/oil
+	decal_reagent = /datum/reagent/oil
 	reagent_amount = 30
 
 /obj/effect/decal/cleanable/oil/attackby(obj/item/I, mob/living/user)
