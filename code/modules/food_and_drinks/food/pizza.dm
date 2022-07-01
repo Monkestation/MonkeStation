@@ -31,6 +31,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	decomp_type = /obj/item/food/pizzaslice/moldy
 
 /obj/item/food/pizza/margherita
 	name = "pizza margherita"
@@ -319,6 +320,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 1, /datum/reagent/toxin/amatoxin = 2)
 	tastes = list("stale crust" = 1, "rancid cheese" = 2, "mushroom" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY | GROSS
+	preserved_food = TRUE
 
 // Ant Pizza, now with more ants.
 /obj/item/food/pizza/ants
