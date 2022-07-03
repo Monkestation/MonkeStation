@@ -6,8 +6,7 @@
 // Q: Why do it this way?
 // A: This allows players more freedom to do beautiful-looking builds.
 // Q: Great! Can I use this for all floors?
-// A: Unfortunately, this does not work on subtypes of plasteel and instead we must change the icon_state of these turfs instead, as the icon_regular_floor var that "saves" what type of floor a plasteel subtype turf was so once repaired...
-// ... it'll go back to the floor it was instead of grey (medical floors turn white even after crowbaring the tile and putting it back). This stops changing turf_type from working.
+// A: Yep! Just change the tile stack's `tile_reskin_lists` list variable and set which variants you want to be able to convert into.
 
 GLOBAL_LIST_EMPTY(tile_reskin_lists)
 
