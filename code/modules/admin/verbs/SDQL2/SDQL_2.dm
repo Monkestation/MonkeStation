@@ -1,4 +1,3 @@
-#define SDQL_qdel_datum(d) qdel(d)
 
 //SDQL2 datumized, /tg/station special!
 
@@ -662,7 +661,7 @@ GLOBAL_LIST_INIT(sdql2_queries, GLOB.sdql2_queries || list())
 
 		if("delete")
 			for(var/datum/d in found)
-				SDQL_qdel_datum(d)
+				qdel(d)
 				obj_count_finished++
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
