@@ -264,27 +264,34 @@
 			return TRUE
 		if(RCD_LADDER)
 			to_chat(user, "<span class='notice'>You build a ladder.</span>")
-			var/obj/structure/ladder/L = new(src)
-			L.anchored = TRUE
+			var/obj/structure/ladder/Ladder = new(src)
+			Ladder.anchored = TRUE
 			return TRUE
 		if(RCD_AIRLOCK)
 			if(locate(/obj/machinery/door/airlock) in src)
 				return FALSE
 			to_chat(user, "<span class='notice'>You build an airlock.</span>")
-			var/obj/machinery/door/airlock/A = new the_rcd.airlock_type(src)
-			A.electronics = new /obj/item/electronics/airlock(A)
+			var/obj/machinery/door/airlock/new_airlock = new the_rcd.airlock_type(src)
+			new_airlock.electronics = new /obj/item/electronics/airlock(new_airlock)
 			if(the_rcd.airlock_electronics)
-				A.electronics.accesses = the_rcd.airlock_electronics.accesses.Copy()
-				A.electronics.one_access = the_rcd.airlock_electronics.one_access
-				A.electronics.unres_sides = the_rcd.airlock_electronics.unres_sides
-			if(A.electronics.one_access)
-				A.req_one_access = A.electronics.accesses
+				new_airlock.electronics.accesses = the_rcd.airlock_electronics.accesses.Copy()
+				new_airlock.electronics.one_access = the_rcd.airlock_electronics.one_access
+				new_airlock.electronics.unres_sides = the_rcd.airlock_electronics.unres_sides
+				new_airlock.electronics.passed_name = the_rcd.airlock_electronics.passed_name
+				new_airlock.electronics.passed_cycle_id = the_rcd.airlock_electronics.passed_cycle_id
+			if(new_airlock.electronics.one_access)
+				new_airlock.req_one_access = new_airlock.electronics.accesses
 			else
-				A.req_access = A.electronics.accesses
-			if(A.electronics.unres_sides)
-				A.unres_sides = A.electronics.unres_sides
-			A.autoclose = TRUE
-			A.update_icon()
+				new_airlock.req_access = new_airlock.electronics.accesses
+			if(new_airlock.electronics.unres_sides)
+				new_airlock.unres_sides = new_airlock.electronics.unres_sides
+			if(new_airlock.electronics.passed_name)
+				new_airlock.name = sanitize(new_airlock.electronics.passed_name)
+			if(new_airlock.electronics.passed_cycle_id)
+				new_airlock.closeOtherId = new_airlock.electronics.passed_cycle_id
+				new_airlock.update_other_id()
+			new_airlock.autoclose = TRUE
+			new_airlock.update_icon()
 			return TRUE
 		if(RCD_DECONSTRUCT)
 			if(ScrapeAway(flags = CHANGETURF_INHERIT_AIR) == src)
