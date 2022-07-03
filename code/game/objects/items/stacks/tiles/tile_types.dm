@@ -597,7 +597,7 @@
 	icon_state = "tile_pglass"
 	turf_type = /turf/open/floor/glass/plasma
 	merge_type = /obj/item/stack/tile/glass/plasma
-	mats_per_unit = list(/datum/material/alloy/plasmaglass = MINERAL_MATERIAL_AMOUNT * 0.25)
+	materials = list(/datum/material/alloy/plasmaglass =500)
 
 /obj/item/stack/tile/rglass/plasma
 	name = "reinforced plasma glass floor"
@@ -606,4 +606,4 @@
 	icon_state = "tile_rpglass"
 	turf_type = /turf/open/floor/glass/reinforced/plasma
 	merge_type = /obj/item/stack/tile/rglass/plasma
-	mats_per_unit = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.125, /datum/material/alloy/plasmaglass = MINERAL_MATERIAL_AMOUNT * 0.25)
+	materials = list(/datum/material/iron = 250, /datum/material/alloy/plasmaglass = 250)
