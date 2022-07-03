@@ -152,6 +152,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
+#define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
 #define TRAIT_NOVOMIT			"no_vomit"
@@ -293,6 +294,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DUMMY_THICK		"dummy_thick"
 #define TRAIT_KLEPTOMANIAC 		"kleptomaniac"
 #define TRAIT_WATER_BREATHING "water_breathing"
+#define TRAIT_NUDIST            "nudist"
 
 //MonkeStation Edit End
 

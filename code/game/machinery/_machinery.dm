@@ -964,14 +964,15 @@
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
-	..()
-	if(prob(85) && (tesla_flags & TESLA_MACHINE_EXPLOSIVE))
-		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
-	if(tesla_flags & TESLA_OBJ_DAMAGE)
-		take_damage(power/2000, BURN, "energy")
-		if(prob(40))
+/obj/machinery/zap_act(power, zap_flags)
+	if(prob(10) && (zap_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
+		explosion(src, 0, 0, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
+	if(zap_flags & ZAP_OBJ_DAMAGE)
+		take_damage(power * 0.0005, BURN, "energy")
+		if(prob(20))
 			emp_act(EMP_LIGHT)
+		power -= power * 0.0005
+	return ..()
 
 /obj/machinery/Exited(atom/movable/gone, direction)
 	. = ..()
