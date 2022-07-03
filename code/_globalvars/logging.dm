@@ -58,6 +58,7 @@ GLOBAL_PROTECT(lawchanges)
 
 GLOBAL_VAR(perf_log)
 GLOBAL_PROTECT(perf_log)
+
 GLOBAL_LIST_EMPTY(combatlog)
 GLOBAL_PROTECT(combatlog)
 GLOBAL_LIST_EMPTY(IClog)
