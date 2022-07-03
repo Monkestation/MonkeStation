@@ -31,10 +31,6 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/open/openspace/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
-/turf/open/openspace/debug/update_multiz()
-	..()
-	return TRUE
-
 /turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
 	plane = OPENSPACE_PLANE
@@ -45,7 +41,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/open/openspace/LateInitialize()
-	update_multiz(TRUE, TRUE)
+	AddElement(/datum/element/turf_z_transparency, FALSE)
 
 /turf/open/openspace/Destroy()
 	vis_contents.len = 0
@@ -58,28 +54,6 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	if(turf_below)
 		return turf_below.can_lay_cable()
 	return FALSE
-
-/turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
-	. = ..()
-	var/turf/turf_below = below()
-	if(!turf_below)
-		vis_contents.len = 0
-		if(prune_on_fail)
-			ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-		return FALSE
-	if(init)
-		vis_contents += turf_below
-	return TRUE
-
-/turf/open/openspace/multiz_turf_del(turf/turf_below, dir)
-	if(dir != DOWN)
-		return
-	update_multiz()
-
-/turf/open/openspace/multiz_turf_new(turf/turf_below, dir)
-	if(dir != DOWN)
-		return
-	update_multiz()
 
 /turf/open/openspace/zAirIn()
 	return TRUE
