@@ -190,6 +190,7 @@
 #include "code\__DEFINES\dcs\signals\signals_nanites.dm"
 #include "code\__DEFINES\dcs\signals\signals_NTNet.dm"
 #include "code\__DEFINES\dcs\signals\signals_object.dm"
+#include "code\__DEFINES\dcs\signals\signals_painting.dm"
 #include "code\__DEFINES\dcs\signals\signals_radiation.dm"
 #include "code\__DEFINES\dcs\signals\signals_singularity.dm"
 #include "code\__DEFINES\dcs\signals\signals_species.dm"

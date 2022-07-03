@@ -551,6 +551,9 @@
 	config_entry_value = 0
 	min_val = 0
 
+/datum/config_entry/flag/cache_assets
+	default = TRUE
+
 /datum/config_entry/flag/ic_filter_enabled
 
 /datum/config_entry/flag/ooc_filter_enabled
