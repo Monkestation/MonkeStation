@@ -170,7 +170,7 @@
 /obj/item/clothing/suit/armor/reactive/primal/proc/return_to_monkey(mob/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/simple_animal/pet/new_gorilla = new /mob/living/simple_animal/hostile/gorilla/rabid(get_turf(user))
+	var/mob/living/simple_animal/pet/new_gorilla = new /mob/living/simple_animal/hostile/gorilla(get_turf(user))
 	user.forceMove(new_gorilla)
 	user.mind.transfer_to(new_gorilla)
 	ADD_TRAIT(user, TRAIT_NOBREATH, type) //so they dont suffocate while inside the gorilla
