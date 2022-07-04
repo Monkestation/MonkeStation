@@ -40,7 +40,7 @@
 /obj/item/circuit_component/terminal/Initialize(mapload)
 	. = ..()
 	input_text = add_output_port("Text", PORT_TYPE_STRING)
-	signal = add_output_port("Signal", PORT_TYPE_SIGNAL)
+	signal = add_output_port("Triggered", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/terminal/Destroy()
 	signal = null
