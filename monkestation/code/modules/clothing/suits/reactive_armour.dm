@@ -193,6 +193,7 @@
 	desc = "An experimental suit of armor that creates groups of animals."
 	var/list/current_herd = list()
 	reactivearmor_cooldown_duration = 90 SECONDS
+
 /obj/item/clothing/suit/armor/reactive/herd/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
 		return FALSE
