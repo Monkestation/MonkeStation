@@ -151,7 +151,7 @@
 	name = "reactive primal armor"
 	desc = "An experimental suit of armor that echoes the screeches of past monkeys."
 	reactivearmor_cooldown_duration = 3 MINUTES //Big Cooldown
-	hit_reaction_chance = 5 //Low monkey chance
+	hit_reaction_chance = 10 //Low monkey chance
 
 /obj/item/clothing/suit/armor/reactive/primal/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
