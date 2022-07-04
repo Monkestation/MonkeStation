@@ -10,7 +10,14 @@
 	var/static/list/anomaly_armour_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
-		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport
+		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport,
+		//MONKESTATION EDIT
+		/obj/effect/anomaly/storm 	           		= /obj/item/clothing/suit/armor/reactive/tesla, //I don't see what new we could add here since they're both zappy ones
+		/obj/effect/anomaly/clown 	           		= /obj/item/clothing/suit/armor/reactive/honk,
+		/obj/effect/anomaly/radioactive 	        = /obj/item/clothing/suit/armor/reactive/mutation,
+		/obj/effect/anomaly/walterverse 	        = /obj/item/clothing/suit/armor/reactive/walter
+
+		//MONKESTATION EDIT END
 		)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
