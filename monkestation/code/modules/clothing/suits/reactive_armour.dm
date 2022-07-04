@@ -35,7 +35,7 @@
 /obj/item/clothing/suit/armor/reactive/mutation
 	name = "reactive mutation armor"
 	desc = "An experimental suit of armor that gives off radioactive waves."
-	reactivearmor_cooldown_duration = 200
+	reactivearmor_cooldown_duration = 300
 
 /obj/item/clothing/suit/armor/reactive/mutation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
