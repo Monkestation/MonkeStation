@@ -1,38 +1,51 @@
 "aq" = (/obj/machinery/power/apc/auto_name/west,/turf/open/floor/plasteel,/area/hallway/primary/central)
-"aU" = (/obj/machinery/light,/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"aU" = (/obj/machinery/light,/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "bs" = (/turf/open/floor/plasteel,/area/hydroponics/garden)
 "bx" = (/obj/docking_port/stationary/turbolift{dwidth = 2; height = 4; id = "turbolift_primary"; roundstart_template = /datum/map_template/shuttle/turbolift/debug/primary; width = 5},/turf/open/floor/plating,/area/shuttle/turbolift/shaft)
 "bP" = (/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"bS" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/flora/grass/jungle/b,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "bT" = (/obj/effect/spawner/room/threexthree,/turf/template_noop,/area/maintenance/port/fore)
-"ca" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"bX" = (/obj/machinery/light/small,/obj/machinery/advanced_airlock_controller{pixel_y = 24},/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"ca" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/machinery/door/firedoor,/obj/machinery/door/airlock/public/glass{name = "Departures Hall"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"cL" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/atmospherics/pipe/layer_manifold{dir = 4},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
 "cM" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
-"cW" = (/obj/machinery/door/airlock/public/glass{name = "Cafe"},/obj/effect/mapping_helpers/airlock/autoname,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"cO" = (/obj/structure/flora/junglebush/c,/turf/open/floor/grass,/area/hallway/secondary/exit)
+"cW" = (/obj/machinery/door/airlock/public/glass{name = "Cafe"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "cX" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"da" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"da" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "dx" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/cigarette,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "dA" = (/obj/effect/spawner/lootdrop/maintenance/two,/obj/effect/decal/cleanable/blood/old,/turf/open/floor/plating,/area/maintenance/port/fore)
 "dD" = (/obj/docking_port/stationary{dir = 8; dwidth = 2; height = 13; id = "ferry_home"; name = "port bay 2"; width = 5},/turf/open/space/basic,/area/space)
+"dH" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "dK" = (/obj/structure/table/glass,/obj/item/hatchet,/obj/item/cultivator,/obj/item/crowbar,/obj/item/reagent_containers/glass/bucket,/obj/item/plant_analyzer,/obj/machinery/firealarm{dir = 4; pixel_x = -24},/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "eP" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/reagent_containers/food/condiment/peppermill{pixel_x = 5; pixel_y = -2},/obj/item/reagent_containers/food/condiment/saltshaker{pixel_x = -2; pixel_y = 2},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"eY" = (/obj/structure/chair{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "gk" = (/obj/structure/cable/yellow{icon_state = "1-8"},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "gu" = (/obj/machinery/hydroponics/soil,/turf/open/floor/grass,/area/hydroponics/garden)
 "gF" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/structure/sink{pixel_y = 30},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "gW" = (/obj/structure/lattice,/obj/structure/sign/warning/docking{pixel_y = 32},/turf/open/space/basic,/area/space/nearstation)
+"hh" = (/turf/closed/wall/r_wall,/area/hallway/secondary/exit)
 "hl" = (/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"hA" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/hallway/secondary/exit)
 "hE" = (/obj/item/reagent_containers/spray/plantbgone,/obj/item/reagent_containers/spray/pestspray{pixel_x = 3; pixel_y = 4},/obj/item/reagent_containers/glass/bottle/nutrient/ez,/obj/item/reagent_containers/glass/bottle/nutrient/rh{pixel_x = 2; pixel_y = 1},/obj/structure/table/glass,/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "if" = (/obj/structure/lattice,/turf/open/space/basic,/area/space/nearstation)
+"in" = (/turf/closed/wall,/area/hallway/secondary/exit)
 "ip" = (/obj/structure/closet/firecloset,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "ir" = (/obj/machinery/door/airlock/hatch{name = "Access Hatch"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/hallway/primary/central)
 "iu" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/snack/random,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "iE" = (/obj/effect/turf_decal/tile/blue{dir = 2},/obj/machinery/camera/autoname{dir = 10; icon_state = "camera"},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
-"iR" = (/obj/machinery/vending/coffee,/obj/effect/turf_decal/stripes/line{dir = 5},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"iI" = (/obj/machinery/light/small{dir = 1},/obj/machinery/advanced_airlock_controller{dir = 1; pixel_y = -24},/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"iR" = (/obj/effect/turf_decal/stripes/line{dir = 5},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "iV" = (/obj/structure/grille/broken,/obj/item/shard,/turf/open/floor/plating,/area/maintenance/port/fore)
 "iY" = (/obj/machinery/light,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"ja" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/public/glass{name = "Departures"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "je" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "ju" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/chair{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "jw" = (/obj/structure/cable/yellow{icon_state = "2-4"},/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "jB" = (/obj/effect/turf_decal/stripes/corner{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"jK" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/obj/machinery/atmospherics/pipe/layer_manifold{dir = 4},/turf/open/floor/plating,/area/hallway/secondary/exit)
 "kd" = (/obj/structure/cable/yellow{icon_state = "1-4"},/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/landmark/start,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"kl" = (/mob/living/simple_animal/butterfly,/obj/structure/flora/junglebush/c,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "ku" = (/obj/structure/sign/warning/docking{pixel_y = -32},/turf/open/space/basic,/area/space)
 "ky" = (/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/turf/open/floor/plating,/area/hallway/secondary/entry)
 "kY" = (/obj/item/seeds/apple,/obj/item/seeds/banana,/obj/item/seeds/cocoapod,/obj/item/seeds/grape,/obj/item/seeds/orange,/obj/item/seeds/sugarcane,/obj/item/seeds/wheat,/obj/item/seeds/watermelon,/obj/structure/table/glass,/obj/item/seeds/tower,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hydroponics/garden)
@@ -41,34 +54,45 @@
 "lv" = (/turf/closed/wall/r_wall,/area/hallway/secondary/entry)
 "lK" = (/turf/closed/wall,/area/hallway/secondary/entry)
 "lN" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating,/area/hydroponics/garden)
+"mz" = (/obj/structure/flora/grass/jungle/b,/obj/structure/flora/ausbushes/lavendergrass,/turf/open/floor/grass,/area/hallway/secondary/exit)
+"mC" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "mO" = (/obj/machinery/biogenerator,/turf/open/floor/plasteel,/area/hydroponics/garden)
 "mS" = (/turf/open/floor/plasteel,/area/hallway/primary/central)
+"ne" = (/obj/docking_port/stationary{dir = 4; dwidth = 12; height = 18; id = "emergency_home"; name = "BoxStation emergency evac bay"; width = 32},/turf/open/space/basic,/area/space)
+"nv" = (/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "nY" = (/obj/structure/sign/warning/docking{pixel_y = 32},/turf/open/space/basic,/area/space)
 "oJ" = (/obj/structure/cable/yellow{icon_state = "1-2"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "oM" = (/obj/effect/decal/cleanable/blood/old,/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "oU" = (/obj/effect/turf_decal/tile/green,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"pq" = (/obj/structure/flora/grass/jungle/b,/obj/structure/flora/ausbushes/fernybush,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "pH" = (/obj/structure/extinguisher_cabinet{pixel_x = 32},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"pS" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/flora/ausbushes/fernybush,/obj/structure/flora/ausbushes/fernybush,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "pW" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "pZ" = (/obj/structure/cable/yellow{icon_state = "1-8"},/obj/machinery/light,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "qo" = (/obj/effect/turf_decal/stripes/line{dir = 10},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "qB" = (/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"qH" = (/obj/machinery/computer/security/telescreen/entertainment{pixel_x = 32},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"rt" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "rN" = (/turf/open/floor/plating{icon_state = "platingdmg3"},/area/maintenance/port/fore)
 "rR" = (/obj/docking_port/stationary{dir = 2; dwidth = 11; height = 22; id = "whiteship_home"; name = "SS13: Auxiliary Dock, Station-Port"; width = 35},/turf/open/space/basic,/area/space)
-"sp" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plating,/area/maintenance/port/fore)
+"sp" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "sv" = (/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
 "sx" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "sB" = (/turf/open/space/basic,/area/space)
-"sO" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"sO" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/hydroponics/garden)
 "sZ" = (/obj/structure/table/glass,/obj/item/cultivator,/obj/item/hatchet,/obj/item/crowbar,/obj/item/plant_analyzer,/obj/item/reagent_containers/glass/bucket,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "ty" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
-"tK" = (/obj/structure/sign/directions/supply,/turf/open/floor/plating,/area/space)
+"tB" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 6},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 6},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"tK" = (/obj/structure/sign/directions/supply{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
+"tQ" = (/obj/structure/cable/yellow{icon_state = "2-32"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/space)
 "ug" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/space)
 "un" = (/obj/effect/turf_decal/stripes/corner,/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"us" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{dir = 4},/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{dir = 4},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "uD" = (/obj/structure/cable/yellow{icon_state = "2-16"},/obj/structure/cable/yellow{icon_state = "2-32"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/space)
 "uM" = (/obj/effect/turf_decal/tile/blue{dir = 2},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
 "uN" = (/obj/structure/cable/yellow{icon_state = "1-2"},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "vi" = (/obj/item/shard,/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
-"vj" = (/obj/structure/sign/directions/security{pixel_y = -32},/turf/open/floor/plating,/area/space)
+"vj" = (/obj/structure/sign/directions/security{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
 "vu" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow{icon_state = "0-8"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "vZ" = (/obj/effect/turf_decal/stripes/line,/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "wg" = (/turf/closed/wall/r_wall,/area/crew_quarters/cafeteria)
@@ -78,46 +102,55 @@
 "wV" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/plating,/area/maintenance/port/fore)
 "xk" = (/obj/effect/turf_decal/stripes/line,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "xn" = (/obj/item/shard,/turf/open/floor/plating{icon_state = "panelscorched"},/area/maintenance/port/fore)
-"xw" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/space/basic,/area/hydroponics/garden)
+"xp" = (/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"xw" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/hydroponics/garden)
 "xH" = (/obj/machinery/camera/autoname{dir = 8; icon_state = "camera"},/obj/item/radio/intercom{pixel_x = 29},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "yc" = (/turf/open/floor/plating/airless,/area/space/nearstation)
 "yB" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "yF" = (/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"zp" = (/obj/effect/turf_decal/caution,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"zb" = (/obj/machinery/door/firedoor,/obj/machinery/door/airlock/public/glass{name = "Departures Hall"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"zp" = (/obj/effect/turf_decal/caution,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "zv" = (/obj/effect/turf_decal/tile/blue{dir = 4},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
 "zG" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/maintenance/port/fore)
-"zK" = (/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"zK" = (/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "zO" = (/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"Ag" = (/obj/structure/sign/directions/command{pixel_y = -32},/turf/open/floor/plating,/area/space)
+"Ag" = (/obj/structure/sign/directions/command{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
+"Al" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/flora/ausbushes/fernybush,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "Ap" = (/obj/machinery/camera/autoname{dir = 8; icon_state = "camera"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Bc" = (/obj/structure/sink/puddle,/obj/structure/flora/ausbushes/reedbush,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "Bf" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/maintenance/port/fore)
-"Cd" = (/obj/machinery/turbolift_button{pixel_y = -23; shuttle_id = "turbolift_primary"},/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Cd" = (/obj/machinery/turbolift_button{pixel_y = -23; shuttle_id = "turbolift_primary"},/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "Cx" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating,/area/maintenance/port/fore)
 "CK" = (/turf/open/floor/plating,/area/space)
+"CQ" = (/obj/machinery/door/airlock/public/glass{name = "Departures Hall"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "CT" = (/turf/closed/wall/r_wall,/area/hallway/primary/central)
 "CW" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/hallway/secondary/entry)
 "DD" = (/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "Eb" = (/turf/closed/wall,/area/space/nearstation)
 "Ej" = (/obj/effect/turf_decal/stripes/corner{dir = 4},/obj/effect/turf_decal/stripes/corner{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "El" = (/obj/structure/ladder,/turf/open/floor/plating,/area/space)
-"Ez" = (/obj/structure/sign/directions/science,/turf/open/floor/plating,/area/space)
+"Ez" = (/obj/structure/sign/directions/science{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
 "EO" = (/obj/machinery/door/airlock/arrivals_external{name = "Arrivals Airlock"},/obj/effect/mapping_helpers/airlock/cyclelink_helper,/turf/open/floor/plating,/area/hallway/secondary/entry)
-"FC" = (/obj/structure/cable/yellow{icon_state = "2-32"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/hallway/primary/central)
+"Fa" = (/obj/machinery/atmospherics/pipe/multiz/layer2,/obj/machinery/atmospherics/pipe/multiz/layer4,/turf/open/floor/plating,/area/space)
+"FC" = (/obj/structure/cable/yellow{icon_state = "2-16"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/hallway/primary/central)
 "FY" = (/turf/closed/wall/r_wall,/area/hydroponics/garden)
 "Gc" = (/obj/effect/turf_decal/stripes/line{dir = 9},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Gn" = (/obj/structure/extinguisher_cabinet{pixel_y = -32},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"Gt" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/flora/ausbushes/fernybush,/obj/structure/flora/junglebush/b,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "GA" = (/turf/open/floor/plating,/area/maintenance/port/fore)
 "GH" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "Ht" = (/obj/machinery/atmospherics/pipe/multiz/layer2,/obj/machinery/atmospherics/pipe/multiz/layer4,/turf/open/floor/plating,/area/hallway/primary/central)
 "HH" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/effect/landmark/latejoin,/turf/open/floor/plasteel,/area/hallway/primary/central)
 "HI" = (/obj/effect/turf_decal/stripes/corner{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "HL" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
-"HN" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"HN" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/hallway/primary/central)
 "IF" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
-"IS" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plating,/area/maintenance/port/fore)
+"IS" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "JD" = (/obj/item/shard,/obj/structure/grille/broken,/turf/open/floor/plating,/area/maintenance/port/fore)
 "JZ" = (/obj/structure/cable/yellow{icon_state = "1-4"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "Kd" = (/obj/effect/turf_decal/tile/blue{dir = 2},/obj/machinery/light,/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
 "KH" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/reagent_containers/food/condiment/peppermill{pixel_x = 5; pixel_y = -2},/obj/item/kitchen/fork,/obj/item/reagent_containers/food/condiment/saltshaker{pixel_x = -2; pixel_y = 2},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"KP" = (/obj/machinery/door/airlock/public/glass{name = "Departures"},/obj/machinery/door/firedoor,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "KU" = (/turf/open/openspace,/area/shuttle/turbolift/shaft)
 "Lg" = (/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "Lh" = (/obj/structure/closet/firecloset,/turf/open/floor/plating,/area/maintenance/port/fore)
@@ -125,8 +158,12 @@
 "LH" = (/obj/machinery/light{dir = 1},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "LX" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/chair{dir = 4},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "Mc" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/machinery/light{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"MG" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 5},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 5},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"MK" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"Nd" = (/mob/living/simple_animal/butterfly,/obj/structure/flora/ausbushes/pointybush,/obj/structure/flora/ausbushes/lavendergrass,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "Nf" = (/turf/open/floor/plating,/area/shuttle/turbolift/shaft)
 "Nu" = (/obj/structure/rack,/obj/effect/spawner/lootdrop/maintenance/two,/turf/open/floor/plating,/area/maintenance/port/fore)
+"Nv" = (/obj/machinery/computer/security/telescreen/entertainment{pixel_x = -32},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "Nz" = (/turf/closed/wall,/area/maintenance/port/fore)
 "NE" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "NG" = (/obj/machinery/power/apc/auto_name/north{pixel_y = 24},/obj/structure/cable/yellow{icon_state = "0-4"},/obj/machinery/seed_extractor,/turf/open/floor/plasteel,/area/hydroponics/garden)
@@ -135,17 +172,21 @@
 "NV" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/hallway/primary/central)
 "Ol" = (/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow{icon_state = "0-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "Ow" = (/obj/machinery/door/airlock/turbolift,/turf/open/floor/plating,/area/space)
-"Oz" = (/obj/structure/sign/directions/evac{pixel_y = -32},/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plating,/area/hallway/primary/central)
+"Oz" = (/obj/structure/sign/directions/evac{pixel_y = -32},/obj/structure/cable/yellow{icon_state = "1-8"},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/hallway/primary/central)
+"OD" = (/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/door/airlock/external{name = "Escape Airlock"},/turf/open/floor/plating,/area/hallway/secondary/exit)
+"OW" = (/obj/structure/flora/junglebush/b,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "OZ" = (/obj/machinery/door/airlock/hatch{name = "Access Hatch"},/turf/open/floor/plating,/area/space)
 "Pg" = (/obj/effect/turf_decal/stripes/line{dir = 2},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "Pm" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "Qj" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "Qx" = (/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/turf/open/floor/plating,/area/hallway/secondary/entry)
-"Rd" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"QM" = (/obj/structure/sink/puddle,/obj/structure/flora/grass/jungle/b,/obj/structure/flora/ausbushes/reedbush,/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/grass,/area/hallway/secondary/exit)
+"Rd" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "Rg" = (/obj/structure/reagent_dispensers/watertank,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 1},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Rh" = (/obj/effect/spawner/structure/window/reinforced,/obj/structure/flora/junglebush/b,/turf/open/floor/grass,/area/hallway/secondary/exit)
 "Rp" = (/turf/closed/wall,/area/space)
 "RN" = (/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"RV" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "4-8"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"RV" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
 "Sq" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "SE" = (/obj/effect/turf_decal/stripes/corner,/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "SU" = (/turf/closed/wall,/area/hydroponics/garden)
@@ -156,21 +197,25 @@
 "TW" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/kitchen/fork,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "TZ" = (/turf/open/floor/plating,/area/hallway/secondary/entry)
 "UF" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/machinery/camera/autoname{dir = 6; icon_state = "camera"},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"UZ" = (/obj/machinery/light{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "Vl" = (/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"Vy" = (/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Vy" = (/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 "VE" = (/turf/closed/wall,/area/crew_quarters/cafeteria)
+"VF" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
+"VK" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/extinguisher_cabinet{pixel_x = 32},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
 "Wi" = (/obj/machinery/door/airlock/turbolift,/turf/open/floor/plating,/area/hallway/primary/central)
 "Wz" = (/obj/item/storage/bag/plants/portaseeder,/obj/structure/table/glass,/obj/item/plant_analyzer,/obj/machinery/light_switch{pixel_x = -6; pixel_y = -25},/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hydroponics/garden)
 "Xw" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "XF" = (/turf/closed/wall,/area/hallway/primary/central)
 "XU" = (/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
 "XV" = (/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plating,/area/hallway/primary/central)
-"Yo" = (/obj/structure/sign/directions/engineering,/turf/open/floor/plating,/area/space)
+"Yo" = (/obj/structure/sign/directions/engineering{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
 "YE" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/maintenance/port/fore)
 "YH" = (/obj/structure/ladder,/turf/open/floor/plating,/area/hallway/primary/central)
 "YR" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/cola/random,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
-"YX" = (/obj/machinery/vending/cola,/obj/effect/turf_decal/stripes/line{dir = 6},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
-"YZ" = (/obj/structure/sign/directions/medical,/turf/open/floor/plating,/area/space)
+"YX" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"YZ" = (/obj/structure/sign/directions/medical{pixel_y = -32},/obj/machinery/light/small{dir = 4},/turf/open/floor/plating,/area/space)
+"Zz" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/exit)
 
 (1,1,1) = {"
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -203,32 +248,32 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififycyciflvlvlvlvlvlvlvlvlvlvlvlvlvlvwgVEVEVEVEVEVEVEVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBlvzvzvzvzvzvzvUFzvzvzvzvzvzvwgLXePjuIFLXTWjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififyclvyFvZyFyFyFyFyFyFvZyFXwzOzOwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvCWCWCWCWCWCWlvlvLGzOzOwgLXePjuIFLXKHjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYsBsBsBsBsBsBsBCWqoXwpHwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGzOwgLXTWjuIFLXePjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBdDQxTZkyLGApwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGpWwgIFIFsxtytytyvuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkusBsBsBsBsBsBsBCWGcHIzOwgIFIFwPYRiuYRdxVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvHNHNVEVEVEcWVEVEVEVEVEXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvzvzvMczvzvzvUFzvzvMczvzvzvzvHNmSmSmSmSLHlnmSmSmSmSLHmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvxkyBxkXwzOzOVlxkyByFXwzOzOXURVHLGHGHGHGHwQGHGHGHGHGHhlmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWEOCWLGzOzObPCWEOCWqoyFXwjeHNlnmSmSmSmSmSmSmSmSmSmSlnmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYCWTZCWqoPmTtYXCWTZCWCWlvLGjeNzISNzNzNzNzNzNzNzNzNzmSlnmSXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWNPCWCWCWCWCWCWNPCWsBlvLGuNNzYENzGArNdANzwMwMwMNzmSlnmSXFHtYHFCXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGRNNzYENzCxiVNzNzwMwMwMNzmSlnmSXFNVXVOzXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzYENzoMcMviCxbTwMwMNzmSlnQjXFXFirXFXFXFXFXFXFXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzJZBfNENzYENzCxNzNzNzaqoJmSHNmSlnmSmSmSmSmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBNTCWLGzONzNzJDNzNzJZcMOlNzNuNzmSkdHHcaGHdamSmSmSmSmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGpHNzxnGANzTwrNGAwVNzzGNzmSlnmSHNaUVyzpVyCdzKmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzLhGANzGAGANzNzNzCxNzmSlnQjXFXFWiWiWiXFCTXFXFXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGpWNzGAGANzGAGAGANuNuzGNzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWEOCWCWCWCWCWCWEOCWsBlvLGzONzNuGAGAzGGAGAGAGAGANzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkuCWTZCWGcSqipiRCWTZCWCWlvLGzONzNzNzNzNzNzNzNzNzspNzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWNPCWLGzOzObPCWNPCWGcDDHIzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSXFNfNfbxNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBififififEbEbycycycycyclvDDEjDDHIzOzOjBDDEjDDHIzOzOzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSCTCTCTCTCTCTCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififycyciflvlvlvlvlvlvlvlvlvlvlvlvlvlvwgwgwgwgwgwgwgwgwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBlvzvzvzvzvzvzvUFzvzvzvzvzvzvwgLXePjuIFLXTWjuwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififyclvyFvZyFyFyFyFyFyFvZyFXwzOzOwgIFIFIFIFIFIFIFwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvCWCWCWCWCWCWlvlvLGzOzOwgLXePjuIFLXKHjuwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYsBsBsBsBsBsBsBCWqoXwpHwgYXIFIFIFIFIFmCwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGzOwgLXTWjuIFLXePjuwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBdDQxTZkyLGApwgIFIFIFIFIFIFVKwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGpWwgIFIFsxtytytyvuwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkusBsBsBsBsBsBsBCWGcHIzOwgIFIFwPYRiuYRdxwgsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvHNHNVEVEVEcWVEVEVEVEwgCTCTCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvzvzvMczvzvzvUFzvzvMczvzvzvzvHNmSmSmSmSLHlnmSmSmSmSLHmSmSCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvxkyBxkXwzOzOVlxkyByFXwzOzOXURVHLGHGHGHGHwQGHGHGHGHGHhlmSCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBhhhhhhhhhhhhhhhhhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWEOCWLGzOzObPCWEOCWqoyFXwjeHNlnmSmSmSmSmSmSmSmSmSmSlnmSCTsBsBsBsBsBsBsBsBhhhhhhhhhhhhhhhhhhzKzKzKzKzKzKzKhhhhhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYCWTZCWqoPmTtlaCWTZCWCWlvLGjeNzISNzNzNzNzNzNzNzNzNzmSlnmSCTCTCTCTCTsBsBsBsBhhzKzKzKzKUZzKzKjazKzKzKzKzKzKtBODiIjKsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWNPCWCWCWCWCWCWNPCWsBlvLGuNNzYENzGArNdANzwMwMwMNzmSlnmSXFHtYHFCCTsBsBsBsBhhzKzKzKzKzKzKzKjazKzKzKzKzKzKusininhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGRNNzYENzCxiVNzNzwMwMwMNzmSlnmSXFNVXVOzCTsBsBsBsBhhzKzKzKzKzKzKzKKPzKdHininMKzKMGODbXcLnesBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzYENzoMcMviCxbTwMwMNzmSlnQjXFXFirXFCThhhhhhhhhhzKzKzKinhAhAhAinzKZzQMGteYzKzKhAhAhAsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzJZBfNENzYENzCxNzNzNzaqoJmSCQzKrtzKzKzKzKzKzKnvzKzKzKhAOWpqklhAzKZzpSbSeYzKzKZzhAsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBNTCWLGzONzNzJDNzNzJZcMOlNzNuNzmSkdHHcaVFdazKzKzKzKzKzKnvzKzKzKhAmzcOpqhAzKqHininNvzKzKZzhAsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGpHNzxnGANzTwrNGAwVNzzGNzmSlnmSzbaUVyzpVyCdzKzKxpnvzKzKzKhAOWNdBchAzKZzbSbSeYzKzKZzhAsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzLhGANzGAGANzNzNzCxNzmSlnQjXFXFWiWiWiXFCThhhhhhzKzKzKinhAhAhAinzKZzAlRheYzKzKhAhAhAsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGpWNzGAGANzGAGAGANuNuzGNzmSlnmSXFNfNfNfNfNfCTsBsBhhzKzKzKzKzKzKzKjazKdHininMKzKtBODiIcLsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWEOCWCWCWCWCWCWEOCWsBlvLGzONzNuGAGAzGGAGAGAGAGANzmSlnmSXFNfNfNfNfNfCTsBsBhhzKzKzKzKzKzKzKjazKzKzKzKzKzKusininhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkuCWTZCWGcSqipiRCWTZCWCWlvLGzONzNzNzNzNzNzNzNzNzspNzmSlnmSXFNfNfNfNfNfCTsBsBhhzKGnzKzKxpzKzKjazKzKzKzKzKzKMGODbXcLsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWNPCWLGzOzObPCWNPCWGcDDHIzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSXFNfNfbxNfNfCTsBsBhhhhhhhhhhhhhhhhhhzKzKzKzKzKGnzKininhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBififififEbEbycycycycyclvDDEjDDHIzOzOjBDDEjDDHIzOzOzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSCTCTCTCTCTCTCTsBsBsBsBsBsBsBsBsBsBhhhhhhhhhhhhhhhhhhsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBsBifsBlvuMuMKduMuMuMuMuMiEuMuMuMuMKdHNmSmSoULgiYLgLgLgLgLgjwpZmSCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBsBifsBlvlKlKlKlKlKlKlKlKlKlKlKlKlKlKlKHNHNSUsOSUlNSUSUlNSURdFYCTCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBififEbycEbEbycyclvzvzvzvzvzvzvzvzvUFzvzvzvzvzvsvzOpHSUTnTfmONGkYsZgFgkFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -319,7 +364,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKEzRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -421,7 +466,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKtKRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -523,7 +568,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKvjRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -625,7 +670,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKYoRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -727,7 +772,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKYZRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
@@ -829,7 +874,7 @@ sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
-sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpFaEltQRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKAgRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
 sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
