@@ -2088,23 +2088,6 @@
 	to_chat(living_anthill, "<span class='notice'>You feel like the last of the ants are out of your system.</span>")
 	return ..()
 
-/datum/reagent/ants/reaction_turf(turf/exposed_turf, reac_volume, liquid_reaction)
-	. = ..()
-	if(liquid_reaction)
-		return
-	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
-		return
-	if((reac_volume <= 10)) // Makes sure people don't duplicate ants.
-		return
-
-	var/obj/effect/decal/cleanable/ants/pests = locate() in exposed_turf.contents
-	if(!pests)
-		pests = new(exposed_turf)
-	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
-	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
-	pests.update_ant_damage()
-
-
 /datum/reagent/ants/reaction_obj(obj/exposed_obj, reac_volume)
 	. = ..()
 	var/turf/open/my_turf = exposed_obj.loc // No dumping ants on an object in a storage slot
@@ -2115,7 +2098,7 @@
 		return
 	reaction_turf(my_turf, reac_volume)
 
-/datum/reagent/ants/reaction_evaporation(turf/exposed_turf, volume)
+/datum/reagent/ants/reaction_evaporation(turf/exposed_turf, reac_volume)
 	. = ..()
 	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
 		return
