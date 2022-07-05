@@ -960,21 +960,21 @@
 				if (1 to 8) //16% Chance
 					var/obj/item/bodypart/head/hed = victim.get_bodypart(BODY_ZONE_HEAD)
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your scalp!.</span>")
-					hed.receive_damage(1,0)
+					hed.receive_damage(0.5,0)
 				if (9 to 29) //40% chance
 					var/obj/item/bodypart/arm = victim.get_bodypart(pick(BODY_ZONE_L_ARM,BODY_ZONE_R_ARM))
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your arms!</span>")
-					arm.receive_damage(3,0)
+					arm.receive_damage(1.5,0)
 				if (30 to 49) //38% chance
 					var/obj/item/bodypart/leg = victim.get_bodypart(pick(BODY_ZONE_L_LEG,BODY_ZONE_R_LEG))
 					to_chat(victim, "<span class='danger'>You scratch at the ants on your leg!</span>")
-					leg.receive_damage(3,0)
+					leg.receive_damage(1.5,0)
 				if(50) // 2% chance
 					to_chat(victim, "<span class='danger'>You rub some ants away from your eyes!</span>")
 					victim.blur_eyes(3)
 					ants_remaining -= 5 // To balance out the blindness, it'll be a little shorter.
 	ants_remaining--
-	if(ants_remaining <= 0 || victim.stat >= SOFT_CRIT)
+	if(ants_remaining <= 0 || victim.stat >= DEAD)
 		victim.remove_status_effect(STATUS_EFFECT_ANTS) //If this person has no more ants on them or are dead, they are no longer affected.
 
 /atom/movable/screen/alert/status_effect/ants

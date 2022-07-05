@@ -979,7 +979,10 @@
 					touch_protection = L.get_permeability_protection()
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
 			if("TURF")
-				R.reaction_turf(A, R.volume * volume_modifier, show_message)
+				if(liquid == TRUE)
+					R.reaction_turf(A, R.volume * volume_modifier, TRUE, show_message)
+				else
+					R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")
 				R.reaction_obj(A, R.volume * volume_modifier, show_message)
 			if("LIQUID")

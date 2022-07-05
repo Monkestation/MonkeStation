@@ -2052,6 +2052,7 @@
 	metabolization_rate = 5 * REAGENTS_METABOLISM //1u per second
 	glass_name = "glass of ants"
 	glass_desc = "Bottoms up...?"
+	evaporation_rate = 10
 	/// How much damage the ants are going to be doing (rises with each tick the ants are in someone's body)
 	var/ant_damage = 0
 	/// Tells the debuff how many ants we are being covered with.
@@ -2079,8 +2080,10 @@
 	to_chat(living_anthill, "<span class='notice'>You feel like the last of the ants are out of your system.</span>")
 	return ..()
 
-/datum/reagent/ants/reaction_turf(turf/exposed_turf, reac_volume)
+/datum/reagent/ants/reaction_turf(turf/exposed_turf, reac_volume, liquid_reaction)
 	. = ..()
+	if(liquid_reaction)
+		return
 	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
 		return
 	if((reac_volume <= 10)) // Makes sure people don't duplicate ants.
@@ -2103,6 +2106,18 @@
 	if(!accepted_types[exposed_obj.type]) // Bypasses pipes, vents, and cables to let people create ant mounds on top easily.
 		return
 	reaction_turf(my_turf, reac_volume)
+
+/datum/reagent/ants/reaction_evaporation(turf/exposed_turf, volume)
+	. = ..()
+	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
+		return
+
+	var/obj/effect/decal/cleanable/ants/pests = locate() in exposed_turf.contents
+	if(!pests)
+		pests = new(exposed_turf)
+	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
+	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
+	pests.update_ant_damage()
 
 /datum/reagent/ants/reaction_mob(mob/living/exposed_mob, method=TOUCH, reac_volume, show_message = 1)
 	. = ..()
