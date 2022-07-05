@@ -25,3 +25,23 @@
 		desc = "It's completely blank."
 		name = "empty scroll"
 		icon_state = "blankscroll"
+
+/obj/item/book/granter/spell/blinkdagger
+	spell = /obj/effect/proc_holder/spell/targeted/blinkdagger
+	spellname = "blink dagger"
+	icon_state ="booksummons"
+	desc = "A book this brightly colored must give you the powers of a magical girl."
+	remarks = list("I dont think this is telling me how to shoot lasers from my hands.",
+					"Just focus my energies...",
+					"Am I the chosen one?",
+					"Nothing peronnel? This is very personnel, you killed my grandfather!",
+					"Ineffective vs Giant mechs?",
+					"I never knew catgirls could teach teleportation.",
+					"Who had any idea there was a magic dimension full of robust knives!")
+
+/obj/item/book/granter/spell/blinkdagger/recoil(mob/user)
+	..()
+	to_chat(user,"<span class='warning'>The [src] teleports behind you, oh no.</span>")
+	// this is meant to do user.adjustBruteLoss(60) however for some reason none of the procs like adjustBruteLoss or Stun are defined in this file
+	qdel(src)
+	to_chat(user,"<span class='warning'>The [src] is gone.</span>")

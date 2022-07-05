@@ -163,7 +163,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src)
 			new /obj/item/clothing/mask/gas/carp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
-			new /obj/item/toy/plush/carpplushie/dehy_carp(src)
+			new /obj/item/toy/plush/carpplushie/dehy_carp(src)// (in the uplink for 1 tc)
 			new /obj/item/slimepotion/slime/sentience(src)
 
 		if("mad_scientist") //at least 29 tc, the clusters are random, and the guns are really tough to price
@@ -206,12 +206,16 @@
 			new /obj/item/gun/energy/temperature/pin(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) // 8 tc //see see it fits the theme bc its blue and ice is blue
 
-		if("anime") //[put cost here]
+		if("anime") //I think around 31-33
 			new /obj/item/clothing/suit/armor/vest/leather(src) // ~1 tc
-			new /obj/item/clothing/head/fedora(src) // ~1-3 tc? has the 30 throw damage of the null rod version
-			new /obj/item/clothing/shoes/chameleon/noslip(src) // 3 tc
+			new /obj/item/clothing/head/anime_fedora(src) // ~1-3 tc? has the 30 throw damage of the null rod version and a very high throw speed
+			new /obj/item/clothing/shoes/sneakers/black(src) // 0 tc
 			new /obj/item/choice_beacon/hacked_anime(src) // unique item however it has almost 0 non joke uses
 			new /obj/item/choice_beacon/hacked_anime(src)
+			new /obj/item/choice_beacon/hacked_anime(src)
+			new /obj/item/clothing/neck/tie/horrible(src) // 0 tc
+			new /obj/item/guardiancreator/rare(src) // 18-20 tc
+			new /obj/item/book/granter/spell/blinkdagger(src) //~10 tc, hard to tell
 
 
 

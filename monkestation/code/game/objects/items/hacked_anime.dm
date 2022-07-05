@@ -1,4 +1,4 @@
-//currently mostly a copy paste of base anime//
+//currently a edited copy paste of base anime file//
 
 /obj/item/hacked_anime
 	name = "hacked anime dermal implant"
