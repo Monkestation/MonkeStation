@@ -110,7 +110,7 @@
 		S.glass_type = /obj/item/stack/sheet/glass
 		S.tracker = 1
 		S.update_icon_state()
-		S.setAnchored(TRUE)
+		S.set_anchored(TRUE)
 	S.forceMove(src)
 
 /obj/machinery/power/tracker/crowbar_act(mob/user, obj/item/I)

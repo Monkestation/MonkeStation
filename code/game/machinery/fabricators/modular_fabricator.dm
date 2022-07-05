@@ -353,7 +353,7 @@
 	var/turf/T
 	if(output_direction)
 		T = get_step(src, output_direction)
-		if(is_blocked_turf(T, TRUE))
+		if(T.is_blocked_turf(T, TRUE))
 			T = get_turf(src)
 	else
 		T = get_turf(src)

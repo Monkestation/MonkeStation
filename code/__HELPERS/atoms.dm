@@ -320,38 +320,6 @@ B --><-- A
 	var/turf/T = get_turf(A)
 	return T ? T.z : A.z
 
-//Proc currently not used
-/proc/get_step_towards2(atom/ref , atom/trg)
-	var/base_dir = get_dir(ref, get_step_towards(ref,trg))
-	var/turf/temp = get_step_towards(ref,trg)
-
-	if(is_blocked_turf(temp))
-		var/dir_alt1 = turn(base_dir, 90)
-		var/dir_alt2 = turn(base_dir, -90)
-		var/turf/turf_last1 = temp
-		var/turf/turf_last2 = temp
-		var/free_tile = null
-		var/breakpoint = 0
-
-		while(!free_tile && breakpoint < 10)
-			if(!is_blocked_turf(turf_last1))
-				free_tile = turf_last1
-				break
-			if(!is_blocked_turf(turf_last2))
-				free_tile = turf_last2
-				break
-			turf_last1 = get_step(turf_last1,dir_alt1)
-			turf_last2 = get_step(turf_last2,dir_alt2)
-			breakpoint++
-
-		if(!free_tile)
-			return get_step(ref, base_dir)
-		else
-			return get_step_towards(ref,free_tile)
-
-	else
-		return get_step(ref, base_dir)
-
 /// same as do_mob except for movables and it allows both to drift and doesn't draw progressbar
 /proc/do_atom(atom/movable/user , atom/movable/target, time = 30, uninterruptible = 0,datum/callback/extra_checks = null)
 	if(!user || !target)

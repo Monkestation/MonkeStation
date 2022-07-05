@@ -1,5 +1,8 @@
 #define CULT_POLL_WAIT 2400
 
+/// Returns either the error landmark or the location of the room. Needless to say, if this is used, it means things have gone awry.
+#define GET_ERROR_ROOM ((locate(/obj/effect/landmark/error) in GLOB.landmarks_list) || locate(4,4,1))
+
 /proc/get_area_name(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
@@ -561,22 +564,18 @@
 	)
 	return (is_type_in_list(item, pire_wire))
 
-// Find a obstruction free turf that's within the range of the center. Can also condition on if it is of a certain area type.
-/proc/find_obstruction_free_location(var/range, var/atom/center, var/area/specific_area)
+///Find an obstruction free turf that's within the range of the center. Can also condition on if it is of a certain area type.
+/proc/find_obstruction_free_location(range, atom/center, area/specific_area)
 	var/list/possible_loc = list()
 
-	for(var/turf/found_turf as() in RANGE_TURFS(range, center))
-		var/area/turf_area = get_area(found_turf)
-
+	for(var/turf/found_turf as anything in RANGE_TURFS(range, center))
 		// We check if both the turf is a floor, and that it's actually in the area.
 		// We also want a location that's clear of any obstructions.
-		if (specific_area)
-			if (!istype(turf_area, specific_area))
-				continue
+		if (specific_area && !istype(get_area(found_turf), specific_area))
+			continue
 
-		if (!isspaceturf(found_turf))
-			if (!is_blocked_turf(found_turf))
-				possible_loc.Add(found_turf)
+		if (!isgroundlessturf(found_turf) && !found_turf.is_blocked_turf())
+			possible_loc.Add(found_turf)
 
 	// Need at least one free location.
 	if (possible_loc.len < 1)

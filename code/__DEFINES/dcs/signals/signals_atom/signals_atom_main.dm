@@ -31,13 +31,21 @@
 #define COMSIG_ATOM_UPDATE_NAME "atom_update_name"
 ///	from base of [/atom/proc/update_desc]: (updates)
 #define COMSIG_ATOM_UPDATE_DESC "atom_update_desc"
-///	from base of atom/update_icon(): ()
+///from base of [/atom/update_icon]: ()
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"
+	/// If returned from [COMSIG_ATOM_UPDATE_ICON] it prevents the atom from updating its icon state.
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE UPDATE_ICON_STATE
+	/// If returned from [COMSIG_ATOM_UPDATE_ICON] it prevents the atom from updating its overlays.
 	#define COMSIG_ATOM_NO_UPDATE_OVERLAYS UPDATE_OVERLAYS
 	#define COMSIG_ATOM_NO_UPDATE_GREYSCALE UPDATE_GREAYSCALE
-//	from base of atom/update_overlays(): (list/new_overlays)
+///from base of [atom/update_icon_state]: ()
+#define COMSIG_ATOM_UPDATE_ICON_STATE "atom_update_icon_state"
+//from base of atom/update_overlays(): (list/new_overlays)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"
+///from base of [/atom/update_icon]: (signalOut, did_anything)
+#define COMSIG_ATOM_UPDATED_ICON "atom_updated_icon"
+///from base of [/atom/proc/smooth_icon]: ()
+#define COMSIG_ATOM_SMOOTHED_ICON "atom_smoothed_icon"
 
 /// from base of atom/Entered(): (atom/movable/entering, /atom)
 #define COMSIG_ATOM_ENTERED "atom_entered"

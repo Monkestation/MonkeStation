@@ -39,7 +39,7 @@
 	if(wants_powernet)
 		add_avail(power_produced)
 
-/obj/machinery/power/energy_accumulator/setAnchored(anchorvalue)
+/obj/machinery/power/energy_accumulator/set_anchored(anchorvalue)
 	. = ..()
 	if(isnull(.))
 		return //no need to process if we didn't change anything.

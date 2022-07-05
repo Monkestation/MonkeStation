@@ -52,7 +52,7 @@
 /obj/vv_edit_var(vname, vval)
 	switch(vname)
 		if("anchored")
-			setAnchored(vval)
+			set_anchored(vval)
 			return TRUE
 		if(NAMEOF(src, obj_flags))
 			if ((obj_flags & DANGEROUS_POSSESSION) && !(vval & DANGEROUS_POSSESSION))
@@ -90,7 +90,7 @@
 	SStgui.close_uis(src)
 	. = ..()
 
-/obj/proc/setAnchored(anchorvalue)
+/obj/proc/set_anchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
 	anchored = anchorvalue
 

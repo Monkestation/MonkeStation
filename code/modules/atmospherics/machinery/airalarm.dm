@@ -1,18 +1,19 @@
+// A datum for dealing with threshold limit values
 /datum/tlv
 	var/warning_min
 	var/warning_max
 	var/hazard_min
 	var/hazard_max
 
-/datum/tlv/New(hazard_min as num, warning_min as num, warning_max as num, hazard_max as num)
-	if(hazard_min)
-		hazard_min = hazard_min
-	if(warning_min)
-		warning_min = warning_min
-	if(warning_max)
-		warning_max = warning_max
-	if(hazard_max)
-		hazard_max = hazard_max
+/datum/tlv/New(min2 as num, min1 as num, max1 as num, max2 as num)
+	if(min2)
+		hazard_min = min2
+	if(min1)
+		warning_min = min1
+	if(max1)
+		warning_max = max1
+	if(max2)
+		hazard_max = max2
 
 /datum/tlv/proc/get_danger_level(val)
 	if(hazard_max != TLV_DONT_CHECK && val >= hazard_max)
@@ -40,8 +41,8 @@
 
 /obj/item/electronics/airalarm
 	name = "air alarm electronics"
-	custom_price = 5
 	icon_state = "airalarm_electronics"
+	custom_price = 5
 
 /obj/item/wallframe/airalarm
 	name = "air alarm frame"
@@ -67,9 +68,8 @@
 	desc = "A machine that monitors atmosphere levels and alerts if the area is dangerous."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 4
-	active_power_usage = 8
+	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
+	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.02
 	power_channel = AREA_USAGE_ENVIRON
 	req_access = list(ACCESS_ATMOSPHERICS)
 	max_integrity = 250
@@ -92,8 +92,6 @@
 	var/frequency = FREQ_ATMOS_CONTROL
 	var/alarm_frequency = FREQ_ATMOS_ALARMS
 	var/datum/radio_frequency/radio_connection
-	///Represents a signel source of atmos alarms, complains to all the listeners if one of our thresholds is violated
-	var/datum/alarm_handler/alarm_manager
 
 	var/static/list/atmos_connections = list(COMSIG_TURF_EXPOSE = .proc/check_air_dangerlevel)
 
@@ -136,7 +134,7 @@
 		name = "[get_area_name(src)] Air Alarm"
 
 	my_area = get_area(src)
-	update_icon()
+	update_appearance()
 
 	set_frequency(frequency)
 	AddElement(/datum/element/connect_loc, atmos_connections)
@@ -147,18 +145,20 @@
 		my_area = null
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
+	var/area/ourarea = get_area(src)
+	ourarea.atmosalert(FALSE, src)
 	return ..()
 
 
 /obj/machinery/airalarm/examine(mob/user)
 	. = ..()
 	switch(buildstage)
-		if(0)
-			. += "<span class='notice'>It is missing air alarm electronics.</span>"
-		if(1)
-			. += "<span class='notice'>It is missing wiring.</span>"
-		if(2)
-			. += "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>"
+		if(AIRALARM_BUILD_NO_CIRCUIT)
+			. += span_notice("It is missing air alarm electronics.")
+		if(AIRALARM_BUILD_NO_WIRES)
+			. += span_notice("It is missing wiring.")
+		if(AIRALARM_BUILD_COMPLETE)
+			. += span_notice("Alt-click to [locked ? "unlock" : "lock"] the interface.")
 
 /obj/machinery/airalarm/ui_status(mob/user)
 	if(user.has_unlimited_silicon_privilege && aidisabled)
@@ -166,9 +166,6 @@
 	else if(!shorted)
 		return ..()
 	return UI_CLOSE
-
-/obj/machinery/airalarm/ui_state(mob/user)
-	return GLOB.default_state
 
 /obj/machinery/airalarm/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -359,14 +356,16 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			if(my_area.atmosalert(TRUE, src))
+			var/area/A = get_area(src)
+			if(A.atmosalert(TRUE, src))
 				post_alert(2)
 			. = TRUE
 		if("reset")
-			if(my_area.atmosalert(FALSE, src))
+			var/area/A = get_area(src)
+			if(A.atmosalert(FALSE, src))
 				post_alert(0)
 			. = TRUE
-	update_icon()
+	update_appearance()
 
 
 /obj/machinery/airalarm/proc/reset(wire)
@@ -375,7 +374,7 @@
 			if(!wires.is_cut(WIRE_POWER))
 				shorted = FALSE
 				wires.ui_update()
-				update_icon()
+				update_appearance()
 		if(WIRE_AI)
 			if(!wires.is_cut(WIRE_AI))
 				aidisabled = FALSE
@@ -548,30 +547,57 @@
 					"set_internal_pressure" = 0
 				), signal_source)
 
-//Update when update appearance is in
-/obj/machinery/airalarm/update_icon()
+/obj/machinery/airalarm/update_appearance(updates)
+	. = ..()
+
+	if(panel_open || (machine_stat & (NOPOWER|BROKEN)) || shorted)
+		set_light(0)
+		return
+
+	var/area/our_area = get_area(src)
+	var/color
+	switch(max(danger_level, !!our_area.atmosalm))
+		if(0)
+			color = "#03A728" // green
+		if(1)
+			color = "#EC8B2F" // yellow
+		if(2)
+			color = "#DA0205" // red
+
+	set_light(1.4, 1, color)
+
+/obj/machinery/airalarm/update_icon_state()
 	if(panel_open)
 		switch(buildstage)
-			if(2)
+			if(AIRALARM_BUILD_COMPLETE)
 				icon_state = "alarmx"
-			if(1)
+			if(AIRALARM_BUILD_NO_WIRES)
 				icon_state = "alarm_b2"
-			if(0)
+			if(AIRALARM_BUILD_NO_CIRCUIT)
 				icon_state = "alarm_b1"
+		return ..()
+
+	icon_state = "alarmp"
+	return ..()
+
+/obj/machinery/airalarm/update_overlays()
+	. = ..()
+
+	if(panel_open || (machine_stat & (NOPOWER|BROKEN)) || shorted)
 		return
 
-	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
-		icon_state = "alarmp"
-		return
-
-	var/area/A = get_area(src)
-	switch(max(danger_level, A.atmosalm))
+	var/area/our_area = get_area(src)
+	var/state
+	switch(max(danger_level, our_area.atmosalm))
 		if(0)
-			icon_state = "alarm0"
+			state = "alarm0"
 		if(1)
-			icon_state = "alarm2" //yes, alarm2 is yellow alarm
+			state = "alarm2" //yes, alarm2 is yellow alarm
 		if(2)
-			icon_state = "alarm1"
+			state = "alarm1"
+
+	. += mutable_appearance(icon, state)
+	. += emissive_appearance(icon, state, alpha = src.alpha)
 
 /**
  * main proc for throwing a shitfit if the air isnt right.
@@ -642,7 +668,7 @@
 	if(my_area.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
 		post_alert(new_area_danger_level)
 
-	update_icon()
+	update_appearance()
 
 /obj/machinery/airalarm/crowbar_act(mob/living/user, obj/item/tool)
 	if(buildstage != AIRALARM_BUILD_NO_WIRES)
@@ -656,7 +682,7 @@
 			new /obj/item/electronics/airalarm(drop_location())
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			buildstage = AIRALARM_BUILD_NO_CIRCUIT
-			update_icon()
+			update_appearance()
 	return TRUE
 
 /obj/machinery/airalarm/screwdriver_act(mob/living/user, obj/item/tool)
@@ -665,7 +691,7 @@
 	tool.play_tool_sound(src)
 	panel_open = !panel_open
 	to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
-	update_icon()
+	update_appearance()
 	return TRUE
 
 /obj/machinery/airalarm/wirecutter_act(mob/living/user, obj/item/tool)
@@ -676,7 +702,7 @@
 	var/obj/item/stack/cable_coil/cables = new(drop_location(), 5)
 	user.put_in_hands(cables)
 	buildstage = AIRALARM_BUILD_NO_WIRES
-	update_icon()
+	update_appearance()
 	return TRUE
 
 /obj/machinery/airalarm/wrench_act(mob/living/user, obj/item/tool)
@@ -718,14 +744,14 @@
 						shorted = 0
 						post_alert(0)
 						buildstage = AIRALARM_BUILD_COMPLETE
-						update_icon()
+						update_appearance()
 				return
 		if(AIRALARM_BUILD_NO_CIRCUIT)
 			if(istype(W, /obj/item/electronics/airalarm))
 				if(user.temporarilyRemoveItemFromInventory(W))
 					to_chat(user, span_notice("You insert the circuit."))
 					buildstage = AIRALARM_BUILD_NO_WIRES
-					update_icon()
+					update_appearance()
 					qdel(W)
 				return
 
@@ -736,7 +762,7 @@
 				user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 				span_notice("You adapt an air alarm circuit and slot it into the assembly."))
 				buildstage = AIRALARM_BUILD_NO_WIRES
-				update_icon()
+				update_appearance()
 				return
 
 	return ..()
@@ -753,7 +779,7 @@
 			user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
 			"<span class='notice'>You adapt an air alarm circuit and slot it into the assembly.</span>")
 			buildstage = 1
-			update_icon()
+			update_appearance()
 			return TRUE
 	return FALSE
 
@@ -780,7 +806,7 @@
 
 /obj/machinery/airalarm/power_change()
 	..()
-	update_icon()
+	update_appearance()
 
 /obj/machinery/airalarm/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -791,7 +817,7 @@
 
 /obj/machinery/airalarm/obj_break(damage_flag)
 	..()
-	update_icon()
+	update_appearance()
 
 /obj/machinery/airalarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

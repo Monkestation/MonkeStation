@@ -755,13 +755,13 @@
 	if(isturf(loc))
 		var/turf/machine_turf = loc
 		// We're spawning a frame before this machine is qdeleted, so we want to ignore it. We've also just spawned a new frame, so ignore that too.
-		if(is_blocked_turf(machine_turf.loc))
+		if(machine_turf.is_blocked_turf(TRUE, source_atom = new_frame, ignore_atoms = list(src)))
 			new_frame.deconstruct(disassembled)
 			return
 
 	new_frame.icon_state = "box_1"
 	. = new_frame
-	new_frame.setAnchored(anchored)
+	new_frame.set_anchored(anchored)
 	if(!disassembled)
 		new_frame.obj_integrity = new_frame.max_integrity * 0.5 //the frame is already half broken
 	transfer_fingerprints_to(new_frame)
@@ -842,7 +842,7 @@
 		return CANT_UNFASTEN
 
 	var/turf/ground = get_turf(src)
-	if(!anchored && is_blocked_turf(ground))
+	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
 		to_chat(user, span_notice("You fail to secure [src]."))
 		return CANT_UNFASTEN
 	var/can_be_unfasten = can_be_unfasten_wrench(user)
@@ -855,11 +855,11 @@
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 	if(!wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, .proc/unfasten_wrench_check, prev_anchored, user)))
 		return FAILED_UNFASTEN
-	if(!anchored && is_blocked_turf(ground))
+	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
 		to_chat(user, span_notice("You fail to secure [src]."))
 		return CANT_UNFASTEN
 	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
-	setAnchored(!anchored)
+	set_anchored(!anchored)
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	SEND_SIGNAL(src, COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH, anchored)
 	return SUCCESSFUL_UNFASTEN

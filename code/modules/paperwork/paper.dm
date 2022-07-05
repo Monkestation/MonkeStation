@@ -111,6 +111,7 @@
 /obj/item/paper/update_icon_state()
 	if(info && show_written_words)
 		icon_state = "[initial(icon_state)]_words"
+	return ..()
 
 /obj/item/paper/verb/rename()
 	set name = "Rename paper"
@@ -390,7 +391,7 @@
 	show_written_words = FALSE
 
 /obj/item/paper/crumpled/update_icon_state()
-	return
+	return ..()
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
