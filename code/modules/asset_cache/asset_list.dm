@@ -265,7 +265,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /// This is where all your Insert, InsertAll, etc calls should be inside.
 /datum/asset/spritesheet/proc/create_spritesheets()
 	SHOULD_CALL_PARENT(FALSE)
-	CRASH("create_spritesheets() not implemented for [type]!")
 
 /datum/asset/spritesheet/proc/Insert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
