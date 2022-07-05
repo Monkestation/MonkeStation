@@ -57,7 +57,12 @@ map holestation
 endmap
 
 map donutstation
-	Maxplayers 60
+	maxplayers 60
+	votable
+endmap
+
+map tallstation
+	maxplayers 40
 	votable
 endmap
 

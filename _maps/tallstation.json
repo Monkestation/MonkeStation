@@ -1,0 +1,13 @@
+{
+	"map_name": "Tall Station",
+	"map_link": "TallStation",
+	"map_path": "map_files/TallStation",
+	"map_file": "TallStation.dmm",
+	"shuttles": {
+		"cargo": "cargo_holestation",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_box",
+		"emergency": "emergency_holestation"
+	},
+	"traits": [{"Up" : 1, "Linkage" : "Cross"}, {"Up" : 1, "Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}, {"Up" : 1, "Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}, {"Up" : 1, "Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}, {"Up" : 1, "Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}, {"Up" : 1, "Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}, {"Down" : -1, "Baseturf" : "/turf/open/openspace", "Linkage" : "Cross"}]
+	}

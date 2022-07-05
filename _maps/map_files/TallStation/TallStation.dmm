@@ -1,0 +1,888 @@
+"aq" = (/obj/machinery/power/apc/auto_name/west,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"aU" = (/obj/machinery/light,/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"bs" = (/turf/open/floor/plasteel,/area/hydroponics/garden)
+"bx" = (/obj/docking_port/stationary/turbolift{dwidth = 2; height = 4; id = "turbolift_primary"; roundstart_template = /datum/map_template/shuttle/turbolift/debug/primary; width = 5},/turf/open/floor/plating,/area/shuttle/turbolift/shaft)
+"bP" = (/obj/effect/turf_decal/stripes/line{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"bT" = (/obj/effect/spawner/room/threexthree,/turf/template_noop,/area/maintenance/port/fore)
+"ca" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"cM" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"cW" = (/obj/machinery/door/airlock/public/glass{name = "Cafe"},/obj/effect/mapping_helpers/airlock/autoname,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"cX" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"da" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"dx" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/cigarette,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"dA" = (/obj/effect/spawner/lootdrop/maintenance/two,/obj/effect/decal/cleanable/blood/old,/turf/open/floor/plating,/area/maintenance/port/fore)
+"dD" = (/obj/docking_port/stationary{dir = 8; dwidth = 2; height = 13; id = "ferry_home"; name = "port bay 2"; width = 5},/turf/open/space/basic,/area/space)
+"dK" = (/obj/structure/table/glass,/obj/item/hatchet,/obj/item/cultivator,/obj/item/crowbar,/obj/item/reagent_containers/glass/bucket,/obj/item/plant_analyzer,/obj/machinery/firealarm{dir = 4; pixel_x = -24},/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"eP" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/reagent_containers/food/condiment/peppermill{pixel_x = 5; pixel_y = -2},/obj/item/reagent_containers/food/condiment/saltshaker{pixel_x = -2; pixel_y = 2},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"gk" = (/obj/structure/cable/yellow{icon_state = "1-8"},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"gu" = (/obj/machinery/hydroponics/soil,/turf/open/floor/grass,/area/hydroponics/garden)
+"gF" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/structure/sink{pixel_y = 30},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"gW" = (/obj/structure/lattice,/obj/structure/sign/warning/docking{pixel_y = 32},/turf/open/space/basic,/area/space/nearstation)
+"hl" = (/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"hE" = (/obj/item/reagent_containers/spray/plantbgone,/obj/item/reagent_containers/spray/pestspray{pixel_x = 3; pixel_y = 4},/obj/item/reagent_containers/glass/bottle/nutrient/ez,/obj/item/reagent_containers/glass/bottle/nutrient/rh{pixel_x = 2; pixel_y = 1},/obj/structure/table/glass,/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"if" = (/obj/structure/lattice,/turf/open/space/basic,/area/space/nearstation)
+"ip" = (/obj/structure/closet/firecloset,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"ir" = (/obj/machinery/door/airlock/hatch{name = "Access Hatch"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/hallway/primary/central)
+"iu" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/snack/random,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"iE" = (/obj/effect/turf_decal/tile/blue{dir = 2},/obj/machinery/camera/autoname{dir = 10; icon_state = "camera"},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
+"iR" = (/obj/machinery/vending/coffee,/obj/effect/turf_decal/stripes/line{dir = 5},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"iV" = (/obj/structure/grille/broken,/obj/item/shard,/turf/open/floor/plating,/area/maintenance/port/fore)
+"iY" = (/obj/machinery/light,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"je" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"ju" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/chair{dir = 8},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"jw" = (/obj/structure/cable/yellow{icon_state = "2-4"},/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"jB" = (/obj/effect/turf_decal/stripes/corner{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"kd" = (/obj/structure/cable/yellow{icon_state = "1-4"},/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/landmark/start,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"ku" = (/obj/structure/sign/warning/docking{pixel_y = -32},/turf/open/space/basic,/area/space)
+"ky" = (/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 8},/turf/open/floor/plating,/area/hallway/secondary/entry)
+"kY" = (/obj/item/seeds/apple,/obj/item/seeds/banana,/obj/item/seeds/cocoapod,/obj/item/seeds/grape,/obj/item/seeds/orange,/obj/item/seeds/sugarcane,/obj/item/seeds/wheat,/obj/item/seeds/watermelon,/obj/structure/table/glass,/obj/item/seeds/tower,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"la" = (/obj/effect/turf_decal/stripes/line{dir = 6},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"ln" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"lv" = (/turf/closed/wall/r_wall,/area/hallway/secondary/entry)
+"lK" = (/turf/closed/wall,/area/hallway/secondary/entry)
+"lN" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating,/area/hydroponics/garden)
+"mO" = (/obj/machinery/biogenerator,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"mS" = (/turf/open/floor/plasteel,/area/hallway/primary/central)
+"nY" = (/obj/structure/sign/warning/docking{pixel_y = 32},/turf/open/space/basic,/area/space)
+"oJ" = (/obj/structure/cable/yellow{icon_state = "1-2"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"oM" = (/obj/effect/decal/cleanable/blood/old,/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"oU" = (/obj/effect/turf_decal/tile/green,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"pH" = (/obj/structure/extinguisher_cabinet{pixel_x = 32},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"pW" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"pZ" = (/obj/structure/cable/yellow{icon_state = "1-8"},/obj/machinery/light,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"qo" = (/obj/effect/turf_decal/stripes/line{dir = 10},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"qB" = (/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"rN" = (/turf/open/floor/plating{icon_state = "platingdmg3"},/area/maintenance/port/fore)
+"rR" = (/obj/docking_port/stationary{dir = 2; dwidth = 11; height = 22; id = "whiteship_home"; name = "SS13: Auxiliary Dock, Station-Port"; width = 35},/turf/open/space/basic,/area/space)
+"sp" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plating,/area/maintenance/port/fore)
+"sv" = (/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"sx" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"sB" = (/turf/open/space/basic,/area/space)
+"sO" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"sZ" = (/obj/structure/table/glass,/obj/item/cultivator,/obj/item/hatchet,/obj/item/crowbar,/obj/item/plant_analyzer,/obj/item/reagent_containers/glass/bucket,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"ty" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"tK" = (/obj/structure/sign/directions/supply,/turf/open/floor/plating,/area/space)
+"ug" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/space)
+"un" = (/obj/effect/turf_decal/stripes/corner,/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"uD" = (/obj/structure/cable/yellow{icon_state = "2-16"},/obj/structure/cable/yellow{icon_state = "2-32"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/space)
+"uM" = (/obj/effect/turf_decal/tile/blue{dir = 2},/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
+"uN" = (/obj/structure/cable/yellow{icon_state = "1-2"},/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"vi" = (/obj/item/shard,/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"vj" = (/obj/structure/sign/directions/security{pixel_y = -32},/turf/open/floor/plating,/area/space)
+"vu" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow{icon_state = "0-8"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"vZ" = (/obj/effect/turf_decal/stripes/line,/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"wg" = (/turf/closed/wall/r_wall,/area/crew_quarters/cafeteria)
+"wM" = (/turf/template_noop,/area/maintenance/port/fore)
+"wP" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"wQ" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/structure/cable/yellow{icon_state = "1-4"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"wV" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/plating,/area/maintenance/port/fore)
+"xk" = (/obj/effect/turf_decal/stripes/line,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"xn" = (/obj/item/shard,/turf/open/floor/plating{icon_state = "panelscorched"},/area/maintenance/port/fore)
+"xw" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/space/basic,/area/hydroponics/garden)
+"xH" = (/obj/machinery/camera/autoname{dir = 8; icon_state = "camera"},/obj/item/radio/intercom{pixel_x = 29},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"yc" = (/turf/open/floor/plating/airless,/area/space/nearstation)
+"yB" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"yF" = (/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"zp" = (/obj/effect/turf_decal/caution,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"zv" = (/obj/effect/turf_decal/tile/blue{dir = 4},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"zG" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/maintenance/port/fore)
+"zK" = (/obj/machinery/light,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"zO" = (/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Ag" = (/obj/structure/sign/directions/command{pixel_y = -32},/turf/open/floor/plating,/area/space)
+"Ap" = (/obj/machinery/camera/autoname{dir = 8; icon_state = "camera"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Bf" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/maintenance/port/fore)
+"Cd" = (/obj/machinery/turbolift_button{pixel_y = -23; shuttle_id = "turbolift_primary"},/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Cx" = (/obj/effect/spawner/structure/window,/turf/open/floor/plating,/area/maintenance/port/fore)
+"CK" = (/turf/open/floor/plating,/area/space)
+"CT" = (/turf/closed/wall/r_wall,/area/hallway/primary/central)
+"CW" = (/obj/effect/spawner/structure/window/reinforced,/turf/open/floor/plating,/area/hallway/secondary/entry)
+"DD" = (/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Eb" = (/turf/closed/wall,/area/space/nearstation)
+"Ej" = (/obj/effect/turf_decal/stripes/corner{dir = 4},/obj/effect/turf_decal/stripes/corner{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"El" = (/obj/structure/ladder,/turf/open/floor/plating,/area/space)
+"Ez" = (/obj/structure/sign/directions/science,/turf/open/floor/plating,/area/space)
+"EO" = (/obj/machinery/door/airlock/arrivals_external{name = "Arrivals Airlock"},/obj/effect/mapping_helpers/airlock/cyclelink_helper,/turf/open/floor/plating,/area/hallway/secondary/entry)
+"FC" = (/obj/structure/cable/yellow{icon_state = "2-32"},/turf/open/floor/plating{icon_state = "platingdmg3"},/area/hallway/primary/central)
+"FY" = (/turf/closed/wall/r_wall,/area/hydroponics/garden)
+"Gc" = (/obj/effect/turf_decal/stripes/line{dir = 9},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"GA" = (/turf/open/floor/plating,/area/maintenance/port/fore)
+"GH" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Ht" = (/obj/machinery/atmospherics/pipe/multiz/layer2,/obj/machinery/atmospherics/pipe/multiz/layer4,/turf/open/floor/plating,/area/hallway/primary/central)
+"HH" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/effect/landmark/latejoin,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"HI" = (/obj/effect/turf_decal/stripes/corner{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"HL" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/structure/cable/yellow{icon_state = "2-8"},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"HN" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"IF" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"IS" = (/obj/machinery/door/airlock/maintenance{req_access_txt = "12"},/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plating,/area/maintenance/port/fore)
+"JD" = (/obj/item/shard,/obj/structure/grille/broken,/turf/open/floor/plating,/area/maintenance/port/fore)
+"JZ" = (/obj/structure/cable/yellow{icon_state = "1-4"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"Kd" = (/obj/effect/turf_decal/tile/blue{dir = 2},/obj/machinery/light,/turf/open/floor/plasteel/white/corner{dir = 8},/area/hallway/secondary/entry)
+"KH" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/reagent_containers/food/condiment/peppermill{pixel_x = 5; pixel_y = -2},/obj/item/kitchen/fork,/obj/item/reagent_containers/food/condiment/saltshaker{pixel_x = -2; pixel_y = 2},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"KU" = (/turf/open/openspace,/area/shuttle/turbolift/shaft)
+"Lg" = (/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Lh" = (/obj/structure/closet/firecloset,/turf/open/floor/plating,/area/maintenance/port/fore)
+"LG" = (/obj/effect/turf_decal/stripes/line{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"LH" = (/obj/machinery/light{dir = 1},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"LX" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/chair{dir = 4},/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"Mc" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/machinery/light{dir = 1},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"Nf" = (/turf/open/floor/plating,/area/shuttle/turbolift/shaft)
+"Nu" = (/obj/structure/rack,/obj/effect/spawner/lootdrop/maintenance/two,/turf/open/floor/plating,/area/maintenance/port/fore)
+"Nz" = (/turf/closed/wall,/area/maintenance/port/fore)
+"NE" = (/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"NG" = (/obj/machinery/power/apc/auto_name/north{pixel_y = 24},/obj/structure/cable/yellow{icon_state = "0-4"},/obj/machinery/seed_extractor,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"NP" = (/obj/machinery/door/airlock/arrivals_external{name = "Arrivals Airlock"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 1},/turf/open/floor/plating,/area/hallway/secondary/entry)
+"NT" = (/obj/docking_port/stationary{dir = 8; dwidth = 3; height = 15; id = "arrivals_stationary"; name = "arrivals"; roundstart_template = /datum/map_template/shuttle/arrival/box; width = 7},/turf/open/space/basic,/area/space)
+"NV" = (/turf/open/floor/plating{icon_state = "panelscorched"},/area/hallway/primary/central)
+"Ol" = (/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow{icon_state = "0-8"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"Ow" = (/obj/machinery/door/airlock/turbolift,/turf/open/floor/plating,/area/space)
+"Oz" = (/obj/structure/sign/directions/evac{pixel_y = -32},/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plating,/area/hallway/primary/central)
+"OZ" = (/obj/machinery/door/airlock/hatch{name = "Access Hatch"},/turf/open/floor/plating,/area/space)
+"Pg" = (/obj/effect/turf_decal/stripes/line{dir = 2},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Pm" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Qj" = (/obj/machinery/light{dir = 4},/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Qx" = (/obj/machinery/door/airlock/external{name = "Port Docking Bay 2"},/obj/effect/mapping_helpers/airlock/cyclelink_helper{dir = 4},/turf/open/floor/plating,/area/hallway/secondary/entry)
+"Rd" = (/obj/machinery/door/airlock/public/glass{name = "Garden"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "1-2"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Rg" = (/obj/structure/reagent_dispensers/watertank,/obj/effect/turf_decal/tile/green,/obj/effect/turf_decal/tile/green{dir = 4},/obj/effect/turf_decal/tile/green{dir = 1},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Rp" = (/turf/closed/wall,/area/space)
+"RN" = (/obj/machinery/power/apc/auto_name/east,/obj/structure/cable/yellow,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"RV" = (/obj/machinery/door/airlock/public/glass{name = "Central Access"},/obj/machinery/door/firedoor,/obj/structure/cable/yellow{icon_state = "4-8"},/obj/effect/mapping_helpers/airlock/autoname,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"Sq" = (/obj/structure/closet/emcloset,/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"SE" = (/obj/effect/turf_decal/stripes/corner,/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"SU" = (/turf/closed/wall,/area/hydroponics/garden)
+"Tf" = (/obj/structure/sink{pixel_y = 30},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Tn" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Tt" = (/obj/structure/closet/firecloset,/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Tw" = (/obj/structure/closet/emcloset,/turf/open/floor/plating,/area/maintenance/port/fore)
+"TW" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/structure/table,/obj/item/kitchen/fork,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"TZ" = (/turf/open/floor/plating,/area/hallway/secondary/entry)
+"UF" = (/obj/effect/turf_decal/tile/blue{dir = 4},/obj/machinery/camera/autoname{dir = 6; icon_state = "camera"},/turf/open/floor/plasteel/white/corner{dir = 1},/area/hallway/secondary/entry)
+"Vl" = (/obj/effect/turf_decal/stripes/corner,/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"Vy" = (/obj/effect/turf_decal/stripes/line,/turf/open/floor/plasteel,/area/hallway/primary/central)
+"VE" = (/turf/closed/wall,/area/crew_quarters/cafeteria)
+"Wi" = (/obj/machinery/door/airlock/turbolift,/turf/open/floor/plating,/area/hallway/primary/central)
+"Wz" = (/obj/item/storage/bag/plants/portaseeder,/obj/structure/table/glass,/obj/item/plant_analyzer,/obj/machinery/light_switch{pixel_x = -6; pixel_y = -25},/obj/effect/turf_decal/tile/green{dir = 1},/obj/effect/turf_decal/tile/green{dir = 8},/turf/open/floor/plasteel,/area/hydroponics/garden)
+"Xw" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"XF" = (/turf/closed/wall,/area/hallway/primary/central)
+"XU" = (/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"XV" = (/obj/structure/cable/yellow{icon_state = "2-4"},/turf/open/floor/plating,/area/hallway/primary/central)
+"Yo" = (/obj/structure/sign/directions/engineering,/turf/open/floor/plating,/area/space)
+"YE" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plating,/area/maintenance/port/fore)
+"YH" = (/obj/structure/ladder,/turf/open/floor/plating,/area/hallway/primary/central)
+"YR" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/machinery/vending/cola/random,/turf/open/floor/plasteel,/area/crew_quarters/cafeteria)
+"YX" = (/obj/machinery/vending/cola,/obj/effect/turf_decal/stripes/line{dir = 6},/turf/open/floor/plasteel,/area/hallway/secondary/entry)
+"YZ" = (/obj/structure/sign/directions/medical,/turf/open/floor/plating,/area/space)
+
+(1,1,1) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififycyciflvlvlvlvlvlvlvlvlvlvlvlvlvlvwgVEVEVEVEVEVEVEVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBlvzvzvzvzvzvzvUFzvzvzvzvzvzvwgLXePjuIFLXTWjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBififyclvyFvZyFyFyFyFyFyFvZyFXwzOzOwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvCWCWCWCWCWCWlvlvLGzOzOwgLXePjuIFLXKHjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYsBsBsBsBsBsBsBCWqoXwpHwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGzOwgLXTWjuIFLXePjuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBdDQxTZkyLGApwgIFIFIFIFIFIFIFVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWCWCWLGpWwgIFIFsxtytytyvuVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkusBsBsBsBsBsBsBCWGcHIzOwgIFIFwPYRiuYRdxVEsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvlvHNHNVEVEVEcWVEVEVEVEVEXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvzvzvMczvzvzvUFzvzvMczvzvzvzvHNmSmSmSmSLHlnmSmSmSmSLHmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvxkyBxkXwzOzOVlxkyByFXwzOzOXURVHLGHGHGHGHwQGHGHGHGHGHhlmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWEOCWLGzOzObPCWEOCWqoyFXwjeHNlnmSmSmSmSmSmSmSmSmSmSlnmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYCWTZCWqoPmTtYXCWTZCWCWlvLGjeNzISNzNzNzNzNzNzNzNzNzmSlnmSXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWNPCWCWCWCWCWCWNPCWsBlvLGuNNzYENzGArNdANzwMwMwMNzmSlnmSXFHtYHFCXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGRNNzYENzCxiVNzNzwMwMwMNzmSlnmSXFNVXVOzXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzYENzoMcMviCxbTwMwMNzmSlnQjXFXFirXFXFXFXFXFXFXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzJZBfNENzYENzCxNzNzNzaqoJmSHNmSlnmSmSmSmSmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBNTCWLGzONzNzJDNzNzJZcMOlNzNuNzmSkdHHcaGHdamSmSmSmSmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGpHNzxnGANzTwrNGAwVNzzGNzmSlnmSHNaUVyzpVyCdzKmSmSmSmSmSmSXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWLGzONzLhGANzGAGANzNzNzCxNzmSlnQjXFXFWiWiWiXFCTXFXFXFXFXFXFXFsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvLGpWNzGAGANzGAGAGANuNuzGNzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWEOCWCWCWCWCWCWEOCWsBlvLGzONzNuGAGAzGGAGAGAGAGANzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBkuCWTZCWGcSqipiRCWTZCWCWlvLGzONzNzNzNzNzNzNzNzNzspNzmSlnmSXFNfNfNfNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBlvCWNPCWLGzOzObPCWNPCWGcDDHIzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSXFNfNfbxNfNfCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBififififEbEbycycycycyclvDDEjDDHIzOzOjBDDEjDDHIzOzOzOHNmSmSmSmSmSmSmSmSmSmSmSlnmSCTCTCTCTCTCTCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBsBifsBlvuMuMKduMuMuMuMuMiEuMuMuMuMKdHNmSmSoULgiYLgLgLgLgLgjwpZmSCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBsBifsBlvlKlKlKlKlKlKlKlKlKlKlKlKlKlKlKHNHNSUsOSUlNSUSUlNSURdFYCTCTsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBififEbycEbEbycyclvzvzvzvzvzvzvzvzvUFzvzvzvzvzvsvzOpHSUTnTfmONGkYsZgFgkFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifsBsBifsBlvzOzOunPgSEPgXwzOzOVlPgSEPgcXzOzOzOSUqBbsbsbsbsbsbsxHFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBifififEbycyclvlvlvlvCWEOCWLGzOzObPCWEOCWlvlvlvlvFYRgbsbsbsbsbsbshEFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBnYCWTZCWqoPgPglaCWTZCWgWifsBsBFYdKguguguguguguWzFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBCWNPCWCWCWCWCWCWNPCWifififsBFYFYFYxwxwxwxwFYFYFYsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBrRsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,2) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKEzRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,3) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKtKRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,4) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKvjRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,5) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKYoRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,6) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKYZRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
+(1,1,7) = {"
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpCKEluDRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpugCKAgRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOZRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpOwOwOwRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpKUKUKUKUKURpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBRpRpRpRpRpRpRpsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+sBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsBsB
+"}
