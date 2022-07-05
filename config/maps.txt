@@ -62,7 +62,7 @@ map donutstation
 endmap
 
 map tallstation
-	maxplayers 40
+	minplayers 20
 	votable
 endmap
 
