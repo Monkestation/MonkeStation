@@ -2102,6 +2102,14 @@
 	. = ..()
 	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
 		return
+	var/list/pest_list
+	for(var/turf/open/floor/temp in view(3, exposed_turf))
+		var/obj/effect/decal/cleanable/ants/temp_pests = locate() in temp.contents
+		if(temp_pests)
+			pest_list += temp
+
+	if(pest_list)
+		exposed_turf = pick(pest_list)
 
 	var/obj/effect/decal/cleanable/ants/pests = locate() in exposed_turf.contents
 	if(!pests)
@@ -2109,6 +2117,7 @@
 	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
 	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
 	pests.update_ant_damage()
+	pest_list = null
 
 /datum/reagent/ants/reaction_mob(mob/living/exposed_mob, method=TOUCH, reac_volume, show_message = 1)
 	. = ..()
