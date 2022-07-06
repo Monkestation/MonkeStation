@@ -759,10 +759,10 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 /datum/action/innate/ai/emergency_lights/Activate()
 	for(var/obj/machinery/light/L in GLOB.machines)
 		if(is_station_level(L.z))
-			L.no_emergency = TRUE
+			L.no_low_power = TRUE
 			INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
 		CHECK_TICK
-	to_chat(owner, "<span class='notice'>Emergency light connections severed.</span>")
+	to_chat(owner, span_notice("Emergency light connections severed."))
 	owner.playsound_local(owner, 'sound/effects/light_flicker.ogg', 50, FALSE)
 
 

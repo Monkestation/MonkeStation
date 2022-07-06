@@ -431,8 +431,8 @@
 			emergency_lights = !emergency_lights
 			playsound(src, 'sound/machines/click.ogg', 30, 3)
 			for(var/obj/machinery/light/L in area)
-				if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
-					L.no_emergency = emergency_lights
+				if(!initial(L.no_low_power)) //If there was an override set on creation, keep that override
+					L.no_low_power = emergency_lights
 					INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
 				CHECK_TICK
 			. = TRUE
@@ -451,13 +451,13 @@
 		update_icon()
 	if(machine_stat & (BROKEN|MAINT))
 		return
-	if(!area?.requires_power)
+	if(!area || !area.requires_power)
 		return
 	if(failure_timer)
 		update()
 		queue_icon_update()
 		failure_timer--
-		force_update = 1
+		force_update = TRUE
 		return
 
 	//dont use any power from that channel if we shut that power channel off

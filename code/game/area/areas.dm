@@ -27,8 +27,9 @@
 	///Whether there is an atmos alarm in this area
 	var/atmosalm = FALSE
 	var/poweralm = TRUE
-	var/lightswitch = TRUE
 	var/vacuum = null
+
+	var/lightswitch = TRUE
 
 	/// For space, the asteroid, lavaland, etc. Used with blueprints or with weather to determine if we are adding a new area (vs editing a station room)
 	var/outdoors = FALSE

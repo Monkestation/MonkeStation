@@ -96,10 +96,11 @@
 	max_integrity = 200
 	layer = BELOW_OBJ_LAYER //keeps shit coming out of the machine from ending up underneath it.
 	flags_ricochet = RICOCHET_HARD
-	ricochet_chance_mod = 0.3
+	receive_ricochet_chance_mod = 0.3
 
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
@@ -168,7 +169,7 @@
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70, "stamina" = 0)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
 	GLOB.machines += src
 

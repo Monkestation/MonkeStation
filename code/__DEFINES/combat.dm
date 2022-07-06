@@ -3,34 +3,61 @@
 //Damage and status effect defines
 
 //Damage defines //TODO: merge these down to reduce on defines
-#define BRUTE		"brute"
-#define BURN		"fire"
-#define TOX			"tox"
-#define OXY			"oxy"
-#define CLONE		"clone"
-#define STAMINA 	"stamina"
-#define BRAIN		"brain"
+/// Physical fracturing and warping of the material.
+#define BRUTE "brute"
+/// Scorching and charring of the material.
+#define BURN "burn"
+/// Poisoning. Mostly caused by reagents.
+#define TOX "toxin"
+/// Suffocation.
+#define OXY "oxygen"
+/// Cellular degredation. Rare and difficult to treat.
+#define CLONE "clone"
+/// Exhaustion and nonlethal damage.
+#define STAMINA "stamina"
+/// Brain damage. Should probably be decomissioned and replaced with proper organ damage.
+#define BRAIN "brain"
+
+//Damage flag defines //
+/// Involves a melee attack or a thrown object.
+#define MELEE "melee"
+/// Involves a solid projectile.
+#define BULLET "bullet"
+/// Involves a laser.
+#define LASER "laser"
+/// Involves an EMP or energy-based projectile.
+#define ENERGY "energy"
+/// Involves a shockwave, usually from an explosion.
+#define BOMB "bomb"
+/// Involved in checking wheter a disease can infect or spread. Also involved in xeno neurotoxin.
+#define BIO "bio"
+/// Involves radiation
+#define RAD "rad"
+/// Involves fire or temperature extremes.
+#define FIRE "fire"
+/// Involves corrosive substances.
+#define ACID "acid"
 
 //bitflag damage defines used for suicide_act
-#define BRUTELOSS 	            	(1<<0)
-#define FIRELOSS 	            	(1<<1)
-#define TOXLOSS 	            	(1<<2)
-#define OXYLOSS 	            	(1<<3)
-#define SHAME 			            (1<<4)
-#define MANUAL_SUICIDE          	(1<<5)	//suicide_act will do the actual killing.
-#define MANUAL_SUICIDE_NONLETHAL	(1<<6)  //when the suicide is conditionally lethal
+#define BRUTELOSS (1<<0)
+#define FIRELOSS (1<<1)
+#define TOXLOSS (1<<2)
+#define OXYLOSS (1<<3)
+#define SHAME (1<<4)
+#define MANUAL_SUICIDE (1<<5) //suicide_act will do the actual killing.
+#define MANUAL_SUICIDE_NONLETHAL (1<<6) //when the suicide is conditionally lethal
 
-#define EFFECT_STUN			"stun"
-#define EFFECT_KNOCKDOWN	"knockdown"
-#define EFFECT_UNCONSCIOUS	"unconscious"
-#define EFFECT_PARALYZE		"paralyze"
-#define EFFECT_IMMOBILIZE	"immobilize"
-#define EFFECT_IRRADIATE	"irradiate"
-#define EFFECT_STUTTER		"stutter"
-#define EFFECT_SLUR 		"slur"
-#define EFFECT_EYE_BLUR		"eye_blur"
-#define EFFECT_DROWSY		"drowsy"
-#define EFFECT_JITTER		"jitter"
+#define EFFECT_STUN "stun"
+#define EFFECT_KNOCKDOWN "knockdown"
+#define EFFECT_UNCONSCIOUS "unconscious"
+#define EFFECT_PARALYZE "paralyze"
+#define EFFECT_IMMOBILIZE "immobilize"
+#define EFFECT_IRRADIATE "irradiate"
+#define EFFECT_STUTTER "stutter"
+#define EFFECT_SLUR "slur"
+#define EFFECT_EYE_BLUR "eye_blur"
+#define EFFECT_DROWSY "drowsy"
+#define EFFECT_JITTER "jitter"
 
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN			(1<<0)
