@@ -32,9 +32,9 @@
 	target.Stun(40)
 
 	var/target_loc = get_turf(target)
-		blinkdagger_teleport(user, target_loc)
+	blinkdagger_teleport(user, target_loc)
 
-.proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
+proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
 	var/mob/living/U = user
 	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
