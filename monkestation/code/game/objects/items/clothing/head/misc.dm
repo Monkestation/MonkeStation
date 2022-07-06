@@ -1,5 +1,5 @@
 /obj/item/clothing/head/anime_fedora
-	name = "anceint forged fedora"
+	name = "Ancient Forged Fedora"
 	desc = "Forged 1000 years ago in a magic forge and cooled in gods blood, or you just bought a cheap replica off of NTbay."
 	icon_state = "fedora"
 	item_state = "fedora"
