@@ -160,3 +160,5 @@
 #define STATUS_EFFECT_FOOD_STAM_MEDIUM /datum/status_effect/food/stamina_increase_t2
 
 #define STATUS_EFFECT_FOOD_STAM_LARGE /datum/status_effect/food/stamina_increase_t3
+
+#define STATUS_EFFECT_FOOD_RESISTANCE /datum/status_effect/food/resistance

@@ -305,6 +305,7 @@
 	icon_state = "baseball"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GRAIN | GROSS
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/burger/baconburger
 	name = "bacon burger"
