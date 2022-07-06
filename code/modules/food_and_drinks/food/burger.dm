@@ -102,6 +102,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 7)
 	tastes = list("bun" = 4, "acid" = 4)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/bearger
 	name = "bearger"
@@ -109,6 +110,7 @@
 	icon_state = "bearger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 7)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/clown
 	name = "clown burger"
@@ -116,6 +118,7 @@
 	icon_state = "clownburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/mannitol = 11, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/mime
 	name = "mime burger"
@@ -123,6 +126,7 @@
 	icon_state = "mimeburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 7, /datum/reagent/consumable/nothing = 6)
 	foodtypes = GRAIN
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/brain
 	name = "brainburger"
@@ -250,6 +254,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 7)
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtypes = GRAIN | MEAT | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/jelly
 	name = "jelly burger"
@@ -257,6 +262,7 @@
 	icon_state = "jellyburger"
 	tastes = list("bun" = 4, "jelly" = 2)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/jelly/slime
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/toxin/slimejelly = 10, /datum/reagent/consumable/nutriment/vitamin = 6)
@@ -276,6 +282,7 @@
 	max_volume = 100
 	tastes = list("bun" = 4, "type two diabetes" = 10)
 	foodtypes = GRAIN | MEAT | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 /obj/item/food/burger/fivealarm
 	name = "five alarm burger"
@@ -283,6 +290,7 @@
 	icon_state = "fivealarmburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 /obj/item/food/burger/rat
 	name = "rat burger"
@@ -337,6 +345,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/bbqsauce = 1)
 	tastes = list("bun" = 2, "pork patty" = 4)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/burger/mcguffin
 	name = "mcguffin"
@@ -375,6 +384,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	foodtypes = GRAIN | MEAT | DAIRY | TOXIC | GROSS | FRUIT
 	w_class = WEIGHT_CLASS_NORMAL   // The crazy hamburger in the video was bigger than joker's hand therefore i think this weight class is adequate.
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 // empty burger you can customize
 /obj/item/food/burger/empty
