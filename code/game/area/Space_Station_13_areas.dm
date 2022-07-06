@@ -805,6 +805,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Shared Engineering Storage"
 	icon_state = "engine_storage_shared"
 
+/area/engine/access_hatch
+	name = "Access Hatch"
+	icon_state = "access_hatch"
+
 /area/engine/transit_tube
 	name = "Transit Tube"
 	icon_state = "transit_tube"
@@ -1463,6 +1467,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/storage/emergency/port
 	name = "Port Emergency Storage"
+	icon_state = "emergencystorage"
+
+/area/storage/emergency/departure
+	name = "Departure Emergency Storage"
 	icon_state = "emergencystorage"
 
 /area/storage/tech
