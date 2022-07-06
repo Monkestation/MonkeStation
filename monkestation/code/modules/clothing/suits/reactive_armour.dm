@@ -2,7 +2,7 @@
 /obj/item/clothing/suit/armor/reactive/honk
 	name = "reactive honk armor"
 	desc = "An experimental suit of armor that honks violently."
-	reactivearmor_cooldown_duration = 100
+	reactivearmor_cooldown_duration = 10 SECONDS
 
 /obj/item/clothing/suit/armor/reactive/honk/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -14,9 +14,9 @@
 		playsound(get_turf(owner),'sound/items/bikehorn.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] honks, converting the attack into a violent honk!</span>")
 		var/turf/owner_turf = get_turf(owner)
-		owner.Paralyze(30)
+		owner.Paralyze(3 SECONDS)
 		for(var/mob/living/carbon/target_atom as mob in ohearers(7, owner_turf))
-			target_atom.Paralyze(60)
+			target_atom.Paralyze(6 SECONDS)
 
 
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
@@ -28,14 +28,14 @@
 		playsound(get_turf(src),'sound/items/bikehorn.ogg', 100, 1)
 		src.visible_message("<span class='danger'>[src] malfunctions, and honks extra hard!</span>")
 		for(var/mob/living/carbon/target_atom as mob in hearers(7, get_turf(src))) //Includes the person wearing it
-			target_atom.Paralyze(rand(50,200)) //Honk! (randomly between 5-20 seconds) :)
+			target_atom.Paralyze(rand(5 SECONDS,20 SECONDS)) //Honk! :)
 	return
 
 //Mutation Armour
 /obj/item/clothing/suit/armor/reactive/mutation
 	name = "reactive mutation armor"
 	desc = "An experimental suit of armor that gives off radioactive waves."
-	reactivearmor_cooldown_duration = 300
+	reactivearmor_cooldown_duration = 30 SECONDS
 
 /obj/item/clothing/suit/armor/reactive/mutation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -67,7 +67,7 @@
 
 /obj/item/clothing/suit/armor/reactive/mutation/emp_act()
 	if(active)
-		reactivearmor_cooldown = world.time + 1000
+		reactivearmor_cooldown = world.time + 100 SECONDS
 		src.visible_message("<span class='danger'>[src] malfunctions, and emits an extra strong wave!</span>")
 		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
 		for(var/mob/living/carbon/target_atom as mob in viewers(7, get_turf(src))) //Includes the wearer
