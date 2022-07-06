@@ -34,7 +34,7 @@
 	var/target_loc = get_turf(target)
 	blinkdagger_teleport(user, target_loc)
 
-proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
+obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
 	var/mob/living/U = user
 	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
