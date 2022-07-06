@@ -423,3 +423,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CUSTOMIZABLE_REAGENT_HOLDER "customizable_reagent_holder"
 /// Trait applied by element
 #define ELEMENT_TRAIT "element_trait"
+
+
+///FOOD TRAITS
+///Trait for Fire Burps
+#define TRAIT_FOOD_FIRE_BURPS "food_buff_fire_burps"

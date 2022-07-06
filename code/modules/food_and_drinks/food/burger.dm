@@ -290,7 +290,7 @@
 	icon_state = "fivealarmburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/condensedcapsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | MEAT
-	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
+	food_buffs = STATUS_EFFECT_FOOD_FIREBURPS
 
 /obj/item/food/burger/rat
 	name = "rat burger"
