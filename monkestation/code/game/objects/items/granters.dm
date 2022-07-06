@@ -34,7 +34,7 @@
 	remarks = list("I dont think this is telling me how to shoot lasers from my hands.",
 					"Just focus my energies...",
 					"Am I the chosen one?",
-					"Nothing peronnel? This is very personnel, you killed my grandfather!",
+					"Nothing personal? This is very personal, you killed my grandfather!",
 					"Ineffective vs Giant mechs?",
 					"I never knew catgirls could teach teleportation.",
 					"Who had any idea there was a magic dimension full of robust knives!")

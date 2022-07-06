@@ -8,6 +8,6 @@
 	damtype = BRUTE
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	armour_penetration = 100
+	armour_penetration = 50
 	sharpness = IS_SHARP
 	attack_verb = list("detroyed", "annihilated")

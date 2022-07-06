@@ -9,7 +9,7 @@
 	range = 7
 	selection_type = "range"
 	clothes_req = FALSE
-	invocation_time = 10
+	invocation_time = 1 SECONDS
 
 /obj/effect/proc_holder/spell/targeted/blinkdagger/cast(list/targets, mob/user = usr)
 	if(!length(targets))
@@ -29,7 +29,7 @@
 						   "<span class='danger'>You feel a gust of wind behind you, That cant be good.</span>")
 
 	target.adjustBruteLoss(40)
-	target.Stun(40)
+	target.Stun(2 SECONDS)
 
 	var/target_loc = get_turf(target)
 	blinkdagger_teleport(user, target_loc)
