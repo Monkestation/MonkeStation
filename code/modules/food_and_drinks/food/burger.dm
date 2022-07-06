@@ -6,6 +6,7 @@
 	tastes = list("bun" = 2, "beef patty" = 4)
 	foodtypes = GRAIN | MEAT //lettuce doesn't make burger a vegetable.
 	eat_time = 15 //Quick snack
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/burger/plain
 	name = "burger"

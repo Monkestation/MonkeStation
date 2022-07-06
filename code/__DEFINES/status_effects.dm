@@ -151,3 +151,8 @@
 #define STASIS_ASCENSION_EFFECT "heretic_ascension"
 
 #define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))
+
+
+///FOOD DEFINES
+
+#define STATUS_EFFECT_FOOD_STAM_TINY /datum/status_effect/food/stamina_increase_t1

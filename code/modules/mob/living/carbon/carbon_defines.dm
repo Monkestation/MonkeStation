@@ -74,3 +74,5 @@
 
 	/// Timer id of any transformation
 	var/transformation_timer
+	/// How many food buffs we have at once
+	var/applied_food_buffs = 0
