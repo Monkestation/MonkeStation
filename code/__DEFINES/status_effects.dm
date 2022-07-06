@@ -166,3 +166,11 @@
 #define STATUS_EFFECT_FOOD_FIREBURPS /datum/status_effect/food/fire_burps
 
 #define STATUS_EFFECT_FOOD_SWEATY /datum/status_effect/food/sweaty
+
+#define STATUS_EFFECT_FOOD_PLUS /datum/status_effect/food/sweaty/plus
+
+#define STATUS_EFFECT_FOOD_HEALTH_SMALL /datum/status_effect/food/health_increase
+
+#define STATUS_EFFECT_FOOD_HEALTH_MEDIUM /datum/status_effect/food/health_increase/t2
+
+#define STATUS_EFFECT_FOOD_HEALTH_LARGE /datum/status_effect/food/health_increase/t3

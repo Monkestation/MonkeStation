@@ -13,6 +13,7 @@
 	var/obj/item/food/pizzaslice/slice_type
 	///What label pizza boxes use if this pizza spawns in them.
 	var/boxtag = ""
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
 
 /obj/item/food/pizza/MakeProcessable()
 	if (slice_type)
@@ -31,6 +32,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtypes = GRAIN | DAIRY | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
 
 /obj/item/food/pizza/margherita
 	name = "pizza margherita"

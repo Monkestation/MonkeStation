@@ -143,21 +143,32 @@
 	id = "food_sweaty"
 	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty
 	var/list/sweat = list(/datum/reagent/water = 4, /datum/reagent/sodium = 1.25)
+	var/metabolism_increase = 0.5
 
 /atom/movable/screen/alert/status_effect/food/sweaty
 	name = "Sweaty"
 	desc = "You're feeling rather sweaty"
 	icon_state = "food_sweat"
 
+/datum/status_effect/food/sweaty/plus
+	id = "food_sweaty_plus"
+	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty_plus
+	metabolism_increase = 0.75
+
+/atom/movable/screen/alert/status_effect/food/sweaty_plus
+	name = "Sweaty +"
+	desc = "You're feeling rather sweaty"
+	icon_state = "food_sweat"
+
 /datum/status_effect/food/sweaty/on_apply()
 	if(ishuman(owner))
-		owner.metabolism_efficiency += 0.5
+		owner.metabolism_efficiency += metabolism_increase
 	return ..()
 
 /datum/status_effect/food/sweaty/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		owner.metabolism_efficiency -= 0.5
+		owner.metabolism_efficiency -= metabolism_increase
 		user.applied_food_buffs --
 
 /datum/status_effect/food/sweaty/tick()
@@ -166,3 +177,44 @@
 		var/turf/puddle_location = get_turf(owner)
 		puddle_location.add_liquid_list(sweat, FALSE, 300)
 
+/datum/status_effect/food/health_increase
+	id = "t1_health"
+	alert_type = /atom/movable/screen/alert/status_effect/food/health_increase_t1
+	var/health_increase = 10
+
+/atom/movable/screen/alert/status_effect/food/health_increase_t1
+	name = "Small Health Increase"
+	desc = "You feel slightly heartier"
+	icon_state = "food_hp_small"
+
+/datum/status_effect/food/health_increase/t2
+	id = "t1_health"
+	alert_type = /atom/movable/screen/alert/status_effect/food/health_increase_t2
+	health_increase = 25
+
+/atom/movable/screen/alert/status_effect/food/health_increase_t2
+	name = "Small Health Increase"
+	desc = "You feel heartier"
+	icon_state = "food_hp_medium"
+
+/datum/status_effect/food/health_increase/t3
+	id = "t1_health"
+	alert_type = /atom/movable/screen/alert/status_effect/food/health_increase_t3
+	health_increase = 50
+
+/atom/movable/screen/alert/status_effect/food/health_increase_t3
+	name = "Large Health Increase"
+	desc = "You feel incredibly hearty"
+	icon_state = "food_hp_large"
+
+/datum/status_effect/food/health_increase/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		user.maxHealth += health_increase
+	return ..()
+
+/datum/status_effect/food/health_increase/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		user.maxHealth -= health_increase
+		user.applied_food_buffs --
