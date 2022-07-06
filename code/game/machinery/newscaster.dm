@@ -262,6 +262,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		spawn(rand(0, 15))
 			set_machine_stat(machine_stat | NOPOWER)
 			update_icon()
+	return ..()
 
 /obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()

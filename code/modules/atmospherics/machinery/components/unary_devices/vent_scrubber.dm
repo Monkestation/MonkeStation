@@ -36,10 +36,10 @@
 		id_tag = assign_uid_vents()
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_scrub_names -= id_tag
-		A.air_scrub_info -= id_tag
+	var/area/scrub_area = get_area(src)
+	if(scrub_area)
+		scrub_area.air_scrub_info -= id_tag
+		GLOB.air_scrub_names -= id_tag
 
 	SSradio.remove_object(src,frequency)
 	radio_connection = null
@@ -95,15 +95,24 @@
 		"sigtype" = "status"
 	))
 
-	var/area/A = get_area(src)
-	if(!A.air_scrub_names[id_tag])
-		name = "\improper [A.name] air scrubber #[A.air_scrub_names.len + 1]"
-		A.air_scrub_names[id_tag] = name
+	var/area/scrub_area = get_area(src)
+	if(!GLOB.air_scrub_names[id_tag])
+		// If we do not have a name, assign one
+		update_name()
+		GLOB.air_scrub_names[id_tag] = name
 
-	A.air_scrub_info[id_tag] = signal.data
+	scrub_area.air_scrub_info[id_tag] = signal.data
+
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
 	return TRUE
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/update_name()
+	. = ..()
+	if(override_naming)
+		return
+	var/area/scrub_area = get_area(src)
+	name = "\proper [scrub_area.name] [name] [id_tag]"
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/atmosinit()
 	radio_filter_in = frequency==initial(frequency)?(RADIO_FROM_AIRALARM):null

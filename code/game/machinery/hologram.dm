@@ -133,6 +133,7 @@ Possible to do for anyone motivated enough:
 			record_stop()
 		if(outgoing_call)
 			outgoing_call.ConnectionFailure(src)
+	return ..()
 
 /obj/machinery/holopad/obj_break()
 	. = ..()

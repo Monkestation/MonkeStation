@@ -43,10 +43,10 @@
 		id_tag = assign_uid_vents()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_vent_names -= id_tag
-		A.air_vent_info -= id_tag
+	var/area/vent_area = get_area(src)
+	if(vent_area)
+		vent_area.air_vent_info -= id_tag
+		GLOB.air_vent_names -= id_tag
 	if(aac)
 		aac.vents -= src
 
@@ -163,14 +163,23 @@
 		"has_aac" = aac != null
 	))
 
-	var/area/A = get_area(src)
-	if(!A.air_vent_names[id_tag])
-		name = "\improper [A.name] vent pump #[A.air_vent_names.len + 1]"
-		A.air_vent_names[id_tag] = name
-	A.air_vent_info[id_tag] = signal.data
+	var/area/vent_area = get_area(src)
+	if(!GLOB.air_vent_names[id_tag])
+		// If we do not have a name, assign one.
+		// Produces names like "Port Quarter Solar vent pump hZ2l6".
+		update_name()
+		GLOB.air_vent_names[id_tag] = name
+
+	vent_area.air_vent_info[id_tag] = signal.data
 
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
+/obj/machinery/atmospherics/components/unary/vent_pump/update_name()
+	. = ..()
+	if(override_naming)
+		return
+	var/area/vent_area = get_area(src)
+	name = "\proper [vent_area.name] [name] [id_tag]"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/atmosinit()
 	//some vents work his own spesial way

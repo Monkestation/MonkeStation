@@ -41,6 +41,13 @@
 	var/paintable = FALSE
 	var/interacts_with_air = FALSE
 
+	///keeps the name of the object from being overridden if it's vareditted.
+	var/override_naming
+
+/obj/machinery/atmospherics/LateInitialize()
+	. = ..()
+	update_name()
+
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
@@ -63,6 +70,14 @@
 		else
 			SSair.atmos_machinery += src
 	SetInitDirections()
+
+/obj/machinery/atmospherics/Initialize(mapload)
+	if(mapload && name != initial(name))
+		override_naming = TRUE
+	var/turf/turf_loc = null
+	if(isturf(loc))
+		turf_loc = loc
+	return ..()
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/i in 1 to device_type)
@@ -284,6 +299,7 @@
 	if(can_unwrench)
 		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
 		pipe_color = obj_color
+	update_name()
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)
 	level = T.intact ? 2 : 1
@@ -293,6 +309,16 @@
 		A.atmosinit()
 		A.addMember(src)
 	build_network()
+
+/obj/machinery/atmospherics/update_name()
+	if(!override_naming)
+		name = "[GLOB.pipe_color_name[pipe_color]] [initial(name)]"
+	return ..()
+
+/obj/machinery/atmospherics/vv_edit_var(vname, vval)
+	if(vname == NAMEOF(src, name))
+		override_naming = TRUE
+	return ..()
 
 /obj/machinery/atmospherics/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	if(istype(arrived, /mob/living))

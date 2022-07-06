@@ -348,6 +348,12 @@
 		spawn(1)
 			update(0)
 
+// attempt to set the light's on/off status
+// will not switch on if broken/burned/empty
+/obj/machinery/light/proc/set_on(turn_on)
+	on = (turn_on && status == LIGHT_OK)
+	update()
+
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
@@ -802,8 +808,9 @@
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	var/area/A = get_area(src)
-	seton(A.lightswitch && A.power_light)
+	SHOULD_CALL_PARENT(FALSE)
+	var/area/local_area = get_area(src)
+	set_on(local_area.lightswitch && local_area.power_light)
 
 // called when on fire
 

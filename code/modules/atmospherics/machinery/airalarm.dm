@@ -113,13 +113,6 @@
 		/datum/gas/nucleium = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor //Monkestation Edit
 	)
 
-//all air alarms in area are connected via magic
-/area
-	var/list/air_vent_names = list()
-	var/list/air_scrub_names = list()
-	var/list/air_vent_info = list()
-	var/list/air_scrub_info = list()
-
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
 	. = ..()
 	wires = new /datum/wires/airalarm(src)
@@ -138,7 +131,7 @@
 
 	set_frequency(frequency)
 	AddElement(/datum/element/connect_loc, atmos_connections)
-	GLOB.zclear_atoms += src
+
 
 /obj/machinery/airalarm/Destroy()
 	if(my_area)
@@ -222,37 +215,37 @@
 
 	if(!locked || user.has_unlimited_silicon_privilege)
 		data["vents"] = list()
-		for(var/id_tag in my_area.air_vent_names)
+		for(var/id_tag in my_area.air_vent_info)
 			var/long_name = GLOB.air_vent_names[id_tag]
 			var/list/info = my_area.air_vent_info[id_tag]
 			if(!info || info["frequency"] != frequency || info["has_aac"])
 				continue
 			data["vents"] += list(list(
-					"id_tag"	= id_tag,
+					"id_tag" = id_tag,
 					"long_name" = sanitize(long_name),
-					"power"		= info["power"],
-					"checks"	= info["checks"],
-					"excheck"	= info["checks"]&1,
-					"incheck"	= info["checks"]&2,
-					"direction"	= info["direction"],
-					"external"	= info["external"],
-					"internal"	= info["internal"],
+					"power" = info["power"],
+					"checks" = info["checks"],
+					"excheck" = info["checks"]&1,
+					"incheck" = info["checks"]&2,
+					"direction" = info["direction"],
+					"external" = info["external"],
+					"internal" = info["internal"],
 					"extdefault"= (info["external"] == ONE_ATMOSPHERE),
 					"intdefault"= (info["internal"] == 0)
 				))
 		data["scrubbers"] = list()
-		for(var/id_tag in my_area.air_scrub_names)
+		for(var/id_tag in my_area.air_scrub_info)
 			var/long_name = GLOB.air_scrub_names[id_tag]
 			var/list/info = my_area.air_scrub_info[id_tag]
 			if(!info || info["frequency"] != frequency)
 				continue
 			data["scrubbers"] += list(list(
-					"id_tag"				= id_tag,
-					"long_name" 			= sanitize(long_name),
-					"power"					= info["power"],
-					"scrubbing"				= info["scrubbing"],
-					"widenet"				= info["widenet"],
-					"filter_types"			= info["filter_types"]
+					"id_tag" = id_tag,
+					"long_name" = sanitize(long_name),
+					"power" = info["power"],
+					"scrubbing" = info["scrubbing"],
+					"widenet" = info["widenet"],
+					"filter_types" = info["filter_types"]
 				))
 		data["mode"] = mode
 		data["modes"] = list()
@@ -435,21 +428,21 @@
 /obj/machinery/airalarm/proc/apply_mode(atom/signal_source)
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"set_filters" = list(GAS_CO2, GAS_BZ),
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_CONTAMINATED)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"set_filters" = list(
@@ -469,34 +462,34 @@
 					"scrubbing" = 1,
 					"widenet" = 1
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_VENTING)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"widenet" = 0,
 					"scrubbing" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE*2
 				), signal_source)
 		if(AALARM_MODE_REFILL)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"set_filters" = list(GAS_CO2, GAS_BZ),
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 1,
@@ -504,43 +497,43 @@
 				), signal_source)
 		if(AALARM_MODE_PANIC,
 			AALARM_MODE_REPLACEMENT)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"widenet" = 1,
 					"scrubbing" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
 		if(AALARM_MODE_SIPHON)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"widenet" = 0,
 					"scrubbing" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
 
 		if(AALARM_MODE_OFF)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
 		if(AALARM_MODE_FLOOD)
-			for(var/device_id in my_area.air_scrub_names)
+			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_vent_names)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
 					"checks" = 2,
@@ -613,7 +606,7 @@
 	//cache for sanic speed (lists are references anyways)
 	var/list/cached_tlv = TLV
 
-	var/list/env_gases = environment.get_gases()
+	var/list/env_gases = location.return_air()
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * exposed_temperature / environment.return_volume()
 
 	current_tlv = cached_tlv["pressure"]

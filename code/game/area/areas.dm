@@ -103,6 +103,8 @@
 	///Lazylist that contains additional turfs that map generation should be ran on. This is used for ruins which need a noop turf under non-noop areas so they don't leave genturfs behind.
 	var/list/additional_genturfs
 
+	var/list/air_vent_info = list()
+	var/list/air_scrub_info = list()
 
 /**
   * A list of teleport locations
@@ -196,12 +198,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	reg_in_areas_in_z()
 
 	return INITIALIZE_HINT_LATELOAD
-
-/**
-  * Sets machine power levels in the area
-  */
-/area/LateInitialize()
-	power_change()		// all machines set to current power level, also updates icon
 
 /area/proc/RunGeneration()
 	if(map_generator)
@@ -580,8 +576,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/proc/power_change()
 	SEND_SIGNAL(src, COMSIG_AREA_POWER_CHANGE)
-	update_icon()
-
+	update_appearance()
 
 /**
  * Add a static amount of power load to an area

@@ -1018,7 +1018,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 	var/mob/living/L = usr
 	if(istype(L) && L.incapacitated())
-		apply_outline(COLOR_RED_GRAY)
+		apply_outline(COLOR_DARK_RED)
 	else
 		apply_outline()
 

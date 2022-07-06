@@ -902,6 +902,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	say(message)
 
 /obj/machinery/vending/power_change()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else

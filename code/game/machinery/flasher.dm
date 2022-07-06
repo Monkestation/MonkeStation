@@ -52,6 +52,7 @@
 	else
 		set_machine_stat(machine_stat | NOPOWER)
 		icon_state = "[base_state]1-p"
+	return ..()
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
