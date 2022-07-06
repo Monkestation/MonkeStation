@@ -468,7 +468,7 @@ Behavior that's still missing from this component that original food items had t
 	on_consume?.Invoke(eater, feeder)
 	if(food_buffs && ishuman(eater))
 		var/mob/living/carbon/consumer = eater
-		if(consumer.applied_food_buffs <= 2)
+		if(consumer.applied_food_buffs < 2)
 			eater.apply_status_effect(food_buffs)
 			consumer.applied_food_buffs ++
 		else if(food_buffs in consumer.status_effects)
