@@ -9,7 +9,7 @@
 	range = 7
 	selection_type = "range"
 	clothes_req = FALSE
-	invocation_time = 8
+	invocation_time = 10
 
 /obj/effect/proc_holder/spell/targeted/blinkdagger/cast(list/targets, mob/user = usr)
 	if(!length(targets))
@@ -28,13 +28,13 @@
 	target.visible_message("<span class='danger'>[target]'s eyes open wide as they realize the mistake they made.</span>", \
 						   "<span class='danger'>You feel a gust of wind behind you, That cant be good.</span>")
 
-	target.adjustBruteLoss(60)
+	target.adjustBruteLoss(40)
 	target.Stun(40)
 
 	var/target_loc = get_turf(target)
 	blinkdagger_teleport(user, target_loc)
 
-obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
+/obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
 	var/mob/living/U = user
 	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
