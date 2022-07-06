@@ -28,15 +28,15 @@
 	target.visible_message("<span class='danger'>[target]'s eyes open wide as they realize the mistake they made.</span>", \
 						   "<span class='danger'>You feel a gust of wind behind you, That cant be good.</span>")
 
-	target.adjustBruteLoss(40)
-	target.Stun(2 SECONDS)
+	target.adjustBruteLoss(25)
+	target.Stun(1 SECONDS)
 
 	var/target_loc = get_turf(target)
 	blinkdagger_teleport(user, target_loc)
 
 /obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
-	var/mob/living/U = user
+	var/mob/living/USER = user
 	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
 	playsound(target_mob, 'sound/weapons/zapbang.ogg', 50, TRUE)
-	do_teleport(U, target_mob, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE, teleport_mode = TELEPORT_MODE_DEFAULT)
+	do_teleport(USER, target_mob, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE, teleport_mode = TELEPORT_MODE_DEFAULT)

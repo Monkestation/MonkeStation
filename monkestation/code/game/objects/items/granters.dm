@@ -42,6 +42,8 @@
 /obj/item/book/granter/spell/blinkdagger/recoil(mob/user)
 	..()
 	to_chat(user,"<span class='warning'>The [src] teleports behind you, oh no.</span>")
-	// this is meant to do user.adjustBruteLoss(60) however for some reason none of the procs like adjustBruteLoss or Stun are defined in this file
+	var/mob/living/carbon/human/USER = user
+	if (ishuman(user) == TRUE)
+		USER.adjustBruteLoss(60)
 	qdel(src)
 	to_chat(user,"<span class='warning'>The [src] is gone.</span>")

@@ -206,16 +206,16 @@
 			new /obj/item/gun/energy/temperature/pin(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) // 8 tc //see see it fits the theme bc its blue and ice is blue
 
-		if("anime") //I think around 31-33
+		if("anime") //I think around 33-37
 			new /obj/item/clothing/suit/jacket/leather/overcoat(src) // 0 tc
-			new /obj/item/clothing/head/anime_fedora(src) // ~1-3 tc? has the 30 throw damage of the null rod version and a very high throw speed
+			new /obj/item/clothing/head/fedora/anime(src) // ~1-3 tc? has the 30 throw damage of the null rod version and a very high throw speed
 			new /obj/item/clothing/shoes/sandal(src) // 0 tc
 			new /obj/item/choice_beacon/hacked_anime(src) // unique item however it has almost 0 non joke uses
 			new /obj/item/choice_beacon/hacked_anime(src)
 			new /obj/item/choice_beacon/hacked_anime(src)
 			new /obj/item/clothing/neck/tie/horrible(src) // 0 tc
 			new /obj/item/guardiancreator/rare(src) // 18-20 tc
-			new /obj/item/book/granter/spell/blinkdagger(src) //~14 tc, hard to tell
+			new /obj/item/book/granter/spell/blinkdagger(src) //~16 tc, hard to tell
 
 
 
