@@ -155,12 +155,14 @@
 
 ///FOOD DEFINES
 
-#define STATUS_EFFECT_FOOD_STAM_TINY /datum/status_effect/food/stamina_increase_t1
+#define STATUS_EFFECT_FOOD_STAM_TINY /datum/status_effect/food/stamina_increase
 
-#define STATUS_EFFECT_FOOD_STAM_MEDIUM /datum/status_effect/food/stamina_increase_t2
+#define STATUS_EFFECT_FOOD_STAM_MEDIUM /datum/status_effect/food/stamina_increase/t2
 
-#define STATUS_EFFECT_FOOD_STAM_LARGE /datum/status_effect/food/stamina_increase_t3
+#define STATUS_EFFECT_FOOD_STAM_LARGE /datum/status_effect/food/stamina_increase/t3
 
 #define STATUS_EFFECT_FOOD_RESISTANCE /datum/status_effect/food/resistance
 
 #define STATUS_EFFECT_FOOD_FIREBURPS /datum/status_effect/food/fire_burps
+
+#define STATUS_EFFECT_FOOD_SWEATY /datum/status_effect/food/sweaty

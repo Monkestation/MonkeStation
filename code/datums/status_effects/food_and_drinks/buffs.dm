@@ -3,73 +3,48 @@
 	status_type = STATUS_EFFECT_REPLACE
 
 
-/datum/status_effect/food/stamina_increase_t1
+/datum/status_effect/food/stamina_increase
 	id = "t1_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
+	var/stam_increase = 10
 
 /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
 	name = "Tiny Stamina Increase"
 	desc = "Increases your stamina by a tiny amount"
 	icon_state = "stam_t1"
 
-/datum/status_effect/food/stamina_increase_t1/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
-		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage += 15
-	return ..()
-
-/datum/status_effect/food/stamina_increase_t1/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
-		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage -= 15
-		user.applied_food_buffs --
-
-/datum/status_effect/food/stamina_increase_t2
+/datum/status_effect/food/stamina_increase/t2
 	id = "t2_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t2
+	stam_increase = 20
 
 /atom/movable/screen/alert/status_effect/food/stamina_increase_t2
 	name = "Medium Stamina Increase"
 	desc = "Increases your stamina by a moderate amount"
 	icon_state = "stam_t2"
 
-/datum/status_effect/food/stamina_increase_t2/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
-		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage += 15
-	return ..()
-
-/datum/status_effect/food/stamina_increase_t2/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
-		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage -= 15
-		user.applied_food_buffs --
-
-/datum/status_effect/food/stamina_increase_t3
+/datum/status_effect/food/stamina_increase/t3
 	id = "t3_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t3
+	stam_increase = 30
 
 /atom/movable/screen/alert/status_effect/food/stamina_increase_t3
 	name = "Large Stamina Increase"
 	desc = "Increases your stamina greatly"
 	icon_state = "stam_t3"
 
-/datum/status_effect/food/stamina_increase_t3/on_apply()
+/datum/status_effect/food/stamina_increase/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage += 15
+			limbs.max_stamina_damage += stam_increase
 	return ..()
 
-/datum/status_effect/food/stamina_increase_t3/on_remove()
+/datum/status_effect/food/stamina_increase/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		for(var/obj/item/bodypart/limbs in user.bodyparts)
-			limbs.max_stamina_damage -= 15
+			limbs.max_stamina_damage -= stam_increase
 		user.applied_food_buffs --
 
 /datum/status_effect/food/resistance
@@ -163,3 +138,31 @@
 		var/turf/closed/wall/exposed_wall = exposed
 		if(prob(10))
 			exposed_wall.ex_act(EXPLODE_DEVASTATE)
+
+/datum/status_effect/food/sweaty
+	id = "food_sweaty"
+	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty
+	var/list/sweat = list(/datum/reagent/water = 4, /datum/reagent/sodium = 1.25)
+
+/atom/movable/screen/alert/status_effect/food/sweaty
+	name = "Sweaty"
+	desc = "You're feeling rather sweaty"
+	icon_state = "food_sweat"
+
+/datum/status_effect/food/sweaty/on_apply()
+	if(ishuman(owner))
+		owner.metabolism_efficiency += 0.5
+	return ..()
+
+/datum/status_effect/food/sweaty/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		owner.metabolism_efficiency -= 0.5
+		user.applied_food_buffs --
+
+/datum/status_effect/food/sweaty/tick()
+	. = ..()
+	if(prob(5))
+		var/turf/puddle_location = get_turf(owner)
+		puddle_location.add_liquid_list(sweat, FALSE, 300)
+
