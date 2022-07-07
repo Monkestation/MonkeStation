@@ -428,3 +428,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 ///FOOD TRAITS
 ///Trait for Fire Burps
 #define TRAIT_FOOD_FIRE_BURPS "food_buff_fire_burps"
+///Traut for fast sliding
+#define FOOD_SLIDE "food_slide_buff"

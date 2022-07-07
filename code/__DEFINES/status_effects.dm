@@ -174,3 +174,5 @@
 #define STATUS_EFFECT_FOOD_HEALTH_MEDIUM /datum/status_effect/food/health_increase/t2
 
 #define STATUS_EFFECT_FOOD_HEALTH_LARGE /datum/status_effect/food/health_increase/t3
+
+#define STATUS_EFFECT_FOOD_SLIDE /datum/status_effect/food/belly_slide

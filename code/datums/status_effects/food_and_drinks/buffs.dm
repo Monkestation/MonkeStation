@@ -218,3 +218,27 @@
 		var/mob/living/carbon/user = owner
 		user.maxHealth -= health_increase
 		user.applied_food_buffs --
+
+/datum/status_effect/food/belly_slide
+	id = "food_slide"
+	alert_type = /atom/movable/screen/alert/status_effect/food/belly_slide
+	var/sliding = FALSE
+
+/atom/movable/screen/alert/status_effect/food/belly_slide
+	name = "Slippery Belly"
+	desc = "You feel like you could slide really fast"
+	icon_state = "slippery_belly"
+
+/datum/status_effect/food/belly_slide/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		ADD_TRAIT(user, FOOD_SLIDE, "food_buffs")
+	return ..()
+
+/datum/status_effect/food/belly_slide/on_remove()
+	if(ishuman(owner))
+		REMOVE_TRAIT(owner, FOOD_SLIDE, "food_buffs")
+		var/mob/living/carbon/user = owner
+		if(owner.has_movespeed_modifier("belly_slide"))
+			owner.remove_movespeed_modifier("belly_slide")
+		user.applied_food_buffs --
