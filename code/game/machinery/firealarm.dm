@@ -379,8 +379,8 @@ Ported from /tg/station: PR #64985
 */
 
 /obj/item/circuit_component/firealarm
-	display_name = "Launchpad Control Console"
-	display_desc = "Lets you interface with the launchpad control console."
+	display_name = "Fire Alarm"
+	display_desc = "Lets you interface with the fire alarm."
 
 	var/datum/port/input/input_set
 	var/datum/port/input/input_reset
