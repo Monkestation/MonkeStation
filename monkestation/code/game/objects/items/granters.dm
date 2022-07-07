@@ -42,8 +42,8 @@
 /obj/item/book/granter/spell/blinkdagger/recoil(mob/user)
 	..()
 	to_chat(user,"<span class='warning'>The [src] teleports behind you, oh no.</span>")
-	var/mob/living/carbon/human/USER = user
 	if (ishuman(user) == TRUE)
-		USER.adjustBruteLoss(60)
+		var/mob/living/carbon/human/usrt = user
+		usrt.adjustBruteLoss(60)
 	qdel(src)
 	to_chat(user,"<span class='warning'>The [src] is gone.</span>")

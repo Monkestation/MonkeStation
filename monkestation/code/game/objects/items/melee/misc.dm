@@ -11,3 +11,7 @@
 	armour_penetration = 50
 	sharpness = IS_SHARP
 	attack_verb = list("detroyed", "annihilated")
+
+/obj/item/melee/blinkknife/Initialize(mapload)
+	. = ..()
+	QDEL_IN(src, 5 SECONDS)

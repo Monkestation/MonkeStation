@@ -32,7 +32,11 @@
 	target.Stun(1 SECONDS)
 
 	var/target_loc = get_turf(target)
-	blinkdagger_teleport(user, target_loc)
+	var/target_behind = getOppositeDir(target.dir)
+	if(isopenturf(get_step(target, target_behind)))
+		blinkdagger_teleport(user, get_step(target, target_behind))
+	else
+		blinkdagger_teleport(user, target_loc)
 
 /obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
