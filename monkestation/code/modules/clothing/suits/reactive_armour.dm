@@ -25,6 +25,7 @@
 
 /obj/item/clothing/suit/armor/reactive/honk/emp_act()
 	if(active)
+		active = FALSE
 		playsound(get_turf(src),'sound/items/bikehorn.ogg', 100, 1)
 		src.visible_message("<span class='danger'>[src] malfunctions, and honks extra hard!</span>")
 		for(var/mob/living/carbon/target_atom as mob in hearers(7, get_turf(src))) //Includes the person wearing it
@@ -35,7 +36,14 @@
 /obj/item/clothing/suit/armor/reactive/mutation
 	name = "reactive mutation armor"
 	desc = "An experimental suit of armor that gives off radioactive waves."
+	var/list/possible_mutations = list()
 	reactivearmor_cooldown_duration = 30 SECONDS
+
+/obj/item/clothing/suit/armor/reactive/mutation/Initialize(mapload)
+	. = ..()
+	possible_mutations = GLOB.all_mutations
+	//These ones either don't let you unmutate, or are species specific
+	possible_mutations -= list(RACEMUT,CLUWNEMUT,MUTATE,ACIDOOZE,FIREBREATH,OVERLOAD)
 
 /obj/item/clothing/suit/armor/reactive/mutation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -49,6 +57,8 @@
 		var/turf/owner_turf = get_turf(owner)
 
 		for(var/mob/living/carbon/target_atom as mob in oviewers(7, owner_turf))
+			if(!ishuman(target_atom))
+				continue
 			if(target_atom.dna && !HAS_TRAIT(target_atom, TRAIT_RADIMMUNE))
 				give_rand_mut(target_atom)
 				target_atom.rad_act(40)
@@ -60,13 +70,13 @@
 	mutation_holder.dna.remove_mutation(selected_mutation)
 
 /obj/item/clothing/suit/armor/reactive/mutation/proc/give_rand_mut(var/mob/living/carbon/recipient)
-	var/list/possible_mutations = GLOB.all_mutations - GLOB.all_mutations[RACEMUT] //Monkey can't be unmutated like this :( (though I wouldn't be against letting monkey stay in anyway just to be funny)
 	var/datum/mutation/chosen_mutation = pick(possible_mutations)
 	recipient.dna.add_mutation(chosen_mutation)
 	addtimer(CALLBACK(src, .proc/remove_mutation, recipient, chosen_mutation), 60 SECONDS)
 
 /obj/item/clothing/suit/armor/reactive/mutation/emp_act()
 	if(active)
+		active = FALSE
 		reactivearmor_cooldown = world.time + 100 SECONDS
 		src.visible_message("<span class='danger'>[src] malfunctions, and emits an extra strong wave!</span>")
 		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
@@ -184,15 +194,31 @@
 	REMOVE_TRAIT(human_mob, TRAIT_NOBREATH, type)
 	qdel(affected_mob)
 
-/obj/item/clothing/suit/armor/reactive/primal/emp_act()
-	return
-
 //Petsplosion Armour
 /obj/item/clothing/suit/armor/reactive/herd
 	name = "reactive herd armor"
 	desc = "An experimental suit of armor that creates groups of animals."
 	var/list/current_herd = list()
+	var/list/pet_type_cache = list()
 	reactivearmor_cooldown_duration = 90 SECONDS
+
+/obj/effect/anomaly/petsplosion/Initialize(mapload, new_lifespan)
+	. = ..()
+	//Copied from the petsplosion anomaly itself since it's already figured out
+	pet_type_cache = subtypesof(/mob/living/simple_animal/pet)
+	pet_type_cache -= list(/mob/living/simple_animal/pet/penguin,
+		/mob/living/simple_animal/pet/dog/corgi/narsie,
+		/mob/living/simple_animal/pet/gondola/gondolapod,
+		/mob/living/simple_animal/pet/gondola,
+		/mob/living/simple_animal/pet/dog)
+
+	pet_type_cache += list(/mob/living/simple_animal/cow,
+		/mob/living/simple_animal/sloth,
+		/mob/living/simple_animal/mouse,
+		/mob/living/simple_animal/parrot,
+		/mob/living/simple_animal/chicken,
+		/mob/living/simple_animal/cockroach,
+		/mob/living/simple_animal/crab)
 
 /obj/item/clothing/suit/armor/reactive/herd/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -206,7 +232,7 @@
 		var/turf/owner_turf = get_turf(owner)
 		become_animal(owner)
 		for(var/i in 1 to rand(7,10)) //Summon the disguise herd
-			var/mob/living/simple_animal/pet/new_animal = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat)
+			var/mob/living/simple_animal/pet/new_animal = pick(pet_type_cache)
 			new_animal = new new_animal(owner_turf)
 			current_herd += new_animal
 
@@ -216,7 +242,7 @@
 /obj/item/clothing/suit/armor/reactive/herd/proc/become_animal(mob/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/simple_animal/pet/chosen_animal = pick(/mob/living/simple_animal/pet/dog/corgi,/mob/living/simple_animal/pet/dog/pug,/mob/living/simple_animal/pet/dog/bullterrier,/mob/living/simple_animal/pet/fox,/mob/living/simple_animal/pet/cat/kitten,/mob/living/simple_animal/pet/cat)
+	var/mob/living/simple_animal/pet/chosen_animal = pick(pet_type_cache)
 	chosen_animal = new chosen_animal(get_turf(user))
 	user.forceMove(chosen_animal)
 	user.mind.transfer_to(chosen_animal)
@@ -234,9 +260,6 @@
 	for(var/mob/living/herd_animal in current_herd)
 		current_herd -= herd_animal
 		qdel(herd_animal)
-
-/obj/item/clothing/suit/armor/reactive/herd/emp_act()
-	return
 
 //Fluidic Armour
 /obj/item/clothing/suit/armor/reactive/wet
@@ -268,7 +291,8 @@
 		return TRUE
 
 /obj/item/clothing/suit/armor/reactive/wet/emp_act()
-	if(world.time < reactivearmor_cooldown) //I think we Really don't want liquid spam at all
+	if(active)
+		active = FALSE
 		var/datum/reagent/random_liquid = pick(random_liquid_list) //unweighted pick :)
 		var/turf/owner_turf = get_turf(src)
 		owner_turf.add_liquid(random_liquid, rand(100,300))
