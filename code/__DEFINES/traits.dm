@@ -430,3 +430,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FOOD_FIRE_BURPS "food_buff_fire_burps"
 ///Traut for fast sliding
 #define FOOD_SLIDE "food_slide_buff"
+///Trait for hand picked crops to be of a higher quality
+#define FOOD_JOB_BOTANIST "food_job_botanist"

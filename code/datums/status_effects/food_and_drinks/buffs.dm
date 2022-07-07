@@ -282,3 +282,30 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		user.applied_food_buffs --
+
+
+
+
+
+/////JOB BUFFS
+
+/datum/status_effect/food/botanist
+	id = "job_botanist_food"
+	alert_type = /atom/movable/screen/alert/status_effect/food/botanist
+
+/atom/movable/screen/alert/status_effect/food/botanist
+	name = "Green Thumb"
+	desc = "Plants just seem to flourish in your hands"
+	icon_state = "food_botanist"
+
+/datum/status_effect/food/botanist/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		ADD_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
+	return ..()
+
+/datum/status_effect/food/botanist/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		REMOVE_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
+		user.applied_food_buffs --
