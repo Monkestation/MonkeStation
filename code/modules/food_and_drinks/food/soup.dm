@@ -64,6 +64,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/banana = 10, /datum/reagent/water = 5, /datum/reagent/consumable/nutriment/vitamin = 16, /datum/reagent/consumable/clownstears = 10)
 	tastes = list("a bad joke" = 1)
 	foodtypes = FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/soup/vegetable
 	name = "vegetable soup"
@@ -118,6 +119,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/tomatojuice = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/banana = 1, /datum/reagent/consumable/laughter = 1)
 	tastes = list("tomato" = 1, "hot peppers" = 2, "clown feet" = 2, "kind of funny" = 2, "someone's parents" = 2)
 	foodtypes = VEGETABLES | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_WACKY
 
 /obj/item/food/soup/monkeysdelight
 	name = "monkey's delight"

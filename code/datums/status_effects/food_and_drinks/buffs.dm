@@ -150,12 +150,12 @@
 	desc = "You're feeling rather sweaty"
 	icon_state = "food_sweat"
 
-/datum/status_effect/food/sweaty/plus
-	id = "food_sweaty_plus"
-	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty_plus
+/datum/status_effect/food/sweaty/wacky
+	id = "food_sweaty_wacky"
+	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty_wacky
 	sweat = list(/datum/reagent/lube = 5)
 
-/atom/movable/screen/alert/status_effect/food/sweaty_plus
+/atom/movable/screen/alert/status_effect/food/sweaty_wacky
 	name = "Wacky Sweat"
 	desc = "You're feeling rather sweaty, and incredibly wacky?"
 	icon_state = "food_sweat"

@@ -409,6 +409,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/sugar = 15)
 	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/cake/clown_cake/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/clown_slice, 5, 30)
@@ -420,6 +421,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/sugar = 3)
 	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/cake/trumpet
 	name = "spaceman's cake"

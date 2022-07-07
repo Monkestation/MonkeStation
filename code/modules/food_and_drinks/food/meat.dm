@@ -442,6 +442,7 @@
 	icon_state = "meatclown"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/banana = 2)
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
+	food_buffs = STATUS_EFFECT_FOOD_WACKY
 
 /obj/item/food/meatclown/ComponentInitialize()
 	. = ..()

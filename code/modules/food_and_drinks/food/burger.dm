@@ -118,7 +118,7 @@
 	icon_state = "clownburger"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/mannitol = 11, /datum/reagent/consumable/nutriment/vitamin = 6)
 	foodtypes = GRAIN | FRUIT
-	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
+	food_buffs = STATUS_EFFECT_FOOD_WACKY
 
 /obj/item/food/burger/mime
 	name = "mime burger"
