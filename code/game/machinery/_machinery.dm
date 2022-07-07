@@ -197,7 +197,7 @@
 		return
 
 	update_current_power_usage()
-//	setup_area_power_relationship() ///Active with spatial mapping
+	setup_area_power_relationship()
 
 /obj/machinery/Destroy()
 	GLOB.machines.Remove(src)
@@ -208,7 +208,6 @@
 	unset_static_power()
 	return ..()
 
-/* Once Spatial Mapping which will be right after this, reactivate these
 /**
  * proc to call when the machine starts to require power after a duration of not requiring power
  * sets up power related connections to its area if it exists and becomes area sensitive
@@ -262,7 +261,6 @@
 		return
 	unset_static_power()
 	UnregisterSignal(area_to_unregister, COMSIG_AREA_POWER_CHANGE)
-*/
 
 /obj/machinery/proc/set_occupant(atom/movable/new_occupant)
 	SHOULD_CALL_PARENT(TRUE)

@@ -246,7 +246,7 @@ SUBSYSTEM_DEF(zclear)
 	//Clear atoms
 	for(var/turf/T as() in turfs)
 		// Remove all atoms except abstract mobs
-		var/list/allowed_contents = T.GetAllContentsIgnoring(ignored_atoms)
+		var/list/allowed_contents = T.get_all_contents_ignoring(ignored_atoms)
 		allowed_contents -= T
 		for(var/i in 1 to allowed_contents.len)
 			var/thing = allowed_contents[i]

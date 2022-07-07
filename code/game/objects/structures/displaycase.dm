@@ -329,7 +329,7 @@
 		to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 		return
 
-	for(var/a in W.GetAllContents())
+	for(var/a in W.get_all_contents_type())
 		if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 			to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 			return

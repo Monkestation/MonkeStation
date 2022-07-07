@@ -1,5 +1,5 @@
 /// Gets all contents of contents and returns them all in a list.
-/atom/proc/GetAllContents(var/T, ignore_flag_1)
+/atom/proc/get_all_contents_type(var/T, ignore_flag_1)
 	var/list/processing_list = list(src)
 	var/list/assembled = list()
 	if(T)
@@ -21,10 +21,10 @@
 	return assembled
 
 /// Gets all contents of contents and returns them all in a list, ignoring a chosen typecache.
-//Update GetAllContentsIgnoring to get_all_contents_ignoring so it easier to read in
-/atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
+//Update get_all_contents_ignoring to get_all_contents_ignoring so it easier to read in
+/atom/proc/get_all_contents_ignoring(list/ignore_typecache)
 	if(!length(ignore_typecache))
-		return GetAllContents()
+		return get_all_contents_type()
 	var/list/processing = list(src)
 	var/list/assembled = list()
 	while(processing.len)
@@ -46,26 +46,29 @@
 	if(our_turf && include_turf) //At this point, only the turf is left, provided it exists.
 		. += our_turf
 
-/// Step-towards method of determining whether one atom can see another. Similar to viewers()
+///Step-towards method of determining whether one atom can see another. Similar to viewers()
+///note: this is a line of sight algorithm, view() does not do any sort of raycasting and cannot be emulated by it accurately
 /proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
+	if(get_dist(source, target) > length)
+		return FALSE
 	var/steps = 1
-	if(current != target_turf)
+	if(current == target_turf)//they are on the same turf, source can see the target
+		return TRUE
+	current = get_step_towards(current, target_turf)
+	while(current != target_turf)
+		if(steps > length)
+			return FALSE
+		if(current.opacity)
+			return FALSE
+		for(var/thing in current)
+			var/atom/A = thing
+			if(A.opacity)
+				return FALSE
 		current = get_step_towards(current, target_turf)
-		while(current != target_turf)
-			if(steps > length)
-				return 0
-			if(current.opacity)
-				return 0
-			for(var/thing in current)
-				var/atom/A = thing
-				if(A.opacity)
-					return 0
-			current = get_step_towards(current, target_turf)
-			steps++
-
-	return 1
+		steps++
+	return TRUE
 
 ///Get the cardinal direction between two atoms
 /proc/get_cardinal_dir(atom/start, atom/end)

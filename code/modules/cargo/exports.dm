@@ -30,7 +30,7 @@ Then the player gets the profit from selling his own wasted time.
 	if(!GLOB.exports_list.len)
 		setupExports()
 
-	var/list/contents = AM.GetAllContents()
+	var/list/contents = AM.get_all_contents_type()
 
 	var/datum/export_report/report = external_report
 
@@ -63,7 +63,7 @@ Then the player gets the profit from selling his own wasted time.
 	if(!GLOB.exports_list.len)
 		setupExports()
 
-	var/list/contents = AM.GetAllContents() - AM
+	var/list/contents = AM.get_all_contents_type() - AM
 
 	var/datum/export_report/report = external_report
 	if(!report) //If we don't have any longer transaction going on

@@ -312,22 +312,22 @@
 				visible_message("<span class='notice'>[src]'s door slides open. The glowing yellow lights dim to a gentle green.</span>")
 		toasted = FALSE
 		playsound(src, 'sound/machines/airlockclose.ogg', 25, TRUE)
-		var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+		var/list/things_to_clear = list() //Done this way since using get_all_contents_type on the SSU itself would include circuitry and such.
 		if(suit)
 			things_to_clear += suit
-			things_to_clear += suit.GetAllContents()
+			things_to_clear += suit.get_all_contents_type()
 		if(helmet)
 			things_to_clear += helmet
-			things_to_clear += helmet.GetAllContents()
+			things_to_clear += helmet.get_all_contents_type()
 		if(mask)
 			things_to_clear += mask
-			things_to_clear += mask.GetAllContents()
+			things_to_clear += mask.get_all_contents_type()
 		if(storage)
 			things_to_clear += storage
-			things_to_clear += storage.GetAllContents()
+			things_to_clear += storage.get_all_contents_type()
 		if(mob_occupant)
 			things_to_clear += mob_occupant
-			things_to_clear += mob_occupant.GetAllContents()
+			things_to_clear += mob_occupant.get_all_contents_type()
 		for(var/atom/movable/AM in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 			SEND_SIGNAL(AM, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRONG)
 			var/datum/component/radioactive/contamination = AM.GetComponent(/datum/component/radioactive)

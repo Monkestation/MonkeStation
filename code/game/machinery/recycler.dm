@@ -101,7 +101,7 @@
 /obj/machinery/recycler/proc/eat(atom/AM0, sound=TRUE)
 	var/list/to_eat
 	if(istype(AM0, /obj/item))
-		to_eat = AM0.GetAllContents()
+		to_eat = AM0.get_all_contents_type()
 	else
 		to_eat = list(AM0)
 

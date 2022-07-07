@@ -320,7 +320,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	var/obj/item/stock_parts/cell/C = AM.get_cell()
 	if(!C && isliving(AM))
 		var/mob/living/L = AM
-		for(var/obj/item/I in L.GetAllContents())
+		for(var/obj/item/I in L.get_all_contents_type())
 			C = I.get_cell()
 			if(C?.charge)
 				break
