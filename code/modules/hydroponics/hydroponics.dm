@@ -879,16 +879,14 @@
 		if(HAS_TRAIT(user, FOOD_JOB_BOTANIST))
 			var/random_increase = rand(1, 20) * 0.01
 			if(prob(50))
-				myseed.adjust_potency += round(myseed.potency *random_increase, 1)
-				var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
-				if(C)
-					C.value =myseed.potency
+				messaage_admins("POTENCY")
+				myseed.adjust_potency(round(myseed.potency *random_increase, 1), FALSE)
 			if(prob(20))
-				myseed.adjust_yield += round(myseed.yield * random_increase, 1)
+				myseed.adjust_yield(round(myseed.yield * random_increase, 1), FALSE)
 			if(prob(35))
-				myseed.adjust_lifespan += round(myseed.lifespan * random_increase, 1)
+				myseed.adjust_lifespan(round(myseed.lifespan * random_increase, 1), FALSE)
 			if(prob(40))
-				myseed.adjust_endurance += round(myseed.endurance * random_increase, 1)
+				myseed.adjust_endurance(round(myseed.endurance * random_increase, 1), FALSE)
 
 		return myseed.harvest(user)
 
