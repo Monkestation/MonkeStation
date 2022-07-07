@@ -375,8 +375,7 @@
 
 /*
 Monkestation: Added circuit component
-Ported from /tg/station:
-	https://github.com/Oricana-16/tgstation/blob/8669a4a8914230ef591167f54a85861c14609934/code/game/machinery/firealarm.dm
+Ported from /tg/station: PR #64985
 */
 
 /obj/item/circuit_component/firealarm
