@@ -11,7 +11,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The horn is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(owner),'sound/items/bikehorn.ogg', 100, 1)
+		playsound(get_turf(owner),'sound/items/airhorn.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] honks, converting the attack into a violent honk!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		owner.Paralyze(3 SECONDS)
@@ -26,7 +26,7 @@
 /obj/item/clothing/suit/armor/reactive/honk/emp_act()
 	if(active)
 		active = FALSE
-		playsound(get_turf(src),'sound/items/bikehorn.ogg', 100, 1)
+		playsound(get_turf(src),'sound/items/airhorn.ogg', 100, 1)
 		src.visible_message("<span class='danger'>[src] malfunctions, and honks extra hard!</span>")
 		for(var/mob/living/carbon/target_atom as mob in hearers(7, get_turf(src))) //Includes the person wearing it
 			target_atom.Paralyze(rand(5 SECONDS,20 SECONDS)) //Honk! :)
@@ -56,8 +56,8 @@
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], sending out mutating waves of radiation!</span>")
 		var/turf/owner_turf = get_turf(owner)
 
-		for(var/mob/living/carbon/target_atom as mob in oviewers(7, owner_turf))
-			if(!ishuman(target_atom))
+		for(var/mob/living/carbon/human/target_atom as mob in oviewers(7, owner_turf))
+			if(!istype(target_atom))
 				continue
 			if(target_atom.dna && !HAS_TRAIT(target_atom, TRAIT_RADIMMUNE))
 				give_rand_mut(target_atom)
@@ -80,7 +80,9 @@
 		reactivearmor_cooldown = world.time + 100 SECONDS
 		src.visible_message("<span class='danger'>[src] malfunctions, and emits an extra strong wave!</span>")
 		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
-		for(var/mob/living/carbon/target_atom as mob in viewers(7, get_turf(src))) //Includes the wearer
+		for(var/mob/living/carbon/human/target_atom as mob in viewers(7, get_turf(src))) //Includes the wearer
+			if(!istype(target_atom))
+				continue
 			if(target_atom.dna && !HAS_TRAIT(target_atom, TRAIT_RADIMMUNE))
 				give_rand_mut(target_atom) //More mutations more Funny
 				give_rand_mut(target_atom)
@@ -99,10 +101,10 @@
 		return FALSE
 	if(prob(hit_reaction_chance))
 		if(world.time < reactivearmor_cooldown)
-			owner.visible_message("<span class='danger'>The walter fabricator is still recharging!</span>")
+			owner.visible_message("<span class='danger'>The Walter fabricator is still recharging!</span>")
 			return FALSE
 		playsound(get_turf(owner),'sound/magic/summonitems_generic.ogg', 100, 1)
-		owner.visible_message("<span class='danger'>[src] blocks [attack_text], turning it into walter!</span>")
+		owner.visible_message("<span class='danger'>[src] blocks [attack_text], turning it into Walter!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		new /mob/living/simple_animal/pet/dog/bullterrier/walter(owner_turf) //Walter
 
@@ -120,7 +122,12 @@
 			new /mob/living/simple_animal/pet/dog/bullterrier/walter/smallter(get_turf(src))
 	return
 
-//Walter Armour
+#define BASE_FREEZING_POWER 50
+#define FREEZING_POWER_DROPOFF 5
+#define MIN_EMP_FREEZING_POWER 1
+#define MAX_EMP_FREEZING_POWER 100
+
+//Frost Armour
 /obj/item/clothing/suit/armor/reactive/glacial
 	name = "reactive glacial armor"
 	desc = "An experimental suit of armor that chills the air around it."
@@ -136,8 +143,8 @@
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], sending out an icy blast!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		for(var/mob/living/carbon/target_atom as mob in oviewers(7, owner_turf))
-			var/freezing_power = 50
-			freezing_power -= (5*get_dist(owner_turf,target_atom))
+			var/freezing_power = BASE_FREEZING_POWER
+			freezing_power -= (FREEZING_POWER_DROPOFF*get_dist(owner_turf,target_atom))
 			target_atom.adjust_bodytemperature(-freezing_power) //freezes less from further away
 
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
@@ -145,16 +152,22 @@
 
 /obj/item/clothing/suit/armor/reactive/glacial/emp_act()
 	for(var/mob/living/carbon/target_atom as mob in viewers(7, get_turf(src)))
-		var/freezing_power = rand(1,100) //:) I love EMPS :)
-		if(freezing_power<30)
-			src.visible_message("<span class='danger'>[src] malfunctions, letting out an cold breeze.</span>")
-		else if(freezing_power<60)
-			src.visible_message("<span class='danger'>[src] malfunctions, chilling the air around it.</span>")
-		else
-			src.visible_message("<span class='danger'>[src] malfunctions, forming ice in the air around you.</span>")
-		freezing_power -= (5*get_dist(get_turf(src),target_atom))
+		var/freezing_power = rand(MIN_EMP_FREEZING_POWER,MAX_EMP_FREEZING_POWER) //:) I love EMPS :)
+		switch(freezing_power)
+			if(1 to 30)
+				src.visible_message("<span class='danger'>[src] malfunctions, letting out an cold breeze.</span>")
+			if(31 to 60)
+				src.visible_message("<span class='danger'>[src] malfunctions, chilling the air around it.</span>")
+			else
+				src.visible_message("<span class='danger'>[src] malfunctions, forming ice in the air around you.</span>")
+		freezing_power -= (FREEZING_POWER_DROPOFF*get_dist(get_turf(src),target_atom))
 		target_atom.adjust_bodytemperature(-freezing_power)
 	return
+
+#undef BASE_FREEZING_POWER
+#undef FREEZING_POWER_DROPOFF
+#undef MIN_EMP_FREEZING_POWER
+#undef MAX_EMP_FREEZING_POWER
 
 //Monkey Armour
 /obj/item/clothing/suit/armor/reactive/primal
@@ -180,7 +193,7 @@
 /obj/item/clothing/suit/armor/reactive/primal/proc/return_to_monkey(mob/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/simple_animal/pet/new_gorilla = new /mob/living/simple_animal/hostile/gorilla(get_turf(user))
+	var/mob/living/simple_animal/hostile/gorilla/new_gorilla = new(get_turf(user))
 	user.forceMove(new_gorilla)
 	user.mind.transfer_to(new_gorilla)
 	ADD_TRAIT(user, TRAIT_NOBREATH, type) //so they dont suffocate while inside the gorilla
@@ -232,7 +245,7 @@
 		var/turf/owner_turf = get_turf(owner)
 		become_animal(owner)
 		for(var/i in 1 to rand(7,10)) //Summon the disguise herd
-			var/mob/living/simple_animal/pet/new_animal = pick(pet_type_cache)
+			var/mob/living/simple_animal/new_animal = pick(pet_type_cache)
 			new_animal = new new_animal(owner_turf)
 			current_herd += new_animal
 
@@ -242,7 +255,7 @@
 /obj/item/clothing/suit/armor/reactive/herd/proc/become_animal(mob/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/simple_animal/pet/chosen_animal = pick(pet_type_cache)
+	var/mob/living/simple_animal/chosen_animal = pick(pet_type_cache)
 	chosen_animal = new chosen_animal(get_turf(user))
 	user.forceMove(chosen_animal)
 	user.mind.transfer_to(chosen_animal)
@@ -266,13 +279,6 @@
 	name = "reactive wet armor"
 	desc = "An experimental suit of armor that's a little more damp than usual."
 	reactivearmor_cooldown_duration = 2 MINUTES
-	var/static/list/random_liquid_list = list(
-		/datum/reagent/water = 60,
-		/datum/reagent/blood = 45,
-		/datum/reagent/consumable/ethanol/beer = 30,
-		/datum/reagent/lube = 5,
-		/datum/reagent/lube/superlube = 1,
-		)
 
 /obj/item/clothing/suit/armor/reactive/wet/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -284,17 +290,7 @@
 		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], and drips a ton of liquid!</span>")
 		var/turf/owner_turf = get_turf(owner)
-		var/datum/reagent/random_liquid = pickweight(random_liquid_list)
-		owner_turf.add_liquid(random_liquid, rand(50,100))
+		owner_turf.add_liquid(get_random_reagent_id(), rand(50,100))
 
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return TRUE
-
-/obj/item/clothing/suit/armor/reactive/wet/emp_act()
-	if(active)
-		active = FALSE
-		var/datum/reagent/random_liquid = pick(random_liquid_list) //unweighted pick :)
-		var/turf/owner_turf = get_turf(src)
-		owner_turf.add_liquid(random_liquid, rand(100,300))
-		reactivearmor_cooldown = world.time + 4 MINUTES
-	return
