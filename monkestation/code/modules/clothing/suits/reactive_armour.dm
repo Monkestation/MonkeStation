@@ -202,9 +202,9 @@
 	var/list/pet_type_cache = list()
 	reactivearmor_cooldown_duration = 90 SECONDS
 
-/obj/effect/anomaly/petsplosion/Initialize(mapload, new_lifespan)
+/obj/item/clothing/suit/armor/reactive/herd/Initialize(mapload, new_lifespan)
 	. = ..()
-	//Copied from the petsplosion anomaly itself since it's already figured out
+	//Copied from the petsplosion anomaly since it's already figured out
 	pet_type_cache = subtypesof(/mob/living/simple_animal/pet)
 	pet_type_cache -= list(/mob/living/simple_animal/pet/penguin,
 		/mob/living/simple_animal/pet/dog/corgi/narsie,
