@@ -176,3 +176,9 @@
 #define STATUS_EFFECT_FOOD_HEALTH_LARGE /datum/status_effect/food/health_increase/t3
 
 #define STATUS_EFFECT_FOOD_SLIDE /datum/status_effect/food/belly_slide
+
+#define STATUS_EFFECT_STAM_REGEN_SMALL /datum/status_effect/food/stam_regen
+
+#define STATUS_EFFECT_STAM_REGEN_MEDIUM /datum/status_effect/food/stam_regen/t2
+
+#define STATUS_EFFECT_STAM_REGEN_LARGE /datum/status_effect/food/stam_regen/t3

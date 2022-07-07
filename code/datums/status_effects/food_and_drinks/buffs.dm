@@ -242,3 +242,43 @@
 		if(owner.has_movespeed_modifier("belly_slide"))
 			owner.remove_movespeed_modifier("belly_slide")
 		user.applied_food_buffs --
+
+/datum/status_effect/food/stam_regen
+	id = "t1_stam_regen"
+	alert_type = /atom/movable/screen/alert/status_effect/food/stam_regen_t1
+	var/regen_increase = 0.5
+
+/atom/movable/screen/alert/status_effect/food/stam_regen_t1
+	name = "Small Stamina Regeneration Increase"
+	desc = "You feel slightly more energetic"
+	icon_state = "stam_regen_t1"
+
+/datum/status_effect/food/stam_regen/t2
+	id = "t2_stam_regen"
+	alert_type = /atom/movable/screen/alert/status_effect/food/stam_regen_t2
+	regen_increase = 1.5
+
+/atom/movable/screen/alert/status_effect/food/stam_regen_t2
+	name = "Moderate Stamina Regeneration Increase"
+	desc = "You feel more energetic"
+	icon_state = "stam_regen_t2"
+
+/datum/status_effect/food/stam_regen/t3
+	id = "t2_stam_regen"
+	alert_type = /atom/movable/screen/alert/status_effect/food/stam_regen_t3
+	regen_increase = 3
+
+/atom/movable/screen/alert/status_effect/food/stam_regen_t3
+	name = "Large Stamina Regeneration Increase"
+	desc = "You feel full of energy"
+	icon_state = "stam_regen_t3"
+
+/datum/status_effect/food/stam_regen/tick()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		user.adjustStaminaLoss(-regen_increase, 0)
+
+/datum/status_effect/food/stam_regen/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		user.applied_food_buffs --
