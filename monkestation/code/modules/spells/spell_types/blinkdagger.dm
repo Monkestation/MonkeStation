@@ -40,7 +40,7 @@
 
 /obj/effect/proc_holder/spell/targeted/blinkdagger/proc/blinkdagger_teleport(mob/living/user, turf/target_mob)
 
-	var/mob/living/USER = user
+	var/mob/living/usrt = user
 	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
 	playsound(target_mob, 'sound/weapons/zapbang.ogg', 50, TRUE)
-	do_teleport(USER, target_mob, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE, teleport_mode = TELEPORT_MODE_DEFAULT)
+	do_teleport(usrt, target_mob, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE, teleport_mode = TELEPORT_MODE_DEFAULT)

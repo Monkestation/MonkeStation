@@ -210,9 +210,10 @@
 			new /obj/item/clothing/suit/jacket/leather/overcoat(src) // 0 tc
 			new /obj/item/clothing/head/fedora/anime(src) // ~1-3 tc? has the 30 throw damage of the null rod version and a very high throw speed
 			new /obj/item/clothing/shoes/sandal(src) // 0 tc
-			new /obj/item/choice_beacon/hacked_anime(src) // unique item however it has almost 0 non joke uses
-			new /obj/item/choice_beacon/hacked_anime(src)
-			new /obj/item/choice_beacon/hacked_anime(src)
+			new /obj/item/choice_beacon/anime/hacked(src) // unique item however it has almost 0 non joke uses
+			new /obj/item/choice_beacon/anime/hacked(src)
+			new /obj/item/choice_beacon/anime/hacked(src)
+			new /obj/item/choice_beacon/anime/hacked(src)
 			new /obj/item/clothing/neck/tie/horrible(src) // 0 tc
 			new /obj/item/guardiancreator/rare(src) // 18-20 tc
 			new /obj/item/book/granter/spell/blinkdagger(src) //~16 tc, hard to tell
