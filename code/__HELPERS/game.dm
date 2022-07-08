@@ -15,68 +15,6 @@
 /proc/cheap_hypotenuse(Ax,Ay,Bx,By)
 	return sqrt(abs(Ax - Bx)**2 + abs(Ay - By)**2) //A squared + B squared = C squared
 
-/proc/circlerange(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/T as() in range(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-
-	//turfs += centerturf
-	return turfs
-
-/proc/circleview(center=usr,radius=3)
-
-	var/turf/centerturf = get_turf(center)
-	var/list/atoms = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/atom/A as() in view(radius, centerturf))
-		var/dx = A.x - centerturf.x
-		var/dy = A.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			atoms += A
-
-	//turfs += centerturf
-	return atoms
-
-/proc/circlerangeturfs(center=usr,radius=3)
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T as() in RANGE_TURFS(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
-
-	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
-
-	for(var/turf/T in view(radius, centerturf))
-		var/dx = T.x - centerturf.x
-		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
-			turfs += T
-	return turfs
-
-/** recursive_organ_check
-  * inputs: O (object to start with)
-  * outputs:
-  * description: A pseudo-recursive loop based off of the recursive mob check, this check looks for any organs held
-  *				 within 'O', toggling their frozen flag. This check excludes items held within other safe organ
-  *				 storage units, so that only the lowest level of container dictates whether we do or don't decompose
-  */
 /proc/recursive_organ_check(atom/O)
 
 	var/list/processing_list = list(O)
