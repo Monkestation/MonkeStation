@@ -186,3 +186,5 @@
 #define STATUS_EFFECT_FOOD_JOB_BOTANIST /datum/status_effect/food/botanist
 
 #define STATUS_EFFECT_FOOD_JOB_MINER /datum/status_effect/food/miner
+
+#define STATUS_EFFECT_FOOD_JOB_SECURITY /datum/status_effect/food/security

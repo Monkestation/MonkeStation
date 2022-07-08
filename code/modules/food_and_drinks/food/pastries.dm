@@ -18,6 +18,7 @@
 	var/is_decorated = FALSE
 	var/extra_reagent = null
 	var/decorated_adjective = "sprinkled"
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/donut/Initialize()
 	. = ..()
@@ -38,6 +39,7 @@
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
 				junkiness = junkiness,\
+				food_buffs = food_buffs,\
 				check_liked = CALLBACK(src, .proc/check_liked))
 
 /obj/item/food/donut/proc/decorate_donut()
@@ -165,6 +167,7 @@
 	extra_reagent = /datum/reagent/consumable/berryjuice
 	tastes = list("jelly" = 1, "donut" = 3)
 	foodtypes = JUNKFOOD | GRAIN | FRIED | FRUIT | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 // Jelly donuts don't have holes, but look the same on the outside
 /obj/item/food/donut/jelly/in_box_sprite()
@@ -215,6 +218,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/cocoa/hot_cocoa = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //the coco reagent is just bitter.
 	tastes = list("jelly" = 1, "donut" = 4, "bitterness" = 1)
 	decorated_icon = "jelly_choc_sprinkles"
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/donut/jelly/blumpkin
 	name = "blumpkin jelly donut"

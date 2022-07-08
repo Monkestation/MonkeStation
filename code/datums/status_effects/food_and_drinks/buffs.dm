@@ -330,3 +330,39 @@
 		var/mob/living/carbon/user = owner
 		REMOVE_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
 		user.applied_food_buffs --
+
+/datum/status_effect/food/security
+	id = "job_security_food"
+	alert_type = /atom/movable/screen/alert/status_effect/food/security
+
+/atom/movable/screen/alert/status_effect/food/security
+	name = "Valid Buster"
+	desc = "You feel like arresting some fools"
+	icon_state = "food_security"
+
+/datum/status_effect/food/security/on_apply()
+	return ..()
+
+/datum/status_effect/food/security/tick()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		for(var/mob/living/carbon/human/perp in view(8, get_turf(user)))
+			var/perpname = perp.get_face_name(perp.get_id_name())
+			var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
+			if(R && R.fields["criminal"])
+				switch(R.fields["criminal"])
+					if("Arrest")
+						if(user.has_movespeed_modifier("sec_food_buff"))
+							break
+						else
+							if(!(perp == user))
+								user.add_movespeed_modifier("sec_food_buff", update=TRUE, priority=100, multiplicative_slowdown=-0.15, blacklisted_movetypes=(FLYING|FLOATING))
+								break
+					else
+						if(user.has_movespeed_modifier("sec_food_buff"))
+							user.remove_movespeed_modifier("sec_food_buff", TRUE)
+
+/datum/status_effect/food/security/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		user.applied_food_buffs --
