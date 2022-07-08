@@ -104,11 +104,11 @@ By design, d1 is the smallest direction and d2 is the highest
 		cable_color = cable_colors[cable_color]
 	update_icon()
 
-/obj/structure/cable/Destroy()					// called when a cable is deleted
+/obj/structure/cable/Destroy() // called when a cable is deleted
 	if(powernet)
-		cut_cable_from_powernet()				// update the powernets
-	GLOB.cable_list -= src							//remove it from global cable list
-	return ..()									// then go ahead and delete the cable
+		cut_cable_from_powernet() // update the powernets
+	GLOB.cable_list -= src //remove it from global cable list
+	return ..() // then go ahead and delete the cable
 
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -116,6 +116,11 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(T)
 			var/obj/item/stack/cable_coil/temp_item = new /obj/item/stack/cable_coil(T, d1 ? 2 : 1, cable_color)
 			transfer_fingerprints_to(temp_item)
+		var/turf/T_below = T.below()
+		if((d1 == DOWN || d2 == DOWN) && T_below)
+			for(var/obj/structure/cable/C in T_below)
+				if(C.d1 == UP || C.d2 == UP)
+					C.deconstruct()
 	..()
 
 ///////////////////////////////////
@@ -139,6 +144,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(T.intact)
 		return
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
+		if(d1 == UP || d2 == UP)
+			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
+			return
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", "<span class='notice'>You cut the cable.</span>")
@@ -252,7 +260,7 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/structure/cable/proc/mergeDiagonalsNetworks(direction)
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
-	var/turf/T  = get_step(src, direction&3)//go north/south
+	var/turf/T  = get_step_multiz(src, direction&3)//go north/south
 
 	for(var/obj/structure/cable/C in T)
 
@@ -273,7 +281,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				C.powernet.add_cable(src) //else, we simply connect to the matching cable powernet
 
 	//the same from the second direction component (east/west)
-	T  = get_step(src, direction&12)//go east/west
+	T  = get_step_multiz(src, direction&12)//go east/west
 
 	for(var/obj/structure/cable/C in T)
 
@@ -295,12 +303,12 @@ By design, d1 is the smallest direction and d2 is the highest
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(direction)
 
-	var/fdir = (!direction)? 0 : turn(direction, 180) //flip the direction, to match with the source position on its turf
+	var/fdir = (!direction)? 0 : dir_inverse_multiz(direction) //flip the direction, to match with the source position on its turf
 
 	if(!(d1 == direction || d2 == direction)) //if the cable is not pointed in this direction, do nothing
 		return
 
-	var/turf/TB  = get_step(src, direction)
+	var/turf/TB  = get_step_multiz(src, direction)
 
 	for(var/obj/structure/cable/C in TB)
 
@@ -375,30 +383,30 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	//get matching cables from the first direction
 	if(d1) //if not a node cable
-		T = get_step(src, d1)
+		T = get_step_multiz(src, d1)
 		if(T)
-			. += power_list(T, src, turn(d1, 180), powernetless_only) //get adjacents matching cables
+			. += power_list(T, src, dir_inverse_multiz(d1), powernetless_only) //get adjacents matching cables
 
 	if(d1&(d1-1)) //diagonal direction, must check the 4 possibles adjacents tiles
-		T = get_step(src,d1&3) // go north/south
+		T = get_step_multiz(src,d1&3) // go north/south
 		if(T)
 			. += power_list(T, src, d1 ^ 3, powernetless_only) //get diagonally matching cables
-		T = get_step(src,d1&12) // go east/west
+		T = get_step_multiz(src,d1&12) // go east/west
 		if(T)
 			. += power_list(T, src, d1 ^ 12, powernetless_only) //get diagonally matching cables
 
 	. += power_list(loc, src, d1, powernetless_only) //get on turf matching cables
 
 	//do the same on the second direction (which can't be 0)
-	T = get_step(src, d2)
+	T = get_step_multiz(src, d2)
 	if(T)
-		. += power_list(T, src, turn(d2, 180), powernetless_only) //get adjacents matching cables
+		. += power_list(T, src, dir_inverse_multiz(d2), powernetless_only) //get adjacents matching cables
 
 	if(d2&(d2-1)) //diagonal direction, must check the 4 possibles adjacents tiles
-		T = get_step(src,d2&3) // go north/south
+		T = get_step_multiz(src,d2&3) // go north/south
 		if(T)
 			. += power_list(T, src, d2 ^ 3, powernetless_only) //get diagonally matching cables
-		T = get_step(src,d2&12) // go east/west
+		T = get_step_multiz(src,d2&12) // go east/west
 		if(T)
 			. += power_list(T, src, d2 ^ 12, powernetless_only) //get diagonally matching cables
 	. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
@@ -420,23 +428,26 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(PN.is_empty()) //can happen with machines made nodeless when smoothing cables
 			qdel(PN)
 
-/obj/structure/cable/proc/auto_propogate_cut_cable(obj/O)
+/obj/structure/cable/proc/auto_propagate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
 		var/datum/powernet/newPN = new()// creates a new powernet...
 		propagate_network(O, newPN)//... and propagates it to the other side of the cable
 
 // cut the cable's powernet at this cable and updates the powergrid
 /obj/structure/cable/proc/cut_cable_from_powernet(remove=TRUE)
+	if(!powernet)
+		return
+
 	var/turf/T1 = loc
-	var/list/P_list
 	if(!T1)
 		return
+
+	var/list/P_list
 	if(d1)
-		T1 = get_step(T1, d1)
-		P_list = power_list(T1, src, turn(d1,180),0,cable_only = 1)	// what adjacently joins on to cut cable...
+		T1 = get_step_multiz(T1, d1)
+		P_list = power_list(T1, src, dir_inverse_multiz(d1),0,cable_only = 1) // what adjacently joins on to cut cable...
 
 	P_list += power_list(loc, src, d1, 0, cable_only = 1)//... and on turf
-
 
 	if(P_list.len == 0)//if nothing in both list, then the cable was a lone cable, just delete it and its powernet
 		powernet.remove_cable(src)
@@ -446,13 +457,17 @@ By design, d1 is the smallest direction and d2 is the highest
 				P.disconnect_from_network() //remove from current network (and delete powernet)
 		return
 
-	var/obj/O = P_list[1]
-	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
+	//remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
 	if(remove)
 		moveToNullspace()
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+	var/first = TRUE
+	for(var/obj/O in P_list)
+		if(first)
+			first = FALSE
+			continue
+		addtimer(CALLBACK(O, .proc/auto_propagate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
@@ -601,25 +616,47 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away!</span>")
 		return
 
-	var/dirn
+	var/d2
 	if(!dirnew) //If we weren't given a direction, come up with one! (Called as null from catwalk.dm and floor.dm)
 		if(user.loc == T)
-			dirn = user.dir //If laying on the tile we're on, lay in the direction we're facing
+			d2 = user.dir //If laying on the tile we're on, lay in the direction we're facing
 		else
-			dirn = get_dir(T, user)
+			d2 = get_dir(T, user)
 	else
-		dirn = dirnew
+		d2 = dirnew
+
+	var/d1 = 0
+	if(istype(T, /turf/open/openspace))
+		if(!(get_amount() >= 2))
+			to_chat(user, "<span class='warning'>You need at least 2 pieces of cable to wire between decks!</span>")
+			return
+		d1 = d2 //bigger number goes last for sprite reasons
+		d2 = DOWN
 
 	for(var/obj/structure/cable/LC in T)
-		if(LC.d2 == dirn && LC.d1 == 0)
+		if(LC.d2 == d2 && LC.d1 == d1)
 			to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
 			return
 
+	var/obj/structure/cable/C = place_cable(T, user, d1, d2)
+	if(C.shock(user, 50))
+		if(prob(50)) //fail
+			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
+			C.deconstruct()
+	else if(d2 == DOWN)
+		place_cable(T.below(), user, 0, UP)
+		to_chat(user, "<span class='notice'>You slide the cable downward.</span>")
+
+	return C
+
+/obj/item/stack/cable_coil/proc/place_cable(turf/open/T, mob/user, d1, d2)
+	if(!istype(T))
+		return
 	var/obj/structure/cable/C = get_new_cable(T)
 
 	//set up the new cable
-	C.d1 = 0 //it's a O-X node cable
-	C.d2 = dirn
+	C.d1 = d1
+	C.d2 = d2
 	C.add_fingerprint(user)
 	C.update_icon()
 
@@ -627,18 +664,17 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	var/datum/powernet/PN = new()
 	PN.add_cable(C)
 
+	C.mergeConnectedNetworks(C.d1)
 	C.mergeConnectedNetworks(C.d2) //merge the powernet with adjacents powernets
 	C.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
+
+	if(C.d1 & (C.d1 - 1))// if the cable is layed diagonally, check the others 2 possible directions
+		C.mergeDiagonalsNetworks(C.d2)
 
 	if(C.d2 & (C.d2 - 1))// if the cable is layed diagonally, check the others 2 possible directions
 		C.mergeDiagonalsNetworks(C.d2)
 
 	use(1)
-
-	if(C.shock(user, 50))
-		if(prob(50)) //fail
-			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
-			C.deconstruct()
 
 	return C
 
@@ -664,6 +700,8 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		return
 
 	var/dirn = get_dir(C, user)
+	if(T.allow_z_travel && T.below() && !locate(/obj/structure/lattice/catwalk, T))
+		dirn = DOWN
 	if(forceddir)
 		dirn = forceddir
 
@@ -680,7 +718,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 			// cable is pointing at us, we're standing on an open tile
 			// so create a stub pointing at the clicked cable on our tile
 
-			var/fdirn = turn(dirn, 180)		// the opposite direction
+			var/fdirn = dir_inverse_multiz(dirn)		// the opposite direction
 
 			for(var/obj/structure/cable/LC in U)		// check to make sure there's not a cable there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)

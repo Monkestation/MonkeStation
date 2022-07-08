@@ -17,7 +17,7 @@
 	see_in_dark = 10
 	melee_damage = 6
 	attacktext = "bites"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 1)
+	butcher_results = list(/obj/item/food/meat/slab = 1)
 	pass_flags = PASSTABLE
 	faction = list("hostile")
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -36,3 +36,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 
+
+/mob/living/simple_animal/hostile/retaliate/bat/vampire
+	desc = "A rare breed of bat which roosts in spaceships.\nLooks a little... <span class='red'>bloody</span>."
+	speed = -1.5

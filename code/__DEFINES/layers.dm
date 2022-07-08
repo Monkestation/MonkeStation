@@ -73,6 +73,7 @@
 #define BELOW_MOB_LAYER 3.7
 #define LYING_MOB_LAYER 3.8
 //#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
+#define SCREENTIP_LAYER 4
 #define ABOVE_MOB_LAYER 4.1
 #define WALL_OBJ_LAYER 4.25
 #define EDGED_TURF_LAYER 4.3
@@ -154,8 +155,8 @@
 #define HUD_LAYER 22
 #define HUD_RENDER_TARGET "HUD_PLANE"
 #define ABOVE_HUD_PLANE 23
-#define ABOVE_HUD_LAYER 23
 #define ABOVE_HUD_RENDER_TARGET "ABOVE_HUD_PLANE"
+#define RADIAL_LAYER 23
 
 #define SPLASHSCREEN_LAYER 24
 #define SPLASHSCREEN_PLANE 24

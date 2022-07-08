@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return
 
 	//Logs all hrefs, except chat pings
-	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
+	if(!(href_list["window_id"] == "browseroutput" && href_list["type"] == "ping" && LAZYLEN(href_list) == 4))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
@@ -188,6 +188,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		last_message = message
 		src.last_message_count = 0
 		return 0
+
+/client/proc/silicon_spam_grace()
+	total_message_count = max(total_message_count--, 0)
+	// Stating laws isn't spam at all.
+
+/client/proc/silicon_spam_grace_done(total_laws_count)
+	if(total_laws_count>2)
+		total_laws_count = 2
+	total_message_count += total_laws_count
+	// Stating laws isn't spam, but doing so much is spam.
 
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
@@ -550,6 +560,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/Destroy()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
+	SSmouse_entered.hovers -= src
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/proc/set_client_age_from_db(connectiontopic)
@@ -983,6 +994,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CRASH("change_view called without argument.")
 
 	view = new_size
+	mob.hud_used.screentip_text.update_view()
 	apply_clickcatcher()
 	mob.reload_fullscreen()
 	if (isliving(mob))
