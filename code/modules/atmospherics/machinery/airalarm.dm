@@ -608,7 +608,7 @@
 	if(!our_turf)
 		return
 	if(next_slowprocess < world.time)
-		//Set to wait for another second before processing again, we don't need to process more than once a second
+		//Set to wait before processing again, we don't need to process more than once every 5 seconds
 		next_slowprocess = world.time + 5 SECONDS
 		var/datum/gas_mixture/environment = our_turf.return_air()
 		check_air_dangerlevel(our_turf, environment, environment.return_temperature())
