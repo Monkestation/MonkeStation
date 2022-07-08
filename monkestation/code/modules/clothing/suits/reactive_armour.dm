@@ -104,7 +104,7 @@
 			owner.visible_message("<span class='danger'>The Walter fabricator is still recharging!</span>")
 			return FALSE
 		playsound(get_turf(owner),'sound/magic/summonitems_generic.ogg', 100, 1)
-		owner.visible_message("<span class='danger'>[src] blocks [attack_text], turning it into Walter!</span>")
+		owner.visible_message("<span class='danger'>[src] blocks [attack_text] with a Walter appearing out of thin air!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		new /mob/living/simple_animal/pet/dog/bullterrier/walter(owner_turf) //Walter
 
@@ -247,6 +247,9 @@
 		for(var/i in 1 to rand(7,10)) //Summon the disguise herd
 			var/mob/living/simple_animal/new_animal = pick(pet_type_cache)
 			new_animal = new new_animal(owner_turf)
+			//About 60 hp if they have base simplemob hp
+			new_animal.maxHealth += 40
+			new_animal.health += 40
 			current_herd += new_animal
 
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
@@ -278,7 +281,7 @@
 /obj/item/clothing/suit/armor/reactive/wet
 	name = "reactive wet armor"
 	desc = "An experimental suit of armor that's a little more damp than usual."
-	reactivearmor_cooldown_duration = 2 MINUTES
+	reactivearmor_cooldown_duration = 30 SECONDS
 
 /obj/item/clothing/suit/armor/reactive/wet/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
