@@ -18,7 +18,7 @@
 		anime_transformation(user)
 
 /obj/item/anime/afterattack(mob/living/carbon/user)
-	if(hacked == TRUE && ishuman(user))
+	if(hacked && ishuman(user))
 		anime_transformation(user)
 
 //DERMAL IMPLANT SETS//
