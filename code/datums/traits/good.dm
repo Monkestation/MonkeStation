@@ -245,6 +245,21 @@
 	var/mob/living/carbon/human/holder = quirk_holder
 	holder.max_food_buffs --
 
+/datum/quirk/gourmand
+	name = "Gourmand"
+	desc = "You can enjoy the finer things in life. You are able to have 1 more food buff applied at once."
+	value = 1
+	gain_text = "<span class='notice'>You start to enjoy fine cuisine.</span>"
+	lose_text = "<span class='danger'>Those Space Twinkies are starting to look mighty fine.</span>"
+
+/datum/quirk/gourmand/on_spawn()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs ++
+
+/datum/quirk/gourmand/remove()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs --
+
 /datum/quirk/neet
 	name = "NEET"
 	desc = "For some reason you qualified for social welfare and you don't really care about your own personal hygiene."
