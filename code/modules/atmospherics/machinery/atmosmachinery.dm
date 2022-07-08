@@ -77,6 +77,8 @@
 	var/turf/turf_loc = null
 	if(isturf(loc))
 		turf_loc = loc
+	SSspatial_grid.add_grid_awareness(src, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
+	SSspatial_grid.add_grid_membership(src, turf_loc, SPATIAL_GRID_CONTENTS_TYPE_ATMOS)
 	return ..()
 
 /obj/machinery/atmospherics/Destroy()

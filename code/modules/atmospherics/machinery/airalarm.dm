@@ -50,6 +50,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm_bitem"
 	result_path = /obj/machinery/airalarm
+	pixel_shift = 24
 
 #define AALARM_MODE_SCRUBBING 1
 #define AALARM_MODE_VENTING 2 //makes draught
@@ -67,17 +68,16 @@
 	name = "air alarm"
 	desc = "A machine that monitors atmosphere levels and alerts if the area is dangerous."
 	icon = 'icons/obj/monitors.dmi'
-	icon_state = "alarm0"
+	icon_state = "alarmp"
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.02
 	power_channel = AREA_USAGE_ENVIRON
 	req_access = list(ACCESS_ATMOSPHERICS)
 	max_integrity = 250
-	integrity_failure = 80
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30, "stamina" = 0)
+	integrity_failure = 20
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 90, ACID = 30, STAMINA = 0)
 	resistance_flags = FIRE_PROOF
 	layer = ABOVE_WINDOW_LAYER
-
 
 	var/danger_level = 0
 	var/mode = AALARM_MODE_SCRUBBING
@@ -92,6 +92,9 @@
 	var/frequency = FREQ_ATMOS_CONTROL
 	var/alarm_frequency = FREQ_ATMOS_ALARMS
 	var/datum/radio_frequency/radio_connection
+
+	///Represents a signel source of atmos alarms, complains to all the listeners if one of our thresholds is violated
+	var/datum/alarm_handler/alarm_manager
 
 	var/static/list/atmos_connections = list(COMSIG_TURF_EXPOSE = .proc/check_air_dangerlevel)
 
@@ -126,6 +129,7 @@
 	if(name == initial(name))
 		name = "[get_area_name(src)] Air Alarm"
 
+	alarm_manager = new(src)
 	my_area = get_area(src)
 	update_appearance()
 
@@ -138,8 +142,7 @@
 		my_area = null
 	SSradio.remove_object(src, frequency)
 	QDEL_NULL(wires)
-	var/area/ourarea = get_area(src)
-	ourarea.atmosalert(FALSE, src)
+	QDEL_NULL(alarm_manager)
 	return ..()
 
 
@@ -176,7 +179,7 @@
 		"danger_level" = danger_level,
 	)
 
-	data["atmos_alarm"] = my_area.atmosalm
+	data["atmos_alarm"] = my_area.active_alarms[ALARM_ATMOS]
 	data["fire_alarm"] = my_area.fire
 
 	var/turf/T = get_turf(src)
@@ -349,13 +352,11 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			var/area/A = get_area(src)
-			if(A.atmosalert(TRUE, src))
+			if(alarm_manager.send_alarm(ALARM_ATMOS))
 				post_alert(2)
 			. = TRUE
 		if("reset")
-			var/area/A = get_area(src)
-			if(A.atmosalert(FALSE, src))
+			if(alarm_manager.clear_alarm(ALARM_ATMOS))
 				post_alert(0)
 			. = TRUE
 	update_appearance()
@@ -549,7 +550,7 @@
 
 	var/area/our_area = get_area(src)
 	var/color
-	switch(max(danger_level, !!our_area.atmosalm))
+	switch(max(danger_level, !!our_area.active_alarms[ALARM_ATMOS]))
 		if(0)
 			color = "#03A728" // green
 		if(1)
@@ -581,7 +582,7 @@
 
 	var/area/our_area = get_area(src)
 	var/state
-	switch(max(danger_level, our_area.atmosalm))
+	switch(max(danger_level, !!our_area.active_alarms[ALARM_ATMOS]))
 		if(0)
 			state = "alarm0"
 		if(1)
@@ -652,13 +653,19 @@
 
 	frequency.post_signal(src, alert_signal, range = -1)
 
-/obj/machinery/airalarm/proc/apply_danger_level()
 
+/obj/machinery/airalarm/proc/apply_danger_level()
 	var/new_area_danger_level = 0
 	for(var/obj/machinery/airalarm/AA in my_area)
 		if (!(AA.machine_stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = clamp(max(new_area_danger_level, AA.danger_level), 0, 1)
-	if(my_area.atmosalert(new_area_danger_level,src)) //if area was in normal state or if area was in alert state
+
+	var/did_anything_happen
+	if(new_area_danger_level)
+		did_anything_happen = alarm_manager.send_alarm(ALARM_ATMOS)
+	else
+		did_anything_happen = alarm_manager.clear_alarm(ALARM_ATMOS)
+	if(did_anything_happen) //if something actually changed
 		post_alert(new_area_danger_level)
 
 	update_appearance()

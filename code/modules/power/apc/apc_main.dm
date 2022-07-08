@@ -116,6 +116,9 @@
 	///Reference to our remote control
 	var/obj/machinery/computer/apc_control/remote_control = null
 
+	///Represents a signel source of power alarms for this apc
+	var/datum/alarm_handler/alarm_manager
+
 	//Clockcult - Has the reward for converting an APC been given?
 	var/clock_cog_rewarded = FALSE
 	//Clockcult - The integration cog inserted inside of us
@@ -176,8 +179,8 @@
 		area.power_equip = FALSE
 		area.power_environ = FALSE
 		area.power_change()
-		area.poweralert(FALSE, src)
 		area.apc = null
+	QDEL_NULL(alarm_manager)
 	if(occupier)
 		malfvacate(TRUE)
 	if(wires)
@@ -196,6 +199,7 @@
 
 /obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
+	alarm_manager = new(src)
 	if(!mapload)
 		return
 	has_electronics = APC_ELECTRONICS_SECURED
@@ -516,32 +520,33 @@
 		else if(long_term_power > -10)
 			long_term_power -= 2
 
-		var/power_alert_fine = TRUE
-
 		if(cell.charge <= 0) // zero charge, turn all off
 			equipment = autoset(equipment, AUTOSET_FORCE_OFF)
 			lighting = autoset(lighting, AUTOSET_FORCE_OFF)
 			environ = autoset(environ, AUTOSET_FORCE_OFF)
-			power_alert_fine = FALSE
+			alarm_manager.send_alarm(ALARM_POWER)
+
 		else if(cell.percent() < 15 && long_term_power < 0) // <15%, turn off lighting & equipment
 			equipment = autoset(equipment, AUTOSET_OFF)
 			lighting = autoset(lighting, AUTOSET_OFF)
 			environ = autoset(environ, AUTOSET_ON)
-			power_alert_fine = FALSE
+			alarm_manager.send_alarm(ALARM_POWER)
+
 		else if(cell.percent() < 30 && long_term_power < 0) // <30%, turn off equipment
 			equipment = autoset(equipment, AUTOSET_OFF)
 			lighting = autoset(lighting, AUTOSET_ON)
 			environ = autoset(environ, AUTOSET_ON)
-			power_alert_fine = FALSE
+			alarm_manager.send_alarm(ALARM_POWER)
+
 		else // otherwise all can be on
 			equipment = autoset(equipment, AUTOSET_ON)
 			lighting = autoset(lighting, AUTOSET_ON)
 			environ = autoset(environ, AUTOSET_ON)
+			if(cell.percent() > 75)
+				alarm_manager.clear_alarm(ALARM_POWER)
 
 		if(integration_cog)
-			power_alert_fine = TRUE
-
-		area.poweralert(power_alert_fine, src)
+			alarm_manager.clear_alarm(ALARM_POWER)
 
 		// now trickle-charge the cell
 		if(chargemode && charging == APC_CHARGING && operating)
@@ -603,7 +608,7 @@
 		equipment = autoset(equipment, AUTOSET_FORCE_OFF)
 		lighting = autoset(lighting, AUTOSET_FORCE_OFF)
 		environ = autoset(environ, AUTOSET_FORCE_OFF)
-		area.poweralert(0, src)
+		alarm_manager.send_alarm(ALARM_POWER)
 
 	// update icon & area power if anything changed
 	if(last_lt != lighting || last_eq != equipment || last_en != environ || force_update)
