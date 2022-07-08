@@ -330,6 +330,8 @@ Behavior that's still missing from this component that original food items had t
 	. = COMPONENT_ITEM_NO_ATTACK //Point of no return I suppose
 
 	if(eater == feeder)//If you're eating it yourself.
+		if(HAS_TRAIT(eater, TRAIT_VORACIOUS))
+			eat_time = eat_time * 0.5
 		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
 			return
 		if(IsFoodGone(owner, feeder))
@@ -468,7 +470,7 @@ Behavior that's still missing from this component that original food items had t
 	on_consume?.Invoke(eater, feeder)
 	if(food_buffs && ishuman(eater))
 		var/mob/living/carbon/consumer = eater
-		if(consumer.applied_food_buffs < 2)
+		if(consumer.applied_food_buffs < consumer.max_food_buffs)
 			eater.apply_status_effect(food_buffs)
 			consumer.applied_food_buffs ++
 		else if(food_buffs in consumer.status_effects)

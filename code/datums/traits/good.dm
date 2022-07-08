@@ -232,10 +232,18 @@
 /datum/quirk/voracious
 	name = "Voracious"
 	desc = "Nothing gets between you and your food. You eat faster and can binge on junk food! Being fat suits you just fine."
-	value = 1
+	value = 2
 	mob_trait = TRAIT_VORACIOUS
 	gain_text = "<span class='notice'>You feel HONGRY.</span>"
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"
+
+/datum/quirk/voracious/on_spawn()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs ++
+
+/datum/quirk/voracious/remove()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs --
 
 /datum/quirk/neet
 	name = "NEET"
