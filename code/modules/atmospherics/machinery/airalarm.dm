@@ -79,6 +79,9 @@
 	resistance_flags = FIRE_PROOF
 	layer = ABOVE_WINDOW_LAYER
 
+	/// Used for slowing alarm trigger process
+	var/next_slowprocess = 0
+
 	var/danger_level = 0
 	var/mode = AALARM_MODE_SCRUBBING
 	///A reference to the area we are in
@@ -101,19 +104,20 @@
 	var/list/TLV = list( // Breathable air.
 		"pressure" = new/datum/tlv(HAZARD_LOW_PRESSURE, WARNING_LOW_PRESSURE, WARNING_HIGH_PRESSURE, HAZARD_HIGH_PRESSURE), // kPa. Values are hazard_min, warning_min, warning_max, hazard_max
 		"temperature" = new/datum/tlv(BODYTEMP_COLD_WARNING_1, BODYTEMP_COLD_WARNING_1+10, BODYTEMP_HEAT_WARNING_1-27, BODYTEMP_HEAT_WARNING_1),
-		/datum/gas/oxygen = new/datum/tlv(16, 19, 135, 140), // Partial pressure, kpa
-		/datum/gas/nitrogen = new/datum/tlv(-1, -1, 1000, 1000),
-		/datum/gas/carbon_dioxide = new/datum/tlv(-1, -1, 5, 10),
-		/datum/gas/miasma = new/datum/tlv/(-1, -1, 15, 30),
-		/datum/gas/plasma = new/datum/tlv/dangerous,
-		/datum/gas/nitrous_oxide = new/datum/tlv/dangerous,
-		/datum/gas/bz = new/datum/tlv/dangerous,
-		/datum/gas/hypernoblium = new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
-		/datum/gas/water_vapor = new/datum/tlv/dangerous,
-		/datum/gas/tritium = new/datum/tlv/dangerous,
-		/datum/gas/nitryl = new/datum/tlv/dangerous,
-		/datum/gas/pluoxium = new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
-		/datum/gas/nucleium = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor //Monkestation Edit
+		GAS_O2 = new/datum/tlv(16, 19, 135, 140), // Partial pressure, kpa
+		GAS_N2 = new/datum/tlv(-1, -1, 1000, 1000),
+		GAS_CO2 = new/datum/tlv(-1, -1, 5, 10),
+		GAS_MIASMA = new/datum/tlv/(-1, -1, 15, 30),
+		GAS_PLASMA = new/datum/tlv/dangerous,
+		GAS_NITROUS = new/datum/tlv/dangerous,
+		GAS_BZ = new/datum/tlv/dangerous,
+		GAS_HYPERNOB = new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
+		GAS_H2O = new/datum/tlv/dangerous,
+		GAS_TRITIUM = new/datum/tlv/dangerous,
+		GAS_STIMULUM = new/datum/tlv/dangerous,
+		GAS_NITRYL = new/datum/tlv/dangerous,
+		GAS_PLUOXIUM = new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_NUCLEIUM = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor //Monkestation Edit
 	)
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
@@ -182,38 +186,38 @@
 	data["atmos_alarm"] = my_area.active_alarms[ALARM_ATMOS]
 	data["fire_alarm"] = my_area.fire
 
-	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/environment = T.return_air()
-	var/datum/tlv/cur_tlv
+	var/turf/our_turf = get_turf(src)
+	var/datum/gas_mixture/environment = our_turf.return_air()
+	var/datum/tlv/current_tlv
 
 	data["environment_data"] = list()
 	var/pressure = environment.return_pressure()
-	cur_tlv = TLV["pressure"]
+	current_tlv = TLV["pressure"]
 	data["environment_data"] += list(list(
 							"name" = "Pressure",
 							"value" = pressure,
 							"unit" = "kPa",
-							"danger_level" = cur_tlv.get_danger_level(pressure)
+							"danger_level" = current_tlv.get_danger_level(pressure)
 	))
 	var/temperature = environment.return_temperature()
-	cur_tlv = TLV["temperature"]
+	current_tlv = TLV["temperature"]
 	data["environment_data"] += list(list(
 							"name" = "Temperature",
 							"value" = temperature,
 							"unit" = "K ([round(temperature - T0C, 0.1)]C)",
-							"danger_level" = cur_tlv.get_danger_level(temperature)
+							"danger_level" = current_tlv.get_danger_level(temperature)
 	))
 	var/total_moles = environment.total_moles()
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.return_temperature() / environment.return_volume()
 	for(var/gas_id in environment.get_gases())
 		if(!(gas_id in TLV)) // We're not interested in this gas, it seems.
 			continue
-		cur_tlv = TLV[gas_id]
+		current_tlv = TLV[gas_id]
 		data["environment_data"] += list(list(
 								"name" = GLOB.gas_data.names[gas_id],
 								"value" = environment.get_moles(gas_id) / total_moles * 100,
 								"unit" = "%",
-								"danger_level" = cur_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure)
+								"danger_level" = current_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure)
 		))
 
 	if(!locked || user.has_unlimited_silicon_privilege)
@@ -593,14 +597,21 @@
 	. += mutable_appearance(icon, state)
 	. += emissive_appearance(icon, state, alpha = src.alpha)
 
-/obj/machinery/airalarm/temperature_expose(datum/gas_mixture/air, exposed_temperature, volume)
-	SEND_SIGNAL(src, COMSIG_TURF_EXPOSE, air, exposed_temperature)
+/obj/machinery/airalarm/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	SEND_SIGNAL(src, COMSIG_TURF_EXPOSE, air, exposed_temperature, exposed_volume)
 	..()
 
 /obj/machinery/airalarm/process()
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
+		return
 	var/turf/our_turf = get_turf(src)
-	var/datum/gas_mixture/environment = our_turf.return_air()
-	check_air_dangerlevel(our_turf, environment, environment.return_temperature())
+	if(!our_turf)
+		return
+	if(next_slowprocess < world.time)
+		//Set to wait for another second before processing again, we don't need to process more than once a second
+		next_slowprocess = world.time + 5 SECONDS
+		var/datum/gas_mixture/environment = our_turf.return_air()
+		check_air_dangerlevel(our_turf, environment, environment.return_temperature())
 
 /**
  * main proc for throwing a shitfit if the air isnt right.
@@ -616,7 +627,8 @@
 	//cache for sanic speed (lists are references anyways)
 	var/list/cached_tlv = TLV
 
-	var/list/env_gases = location.return_air()
+	var/list/env_gases = environment.get_gases()
+
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * exposed_temperature / environment.return_volume()
 
 	current_tlv = cached_tlv["pressure"]
@@ -631,7 +643,7 @@
 		if(!(gas_id in cached_tlv)) // We're not interested in this gas, it seems.
 			continue
 		current_tlv = cached_tlv[gas_id]
-		gas_dangerlevel = max(gas_dangerlevel, current_tlv.get_danger_level(env_gases[gas_id] * partial_pressure))
+		gas_dangerlevel = max(gas_dangerlevel, current_tlv.get_danger_level(environment.get_moles(gas_id) * partial_pressure))
 
 	var/old_danger_level = danger_level
 	danger_level = max(pressure_dangerlevel, temperature_dangerlevel, gas_dangerlevel)
@@ -828,26 +840,6 @@
 			I.obj_integrity = I.max_integrity * 0.5
 		new /obj/item/stack/cable_coil(loc, 3)
 	qdel(src)
-
- /obj/machinery/airalarm/server // No checks here.
-	TLV = list( // Breathable air.
-		"pressure" = new/datum/tlv(ONE_ATMOSPHERE * 0.8, ONE_ATMOSPHERE*  0.9, ONE_ATMOSPHERE * 1.1, ONE_ATMOSPHERE * 1.2), // kPa. Values are hazard_min, warning_min, warning_max, hazard_max
-		"temperature" = new/datum/tlv(T0C, T0C+10, T0C+40, T0C+66),
-		GAS_O2 = new/datum/tlv(16, 19, 40, 50), // Partial pressure, kpa
-		GAS_N2 = new/datum/tlv(-1, -1, 1000, 1000),
-		GAS_CO2	= new/datum/tlv(-1, -1, 5, 10),
-		GAS_MIASMA = new/datum/tlv/(-1, -1, 15, 30),
-		GAS_PLASMA = new/datum/tlv/dangerous,
-		GAS_NITROUS	= new/datum/tlv/dangerous,
-		GAS_BZ = new/datum/tlv/dangerous,
-		GAS_HYPERNOB = new/datum/tlv(-1, -1, 1000, 1000), // Hyper-Noblium is inert and nontoxic
-		GAS_H2O = new/datum/tlv/dangerous,
-		GAS_TRITIUM = new/datum/tlv/dangerous,
-		GAS_STIMULUM = new/datum/tlv/dangerous,
-		GAS_NITRYL = new/datum/tlv/dangerous,
-		GAS_PLUOXIUM = new/datum/tlv(-1, -1, 5, 6),	// Unlike oxygen, pluoxium does not fuel plasma/tritium fires
-		GAS_NUCLEIUM = new/datum/tlv/dangerous,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
-	)
 
 /obj/machinery/airalarm/server // No checks here.
 	TLV = list(
