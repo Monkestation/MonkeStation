@@ -89,7 +89,7 @@
 				var/obj/item/stack/ore/picked_ore
 				message_admins("TRAIT WORKING")
 				if(prob(20))
-					switch(rand(150))
+					switch(rand(122))
 						if(0 to 50)
 							picked_ore = /obj/item/stack/ore/iron
 						if(51 to 70)
