@@ -879,7 +879,6 @@
 		if(HAS_TRAIT(user, FOOD_JOB_BOTANIST))
 			var/random_increase = rand(1, 20) * 0.01
 			if(prob(50))
-				messaage_admins("POTENCY")
 				myseed.adjust_potency(round(myseed.potency *random_increase, 1), FALSE)
 			if(prob(20))
 				myseed.adjust_yield(round(myseed.yield * random_increase, 1), FALSE)

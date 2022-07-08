@@ -365,6 +365,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 /obj/item/food/powercrepe
 	name = "Powercrepe"

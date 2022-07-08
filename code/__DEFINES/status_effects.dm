@@ -184,3 +184,5 @@
 #define STATUS_EFFECT_STAM_REGEN_LARGE /datum/status_effect/food/stam_regen/t3
 
 #define STATUS_EFFECT_FOOD_JOB_BOTANIST /datum/status_effect/food/botanist
+
+#define STATUS_EFFECT_FOOD_JOB_MINER /datum/status_effect/food/miner

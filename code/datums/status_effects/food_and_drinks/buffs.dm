@@ -295,7 +295,7 @@
 
 /atom/movable/screen/alert/status_effect/food/botanist
 	name = "Green Thumb"
-	desc = "Plants just seem to flourish in your hands"
+	desc = "Plants just seem to flourish in your hands."
 	icon_state = "food_botanist"
 
 /datum/status_effect/food/botanist/on_apply()
@@ -308,4 +308,25 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		REMOVE_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
+		user.applied_food_buffs --
+
+/datum/status_effect/food/miner
+	id = "job_miner_food"
+	alert_type = /atom/movable/screen/alert/status_effect/food/miner
+
+/atom/movable/screen/alert/status_effect/food/miner
+	name = "Lucky Break"
+	desc = "With your luck ores just seem to fall out of rocks."
+	icon_state = "food_miner"
+
+/datum/status_effect/food/miner/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		ADD_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
+	return ..()
+
+/datum/status_effect/food/miner/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/user = owner
+		REMOVE_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
 		user.applied_food_buffs --
