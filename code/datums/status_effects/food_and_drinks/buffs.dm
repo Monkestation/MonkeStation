@@ -3,6 +3,11 @@
 	status_type = STATUS_EFFECT_REPLACE
 
 
+/datum/status_effect/food/on_apply()
+	if(HAS_TRAIT(owner, TRAIT_GOURMAND))
+		duration *= 1.5
+	return ..()
+
 /datum/status_effect/food/stamina_increase
 	id = "t1_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
