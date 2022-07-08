@@ -432,7 +432,7 @@
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(GAS_CO2, GAS_BZ),
+					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_MIASMA),
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
@@ -592,6 +592,15 @@
 
 	. += mutable_appearance(icon, state)
 	. += emissive_appearance(icon, state, alpha = src.alpha)
+
+/obj/machinery/airalarm/temperature_expose(datum/gas_mixture/air, exposed_temperature, volume)
+	SEND_SIGNAL(src, COMSIG_TURF_EXPOSE, air, exposed_temperature)
+	..()
+
+/obj/machinery/airalarm/process()
+	var/turf/our_turf = get_turf(src)
+	var/datum/gas_mixture/environment = our_turf.return_air()
+	check_air_dangerlevel(our_turf, environment, environment.return_temperature())
 
 /**
  * main proc for throwing a shitfit if the air isnt right.
@@ -804,20 +813,12 @@
 			to_chat(user, span_danger("Access denied."))
 	return
 
-/obj/machinery/airalarm/power_change()
-	..()
-	update_appearance()
-
 /obj/machinery/airalarm/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	visible_message("<span class='warning'>Sparks fly out of [src]!</span>", "<span class='notice'>You emag [src], disabling its safeties.</span>")
+	visible_message(span_warning("Sparks fly out of [src]!"), span_notice("You emag [src], disabling its safeties."))
 	playsound(src, "sparks", 50, 1)
-
-/obj/machinery/airalarm/obj_break(damage_flag)
-	..()
-	update_appearance()
 
 /obj/machinery/airalarm/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -917,21 +918,7 @@
 /obj/machinery/airalarm/away //general away mission access
 	req_access = list(ACCESS_AWAY_GENERAL)
 
-/obj/machinery/airalarm/directional/north //Pixel offsets get overwritten on New()
-	dir = SOUTH
-	pixel_y = 24
-
-/obj/machinery/airalarm/directional/south
-	dir = NORTH
-	pixel_y = -24
-
-/obj/machinery/airalarm/directional/east
-	dir = WEST
-	pixel_x = 24
-
-/obj/machinery/airalarm/directional/west
-	dir = EAST
-	pixel_x = -24
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/airalarm, 24)
 
 
 #undef AALARM_MODE_SCRUBBING
