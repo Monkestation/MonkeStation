@@ -89,20 +89,21 @@
 				var/obj/item/stack/ore/picked_ore
 				message_admins("TRAIT WORKING")
 				if(prob(20))
-					if(prob(75))
-						picked_ore = /obj/item/stack/ore/iron
-					if(prob(50))
-						picked_ore = /obj/item/stack/ore/copper
-					if(prob(35))
-						picked_ore = /obj/item/stack/ore/plasma
-					if(prob(20))
-						picked_ore = /obj/item/stack/ore/silver
-					if(prob(15))
-						picked_ore = /obj/item/stack/ore/gold
-					if(prob(3))
-						picked_ore = /obj/item/stack/ore/diamond
-					if(prob(3))
-						picked_ore = /obj/item/stack/ore/bluespace_crystal
+					switch(rand(150))
+						if(0 to 50)
+							picked_ore = /obj/item/stack/ore/iron
+						if(51 to 70)
+							picked_ore = /obj/item/stack/ore/copper
+						if(71 to 85)
+							picked_ore = /obj/item/stack/ore/plasma
+						if(86 to 105)
+							picked_ore = /obj/item/stack/ore/silver
+						if(106 to 120)
+							picked_ore = /obj/item/stack/ore/gold
+						if(121)
+							picked_ore = /obj/item/stack/ore/diamond
+						if(122)
+							picked_ore = /obj/item/stack/ore/bluespace_crystal
 
 				if(picked_ore)
 					new picked_ore(src, 1)
