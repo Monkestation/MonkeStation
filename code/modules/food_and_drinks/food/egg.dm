@@ -20,6 +20,12 @@
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/egg/rotten
 	decomp_req_handle = TRUE //so laid eggs can actually become chickens
+	var/amount_grown = 0
+	var/mob/living/simple_animal/chicken/layer_hen_type
+	var/happiness = 0
+	var/list/consumed_food
+	var/list/consumed_reagents
+	var/list/mutations
 
 /obj/item/food/egg/rotten
 	food_reagents = list(/datum/reagent/consumable/eggrot = 10)
