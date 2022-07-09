@@ -139,7 +139,9 @@
 /obj/item/anime/proc/anime_transformation(mob/living/carbon/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/weeb = user
-		var/new_color = input(user, "Choose an Anime color:", "Anime Color (clicking 'cancel' will set Anime color to Hair color):", weeb.hair_color) as color|null
+		var/new_color = null
+		if(!hacked)
+			new_color = input(user, "Choose an Anime color:", "Anime Color (clicking 'cancel' will set Anime color to Hair color):", weeb.hair_color) as color|null
 		if(new_color) //If they DON'T pick a color, then it just defaults to their original hair color.
 			weeb.custom_color = sanitize_hexcolor(new_color)
 		else
