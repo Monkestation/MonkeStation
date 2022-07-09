@@ -142,6 +142,22 @@
 	var/breed_name = "White"
 	///Do we wanna call the male rooster something different?
 	var/breed_name_male
+	///Total times eaten
+	var/total_times_eaten = 0
+	///Current fed level
+	var/current_feed_amount = 0
+	///List of liked foods
+	var/list/liked_foods = list(/obj/item/food/grown/wheat)
+	///list of disliked foods
+	var/list/disliked_food_types = list(MEAT)
+	///Overcrowding amount
+	var/overcrowding = 10
+	///Age of the chicken
+	var/age = 0
+	///Cooldown for aging
+	COOLDOWN_DECLARE(age_cooldown)
+	///Aging Speed
+	var/age_speed = 5 SECONDS
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -168,7 +184,7 @@
 
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
-		if(!stat && eggsleft < 8)
+		if(!stat && current_feed_amount <= 3 )
 			for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
 				if(!(reagent in consumed_reagents))
 					consumed_reagents.Add(reagent)
@@ -176,12 +192,25 @@
 			if(!(given_item in consumed_food))
 				consumed_food.Add(given_item)
 
+			if(given_item.type in liked_foods)
+				happiness += 10
+
+			var/obj/item/food/placeholder_food_item = given_item
+			for(var/food_type in placeholder_food_item.foodtypes)
+				if(food_type in disliked_food_types)
+					happiness -= 10
 			var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
 			user.visible_message(feedmsg)
 			qdel(given_item)
 			eggsleft += rand(1, 4)
+			current_feed_amount ++
+			total_times_eaten ++
 		else
-			to_chat(user, "<span class='warning'>[name] doesn't seem hungry!</span>")
+			var/turf/vomited_turf = get_turf(src)
+			vomited_turf.add_vomit_floor(src, VOMIT_TOXIC)
+			to_chat(user, "<span class='warning'>[name] can't keep the food down, it vomits all over the floor!</span>")
+			happiness -= 15
+			current_feed_amount -= 3
 	else
 		..()
 
@@ -189,16 +218,40 @@
 	. =..()
 	if(!.)
 		return
+
+	if(COOLDOWN_FINISHED(src, age_cooldown))
+		COOLDOWN_START(src, age_cooldown, age_speed)
+		age ++
+
+	if(age > 100)
+		src.death()
+
+	var/animal_count = 0
+	for(var/mob/living/simple_animal/animals in view(1, src))
+		animal_count ++
+	if(animal_count >= overcrowding)
+		happiness --
+
+	if(!stat && prob(3) && current_feed_amount > 0)
+		current_feed_amount --
+		if(current_feed_amount == 0)
+			var/list/users = get_hearers_in_view(4, src.loc)
+			for(var/mob/living/carbon/human/user in users)
+				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
+
 	if((!stat && prob(100) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens)) //3
 		visible_message("[src] [pick(layMessage)]")
 		eggsleft--
 
 		var/obj/item/food/egg/layed_egg = new egg_type(get_turf(src))
+		//Need to have eaten 5 times in order to have a chance at getting mutations
+		if(src.total_times_eaten > 4)
+			layed_egg.mutations = src.mutation_list
+
 		layed_egg.layer_hen_type = src.chicken_type
 		layed_egg.happiness = src.happiness
 		layed_egg.consumed_food = src.consumed_food
 		layed_egg.consumed_reagents = src.consumed_reagents
-		layed_egg.mutations = src.mutation_list
 		layed_egg.pixel_x = rand(-6,6)
 		layed_egg.pixel_y = rand(-6,6)
 		if(glass_egg_reagents)

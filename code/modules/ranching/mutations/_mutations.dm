@@ -71,7 +71,7 @@
 
 /obj/item/food/egg/proc/check_food(datum/ranching/mutation/supplier)
 	if(supplier.food_requirements)
-		var/list/needed_foods
+		var/list/needed_foods = list()
 		var/obj/item/food/eaten_food
 		for(var/obj/item/food/food_item in supplier.food_requirements)
 			needed_foods += food_item

@@ -25,7 +25,7 @@
 	var/happiness = 0
 	var/list/consumed_food
 	var/list/consumed_reagents
-	var/list/mutations
+	var/list/mutations = list()
 
 /obj/item/food/egg/rotten
 	food_reagents = list(/datum/reagent/consumable/eggrot = 10)

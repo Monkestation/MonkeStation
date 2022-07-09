@@ -1,10 +1,8 @@
-/mob/living/simple_animal/chicken/glass
-	breed_name = "Glass"
-	egg_type = /obj/item/food/egg/glass
-	chicken_path = /mob/living/simple_animal/chicken/glass
-	mutation_list = list()
+/mob/living/simple_animal/chicken/spicy
+	breed_name = "Spicy"
+	egg_type = /obj/item/food/egg/spicy
+	chicken_path = /mob/living/simple_animal/chicken/spicy
+	mutation_list = list(/datum/ranching/mutation/phoenix)
 
-/obj/item/food/egg/glass
-	name = "Glass Egg"
-	food_reagents = list()
-	max_volume = 5
+/obj/item/food/egg/spicy
+	name = "Spicy Egg"
