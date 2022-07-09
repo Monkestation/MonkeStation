@@ -158,6 +158,10 @@
 	COOLDOWN_DECLARE(age_cooldown)
 	///Aging Speed
 	var/age_speed = 5 SECONDS
+	///Nestbox to move to
+	var/obj/structure/nestbox/movement_target
+	///Ready to lay egg
+	var/ready_to_lay = FALSE
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -239,26 +243,47 @@
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
-	if((!stat && prob(100) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens)) //3
-		visible_message("[src] [pick(layMessage)]")
-		eggsleft--
+	if((!stat && prob(100) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE) //3
+		ready_to_lay = TRUE
 
-		var/obj/item/food/egg/layed_egg = new egg_type(get_turf(src))
-		//Need to have eaten 5 times in order to have a chance at getting mutations
-		if(src.total_times_eaten > 4)
-			layed_egg.mutations = src.mutation_list
+	if(ready_to_lay == TRUE)
+		if(!movement_target || !(src in viewers(3, movement_target.loc)))
+			movement_target = null
+			stop_automated_movement = 0
+			for(var/obj/structure/nestbox/nesting_box in view(3, src))
+				movement_target = nesting_box
+				break
+		if(movement_target)
+			stop_automated_movement = 1
+			step_to(src, movement_target)
 
-		layed_egg.layer_hen_type = src.chicken_type
-		layed_egg.happiness = src.happiness
-		layed_egg.consumed_food = src.consumed_food
-		layed_egg.consumed_reagents = src.consumed_reagents
-		layed_egg.pixel_x = rand(-6,6)
-		layed_egg.pixel_y = rand(-6,6)
-		if(glass_egg_reagents)
-			layed_egg.food_reagents = glass_egg_reagents
-		if(eggsFertile)
-			if(prob(100)) //25
-				START_PROCESSING(SSobj, layed_egg)
+		if(!Adjacent(movement_target)) //can't reach box through windows.
+			return
+
+		if(src.loc == movement_target.loc)
+
+			visible_message("[src] [pick(layMessage)]")
+
+			eggsleft--
+
+			var/obj/item/food/egg/layed_egg = new egg_type(get_turf(src))
+			//Need to have eaten 5 times in order to have a chance at getting mutations
+			if(src.total_times_eaten > 4)
+				layed_egg.mutations = src.mutation_list
+
+			layed_egg.layer_hen_type = src.chicken_type
+			layed_egg.happiness = src.happiness
+			layed_egg.consumed_food = src.consumed_food
+			layed_egg.consumed_reagents = src.consumed_reagents
+			layed_egg.pixel_x = rand(-6,6)
+			layed_egg.pixel_y = rand(-6,6)
+			if(glass_egg_reagents)
+				layed_egg.food_reagents = glass_egg_reagents
+			if(eggsFertile)
+				if(prob(100)) //25
+					START_PROCESSING(SSobj, layed_egg)
+			ready_to_lay = FALSE
+			stop_automated_movement = 0
 
 
 /obj/item/food/egg/process(delta_time)

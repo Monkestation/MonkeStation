@@ -14,13 +14,13 @@
 	var/pressure_variance
 
 	///Special foods needed
-	var/list/food_requirements
+	var/list/food_requirements = list()
 	///Special reagents needed
-	var/list/reagent_requirements
+	var/list/reagent_requirements = list()
 	///Special turf requirements
-	var/list/needed_turfs
+	var/list/needed_turfs = list()
 	///Required nearby items
-	var/list/nearby_items
+	var/list/nearby_items = list()
 	///Needed Rooster Type
 	var/required_rooster
 
@@ -70,7 +70,7 @@
 	return TRUE
 
 /obj/item/food/egg/proc/check_food(datum/ranching/mutation/supplier)
-	if(supplier.food_requirements)
+	if(supplier.food_requirements.len)
 		var/list/needed_foods = list()
 		var/obj/item/food/eaten_food
 		for(var/obj/item/food/food_item in supplier.food_requirements)
@@ -85,7 +85,7 @@
 	return TRUE
 
 /obj/item/food/egg/proc/check_reagent(datum/ranching/mutation/supplier)
-	if(supplier.reagent_requirements)
+	if(supplier.reagent_requirements.len)
 		var/list/datum/reagent/needed_reagents = new/list
 		var/datum/reagent/eaten_reagent
 		for(var/datum/reagent/reagent in supplier.reagent_requirements)
@@ -99,7 +99,7 @@
 	return TRUE
 
 /obj/item/food/egg/proc/check_turfs(datum/ranching/mutation/supplier)
-	if(supplier.needed_turfs)
+	if(supplier.needed_turfs.len)
 		for(var/turf/in_range_turf in view(2, src))
 			if(in_range_turf in supplier.needed_turfs)
 				supplier.needed_turfs -= in_range_turf
@@ -109,7 +109,7 @@
 	return TRUE
 
 /obj/item/food/egg/proc/check_items(datum/ranching/mutation/supplier)
-	if(supplier.nearby_items)
+	if(supplier.nearby_items.len)
 		var/list/needed_items = list()
 		for(var/list_item in supplier.nearby_items)
 			var/obj/item/needed_item = list_item
