@@ -81,8 +81,21 @@
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
 
+	//Setup area colours
+	var/area/our_area = get_area(src)
+	if(bulb_colour == initial(bulb_colour))
+		if(istype(src, /obj/machinery/light/small))
+			bulb_colour = our_area.lighting_colour_bulb
+			brightness = our_area.lighting_brightness_bulb
+		else
+			bulb_colour = our_area.lighting_colour_tube
+			brightness = our_area.lighting_brightness_tube
+
+	if(nightshift_light_color == initial(nightshift_light_color))
+		nightshift_light_color = our_area.lighting_colour_night
+		nightshift_brightness = our_area.lighting_brightness_night
+
 	if(!mapload) //sync up nightshift lighting for player made lights
-		var/area/our_area = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = our_area.apc
 		nightshift_enabled = temp_apc?.nightshift_lights
 
