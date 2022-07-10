@@ -487,21 +487,6 @@ const CargoCart = (props, context) => {
 const CargoHelp = (props, context) => {
   return (
     <>
-      <Section title="Department Orders">
-        Each department on the station will order crates from their own personal
-        consoles. These orders are ENTIRELY FREE! They do not come out of
-        cargo&apos;s budget, and rather put the consoles on cooldown. So
-        here&apos;s where you come in: The ordered crates will show up on your
-        supply console, and you need to deliver the crates to the orderers.
-        You&apos;ll actually be paid the full value of the department crate on
-        delivery if the crate was not tampered with, making the system a good
-        source of income.
-        <br />
-        <b>
-          Examine a department order crate to get specific details about where
-          the crate needs to go.
-        </b>
-      </Section>
       <Section title="MULEbots">
         MULEbots are slow but loyal delivery bots that will get crates delivered
         with minimal technician effort required. It is slow, though, and can be
