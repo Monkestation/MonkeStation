@@ -169,7 +169,7 @@
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10) // delayed activation for toxin
 		M.adjustStaminaLoss((current_cycle - 5)*REM, 0)
-	if(M.getStaminaLoss() >= 145) // fake death tied to stamina for interesting interactions - 23 ticks to fake death with pure ZP
+	if(M.getStaminaLoss() >= 145 && !HAS_TRAIT(M, TRAIT_FAKEDEATH)) // fake death tied to stamina for interesting interactions - 23 ticks to fake death with pure ZP
 		M.fakedeath(type)
 	..()
 
@@ -770,6 +770,7 @@
 	taste_description = "acid"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
+	evaporation_rate = 4 // this goes away fast
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(!istype(C))
@@ -933,3 +934,11 @@
 	M.silent = max(M.silent, 3)
 	M.confused = max(M.confused, 3)
 	..()
+
+/datum/reagent/toxin/mushroom_powder
+	name = "Mushroom Powder"
+	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."
+	reagent_state = SOLID
+	color = "#67423A" // rgb: 127, 132, 0
+	toxpwr = 0.1
+	taste_description = "mushrooms"

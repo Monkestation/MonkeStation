@@ -147,7 +147,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		cached_add[reagent_type] = cached_add[reagent_type] / members.len
 	cached_volume = cached_volume / members.len
 	cached_thermal = cached_thermal / members.len
-	var/temp_to_set = cached_thermal / cached_volume
+	var/temp_to_set = cached_thermal / max(cached_volume, 1)
 	last_cached_thermal = cached_thermal
 	last_cached_fraction_share = cached_add
 	last_cached_total_volume = cached_volume
@@ -219,8 +219,15 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			var/datum/reagent/R = r
 			T.liquids.reagent_list[R.type] = R.volume
 			T.liquids.total_reagents += R.volume
-			alpha_setting += R.opacity * R.volume
-			alpha_divisor += 1 * R.volume
+			alpha_setting += max(R.opacity * R.volume, 0.0001)
+			alpha_divisor += max(1 * R.volume, 0.0001)
+
+		//Ew but this is needed for edge cases in the new evaporation as its "technically" possible for numbers to balance out to 0 and cause division issues
+		if(alpha_divisor == 0)
+			alpha_divisor = 1
+		if(alpha_setting == 0)
+			alpha_setting = 1
+
 		T.liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
 		qdel(T.reagents)
 		//Expose turf

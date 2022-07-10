@@ -329,6 +329,8 @@
 	if (!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key, TRUE, FALSE, gamemode, telecrystals)
+		if(src.has_antag_datum(/datum/antagonist/incursion))
+			U.uplink_flag = UPLINK_INCURSION
 		if(!U)
 			CRASH("Uplink creation failed.")
 		U.setup_unlock_code()
@@ -759,7 +761,7 @@
 	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
 	return affected_addiction.on_gain_addiction_points(src)
 
-///Adds addiction points to the specified addiction
+///Removes addiction points to the specified addiction
 /datum/mind/proc/remove_addiction_points(type, amount)
 	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
 	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
