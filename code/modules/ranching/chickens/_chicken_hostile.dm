@@ -14,11 +14,11 @@
 	var/rapid = 0 //How many shots per volley.
 	var/rapid_fire_delay = 2 //Time between rapid fire shots
 
-	var/dodging = FALSE
+	var/dodging = TRUE
 	var/approaching_target = FALSE //We should dodge now
 	var/in_melee = FALSE	//We should sidestep now
 	var/dodge_prob = 50
-	var/sidestep_per_cycle = 1 //How many sidesteps per npcpool cycle when in melee
+	var/sidestep_per_cycle = 2 //How many sidesteps per npcpool cycle when in melee
 
 	var/casingtype		//set ONLY it and NULLIFY projectiletype, if we have projectile IN CASING
 	var/move_to_delay = 3 //delay for the automated movement.
