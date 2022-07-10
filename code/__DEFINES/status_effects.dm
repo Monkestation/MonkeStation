@@ -153,3 +153,7 @@
 #define STASIS_ASCENSION_EFFECT "heretic_ascension"
 
 #define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))
+
+
+
+#define SUGAR_RUSH /datum/status_effect/ranching/sugar_rush

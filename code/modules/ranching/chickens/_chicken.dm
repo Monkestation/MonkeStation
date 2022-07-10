@@ -155,6 +155,8 @@
 	var/breed_name = "White"
 	///Do we wanna call the male rooster something different?
 	var/breed_name_male
+	///Is the hen also different?
+	var/breed_name_female
 	///Total times eaten
 	var/total_times_eaten = 0
 	///Current fed level
@@ -188,7 +190,10 @@
 		else
 			name = "[breed_name] Rooster"
 	else
-		name = "[breed_name] Chicken"
+		if(breed_name_female)
+			name = " [breed_name_female]"
+		else
+			name = "[breed_name] Hen"
 
 /mob/living/simple_animal/chicken/death(gibbed)
 	GLOB.total_chickens--

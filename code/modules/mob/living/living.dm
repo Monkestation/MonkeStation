@@ -74,7 +74,7 @@
 		return
 	if(buckled || now_pushing)
 		return
-	if((confused || is_blind()) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && m_intent == "run" && (!ismovableatom(A) || is_blocked_turf(A)) && !HAS_MOB_PROPERTY(src, PROP_CANTBUMPSLAM))  // ported from VORE, sue me
+	if((confused || is_blind()) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && m_intent == "run" && (!ismovableatom(A) || is_blocked_turf(A)) && !HAS_MOB_PROPERTY(src, PROP_CANTBUMPSLAM) &&!has_status_effect(SUGAR_RUSH))  // ported from VORE, sue me
 		APPLY_MOB_PROPERTY(src, PROP_CANTBUMPSLAM, src.type) //Bump() is called continuously so ratelimit the check to 20 seconds if it passes or 5 if it doesn't
 		if(prob(10))
 			playsound(get_turf(src), "punch", 25, 1, -1)
@@ -85,10 +85,13 @@
 		else
 			addtimer(CALLBACK(src, .proc/can_bumpslam), 50)
 
-
 	if(ismob(A))
 		var/mob/M = A
 		if(MobBump(M))
+			return
+	if(isturf(A))
+		var/turf/T = A
+		if(TurfBump(T))
 			return
 	if(isobj(A))
 		var/obj/O = A
@@ -110,6 +113,10 @@
 
 	if(now_pushing)
 		return TRUE
+	if(has_status_effect(SUGAR_RUSH))
+		visible_message("<span class='warning'>[src] bounces off [M]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
+		src.throw_at(throw_target, 1, 2, spin = FALSE, force = 0)
 
 	var/they_can_move = TRUE
 	if(isliving(M))
@@ -223,6 +230,18 @@
 
 //Called when we bump onto an obj
 /mob/living/proc/ObjBump(obj/O)
+	if(has_status_effect(SUGAR_RUSH))
+		visible_message("<span class='warning'>[src] bounces off  \the [O]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
+		src.throw_at(throw_target, 1, 2, spin = FALSE, force = 0)
+	return
+
+//Called when we bump onto an obj
+/mob/living/proc/TurfBump(turf/T)
+	if(has_status_effect(SUGAR_RUSH))
+		visible_message("<span class='warning'>[src] bounces off  \the [T]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
+		src.throw_at(throw_target, 1, 2, spin = FALSE, force = 0)
 	return
 
 //Called when we want to push an atom/movable
