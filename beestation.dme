@@ -3108,6 +3108,7 @@
 #include "code\modules\projectiles\projectile\special\vortex.dm"
 #include "code\modules\projectiles\projectile\special\wormhole.dm"
 #include "code\modules\ranching\items.dm"
+#include "code\modules\ranching\chickens\_chicken_hostile.dm"
 #include "code\modules\ranching\chickens\_chicken.dm"
 #include "code\modules\ranching\chickens\tier1.dm"
 #include "code\modules\ranching\chickens\tier2.dm"

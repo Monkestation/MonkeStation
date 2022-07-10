@@ -21,7 +21,7 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = "kicks"
+	attacktext = "pecks"
 	health = 3
 	maxHealth = 3
 	ventcrawler = VENTCRAWLER_ALWAYS
@@ -38,6 +38,14 @@
 	var/grown_type
 	///Glass chicken exclusive:what reagent were the eggs filled with?
 	var/list/glass_egg_reagent = list()
+	///List of all petters, added to friend list of raptor
+	var/list/friends = list()
+
+/mob/living/simple_animal/chick/attack_hand(mob/living/carbon/human/user)
+	..()
+	switch(user.a_intent)
+		if("help")
+			friends.Add(user)
 
 /mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
@@ -58,6 +66,10 @@
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/glass))
 				for(var/list_item in glass_egg_reagent)
 					new_chicken.glass_egg_reagents.Add(list_item)
+			if(istype(new_chicken, /mob/living/simple_animal/chicken/hostile/raptor))
+				var/mob/living/simple_animal/chicken/hostile/chicken_holder = new_chicken
+				for(var/mob/living/carbon/human/user in friends)
+					chicken_holder.friends.Add(user)
 			qdel(src)
 
 /mob/living/simple_animal/chick/death(gibbed)
@@ -284,7 +296,6 @@
 					START_PROCESSING(SSobj, layed_egg)
 			ready_to_lay = FALSE
 			stop_automated_movement = 0
-
 
 /obj/item/food/egg/process(delta_time)
 	amount_grown += rand(30,60) * delta_time // 1,2

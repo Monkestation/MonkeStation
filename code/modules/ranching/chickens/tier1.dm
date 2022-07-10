@@ -13,7 +13,7 @@
 	breed_name = "Brown"
 	egg_type = /obj/item/food/egg/brown
 	chicken_path = /mob/living/simple_animal/chicken/brown
-	mutation_list = list(/datum/ranching/mutation/glass)
+	mutation_list = list(/datum/ranching/mutation/spicy, /datum/ranching/mutation/raptor)
 
 /obj/item/food/egg/brown
 	name = "Brown Egg"

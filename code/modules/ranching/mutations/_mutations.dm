@@ -71,15 +71,12 @@
 
 /obj/item/food/egg/proc/check_food(datum/ranching/mutation/supplier)
 	if(supplier.food_requirements.len)
-		var/list/needed_foods = list()
 		var/obj/item/food/eaten_food
-		for(var/obj/item/food/food_item in supplier.food_requirements)
-			needed_foods += food_item
 		for(var/food in src.consumed_food)
 			eaten_food = food
-			if(food in supplier.food_requirements)
-				needed_foods -= eaten_food
-		if(needed_foods.len)
+			if(eaten_food.type in supplier.food_requirements)
+				supplier.food_requirements -= eaten_food.type
+		if(supplier.food_requirements.len)
 			message_admins("FAILED FOOD")
 			return FALSE
 	return TRUE
