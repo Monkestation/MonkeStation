@@ -45,7 +45,8 @@
 	..()
 	switch(user.a_intent)
 		if("help")
-			friends.Add(user)
+			if(!(user in friends))
+				friends.Add(user)
 
 /mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
