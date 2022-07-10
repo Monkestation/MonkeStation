@@ -44,7 +44,7 @@
 	name = "Barber"
 	jobtype = /datum/job/gimmick/barber
 
-	id = /obj/item/card/id/job/serv
+	id = /obj/item/card/id/job/barber
 	belt = /obj/item/pda/unlicensed
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/suit/sl
@@ -62,6 +62,7 @@
 	total_positions = 1 //MonkeStation Edit: Gimmick Latejoin
 	gimmick = TRUE
 	chat_color = "#b898b3"
+	paycheck_department = ACCOUNT_SRV
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/magic
@@ -71,7 +72,7 @@
 	name = "Stage Magician"
 	jobtype = /datum/job/gimmick/magician
 
-	id = /obj/item/card/id/job/serv
+	id = /obj/item/card/id/job/magician
 	belt = /obj/item/pda/unlicensed
 	head = /obj/item/clothing/head/that
 	ears = /obj/item/radio/headset
@@ -142,6 +143,7 @@
 	gimmick = TRUE
 	chat_color = "#a2dfdc"
 	departments = DEPARTMENT_MEDICAL
+	paycheck_department = ACCOUNT_MED
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman
@@ -151,7 +153,7 @@
 	name = "Psychiatrist"
 	jobtype = /datum/job/gimmick/shrink
 
-	id = /obj/item/card/id/job/med
+	id = /obj/item/card/id/job/psychi
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/suit/black
@@ -178,7 +180,7 @@
 	name = "VIP"
 	jobtype = /datum/job/gimmick/celebrity
 
-	id = /obj/item/card/id/gold
+	id = /obj/item/card/id/gold/vip
 	belt = /obj/item/pda/celebrity
 	glasses = /obj/item/clothing/glasses/sunglasses/advanced
 	ears = /obj/item/radio/headset/heads //VIP can talk loud for no reason
