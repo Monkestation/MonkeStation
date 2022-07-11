@@ -222,3 +222,4 @@
 
 	///Currently possesses a typing indicator icon
 	var/typing_indicator = FALSE
+
