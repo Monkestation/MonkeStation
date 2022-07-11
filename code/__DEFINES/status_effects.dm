@@ -159,3 +159,4 @@
 #define SUGAR_RUSH /datum/status_effect/ranching/sugar_rush
 #define HEN_RUSH /datum/status_effect/ranching/hen_rush
 #define SNOWY_EGG /datum/status_effect/ranching/snowy
+#define PIGEON /datum/status_effect/ranching/pigeon
