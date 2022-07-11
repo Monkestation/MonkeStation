@@ -7,20 +7,26 @@
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	light_color = LIGHT_COLOR_BLUE
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
-		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
 					/obj/item/reagent_containers/glass/waterbottle = 10,
-					/obj/item/reagent_containers/food/drinks/bottle/mushi_kombucha = 3)
+					/obj/item/reagent_containers/food/drinks/bottle/mushi_kombucha = 3
+					)
+
 	contraband = list(/obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko = 6,
-		              /obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6)
+					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 6
+					)
+
 	premium = list(/obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola = 1,
-		           /obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
-		           /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 1,
-		           /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1)
+					/obj/item/reagent_containers/food/drinks/soda_cans/air = 1,
+					/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 1,
+					/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1
+					)
+
 	refill_canister = /obj/item/vending_refill/cola
 	default_price = 5
 	extra_price = 60
@@ -33,9 +39,12 @@
 	name = "\improper Random Drinkies"
 	icon_state = "random_cola"
 	desc = "Uh oh!"
+	circuit = null
 
 /obj/machinery/vending/cola/random/Initialize(mapload)
-	..()
+	// No need to call parent, we're not doing anything with this machine. Just picking a new type of machine to use, spawning it and deleting ourselves.
+	SHOULD_CALL_PARENT(FALSE)
+
 	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random)
 	new T(loc)
 	return INITIALIZE_HINT_QDEL

@@ -157,12 +157,12 @@
 /obj/machinery/processor/slime
 	name = "slime processor"
 	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
+	circuit = /obj/item/circuitboard/machine/processor/slime
+
 	var/sbacklogged = FALSE
 
 /obj/machinery/processor/slime/Initialize(mapload)
 	. = ..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/processor/slime(null)
-	B.apply_default_parts(src)
 	proximity_monitor = new(src, 1)
 
 /obj/machinery/processor/slime/adjust_item_drop_location(atom/movable/AM)

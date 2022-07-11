@@ -38,19 +38,16 @@
 
 /obj/machinery/space_heater/Initialize(mapload)
 	. = ..()
-	cell = new(src)
-	update_icon()
+	if(ispath(cell))
+		cell = new cell(src)
+	update_appearance()
 
-/obj/machinery/space_heater/on_construction()
-	qdel(cell)
-	cell = null
-	panel_open = TRUE
-	update_icon()
-	return ..()
+/obj/machinery/space_heater/Destroy()
+	return..()
 
 /obj/machinery/space_heater/on_deconstruction()
 	if(cell)
-		component_parts += cell
+		LAZYADD(component_parts, cell)
 		cell = null
 	return ..()
 
