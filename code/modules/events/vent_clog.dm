@@ -12,10 +12,9 @@
 	var/interval 	= 2
 	var/list/vents  = list()
 	var/randomProbability = 1
-	var/reagentsAmount = 500
+	var/reagentsAmount = 300
 	//MONKESTATION EDIT
-	var/use_all_vents = TRUE //Should it use every vent
-	var/vent_percentage = 1 //How many vents it should use (0.5 = 50%)
+	var/vent_percentage = 0.25 //How many vents it should use (0.5 = 50%)
 	//MONKESTATION EDIT END
 	var/list/saferChems = list(/datum/reagent/water,/datum/reagent/carbon,/datum/reagent/consumable/flour,/datum/reagent/space_cleaner,/datum/reagent/consumable/nutriment,/datum/reagent/consumable/condensedcapsaicin,/datum/reagent/drug/mushroomhallucinogen,/datum/reagent/lube,/datum/reagent/glitter/pink,/datum/reagent/cryptobiolin,
 						 /datum/reagent/toxin/plantbgone,/datum/reagent/blood,/datum/reagent/medicine/charcoal,/datum/reagent/drug/space_drugs,/datum/reagent/medicine/morphine,/datum/reagent/water/holywater,/datum/reagent/consumable/ethanol,/datum/reagent/consumable/cocoa/hot_cocoa,/datum/reagent/toxin/acid,/datum/reagent/toxin/mindbreaker,/datum/reagent/toxin/rotatium,/datum/reagent/bluespace,
@@ -34,18 +33,15 @@
 			temp_vents += temp_vent
 	if(!temp_vents.len)
 		return kill()
-	//MONKESTATION EDIT - also changed vents to temp_vents above
-	if(!use_all_vents)
-		var/vents_counted = 0
-		var/max_vents = temp_vents.len*vent_percentage
-		shuffle_inplace(temp_vents)
-		for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent in temp_vents)
-			vents += vent
-			vents_counted++
-			if(vents_counted > max_vents)
-				break
-	else
-		vents = temp_vents
+	//MONKESTATION EDIT - also changed 'vents' to 'temp_vents' above
+	var/vents_counted = 0
+	var/max_vents = temp_vents.len*vent_percentage
+	shuffle_inplace(temp_vents)
+	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent in temp_vents)
+		vents += vent
+		vents_counted++
+		if(vents_counted > max_vents)
+			break
 	//MONKESTATION EDIT END
 
 /datum/round_event/vent_clog/start()
@@ -80,10 +76,9 @@
 
 /datum/round_event/vent_clog/threatening
 	randomProbability = 10
-	reagentsAmount = 1000
+	reagentsAmount = 500
 	//MONKESTATION EDIT
-	use_all_vents = FALSE
-	vent_percentage = 0.5
+	vent_percentage = 0.15
 	//MONKESTATION EDIT END
 
 /datum/round_event_control/vent_clog/catastrophic
@@ -96,10 +91,9 @@
 
 /datum/round_event/vent_clog/catastrophic
 	randomProbability = 30
-	reagentsAmount = 1250
+	reagentsAmount = 700
 	//MONKESTATION EDIT
-	use_all_vents = FALSE
-	vent_percentage = 0.25
+	vent_percentage = 0.05
 	//MONKESTATION EDIT END
 
 /datum/round_event_control/vent_clog/beer
