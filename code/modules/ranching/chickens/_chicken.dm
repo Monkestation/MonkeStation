@@ -95,7 +95,6 @@
 	amount_grown = 0
 
 /mob/living/simple_animal/chicken
-	faction = list("chicken")
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
 	gender = FEMALE
@@ -133,11 +132,6 @@
 	mobchatspan = "stationengineer"
 
 	do_footstep = TRUE
-
-	///If this chicken retaliates
-	var/retaliates = FALSE
-	///Unique chicken abilitys for use in combat
-	var/unqiue_effect
 
 	///How many eggs can the chicken still lay?
 	var/eggsleft = 0
@@ -219,8 +213,6 @@
 /mob/living/simple_animal/chicken/Destroy()
 	if(stat != DEAD)
 		GLOB.total_chickens--
-	//We can't use losetarget here because fucking cursed blobs override it to do nothing the motherfuckers
-	GiveTarget(null)
 	return ..()
 
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
