@@ -350,6 +350,9 @@
 		for(var/list_item in src.reagents.reagent_list)
 			birthed.glass_egg_reagent.Add(list_item)
 
+	if(birthed.grown_type == /mob/living/simple_animal/chicken/stone)
+		birthed.production_type = src.production_type
+
 	visible_message("[src] hatches with a quiet cracking sound.")
 	qdel(src)
 

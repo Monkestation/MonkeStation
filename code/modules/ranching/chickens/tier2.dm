@@ -213,10 +213,13 @@
 /obj/item/food/egg/stone/attackby(obj/item/attacked_item, mob/user, params)
 	. = ..()
 	if(istype(attacked_item, /obj/item/stack/ore))
+		visible_message("<span class='notice'>The [attacked_item] starts to melt into the [src]!</span>")
 		production_type = attacked_item
+		qdel(attacked_item)
 	if(attacked_item.force > 10 && production_type)
-		visible_message("<span class='notice'>[src] is cracked open revealing the [production_type] inside!</span>")
-		new production_type(src.loc)
+		visible_message("<span class='notice'>[src] is cracked open revealing [production_type] inside!</span>")
+
+		new production_type.type(src.loc, 1)
 		for(var/mob/living/simple_animal/chicken/viewer_chicken in view(3, src))
 			visible_message("<span class='notice'>[viewer_chicken] becomes upset from seeing an egg broken near them!</span>")
 			viewer_chicken.happiness -= 10
