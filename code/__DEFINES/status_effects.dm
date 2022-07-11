@@ -161,3 +161,4 @@
 #define SNOWY_EGG /datum/status_effect/ranching/snowy
 #define PIGEON /datum/status_effect/ranching/pigeon
 #define DREAM_STATE /datum/status_effect/ranching/dream_state
+#define WIZNERD_EGG /datum/status_effect/ranching/wiznerd
