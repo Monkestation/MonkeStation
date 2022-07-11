@@ -53,6 +53,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/diagnostic_hud_weld
+	name = "Diagnostic Welding HUD"
+	desc = "Upgraded version of the diagnostic HUD including an optional welding screen module."
+	id = "diagnostic_hud_weld"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/plasma = 300, /datum/material/copper = 300)
+	build_path = /obj/item/clothing/glasses/hud/diagnostic/weld
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/diagnostic_hud_night
 	name = "Night Vision Diagnostic HUD"
 	desc = "Upgraded version of the diagnostic HUD designed to function during a power failure."

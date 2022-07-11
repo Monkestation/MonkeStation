@@ -101,6 +101,19 @@
 	hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
+/obj/item/clothing/glasses/hud/diagnostic/weld
+	name = "diagnostic welding HUD"
+	desc = "A diagnostic HUD fitted with a small shield for welding purposes. Useful for optimal cyborg repair."
+	icon_state = "diagnostichudweld"
+	actions_types = list(/datum/action/item_action/toggle)
+	flash_protect = 2
+	tint = 2
+	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT
+	flags_cover = GLASSESCOVERSEYES
+
+/obj/item/clothing/glasses/hud/diagnostic/weld/attack_self(mob/user)
+	weldingvisortoggle(user)
+
 /obj/item/clothing/glasses/hud/diagnostic/night
 	name = "night vision diagnostic HUD"
 	desc = "A robotics diagnostic HUD fitted with a light amplifier."

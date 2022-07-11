@@ -186,6 +186,7 @@
 					/obj/item/clothing/under/costume/mech_suit = 2,
 					/obj/item/clothing/under/costume/mech_suit/white = 2,
 					/obj/item/clothing/under/costume/mech_suit/blue = 2,)
+	premium = list ( /obj/item/clothing/glasses/hud/diagnostic/weld = 1 )
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
 	extra_price = 300
 	payment_department = ACCOUNT_SCI
