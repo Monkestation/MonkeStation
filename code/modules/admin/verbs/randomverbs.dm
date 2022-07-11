@@ -1072,7 +1072,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 
-	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_WEREGORILLA) //Monkestation edit: weregorilla
+	var/list/punishment_list = list(ADMIN_PUNISHMENT_LIGHTNING, ADMIN_PUNISHMENT_BRAINDAMAGE, ADMIN_PUNISHMENT_GIB, ADMIN_PUNISHMENT_BSA, ADMIN_PUNISHMENT_FIREBALL, ADMIN_PUNISHMENT_ROD, ADMIN_PUNISHMENT_SUPPLYPOD_QUICK, ADMIN_PUNISHMENT_SUPPLYPOD, ADMIN_PUNISHMENT_MAZING, ADMIN_PUNISHMENT_FLOORCLUWNE, ADMIN_PUNISHMENT_CLUWNE, ADMIN_PUNISHMENT_IMMERSE, ADMIN_PUNISHMENT_GHOST, ADMIN_PUNISHMENT_DEMOCRACY, ADMIN_PUNISHMENT_ANARCHY, ADMIN_PUNISHMENT_TOE, ADMIN_PUNISHMENT_TOEPLUS, ADMIN_PUNISHMENT_WEREGORILLA, ADMIN_PUNISHMENT_BREAD) //Monkestation edit: weregorilla
 	if(istype(target, /mob/living/carbon))
 		punishment_list += ADMIN_PUNISHMENT_NUGGET
 	var/punishment = input("Choose a punishment", "DIVINE SMITING") as null|anything in sortList(punishment_list)
@@ -1104,7 +1104,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/turf/endT = spaceDebrisFinishLoc(startside, T.z)
 			new /obj/effect/immovablerod(startT, endT,target)
 		if(ADMIN_PUNISHMENT_SUPPLYPOD_QUICK)
-			var/target_path = input(usr,"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):" ,"Typepath","/obj/item/reagent_containers/food/snacks/grown/harebell") as null|text
+			var/target_path = input(usr,"Enter typepath of an atom you'd like to send with the pod (type \"empty\" to send an empty pod):" ,"Typepath","/obj/item/food/grown/harebell") as null|text
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			pod.damage = 40
 			pod.explosionSize = list(0,0,0,2)
@@ -1205,9 +1205,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				target.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/weregorilla)
 			playsound(target, 'sound/creatures/gorilla.ogg', 50)
 		//monkestation edit end: weregorilla
-
+		//MONKESTATION ADDITION
+		if(ADMIN_PUNISHMENT_BREAD)
+			var/mutable_appearance/bread_appearance = mutable_appearance('icons/obj/food/burgerbread.dmi',"bread")
+			var/mutable_appearance/transform_scanline = mutable_appearance('monkestation/icons/effects/effects.dmi',"transform_effect")
+			target.transformation_animation(bread_appearance,time= 5 SECONDS,transform_overlay=transform_scanline,reset_after=TRUE)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/breadify, target), 5 SECONDS)
+		//MONKESTATION ADDITION END
 	punish_log(target, punishment)
-
+//MONKESTATION ADDITION
+/proc/breadify(atom/movable/target)
+	var/obj/item/food/bread/plain/bread = new(get_turf(target))
+	target.forceMove(bread)
+//MONKESTATION ADDITION END
 /client/proc/punish_log(var/whom, var/punishment)
 	var/msg = "[key_name_admin(usr)] punished [key_name_admin(whom)] with [punishment]."
 	message_admins(msg)

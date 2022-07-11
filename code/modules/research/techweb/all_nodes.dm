@@ -12,7 +12,7 @@
 	design_ids = list("basic_matter_bin", "basic_cell", "basic_scanning", "basic_capacitor", "basic_micro_laser", "micro_mani", "desttagger", "handlabel", "larry", "packagewrap",
 	"destructive_analyzer", "circuit_imprinter", "experimentor", "rdconsole", "design_disk", "tech_disk", "rdserver", "rdservercontrol", "mechfab", "paystand",
 	"space_heater", "beaker", "large_beaker", "bucket", "xlarge_beaker", "sec_rshot", "sec_beanbag_slug", "sec_bshot", "sec_slug", "sec_Islug", "sec_Brslug", "sec_dart", "sec_38", "sec_38b",
-	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","plumbing_rcd", "antivirus", "glasses_prescription")
+	"rglass","plasteel","plastitanium","plasmaglass","plasmareinforcedglass","titaniumglass","plastitaniumglass","plumbing_rcd", "antivirus", "glasses_prescription", "engi_plumbing_rcd","oven_tray")
 
 /datum/techweb_node/mmi
 	id = "mmi"
@@ -54,7 +54,7 @@
 	starting_node = TRUE
 	display_name = "Basic Tools"
 	description = "Basic mechanical, electronic, surgical and botanical tools."
-	design_ids = list("discovery_scanner", "screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "decal_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "blood_filter", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
+	design_ids = list("discovery_scanner", "screwdriver", "wrench", "wirecutters", "crowbar", "multitool", "welding_tool", "wirebrush", "tscanner", "analyzer", "cable_coil", "pipe_painter", "airlock_painter", "decal_painter", "scalpel", "circular_saw", "surgicaldrill", "retractor", "cautery", "blood_filter", "hemostat", "surgical_drapes", "syringe", "cultivator", "plant_analyzer", "shovel", "spade", "hatchet",  "mop")
 
 /datum/techweb_node/basic_circuitry
 	id = "basic_circuitry"
@@ -63,9 +63,9 @@
 	display_name = "Basic Integrated Circuits"
 	description = "Research on how to fully exploit the power of integrated circuits"
 	design_ids = list("integrated_circuit", "circuit_multitool", "comp_arithmetic", "comp_clock", "comp_combiner", "comp_comparison", "comp_delay",
-		"comp_direction", "comp_get_column", "comp_gps", "comp_health", "comp_hear", "comp_light", "comp_logic", "comp_index_table", "comp_mmi", "comp_multiplexer", "comp_not", "comp_ram",
+		"comp_direction", "comp_get_column", "comp_gps", "comp_health", "comp_sec", "comp_data_send", "comp_data_recv", "comp_pinpointer", "comp_viewer", "comp_hear", "comp_light", "comp_logic", "comp_index_table", "comp_mmi", "comp_multiplexer", "comp_not", "comp_ram",
 		"comp_random", "comp_round", "comp_select_query", "comp_species", "comp_textcase", "comp_trig", "comp_speech", "comp_concat", "comp_concat_list", "comp_speech", "comp_self", "comp_soundemitter", "comp_radio", "comp_tostring",
-		"comp_typecheck", "compact_remote_shell", "component_printer", "comp_string_contains", "usb_cable")
+		"comp_typecheck", "compact_remote_shell", "component_printer", "comp_string_contains", "usb_cable") //Monkestation Edit: Added "comp_sec", "comp_data_send", "comp_data_recv", "comp_pinpointer", "comp_viewer"
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -94,7 +94,7 @@
 	display_name = "Biological Processing"
 	description = "From slimes to kitchens."
 	prereq_ids = list("biotech")
-	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "gibber", "microwave", "reagentgrinder", "dish_drive", "fat_sucker")
+	design_ids = list("smartfridge", "oven", "gibber", "deepfryer", "monkey_recycler", "processor", "gibber", "microwave", "reagentgrinder", "dish_drive", "fat_sucker", "griddle")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -147,6 +147,7 @@
 	display_name = "Data Theory"
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
+	design_ids = list("bounty_pad", "bounty_pad_control") //Monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -160,7 +161,7 @@
 	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "scanner_gate",
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "machine_igniter", "mass_driver", "tesla_coil", "grounding_rod",
 	"apc_control", "cell_charger", "power control", "airlock_board", "firelock_board", "aac_electronics", "airalarm_electronics", "firealarm_electronics", "cell_charger", "stack_console", "stack_machine",
-	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "plasmaman_tank", "antivirus2")
+	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "plasmaman_tank", "antivirus2", "liquid_output_pump")//MONKESTATION CHANGE
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 5000
 
@@ -368,7 +369,7 @@
 	display_name = "List Circuitry"
 	description = "Configures new integrated circuit components capable of representing one dimensional data structures such as arrays, stacks, and queues."
 	prereq_ids = list("basic_circuitry", "datatheory")
-	design_ids = list("comp_index", "comp_write", "comp_append", "comp_pop", "comp_length", "comp_list_constructor", "comp_list_length_constructor")
+	design_ids = list("comp_index", "comp_write", "comp_append", "comp_pop", "comp_length", "comp_list_constructor", "comp_list_length_constructor", "comp_find_name") //Monkestation Edit: Added "comp_find_name"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/adv_shells
@@ -377,7 +378,7 @@
 	display_name = "Advanced Shell Research"
 	description = "Grants access to more complicated shell designs."
 	prereq_ids = list("basic_circuitry", "engineering")
-	design_ids = list("controller_shell", "scanner_shell", "bot_shell", "door_shell", "money_bot_shell", "assembly_shell")
+	design_ids = list("controller_shell", "scanner_shell", "bot_shell", "terminal_shell", "door_shell", "money_bot_shell", "assembly_shell", "circuit_goggles_shell") //Monkestation Edit: Added "circuit_goggles_shell", "terminal_shell"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/movable_shells_tech
@@ -386,7 +387,7 @@
 	display_name = "Movable Shell Research"
 	description = "Grants access to movable shells."
 	prereq_ids = list("adv_shells", "robotics")
-	design_ids = list("comp_pull", "drone_shell")
+	design_ids = list("comp_pull", "drone_shell","scout_shell") //Monkestation edit: Added "scout_drone_shell"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 /datum/techweb_node/server_shell_tech
@@ -673,11 +674,24 @@
 
 /datum/techweb_node/ipc_organs
 	id = "ipc_organs"
-	tech_tier = 3
+	tech_tier = 4
 	display_name = "IPC Parts"
 	description = "We have the technology to replace him."
 	prereq_ids = list("cyber_organs","robotics")
-	design_ids = list("robotic_liver", "robotic_eyes", "robotic_tongue", "robotic_stomach", "robotic_ears", "power_cord")
+	design_ids = list("robotic_liver",
+						"robotic_eyes",
+						"robotic_tongue",
+						"robotic_stomach",
+						"robotic_ears",
+						"power_cord",
+						"ipc_chest",
+						"ipc_head",
+						"ipc_left_arm",
+						"ipc_right_arm",
+						"ipc_left_leg",
+						"ipc_right_leg",
+						"ipc_rear_cover"
+						)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 	export_price = 5000
 
@@ -742,7 +756,7 @@
 	display_name = "Mining Technology"
 	description = "Better than Efficiency V."
 	prereq_ids = list("engineering", "basic_plasma")
-	design_ids = list("drill", "superresonator", "triggermod", "damagemod", "cooldownmod", "rangemod", "ore_redemption", "mining_equipment_vendor", "exploration_equipment_vendor", "cargoexpress", "plasmacutter")//e a r l y    g a  m e)
+	design_ids = list("drill", "superresonator", "triggermod", "damagemod", "cooldownmod", "rangemod", "ore_redemption", "mining_equipment_vendor", "exploration_equipment_vendor", "cargoexpress", "haul_gauntlet", "plasmacutter")//e a r l y    g a  m e) //Monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -781,7 +795,7 @@
 	tech_tier = 3
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
-	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool")
+	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "wirebrush_adv")
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
@@ -801,7 +815,7 @@
 	tech_tier = 3
 	display_name = "RCD designs upgrade"
 	description = "Unlocks new RCD designs."
-	design_ids = list("rcd_upgrade_frames", "rcd_upgrade_simple_circuits")
+	design_ids = list("rcd_upgrade_frames", "rcd_upgrade_simple_circuits", "rcd_upgrade_furnishing")
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
@@ -896,7 +910,7 @@
 	display_name = "Medical Weaponry"
 	description = "Weapons using medical technology."
 	prereq_ids = list("adv_biotech", "weaponry")
-	design_ids = list("rapidsyringe")
+	design_ids = list("rapidsyringe", "metasyringe") //monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

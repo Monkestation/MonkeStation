@@ -37,5 +37,19 @@
 #define ARCH_MAXDROP "max_drop_amount"				//each item's max drop amount
 
 //Ouch my toes!
-#define CALTROP_BYPASS_SHOES 1
-#define CALTROP_IGNORE_WALKERS 2
+#define CALTROP_BYPASS_SHOES (1 << 0)
+#define CALTROP_IGNORE_WALKERS (1 << 1)
+#define CALTROP_SILENT (1 << 2)
+#define CALTROP_NOSTUN (1 << 3)
+#define CALTROP_NOCRAWL (1 << 4)
+
+//Ingredient type in datum/component/customizable_reagent_holder
+#define CUSTOM_INGREDIENT_TYPE_EDIBLE	1
+
+//Icon overlay type in datum/component/customizable_reagent_holder
+#define CUSTOM_INGREDIENT_ICON_NOCHANGE			0
+#define CUSTOM_INGREDIENT_ICON_FILL				1
+#define CUSTOM_INGREDIENT_ICON_SCATTER			2
+#define CUSTOM_INGREDIENT_ICON_STACK			3
+#define CUSTOM_INGREDIENT_ICON_LINE				4
+#define CUSTOM_INGREDIENT_ICON_STACKPLUSTOP		5

@@ -121,22 +121,22 @@
 	name = "pod window"
 	icon = 'icons/obj/smooth_structures/pod_window.dmi'
 	icon_state = "smooth"
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod)
-
-/obj/structure/window/shuttle/survival_pod/spawner/north
-	dir = NORTH
-
-/obj/structure/window/shuttle/survival_pod/spawner/east
-	dir = EAST
-
-/obj/structure/window/shuttle/survival_pod/spawner/west
-	dir = WEST
+	//smooth = SMOOTH_MORE //MONKESTATION REMOVAL
+	//canSmoothWith = list(/turf/closed/wall/mineral/titanium/survival, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod) //MONKESTATION REMOVAL
 
 /obj/structure/window/reinforced/survival_pod
 	name = "pod window"
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "pwindow"
+
+/obj/structure/window/reinforced/survival_pod/spawner/north
+	dir = NORTH
+
+/obj/structure/window/reinforced/survival_pod/spawner/east
+	dir = EAST
+
+/obj/structure/window/reinforced/survival_pod/spawner/west
+	dir = WEST
 
 //Door
 /obj/machinery/door/airlock/survival_pod
@@ -168,7 +168,7 @@
 /obj/structure/table/survival_pod
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "table"
-	smooth = SMOOTH_FALSE
+	//smooth = SMOOTH_FALSE //MONKESTATION REMOVAL
 
 //Sleeper
 /obj/machinery/sleeper/survival_pod
@@ -254,7 +254,7 @@
 	if(empty)
 		return
 	for(var/i in 1 to 5)
-		var/obj/item/reagent_containers/food/snacks/donkpocket/warm/W = new(src)
+		var/obj/item/food/donkpocket/warm/W = new(src)
 		load(W)
 	if(prob(50))
 		var/obj/item/storage/pill_bottle/dice/D = new(src)

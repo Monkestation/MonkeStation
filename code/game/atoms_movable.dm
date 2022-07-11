@@ -101,6 +101,7 @@
 /atom/movable/update_overlays()
 	. = ..()
 	. += update_emissive_block()
+
 /atom/movable/proc/can_zFall(turf/source, levels = 1, turf/target, direction)
 	if(!direction)
 		direction = DOWN
@@ -115,7 +116,7 @@
 	return !(movement_type & FLYING) && has_gravity(src) && !throwing
 
 /atom/movable/proc/onZImpact(turf/T, levels)
-	var/atom/highest = T
+	var/atom/highest = null
 	for(var/i in T.contents)
 		var/atom/A = i
 		if(!A.density)
@@ -124,7 +125,8 @@
 			if(A.layer > highest.layer)
 				highest = A
 	INVOKE_ASYNC(src, .proc/SpinAnimation, 5, 2)
-	throw_impact(highest)
+	if(highest)
+		throw_impact(highest)
 	return TRUE
 
 //For physical constraints to travelling up/down.
@@ -215,6 +217,7 @@
 
 /atom/movable/proc/stop_pulling()
 	if(pulling)
+		SEND_SIGNAL(pulling, COMSIG_ATOM_NO_LONGER_PULLED, src) //Monkestation edit: signal for haul gloves
 		pulling.pulledby = null
 		var/mob/living/ex_pulled = pulling
 		pulling = null
@@ -374,7 +377,8 @@
 	var/atom/oldloc = loc
 
 	if(loc != newloc)
-		if (!(direct & (direct - 1))) //Cardinal move
+		var/flat_direct = direct & ~(UP|DOWN)
+		if (!(flat_direct & (flat_direct - 1))) //Cardinal move
 			. = ..()
 		else //Diagonal move, split it into cardinal moves
 			moving_diagonally = FIRST_DIAG_STEP
@@ -765,7 +769,7 @@
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
 		if(!buckled_mob.Move(newloc, direct))
-			forceMove(buckled_mob.loc)
+			doMove(buckled_mob.loc) //forceMove breaks buckles on stairs, use doMove
 			last_move = buckled_mob.last_move
 			return FALSE
 	return TRUE
@@ -797,12 +801,12 @@
 	return blocker_opinion
 
 // called when this atom is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/atom/movable/proc/on_exit_storage(datum/component/storage/concrete/S)
-	return
+/atom/movable/proc/on_exit_storage(datum/component/storage/concrete/master_storage)
+	SEND_SIGNAL(src, COMSIG_STORAGE_EXITED, master_storage)
 
-// called when this atom is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/atom/movable/proc/on_enter_storage(datum/component/storage/concrete/S)
-	return
+/// called when this atom is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
+/atom/movable/proc/on_enter_storage(datum/component/storage/concrete/master_storage)
+	SEND_SIGNAL(src, COMSIG_STORAGE_ENTERED, master_storage)
 
 /atom/movable/proc/get_spacemove_backup()
 	var/atom/movable/dense_object_backup
@@ -1008,6 +1012,8 @@
 
 /atom/movable/proc/can_be_pulled(user, grab_state, force)
 	if(src == user || !isturf(loc))
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_CAN_BE_PULLED, user) & COMSIG_ATOM_CANT_PULL)
 		return FALSE
 	if(anchored || throwing)
 		return FALSE

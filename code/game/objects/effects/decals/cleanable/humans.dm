@@ -6,6 +6,7 @@
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	blood_state = BLOOD_STATE_HUMAN
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
+	var/count = 1
 
 /obj/effect/decal/cleanable/blood/replace_decal(obj/effect/decal/cleanable/blood/C)
 	C.add_blood_DNA(return_blood_DNA())
@@ -62,10 +63,13 @@
 	desc = "They look bloody and gruesome."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gib1"
+	plane = GAME_PLANE
 	layer = LOW_OBJ_LAYER
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	mergeable_decal = FALSE
 	turf_loc_check = FALSE
+	decal_reagent = /datum/reagent/liquidgibs
+	reagent_amount = 5
 
 	var/already_rotting = FALSE
 		///Information about the diseases our streaking spawns
@@ -73,7 +77,6 @@
 
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	reagents.add_reagent(/datum/reagent/liquidgibs, 5)
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, .proc/on_pipe_eject)
 	if(already_rotting)
 		start_rotting(rename=FALSE)

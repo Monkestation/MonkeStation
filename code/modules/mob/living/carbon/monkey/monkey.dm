@@ -4,13 +4,13 @@
 	initial_language_holder = /datum/language_holder/monkey
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	icon = 'icons/mob/monkey.dmi'
-	icon_state = null
+	icon_state = "monkey1" //for mapping
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	ventcrawler = VENTCRAWLER_NUDE
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
-	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/monkey
+	butcher_results = list(/obj/item/food/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
+	type_of_meat = /obj/item/food/meat/slab/monkey
 	gib_type = /obj/effect/decal/cleanable/blood/gibs
 	unique_name = TRUE
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE

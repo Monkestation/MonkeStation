@@ -58,7 +58,7 @@
 /obj/item/circuitboard/machine/grounding_rod
 	name = "grounding rod (Machine Board)"
 	icon_state = "engineering"
-	build_path = /obj/machinery/power/grounding_rod
+	build_path = /obj/machinery/power/energy_accumulator/grounding_rod
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
@@ -144,12 +144,12 @@
 	name = "tesla controller (Machine Board)"
 	icon_state = "engineering"
 	desc = "You can use a screwdriver to switch between Research and Power Generation."
-	build_path = /obj/machinery/power/tesla_coil
+	build_path = /obj/machinery/power/energy_accumulator/tesla_coil
 	req_components = list(/obj/item/stock_parts/capacitor = 1)
 	needs_anchored = FALSE
 
-#define PATH_POWERCOIL /obj/machinery/power/tesla_coil/power
-#define PATH_RPCOIL /obj/machinery/power/tesla_coil/research
+#define PATH_POWERCOIL /obj/machinery/power/energy_accumulator/tesla_coil/power
+#define PATH_RPCOIL /obj/machinery/power/energy_accumulator/tesla_coil/research
 
 /obj/item/circuitboard/machine/tesla_coil/Initialize(mapload)
 	. = ..()
@@ -1042,6 +1042,20 @@
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/oven
+	name = "circuit board (Oven)"
+	icon_state = "service"
+	build_path = /obj/machinery/oven
+	req_components = list(/obj/item/stock_parts/micro_laser = 1)
+	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/griddle
+	name = "circuit board (Griddle)"
+	icon_state = "service"
+	build_path = /obj/machinery/griddle
+	req_components = list(/obj/item/stock_parts/micro_laser = 1)
+	needs_anchored = FALSE
+
 /obj/item/circuitboard/machine/dish_drive
 	name = "dish drive (Machine Board)"
 	icon_state = "service"
@@ -1284,3 +1298,16 @@
 /obj/item/circuitboard/machine/clockwork
 	name = "clockwork board (Report This)"
 	icon_state = "clock_mod"
+
+//MONKESTATION ADDITION
+/obj/item/circuitboard/machine/liquid_output_pump
+	name = "liquid output pump (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/plumbing/liquid_output_pump
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stock_parts/cell = 1)
+	needs_anchored = FALSE

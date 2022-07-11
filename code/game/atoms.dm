@@ -97,7 +97,29 @@
 	var/chat_color_name
 	/// Last color calculated for the the chatmessage overlays
 	var/chat_color
+	//MONKESTATION ADDITION START
+	///Icon-smoothing behavior.
+	var/smoothing_flags = NONE
+	///Smoothing variable
+	var/top_left_corner
+	///Smoothing variable
+	var/top_right_corner
+	///Smoothing variable
+	var/bottom_left_corner
+	///Smoothing variable
+	var/bottom_right_corner
+	///What smoothing groups does this atom belongs to, to match canSmoothWith. If null, nobody can smooth with it.
+	var/list/smoothing_groups = null
+	///List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself.
+	var/list/canSmoothWith = null
+	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
+	var/smoothing_junction = null //This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.
+	//MONKESTATION ADDITION END
 
+	///Default pixel x shifting for the atom's icon.
+	var/base_pixel_x = 0
+	///Default pixel y shifting for the atom's icon.
+	var/base_pixel_y = 0
 	///Used for changing icon states for different base sprites.
 	var/base_icon_state
 
@@ -196,8 +218,6 @@
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-	if (canSmoothWith)
-		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
 
 	if(custom_materials && custom_materials.len)
@@ -211,7 +231,16 @@
 
 	ComponentInitialize()
 	InitializeAIController()
-
+//MONKESTATION ADDITION START
+	if(length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+//MONKESTATION ADDITION END
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -385,7 +414,8 @@
   *
   * Otherwise it simply forceMoves the atom into this atom
   */
-/atom/proc/CheckParts(list/parts_list)
+/atom/proc/CheckParts(list/parts_list, datum/crafting_recipe/R)
+	SEND_SIGNAL(src, COMSIG_ATOM_CHECKPARTS, parts_list, R)
 	for(var/A in parts_list)
 		if(istype(A, /datum/reagent))
 			if(!reagents)
@@ -619,8 +649,12 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(greyscale_colors && greyscale_config)
 		icon = SSgreyscale.GetColoredIconByType(greyscale_config, greyscale_colors)
+	//MONKESTATION ADDITION START
+	if(!smoothing_flags) // This is a bitfield but we're just checking that some sort of smoothing is happening
+		return
+	//MONKESTATION ADDITION END
 	update_atom_colour()
-	smooth_icon(src)
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE //MONKESTATION CHANGE
 
 /**
   * An atom we are buckled or is contained within us has tried to move
@@ -784,6 +818,8 @@
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
 /atom/proc/rad_act(strength)
+	if(istype(get_turf(src), /turf/open/indestructible/sound/pool)) ///Monkestation Edit - Pools protect you from rads.
+		strength *= 0.25
 	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
 
 /**
@@ -806,7 +842,11 @@
   * Called when lighteater is called on this.
   */
 /atom/proc/lighteater_act(obj/item/light_eater/light_eater)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src,COMSIG_ATOM_LIGHTEATER_ACT)
+	for(var/datum/light_source/light_source in light_sources)
+		if(light_source.source_atom != src)
+			light_source.source_atom.lighteater_act(light_eater)
 
 /**
   * Respond to the eminence clicking on our atom
@@ -829,6 +869,14 @@
 /atom/proc/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	SEND_SIGNAL(src, COMSIG_ATOM_RCD_ACT, user, the_rcd, passed_mode)
 	return FALSE
+
+/**
+ * Respond to an electric bolt action on our item
+ *
+ * Default behaviour is to return, we define here to allow for cleaner code later on
+ */
+/atom/proc/zap_act(power, zap_flags)
+	return
 
 /**
   * Respond to our atom being teleported
@@ -1167,8 +1215,13 @@
   * Must return  parent proc ..() in the end if overridden
   */
 /atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
+	var/list/processing_recipes = list() //List of recipes that can be mutated by sending the signal
 	var/signal_result
-	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I)
+	signal_result = SEND_SIGNAL(src, COMSIG_ATOM_TOOL_ACT(tool_type), user, I, processing_recipes)
+	if(processing_recipes.len)
+		process_recipes(user, I, processing_recipes)
+	if(QDELETED(I))
+		return TRUE
 	if(signal_result & COMPONENT_BLOCK_TOOL_ATTACK) // The COMSIG_ATOM_TOOL_ACT signal is blocking the act
 		return TOOL_ACT_SIGNAL_BLOCKING
 	switch(tool_type)
@@ -1186,6 +1239,58 @@
 			return welder_act(user, I)
 		if(TOOL_ANALYZER)
 			return analyzer_act(user, I)
+
+	if(. & COMPONENT_BLOCK_TOOL_ATTACK)
+		return TRUE
+
+/atom/proc/process_recipes(mob/living/user, obj/item/I, list/processing_recipes)
+	//Only one recipe? use the first
+	if(processing_recipes.len == 1)
+		StartProcessingAtom(user, I, processing_recipes[1])
+		return
+	//Otherwise, select one with a radial
+	ShowProcessingGui(user, I, processing_recipes)
+
+///Creates the radial and processes the selected option
+/atom/proc/ShowProcessingGui(mob/living/user, obj/item/I, list/possible_options)
+	var/list/choices_to_options = list() //Dict of object name | dict of object processing settings
+	var/list/choices = list()
+
+	for(var/i in possible_options)
+		var/list/current_option = i
+		var/atom/current_option_type = current_option[TOOL_PROCESSING_RESULT]
+		choices_to_options[initial(current_option_type.name)] = current_option
+		var/image/option_image = image(icon = initial(current_option_type.icon), icon_state = initial(current_option_type.icon_state))
+		choices += list("[initial(current_option_type.name)]" = option_image)
+
+	var/pick = show_radial_menu(user, src, choices, radius = 36, require_near = TRUE)
+
+	StartProcessingAtom(user, I, choices_to_options[pick])
+
+
+/atom/proc/StartProcessingAtom(mob/living/user, obj/item/I, list/chosen_option)
+	to_chat(user, "<span class='notice'>You start working on [src]</span>")
+	if(I.use_tool(src, user, chosen_option[TOOL_PROCESSING_TIME], volume=50))
+		var/atom/atom_to_create = chosen_option[TOOL_PROCESSING_RESULT]
+		var/list/atom/created_atoms = list()
+		for(var/i = 1 to chosen_option[TOOL_PROCESSING_AMOUNT])
+			var/atom/created_atom = new atom_to_create(drop_location())
+			created_atom.pixel_x = rand(-8, 8)
+			created_atom.pixel_y = rand(-8, 8)
+			SEND_SIGNAL(created_atom, COMSIG_ATOM_CREATEDBY_PROCESSING, src, chosen_option)
+			created_atom.OnCreatedFromProcessing(user, I, chosen_option, src)
+			to_chat(user, "<span class='notice'>You manage to create [chosen_option[TOOL_PROCESSING_AMOUNT]] [initial(atom_to_create.name)]\s from [src].</span>")
+			created_atoms.Add(created_atom)
+		SEND_SIGNAL(src, COMSIG_ATOM_PROCESSED, user, I, created_atoms)
+		UsedforProcessing(user, I, chosen_option)
+		return
+
+/atom/proc/UsedforProcessing(mob/living/user, obj/item/I, list/chosen_option)
+	qdel(src)
+	return
+
+/atom/proc/OnCreatedFromProcessing(mob/living/user, obj/item/I, list/chosen_option, atom/original_atom)
+	return
 
 //! Tool-specific behavior procs. To be overridden in subtypes.
 ///
@@ -1436,3 +1541,23 @@
 /atom/proc/InitializeAIController()
 	if(ai_controller)
 		ai_controller = new ai_controller(src)
+
+
+//Update the screentip to reflect what we're hoverin over
+/atom/MouseEntered(location, control, params)
+	SSmouse_entered.hovers[usr.client] = src
+
+/// Fired whenever this atom is the most recent to be hovered over in the tick.
+/// Preferred over MouseEntered if you do not need information such as the position of the mouse.
+/// Especially because this is deferred over a tick, do not trust that `client` is not null.
+/atom/proc/on_mouse_enter(client/client)
+	SHOULD_NOT_SLEEP(TRUE)
+
+	var/mob/user = client?.mob
+	var/datum/hud/active_hud = user.hud_used
+	if(active_hud)
+		if(!user.client?.prefs.screentip_pref || (flags_1 & NO_SCREENTIPS_1))
+			active_hud.screentip_text.maptext = ""
+		else
+			//We inline a MAPTEXT() here, because there's no good way to statically add to a string like this
+			active_hud.screentip_text.maptext = "<span class='maptext' style='text-align: center; font-size: 32px; color: [user.client.prefs.screentip_color]'>[name]</span>"

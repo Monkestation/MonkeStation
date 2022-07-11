@@ -44,6 +44,7 @@
 	name = "Barber"
 	jobtype = /datum/job/gimmick/barber
 
+	id = /obj/item/card/id/job/serv
 	belt = /obj/item/pda/unlicensed
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/suit/sl
@@ -70,6 +71,7 @@
 	name = "Stage Magician"
 	jobtype = /datum/job/gimmick/magician
 
+	id = /obj/item/card/id/job/serv
 	belt = /obj/item/pda/unlicensed
 	head = /obj/item/clothing/head/that
 	ears = /obj/item/radio/headset
@@ -78,7 +80,6 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/white
 	l_hand = /obj/item/cane
-	backpack_contents = list(/obj/item/choice_beacon/magic=1)
 	can_be_admin_equipped = TRUE
 
 /datum/job/gimmick/hobo
@@ -150,6 +151,7 @@
 	name = "Psychiatrist"
 	jobtype = /datum/job/gimmick/shrink
 
+	id = /obj/item/card/id/job/med
 	belt = /obj/item/pda/medical
 	ears = /obj/item/radio/headset/headset_med
 	uniform = /obj/item/clothing/under/suit/black
@@ -176,6 +178,7 @@
 	name = "VIP"
 	jobtype = /datum/job/gimmick/celebrity
 
+	id = /obj/item/card/id/gold
 	belt = /obj/item/pda/celebrity
 	glasses = /obj/item/clothing/glasses/sunglasses/advanced
 	ears = /obj/item/radio/headset/heads //VIP can talk loud for no reason

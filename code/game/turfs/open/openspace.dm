@@ -18,6 +18,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	baseturfs = /turf/open/openspace
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	allow_z_travel = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 100\
@@ -54,26 +55,29 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/open/openspace/can_have_cabling()
 	if(locate(/obj/structure/lattice/catwalk, src))
 		return TRUE
+	var/turf/turf_below = below()
+	if(turf_below)
+		return turf_below.can_lay_cable()
 	return FALSE
 
 /turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
 	. = ..()
-	var/turf/T = below()
-	if(!T)
+	var/turf/turf_below = below()
+	if(!turf_below)
 		vis_contents.len = 0
 		if(prune_on_fail)
 			ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 		return FALSE
 	if(init)
-		vis_contents += T
+		vis_contents += turf_below
 	return TRUE
 
-/turf/open/openspace/multiz_turf_del(turf/T, dir)
+/turf/open/openspace/multiz_turf_del(turf/turf_below, dir)
 	if(dir != DOWN)
 		return
 	update_multiz()
 
-/turf/open/openspace/multiz_turf_new(turf/T, dir)
+/turf/open/openspace/multiz_turf_new(turf/turf_below, dir)
 	if(dir != DOWN)
 		return
 	update_multiz()
@@ -182,6 +186,9 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 			to_chat(user, "<span class='notice'>You build a floor.</span>")
 			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
+	return FALSE
+
+/turf/open/openspace/rust_heretic_act()
 	return FALSE
 
 //Returns FALSE if gravity is force disabled. True if grav is possible

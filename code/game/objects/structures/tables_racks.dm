@@ -33,8 +33,10 @@
 	var/last_bump = 0
 	max_integrity = 100
 	integrity_failure = 30
+	/* //MONKESTATION REMOVAL
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
+	*/ //MONKESTATION REMOVAL END
 
 /obj/structure/table/Bumped(mob/living/carbon/human/H)
 	. = ..()
@@ -55,10 +57,11 @@
 /obj/structure/table/proc/deconstruction_hints(mob/user)
 	return "<span class='notice'>The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.</span>"
 
-/obj/structure/table/update_icon()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
+/obj/structure/table/update_icon(updates=ALL) //MONKESTATION CHANGE
+	. = ..() //MONKESTATION ADDITION
+	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))) //MONKESTATION CHANGE
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /obj/structure/table/narsie_act()
 	var/atom/A = loc
@@ -240,6 +243,19 @@
 			new framestack(T, framestackamount)
 	qdel(src)
 
+/obj/structure/table/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	switch(the_rcd.mode)
+		if(RCD_DECONSTRUCT)
+			return list("mode" = RCD_DECONSTRUCT, "delay" = 24, "cost" = 16)
+	return FALSE
+
+/obj/structure/table/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	switch(passed_mode)
+		if(RCD_DECONSTRUCT)
+			to_chat(user, "<span class='notice'>You deconstruct the table.</span>")
+			qdel(src)
+			return TRUE
+	return FALSE
 
 /*
  * Glass tables
@@ -356,10 +372,11 @@
 	buildstack = /obj/item/stack/sheet/mineral/wood
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
+	/* //MONKESTATION REMOVAL
 	canSmoothWith = list(/obj/structure/table/wood,
 		/obj/structure/table/wood/poker,
 		/obj/structure/table/wood/bar)
-
+	*/ //MONKESTATION REMOVAL END
 /obj/structure/table/wood/narsie_act(total_override = TRUE)
 	if(!total_override)
 		..()
@@ -382,6 +399,7 @@
 	frame = /obj/structure/table_frame
 	framestack = /obj/item/stack/rods
 	buildstack = /obj/item/stack/tile/carpet
+	/* //MONKESTATION REMOVAL
 	canSmoothWith = list(/obj/structure/table/wood/fancy,
 		/obj/structure/table/wood/fancy/black,
 		/obj/structure/table/wood/fancy/blue,
@@ -392,6 +410,7 @@
 		/obj/structure/table/wood/fancy/red,
 		/obj/structure/table/wood/fancy/royalblack,
 		/obj/structure/table/wood/fancy/royalblue)
+	*/ //MONKESTATION REMOVAL
 	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
 
 /obj/structure/table/wood/fancy/Initialize(mapload)
@@ -457,10 +476,11 @@
 	icon_state = "r_table"
 	deconstruction_ready = 0
 	buildstack = /obj/item/stack/sheet/plasteel
-	canSmoothWith = list(/obj/structure/table/reinforced, /obj/structure/table)
+	//canSmoothWith = list(/obj/structure/table/reinforced, /obj/structure/table) //MONKESTATION REMOVAL
 	max_integrity = 200
 	integrity_failure = 50
 	armor = list("melee" = 10, "bullet" = 30, "laser" = 30, "energy" = 100, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70, "stamina" = 0)
+
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)
@@ -497,7 +517,7 @@
 	buildstack = /obj/item/stack/tile/brass
 	framestackamount = 1
 	buildstackamount = 1
-	canSmoothWith = list(/obj/structure/table/brass, /obj/structure/table/bronze)
+	//canSmoothWith = list(/obj/structure/table/brass, /obj/structure/table/bronze) //MONKESTATION REMOVAL
 
 /obj/structure/table/brass/ratvar_act()
 	return
@@ -521,7 +541,7 @@
 	icon_state = "brass_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	buildstack = /obj/item/stack/tile/bronze
-	canSmoothWith = list(/obj/structure/table/brass, /obj/structure/table/bronze)
+	//canSmoothWith = list(/obj/structure/table/brass, /obj/structure/table/bronze) //MONKESTATION REMOVAL
 
 /obj/structure/table/bronze/tablepush(mob/living/user, mob/living/pushed_mob)
 	..()
@@ -537,7 +557,9 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 	can_buckle = 1
 	buckle_lying = -1
 	buckle_requires_restraints = 1

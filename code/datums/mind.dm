@@ -74,6 +74,11 @@
 	/// A lazy list of statuses to add next to this mind in the traitor panel
 	var/list/special_statuses
 
+	///Assoc list of addiction values, key is the type of withdrawal (as singleton type), and the value is the amount of addiction points (as number)
+	var/list/addiction_points
+	///Assoc list of key active addictions and value amount of cycles that it has been active.
+	var/list/active_addictions
+
 /datum/mind/New(var/key)
 	src.key = key
 	soulOwner = src
@@ -324,6 +329,8 @@
 	if (!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key, TRUE, FALSE, gamemode, telecrystals)
+		if(src.has_antag_datum(/datum/antagonist/incursion))
+			U.uplink_flag = UPLINK_INCURSION
 		if(!U)
 			CRASH("Uplink creation failed.")
 		U.setup_unlock_code()
@@ -747,6 +754,18 @@
 	if(martial_art && martial_art.id == string)
 		return martial_art
 	return FALSE
+
+///Adds addiction points to the specified addiction
+/datum/mind/proc/add_addiction_points(type, amount)
+	LAZYSET(addiction_points, type, min(LAZYACCESS(addiction_points, type) + amount, MAX_ADDICTION_POINTS))
+	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
+	return affected_addiction.on_gain_addiction_points(src)
+
+///Removes addiction points to the specified addiction
+/datum/mind/proc/remove_addiction_points(type, amount)
+	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
+	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
+	return affected_addiction.on_lose_addiction_points(src)
 
 /mob/dead/new_player/sync_mind()
 	return

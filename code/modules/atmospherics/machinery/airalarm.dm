@@ -101,7 +101,8 @@
 		GAS_TRITIUM			= new/datum/tlv/dangerous,
 		GAS_STIMULUM			= new/datum/tlv/dangerous,
 		GAS_NITRYL			= new/datum/tlv/dangerous,
-		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 5, 6),	// Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_NUCLEIUM			= new/datum/tlv/dangerous,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
 	)
 
 //MONKESTATION ADDITION START
@@ -127,7 +128,8 @@
 		GAS_TRITIUM			= new/datum/tlv/no_checks,
 		GAS_STIMULUM			= new/datum/tlv/no_checks,
 		GAS_NITRYL			= new/datum/tlv/no_checks,
-		GAS_PLUOXIUM			= new/datum/tlv/no_checks
+		GAS_PLUOXIUM			= new/datum/tlv/no_checks,
+		GAS_NUCLEIUM			= new/datum/tlv/no_checks,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
 	)
 
 	//MONKESTATION ADDITION START
@@ -153,7 +155,8 @@
 		GAS_TRITIUM			= new/datum/tlv/dangerous,
 		GAS_STIMULUM			= new/datum/tlv/dangerous,
 		GAS_NITRYL			= new/datum/tlv/dangerous,
-		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 1000, 1000) // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_PLUOXIUM			= new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
+		GAS_NUCLEIUM			= new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
 	)
 
 /obj/machinery/airalarm/unlocked

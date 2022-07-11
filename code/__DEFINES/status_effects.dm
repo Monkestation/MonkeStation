@@ -107,6 +107,20 @@
 
 #define STATUS_EFFECT_KLEPTOMANIA /datum/status_effect/kleptomania
 
+///Raises click cooldowns for everything you do.
+#define STATUS_EFFECT_WOOZY /datum/status_effect/woozy
+
+///Makes you bleed harder
+#define STATUS_EFFECT_HIGHBLOODPRESSURE /datum/status_effect/high_blood_pressure
+
+
+/// makes you seize up. reminds me of this video https://www.youtube.com/watch?v=wvkHIZg_954
+#define STATUS_EFFECT_SEIZURE /datum/status_effect/seizure
+
+
+//Deals with covering the target in ants.
+#define STATUS_EFFECT_ANTS /datum/status_effect/ants
+
 //---------//
 // NEUTRAL //
 //---------//

@@ -1,4 +1,4 @@
-/mob/living/carbon/Life()
+/mob/living/carbon/Life(delta_time = SSMOBS_DT, times_fired)
 	set invisibility = 0
 
 	if(notransform)
@@ -45,6 +45,11 @@
 
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
+
+	if(. && mind) //. == not dead
+		for(var/key in mind.addiction_points)
+			var/datum/addiction/addiction = SSaddiction.all_addictions[key]
+			addiction.process_addiction(src, delta_time, times_fired)
 
 	//Updates the number of stored chemicals for changeling powers
 	if(hud_used?.lingchemdisplay && !isalien(src) && mind)
@@ -126,15 +131,37 @@
 				breath = loc_as_obj.handle_internal_lifeform(src, BREATH_VOLUME)
 
 			else if(isturf(loc)) //Breathe from loc as turf
+							//MONKESTATION EDIT ADDITION
+				//Underwater breathing
+				var/turf/T = loc
+				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
+					//Officially trying to breathe underwater
+					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
+						failed_last_breath = FALSE
+						clear_alert("not_enough_oxy")
+						return FALSE
+					adjustOxyLoss(3)
+					failed_last_breath = TRUE
+					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && stat == CONSCIOUS)
+						to_chat(src, "<span class='userdanger'>You hold in your breath!</span>")
+					else
+						//Try and drink water#]
+						var/datum/reagents/tempr = T.liquids.take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
+						tempr.trans_to(src, tempr.total_volume, method = INGEST)
+						qdel(tempr)
+						visible_message("<span class='warning'>[src] chokes on water!</span>", \
+									"<span class='userdanger'>You're choking on water!</span>")
+					return FALSE
+				//MONKESTATION EDIT END
 				var/breath_ratio = 0
 				if(environment)
 					breath_ratio = BREATH_VOLUME/environment.return_volume()
 
 				breath = loc.remove_air_ratio(breath_ratio)
-		else //Breathe from loc as obj again
-			if(istype(loc, /obj/))
-				var/obj/loc_as_obj = loc
-				loc_as_obj.handle_internal_lifeform(src,0)
+			else //Breathe from loc as obj again
+				if(istype(loc, /obj/))
+					var/obj/loc_as_obj = loc
+					loc_as_obj.handle_internal_lifeform(src,0)
 
 	if(breath)
 		breath.set_volume(BREATH_VOLUME)
@@ -304,7 +331,7 @@
 	//Find how many bodyparts we have with stamina damage
 	if(stam_regen)
 		for(var/obj/item/bodypart/BP as() in bodyparts)
-			if(BP.stamina_dam > DAMAGE_PRECISION)
+			if(BP.stamina_dam >= DAMAGE_PRECISION)
 				bodyparts_with_stam++
 				total_stamina_loss += BP.stamina_dam * BP.stam_damage_coeff
 		//Force bodyparts to heal if we have more than 120 stamina damage (6 seconds)

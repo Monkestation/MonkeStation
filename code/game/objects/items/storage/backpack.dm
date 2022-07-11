@@ -502,7 +502,7 @@
 
 /obj/item/storage/backpack/duffelbag/clown/cream_pie/PopulateContents()
 	for(var/i in 1 to 10)
-		new /obj/item/reagent_containers/food/snacks/pie/cream(src)
+		new /obj/item/food/pie/cream(src)
 
 /obj/item/storage/backpack/fireproof
 	resistance_flags = FIRE_PROOF
@@ -547,6 +547,7 @@
 	item_state = "duffel-syndiemed"
 
 /obj/item/storage/backpack/duffelbag/syndie/surgery/PopulateContents()
+	new /obj/item/reagent_containers/medspray/sterilizine(src)
 	new /obj/item/scalpel(src)
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)
@@ -629,7 +630,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 	new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
 	if(prob(5))
-		new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
+		new /obj/item/food/pizza/pineapple(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/c4/PopulateContents()
 	for(var/i in 1 to 10)
