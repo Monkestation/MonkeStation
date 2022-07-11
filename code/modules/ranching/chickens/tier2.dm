@@ -86,8 +86,11 @@
 	id = "snowy_egg"
 	duration = 30 SECONDS
 	tick_interval = 2 SECONDS
+	///Your alpha at the start of the buff
 	var/base_alpha
+	///your color at the start of the buff
 	var/base_color
+	///your temp at the start of the buff
 	var/old_temp
 
 /datum/status_effect/ranching/snowy/on_apply()
@@ -120,6 +123,7 @@
 	egg_type = /obj/item/food/egg/pigeon
 	chicken_path = /mob/living/simple_animal/chicken/pigeon
 
+	///the radio that is inside the pigeon
 	var/obj/item/radio/pigeon/egg_radio = null
 
 /mob/living/simple_animal/chicken/pigeon/Initialize(mapload)
@@ -139,6 +143,8 @@
 /obj/item/food/egg/pigeon
 	name = "Pigeon Egg"
 
+
+	///the radio inside the egg
 	var/obj/item/radio/pigeon/egg_radio = null
 
 /obj/item/food/egg/pigeon/Initialize(mapload)
@@ -156,6 +162,7 @@
 	id = "pigeon"
 	duration = 600 SECONDS
 
+	///the radio that is put inside you
 	var/obj/item/radio/pigeon/egg_radio = null
 
 /datum/status_effect/ranching/pigeon/on_apply()
@@ -193,3 +200,24 @@
 	owner.cure_fakedeath("dream_state")
 	owner.revive(full_heal = TRUE)
 	owner.regenerate_organs()
+
+/mob/living/simple_animal/chicken/stone
+	breed_name = "Stone"
+	egg_type = /obj/item/food/egg/stone
+	chicken_type = /mob/living/simple_animal/chicken/stone
+	mutation_list = list()
+
+/obj/item/food/egg/stone
+	name = "Rocky Egg"
+
+/obj/item/food/egg/stone/attackby(obj/item/attacked_item, mob/user, params)
+	. = ..()
+	if(istype(attacked_item, /obj/item/stack/ore))
+		production_type = attacked_item
+	if(attacked_item.force > 10 && production_type)
+		visible_message("<span class='notice'>[src] is cracked open revealing the [production_type] inside!</span>")
+		new production_type(src.loc)
+		for(var/mob/living/simple_animal/chicken/viewer_chicken in view(3, src))
+			visible_message("<span class='notice'>[viewer_chicken] becomes upset from seeing an egg broken near them!</span>")
+			viewer_chicken.happiness -= 10
+		qdel(src)

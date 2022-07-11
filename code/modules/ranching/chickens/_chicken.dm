@@ -38,6 +38,8 @@
 	var/grown_type
 	///Glass chicken exclusive:what reagent were the eggs filled with?
 	var/list/glass_egg_reagent = list()
+	///Stone Chicken Exclusive: what ore type is in the eggs?
+	var/obj/item/stack/ore/production_type = null
 	///List of all petters, added to friend list of raptor
 	var/list/friends = list()
 
@@ -64,9 +66,15 @@
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
 			if(prob(30))
 				new_chicken.gender = MALE
+
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/glass))
 				for(var/list_item in glass_egg_reagent)
 					new_chicken.glass_egg_reagents.Add(list_item)
+
+			if(istype(new_chicken, /mob/living/simple_animal/chicken/stone))
+				if(production_type)
+					new_chicken.production_type = production_type
+
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/hostile/raptor))
 				var/mob/living/simple_animal/chicken/hostile/chicken_holder = new_chicken
 				for(var/mob/living/carbon/human/user in friends)
@@ -147,8 +155,6 @@
 	var/list/datum/reagent/consumed_reagents = new/list()
 	///ALL possible mutations this chicken can lay
 	var/list/mutation_list = list(/datum/ranching/mutation/spicy, /datum/ranching/mutation/brown)
-	///Glass Chicken exclusive: reagents for eggs
-	var/list/glass_egg_reagents = list()
 	///Needed cause i can't iterate a new spawn with the ref to a mob
 	var/chicken_path = /mob/living/simple_animal/chicken
 	///Breed of the chicken needed for naming
@@ -177,6 +183,11 @@
 	var/obj/structure/nestbox/movement_target
 	///Ready to lay egg
 	var/ready_to_lay = FALSE
+
+	///Glass Chicken exclusive: reagents for eggs
+	var/list/glass_egg_reagents = list()
+	///Stone Chicken Exclusive: ore type for eggs
+	var/obj/item/stack/ore/production_type = null
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -295,8 +306,13 @@
 			layed_egg.consumed_reagents = src.consumed_reagents
 			layed_egg.pixel_x = rand(-6,6)
 			layed_egg.pixel_y = rand(-6,6)
+
 			if(glass_egg_reagents)
 				layed_egg.food_reagents = glass_egg_reagents
+
+			if(production_type)
+				layed_egg.production_type = production_type
+
 			if(eggsFertile)
 				if(prob(100)) //25
 					START_PROCESSING(SSobj, layed_egg)
