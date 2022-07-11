@@ -66,3 +66,50 @@
 
 /datum/status_effect/ranching/sugar_rush/on_remove()
 	owner.remove_movespeed_modifier("sugar_rush")
+
+
+/mob/living/simple_animal/chicken/snowy
+	breed_name = "Snow"
+	egg_type = /obj/item/food/egg/snowy
+	chicken_path = /mob/living/simple_animal/chicken/snowy
+	minbodytemp = 0
+	maxbodytemp = 40
+
+/obj/item/food/egg/snowy
+	name = "Snowy Egg"
+
+
+/obj/item/food/egg/snowy/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
+	eater.apply_status_effect(SNOWY_EGG)
+
+/datum/status_effect/ranching/snowy
+	id = "snowy_egg"
+	duration = 30 SECONDS
+	tick_interval = 2 SECONDS
+	var/base_alpha
+	var/base_color
+	var/old_temp
+
+/datum/status_effect/ranching/snowy/on_apply()
+	old_temp = owner.bodytemperature
+	owner.bodytemperature = TCMB
+	base_alpha = owner.alpha
+	owner.alpha = 155
+	base_color = owner.color
+	owner.color = "#018eb9"
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/create_ice)
+	return ..()
+
+/datum/status_effect/ranching/snowy/tick()
+	owner.bodytemperature = TCMB
+
+/datum/status_effect/ranching/snowy/proc/create_ice()
+	var/turf/open/owners_location = owner.loc
+	if(owners_location)
+		owners_location.MakeSlippery(TURF_WET_PERMAFROST, min_wet_time = 10, wet_time_to_add = 5)
+
+/datum/status_effect/ranching/snowy/on_remove()
+	owner.bodytemperature = old_temp
+	owner.alpha = base_alpha
+	owner.color = base_color
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
