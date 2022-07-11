@@ -281,6 +281,9 @@
 /obj/machinery/proc/locate_machinery()
 	return
 
+/obj/machinery/process()//If you dont use process or power why are you here
+	return PROCESS_KILL
+
 /obj/machinery/proc/process_atmos()//If you dont use process why are you here
 	return PROCESS_KILL
 
@@ -422,12 +425,12 @@
 			new_usage = idle_power_usage
 		if(ACTIVE_POWER_USE)
 			new_usage = active_power_usage
-/* Spatial Mapping
+
 	if(use_power == NO_POWER_USE)
 		setup_area_power_relationship()
 	else if(new_use_power == NO_POWER_USE)
 		remove_area_power_relationship()
-*/
+
 	static_power_usage = new_usage
 
 	if(new_usage)
@@ -636,11 +639,10 @@
 /obj/machinery/attack_paw(mob/living/user)
 	if(user.a_intent != INTENT_HARM)
 		return attack_hand(user)
-	else
-		user.changeNext_move(CLICK_CD_MELEE)
-		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
-		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	var/damage = take_damage(4, BRUTE, MELEE, 1)
+	user.visible_message(span_danger("[user] smashes [src] with [user.p_their()] paws[damage ? "." : ", without leaving a mark!"]"), null, null, COMBAT_MESSAGE_RANGE)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -666,8 +668,7 @@
 		return FALSE
 	if(iscyborg(user))// For some reason attack_robot doesn't work
 		return attack_robot(user)
-	else
-		return _try_interact(user)
+	return _try_interact(user)
 
 /obj/machinery/attackby(obj/item/weapon, mob/user, params)
 	. = ..()
@@ -802,8 +803,8 @@
 	return ..()
 
 /obj/machinery/run_obj_armor(damage_amount, damage_type, damage_flag = NONE, attack_dir)
-	if(damage_flag == "melee" && damage_amount < damage_deflection)
-		return 0
+	if(damage_flag == MELEE && damage_amount < damage_deflection)
+		return FALSE
 	return ..()
 
 /obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
@@ -967,7 +968,7 @@
 	if(prob(10) && (zap_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		explosion(src, 0, 0, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(zap_flags & ZAP_OBJ_DAMAGE)
-		take_damage(power * 0.0005, BURN, "energy")
+		take_damage(power * 0.0005, BURN, ENERGY)
 		if(prob(20))
 			emp_act(EMP_LIGHT)
 		power -= power * 0.0005
@@ -990,7 +991,7 @@
 	dropped_atom.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, "melee", 1)
+	take_damage(500, BRUTE, MELEE, 1)
 
 /obj/machinery/vv_edit_var(vname, vval)
 	if(vname == NAMEOF(src, occupant))

@@ -108,7 +108,7 @@
 
 /obj/machinery/power/energy_accumulator/tesla_coil/zap_act(power, zap_flags)
 	if(!anchored || panel_open)
-		return ..()
+		return
 	obj_flags |= BEING_SHOCKED
 	addtimer(CALLBACK(src, .proc/reset_shocked), 1 SECONDS)
 	flick("coilhit", src)
@@ -229,9 +229,8 @@
 		flick("grounding_rodhit", src)
 		zap_buckle_check(power)
 		stored_energy += ZAP_TO_ENERGY(power)
-		return 0
-	else
-		. = ..()
+		return FALSE
+	return
 
 #undef TESLA_COIL_THRESHOLD
 #undef ZAP_TO_ENERGY
