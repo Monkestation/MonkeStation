@@ -15,6 +15,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 /proc/_auxtools_register_gas(datum/gas/gas) // makes sure auxtools knows stuff about this gas
 
 /datum/auxgm
+	var/done_initializing = FALSE
 	var/list/datums = list()
 	var/list/specific_heats = list()
 	var/list/names = list()
@@ -33,9 +34,11 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/list/oxidation_temperatures = list()
 	var/list/oxidation_rates = list()
 	var/list/fire_temperatures = list()
-	var/list/fire_enthalpies = list()
+	var/list/enthalpies = list()
 	var/list/fire_products = list()
 	var/list/fire_burn_rates = list()
+	var/list/groups_by_gas = list()
+	var/list/groups = list()
 	var/list/TLVs = list() //MONKESTATION ADDITION
 
 
@@ -43,9 +46,11 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/id = ""
 	var/specific_heat = 0
 	var/name = ""
-	var/gas_overlay = "" //icon_state in icons/effects/atmospherics.dmi
+	var/gas_overlay = "generic" //icon_state in icons/effects/atmospherics.dmi
+	var/color = "#ffff" // Tints the overlay by this color. Use instead of gas_overlay, usually (but not necessarily).
 	var/moles_visible = null
 	var/flags = NONE //currently used by canisters
+	var/group = null // groups for scrubber/filter listing
 	var/fusion_power = 0 // How much the gas destabilizes a fusion reaction
 	var/breath_results = GAS_CO2 // what breathing this breathes out
 	var/breath_reagent = null // what breathing this adds to your reagents
@@ -55,8 +60,9 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/oxidation_rate = 1 // how many moles of this can oxidize how many moles of material
 	var/fire_temperature = null // temperature above which gas may catch fire; null for none
 	var/list/fire_products = null // what results when this gas is burned (oxidizer or fuel); null for none
-	var/fire_energy_released = 0 // how much energy is released per mole of fuel burned
+	var/enthalpy = 0 // Standard enthalpy of formation in joules, used for fires
 	var/fire_burn_rate = 1 // how many moles are burned per product released
+	var/fire_radiation_released = 0 // How much radiation is released when this gas burns
 
 // MONKESTATION ADDITON START
 /datum/gas/proc/generate_TLV()
@@ -82,7 +88,9 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 			visibility[g] = gas.moles_visible
 			overlays[g] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
-				overlays[g][i] = new /obj/effect/overlay/gas(gas.gas_overlay, i * 255 / FACTOR_GAS_VISIBLE_MAX)
+				var/obj/effect/overlay/gas/overlay = new(gas.gas_overlay)
+				overlay.alpha = i * 255 / FACTOR_GAS_VISIBLE_MAX
+				overlays[g][i] = overlay
 		else
 			visibility[g] = 0
 			overlays[g] = 0
@@ -104,15 +112,26 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 			oxidation_rates[g] = gas.oxidation_rate
 			if(gas.fire_products)
 				fire_products[g] = gas.fire_products
-			fire_enthalpies[g] = gas.fire_energy_released
+			enthalpies[g] = gas.enthalpy
 		else if(gas.fire_temperature)
 			fire_temperatures[g] = gas.fire_temperature
 			fire_burn_rates[g] = gas.fire_burn_rate
 			if(gas.fire_products)
 				fire_products[g] = gas.fire_products
-			fire_enthalpies[g] = gas.fire_energy_released
+			enthalpies[g] = gas.enthalpy
+		if(gas.group)
+			if(!(gas.group in groups))
+				groups[gas.group] = list()
+			groups[gas.group] += gas
+			groups_by_gas[g] = gas.group
 
 		_auxtools_register_gas(gas)
+		if(done_initializing)
+			for(var/r in SSair.gas_reactions)
+				var/datum/gas_reaction/R = r
+				R.init_reqs()
+			SSair.auxtools_update_reactions()
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_GAS, g)
 
 /proc/finalize_gas_refs()
 
@@ -123,6 +142,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	for(var/breathing_class_path in subtypesof(/datum/breathing_class))
 		var/datum/breathing_class/class = new breathing_class_path
 		breathing_classes[breathing_class_path] = class
+	done_initializing = TRUE
 	finalize_gas_refs()
 
 //MONKESTATION ADDITION START
@@ -149,7 +169,7 @@ GLOBAL_DATUM_INIT(gas_data, /datum/auxgm, new)
 	appearance_flags = TILE_BOUND
 	vis_flags = NONE
 
-/obj/effect/overlay/gas/New(state, alph)
+/obj/effect/overlay/gas/New(state)
 	. = ..()
 	icon_state = state
-	alpha = alph
+
