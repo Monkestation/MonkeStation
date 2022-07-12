@@ -37,9 +37,10 @@
 
 /datum/species/snail/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
+	C.AddComponent(/datum/component/snailcrawl)
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(ITEM_SLOT_BACK)
 	if(!istype(bag, /obj/item/storage/backpack/snail))
-		if(C.dropItemToGround(bag)) //returns TRUE even if its null
+		if(C.dropItemToGround(bag)) //returns TRUE ev/datum/component/snailcrawlen if its null
 			C.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(C), ITEM_SLOT_BACK)
 	ADD_TRAIT(C, TRAIT_NOSLIPALL, SPECIES_TRAIT)
 

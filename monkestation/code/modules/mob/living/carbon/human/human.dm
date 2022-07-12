@@ -6,3 +6,6 @@
 
 /mob/living/carbon/human/species/simian
 	race = /datum/species/simian
+
+/mob/living/carbon/human/species/snail
+	race = /datum/species/snail
