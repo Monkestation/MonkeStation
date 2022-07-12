@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	var/fiftyfifty = prob(50) ? FEMALE : MALE
 	var/hashtext = "[ckey][rand(0,9999)][world.realtime][rand(0,9999)][random_unique_name(fiftyfifty)][rand(0,9999)][address][rand(0,9999)][computer_id][rand(0,9999)][GLOB.round_id]"
-	var/uuid = "[md5(RUSTG_HASH_SHA256, hashtext)]"
+	var/uuid = "[md5(hashtext)]"
 
 	if(!SSdbcore.Connect())
 		return FALSE
