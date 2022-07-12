@@ -144,7 +144,3 @@
 /obj/item/food/egg/robot
 	name = "Robotic Egg"
 
-/obj/item/food/egg/robot/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
-	. = ..()
-	var/turf/location = get_turf(eater)
-	empulse(location, 5, 7, 1)

@@ -3115,6 +3115,7 @@
 #include "code\modules\ranching\chickens\tier2.dm"
 #include "code\modules\ranching\chickens\tier3.dm"
 #include "code\modules\ranching\chickens\tier4.dm"
+#include "code\modules\ranching\components\afterimage.dm"
 #include "code\modules\ranching\mutations\_mutations.dm"
 #include "code\modules\ranching\mutations\tier1.dm"
 #include "code\modules\ranching\mutations\tier2.dm"

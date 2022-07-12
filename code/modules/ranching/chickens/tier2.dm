@@ -450,10 +450,11 @@
 	var/obj/effect/proc_holder/spell/power = new /obj/effect/proc_holder/spell/targeted/forcewall/mime
 
 /datum/status_effect/ranching/mime/on_apply()
-	if(owner.mind.miming)
-		is_miming = TRUE
-	else
-		owner.mind.miming = TRUE
+	if(owner.mind)
+		if(owner.mind.miming)
+			is_miming = TRUE
+		else
+			owner.mind.miming = TRUE
 	if(HAS_TRAIT(owner, TRAIT_MUTE))
 		has_mute = TRUE
 	else
@@ -465,5 +466,6 @@
 	if(has_mute == FALSE)
 		REMOVE_TRAIT(owner, TRAIT_MUTE, "egg_buff")
 	if(is_miming == FALSE)
-		owner.mind.miming = FALSE
+		if(owner.mind)
+			owner.mind.miming = FALSE
 	owner.RemoveSpell(power)
