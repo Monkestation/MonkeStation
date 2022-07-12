@@ -73,7 +73,7 @@ apt-get install -y cmake build-essential gcc-multilib g++-multilib cmake wget
 # update auxmos
 if [ ! -d "auxmos" ]; then
 	echo "Cloning Auxmos..."
-	git clone https://github.com/Monkestation/auxmos
+	git clone https://github.com/Putnam3145/auxmos
 	cd auxmos
 else
 	echo "Fetching Auxmos..."
