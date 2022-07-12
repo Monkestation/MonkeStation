@@ -140,7 +140,7 @@
 
 /mob/living/simple_animal/chicken/hostile/retaliate/clown/Life()
 	.=..()
-	if(prob(100) && !clownin_target)
+	if(prob(5) && !clownin_target)
 		var/list/people_list = list()
 		for(var/mob/living/carbon/human/user in oview(10, src))
 			people_list |= user
