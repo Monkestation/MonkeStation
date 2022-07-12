@@ -57,7 +57,7 @@
 	hostile = FALSE
 
 	ranged = TRUE
-	projectiletype = /obj/item/projectile/spell/venomous_spit
+	projectiletype = /obj/item/projectile/magic/venomous_spit
 	ranged_cooldown_time = 45 SECONDS
 
 	chicken_type = /mob/living/simple_animal/chicken/hostile/cockatrice
@@ -106,15 +106,45 @@
 		hostile = TRUE
 
 /obj/item/ammo_casing/venomous_spit
-	projectile_type = /obj/item/projectile/spell/venomous_spit
+	projectile_type = /obj/item/projectile/magic/venomous_spit
 
-/obj/item/projectile/venomous_spit
+/obj/item/projectile/magic/venomous_spit
 	name = "venomous spit"
 	icon_state = "ion"
 	damage = 5
 	damage_type = BURN
 
-/obj/item/projectile/spell/venomous_spit/on_hit(atom/target, blocked)
+/obj/item/projectile/magic/venomous_spit/on_hit(atom/target, blocked)
 	if(iscarbon(target))
 		var/mob/living/carbon/user = target
 		user.petrify(10)
+
+/mob/living/simple_animal/chicken/hostile/retaliate/robot
+	breed_name = "Robotic"
+
+	maxHealth = 100 //Weaker because emp good
+	obj_damage = 1
+	melee_damage = 4
+
+	egg_type = /obj/item/food/egg/robot
+	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/robot
+
+/mob/living/simple_animal/chicken/hostile/retaliate/robot/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_HOSTILE_ATTACKINGTARGET, .proc/emp_burst)
+
+/mob/living/simple_animal/chicken/hostile/retaliate/robot/Destroy()
+	. = ..()
+	UnregisterSignal(src, COMSIG_HOSTILE_ATTACKINGTARGET)
+
+/mob/living/simple_animal/chicken/hostile/retaliate/robot/proc/emp_burst(target)
+	var/turf/location = get_turf(target)
+	empulse(location, 1, 2, 0)
+
+/obj/item/food/egg/robot
+	name = "Robotic Egg"
+
+/obj/item/food/egg/robot/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
+	. = ..()
+	var/turf/location = get_turf(eater)
+	empulse(location, 5, 7, 1)

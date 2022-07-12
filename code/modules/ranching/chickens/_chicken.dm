@@ -20,7 +20,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
-	response_harm   = "kicks"
+	response_harm   = "pecks"
 	attacktext = "pecks"
 	health = 3
 	maxHealth = 3
