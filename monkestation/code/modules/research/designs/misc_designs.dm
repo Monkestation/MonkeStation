@@ -15,6 +15,6 @@
 	id = "diagnostic_hud_weld"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/plasma = 300, /datum/material/copper = 300)
-	build_path = /obj/item/clothing/glasses/welding/diag
+	build_path = /obj/item/clothing/glasses/hud/diagnostic/weld
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
