@@ -222,24 +222,19 @@
 
 	/*****The Point Calculator*****/
 
-	if(orig_light_range < 10)
+	if(orig_light_range < 5)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light_range < 4500)
-		general_point_gain = (83300 * orig_light_range) / (orig_light_range + 3000)
-	else
-		general_point_gain = TECHWEB_BOMB_POINTCAP
+	else if(orig_light_range < BOMB_TARGET_SIZE) // we want to give fewer points if below the target; this curve does that
+		general_point_gain = (BOMB_TARGET_POINTS * orig_light_range ** BOMB_SUB_TARGET_EXPONENT) / (BOMB_TARGET_SIZE**BOMB_SUB_TARGET_EXPONENT)
+	else // once we're at the target, switch to a hyperbolic function so we can't go too far above it, but bigger bombs always get more points
+		general_point_gain = (BOMB_TARGET_POINTS * 2 * orig_light_range) / (orig_light_range + BOMB_TARGET_SIZE)
 
 	/*****The Point Capper*****/
 	if(general_point_gain > linked_techweb.largest_bomb_value)
-		if(general_point_gain <= TECHWEB_BOMB_POINTCAP || linked_techweb.largest_bomb_value < TECHWEB_BOMB_POINTCAP)
-			var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
-			linked_techweb.largest_bomb_value = general_point_gain
-			general_point_gain -= old_tech_largest_bomb_value
-			general_point_gain = min(general_point_gain,TECHWEB_BOMB_POINTCAP)
-		else
-			linked_techweb.largest_bomb_value = TECHWEB_BOMB_POINTCAP
-			general_point_gain = 1000
+		var/old_tech_largest_bomb_value = linked_techweb.largest_bomb_value //held so we can pull old before we do math
+		linked_techweb.largest_bomb_value = general_point_gain
+		general_point_gain -= old_tech_largest_bomb_value
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_SCI)
 		if(D)
 			D.adjust_money(general_point_gain)

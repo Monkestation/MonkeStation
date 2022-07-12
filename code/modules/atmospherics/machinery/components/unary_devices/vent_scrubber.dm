@@ -18,7 +18,7 @@
 	interacts_with_air = TRUE
 
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
-	var/filter_types = list(GAS_CO2, GAS_BZ)
+	var/filter_types = list(GAS_CO2, GAS_BZ, GAS_GROUP_CHEMICALS)
 	var/list/clean_filter_types = null
 	var/volume_rate = 200
 	var/widenet = 0 //is this scrubber acting on the 3x3 area around it.
@@ -35,7 +35,8 @@
 	..()
 	if(!id_tag)
 		id_tag = assign_uid_vents()
-		generate_clean_filter_types()
+	generate_clean_filter_types()
+	RegisterSignal(SSdcs,COMSIG_GLOB_NEW_GAS,.proc/generate_clean_filter_types)
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/generate_clean_filter_types()
 	clean_filter_types = list()

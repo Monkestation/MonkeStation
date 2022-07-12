@@ -17,6 +17,7 @@
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
+	boiling_point = 351.38
 
 /*
 Boozepwr Chart
@@ -36,6 +37,29 @@ All effects don't start immediately, but rather get worse over time; the rate is
 81-90: Extremely high alcohol content - heavy toxin damage, passing out
 91-100: Dangerously toxic - swift death
 */
+/datum/reagent/consumable/ethanol/define_gas() // So that all alcohols have the same gas, i.e. "ethanol"
+	var/datum/gas/G = new
+	G.id = GAS_ETHANOL
+	G.name = "Ethanol"
+	G.enthalpy = -234800
+	G.specific_heat = 38
+	G.fire_products = list(GAS_CO2 = 1, GAS_H2O = 1.5)
+	G.fire_burn_rate = 1 / 3
+	G.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	G.color = "#404030"
+	G.breath_reagent = /datum/reagent/consumable/ethanol
+	G.group = GAS_GROUP_CHEMICALS
+	return G
+
+/datum/reagent/consumable/ethanol/get_gas()
+	var/datum/auxgm/cached_gas_data = GLOB.gas_data
+	. = GAS_ETHANOL
+	if(!(. in cached_gas_data.ids))
+		var/datum/gas/G = define_gas()
+		if(istype(G))
+			cached_gas_data.add_gas(G)
+		else // this codepath should probably not happen at all, since we never use get_gas() on anything with no boiling point
+			return null
 
 /datum/reagent/consumable/ethanol/New()
 	///Ranges from -0.5 - 15 per tick on the addiction scale

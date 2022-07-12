@@ -45,6 +45,16 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 2
+	/* no gaseous CLF3 until i can think of a good way to get it to burn that doesn't destroy matter in mysterious ways
+	boiling_point = 289.4
+	*/
+	condensation_amount = 2
+
+/datum/reagent/clf3/define_gas()
+	var/datum/gas/G = ..()
+	G.enthalpy = -163200
+	G.oxidation_temperature = T0C - 50
+	return G
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -147,6 +157,15 @@
 	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 1.2
+	boiling_point = T20C-10
+
+/datum/reagent/phlogiston/define_gas()
+	var/datum/gas/G = ..()
+	G.enthalpy = FIRE_PLASMA_ENERGY_RELEASED / 100
+	G.fire_products = list(GAS_O2 = 0.25, GAS_METHANE = 0.75) // meanwhile this is just magic
+	G.fire_burn_rate = 1
+	G.fire_temperature = T20C+1
+	return G
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -292,6 +311,9 @@
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
+
+/datum/reagent/firefighting_foam/define_gas()
+	return null
 
 /datum/reagent/firefighting_foam/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))

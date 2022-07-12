@@ -758,6 +758,9 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0 // oderless and tasteless
 	random_unrestricted = FALSE
+	gas = GAS_O2
+	boiling_point = 90.188
+	molarity = 2
 
 /datum/reagent/oxygen/reaction_evaporation(turf/open/exposed_turf, reac_volume)
 	. = ..()
@@ -788,6 +791,9 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0
 	random_unrestricted = FALSE
+	gas = GAS_N2
+	boiling_point = 77.355
+	molarity = 2
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
@@ -796,6 +802,8 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0
 	random_unrestricted = FALSE
+	gas = GAS_HYDROGEN
+	boiling_point = 20.271
 
 /datum/reagent/potassium
 	name = "Potassium"
@@ -846,9 +854,10 @@
 	name = "Chlorine"
 	description = "A pale yellow gas that's well known as an oxidizer. While it forms many harmless molecules in its elemental form it is far from harmless."
 	reagent_state = GAS
-	color = "#FFFB89" //pale yellow
+	color = "#c0c0a0" // rgb: 192, 192, 160
 	taste_description = "chlorine"
 	random_unrestricted = FALSE
+	boiling_point = 239.11
 
 /datum/reagent/chlorine/on_mob_life(mob/living/carbon/M)
 	M.take_bodypart_damage(1*REM, 0, 0, 0)
@@ -1040,6 +1049,15 @@
 	addiction_types = list(/datum/addiction/alcohol = 4)
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
+	boiling_point = 400
+
+/datum/reagent/fuel/define_gas()
+	var/datum/gas/G = ..()
+	G.enthalpy = 227400
+	G.fire_burn_rate = 2 / 5
+	G.fire_products = list(GAS_CO2 = 2, GAS_H2O = 1)
+	G.fire_temperature = T0C+300
+	return G
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
@@ -1059,6 +1077,7 @@
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
 	var/toxic = FALSE //turn to true if someone drinks this, so it won't poison people who are simply getting sprayed down
+	boiling_point = T0C+50
 
 /datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
 	if(toxic)//don't drink space cleaner, dumbass
@@ -1086,6 +1105,7 @@
 			M.adjustToxLoss(rand(5,10))
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
+	..()
 	if(reac_volume >= 1)
 		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 		SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
@@ -1254,6 +1274,14 @@
 	color = "#404030" // rgb: 64, 64, 48
 	taste_description = "mordant"
 	random_unrestricted = FALSE
+	gas = GAS_AMMONIA
+
+/datum/reagent/ammonia/reaction_mob(mob/living/M, method=TOUCH, reac_volume, touch_protection)
+	if(method == VAPOR)
+		M.adjustOrganLoss(ORGAN_SLOT_LUNGS, ((100-touch_protection)/100)*reac_volume*REAGENTS_EFFECT_MULTIPLIER * 0.25)
+		if(prob(reac_volume))
+			to_chat(M, "<span class='danger'>Your lungs hurt!</span>")
+	return ..()
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
@@ -1261,6 +1289,15 @@
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 	random_unrestricted = FALSE
+	boiling_point = 328
+
+/datum/reagent/diethylamine/define_gas()
+	var/datum/gas/G = ..()
+	G.fire_burn_rate = 1 / 6
+	G.fire_products = list(GAS_H2O = 4, GAS_AMMONIA = 1, GAS_CO2 = 4)
+	G.enthalpy = -131000
+	G.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	return G
 
 /datum/reagent/carbondioxide
 	name = "Carbon Dioxide"
@@ -1269,8 +1306,9 @@
 	color = "#B0B0B0" // rgb : 192, 192, 192
 	taste_description = "something unknowable"
 	random_unrestricted = FALSE
-
-
+	boiling_point = 195.68 // technically sublimation, not boiling, but same deal
+	molarity = 5
+	gas = GAS_CO2
 
 
 /datum/reagent/nitrous_oxide
@@ -1280,9 +1318,9 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	color = "#808080"
 	taste_description = "sweetness"
-
-
-
+	boiling_point = 184.67
+	molarity = 5
+	gas = GAS_NITROUS
 
 /datum/reagent/nitrous_oxide/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == VAPOR)
@@ -1306,6 +1344,8 @@
 	color = "E1A116"
 	taste_description = "sourness"
 	addiction_types = list(/datum/addiction/stimulants = 14)
+	gas = GAS_STIMULUM
+	boiling_point = 150
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
@@ -1334,8 +1374,10 @@
 	description = "A highly reactive gas that makes you feel faster."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
-	color = "90560B"
+	color = "#90560B"
 	taste_description = "burning"
+	gas = GAS_NITRYL
+	boiling_point = 294.3
 
 /datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
 	..()
@@ -1561,6 +1603,12 @@
 	color = "#D35415"
 	taste_description = "chemicals"
 	random_unrestricted = FALSE
+	gas = GAS_BROMINE
+	boiling_point = 332
+
+/datum/reagent/bromine/on_mob_life(mob/living/carbon/C)
+	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2, 99)
+	..()
 
 /datum/reagent/phenol
 	name = "Phenol"
