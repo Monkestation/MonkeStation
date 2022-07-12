@@ -325,3 +325,6 @@
 	breed_name = "Golden"
 	egg_type = /obj/item/food/egg/golden
 	chicken_type = /mob/living/simple_animal/chicken/golden
+
+/obj/item/food/egg/golden
+	name = "Golden Egg"
