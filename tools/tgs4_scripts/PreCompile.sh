@@ -88,7 +88,7 @@ git checkout "$AUXMOS_VERSION"
 #note, if FUSION is ever fixed this needs changed to "all_reaction_hooks"
 env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo rustc --release --target=i686-unknown-linux-gnu --features all_reaction_hooks,katmos -- -C target-cpu=native
 mv -f target/i686-unknown-linux-gnu/release/libauxmos.so "$1/libauxmos.so"
-cd ../../..
+cd ..
 
 # install or update youtube-dl when not present, or if it is present with pip3,
 # which we assume was used to install it
