@@ -230,8 +230,8 @@
 	melee_damage = 7
 	obj_damage = 5
 
-	breed_name_female = "Witchens"
-	breed_name_male = "Wizters"
+	breed_name_female = "Witchen"
+	breed_name_male = "Wizter"
 	egg_type = /obj/item/food/egg/wiznerd
 	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/wiznerd
 	mutation_list = list()
@@ -284,3 +284,39 @@
 	icon_state = "ion"
 	damage = 5
 	damage_type = BRUTE
+
+
+/mob/living/simple_animal/chicken/hostile/retaliate/sword
+	maxHealth = 300
+	melee_damage = 4 //weak damage but strong health
+	obj_damage = 5
+
+	breed_name_female = "Shieldmaidhen"
+	breed_name_male = "Fowlcion"
+	egg_type = /obj/item/food/egg/sword
+	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/sword
+	mutation_list = list()
+
+/obj/item/food/egg/sword
+	name = "Gallant Egg"
+
+/obj/item/food/egg/sword/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
+	. = ..()
+	eater.apply_status_effect(ARMORED_EGG)
+
+/datum/status_effect/ranching/sword_chicken
+	id = "sword_egg"
+	duration = 60 SECONDS
+
+/datum/status_effect/ranching/sword_chicken/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/buffed_person = owner
+		buffed_person.physiology.armor.melee += 30
+		buffed_person.physiology.armor.bullet += 30
+	return ..()
+
+/datum/status_effect/ranching/sword_chicken/on_remove
+	if(ishuman(owner))
+		var/mob/living/carbon/human/buffed_person = owner
+		buffed_person.physiology.armor.melee -= 30
+		buffed_person.physiology.armor.bullet -= 30
