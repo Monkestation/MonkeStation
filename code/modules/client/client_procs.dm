@@ -822,7 +822,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return TRUE
 
 /client/proc/cid_check_reconnect()
-	var/token = md5(RUSTG_HASH_MD5, "[rand(0,9999)][world.time][rand(0,9999)][ckey][rand(0,9999)][address][rand(0,9999)][computer_id][rand(0,9999)]")
+	var/token = md5("[rand(0,9999)][world.time][rand(0,9999)][ckey][rand(0,9999)][address][rand(0,9999)][computer_id][rand(0,9999)]")
 	. = token
 	log_access("Failed Login: [key] [computer_id] [address] - CID randomizer check")
 	var/url = winget(src, null, "url")

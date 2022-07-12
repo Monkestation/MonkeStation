@@ -44,8 +44,8 @@
 
 	// hash the original name?
 	if(tr_flags & TR_HASHNAME)
-		O.name = "monkey ([copytext_char(md5(RUSTG_HASH_MD5, real_name), 2, 6)])"
-		O.real_name = "monkey ([copytext_char(md5(RUSTG_HASH_MD5, real_name), 2, 6)])"
+		O.name = "monkey ([copytext_char(md5(real_name), 2, 6)])"
+		O.real_name = "monkey ([copytext_char(md5(real_name), 2, 6)])"
 
 	//handle DNA and other attributes
 	dna.transfer_identity(O)
@@ -205,8 +205,8 @@
 
 	// hash the original name?
 	if(tr_flags & TR_HASHNAME)
-		O.name = "living teratoma ([copytext_char(md5(RUSTG_HASH_MD5, real_name), 2, 6)])"
-		O.real_name = "living teratoma ([copytext_char(md5(RUSTG_HASH_MD5, real_name), 2, 6)])"
+		O.name = "living teratoma ([copytext_char(md5(real_name), 2, 6)])"
+		O.real_name = "living teratoma ([copytext_char(md5(real_name), 2, 6)])"
 
 	//handle DNA and other attributes
 	dna.transfer_identity(O)

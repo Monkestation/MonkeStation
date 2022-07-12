@@ -245,7 +245,7 @@
 		G.fields["rank"]		= assignment
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
-		G.fields["fingerprint"]	= md5(RUSTG_HASH_MD5, H.dna.uni_identity)
+		G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 		G.fields["p_stat"]		= "Active"
 		G.fields["m_stat"]		= "Stable"
 		G.fields["sex"]			= H.gender
@@ -282,7 +282,7 @@
 
 		//Locked Record
 		var/datum/data/record/L = new()
-		L.fields["id"]			= md5(RUSTG_HASH_MD5, "[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
+		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age

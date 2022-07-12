@@ -594,11 +594,11 @@
 
 	R.fields["name"] = mob_occupant.real_name
 	if(experimental) //even if you have the same identity, this will give you different id based on your mind. body_only gets β at their id.
-		R.fields["id"] =  copytext_char(md5(RUSTG_HASH_MD5, mob_occupant.real_name), 3, 10)+"β+" //beta plus
+		R.fields["id"] =  copytext_char(md5(mob_occupant.real_name), 3, 10)+"β+" //beta plus
 	else if(body_only)
-		R.fields["id"] = copytext_char(md5(RUSTG_HASH_MD5, mob_occupant.real_name), 3, 10)+"β" //beta
+		R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 3, 10)+"β" //beta
 	else
-		R.fields["id"] = copytext_char(md5(RUSTG_HASH_MD5, mob_occupant.real_name), 3, 7)+copytext_char(md5(RUSTG_HASH_MD5, mob_occupant.mind), -4)
+		R.fields["id"] = copytext_char(md5(mob_occupant.real_name), 3, 7)+copytext_char(md5(mob_occupant.mind), -4)
 	R.fields["UE"] = dna.unique_enzymes
 	R.fields["UI"] = dna.uni_identity
 	R.fields["SE"] = dna.mutation_index

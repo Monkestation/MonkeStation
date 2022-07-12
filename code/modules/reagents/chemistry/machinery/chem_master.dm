@@ -404,7 +404,7 @@
 		AM.pixel_y = -8
 		return null
 	else
-		var/md5 = md5(RUSTG_HASH_MD5, AM.name)
+		var/md5 = md5(AM.name)
 		for (var/i in 1 to 32)
 			. += hex2num(md5[i])
 		. = . % 9

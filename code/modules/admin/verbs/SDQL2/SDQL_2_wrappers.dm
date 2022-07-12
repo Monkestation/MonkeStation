@@ -79,7 +79,7 @@
 	return max(arglist(args))
 
 /proc/_md5(T)
-	return md5(RUSTG_HASH_MD5, T)
+	return md5(T)
 
 /proc/_min(...)
 	return min(arglist(args))
