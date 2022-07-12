@@ -26,4 +26,4 @@
 	chicken_type = /mob/living/simple_animal/chicken/void
 
 /datum/ranching/mutation/clown
-	chicken_type = /mob/living/simple_animal/chicken/clown
+	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown
