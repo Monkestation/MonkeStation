@@ -64,9 +64,6 @@
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
-			if(prob(30))
-				new_chicken.gender = MALE
-
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/glass))
 				for(var/list_item in glass_egg_reagent)
 					new_chicken.glass_egg_reagents.Add(list_item)
@@ -195,6 +192,10 @@
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
 	chicken_type = src
+
+	if(prob(40))
+		gender = MALE
+
 	if(gender == MALE)
 		if(breed_name_male)
 			name = " [breed_name_male]"

@@ -353,7 +353,7 @@
 /mob/living/simple_animal/chicken/hostile/retaliate/clown_sad
 	breed_name_male = "huOnkHoNkHoeNK"
 	breed_name_female = "huOnkHoNkHoeNK"
-	temp_min = 0
+	minbodytemp = 0
 	retaliates = FALSE
 
 	egg_type = /obj/item/food/egg/clown_sad
@@ -402,6 +402,8 @@
 			Goto(fuck_this_dude, 2, 1)
 			return
 	else
+		if(prob(10))
+			apply_status_effect(ANGRY_HONK_SPEED)
 		Goto(old_loc, 1 , 1)
 
 #undef inflict_suffering

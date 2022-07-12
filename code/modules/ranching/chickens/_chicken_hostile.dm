@@ -8,6 +8,9 @@
 	melee_damage = 15
 	obj_damage = 10
 
+
+	///Are they really hostile or is 1 part of them hostile
+	var/hostile = TRUE
 	///Lmao here be some copy pasta from hostile code as i want a hostile holder for chimkens
 	///The current target of our attacks, use GiveTarget and LoseTarget to set this var
 	var/atom/target
@@ -131,6 +134,8 @@
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
 /mob/living/simple_animal/chicken/hostile/proc/ListTargets() //Step 1, find out what we can see
+	if(!hostile)
+		return
 	var/atom/target_from = GET_TARGETS_FROM(src)
 	if(!search_objects)
 		var/static/target_list = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha)) //mobs are handled via ismob(A)
