@@ -315,8 +315,13 @@
 		buffed_person.physiology.armor.bullet += 30
 	return ..()
 
-/datum/status_effect/ranching/sword_chicken/on_remove
+/datum/status_effect/ranching/sword_chicken/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/buffed_person = owner
 		buffed_person.physiology.armor.melee -= 30
 		buffed_person.physiology.armor.bullet -= 30
+
+/mob/living/simple_animal/chicken/golden
+	breed_name = "Golden"
+	egg_type = /obj/item/food/egg/golden
+	chicken_type = /mob/living/simple_animal/chicken/golden
