@@ -93,13 +93,13 @@
 
 			var/mob/living/carbon/human/H = A
 			if(!H.gloves)
-				fingerprints += rustg_hash_string(RUSTG_HASH_MD5, H.dna.uni_identity)
+				fingerprints += md5(RUSTG_HASH_MD5, H.dna.uni_identity)
 
 		else if(!ismob(A))
 
 			var/obj/effect/targeteffect = A
 			if (targeteffect && istype(targeteffect) && targeteffect.forensic_protected)
-				fingerprints = list()				
+				fingerprints = list()
 				for(var/i in 1 to 2)
 					LAZYADD(fingerprints,pick("#$^@&#*$H3LP&$(@US^$&#^@#","&$(T@&#C@ME5@##$^@&","^@(#&$ET@US&FR^E#^$&#","#$^@&M*N$US^$(@&#^$&#^@#","&$(@&#^$&#^@##$^@&","^@R(#E$(D@(R&$U&#M^&#","$TH@Y#*$KN@W(@&#^$&#^@#","#$M^DN*S$^@(#&$(@&#^$&#^@##","#","#$^@&#*$^@(#&$(@","#","#$^@&#&#^@","#","@(#&$(@&#^$&#^@"))
 				blood = list("#$^@&LO0K&#@#" = "&$(@AW@Y#$^&")
