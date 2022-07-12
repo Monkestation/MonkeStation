@@ -11,6 +11,7 @@
 	///Lmao here be some copy pasta from hostile code as i want a hostile holder for chimkens
 	///The current target of our attacks, use GiveTarget and LoseTarget to set this var
 	var/atom/target
+	var/ranged = FALSE
 	var/rapid = 0 //How many shots per volley.
 	var/rapid_fire_delay = 2 //Time between rapid fire shots
 
@@ -29,9 +30,14 @@
 	var/rapid_melee = 1			 //Number of melee attacks between each npc pool tick. Spread evenly.
 	var/melee_queue_distance = 4 //If target is close enough start preparing to hit them if we have rapid_melee enabled
 
+	var/ranged_message = "fires" //Fluff text for ranged mobs
+	var/ranged_cooldown = 0 //What the current cooldown on ranged attacks is, generally world.time + ranged_cooldown_time
+	var/ranged_cooldown_time = 30 //How long, in deciseconds, the cooldown of ranged attacks is
+	var/ranged_ignores_vision = FALSE //if it'll fire ranged attacks even if it lacks vision on its target, only works with environment smash
+	var/check_friendly_fire = 0 // Should the ranged mob check for friendlies when shooting
 	var/retreat_distance = null //If our mob runs from players when they're too close, set in tile distance. By default, mobs do not retreat.
-
 	var/minimum_distance = 1 //Minimum approach distance, so ranged mobs chase targets down, but still keep their distance set in tiles to the target, set higher to make mobs keep distance
+
 	//These vars are related to how mobs locate and target
 	var/robust_searching = 0 //By default, mobs have a simple searching method, set this to 1 for the more scrutinous searching (stat_attack, stat_exclusive, etc), should be disabled on most mobs
 	var/vision_range = 9 //How big of an area to search for targets in, a vision of 9 attempts to find targets as soon as they walk into screen view
@@ -52,6 +58,9 @@
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 	///list of all nearby mobs in the same faction
 	var/list/nearby_allies
+
+	var/projectiletype	//set ONLY it and NULLIFY casingtype var, if we have ONLY projectile
+	var/projectilesound
 
 /mob/living/simple_animal/chicken/hostile/Initialize(mapload)
 	. = ..()
@@ -133,20 +142,27 @@
 		. = oview(vision_range, target_from)
 
 /mob/living/simple_animal/chicken/hostile/proc/FindTarget(var/list/possible_targets, var/HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
-	. = list()
-	if(!HasTargetsList)
+	var/list/all_potential_targets = list()
+
+	if(isnull(possible_targets))
 		possible_targets = ListTargets()
-	for(var/pos_targ in possible_targets)
-		var/atom/A = pos_targ
-		if(Found(A))//Just in case people want to override targetting
-			. = list(A)
+
+	for(var/atom/pos_targ as anything in possible_targets)
+		if(Found(pos_targ)) //Just in case people want to override targetting
+			all_potential_targets = list(pos_targ)
 			break
-		if(CanAttack(A))//Can we attack it?
-			. += A
-			continue
-	var/Target = PickTarget(.)
-	GiveTarget(Target)
-	return Target //We now have a target
+
+		if(isitem(pos_targ) && ismob(pos_targ.loc)) //If source is from an item, check the holder of it.
+			if(CanAttack(pos_targ.loc))
+				all_potential_targets += pos_targ.loc
+		else
+			if(CanAttack(pos_targ))
+				all_potential_targets += pos_targ
+
+	var/found_target = PickTarget(all_potential_targets)
+	GiveTarget(found_target)
+	return found_target //We now have a target
+
 
 
 
@@ -269,6 +285,9 @@
 			LoseTarget()
 			return 0
 		var/target_distance = get_dist(target_from,target)
+		if(ranged) //We ranged? Shoot at em
+			if(!target.Adjacent(target_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
+				OpenFire(target)
 		if(!Process_Spacemove()) //Drifting
 			SSmove_manager.stop_looping(src)
 			return 1
@@ -350,7 +369,7 @@
 	LoseTarget()
 	..(gibbed)
 
-/mob/living/simple_animal/chicken/hostile/proc/summon_backup(distance, exact_faction_match)
+/mob/living/simple_animal/chicken/hostile/proc/summon_backup(distance, mob/living/attacker, exact_faction_match)
 	do_alert_animation(src)
 	playsound(loc, 'sound/machines/chime.ogg', 50, 1, -1)
 	var/atom/target_from = GET_TARGETS_FROM(src)
@@ -532,3 +551,53 @@
 	target = new_target
 	if(target)
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/handle_target_del)
+
+/mob/living/simple_animal/chicken/hostile/proc/CheckFriendlyFire(atom/A)
+	if(check_friendly_fire)
+		for(var/turf/T in getline(src,A)) // Not 100% reliable but this is faster than simulating actual trajectory
+			for(var/mob/living/L in T)
+				if(L == src || L == A)
+					continue
+				if(faction_check_mob(L) && !attack_same)
+					return TRUE
+
+/mob/living/simple_animal/chicken/hostile/proc/OpenFire(atom/A)
+	if(CheckFriendlyFire(A))
+		return
+
+	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
+		visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+
+
+	if(rapid > 1)
+		var/datum/callback/cb = CALLBACK(src, .proc/Shoot, A)
+		for(var/i in 1 to rapid)
+			addtimer(cb, (i - 1)*rapid_fire_delay)
+	else
+		Shoot(A)
+	ranged_cooldown = world.time + ranged_cooldown_time
+
+
+/mob/living/simple_animal/chicken/hostile/proc/Shoot(atom/targeted_atom)
+	var/atom/target_from = GET_TARGETS_FROM(src)
+	if(QDELETED(targeted_atom) || targeted_atom == target_from.loc || targeted_atom == target_from )
+		return
+	var/turf/startloc = get_turf(target_from)
+	if(casingtype)
+		var/obj/item/ammo_casing/casing = new casingtype(startloc)
+		playsound(src, projectilesound, 100, 1)
+		casing.fire_casing(targeted_atom, src, null, null, null, ran_zone(), 0, 1,  src)
+	else if(projectiletype)
+		var/obj/item/projectile/P = new projectiletype(startloc)
+		playsound(src, projectilesound, 100, 1)
+		P.starting = startloc
+		P.firer = src
+		P.fired_from = src
+		P.yo = targeted_atom.y - startloc.y
+		P.xo = targeted_atom.x - startloc.x
+		if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
+			newtonian_move(get_dir(targeted_atom, target_from))
+		P.original = targeted_atom
+		P.preparePixelProjectile(targeted_atom, src)
+		P.fire()
+		return P
