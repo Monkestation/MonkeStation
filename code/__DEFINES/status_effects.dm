@@ -162,3 +162,5 @@
 #define PIGEON /datum/status_effect/ranching/pigeon
 #define DREAM_STATE /datum/status_effect/ranching/dream_state
 #define WIZNERD_EGG /datum/status_effect/ranching/wiznerd
+#define ARMORED_EGG /datum/status_effect/ranching/sword_chicken
+#define GOLD_SPARKLE /datum/status_effect/ranching/gold_egg

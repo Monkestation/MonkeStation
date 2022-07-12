@@ -19,16 +19,40 @@
 	name = "Brown Egg"
 
 /mob/living/simple_animal/chicken/onagadori
+	breed_name = "Onagadori"
+	egg_type = /obj/item/food/egg/onagadori
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/onagadori
 
 /mob/living/simple_animal/chicken/ixworth
+	breed_name = "Ixworth"
+	egg_type = /obj/item/food/egg/ixworth
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/ixworth
 
 /mob/living/simple_animal/chicken/silkie_white
+	breed_name = "White Silkie"
+	egg_type = /obj/item/food/egg/silkie_white
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/silkie_white
 
 /mob/living/simple_animal/chicken/silkie_black
+	breed_name = "Black Selkie"
+	egg_type = /obj/item/food/egg/silkie_black
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/silkie_black
 
 /mob/living/simple_animal/chicken/silkie
+	breed_name = "Selkie"
+	egg_type = /obj/item/food/egg/silkie
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/silkie
 
 /mob/living/simple_animal/chicken/void
+	breed_name = "Void"
+	egg_type = /obj/item/food/egg/void
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/void
 
 /obj/item/food/egg/void
 	name = "Void Egg"
@@ -88,3 +112,12 @@
 		user.transform = user.transform.Scale(2, 2)
 
 /mob/living/simple_animal/chicken/clown
+	breed_name_female = "Henk"
+	breed_name_male = "Henkster"
+	egg_type = /obj/item/food/egg/clown
+	mutation_list = list()
+	chicken_type = /mob/living/simple_animal/chicken/clown
+
+/obj/item/food/egg/clown
+	name = "Clown Egg?"
+	food_reagents = list(/datum/reagent/water = 50)
