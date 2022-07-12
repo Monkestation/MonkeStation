@@ -24,11 +24,17 @@
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/onagadori
 
+/obj/item/food/egg/onagadori
+	name = "Onagadori Egg"
+
 /mob/living/simple_animal/chicken/ixworth
 	breed_name = "Ixworth"
 	egg_type = /obj/item/food/egg/ixworth
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/ixworth
+
+/obj/item/food/egg/ixworth
+	name = "Ixworth Egg"
 
 /mob/living/simple_animal/chicken/silkie_white
 	breed_name = "White Silkie"
@@ -36,17 +42,26 @@
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/silkie_white
 
+/obj/item/food/egg/silkie_white
+	name = "White Selkie Egg"
+
 /mob/living/simple_animal/chicken/silkie_black
 	breed_name = "Black Selkie"
 	egg_type = /obj/item/food/egg/silkie_black
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/silkie_black
 
+/obj/item/food/egg/silkie_black
+	name = "Black Selkie Egg"
+
 /mob/living/simple_animal/chicken/silkie
 	breed_name = "Selkie"
 	egg_type = /obj/item/food/egg/silkie
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/silkie
+
+/obj/item/food/egg/silkie
+	name = "Selkie Egg"
 
 /mob/living/simple_animal/chicken/void
 	breed_name = "Void"
