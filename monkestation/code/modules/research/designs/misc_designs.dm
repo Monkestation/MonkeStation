@@ -8,7 +8,6 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
-
 /datum/design/diagnostic_hud_weld
 	name = "Diagnostic Welding HUD"
 	desc = "Upgraded version of the diagnostic HUD including an optional welding screen module."

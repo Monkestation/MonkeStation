@@ -101,7 +101,6 @@
 	hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
-
 /obj/item/clothing/glasses/hud/diagnostic/night
 	name = "night vision diagnostic HUD"
 	desc = "A robotics diagnostic HUD fitted with a light amplifier."

@@ -617,7 +617,7 @@
 	display_name = "Night Vision Technology"
 	description = "Allows seeing in the dark without actual light!"
 	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
-	design_ids = list("health_hud_night", "security_hud_night", "diagnostic_hud_night", "diagnostic_hud_weld", "night_visision_goggles", "nvgmesons")  // monkestation edit
+	design_ids = list("health_hud_night", "security_hud_night", "diagnostic_hud_night", "night_visision_goggles", "nvgmesons")  // monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
@@ -701,7 +701,7 @@
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "datatheory")
-	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-diaghud", "ci-lighter") // MONKE EDIT - added ci-lighter
+	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-diaghud", "ci-lighter", "diagnostic_hud_weld") // MONKE EDIT - added ci-lighter (and diag hud)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
