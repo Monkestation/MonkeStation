@@ -1,5 +1,6 @@
 /mob/living/simple_animal/chicken/hostile/retaliate
 	var/list/enemies = list()
+	var/retaliates = TRUE
 
 /mob/living/simple_animal/chicken/hostile/retaliate/Found(atom/A)
 	if(isliving(A))
@@ -50,7 +51,7 @@
 
 /mob/living/simple_animal/chicken/hostile/retaliate/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(. > 0 && stat == CONSCIOUS)
+	if(. > 0 && stat == CONSCIOUS && retaliates)
 		Retaliate()
 
 /mob/living/simple_animal/chicken/hostile/retaliate/proc/add_enemies(new_enemies)

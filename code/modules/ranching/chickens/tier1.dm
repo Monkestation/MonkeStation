@@ -133,6 +133,7 @@
 	egg_type = /obj/item/food/egg/clown
 	mutation_list = list()
 	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown
+	retaliates = FALSE
 	COOLDOWN_DECLARE(clownin_time)
 	var/mob/living/clownin_target = null
 	var/turf/old_loc

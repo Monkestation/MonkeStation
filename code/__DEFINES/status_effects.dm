@@ -164,3 +164,4 @@
 #define WIZNERD_EGG /datum/status_effect/ranching/wiznerd
 #define ARMORED_EGG /datum/status_effect/ranching/sword_chicken
 #define GOLD_SPARKLE /datum/status_effect/ranching/gold_egg
+#define ANGRY_HONK_SPEED /datum/status_effect/ranching/angry_honk
