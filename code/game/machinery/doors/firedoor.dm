@@ -4,7 +4,6 @@
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
 #define CONSTRUCTION_NOCIRCUIT 4 //Circuit board removed, can safely weld apart
 
-#define RECLOSE_DELAY 3 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum. MONKESTATION EDIT 5 > 3
 #define FIRE_ALARM 2
 /obj/machinery/door/firedoor
 	name = "firelock"
@@ -28,9 +27,8 @@
 	air_tight = TRUE
 	open_speed = 2
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
-	processing_flags = START_PROCESSING_MANUALLY
+	processing_flags = START_PROCESSING_ON_INIT
 	///Cooldown to stop airlocks from instantly closing when opened
-	COOLDOWN_DECLARE(detect_cooldown) //MONKESTATION EDIT ADDITION
 	var/emergency_close_timer = 0
 	var/nextstate = null
 	var/boltslocked = TRUE
@@ -40,7 +38,6 @@
 
 /obj/machinery/door/firedoor/Initialize(mapload)
 	. = ..()
-	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	CalculateAffectingAreas()
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -65,7 +62,6 @@
 	icon_state = "door_closed"
 	opacity = TRUE
 	density = TRUE
-	processing_flags = START_PROCESSING_ON_INIT
 
 //see also turf/AfterChange for adjacency shennanigans
 
@@ -157,6 +153,8 @@
 		if((check_safety(user) == TRUE) || check_access(I))
 			log_opening(I, user, check_safety(user))
 			playsound(src, 'sound/machines/beep.ogg', 50, 1)
+			emergency_close_timer = world.time + 60 // prevent it from instaclosing again if in space
+			whack_a_mole()
 			open()
 			return
 		else
@@ -199,7 +197,7 @@
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
 		return
-	
+
 	if(density)
 		if(!(machine_stat & NOPOWER))
 			LAZYADD(access_log, "MOTOR_ERR:|MOTOR CONTROLLER REPORTED BACKDRIVE|T_OFFSET:[DisplayTimeText(world.time - SSticker.round_start_time)]")
@@ -217,6 +215,8 @@
 		if(!check_safety(user))
 			log_game("[key_name(user)] has opened a firelock with a pressure difference or a fire alarm at [AREACOORD(loc)], using a crowbar")
 			user.log_message("has opened a firelock with a pressure difference or a fire alarm at [AREACOORD(loc)], using a crowbar", LOG_ATTACK)
+			whack_a_mole()
+		emergency_close_timer = world.time + 60 // prevent it from instaclosing again if in space
 		open()
 	else
 		close()
@@ -282,28 +282,24 @@
 	if(density && !operating) //This is hacky but gets the sound to play on time.
 		playsound(src, 'sound/machines/firedoor_open.ogg', 30, 1)
 	. = ..()
-	if(.)
-		STOP_PROCESSING(SSmachines, src)
-	COOLDOWN_START(src, detect_cooldown, RECLOSE_DELAY) //MONKESTATION EDIT ADDITION
 	latetoggle()
 
 
 /obj/machinery/door/firedoor/close()
-	if(!COOLDOWN_FINISHED(src, detect_cooldown)) //MONKESTATION EDIT ADDITION
-		return
 	if(HAS_TRAIT(loc, TRAIT_FIREDOOR_STOP))
 		return
 	if(!density && !operating) //This is hacky but gets the sound to play on time.
 		playsound(src, 'sound/machines/firedoor_close.ogg', 30, 1)
 	. = ..()
-	if(.)
-		START_PROCESSING(SSmachines, src)
 	latetoggle()
 
 /obj/machinery/door/firedoor/process(delta_time)
+	var/turf/open/source_location = get_turf(src.loc)
 	process_ticker += delta_time
 	if(process_ticker < 5*delta_time)
 		return
+	if(source_location.air.return_pressure() <= 100 && (nextstate & FIREDOOR_CLOSED))
+		emergency_pressure_stop(TRUE)
 	process_ticker = 0
 	update_icon()
 
