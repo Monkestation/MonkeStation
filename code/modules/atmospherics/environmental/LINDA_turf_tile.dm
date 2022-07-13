@@ -227,10 +227,10 @@
 	return
 
 /turf/open/consider_pressure_difference(turf/T, difference)
-	SSair.high_pressure_delta |= src
 	if(difference > pressure_difference)
 		pressure_direction = get_dir(src, T)
 		pressure_difference = difference
+		SSair.high_pressure_delta[src] = TRUE
 
 /turf/open/proc/high_pressure_movements()
 	var/atom/movable/M
