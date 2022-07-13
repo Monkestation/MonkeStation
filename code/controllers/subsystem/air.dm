@@ -30,6 +30,7 @@ SUBSYSTEM_DEF(air)
 	var/list/networks = list()
 	var/list/pipenets_needing_rebuilt = list()
 	var/list/deferred_airs = list()
+	var/cur_deferred_airs = 0
 	var/max_deferred_airs = 0
 	var/list/obj/machinery/atmos_machinery = list()
 	var/list/obj/machinery/atmos_air_machinery = list()
@@ -50,17 +51,25 @@ SUBSYSTEM_DEF(air)
 	var/log_explosive_decompression = TRUE // If things get spammy, admemes can turn this off.
 
 	// Max number of turfs equalization will grab.
-	var/equalize_turf_limit = 20 //MONKESTATION EDIT 10 > 20
+	var/equalize_turf_limit = 10 //MONKESTATION EDIT 10 > 20
 	// Max number of turfs to look for a space turf, and max number of turfs that will be decompressed.
 	var/equalize_hard_turf_limit = 2000
 	// Whether equalization should be enabled at all.
 	var/equalize_enabled = TRUE //MONKESTATION EDIT FALSE > TRUE
+	// Whether equalization should be enabled.
+	var/should_do_equalization = TRUE
+	// When above 0, won't equalize; performance handling
+	var/eq_cooldown = 0
 	// Whether turf-to-turf heat exchanging should be enabled.
 	var/heat_enabled = FALSE
 	// Max number of times process_turfs will share in a tick.
 	var/share_max_steps = 3
+	// Target for share_max_steps; can go below this, if it determines the thread is taking too long.
+	var/share_max_steps_target = 3
 	// Excited group processing will try to equalize groups with total pressure difference less than this amount.
 	var/excited_group_pressure_goal = 1
+	// Target for excited_group_pressure_goal; can go below this, if it determines the thread is taking too long.
+	var/excited_group_pressure_goal_target = 1
 
 	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
 	//MONKESTATION ADDITION
@@ -230,6 +239,7 @@ SUBSYSTEM_DEF(air)
 	// This also happens to do all the commented out stuff below, all in a single separate thread. This is mostly so that the
 	// waiting is consistent.
 	if(currentpart == SSAIR_ACTIVETURFS)
+		run_delay_heuristics()
 		timer = TICK_USAGE_REAL
 		process_turfs(resumed)
 		cost_turfs = MC_AVERAGE(cost_turfs, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -315,7 +325,8 @@ SUBSYSTEM_DEF(air)
 		pipenets_needing_rebuilt += atmos_machine
 
 /datum/controller/subsystem/air/proc/process_deferred_airs(resumed = 0)
-	max_deferred_airs = max(deferred_airs.len,max_deferred_airs)
+	cur_deferred_airs = deferred_airs.len
+	max_deferred_airs = max(cur_deferred_airs,max_deferred_airs)
 	while(deferred_airs.len)
 		var/list/cur_op = deferred_airs[deferred_airs.len]
 		deferred_airs.len--
@@ -338,6 +349,22 @@ SUBSYSTEM_DEF(air)
 			air1.transfer_ratio_to(air2, cur_op[3])
 		if(MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/air/proc/run_delay_heuristics()
+	if(!equalize_enabled)
+		cost_equalize = 0
+		if(should_do_equalization)
+			eq_cooldown--
+			if(eq_cooldown <= 0)
+				equalize_enabled = TRUE
+	var/wait_ms = wait * 100
+	var/total_thread_time = cost_turfs + cost_equalize + cost_groups + cost_post_process
+	var/delay_threshold = 1-(total_thread_time/wait_ms + cur_deferred_airs / 50)
+	share_max_steps = max(1,round(share_max_steps_target * delay_threshold, 1))
+	eq_cooldown += (1-delay_threshold) * (cost_equalize / total_thread_time) * 2
+	if(eq_cooldown > 0.5)
+		equalize_enabled = FALSE
+	excited_group_pressure_goal = max(0,excited_group_pressure_goal_target * (1 - delay_threshold))
 
 /datum/controller/subsystem/air/proc/process_atmos_machinery(resumed = 0)
 	if (!resumed)
@@ -440,7 +467,7 @@ SUBSYSTEM_DEF(air)
 		pause()
 
 /datum/controller/subsystem/air/proc/finish_turf_processing(resumed = 0)
-	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))
+	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))|| thread_running())
 		pause()
 
 /datum/controller/subsystem/air/proc/post_process_turfs(resumed = 0)
