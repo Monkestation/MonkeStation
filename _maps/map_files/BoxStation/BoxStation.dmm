@@ -24223,6 +24223,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/spawner/structure/directional_firelock/east_west,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bxY" = (
@@ -26393,6 +26394,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/spawner/structure/directional_firelock/east_west,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bEh" = (
@@ -29555,11 +29557,6 @@
 /area/engine/atmos)
 "bPk" = (
 /obj/machinery/camera/autoname,
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Air to Distro";
-	target_pressure = 500
-	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
 "bPl" = (
@@ -45542,14 +45539,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jkH" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Air to Distro";
-	target_pressure = 500
-	},
-/turf/open/floor/engine/vacuum,
-/area/engine/atmos)
 "jmx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -94362,7 +94351,7 @@ bzs
 bRK
 bOh
 bPk
-jkH
+bPm
 bPm
 bOh
 bTW
