@@ -14,8 +14,6 @@
 
 /proc/_generate_asteroids(center_x, center_y, center_z, max_radius, weight_offset = 0, scale = 65)
 
-	SSair.pause_z(center_z)
-
 	var/perlin_noise_scale = scale
 	var/seed = rand(0, 999999)
 	var/turf/z_center = locate(center_x, center_y, center_z)
@@ -67,7 +65,6 @@
 			/obj/structure/spawner/lavaland/goliath, /obj/structure/spawner/lavaland/legion)
 		new type_to_spawn(T)
 
-	SSair.unpause_z(center_z)
 
 //Spawner types
 /obj/structure/spawner/lavaland/basilisk

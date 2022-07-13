@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(adjacent_air)
 	wait = 10
 	priority = FIRE_PRIORITY_ATMOS_ADJACENCY
 	var/list/queue = list()
-	var/list/disable_queue = list()
 
 /datum/controller/subsystem/adjacent_air/stat_entry()
 #ifdef TESTING
