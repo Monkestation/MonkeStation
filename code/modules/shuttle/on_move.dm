@@ -72,15 +72,14 @@ All ShuttleMove procs go here
 	//MONKESTATION EDIT END
 	newT.CopyOnTop(src, 1, depth, TRUE)
 
-	if(isopenturf(src))
-		var/turf/open/after_src_terf = src
-		update_air_ref(isspaceturf(src) ? 0 : (after_src_terf.planetary_atmos ? 1 : 2))
-	else
-		update_air_ref(-1)
-
 	//Air stuff
+	newT.blocks_air = TRUE
 	newT.air_update_turf(TRUE)
+	blocks_air = TRUE
 	air_update_turf(TRUE)
+	if(isopenturf(newT))
+		var/turf/open/new_open = newT
+		new_open.copy_air_with_tile(src)
 
 	return TRUE
 
