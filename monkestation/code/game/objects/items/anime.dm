@@ -77,7 +77,10 @@
 	var/hacked_l = FALSE
 
 /obj/item/choice_beacon/anime/spawn_option(obj/choice, mob/living/carbon/human/M)//overwrite choice proc so it doesn't drop pod.
-	var/obj/new_item = new choice()
+	var/obj/item/anime/new_item = new choice()
+	if(hacked_l)
+		new_item.name = "Hacked " + new_item.name
+		new_item.hacked = TRUE
 	var/msg = "<span class=danger>The box spits out a [new_item]. </span>"
 	to_chat(M, msg)
 	var/list/slots = list (
@@ -87,50 +90,19 @@
 	M.equip_in_one_of_slots(new_item, slots , qdel_on_fail = TRUE)
 
 /obj/item/choice_beacon/anime/generate_display_names()
-	var/list/anime
+	var/static/list/anime
 	if(!anime)
 		anime = list()
 		var/list/templist = list()
-		if(hacked_l == TRUE)
-			templist = list(/obj/item/anime/cat/hacked,
-							 /obj/item/anime/fox/hacked,
-							 /obj/item/anime/wolf/hacked,
-							 /obj/item/anime/shark/hacked
-							)
-		else
-			templist = list(/obj/item/anime/cat, //Add to this list if you want your implant to be included in the trait
-							 /obj/item/anime/fox,
-							 /obj/item/anime/wolf,
-							 /obj/item/anime/shark
-							)
+		templist = list(/obj/item/anime/cat, //Add to this list if you want your implant to be included in the trait
+						 /obj/item/anime/fox,
+						 /obj/item/anime/wolf,
+						 /obj/item/anime/shark
+						)
 		for(var/V in templist)
 			var/atom/A = V
 			anime[initial(A.name)] = A
 	return anime
-
-/obj/item/anime/hacked/afterattack(mob/living/carbon/user)
-	if(ishuman(user))
-		anime_transformation(user)
-
-/obj/item/anime/hacked
-	name = "hacked anime dermal implant"
-	hacked = TRUE
-
-/obj/item/anime/cat/hacked
-	name = "hacked anime cat dermal implant"
-	hacked = TRUE
-
-/obj/item/anime/fox/hacked
-	name = "hacked anime fox dermal implant"
-	hacked = TRUE
-
-/obj/item/anime/wolf/hacked
-	name = "hacked anime wolf dermal implant"
-	hacked = TRUE
-
-/obj/item/anime/shark/hacked
-	name = "hacked anime shark dermal implant"
-	hacked = TRUE
 
 /obj/item/choice_beacon/anime/hacked
 	name = "hacked anime dermal implant kit"
