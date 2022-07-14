@@ -51,7 +51,7 @@
 /datum/component/after_image/proc/move(atom/movable/AM, turf/last_turf, direct)
 	src.sync_after_images()
 
-/datum/component/after_image/proc/throw_landed(atom/movable/AM, datum/thrown_thing/thr)
+/datum/component/after_image/proc/throw_landed(atom/movable/AM, datum/thrownthing/thing)
 	src.sync_after_images() // necessary to fix pixel_x and pixel_y
 
 /datum/component/after_image/proc/sync_after_images(dir_override=null)
