@@ -1,6 +1,8 @@
 /datum/ranching/mutation
 	///The typepath of the chicken
 	var/mob/living/simple_animal/chicken/chicken_type
+	///Egg type for egg so me don't gotta create new chicken
+	var/egg_type
 
 	///Required Happiness
 	var/happiness

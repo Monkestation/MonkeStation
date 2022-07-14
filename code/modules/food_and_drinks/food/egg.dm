@@ -37,6 +37,8 @@
 	var/list/mutations = list()
 	///eggs ore type
 	var/obj/item/stack/ore/production_type = null
+	///list of picked mutations should only ever be one
+	var/list/possible_mutations = list()
 
 /obj/item/food/egg/Initialize(mapload)
 	. = ..()

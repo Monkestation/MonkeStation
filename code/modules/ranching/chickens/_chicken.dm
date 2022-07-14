@@ -1,3 +1,11 @@
+GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
+	/datum/reagent/drug/methamphetamine = 1,
+	/datum/reagent/toxin/lipolicide = 0.25,
+	/datum/reagent/consumable/sugar = 0.5,
+)))
+
+
+
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
@@ -180,6 +188,10 @@
 	var/obj/structure/nestbox/movement_target
 	///Ready to lay egg
 	var/ready_to_lay = FALSE
+	///max generational happiness
+	var/max_happiness_per_generation = 100
+	///How sad until they die of sadness?
+	var/minium_living_happiness = -200
 
 	///Glass Chicken exclusive: reagents for eggs
 	var/list/glass_egg_reagents = list()
@@ -220,14 +232,18 @@
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
 		if(!stat && current_feed_amount <= 3 )
 			for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
+				if(reagent in GLOB.happy_chems && max_happiness_per_generation >= (GLOB.happy_chems[reagent] * reagent.volume))
+					happiness += GLOB.happy_chems[reagent] * reagent.volume
+					max_happiness_per_generation -= GLOB.happy_chems[reagent] * reagent.volume
 				if(!(reagent in consumed_reagents))
 					consumed_reagents.Add(reagent)
 
 			if(!(given_item in consumed_food))
 				consumed_food.Add(given_item)
 
-			if(given_item.type in liked_foods)
+			if(given_item.type in liked_foods && max_happiness_per_generation >= 10)
 				happiness += 10
+				max_happiness_per_generation -= 10
 
 			var/obj/item/food/placeholder_food_item = given_item
 			for(var/food_type in placeholder_food_item.foodtypes)
@@ -236,7 +252,7 @@
 			var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
 			user.visible_message(feedmsg)
 			qdel(given_item)
-			eggsleft += rand(1, 4)
+			eggsleft += rand(0, 2)
 			current_feed_amount ++
 			total_times_eaten ++
 		else
@@ -265,6 +281,12 @@
 		animal_count ++
 	if(animal_count >= overcrowding)
 		happiness --
+
+	if(current_feed_amount == 0)
+		happiness -= 0.1 ///lose happiness really slowly
+
+	if(happiness < minium_living_happiness)
+		src.death()
 
 	if(!stat && prob(3) && current_feed_amount > 0)
 		current_feed_amount --
@@ -295,11 +317,21 @@
 			visible_message("[src] [pick(layMessage)]")
 
 			eggsleft--
-
-			var/obj/item/food/egg/layed_egg = new egg_type(get_turf(src))
+			var/obj/item/food/egg/layed_egg
 			//Need to have eaten 5 times in order to have a chance at getting mutations
 			if(src.total_times_eaten > 4)
-				layed_egg.mutations = src.mutation_list
+				var/list/real_mutation = list()
+				for(var/raw_list_item in src.mutation_list)
+					var/datum/ranching/mutation/mutation = new raw_list_item
+					real_mutation |= mutation
+				if(real_mutation.len)
+					var/datum/ranching/mutation/picked_mutation = pick(real_mutation)
+					layed_egg = new picked_mutation.egg_type(get_turf(src))
+					layed_egg.possible_mutations |= picked_mutation
+				else
+					layed_egg = new egg_type(get_turf(src))
+			else
+				layed_egg = new egg_type(get_turf(src))
 
 			layed_egg.layer_hen_type = src.chicken_type
 			layed_egg.happiness = src.happiness
@@ -326,13 +358,6 @@
 		pre_hatch()
 
 /obj/item/food/egg/proc/pre_hatch()
-	var/list/possible_mutations = list()
-	if(layer_hen_type)
-		for(var/raw_list_item in layer_hen_type.mutation_list)
-			var/datum/ranching/mutation/mutation = new raw_list_item
-			if(cycle_requirements(mutation))
-				possible_mutations.Add(mutation)
-				message_admins("[possible_mutations]")
 	hatch(possible_mutations)
 
 /obj/item/food/egg/proc/hatch(list/possible_mutations)
