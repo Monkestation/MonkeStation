@@ -35,7 +35,7 @@
 			cached_map = parsed
 	return bounds
 
-/datum/map_template/proc/initTemplateBounds(list/bounds)
+/datum/map_template/proc/initTemplateBounds(list/bounds, init_atmos = TRUE)
 	if (!bounds) //something went wrong
 		stack_trace("[name] template failed to initialize correctly!")
 		return
@@ -87,21 +87,21 @@
 
 	if(init_atmos)
 		//calculate all turfs inside the border
-	var/list/template_and_bordering_turfs = block(
-		locate(
-			max(bounds[MAP_MINX]-1, 1),
-			max(bounds[MAP_MINY]-1, 1),
-			bounds[MAP_MINZ]
-			),
-		locate(
-			min(bounds[MAP_MAXX]+1, world.maxx),
-			min(bounds[MAP_MAXY]+1, world.maxy),
-			bounds[MAP_MAXZ]
-			)
+		var/list/template_and_bordering_turfs = block(
+			locate(
+				max(bounds[MAP_MINX]-1, 1),
+				max(bounds[MAP_MINY]-1, 1),
+				bounds[MAP_MINZ]
+				),
+			locate(
+				min(bounds[MAP_MAXX]+1, world.maxx),
+				min(bounds[MAP_MAXY]+1, world.maxy),
+				bounds[MAP_MAXZ]
+				)
 		)
-	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
-		affected_turf.air_update_turf(TRUE)
-		affected_turf.levelupdate()
+		for(var/turf/affected_turf as anything in template_and_bordering_turfs)
+			affected_turf.air_update_turf(TRUE)
+			affected_turf.levelupdate()
 
 /datum/map_template/proc/load_new_z(orbital_body_type, list/level_traits = list(ZTRAIT_AWAY = TRUE))
 	var/x = round((world.maxx - width)/2)
