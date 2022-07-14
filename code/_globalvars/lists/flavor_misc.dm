@@ -111,6 +111,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"Too Deep",
 	"Triumvirate",
 	"Triumvirate-M",
+    //MONKESTATION ADDITION START
 	"Weird",
 	"Girl",
 	"Girl-malf",
