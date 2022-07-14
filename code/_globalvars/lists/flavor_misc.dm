@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"Boxfort",
 	"Boxfort-crash",
 	"Hotdog",
-	"Terminal",)))
+	"Terminal")))
 
 /proc/resolve_ai_icon(input)
 	if(!input || !(input in GLOB.ai_core_display_screens))
