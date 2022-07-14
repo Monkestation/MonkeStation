@@ -20,7 +20,7 @@
 	breed_name = "Cotton Candy"
 	egg_type = /obj/item/food/egg/cotton_candy
 	chicken_path = /mob/living/simple_animal/chicken/cotton_candy
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/dreamsicle)
 
 /mob/living/simple_animal/chicken/cotton_candy/Life()
 	.=..()
@@ -205,7 +205,7 @@
 	breed_name = "Stone"
 	egg_type = /obj/item/food/egg/stone
 	chicken_type = /mob/living/simple_animal/chicken/stone
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/cockatrice)
 
 /obj/item/food/egg/stone
 	name = "Rocky Egg"

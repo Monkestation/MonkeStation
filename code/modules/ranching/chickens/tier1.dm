@@ -1,11 +1,11 @@
 /mob/living/simple_animal/chicken
-	mutation_list = list(/datum/ranching/mutation/silkie_black)
+	mutation_list = list(/datum/ranching/mutation/silkie_black, /datum/ranching/mutation/brown, /datum/ranching/mutation/glass, /datum/ranching/mutation/onagadori, /datum/ranching/mutation/clown, /datum/ranching/mutation/silkie_white, /datum/ranching/mutation/silkie, /datum/ranching/mutation/void)
 
 /mob/living/simple_animal/chicken/glass
 	breed_name = "Glass"
 	egg_type = /obj/item/food/egg/glass
 	chicken_path = /mob/living/simple_animal/chicken/glass
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/wiznerd, /datum/ranching/mutation/stone)
 
 /obj/item/food/egg/glass
 	name = "Glass Egg"
@@ -16,7 +16,7 @@
 	breed_name = "Brown"
 	egg_type = /obj/item/food/egg/brown
 	chicken_path = /mob/living/simple_animal/chicken/brown
-	mutation_list = list(/datum/ranching/mutation/spicy, /datum/ranching/mutation/raptor)
+	mutation_list = list(/datum/ranching/mutation/spicy, /datum/ranching/mutation/raptor, /datum/ranching/mutation/gold, /datum/ranching/mutation/robot) //when i get a better chicken robot will be moved
 
 /obj/item/food/egg/brown
 	name = "Brown Egg"
@@ -24,7 +24,7 @@
 /mob/living/simple_animal/chicken/onagadori
 	breed_name = "Onagadori"
 	egg_type = /obj/item/food/egg/onagadori
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/sword)
 	chicken_type = /mob/living/simple_animal/chicken/onagadori
 
 /obj/item/food/egg/onagadori
@@ -42,7 +42,7 @@
 /mob/living/simple_animal/chicken/silkie_white
 	breed_name = "White Silkie"
 	egg_type = /obj/item/food/egg/silkie_white
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/snowy)
 	chicken_type = /mob/living/simple_animal/chicken/silkie_white
 
 /obj/item/food/egg/silkie_white
@@ -60,7 +60,7 @@
 /mob/living/simple_animal/chicken/silkie
 	breed_name = "Selkie"
 	egg_type = /obj/item/food/egg/silkie
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/pigeon, /datum/ranching/mutation/cotton_candy)
 	chicken_type = /mob/living/simple_animal/chicken/silkie
 
 /obj/item/food/egg/silkie
@@ -134,7 +134,7 @@
 	breed_name_female = "Henk"
 	breed_name_male = "Henkster"
 	egg_type = /obj/item/food/egg/clown
-	mutation_list = list()
+	mutation_list = list(/datum/ranching/mutation/mime, /datum/ranching/mutation/clown_sad)
 	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown
 	retaliates = FALSE
 	COOLDOWN_DECLARE(clownin_time)

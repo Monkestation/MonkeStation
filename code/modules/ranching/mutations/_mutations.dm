@@ -41,10 +41,16 @@
 
 /obj/item/food/egg/proc/check_happiness(datum/ranching/mutation/supplier)
 	if(supplier.happiness)
-		if(!(src.happiness > supplier.happiness))
-			message_admins("FAILED HAPPINESS")
-			return FALSE
+		if(supplier.happiness > 0)
+			if(!(src.happiness > supplier.happiness))
+				message_admins("FAILED HAPPINESS")
+				return FALSE
+		else
+			if(!(src.happiness < supplier.happiness))
+				message_admins("FAILED HAPPINESS")
+				return FALSE
 	return TRUE
+
 /obj/item/food/egg/proc/check_temperature(datum/ranching/mutation/supplier)
 	if(supplier.needed_temperature)
 		var/turf/temp_turf = get_turf(src)
@@ -53,7 +59,7 @@
 		var/temp_max = supplier.needed_temperature
 
 		if(supplier.pressure_variance)
-			temp_min -= supplier.pressure_variance
+			temp_min -= max(supplier.pressure_variance, 1)
 			temp_max += supplier.pressure_variance
 		if(!(temp_turf.return_temperature() <= temp_max) && !(temp_turf.return_temperature() >= temp_min))
 			message_admins("FAILED TEMP")
@@ -70,7 +76,7 @@
 		var/pressure_max = supplier.needed_pressure
 
 		if(supplier.pressure_variance)
-			pressure_min -= supplier.pressure_variance
+			pressure_min -= max(supplier.pressure_variance, 0)
 			pressure_max += supplier.pressure_variance
 		if(!(environment.return_pressure() <=  pressure_max) && !(environment.return_pressure() >= pressure_min))
 			message_admins("FAILED PRESSURE")
