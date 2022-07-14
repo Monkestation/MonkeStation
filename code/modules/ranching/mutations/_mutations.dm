@@ -12,7 +12,6 @@
 	var/needed_pressure
 	///Pressure Variance
 	var/pressure_variance
-
 	///Special foods needed
 	var/list/food_requirements = list()
 	///Special reagents needed
@@ -23,10 +22,19 @@
 	var/list/nearby_items = list()
 	///Needed Rooster Type
 	var/required_rooster
-
+	///Needed Breathable Air
+	var/list/required_atmos = list()
+	///Needed job from nearby players
+	var/player_job
+	///required_liquid_depth
+	var/liquid_depth
+	///Needed species
+	var/needed_species
+	///How hurt someone is, invert is so how damaaged is the number you put so for crit you would put 100
+	var/player_health
 
 /obj/item/food/egg/proc/cycle_requirements(datum/ranching/mutation/supplier)
-	if(check_happiness(supplier) && check_temperature(supplier) && check_pressure(supplier) && check_food(supplier) && check_reagent(supplier) && check_turfs(supplier) && check_items(supplier) && check_rooster(supplier))
+	if(check_happiness(supplier) && check_temperature(supplier) && check_pressure(supplier) && check_food(supplier) && check_reagent(supplier) && check_turfs(supplier) && check_items(supplier) && check_rooster(supplier) && check_breathable_atmos(supplier) && check_players_job(supplier) && check_liquid_depth(supplier) && check_species(supplier) && check_players_health(supplier))
 		return TRUE
 	else
 		return FALSE
@@ -129,6 +137,65 @@
 		if(passed_check == FALSE)
 			return FALSE
 	return TRUE
+
+/obj/item/food/egg/proc/check_breathable_atmos(datum/ranching/mutation/supplier)
+	var/passed_check = FALSE
+	if(supplier.required_atmos)
+		var/turf/open/egg_source_turf  = get_turf(src)
+		for(var/gas in supplier.required_atmos)
+			if(egg_source_turf.air.get_moles(gas) >= supplier.required_atmos[gas])
+				passed_check = TRUE
+		if(passed_check == FALSE)
+			message_admins("FAILED ATMOS")
+			return FALSE
+	return TRUE
+
+/obj/item/food/egg/proc/check_players_job(datum/ranching/mutation/supplier)
+	var/passed_check = FALSE
+	if(supplier.player_job)
+		for(var/mob/living/carbon/human/in_range_player in view(3, src))
+			if(in_range_player.mind.assigned_role == supplier.player_job)
+				passed_check = TRUE
+		if(passed_check == FALSE)
+			message_admins("FAILED JOB")
+			return FALSE
+	return TRUE
+
+/obj/item/food/egg/proc/check_liquid_depth(datum/ranching/mutation/supplier)
+	var/passed_check = FALSE
+	if(supplier.liquid_depth)
+		var/turf/open/egg_location = get_turf(src.loc)
+		if(egg_location.liquids)
+			if(egg_location.liquids.height >= liquid_depth)
+				passed_check = TRUE
+		if(passed_check == FALSE)
+			message_admins("FAILED DEPTH")
+			return FALSE
+	return TRUE
+
+/obj/item/food/egg/proc/check_species(datum/ranching/mutation/supplier)
+	var/passed_check = FALSE
+	if(supplier.needed_species)
+		for(var/mob/living/carbon/human/in_range_player in view(3, src))
+			if(in_range_player.dna.species == needed_species)
+				passed_check = TRUE
+		if(passed_check == FALSE)
+			message_admins("FAILED SPECIES")
+			return FALSE
+	return TRUE
+
+/obj/item/food/egg/proc/check_players_health(datum/ranching/mutation/supplier)
+	var/passed_check = FALSE
+	if(supplier.player_health)
+		for(var/mob/living/carbon/human/in_range_player in view(3, src))
+			if(in_range_player.maxHealth - in_range_player.health >= player_health)
+				passed_check = TRUE
+		if(passed_check = FALSE)
+			message_admins("FAILED HEALTH")
+			return FALSE
+	return TRUE
+
+
 
 /*
  EXAMPLE MUTATION

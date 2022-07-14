@@ -15,6 +15,7 @@
 
 /datum/ranching/mutation/silkie_white
 	chicken_type = /mob/living/simple_animal/chicken/silkie_white
+	reagent_requirements = list(/datum/reagent/drug/methamphetamine)
 
 /datum/ranching/mutation/silkie_black
 	chicken_type = /mob/living/simple_animal/chicken/silkie_black

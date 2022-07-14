@@ -1,3 +1,6 @@
+/mob/living/simple_animal/chicken
+	mutation_list = list(/datum/ranching/mutation/silkie_black)
+
 /mob/living/simple_animal/chicken/glass
 	breed_name = "Glass"
 	egg_type = /obj/item/food/egg/glass

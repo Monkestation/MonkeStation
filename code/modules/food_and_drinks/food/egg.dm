@@ -13,6 +13,7 @@
 	name = "egg"
 	desc = "An egg!"
 	icon_state = "egg"
+	icon = 'code/modules/ranching/icons/eggs.dmi'
 	food_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	microwaved_type = /obj/item/food/boiledegg
 	foodtypes = MEAT | RAW
