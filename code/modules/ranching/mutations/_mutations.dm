@@ -166,7 +166,7 @@
 	if(supplier.liquid_depth)
 		var/turf/open/egg_location = get_turf(src.loc)
 		if(egg_location.liquids)
-			if(egg_location.liquids.height >= liquid_depth)
+			if(egg_location.liquids.height >= supplier.liquid_depth)
 				passed_check = TRUE
 		if(passed_check == FALSE)
 			message_admins("FAILED DEPTH")
@@ -177,7 +177,7 @@
 	var/passed_check = FALSE
 	if(supplier.needed_species)
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))
-			if(in_range_player.dna.species == needed_species)
+			if(in_range_player.dna.species == supplier.needed_species)
 				passed_check = TRUE
 		if(passed_check == FALSE)
 			message_admins("FAILED SPECIES")
@@ -188,7 +188,7 @@
 	var/passed_check = FALSE
 	if(supplier.player_health)
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))
-			if(in_range_player.maxHealth - in_range_player.health >= player_health)
+			if(in_range_player.maxHealth - in_range_player.health >= supplier.player_health)
 				passed_check = TRUE
 		if(passed_check = FALSE)
 			message_admins("FAILED HEALTH")
