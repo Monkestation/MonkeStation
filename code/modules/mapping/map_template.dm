@@ -85,6 +85,7 @@
 	SSmachines.setup_template_powernets(cables)
 	SSair.setup_template_machinery(atmos_machines)
 
+	if(init_atmos)
 		//calculate all turfs inside the border
 	var/list/template_and_bordering_turfs = block(
 		locate(
@@ -130,7 +131,7 @@
 	var/datum/parsed_map/parsed = new(file(mappath))
 	parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=TRUE, placeOnTop=should_place_on_top)
 
-/datum/map_template/proc/load(turf/T, centered = FALSE)
+/datum/map_template/proc/load(turf/T, centered = FALSE, init_atmos = TRUE)
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 	if(!T)
@@ -139,6 +140,12 @@
 		return
 	if(T.y+height > world.maxy)
 		return
+
+	var/list/border = block(locate(max(T.x, 1), max(T.y, 1),  T.z),
+							locate(min(T.x+width, world.maxx), min(T.y+height, world.maxy), T.z))
+	for(var/L in border)
+		var/turf/turf_to_disable = L
+		turf_to_disable.ImmediateDisableAdjacency()
 
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
@@ -159,7 +166,7 @@
 		repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
-	initTemplateBounds(bounds)
+	initTemplateBounds(bounds, init_atmos)
 
 	log_game("[name] loaded at [T.x],[T.y],[T.z]")
 	return bounds

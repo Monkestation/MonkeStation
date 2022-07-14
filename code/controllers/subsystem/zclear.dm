@@ -169,6 +169,7 @@ SUBSYSTEM_DEF(zclear)
 	if(!z_level)
 		return
 
+	SSair.pause_z(z_level)
 
 	var/list/turfs = block(locate(1, 1, z_level), locate(world.maxx, world.maxy, z_level))
 	var/list/divided_turfs = list()
@@ -220,6 +221,7 @@ SUBSYSTEM_DEF(zclear)
 			//Done
 			LAZYREMOVE(processing_levels, cleardata)
 			//Finalize area
+			SSair.unpause_z(cleardata.zvalue)
 			var/area/spaceA = GLOB.areas_by_type[/area/space]
 			spaceA.reg_in_areas_in_z()	//<< Potentially slow proc
 			if(cleardata.completion_callback)
