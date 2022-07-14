@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
-	if((!stat && prob(100) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE) //3
+	if((!stat && prob(3) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
 		ready_to_lay = TRUE
 
 	if(ready_to_lay == TRUE)
@@ -319,7 +319,7 @@ GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
 			eggsleft--
 			var/obj/item/food/egg/layed_egg
 			//Need to have eaten 5 times in order to have a chance at getting mutations
-			if(src.total_times_eaten > 4)
+			if(src.total_times_eaten > 4 && prob(25))
 				var/list/real_mutation = list()
 				for(var/raw_list_item in src.mutation_list)
 					var/datum/ranching/mutation/mutation = new raw_list_item
@@ -347,24 +347,34 @@ GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
 				layed_egg.production_type = production_type
 
 			if(eggsFertile)
-				if(prob(100)) //25
+				if(prob(25) || layed_egg.possible_mutations.len) //25
 					START_PROCESSING(SSobj, layed_egg)
 			ready_to_lay = FALSE
 			stop_automated_movement = 0
 
 /obj/item/food/egg/process(delta_time)
-	amount_grown += rand(30,60) * delta_time // 1,2
+	amount_grown += rand(4,8) * delta_time
 	if(amount_grown >= 200)
 		pre_hatch()
 
 /obj/item/food/egg/proc/pre_hatch()
-	hatch(possible_mutations)
+	var/list/final_mutations = list()
+	var/failed_mutations = FALSE
+	for(var/datum/ranching/mutation/mutation in possible_mutations)
+		if(cycle_requirements(mutation))
+			final_mutations |= mutation
+		else
+			desc = "Huh it seems like nothing is coming out of this one, maybe it needed something else?"
+			failed_mutations = TRUE
+	hatch(final_mutations, failed_mutations)
 
-/obj/item/food/egg/proc/hatch(list/possible_mutations)
-	var/mob/living/simple_animal/chick/birthed = new /mob/living/simple_animal/chick(get_turf(src))
+/obj/item/food/egg/proc/hatch(list/possible_mutations, failed_mutations)
 	STOP_PROCESSING(SSobj, src)
+	if(failed_mutations)
+		return
+	var/mob/living/simple_animal/chick/birthed = new /mob/living/simple_animal/chick(get_turf(src))
 
-	if(possible_mutations.len && prob(100))
+	if(possible_mutations.len)
 		var/datum/ranching/mutation/chosen_mutation = pick(possible_mutations)
 		birthed.grown_type = chosen_mutation.chicken_type
 		if(chosen_mutation.nearby_items.len)
