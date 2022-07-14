@@ -190,7 +190,7 @@
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))
 			if(in_range_player.maxHealth - in_range_player.health >= supplier.player_health)
 				passed_check = TRUE
-		if(passed_check = FALSE)
+		if(passed_check == FALSE)
 			message_admins("FAILED HEALTH")
 			return FALSE
 	return TRUE
