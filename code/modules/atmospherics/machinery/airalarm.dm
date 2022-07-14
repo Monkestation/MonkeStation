@@ -599,9 +599,6 @@
 	. += mutable_appearance(icon, state)
 	. += emissive_appearance(icon, state, alpha = src.alpha)
 
-/obj/machinery/airalarm/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	SEND_SIGNAL(src, COMSIG_TURF_EXPOSE, air, exposed_temperature, exposed_volume)
-	..()
 
 /obj/machinery/airalarm/process()
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
