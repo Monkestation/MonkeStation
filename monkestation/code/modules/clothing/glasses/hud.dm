@@ -1,4 +1,3 @@
-
 /obj/item/clothing/glasses/hud/diagnostic/weld
 	name = "diagnostic welding HUD"
 	desc = "A diagnostic HUD fitted with a small shield for welding purposes. Useful for optimal cyborg repair."
