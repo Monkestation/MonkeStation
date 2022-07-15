@@ -84,7 +84,7 @@
 /atom/movable/screen/alert/status_effect/food/fire_burps
 	name = "Firey Burps"
 	desc = "Lets you burp out a line of fire"
-	icon_state = "resistance"
+	icon_state = "fire_burp"
 
 /datum/status_effect/food/fire_burps/on_apply()
 	if(ishuman(owner))
@@ -153,7 +153,7 @@
 /atom/movable/screen/alert/status_effect/food/sweaty
 	name = "Sweaty"
 	desc = "You're feeling rather sweaty"
-	icon_state = "food_sweat"
+	icon_state = "sweaty"
 
 /datum/status_effect/food/sweaty/wacky
 	id = "food_sweaty_wacky"
@@ -163,7 +163,7 @@
 /atom/movable/screen/alert/status_effect/food/sweaty_wacky
 	name = "Wacky Sweat"
 	desc = "You're feeling rather sweaty, and incredibly wacky?"
-	icon_state = "food_sweat"
+	icon_state = "sweaty"
 
 /datum/status_effect/food/sweaty/on_apply()
 	if(ishuman(owner))
@@ -301,7 +301,7 @@
 /atom/movable/screen/alert/status_effect/food/botanist
 	name = "Green Thumb"
 	desc = "Plants just seem to flourish in your hands."
-	icon_state = "food_botanist"
+	icon_state = "job_effect_blank"
 
 /datum/status_effect/food/botanist/on_apply()
 	if(ishuman(owner))
@@ -322,7 +322,7 @@
 /atom/movable/screen/alert/status_effect/food/miner
 	name = "Lucky Break"
 	desc = "With your luck ores just seem to fall out of rocks."
-	icon_state = "food_miner"
+	icon_state = "job_effect_blank"
 
 /datum/status_effect/food/miner/on_apply()
 	if(ishuman(owner))
@@ -343,7 +343,7 @@
 /atom/movable/screen/alert/status_effect/food/security
 	name = "Valid Buster"
 	desc = "You feel like arresting some fools"
-	icon_state = "food_security"
+	icon_state = "job_effect_blank"
 
 /datum/status_effect/food/security/on_apply()
 	return ..()
