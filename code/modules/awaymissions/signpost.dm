@@ -16,6 +16,9 @@
 	. = ..()
 	if(.)
 		return
+	INVOKE_ASYNC(src, .proc/perform_interaction, user)
+
+/obj/structure/signpost/proc/perform_interaction(mob/user)
 	if(alert(question,name,"Yes","No") == "Yes" && Adjacent(user))
 		var/turf/T = find_safe_turf(zlevels=zlevels)
 

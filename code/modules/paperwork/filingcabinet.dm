@@ -211,13 +211,7 @@ GLOBAL_LIST_EMPTY(employmentCabinets)
 	new /obj/item/paper/contract/employment(src, employee)
 
 /obj/structure/filingcabinet/employment/interact(mob/user)
-	if(!cooldown)
-		if(virgin)
-			fillCurrent()
-			virgin = 0
-		cooldown = 1
-		sleep(100) // prevents the devil from just instantly emptying the cabinet, ensuring an easy win.
-		cooldown = 0
-	else
-		to_chat(user, "<span class='warning'>[src] is jammed, give it a few seconds.</span>")
+	if(virgin)
+		virgin = 0
+		fillCurrent()
 	..()
