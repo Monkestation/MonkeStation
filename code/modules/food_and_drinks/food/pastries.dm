@@ -186,6 +186,7 @@
 	icon_state = "jelly_pink"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //Extra sprinkles to reward frosting.
 	decorated_icon = "jelly_homer"
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/donut/jelly/trumpet
 	name = "spaceman's jelly donut"
@@ -251,6 +252,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/laughter = 3)
 	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
 	is_decorated = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 //////////////////////////SLIME DONUTS/////////////////////////
 
