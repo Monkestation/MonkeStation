@@ -78051,7 +78051,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/secure/clown{
-	name = "toybox 4.0"
+	name = "Toybox 4.0"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)

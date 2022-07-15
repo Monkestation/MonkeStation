@@ -41333,7 +41333,7 @@
 /obj/item/grenade/chem_grenade/glitter/blue,
 /obj/item/grenade/chem_grenade/glitter/pink,
 /obj/structure/closet/crate/secure/clown{
-	name = "toybox 4.0"
+	name = "Toybox 4.0"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)

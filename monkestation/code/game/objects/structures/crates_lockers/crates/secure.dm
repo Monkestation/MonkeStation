@@ -23,7 +23,16 @@
 		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")
 
 /obj/structure/closet/crate/secure/clown/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1,)
-	. = ..()
 	if(prob(33))
 		visible_message("<span class='danger'>[src] spews out a ton of space lube!</span>")
 		new /obj/effect/particle_effect/foam(loc)
+	return ..()
+
+/obj/structure/closet/secure_closet/clown/PopulateContents()
+	..()
+	new	/obj/item/megaphone/clown(src)
+	new	/obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter(src)
+	new /obj/item/pneumatic_cannon/pie(src)
+	new /obj/item/food/pie/cream(src)
+	new /obj/item/storage/crayons(src)
+	new /obj/item/soundsynth(src)
