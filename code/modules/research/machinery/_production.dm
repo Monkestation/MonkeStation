@@ -62,6 +62,7 @@
 	update_viewer_statics()
 
 /obj/machinery/rnd/production/RefreshParts()
+	. = ..()
 	calculate_efficiency()
 	ui_update()
 

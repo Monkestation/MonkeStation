@@ -191,10 +191,11 @@
 	else
 		if(powered() && anchored)
 			icon_state = initial(icon_state)
-			machine_stat &= ~NOPOWER
+			set_machine_stat(machine_stat & ~NOPOWER)
 		else
 			icon_state = "[initial(icon_state)]-off"
-			machine_stat |= NOPOWER
+			set_machine_stat(machine_stat | NOPOWER)
+	return ..()
 
 //Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
 /obj/machinery/doppler_array/integrated
