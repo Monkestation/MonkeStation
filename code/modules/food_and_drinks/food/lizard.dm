@@ -153,7 +153,7 @@
 	tastes = list("fries" = 2, "bbq sauce" = 1, "barbecued meat" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
-	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/brain_pate
 	name = "eyeball-and-brain pate"
@@ -472,7 +472,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bone broth" = 1, "onion" = 1, "potato" = 1)
 	foodtypes = MEAT | VEGETABLES | NUTS
-	food_buffs = STATUS_EFFECT_STAM_REGEN_RESISTANCE
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/soup/meatball_noodles
 	name = "meatball noodle soup"

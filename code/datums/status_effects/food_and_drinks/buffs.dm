@@ -190,7 +190,7 @@
 /atom/movable/screen/alert/status_effect/food/health_increase_t1
 	name = "Small Health Increase"
 	desc = "You feel slightly heartier"
-	icon_state = "food_hp_small"
+	icon_state = "in_love"
 
 /datum/status_effect/food/health_increase/t2
 	id = "t1_health"
@@ -200,7 +200,7 @@
 /atom/movable/screen/alert/status_effect/food/health_increase_t2
 	name = "Small Health Increase"
 	desc = "You feel heartier"
-	icon_state = "food_hp_medium"
+	icon_state = "in_love"
 
 /datum/status_effect/food/health_increase/t3
 	id = "t1_health"
@@ -210,7 +210,7 @@
 /atom/movable/screen/alert/status_effect/food/health_increase_t3
 	name = "Large Health Increase"
 	desc = "You feel incredibly hearty"
-	icon_state = "food_hp_large"
+	icon_state = "in_love"
 
 /datum/status_effect/food/health_increase/on_apply()
 	if(ishuman(owner))
@@ -232,7 +232,7 @@
 /atom/movable/screen/alert/status_effect/food/belly_slide
 	name = "Slippery Belly"
 	desc = "You feel like you could slide really fast"
-	icon_state = "slippery_belly"
+	icon_state = "paralysis"
 
 /datum/status_effect/food/belly_slide/on_apply()
 	if(ishuman(owner))
@@ -256,7 +256,7 @@
 /atom/movable/screen/alert/status_effect/food/stam_regen_t1
 	name = "Small Stamina Regeneration Increase"
 	desc = "You feel slightly more energetic"
-	icon_state = "stam_regen_t1"
+	icon_state = "stam_t1"
 
 /datum/status_effect/food/stam_regen/t2
 	id = "t2_stam_regen"
@@ -266,7 +266,7 @@
 /atom/movable/screen/alert/status_effect/food/stam_regen_t2
 	name = "Moderate Stamina Regeneration Increase"
 	desc = "You feel more energetic"
-	icon_state = "stam_regen_t2"
+	icon_state = "stam_t2"
 
 /datum/status_effect/food/stam_regen/t3
 	id = "t2_stam_regen"
@@ -276,7 +276,7 @@
 /atom/movable/screen/alert/status_effect/food/stam_regen_t3
 	name = "Large Stamina Regeneration Increase"
 	desc = "You feel full of energy"
-	icon_state = "stam_regen_t3"
+	icon_state = "stam_t3"
 
 /datum/status_effect/food/stam_regen/tick()
 	if(ishuman(owner))

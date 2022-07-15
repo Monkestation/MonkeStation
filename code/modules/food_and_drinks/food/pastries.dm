@@ -560,7 +560,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
-	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/cookie/Initialize()
 	. = ..()
@@ -576,7 +576,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
-	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/poppypretzel
 	name = "poppy pretzel"
@@ -585,7 +585,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pretzel" = 1)
 	foodtypes = GRAIN | SUGAR
-	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/plumphelmetbiscuit
 	name = "plump helmet biscuit"
@@ -664,7 +664,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("biscuit" = 3, "chocolate" = 1)
 	foodtypes = GRAIN | JUNKFOOD
-	food_buffs STATUS_EFFECT_STAM_REGEN_LARGE
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 /obj/item/food/cookie/oatmeal
 	name = "oatmeal cookie"
