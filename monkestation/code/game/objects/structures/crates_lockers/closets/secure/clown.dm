@@ -1,6 +1,7 @@
 /obj/structure/closet/secure_closet/clown
 	name = "\proper clown locker"
 	icon = 'monkestation/icons/obj/closet.dmi'
+	max_integrity = 325 //About 14 hits with the fire axe
 	icon_state = "clown"
 
 /obj/structure/closet/secure_closet/clown/PopulateContents()
@@ -22,6 +23,6 @@
 							"<span class='notice'>You [locked ? null : "un"]lock [src].</span>")
 			update_icon()
 		else if(!silent)
-			to_chat(user, "<span class='warning'>Try as you might you just don't seem funny enough to unlock this.</span>")
+			to_chat(user, "<span class='warning'>Try as you might you just don't seem funny enough to [locked ? "un" : null]lock this.</span>")
 	else if(secure && broken)
 		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")

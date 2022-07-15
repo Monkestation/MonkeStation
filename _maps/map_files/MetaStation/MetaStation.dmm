@@ -45394,7 +45394,9 @@
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
-/obj/structure/closet/crate/wooden/toy,
+/obj/structure/closet/crate/secure/clown{
+	name = "toybox 4.0"
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "dis" = (

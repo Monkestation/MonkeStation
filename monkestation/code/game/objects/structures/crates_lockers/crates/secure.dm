@@ -5,6 +5,7 @@
 	close_sound = 'sound/items/bikehorn.ogg'
 	desc = "A very funny crate. Faint honking echoes from inside."
 	icon_state = "clown_crate"
+	icon_door = null
 	icon_door_override = FALSE
 
 /obj/structure/closet/crate/secure/clown/togglelock(mob/living/user, silent)
@@ -17,7 +18,7 @@
 							"<span class='notice'>You [locked ? null : "un"]lock [src].</span>")
 			update_icon()
 		else if(!silent)
-			to_chat(user, "<span class='warning'>Try as you might you just don't seem funny enough to unlock this.</span>")
+			to_chat(user, "<span class='warning'>Try as you might you just don't seem funny enough to [locked ? "un" : null]lock this.</span>")
 	else if(secure && broken)
 		to_chat(user, "<span class='warning'>\The [src] is broken!</span>")
 

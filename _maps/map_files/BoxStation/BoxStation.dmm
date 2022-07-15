@@ -11951,7 +11951,6 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/closet/crate/wooden/toy,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -11961,6 +11960,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/structure/closet/crate/secure/clown{
+	name = "toybox 4.0"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)

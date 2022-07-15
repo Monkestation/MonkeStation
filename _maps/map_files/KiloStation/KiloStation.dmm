@@ -78034,7 +78034,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "cpk" = (
-/obj/structure/closet/crate/wooden/toy,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -78050,6 +78049,9 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/structure/closet/crate/secure/clown{
+	name = "toybox 4.0"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
