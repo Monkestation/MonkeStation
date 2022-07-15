@@ -68,22 +68,27 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	icon_screen = "invaders"
 	clockwork = TRUE //it'd look weird
 	broken_overlay_emissive = TRUE
+	light_color = LIGHT_COLOR_GREEN
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_SET_MACHINE // we don't need to be literate to play video games fam
 	var/list/prize_override
 	var/prizeselect = /obj/item/coin/arcade_token
-	light_color = LIGHT_COLOR_GREEN
+
 
 /obj/machinery/computer/arcade/proc/Reset()
 	return
 
 /obj/machinery/computer/arcade/Initialize(mapload)
+	. = ..()
 	// If it's a generic arcade machine, pick a random arcade
-	// circuit board for it
+	// circuit board for it and make the new machine
 	if(!circuit)
 		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 49,
 							/obj/item/circuitboard/computer/arcade/orion_trail = 49,
 							/obj/item/circuitboard/computer/arcade/amputation = 2)
-		circuit = pickweight(gameodds)
-	. = ..()
+		var/thegame = pickweight(gameodds)
+		var/obj/item/circuitboard/CB = new thegame()
+		new CB.build_path(loc, CB)
+		return INITIALIZE_HINT_QDEL
 	Reset()
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)

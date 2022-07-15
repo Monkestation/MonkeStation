@@ -9,6 +9,7 @@
 	desc = "An enclosed machine used to stabilize and heal patients."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
