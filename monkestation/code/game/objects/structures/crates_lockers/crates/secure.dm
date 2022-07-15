@@ -28,7 +28,7 @@
 		new /obj/effect/particle_effect/foam(loc)
 	return ..()
 
-/obj/structure/closet/secure_closet/clown/PopulateContents()
+/obj/structure/closet/crate/secure/clown/PopulateContents()
 	..()
 	new	/obj/item/megaphone/clown(src)
 	new	/obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter(src)
