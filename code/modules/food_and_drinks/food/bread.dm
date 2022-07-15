@@ -47,6 +47,7 @@
 	icon_state = "breadslice"
 	foodtypes = GRAIN
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	decomp_type = /obj/item/food/breadslice/moldy
 
 /obj/item/food/breadslice/plain/Initialize()
 	. = ..()
@@ -59,6 +60,10 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("decaying fungus" = 1)
 	foodtypes = GROSS
+	preserved_food = FALSE
+	ant_attracting = TRUE
+	decomp_type = null
+	decomposition_time = 30 SECONDS
 
 /obj/item/food/bread/meat
 	name = "meatbread loaf"
