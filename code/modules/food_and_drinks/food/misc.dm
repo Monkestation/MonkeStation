@@ -26,6 +26,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cheese" = 4, "royalty" = 1)
 	foodtypes = DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/cheesewedge
 	name = "cheese wedge"
@@ -42,6 +43,7 @@
 	tastes = list("watermelon" = 1)
 	foodtypes = FRUIT
 	juice_results = list(/datum/reagent/consumable/watermelonjuice = 5)
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/candy_corn
 	name = "candy corn"
@@ -66,6 +68,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/cocoa = 2)
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/hugemushroomslice
 	name = "huge mushroom slice"
@@ -74,6 +77,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("mushroom" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/popcorn
 	name = "popcorn"
@@ -93,6 +97,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("potato" = 1)
 	foodtypes = VEGETABLES | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/fries
 	name = "space fries"
@@ -102,6 +107,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("fries" = 3, "salt" = 1)
 	foodtypes = VEGETABLES | GRAIN | FRIED
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 
 /obj/item/food/tatortot
@@ -111,6 +117,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("potato" = 3, "valids" = 1)
 	foodtypes = FRIED | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 
 /obj/item/food/soydope
@@ -121,6 +128,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("soy" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/cheesyfries
 	name = "cheesy fries"
@@ -130,6 +138,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	tastes = list("fries" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | GRAIN
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/cheesyfries/Initialize()
 	. = ..()
@@ -158,6 +167,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/medicine/oculine = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("carrots" = 3, "salt" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/carrotfries/Initialize()
 	. = ..()
@@ -171,6 +181,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/caramel = 5)
 	tastes = list("apple" = 2, "caramel" = 3)
 	foodtypes = JUNKFOOD | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/mint
 	name = "mint"
@@ -188,6 +199,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("egg" = 1)
 	foodtypes = MEAT | GRAIN
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/spidereggs
 	name = "spider eggs"
@@ -196,6 +208,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin = 2)
 	tastes = list("cobwebs" = 1)
 	foodtypes = MEAT | TOXIC
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/spiderling
 	name = "spiderling"
@@ -204,6 +217,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 4)
 	tastes = list("cobwebs" = 1, "guts" = 2)
 	foodtypes = MEAT | TOXIC
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/spiderlollipop
 	name = "spider lollipop"
@@ -212,6 +226,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin = 1, /datum/reagent/iron = 10, /datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/omnizine = 2) //lollipop, but vitamins = toxins
 	tastes = list("cobwebs" = 1, "sugar" = 2)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/chococoin
 	name = "chocolate coin"
@@ -220,6 +235,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/cocoa = 1)
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/fudgedice
 	name = "fudge dice"
@@ -229,6 +245,7 @@
 	trash_type = /obj/item/dice/fudge
 	tastes = list("fudge" = 1)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/chocoorange
 	name = "chocolate orange"
@@ -237,6 +254,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 1)
 	tastes = list("chocolate" = 3, "oranges" = 1)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/eggplantparm
 	name = "eggplant parmigiana"
@@ -246,6 +264,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("eggplant" = 3, "cheese" = 1)
 	foodtypes = VEGETABLES | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/tortilla
 	name = "tortilla"
@@ -263,6 +282,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("torilla" = 2, "meat" = 3)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/cheesyburrito
 	name = "cheesy burrito"
@@ -271,6 +291,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("torilla" = 2, "meat" = 3, "cheese" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/carneburrito
 	name = "carne asada burrito"
@@ -279,6 +300,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("torilla" = 2, "meat" = 4)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/fuegoburrito
 	name = "fuego plasma burrito"
@@ -287,6 +309,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_FIREBURPS
 
 /obj/item/food/yakiimo
 	name = "yaki imo"
@@ -297,6 +320,7 @@
 
 	tastes = list("sweet potato" = 1)
 	foodtypes = GRAIN | VEGETABLES | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/roastparsnip
 	name = "roast parsnip"
@@ -306,6 +330,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("parsnip" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/melonfruitbowl
 	name = "melon fruit bowl"
@@ -315,6 +340,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("melon" = 1)
 	foodtypes = FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/nachos
 	name = "nachos"
@@ -323,6 +349,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("nachos" = 1)
 	foodtypes = VEGETABLES | FRIED
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/cheesynachos
 	name = "cheesy nachos"
@@ -331,6 +358,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("nachos" = 2, "cheese" = 1)
 	foodtypes = VEGETABLES | FRIED | DAIRY
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/cubannachos
 	name = "Cuban nachos"
@@ -339,6 +367,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/capsaicin = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("nachos" = 2, "hot pepper" = 1)
 	foodtypes = VEGETABLES | FRIED | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_FIREBURPS
 
 /obj/item/food/melonkeg
 	name = "melon keg"
@@ -349,6 +378,7 @@
 	bite_consumption = 5
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
 	foodtypes = FRUIT | ALCOHOL
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/honeybar
 	name = "honey nut bar"
@@ -357,6 +387,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/honey = 5)
 	tastes = list("oats" = 3, "nuts" = 2, "honey" = 1)
 	foodtypes = FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 /obj/item/food/stuffedlegion
 	name = "stuffed legion"
@@ -365,6 +396,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/medicine/tricordrazine = 10)
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 
 /obj/item/food/powercrepe
@@ -383,6 +415,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE //probably want a unique effect for this bad boy
 
 /obj/item/food/lollipop
 	name = "lollipop"
@@ -461,6 +494,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
 	foodtypes = MEAT | DAIRY | GRAIN | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/taco/plain
 	desc = "A traditional taco with meat and cheese, minus the rabbit food."
@@ -476,6 +510,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/sodiumchloride = 5)
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
 	foodtypes = GRAIN | FRUIT | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/butter
 	name = "stick of butter"
@@ -518,6 +553,7 @@
 	gender = PLURAL
 	tastes = list("batter" = 3, "onion" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/pineappleslice
 	name = "pineapple slice"
@@ -526,6 +562,7 @@
 	juice_results = list(/datum/reagent/consumable/pineapplejuice = 3)
 	tastes = list("pineapple" = 1)
 	foodtypes = FRUIT | PINEAPPLE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/tinychocolate
 	name = "chocolate"
@@ -534,6 +571,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/cocoa = 1)
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/canned
 	name = "Canned Air"
@@ -645,3 +683,4 @@
 	food_reagents = list(/datum/reagent/consumable/beefbroth = 50)
 	tastes = list("disgust" = 7, "tin" = 1)
 	foodtypes = MEAT | GROSS | JUNKFOOD
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
