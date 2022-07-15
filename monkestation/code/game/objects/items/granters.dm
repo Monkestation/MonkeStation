@@ -41,9 +41,10 @@
 
 /obj/item/book/granter/spell/blinkdagger/recoil(mob/user)
 	..()
-	to_chat(user,"<span class='warning'>The [src] teleports behind you, oh no.</span>")
+	to_chat(user,"<span class='warning'>The [src.name] teleports behind you, oh no!</span>")
+	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
 	if (ishuman(user) == TRUE)
 		var/mob/living/carbon/human/usrt = user
 		usrt.adjustBruteLoss(60)
 	qdel(src)
-	to_chat(user,"<span class='warning'>The [src] is gone.</span>")
+	to_chat(user,"<span class='warning'>The [src.name] is gone.</span>")
