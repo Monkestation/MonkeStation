@@ -195,7 +195,6 @@ SUBSYSTEM_DEF(ticker)
 					//Setup gamemode maps 30 seconds before roundstart.
 					INVOKE_ASYNC(src, .proc/try_pre_setup, CALLBACK(src, .proc/pass_setup), CALLBACK(src, .proc/fail_setup))
 				return
-			pre_setup_completed = TRUE
 
 			if(timeLeft <= 0)
 				//monkestation edit begin
