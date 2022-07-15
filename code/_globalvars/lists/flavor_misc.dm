@@ -119,7 +119,6 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"Boy-malf",
 	"Yes-man",
 	"Boxfort",
-	"Boxfort-crash",
 	"Hotdog",
 	"Terminal",
 	)))
