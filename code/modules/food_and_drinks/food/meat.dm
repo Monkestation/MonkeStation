@@ -318,7 +318,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
-	food_buffs = STATUS_EFFECT_FOOD_HEALTH_SWEATY
+	food_buffs = STATUS_EFFECT_FOOD_SWEATY
 
 /obj/item/food/monkeycube/proc/Expand()
 	var/mob/spammer = get_mob_by_ckey(fingerprintslast)
