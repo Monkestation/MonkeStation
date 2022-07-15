@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(adjacent_air)
 		fire(mc_check = FALSE)
 	return ..()
 
-/datum/controller/subsystem/adjacent_air/fire(resumed = FALSE, mc_check = TRUE)
+/datum/controller/subsystem/adjacent_air/fire(resumed = FALSE)
 	if(SSair.thread_running())
 		pause()
 		return
@@ -33,11 +33,8 @@ SUBSYSTEM_DEF(adjacent_air)
 
 		terf.ImmediateDisableAdjacency(arg)
 
-		if(mc_check)
-			if(MC_TICK_CHECK)
-				return
-		else
-			CHECK_TICK
+		if(MC_TICK_CHECK)
+			return
 
 	var/list/queue = src.queue
 
@@ -47,8 +44,5 @@ SUBSYSTEM_DEF(adjacent_air)
 
 		currT.ImmediateCalculateAdjacentTurfs()
 
-		if(mc_check)
-			if(MC_TICK_CHECK)
-				break
-		else
-			CHECK_TICK
+		if(MC_TICK_CHECK)
+			break
