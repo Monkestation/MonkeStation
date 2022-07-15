@@ -185,7 +185,7 @@
 	for(var/direction in GLOB.cardinals)
 		test_scanner = locate(/obj/machinery/dna_scannernew, get_step(src, direction))
 		if(!isnull(test_scanner))
-			if(test_scanner.is_operational())
+			if(test_scanner.is_operational)
 				connect_scanner(test_scanner)
 				return
 			else
@@ -1298,7 +1298,7 @@
 			var/len = length_char(scanner_occupant.dna.uni_identity)
 			rad_pulse_timer = world.time + (radduration*10)
 			rad_pulse_index = WRAP(text2num(params["index"]), 1, len+1)
-			START_PROCESSING(SSobj, src)
+			begin_processing()
 			return
 
 		// Cancels the delayed action - In this context it is not the radiation
@@ -1566,7 +1566,7 @@
 	if(!connected_scanner)
 		return FALSE
 
-	return (connected_scanner && connected_scanner.is_operational() && !connected_scanner.wires.is_cut(WIRE_LIMIT))
+	return (connected_scanner && connected_scanner.is_operational && !connected_scanner.wires.is_cut(WIRE_LIMIT))
 
 /**
   * Checks if there is a valid DNA Scanner occupant for genetic modification
@@ -1636,7 +1636,7 @@
 	// Imagine it being like a microwave stopping when you open the door.
 	rad_pulse_index = 0
 	rad_pulse_timer = 0
-	STOP_PROCESSING(SSobj, src)
+	end_processing()
 	scanner_occupant = null
 
 /**
@@ -2015,7 +2015,7 @@
 	// If we can't, abort the procedure.
 	if(!can_modify_occupant())
 		rad_pulse_index = 0
-		STOP_PROCESSING(SSobj, src)
+		end_processing()
 		return
 
 	var/len = length_char(scanner_occupant.dna.uni_identity)
@@ -2027,7 +2027,7 @@
 	scanner_occupant.updateappearance(mutations_overlay_update=1)
 
 	rad_pulse_index = 0
-	STOP_PROCESSING(SSobj, src)
+	end_processing()
 	return
 
 /**

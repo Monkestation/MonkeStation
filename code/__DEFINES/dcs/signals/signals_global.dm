@@ -6,8 +6,15 @@
 // These are signals which can be listened to by any component on any parent
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 
+/// called after a successful area creation by a mob: (area/created_area, area/old_area, mob/creator)
+#define COMSIG_AREA_CREATED "!mob_created_area"
+
 ///from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
 #define COMSIG_GLOB_NEW_Z "!new_z"
+
+/// sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)
+#define COMSIG_GLOB_EXPANDED_WORLD_BOUNDS "!expanded_world_bounds"
+
 /// called after a successful var edit somewhere in the world: (list/args)
 #define COMSIG_GLOB_VAR_EDIT "!var_edit"
 /// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
@@ -39,6 +46,11 @@
 #define COMSIG_GLOB_NEW_ITEM "!new_item"
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
+
+/// An alarm of some form was sent (datum/alarm_handler/source, alarm_type, area/source_area)
+#define COMSIG_ALARM_FIRE(alarm_type) "!alarm_fire [alarm_type]"
+/// An alarm of some form was cleared (datum/alarm_handler/source, alarm_type, area/source_area)
+#define COMSIG_ALARM_CLEAR(alarm_type) "!alarm_clear [alarm_type]"
 
 ///global mob logged in signal! (/mob/added_player)
 #define COMSIG_GLOB_MOB_LOGGED_IN "!mob_logged_in"

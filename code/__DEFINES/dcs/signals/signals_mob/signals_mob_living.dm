@@ -16,6 +16,10 @@
 /// sent from borg mobs to itself, for tools to catch an upcoming destroy() due to safe decon (rather than detonation)
 #define COMSIG_BORG_SAFE_DECONSTRUCT "borg_safe_decon"
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"
+
+///from base of mob/living/death(): (gibbed)
+#define COMSIG_LIVING_DEATH "living_death"
+
 /// From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
 /// from base of /mob/living/can_track()

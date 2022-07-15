@@ -86,11 +86,12 @@
 
 
 /obj/machinery/door/firedoor/power_change()
+	. = ..()
 	if(powered(power_channel))
-		machine_stat &= ~NOPOWER
+		set_machine_stat(machine_stat & ~NOPOWER)
 		INVOKE_ASYNC(src, .proc/latetoggle)
 	else
-		machine_stat |= NOPOWER
+		set_machine_stat(machine_stat | NOPOWER)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
@@ -103,7 +104,7 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	user.visible_message("[user] bangs on \the [src].",
-						 "You bang on \the [src].")
+							"You bang on \the [src].")
 	playsound(loc, 'sound/effects/glassknock.ogg', 10, FALSE, frequency = 32000)
 
 /obj/machinery/door/firedoor/attackby(obj/item/C, mob/user, params)
@@ -197,7 +198,7 @@
 /obj/machinery/door/firedoor/try_to_crowbar(obj/item/I, mob/user)
 	if(welded || operating)
 		return
-	
+
 	if(density)
 		if(!(machine_stat & NOPOWER))
 			LAZYADD(access_log, "MOTOR_ERR:|MOTOR CONTROLLER REPORTED BACKDRIVE|T_OFFSET:[DisplayTimeText(world.time - SSticker.round_start_time)]")

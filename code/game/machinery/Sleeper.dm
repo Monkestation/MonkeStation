@@ -9,6 +9,7 @@
 	desc = "An enclosed machine used to stabilize and heal patients."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
@@ -28,13 +29,18 @@
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
 	payment_department = ACCOUNT_MED
 	fair_market_price = 5
+
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
+	if(mapload)
+		LAZYREMOVE(component_parts, circuit)
+		QDEL_NULL(circuit)
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
 	reset_chem_buttons()
 
 /obj/machinery/sleeper/RefreshParts()
+	. = ..()
 	var/E
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		E += B.rating
@@ -50,11 +56,9 @@
 	reset_chem_buttons()
 	ui_update()
 
-/obj/machinery/sleeper/update_icon()
-	if(state_open)
-		icon_state = "[initial(icon_state)]-open"
-	else
-		icon_state = initial(icon_state)
+/obj/machinery/sleeper/update_icon_state()
+	icon_state = "[base_icon_state][state_open ? "-open" : null]"
+	return ..()
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
 	visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
@@ -82,13 +86,13 @@
 		..(user)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
-			to_chat(occupant, "[enter_message]")
+			to_chat(mob_occupant, "[enter_message]")
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(is_operational() && occupant)
+	if(is_operational && occupant)
 		open_machine()
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
@@ -224,7 +228,7 @@
 			. = TRUE
 		if("inject")
 			var/chem = text2path(params["chem"])
-			if(!is_operational() || !mob_occupant || isnull(chem))
+			if(!is_operational || !mob_occupant || isnull(chem))
 				return
 			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return

@@ -196,7 +196,7 @@
 				if(!(machine_stat & BROKEN))
 					return
 				to_chat(user, "<span class='notice'>You repair [src].</span>")
-				machine_stat &= ~BROKEN
+				set_machine_stat(machine_stat & ~BROKEN)
 				obj_integrity = max_integrity
 				update_icon()
 		else
@@ -207,7 +207,7 @@
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 			update_icon()
 
 /obj/machinery/pdapainter/attack_hand(mob/user)
