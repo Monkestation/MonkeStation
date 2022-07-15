@@ -3,7 +3,7 @@
 	icon = 'monkestation/icons/obj/crates.dmi'
 	open_sound = 'sound/items/bikehorn.ogg'
 	close_sound = 'sound/items/bikehorn.ogg'
-	desc = "A very funny crate. Faint honking echoes from inside."
+	desc = "The clown's custom-made, bananium lined toy storage apparatus, a miracle of Clown technology and stolen hardware from other departments designed to insulate its contents from hazardous low humor environments."
 	icon_state = "clown_crate"
 	icon_door = null
 	icon_door_override = FALSE
