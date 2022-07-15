@@ -9,15 +9,16 @@
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 	//Is there a trash bag in the cart?
-	var/obj/item/storage/bag/trash/mybag = null
+	var/obj/item/storage/bag/trash/mybag
 	//Is there a mop in the cart?
-	var/obj/item/mop/mymop = null
+	var/obj/item/mop/mymop
 	//Is there a broom in the cart?
-	var/obj/item/pushbroom/mybroom = null
+	var/obj/item/pushbroom/mybroom
 	//Is there cleaner spray in the cart?
-	var/obj/item/reagent_containers/spray/cleaner/myspray = null
+	var/obj/item/reagent_containers/spray/cleaner/myspray
 	//Is there a light replacer in the cart?
-	var/obj/item/lightreplacer/myreplacer = null
+	var/obj/item/lightreplacer/myreplacer
+
 	//Is there signs in the cart?
 	var/signs = 0
 	//The max amount of signs the cart can store
@@ -57,16 +58,16 @@
 		mop_insert_double_click = TRUE
 		update_icon()
 		return FALSE
-	your_mop.reagents.remove_any(your_mop.reagents.total_volume*0.5)
-	reagents.trans_to(your_mop, your_mop.reagents.maximum_volume, transfered_by = user)
-	to_chat(user, span_notice("You wet [your_mop] in [src]."))
-	playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
-	mop_insert_double_click = FALSE
+	else
+		reagents.trans_to(your_mop, your_mop.mopcap, transfered_by = user)
+		to_chat(user, span_notice("You wet [your_mop] in [src]."))
+		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
+		mop_insert_double_click = FALSE
 	update_icon()
 	return TRUE
 
 /obj/structure/janitorialcart/proc/dry_mop(obj/item/mop/your_mop, mob/user)
-	if(your_mop.reagents.total_volume <= 20)
+	if(your_mop.reagents.total_volume <= 1)
 		to_chat(user, span_warning("[your_mop] is as dry as a wet mop can get!"))
 		return FALSE
 	if(reagents.total_volume >= reagents.maximum_volume)
@@ -161,6 +162,7 @@
 		if(mymop)
 			to_chat(user, fail_msg)
 			return
+
 		var/obj/item/mop/your_mop = Item
 		if(your_mop.reagents.total_volume <= 20 && mop_insert_double_click == TRUE)
 			mymop = Item
@@ -168,12 +170,15 @@
 			if(!put_in_cart(Item, user))
 				mymop = null
 			return
-		if(your_mop.reagents.total_volume <= your_mop.reagents.maximum_volume)
-			if(wet_mop(your_mop, user))
-				return
+
 		if(your_mop.reagents.total_volume >= 20 && mop_insert_double_click == FALSE)
 			if(dry_mop(your_mop, user))
 				return
+
+		if(your_mop.reagents.total_volume <= your_mop.reagents.maximum_volume)
+			if(wet_mop(your_mop, user))
+				return
+
 		return
 
 	else if(istype(Item, /obj/item/pushbroom))
