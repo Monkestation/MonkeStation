@@ -26,11 +26,6 @@
 	//Allows for mop to insert into cart after drying
 	var/mop_insert_double_click = FALSE
 
-/obj/structure/janitorialcart/Destroy()
-	spill() //Spill out some contents
-	drop_cart_contents() //Drop the rest at location
-	new /obj/structure/janitorialcart/broken(get_turf(src))
-	return ..()
 
 /obj/structure/janitorialcart/Initialize(mapload)
 	. = ..()
@@ -38,14 +33,25 @@
 		return
 	create_reagents(400, OPENCONTAINER) //Let this be better than a normal bucket for a better early game
 
+/obj/structure/janitorialcart/Destroy()
+	if(broken)
+		new /obj/item/stack/sheet/plastic(get_turf(src), 50)
+		return ..()
+	spill() //Spill out some contents
+	drop_cart_contents() //Drop the rest at location
+	cart_break_sounds()
+
+	new /obj/structure/janitorialcart/broken(get_turf(src))
+	return ..()
+
 /obj/structure/janitorialcart/examine(mob/user)
 	. = ..()
 	if(broken)
 		return
 	. += span_info("<b>Click</b> with a wet mop to wring out the fluids into the mop bucket.")
 	if(reagents.total_volume > 1)
-		. += span_info("<b>Click</b> with a mop to wet it.")
 		. += span_info("There is currently [reagents.total_volume] units in [src].")
+		. += span_info("<b>Click</b> with a mop to wet it.")
 		. += span_info("<b>Crowbar</b> it to empty it onto [get_turf(src)].")
 	if(!mymop)
 		. += span_info("<b>Click</b> with a dry mop to store it in [src]")
@@ -124,6 +130,15 @@
 
 	update_icon()
 
+/obj/structure/janitorialcart/proc/cart_break_sounds()
+	if(!broken)
+		if(prob(1))
+			playsound(src, 'sound/misc/fart1.ogg', 100, 1)
+		if(prob(1))
+			playsound(src, 'sound/misc/sadtrombone.ogg', 100, 1)
+
+		playsound(src, 'sound/effects/bodyfall3.ogg', 100, 1)
+
 //Explosion spills a bit of everything out of the cart
 /obj/structure/janitorialcart/ex_act(severity)
 	if(broken)
@@ -157,7 +172,7 @@
 /obj/structure/janitorialcart/attackby(obj/item/Item, mob/user, params)
 	var/fail_msg = span_warning("There is already a [Item] in [src]!")
 	if(broken)
-		return
+		return ..()
 	if(istype(Item, /obj/item/mop))
 		if(mymop)
 			to_chat(user, fail_msg)
@@ -424,6 +439,7 @@
 
 	icon_state = "cart"
 	update_icon()
+
 
 /// Broken Cart
 /obj/structure/janitorialcart/broken
