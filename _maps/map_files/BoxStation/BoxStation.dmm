@@ -21359,7 +21359,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bmV" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/smartfridge/chemistry,
 /turf/closed/wall,
 /area/medical/apothecary)
