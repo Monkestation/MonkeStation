@@ -151,5 +151,5 @@
 	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
 		if(istype(slot_item, /obj/item/clothing/shoes/clown_shoes))
 			Slip(source, AM)
-		else
+		else if(holder?.mind.assigned_role == "Clown")
 			to_chat(holder,span_warning("[parent] failed to slip anyone. Perhaps I shouldn't have abandoned my legacy..."))
