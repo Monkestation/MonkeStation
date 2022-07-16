@@ -13,9 +13,6 @@
 /obj/effect/proc_holder/spell/targeted/smoke/living_lube
 	action_background_icon_state = "bg_hive"
 
-/obj/effect/proc_holder/spell/targeted/smoke/living_lube
-	action_background_icon_state = "bg_hive"
-
 /obj/effect/proc_holder/spell/targeted/living_lube_displace
 	name = "Displacement"
 	desc = "Force someone through the clown dimension and launch them out somewhere else on the station."
