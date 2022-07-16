@@ -43,10 +43,10 @@
 		id_tag = assign_uid_vents()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
-	var/area/A = get_area(src)
-	if (A)
-		A.air_vent_names -= id_tag
-		A.air_vent_info -= id_tag
+	var/area/vent_area = get_area(src)
+	if(vent_area)
+		vent_area.air_vent_info -= id_tag
+		GLOB.air_vent_names -= id_tag
 	if(aac)
 		aac.vents -= src
 
@@ -66,7 +66,7 @@
 		icon_state = "vent_welded"
 		return
 
-	if(!nodes[1] || !on || !is_operational())
+	if(!nodes[1] || !on || !is_operational)
 		if(icon_state == "vent_welded")
 			icon_state = "vent_off"
 			return
@@ -93,7 +93,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/process_atmos()
 	..()
-	if(!is_operational() || !isopenturf(loc))
+	if(!is_operational || !isopenturf(loc))
 		return
 	if(!nodes[1])
 		on = FALSE
@@ -155,7 +155,7 @@
 		"device" = "VP",
 		"timestamp" = world.time,
 		"power" = on,
-		"direction" = pump_direction ? "release" : "siphon",
+		"direction" = pump_direction,
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
@@ -163,14 +163,23 @@
 		"has_aac" = aac != null
 	))
 
-	var/area/A = get_area(src)
-	if(!A.air_vent_names[id_tag])
-		name = "\improper [A.name] vent pump #[A.air_vent_names.len + 1]"
-		A.air_vent_names[id_tag] = name
-	A.air_vent_info[id_tag] = signal.data
+	var/area/vent_area = get_area(src)
+	if(!GLOB.air_vent_names[id_tag])
+		// If we do not have a name, assign one.
+		// Produces names like "Port Quarter Solar vent pump hZ2l6".
+		update_name()
+		GLOB.air_vent_names[id_tag] = name
+
+	vent_area.air_vent_info[id_tag] = signal.data
 
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
+/obj/machinery/atmospherics/components/unary/vent_pump/update_name()
+	. = ..()
+	if(override_naming)
+		return
+	var/area/vent_area = get_area(src)
+	name = "\proper [vent_area.name] [name] [id_tag]"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/atmosinit()
 	//some vents work his own spesial way
@@ -182,7 +191,7 @@
 	..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/receive_signal(datum/signal/signal)
-	if(!is_operational())
+	if(!is_operational)
 		return
 	// log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/components/unary/vent_pump/receive_signal([signal.debug_print()])")
 	if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
@@ -270,7 +279,7 @@
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
-	if(. && on && is_operational())
+	if(. && on && is_operational)
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
 		return FALSE
 

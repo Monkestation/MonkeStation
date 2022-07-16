@@ -110,7 +110,7 @@
 		S.glass_type = /obj/item/stack/sheet/glass
 		S.tracker = 1
 		S.update_icon_state()
-		S.setAnchored(TRUE)
+		S.set_anchored(TRUE)
 	S.forceMove(src)
 
 /obj/machinery/power/tracker/crowbar_act(mob/user, obj/item/I)
@@ -125,7 +125,7 @@
 /obj/machinery/power/tracker/obj_break(damage_flag)
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 		unset_control()
 
 /obj/machinery/power/tracker/deconstruct(disassembled = TRUE)

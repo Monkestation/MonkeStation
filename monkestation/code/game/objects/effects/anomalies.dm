@@ -175,7 +175,7 @@
 
 	current_location.atmos_spawn_air("water_vapor=10;TEMP=180")
 
-	for(var/searched_turfs in circleviewturfs(src, MAX_RANGE))
+	for(var/searched_turfs in circle_view_turfs(src, MAX_RANGE))
 		if(is_type_in_typecache(searched_turfs, blacklisted_turfs))
 			continue
 		else
@@ -365,6 +365,7 @@
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/french = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/british = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/wizard = 5,
+		/mob/living/simple_animal/pet/dog/bullterrier/walter/smallter = 5,
 		/mob/living/simple_animal/pet/dog/bullterrier/walter/sus = 1, //:(
 		)
 

@@ -20,7 +20,7 @@
 		terminal = null
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
-	if(!is_operational() || failure_timer)
+	if(!is_operational || failure_timer)
 		return
 	operating = !operating
 	add_hiddenprint(user)
@@ -171,9 +171,9 @@
 
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted && !failure_timer)
-		area.power_light = (lighting > 1)
-		area.power_equip = (equipment > 1)
-		area.power_environ = (environ > 1)
+		area.power_light = (lighting > APC_CHANNEL_AUTO_OFF)
+		area.power_equip = (equipment > APC_CHANNEL_AUTO_OFF)
+		area.power_environ = (environ > APC_CHANNEL_AUTO_OFF)
 	else
 		area.power_light = FALSE
 		area.power_equip = FALSE
