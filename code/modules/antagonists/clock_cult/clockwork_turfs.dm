@@ -292,16 +292,18 @@
 		resistance_flags |= INDESTRUCTIBLE
 
 /obj/structure/lattice/clockwork/ratvar_act()
-	if(ISODD(x+y))
-//		icon = 'icons/obj/smooth_structures/lattice_clockwork_large.dmi' MONKESTATION CHANGE
-		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/lattice_clockwork_large.dmi'
-		pixel_x = -9
-		pixel_y = -9
-	else
+	var/area/lattice_area= src.loc //MONKESTATION CHANGE
+	if(istype(lattice_area, /area/reebe/city_of_cogs) || istype(lattice_area, /area) ) //MONKESTATION CHANGE
 //		icon = 'icons/obj/smooth_structures/lattice_clockwork.dmi' MONKESTATION CHANGE
 		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/lattice_clockwork.dmi'
 		pixel_x = 0
 		pixel_y = 0
+	else
+//		icon = 'icons/obj/smooth_structures/lattice_clockwork_large.dmi' MONKESTATION CHANGE
+		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/lattice_clockwork_large.dmi'
+		pixel_x = -9
+		pixel_y = -9
+
 	return TRUE
 
 //=================================================
@@ -332,16 +334,17 @@
 		resistance_flags |= INDESTRUCTIBLE
 
 /obj/structure/lattice/catwalk/clockwork/ratvar_act()
-	if(ISODD(x+y))
-//		icon = 'icons/obj/smooth_structures/catwalk_clockwork_large.dmi' //MONKESTATION CHANGE
-		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/catwalk_clockwork_large.dmi'
-		pixel_x = -9
-		pixel_y = -9
-	else
+	var/area/lattice_area= src.loc //MONKESTATION CHANGE
+	if(istype(lattice_area, /area/reebe/city_of_cogs) || !istype(lattice_area, /area/reebe) ) //MONKESTATION CHANGE
 //		icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi' //MONKESTATION CHANGE
 		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/catwalk_clockwork.dmi'
 		pixel_x = 0
 		pixel_y = 0
+	else
+//		icon = 'icons/obj/smooth_structures/catwalk_clockwork_large.dmi' //MONKESTATION CHANGE
+		icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/catwalk_clockwork_large.dmi'
+		pixel_x = -9
+		pixel_y = -9
 	return TRUE
 
 //=================================================
