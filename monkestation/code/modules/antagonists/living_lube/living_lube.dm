@@ -37,9 +37,9 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/items/bikehorn.ogg',100,0, use_reverb = FALSE)
 	to_chat(owner, "<span class='boldannounce'>You are the Living Lube!\nYou are an agent of chaos. Annoy the station as much as possible\n\nYou don't want to hurt anyone, but you must be as much of an annoyance as possible.\n\nHonk!</span>")
 	owner.announce_objectives()
-	var/decided_name = "Living Lube"
+	var/decided_name = "Ghost of Honk's Past"
 	if(prob(1)) // Henk :)
-		decided_name = "Pee Pee Peter"
+		decided_name = "Ghost of Pee Pee Peter"
 	lube.name = decided_name
 	lube.real_name = decided_name
 
