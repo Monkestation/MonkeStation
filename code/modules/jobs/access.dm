@@ -2,7 +2,7 @@
 //returns TRUE if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
-	if(src.check_access(null))
+	if(check_access(null))
 		return TRUE
 	if(issilicon(M))
 		var/mob/living/silicon/S = M

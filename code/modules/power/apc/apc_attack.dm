@@ -229,16 +229,33 @@
 	if((machine_stat & MAINT) && !opened) //no board; no interface
 		return
 
-/obj/machinery/power/apc/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		set_broken()
 
+// Damage Acts
 /obj/machinery/power/apc/eminence_act(mob/living/simple_animal/eminence/eminence)
 	. = ..()
 	ui_interact(eminence)
 
 /obj/machinery/power/apc/blob_act(obj/structure/blob/B)
 	set_broken()
+
+/obj/machinery/power/apc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE)
+	// APC being at 0 integrity doesnt delete it outright. Combined with take_damage this might cause runtimes.
+	if(machine_stat & BROKEN && obj_integrity <= 0)
+		if(sound_effect)
+			play_attack_sound(damage_amount, damage_type, damage_flag)
+		return
+	return ..()
+
+/obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+	if(machine_stat & BROKEN)
+		return damage_amount
+	. = ..()
+
+/obj/machinery/power/apc/obj_break(damage_flag)
+	. = ..()
+	if(.)
+		set_broken()
+
 
 /obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
 	if(IsAdminGhost(user))
