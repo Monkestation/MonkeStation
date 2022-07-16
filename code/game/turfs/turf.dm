@@ -56,10 +56,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Should we used the smooth tiled dirt decal or not
 	var/tiled_dirt = FALSE
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
 
