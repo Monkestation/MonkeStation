@@ -47,8 +47,6 @@
 	name += " [uppertext(num2hex(server_id, -1))]" //gives us a random four-digit hex number as part of the name. Y'know, for fluff.
 	SSresearch.servers |= src
 	stored_research = SSresearch.science_tech
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/rdserver(null)
-	B.apply_default_parts(src)
 	// The +10 is so the sparks work
 	RefreshParts()
 
@@ -57,6 +55,7 @@
 	return ..()
 
 /obj/machinery/rnd/server/RefreshParts()
+	. = ..()
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
@@ -141,13 +140,13 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	machine_stat |= EMPED
+	set_machine_stat(machine_stat | EMPED)
 	// Side note, make a little status screen on the server to show the reboot
 	addtimer(CALLBACK(src, .proc/unemp), 600)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/unemp()
-	machine_stat &= ~EMPED
+	set_machine_stat(machine_stat & ~EMPED)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/toggle_disable()

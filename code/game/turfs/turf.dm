@@ -1,7 +1,9 @@
 GLOBAL_LIST_EMPTY(station_turfs)
+
+/// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
-	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE // Important for interaction with and visualization of openspace.
+	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE// Important for interaction with and visualization of openspace.
 	level = 1
 
 	/// If this is TRUE, that means this floor is on top of plating so pipes and wires and stuff will appear under it... or something like that it's not entirely clear.
@@ -20,9 +22,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// How hot the turf is, in kelvin
 	var/initial_temperature = T20C
 
-	/// Used for fire, if a melting temperature was reached, it will be destroyed
+	///Used for fire, if a melting temperature was reached, it will be destroyed
 	var/to_be_destroyed = 0
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	///The max temperature of the fire which it was subjected to
+	var/max_fire_temperature_sustained = 0
 
 	//If true, turf will allow users to float up and down in 0 grav.
 	var/allow_z_travel = FALSE
@@ -53,7 +56,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Should we used the smooth tiled dirt decal or not
 	var/tiled_dirt = FALSE
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
 
@@ -180,7 +186,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(!user.has_gravity(src) || (user.movement_type & FLYING))
 			check_z_travel(user)
 			return
-		else
+		else if(allow_z_travel)
 			to_chat(user, "<span class='warning'>You can't float up and down when there is gravity!</span>")
 	. = ..()
 	if(SEND_SIGNAL(user, COMSIG_MOB_ATTACK_HAND_TURF, src) & COMPONENT_NO_ATTACK_HAND)
@@ -225,26 +231,23 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		to_chat(user, "<span class='warning'>There is nothing in that direction!</span>")
 		return
 	//Check if we can travel in that direction
-	if((upwards && !target.allow_z_travel) || (!upwards && !allow_z_travel))
+	var/mob/living/L = user
+	var/jaunting = isliving(user) && L.incorporeal_move
+
+	if(!jaunting && ((upwards && !target.allow_z_travel) || (!upwards && !allow_z_travel)))
 		to_chat(user, "<span class='warning'>Something is blocking you!</span>")
 		return
 	user.visible_message("<span class='notice'>[user] begins floating [upwards ? "upwards" : "downwards"]!</span>", "<span class='notice'>You begin floating [upwards ? "upwards" : "downwards"].")
 	var/matrix/M = user.transform
 	//Animation is inverted due to immediately resetting user vars.
-	animate(user, 30, pixel_y = upwards ? -64 : 64, transform = matrix() * (upwards ? 0.7 : 1.3))
+	animate(user, 30, pixel_y = upwards ? 32 : -32, transform = matrix() * (upwards ? 1.3 : 0.7))
 	user.pixel_y = 0
 	user.transform = M
 	if(!do_after(user, 30, FALSE, get_turf(user)))
 		animate(user, 0, flags = ANIMATION_END_NOW)
 		return
-	if(isliving(user))
-		var/mob/living/living_user = user
-		if(living_user.incorporeal_move) // Allow most jaunting
-			user.client?.Process_Incorpmove(upwards ? UP : DOWN)
-			return
-	// You can push off of or land on the floor, but not go through it
-	if((upwards && !target.allow_z_travel) || (!upwards && !allow_z_travel))
-		to_chat(user, "<span class='warning'>Something is blocking you!</span>")
+	if(jaunting) // Allow most jaunting
+		user.client?.Process_Incorpmove(upwards ? UP : DOWN)
 		return
 	var/atom/movable/AM
 	if(user.pulling)
@@ -258,22 +261,46 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/proc/multiz_turf_new(turf/T, dir)
 
-/// Returns TRUE if the turf cannot be moved onto
-/proc/is_blocked_turf(turf/T, exclude_mobs)
-	if(T.density)
+/**
+ * Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.
+ *
+ * Returns truthy value TURF_BLOCKED_TURF_DENSE if the turf is blocked because the turf itself is dense.
+ * Returns truthy value TURF_BLOCKED_CONTENT_DENSE if one of the turf's contents is dense and would block
+ * a source atom's movement.
+ * Returns falsey value TURF_NOT_BLOCKED if the turf is not blocked.
+ *
+ * Arguments:
+ * * exclude_mobs - If TRUE, ignores dense mobs on the turf.
+ * * source_atom - If this is not null, will check whether any contents on the turf can block this atom specifically. Also ignores itself on the turf.
+ * * ignore_atoms - Check will ignore any atoms in this list. Useful to prevent an atom from blocking itself on the turf.
+ */
+/turf/proc/is_blocked_turf(exclude_mobs = FALSE, source_atom = null, list/ignore_atoms)
+	if(density)
 		return TRUE
-	for(var/i in T)
-		var/atom/A = i
-		if(A.density && (!exclude_mobs || !ismob(A)))
+
+	for(var/atom/movable/movable_content as anything in contents)
+		// We don't want to block ourselves or consider any ignored atoms.
+		if((movable_content == source_atom) || (movable_content in ignore_atoms))
+			continue
+		// If the thing is dense AND we're including mobs or the thing isn't a mob AND if there's a source atom and
+		// it cannot pass through the thing on the turf,  we consider the turf blocked.
+		if(movable_content.density && (!exclude_mobs || !ismob(movable_content)))
+			if(source_atom && movable_content.CanPass(source_atom, get_dir(src, source_atom)))
+				continue
 			return TRUE
 	return FALSE
 
-/proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
-	if(T.density)
+/**
+ * Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait
+ *
+ * Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks
+ */
+/turf/proc/is_blocked_turf_ignore_climbable()
+	if(density)
 		return TRUE
-	for(var/i in T)
-		var/atom/movable/A = i
-		if(A.density && A.anchored)
+
+	for(var/atom/movable/atom_content as anything in contents)
+		if(atom_content.density && !(atom_content.flags_1 & ON_BORDER_1))
 			return TRUE
 	return FALSE
 

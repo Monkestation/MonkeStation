@@ -14,7 +14,7 @@
 	var/dangerous = FALSE // Should we message admins?
 	var/special = FALSE //Event/Station Goals/Admin enabled packs
 	var/special_enabled = FALSE
-	var/DropPodOnly = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
+	var/drop_pod_only = FALSE//only usable by the Bluespace Drop Pod via the express cargo console
 	var/admin_spawned = FALSE
 	var/small_item = FALSE //Small items can be grouped into a single crate.
 
@@ -1140,10 +1140,10 @@
 	name = "Grounding Rod Crate"
 	desc = "Four grounding rods guaranteed to keep any uppity tesla's lightning under control."
 	cost = 700
-	contains = list(/obj/machinery/power/grounding_rod,
-					/obj/machinery/power/grounding_rod,
-					/obj/machinery/power/grounding_rod,
-					/obj/machinery/power/grounding_rod)
+	contains = list(/obj/machinery/power/energy_accumulator/grounding_rod,
+					/obj/machinery/power/energy_accumulator/grounding_rod,
+					/obj/machinery/power/energy_accumulator/grounding_rod,
+					/obj/machinery/power/energy_accumulator/grounding_rod)
 	crate_name = "grounding rod crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
@@ -1230,10 +1230,10 @@
 	name = "Tesla Coil Crate"
 	desc = "Whether it's high-voltage executions, creating research points, or just plain old power generation: This pack of four Tesla coils can do it all!"
 	cost = 1200
-	contains = list(/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil,
-					/obj/machinery/power/tesla_coil)
+	contains = list(/obj/machinery/power/energy_accumulator/tesla_coil,
+					/obj/machinery/power/energy_accumulator/tesla_coil,
+					/obj/machinery/power/energy_accumulator/tesla_coil,
+					/obj/machinery/power/energy_accumulator/tesla_coil)
 	crate_name = "tesla coil crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
@@ -2443,7 +2443,7 @@
 	cost = 5000
 	contains = list(/mob/living/simple_animal/crab)
 	crate_name = "look sir free crabs"
-	DropPodOnly = TRUE
+	drop_pod_only = TRUE
 
 /datum/supply_pack/critter/crab/generate()
 	. = ..()

@@ -283,7 +283,7 @@
 	if (!istype(traitor_mob))
 		return
 
-	var/list/all_contents = traitor_mob.GetAllContents()
+	var/list/all_contents = traitor_mob.get_all_contents_type()
 	var/obj/item/pda/PDA = locate() in all_contents
 	var/obj/item/radio/R = locate() in all_contents
 	var/obj/item/pen/P
@@ -329,6 +329,8 @@
 	if (!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key, TRUE, FALSE, gamemode, telecrystals)
+		if(src.has_antag_datum(/datum/antagonist/incursion))
+			U.uplink_flag = UPLINK_INCURSION
 		if(!U)
 			CRASH("Uplink creation failed.")
 		U.setup_unlock_code()
@@ -622,7 +624,7 @@
 			to_chat(current, "[C.explanation_text]")
 
 /datum/mind/proc/find_syndicate_uplink()
-	var/list/L = current.GetAllContents()
+	var/list/L = current.get_all_contents_type()
 	for (var/i in L)
 		var/atom/movable/I = i
 		. = I.GetComponent(/datum/component/uplink)
@@ -759,7 +761,7 @@
 	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
 	return affected_addiction.on_gain_addiction_points(src)
 
-///Adds addiction points to the specified addiction
+///Removes addiction points to the specified addiction
 /datum/mind/proc/remove_addiction_points(type, amount)
 	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
 	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]

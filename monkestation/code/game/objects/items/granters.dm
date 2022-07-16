@@ -25,3 +25,26 @@
 		desc = "It's completely blank."
 		name = "empty scroll"
 		icon_state = "blankscroll"
+
+/obj/item/book/granter/spell/blinkdagger
+	spell = /obj/effect/proc_holder/spell/targeted/blinkdagger
+	spellname = "blink dagger"
+	icon_state ="booksummons"
+	desc = "A book this brightly colored must give you the powers of a magical girl."
+	remarks = list("I dont think this is telling me how to shoot lasers from my hands.",
+					"Just focus my energies...",
+					"Am I the chosen one?",
+					"Nothing personal? This is very personal, you killed my grandfather!",
+					"Ineffective vs Giant mechs?",
+					"I never knew catgirls could teach teleportation.",
+					"Who had any idea there was a magic dimension full of robust knives!")
+
+/obj/item/book/granter/spell/blinkdagger/recoil(mob/user)
+	..()
+	to_chat(user,"<span class='warning'>The [src.name] teleports behind you, oh no!</span>")
+	playsound(user, 'sound/weapons/zapbang.ogg', 50, TRUE)
+	if (ishuman(user) == TRUE)
+		var/mob/living/carbon/human/usrt = user
+		usrt.adjustBruteLoss(60)
+	qdel(src)
+	to_chat(user,"<span class='warning'>The [src.name] is gone.</span>")

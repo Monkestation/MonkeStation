@@ -189,6 +189,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		src.last_message_count = 0
 		return 0
 
+/client/proc/silicon_spam_grace()
+	total_message_count = max(total_message_count--, 0)
+	// Stating laws isn't spam at all.
+
+/client/proc/silicon_spam_grace_done(total_laws_count)
+	if(total_laws_count>2)
+		total_laws_count = 2
+	total_message_count += total_laws_count
+	// Stating laws isn't spam, but doing so much is spam.
+
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
@@ -377,9 +387,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(holder)
 		add_admin_verbs()
-		var/memo_message = get_message_output("memo")
-		if(memo_message)
-			to_chat(src, memo_message)
+		to_chat(src, get_message_output("memo"))
 		adminGreet()
 
 	add_verbs_from_config()
@@ -430,9 +438,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(CONFIG_GET(flag/autoconvert_notes))
 		convert_notes_sql(ckey)
-	var/user_messages = get_message_output("message", ckey)
-	if(user_messages)
-		to_chat(src, user_messages)
+	to_chat(src, get_message_output("message", ckey))
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
 
@@ -482,7 +488,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!SSdbcore.Connect())
 		return FALSE
 
-	var/datum/db_query/query_update_uuid = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_update_uuid = SSdbcore.NewQuery(
 		"UPDATE [format_table_name("player")] SET uuid = :uuid WHERE ckey = :ckey",
 		list("uuid" = uuid, "ckey" = ckey)
 	)
@@ -500,7 +506,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!SSdbcore.Connect())
 		return FALSE
 
-	var/datum/db_query/query_get_uuid = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_get_uuid = SSdbcore.NewQuery(
 		"SELECT uuid FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -554,6 +560,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/Destroy()
 	..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
+	SSmouse_entered.hovers -= src
 	return QDEL_HINT_HARDDEL_NOW
 
 /client/proc/set_client_age_from_db(connectiontopic)
@@ -561,7 +568,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	if(!SSdbcore.Connect())
 		return
-	var/datum/db_query/query_get_related_ip = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_get_related_ip = SSdbcore.NewQuery(
 		"SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON(:address) AND ckey != :ckey",
 		list("address" = address, "ckey" = ckey)
 	)
@@ -572,7 +579,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	while(query_get_related_ip.NextRow())
 		related_accounts_ip += "[query_get_related_ip.item[1]], "
 	qdel(query_get_related_ip)
-	var/datum/db_query/query_get_related_cid = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_get_related_cid = SSdbcore.NewQuery(
 		"SELECT ckey FROM [format_table_name("player")] WHERE computerid = :computerid AND ckey != :ckey",
 		list("computerid" = computer_id, "ckey" = ckey)
 	)
@@ -590,7 +597,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (!GLOB.deadmins[ckey] && check_randomizer(connectiontopic))
 			return
 	var/new_player
-	var/datum/db_query/query_client_in_db = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery(
 		"SELECT 1 FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -624,7 +631,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!query_client_in_db.NextRow())
 		new_player = 1
 		account_join_date = findJoinDate()
-		var/datum/db_query/query_add_player = SSdbcore.NewQuery({"
+		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`)
 			VALUES (:ckey, :key, Now(), :round_id, Now(), :round_id, INET_ATON(:ip), :computerid, :adminrank, :account_join_date)
 		"}, list("ckey" = ckey, "key" = key, "round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "adminrank" = admin_rank, "account_join_date" = account_join_date || null))
@@ -637,7 +644,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			account_join_date = "Error"
 			account_age = -1
 	qdel(query_client_in_db)
-	var/datum/db_query/query_get_client_age = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_get_client_age = SSdbcore.NewQuery(
 		"SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -655,7 +662,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				if(!account_join_date)
 					account_age = -1
 				else
-					var/datum/db_query/query_datediff = SSdbcore.NewQuery(
+					var/datum/DBQuery/query_datediff = SSdbcore.NewQuery(
 						"SELECT DATEDIFF(Now(), :account_join_date)",
 						list("account_join_date" = account_join_date)
 					)
@@ -667,7 +674,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					qdel(query_datediff)
 	qdel(query_get_client_age)
 	if(!new_player)
-		var/datum/db_query/query_log_player = SSdbcore.NewQuery(
+		var/datum/DBQuery/query_log_player = SSdbcore.NewQuery(
 			"UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = :round_id, ip = INET_ATON(:ip), computerid = :computerid, lastadminrank = :admin_rank, accountjoindate = :account_join_date WHERE ckey = :ckey",
 			list("round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "admin_rank" = admin_rank, "account_join_date" = account_join_date || null, "ckey" = ckey)
 		)
@@ -680,7 +687,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	var/ssqlname = CONFIG_GET(string/serversqlname)
 
-	var/datum/db_query/query_log_connection = SSdbcore.NewQuery({"
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery({"
 		INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_name`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`)
 		VALUES(null,Now(),:server_name,INET_ATON(:internet_address),:port,:round_id,:ckey,INET_ATON(:ip),:computerid)
 	"}, list("server_name" = ssqlname, "internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "ip" = address, "computerid" = computer_id))
@@ -707,7 +714,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/validate_key_in_db()
 	var/sql_key
-	var/datum/db_query/query_check_byond_key = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery(
 		"SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -729,7 +736,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			var/regex/R = regex("\\tkey = \"(.+)\"")
 			if(R.Find(F))
 				var/web_key = R.group[1]
-				var/datum/db_query/query_update_byond_key = SSdbcore.NewQuery(
+				var/datum/DBQuery/query_update_byond_key = SSdbcore.NewQuery(
 					"UPDATE [format_table_name("player")] SET byond_key = :byond_key WHERE ckey = :ckey",
 					list("byond_key" = web_key, "ckey" = ckey)
 				)
@@ -749,7 +756,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/static/tokens = list()
 	var/static/cidcheck_failedckeys = list() //to avoid spamming the admins if the same guy keeps trying.
 	var/static/cidcheck_spoofckeys = list()
-	var/datum/db_query/query_cidcheck = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_cidcheck = SSdbcore.NewQuery(
 		"SELECT computerid FROM [format_table_name("player")] WHERE ckey = :ckey",
 		list("ckey" = ckey)
 	)
@@ -828,7 +835,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/add_system_note(system_ckey, message)
 	//check to see if we noted them in the last day.
-	var/datum/db_query/query_get_notes = SSdbcore.NewQuery(
+	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery(
 		"SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = :targetckey AND adminckey = :adminckey AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)",
 		list("targetckey" = ckey, "adminckey" = system_ckey)
 	)
@@ -987,6 +994,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CRASH("change_view called without argument.")
 
 	view = new_size
+	mob.hud_used.screentip_text.update_view()
 	apply_clickcatcher()
 	mob.reload_fullscreen()
 	if (isliving(mob))

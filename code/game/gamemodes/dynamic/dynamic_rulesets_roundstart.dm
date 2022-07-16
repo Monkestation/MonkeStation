@@ -655,8 +655,8 @@
 	required_candidates = 4
 	minimum_players = 30
 	weight = 3
-	cost = 101
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	cost = 40
+	requirements = list(101,101,101,101,101,50,30,30,30,30)
 	flags = HIGH_IMPACT_RULESET
 	var/datum/team/clock_cult/main_cult
 	var/list/selected_servants = list()

@@ -40,9 +40,9 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	if(prob(20))
 		set_broken()
 
-/obj/machinery/gravity_generator/tesla_act(power, tesla_flags)
-	..()
-	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
+/obj/machinery/gravity_generator/zap_act(power, zap_flags)
+	. = ..()
+	if(zap_flags & ZAP_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
 /obj/machinery/gravity_generator/update_icon()
@@ -58,10 +58,10 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	qdel(src)
 
 /obj/machinery/gravity_generator/proc/set_broken()
-	machine_stat |= BROKEN
+	set_machine_stat(machine_stat | BROKEN)
 
 /obj/machinery/gravity_generator/proc/set_fix()
-	machine_stat &= ~BROKEN
+	set_machine_stat(machine_stat & ~BROKEN)
 
 /obj/machinery/gravity_generator/part/Destroy()
 	if(main_part)
@@ -294,7 +294,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	on = new_state
-	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	update_use_power(on ? ACTIVE_POWER_USE : IDLE_POWER_USE)
 	// Sound the alert if gravity was just enabled or disabled.
 	var/alert = FALSE
 	if(SSticker.IsRoundInProgress())
