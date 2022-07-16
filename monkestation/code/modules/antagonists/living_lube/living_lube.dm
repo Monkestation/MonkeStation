@@ -14,7 +14,7 @@
 		lube.maxHealth = 750 //What a god
 		lube.health = 750
 		lube.melee_damage = 0 //You can't kill people!
-		lube.obj_damage = 0 //You can't kill people!
+		lube.obj_damage = 0
 		lube.unsuitable_atmos_damage = 0 //Space won't get this little lube
 		lube.minbodytemp = TCMB
 		lube.maxbodytemp = T0C + 40

@@ -1,7 +1,7 @@
 /datum/round_event_control/living_lube
 	name = "Living lube"
 	typepath = /datum/round_event/ghost_role/living_lube
-	weight = 2 //don't want this little lube appearing too often do we
+	weight = 2 //don't want this little lube appearing Too often
 	max_occurrences = 1
 
 /datum/round_event/ghost_role/living_lube
