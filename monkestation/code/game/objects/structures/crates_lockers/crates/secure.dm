@@ -10,7 +10,7 @@
 
 /obj/structure/closet/crate/secure/clown/togglelock(mob/living/user, silent)
 	if(secure && !broken)
-		if(user.mind.assigned_role == "Clown")
+		if(user.mind?.assigned_role == "Clown")
 			if(iscarbon(user))
 				add_fingerprint(user)
 			locked = !locked
@@ -28,8 +28,11 @@
 		new /obj/effect/particle_effect/foam(loc)
 	return ..()
 
-/obj/structure/closet/crate/secure/clown/PopulateContents()
-	..()
+/obj/structure/closet/crate/secure/clown/toy
+	name = "toy box 4.0"
+
+/obj/structure/closet/crate/secure/clown/toy/PopulateContents()
+	. = ..()
 	new	/obj/item/megaphone/clown(src)
 	new	/obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter(src)
 	new /obj/item/pneumatic_cannon/pie(src)

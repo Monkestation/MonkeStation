@@ -11961,9 +11961,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/structure/closet/crate/secure/clown{
-	name = "Toybox 4.0"
-	},
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aId" = (

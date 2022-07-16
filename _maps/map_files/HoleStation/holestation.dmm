@@ -17932,9 +17932,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/closet/crate/secure/clown{
-	name = "Toybox 4.0"
-	},
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "myQ" = (

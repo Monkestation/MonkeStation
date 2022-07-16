@@ -15,7 +15,7 @@
 
 /obj/structure/closet/secure_closet/clown/togglelock(mob/living/user, silent)
 	if(secure && !broken)
-		if(user.mind.assigned_role == "Clown")
+		if(user.mind?.assigned_role == "Clown")
 			if(iscarbon(user))
 				add_fingerprint(user)
 			locked = !locked
