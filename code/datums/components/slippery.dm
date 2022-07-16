@@ -22,7 +22,7 @@
 
 	///what we give to connect_loc if we're an item and get equipped by a mob. makes slippable mobs moving over our holder slip
 	var/static/list/holder_connections = list(
-		COMSIG_ATOM_ENTERED = .proc/Slip_on_wearer,
+		COMSIG_ATOM_ENTERED = .proc/slip_on_wearer,
 	)
 
 	/// The connect_loc_behalf component for the holder_connections list.
@@ -134,7 +134,7 @@
  * source - the source of the signal
  * AM - the atom/movable that slipped on us.
  */
-/datum/component/slippery/proc/Slip_on_wearer(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+/datum/component/slippery/proc/slip_on_wearer(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
 	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
 		Slip(source, arrived)
@@ -146,7 +146,7 @@
 /// Used for making the clown PDA only slip if the clown is wearing his shoes and the elusive banana-skin belt
 /datum/component/slippery/clowning
 
-/datum/component/slippery/clowning/Slip_on_wearer(datum/source, atom/movable/AM)
+/datum/component/slippery/clowning/slip_on_wearer(datum/source, atom/movable/AM)
 	var/obj/item/I = holder.get_item_by_slot(ITEM_SLOT_FEET)
 	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
 		if(istype(I, /obj/item/clothing/shoes/clown_shoes))
