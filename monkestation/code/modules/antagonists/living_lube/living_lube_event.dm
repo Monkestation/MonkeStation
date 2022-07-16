@@ -1,8 +1,8 @@
 /datum/round_event_control/living_lube
 	name = "Living lube"
-	typepath = /datum/round_event/ghost_role/florida_man
-	weight = 14
-	max_occurrences = 3
+	typepath = /datum/round_event/ghost_role/living_lube
+	weight = 2 //don't want this little lube appearing too often do we
+	max_occurrences = 1
 
 /datum/round_event/ghost_role/living_lube
 	minimum_required = 1
@@ -11,50 +11,22 @@
 
 /datum/round_event/ghost_role/living_lube/spawn_role()
 	var/list/candidates = get_candidates()
-	var/turf/spawn_loc = find_safe_turf()//Used for the Drop Pod type of spawn
 
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
 	var/mob/dead/selected = pick_n_take(candidates)
-	var/mob/living/carbon/human/floridan = new(spawn_loc) //This is to catch errors by just giving them a location in general.
-	var/datum/preferences/A = new
+	var/mob/living/simple_animal/hostile/retaliate/clown/lube/living_lube = new(pick(GLOB.xeno_spawn))
 
-	equip_floridan(floridan)
+	var/datum/mind/new_mind = new /datum/mind(selected.key)
+	new_mind.assigned_role = "Living Lube"
+	new_mind.special_role = "Living Lube"
+	new_mind.active = TRUE
+	new_mind.transfer_to(living_lube)
+	new_mind.add_antag_datum(/datum/antagonist/living_lube)
 
-	A.copy_to(floridan)
-	floridan.dna.update_dna_identity()
-	var/datum/mind/Mind = new /datum/mind(selected.key)
-	Mind.assigned_role = "Living Lube"
-	Mind.special_role = "Living Lube"
-	Mind.active = 1
-	Mind.transfer_to(floridan)
-	Mind.add_antag_datum(/datum/antagonist/florida_man)
-
-
-	var/i = rand(1,4)
-	switch(i)
-		if(1)
-			var/obj/structure/closet/supplypod/car_pod/pod = new()
-			pod.stay_after_drop = TRUE
-			new /obj/effect/pod_landingzone(spawn_loc, pod)
-			floridan.forceMove(pod)
-			//Drop Pod Car
-		if(2)
-			var/obj/structure/closet/supplypod/washer_pod/pod = new()
-			pod.stay_after_drop = TRUE
-			new /obj/effect/pod_landingzone(spawn_loc, pod)
-			floridan.forceMove(pod)
-			//Drop Pod Washing Machine
-		if(3)
-			floridan.forceMove(get_unlocked_closed_locker()) //I KNEW THIS PROC WOULD HAVE MORE USES!
-			//Locker/crate spawn
-		if(4)
-			floridan.Paralyze(10, TRUE, TRUE)
-			new /obj/effect/holy(spawn_loc)
-			//God has thrown you out of heaven, you know what you did. Don't try to deny your sins against humanity, Florida Man.
-
-	message_admins("[ADMIN_LOOKUPFLW(floridan)] has been made into Florida Man.")
-	log_game("[key_name(floridan)] was spawned as Florida Man by an event.")
-	spawned_mobs += floridan
+	message_admins("[ADMIN_LOOKUPFLW(living_lube)] has been made into a Living Lube.")
+	log_game("[key_name(living_lube)] was spawned as Living Lube by an event.")
+	spawned_mobs += living_lube
 	return SUCCESSFUL_SPAWN
+
