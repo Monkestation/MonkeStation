@@ -147,9 +147,9 @@
 /datum/component/slippery/clowning
 
 /datum/component/slippery/clowning/slip_on_wearer(datum/source, atom/movable/AM)
-	var/obj/item/I = holder.get_item_by_slot(ITEM_SLOT_FEET)
+	var/obj/item/slot_item = holder.get_item_by_slot(ITEM_SLOT_FEET)
 	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
-		if(istype(I, /obj/item/clothing/shoes/clown_shoes))
+		if(istype(slot_item, /obj/item/clothing/shoes/clown_shoes))
 			Slip(source, AM)
 		else
 			to_chat(holder,span_warning("[parent] failed to slip anyone. Perhaps I shouldn't have abandoned my legacy..."))
