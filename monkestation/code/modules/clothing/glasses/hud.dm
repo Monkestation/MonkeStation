@@ -3,7 +3,7 @@
 	name = "diagnostic welding HUD"
 	desc = "A diagnostic HUD fitted with a small shield for welding purposes. Useful for optimal cyborg repair."
 	icon = 'monkestation/icons/obj/clothing/glasses.dmi'
-	worn_icon = "monkestation/icons/mob/head.dmi"
+	worn_icon = 'monkestation/icons/mob/head.dmi'
 	icon_state = "diagnostichudweld"
 	actions_types = list(/datum/action/item_action/toggle)
 	materials = list(/datum/material/iron = 250)
