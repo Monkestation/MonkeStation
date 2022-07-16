@@ -31,6 +31,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wingsopen, GLOB.moth_wingsopen_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
@@ -134,9 +135,9 @@ GLOBAL_LIST_INIT(WALLITEMS_INTERIOR, typecacheof(list(
 // These do not conflict with machinery which are visually placed on the wall.
 GLOBAL_LIST_INIT(WALLITEMS_EXTERIOR, typecacheof(list(
 	/obj/machinery/camera,
+	/obj/machinery/light,
 	/obj/structure/camera_assembly,
-	/obj/structure/light_construct,
-	/obj/machinery/light
+	/obj/structure/light_construct
 	)))
 
 GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(

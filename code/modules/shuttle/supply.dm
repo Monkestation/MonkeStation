@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/area/shuttle/shuttle_area = place
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
-			for(var/a in T.GetAllContents())
+			for(var/a in T.get_all_contents_type())
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types) && !istype(a, /obj/docking_port))
 					return FALSE
 	return TRUE
@@ -83,17 +83,28 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/obj/miscboxes = list() //miscboxes are combo boxes that contain all small_item orders grouped
 	var/list/misc_order_num = list() //list of strings of order numbers, so that the manifest can show all orders in a box
 	var/list/misc_contents = list() //list of lists of items that each box will contain
-	if(!SSshuttle.shoppinglist.len)
-		return
 
 	var/list/empty_turfs = list()
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/T in shuttle_area)
-			if(is_blocked_turf(T))
+			if(T.is_blocked_turf())
 				continue
 			empty_turfs += T
+	//quickly and greedily handle chef's grocery runs first, there are a few reasons why this isn't attached to the rest of cargo...
+	//but the biggest reason is that the chef requires produce to cook and do their job, and if they are using this system they
+	//already got let down by the botanists. So to open a new chance for cargo to also screw them over any more than is necessary is bad.
+	if(SSshuttle.chef_groceries.len)
+		var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
+		grocery_crate.name = "kitchen produce freezer"
+		investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
+		for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
+			for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
+				new item.item_instance.type(grocery_crate)
+		SSshuttle.chef_groceries.Cut() //This lets the console know it can order another round.
 
+	if(!SSshuttle.shoppinglist.len)
+		return
 	var/value = 0
 	var/purchases = 0
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
@@ -221,7 +232,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/place as anything in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/turf/open/floor/shuttle_floor in shuttle_area)
-			if(is_blocked_turf(shuttle_floor))
+			if(shuttle_floor.is_blocked_turf())
 				continue
 			empty_turfs += shuttle_floor
 

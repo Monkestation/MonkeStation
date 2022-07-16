@@ -13,6 +13,11 @@
 /// from base of turf/proc/afterShuttleMove: (turf/new_turf)
 #define COMSIG_TURF_AFTER_SHUTTLE_MOVE "turf_after_shuttle_move"
 
+///from /turf/open/temperature_expose(datum/gas_mixture/air, exposed_temperature)
+#define COMSIG_TURF_EXPOSE "turf_expose"
+///from /turf/proc/immediate_calculate_adjacent_turfs()
+#define COMSIG_TURF_CALCULATED_ADJACENT_ATMOS "turf_calculated_adjacent_atmos"
+
 #define COMSIG_TURF_MOB_FALL "turf_mob_fall" //MONKESTATION ADDITION
 
 #define COMSIG_TURF_LIQUIDS_CREATION "turf_liquids_creation" //MONKESTATION ADDITION

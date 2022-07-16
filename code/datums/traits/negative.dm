@@ -124,7 +124,7 @@
 			if("Clown")
 				heirloom_type = /obj/item/bikehorn/golden
 			if("Mime")
-				heirloom_type = /obj/item/reagent_containers/food/snacks/baguette/mime
+				heirloom_type = /obj/item/food/baguette
 			if("Janitor")
 				heirloom_type = pick(/obj/item/mop, /obj/item/clothing/suit/caution, /obj/item/reagent_containers/glass/bucket)
 			if("Cook")
@@ -219,7 +219,7 @@
 	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 /datum/quirk/family_heirloom/on_process()
-	if(heirloom in quirk_holder.GetAllContents())
+	if(heirloom in quirk_holder.get_all_contents_type())
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "family_heirloom", /datum/mood_event/family_heirloom)
 	else
@@ -485,7 +485,7 @@
 		to_chat(H, "<span class='userdanger'>You think of a dumb thing you said a long time ago and scream internally.</span>")
 		dumb_thing = FALSE //only once per life
 		if(prob(1))
-			new/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(get_turf(H)) //now that's what I call spaghetti code
+			new/obj/item/food/spaghetti/pastatomato(get_turf(H)) //now that's what I call spaghetti code
 
 //If you want to make some kind of junkie variant, just extend this quirk.
 /datum/quirk/junkie

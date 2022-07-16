@@ -21,7 +21,12 @@
 	. = ..()
 	wires = new /datum/wires/dna_scanner(src)
 
+/obj/machinery/dna_scannernew/Destroy()
+	QDEL_NULL(wires)
+	return ..()
+
 /obj/machinery/dna_scannernew/RefreshParts()
+	. = ..()
 	scan_level = 0
 	damage_coeff = 0
 	precision_coeff = 0

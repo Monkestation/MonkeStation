@@ -26,8 +26,8 @@
 	if(extractor)
 		seedloc = extractor.loc
 
-	if(istype(O, /obj/item/reagent_containers/food/snacks/grown/))
-		var/obj/item/reagent_containers/food/snacks/grown/F = O
+	if(istype(O, /obj/item/food/grown/))
+		var/obj/item/food/grown/F = O
 		if(F.seed)
 			if(user && !user.temporarilyRemoveItemFromInventory(O)) //couldn't drop the item
 				return
@@ -68,6 +68,7 @@
 	var/list/piles = list()
 
 /obj/machinery/seed_extractor/RefreshParts()
+	. = ..()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		max_seeds = initial(max_seeds) * B.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)

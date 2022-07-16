@@ -4,6 +4,7 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "gland"
 	status = ORGAN_ROBOTIC
+	organ_flags = NONE
 	beating = TRUE
 	var/true_name = "baseline placebo referencer"
 	var/cooldown_low = 300
@@ -288,7 +289,7 @@
 /obj/item/organ/heart/gland/egg/activate()
 	owner.visible_message("<span class='alertalien'>[owner] [pick(EGG_LAYING_MESSAGES)]</span>")
 	var/turf/T = owner.drop_location()
-	new /obj/item/reagent_containers/food/snacks/egg/gland(T)
+	new /obj/item/food/egg/gland(T)
 
 /obj/item/organ/heart/gland/electric
 	true_name = "electron accumulator/discharger"
@@ -313,7 +314,7 @@
 	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
 
 /obj/item/organ/heart/gland/electric/proc/zap()
-	tesla_zap(owner, 4, 8000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
+	tesla_zap(owner, 4, 8000, ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_MOB_STUN)
 	playsound(get_turf(owner), 'sound/magic/lightningshock.ogg', 50, 1)
 
 /obj/item/organ/heart/gland/chem

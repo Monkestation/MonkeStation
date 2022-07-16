@@ -10,7 +10,18 @@
 	var/static/list/anomaly_armour_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
-		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport
+		/obj/effect/anomaly/bluespace 	            = /obj/item/clothing/suit/armor/reactive/teleport,
+		//MONKESTATION EDIT
+		/obj/effect/anomaly/storm 	           		= /obj/item/clothing/suit/armor/reactive/tesla, //I don't see what new we could add here since they're both zappy ones
+		/obj/effect/anomaly/clown 	           		= /obj/item/clothing/suit/armor/reactive/honk,
+		/obj/effect/anomaly/radioactive 	        = /obj/item/clothing/suit/armor/reactive/mutation,
+		/obj/effect/anomaly/frost		 	        = /obj/item/clothing/suit/armor/reactive/glacial,
+		/obj/effect/anomaly/monkey		 	        = /obj/item/clothing/suit/armor/reactive/primal,
+		/obj/effect/anomaly/petsplosion		 	    = /obj/item/clothing/suit/armor/reactive/herd,
+		/obj/effect/anomaly/fluid		 	   		= /obj/item/clothing/suit/armor/reactive/wet,
+		/obj/effect/anomaly/walterverse 	        = /obj/item/clothing/suit/armor/reactive/walter
+
+		//MONKESTATION EDIT END
 		)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
@@ -151,19 +162,19 @@
 	name = "reactive tesla armor"
 	desc = "An experimental suit of armor with sensitive detectors hooked up to a huge capacitor grid, with emitters strutting out of it. Zap."
 	siemens_coefficient = -1
-	var/tesla_power = 25000
-	var/tesla_range = 20
-	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
+	var/zap_power = 25000
+	var/zap_range = 20
+	var/zap_flags = ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
 
 /obj/item/clothing/suit/armor/reactive/tesla/dropped(mob/user)
 	..()
 	if(istype(user))
-		user.flags_1 &= ~TESLA_IGNORE_1
+		REMOVE_TRAIT(user, TRAIT_TESLA_SHOCKIMMUNE, "reactive_tesla_armor")
 
 /obj/item/clothing/suit/armor/reactive/tesla/equipped(mob/user, slot)
 	..()
 	if(slot_flags & slot) //Was equipped to a valid slot for this item?
-		user.flags_1 |= TESLA_IGNORE_1
+		ADD_TRAIT(user, TRAIT_TESLA_SHOCKIMMUNE, "reactive_tesla_armor")
 
 /obj/item/clothing/suit/armor/reactive/tesla/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!active)
@@ -176,7 +187,7 @@
 			owner.visible_message("<span class='danger'>The tesla capacitors on [owner]'s reactive tesla armor are still recharging! The armor merely emits some sparks.</span>")
 			return
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], sending out arcs of lightning!</span>")
-		tesla_zap(owner, tesla_range, tesla_power, tesla_flags)
+		tesla_zap(owner, zap_range, zap_power, zap_flags)
 		reactivearmor_cooldown = world.time + reactivearmor_cooldown_duration
 		return TRUE
 

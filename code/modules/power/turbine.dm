@@ -83,7 +83,7 @@
 	inturf = get_step(src, dir)
 	locate_machinery()
 	if(!turbine)
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 
 
 #define COMPFRICTION 5e5
@@ -96,6 +96,7 @@
 		turbine.locate_machinery()
 
 /obj/machinery/power/compressor/RefreshParts()
+	. = ..()
 	var/E = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
@@ -116,10 +117,10 @@
 		locate_machinery()
 		if(turbine)
 			to_chat(user, "<span class='notice'>Turbine connected.</span>")
-			machine_stat &= ~BROKEN
+			set_machine_stat(machine_stat & ~BROKEN)
 		else
 			to_chat(user, "<span class='alert'>Turbine not connected.</span>")
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 		return
 
 	default_deconstruction_crowbar(I)
@@ -176,10 +177,11 @@
 	outturf = get_step(src, dir)
 	locate_machinery()
 	if(!compressor)
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
+	. = ..()
 	var/P = 0
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		P += C.rating
@@ -249,10 +251,10 @@
 		locate_machinery()
 		if(compressor)
 			to_chat(user, "<span class='notice'>Compressor connected.</span>")
-			machine_stat &= ~BROKEN
+			set_machine_stat(machine_stat & ~BROKEN)
 		else
 			to_chat(user, "<span class='alert'>Compressor not connected.</span>")
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 		return
 
 	default_deconstruction_crowbar(I)

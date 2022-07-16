@@ -539,7 +539,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			R.hud_used.update_robot_modules_display()
 
 /obj/item/proc/GetDeconstructableContents()
-	return GetAllContents() - src
+	return get_all_contents_type() - src
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
@@ -969,6 +969,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		..()
 
 /obj/item/proc/microwave_act(obj/machinery/microwave/M)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, M))
+		return TRUE
 	if(istype(M) && M.dirty < 100)
 		M.dirty++
 
@@ -980,9 +982,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
  //Called BEFORE the object is ground up - use this to change grind results based on conditions
  //Use "return -1" to prevent the grinding from occurring
 /obj/item/proc/on_grind()
-
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_GRIND)
 /obj/item/proc/on_juice()
-
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_JUICE)
 /obj/item/proc/set_force_string()
 	switch(force)
 		if(0 to 4)
@@ -1010,13 +1012,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
 
 /obj/item/MouseEntered(location, control, params)
+	. = ..()
 	if((item_flags & PICKED_UP || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
 		var/timedelay = usr.client.prefs.tip_delay/100
 		var/user = usr
 		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 	var/mob/living/L = usr
 	if(istype(L) && L.incapacitated())
-		apply_outline(COLOR_RED_GRAY)
+		apply_outline(COLOR_DARK_RED)
 	else
 		apply_outline()
 
@@ -1201,6 +1204,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/disableEmbedding()
 	SEND_SIGNAL(src, COMSIG_ITEM_DISABLE_EMBED)
 	return
+
 
 ///For when you want to add/update the embedding on an item. Uses the vars in [/obj/item/embedding], and defaults to config values for values that aren't set. Will automatically detach previous embed elements on this item.
 /obj/item/proc/updateEmbedding()

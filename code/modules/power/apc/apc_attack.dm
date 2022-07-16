@@ -123,7 +123,7 @@
 		if(do_after(user, 50, target = src))
 			to_chat(user, "<span class='notice'>You replace the damaged APC frame with a new one.</span>")
 			qdel(W)
-			machine_stat &= ~BROKEN
+			set_machine_stat(machine_stat & ~BROKEN)
 			obj_integrity = max_integrity
 			if (opened==APC_COVER_REMOVED)
 				opened = APC_COVER_OPENED
@@ -269,7 +269,7 @@
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = CLAMP(malfai.malf_picker.processing_time - 10,0,1000)
-	machine_stat |= BROKEN
+	set_machine_stat(machine_stat | BROKEN)
 	operating = FALSE
 	if(occupier)
 		malfvacate(1)

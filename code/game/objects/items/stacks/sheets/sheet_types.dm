@@ -119,6 +119,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 20)
 	point_value = 2
 	tableVariant = /obj/structure/table
+	matter_amount = 4
 
 /obj/item/stack/sheet/iron/ratvar_act()
 	new /obj/item/stack/tile/brass(loc, amount)
@@ -181,6 +182,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 	point_value = 23
 	tableVariant = /obj/structure/table/reinforced
+	matter_amount = 12
 
 /obj/item/stack/sheet/plasteel/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.plasteel_recipes
@@ -317,6 +319,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/cotton/cloth
 	pull_effort = 50
 	loom_result = /obj/item/stack/sheet/silk
+	grind_results = list(/datum/reagent/consumable/cloth = 20)
 
 /obj/item/stack/sheet/cotton/cloth/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.cloth_recipes
