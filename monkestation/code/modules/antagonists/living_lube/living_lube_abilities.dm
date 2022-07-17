@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/aoe_turf/knock/living_lube
-	action_background_icon_state = "bg_hive" //closest to pink we have
+	action_background_icon_state = "bg_hive" //closest to a pink spell color we have
 	invocation = "AULIE HONKSIN FIERA"
 	invocation_type = "whisper"
 
@@ -16,7 +16,7 @@
 /obj/effect/proc_holder/spell/targeted/living_lube_displace
 	name = "Displacement"
 	desc = "Force someone through the clown dimension and launch them out somewhere else on the station."
-	charge_max = 1 MINUTES
+	charge_max = 2 MINUTES
 	clothes_req = FALSE
 	range = 7
 	invocation_type = "none"
@@ -37,5 +37,4 @@
 
 	do_teleport(target,find_safe_turf(),asoundin = 'sound/items/bikehorn.ogg')
 	to_chat(target,"<span class='warning'>You hear honking as you're teleported somewhere else!</span>")
-
 	. = ..()

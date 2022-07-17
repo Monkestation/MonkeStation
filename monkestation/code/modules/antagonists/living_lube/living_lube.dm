@@ -1,7 +1,7 @@
 /datum/antagonist/living_lube
-	name = "Living Lube"
-	roundend_category = "Living Lubes"
-	antagpanel_category = "Living Lube"
+	name = "Ghost of Honks Past"
+	roundend_category = "Ghosts of Honks Past"
+	antagpanel_category = "Ghost of Honks Past"
 	silent = TRUE
 	give_objectives = FALSE
 	show_to_ghosts = TRUE
@@ -37,7 +37,7 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/items/bikehorn.ogg',100,0, use_reverb = FALSE)
 	to_chat(owner, "<span class='boldannounce'>You are the Living Lube!\nYou are an agent of chaos. Annoy the station as much as possible\n\nYou don't want to hurt anyone, but you must be as much of an annoyance as possible.\n\nHonk!</span>")
 	owner.announce_objectives()
-	var/decided_name = "Ghost of Honk's Past"
+	var/decided_name = "Ghost of Honks Past"
 	if(prob(1)) // Henk :)
 		decided_name = "Ghost of Pee Pee Peter"
 	lube.name = decided_name
