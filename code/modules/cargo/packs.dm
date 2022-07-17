@@ -2167,7 +2167,7 @@
 
 /datum/supply_pack/organic/cream_piee
 	name = "High-yield Clown-grade Cream Pie Crate"
-	desc = "Designed by Aussec's Advanced Warfare Research Division, these high-yield, Clown-grade cream pies are powered by a synergy of performance and efficiency. Guaranteed to provide maximum results. Requires Clown Access to open."
+	desc = "Designed by Aussec's Advanced Warfare Research Division, these high-yield, Clown-grade cream pies are powered by a synergy of performance and efficiency. Guaranteed to provide maximum results. Requires Clown to open."
 	cost = 6000
 	access = ACCESS_THEATRE
 	access_budget = ACCESS_THEATRE
