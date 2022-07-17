@@ -1,5 +1,15 @@
+/**
+	* # Subsystem base class
+	*
+	* Defines a subsystem to be managed by the [Master Controller][/datum/controller/master]
+	*
+	* Simply define a child of this subsystem, using the [SUBSYSTEM_DEF] macro, and the MC will handle registration.
+	* Changing the name is required
+**/
 
 /datum/controller/subsystem
+	// Metadata; you should define these.
+
 	/// Name of the subsystem - you must change this
 	name = "fire coderbus"
 
@@ -88,6 +98,7 @@
 	//Do not blindly add vars here to the bottom, put it where it goes above
 	//If your var only has two values, put it in as a flag.
 
+
 //Do not override
 ///datum/controller/subsystem/New()
 
@@ -105,6 +116,7 @@
 
 	tick_allocation_last = Master.current_ticklimit-(TICK_USAGE)
 	tick_allocation_avg = MC_AVERAGE(tick_allocation_avg, tick_allocation_last)
+
 	. = SS_SLEEPING
 	fire(resumed)
 	. = state
@@ -116,9 +128,9 @@
 		state = SS_PAUSED
 		queued_time = QT
 
-//previously, this would have been named 'process()' but that name is used everywhere for different things!
-//fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
-//Sleeping in here prevents future fires until returned.
+///previously, this would have been named 'process()' but that name is used everywhere for different things!
+///fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
+///Sleeping in here prevents future fires until returned.
 /datum/controller/subsystem/proc/fire(resumed = FALSE)
 	flags |= SS_NO_FIRE
 	CRASH("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
@@ -154,6 +166,7 @@
 		next_fire += wait
 	else
 		next_fire = queued_time + wait + (world.tick_lag * (tick_overrun/100))
+
 
 ///Queue it to run.
 /// (we loop thru a linked list until we get to the end or find the right point)
@@ -253,7 +266,6 @@
 
 /datum/controller/subsystem/stat_entry(msg)
 	var/list/tab_data = list()
-
 	if(can_fire && !(SS_NO_FIRE & flags) && init_stage <= Master.init_stage_completed)
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
@@ -287,7 +299,7 @@
 		if (SS_IDLE)
 			. = "  "
 
- /// Causes the next "cycle" fires to be missed. Effect is accumulative but can reset by calling update_nextfire(reset_time = TRUE)
+/// Causes the next "cycle" fires to be missed. Effect is accumulative but can reset by calling update_nextfire(reset_time = TRUE)
 /datum/controller/subsystem/proc/postpone(cycles = 1)
 	if (can_fire && cycles >= 1)
 		postponed_fires += cycles
@@ -297,15 +309,14 @@
 /datum/controller/subsystem/Recover()
 
 /datum/controller/subsystem/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if(NAMEOF(src, can_fire))
+	switch (var_name)
+		if (NAMEOF(src, can_fire))
 			//this is so the subsystem doesn't rapid fire to make up missed ticks causing more lag
-			if(var_value)
+			if (var_value)
 				update_nextfire(reset_time = TRUE)
-		if(NAMEOF(src, queued_priority)) //editing this breaks things.
+		if (NAMEOF(src, queued_priority)) //editing this breaks things.
 			return FALSE
 	. = ..()
-
 
 /**
   * Returns the metrics for the subsystem.
