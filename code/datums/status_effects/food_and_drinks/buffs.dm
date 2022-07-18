@@ -8,6 +8,11 @@
 		duration *= 1.5
 	return ..()
 
+/datum/status_effect/food/on_remove()
+	if(ishuman(owner))
+	var/mob/living/carbon/user = owner
+	user.applied_food_buffs --
+
 /datum/status_effect/food/stamina_increase
 	id = "t1_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
@@ -46,11 +51,12 @@
 	return ..()
 
 /datum/status_effect/food/stamina_increase/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		for(var/obj/item/bodypart/limbs in user.bodyparts)
 			limbs.max_stamina_damage -= stam_increase
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/resistance
 	id = "resistance_food"
@@ -69,11 +75,12 @@
 	return ..()
 
 /datum/status_effect/food/resistance/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		for(var/obj/item/bodypart/limbs in user.bodyparts)
 			limbs.brute_reduction -= 3
-		user.applied_food_buffs --
+
 
 #define DURATION_LOSS 250
 #define RANGE 4
@@ -95,10 +102,11 @@
 	return ..()
 
 /datum/status_effect/food/fire_burps/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		REMOVE_TRAIT(user, TRAIT_FOOD_FIRE_BURPS, "food_buffs")
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/fire_burps/proc/Burp()
 	var/turf/turfs = get_step(owner,owner.dir)
@@ -171,10 +179,11 @@
 	return ..()
 
 /datum/status_effect/food/sweaty/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		owner.metabolism_efficiency -= metabolism_increase
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/sweaty/tick()
 	. = ..()
@@ -219,10 +228,11 @@
 	return ..()
 
 /datum/status_effect/food/health_increase/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		user.maxHealth -= health_increase
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/belly_slide
 	id = "food_slide"
@@ -241,12 +251,13 @@
 	return ..()
 
 /datum/status_effect/food/belly_slide/on_remove()
+	.=..()
 	if(ishuman(owner))
 		REMOVE_TRAIT(owner, FOOD_SLIDE, "food_buffs")
 		var/mob/living/carbon/user = owner
 		if(owner.has_movespeed_modifier("belly_slide"))
 			owner.remove_movespeed_modifier("belly_slide")
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/stam_regen
 	id = "t1_stam_regen"
@@ -284,9 +295,10 @@
 		user.adjustStaminaLoss(-regen_increase, 0)
 
 /datum/status_effect/food/stam_regen/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		user.applied_food_buffs --
+
 
 
 
@@ -310,10 +322,11 @@
 	return ..()
 
 /datum/status_effect/food/botanist/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		REMOVE_TRAIT(user, FOOD_JOB_BOTANIST, "food_buffs")
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/miner
 	id = "job_miner_food"
@@ -331,10 +344,11 @@
 	return ..()
 
 /datum/status_effect/food/miner/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		REMOVE_TRAIT(user, FOOD_JOB_MINER, "food_buffs")
-		user.applied_food_buffs --
+
 
 /datum/status_effect/food/security
 	id = "job_security_food"
@@ -367,6 +381,7 @@
 						user.remove_movespeed_modifier("sec_food_buff", TRUE)
 
 /datum/status_effect/food/security/on_remove()
+	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		user.applied_food_buffs --
+
