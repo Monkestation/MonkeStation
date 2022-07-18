@@ -58,7 +58,7 @@
 
 /atom/movable/screen/alert/status_effect/food/resistance
 	name = "Damage resistance"
-	desc = "Slightly decreases damage you take"
+	desc = "Slightly decreases physical damage taken"
 	icon_state = "resistance"
 
 /datum/status_effect/food/resistance/on_apply()
