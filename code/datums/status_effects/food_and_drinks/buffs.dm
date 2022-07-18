@@ -355,17 +355,16 @@
 			var/perpname = perp.get_face_name(perp.get_id_name())
 			var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
 			if(R && R.fields["criminal"])
-				switch(R.fields["criminal"])
-					if("Arrest")
-						if(user.has_movespeed_modifier("sec_food_buff"))
-							break
-						else
-							if(!(perp == user))
-								user.add_movespeed_modifier("sec_food_buff", update=TRUE, priority=100, multiplicative_slowdown=-0.15, blacklisted_movetypes=(FLYING|FLOATING))
-								break
+				if((R.fields["criminal"] == "Arrest")
+					if(user.has_movespeed_modifier("sec_food_buff"))
+						break
 					else
-						if(user.has_movespeed_modifier("sec_food_buff"))
-							user.remove_movespeed_modifier("sec_food_buff", TRUE)
+						if(!(perp == user))
+							user.add_movespeed_modifier("sec_food_buff", update=TRUE, priority=100, multiplicative_slowdown=-0.15, blacklisted_movetypes=(FLYING|FLOATING))
+							break
+				else
+					if(user.has_movespeed_modifier("sec_food_buff"))
+						user.remove_movespeed_modifier("sec_food_buff", TRUE)
 
 /datum/status_effect/food/security/on_remove()
 	if(ishuman(owner))
