@@ -44,14 +44,15 @@
 
 /obj/machinery/flasher/power_change()
 	if (powered() && anchored && bulb)
-		machine_stat &= ~NOPOWER
+		set_machine_stat(machine_stat & ~NOPOWER)
 		if(bulb.burnt_out)
 			icon_state = "[base_state]1-p"
 		else
 			icon_state = "[base_state]1"
 	else
-		machine_stat |= NOPOWER
+		set_machine_stat(machine_stat | NOPOWER)
 		icon_state = "[base_state]1-p"
+	return ..()
 
 //Don't want to render prison breaks impossible
 /obj/machinery/flasher/attackby(obj/item/W, mob/user, params)
@@ -146,7 +147,7 @@
 /obj/machinery/flasher/obj_break(damage_flag)
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 			if(bulb)
 				bulb.burn_out()
 				power_change()
@@ -185,13 +186,13 @@
 		if (!anchored && !isinspace())
 			to_chat(user, "<span class='notice'>[src] is now secured.</span>")
 			add_overlay("[base_state]-s")
-			setAnchored(TRUE)
+			set_anchored(TRUE)
 			power_change()
 			proximity_monitor.SetRange(range)
 		else
 			to_chat(user, "<span class='notice'>[src] can now be moved.</span>")
 			cut_overlays()
-			setAnchored(FALSE)
+			set_anchored(FALSE)
 			power_change()
 			proximity_monitor.SetRange(0)
 

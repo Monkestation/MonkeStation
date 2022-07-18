@@ -11,37 +11,15 @@
 	var/food_dislikes
 	var/list/weeb_screams
 	var/list/weeb_laughs
+	var/hacked = FALSE
 
 /obj/item/anime/attack_self(mob/living/carbon/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/weeb = user
-		var/new_color = input(user, "Choose an Anime color:", "Anime Color (clicking 'cancel' will set Anime color to Hair color):", weeb.hair_color) as color|null
-		if(new_color) //If they DON'T pick a color, then it just defaults to their original hair color.
-			weeb.custom_color = sanitize_hexcolor(new_color)
-		else
-			weeb.custom_color = weeb.hair_color
-		if(ears)
-			ears.Insert(weeb)
-		if(tail)
-			tail.Insert(weeb)
-		if(weeb_screams)
-			weeb.alternative_screams += weeb_screams
-		if(weeb_laughs)
-			weeb.alternative_laughs += weeb_laughs
-		if(food_likes)
-			weeb.dna.species.liked_food = food_likes
-		if(food_dislikes)
-			weeb.dna.species.disliked_food = food_dislikes
-			weeb.dna.species.toxic_food = food_dislikes
+		anime_transformation(user)
 
-		var/turf/location = get_turf(weeb)
-		weeb.add_splatter_floor(location)
-		var/msg = "<span class=danger>You feel the power of God and Anime flow through you!</span>"
-		to_chat(weeb, msg)
-		playsound(location, 'sound/weapons/circsawhit.ogg', 50, 1)
-		weeb.update_body()
-		weeb.update_hair()
-		qdel(src)
+/obj/item/anime/afterattack(mob/living/carbon/user)
+	if(hacked && ishuman(user))
+		anime_transformation(user)
 
 //DERMAL IMPLANT SETS//
 /obj/item/anime/cat
@@ -96,9 +74,13 @@
 	icon = 'monkestation/icons/obj/device.dmi'
 	icon_state = "anime"
 	pickup_sound =  'monkestation/sound/misc/anime.ogg'
+	var/hacked_l = FALSE
 
 /obj/item/choice_beacon/anime/spawn_option(obj/choice, mob/living/carbon/human/M)//overwrite choice proc so it doesn't drop pod.
-	var/obj/new_item = new choice()
+	var/obj/item/anime/new_item = new choice()
+	if(hacked_l)
+		new_item.name = "Hacked " + new_item.name
+		new_item.hacked = TRUE
 	var/msg = "<span class=danger>The box spits out a [new_item]. </span>"
 	to_chat(M, msg)
 	var/list/slots = list (
@@ -111,12 +93,50 @@
 	var/static/list/anime
 	if(!anime)
 		anime = list()
-		var/list/templist = list(/obj/item/anime/cat, //Add to this list if you want your implant to be included in the trait
-								 /obj/item/anime/fox,
-								 /obj/item/anime/wolf,
-								 /obj/item/anime/shark
-								)
+		var/list/templist = list()
+		templist = list(/obj/item/anime/cat, //Add to this list if you want your implant to be included in the trait
+						 /obj/item/anime/fox,
+						 /obj/item/anime/wolf,
+						 /obj/item/anime/shark
+						)
 		for(var/V in templist)
 			var/atom/A = V
 			anime[initial(A.name)] = A
 	return anime
+
+/obj/item/choice_beacon/anime/hacked
+	name = "hacked anime dermal implant kit"
+	hacked_l = TRUE
+
+/obj/item/anime/proc/anime_transformation(mob/living/carbon/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/weeb = user
+		var/new_color = null
+		if(!hacked)
+			new_color = input(user, "Choose an Anime color:", "Anime Color (clicking 'cancel' will set Anime color to Hair color):", weeb.hair_color) as color|null
+		if(new_color) //If they DON'T pick a color, then it just defaults to their original hair color.
+			weeb.custom_color = sanitize_hexcolor(new_color)
+		else
+			weeb.custom_color = weeb.hair_color
+		if(ears)
+			ears.Insert(weeb)
+		if(tail)
+			tail.Insert(weeb)
+		if(weeb_screams)
+			weeb.alternative_screams += weeb_screams
+		if(weeb_laughs)
+			weeb.alternative_laughs += weeb_laughs
+		if(food_likes)
+			weeb.dna.species.liked_food = food_likes
+		if(food_dislikes)
+			weeb.dna.species.disliked_food = food_dislikes
+			weeb.dna.species.toxic_food = food_dislikes
+
+		var/turf/location = get_turf(weeb)
+		weeb.add_splatter_floor(location)
+		var/msg = "<span class=danger>You feel the power of God and Anime flow through you!</span>"
+		to_chat(weeb, msg)
+		playsound(location, 'sound/weapons/circsawhit.ogg', 50, 1)
+		weeb.update_body()
+		weeb.update_hair()
+		qdel(src)

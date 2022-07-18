@@ -14,7 +14,7 @@
 #define STRUCTURE (1)
 
 /// The Tesla engine
-/obj/anomaly/energy_ball
+/obj/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
@@ -32,35 +32,31 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	flags_1 = SUPERMATTER_IGNORES_1
 
+	var/energy
 	var/target
 	var/list/orbiting_balls = list()
 	var/miniball = FALSE
-
-	dissipate = TRUE //Do we lose energy over time?
-	dissipate_delay = 10 SECONDS
-
 	var/produced_power
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 	var/list/shocked_things = list()
 
-/obj/anomaly/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
+/obj/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	. = ..()
-
 	energy = starting_energy
 	miniball = is_miniball
 	START_PROCESSING(SSobj, src)
 
 	if (!is_miniball)
-		set_light(10, 7, "#5e5edd")
+		set_light(10, 8, "#5e5edd")
 
 		var/turf/spawned_turf = get_turf(src)
 		message_admins("A tesla has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
 		investigate_log("was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
 
-/obj/anomaly/energy_ball/Destroy()
-	if(orbiting && istype(orbiting.parent, /obj/anomaly/energy_ball))
-		var/obj/anomaly/energy_ball/parent_energy_ball = orbiting.parent
+/obj/energy_ball/Destroy()
+	if(orbiting && istype(orbiting.parent, /obj/energy_ball))
+		var/obj/energy_ball/parent_energy_ball = orbiting.parent
 		parent_energy_ball.orbiting_balls -= src
 
 	QDEL_LIST(orbiting_balls)
@@ -68,46 +64,46 @@
 
 	return ..()
 
-/obj/anomaly/energy_ball/ex_act(severity, target)
+/obj/energy_ball/ex_act(severity, target)
 	return
 
-/obj/anomaly/energy_ball/process(delta_time)
+/obj/energy_ball/process(delta_time)
 	if(orbiting)
 		energy = 0 // ensure we dont have miniballs of miniballs
 	else
 		handle_energy(delta_time)
 
-	//MonkeStation Edit Start: Slows the tesla a bit
-	if(last_move <= world.time + 4 SECONDS)
-		last_move = world.time
-		move(4 + (orbiting_balls.len * 1.5 ))
-		//MonkeStation Edit End
+		//MonkeStation Edit Start: Slows the tesla a bit
+		if(last_move <= world.time + 6 SECONDS)
+			last_move = world.time
+			move(4 + (orbiting_balls.len * 1.5 ))
+			//MonkeStation Edit End
 
-		playsound(src.loc, 'sound/magic/lightningbolt.ogg', 70, TRUE, extrarange = 30)
+			playsound(src.loc, 'sound/magic/lightningbolt.ogg', 70, TRUE, extrarange = 30)
 
-		pixel_x = 0
-		pixel_y = 0
-		shocked_things.Cut(1, shocked_things.len / 1.3)
-		var/list/shocking_info = list()
-		tesla_zap(src, 3, TESLA_DEFAULT_POWER, shocked_targets = shocking_info)
+			pixel_x = 0
+			pixel_y = 0
+			shocked_things.Cut(1, shocked_things.len / 1.3)
+			var/list/shocking_info = list()
+			tesla_zap(src, 3, TESLA_DEFAULT_POWER, shocked_targets = shocking_info)
 
-		pixel_x = -32
-		pixel_y = -32
-		for (var/ball in orbiting_balls)
-			var/range = rand(1, clamp(orbiting_balls.len, 2, 3))
-			var/list/temp_shock = list()
-			//We zap off the main ball instead of ourselves to make things looks proper
-			tesla_zap(src, range, TESLA_MINI_POWER/7*range, shocked_targets = temp_shock)
-			shocking_info += temp_shock
-		shocked_things += shocking_info
+			pixel_x = -32
+			pixel_y = -32
+			for (var/ball in orbiting_balls)
+				var/range = rand(1, CLAMP(orbiting_balls.len, 2, 7))
+				var/list/temp_shock = list()
+				//We zap off the main ball instead of ourselves to make things looks proper
+				tesla_zap(src, range, TESLA_MINI_POWER/7*range, shocked_targets = temp_shock)
+				shocking_info += temp_shock
+			shocked_things += shocking_info
 
-/obj/anomaly/energy_ball/examine(mob/user)
+/obj/energy_ball/examine(mob/user)
 	. = ..()
 	if(orbiting_balls.len)
 		. += "There are [orbiting_balls.len] mini-balls orbiting it."
 
 
-/obj/anomaly/energy_ball/proc/move(move_amount)
+/obj/energy_ball/proc/move(move_amount)
 	var/list/dirs = GLOB.alldirs.Copy()
 	if(shocked_things.len)
 		for (var/i in 1 to 30)
@@ -115,7 +111,7 @@
 			dirs += get_dir(src, real_thing) //Carry some momentum yeah? Just a bit tho
 	for (var/i in 0 to move_amount)
 		var/move_dir = pick(dirs) //ensures teslas don't just sit around
-		if (target && prob(25)) //Make the energy_ball movement more erratic by raising the prob
+		if (target && prob(1)) //Make the energy_ball movement more erratic by lowering the prob
 			move_dir = get_dir(src, target)
 		var/turf/turf_to_move = get_step(src, move_dir)
 		if (can_move(turf_to_move))
@@ -124,7 +120,7 @@
 			for (var/mob/living/carbon/mob_to_dust in loc)
 				dust_mobs(mob_to_dust)
 
-/obj/anomaly/energy_ball/proc/can_move(turf/to_move)
+/obj/energy_ball/proc/can_move(turf/to_move)
 	if (!to_move)
 		return FALSE
 
@@ -135,16 +131,14 @@
 
 	return TRUE
 
-/obj/anomaly/energy_ball/proc/handle_energy(delta_time)
-	if(!COOLDOWN_FINISHED(src, RESTART_DISSIPATE))
-		return
-
+/obj/energy_ball/proc/handle_energy(delta_time)
 	if(energy >= energy_to_raise)
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
 		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 70, TRUE, extrarange = 30)
 		addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
+
 	else if(energy < energy_to_lower && orbiting_balls.len)
 		energy_to_raise = energy_to_raise / 1.25
 		energy_to_lower = (energy_to_raise / 1.25) - 20
@@ -152,18 +146,15 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len)
-		dissipate(delta_time)
-
-/obj/anomaly/energy_ball/proc/new_mini_ball()
+/obj/energy_ball/proc/new_mini_ball()
 	if(!loc)
 		return
 	if(orbiting_balls.len >= TESLA_MAX_BALLS)
 		return
 
-	var/obj/anomaly/energy_ball/miniball = new /obj/anomaly/energy_ball(
+	var/obj/energy_ball/miniball = new /obj/energy_ball(
 		loc,
-		/* starting_energy = */ 0,
+		/* starting_energy = */ 10,
 		/* is_miniball = */ TRUE
 	)
 
@@ -173,43 +164,42 @@
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
 	orbitsize -= (orbitsize / world.icon_size) * (world.icon_size * 0.25)
 
+	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
+
 	//MonkeStation Edit: Moths leap for teslas
 	Grab_Moths(get_turf(miniball), 10)
 
-	miniball.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
-
-/obj/anomaly/energy_ball/Bump(atom/A)
+/obj/energy_ball/Bump(atom/A)
 	dust_mobs(A)
 
-/obj/anomaly/energy_ball/Bumped(atom/movable/AM)
+/obj/energy_ball/Bumped(atom/movable/AM)
 	dust_mobs(AM)
 
-/obj/anomaly/energy_ball/attack_tk(mob/user)
+/obj/energy_ball/attack_tk(mob/user)
 	if(!iscarbon(user))
 		return
-	var/mob/living/carbon/jedi = user
-	to_chat(jedi, span_userdanger("That was a shockingly dumb idea."))
-	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.internal_organs
-	jedi.ghostize(jedi)
+	var/mob/living/carbon/tk_user = user
+	to_chat(tk_user, span_userdanger("That was a shockingly dumb idea."))
+	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in tk_user.internal_organs
+	tk_user.ghostize(tk_user)
 	qdel(rip_u)
-	jedi.death()
-	return COMPONENT_CANCEL_ATTACK_CHAIN
+	tk_user.death()
+	return
 
-/obj/anomaly/energy_ball/orbit(obj/anomaly/energy_ball/target)
+/obj/energy_ball/orbit(obj/energy_ball/target)
 	if (istype(target))
 		target.orbiting_balls += src
 	. = ..()
 
-/obj/anomaly/energy_ball/stop_orbit()
-	if (orbiting && istype(orbiting.parent, /obj/anomaly/energy_ball))
-		var/obj/anomaly/energy_ball/orbitingball = orbiting.parent
+/obj/energy_ball/stop_orbit()
+	if (orbiting && istype(orbiting.parent, /obj/energy_ball))
+		var/obj/energy_ball/orbitingball = orbiting.parent
 		orbitingball.orbiting_balls -= src
 	. = ..()
 	if (!QDELETED(src))
 		qdel(src)
 
-
-/obj/anomaly/energy_ball/proc/dust_mobs(atom/A)
+/obj/energy_ball/proc/dust_mobs(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.incorporeal_move || L.status_flags & GODMODE)
@@ -221,34 +211,6 @@
 			return
 	var/mob/living/carbon/C = A
 	C.dust()
-
-//Less intensive energy ball for the orbiting ones.
-/obj/effect/energy_ball
-	name = "energy ball"
-	desc = "An energy ball."
-	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
-	icon_state = "energy_ball"
-	pixel_x = -32
-	pixel_y = -32
-
-/obj/effect/energy_ball/Destroy(force)
-	if(orbiting && istype(orbiting.parent, /obj/anomaly/energy_ball))
-		var/obj/anomaly/energy_ball/EB = orbiting.parent
-		EB.orbiting_balls -= src
-		EB.dissipate_strength = EB.orbiting_balls.len
-	. = ..()
-
-/obj/effect/energy_ball/orbit(obj/anomaly/energy_ball/target)
-	if (istype(target))
-		target.orbiting_balls += src
-		target.dissipate_strength = target.orbiting_balls.len
-	. = ..()
-
-/obj/effect/energy_ball/stop_orbit()
-	. = ..()
-	//Qdel handles removing from the parent ball list.
-	if(!QDELETED(src))
-		qdel(src)
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, zap_flags = ZAP_DEFAULT_FLAGS | ZAP_GENERATES_POWER | ZAP_MACHINE_EXPLOSIVE, list/shocked_targets = list())
 	if(QDELETED(source))
