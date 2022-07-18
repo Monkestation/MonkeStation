@@ -1,5 +1,5 @@
 /datum/status_effect/food
-	duration = 3000
+	duration = 10 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 
 
