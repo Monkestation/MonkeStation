@@ -56,7 +56,7 @@
 	locked = TRUE
 	req_access_txt = "100"
 	state = EMITTER_WELDED
-	use_power = FALSE
+	use_power = NO_POWER_USE
 
 /obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
@@ -74,6 +74,7 @@
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/power/emitter/RefreshParts()
+	. = ..()
 	var/max_firedelay = 120
 	var/firedelay = 120
 	var/min_firedelay = 24
@@ -87,7 +88,7 @@
 	fire_delay = firedelay
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
-	active_power_usage = power_usage
+	update_mode_power_usage(ACTIVE_POWER_USE, power_usage)
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
@@ -111,6 +112,7 @@
 		log_game("Emitter deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_ENGINES)
 	QDEL_NULL(sparks)
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/power/emitter/update_icon()

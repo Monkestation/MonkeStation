@@ -55,7 +55,7 @@
 					break
 		var/list/reactable = accessible
 		for(var/turf/T in accessible)
-			for(var/atom/A as() in T.GetAllContents())
+			for(var/atom/A as() in T.get_all_contents_type())
 				if(!(A in viewable))
 					continue
 				reactable |= A
@@ -67,7 +67,7 @@
 			var/distance = max(1,get_dist(A, epicenter))
 			var/fraction = 0.5/(2 ** distance) //50/25/12/6... for a 200u splash, 25/12/6/3... for a 100u, 12/6/3/1 for a 50u
 			splash_holder.reaction(A, TOUCH, fraction)
-
+	epicenter.add_liquid_from_reagents(splash_holder) //MONKESTATION EDIT ADDITION
 	qdel(splash_holder)
 	return 1
 

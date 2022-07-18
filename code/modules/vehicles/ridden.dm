@@ -20,7 +20,7 @@
 		if(!inserted_key)
 			. += "<span class='notice'>Put a key inside it by clicking it with the key.</span>"
 		else
-			. += "<span class='notice'>Alt-click [src] to remove the key.</span>"
+			. += "<span class='notice'><b>Alt-click</b> [src] to remove the key.</span>"
 
 /obj/vehicle/ridden/generate_action_type(actiontype)
 	var/datum/action/vehicle/ridden/A = ..()
@@ -103,3 +103,7 @@
 		for(var/mob/M in occupants)
 			unbuckle_mob(M) // Even though unbuckle_all_mobs exists we may as well only iterate once
 			M.onZImpact(newloc, levels)
+
+/obj/vehicle/ridden/zap_act(power, zap_flags)
+	zap_buckle_check(power)
+	return ..()

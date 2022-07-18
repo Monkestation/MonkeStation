@@ -69,9 +69,6 @@
 		transfer_identity(C)
 	C.update_hair()
 
-/obj/item/organ/brain/prepare_eat(mob/living/carbon/human/H)
-	if(iszombie(H))//braaaaaains... otherwise, too important to eat.
-		..()
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
 	name = "[L.name]'s brain"
@@ -208,12 +205,12 @@
 	icon_state = "brain-x"
 
 /obj/item/organ/brain/positron
-	name = "positronic brain"
+	name = "ipc positronic brain"
 	slot = ORGAN_SLOT_BRAIN
 	zone = BODY_ZONE_CHEST
 	status = ORGAN_ROBOTIC
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this Posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'monkestation/icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
 

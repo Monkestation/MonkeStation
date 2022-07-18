@@ -235,32 +235,6 @@
 		"default" = 'icons/UI_Icons/Achievements/default.png'
 	)
 
-/datum/asset/spritesheet/simple/pills
-	name ="pills"
-	assets = list(
-		"pill1" = 'icons/UI_Icons/Pills/pill1.png',
-		"pill2" = 'icons/UI_Icons/Pills/pill2.png',
-		"pill3" = 'icons/UI_Icons/Pills/pill3.png',
-		"pill4" = 'icons/UI_Icons/Pills/pill4.png',
-		"pill5" = 'icons/UI_Icons/Pills/pill5.png',
-		"pill6" = 'icons/UI_Icons/Pills/pill6.png',
-		"pill7" = 'icons/UI_Icons/Pills/pill7.png',
-		"pill8" = 'icons/UI_Icons/Pills/pill8.png',
-		"pill9" = 'icons/UI_Icons/Pills/pill9.png',
-		"pill10" = 'icons/UI_Icons/Pills/pill10.png',
-		"pill11" = 'icons/UI_Icons/Pills/pill11.png',
-		"pill12" = 'icons/UI_Icons/Pills/pill12.png',
-		"pill13" = 'icons/UI_Icons/Pills/pill13.png',
-		"pill14" = 'icons/UI_Icons/Pills/pill14.png',
-		"pill15" = 'icons/UI_Icons/Pills/pill15.png',
-		"pill16" = 'icons/UI_Icons/Pills/pill16.png',
-		"pill17" = 'icons/UI_Icons/Pills/pill17.png',
-		"pill18" = 'icons/UI_Icons/Pills/pill18.png',
-		"pill19" = 'icons/UI_Icons/Pills/pill19.png',
-		"pill20" = 'icons/UI_Icons/Pills/pill20.png',
-		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
-		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
-	)
 
 //this exists purely to avoid meta by pre-loading all language icons.
 /datum/asset/language/register()
@@ -521,6 +495,27 @@
 			continue
 		Insert(id, fish_icon, fish_icon_state)
 	..()
+
+/datum/asset/simple/inventory
+	assets = list(
+		"inventory-glasses.png" = 'icons/UI_Icons/inventory/glasses.png',
+		"inventory-head.png" = 'icons/UI_Icons/inventory/head.png',
+		"inventory-neck.png" = 'icons/UI_Icons/inventory/neck.png',
+		"inventory-mask.png" = 'icons/UI_Icons/inventory/mask.png',
+		"inventory-ears.png" = 'icons/UI_Icons/inventory/ears.png',
+		"inventory-uniform.png" = 'icons/UI_Icons/inventory/uniform.png',
+		"inventory-suit.png" = 'icons/UI_Icons/inventory/suit.png',
+		"inventory-gloves.png" = 'icons/UI_Icons/inventory/gloves.png',
+		"inventory-hand_l.png" = 'icons/UI_Icons/inventory/hand_l.png',
+		"inventory-hand_r.png" = 'icons/UI_Icons/inventory/hand_r.png',
+		"inventory-shoes.png" = 'icons/UI_Icons/inventory/shoes.png',
+		"inventory-suit_storage.png" = 'icons/UI_Icons/inventory/suit_storage.png',
+		"inventory-id.png" = 'icons/UI_Icons/inventory/id.png',
+		"inventory-belt.png" = 'icons/UI_Icons/inventory/belt.png',
+		"inventory-back.png" = 'icons/UI_Icons/inventory/back.png',
+		"inventory-pocket.png" = 'icons/UI_Icons/inventory/pocket.png',
+		"inventory-collar.png" = 'icons/UI_Icons/inventory/collar.png',
+	)
 
 /// Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts
 /proc/sanitize_css_class_name(name)

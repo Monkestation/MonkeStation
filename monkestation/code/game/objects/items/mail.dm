@@ -21,9 +21,9 @@
 	var/list/generic_goodies = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 10,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers = 10,
-		/obj/item/reagent_containers/food/snacks/candy = 10,
-		/obj/item/reagent_containers/food/snacks/chips = 10,
+		/obj/item/food/cheesiehonkers = 10,
+		/obj/item/food/candy = 10,
+		/obj/item/food/chips = 10,
 		/obj/item/stack/spacecash/c50 = 10,
 		/obj/item/stack/spacecash/c100 = 5,
 		/obj/item/stack/spacecash/c200 = 1
@@ -75,11 +75,11 @@
 		department_colors = list(
 			ACCOUNT_CIV = COLOR_WHITE,
 			ACCOUNT_ENG = COLOR_ORANGE,
-			ACCOUNT_SCI = COLOR_PALE_PURPLE_GRAY,
-			ACCOUNT_MED = COLOR_PALE_BLUE_GRAY,
-			ACCOUNT_SRV = COLOR_PALE_GREEN_GRAY,
+			ACCOUNT_SCI = COLOR_STRONG_VIOLET,
+			ACCOUNT_MED = COLOR_BLUE_LIGHT,
+			ACCOUNT_SRV = COLOR_DARK_MODERATE_LIME_GREEN,
 			ACCOUNT_CAR = COLOR_BEIGE,
-			ACCOUNT_SEC = COLOR_PALE_RED_GRAY,
+			ACCOUNT_SEC = COLOR_DARK_RED,
 		)
 
 	// Icons

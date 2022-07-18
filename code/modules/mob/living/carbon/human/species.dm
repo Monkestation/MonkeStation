@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/dyncolor = "" // if you use Dyncolor and are not ethereal, use this
 	var/exotic_blood = ""	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_bloodtype = "" //If your race uses a non standard bloodtype (A+, O-, AB-, etc)
-	var/meat = /obj/item/reagent_containers/food/snacks/meat/slab/human //What the species drops on gibbing
+	var/meat = /obj/item/food/meat/slab/human //What the species drops on gibbing
 	var/skinned_type
 	var/liked_food = NONE
 	var/disliked_food = GROSS
@@ -247,6 +247,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			butt = new()
 		butt.Insert(C)
+
 	//MonkeStation Edit End
 
 	if(tail && (!should_have_tail || replace_current))
@@ -837,6 +838,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
+				if("moth_wingsopen")
+					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
 				if("ipc_screen")
@@ -2096,7 +2099,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		override_float = TRUE
 		H.pass_flags |= PASSTABLE
 		H.update_mobility()
-		if("wings" in H.dna.species.mutant_bodyparts)
+		if(("wings" in H.dna.species.mutant_bodyparts) || ("moth_wings" in H.dna.species.mutant_bodyparts))
 			H.Togglewings()
 	else
 		stunmod *= 0.5
@@ -2104,7 +2107,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.setMovetype(H.movement_type & ~FLYING)
 		override_float = FALSE
 		H.pass_flags &= ~PASSTABLE
-		if("wingsopen" in H.dna.species.mutant_bodyparts)
+		if(("wingsopen" in H.dna.species.mutant_bodyparts) || ("moth_wingsopen" in H.dna.species.mutant_bodyparts))
 			H.Togglewings()
 		if(isturf(H.loc))
 			var/turf/T = H.loc

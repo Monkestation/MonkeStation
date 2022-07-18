@@ -21,7 +21,9 @@ SUBSYSTEM_DEF(economy)
 	///Multiplied as they go to all department accounts rather than just cargo.
 	var/bounty_modifier = 3
 
-	//MonkeStation Edit: /tg/ Mail Port
+	//Monkestation edit begin
+	/// How many civilain bounties have been completed so far this shift? Affects civilian budget payout values.
+	var/civ_bounty_tracker = 0
 	/// Total value of exported materials.
 	var/export_total = 0
 	/// Total value of imported goods.
@@ -35,6 +37,10 @@ SUBSYSTEM_DEF(economy)
 	for(var/A in department_accounts)
 		new /datum/bank_account/department(A, budget_to_hand_out)
 	return ..()
+
+/datum/controller/subsystem/economy/Recover()
+	generated_accounts = SSeconomy.generated_accounts
+	dep_cards = SSeconomy.dep_cards
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	//MonkeStation Edit: /tg/ Mail Port

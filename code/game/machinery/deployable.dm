@@ -129,6 +129,11 @@
 /obj/structure/barricade/security/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/deploy), deploy_time)
+	AddElement(/datum/element/liquids_height, 20) //MONKESTATION EDIT
+
+/obj/structure/barricade/security/Destroy()
+	. = ..()
+	RemoveElement(/datum/element/liquids_height, 20) //MONKESTATION EDIT
 
 /obj/structure/barricade/security/proc/deploy()
 	icon_state = "barrier1"
@@ -171,23 +176,24 @@
 	. = ..()
 	if(!.)
 		return
+
 	new /obj/structure/barricade/security(get_turf(src.loc))
 	switch(mode)
 		if(VERTICAL)
-			var/target_turf = get_step(src, NORTH)
-			if(!(is_blocked_turf(target_turf)))
+			var/turf/target_turf = get_step(src, NORTH)
+			if(!target_turf.is_blocked_turf())
 				new /obj/structure/barricade/security(target_turf)
 
-			var/target_turf2 = get_step(src, SOUTH)
-			if(!(is_blocked_turf(target_turf2)))
+			var/turf/target_turf2 = get_step(src, SOUTH)
+			if(!target_turf2.is_blocked_turf())
 				new /obj/structure/barricade/security(target_turf2)
 		if(HORIZONTAL)
-			var/target_turf = get_step(src, EAST)
-			if(!(is_blocked_turf(target_turf)))
+			var/turf/target_turf = get_step(src, EAST)
+			if(!target_turf.is_blocked_turf())
 				new /obj/structure/barricade/security(target_turf)
 
-			var/target_turf2 = get_step(src, WEST)
-			if(!(is_blocked_turf(target_turf2)))
+			var/turf/target_turf2 = get_step(src, WEST)
+			if(!target_turf2.is_blocked_turf())
 				new /obj/structure/barricade/security(target_turf2)
 	qdel(src)
 

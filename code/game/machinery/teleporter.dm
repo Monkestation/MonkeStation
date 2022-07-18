@@ -28,6 +28,7 @@
 	return ..()
 
 /obj/machinery/teleport/hub/RefreshParts()
+	. = ..()
 	var/A = 0
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		A += M.rating
@@ -107,7 +108,8 @@
 
 /obj/machinery/teleport/hub/syndicate/Initialize(mapload)
 	. = ..()
-	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
+	var/obj/item/stock_parts/matter_bin/super/super_bin = new(src)
+	LAZYADD(component_parts, super_bin)
 	RefreshParts()
 
 
@@ -130,6 +132,7 @@
 	link_console_and_hub()
 
 /obj/machinery/teleport/station/RefreshParts()
+	. = ..()
 	var/E
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating

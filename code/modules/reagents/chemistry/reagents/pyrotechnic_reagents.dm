@@ -6,6 +6,9 @@
 	color = "#550000"
 	taste_description = "sweet tasting metal"
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
+	evaporation_rate = 0.1
 
 /datum/reagent/thermite/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -21,6 +24,7 @@
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
+	evaporation_rate = 2
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
@@ -38,6 +42,9 @@
 	metabolization_rate = 4
 	taste_description = "burning"
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
+	evaporation_rate = 2
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -137,6 +144,9 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
+	evaporation_rate = 1.2
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -160,6 +170,9 @@
 	taste_description = "burning"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
+	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
+	evaporation_rate = 0.1 //should evaporate real slow
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -180,12 +193,17 @@
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
 
-
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
 		M.reagents.remove_reagent(/datum/reagent/oxygen, 0.5)
 		M.adjust_bodytemperature(-15)
 	..()
+
+/datum/reagent/cryostylane/reaction_turf(turf/O, reac_volume)
+	var/turf/T = get_turf(O)
+	if(reac_volume >= 5)
+		for(var/mob/living/simple_animal/slime/M in T)
+			M.adjustToxLoss(rand(15,30))
 
 /datum/reagent/cryostylane/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 5)
@@ -218,6 +236,7 @@
 	self_consuming = TRUE
 	var/shock_timer = 0
 	process_flags = ORGANIC | SYNTHETIC
+	evaporation_rate = 3 //unstable disapates quickly
 
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
@@ -302,3 +321,8 @@
 		M.adjust_fire_stacks(-reac_volume)
 		M.ExtinguishMob()
 	..()
+
+/datum/chemical_reaction/reagent_explosion/patriotism_overload
+	required_reagents = list(/datum/reagent/consumable/ethanol/planet_cracker = 1, /datum/reagent/consumable/ethanol/triumphal_arch = 1)
+	strengthdiv = 20
+	mix_message = "<span class='boldannounce'>The two patriotic drinks instantly reject each other!</span>"

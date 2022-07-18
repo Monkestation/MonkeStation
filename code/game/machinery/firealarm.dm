@@ -64,6 +64,7 @@
 	update_icon()
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
+	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/firealarm()), SHELL_CAPACITY_LARGE)
 
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src)
@@ -148,7 +149,7 @@
 	..()
 
 /obj/machinery/firealarm/proc/alarm(mob/user)
-	if(!is_operational() || (last_alarm+FIREALARM_COOLDOWN > world.time))
+	if(!is_operational || (last_alarm+FIREALARM_COOLDOWN > world.time))
 		return
 	last_alarm = world.time
 	var/area/A = get_area(src)
@@ -156,14 +157,16 @@
 	playsound(loc, 'goon/sound/machinery/FireAlarm.ogg', 75)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
+	SEND_SIGNAL(src,COMSIG_FIREALARM_SET)
 
 /obj/machinery/firealarm/proc/reset(mob/user)
-	if(!is_operational())
+	if(!is_operational)
 		return
 	var/area/A = get_area(src)
 	A.firereset(src)
 	if(user)
 		log_game("[user] reset a fire alarm at [COORD(src)]")
+	SEND_SIGNAL(src,COMSIG_FIREALARM_RESET)
 
 /obj/machinery/firealarm/attack_hand(mob/user)
 	if(buildstage != 2)
@@ -250,7 +253,7 @@
 						if(buildstage == 1)
 							if(machine_stat & BROKEN)
 								to_chat(user, "<span class='notice'>You remove the destroyed circuit.</span>")
-								machine_stat &= ~BROKEN
+								set_machine_stat(machine_stat & ~BROKEN)
 							else
 								to_chat(user, "<span class='notice'>You pry out the circuit.</span>")
 								new /obj/item/electronics/firealarm(user.loc)
@@ -316,7 +319,7 @@
 /obj/machinery/firealarm/obj_break(damage_flag)
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1) && buildstage != 0) //can't break the electronics if there isn't any inside.
 		LAZYREMOVE(myarea.firealarms, src)
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 		update_icon()
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
@@ -368,3 +371,73 @@
 	if (!party_overlay)
 		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
 	A.add_overlay(party_overlay)
+
+
+/*
+Monkestation: Added circuit component
+Ported from /tg/station: PR #64985
+*/
+
+/obj/item/circuit_component/firealarm
+	display_name = "Fire Alarm"
+	display_desc = "Lets you interface with the fire alarm."
+
+	var/datum/port/input/input_set
+	var/datum/port/input/input_reset
+
+	var/datum/port/output/is_on
+	var/datum/port/output/output_set
+	var/datum/port/output/output_reset
+
+
+/obj/item/circuit_component/firealarm/Initialize(mapload)
+	. = ..()
+	input_set = add_input_port("Set", PORT_TYPE_SIGNAL)
+	input_reset = add_input_port("Reset", PORT_TYPE_SIGNAL)
+
+	is_on = add_output_port("Is On", PORT_TYPE_NUMBER)
+	output_set = add_output_port("Set", PORT_TYPE_SIGNAL)
+	output_reset = add_output_port("Reset", PORT_TYPE_SIGNAL)
+
+/obj/item/circuit_component/firealarm/Destroy()
+	input_set = null
+	input_reset = null
+
+	is_on = null
+	output_set = null
+	output_reset = null
+	return ..()
+
+/obj/item/circuit_component/firealarm/register_shell(atom/movable/shell)
+	RegisterSignal(shell, COMSIG_FIREALARM_SET, .proc/on_firealarm_triggered)
+	RegisterSignal(shell, COMSIG_FIREALARM_RESET, .proc/on_firealarm_reset)
+
+/obj/item/circuit_component/firealarm/unregister_shell(atom/movable/shell)
+	UnregisterSignal(shell, COMSIG_FIREALARM_SET)
+	UnregisterSignal(shell, COMSIG_FIREALARM_RESET)
+
+/obj/item/circuit_component/firealarm/proc/on_firealarm_triggered(atom/source)
+	SIGNAL_HANDLER
+	is_on.set_output(1)
+	output_set.set_output(COMPONENT_SIGNAL)
+
+
+/obj/item/circuit_component/firealarm/proc/on_firealarm_reset(atom/source)
+	SIGNAL_HANDLER
+	is_on.set_output(0)
+	output_reset.set_output(COMPONENT_SIGNAL)
+
+
+/obj/item/circuit_component/firealarm/input_received(datum/port/input/port)
+	. = ..()
+	if(.)
+		return
+
+	var/obj/machinery/firealarm/shell = parent.shell
+	if(!istype(shell))
+		return
+	if(COMPONENT_TRIGGERED_BY(input_set, port))
+		shell.alarm()
+
+	if(COMPONENT_TRIGGERED_BY(input_reset, port))
+		shell.reset()

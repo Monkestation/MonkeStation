@@ -25,5 +25,5 @@
 						ANNOUNCER_RADIATION = 'monkestation/sound/ai/duke/radiation.ogg',
 						ANNOUNCER_SHUTTLECALLED = 'monkestation/sound/ai/duke/shuttle_call.ogg',
 						ANNOUNCER_SHUTTLEDOCK = 'monkestation/sound/ai/duke/shuttle_arrive.ogg',
-						ANNOUNCER_SHUTTLERECALLED = 'sound/ai/intern/shuttlerecalled.ogg',
+						ANNOUNCER_SHUTTLERECALLED = 'monkestation/sound/ai/duke/shuttle_recall.ogg',
 						ANNOUNCER_SPANOMALIES = 'monkestation/sound/ai/duke/spanomalies.ogg')

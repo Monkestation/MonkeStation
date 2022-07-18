@@ -17,6 +17,7 @@
 	processing_flags = NONE
 
 /obj/machinery/processor/RefreshParts()
+	. = ..()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		rating_amount = B.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
@@ -63,7 +64,9 @@
 	if(istype(O, /obj/item/storage/bag/tray))
 		var/obj/item/storage/T = O
 		var/loaded = 0
-		for(var/obj/item/reagent_containers/food/snacks/S in T.contents)
+		for(var/obj/S in T.contents)
+			if(!IS_EDIBLE(S))
+				continue
 			var/datum/food_processor_process/P = select_recipe(S)
 			if(P)
 				if(SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, S, src))
@@ -154,12 +157,12 @@
 /obj/machinery/processor/slime
 	name = "slime processor"
 	desc = "An industrial grinder with a sticker saying appropriated for science department. Keep hands clear of intake area while operating."
+	circuit = /obj/item/circuitboard/machine/processor/slime
+
 	var/sbacklogged = FALSE
 
 /obj/machinery/processor/slime/Initialize(mapload)
 	. = ..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/processor/slime(null)
-	B.apply_default_parts(src)
 	proximity_monitor = new(src, 1)
 
 /obj/machinery/processor/slime/adjust_item_drop_location(atom/movable/AM)

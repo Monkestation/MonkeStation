@@ -149,7 +149,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					P.wear_suit.plane = initial(P.wear_suit.plane)
 					P.wear_suit = null
 				P.wear_suit = new/obj/item/clothing/suit/space(P)
-				P.wear_suit.layer = ABOVE_HUD_LAYER
 				P.wear_suit.plane = ABOVE_HUD_PLANE
 				P.update_inv_wear_suit()
 				if(P.head)
@@ -158,7 +157,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					P.head.plane = initial(P.head.plane)
 					P.head = null
 				P.head = new/obj/item/clothing/head/helmet/space(P)
-				P.head.layer = ABOVE_HUD_LAYER
 				P.head.plane = ABOVE_HUD_PLANE
 				P.update_inv_head()
 				if(P.wear_mask)
@@ -167,7 +165,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					P.wear_mask.plane = initial(P.wear_mask.plane)
 					P.wear_mask = null
 				P.wear_mask = new/obj/item/clothing/mask/gas(P)
-				P.wear_mask.layer = ABOVE_HUD_LAYER
 				P.wear_mask.plane = ABOVE_HUD_PLANE
 				P.update_inv_wear_mask()
 				if(P.back)
@@ -176,7 +173,6 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					P.back.plane = initial(P.back.plane)
 					P.back = null
 				P.back = new/obj/item/tank/jetpack/oxygen(P)
-				P.back.layer = ABOVE_HUD_LAYER
 				P.back.plane = ABOVE_HUD_PLANE
 				P.update_inv_back()
 				P.internal = P.back
@@ -237,7 +233,7 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					var/list/all_items = subtypesof(/obj/item/clothing)
 					for(var/typekey in spawn_forbidden)
 						all_items -= typesof(typekey)
-					for(var/O in reverseRange(all_items))
+					for(var/O in reverse_range(all_items))
 						clothinfo += "<a href='?src=[REF(src)];hsb=hsb_safespawn&path=[O]'>[O]</a><br>"
 
 				usr << browse(clothinfo,"window=sandbox")
@@ -251,7 +247,7 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					var/list/all_items = subtypesof(/obj/item/reagent_containers)
 					for(var/typekey in spawn_forbidden)
 						all_items -= typesof(typekey)
-					for(var/O in reverseRange(all_items))
+					for(var/O in reverse_range(all_items))
 						reaginfo += "<a href='?src=[REF(src)];hsb=hsb_safespawn&path=[O]'>[O]</a><br>"
 
 				usr << browse(reaginfo,"window=sandbox")
@@ -266,7 +262,7 @@ GLOBAL_VAR_INIT(hsboxspawn, TRUE)
 					for(var/typekey in spawn_forbidden)
 						all_items -= typesof(typekey)
 
-					for(var/O in reverseRange(all_items))
+					for(var/O in reverse_range(all_items))
 						objinfo += "<a href='?src=[REF(src)];hsb=hsb_safespawn&path=[O]'>[O]</a><br>"
 
 				usr << browse(objinfo,"window=sandbox")

@@ -219,6 +219,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	return !shut_up
 
 /obj/machinery/vending/RefreshParts()         //Better would be to make constructable child
+	. = ..()
 	if(!component_parts)
 		return
 
@@ -241,7 +242,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 /obj/machinery/vending/obj_break(damage_flag)
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 		set_light(0)
 		var/dump_amount = 0
@@ -901,17 +902,18 @@ GLOBAL_LIST_EMPTY(vending_products)
 	say(message)
 
 /obj/machinery/vending/power_change()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else
 		if(powered())
 			icon_state = initial(icon_state)
-			machine_stat &= ~NOPOWER
+			set_machine_stat(machine_stat & ~NOPOWER)
 			START_PROCESSING(SSmachines, src)
 			set_light(2)
 		else
 			icon_state = "[initial(icon_state)]-off"
-			machine_stat |= NOPOWER
+			set_machine_stat(machine_stat | NOPOWER)
 			set_light(0)
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."

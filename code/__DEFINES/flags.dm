@@ -22,20 +22,49 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define DF_VAR_EDITED (1<<1)
 #define DF_ISPROCESSING (1<<2)
 
-//! ## FLAGS BITMASK
-#define CONDUCT_1					(1<<5)		//!  conducts electricity (iron etc.)
-#define NODECONSTRUCT_1				(1<<7)		//!  For machines and structures that should not break into parts, eg, holodeck stuff
-#define OVERLAY_QUEUED_1			(1<<8)		//!  atom queued to SSoverlay
-#define ON_BORDER_1					(1<<9)		//!  item has priority to check when entering or leaving
-#define PREVENT_CLICK_UNDER_1		(1<<11)		//! Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define HOLOGRAM_1					(1<<12)
-#define TESLA_IGNORE_1				(1<<13) 	//! TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define INITIALIZED_1				(1<<14)  	//! Whether /atom/Initialize(mapload) has already run for the object
-#define ADMIN_SPAWNED_1				(1<<15) 		//! was this spawned by an admin? used for stat tracking stuff.
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<16)
-#define UNPAINTABLE_1 				(1<<17)
-/// Does the supermatter skip over this atom?
-#define SUPERMATTER_IGNORES_1 (1 << 18) //set this to 18 because tg has some other flags appearantly too if that gets ever ported fix this !!!!
+//FLAGS BITMASK
+// scroll down before changing the numbers on these
+
+/// Is this object currently processing in the atmos object list?
+#define ATMOS_IS_PROCESSING_1 (1<<0)
+/// conducts electricity (metal etc.)
+#define CONDUCT_1 (1<<1)
+/// For machines and structures that should not break into parts, eg, holodeck stuff
+#define NODECONSTRUCT_1 (1<<2)
+/// atom queued to SSoverlay
+#define OVERLAY_QUEUED_1 (1<<3)
+/// item has priority to check when entering or leaving
+#define ON_BORDER_1 (1<<4)
+///Whether or not this atom shows screentips when hovered over
+#define NO_SCREENTIPS_1 (1<<5)
+/// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
+#define PREVENT_CLICK_UNDER_1 (1<<6)
+///specifies that this atom is a hologram that isnt real
+#define HOLOGRAM_1 (1<<7)
+/// Prevents mobs from getting chainshocked by teslas and the supermatter
+#define SHOCKED_1 (1<<8)
+///Whether /atom/Initialize() has already run for the object
+#define INITIALIZED_1 (1<<9)
+/// was this spawned by an admin? used for stat tracking stuff.
+#define ADMIN_SPAWNED_1 (1<<10)
+/// should not get harmed if this gets caught by an explosion?
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<11)
+/// Should this object be paintable with very dark colors?
+#define ALLOW_DARK_PAINTS_1 (1<<14)
+/// Should this object be unpaintable?
+#define UNPAINTABLE_1 (1<<15)
+/// Is the thing currently spinning?
+#define IS_SPINNING_1 (1<<16)
+#define IS_ONTOP_1 (1<<17)
+#define SUPERMATTER_IGNORES_1 (1<<18)
+/// If a turf can be made dirty at roundstart. This is also used in areas.
+#define CAN_BE_DIRTY_1 (1<<19)
+/// Should we use the initial icon for display? Mostly used by overlay only objects
+#define HTML_USE_INITAL_ICON_1 (1<<20)
+/// Can players recolor this in-game via vendors (and maybe more if support is added)?
+#define IS_PLAYER_COLORABLE_1 (1<<21)
+/// Whether or not this atom has contextual screentips when hovered OVER
+#define HAS_CONTEXTUAL_SCREENTIPS_1 (1<<22)
 
 /// If the thing can reflect light (lasers/energy)
 #define RICOCHET_SHINY			(1<<0)
@@ -63,31 +92,42 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
 #define UNUSED_RESERVATION_TURF_1	(1<<1)
-#define CAN_BE_DIRTY_1				(1<<2) 	//! If a turf can be made dirty at roundstart. This is also used in areas.
 #define NO_LAVA_GEN_1				(1<<6) 	//! Blocks lava rivers being generated on the turf
 #define NO_RUINS_1					(1<<10) //! Blocks ruins spawning on the turf
 
 ////////////////Area flags\\\\\\\\\\\\\\
 /// If it's a valid territory for cult summoning or the CRAB-17 phone to spawn
-#define VALID_TERRITORY				(1<<0)
+#define VALID_TERRITORY (1<<0)
 /// If blobs can spawn there and if it counts towards their score.
-#define BLOBS_ALLOWED				(1<<1)
+#define BLOBS_ALLOWED (1<<1)
 /// If mining tunnel generation is allowed in this area
-#define CAVES_ALLOWED				(1<<2)
+#define CAVES_ALLOWED (1<<2)
 /// If flora are allowed to spawn in this area randomly through tunnel generation
-#define FLORA_ALLOWED				(1<<3)
+#define FLORA_ALLOWED (1<<3)
 /// If mobs can be spawned by natural random generation
-#define MOB_SPAWN_ALLOWED			(1<<4)
+#define MOB_SPAWN_ALLOWED (1<<4)
 /// If megafauna can be spawned by natural random generation
-#define MEGAFAUNA_SPAWN_ALLOWED		(1<<5)
+#define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
+/// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
+#define NOTELEPORT (1<<6)
 /// Hides area from player Teleport function.
-#define HIDDEN_AREA					(1<<6)
+#define HIDDEN_AREA (1<<7)
 /// If false, loading multiple maps with this area type will create multiple instances.
-#define UNIQUE_AREA					(1<<7)
+#define UNIQUE_AREA (1<<8)
 /// If people are allowed to suicide in it. Mostly for OOC stuff like minigames
-#define BLOCK_SUICIDE				(1<<8)
+#define BLOCK_SUICIDE (1<<9)
 /// Can the Xenobio management console transverse this area by default?
-#define XENOBIOLOGY_COMPATIBLE		(1<<9)
+#define XENOBIOLOGY_COMPATIBLE (1<<10)
+/// If Abductors are unable to teleport in with their observation console
+#define ABDUCTOR_PROOF (1<<11)
+/// If an area should be hidden from power consoles, power/atmosphere alerts, etc.
+#define NO_ALERTS (1<<12)
+/// If blood cultists can draw runes or build structures on this AREA.
+#define CULT_PERMITTED (1<<13)
+///Whther this area is iluminated by starlight
+#define AREA_USES_STARLIGHT (1<<14)
+/// If engravings are persistent in this area
+#define PERSISTENT_ENGRAVINGS (1<<15)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
@@ -127,16 +167,18 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define FREEZE_PROOF	(1<<7) //! can't be frozen
 
 //tesla_zap
-#define TESLA_MACHINE_EXPLOSIVE		(1<<0)
-#define TESLA_ALLOW_DUPLICATES		(1<<1)
-#define TESLA_OBJ_DAMAGE			(1<<2)
-#define TESLA_MOB_DAMAGE			(1<<3)
-#define TESLA_MOB_STUN				(1<<4)
+#define ZAP_MACHINE_EXPLOSIVE (1<<0)
+#define ZAP_ALLOW_DUPLICATES (1<<1)
+#define ZAP_OBJ_DAMAGE (1<<2)
+#define ZAP_MOB_DAMAGE (1<<3)
+#define ZAP_MOB_STUN (1<<4)
+#define ZAP_GENERATES_POWER (1<<5)
+/// Zaps with this flag will generate less power through tesla coils
+#define ZAP_LOW_POWER_GEN (1<<6)
 
-#define TESLA_DEFAULT_FLAGS ALL
-#define TESLA_ENERGY_PRIMARY_BALL_FLAGS (TESLA_MACHINE_EXPLOSIVE | TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
-#define TESLA_ENERGY_MINI_BALL_FLAGS (TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
-#define TESLA_FUSION_FLAGS (TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+#define ZAP_DEFAULT_FLAGS ZAP_MOB_STUN | ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE
+#define ZAP_FUSION_FLAGS ZAP_OBJ_DAMAGE | ZAP_MOB_DAMAGE | ZAP_MOB_STUN
+#define ZAP_PRODUCE_POWER_FLAGS ZAP_GENERATES_POWER
 
 //EMP protection
 #define EMP_PROTECT_SELF (1<<0)

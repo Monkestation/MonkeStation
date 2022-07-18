@@ -22,7 +22,7 @@
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
-
+	processing_flags = NONE
 
 	var/obj/item/stock_parts/cell/cell
 	var/powerefficiency = 0.1
@@ -90,6 +90,8 @@
 		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
 	if(upgrade_reagents)
 		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
+	if(is_operational)
+		begin_processing()
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -106,10 +108,14 @@
 		"Recharging <b>[recharge_amount]</b> power units per interval.\n"+\
 		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 
+/obj/machinery/chem_dispenser/on_set_is_operational(old_value)
+	if(old_value) //Turned off
+		end_processing()
+	else //Turned on
+		begin_processing()
+
 /obj/machinery/chem_dispenser/process(delta_time)
 	if (recharge_counter >= 8)
-		if(!is_operational())
-			return
 		var/usedpower = cell.give(recharge_amount)
 		if(usedpower)
 			use_power(250*recharge_amount)
@@ -225,6 +231,12 @@
 	data["recipes"] = saved_recipes
 
 	data["recordingRecipe"] = recording_recipe
+	data["recipeReagents"] = list()
+	if(beaker?.reagents.ui_reaction_id)
+		var/datum/chemical_reaction/reaction = get_chemical_reaction(beaker.reagents.ui_reaction_id)
+		for(var/_reagent in reaction.required_reagents)
+			var/datum/reagent/reagent = find_reagent_object_from_type(_reagent)
+			data["recipeReagents"] += ckey(reagent.name)
 	return data
 
 /obj/machinery/chem_dispenser/ui_act(action, params)
@@ -237,7 +249,7 @@
 			replace_beaker(usr)
 			. = TRUE
 
-	if(!is_operational())
+	if(!is_operational)
 		return
 
 	switch(action)
@@ -327,6 +339,9 @@
 				saved_recipes[name] = recording_recipe
 				recording_recipe = null
 				. = TRUE
+		if("reaction_lookup")
+			if(beaker)
+				beaker.reagents.ui_interact(usr)
 		if("cancel_recording")
 			recording_recipe = null
 			. = TRUE
@@ -378,6 +393,7 @@
 	visible_message("<span class='danger'>[src] malfunctions, spraying chemicals everywhere!</span>")
 
 /obj/machinery/chem_dispenser/RefreshParts()
+	. = ..()
 	recharge_amount = initial(recharge_amount)
 	var/newpowereff = 0.0666666
 	for(var/obj/item/stock_parts/cell/P in component_parts)

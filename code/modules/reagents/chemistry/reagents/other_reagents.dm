@@ -10,6 +10,7 @@
 	glass_name = "glass of tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
+	opacity = 255
 
 /datum/reagent/blood/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(data && data["viruses"])
@@ -177,6 +178,7 @@
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	evaporation_rate = 3
 
 /*
  *	Water reaction to turf
@@ -212,8 +214,8 @@
 	O.extinguish()
 	O.acid_level = 0
 	// Monkey cube
-	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
+	if(istype(O, /obj/item/food/monkeycube))
+		var/obj/item/food/monkeycube/cube = O
 		cube.Expand()
 
 	// Dehydrated carp
@@ -302,6 +304,15 @@
 			return
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
+/datum/reagent/water/holywater/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if (!istype(T))
+		return
+	if(reac_volume>=10)
+		for(var/obj/effect/rune/R in T)
+			qdel(R)
+	T.Bless()
+
 /datum/reagent/water/holywater/reaction_turf(turf/T, reac_volume)
 	if(!istype(T))
 		return
@@ -366,6 +377,14 @@
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
 	var/lube_kind = TURF_WET_LUBE ///What kind of slipperiness gets added to turfs.
+	evaporation_rate = 2.5 //slightly slower than water
+
+/datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if (!istype(T))
+		return
+	if(reac_volume >= 1)
+		T.MakeSlippery(lube_kind, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
 
 /datum/reagent/lube/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))
@@ -740,16 +759,11 @@
 	taste_mult = 0 // oderless and tasteless
 	random_unrestricted = FALSE
 
-/datum/reagent/oxygen/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("o2=[reac_volume/2];TEMP=[temp]")
-
-/datum/reagent/oxygen/reaction_turf(turf/open/T, reac_volume)
-	if(istype(T))
+/datum/reagent/oxygen/reaction_evaporation(turf/open/exposed_turf, reac_volume)
+	. = ..()
+	if(istype(exposed_turf))
 		var/temp = holder ? holder.chem_temp : T20C
-		T.atmos_spawn_air("o2=[reac_volume/2];TEMP=[temp]")
+		exposed_turf.atmos_spawn_air("o2=[reac_volume/20];TEMP=[temp]")
 	return
 
 /datum/reagent/copper
@@ -774,18 +788,6 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0
 	random_unrestricted = FALSE
-
-/datum/reagent/nitrogen/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("n2=[reac_volume/2];TEMP=[temp]")
-
-/datum/reagent/nitrogen/reaction_turf(turf/open/T, reac_volume)
-	if(istype(T))
-		var/temp = holder ? holder.chem_temp : T20C
-		T.atmos_spawn_air("n2=[reac_volume/2];TEMP=[temp]")
-	return
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
@@ -1035,6 +1037,9 @@
 	glass_desc = "Unless you're an industrial tool, this is probably not safe for consumption."
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	addiction_types = list(/datum/addiction/alcohol = 4)
+	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
+	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
@@ -1068,6 +1073,17 @@
 		if(O)
 			O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+
+/datum/reagent/space_cleaner/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if(reac_volume >= 1)
+		T.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		SEND_SIGNAL(T, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
+		for(var/obj/effect/decal/cleanable/C in T)
+			qdel(C)
+
+		for(var/mob/living/simple_animal/slime/M in T)
+			M.adjustToxLoss(rand(5,10))
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 1)
@@ -1151,6 +1167,7 @@
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	color = "#E07DDD" // pink = happy = dumb
 	taste_description = "numbness"
+	addiction_types = list(/datum/addiction/opiods = 10)
 
 /datum/reagent/impedrezene/on_mob_life(mob/living/carbon/M)
 	M.jitteriness = max(M.jitteriness-5,0)
@@ -1253,17 +1270,8 @@
 	taste_description = "something unknowable"
 	random_unrestricted = FALSE
 
-/datum/reagent/carbondioxide/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("co2=[reac_volume/5];TEMP=[temp]")
 
-/datum/reagent/carbondioxide/reaction_turf(turf/open/T, reac_volume)
-	if(istype(T))
-		var/temp = holder ? holder.chem_temp : T20C
-		T.atmos_spawn_air("co2=[reac_volume/5];TEMP=[temp]")
-	return
+
 
 /datum/reagent/nitrous_oxide
 	name = "Nitrous Oxide"
@@ -1273,16 +1281,8 @@
 	color = "#808080"
 	taste_description = "sweetness"
 
-/datum/reagent/nitrous_oxide/reaction_obj(obj/O, reac_volume)
-	if((!O) || (!reac_volume))
-		return 0
-	var/temp = holder ? holder.chem_temp : T20C
-	O.atmos_spawn_air("n2o=[reac_volume/5];TEMP=[temp]")
 
-/datum/reagent/nitrous_oxide/reaction_turf(turf/open/T, reac_volume)
-	if(istype(T))
-		var/temp = holder ? holder.chem_temp : T20C
-		T.atmos_spawn_air("n2o=[reac_volume/5];TEMP=[temp]")
+
 
 /datum/reagent/nitrous_oxide/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == VAPOR)
@@ -1305,6 +1305,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "E1A116"
 	taste_description = "sourness"
+	addiction_types = list(/datum/addiction/stimulants = 14)
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
@@ -1542,6 +1543,12 @@
 	color = "#771100"
 	taste_description = "carpet" // Your tounge feels furry.
 
+/datum/reagent/carpet/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
+	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
+		var/turf/open/floor/F = T
+		F.PlaceOnTop(/turf/open/floor/carpet, flags = CHANGETURF_INHERIT_AIR)
+
 /datum/reagent/carpet/reaction_turf(turf/T, reac_volume)
 	if(isplatingturf(T) || istype(T, /turf/open/floor/plasteel))
 		var/turf/open/floor/F = T
@@ -1605,6 +1612,11 @@
 	..()
 
 /datum/reagent/colorful_reagent/reaction_turf(turf/T, reac_volume)
+	if(T)
+		T.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
+
+/datum/reagent/colorful_reagent/reaction_liquid(obj/O, reac_volume)
+	var/turf/open/T = get_turf(O)
 	if(T)
 		T.add_atom_colour(pick(random_color_list), WASHABLE_COLOUR_PRIORITY)
 
@@ -2036,3 +2048,79 @@
 	L.set_light(-1)
 
 	..()
+
+
+/datum/reagent/ants
+	name = "Ants"
+	description = "A sample of a lost breed of Space Ants (formicidae bastardium tyrannus), they are well-known for ravaging the living shit out of pretty much anything."
+	reagent_state = SOLID
+	color = "#993333"
+	taste_mult = 1.3
+	taste_description = "tiny legs scuttling down the back of your throat."
+	metabolization_rate = 5 * REAGENTS_METABOLISM //1u per second
+	glass_name = "glass of ants"
+	glass_desc = "Bottoms up...?"
+	evaporation_rate = 10
+	/// How much damage the ants are going to be doing (rises with each tick the ants are in someone's body)
+	var/ant_damage = 0
+	/// Tells the debuff how many ants we are being covered with.
+	var/amount_left = 0
+
+/datum/reagent/ants/on_mob_life(mob/living/carbon/victim, delta_time)
+	victim.adjustBruteLoss(max(0.1, round((ant_damage * 0.025),0.1))) //Scales with time. Roughly 32 brute with 100u.
+	ant_damage++
+	if(ant_damage < 5) // Makes ant food a little more appetizing, since you won't be screaming as much.
+		return ..()
+	if(DT_PROB(5, delta_time))
+		if(DT_PROB(5, delta_time)) //Super rare statement
+			victim.say("AUGH NO NOT THE ANTS! NOT THE ANTS! AAAAUUGH THEY'RE IN MY EYES! MY EYES! AUUGH!!", forced = /datum/reagent/ants)
+		else
+			victim.say(pick("THEY'RE UNDER MY SKIN!!", "GET THEM OUT OF ME!!", "HOLY HELL THEY BURN!!", "MY GOD THEY'RE INSIDE ME!!", "GET THEM OUT!!"), forced = /datum/reagent/ants)
+	if(DT_PROB(15, delta_time))
+		victim.emote("scream")
+	if(DT_PROB(2, delta_time)) // Stuns, but purges ants.
+		victim.vomit(rand(5,10), FALSE, TRUE, 1, TRUE, FALSE)
+	ant_damage++
+	return ..()
+
+/datum/reagent/ants/on_mob_end_metabolize(mob/living/living_anthill)
+	ant_damage = 0
+	to_chat(living_anthill, "<span class='notice'>You feel like the last of the ants are out of your system.</span>")
+	return ..()
+
+/datum/reagent/ants/reaction_obj(obj/exposed_obj, reac_volume)
+	. = ..()
+	var/turf/open/my_turf = exposed_obj.loc // No dumping ants on an object in a storage slot
+	if(!istype(my_turf)) //Are we actually in an open turf?
+		return
+	var/static/list/accepted_types = typecacheof(list(/obj/machinery/atmospherics, /obj/structure/cable, /obj/structure/disposalpipe))
+	if(!accepted_types[exposed_obj.type]) // Bypasses pipes, vents, and cables to let people create ant mounds on top easily.
+		return
+	reaction_turf(my_turf, reac_volume)
+
+/datum/reagent/ants/reaction_evaporation(turf/exposed_turf, reac_volume)
+	. = ..()
+	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
+		return
+	var/turf/pest_turf
+	for(var/turf/open/floor/temp in view(3, exposed_turf))
+		var/obj/effect/decal/cleanable/ants/temp_pests = locate() in temp.contents
+		if(temp_pests)
+			pest_turf = temp
+			exposed_turf = pest_turf
+			break
+
+	var/obj/effect/decal/cleanable/ants/pests = locate() in exposed_turf.contents
+	if(!pests)
+		pests = new(exposed_turf)
+	var/spilled_ants = (round(reac_volume,1) - 5) // To account for ant decals giving 3-5 ants on initialize.
+	pests.reagents.add_reagent(/datum/reagent/ants, spilled_ants)
+	pests.update_ant_damage()
+
+/datum/reagent/ants/reaction_mob(mob/living/exposed_mob, method=TOUCH, reac_volume, show_message = 1)
+	. = ..()
+	if(!iscarbon(exposed_mob) || (method in list(INGEST,INJECT)))
+		return
+	if(method in list(PATCH,TOUCH,VAPOR))
+		amount_left = round(reac_volume,0.1)
+		exposed_mob.apply_status_effect(STATUS_EFFECT_ANTS, amount_left)

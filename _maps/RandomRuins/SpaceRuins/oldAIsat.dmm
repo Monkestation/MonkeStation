@@ -156,7 +156,7 @@
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
 "aE" = (
-/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat{
+/obj/item/food/meat/slab/synthmeat{
 	name = "Cuban Pete-Meat"
 	},
 /turf/open/floor/engine,
@@ -270,7 +270,7 @@
 /turf/open/floor/plasteel/airless,
 /area/tcommsat/oldaisat)
 "aX" = (
-/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat{
+/obj/item/food/meat/slab/synthmeat{
 	name = "Cuban Pete-Meat"
 	},
 /obj/item/stack/spacecash,
@@ -611,8 +611,8 @@
 /area/tcommsat/oldaisat)
 "cb" = (
 /obj/structure/table,
-/obj/item/reagent_containers/syringe/lethal/choral,
-/obj/item/reagent_containers/syringe/lethal{
+/obj/item/reagent_containers/syringe/meta/choral,
+/obj/item/reagent_containers/syringe/meta{
 	pixel_y = 4
 	},
 /turf/open/floor/plasteel/airless/dark,
