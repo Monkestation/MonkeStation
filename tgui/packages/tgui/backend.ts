@@ -273,7 +273,7 @@ type BackendState<TData> = {
   shared: Record<string, any>,
   suspending: boolean,
   suspended: boolean,
-}
+};
 
 /**
  * Selects a backend-related slice of Redux state
@@ -288,7 +288,7 @@ export const selectBackend = <TData>(state: any): BackendState<TData> => (
  * This is supposed to be replaced with a real React Hook, which can only
  * be used in functional components.
  *
- * You can make
+ * Includes the `act` function for performing DM actions.
  */
 export const useBackend = <TData>(context: any) => {
   const { store } = context;

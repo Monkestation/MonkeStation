@@ -1,7 +1,7 @@
 ///We take a constant input of reagents, and produce a pill once a set volume is reached
 /obj/machinery/plumbing/chemical_press
 	name = "chemical press"
-	desc = "A press that makes pills, patches and bottles"
+	desc = "A press that makes pills, patches and bottles, sends the completed product to nearby smart fridges via bluespace."
 	icon_state = "pill_press"
 	use_power = IDLE_POWER_USE
 	layer = BELOW_OBJ_LAYER

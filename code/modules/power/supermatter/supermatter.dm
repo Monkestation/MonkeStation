@@ -372,16 +372,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			S.energy = 800
 			S.consume(src)
 			return //No boom for me sir
-	else if(power > POWER_PENALTY_THRESHOLD)
-		investigate_log("has spawned additional energy balls.", INVESTIGATE_ENGINES)
-		if(T)
-			var/obj/anomaly/energy_ball/E = new(T)
-			E.energy = power
-	investigate_log("has exploded.", INVESTIGATE_ENGINES)
-	//Dear mappers, balance the sm max explosion radius to 17.5, 37, 39, 41
-	explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
-	qdel(src)
-
+	else
+		investigate_log("has exploded.", INVESTIGATE_ENGINES)
+		explosion(get_turf(T), explosion_power * max(gasmix_power_ratio, 0.205) * 0.5 , explosion_power * max(gasmix_power_ratio, 0.205) + 2, explosion_power * max(gasmix_power_ratio, 0.205) + 4 , explosion_power * max(gasmix_power_ratio, 0.205) + 6, 1, 1)
+		if(power > POWER_PENALTY_THRESHOLD)
+			investigate_log("has spawned additional energy balls.", INVESTIGATE_ENGINES)
+			new /obj/energy_ball(T, power)
+		qdel(src)
 
 //this is here to eat arguments
 /obj/machinery/power/supermatter_crystal/proc/call_explode()

@@ -14,6 +14,7 @@
 	pass_flags = PASSTABLE
 	light_color = LIGHT_COLOR_YELLOW
 	light_power = 3
+
 	var/wire_disabled = FALSE // is its internal wire cut?
 	var/operating = FALSE
 	var/dirty = 0 // 0 to 100 // Does it need cleaning?
@@ -46,6 +47,7 @@
 	. = ..()
 
 /obj/machinery/microwave/RefreshParts()
+	. = ..()
 	efficiency = 0
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		efficiency += M.rating
@@ -84,23 +86,28 @@
 		. += "<span class='notice'>\The [src] is empty.</span>"
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
-		. += "<span class='notice'>The status display reads:</span>\n"+\
-		"<span class='notice'>- Capacity: <b>[max_n_of_items]</b> items.<span>\n"+\
-		"<span class='notice'>- Cook time reduced by <b>[(efficiency - 1) * 25]%</b>.</span>"
+		. += "[span_notice("The status display reads:")]\n"+\
+		"[span_notice("- Capacity: <b>[max_n_of_items]</b> items.")]\n"+\
+		span_notice("- Cook time reduced by <b>[(efficiency - 1) * 25]%</b>.")
 
-/obj/machinery/microwave/update_icon()
+/obj/machinery/microwave/update_icon_state()
 	if(broken)
 		icon_state = "mwb"
-	else if(dirty_anim_playing)
+		return ..()
+	if(dirty_anim_playing)
 		icon_state = "mwbloody1"
-	else if(dirty == 100)
+		return ..()
+	if(dirty == 100)
 		icon_state = "mwbloody"
-	else if(operating)
+		return ..()
+	if(operating)
 		icon_state = "mw1"
-	else if(panel_open)
+		return ..()
+	if(panel_open)
 		icon_state = "mw-o"
-	else
-		icon_state = "mw"
+		return ..()
+	icon_state = "mw"
+	return ..()
 
 /obj/machinery/microwave/attackby(obj/item/O, mob/user, params)
 	if(operating)
@@ -259,7 +266,7 @@
 	start()
 
 /obj/machinery/microwave/proc/wzhzhzh()
-	visible_message("<span class='notice'>\The [src] turns on.</span>", null, "<span class='hear'>You hear a microwave humming.</span>")
+	visible_message(span_notice("\The [src] turns on."), null, span_hear("You hear a microwave humming."))
 	operating = TRUE
 
 	set_light(1.5)
@@ -267,7 +274,7 @@
 	update_icon()
 
 /obj/machinery/microwave/proc/spark()
-	visible_message("<span class='warning'>Sparks fly around [src]!</span>")
+	visible_message(span_warning("Sparks fly around [src]!"))
 	var/datum/effect_system/spark_spread/s = new
 	s.set_up(2, 1, src)
 	s.start()
@@ -292,11 +299,8 @@
 	loop(MICROWAVE_MUCK, 4)
 
 /obj/machinery/microwave/proc/loop(type, time, wait = max(12 - 2 * efficiency, 2)) // standard wait is 10
-	if(machine_stat & (NOPOWER|BROKEN))
-		operating = FALSE
-		if(type == MICROWAVE_PRE)
-			pre_fail()
-		after_finish_loop()
+	if((machine_stat & BROKEN) && type == MICROWAVE_PRE)
+		pre_fail()
 		return
 	if(!time)
 		switch(type)
@@ -310,6 +314,12 @@
 	time--
 	use_power(500)
 	addtimer(CALLBACK(src, .proc/loop, type, time, wait), wait)
+
+/obj/machinery/microwave/power_change()
+	. = ..()
+	if((machine_stat & NOPOWER) && operating)
+		pre_fail()
+		eject()
 
 /obj/machinery/microwave/proc/loop_finish()
 	operating = FALSE
@@ -326,20 +336,25 @@
 		if(prob(max(iron / 2, 33)))
 			explosion(loc, 0, 1, 2)
 	else
-		dropContents(ingredients)
-		ingredients.Cut()
+		dump_inventory_contents()
 
 	after_finish_loop()
 
+/obj/machinery/microwave/dump_inventory_contents()
+	. = ..()
+	ingredients.Cut()
+
 /obj/machinery/microwave/proc/pre_fail()
 	broken = 2
+	operating = FALSE
 	spark()
+	after_finish_loop()
 
 /obj/machinery/microwave/proc/pre_success()
 	loop(MICROWAVE_NORMAL, 10)
 
 /obj/machinery/microwave/proc/muck_finish()
-	visible_message("<span class='warning'>\The [src] gets covered in muck!</span>")
+	visible_message(span_warning("\The [src] gets covered in muck!"))
 
 	dirty = 100
 	dirty_anim_playing = FALSE
