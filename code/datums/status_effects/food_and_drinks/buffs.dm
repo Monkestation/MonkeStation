@@ -75,11 +75,13 @@
 			limbs.brute_reduction -= 3
 		user.applied_food_buffs --
 
+#define DURATION_LOSS 250
+#define RANGE 4
 /datum/status_effect/food/fire_burps
 	id = "fire_food"
 	alert_type = /atom/movable/screen/alert/status_effect/food/fire_burps
-	var/range = 4
-	var/duration_loss = 250
+	var/range = RANGE
+	var/duration_loss = DURATION_LOSS
 
 /atom/movable/screen/alert/status_effect/food/fire_burps
 	name = "Firey Burps"
@@ -140,6 +142,8 @@
 		if(prob(10))
 			exposed_wall.ex_act(EXPLODE_DEVASTATE)
 
+#undef DURATION_LOSS
+#undef RANGE
 /datum/status_effect/food/sweaty
 	id = "food_sweaty"
 	alert_type = /atom/movable/screen/alert/status_effect/food/sweaty
