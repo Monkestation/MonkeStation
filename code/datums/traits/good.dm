@@ -247,7 +247,7 @@
 
 /datum/quirk/gourmand
 	name = "Gourmand"
-	desc = "You can enjoy the finer things in life. You are able to have 1 more food buff applied at once."
+	desc = "You can enjoy the finer things in life. You are able to have one more food buff applied at once."
 	value = 2
 	mob_trait = TRAIT_GOURMAND
 	gain_text = "<span class='notice'>You start to enjoy fine cuisine.</span>"
