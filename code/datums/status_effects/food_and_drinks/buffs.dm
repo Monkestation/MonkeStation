@@ -106,11 +106,7 @@
 		range_check ++
 	var/list/affected_turfs = getline(owner, turfs)
 
-	//var/turf/current_turf
-	//var/turf/last_turf
 	for(var/turf/checking in affected_turfs)
-		//last_turf = current_turf
-		//current_turf = checking
 		if(checking.density || istype(checking, /turf/open/space))
 			break
 		if(checking == get_turf(owner))
