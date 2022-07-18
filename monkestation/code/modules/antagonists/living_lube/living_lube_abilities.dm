@@ -13,10 +13,10 @@
 /obj/effect/proc_holder/spell/targeted/smoke/living_lube
 	action_background_icon_state = "bg_hive"
 
-/obj/effect/proc_holder/spell/targeted/living_lube_displace
+/obj/effect/proc_holder/spell/targeted/displacement
 	name = "Displacement"
 	desc = "Force someone through the clown dimension and launch them out somewhere else on the station."
-	charge_max = 2 MINUTES
+	charge_max = 90 SECONDS
 	clothes_req = FALSE
 	range = 7
 	invocation_type = "none"
@@ -25,7 +25,7 @@
 	action_icon_state = "blink"
 	action_background_icon_state = "bg_hive"
 
-/obj/effect/proc_holder/spell/targeted/living_lube_displace/cast(list/targets, mob/user = usr)
+/obj/effect/proc_holder/spell/targeted/displacement/cast(list/targets, mob/user = usr)
 	var/target = targets[1]
 
 	if(!isliving(target))

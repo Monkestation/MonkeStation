@@ -23,7 +23,7 @@
 		var/obj/effect/proc_holder/spell/aimed/banana_peel/living_lube/banana_peel = new
 		var/obj/effect/proc_holder/spell/voice_of_god/clown/living_lube/voice_of_lube = new
 		var/obj/effect/proc_holder/spell/targeted/smoke/living_lube/smoke = new
-		var/obj/effect/proc_holder/spell/targeted/living_lube_displace/displacement = new
+		var/obj/effect/proc_holder/spell/targeted/displacement/displacement = new
 		lube.AddSpell(knock)
 		lube.AddSpell(banana_peel)
 		lube.AddSpell(voice_of_lube)
