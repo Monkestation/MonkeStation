@@ -14,7 +14,7 @@
 	var/list/scrubbing = list(	GAS_PLASMA, GAS_CO2, GAS_NITROUS,
 								GAS_BZ, GAS_NITRYL, GAS_TRITIUM,
 								GAS_HYPERNOB, GAS_H2O, GAS_NUCLEIUM,
-								GAS_H2)
+								GAS_H2, GAS_FREON)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
 	var/turf/T = get_turf(src)

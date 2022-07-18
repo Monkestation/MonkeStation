@@ -56,7 +56,8 @@
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
 		"nucleium" = /obj/machinery/portable_atmospherics/canister/nucleium,
-		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen
+		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,
+		"freon" = /obj/machinery/portable_atmospherics/canister/freon
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -163,6 +164,13 @@
 	gas_type = GAS_NUCLEIUM
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#00b1a2#000000"
+
+/obj/machinery/portable_atmospherics/canister/freon
+	name = "freon canister"
+	desc = "Freon. Can absorb heat"
+	greyscale_colors = "#c6c0b5#000000"
+	gas_type = GAS_FREON
+	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/hydrogen
 	name = "hydrogen canister"

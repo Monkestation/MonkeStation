@@ -613,6 +613,63 @@
 			air.set_temperature(CLAMP((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
 		return REACTING
 
+//freon reaction (is not a fire yet)
+/datum/gas_reaction/freonfire
+	priority = -5
+	name = "Freon combustion"
+	id = "freonfire"
+
+/datum/gas_reaction/freonfire/init_reqs()
+	min_requirements = list(
+		GAS_O2 = MINIMUM_MOLE_COUNT,
+		GAS_FREON = MINIMUM_MOLE_COUNT,
+		"TEMP" = FREON_LOWER_TEMPERATURE,
+		"MAX_TEMP" = FREON_MAXIMUM_BURN_TEMPERATURE
+		)
+
+/datum/gas_reaction/freonfire/react(datum/gas_mixture/air, datum/holder)
+	var/turf/open/location = isturf(holder) ? holder : null
+	if(!location)
+		return NO_REACTION
+	var/energy_released = 0
+	var/old_thermal_energy = air.thermal_energy()
+	var/temperature = air.return_temperature()
+	var/initial_o2 = air.get_moles(GAS_O2)
+	var/initial_freon = air.get_moles(GAS_FREON)
+
+	//Handle freon burning (only reaction now)
+	var/freon_burn_rate = 0
+	var/oxygen_burn_rate = 0
+	//more freon released at lower temperatures
+	var/temperature_scale = 1
+
+	if(temperature < FREON_LOWER_TEMPERATURE) //stop the reaction when too cold
+		temperature_scale = 0
+	else
+		temperature_scale = (FREON_MAXIMUM_BURN_TEMPERATURE - temperature) / (FREON_MAXIMUM_BURN_TEMPERATURE - FREON_LOWER_TEMPERATURE) //calculate the scale based on the temperature
+	if(temperature_scale >= 0)
+		oxygen_burn_rate = OXYGEN_BURN_RATE_BASE - temperature_scale
+		if(initial_o2 > initial_freon * FREON_OXYGEN_FULLBURN)
+			freon_burn_rate = (initial_freon * temperature_scale) / FREON_BURN_RATE_DELTA
+		else
+			freon_burn_rate = (temperature_scale * (initial_o2 / FREON_OXYGEN_FULLBURN)) / FREON_BURN_RATE_DELTA
+
+		if(freon_burn_rate > MINIMUM_HEAT_CAPACITY)
+			freon_burn_rate = min(freon_burn_rate, initial_freon, initial_o2 / oxygen_burn_rate) //Ensures matter is conserved properly
+			air.adjust_moles(GAS_FREON, -freon_burn_rate)
+			air.adjust_moles(GAS_O2, -(freon_burn_rate * oxygen_burn_rate))
+			air.adjust_moles(GAS_CO2, freon_burn_rate)
+
+			if(temperature < 160 && temperature > 120 && prob(2))
+				new /obj/item/stack/sheet/hot_ice(location)
+
+			energy_released += FIRE_FREON_ENERGY_RELEASED * (freon_burn_rate)
+
+	if(energy_released < 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature((old_thermal_energy + energy_released) / new_heat_capacity)
+
 /datum/gas_reaction/h2fire/init_reqs()
 	min_requirements = list(
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
