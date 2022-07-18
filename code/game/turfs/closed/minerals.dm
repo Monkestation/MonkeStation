@@ -87,7 +87,6 @@
 			var/mob/living/carbon/human/checking = user
 			if(HAS_TRAIT(checking, FOOD_JOB_MINER))
 				var/obj/item/stack/ore/picked_ore
-				message_admins("TRAIT WORKING")
 				if(prob(20))
 					switch(rand(122))
 						if(0 to 50)
