@@ -10,8 +10,8 @@
 
 /datum/status_effect/food/on_remove()
 	if(ishuman(owner))
-	var/mob/living/carbon/user = owner
-	user.applied_food_buffs --
+		var/mob/living/carbon/user = owner
+		user.applied_food_buffs --
 
 /datum/status_effect/food/stamina_increase
 	id = "t1_stamina"
@@ -180,9 +180,7 @@
 
 /datum/status_effect/food/sweaty/on_remove()
 	.=..()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
-		owner.metabolism_efficiency -= metabolism_increase
+	owner.metabolism_efficiency -= metabolism_increase
 
 
 /datum/status_effect/food/sweaty/tick()
@@ -252,9 +250,8 @@
 
 /datum/status_effect/food/belly_slide/on_remove()
 	.=..()
-	if(ishuman(owner))
+	if(HAS_TRAIT(owner, FOOD_SLIDE))
 		REMOVE_TRAIT(owner, FOOD_SLIDE, "food_buffs")
-		var/mob/living/carbon/user = owner
 		if(owner.has_movespeed_modifier("belly_slide"))
 			owner.remove_movespeed_modifier("belly_slide")
 
@@ -294,10 +291,6 @@
 		var/mob/living/carbon/user = owner
 		user.adjustStaminaLoss(-regen_increase, 0)
 
-/datum/status_effect/food/stam_regen/on_remove()
-	.=..()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
 
 
 
@@ -379,9 +372,4 @@
 				else
 					if(user.has_movespeed_modifier("sec_food_buff"))
 						user.remove_movespeed_modifier("sec_food_buff", TRUE)
-
-/datum/status_effect/food/security/on_remove()
-	.=..()
-	if(ishuman(owner))
-		var/mob/living/carbon/user = owner
 
