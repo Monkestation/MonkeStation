@@ -68,9 +68,10 @@
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
 		if(location && location.freon_gas_act())
 			. = REACTING
-	else if(location && location.water_vapor_gas_act())
-		air.adjust_moles(GAS_H2O, -MOLES_GAS_VISIBLE)
-		. = REACTING
+	else if(air.return_temperature() <= T20C + 10)
+		if(location && location.water_vapor_gas_act())
+			air.adjust_moles(GAS_H2O, -MOLES_GAS_VISIBLE)
+			. = REACTING
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/nitrous_decomp
@@ -179,7 +180,7 @@
 
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
-	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
+	priority = -3 //fire should ALWAYS be last, but plasma fires happen after tritium fires
 	name = "Plasma Combustion"
 	id = "plasmafire"
 
@@ -342,7 +343,7 @@
 		"TEMP" = FUSION_TEMPERATURE_THRESHOLD,
 		GAS_TRITIUM = FUSION_TRITIUM_MOLES_USED,
 		GAS_PLASMA = FUSION_MOLE_THRESHOLD,
-		GAS_CO2 = FUSION_MOLE_THRESHOLD)
+		GAS_H2 = FUSION_MOLE_THRESHOLD)
 
 /datum/gas_reaction/fusion/react(datum/gas_mixture/air, datum/holder)
 	var/turf/open/location
@@ -611,3 +612,51 @@
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature(CLAMP((air.return_temperature()*old_heat_capacity + energy_released)/new_heat_capacity,TCMB,INFINITY))
 		return REACTING
+
+/datum/gas_reaction/h2fire/init_reqs()
+	min_requirements = list(
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
+		GAS_H2 = MINIMUM_MOLE_COUNT,
+		GAS_O2 = MINIMUM_MOLE_COUNT
+	)
+
+/datum/gas_reaction/h2fire/react(datum/gas_mixture/air, datum/holder)
+	var/energy_released = 0
+	var/old_thermal_energy = air.thermal_energy()
+	 //this speeds things up because accessing datum vars is slow
+	var/temperature = air.return_temperature()
+	var/list/cached_results = air.reaction_results
+	cached_results["fire"] = 0
+	var/turf/open/location = isturf(holder) ? holder : null
+	var/burned_fuel = 0
+	var/initial_o2 = air.get_moles(GAS_O2)
+	var/initial_h2 = air.get_moles(GAS_H2)
+	if(initial_o2 < initial_h2 || MINIMUM_H2_OXYBURN_ENERGY > old_thermal_energy)
+		burned_fuel = (initial_o2/HYDROGEN_BURN_OXY_FACTOR)
+		air.adjust_moles(GAS_H2, -burned_fuel)
+	else
+		burned_fuel = (initial_h2 * HYDROGEN_BURN_H2_FACTOR)
+		air.adjust_moles(GAS_H2, -(initial_h2 / HYDROGEN_BURN_H2_FACTOR))
+		air.adjust_moles(GAS_O2, -initial_h2)
+
+	if(burned_fuel)
+		energy_released += (FIRE_HYDROGEN_ENERGY_RELEASED * burned_fuel)
+		air.adjust_moles(GAS_H2O, (burned_fuel / HYDROGEN_BURN_OXY_FACTOR))
+
+		cached_results["fire"] += burned_fuel
+
+	if(energy_released > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature((old_thermal_energy + energy_released) / new_heat_capacity)
+
+	//let the floor know a fire is happening
+	if(istype(location))
+		temperature = air.return_temperature()
+		if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+			location.hotspot_expose(temperature, CELL_VOLUME)
+			for(var/I in location)
+				var/atom/movable/item = I
+				item.temperature_expose(air, temperature, CELL_VOLUME)
+			location.temperature_expose(air, temperature, CELL_VOLUME)
+	return cached_results["fire"] ? REACTING : NO_REACTION

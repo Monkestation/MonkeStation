@@ -162,3 +162,14 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 1
+
+
+/datum/gas/hydrogen
+	id = "hydrogen"
+	specific_heat = 15
+	name = "Hydrogen"
+	gas_overlay = "hydrogen"
+	fusion_power = 1
+	powermix = 1
+	heat_penalty = 2
+	transmit_modifier = 30

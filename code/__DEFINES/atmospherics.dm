@@ -43,10 +43,14 @@
 #define FIRE_MINIMUM_TEMPERATURE_TO_EXIST	(100+T0C)
 #define FIRE_SPREAD_RADIOSITY_SCALE			0.85
 #define FIRE_GROWTH_RATE					40000	//For small fires
+///plasma
 #define PLASMA_MINIMUM_BURN_TEMPERATURE		(100+T0C)
 #define PLASMA_UPPER_TEMPERATURE			(1370+T0C)
 #define PLASMA_OXYGEN_FULLBURN				10
-
+///hydrogen
+#define HYDROGEN_MINIMUM_BURN_TEMPERATURE	(100+T0C)
+#define HYDROGEN_UPPER_TEMPERATURE			(1370+T0C)
+#define HYDROGEN_OXYGEN_FULLBURN			10
 //GASES
 #define MIN_TOXIC_GAS_DAMAGE				1
 #define MAX_TOXIC_GAS_DAMAGE				10
@@ -341,6 +345,7 @@
 #define GAS_STIMULUM			"stim"
 #define GAS_PLUOXIUM			"pluox"
 #define GAS_MIASMA				"miasma"
+#define GAS_H2					"hydrogen"
 //NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 #define GAS_NUCLEIUM			"nucleium"
 
