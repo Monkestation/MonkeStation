@@ -19,7 +19,7 @@
 	var/mob/living/simple_animal/hostile/retaliate/clown/lube/living_lube = new(pick(GLOB.xeno_spawn))
 
 	var/datum/mind/new_mind = new /datum/mind(selected.key)
-	new_mind.assigned_role = "Ghost of Honks Past"
+	new_mind.assigned_role = "Clown" //So Voice of God's 'Honk" slips people + anything else clown specific can work
 	new_mind.special_role = "Ghost of Honks Past"
 	new_mind.active = TRUE
 	new_mind.transfer_to(living_lube)
