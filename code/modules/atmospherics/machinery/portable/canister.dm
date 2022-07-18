@@ -170,7 +170,7 @@
 	icon_state = "grey"
 	gas_type = GAS_H2
 	greyscale_config = /datum/greyscale_config/canister/hazard
-	greyscale_colors = "#00b1a2#000000"
+	greyscale_colors = "#c6c0b5#000000"
 
 /obj/machinery/portable_atmospherics/canister/water_vapor
 	name = "water vapor canister"
