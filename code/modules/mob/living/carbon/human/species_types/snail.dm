@@ -40,7 +40,7 @@
 	C.AddComponent(/datum/component/snailcrawl)
 	var/obj/item/storage/backpack/bag = C.get_item_by_slot(ITEM_SLOT_BACK)
 	if(!istype(bag, /obj/item/storage/backpack/snail))
-		if(C.dropItemToGround(bag)) //returns TRUE ev/datum/component/snailcrawlen if its null
+		if(C.dropItemToGround(bag)) //returns TRUE if its null
 			C.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(C), ITEM_SLOT_BACK)
 	ADD_TRAIT(C, TRAIT_NOSLIPALL, SPECIES_TRAIT)
 
