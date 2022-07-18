@@ -106,7 +106,7 @@
 	while((get_dist(owner, turfs) < range) && (range_check < 20))
 		turfs = get_step(turfs, owner.dir)
 		range_check ++
-	var/list/affected_turfs = getline(owner, turfs)
+	var/list/affected_turfs = get_line(owner, turfs)
 
 	for(var/turf/checking in affected_turfs)
 		if(checking.density || istype(checking, /turf/open/space))
