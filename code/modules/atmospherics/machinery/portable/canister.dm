@@ -55,7 +55,8 @@
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
-		"nucleium" = /obj/machinery/portable_atmospherics/canister/nucleium
+		"nucleium" = /obj/machinery/portable_atmospherics/canister/nucleium,
+		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -160,6 +161,14 @@
 	name = "nucleium canister"
 	desc = "Nucleium. Inhalation might cause irradiation."
 	gas_type = GAS_NUCLEIUM
+	greyscale_config = /datum/greyscale_config/canister/hazard
+	greyscale_colors = "#00b1a2#000000"
+
+/obj/machinery/portable_atmospherics/canister/hydrogen
+	name = "hydrogen canister"
+	desc = "Hydrogen, highly flammable"
+	icon_state = "grey"
+	gas_type = GAS_H2
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#00b1a2#000000"
 
