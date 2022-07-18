@@ -26,6 +26,7 @@
 	var/skip_confirmation = FALSE
 
 /obj/machinery/plantgenes/RefreshParts() // Comments represent the max you can set per tier, respectively. seeds.dm [219] clamps these for us but we don't want to mislead the viewer.
+	. = ..()
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if(M.rating > 3)
 			max_potency = 95
@@ -449,11 +450,12 @@
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/update_name()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else
 		name = "plant data disk"
+	return ..()
 
 /obj/item/disk/plantgene/attack_self(mob/user)
 	read_only = !read_only

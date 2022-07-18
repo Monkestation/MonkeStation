@@ -24,10 +24,7 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	power_change()
-	if(!QDELETED(C))
-		qdel(circuit)
-		circuit = C
-		C.moveToNullspace()
+
 
 /obj/machinery/computer/Destroy()
 	QDEL_NULL(circuit)
@@ -110,7 +107,7 @@
 	if(circuit && !(flags_1 & NODECONSTRUCT_1)) //no circuit, no breaking
 		if(!(machine_stat & BROKEN))
 			playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
-			machine_stat |= BROKEN
+			set_machine_stat(machine_stat | BROKEN)
 			update_icon()
 			set_light(0)
 
@@ -132,23 +129,23 @@
 			var/obj/structure/frame/computer/A = new /obj/structure/frame/computer(src.loc)
 			A.setDir(dir)
 			A.circuit = circuit
-			A.setAnchored(TRUE)
+			// Circuit removal code is handled in /obj/machinery/Exited()
+			circuit.forceMove(A)
+			A.set_anchored(TRUE)
 			if(machine_stat & BROKEN)
 				if(user)
-					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+					to_chat(user, span_notice("The broken glass falls out."))
 				else
-					playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+					playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 				new /obj/item/shard(drop_location())
 				new /obj/item/shard(drop_location())
 				A.state = 3
 				A.icon_state = "3"
 			else
 				if(user)
-					to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+					to_chat(user, span_notice("You disconnect the monitor."))
 				A.state = 4
 				A.icon_state = "4"
-			circuit = null
 		for(var/obj/C in src)
 			C.forceMove(loc)
-
 	qdel(src)

@@ -203,6 +203,15 @@
 	desc = "A really cool hat if you're a mobster. A really lame hat if you're not."
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
+/obj/item/clothing/head/fedora/anime
+	name = "Ancient Forged Fedora"
+	desc = "Forged 1000 years ago in a magic forge and cooled in gods blood, or you just bought a cheap replica off of NTbay."
+	throw_speed = 7
+	throw_range = 10
+	throwforce = 30
+	sharpness = IS_SHARP
+	attack_verb = list("slashed, sliced")
+
 /obj/item/clothing/head/fedora/suicide_act(mob/user)
 	if(user.gender == FEMALE)
 		return 0

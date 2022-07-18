@@ -52,7 +52,7 @@
 /obj/vv_edit_var(vname, vval)
 	switch(vname)
 		if("anchored")
-			setAnchored(vval)
+			set_anchored(vval)
 			return TRUE
 		if(NAMEOF(src, obj_flags))
 			if ((obj_flags & DANGEROUS_POSSESSION) && !(vval & DANGEROUS_POSSESSION))
@@ -90,7 +90,7 @@
 	SStgui.close_uis(src)
 	. = ..()
 
-/obj/proc/setAnchored(anchorvalue)
+/obj/proc/set_anchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
 	anchored = anchorvalue
 
@@ -380,6 +380,10 @@
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	return
 
+// Should move all contained objects to it's location.
+/obj/proc/dump_contents()
+	CRASH("Unimplemented.")
+
 //For returning special data when the object is saved
 //For example, or silos will return a list of their materials which will be dumped on top of them
 //Can be customised if you have something that contains something you want saved
@@ -419,3 +423,14 @@
 	. = ..()
 	if(resistance_flags & ON_FIRE)
 		. += custom_fire_overlay ? custom_fire_overlay : GLOB.fire_overlay
+
+//To be called from things that spill objects on the floor.
+//Makes an object move around randomly for a couple of tiles
+/obj/proc/tumble(var/dist = 2)
+	set waitfor = FALSE
+	if (dist >= 1)
+		dist += rand(0,1)
+		for(var/i = 1, i <= dist, i++)
+			if(src)
+				step(src, pick(NORTH,SOUTH,EAST,WEST))
+				sleep(rand(2,4))
