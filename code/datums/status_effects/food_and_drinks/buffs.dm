@@ -369,7 +369,7 @@
 			var/perpname = perp.get_face_name(perp.get_id_name())
 			var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
 			if(R && R.fields["criminal"])
-				if((R.fields["criminal"] == "Arrest")
+				if(R.fields["criminal"] == "Arrest")
 					if(user.has_movespeed_modifier("sec_food_buff"))
 						break
 					else
