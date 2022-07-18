@@ -1,6 +1,7 @@
 /obj/structure/closet/secure_closet/clown
 	name = "\proper clown locker"
 	icon = 'monkestation/icons/obj/closet.dmi'
+	desc = "The clown's custom-made, bananium lined toy storage apparatus, a miracle of Clown technology and stolen hardware from other departments designed to insulate its contents from hazardous low humor environments."
 	max_integrity = 325 //About 14 hits with the fire axe
 	icon_state = "clown"
 
