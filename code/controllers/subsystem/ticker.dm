@@ -157,7 +157,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
+			send2chat("New round starting on [SSmapping.config.map_name]!", "ss13") //Monkestation edit, needed this easier
 			current_state = GAME_STATE_PREGAME
 			//monkestation edit begin
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)

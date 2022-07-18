@@ -330,6 +330,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	GLOB.ahelp_tickets.unclaimed_tickets += src
 
+	//Monkestation: Send all ahelp messages to TGS
+	send2chat("Adminhelp #[id] created by [initiator_key_name]", "admin_help")
+
 	if(is_bwoink)
 		AddInteraction("blue", name, usr.ckey, initiator_key_name, "Administrator", "You")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
@@ -343,10 +346,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent through TGS to admins who are available. This may use IRC or Discord.</span>")
 			heard_by_no_admins = TRUE
-
-	bwoink = is_bwoink
-	if(!bwoink)
-		discordsendmsg("ahelp", "**ADMINHELP: (#[id]) [C.key]: ** \"[msg]\" [heard_by_no_admins ? "**(NO ADMINS)**" : "" ]")
 
 /datum/admin_help/Destroy()
 	RemoveActive()
@@ -529,6 +528,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
 		html = "<span class='adminnotice'>PM to-<b>Admins</b>: <span class='linkify'>[msg]</span></span>")
+	send2chat("Ticket #[id]:\n[initiator_key_name] to Admins:\n[msg]", "admin_help") //Monkestation. TGUI handles it entirely differently and I hate it.
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
@@ -594,8 +594,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-	if(!bwoink && !silent && !updated)
-		discordsendmsg("ahelp", "Ticket #[id] is being investigated by [key_name(usr, include_link=0)]")
+		send2chat("Ticket #[id] claimed by [key_name].", "admin_help")//MonkeStation Edit: Claim to TGS
+
 
 //Mark open ticket as closed/meme
 /datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
@@ -611,8 +611,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-	if(!bwoink && !silent)
-		discordsendmsg("ahelp", "Ticket #[id] closed by [key_name(usr, include_link=0)]")
+	send2chat("Ticket #[id] closed.","admin_help")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
@@ -632,8 +631,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] resolved by [key_name(usr, include_link=0)]")
+	send2chat("Ticket #[id]\'s Issue Resolved.", "admin_help")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
@@ -656,8 +654,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("red", "Rejected by [key_name].")
 	Close(silent = TRUE)
 
-	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] rejected by [key_name(usr, include_link=0)]")
+	send2chat("Ticket #[id] Rejected.", "admin_help")
 
 //Resolve ticket with IC Issue message
 /datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
@@ -677,8 +674,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("red", "Marked as IC issue by [key_name]")
 	Resolve(silent = TRUE)
 
-	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] marked as IC by [key_name(usr, include_link=0)]")
+	send2chat("Ticket #[id] closed as IC Issue.", "admin_help")
 
 /datum/admin_help/proc/MHelpThis(key_name = key_name_admin(usr))
 	if(state > AHELP_ACTIVE)
@@ -697,8 +693,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("red", "Told to mentorhelp by [key_name].")
-	if(!bwoink)
-		discordsendmsg("ahelp", "Ticket #[id] told to mentorhelp by [key_name(usr, include_link=0)]")
+	send2chat("Ticket #[id] told to Mentorhelp.", "admin_help")
 	Close(silent = TRUE)
 
 /datum/admin_help/proc/Retitle()

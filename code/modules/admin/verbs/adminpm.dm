@@ -83,7 +83,7 @@
 	cmd_admin_pm(whom, msg)
 
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
-//Fetching a message if needed. src is the sender and C is the target client
+//Fetching a message if needed. src is the sender and whom is the target client
 /client/proc/cmd_admin_pm(whom, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
 		to_chat(src, "<span class='danger'>Error: Admin-PM: You are unable to use admin PM-s (muted).</span>", type = MESSAGE_TYPE_ADMINPM)
@@ -157,6 +157,9 @@
 		msg = trim(sanitize(msg), MAX_MESSAGE_LEN)
 		if(!msg)
 			return
+
+	//Monkestation: Send all ahelp messages to TGS
+	send2chat("Ticket #[current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
 
 	var/rawmsg = msg
 

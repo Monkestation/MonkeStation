@@ -92,11 +92,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 					to_chat(C, "[badge_data]<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else
 					to_chat(C, "[badge_data]<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
-	// beestation, send to discord
-	if(holder?.fakekey)
-		discordsendmsg("ooc", "**[holder.fakekey]:** [msg]")
-	else
-		discordsendmsg("ooc", "**[key]:** [msg]")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc

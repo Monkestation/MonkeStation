@@ -227,8 +227,7 @@
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	log_game("The round has ended.")
 	SSstat.send_global_alert("Round Over", "The round has ended, the game will restart soon.")
-	if(LAZYLEN(GLOB.round_end_notifiees))
-		send2tgs("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
+	send2chat("Round #[GLOB.round_id] has ended.", "ss13") //MonkeStation Edit
 
 	RollCredits()
 
@@ -708,8 +707,7 @@
         discordmsg += "Executed rules:\n"
         for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
             discordmsg += "[rule.ruletype] - [rule.name]: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat\n"
-    discordsendmsg("ooc", discordmsg)
-    discordmsg = ""
+	discordmsg += "\n"
     var/list/ded = SSblackbox.first_death
     if(ded)
         discordmsg += "First Death: [ded["name"]], [ded["role"]], at [ded["area"]]\n"
@@ -718,4 +716,4 @@
     else
         discordmsg += "Nobody died!\n"
     discordmsg += "--------------------------------------\n"
-    discordsendmsg("ooc", discordmsg)
+    send2chat(discordmsg, "ss13")
