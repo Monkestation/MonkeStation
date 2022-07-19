@@ -11,13 +11,26 @@
 	// create a terminal object at the same position as original turf loc
 	// wires will attach to this
 	terminal = new/obj/machinery/power/terminal(loc)
-	terminal.setDir(tdir)
+	terminal.setDir(dir)
 	terminal.master = src
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
 		terminal.master = null
 		terminal = null
+
+/obj/machinery/power/apc/proc/update()
+	if(operating && !shorted && !failure_timer)
+		area.power_light = (lighting > APC_CHANNEL_AUTO_OFF)
+		area.power_equip = (equipment > APC_CHANNEL_AUTO_OFF)
+		area.power_environ = (environ > APC_CHANNEL_AUTO_OFF)
+		playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, FALSE)
+	else
+		area.power_light = FALSE
+		area.power_equip = FALSE
+		area.power_environ = FALSE
+		playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, FALSE)
+	area.power_change()
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)
 	if(!is_operational || failure_timer)
@@ -26,7 +39,7 @@
 	add_hiddenprint(user)
 	log_game("[key_name(user)] turned [operating ? "on" : "off"] the [src] in [AREACOORD(src)]")
 	update()
-	update_icon()
+	update_appearance()
 
 /obj/machinery/power/apc/surplus()
 	if(terminal)
@@ -91,38 +104,6 @@
 		return APC_CHANNEL_AUTO_OFF
 	return APC_CHANNEL_OFF
 
-/obj/machinery/power/apc/proc/reset(wire)
-	switch(wire)
-		if(WIRE_IDSCAN)
-			locked = TRUE
-		if(WIRE_POWER1, WIRE_POWER2)
-			if(!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
-				shorted = FALSE
-		if(WIRE_AI)
-			if(!wires.is_cut(WIRE_AI))
-				aidisabled = FALSE
-		if(APC_RESET_EMP)
-			equipment = 3
-			environ = 3
-			update_icon()
-			update()
-	wires.ui_update()
-
-// overload all the lights in this APC area
-/obj/machinery/power/apc/proc/overload_lighting()
-	if(!operating || shorted)
-		return
-	if( cell && cell.charge>=20)
-		cell.use(20)
-		INVOKE_ASYNC(src, .proc/break_lights)
-
-/obj/machinery/power/apc/proc/break_lights()
-	for(var/obj/machinery/light/breaked_light in area)
-		breaked_light.on = TRUE
-		breaked_light.break_light_tube()
-		breaked_light.on = FALSE
-		stoplag()
-
 /obj/machinery/power/apc/proc/energy_fail(duration)
 	for(var/obj/machinery/failing_machine in area.contents)
 		if(failing_machine.critical_machine)
@@ -134,28 +115,9 @@
 
 	failure_timer = max(failure_timer, round(duration))
 
-/obj/machinery/power/apc/proc/togglelock(mob/living/user)
-	if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>The interface is broken!</span>")
-	else if(opened)
-		to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card!</span>")
-	else if(panel_open)
-		to_chat(user, "<span class='warning'>You must close the panel!</span>")
-	else if(machine_stat & (BROKEN|MAINT))
-		to_chat(user, "<span class='warning'>Nothing happens!</span>")
-	else
-		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN) && !malfhack)
-			locked = !locked
-			wires.ui_update()
-			to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the APC interface.</span>")
-			update_icon()
-			updateUsrDialog()
-		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
-
 /obj/machinery/power/apc/proc/toggle_nightshift_lights(mob/living/user)
 	if(last_nightshift_switch > world.time - 100) //~10 seconds between each toggle to prevent spamming
-		to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
+		balloon_alert(user, "night breaker is cycling!")
 		return
 	last_nightshift_switch = world.time
 	set_nightshift(!nightshift_lights)
@@ -169,18 +131,7 @@
 			night_light.update(FALSE)
 		CHECK_TICK
 
-/obj/machinery/power/apc/proc/update()
-	if(operating && !shorted && !failure_timer)
-		area.power_light = (lighting > APC_CHANNEL_AUTO_OFF)
-		area.power_equip = (equipment > APC_CHANNEL_AUTO_OFF)
-		area.power_environ = (environ > APC_CHANNEL_AUTO_OFF)
-	else
-		area.power_light = FALSE
-		area.power_equip = FALSE
-		area.power_environ = FALSE
-	area.power_change()
-
 /obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(damage_flag == "melee" && damage_amount < 10 && (!(machine_stat & BROKEN) || malfai))
+	if(damage_flag == MELEE && damage_amount < 10 && (!(machine_stat & BROKEN) || malfai))
 		return 0
 	. = ..()
