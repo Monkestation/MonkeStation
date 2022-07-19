@@ -4,7 +4,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	name			= "openspace_backdrop"
 
 	anchored		= TRUE
-
+	plane 			= SPLASHSCREEN_PLANE
 	icon            = 'icons/turf/floors.dmi'
 	icon_state      = "grey"
 	plane           = OPENSPACE_BACKDROP_PLANE
