@@ -64,6 +64,11 @@
 		icon_state = "[initial(icon_state)]-off"
 
 
+/obj/machinery/smartfridge/update_overlays()
+	. = ..()
+	if(!machine_stat)
+		. += emissive_appearance(icon, "smartfridge-light-mask", alpha = src.alpha)
+
 
 /*******************
 *   Item Adding

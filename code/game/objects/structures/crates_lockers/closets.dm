@@ -87,6 +87,24 @@
 			else
 				add_overlay("[icon_state]_open")
 
+/obj/structure/closet/update_overlays()
+	. = ..()
+	closet_update_overlays(.)
+
+/obj/structure/closet/proc/closet_update_overlays(list/new_overlays)
+	. = new_overlays
+	if(opened)
+		. += "[icon_door_override ? icon_door : icon_state]_open"
+		return
+	. += "[icon_door || icon_state]_door"
+	if(welded)
+		. += icon_welded
+	if(broken || !secure)
+		return
+	//Overlay is similar enough for both that we can use the same mask for both
+	. += emissive_appearance(icon, "locked", alpha = src.alpha)
+	. += locked ? "locked" : "unlocked"
+
 /obj/structure/closet/proc/animate_door(var/closing = FALSE)
 	if(!door_anim_time)
 		return
