@@ -594,7 +594,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin_private(msg)
 
-		send2chat("Ticket #[id] claimed by [key_name].", "admin_help")//MonkeStation Edit: Claim to TGS
+		send2chat("Ticket #[id] claimed by [usr].", "admin_help")//MonkeStation Edit: Claim to TGS
 
 
 //Mark open ticket as closed/meme

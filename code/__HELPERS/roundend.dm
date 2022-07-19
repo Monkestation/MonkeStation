@@ -694,7 +694,6 @@
 /datum/controller/subsystem/ticker/proc/sendtodiscord(var/survivors, var/escapees, var/integrity)
 	var/discordmsg = ""
 	discordmsg += "--------------ROUND END--------------\n"
-	discordmsg += "Server: [CONFIG_GET(string/servername)]\n"
 	discordmsg += "Round Number: [GLOB.round_id]\n"
 	discordmsg += "Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]\n"
 	discordmsg += "Players: [GLOB.player_list.len]\n"
@@ -719,4 +718,4 @@
 	else
 		discordmsg += "Nobody died!\n"
 	discordmsg += "--------------------------------------\n"
-	send2chat(discordmsg, "ss13")
+	send2chat(discordmsg, "round_end")

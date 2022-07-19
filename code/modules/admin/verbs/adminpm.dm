@@ -158,8 +158,6 @@
 		if(!msg)
 			return
 
-	//Monkestation: Send all ahelp messages to TGS
-	send2chat("Ticket #[current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
 
 	var/rawmsg = msg
 
@@ -241,6 +239,17 @@
 		for(var/client/X in GLOB.admins)
 			if(X.key!=key && X.key!=recipient.key)	//check client/X is an admin and isn't the sender or recipient
 				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</span>", type = MESSAGE_TYPE_ADMINPM)
+
+	//Monkestation: Send all ahelp messages to TGS
+	//Checks if the sender has a ticket (being bwoink'd)
+	//Else, checks the person being sent a ticket for a current ticket.
+	//Active Admins cannot have tickets assigned to them, so this shouldn't have overlap issues.
+	if(src.current_ticket)
+		send2chat("Ticket #[current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
+	else
+		var/client/ticket_holder = whom
+		send2chat("Ticket #[ticket_holder?.current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
+
 
 
 
