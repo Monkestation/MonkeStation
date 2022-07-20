@@ -17,7 +17,7 @@
 	bodies = list("Goliath", "Tentacle", "Carapace")
 	threshold_desc = "<b>Stealth 8:</b> Upon death, the host's soul will solidify into an unholy artifact, rendering them utterly unrevivable in the process.<br>\
 					  <b>Resistance 15:</b> The area near the host roils with paralyzing tendrils.<br>\
-					  <b>Resistance 20:</b>	Host becomes immune to heat, ash, and lava."
+					  <b>Resistance 20:</b>	Host becomes immune to heat, ash and lava."
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
