@@ -57,7 +57,12 @@
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
 		"nucleium" = /obj/machinery/portable_atmospherics/canister/nucleium,
 		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,
-		"freon" = /obj/machinery/portable_atmospherics/canister/freon
+		"freon" = /obj/machinery/portable_atmospherics/canister/freon,
+		"healium" = /obj/machinery/portable_atmospherics/canister/healium,
+		"pluonium" = /obj/machinery/portable_atmospherics/canister/pluonium,
+		"zauker" = /obj/machinery/portable_atmospherics/canister/zauker,
+		"halon" = /obj/machinery/portable_atmospherics/canister/halon,
+		"hexane" = /obj/machinery/portable_atmospherics/canister/hexane
 	)
 
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
@@ -188,6 +193,45 @@
 	greyscale_config = /datum/greyscale_config/canister/double_stripe
 	greyscale_colors = "#4c4e4d#f7d5d3"
 
+/obj/machinery/portable_atmospherics/canister/healium
+	name = "Healium canister"
+	desc = "Healium, causes deep sleep"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#4c4e4d#f7d5d3"
+	gas_type = GAS_HEALIUM
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/halon
+	name = "Halon canister"
+	desc = "Halon, remove oxygen from high temperature fires and cool down the area"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#4c4e4d#f7d5d3"
+	gas_type = GAS_HALON
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/hexane
+	name = "Hexane canister"
+	desc = "hexane, highly flammable"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#4c4e4d#f7d5d3"
+	gas_type = GAS_HEXANE
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/pluonium
+	name = "Pluonium canister"
+	desc = "Pluonium, react differently with various gases"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#4c4e4d#f7d5d3"
+	gas_type = GAS_PLUONIUM
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/zauker
+	name = "Zauker canister"
+	desc = "Zauker, highly toxic"
+	greyscale_config = /datum/greyscale_config/canister/double_stripe
+	greyscale_colors = "#4c4e4d#f7d5d3"
+	gas_type = GAS_ZAUKER
+	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
 	if(timing)

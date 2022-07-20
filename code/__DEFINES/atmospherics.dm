@@ -357,6 +357,11 @@
 #define GAS_MIASMA				"miasma"
 #define GAS_H2					"hydrogen"
 #define GAS_FREON				"freon"
+#define GAS_HEALIUM				"healium"
+#define GAS_PLUONIUM			"pluonium"
+#define GAS_HALON				"halon"
+#define GAS_ZAUKER				"zauker"
+#define GAS_HEXANE				"hexane"
 //NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 #define GAS_NUCLEIUM			"nucleium"
 

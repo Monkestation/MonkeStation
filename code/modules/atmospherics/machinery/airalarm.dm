@@ -120,6 +120,11 @@
 		GAS_NUCLEIUM = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor //Monkestation Edit
 		GAS_H2 = new/datum/tlv/dangerous,
 		GAS_FREON = new/datum/tlv/dangerous,
+		GAS_HEALIUM			= new/datum/tlv/dangerous,
+		GAS_PLUONIUM	= new/datum/tlv/dangerous,
+		GAS_ZAUKER			= new/datum/tlv/dangerous,
+		GAS_HALON			= new/datum/tlv/dangerous,
+		GAS_HEXANE			= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
@@ -468,7 +473,12 @@
 						GAS_PLUOXIUM,
 						GAS_NUCLEIUM,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
 						GAS_H2,
-						GAS_FREON
+						GAS_FREON,
+						GAS_HEALIUM,
+						GAS_PLUONIUM,
+						GAS_ZAUKER,
+						GAS_HALON,
+						GAS_HEXANE
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
@@ -886,6 +896,11 @@
 		GAS_NUCLEIUM = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
 		GAS_H2 = new/datum/tlv/dangerous,
 		GAS_FREON = new/datum/tlv/dangerous,
+		GAS_HEALIUM			= new/datum/tlv/dangerous,
+		GAS_PLUONIUM	= new/datum/tlv/dangerous,
+		GAS_ZAUKER			= new/datum/tlv/dangerous,
+		GAS_HALON			= new/datum/tlv/dangerous,
+		GAS_HEXANE			= new/datum/tlv/dangerous
 	)
 
 

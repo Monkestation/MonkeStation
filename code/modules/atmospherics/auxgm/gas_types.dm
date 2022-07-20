@@ -66,6 +66,8 @@
 	heat_penalty = 8
 	powermix = 1
 	breath_reagent = /datum/reagent/water
+	heat_penalty = 12
+	transmit_modifier = 2
 
 /datum/gas/hypernoblium
 	id = GAS_HYPERNOB
@@ -155,7 +157,7 @@
 
 //NUCLEIUM Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 /datum/gas/nucleium
-	id = "nucleium"
+	id = GAS_NUCLEIUM
 	specific_heat = 180 /// Default was 450
 	name = "Nucleium"
 	gas_overlay = "nucleium"
@@ -165,7 +167,7 @@
 
 
 /datum/gas/hydrogen
-	id = "hydrogen"
+	id = GAS_H2
 	specific_heat = 15
 	name = "Hydrogen"
 	gas_overlay = "hydrogen"
@@ -175,10 +177,54 @@
 	transmit_modifier = 30
 
 /datum/gas/freon
-	id = "freon"
+	id = GAS_FREON
 	specific_heat = 300
 	name = "Freon"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE *30
 	fusion_power = -5
 	heat_penalty = -10
+
+
+/datum/gas/healium
+	id = GAS_HEALIUM
+	specific_heat = 10
+	name = "Healium"
+	gas_overlay = "healium"
+	moles_visible = MOLES_GAS_VISIBLE
+	heat_penalty = 4
+	transmit_modifier = 2.4
+
+/datum/gas/pluonium
+	id = GAS_PLUONIUM
+	specific_heat = 30
+	name = "Pluonium"
+	flags = GAS_FLAG_DANGEROUS
+	gas_overlay = "pluonium"
+	moles_visible = MOLES_GAS_VISIBLE
+	heat_resistance = 5
+	transmit_modifier = 15
+
+/datum/gas/halon
+	id = GAS_HALON
+	specific_heat = 175
+	name = "Halon"
+	flags = GAS_FLAG_DANGEROUS
+	gas_overlay = "halon"
+	moles_visible = MOLES_GAS_VISIBLE
+
+/datum/gas/zauker
+	id = GAS_ZAUKER
+	specific_heat = 350
+	name = "Zauker"
+	flags = GAS_FLAG_DANGEROUS
+	gas_overlay = "zauker"
+	moles_visible = MOLES_GAS_VISIBLE
+
+/datum/gas/hexane
+	id = GAS_HEXANE
+	specific_heat = 5
+	name = "Hexane"
+	flags = GAS_FLAG_DANGEROUS
+	gas_overlay = "hexane"
+	moles_visible = MOLES_GAS_VISIBLE
