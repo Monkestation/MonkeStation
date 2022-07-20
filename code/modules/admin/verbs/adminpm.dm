@@ -244,13 +244,14 @@
 	//Checks if the sender has a ticket (being bwoink'd)
 	//Else, checks the person being sent a ticket for a current ticket.
 	//Active Admins cannot have tickets assigned to them, so this shouldn't have overlap issues.
+	var/client/client_check = whom
 	if(src.current_ticket)
 		send2chat("Ticket #[current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
-	else
-		var/client/ticket_holder = whom
-		send2chat("Ticket #[ticket_holder?.current_ticket.id]:\n[src] to [whom]: [msg]", "admin_help")
-
-
+		return
+	else if(client_check.current_ticket)
+		send2chat("Ticket #[client_check.current_ticket?.id]:\n[src] to [whom]: [msg]", "admin_help")
+		return
+	send2chat("Admin PM sent outside ticket:\n[src] to [whom]: [msg]", "admin_help")
 
 
 #define TGS_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
