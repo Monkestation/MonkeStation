@@ -420,7 +420,7 @@
 					to_chat(M, "<span class='notice'>You put back [src] into [defib]</span>")
 	else
 		if(!silent)
-			visible_message("<span class='notice'>[src] snaps back into [defib].</span>")
+			visible_message("<span class='notice'>[src] snap back into [defib].</span>")
 		forceMove(defib)
 
 	defib.on = FALSE

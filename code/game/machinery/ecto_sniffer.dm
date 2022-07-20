@@ -34,7 +34,7 @@
 /obj/machinery/ecto_sniffer/proc/activate(mob/activator)
 	flick("ecto_sniffer_flick", src)
 	playsound(loc, 'sound/machines/ectoscope_beep.ogg', 25)
-	visible_message("<span class='notice'>[src] beeps, detecting ectoplasm! There may be additional positronic brain matrixes available!</span>")
+	visible_message("<span class='notice'>\The [src] beeps, detecting ectoplasm! There may be additional positronic brain matrixes available!</span>")
 	use_power(10)
 	if(activator?.ckey)
 		ectoplasmic_residues[activator.ckey] = TRUE
@@ -44,7 +44,7 @@
 	. = ..()
 	add_fingerprint(user)
 	on = !on
-	balloon_alert(user, "sniffer turned [on ? "on" : "off"]")
+	balloon_alert(user, "Sniffer turned [on ? "on" : "off"]")
 	//update_appearance() - not working until update_appearance is ported
 	update_icon()
 

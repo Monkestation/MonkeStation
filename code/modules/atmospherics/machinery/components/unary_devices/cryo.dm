@@ -282,7 +282,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
-		to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+		to_chat(user, "<span class='warning'>\The [src]'s door won't budge!</span>")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/open_machine(drop = FALSE)
 	if(!state_open && !panel_open)
@@ -305,14 +305,14 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/container_resist(mob/living/user)
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message("<span class='notice'>You see [user] kicking against the glass of [src]!</span>", \
-		"<span class='notice'>You struggle inside [src], kicking the release with your foot... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a thump from [src].</span>")
+	user.visible_message("<span class='notice'>You see [user] kicking against the glass of \the [src]!</span>", \
+		"<span class='notice'>You struggle inside \the [src], kicking the release with your foot... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
+		"<span class='italics'>You hear a thump from \the [src].</span>")
 	if(do_after(user, breakout_time, target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src )
 			return
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		user.visible_message("<span class='warning'>[user] successfully broke out of \the [src]!</span>", \
+			"<span class='notice'>You successfully break out of \the [src]!</span>")
 		open_machine()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
@@ -321,7 +321,7 @@
 		if(on)
 			. += "Someone's inside [src]!"
 		else
-			. += "You can barely make out a form floating in [src]."
+			. += "You can barely make out a form floating in \the [src]."
 	else
 		. += "[src] seems empty."
 

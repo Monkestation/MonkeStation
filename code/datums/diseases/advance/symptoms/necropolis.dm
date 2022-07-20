@@ -17,7 +17,7 @@
 	bodies = list("Goliath", "Tentacle", "Carapace")
 	threshold_desc = "<b>Stealth 8:</b> Upon death, the host's soul will solidify into an unholy artifact, rendering them utterly unrevivable in the process.<br>\
 					  <b>Resistance 15:</b> The area near the host roils with paralyzing tendrils.<br>\
-					  <b>Resistance 20:</b>	Host becomes immune to heat, ash, and lava"
+					  <b>Resistance 20:</b>	Host becomes immune to heat, ash, and lava."
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
@@ -69,7 +69,7 @@
 				REMOVE_TRAIT(M, TRAIT_NECROPOLIS_INFECTED, "legion_core_trait")
 				to_chat(M, "<span class='notice'>The tendrils loosen their grip, protecting the necropolis within you.</span>")
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your skin has become a hardened carapace", "Your strength is superhuman.", "You feel invincible.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Your skin has become a hardened carapace.", "Your strength is superhuman.", "You feel invincible.")]</span>")
 	return
 
 /datum/symptom/necroseed/proc/tendril(datum/disease/advance/A)
