@@ -17,3 +17,12 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/metal_hydrogen
 
+/obj/item/stack/sheet/mineral/zaukerite
+	name = "zaukerite"
+	icon_state = "zaukerite"
+	item_state = "sheet-zaukerite"
+	singular_name = "zaukerite crystal"
+	w_class = WEIGHT_CLASS_NORMAL
+	point_value = 120
+	materials = list(/datum/material/zaukerite = MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/mineral/zaukerite

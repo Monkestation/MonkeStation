@@ -25,3 +25,10 @@
 /datum/material/hot_ice/on_removed(atom/source, amount, material_flags)
 	qdel(source.GetComponent(/datum/component/hot_ice, "plasma", amount*50, amount*20+300))
 	return ..()
+
+/datum/material/zaukerite
+	name = "zaukerite"
+	desc = "A light absorbing crystal"
+	color = COLOR_ALMOST_BLACK
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/zaukerite
