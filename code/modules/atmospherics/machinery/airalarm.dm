@@ -124,7 +124,8 @@
 		GAS_PLUONIUM	= new/datum/tlv/dangerous,
 		GAS_ZAUKER			= new/datum/tlv/dangerous,
 		GAS_HALON			= new/datum/tlv/dangerous,
-		GAS_HEXANE			= new/datum/tlv/dangerous
+		GAS_HEXANE			= new/datum/tlv/dangerous,
+		GAS_DILITHIUM		= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
@@ -478,7 +479,8 @@
 						GAS_PLUONIUM,
 						GAS_ZAUKER,
 						GAS_HALON,
-						GAS_HEXANE
+						GAS_HEXANE,
+						GAS_DILITHIUM
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
@@ -900,7 +902,8 @@
 		GAS_PLUONIUM	= new/datum/tlv/dangerous,
 		GAS_ZAUKER			= new/datum/tlv/dangerous,
 		GAS_HALON			= new/datum/tlv/dangerous,
-		GAS_HEXANE			= new/datum/tlv/dangerous
+		GAS_HEXANE			= new/datum/tlv/dangerous,
+		GAS_DILITHIUM		= new/datum/tlv/dangerous
 	)
 
 

@@ -1011,6 +1011,13 @@
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
+/datum/reagent/dilithium
+	name = "Dilithium Dust"
+	description = "A dust composed of microscopic dilithium crystals, with heretofore unknown properties."
+	reagent_state = SOLID
+	color = "#ff32be"
+	taste_description = "Earl Grey hot"
+
 /datum/reagent/aluminium
 	name = "Aluminium"
 	description = "A silvery white and ductile member of the boron group of chemical elements."

@@ -185,6 +185,11 @@
 	fusion_power = -5
 	heat_penalty = -10
 
+/datum/gas/dilithium // Main point is that this helps fusion occur at a significantly lower temperature than normal
+	id = GAS_DILITHIUM
+	specific_heat = 55
+	name = "Dilithium"
+	fusion_power = 1
 
 /datum/gas/healium
 	id = GAS_HEALIUM
