@@ -63,7 +63,7 @@
 	if(occupant)
 		if(!iscarbon(occupant))
 			occupant.forceMove(drop_location())
-			occupant = null
+			set_occupant(null)
 			return
 		to_chat(occupant, "<span class='notice'>You enter [src]</span>")
 		addtimer(CALLBACK(src, .proc/start_extracting), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
@@ -138,7 +138,7 @@
 /obj/machinery/fat_sucker/process(delta_time)
 	if(!processing)
 		return
-	if(!is_operational() || !occupant || !iscarbon(occupant))
+	if(!is_operational || !occupant || !iscarbon(occupant))
 		open_machine()
 		return
 
@@ -159,7 +159,7 @@
 	use_power(500)
 
 /obj/machinery/fat_sucker/proc/start_extracting()
-	if(state_open || !occupant || processing || !is_operational())
+	if(state_open || !occupant || processing || !is_operational)
 		return
 	if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant

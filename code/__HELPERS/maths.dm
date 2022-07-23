@@ -29,7 +29,7 @@
  *
  * Uses the ultra-fast [Bresenham Line-Drawing Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm).
  */
-/proc/getline(atom/starting_atom, atom/ending_atom)
+/proc/get_line(atom/starting_atom, atom/ending_atom)
 	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
 	var/current_y_step = starting_atom.y
 	var/starting_z = starting_atom.z
@@ -94,13 +94,19 @@
 		return "[round(units * 0.000001, 0.001)] MJ"
 	return "[round(units * 0.000000001, 0.0001)] GJ"
 
+/proc/joules_to_energy(joules)
+	return joules * (1 SECONDS) / SSmachines.wait
+
+/proc/energy_to_joules(energy_units)
+	return energy_units * SSmachines.wait / (1 SECONDS)
+
 /// Format an energy value measured in Power Cell units.
 /proc/display_energy(units)
 	// APCs process every (SSmachines.wait * 0.1) seconds, and turn 1 W of
 	// excess power into GLOB.CELLRATE energy units when charging cells.
 	// With the current configuration of wait=20 and CELLRATE=0.002, this
 	// means that one unit is 1 kJ.
-	return display_joules(units * SSmachines.wait * 0.1 / GLOB.CELLRATE)
+	return display_joules(energy_to_joules(units) WATTS)
 
 ///counts the number of bits in Byond's 16-bit width field, in constant time and memory!
 /proc/bit_count(bit_field)

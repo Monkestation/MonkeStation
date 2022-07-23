@@ -13,7 +13,7 @@
 	var/broken = 0 //similar to machinery's stat BROKEN
 
 	flags_ricochet = RICOCHET_HARD
-	ricochet_chance_mod = 0.5
+	receive_ricochet_chance_mod = 0.5
 
 /obj/structure/Initialize(mapload)
 	if (!armor)
@@ -129,3 +129,9 @@
 
 /obj/structure/rust_heretic_act()
 	take_damage(500, BRUTE, "melee", 1)
+
+/obj/structure/zap_act(power, zap_flags)
+	if(zap_flags & ZAP_OBJ_DAMAGE)
+		take_damage(power/8000, BURN, "energy")
+	power -= power/2000 //walls take a lot out of ya
+	. = ..()

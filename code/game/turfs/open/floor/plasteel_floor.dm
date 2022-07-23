@@ -33,8 +33,10 @@
 	initial_gas_mix = TCOMMS_ATMOS
 /turf/open/floor/plasteel/airless/dark
 	icon_state = "darkfull"
+	base_icon_state = "darkfull"
 /turf/open/floor/plasteel/dark/side
 	icon_state = "dark"
+	base_icon_state = "dark"
 /turf/open/floor/plasteel/dark/corner
 	icon_state = "darkcorner"
 	base_icon_state = "darkcorner"
@@ -80,7 +82,6 @@
 	icon_state = "recharge_floor_asteroid"
 	base_icon_state = "recharge_floor_asteroid"
 
-
 /turf/open/floor/plasteel/chapel
 	icon_state = "chapel"
 	base_icon_state = "chapel"
@@ -88,7 +89,6 @@
 /turf/open/floor/plasteel/showroomfloor
 	icon_state = "showroomfloor"
 	base_icon_state = "showroomfloor"
-
 
 /turf/open/floor/plasteel/solarpanel
 	icon_state = "solarpanel"
@@ -119,7 +119,6 @@
 	icon_state = "cafeteria"
 	base_icon_state = "cafeteria"
 
-
 /turf/open/floor/plasteel/cult
 	name = "engraved floor"
 	icon_state = "cult"
@@ -130,6 +129,8 @@
 	base_icon_state = "pinkblack"
 
 /turf/open/floor/plasteel/goonplaque
+	icon_state = "plaque"
+	base_icon_state = "plaque"
 	name = "commemorative plaque"
 	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
 	icon_state = "plaque"
@@ -185,22 +186,27 @@
 
 /turf/open/floor/plasteel/tech
 	icon_state = "techfloor_grey"
+	base_icon_state = "techfloor_grey"
 	floor_tile = /obj/item/stack/tile/
 
 /turf/open/floor/plasteel/tech/grid
 	icon_state = "techfloor_grid"
+	base_icon_state = "techfloor_grid"
 	floor_tile = /obj/item/stack/tile/
 
 /turf/open/floor/plasteel/techmaint
 	icon_state = "techmaint"
+	base_icon_state = "techmaint"
 	floor_tile = /obj/item/stack/tile/
 
 /turf/open/floor/plasteel/ridged
 	icon_state = "ridged"
+	base_icon_state = "ridged"
 	floor_tile = /obj/item/stack/tile/ridge
 
 /turf/open/floor/plasteel/ridged/steel
 	icon_state = "steel_ridged"
+	base_icon_state = "steel_ridged"
 
 /turf/open/floor/plasteel/grid
 	icon_state = "grid"
@@ -208,23 +214,31 @@
 
 /turf/open/floor/plasteel/grid/steel
 	icon_state = "steel_grid"
+	base_icon_state = "steel_grid"
 
 /turf/open/floor/plasteel/ameridiner
 	icon_state = "ameridiner_kitchen"
+	base_icon_state = "ameridiner_kitchen"
 
 /turf/open/floor/plasteel/tiled
 	icon_state = "tiled"
+	base_icon_state = "tiled"
+
 /turf/open/floor/plasteel/tiled/light
 	icon_state = "tiled_light"
+	base_icon_state = "tiled_light"
 
 /turf/open/floor/plasteel/tech
 	icon_state = "techfloor_grey"
+	base_icon_state = "techfloor_grey"
 	floor_tile = /obj/item/stack/tile/techgrey
 
 /turf/open/floor/plasteel/tech/grid
 	icon_state = "techfloor_grid"
+	base_icon_state = "techfloor_grid"
 	floor_tile = /obj/item/stack/tile/techgrid
 
 /turf/open/floor/plasteel/techmaint
 	icon_state = "techmaint"
+	base_icon_state = "techmaint"
 	floor_tile = /obj/item/stack/tile/techmaint

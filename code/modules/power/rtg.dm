@@ -30,6 +30,7 @@
 		radiation_pulse(src, 60)
 
 /obj/machinery/power/rtg/RefreshParts()
+	. = ..()
 	var/part_level = 0
 	for(var/obj/item/stock_parts/SP in component_parts)
 		part_level += SP.rating
@@ -96,6 +97,7 @@
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	overload()
 
-/obj/machinery/power/rtg/abductor/tesla_act()
-	..() //extend the zap
-	overload()
+/obj/machinery/power/rtg/abductor/zap_act(tesla_flags)
+	. = ..() //extend the zap
+	if(tesla_flags & ZAP_MACHINE_EXPLOSIVE)
+		overload()
