@@ -45,11 +45,9 @@
 	if(supplier.happiness)
 		if(supplier.happiness > 0)
 			if(!(src.happiness > supplier.happiness))
-				message_admins("FAILED HAPPINESS")
 				return FALSE
 		else
 			if(!(src.happiness < supplier.happiness))
-				message_admins("FAILED HAPPINESS")
 				return FALSE
 	return TRUE
 
@@ -64,7 +62,6 @@
 			temp_min -= max(supplier.pressure_variance, 1)
 			temp_max += supplier.pressure_variance
 		if(!(temp_turf.return_temperature() <= temp_max) && !(temp_turf.return_temperature() >= temp_min))
-			message_admins("FAILED TEMP")
 			return FALSE
 	return TRUE
 
@@ -81,7 +78,6 @@
 			pressure_min -= max(supplier.pressure_variance, 0)
 			pressure_max += supplier.pressure_variance
 		if(!(environment.return_pressure() <=  pressure_max) && !(environment.return_pressure() >= pressure_min))
-			message_admins("FAILED PRESSURE")
 			return FALSE
 	return TRUE
 
@@ -93,7 +89,6 @@
 			if(eaten_food.type in supplier.food_requirements)
 				supplier.food_requirements -= eaten_food.type
 		if(supplier.food_requirements.len)
-			message_admins("FAILED FOOD")
 			return FALSE
 	return TRUE
 
@@ -117,7 +112,6 @@
 			if(in_range_turf in supplier.needed_turfs)
 				supplier.needed_turfs -= in_range_turf
 		if(supplier.needed_turfs)
-			message_admins("FAILED TURF")
 			return FALSE
 	return TRUE
 
@@ -131,7 +125,6 @@
 			if(in_range_item.type in supplier.nearby_items)
 				needed_items -= in_range_item.type
 		if(needed_items.len)
-			message_admins("FAILED ITEMS")
 			return FALSE
 	return TRUE
 
@@ -154,7 +147,6 @@
 			if(egg_source_turf.air.get_moles(gas) >= supplier.required_atmos[gas])
 				passed_check = TRUE
 		if(passed_check == FALSE)
-			message_admins("FAILED ATMOS")
 			return FALSE
 	return TRUE
 
@@ -165,7 +157,6 @@
 			if(in_range_player.mind.assigned_role == supplier.player_job)
 				passed_check = TRUE
 		if(passed_check == FALSE)
-			message_admins("FAILED JOB")
 			return FALSE
 	return TRUE
 
@@ -177,7 +168,6 @@
 			if(egg_location.liquids.height >= supplier.liquid_depth)
 				passed_check = TRUE
 		if(passed_check == FALSE)
-			message_admins("FAILED DEPTH")
 			return FALSE
 	return TRUE
 
@@ -188,7 +178,6 @@
 			if(in_range_player.dna.species == supplier.needed_species)
 				passed_check = TRUE
 		if(passed_check == FALSE)
-			message_admins("FAILED SPECIES")
 			return FALSE
 	return TRUE
 
@@ -199,6 +188,5 @@
 			if(in_range_player.maxHealth - in_range_player.health >= supplier.player_health)
 				passed_check = TRUE
 		if(passed_check == FALSE)
-			message_admins("FAILED HEALTH")
 			return FALSE
 	return TRUE
