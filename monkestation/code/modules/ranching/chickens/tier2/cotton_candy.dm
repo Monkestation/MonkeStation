@@ -26,6 +26,7 @@
 	duration = 10 SECONDS
 
 /datum/status_effect/ranching/sugar_rush/on_apply()
+	owner.AddComponent(/datum/component/after_image)
 	owner.add_movespeed_modifier("sugar_rush", update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
 	owner.Move()
 	owner.Move()
@@ -33,6 +34,8 @@
 	return ..()
 
 /datum/status_effect/ranching/sugar_rush/on_remove()
+	var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
+	after_image?.RemoveComponent()
 	owner.remove_movespeed_modifier("sugar_rush")
 
 /datum/status_effect/ranching/sugar_rush
@@ -41,6 +44,7 @@
 	tick_interval = 1 SECONDS
 
 /datum/status_effect/ranching/sugar_rush/on_apply()
+	owner.AddComponent(/datum/component/after_image, 2)
 	owner.add_movespeed_modifier("sugar_rush", update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
@@ -50,4 +54,6 @@
 		owners_reagents.add_reagent(/datum/reagent/consumable/sugar, 2)
 
 /datum/status_effect/ranching/sugar_rush/on_remove()
+	var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
+	after_image?.RemoveComponent()
 	owner.remove_movespeed_modifier("sugar_rush")
