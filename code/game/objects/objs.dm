@@ -423,3 +423,14 @@
 	. = ..()
 	if(resistance_flags & ON_FIRE)
 		. += custom_fire_overlay ? custom_fire_overlay : GLOB.fire_overlay
+
+//To be called from things that spill objects on the floor.
+//Makes an object move around randomly for a couple of tiles
+/obj/proc/tumble(var/dist = 2)
+	set waitfor = FALSE
+	if (dist >= 1)
+		dist += rand(0,1)
+		for(var/i = 1, i <= dist, i++)
+			if(src)
+				step(src, pick(NORTH,SOUTH,EAST,WEST))
+				sleep(rand(2,4))

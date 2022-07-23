@@ -142,8 +142,18 @@
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA)
 
+/obj/structure/lattice/clockwork
+	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/lattice_clockwork.dmi'
+	icon_state = "lattice_clockwork-0"
+	base_icon_state = "lattice_clockwork"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_CATWALK, SMOOTH_GROUP_OPEN_FLOOR)
+	canSmoothWith = list(SMOOTH_GROUP_CATWALK)
+
 /obj/structure/lattice/catwalk/clockwork
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/catwalk_clockwork.dmi'
+	icon_state = "catwalk_clockwork-0"
+	base_icon_state = "catwalk_clockwork"
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE, SMOOTH_GROUP_CATWALK, SMOOTH_GROUP_OPEN_FLOOR)
 	canSmoothWith = list(SMOOTH_GROUP_CATWALK)

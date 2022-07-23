@@ -85,9 +85,10 @@
 	to_chat(M, msg)
 	var/list/slots = list (
 		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
+		"hands" = ITEM_SLOT_HANDS
 	)
-	M.equip_in_one_of_slots(new_item, slots , qdel_on_fail = TRUE)
+	if(!M.equip_in_one_of_slots(new_item, slots , qdel_on_fail = FALSE))
+		new_item.forceMove(M.loc)
 
 /obj/item/choice_beacon/anime/generate_display_names()
 	var/static/list/anime
