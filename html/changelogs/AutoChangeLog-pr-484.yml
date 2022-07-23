@@ -1,5 +1,0 @@
-author: DoctorSquishy, Donkie, MadMedicineMan, Rohesie, Kylerace, nicbn, WarlockD
-delete-after: true
-changes:
-  - tweak: allows the air alarm to let vents suck are as well as pressurize.
-  - code_imp: Machine code should run smoother now which means less server lag!

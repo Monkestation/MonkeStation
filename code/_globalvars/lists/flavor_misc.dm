@@ -111,7 +111,18 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"Too Deep",
 	"Triumvirate",
 	"Triumvirate-M",
-	"Weird")))
+    //MONKESTATION ADDITION START
+	"Weird",
+	"Girl",
+	"Girl-malf",
+	"Boy",
+	"Boy-malf",
+	"Yes-man",
+	"Boxfort",
+	"Hotdog",
+	"Terminal",
+	)))
+	//MONKESTATION ADDITION END
 
 /proc/resolve_ai_icon(input)
 	if(!input || !(input in GLOB.ai_core_display_screens))
