@@ -5,7 +5,7 @@
 	icon_state = "glass-0"
 	base_icon_state = "glass"
 	baseturfs = /turf/open/openspace
-	intact = FALSE //this means wires go on top
+	intact = TRUE //fuck it yall can remove them, can't really fix the plating though :/
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
@@ -19,6 +19,18 @@
 	icon_state = "" //Prevent the normal icon from appearing behind the smooth overlays
 	..()
 	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/floor/glass/Destroy()
+	. = ..()
+	RemoveElement(/datum/element/turf_z_transparency)
+	for(var/obj/object in src)
+		if(object.level == 1 && (object.flags_1 & INITIALIZED_1))
+			object.plane = initial(object.plane)
+
+/turf/open/floor/glass/levelupdate()
+	for(var/obj/object in src)
+		if(object.level == 1 && (object.flags_1 & INITIALIZED_1))
+			object.plane = OPENSPACE_PLANE
 
 /turf/open/floor/glass/LateInitialize()
 	. = ..()
