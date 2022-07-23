@@ -45,6 +45,11 @@
 /mob/living/simple_animal/chicken/hostile/retaliate/clown/death(gibbed)
 	. = ..()
 	clownin_target = null
+
+/mob/living/simple_animal/chicken/hostile/retaliate/clown/Destroy()
+	. = ..()
+	clownin_target = null
+
 #undef CLOWNIN_COOLDOWN
 
 /obj/item/food/egg/clown
