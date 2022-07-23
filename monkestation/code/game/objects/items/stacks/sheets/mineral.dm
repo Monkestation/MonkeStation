@@ -17,6 +17,10 @@ GLOBAL_LIST_INIT(metalhydrogen_recipes, list(
 	custom_materials = list(/datum/material/metalhydrogen = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/metal_hydrogen
 
+/obj/item/stack/sheet/mineral/metal_hydrogen/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.metalhydrogen_recipes
+	. = ..()
+
 /obj/item/stack/sheet/mineral/zaukerite
 	name = "zaukerite"
 	icon_state = "zaukerite"
