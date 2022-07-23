@@ -90,8 +90,8 @@
 		if(MobBump(M))
 			return
 	if(isturf(A))
-		var/turf/T = A
-		if(TurfBump(T))
+		var/turf/bump_turf = A
+		if(TurfBump(bump_turf))
 			return
 	if(isobj(A))
 		var/obj/O = A
