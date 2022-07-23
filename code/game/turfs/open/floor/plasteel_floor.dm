@@ -15,6 +15,7 @@
 	changed_turf.AddElement(/datum/element/rust)
 
 /turf/open/floor/plasteel/update_icon_state()
+	.=..()
 	if(broken || burnt)
 		return
 	icon_state = base_icon_state
