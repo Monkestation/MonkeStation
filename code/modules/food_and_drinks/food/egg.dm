@@ -23,23 +23,6 @@
 	decomp_req_handle = TRUE //so laid eggs can actually become chickens
 	bite_consumption = 100 // whole ass egg all at once
 
-	///the amount the chicken is grown
-	var/amount_grown = 0
-	///the type of chicken that layed this egg
-	var/mob/living/simple_animal/chicken/layer_hen_type
-	///happiness of the chicken
-	var/happiness = 0
-	///list of consumed food
-	var/list/consumed_food
-	///list of consumed reagents
-	var/list/consumed_reagents
-	///list of all possible mutations
-	var/list/mutations = list()
-	///eggs ore type
-	var/obj/item/stack/ore/production_type = null
-	///list of picked mutations should only ever be one
-	var/list/possible_mutations = list()
-
 /obj/item/food/egg/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_FOOD_EATEN, .proc/consumed_egg)

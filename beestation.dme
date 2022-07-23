@@ -3828,6 +3828,7 @@
 #include "monkestation\code\modules\projectiles\guns\launchers\srn_rocketlauncher.dm"
 #include "monkestation\code\modules\ranching\items.dm"
 #include "monkestation\code\modules\ranching\chickens\_chicken.dm"
+#include "monkestation\code\modules\ranching\chickens\_chicken_defines.dm"
 #include "monkestation\code\modules\ranching\chickens\_chicken_hostile.dm"
 #include "monkestation\code\modules\ranching\chickens\_chicken_retaliate.dm"
 #include "monkestation\code\modules\ranching\chickens\tier1\brown_chicken.dm"
