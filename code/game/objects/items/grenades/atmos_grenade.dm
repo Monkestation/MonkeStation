@@ -61,8 +61,11 @@
 	///Amount of Oxygen gas released (close to the grenade)
 	var/o2_gas_amount = 30
 
-/obj/item/grenade/gas_crystal/pluonium_crystal/prime()
+/obj/item/grenade/gas_crystal/pluonium_crystal/detonate(mob/living/lanced_by)
 	. = ..()
+	if(!.)
+		return
+
 	update_mob()
 	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
 	for(var/turf/turf_loc in view(refill_range, loc))
@@ -82,8 +85,11 @@
 	///Amount of n2o gas released (close to the grenade)
 	var/n2o_gas_amount = 10
 
-/obj/item/grenade/gas_crystal/nitrous_oxide_crystal/prime()
+/obj/item/grenade/gas_crystal/nitrous_oxide_crystal/detonate(mob/living/lanced_by)
 	. = ..()
+	if(!.)
+		return
+
 	update_mob()
 	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
 	for(var/turf/turf_loc in view(fill_range, loc))
@@ -93,3 +99,4 @@
 		var/turf/open/floor_loc = turf_loc
 		floor_loc.atmos_spawn_air("n2o=[n2o_gas_amount / distance_from_center];TEMP=273")
 	qdel(src)
+
