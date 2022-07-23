@@ -1,11 +1,3 @@
-GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
-	/datum/reagent/drug/methamphetamine = 1,
-	/datum/reagent/toxin/lipolicide = 0.25,
-	/datum/reagent/consumable/sugar = 0.5,
-)))
-
-
-
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
@@ -192,11 +184,17 @@ GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
 	var/max_happiness_per_generation = 100
 	///How sad until they die of sadness?
 	var/minium_living_happiness = -200
+	///List of happy chems
+	var/list/happy_chems = list(
+	/datum/reagent/drug/methamphetamine = 1,
+	/datum/reagent/toxin/lipolicide = 0.25,
+	/datum/reagent/consumable/sugar = 0.5,)
 
 	///Glass Chicken exclusive: reagents for eggs
 	var/list/glass_egg_reagents = list()
 	///Stone Chicken Exclusive: ore type for eggs
 	var/obj/item/stack/ore/production_type = null
+
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -232,9 +230,9 @@ GLOBAL_LIST_INIT(happy_chems, typecacheof(list(
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
 		if(!stat && current_feed_amount <= 3 )
 			for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
-				if(reagent in GLOB.happy_chems && max_happiness_per_generation >= (GLOB.happy_chems[reagent] * reagent.volume))
-					happiness += GLOB.happy_chems[reagent] * reagent.volume
-					max_happiness_per_generation -= GLOB.happy_chems[reagent] * reagent.volume
+				if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
+					happiness += happy_chems[reagent] * reagent.volume
+					max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
 				if(!(reagent in consumed_reagents))
 					consumed_reagents.Add(reagent)
 
