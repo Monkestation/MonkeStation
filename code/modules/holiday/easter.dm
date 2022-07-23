@@ -43,8 +43,8 @@
 	emote_see = list("hops around","bounces up and down")
 	butcher_results = list(/obj/item/food/meat/slab = 1)
 	egg_type = /obj/item/food/egg/loaded
-	eggsleft = 10
-	eggsFertile = FALSE
+	eggs_left = 10
+	eggs_fertile = FALSE
 	feedMessages = list("It nibbles happily.","It noms happily.")
 	layMessage = list("hides an egg.","scampers around suspiciously.","begins making a huge racket.","begins shuffling.")
 

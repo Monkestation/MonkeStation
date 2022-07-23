@@ -78,10 +78,12 @@
 			qdel(src)
 
 /mob/living/simple_animal/chick/death(gibbed)
+	friends = null
 	GLOB.total_chickens--
 	..()
 
 /mob/living/simple_animal/chick/Destroy()
+	friends = null
 	if(stat != DEAD)
 		GLOB.total_chickens--
 	return ..()
@@ -130,9 +132,9 @@
 	do_footstep = TRUE
 
 	///How many eggs can the chicken still lay?
-	var/eggsleft = 0
+	var/eggs_left = 0
 	///can it still lay eggs?
-	var/eggsFertile = TRUE
+	var/eggs_fertile = TRUE
 	///Message you get when it is fed
 	var/list/feedMessages = list("It clucks happily.","It clucks happily.")
 	///Message that is sent when an egg is layed
@@ -249,7 +251,7 @@
 			var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
 			user.visible_message(feedmsg)
 			qdel(given_item)
-			eggsleft += rand(0, 2)
+			eggs_left += rand(0, 2)
 			current_feed_amount ++
 			total_times_eaten ++
 		else
@@ -292,7 +294,7 @@
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
-	if((!stat && prob(3) && eggsleft > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
+	if((!stat && prob(3) && eggs_left > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
 		ready_to_lay = TRUE
 
 	if(ready_to_lay == TRUE)
@@ -313,7 +315,7 @@
 
 			visible_message("[src] [pick(layMessage)]")
 
-			eggsleft--
+			eggs_left--
 			var/obj/item/food/egg/layed_egg
 			//Need to have eaten 5 times in order to have a chance at getting mutations
 			if(src.total_times_eaten > 4 && prob(25))
@@ -343,7 +345,7 @@
 			if(production_type)
 				layed_egg.production_type = production_type
 
-			if(eggsFertile)
+			if(eggs_fertile)
 				if(prob(25) || layed_egg.possible_mutations.len) //25
 					START_PROCESSING(SSobj, layed_egg)
 			ready_to_lay = FALSE
@@ -394,7 +396,7 @@
 		var/obj/item/removal_item = item
 		var/obj/item/temp = locate(removal_item) in view(3, src.loc)
 		if(temp)
-			visible_message("[src] absorbs the nearby [temp] into itself.")
+			visible_message("[src] absorbs the nearby [temp.name] into itself.")
 			qdel(temp)
 
 /mob/living/simple_animal/chicken/turkey
