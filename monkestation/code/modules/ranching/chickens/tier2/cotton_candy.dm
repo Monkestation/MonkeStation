@@ -8,8 +8,11 @@
 	.=..()
 	if(prob(0.2))
 		visible_message("<span class='warning'>[src] starts to shake seems like they are gonna have a sugar rush!</span>")
-		sleep(3)
-		src.apply_status_effect(HEN_RUSH)
+		var/datum/buff_callback = CALLBACK(src,.proc/apply_status_effect)
+		add_timer(buff_callback, 3 SECONDS)
+
+/mob/living/simple_animal/chicken/cotton_candy/proc/apply_status_effect()
+	src.apply_status_effect(HEN_RUSH)
 
 /obj/item/food/egg/cotton_candy
 	name = "Sugary Egg"
