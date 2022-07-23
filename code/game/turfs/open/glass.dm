@@ -30,6 +30,8 @@
 /turf/open/floor/glass/levelupdate()
 	for(var/obj/object in src)
 		if(object.level == 1 && (object.flags_1 & INITIALIZED_1))
+			if(istype(object, /obj/machinery/atmospherics/components/unary/vent_pump) || istype(object, /obj/machinery/atmospherics/components/unary/vent_scrubber))
+				return
 			object.plane = OPENSPACE_PLANE
 
 /turf/open/floor/glass/LateInitialize()
