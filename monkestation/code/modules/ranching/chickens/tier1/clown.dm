@@ -6,7 +6,7 @@
 	mutation_list = list(/datum/ranching/mutation/mime, /datum/ranching/mutation/clown_sad)
 	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown
 	retaliates = FALSE
-	minium_living_happiness = -2000
+	minimum_living_happiness = -2000
 	COOLDOWN_DECLARE(clownin_time)
 	var/mob/living/clownin_target = null
 	var/turf/old_loc

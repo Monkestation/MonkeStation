@@ -45,10 +45,9 @@
 
 /mob/living/simple_animal/chick/attack_hand(mob/living/carbon/human/user)
 	..()
-	switch(user.a_intent)
-		if("help")
-			if(!(user in friends))
-				friends.Add(user)
+	if(user.a_intent == "help")
+		if(!(user in friends))
+			friends.Add(user)
 
 /mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
@@ -183,7 +182,7 @@
 	///max generational happiness
 	var/max_happiness_per_generation = 100
 	///How sad until they die of sadness?
-	var/minium_living_happiness = -200
+	var/minimum_living_happiness = -200
 	///List of happy chems
 	var/list/happy_chems = list(
 	/datum/reagent/drug/methamphetamine = 1,
