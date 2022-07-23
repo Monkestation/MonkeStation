@@ -34,9 +34,6 @@
 
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
-	if(mapload)
-		LAZYREMOVE(component_parts, circuit)
-		QDEL_NULL(circuit)
 	occupant_typecache = GLOB.typecache_living
 	update_appearance()
 	reset_chem_buttons()

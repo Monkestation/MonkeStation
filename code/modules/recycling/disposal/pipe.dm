@@ -3,7 +3,7 @@
 /obj/structure/disposalpipe
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
+	icon = 'monkestation/icons/obj/atmospherics/pipes/disposal.dmi'
 	anchored = TRUE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS

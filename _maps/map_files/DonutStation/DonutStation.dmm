@@ -41329,10 +41329,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bJA" = (
-/obj/structure/closet/crate/wooden/toy,
 /obj/item/grenade/chem_grenade/teargas/moustache,
 /obj/item/grenade/chem_grenade/glitter/blue,
 /obj/item/grenade/chem_grenade/glitter/pink,
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "bJB" = (
