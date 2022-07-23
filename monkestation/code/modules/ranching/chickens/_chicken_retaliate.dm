@@ -22,7 +22,7 @@
 		if(LAZYLEN(found_mecha.occupant))
 			return found_atom
 
-/mob/living/simple_animal/chicken/hostile/retaliate/ListTargets()
+/mob/living/simple_animal/chicken/hostile/retaliate/list_targets()
 	if(!enemies.len)
 		return list()
 	var/list/see = ..()
