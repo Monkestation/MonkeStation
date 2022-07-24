@@ -52,7 +52,7 @@
 	living_pawn.a_intent = INTENT_HARM
 
 	// check for projectile and roll a dice, than fire that bad boy
-	if(controller.blackboard[BB_CHICKEN_PROJECTILE] && DT_PROB(15, delta_time))
+	if(controller.blackboard[BB_CHICKEN_PROJECTILE] && DT_PROB(5, delta_time))
 		shoot(target, controller)
 
 	// attack with weapon if we have one (we don't as of now as sword chickens are frauds)
