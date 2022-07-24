@@ -53,7 +53,17 @@
 #define BB_MONKEY_RECRUIT_COOLDOWN "BB_monkey_recruit_cooldown"
 #define BB_MONKEY_NEXT_HUNGRY "BB_monkey_next_hungry"
 
-
+// Chicken AI controller blackboard keys
+#define BB_CHICKEN_AGGRESSIVE "BB_chicken_aggressive"
+#define BB_CHICKEN_RETALIATE "BB_chicken_retaliate"
+#define BB_CHICKEN_SHITLIST "BB_chicken_shitlist"
+#define BB_CHICKEN_FRIENDLIST "BB_chicken_friendlist"
+#define BB_CHICKEN_RECRUIT_COOLDOWN "BB_chicken_cooldown"
+#define BB_CHICKEN_CURRENT_ATTACK_TARGET "BB_chicken_target"
+#define BB_CHICKEN_ABILITY "BB_chicken_ability"
+#define BB_CHICKEN_PROJECTILE "BB_chicken_projectile"
+#define BB_CHICKEN_COMBAT_ABILITY "BB_chicken_combat_ability"
+#define BB_CHICKEN_ABILITY_COOLDOWN "BB_chicken_ability_cooldown"
 ///Haunted item controller defines
 
 ///Chance for haunted item to haunt someone

@@ -1,4 +1,8 @@
 /mob/living/simple_animal/chicken
+
+	faction = list("chicken")
+	ai_controller = /datum/ai_controller/chicken
+
 	///How many eggs can the chicken still lay?
 	var/eggs_left = 0
 	///can it still lay eggs?
@@ -58,6 +62,13 @@
 	/datum/reagent/drug/methamphetamine = 1,
 	/datum/reagent/toxin/lipolicide = 0.25,
 	/datum/reagent/consumable/sugar = 0.5,)
+
+	///unique ability for chicken
+	var/unique_ability = null
+	/// is it a combat ability?
+	var/combat_ability = FALSE
+	///what type of projectile do we shoot?
+	var/projectile_type = null
 
 	///Glass Chicken exclusive: reagents for eggs
 	var/list/glass_egg_reagents = list()
