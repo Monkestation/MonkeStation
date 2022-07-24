@@ -3,6 +3,11 @@
 
 	var/list/enemies = controller.blackboard[BB_CHICKEN_SHITLIST]
 
+	if(controller.blackboard[BB_CHICKEN_HONKS] && controller.blackboard[BB_CHICKEN_HONKING_COOLDOWN] < world.time && DT_PROB(25, delta_time))
+		if(!controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET])
+			controller.queue_behavior(/datum/ai_behavior/chicken_honk_target)
+		controller.queue_behavior(/datum/ai_behavior/chicken_honk)
+
 	var/mob/living/selected_enemy
 	if(length(enemies) || controller.blackboard[BB_CHICKEN_AGGRESSIVE]) //We have enemies or are pissed
 		var/list/valids = list()

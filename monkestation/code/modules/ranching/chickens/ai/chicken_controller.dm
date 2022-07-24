@@ -12,6 +12,9 @@
 		BB_CHICKEN_COMBAT_ABILITY = FALSE,
 		BB_CHICKEN_ABILITY_COOLDOWN = null,
 		BB_CHICKEN_SHOOT_PROB = 10,
+		BB_CHICKEN_HONKING_COOLDOWN = null,
+		BB_CHICKEN_HONKS = FALSE,
+		BB_CHICKEN_HONKS_SORROW = FALSE,
 	)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
@@ -64,6 +67,24 @@
 		return
 	blackboard[BB_CHICKEN_RETALIATE] = TRUE //Less pissed off cunt
 
+
+//CLOWN AIS
+
+/datum/ai_controller/chicken/clown
+
+/datum/ai_controller/chicken/clown/TryPossessPawn(atom/new_pawn)
+	. = ..()
+	if(. & AI_CONTROLLER_INCOMPATIBLE)
+		return
+	blackboard[BB_CHICKEN_HONKS] = TRUE // honk
+
+/datum/ai_controller/chicken/clown/sad
+
+/datum/ai_controller/chicken/clown/sad/TryPossessPawn(atom/new_pawn)
+	. = ..()
+	if(. & AI_CONTROLLER_INCOMPATIBLE)
+		return
+	blackboard[BB_CHICKEN_HONKS_SORROW] = TRUE // honk but sad
 ///Start of ai calls
 
 // Stops sentient chickens from being knocked over like weak dunces.

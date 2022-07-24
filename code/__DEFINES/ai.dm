@@ -64,6 +64,9 @@
 #define BB_CHICKEN_COMBAT_ABILITY "BB_chicken_combat_ability"
 #define BB_CHICKEN_ABILITY_COOLDOWN "BB_chicken_ability_cooldown"
 #define BB_CHICKEN_SHOOT_PROB "BB_chicken_shoot_prob"
+#define BB_CHICKEN_HONKING_COOLDOWN "BB_chicken_honk_cooldown"
+#define BB_CHICKEN_HONKS "BB_chicken_honks" // does it honk?
+#define BB_CHICKEN_HONKS_SORROW "BB_chicken_honks_sorrow"
 ///Haunted item controller defines
 
 ///Chance for haunted item to haunt someone

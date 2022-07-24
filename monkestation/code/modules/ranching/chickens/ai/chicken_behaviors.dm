@@ -126,3 +126,61 @@
 	living_pawn.apply_status_effect(controller.blackboard[BB_CHICKEN_ABILITY])
 
 	finish_action(controller, TRUE)
+
+/datum/ai_behavior/chicken_honk
+
+/datum/ai_behavior/chicken_honk/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/living_pawn = controller.pawn
+	controller.blackboard[BB_CHICKEN_HONKING_COOLDOWN] = world.time + DEFAULT_HONK_CD
+	var/mob/living/target = controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET]
+
+	if(living_pawn.next_move > world.time)
+		return
+
+	if(DT_PROB(10, delta_time) && controller.blackboard[BB_CHICKEN_HONKS_SORROW])
+		living_pawn.apply_status_effect(ANGRY_HONK_SPEED)
+
+	living_pawn.changeNext_move(CLICK_CD_MELEE) //We play fair
+
+	living_pawn.face_atom(target)
+
+	// forcing the move here because we aren't in hostile mode so we don't manually trigger hostile_jps
+	SSmove_manager.hostile_jps_move(living_pawn, target, 2, minimum_distance = 1)
+
+	living_pawn.a_intent = INTENT_HARM // not really lol but i wanna attach a slip to it
+
+	// honk the bastard
+	if(living_pawn.CanReach(target))
+		living_pawn.UnarmedAttack(target)
+		target.slip(5 SECONDS, FALSE)
+
+		if(controller.blackboard[BB_CHICKEN_HONKS_SORROW])
+			living_pawn.emote("cries")
+
+		living_pawn.a_intent = INTENT_HELP
+
+		SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
+
+		if(!controller.blackboard[BB_CHICKEN_HONKS_SORROW]) // these fucks don't forget
+			controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
+
+		controller.queue_behavior(/datum/ai_behavior/chicken_flee)
+		finish_action(controller, TRUE)
+
+/datum/ai_behavior/chicken_honk_target
+
+/datum/ai_behavior/chicken_honk_target/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/living_pawn = controller.pawn
+
+	if(controller.blackboard[BB_CHICKEN_HONKS_SORROW])
+		var/list/clucking_mad = list()
+		for(var/mob/living/carbon/human/unlucky in GLOB.player_list)
+			clucking_mad |= unlucky
+		controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(clucking_mad)
+		clucking_mad = null
+	else
+		var/list/pick_me = list()
+		for(var/mob/living/carbon/human/target in view(living_pawn, CHICKEN_ENEMY_VISION))
+			pick_me |= target
+		controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(pick_me)
+	finish_action(controller, TRUE)

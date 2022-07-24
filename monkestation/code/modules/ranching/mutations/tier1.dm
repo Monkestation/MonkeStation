@@ -47,6 +47,6 @@
 	reagent_requirements = (/datum/reagent/toxin/bad_food)
 
 /datum/ranching/mutation/clown
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown
+	chicken_type = /mob/living/simple_animal/chicken/clown
 	egg_type = /obj/item/food/egg/clown
 	player_job = "Clown"

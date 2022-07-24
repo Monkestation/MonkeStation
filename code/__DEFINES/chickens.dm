@@ -28,5 +28,8 @@
 /// probability of reducing aggro by one when the chickens attacks
 #define CHICKEN_HATRED_REDUCTION_PROB 		1
 
-///Monkey recruit cooldown
+///Chicken recruit cooldown
 #define CHICKEN_RECRUIT_COOLDOWN 10 SECONDS
+
+// Honking cd, only used by the clown chickens
+#define DEFAULT_HONK_CD 30 SECONDS

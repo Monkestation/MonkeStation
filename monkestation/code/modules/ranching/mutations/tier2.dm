@@ -57,7 +57,7 @@
 	happiness = 1000
 
 /datum/ranching/mutation/clown_sad
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/clown_sad
+	chicken_type = /mob/living/simple_animal/chicken/clown_sad
 	egg_type = /obj/item/food/egg/clown_sad
 	happiness = -1000
 
