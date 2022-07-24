@@ -70,11 +70,6 @@
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/stone))
 				if(production_type)
 					new_chicken.production_type = production_type
-
-			if(istype(new_chicken, /mob/living/simple_animal/chicken/hostile/raptor))
-				var/mob/living/simple_animal/chicken/hostile/chicken_holder = new_chicken
-				for(var/mob/living/carbon/human/user in friends)
-					chicken_holder.friends.Add(user)
 			qdel(src)
 
 /mob/living/simple_animal/chick/death(gibbed)

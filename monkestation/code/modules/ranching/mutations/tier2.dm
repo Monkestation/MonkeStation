@@ -6,7 +6,7 @@
 	temperature_variance = 50
 
 /datum/ranching/mutation/raptor
-	chicken_type = /mob/living/simple_animal/chicken/hostile/raptor
+	chicken_type = /mob/living/simple_animal/chicken/raptor
 	egg_type = /obj/item/food/egg/raptor
 	happiness = 55
 	food_requirements = list(/obj/item/food/meat/slab/monkey)
@@ -40,13 +40,13 @@
 	food_requirements = list(/obj/item/food/grown/cannabis)
 
 /datum/ranching/mutation/wiznerd
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/wiznerd
+	chicken_type = /mob/living/simple_animal/chicken/wiznerd
 	egg_type = /obj/item/food/egg/wiznerd
 	food_requirements = list(/obj/item/food/grown/mushroom/amanita)
 	nearby_items = list(/obj/item/clothing/head/wizard/fake)
 
 /datum/ranching/mutation/sword
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/sword
+	chicken_type = /mob/living/simple_animal/chicken/sword
 	egg_type = /obj/item/food/egg/sword
 	food_requirements = list(/obj/item/food/grown/meatwheat)
 	nearby_items = list(/obj/item/grown/log/steel)

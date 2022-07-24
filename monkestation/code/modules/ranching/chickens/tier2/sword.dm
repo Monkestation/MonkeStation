@@ -1,12 +1,14 @@
-/mob/living/simple_animal/chicken/hostile/retaliate/sword
+/mob/living/simple_animal/chicken/sword
+
 	maxHealth = 300
 	melee_damage = 4 //weak damage but strong health
 	obj_damage = 5
+	ai_controller = /datum/ai_controller/chicken/retaliate
 
 	breed_name_female = "Shieldmaidhen"
 	breed_name_male = "Fowlcion"
 	egg_type = /obj/item/food/egg/sword
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/sword
+	chicken_type = /mob/living/simple_animal/chicken/sword
 	mutation_list = list()
 
 /obj/item/food/egg/sword

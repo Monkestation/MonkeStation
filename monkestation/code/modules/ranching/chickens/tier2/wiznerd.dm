@@ -1,17 +1,17 @@
-/mob/living/simple_animal/chicken/hostile/retaliate/wiznerd //No matter what you say Zanden this is staying as wiznerd
+/mob/living/simple_animal/chicken/wiznerd //No matter what you say Zanden this is staying as wiznerd
 	maxHealth = 150
 	melee_damage = 7
 	obj_damage = 5
+	ai_controller = /datum/ai_controller/chicken/retaliate
 
 	breed_name_female = "Witchen"
 	breed_name_male = "Wizter"
+
 	egg_type = /obj/item/food/egg/wiznerd
-	chicken_type = /mob/living/simple_animal/chicken/hostile/retaliate/wiznerd
+	chicken_type = /mob/living/simple_animal/chicken/wiznerd
 	mutation_list = list()
 
-	ranged = TRUE
-	projectiletype = /obj/item/projectile/magic/magic_missle_weak
-	ranged_cooldown = 10 SECONDS
+	projectile_type = /obj/item/projectile/magic/magic_missle_weak
 
 /obj/item/food/egg/wiznerd
 	name = "Bewitching Egg"
