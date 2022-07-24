@@ -9,7 +9,7 @@
 	required_rooster = /mob/living/simple_animal/chicken/snowy
 
 /datum/ranching/mutation/cockatrice
-	chicken_type = /mob/living/simple_animal/chicken/hostile/cockatrice
+	chicken_type = /mob/living/simple_animal/chicken/cockatrice
 	egg_type = /obj/item/food/egg/cockatrice
 	food_requirements = list(/obj/item/food/meat/slab/chicken)
 	nearby_items = list(/obj/item/organ/tail/lizard) //This will probably rarely ever be done lol

@@ -3,15 +3,15 @@
 	planning_subtrees = list(/datum/ai_planning_subtree/chicken_tree)
 	blackboard = list(
 		BB_CHICKEN_SHITLIST = list(),
-		BB_CHICKEN_FRIENDLIST = list(),
 		BB_CHICKEN_AGGRESSIVE = FALSE,
 		BB_CHICKEN_RETALIATE = FALSE,
 		BB_CHICKEN_CURRENT_ATTACK_TARGET = null,
-		BB_CHICKEN_ABILITY = list(),
+		BB_CHICKEN_ABILITY = null,
 		BB_CHICKEN_PROJECTILE = null,
 		BB_CHICKEN_RECRUIT_COOLDOWN = null,
 		BB_CHICKEN_COMBAT_ABILITY = FALSE,
 		BB_CHICKEN_ABILITY_COOLDOWN = null,
+		BB_CHICKEN_SHOOT_PROB = 10,
 	)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
@@ -32,9 +32,10 @@
 
 	movement_delay = living_pawn.cached_multiplicative_slowdown
 
-	blackboard[BB_CHICKEN_ABILITY] += living_pawn.unique_ability
+	blackboard[BB_CHICKEN_ABILITY] = living_pawn.unique_ability
 	blackboard[BB_CHICKEN_COMBAT_ABILITY] = living_pawn.combat_ability
 	blackboard[BB_CHICKEN_PROJECTILE] = living_pawn.projectile_type
+	blackboard[BB_CHICKEN_SHOOT_PROB] = living_pawn.shoot_prob
 
 	AddComponent(/datum/component/connect_loc_behalf, new_pawn, loc_connections)
 	return ..() //Run parent at end
@@ -129,8 +130,9 @@
 
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
-	var/mob/living/living_pawn = pawn
-
+	var/mob/living/simple_animal/chicken/living_pawn = pawn
+	if(blackboard[BB_CHICKEN_ABILITY] && DT_PROB(living_pawn.ability_prob, delta_time) && !blackboard[BB_CHICKEN_COMBAT_ABILITY] && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
+		queue_behavior(/datum/ai_behavior/chicken_ability)
 	if(DT_PROB(25, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
 		var/move_dir = pick(GLOB.alldirs)
 		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
@@ -141,7 +143,7 @@
 			enemies[picked]--
 			if(enemies[picked] <= 0)
 				enemies.Remove(picked)
-				blackboard[BB_chicken_target] = null
+				blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
 				queue_behavior(/datum/ai_behavior/chicken_flee)
 
 /datum/ai_controller/chicken/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)

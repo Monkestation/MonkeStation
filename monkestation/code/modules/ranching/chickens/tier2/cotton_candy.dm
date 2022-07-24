@@ -4,15 +4,8 @@
 	chicken_path = /mob/living/simple_animal/chicken/cotton_candy
 	mutation_list = list(/datum/ranching/mutation/dreamsicle)
 
-/mob/living/simple_animal/chicken/cotton_candy/Life()
-	.=..()
-	if(prob(0.2))
-		visible_message("<span class='warning'>[src] starts to shake seems like they are gonna have a sugar rush!</span>")
-		var/datum/buff_callback = CALLBACK(src,.proc/apply_hen_rush)
-		addtimer(buff_callback, 3 SECONDS)
-
-/mob/living/simple_animal/chicken/cotton_candy/proc/apply_hen_rush()
-	src.apply_status_effect(HEN_RUSH)
+	unique_ability = HEN_RUSH
+	ability_prob = 5
 
 /obj/item/food/egg/cotton_candy
 	name = "Sugary Egg"
@@ -23,7 +16,7 @@
 
 /datum/status_effect/ranching/hen_rush
 	id = "hen_rush"
-	duration = 10 SECONDS
+	duration = 30 SECONDS
 
 /datum/status_effect/ranching/sugar_rush/on_apply()
 	owner.AddComponent(/datum/component/after_image)

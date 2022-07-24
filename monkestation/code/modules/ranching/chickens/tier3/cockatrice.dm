@@ -1,14 +1,17 @@
-/mob/living/simple_animal/chicken/hostile/cockatrice
+/mob/living/simple_animal/chicken/cockatrice
 	breed_name_male = "Cockatrice"
 	breed_name_female = "Cockatrice"
 
-	hostile = FALSE
+	ai_controller = /datum/ai_controller/chicken/hostile
+	health = 150
+	maxHealth = 150
+	melee_damage = 10
+	obj_damage = 10
 
-	ranged = TRUE
-	projectiletype = /obj/item/projectile/magic/venomous_spit
-	ranged_cooldown_time = 45 SECONDS
+	projectile_type = /obj/item/projectile/magic/venomous_spit
+	shoot_prob = 10
 
-	chicken_type = /mob/living/simple_animal/chicken/hostile/cockatrice
+	chicken_type = /mob/living/simple_animal/chicken/cockatrice
 	egg_type = /obj/item/food/egg/cockatrice
 
 /obj/item/food/egg/cockatrice
@@ -48,10 +51,10 @@
 	projectile_amount = 1
 	projectile_type = /obj/item/projectile/magic/venomous_spit
 
-/mob/living/simple_animal/chicken/hostile/cockatrice/Initialize(mapload)
+/mob/living/simple_animal/chicken/cockatrice/Initialize(mapload)
 	. = ..()
-	if(gender == MALE)
-		hostile = TRUE
+	if(gender == FEMALE)
+		ai_controller.blackboard[BB_CHICKEN_AGGRESSIVE] = FALSE
 
 /obj/item/ammo_casing/venomous_spit
 	projectile_type = /obj/item/projectile/magic/venomous_spit

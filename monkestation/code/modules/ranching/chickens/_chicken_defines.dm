@@ -1,3 +1,4 @@
+#define DEFAULT_CHICKEN_ABILITY_COOLDOWN 30 SECONDS
 /mob/living/simple_animal/chicken
 
 	faction = list("chicken")
@@ -65,15 +66,23 @@
 
 	///unique ability for chicken
 	var/unique_ability = null
+	///cooldown of ability
+	var/cooldown_time = DEFAULT_CHICKEN_ABILITY_COOLDOWN
 	/// is it a combat ability?
 	var/combat_ability = FALSE
+	/// probability for ability
+	var/ability_prob = 3
 	///what type of projectile do we shoot?
 	var/projectile_type = null
+	///probabilty of firing a shot on any given attack
+	var/shoot_prob = 0
 
 	///Glass Chicken exclusive: reagents for eggs
 	var/list/glass_egg_reagents = list()
 	///Stone Chicken Exclusive: ore type for eggs
 	var/obj/item/stack/ore/production_type = null
+
+#undef DEFAULT_CHICKEN_ABILITY_COOLDOWN
 
 /obj/item/food/egg
 	///the amount the chicken is grown

@@ -30,12 +30,12 @@
 		var/projectile_type = controller.blackboard[BB_CHICKEN_PROJECTILE]
 		var/obj/item/projectile/used_projectile = new projectile_type(startloc)
 		used_projectile.starting = startloc
-		used_projectile.firer = src
-		used_projectile.fired_from = src
+		used_projectile.firer = living_pawn
+		used_projectile.fired_from = living_pawn
 		used_projectile.yo = targeted_atom.y - startloc.y
 		used_projectile.xo = targeted_atom.x - startloc.x
 		used_projectile.original = targeted_atom
-		used_projectile.preparePixelProjectile(targeted_atom, src)
+		used_projectile.preparePixelProjectile(targeted_atom, living_pawn)
 		used_projectile.fire()
 		return used_projectile
 
@@ -53,7 +53,7 @@
 
 	// check for projectile and roll a dice, than fire that bad boy
 	if(controller.blackboard[BB_CHICKEN_PROJECTILE] && DT_PROB(15, delta_time))
-		shoot(target)
+		shoot(target, controller)
 
 	// attack with weapon if we have one (we don't as of now as sword chickens are frauds)
 	if(living_pawn.CanReach(target))
@@ -116,3 +116,13 @@
 	else
 		finish_action(controller, TRUE)
 
+/datum/ai_behavior/chicken_ability
+
+/datum/ai_behavior/chicken_ability/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+	controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + living_pawn.cooldown_time
+
+	// real simple for now will expand this with unique abilities as need be
+	living_pawn.apply_status_effect(controller.blackboard[BB_CHICKEN_ABILITY])
+
+	finish_action(controller, TRUE)

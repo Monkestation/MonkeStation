@@ -1,5 +1,5 @@
 /datum/ai_planning_subtree/chicken_tree/SelectBehaviors(datum/ai_controller/monkey/controller, delta_time)
-	var/mob/living/living_pawn = controller.pawn
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 
 	var/list/enemies = controller.blackboard[BB_CHICKEN_SHITLIST]
 
@@ -34,7 +34,7 @@
 				controller.current_movement_target = selected_enemy
 				if(controller.blackboard[BB_CHICKEN_RECRUIT_COOLDOWN] < world.time)
 					controller.queue_behavior(/datum/ai_behavior/recruit_chickens)
-				if(controller.blackboard[BB_CHICKEN_COMBAT_ABILITY] == TRUE && controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
-					//controller.queue_behavior(/datum/ai_behavior/chicken_ability)
+				if(controller.blackboard[BB_CHICKEN_ABILITY] && DT_PROB(living_pawn.ability_prob, delta_time) && controller.blackboard[BB_CHICKEN_COMBAT_ABILITY] && controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
+					controller.queue_behavior(/datum/ai_behavior/chicken_ability)
 				controller.queue_behavior(/datum/ai_behavior/chicken_attack_mob)
 				return SUBTREE_RETURN_FINISH_PLANNING //Focus on this
