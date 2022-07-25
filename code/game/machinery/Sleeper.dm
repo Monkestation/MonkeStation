@@ -9,9 +9,13 @@
 	desc = "An enclosed machine used to stabilize and heal patients."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
+	base_icon_state = "sleeper"
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+
+	payment_department = ACCOUNT_MED
+	fair_market_price = 5
 
 	var/efficiency = 1
 	var/min_health = -25
@@ -26,15 +30,16 @@
 	var/list/chem_buttons	//Used when emagged to scramble which chem is used, eg: antitoxin -> morphine
 	var/scrambled_chems = FALSE //Are chem buttons scrambled? used as a warning
 	var/enter_message = "<span class='notice'><b>You feel cool air surround you. You go numb as your senses turn inward.</b></span>"
-	payment_department = ACCOUNT_MED
-	fair_market_price = 5
+
+
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
-	update_icon()
+	update_appearance()
 	reset_chem_buttons()
 
 /obj/machinery/sleeper/RefreshParts()
+	. = ..()
 	var/E
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		E += B.rating
@@ -50,15 +55,13 @@
 	reset_chem_buttons()
 	ui_update()
 
-/obj/machinery/sleeper/update_icon()
-	if(state_open)
-		icon_state = "[initial(icon_state)]-open"
-	else
-		icon_state = initial(icon_state)
+/obj/machinery/sleeper/update_icon_state()
+	icon_state = "[base_icon_state][state_open ? "-open" : null]"
+	return ..()
 
 /obj/machinery/sleeper/container_resist(mob/living/user)
-	visible_message("<span class='notice'>[occupant] emerges from [src]!</span>",
-		"<span class='notice'>You climb out of [src]!</span>")
+	visible_message(span_notice("[occupant] emerges from [src]!"),
+		span_notice("You climb out of [src]!"))
 	open_machine()
 
 /obj/machinery/sleeper/Exited(atom/movable/gone, direction)
@@ -82,13 +85,13 @@
 		..(user)
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && mob_occupant.stat != DEAD)
-			to_chat(occupant, "[enter_message]")
+			to_chat(mob_occupant, "[enter_message]")
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	if(is_operational() && occupant)
+	if(is_operational && occupant)
 		open_machine()
 
 /obj/machinery/sleeper/MouseDrop_T(mob/target, mob/user)
@@ -105,20 +108,22 @@
 	if(..())
 		return
 	if(occupant)
-		to_chat(user, "<span class='warning'>[src] is currently occupied!</span>")
+		to_chat(user, span_warning("[src] is currently occupied!"))
 		return
 	if(state_open)
-		to_chat(user, "<span class='warning'>[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!</span>")
+		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
 		return
 	return FALSE
 
 /obj/machinery/sleeper/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(default_change_direction_wrench(user, I))
 		return TRUE
 
 /obj/machinery/sleeper/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(default_pry_open(I))
 		return TRUE
 	if(default_deconstruction_crowbar(I))
@@ -128,25 +133,23 @@
 	. = !(state_open || panel_open || (flags_1 & NODECONSTRUCT_1)) && I.tool_behaviour == TOOL_CROWBAR
 	if(.)
 		I.play_tool_sound(src, 50)
-		visible_message("<span class='notice'>[usr] pries open [src].</span>", "<span class='notice'>You pry open [src].</span>")
+		visible_message(span_notice("[usr] pries open [src]."), span_notice("You pry open [src]."))
 		open_machine()
-
 
 /obj/machinery/sleeper/ui_requires_update(mob/user, datum/tgui/ui)
 	. = ..()
-
 	if(occupant)
 		. = TRUE // Only autoupdate when occupied
 
 /obj/machinery/sleeper/ui_state(mob/user)
-	if(controls_inside)
-		return GLOB.default_state
-	return GLOB.notcontained_state
+	if(!controls_inside)
+		return GLOB.notcontained_state
+	return GLOB.default_state
 
 /obj/machinery/sleeper/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Sleeper")
+		ui = new(user, src, "Sleeper", name)
 		ui.open()
 
 /obj/machinery/sleeper/AltClick(mob/user)
@@ -159,11 +162,12 @@
 
 /obj/machinery/sleeper/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click [src] to [state_open ? "close" : "open"] it.</span>"
+	. += span_notice("Alt-click [src] to [state_open ? "close" : "open"] it.")
 
 /obj/machinery/sleeper/process()
 	..()
 	check_nap_violations()
+	use_power(active_power_usage)
 
 /obj/machinery/sleeper/nap_violation(mob/violator)
 	open_machine()
@@ -211,8 +215,10 @@
 	return data
 
 /obj/machinery/sleeper/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
+
 	var/mob/living/mob_occupant = occupant
 	check_nap_violations()
 	switch(action)
@@ -224,18 +230,18 @@
 			. = TRUE
 		if("inject")
 			var/chem = text2path(params["chem"])
-			if(!is_operational() || !mob_occupant || isnull(chem))
+			if(!is_operational || !mob_occupant || isnull(chem))
 				return
 			if(mob_occupant.health < min_health && chem != /datum/reagent/medicine/epinephrine)
 				return
 			if(inject_chem(chem, usr))
 				. = TRUE
 				if(scrambled_chems && prob(5))
-					to_chat(usr, "<span class='warning'>Chemical system re-route detected, results may not be as expected!</span>")
+					to_chat(usr, span_warning("Chemical system re-route detected, results may not be as expected!"))
 
 /obj/machinery/sleeper/emag_act(mob/user)
 	scramble_chem_buttons()
-	to_chat(user, "<span class='warning'>You scramble the sleeper's user interface!</span>")
+	to_chat(user, span_warning("You scramble the sleeper's user interface!"))
 
 /obj/machinery/sleeper/proc/inject_chem(chem, mob/user)
 	if((chem in available_chems) && chem_allowed(chem))
@@ -268,6 +274,7 @@
 
 /obj/machinery/sleeper/syndie
 	icon_state = "sleeper_s"
+	base_icon_state = "sleeper_s"
 	controls_inside = TRUE
 
 /obj/machinery/sleeper/syndie/fullupgrade
@@ -277,8 +284,10 @@
 	name = "soothing sleeper"
 	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
 	icon_state = "sleeper_clockwork"
+	base_icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>You hear the gentle hum and click of machinery, and are lulled into a sense of peace.</span>"
 	possible_chems = list(list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate, /datum/reagent/medicine/mannitol))
 
 /obj/machinery/sleeper/old
 	icon_state = "oldpod"
+	base_icon_state = "oldpod"

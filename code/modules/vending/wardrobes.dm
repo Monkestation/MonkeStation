@@ -167,7 +167,8 @@
 	product_ads = "You turn me TRUE, use defines!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
 	vend_reply = "Thank you for using the RoboDrobe!"
 	light_color = LIGHT_COLOR_WHITE
-	products = list(/obj/item/clothing/glasses/hud/diagnostic = 2,
+	products = list(
+					/obj/item/clothing/glasses/hud/diagnostic = 2,
 					/obj/item/reagent_containers/medspray/sterilizine = 3,
 					/obj/item/clothing/under/rank/rnd/roboticist = 2,
 					/obj/item/clothing/under/rank/rnd/roboticist/skirt = 2,
@@ -179,16 +180,21 @@
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
 					/obj/item/clothing/mask/bandana/skull = 2,
-					/obj/item/clothing/head/beret/sci = 2)
+					/obj/item/clothing/head/beret/sci = 2,
+					)
 
-	contraband = list(/obj/item/clothing/suit/hooded/techpriest = 2,
+	contraband = list(
+					/obj/item/clothing/suit/hooded/techpriest = 2,
 					/obj/item/organ/tongue/robot = 2,
 					/obj/item/clothing/under/costume/mech_suit = 2,
 					/obj/item/clothing/under/costume/mech_suit/white = 2,
-					/obj/item/clothing/under/costume/mech_suit/blue = 2,)
+					/obj/item/clothing/under/costume/mech_suit/blue = 2,
+					)
+
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
-	extra_price = 300
+	extra_price = 100
 	payment_department = ACCOUNT_SCI
+
 /obj/item/vending_refill/wardrobe/robo_wardrobe
 	machine_name = "RoboDrobe"
 

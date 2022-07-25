@@ -98,7 +98,7 @@
 	else
 		if(sbed)
 			data["table"] = sbed
-			if(!ishuman(sbed.occupant) &&  !ismonkey(sbed.occupant))
+			if(!ishuman(sbed.occupant) && !ismonkey(sbed.occupant))
 				return data
 			data["patient"] = list()
 			if(isliving(sbed.occupant))

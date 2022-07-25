@@ -21,6 +21,8 @@
 	var/list/start_showpieces = list() //Takes sublists in the form of list("type" = /obj/item/bikehorn, "trophy_message" = "henk")
 	var/trophy_message = ""
 	var/glass_fix = TRUE
+	///Represents a signel source of screaming when broken
+	var/datum/alarm_handler/alarm_manager
 
 /obj/structure/displaycase/Initialize(mapload)
 	. = ..()
@@ -33,6 +35,7 @@
 	if(start_showpiece_type)
 		showpiece = new start_showpiece_type (src)
 	update_icon()
+	alarm_manager = new(src)
 
 /obj/structure/displaycase/vv_edit_var(vname, vval)
 	. = ..()
@@ -50,6 +53,7 @@
 /obj/structure/displaycase/Destroy()
 	QDEL_NULL(electronics)
 	QDEL_NULL(showpiece)
+	QDEL_NULL(alarm_manager)
 	return ..()
 
 /obj/structure/displaycase/examine(mob/user)
@@ -106,6 +110,10 @@
 		return
 	var/area/alarmed = get_area(src)
 	alarmed.burglaralert(src)
+
+	alarm_manager.send_alarm(ALARM_BURGLAR)
+	addtimer(CALLBACK(alarm_manager, /datum/alarm_handler/proc/clear_alarm, ALARM_BURGLAR), 1 MINUTES)
+
 	playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/structure/displaycase/update_overlays()
@@ -128,7 +136,7 @@
 			to_chat(user,  "<span class='notice'>You [open ? "close":"open"] [src].</span>")
 			toggle_lock(user)
 		else
-			to_chat(user,  "<span class='alert'>Access denied.</span>")
+			to_chat(user, "<span class='alert'>Access denied.</span>")
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
@@ -329,7 +337,7 @@
 		to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 		return
 
-	for(var/a in W.GetAllContents())
+	for(var/a in W.get_all_contents_type())
 		if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 			to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 			return
