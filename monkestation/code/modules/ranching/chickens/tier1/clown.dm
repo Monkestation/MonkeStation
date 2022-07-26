@@ -17,7 +17,7 @@
 	if(!..()) //was it caught by a mob?
 		var/turf/epicenter = get_turf(hit_atom)
 		if(istype(epicenter, /turf/closed))
-			epicenter = get_step_towards(epicenter, throwingdatum.thrower)
+			epicenter = get_step_towards(epicenter, throwingdatum.thrower) // either move it or remove it i guess? issue is windows aren't real turfs so this still leaves the odd case of it stepping towards a window
 		create_reagents(1000)
 		reagents.add_reagent_list(food_reagents)
 		epicenter.add_liquid_from_reagents(src.reagents)
