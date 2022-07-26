@@ -740,63 +740,9 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				P.info = t1
 				P.name = "paper- 'Crew Manifest'"
 				printing = null
-				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-	if (modify)
-		modify.update_label()
-	updateUsrDialog()
-
-/obj/machinery/computer/card/AltClick(mob/user)
-	if(!user.canUseTopic(src, !issilicon(user)) || !is_operational())
-		return
-	if(scan)
-		eject_id_scan(user)
-	if(modify)
-		eject_id_modify(user)
-
-/obj/machinery/computer/card/proc/eject_id_scan(mob/user)
-	if(scan)
-		scan.forceMove(drop_location())
-		if(!issilicon(user) && Adjacent(user))
-			user.put_in_hands(scan)
-		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-		scan = null
-	else //switching the ID with the one you're holding
-		if(issilicon(user) || !Adjacent(user))
-			return
-		var/obj/item/I = user.get_active_held_item()
-		if(istype(I, /obj/item/card/id))
-			if(!user.transferItemToLoc(I,src))
-				return
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-			scan = I
-	authenticated = FALSE
-	updateUsrDialog()
-
-/obj/machinery/computer/card/proc/eject_id_modify(mob/user)
-	if(modify)
-		// Update crew manifest and card bank account
-		if(modify.registered_account)
-			modify.registered_account.account_department = get_department_by_hud(modify.hud_state) // your true department by your hud icon color
-		GLOB.data_core.manifest_modify(modify.registered_name, modify.assignment, modify.hud_state)
-		// There are the same code lines in `PDApainter.dm`
-		modify.update_label()
-		modify.forceMove(drop_location())
-		if(!issilicon(user) && Adjacent(user))
-			user.put_in_hands(modify)
-		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-		modify = null
-		region_access = null
-		head_subordinates = null
-	else //switching the ID with the one you're holding
-		if(issilicon(user) || !Adjacent(user))
-			return
-		var/obj/item/I = user.get_active_held_item()
-		if(istype(I, /obj/item/card/id))
-			if (!user.transferItemToLoc(I,src))
-				return
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-			modify = I
-	authenticated = FALSE
+				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+	if (inserted_modify_id)
+		inserted_modify_id.update_label()
 	updateUsrDialog()
 
 /obj/machinery/computer/card/proc/get_subordinates(rank)

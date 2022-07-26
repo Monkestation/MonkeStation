@@ -648,6 +648,15 @@ GLOBAL_LIST_EMPTY(PDAs)
 		return
 	do_remove_id(usr)
 
+/obj/item/pda/proc/update_pda()
+	ownjob = id.assignment
+	if(istype(id, /obj/item/card/id/syndicate))
+		owner = id.registered_name
+	update_label()
+	if(!silent)
+		playsound(src, 'sound/machines/terminal_processing.ogg', 15, TRUE)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/machines/terminal_success.ogg', 15, TRUE), 1.3 SECONDS)
+
 /obj/item/pda/proc/do_remove_id(mob/user)
 	if(!id)
 		return
