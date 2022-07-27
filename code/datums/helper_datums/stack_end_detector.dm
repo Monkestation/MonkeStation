@@ -1,7 +1,6 @@
 /**
 	Stack End Detector.
 	Can detect if a given code stack has exited, used by the mc for stack overflow detection.
-
  **/
 /datum/stack_end_detector
 	var/datum/weakref/_WF

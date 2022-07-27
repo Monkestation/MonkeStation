@@ -11,5 +11,6 @@
 
 /obj/item/key/janitor
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
+	icon = 'monkestation/icons/obj/vehicles/janicart.dmi'
 	icon_state = "keyjanitor"
 

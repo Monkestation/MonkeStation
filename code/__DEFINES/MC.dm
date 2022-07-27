@@ -31,7 +31,6 @@
 #define MC_LOOP_RTN_NEWSTAGES 1
 #define MC_LOOP_RTN_GRACEFUL_EXIT 2
 
-
 //! SubSystem flags (Please design any new flags so that the default is off, to make adding flags to subsystems easier)
 
 /// subsystem does not initialize.
@@ -79,7 +78,6 @@
 /datum/controller/subsystem/##X/New(){\
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
-	ss_id=#X;\
 }\
 /datum/controller/subsystem/##X
 
@@ -87,7 +85,6 @@
 /datum/controller/subsystem/timer/##X/New(){\
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
-	ss_id="timer_[#X]";\
 }\
 /datum/controller/subsystem/timer/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/timer/##X
@@ -96,7 +93,6 @@
 /datum/controller/subsystem/movement/##X/New(){\
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
-	ss_id="movement_[#X]";\
 }\
 /datum/controller/subsystem/movement/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/movement/##X
@@ -105,7 +101,6 @@
 /datum/controller/subsystem/processing/##X/New(){\
 	NEW_SS_GLOBAL(SS##X);\
 	PreInit();\
-	ss_id="processing_[#X]";\
 }\
 /datum/controller/subsystem/processing/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/processing/##X

@@ -4173,13 +4173,13 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/computer)
 "aZL" = (
-/obj/structure/closet/crate/wooden/toy,
 /obj/item/radio/intercom{
 	pixel_y = -28
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/theatre)
 "aZM" = (

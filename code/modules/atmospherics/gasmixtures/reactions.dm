@@ -308,13 +308,13 @@
 			fuels[fuel] *= oxidation_ratio
 	fuels += oxidizers
 	var/list/fire_products = GLOB.gas_data.fire_products
-	var/list/fire_enthalpies = GLOB.gas_data.fire_enthalpies
+	var/list/enthalpies = GLOB.gas_data.enthalpies
 	for(var/fuel in fuels + oxidizers)
 		var/amt = fuels[fuel]
 		if(!burn_results[fuel])
 			burn_results[fuel] = 0
 		burn_results[fuel] -= amt
-		energy_released += amt * fire_enthalpies[fuel]
+		energy_released += amt * enthalpies[fuel]
 		for(var/product in fire_products[fuel])
 			if(!burn_results[product])
 				burn_results[product] = 0

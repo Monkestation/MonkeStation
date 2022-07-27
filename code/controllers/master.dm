@@ -712,6 +712,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	)
 	return tab_data
 
+
 /datum/controller/master/StartLoadingMap()
 	//disallow more than one map to load at once, multithreading it will just cause race conditions
 	while(map_loading)
