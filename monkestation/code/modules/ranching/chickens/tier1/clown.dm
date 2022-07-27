@@ -13,11 +13,24 @@
 	name = "Clown Egg?"
 	food_reagents = list(/datum/reagent/water = 50)
 
-/obj/item/food/egg/clown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(!..()) //was it caught by a mob?
-		var/turf/epicenter = get_turf(hit_atom)
-		if(istype(epicenter, /turf/closed))
-			epicenter = get_step_towards(epicenter, throwingdatum.thrower) // either move it or remove it i guess? issue is windows aren't real turfs so this still leaves the odd case of it stepping towards a window
-		create_reagents(1000)
-		reagents.add_reagent_list(food_reagents)
-		epicenter.add_liquid_from_reagents(src.reagents)
+/obj/item/food/egg/clown/attack_self(mob/user)
+	. = ..()
+	to_chat(user, "Upon further inspection the [src.name] doesn't appear to be an egg at all instead it seems to be a water ballon?")
+	var/obj/item/reagent_containers/water_balloon/clown_egg/replacer = new /obj/item/reagent_containers/water_balloon/clown_egg
+	qdel(src)
+	user.put_in_hands(replacer)
+
+/obj/item/reagent_containers/water_balloon/clown_egg
+	name = "Clown Egg?"
+	list_reagents = list(/datum/reagent/water = 50)
+	volume = 50
+	icon_state = "egg"
+	icon = 'monkestation/icons/obj/ranching/eggs.dmi'
+	spillable = TRUE
+
+
+// generic water balloon impact handler, need to move to new file if i make other water balloons
+/obj/item/reagent_containers/water_balloon/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
+	. = ..()
+	visible_message("<span class='notice'>The [src.name] bursts upon impact with \the [target.name]!</span>")
+	qdel(src)
