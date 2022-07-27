@@ -28,11 +28,11 @@
 		var/obj/effect/proc_holder/spell/voice_of_god/clown/living_lube/voice_of_lube = new
 		var/obj/effect/proc_holder/spell/targeted/smoke/living_lube/smoke = new
 		var/obj/effect/proc_holder/spell/targeted/displacement/displacement = new
-		lube.AddSpell(knock)
-		lube.AddSpell(banana_peel)
-		lube.AddSpell(voice_of_lube)
-		lube.AddSpell(smoke)
-		lube.AddSpell(displacement)
+		lube.mind.AddSpell(knock)
+		lube.mind.AddSpell(banana_peel)
+		lube.mind.AddSpell(voice_of_lube)
+		lube.mind.AddSpell(smoke)
+		lube.mind.AddSpell(displacement)
 	. = ..()
 
 /datum/antagonist/living_lube/greet()
