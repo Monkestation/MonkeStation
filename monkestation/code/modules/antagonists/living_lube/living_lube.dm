@@ -7,7 +7,10 @@
 	show_to_ghosts = TRUE
 
 /datum/antagonist/living_lube/on_gain()
-	objectives += "Annoy the station as much as possible."
+	var/datum/objective/annoy_objective = new /datum/objective
+	annoy_objective.owner = owner
+	annoy_objective = "Annoy the station as much as possible."
+	objectives += annoy_objective
 	if(isliving(owner.current))
 		var/mob/living/simple_animal/hostile/retaliate/clown/lube/lube = owner.current
 
