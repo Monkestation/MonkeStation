@@ -235,7 +235,7 @@
 		controller.blackboard[BB_MONKEY_ENEMIES][target_ref]--
 
 	// if we are not angry at our target, go back to idle
-	if(controller.blackboard[BB_MONKEY_ENEMIES][target_ref] <= 0)
+	if(controller.blackboard[BB_MONKEY_ENEMIES][target_ref] <= 0 || (HAS_TRAIT(target, TRAIT_MONKEYFRIEND))) //MONKESTATION EDIT: so aggro can drop
 		var/list/enemies = controller.blackboard[BB_MONKEY_ENEMIES]
 		enemies.Remove(target_ref)
 		if(controller.blackboard[BB_MONKEY_CURRENT_ATTACK_TARGET] == WEAKREF(target))
