@@ -43,6 +43,7 @@
 		)
 	)
 	fusion_power = 3
+	enthalpy = -393500
 
 /datum/gas/plasma
 	id = GAS_PLASMA
@@ -55,6 +56,7 @@
 	transmit_modifier = 4
 	powermix = 1
 	// no fire info cause it has its own bespoke reaction for trit generation reasons
+	enthalpy = FIRE_PLASMA_ENERGY_RELEASED // 3000000, 3 megajoules, 3000 kj
 
 /datum/gas/water_vapor
 	id = GAS_H2O
@@ -66,6 +68,7 @@
 	heat_penalty = 8
 	powermix = 1
 	breath_reagent = /datum/reagent/water
+	enthalpy = -241800 // FIRE_HYDROGEN_ENERGY_RELEASED is actually what this was supposed to be
 
 /datum/gas/hypernoblium
 	id = GAS_HYPERNOB
@@ -73,6 +76,7 @@
 	name = "Hyper-noblium"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
+	enthalpy = 81600
 
 /datum/gas/nitrous_oxide
 	id = GAS_NITROUS
@@ -85,6 +89,7 @@
 	oxidation_rate = 0.5
 	oxidation_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100
 	heat_resistance = 6
+	enthalpy = 33200
 
 /datum/gas/nitryl
 	id = GAS_NITRYL
@@ -112,7 +117,7 @@
 	these are for when we add hydrogen, trit gets to keep its hardcoded fire for legacy reasons
 	fire_provides = list(GAS_H2O = 2)
 	fire_burn_rate = 2
-	fire_energy_released = FIRE_HYDROGEN_ENERGY_RELEASED
+	enthalpy = FIRE_HYDROGEN_ENERGY_RELEASED
 	fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 50
 	*/
 
@@ -126,6 +131,7 @@
 	heat_penalty = 5
 	transmit_modifier = -2
 	radioactivity_modifier = 5
+	enthalpy = FIRE_CARBON_ENERGY_RELEASED // it is a mystery
 
 /datum/gas/stimulum
 	id = GAS_STIMULUM
@@ -144,7 +150,8 @@
 	heat_penalty = -1
 	transmit_modifier = -5
 	heat_resistance = 3
-
+	enthalpy = -50000 // but it reduces the heat output a bit
+  
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20
