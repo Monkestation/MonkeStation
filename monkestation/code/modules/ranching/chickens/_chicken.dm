@@ -251,10 +251,10 @@
 			if(src.total_times_eaten > 4 && prob(25))
 				var/list/real_mutation = list()
 				for(var/raw_list_item in src.mutation_list)
-					var/datum/ranching/mutation/mutation = new raw_list_item
+					var/datum/mutation/ranching/chicken/mutation = new raw_list_item
 					real_mutation |= mutation
 				if(real_mutation.len)
-					var/datum/ranching/mutation/picked_mutation = pick(real_mutation)
+					var/datum/mutation/ranching/chicken/picked_mutation = pick(real_mutation)
 					layed_egg = new picked_mutation.egg_type(get_turf(src))
 					layed_egg.possible_mutations |= picked_mutation
 				else
@@ -289,7 +289,7 @@
 /obj/item/food/egg/proc/pre_hatch()
 	var/list/final_mutations = list()
 	var/failed_mutations = FALSE
-	for(var/datum/ranching/mutation/mutation in possible_mutations)
+	for(var/datum/mutation/ranching/chicken/mutation in possible_mutations)
 		if(cycle_requirements(mutation))
 			final_mutations |= mutation
 		else
@@ -304,7 +304,7 @@
 	var/mob/living/simple_animal/chick/birthed = new /mob/living/simple_animal/chick(get_turf(src))
 
 	if(possible_mutations.len)
-		var/datum/ranching/mutation/chosen_mutation = pick(possible_mutations)
+		var/datum/mutation/ranching/chicken/chosen_mutation = pick(possible_mutations)
 		birthed.grown_type = chosen_mutation.chicken_type
 		if(chosen_mutation.nearby_items.len)
 			absorbed_required_items(chosen_mutation.nearby_items)

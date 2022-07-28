@@ -5,7 +5,7 @@
 	ai_controller = /datum/ai_controller/chicken/clown
 
 	egg_type = /obj/item/food/egg/clown
-	mutation_list = list(/datum/ranching/mutation/mime, /datum/ranching/mutation/clown_sad)
+	mutation_list = list(/datum/mutation/ranching/chicken/mime, /datum/mutation/ranching/chicken/clown_sad)
 	chicken_type = /mob/living/simple_animal/chicken/clown
 	minimum_living_happiness = -2000
 

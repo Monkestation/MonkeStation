@@ -25,7 +25,7 @@
 	///All Consumed reagents
 	var/list/datum/reagent/consumed_reagents = new/list()
 	///ALL possible mutations this chicken can lay
-	var/list/mutation_list = list(/datum/ranching/mutation/spicy, /datum/ranching/mutation/brown)
+	var/list/mutation_list = list(/datum/mutation/ranching/chicken/spicy, /datum/mutation/ranching/chicken/brown)
 	///Needed cause i can't iterate a new spawn with the ref to a mob
 	var/chicken_path = /mob/living/simple_animal/chicken
 	///Breed of the chicken needed for naming

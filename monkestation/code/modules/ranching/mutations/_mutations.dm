@@ -1,4 +1,4 @@
-/datum/ranching/mutation
+/datum/mutation/ranching/chicken
 	///The typepath of the chicken
 	var/mob/living/simple_animal/chicken/chicken_type
 	///Egg type for egg so me don't gotta create new chicken
@@ -35,13 +35,13 @@
 	///How hurt someone is, invert is so how damaaged is the number you put so for crit you would put 100
 	var/player_health
 
-/obj/item/food/egg/proc/cycle_requirements(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/cycle_requirements(datum/mutation/ranching/chicken/supplier)
 	if(check_happiness(supplier) && check_temperature(supplier) && check_pressure(supplier) && check_food(supplier) && check_reagent(supplier) && check_turfs(supplier) && check_items(supplier) && check_rooster(supplier) && check_breathable_atmos(supplier) && check_players_job(supplier) && check_liquid_depth(supplier) && check_species(supplier) && check_players_health(supplier))
 		return TRUE
 	else
 		return FALSE
 
-/obj/item/food/egg/proc/check_happiness(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_happiness(datum/mutation/ranching/chicken/supplier)
 	if(supplier.happiness)
 		if(supplier.happiness > 0)
 			if(!(src.happiness > supplier.happiness))
@@ -51,7 +51,7 @@
 				return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_temperature(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_temperature(datum/mutation/ranching/chicken/supplier)
 	if(supplier.needed_temperature)
 		var/turf/temp_turf = get_turf(src)
 
@@ -65,7 +65,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_pressure(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_pressure(datum/mutation/ranching/chicken/supplier)
 	if(supplier.needed_pressure)
 
 		var/turf/pressure_turf  = get_turf(src)
@@ -81,7 +81,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_food(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_food(datum/mutation/ranching/chicken/supplier)
 	if(supplier.food_requirements.len)
 		var/obj/item/food/eaten_food
 		for(var/food in src.consumed_food)
@@ -92,7 +92,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_reagent(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_reagent(datum/mutation/ranching/chicken/supplier)
 	if(supplier.reagent_requirements.len)
 		var/list/datum/reagent/needed_reagents = new/list
 		var/datum/reagent/eaten_reagent
@@ -106,7 +106,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_turfs(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_turfs(datum/mutation/ranching/chicken/supplier)
 	if(supplier.needed_turfs.len)
 		for(var/turf/in_range_turf in view(2, src))
 			if(in_range_turf in supplier.needed_turfs)
@@ -115,7 +115,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_items(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_items(datum/mutation/ranching/chicken/supplier)
 	if(supplier.nearby_items.len)
 		var/list/needed_items = list()
 		for(var/list_item in supplier.nearby_items)
@@ -128,7 +128,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_rooster(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_rooster(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.required_rooster)
 		var/mob/living/simple_animal/chicken/rooster = supplier.required_rooster
@@ -139,7 +139,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_breathable_atmos(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_breathable_atmos(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.required_atmos)
 		var/turf/open/egg_source_turf  = get_turf(src)
@@ -150,7 +150,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_players_job(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_players_job(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.player_job)
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))
@@ -160,7 +160,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_liquid_depth(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_liquid_depth(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.liquid_depth)
 		var/turf/open/egg_location = get_turf(src.loc)
@@ -171,7 +171,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_species(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_species(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.needed_species)
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))
@@ -181,7 +181,7 @@
 			return FALSE
 	return TRUE
 
-/obj/item/food/egg/proc/check_players_health(datum/ranching/mutation/supplier)
+/obj/item/food/egg/proc/check_players_health(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
 	if(supplier.player_health)
 		for(var/mob/living/carbon/human/in_range_player in view(3, src))

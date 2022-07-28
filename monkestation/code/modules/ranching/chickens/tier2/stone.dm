@@ -3,7 +3,7 @@
 	breed_name = "Stone"
 	egg_type = /obj/item/food/egg/stone
 	chicken_type = /mob/living/simple_animal/chicken/stone
-	mutation_list = list(/datum/ranching/mutation/cockatrice)
+	mutation_list = list(/datum/mutation/ranching/chicken/cockatrice)
 
 /obj/item/food/egg/stone
 	name = "Rocky Egg"
