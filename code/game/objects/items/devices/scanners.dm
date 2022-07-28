@@ -421,12 +421,12 @@ GENE SCANNER
 			else
 				combined_msg += "<span class='notice'>Subject contains no reagents.</span>"
 		if(LAZYLEN(M.mind.active_addictions))
-			to_chat(user,"<span class='boldannounce ml-1'>Subject is addicted to the following types of drug:</span>"
+			combined_msg += "<span class='boldannounce ml-1'>Subject is addicted to the following types of drug:</span>"
 			for(var/datum/addiction/addiction_type as anything in M.mind.active_addictions)
 				combined_msg += "<span class='alert'>[initial(addiction_type.name)]</span>"
 		else
 			combined_msg += "<span class='notice'>Subject is not addicted to any types of drugs.</span>"
-	combined_msg += examine_block(combined_msg.Join("\n")))
+	to_chat(user, examine_block(combined_msg.Join("\n")))
 
 /obj/item/healthanalyzer/advanced
 	name = "advanced health analyzer"
