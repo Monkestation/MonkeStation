@@ -207,12 +207,12 @@
 
 		//Actual spawn
 		SSmapping.loading_ruins = TRUE
-		CHECK_TICK
+		CHECK_TICK_LOW_PRIORITY
 		try
 			ruin_part.load(locate(ruin_offset_x + 1, ruin_offset_y + 1, center_z), FALSE, FALSE)
 		catch(var/exception/e)
 			stack_trace("Run time in space ruin generation ([ruin_part.name]) [e] on [e.file]:[e.line]")
-		CHECK_TICK
+		CHECK_TICK_LOW_PRIORITY
 		SSmapping.loading_ruins = FALSE
 		//Simulate spawning
 		//Remove filled connection points

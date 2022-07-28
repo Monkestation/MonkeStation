@@ -90,6 +90,8 @@
 	/// How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
 	var/static/list/failure_strikes
 
+	var/is_firing = FALSE
+
 	/// Next subsystem in the queue of subsystems to run this tick
 	var/datum/controller/subsystem/queue_next
 	/// Previous subsystem in the queue of subsystems to run this tick
@@ -118,7 +120,11 @@
 	tick_allocation_avg = MC_AVERAGE(tick_allocation_avg, tick_allocation_last)
 
 	. = SS_SLEEPING
+	if(is_firing)
+		message_admins("Subsystem [name] ignited while already firing. Could be worth investigating")
+	is_firing = TRUE
 	fire(resumed)
+	is_firing = FALSE
 	. = state
 	if (state == SS_SLEEPING)
 		state = SS_IDLE
