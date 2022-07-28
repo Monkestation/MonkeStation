@@ -655,7 +655,6 @@ GENE SCANNER
 	desc = "A device that analyzes a slime's internal composition and measures its stats."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_spectrometer"
-	item_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -663,95 +662,46 @@ GENE SCANNER
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	materials = list(/datum/material/iron=30, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=20)
 
 /obj/item/slime_scanner/attack(mob/living/M, mob/living/user)
-	if(user.stat || user.eye_blind)
+	if(user.stat || !user.can_read(src))
 		return
-	if(!isslime(M))
-		to_chat(user, "<span class='warning'>This device can only scan slimes!</span>")
+	if (!isslime(M))
+		to_chat(user, span_warning("This device can only scan slimes!"))
 		return
 	var/mob/living/simple_animal/slime/T = M
 	slime_scan(T, user)
 
 /proc/slime_scan(mob/living/simple_animal/slime/T, mob/living/user)
-	to_chat(user, "========================")
-	to_chat(user, "<b>Slime scan results:</b>")
-	to_chat(user, "<span class='notice'>[T.colour] [T.is_adult ? "adult" : "baby"] slime</span>")
-	to_chat(user, "Nutrition: [T.nutrition]/[T.get_max_nutrition()]")
-	if(T.nutrition < T.get_starve_nutrition())
-		to_chat(user, "<span class='warning'>Warning: slime is starving!</span>")
-	else if(T.nutrition < T.get_hunger_nutrition())
-		to_chat(user, "<span class='warning'>Warning: slime is hungry</span>")
-	to_chat(user, "Electric change strength: [T.powerlevel]")
-	to_chat(user, "Health: [round(T.health/T.maxHealth,0.01)*100]%")
-	if(T.slime_mutation[4] == T.colour)
-		to_chat(user, "This slime does not evolve any further.")
+	var/to_render = "<b>Slime scan results:</b>\
+					\n[span_notice("[T.colour] [T.is_adult ? "adult" : "baby"] slime")]\
+					\nNutrition: [T.nutrition]/[T.get_max_nutrition()]"
+	if (T.nutrition < T.get_starve_nutrition())
+		to_render += "\n[span_warning("Warning: slime is starving!")]"
+	else if (T.nutrition < T.get_hunger_nutrition())
+		to_render += "\n[span_warning("Warning: slime is hungry")]"
+	to_render += "\nElectric change strength: [T.powerlevel]\nHealth: [round(T.health/T.maxHealth,0.01)*100]%"
+	if (T.slime_mutation[4] == T.colour)
+		to_render += "\nThis slime does not evolve any further."
 	else
-		if(T.slime_mutation[3] == T.slime_mutation[4])
-			if(T.slime_mutation[2] == T.slime_mutation[1])
-				to_chat(user, "Possible mutation: [T.slime_mutation[3]]")
-				to_chat(user, "Genetic destability: [T.mutation_chance/2] % chance of mutation on splitting")
+		if (T.slime_mutation[3] == T.slime_mutation[4])
+			if (T.slime_mutation[2] == T.slime_mutation[1])
+				to_render += "\nPossible mutation: [T.slime_mutation[3]]\
+							  \nGenetic destability: [T.mutation_chance/2] % chance of mutation on splitting"
 			else
-				to_chat(user, "Possible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]] (x2)")
-				to_chat(user, "Genetic destability: [T.mutation_chance] % chance of mutation on splitting")
+				to_render += "\nPossible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]] (x2)\
+							  \nGenetic destability: [T.mutation_chance] % chance of mutation on splitting"
 		else
-			to_chat(user, "Possible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]], [T.slime_mutation[4]]")
-			to_chat(user, "Genetic destability: [T.mutation_chance] % chance of mutation on splitting")
-	if(T.cores > 1)
-		to_chat(user, "Multiple cores detected")
-	to_chat(user, "Growth progress: [T.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]")
+			to_render += "\nPossible mutations: [T.slime_mutation[1]], [T.slime_mutation[2]], [T.slime_mutation[3]], [T.slime_mutation[4]]\
+						  \nGenetic destability: [T.mutation_chance] % chance of mutation on splitting"
+	if (T.cores > 1)
+		to_render += "\nMultiple cores detected"
+	to_render += "\nGrowth progress: [T.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]"
 	if(T.effectmod)
-		to_chat(user, "<span class='notice'>Core mutation in progress: [T.effectmod]</span>")
-		to_chat(user, "<span class = 'notice'>Progress in core mutation: [T.applied] / [SLIME_EXTRACT_CROSSING_REQUIRED]</span>")
-	if(T.transformeffects != SLIME_EFFECT_DEFAULT)
-		var/slimeeffect = "\nTransformative extract effect detected: "
-		if(T.transformeffects & SLIME_EFFECT_GREY)
-			slimeeffect += "grey"
-		if(T.transformeffects & SLIME_EFFECT_ORANGE)
-			slimeeffect += "orange"
-		if(T.transformeffects & SLIME_EFFECT_PURPLE)
-			slimeeffect += "purple"
-		if(T.transformeffects & SLIME_EFFECT_BLUE)
-			slimeeffect += "blue"
-		if(T.transformeffects & SLIME_EFFECT_METAL)
-			slimeeffect += "metal"
-		if(T.transformeffects & SLIME_EFFECT_YELLOW)
-			slimeeffect += "yellow"
-		if(T.transformeffects & SLIME_EFFECT_DARK_PURPLE)
-			slimeeffect += "dark purple"
-		if(T.transformeffects & SLIME_EFFECT_DARK_BLUE)
-			slimeeffect += "dark blue"
-		if(T.transformeffects & SLIME_EFFECT_SILVER)
-			slimeeffect += "silver"
-		if(T.transformeffects & SLIME_EFFECT_BLUESPACE)
-			slimeeffect += "bluespace"
-		if(T.transformeffects & SLIME_EFFECT_SEPIA)
-			slimeeffect += "sepia"
-		if(T.transformeffects & SLIME_EFFECT_CERULEAN)
-			slimeeffect += "cerulean"
-		if(T.transformeffects & SLIME_EFFECT_PYRITE)
-			slimeeffect += "pyrite"
-		if(T.transformeffects & SLIME_EFFECT_RED)
-			slimeeffect += "red"
-		if(T.transformeffects & SLIME_EFFECT_GREEN)
-			slimeeffect += "green"
-		if(T.transformeffects & SLIME_EFFECT_PINK)
-			slimeeffect += "pink"
-		if(T.transformeffects & SLIME_EFFECT_GOLD)
-			slimeeffect += "gold"
-		if(T.transformeffects & SLIME_EFFECT_OIL)
-			slimeeffect += "oil"
-		if(T.transformeffects & SLIME_EFFECT_BLACK)
-			slimeeffect += "black"
-		if(T.transformeffects & SLIME_EFFECT_LIGHT_PINK)
-			slimeeffect += "light pink"
-		if(T.transformeffects & SLIME_EFFECT_ADAMANTINE)
-			slimeeffect += "adamantine"
-		if(T.transformeffects & SLIME_EFFECT_RAINBOW)
-			slimeeffect += "rainbow"
-		to_chat(user, "<span class='notice'>[slimeeffect].</span>")
-	to_chat(user, "========================")
+		to_render += "\n[span_notice("Core mutation in progress: [T.effectmod]")]\
+					  \n[span_notice("Progress in core mutation: [T.applied] / [SLIME_EXTRACT_CROSSING_REQUIRED]")]"
+	to_chat(user, examine_block(to_render))
 
 
 /obj/item/nanite_scanner
@@ -839,7 +789,6 @@ GENE SCANNER
 	if(LAZYLEN(buffer))
 		for(var/A in buffer)
 			to_chat(user, "<span class='notice'>[get_display_name(A)]</span>")
-
 
 /obj/item/sequence_scanner/proc/display_sequence(mob/living/user)
 	if(!LAZYLEN(buffer) || !ready)
