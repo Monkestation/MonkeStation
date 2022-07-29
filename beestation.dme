@@ -3763,6 +3763,7 @@
 #include "monkestation\code\modules\clothing\shoes\miscellaneous.dm"
 #include "monkestation\code\modules\clothing\spacesuits\plasmamen.dm"
 #include "monkestation\code\modules\clothing\suits\armor.dm"
+#include "monkestation\code\modules\clothing\suits\fun_stuff.dm"
 #include "monkestation\code\modules\clothing\suits\jobs.dm"
 #include "monkestation\code\modules\clothing\suits\labcoat.dm"
 #include "monkestation\code\modules\clothing\suits\reactive_armour.dm"
