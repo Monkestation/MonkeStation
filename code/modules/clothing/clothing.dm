@@ -68,6 +68,8 @@
 	. = ..()
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
+	if(greyscale_config)
+		AddComponent(/datum/component/gags_recolorable)
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
