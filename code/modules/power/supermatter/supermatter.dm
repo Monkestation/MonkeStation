@@ -654,7 +654,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2)) || (prob(0.3) && power > POWER_PENALTY_THRESHOLD))
 			supermatter_anomaly_gen(src, PYRO_ANOMALY, rand(5, 10))
 
-	if(prob(15))
+	if(prob(15) && power > POWER_PENALTY_THRESHOLD)
 		supermatter_pull(loc, min(power/850, 3))//850, 1700, 2550
 
 	//Tells the engi team to get their butt in gear
