@@ -19,6 +19,7 @@
 	icon_state = "donutbox6"
 	name = "null box do not use"
 	desc = "Mmm. Runtimes."
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 	var/icon_type = "donut"
 	var/spawn_type = null
@@ -69,6 +70,7 @@
 	name = "donut box"
 	desc = "Mmm. Donuts."
 	spawn_type = /obj/item/food/donut
+	w_class = WEIGHT_CLASS_NORMAL
 	fancy_open = TRUE
 
 /obj/item/storage/fancy/donut_box/ComponentInitialize()
@@ -98,7 +100,7 @@
 /obj/item/storage/fancy/egg_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 50
+	STR.max_combined_w_class = 20
 	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_items = 12
 	STR.can_hold = typecacheof(list(/obj/item/food/egg))
@@ -123,7 +125,7 @@
 /obj/item/storage/fancy/candle_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 50
+	STR.max_combined_w_class = 20
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_items = 5
 

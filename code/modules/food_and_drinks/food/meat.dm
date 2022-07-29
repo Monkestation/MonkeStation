@@ -412,6 +412,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("\"chicken\"" = 1)
 	foodtypes = MEAT
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/food/nugget/Initialize()
 	. = ..()
