@@ -70,7 +70,7 @@
 					/obj/item/clothing/head/wizard/fake = 1,
 					/obj/item/staff = 3,
 					/obj/item/clothing/mask/gas/sexyclown = 1,
-					/obj/item/clothing/under/rank/civilian/clown_sexy = 1,
+					/obj/item/clothing/under/rank/civilian/clown/sexy = 1,
 					/obj/item/clothing/mask/gas/sexymime = 1,
 					/obj/item/clothing/under/rank/civilian/mime/sexy = 1,
 					/obj/item/clothing/under/rank/civilian/mime/skirt = 1,

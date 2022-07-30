@@ -130,6 +130,8 @@
 		qdel(src)
 
 /obj/item/clothing/attack(mob/M, mob/user, params)
+	if(clothing_flags & INEDIBLE_CLOTHING)
+		return ..()
 	if(user.a_intent != INTENT_HARM && ismoth(M) && !(clothing_flags & NOTCONSUMABLE) && !(resistance_flags & INDESTRUCTIBLE) && (armor.getRating("melee") == 0))
 		if(isnull(moth_snack))
 			moth_snack = new
