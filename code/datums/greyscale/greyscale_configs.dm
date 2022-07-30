@@ -236,3 +236,13 @@
 	name = "Worn Jean Shorts"
 	icon_file = 'icons/mob/clothing/under/shorts_pants.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jeanshorts_worn.json'
+
+/datum/greyscale_config/clown
+	name = "Clown Suit"
+	icon_file = 'icons/obj/clothing/uniforms.dmi'
+	json_config = 'code/datums/greyscale/json_configs/clown.json'
+
+/datum/greyscale_config/clown_worn
+	name = "Clown Suit Worn"
+	icon_file = 'icons/mob/clothing/uniform.dmi'
+	json_config = 'code/datums/greyscale/json_configs/clown_worn.json'
