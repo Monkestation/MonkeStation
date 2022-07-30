@@ -25,6 +25,7 @@
 					/obj/item/clothing/head/beret = 1,
 					/obj/item/clothing/accessory/waistcoat = 1,
 					/obj/item/clothing/under/suit/black = 1,
+					/obj/item/clothing/neck/tie = 3,
 					/obj/item/clothing/head/that = 1,
 					/obj/item/clothing/under/costume/kilt = 1,
 					/obj/item/clothing/head/beret = 1,
@@ -123,7 +124,7 @@
 		              /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 				   /obj/item/clothing/head/pirate/captain = 2,
-				  /obj/item/clothing/under/rank/civilian/clown_rainbow = 1,
+				   /obj/item/clothing/under/rank/civilian/clown/rainbow = 1,
 				   /obj/item/clothing/head/helmet/roman/fake = 1,
 				   /obj/item/clothing/head/helmet/roman/legionnaire/fake = 1,
 				   /obj/item/clothing/under/costume/roman = 1,

@@ -381,6 +381,7 @@
 					/obj/item/clothing/under/rank/civilian/lawyer/purpsuit/skirt = 1,
 					/obj/item/clothing/under/suit/black = 1,
 					/obj/item/clothing/under/suit/black/skirt = 1,
+					/obj/item/clothing/neck/tie = 3,
 					/obj/item/clothing/suit/toggle/lawyer/black = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/female = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/female/skirt = 1,
