@@ -177,9 +177,9 @@
 				balloon_alert(ethereal, "not enough power to drain")
 				return
 
-			E.drain_time = world.time + 80
+			E.drain_time = world.time + ETH_APC_DRAIN_TIME
 			balloon_alert(ethereal, "draining power")
-			while(do_after(user, 75, target = src))
+			while(do_after(user, ETH_APC_DRAIN_TIME, target = src))
 				if(!istype(stomach))
 					balloon_alert(ethereal, "can't receive charge!")
 					return
@@ -187,10 +187,10 @@
 					balloon_alert(ethereal, "not enough power to drain")
 					E.drain_time = 0
 					return
-				E.drain_time = world.time + 80
-				if(cell.charge > cell.maxcharge/4 + 250)
-					stomach.adjust_charge(250)
-					cell.charge -= 250
+				E.drain_time = world.time + ETH_APC_DRAIN_TIME
+				if(cell.charge > cell.maxcharge/4 + ETH_APC_POWER_TRANSFER)
+					stomach.adjust_charge(ETH_APC_POWER_TRANSFER)
+					cell.charge -= ETH_APC_POWER_TRANSFER
 					balloon_alert(ethereal, "received charge")
 				else
 					stomach.adjust_charge(cell.charge - cell.maxcharge/4)
@@ -212,17 +212,17 @@
 			if(!istype(stomach))
 				balloon_alert(ethereal, "can't transfer power!")
 				return
-			E.drain_time = world.time + 80
+			E.drain_time = world.time + ETH_APC_DRAIN_TIME
 			balloon_alert(ethereal, "transfering power to APC")
 			while(do_after(user, 75, target = src))
 				if(!istype(stomach))
 					balloon_alert(ethereal, "can't transfer power!")
 					return
-				E.drain_time = world.time + 80
-				if(stomach.charge > 250)
+				E.drain_time = world.time + ETH_APC_DRAIN_TIME
+				if(stomach.charge > ETH_APC_POWER_TRANSFER)
 					balloon_alert(ethereal, "transfering power to APC")
-					stomach.adjust_charge(-250)
-					cell.charge = min(cell.charge + 250, cell.maxcharge)
+					stomach.adjust_charge(-ETH_APC_POWER_TRANSFER)
+					cell.charge = min(cell.charge + ETH_APC_POWER_TRANSFER, cell.maxcharge)
 				else
 					balloon_alert(ethereal, "transfering remaining power to APC")
 					cell.charge = min(cell.charge + stomach.charge, cell.maxcharge)
