@@ -268,6 +268,7 @@
 /obj/item/clothing/head/beret/corpsec
 	name = "corporate security beret"
 	desc = "A special black beret for the mundane life of a corporate security officer."
+	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3C485A#00AEEF"
