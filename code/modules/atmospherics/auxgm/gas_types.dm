@@ -153,7 +153,7 @@
 	transmit_modifier = -5
 	heat_resistance = 3
 	enthalpy = -50000 // but it reduces the heat output a bit
-
+  
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20
