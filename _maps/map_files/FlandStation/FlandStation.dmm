@@ -96135,7 +96135,7 @@
 /turf/closed/wall,
 /area/crew_quarters/locker)
 "wDT" = (
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard_plushie/green,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
 "wDZ" = (
