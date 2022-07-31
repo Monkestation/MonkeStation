@@ -127,7 +127,6 @@
 
 /obj/item/clothing/head/beret/navy
 	name = "navy beret"
-	icon_state = "beret_blue"
 	dog_fashion = null
 
 /obj/item/clothing/head/beret/highlander/Initialize(mapload)
@@ -142,7 +141,7 @@
 
 //Security
 
-/obj/item/clothing/head/HoS
+/obj/item/clothing/head/hos
 	name = "head of security cap"
 	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
@@ -150,7 +149,7 @@
 	strip_delay = 80
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/HoS/syndicate
+/obj/item/clothing/head/hos/syndicate
 	name = "syndicate cap"
 	desc = "A black cap fit for a high ranking syndicate officer."
 
@@ -295,6 +294,7 @@
 /obj/item/clothing/head/beret/ce
 	name = "chief engineer beret"
 	desc = "A white beret with the engineering insignia emblazoned on it. Its owner knows what they're doing. Probably."
+	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3F3C40#FFFFFF"
@@ -357,6 +357,7 @@
 /obj/item/clothing/head/beret/cmo
 	name = "chief medical officer beret"
 	desc = "A baby blue beret with the insignia of Medistan. It smells very sterile."
+	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
 	greyscale_colors = "#3F3C40#03e3fc"
