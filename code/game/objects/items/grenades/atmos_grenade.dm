@@ -61,7 +61,7 @@
 	///Amount of Oxygen gas released (close to the grenade)
 	var/o2_gas_amount = 30
 
-/obj/item/grenade/gas_crystal/pluonium_crystal/detonate(mob/living/lanced_by)
+/obj/item/grenade/gas_crystal/pluonium_crystal/prime(mob/living/lanced_by)
 	. = ..()
 	if(!.)
 		return
@@ -85,7 +85,7 @@
 	///Amount of n2o gas released (close to the grenade)
 	var/n2o_gas_amount = 10
 
-/obj/item/grenade/gas_crystal/nitrous_oxide_crystal/detonate(mob/living/lanced_by)
+/obj/item/grenade/gas_crystal/nitrous_oxide_crystal/prime(mob/living/lanced_by)
 	. = ..()
 	if(!.)
 		return
