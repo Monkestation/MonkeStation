@@ -41411,8 +41411,7 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgm" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/watermelon/holy,
+/obj/structure/nestbox,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgq" = (
@@ -41460,8 +41459,9 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgK" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/sugarcane,
+/obj/structure/railing{
+	dir = 10
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgL" = (
@@ -41659,8 +41659,9 @@
 /turf/open/floor/plasteel,
 /area/chapel/main/monastery)
 "chG" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/machinery/hydroponics/soil,
-/obj/item/seeds/wheat,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "chK" = (
@@ -41871,7 +41872,6 @@
 /area/hydroponics/garden/monastery)
 "ciT" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/seeds/harebell,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "ciV" = (
@@ -41929,23 +41929,21 @@
 "cjo" = (
 /obj/machinery/hydroponics/soil,
 /obj/machinery/light/small,
-/obj/item/seeds/poppy,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cjp" = (
 /turf/closed/wall,
 /area/library)
 "cjq" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/grass,
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/turf/open/floor/wood,
 /area/hydroponics/garden/monastery)
 "cjr" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/wood,
 /area/hydroponics/garden/monastery)
 "cju" = (
 /turf/closed/mineral,
@@ -44391,11 +44389,12 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cup" = (
-/obj/machinery/hydroponics/soil,
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/seeds/watermelon/holy,
+/obj/structure/railing{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cus" = (
@@ -44468,8 +44467,9 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuE" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/carrot,
+/obj/structure/railing{
+	dir = 8
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuG" = (
@@ -44519,10 +44519,11 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuO" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/sugarcane,
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/railing{
+	dir = 11
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
@@ -44621,11 +44622,10 @@
 /turf/open/floor/plasteel,
 /area/chapel/main/monastery)
 "cvb" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/wheat,
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvd" = (
@@ -44657,8 +44657,9 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvh" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/poppy,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/ppflowers,
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvi" = (
@@ -44667,15 +44668,13 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvj" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
 /obj/machinery/light/small,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
 	},
-/turf/open/floor/grass,
+/obj/machinery/seed_extractor,
+/turf/open/floor/wood,
 /area/hydroponics/garden/monastery)
 "cvk" = (
 /obj/machinery/light/small{
@@ -51117,6 +51116,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"jrr" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/hydroponics/garden/monastery)
 "jrG" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -51160,6 +51163,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"jtt" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/grass,
+/area/hydroponics/garden/monastery)
 "juh" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -52661,6 +52669,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"lDh" = (
+/obj/structure/railing{
+	dir = 11
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden/monastery)
 "lDJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -78198,7 +78212,7 @@ cuM
 chj
 cvb
 ciT
-cvh
+ciT
 cgG
 cvy
 cvF
@@ -78453,9 +78467,9 @@ cid
 cuA
 cib
 cqo
-cgH
-ciS
-cid
+ciT
+jtt
+chG
 cgG
 cvy
 cvH
@@ -78710,7 +78724,7 @@ cun
 cuB
 cic
 eRI
-chG
+ciT
 ciT
 cjo
 bWV
@@ -79734,9 +79748,9 @@ cfm
 mHk
 cvy
 cgG
-ciV
+cvh
 cgH
-cgH
+lDh
 cgH
 cic
 ciV
@@ -79992,7 +80006,7 @@ ctO
 cvy
 cgG
 cgm
-cuE
+jrr
 cuO
 cgH
 ciE

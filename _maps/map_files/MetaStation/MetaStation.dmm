@@ -10269,77 +10269,49 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "aKp" = (
-/obj/item/reagent_containers/spray/plantbgone,
-/obj/item/reagent_containers/spray/pestspray{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/reagent_containers/glass/bottle/nutrient/rh{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/obj/structure/table,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aKq" = (
-/obj/machinery/biogenerator,
 /obj/machinery/firealarm{
 	pixel_y = 27
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aKr" = (
-/obj/structure/table,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/crowbar,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/plant_analyzer,
-/obj/item/reagent_containers/glass/bucket,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aKs" = (
-/obj/machinery/seed_extractor,
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aKt" = (
-/obj/item/seeds/apple,
-/obj/item/seeds/banana,
-/obj/item/seeds/cocoapod,
-/obj/item/seeds/grape,
-/obj/item/seeds/orange,
-/obj/item/seeds/sugarcane,
-/obj/item/seeds/wheat,
-/obj/item/seeds/watermelon,
-/obj/structure/table,
-/obj/item/seeds/tower,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
-"aKu" = (
-/obj/structure/window/reinforced{
+/obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
+"aKu" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "aKv" = (
-/mob/living/simple_animal/chicken{
-	name = "Featherbottom";
-	real_name = "Featherbottom"
-	},
+/obj/structure/nestbox,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aKw" = (
@@ -10692,11 +10664,18 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/hydroponics/garden)
 "aLX" = (
-/obj/machinery/door/window/westright{
-	name = "Garden A"
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 10
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
@@ -10975,8 +10954,6 @@
 /turf/open/floor/plating,
 /area/hydroponics/garden)
 "aNi" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aNj" = (
@@ -10984,21 +10961,13 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
-"aNk" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/mob/living/simple_animal/chicken{
-	name = "Kentucky";
-	real_name = "Kentucky"
+/obj/structure/railing{
+	dir = 9
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"aNl" = (
-/obj/structure/window/reinforced,
+"aNk" = (
+/obj/structure/railing,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aNm" = (
@@ -11792,11 +11761,8 @@
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aPQ" = (
-/obj/structure/window/reinforced{
+/obj/structure/railing{
 	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
@@ -11804,7 +11770,7 @@
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},
-/obj/structure/window/reinforced{
+/obj/structure/railing{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -12219,20 +12185,17 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/hydroponics/garden)
-"aRg" = (
-/obj/machinery/door/window/westright{
-	name = "Garden B"
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aRh" = (
-/mob/living/simple_animal/cow{
-	name = "Betsy";
-	real_name = "Betsy"
-	},
-/turf/open/floor/grass,
+/obj/structure/table/wood,
+/obj/item/clothing/head/helmet/hat/cowboy,
+/obj/item/clothing/head/helmet/hat/cowboy,
+/obj/item/clothing/head/helmet/hat/cowboy,
+/turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aRj" = (
 /obj/effect/landmark/start/station_engineer,
@@ -12518,56 +12481,34 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aSj" = (
-/obj/structure/table,
-/obj/item/cultivator,
-/obj/item/hatchet,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
-/obj/item/paper/guides/jobs/hydroponics,
-/obj/item/coin/silver,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aSk" = (
-/obj/structure/table,
-/obj/item/hatchet,
-/obj/item/cultivator,
-/obj/item/crowbar,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/plant_analyzer,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aSl" = (
-/obj/structure/table,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/citrus/orange,
-/obj/item/food/grown/grapes,
-/obj/item/food/grown/cocoapod,
-/obj/item/food/grown/apple,
-/obj/item/food/grown/chili,
-/obj/item/food/grown/cherries,
-/obj/item/food/grown/soybeans,
-/obj/item/food/grown/citrus/lime,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/machinery/seed_extractor,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aSn" = (
-/obj/item/storage/bag/plants/portaseeder,
-/obj/structure/table,
-/obj/item/plant_analyzer,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aSo" = (
@@ -51451,8 +51392,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
@@ -65022,6 +64961,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/structure/table/wood,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "oed" = (
@@ -117962,9 +117902,9 @@ aUX
 aJh
 aKq
 aLV
-aNi
+aRh
 oec
-aNi
+aSn
 aRd
 aSk
 aJh
@@ -118733,11 +118673,11 @@ aHS
 aJh
 aKt
 aLW
-aNj
+aLX
 aOL
 aNj
 aRf
-aSn
+aKt
 aJh
 rSa
 aWv
@@ -118989,11 +118929,11 @@ vZs
 vBF
 aJh
 aKu
-aLX
+aLY
 aNk
 aOM
 aPQ
-aRg
+aLY
 aKu
 aJh
 pLf
@@ -119246,12 +119186,12 @@ aGP
 aHU
 aJh
 aKv
-aLY
-aNl
+aKu
+aNk
 aON
 aPR
-aRh
-aLY
+aKu
+aKv
 aJh
 jmH
 aWv

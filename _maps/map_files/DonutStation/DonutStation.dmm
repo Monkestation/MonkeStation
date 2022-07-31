@@ -22563,12 +22563,12 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "aZj" = (
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
 /obj/effect/landmark/event_spawn,
+/obj/structure/nestbox,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aZk" = (
@@ -33171,6 +33171,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/railing{
+	dir = 8
+	},
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "btz" = (
@@ -33186,6 +33190,8 @@
 /area/security/detectives_office)
 "btB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/railing,
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "btC" = (
@@ -54461,6 +54467,12 @@
 "lPc" = (
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/theatre)
+"lTk" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "lTt" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -54985,6 +54997,12 @@
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/asteroid/airless,
 /area/space/nearstation)
+"nab" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "naE" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/brig";
@@ -55846,6 +55864,12 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+"phS" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "piG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -57327,6 +57351,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
+"tjq" = (
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "tlY" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
@@ -57573,6 +57603,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"uea" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "ueA" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/stripes/line{
@@ -57986,6 +58022,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+"vec" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "vgq" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -58440,6 +58482,14 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"wgE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "wia" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -58665,6 +58715,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wDx" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "wEn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -99965,12 +100019,12 @@ bwC
 bsN
 bPu
 aMr
+wDx
 aMu
 aMu
-aMu
-aMu
+uea
 bty
-aMu
+vec
 aMu
 aMu
 aMH
@@ -100225,7 +100279,7 @@ agn
 bsu
 bsu
 btu
-bsu
+wgE
 aZj
 btB
 btD
@@ -100482,9 +100536,9 @@ aMt
 aMv
 aMu
 aMu
-aMu
-aMu
-aMu
+lTk
+phS
+nab
 aMu
 aMu
 aMz
@@ -101255,7 +101309,7 @@ axe
 aMw
 aMv
 aMu
-aMu
+tjq
 bCI
 alk
 arg

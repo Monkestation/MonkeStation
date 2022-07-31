@@ -9318,7 +9318,10 @@
 	pixel_x = -5;
 	pixel_y = 30
 	},
-/turf/open/floor/plasteel,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/hydroponics/garden)
 "aAT" = (
 /obj/machinery/seed_extractor,
@@ -10646,17 +10649,12 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "aEF" = (
-/obj/structure/table/glass,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/citrus/orange,
-/obj/item/food/grown/grapes,
-/obj/item/food/grown/cocoapod,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
+	},
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
@@ -11045,16 +11043,11 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
 "aFN" = (
-/obj/structure/table/glass,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/crowbar,
-/obj/item/plant_analyzer,
-/obj/item/reagent_containers/glass/bucket,
-/obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/green,
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aFO" = (
@@ -11071,7 +11064,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/hydroponics/garden)
 "aFQ" = (
 /obj/structure/table,
@@ -40272,6 +40268,9 @@
 	dir = 4
 	},
 /area/quartermaster/exploration_prep)
+"cUM" = (
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "cVb" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
@@ -43312,6 +43311,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"gus" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "gvB" = (
 /obj/machinery/power/solar_control{
 	dir = 4;
@@ -44980,10 +44985,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "iHT" = (
-/obj/machinery/hydroponics/soil,
 /obj/machinery/light{
 	dir = 4
 	},
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "iKz" = (
@@ -46377,6 +46382,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"kyF" = (
+/obj/structure/railing{
+	dir = 11
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "kyJ" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "teledoor";
@@ -49457,6 +49468,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
+"okd" = (
+/obj/structure/nestbox,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "olh" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -55045,6 +55060,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"vun" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "vvM" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -73884,7 +73903,7 @@ asc
 azF
 aAS
 aFP
-aAQ
+gus
 aAQ
 aAQ
 aAQ
@@ -74139,9 +74158,9 @@ amC
 alU
 asc
 azF
-aAU
-aAQ
-aAQ
+vun
+cUM
+kyF
 aAQ
 aAQ
 aBM
@@ -74396,9 +74415,9 @@ alU
 alU
 asc
 azF
-aAP
+okd
 iHT
-aAP
+kyF
 aAQ
 aFO
 aHA
