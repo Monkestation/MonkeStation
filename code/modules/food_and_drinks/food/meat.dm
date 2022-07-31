@@ -12,6 +12,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("fish" = 4, "batter" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_SWEATY
 
 /obj/item/food/carpmeat
 	name = "carp fillet"
@@ -22,6 +23,7 @@
 	tastes = list("fish" = 1)
 	foodtypes = MEAT
 	eatverbs = list("bite","chew","gnaw","swallow","chomp")
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 
 /obj/item/food/carpmeat/imitation
@@ -36,6 +38,7 @@
 	bite_consumption = 1
 	tastes = list("fish" = 1, "breadcrumbs" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 /obj/item/food/fishandchips
 	name = "fish and chips"
@@ -44,6 +47,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
@@ -54,6 +58,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("tofu" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/tofu/prison
 	name = "soggy tofu"
@@ -68,6 +73,7 @@
 	food_reagents = list(/datum/reagent/toxin = 2)
 	tastes = list("cobwebs" = 1)
 	foodtypes = MEAT | TOXIC
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 
 /obj/item/food/spiderleg/MakeGrillable()
@@ -81,6 +87,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("meat" = 1, "cabbage" = 1)
 	foodtypes = MEAT | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/bearsteak
 	name = "Filet migrawr"
@@ -90,6 +97,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 9, /datum/reagent/consumable/ethanol/manly_dorf = 5)
 	tastes = list("meat" = 1, "salmon" = 1)
 	foodtypes = MEAT | ALCOHOL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 /obj/item/food/raw_meatball
 	name = "raw meatball"
@@ -141,6 +149,7 @@
 	tastes = list("meat" = 1)
 	foodtypes = MEAT
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/meatball/human
 	name = "strange meatball"
@@ -206,6 +215,7 @@
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 ///Exists purely for the crafting recipe (because itll take subtypes)
 /obj/item/food/patty/plain
@@ -251,6 +261,7 @@
 	foodtypes = MEAT | BREAKFAST
 	eatverbs = list("bite","chew","nibble","deep throat","gobble","chomp")
 	var/roasted = FALSE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/sausage/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/salami, 6, 30)
@@ -261,6 +272,7 @@
 	name = "american sausage"
 	desc = "Snip."
 	icon_state = "american_sausage"
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/sausage/american/MakeProcessable()
 	return
@@ -272,6 +284,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("meat" = 1, "smoke" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/rawkhinkali
 	name = "raw khinkali"
@@ -293,6 +306,7 @@
 	tastes = list("meat" = 1, "onions" = 1, "garlic" = 1)
 	foodtypes = MEAT
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/monkeycube
 	name = "monkey cube"
@@ -304,6 +318,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/faction
 	var/spawned_mob = /mob/living/carbon/monkey
+	food_buffs = STATUS_EFFECT_FOOD_SWEATY
 
 /obj/item/food/monkeycube/proc/Expand()
 	var/mob/spammer = get_mob_by_ckey(fingerprintslast)
@@ -363,6 +378,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/capsaicin = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/stewedsoymeat
 	name = "stewed soy meat"
@@ -373,6 +389,7 @@
 	tastes = list("soy" = 1, "vegetables" = 1)
 	eatverbs = list("slurp","sip","inhale","drink")
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/stewedsoymeat/Initialize()
 	. = ..()
@@ -397,6 +414,7 @@
 	bite_consumption = 4
 	tastes = list("meat" = 1, "the colour green" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/sashimi
 	name = "carp sashimi"
@@ -405,6 +423,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/capsaicin = 9, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtypes = MEAT | TOXIC
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 
 /obj/item/food/nugget
@@ -412,6 +431,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("\"chicken\"" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/nugget/Initialize()
 	. = ..()
@@ -426,6 +446,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("meat" = 1, "butter" = 1)
 	foodtypes = MEAT | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/bbqribs
 	name = "bbq ribs"
@@ -435,6 +456,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/bbqsauce = 10)
 	tastes = list("meat" = 3, "smokey sauce" = 1)
 	foodtypes = MEAT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/meatclown
 	name = "meat clown"
@@ -442,6 +464,7 @@
 	icon_state = "meatclown"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/banana = 2)
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/meatclown/ComponentInitialize()
 	. = ..()
@@ -455,6 +478,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	food_reagents = list(/datum/reagent/consumable/nutriment = 14)
 	tastes = list("meat" = 3, "metal" = 1)
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/kebab/human
 	name = "human-kebab"
@@ -504,6 +528,7 @@
 	icon_state = "fiestaskewer"
 	tastes = list("tex-mex" = 3, "cumin" = 2)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/capsaicin = 3)
+	food_buffs = STATUS_EFFECT_FOOD_SWEATY
 
 /obj/item/food/meat
 	var/subjectname = ""
@@ -777,6 +802,7 @@
 	tastes = list("bacon" = 1)
 	foodtypes = MEAT | BREAKFAST
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/meat/slab/gondola
 	name = "gondola meat"
@@ -825,6 +851,7 @@
 	tastes = list("crab" = 1)
 	foodtypes = MEAT
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/meat/slab/chicken
 	name = "chicken meat"
@@ -850,6 +877,7 @@
 	foodtypes = MEAT
 	tastes = list("meat" = 1)
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/meat/steak/Initialize()
 	. = ..()
@@ -1048,6 +1076,7 @@
 	tastes = list("meat" = 1)
 	foodtypes = MEAT
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/meat/cutlet/Initialize()
 	. = ..()

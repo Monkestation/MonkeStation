@@ -5,6 +5,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 1)
 	foodtypes = GRAIN | DAIRY
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/cake/Initialize()
 	. = ..()
@@ -17,6 +18,7 @@
 	tastes = list("cake" = 1)
 	foodtypes = GRAIN | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/cake/plain
 	name = "plain cake"
@@ -63,6 +65,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/medicine/mannitol = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 5, "sweetness" = 2, "brains" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | GROSS | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 /obj/item/food/cake/brain/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/brain, 5, 30)
@@ -74,6 +77,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/mannitol = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 5, "sweetness" = 2, "brains" = 1)
 	foodtypes = GRAIN | DAIRY | MEAT | GROSS | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/cake/cheese
 	name = "cheese cake"
@@ -173,6 +177,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 5, "sweetness" = 1)
 	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 /obj/item/food/cake/birthday/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/birthday, 5, 30)
@@ -188,6 +193,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sprinkles = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 5, "sweetness" = 1)
 	foodtypes = GRAIN | DAIRY | JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/cake/birthday/energy
 	name = "energy cake"
@@ -298,6 +304,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("blackberry" = 2, "strawberries" = 2, "vanilla" = 2, "sweetness" = 2, "cake" = 3)
 	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 /obj/item/food/cake/bsvc/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/bsvc, 5, 30)
@@ -308,6 +315,7 @@
 	icon_state = "blackbarry_strawberries_cake_vanilla_slice"
 	tastes = list("blackberry" = 2, "strawberries" = 2, "vanilla" = 2, "sweetness" = 2,"cake" = 3)
 	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 /obj/item/food/cake/bscc // blackbarry strawberries chocolate cake
 	name = "blackberry and strawberry chocolate cake"
@@ -316,6 +324,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cocoa = 5)
 	tastes = list("blackberry" = 2, "strawberries" = 2, "chocolate" = 2, "sweetness" = 2,"cake" = 3)
 	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/cake/bscc/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/bscc, 5, 30)
@@ -326,6 +335,7 @@
 	icon_state = "blackbarry_strawberries_cake_coco_slice"
 	tastes = list("blackberry" = 2, "strawberries" = 2, "chocolate" = 2, "sweetness" = 2,"cake" = 3)
 	foodtypes = GRAIN | DAIRY | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/cake/holy_cake
 	name = "angel food cake"
@@ -352,6 +362,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 60, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 5, "sweetness" = 1, "batter" = 1)
 	foodtypes = GRAIN | DAIRY | SUGAR | JUNKFOOD
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 /obj/item/food/cake/pound_cake/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/pound_cake_slice, 7, 30)
@@ -363,6 +374,7 @@
 	tastes = list("cake" = 5, "sweetness" = 5, "batter" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/nutriment/vitamin = 0.5)
 	foodtypes = GRAIN | DAIRY | SUGAR | JUNKFOOD
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 /obj/item/food/cake/hardware_cake
 	name = "hardware cake"
@@ -409,6 +421,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/sugar = 15)
 	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_WACKY
 
 /obj/item/food/cake/clown_cake/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/clown_slice, 5, 30)
@@ -420,6 +433,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/sugar = 3)
 	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
 	foodtypes = GRAIN | SUGAR | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/cake/trumpet
 	name = "spaceman's cake"

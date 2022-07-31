@@ -29,7 +29,7 @@
 	ears = new /obj/item/organ/ears/cat
 	tail = new /obj/item/organ/tail/cat
 	food_likes = DAIRY | MEAT | JUNKFOOD
-	food_dislikes = FRUIT | VEGETABLES | SUGAR
+	food_dislikes = FRUIT | VEGETABLES
 	weeb_screams = list('monkestation/sound/voice/screams/felinid/hiss.ogg','monkestation/sound/voice/screams/felinid/merowr.ogg','monkestation/sound/voice/screams/felinid/scream_cat.ogg', 'monkestation/sound/voice/screams/felinid/ooknya.ogg')
 	weeb_laughs = list('monkestation/sound/voice/laugh/felinid/cat_laugh0.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh1.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh2.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh3.ogg')
 
@@ -85,9 +85,10 @@
 	to_chat(M, msg)
 	var/list/slots = list (
 		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
+		"hands" = ITEM_SLOT_HANDS
 	)
-	M.equip_in_one_of_slots(new_item, slots , qdel_on_fail = TRUE)
+	if(!M.equip_in_one_of_slots(new_item, slots , qdel_on_fail = FALSE))
+		new_item.forceMove(M.loc)
 
 /obj/item/choice_beacon/anime/generate_display_names()
 	var/static/list/anime

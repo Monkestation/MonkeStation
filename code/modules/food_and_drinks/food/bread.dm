@@ -4,6 +4,7 @@
 	tastes = list("bread" = 10)
 	foodtypes = GRAIN
 	eat_time = 3 SECONDS
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/bread/Initialize()
 	. = ..()
@@ -17,6 +18,7 @@
 	eat_time = 0.5 SECONDS
 	tastes = list("bread" = 5)
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/breadslice/Initialize()
 	. = ..()
@@ -126,6 +128,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/banana = 40)
 	tastes = list("bread" = 10) // bananjuice will also flavour
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/bread/banana/MakeProcessable()
 	. = ..()
@@ -137,6 +140,7 @@
 	icon_state = "bananabreadslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/bread/tofu
 	name = "Tofubread"
@@ -164,6 +168,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("bread" = 10, "cheese" = 10)
 	foodtypes = GRAIN | DAIRY
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/bread/creamcheese/MakeProcessable()
 	. = ..()
@@ -174,6 +179,7 @@
 	desc = "A slice of yum!"
 	icon_state = "creamcheesebreadslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/bread/mimana
 	name = "mimana bread"
@@ -182,6 +188,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/consumable/nothing = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("bread" = 10, "silence" = 10)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/bread/mimana/Initialize()
 	. = ..()
@@ -193,6 +200,7 @@
 	icon_state = "mimanabreadslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin/mutetoxin = 1, /datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/baguette
 	name = "baguette"
@@ -207,6 +215,7 @@
 	attack_verb = list("touche")
 	tastes = list("bread" = 1)
 	foodtypes = GRAIN
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/garlicbread
 	name = "garlic bread"
@@ -245,6 +254,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter" = 1, "biscuit" = 1)
 	foodtypes = GRAIN | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/butterdog
 	name = "butterdog"
