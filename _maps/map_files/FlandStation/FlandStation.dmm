@@ -86218,7 +86218,7 @@
 /area/vacant_room/commissary/commissaryFood)
 "ugx" = (
 /obj/structure/closet/secure_closet/hos,
-/obj/item/clothing/head/HoS/beret,
+/obj/item/clothing/head/hos/beret,
 /obj/item/clothing/suit/armor/hos/trenchcoat,
 /obj/item/clothing/shoes/sneakers/white,
 /obj/effect/turf_decal/stripes/line{
