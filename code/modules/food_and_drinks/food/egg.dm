@@ -111,6 +111,7 @@
 	bite_consumption = 1
 	tastes = list("egg" = 4, "salt" = 1, "pepper" = 1)
 	foodtypes = MEAT | FRIED | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/boiledegg
 	name = "boiled egg"
@@ -120,6 +121,7 @@
 	tastes = list("egg" = 1)
 	w_class = WEIGHT_CLASS_TINY
 	foodtypes = MEAT | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/boiledegg/rotten
 
@@ -140,6 +142,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("egg" = 1, "cheese" = 1)
 	foodtypes = MEAT | BREAKFAST | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/omelette/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/kitchen/fork))
@@ -168,3 +171,4 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
 	foodtypes = MEAT | BREAKFAST | GRAIN
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM

@@ -3689,6 +3689,7 @@
 #include "monkestation\code\datums\keybinding\living.dm"
 #include "monkestation\code\datums\keybinding\passthrough.dm"
 #include "monkestation\code\datums\station_traits\neutral_traits.dm"
+#include "monkestation\code\datums\status_effects\food_and_drinks\buffs.dm"
 #include "monkestation\code\datums\traits\good.dm"
 #include "monkestation\code\datums\traits\negative.dm"
 #include "monkestation\code\datums\traits\neutral.dm"

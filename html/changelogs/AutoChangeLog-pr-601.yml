@@ -1,0 +1,4 @@
+author: nednaZ
+delete-after: true
+changes:
+  - admin: Changes subtle/headset message admin logs to make more sense to us.
