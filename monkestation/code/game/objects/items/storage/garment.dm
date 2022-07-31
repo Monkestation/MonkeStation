@@ -54,7 +54,7 @@
 	))
 
 /obj/item/storage/bag/garment/captain/PopulateContents()
-	new /obj/item/clothing/head/beret/captain(src)
+	new /obj/item/clothing/head/caphat/beret(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/captain(src)
 	new /obj/item/clothing/neck/cloak/cap(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
