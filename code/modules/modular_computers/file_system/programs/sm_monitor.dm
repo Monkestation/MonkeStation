@@ -83,7 +83,7 @@
 				SMS.Add(list(list(
 				"area_name" = A.name,
 				"integrity" = S.get_integrity(),
-				"uid" = S.uid
+				"uid" = S.unique_id
 				)))
 
 		data["active"] = FALSE
@@ -106,7 +106,7 @@
 		if("PRG_set")
 			var/newuid = text2num(params["target"])
 			for(var/obj/machinery/power/supermatter_crystal/S in supermatters)
-				if(S.uid == newuid)
+				if(S.unique_id == newuid)
 					active = S
 			return TRUE
 
