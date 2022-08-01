@@ -2818,6 +2818,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\retaliate.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\spaceman.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\traders\_trader.dm"
+#include "code\modules\mob\living\simple_animal\hostile\retaliate\traders\abductor.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\traders\amorphous.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\traders\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\traders\mrbones.dm"
