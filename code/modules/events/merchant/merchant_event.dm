@@ -24,6 +24,7 @@
 	visiting_merchant = new merchant_path
 
 /datum/round_event/merchant/start()
+	message_admins("Sending")
 	merchant_message = new(visiting_merchant, visiting_merchant.message_greet, list("Send [INITIAL_VISIT_COST] Credits.","Reject Offer."))
 	merchant_message.answer_callback = CALLBACK(src,.proc/answered)
 	SScommunications.send_message(merchant_message, unique = TRUE)
