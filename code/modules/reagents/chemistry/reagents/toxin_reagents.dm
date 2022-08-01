@@ -626,7 +626,7 @@
 /datum/reagent/toxin/sulfonal/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 22 && prob(50))
 		M.Sleeping(2 SECONDS, 0)
-	affected.dizziness += 1
+	M.dizziness += 1
 	return ..()
 
 /datum/reagent/toxin/amanitin
