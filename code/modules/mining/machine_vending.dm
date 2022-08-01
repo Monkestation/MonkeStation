@@ -155,7 +155,7 @@
 		new /datum/data/vendor_equipment("Minebot Upgrade: Melee",		/obj/item/mine_bot_upgrade,											400),
 		new /datum/data/vendor_equipment("Minebot Upgrade: Armor",		/obj/item/mine_bot_upgrade/health,									400),
 		new /datum/data/vendor_equipment("Minebot Upgrade: Cooldown",	/obj/item/borg/upgrade/modkit/cooldown/minebot,						600),
-		new /datum/data/vendor_equipment("Minebot Upgrade: A.I.",		/obj/item/slimepotion/slime/sentience/mining,						1000),
+		new /datum/data/vendor_equipment("Minebot Upgrade: A.I.",		/obj/item/minebot_sentience,						1000),
 		new /datum/data/vendor_equipment("P-KA Upgrade: Bot-Friendly",	/obj/item/borg/upgrade/modkit/minebot_passthrough,					100),
 		new /datum/data/vendor_equipment("P-KA Upgrade: Tracer Shots",	/obj/item/borg/upgrade/modkit/tracer,								200),
 		new /datum/data/vendor_equipment("P-KA Upgrade: Adj. T. Shots",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					300),

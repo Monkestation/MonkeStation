@@ -71,6 +71,32 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	var/shut_up = 0 //self explanatory :)
 	var/datum/techweb/linked_techweb
 	var/medibot_counter = 0 //we use this to stop multibotting
+	/// List of types that the Medibot can heal
+	var/list/acceptable_mobtypes = list(/mob/living/carbon/human)
+
+/mob/living/simple_animal/bot/medbot/amorphous
+	name = "\improper Amorphous Medibot"
+	desc = "Creation of Amorphous. It's completely covered in cables and wires. Seems like it's configured to only operate on metallic lifeforms."
+	skin = "amorph"
+	firstaid = /obj/effect/gibspawner/robot
+	healthanalyzer = /obj/item/analyzer
+	faction = list("amorphous", "turret")
+	acceptable_mobtypes = list(
+		/mob/living/silicon,
+		/mob/living/simple_animal/drone,
+		/mob/living/simple_animal/bot,
+		/mob/living/simple_animal/hostile/swarmer,
+		/mob/living/simple_animal/hostile/hivebot,
+		/mob/living/simple_animal/hostile/retaliate/trader/amorphous,
+	)
+
+/mob/living/simple_animal/bot/medbot/amorphous/shambles
+	name = "Shambles"
+	initial_language_holder = /datum/language_holder/swarmer
+
+/mob/living/simple_animal/bot/medbot/amorphous/disarray
+	name = "Disarray"
+	initial_language_holder = /datum/language_holder/drone
 
 /mob/living/simple_animal/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
@@ -110,7 +136,8 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	access_card.access += J.get_access()
 	prev_access = access_card.access
 	qdel(J)
-	skin = new_skin
+	if(new_skin)
+		skin = new_skin
 	update_icon()
 	linked_techweb = SSresearch.science_tech
 	if(!GLOB.medibot_unique_id_gen)
@@ -227,7 +254,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 		if(user)
 			oldpatient = user
 
-/mob/living/simple_animal/bot/medbot/process_scan(mob/living/carbon/human/H)
+/mob/living/simple_animal/bot/medbot/process_scan(mob/living/H)
 	if(H.stat == DEAD)
 		return
 
@@ -357,7 +384,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
 		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
-		set_patient(scan(/mob/living/carbon/human, oldpatient, scan_range))
+		set_patient(scan(acceptable_mobtypes, oldpatient, scan_range))
 
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
 		if(mode != BOT_HEALING)
@@ -402,28 +429,17 @@ GLOBAL_VAR(medibot_unique_id_gen)
 
 	return
 
-/mob/living/simple_animal/bot/medbot/proc/assess_patient(mob/living/carbon/C)
+/mob/living/simple_animal/bot/medbot/proc/assess_patient(mob/living/C)
 	. = FALSE
 	//Time to see if they need medical help!
 	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
 		return FALSE	//welp too late for them!
-
-	var/can_inject = FALSE
-	for(var/X in C.bodyparts)
-		var/obj/item/bodypart/part = X
-		if(IS_ORGANIC_LIMB(part))
-			can_inject = TRUE
-	if(!can_inject)
-		return 0
 
 	if(!(loc == C.loc) && !(isturf(C.loc) && isturf(loc)))
 		return FALSE
 
 	if(C.suiciding)
 		return FALSE //Kevorkian school of robotic medical assistants.
-
-	if(istype(C.dna.species, /datum/species/ipc))
-		return FALSE
 
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE
@@ -477,12 +493,13 @@ GLOBAL_VAR(medibot_unique_id_gen)
 		..()
 
 /mob/living/simple_animal/bot/medbot/UnarmedAttack(atom/A)
-	if(iscarbon(A))
-		var/mob/living/carbon/C = A
-		set_patient(C)
+	if(is_type_in_list(A, acceptable_mobtypes))
+		var/mob/living/healing = A
+		patient = healing
+		set_patient(healing)
 		mode = BOT_HEALING
 		update_icon()
-		medicate_patient(C)
+		medicate_patient(healing)
 		update_icon()
 	else
 		..()
@@ -492,7 +509,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	if(!is_blind(src))
 		chemscan(src, A)
 
-/mob/living/simple_animal/bot/medbot/proc/medicate_patient(mob/living/carbon/C)
+/mob/living/simple_animal/bot/medbot/proc/medicate_patient(mob/living/C)
 	if(!on)
 		return
 

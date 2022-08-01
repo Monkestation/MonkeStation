@@ -3075,3 +3075,12 @@
 					/obj/item/toner/large,
 					/obj/item/toner/large)
 	crate_name = "large toner crate"
+
+/datum/supply_pack/misc/merchant
+	name = "Merchant Satellite crate"
+	desc = "Looking to attract profitable business ventures? Simply place this satellite somewhere in space, press the activation button, and wait a few minutes!"
+	cost = 4000
+	access = ACCESS_QM
+	contains = list(/obj/machinery/satellite/merchant)
+	crate_name = "merchant satellite crate"
+	crate_type = /obj/structure/closet/crate/secure
