@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(conversion_warning_stage, CONVERSION_WARNING_NONE)
 	if(!silent)
 		hierophant_message("<b>[M]</b> has been successfully converted!", span = "<span class='sevtug'>", use_sanitisation=FALSE)
 	var/datum/antagonist/servant_of_ratvar/antagdatum = servant_type
+	calculate_clockcult_values()
 	if(ishuman(M) && (servant_type == /datum/antagonist/servant_of_ratvar) && GLOB.critical_servant_count)
 		if((GLOB.critical_servant_count)/2 < GLOB.human_servants_of_ratvar.len)
 			if(GLOB.conversion_warning_stage < CONVERSION_WARNING_HALFWAY)
@@ -46,8 +47,11 @@ GLOBAL_VAR_INIT(conversion_warning_stage, CONVERSION_WARNING_NONE)
 		return TRUE
 
 /proc/calculate_clockcult_values()
+	var/static/high_clockcult_value = 10
 	var/playercount = get_active_player_count()
-	GLOB.critical_servant_count = round(max((playercount/6)+6,10))
+	GLOB.critical_servant_count = round(max((playercount/6)+6,high_clockcult_value))
+	high_clockcult_value = GLOB.critical_servant_count
+
 
 /proc/check_ark_status()
 	if(!GLOB.critical_servant_count)
