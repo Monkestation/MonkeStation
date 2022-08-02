@@ -173,7 +173,9 @@
 
 	var/datum/weakref/harass_ref = controller.blackboard[BB_DOG_HARASS_TARGET]
 	var/atom/movable/harass_target = harass_ref.resolve()
-	if(!harass_target || !can_see(living_pawn, harass_target, length=AI_DOG_VISION_RANGE))
+
+
+	if(!harass_target || !can_see(living_pawn, harass_target, length = AI_DOG_VISION_RANGE))
 		finish_action(controller, FALSE)
 		return
 
