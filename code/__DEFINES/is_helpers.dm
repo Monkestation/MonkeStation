@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isplatingturf(A) (istype(A, /turf/open/floor/plating))
 
+#define iswall(A) (istype(A, /turf/closed/wall))
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -241,6 +242,8 @@ GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 #define isorgan(A) (istype(A, /obj/item/organ))
 
 #define isclothing(A) (istype(A, /obj/item/clothing))
+
+#define isfalsewall(A) (istype(A, /obj/structure/falsewall))
 
 GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 	/obj/item/pen,
