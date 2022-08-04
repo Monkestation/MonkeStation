@@ -174,6 +174,9 @@ multiple modular subtrees with behaviors
 				continue
 			ProcessBehavior(action_delta_time, current_behavior)
 			return
+///Perform some dumb idle behavior.
+/datum/ai_controller/proc/PerformIdleBehavior(delta_time)
+	return
 
 ///This is where you decide what actions are taken by the AI.
 /datum/ai_controller/proc/SelectBehaviors(delta_time)
