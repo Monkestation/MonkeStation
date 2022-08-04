@@ -432,6 +432,7 @@
 	tastes = list("\"chicken\"" = 1)
 	foodtypes = MEAT
 	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/food/nugget/Initialize()
 	. = ..()

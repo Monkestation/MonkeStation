@@ -3,9 +3,20 @@ GLOBAL_LIST_EMPTY(soundtrack_this_round) // A running list of soundtrack songs t
 /datum/soundtrack_song
 	var/title
 	var/artist
-	var/url
 	var/album
+	var/url
 	var/file
+	var/beat
+	var/length
+
+/datum/soundtrack_song/New(title, artist, album, file, beat, length)
+	title = title
+	artist = artist
+	album = album
+	length = length
+	file = file
+	beat = beat
+
 
 /datum/soundtrack_song/bee
 	album = "BeeStation OST"

@@ -19,6 +19,7 @@
 	icon_state = "donutbox6"
 	name = "null box do not use"
 	desc = "Mmm. Runtimes."
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 	var/icon_type = "donut"
 	var/spawn_type = null
@@ -69,11 +70,14 @@
 	name = "donut box"
 	desc = "Mmm. Donuts."
 	spawn_type = /obj/item/food/donut
+	w_class = WEIGHT_CLASS_NORMAL
 	fancy_open = TRUE
 
 /obj/item/storage/fancy/donut_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 50
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_items = 6
 	STR.can_hold = typecacheof(list(/obj/item/food/donut))
 
@@ -90,11 +94,14 @@
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	name = "egg box"
 	desc = "A carton for containing eggs."
+	w_class = WEIGHT_CLASS_NORMAL
 	spawn_type = /obj/item/food/egg
 
 /obj/item/storage/fancy/egg_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_items = 12
 	STR.can_hold = typecacheof(list(/obj/item/food/egg))
 
@@ -110,6 +117,7 @@
 	icon_type = "candle"
 	item_state = "candlebox5"
 	throwforce = 2
+	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/candle
 	fancy_open = TRUE
@@ -117,6 +125,8 @@
 /obj/item/storage/fancy/candle_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_items = 5
 
 /obj/item/storage/fancy/candle_box/attack_self(mob_user)
@@ -275,6 +285,8 @@
 /obj/item/storage/fancy/rollingpapers/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_items = 10
 	STR.can_hold = typecacheof(list(/obj/item/rollingpaper))
 
@@ -292,13 +304,15 @@
 	desc = "A case of premium cigars. Very expensive."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigarcase"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_TINY
 	icon_type = "premium cigar"
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar
 
 /obj/item/storage/fancy/cigarettes/cigars/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_items = 5
 	STR.can_hold = typecacheof(list(/obj/item/clothing/mask/cigarette/cigar))
 
@@ -341,12 +355,15 @@
 	icon_type = "chocolate"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
+	w_class = WEIGHT_CLASS_SMALL
 	spawn_type = /obj/item/food/tinychocolate
 
 /obj/item/storage/fancy/heart_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.can_hold = typecacheof(list(/obj/item/food/tinychocolate))
 
 
@@ -356,10 +373,13 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "nuggetbox"
 	icon_type = "nugget"
+	w_class = WEIGHT_CLASS_SMALL
 	spawn_type = /obj/item/food/nugget
 
 /obj/item/storage/fancy/nugget_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_TINY
 	STR.max_items = 6
 	STR.can_hold = typecacheof(list(/obj/item/food/nugget))

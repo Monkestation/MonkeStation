@@ -1,7 +1,0 @@
-author: dwasint
-delete-after: true
-changes:
-  - rscadd: a variety of new buffs to food types, each cooked food has one, you can
-      have 2 buffs by default at once
-  - rscadd: gourmand perk which gives 1 extra food buff slot
-  - bugfix: voracious makes you eat faster

@@ -423,6 +423,7 @@
 	microwaved_type = /obj/item/food/donkpocket/warm
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
+	w_class = WEIGHT_CLASS_SMALL
 
 //donk pockets cook quick... try not to burn them for using an unoptimal tool
 /obj/item/food/donkpocket/MakeBakeable()

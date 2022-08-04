@@ -468,7 +468,8 @@
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donkpocketbox"
-	illustration=null
+	w_class = WEIGHT_CLASS_NORMAL
+	illustration = null
 	var/donktype = /obj/item/food/donkpocket
 	donktype = /obj/item/food/donkpocket
 
@@ -476,6 +477,9 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.can_hold = typecacheof(list(/obj/item/food/donkpocket))
+	STR.max_items = 6
+	STR.max_combined_w_class = 20
+	STR.max_w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/donkpockets/donkpocketspicy
 	name = "box of spicy-flavoured donk-pockets"
