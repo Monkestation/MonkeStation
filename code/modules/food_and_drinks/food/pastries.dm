@@ -18,6 +18,7 @@
 	var/is_decorated = FALSE
 	var/extra_reagent = null
 	var/decorated_adjective = "sprinkled"
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/donut/Initialize()
 	. = ..()
@@ -38,6 +39,7 @@
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
 				junkiness = junkiness,\
+				food_buffs = food_buffs,\
 				check_liked = CALLBACK(src, .proc/check_liked))
 
 /obj/item/food/donut/proc/decorate_donut()
@@ -165,6 +167,7 @@
 	extra_reagent = /datum/reagent/consumable/berryjuice
 	tastes = list("jelly" = 1, "donut" = 3)
 	foodtypes = JUNKFOOD | GRAIN | FRIED | FRUIT | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 // Jelly donuts don't have holes, but look the same on the outside
 /obj/item/food/donut/jelly/in_box_sprite()
@@ -183,6 +186,7 @@
 	icon_state = "jelly_pink"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //Extra sprinkles to reward frosting.
 	decorated_icon = "jelly_homer"
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/donut/jelly/trumpet
 	name = "spaceman's jelly donut"
@@ -215,6 +219,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/cocoa/hot_cocoa = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //the coco reagent is just bitter.
 	tastes = list("jelly" = 1, "donut" = 4, "bitterness" = 1)
 	decorated_icon = "jelly_choc_sprinkles"
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/donut/jelly/blumpkin
 	name = "blumpkin jelly donut"
@@ -247,6 +252,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/laughter = 3)
 	tastes = list("jelly" = 3, "donut" = 1, "fizzy tutti frutti" = 1)
 	is_decorated = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 //////////////////////////SLIME DONUTS/////////////////////////
 
@@ -338,6 +344,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("muffin" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/muffin/berry
 	name = "berry muffin"
@@ -361,6 +368,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("custard" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_LARGE
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -372,6 +380,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("waffles" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/soylentgreen
 	name = "\improper Soylent Green"
@@ -381,6 +390,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("waffles" = 7, "people" = 1)
 	foodtypes = GRAIN | MEAT
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/soylenviridians
 	name = "\improper Soylent Virdians"
@@ -390,6 +400,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("waffles" = 7, "the colour green" = 1)
 	foodtypes = GRAIN
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/rofflewaffles
 	name = "roffle waffles"
@@ -400,6 +411,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/drug/mushroomhallucinogen = 2, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("waffle" = 1, "mushrooms" = 1)
 	foodtypes = GRAIN | VEGETABLES | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 ////////////////////////////////////////////DONK POCKETS////////////////////////////////////////////
 
@@ -411,6 +423,7 @@
 	microwaved_type = /obj/item/food/donkpocket/warm
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
+	w_class = WEIGHT_CLASS_SMALL
 
 //donk pockets cook quick... try not to burn them for using an unoptimal tool
 /obj/item/food/donkpocket/MakeBakeable()
@@ -548,6 +561,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/cookie/Initialize()
 	. = ..()
@@ -563,6 +577,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("cookie" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/poppypretzel
 	name = "poppy pretzel"
@@ -571,6 +586,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pretzel" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/plumphelmetbiscuit
 	name = "plump helmet biscuit"
@@ -579,6 +595,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("mushroom" = 1, "biscuit" = 1)
 	foodtypes = GRAIN | VEGETABLES
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/plumphelmetbiscuit/Initialize()
 	var/fey = prob(10)
@@ -598,6 +615,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("cracker" = 1)
 	foodtypes = GRAIN
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/hotdog
 	name = "hotdog"
@@ -607,6 +625,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/ketchup = 3, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("bun" = 3, "meat" = 2)
 	foodtypes = GRAIN | MEAT | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/hotdog/debug
 	eat_time = 0
@@ -618,6 +637,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("bun" = 3, "meat" = 2)
 	foodtypes = GRAIN | MEAT | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/khachapuri
 	name = "khachapuri"
@@ -626,6 +646,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 14, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 
 /obj/item/food/cookie/sugar
@@ -635,6 +656,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sugar = 6)
 	tastes = list("sweetness" = 1)
 	foodtypes = GRAIN | JUNKFOOD | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/chococornet
 	name = "chocolate cornet"
@@ -643,6 +665,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("biscuit" = 3, "chocolate" = 1)
 	foodtypes = GRAIN | JUNKFOOD
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 /obj/item/food/cookie/oatmeal
 	name = "oatmeal cookie"
@@ -651,6 +674,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("cookie" = 2, "oat" = 1)
 	foodtypes = GRAIN
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/cookie/raisin
 	name = "raisin cookie"
@@ -659,6 +683,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("cookie" = 1, "raisins" = 1)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/cherrycupcake
 	name = "cherry cupcake"
@@ -667,6 +692,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("cake" = 3, "cherry" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/cherrycupcake/blue
 	name = "blue cherry cupcake"
@@ -674,6 +700,7 @@
 	icon_state = "bluecherrycupcake"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("cake" = 3, "blue cherry" = 1)
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/honeybun
 	name = "honey bun"
@@ -682,6 +709,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/honey = 6)
 	tastes = list("pastry" = 1, "sweetness" = 1)
 	foodtypes = GRAIN | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 #define PANCAKE_MAX_STACK 10
 
@@ -692,6 +720,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pancakes" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 /obj/item/food/pancakes/blueberry
 	name = "blueberry pancake"
@@ -699,6 +728,7 @@
 	icon_state = "bbpancakes_1"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 /obj/item/food/pancakes/chocolatechip
 	name = "chocolate chip pancake"
@@ -706,6 +736,7 @@
 	icon_state = "ccpancakes_1"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "chocolate" = 1)
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/pancakes/Initialize()
 	. = ..()
@@ -788,6 +819,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pastry" = 1)
 	foodtypes = GRAIN | DAIRY | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/bluecherrycupcake
 	name = "blue cherry cupcake"
@@ -796,6 +828,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("cake" = 3, "blue cherry" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 /obj/item/food/ravtart
 	name = "Rav'tart"
@@ -804,6 +837,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/ratlight = 8)
 	tastes = list("pastry" = 1, "sweetness" = 1)
 	foodtypes = GRAIN | FRUIT
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 #undef DONUT_SPRINKLE_CHANCE
 

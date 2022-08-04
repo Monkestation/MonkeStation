@@ -262,6 +262,7 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+	SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_RESISTED)
 	if(!cuff_break)
 		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
 		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")
@@ -327,6 +328,9 @@
 
 	else
 		if(I == handcuffed)
+			//MONKESTATION EDIT
+			SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_REMOVED)
+			//MONKESTATION EDIT END
 			handcuffed.forceMove(drop_location())
 			handcuffed = null
 			I.dropped(src)
@@ -473,9 +477,15 @@
 /mob/living/carbon/update_mobility()
 	. = ..()
 	if(!(mobility_flags & MOBILITY_STAND))
-		add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
+		if(HAS_TRAIT(src, FOOD_SLIDE))
+			add_movespeed_modifier("belly_slide", update=TRUE, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+		else
+			add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
 	else
-		remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
+		if(HAS_TRAIT(src, FOOD_SLIDE))
+			remove_movespeed_modifier("belly_slide", TRUE)
+		else
+			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
 
 //Updates the mob's health from bodyparts and mob damage variables
 /mob/living/carbon/updatehealth()

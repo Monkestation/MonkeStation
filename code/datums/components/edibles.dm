@@ -52,6 +52,8 @@ Behavior that's still missing from this component that original food items had t
 	var/list/tastes
 	///The type of atom this creates when the object is microwaved.
 	var/microwaved_type
+	///The buffs these foods give when eaten
+	var/food_buffs
 
 /datum/component/edible/Initialize(list/initial_reagents,
 								food_flags = NONE,
@@ -63,6 +65,7 @@ Behavior that's still missing from this component that original food items had t
 								bite_consumption = 2,
 								microwaved_type,
 								junkiness,
+								food_buffs,
 								datum/callback/after_eat,
 								datum/callback/on_consume,
 								datum/callback/check_liked)
@@ -105,6 +108,7 @@ Behavior that's still missing from this component that original food items had t
 	src.eat_time = eat_time
 	src.eatverbs = string_list(eatverbs)
 	src.junkiness = junkiness
+	src.food_buffs = food_buffs
 	src.after_eat = after_eat
 	src.on_consume = on_consume
 	src.initial_reagents = string_assoc_list(initial_reagents)
@@ -135,6 +139,7 @@ Behavior that's still missing from this component that original food items had t
 	bite_consumption = 2,
 	microwaved_type,
 	junkiness,
+	food_buffs,
 	datum/callback/after_eat,
 	datum/callback/on_consume,
 	datum/callback/check_liked
@@ -147,6 +152,7 @@ Behavior that's still missing from this component that original food items had t
 	src.eat_time = eat_time
 	src.eatverbs = eatverbs
 	src.junkiness = junkiness
+	src.food_buffs = food_buffs
 	src.after_eat = after_eat
 	src.on_consume = on_consume
 
@@ -338,6 +344,8 @@ Behavior that's still missing from this component that original food items had t
 	. = COMPONENT_ITEM_NO_ATTACK //Point of no return I suppose
 
 	if(eater == feeder)//If you're eating it yourself.
+		if(HAS_TRAIT(eater, TRAIT_VORACIOUS))
+			eat_time = eat_time * 0.5
 		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
 			return
 		if(IsFoodGone(owner, feeder))
@@ -474,6 +482,13 @@ Behavior that's still missing from this component that original food items had t
 	SEND_SIGNAL(parent, COMSIG_FOOD_CONSUMED, eater, feeder)
 
 	on_consume?.Invoke(eater, feeder)
+	if(food_buffs && ishuman(eater))
+		var/mob/living/carbon/consumer = eater
+		if(consumer.applied_food_buffs < consumer.max_food_buffs)
+			eater.apply_status_effect(food_buffs)
+			consumer.applied_food_buffs ++
+		else if(food_buffs in consumer.status_effects)
+			eater.apply_status_effect(food_buffs)
 
 	if(isturf(parent))
 		var/turf/T = parent
