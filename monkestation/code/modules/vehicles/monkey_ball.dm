@@ -1,14 +1,18 @@
 /obj/vehicle/ridden/monkey_ball
 	name = "Monkey Ball"
 	desc = "An ominously monkey-sized ball."
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "wheelchair"
+	icon = 'monkestation/icons/obj/vehicles.dmi'
+	icon_state = "monkey_ball"
 	max_integrity = 200
+	layer = ABOVE_MOB_LAYER
+	movedelay = 1
+	var/rotation = 0
 
 /obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/riding_component = LoadComponent(/datum/component/riding)
-	riding_component.vehicle_move_delay = 1
+	riding_component.vehicle_move_delay = movedelay
+	riding_component.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
 
 /obj/vehicle/ridden/monkey_ball/Destroy()
 	if(has_buckled_mobs())
@@ -17,6 +21,14 @@
 		driver.throw_at(get_edge_target_turf(driver,pick(GLOB.alldirs)),rand(1, 10),rand(1, 10))
 		driver.Knockdown(12 SECONDS)
 	return ..()
+
+/obj/vehicle/ridden/monkey_ball/Moved()
+	if(dir == NORTH || dir == WEST)
+		rotation -= 25
+	else
+		rotation += 25
+	animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = 1, easing = LINEAR_EASING)
+	. = ..()
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)
 	. = ..()
