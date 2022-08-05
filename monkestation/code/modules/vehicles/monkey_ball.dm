@@ -14,24 +14,17 @@
 	if(has_buckled_mobs())
 		var/mob/living/carbon/driver = buckled_mobs[1]
 		unbuckle_mob(driver)
+		driver.throw_at(get_edge_target_turf(driver,pick(GLOB.alldirs)),rand(1, 10),rand(1, 10))
+		driver.Knockdown(12 SECONDS)
 	return ..()
-
-/obj/vehicle/ridden/monkey_ball/Moved()
-	. = ..()
-	cut_overlays()
-
-/obj/vehicle/ridden/monkey_ball/unbuckle_mob(mob/living/buckled_mob, force)
-	if((usr != buckled_mob && do_after(usr, 5 SECONDS, null, buckled_mob)) || usr == buckled_mob)
-		. = ..()
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)
 	. = ..()
-	var/mob/living/driver = buckled_mobs[1]
 	if(isliving(victim))
-		var/atom/throw_target = get_edge_target_turf(driver, driver.dir)
+		var/atom/throw_target = get_edge_target_turf(victim, dir)
 		var/mob/living/living_victim = victim
 		living_victim.throw_at(throw_target, 4, 5)
 		living_victim.Knockdown(4 SECONDS)
-		living_victim.adjustStaminaLoss(35)
+		living_victim.adjustStaminaLoss(20)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 

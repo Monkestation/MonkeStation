@@ -41,7 +41,7 @@
 
 /datum/uplink_item/race_restricted/monkey_ball
 	name = "Monkey Ball"
-	desc = "Stolen experimental MonkeTech designed to enhance a monkey's speed to dangerous levels."
+	desc = "Stolen experimental MonkeTech designed to bring a monkey's speed to dangerous levels."
 	cost = 12
 	item = /obj/vehicle/ridden/monkey_ball
 	restricted_species = list("simian")
