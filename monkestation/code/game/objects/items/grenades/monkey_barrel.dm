@@ -33,6 +33,6 @@
 	playsound(current_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
 
 	for(var/i in 1 to 6)
-		new /mob/living/carbon/monkey/angry(current_turf)
+		new /mob/living/carbon/monkey/angry(current_turf, FALSE)
 
 	qdel(src)
