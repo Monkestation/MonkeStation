@@ -10,5 +10,7 @@
 	melee_damage = 8
 	obj_damage = 10
 
+	gold_core_spawnable = FALSE
+
 /obj/item/food/egg/raptor
 	name = "Raptor Egg"

@@ -14,6 +14,8 @@
 	chicken_type = /mob/living/simple_animal/chicken/cockatrice
 	egg_type = /obj/item/food/egg/cockatrice
 
+	gold_core_spawnable = FALSE
+
 /obj/item/food/egg/cockatrice
 	name = "Petrifying Egg"
 

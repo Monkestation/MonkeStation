@@ -96,6 +96,13 @@
 	. = ..()
 	AddComponent(/datum/component/connect_loc_behalf, pawn, loc_connections)
 
+/datum/ai_controller/chicken/able_to_run()
+	. = ..()
+	var/mob/living/living_pawn = pawn
+
+	if(IS_DEAD_OR_INCAP(living_pawn))
+		return FALSE
+
 //hit signals
 /datum/ai_controller/chicken/proc/on_attackby(datum/source, obj/item/hitby_item, mob/user)
 	SIGNAL_HANDLER
