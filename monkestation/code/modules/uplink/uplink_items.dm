@@ -43,5 +43,5 @@
 	name = "Monkey Ball"
 	desc = "Stolen experimental MonkeTech designed to enhance a monkey's speed to dangerous levels."
 	cost = 12
-	item = /obj/item/grenade/monkey_barrel
+	item = /obj/vehicle/ridden/monkey_ball
 	restricted_species = list("simian")

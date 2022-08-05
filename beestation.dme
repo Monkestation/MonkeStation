@@ -3864,6 +3864,7 @@
 #include "monkestation\code\modules\surgery\organs\tails.dm"
 #include "monkestation\code\modules\surgery\organs\tongue.dm"
 #include "monkestation\code\modules\uplink\uplink_items.dm"
+#include "monkestation\code\modules\vehicles\monkey_ball.dm"
 #include "monkestation\code\modules\wiremod\components\atom\pinpointer.dm"
 #include "monkestation\code\modules\wiremod\components\atom\receive_data.dm"
 #include "monkestation\code\modules\wiremod\components\atom\sec_status.dm"
