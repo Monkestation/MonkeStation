@@ -15,6 +15,7 @@
 		BB_CHICKEN_HONKING_COOLDOWN = null,
 		BB_CHICKEN_HONKS = FALSE,
 		BB_CHICKEN_HONKS_SORROW = FALSE,
+		BB_CHICKEN_SPECALITY_ABILITY = null,
 	)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
@@ -57,6 +58,13 @@
 		return
 	blackboard[BB_CHICKEN_AGGRESSIVE] = TRUE //Right pissed cunt
 
+/datum/ai_controller/chicken/hostile/rev
+
+/datum/ai_controller/chicken/hostile/rev/TryPossessPawn(atom/new_pawn)
+	. = ..()
+	if(. & AI_CONTROLLER_INCOMPATIBLE)
+		return
+	blackboard[BB_CHICKEN_SPECALITY_ABILITY] = CHICKEN_REV
 
 //RETALIATE
 /datum/ai_controller/chicken/retaliate
@@ -159,6 +167,11 @@
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
+	if(blackboard[BB_CHICKEN_SPECALITY_ABILITY] && DT_PROB(5, delta_time) && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
+		// this will be expanded in the future its just easier to leave it like this now
+		switch(blackboard[BB_CHICKEN_SPECALITY_ABILITY])
+			if(CHICKEN_REV)
+				queue_behavior(/datum/ai_behavior/revolution)
 	if(blackboard[BB_CHICKEN_ABILITY] && DT_PROB(living_pawn.ability_prob, delta_time) && !blackboard[BB_CHICKEN_COMBAT_ABILITY] && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
 		queue_behavior(/datum/ai_behavior/chicken_ability)
 	if(DT_PROB(25, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
@@ -173,6 +186,7 @@
 				enemies.Remove(picked)
 				blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
 				queue_behavior(/datum/ai_behavior/chicken_flee)
+
 
 /datum/ai_controller/chicken/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER

@@ -33,3 +33,5 @@
 
 // Honking cd, only used by the clown chickens
 #define DEFAULT_HONK_CD 30 SECONDS
+// Chicken is a rev
+#define CHICKEN_REV "rev_chicken"

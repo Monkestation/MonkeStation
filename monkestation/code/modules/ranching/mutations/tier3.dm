@@ -20,3 +20,9 @@
 	reagent_requirements = list(/datum/reagent/iron, /datum/reagent/uranium) /// lol emp attacks
 	nearby_items = list(/obj/item/organ/cyberimp/chest/nutriment)
 	happiness = 45
+
+/datum/mutation/ranching/chicken/rev_raptor
+	chicken_type = /mob/living/simple_animal/chicken/rev_raptor
+	egg_type = /obj/item/food/egg/rev_raptor
+	reagent_requirements = list(/datum/reagent/consumable/ethanol/cuba_libre)
+	nearby_items = list(/obj/item/assembly/flash/handheld)

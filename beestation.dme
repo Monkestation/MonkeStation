@@ -3871,6 +3871,7 @@
 #include "monkestation\code\modules\ranching\chickens\tier3\cockatrice.dm"
 #include "monkestation\code\modules\ranching\chickens\tier3\dreamsicle.dm"
 #include "monkestation\code\modules\ranching\chickens\tier3\phoenix.dm"
+#include "monkestation\code\modules\ranching\chickens\tier3\rev_raptor.dm"
 #include "monkestation\code\modules\ranching\chickens\tier3\robot.dm"
 #include "monkestation\code\modules\ranching\components\afterimage.dm"
 #include "monkestation\code\modules\ranching\mutations\_mutations.dm"

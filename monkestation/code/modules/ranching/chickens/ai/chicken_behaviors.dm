@@ -121,7 +121,6 @@
 /datum/ai_behavior/chicken_ability/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + living_pawn.cooldown_time
-
 	// real simple for now will expand this with unique abilities as need be
 	living_pawn.apply_status_effect(controller.blackboard[BB_CHICKEN_ABILITY])
 
@@ -184,3 +183,23 @@
 			pick_me |= target
 		controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(pick_me)
 	finish_action(controller, TRUE)
+
+/datum/ai_behavior/revolution
+
+/datum/ai_behavior/revolution/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/living_pawn = controller.pawn
+
+	var/list/viable_conversions = list()
+	for(var/mob/living/simple_animal/chicken/found_chicken in view(4, living_pawn.loc))
+		if(!istype(found_chicken, /mob/living/simple_animal/chicken/rev_raptor) || !istype(found_chicken, /mob/living/simple_animal/chicken/raptor))
+			viable_conversions |= found_chicken
+	var/mob/living/simple_animal/chicken/conversion_target = pick(viable_conversions)
+
+	SSmove_manager.hostile_jps_move(living_pawn, conversion_target, 2, minimum_distance = 1)
+
+	if(living_pawn.CanReach(conversion_target))
+		new /mob/living/simple_animal/chicken/raptor(conversion_target.loc)
+		qdel(conversion_target)
+		living_pawn.say("VIVA, BAWK!")
+		controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + 10 SECONDS
+		finish_action(controller, TRUE)
