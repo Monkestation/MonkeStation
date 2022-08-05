@@ -202,4 +202,28 @@
 		qdel(conversion_target)
 		living_pawn.say("VIVA, BAWK!")
 		controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + 10 SECONDS
+		SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
+		finish_action(controller, TRUE)
+
+/datum/ai_behavior/eat_ground_food
+
+/datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+
+	if(living_pawn.current_feed_amount > 3) // so no vomit
+		finish_action(controller, TRUE)
+
+	var/list/floor_foods = list()
+	for(var/obj/item/food/food_item in view(CHICKEN_ENEMY_VISION, living_pawn.loc))
+		floor_foods |= food_item
+
+	var/obj/item/food/chosen_one = pick(floor_foods)
+
+	SSmove_manager.hostile_jps_move(living_pawn, chosen_one, 2, minimum_distance = 1)
+
+	if(living_pawn.CanReach(chosen_one))
+		living_pawn.feed_food(chosen_one)
+		SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
+		finish_action(controller, TRUE)
+	if(!chosen_one)
 		finish_action(controller, TRUE)

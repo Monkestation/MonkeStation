@@ -167,6 +167,8 @@
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
+	if(DT_PROB(10, delta_time))
+		queue_behavior(/datum/ai_behavior/eat_ground_food)
 	if(blackboard[BB_CHICKEN_SPECALITY_ABILITY] && DT_PROB(5, delta_time) && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
 		// this will be expanded in the future its just easier to leave it like this now
 		switch(blackboard[BB_CHICKEN_SPECALITY_ABILITY])

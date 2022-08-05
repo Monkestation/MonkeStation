@@ -161,30 +161,7 @@
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
 		if(!stat && current_feed_amount <= 3 )
-			for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
-				if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
-					happiness += happy_chems[reagent] * reagent.volume
-					max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
-				if(!(reagent in consumed_reagents))
-					consumed_reagents.Add(reagent)
-
-			if(!(given_item in consumed_food))
-				consumed_food.Add(given_item)
-
-			if(given_item.type in liked_foods && max_happiness_per_generation >= 10)
-				happiness += 10
-				max_happiness_per_generation -= 10
-
-			var/obj/item/food/placeholder_food_item = given_item
-			for(var/food_type in placeholder_food_item.foodtypes)
-				if(food_type in disliked_food_types)
-					happiness -= 10
-			var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
-			user.visible_message(feedmsg)
-			qdel(given_item)
-			eggs_left += rand(0, 2)
-			current_feed_amount ++
-			total_times_eaten ++
+			feed_food(given_item, user)
 		else
 			var/turf/vomited_turf = get_turf(src)
 			vomited_turf.add_vomit_floor(src, VOMIT_TOXIC)
@@ -193,6 +170,35 @@
 			current_feed_amount -= 3
 	else
 		..()
+
+/mob/living/simple_animal/chicken/proc/feed_food(obj/item/given_item, mob/user)
+	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
+		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
+			happiness += happy_chems[reagent] * reagent.volume
+			max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
+		if(!(reagent in consumed_reagents))
+			consumed_reagents.Add(reagent)
+
+	if(!(given_item in consumed_food))
+		consumed_food.Add(given_item)
+
+	if(given_item.type in liked_foods && max_happiness_per_generation >= 10)
+		happiness += 10
+		max_happiness_per_generation -= 10
+
+	var/obj/item/food/placeholder_food_item = given_item
+	for(var/food_type in placeholder_food_item.foodtypes)
+		if(food_type in disliked_food_types)
+			happiness -= 10
+	if(user)
+		var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
+		user.visible_message(feedmsg)
+
+	qdel(given_item)
+	eggs_left += rand(0, 2)
+	current_feed_amount ++
+	total_times_eaten ++
+
 
 /mob/living/simple_animal/chicken/Life()
 	. =..()
