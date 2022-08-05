@@ -63,6 +63,7 @@
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
+			new_chicken.age += rand(1,10) //add a bit of age to each chicken causing staggered deaths
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/glass))
 				for(var/list_item in glass_egg_reagent)
 					new_chicken.glass_egg_reagents.Add(list_item)
