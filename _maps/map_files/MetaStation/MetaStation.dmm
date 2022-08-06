@@ -17278,6 +17278,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
 "bhS" = (
@@ -17298,11 +17301,6 @@
 /turf/closed/wall/r_wall,
 /area/engine/break_room)
 "bhU" = (
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -17310,6 +17308,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/microwave,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bhV" = (
@@ -18336,6 +18335,15 @@
 /area/engine/break_room)
 "blp" = (
 /obj/structure/table/glass,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "blr" = (
@@ -19408,12 +19416,19 @@
 	id = "engiserv";
 	name = "Engineering Services Shutter"
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/storage_shared)
 "bpi" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
 /turf/closed/wall/r_wall,
 /area/engine/storage_shared)
 "bpn" = (
@@ -45339,7 +45354,8 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/contraband/clown{
-	pixel_x = 32
+	pixel_x = 32;
+	layer = 3.4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -47015,6 +47031,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"dNu" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/closed/wall/r_wall,
+/area/engine/storage_shared)
 "dNx" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "xeno_airlock_exterior";
@@ -48162,6 +48185,10 @@
 /area/maintenance/starboard)
 "exJ" = (
 /obj/machinery/vending/coffee,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "eys" = (
@@ -55246,6 +55273,7 @@
 "iHl" = (
 /obj/machinery/vending/tool,
 /obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "iHF" = (
@@ -63990,6 +64018,9 @@
 /obj/item/lightreplacer{
 	pixel_y = 7
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "nAM" = (
@@ -68660,6 +68691,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"qsp" = (
+/obj/item/storage/secure/safe,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "qsO" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -119877,7 +119912,7 @@ byN
 byN
 byN
 byN
-byN
+qsp
 qPI
 byN
 byN
@@ -122176,7 +122211,7 @@ bhW
 kNT
 bjL
 bnb
-owR
+dNu
 exJ
 njX
 qdT
