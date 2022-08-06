@@ -219,7 +219,7 @@
 	if(floor_foods.len)
 		var/obj/item/food/chosen_one = pick(floor_foods)
 
-		SSmove_manager.hostile_jps_move(living_pawn, chosen_one, 2, minimum_distance = 1)
+		SSmove_manager.move_to(living_pawn, chosen_one, 1, 3)
 
 		if(living_pawn.CanReach(chosen_one))
 			living_pawn.feed_food(chosen_one)
