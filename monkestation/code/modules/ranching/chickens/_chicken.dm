@@ -224,13 +224,11 @@
 				if (ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER])
 					if(Friends[who] > Friends[ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER]]) // following you bby
 						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
-						AIStatus = AI_STATUS_OFF
-						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 0)
+						ai_controller.queue_behavior(/datum/ai_behavior/follow_leader)
 				else
 					if (Friends[who] >= CHICKEN_FRIENDSHIP_FOLLOW)
 						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
-						AIStatus = AI_STATUS_OFF
-						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 0)
+						ai_controller.queue_behavior(/datum/ai_behavior/follow_leader)
 
 			else if (findtext(phrase, "stop"))
 				ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
@@ -243,16 +241,14 @@
 
 			else if (findtext(phrase, "attack"))
 				if (Friends[who] >= CHICKEN_FRIENDSHIP_ATTACK)
-					for (var/mob/living/L in view(7,src)-list(src,who))
-						if (findtext(phrase, lowertext(L.name)))
-							if (istype(L, /mob/living/simple_animal/chicken))
+					for (var/mob/living/target in view(7,src)-list(src,who))
+						if (findtext(phrase, lowertext(target.name)))
+							if (istype(target, /mob/living/simple_animal/chicken))
 								return
-							else if((!Friends[L] || Friends[L] < 1))
-								if(AIStatus == AI_STATUS_OFF)
-									AIStatus = AI_STATUS_ON
+							else if((!Friends[target] || Friends[target] < 1))
+								if(ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER])
 									ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = null
-									SSmove_manager.stop_looping(src)
-								ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = L
+								ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = target
 						break
 		speech_buffer = list()
 

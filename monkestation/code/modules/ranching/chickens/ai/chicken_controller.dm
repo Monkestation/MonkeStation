@@ -150,7 +150,7 @@
 /datum/ai_controller/chicken/proc/on_hitby(datum/source, atom/movable/movable_hitter, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	SIGNAL_HANDLER
 	if(istype(movable_hitter, /obj/item))
-		var/mob/living/simple_mob/chicken/living_pawn = pawn
+		var/mob/living/simple_animal/chicken/living_pawn = pawn
 		var/obj/item/hitby_item = movable_hitter
 		var/mob/thrown_by = hitby_item.thrownby?.resolve()
 		var/mob/living/carbon/human/human_target = thrown_by

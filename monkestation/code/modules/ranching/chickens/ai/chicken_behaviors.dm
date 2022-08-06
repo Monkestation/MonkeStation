@@ -229,3 +229,21 @@
 			finish_action(controller, TRUE)
 	else
 		finish_action(controller, TRUE)
+
+
+/datum/ai_behavior/follow_leader
+
+/datum/ai_behavior/follow_leader/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/living_pawn = controller.pawn
+	var/mob/living/target = controller.blackboard[BB_CHICKEN_CURRENT_LEADER]
+
+	if(controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET]) // they care more about attacking right now
+		finish_action(controller, TRUE)
+	if(target)
+		var/step_timer = 0
+		if(step_timer >= 5)
+			step_to(living_pawn, target,1)
+			step_timer = 0
+		step_timer ++
+	else
+		finish_action(controller, TRUE)
