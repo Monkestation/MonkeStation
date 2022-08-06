@@ -72483,7 +72483,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = engiserv;
+	id = "engiserv";
 	name = "Engineering Services Shutter"
 	},
 /turf/open/floor/plating,
