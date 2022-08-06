@@ -225,12 +225,12 @@
 					if(Friends[who] > Friends[ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER]]) // following you bby
 						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
 						AIStatus = AI_STATUS_OFF
-						SSmove_manager.move_to(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 1, 3)
+						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 2)
 				else
 					if (Friends[who] >= CHICKEN_FRIENDSHIP_FOLLOW)
 						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
 						AIStatus = AI_STATUS_OFF
-						SSmove_manager.move_to(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 1, 3)
+						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 2)
 
 			else if (findtext(phrase, "stop"))
 				ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
