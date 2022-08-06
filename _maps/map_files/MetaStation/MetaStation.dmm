@@ -17278,9 +17278,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/loading_area{
+/obj/structure/railing{
 	dir = 8
 	},
+/obj/effect/turf_decal/arrows,
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
 "bhS" = (
@@ -17308,7 +17309,9 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/microwave,
+/obj/machinery/microwave{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bhV" = (
@@ -19405,6 +19408,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/structure/railing{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -22736,14 +22742,14 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bCh" = (
-/obj/structure/chair{
-	dir = 8
-	},
 /obj/effect/landmark/start/atmospheric_technician,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/chair/office/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark/corner{
@@ -24121,6 +24127,10 @@
 /obj/structure/sign/departments/minsky/engineering/telecommmunications{
 	pixel_y = -32
 	},
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bIG" = (
@@ -25168,6 +25178,9 @@
 /obj/structure/dresser,
 /obj/machinery/newscaster{
 	pixel_y = 32
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -27156,17 +27169,17 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bRP" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -23
-	},
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/kitchen";
 	name = "Kitchen APC";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
-/obj/machinery/deepfryer,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "bRQ" = (
@@ -45350,9 +45363,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
 "dim" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/structure/sign/poster/contraband/clown{
 	pixel_x = 32;
 	layer = 3.4
@@ -46721,6 +46731,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
 "dEC" = (
@@ -46740,6 +46753,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/railing{
 	dir = 9
 	},
 /turf/open/floor/plasteel,
@@ -50907,6 +50923,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"fYO" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/kitchen)
 "fZi" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -54927,8 +54949,14 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
 "iuU" = (
-/obj/item/folder/yellow,
-/obj/item/pen,
+/obj/item/folder/yellow{
+	pixel_y = -8;
+	pixel_x = 4
+	},
+/obj/item/pen{
+	pixel_y = -8;
+	pixel_x = 4
+	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/westright{
@@ -55139,6 +55167,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -63972,6 +64004,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"nzA" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/plasteel,
+/area/hallway/primary/starboard)
 "nzR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/template_noop,
@@ -64021,6 +64061,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/item/tank/internals/oxygen/yellow,
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
 "nAM" = (
@@ -72924,7 +72965,6 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
 	},
@@ -73280,6 +73320,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -76751,11 +76794,19 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/table/reinforced,
-/obj/item/folder,
+/obj/item/folder{
+	pixel_y = -2;
+	pixel_x = 7
+	},
 /obj/machinery/button/door{
 	id = "engiserv";
 	name = "Engineering Service Shutter";
-	pixel_y = -26
+	pixel_y = -24;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/mug/cocoa{
+	pixel_y = 9;
+	pixel_x = -7
 	},
 /turf/open/floor/plasteel/dark/corner{
 	dir = 8
@@ -78086,6 +78137,9 @@
 "wnf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/corner,
 /area/hallway/primary/starboard)
 "wnW" = (
@@ -115801,7 +115855,7 @@ lWr
 bKh
 bLK
 lJD
-bOU
+fYO
 bQB
 bRS
 oub
@@ -120927,7 +120981,7 @@ wxT
 xYe
 bmW
 bpe
-bry
+nzA
 bpg
 tul
 bry
