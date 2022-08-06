@@ -113,6 +113,12 @@
 /mob/proc/is_holding(obj/item/I)
 	return get_held_index_of_item(I)
 
+///Find number of held items, multihand compatible
+/mob/proc/get_num_held_items()
+	. = 0
+	for(var/i in 1 to held_items.len)
+		if(held_items[i])
+			.++
 
 //Checks if we're holding an item of type: typepath
 /mob/proc/is_holding_item_of_type(typepath)

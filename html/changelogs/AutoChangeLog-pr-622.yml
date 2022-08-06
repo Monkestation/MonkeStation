@@ -1,0 +1,4 @@
+author: Xkeeper0
+delete-after: true
+changes:
+  - bugfix: you can now fix/construct APCs without admin intervention

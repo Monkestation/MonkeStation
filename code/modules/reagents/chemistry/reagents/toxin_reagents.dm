@@ -600,16 +600,33 @@
 
 /datum/reagent/toxin/sulfonal
 	name = "Sulfonal"
-	description = "A stealthy poison that deals minor toxin damage and eventually puts the target to sleep."
+	description = "A stealthy poison that deals minor toxin damage and eventually puts the target to sleep. May cause side effects in high dosages."
 	silent_toxin = TRUE
 	reagent_state = LIQUID
 	color = "#7DC3A0"
-	metabolization_rate = 0.125 * REAGENTS_METABOLISM
+	overdose_threshold = 8 //Based off the LDLo of Sulfonmethane on a 60kg human. 8 grams would be the lethal dosage, so I'm considering that 8u
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 
+//MonkeStation Edit: Sulfonal Nerf/Changes
+/datum/reagent/toxin/sulfonal/overdose_process(mob/living/M)
+
+	//Side effects of Sulfonmethane/Sulfonal include dizziness, abnormal sensation and difficulties breathing.
+
+	if(HAS_TRAIT(M, TRAIT_NOBREATH))
+		return
+	if(iscarbon(M) && prob(33))
+		var/mob/living/carbon/affected = M
+		affected.adjustOxyLoss(2, 0)
+		affected.dizziness += 2
+		affected.losebreath += 1
+		if(prob(20))
+			affected.emote("gasp")
+
 /datum/reagent/toxin/sulfonal/on_mob_life(mob/living/carbon/M)
-	if(current_cycle >= 22)
-		M.Sleeping(40, 0)
+	if(current_cycle >= 22 && prob(50))
+		M.Sleeping(2 SECONDS, 0)
+	M.dizziness += 1
 	return ..()
 
 /datum/reagent/toxin/amanitin

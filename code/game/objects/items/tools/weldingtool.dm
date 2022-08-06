@@ -110,9 +110,12 @@
 	qdel(src)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
-	target.add_overlay(GLOB.welding_sparks)
-	. = ..()
-	target.cut_overlays(GLOB.welding_sparks)
+	if(isturf(target))
+		target.add_overlay(GLOB.welding_sparks)
+		. = ..()
+		target.cut_overlays(GLOB.welding_sparks)
+	else
+		. = ..()
 
 
 /obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)

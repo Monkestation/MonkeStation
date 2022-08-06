@@ -66,7 +66,6 @@
 	if(..())
 		return TRUE
 	. = TRUE
-
 	if(!opened)
 		if(obj_flags & EMAGGED)
 			balloon_alert(user, "the interface is broken!")

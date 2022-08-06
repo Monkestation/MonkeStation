@@ -381,7 +381,6 @@
 	},
 /area/crew_quarters/bar)
 "pq" = (
-/obj/structure/closet/crate/wooden/toy,
 /obj/item/lipstick/random,
 /obj/item/clothing/gloves/color/rainbow,
 /obj/effect/turf_decal/tile/neutral{
@@ -394,6 +393,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "pr" = (

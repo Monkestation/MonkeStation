@@ -28,11 +28,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	message_admins("[key_name_admin(src)] has started answering [ADMIN_LOOKUPFLW(M)]'s prayer.")
+	message_admins("[key_name_admin(src)] has started sending [ADMIN_LOOKUPFLW(M)] a subtle message.")
 	var/msg = capped_input(usr, "Message:", "Subtle PM to [M.key]")
 
 	if(!msg)
-		message_admins("[key_name_admin(src)] decided not to answer [ADMIN_LOOKUPFLW(M)]'s prayer")
+		message_admins("[key_name_admin(src)] did not send [ADMIN_LOOKUPFLW(M)] a subtle message.")
 		return
 	if(usr)
 		if (usr.client)
@@ -69,10 +69,10 @@
 		if(!sender)
 			return
 
-	message_admins("[key_name_admin(src)] has started answering [key_name_admin(H)]'s [sender] request.")
+	message_admins("[key_name_admin(src)] has started sending [key_name_admin(H)] a [sender] headset message.")
 	var/input = capped_input(usr, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from [sender]")
 	if(!input)
-		message_admins("[key_name_admin(src)] decided not to answer [key_name_admin(H)]'s [sender] request.")
+		message_admins("[key_name_admin(src)] cancelled their headset message to [key_name_admin(H)]")
 		return
 
 	log_directed_talk(mob, H, input, LOG_ADMIN, "reply")
