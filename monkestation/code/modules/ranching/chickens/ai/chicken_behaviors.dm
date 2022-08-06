@@ -241,6 +241,5 @@
 		finish_action(controller, TRUE)
 	if(target)
 		step_to(living_pawn, target,1)
-		sleep(3)
 	else
 		finish_action(controller, TRUE)
