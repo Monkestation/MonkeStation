@@ -209,21 +209,23 @@
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-
+	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 60 SECONDS
 	if(living_pawn.current_feed_amount > 3) // so no vomit
 		finish_action(controller, TRUE)
 
 	var/list/floor_foods = list()
 	for(var/obj/item/food/food_item in view(CHICKEN_ENEMY_VISION, living_pawn.loc))
 		floor_foods |= food_item
+	if(floor_foods.len)
+		var/obj/item/food/chosen_one = pick(floor_foods)
 
-	var/obj/item/food/chosen_one = pick(floor_foods)
+		SSmove_manager.hostile_jps_move(living_pawn, chosen_one, 2, minimum_distance = 1)
 
-	SSmove_manager.hostile_jps_move(living_pawn, chosen_one, 2, minimum_distance = 1)
-
-	if(living_pawn.CanReach(chosen_one))
-		living_pawn.feed_food(chosen_one)
-		SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
-		finish_action(controller, TRUE)
-	if(!chosen_one)
+		if(living_pawn.CanReach(chosen_one))
+			living_pawn.feed_food(chosen_one)
+			SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
+			finish_action(controller, TRUE)
+		if(!chosen_one)
+			finish_action(controller, TRUE)
+	else
 		finish_action(controller, TRUE)

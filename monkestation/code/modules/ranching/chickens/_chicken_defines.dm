@@ -81,6 +81,10 @@
 	var/list/glass_egg_reagents = list()
 	///Stone Chicken Exclusive: ore type for eggs
 	var/obj/item/stack/ore/production_type = null
+	///list of all friends will not attack them and can be ordered around by them if high enough
+	var/list/Friends = list()
+	/// Last phrase said near it and person who said it
+	var/list/speech_buffer = list()
 
 #undef DEFAULT_CHICKEN_ABILITY_COOLDOWN
 
@@ -101,3 +105,5 @@
 	var/obj/item/stack/ore/production_type = null
 	///list of picked mutations should only ever be one
 	var/list/possible_mutations = list()
+	///list of all friends will not attack them and can be ordered around by them if high enough
+	var/list/Friends = list()

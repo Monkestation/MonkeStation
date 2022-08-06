@@ -35,3 +35,8 @@
 #define DEFAULT_HONK_CD 30 SECONDS
 // Chicken is a rev
 #define CHICKEN_REV "rev_chicken"
+
+// friendship follow threshold
+#define CHICKEN_FRIENDSHIP_FOLLOW 10
+// friendship attack threshold
+#define CHICKEN_FRIENDSHIP_ATTACK 20

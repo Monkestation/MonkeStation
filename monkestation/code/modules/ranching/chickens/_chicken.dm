@@ -40,14 +40,8 @@
 	var/list/glass_egg_reagent = list()
 	///Stone Chicken Exclusive: what ore type is in the eggs?
 	var/obj/item/stack/ore/production_type = null
-	///List of all petters, added to friend list of raptor
+	/// list of friends inherited by parent
 	var/list/friends = list()
-
-/mob/living/simple_animal/chick/attack_hand(mob/living/carbon/human/user)
-	..()
-	if(user.a_intent == "help")
-		if(!(user in friends))
-			friends.Add(user)
 
 /mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
@@ -63,6 +57,7 @@
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
+			new_chicken.Friends = src.friends
 			new_chicken.age += rand(1,10) //add a bit of age to each chicken causing staggered deaths
 			if(istype(new_chicken, /mob/living/simple_animal/chicken/glass))
 				for(var/list_item in glass_egg_reagent)
@@ -150,18 +145,26 @@
 			name = "[breed_name] Hen"
 
 /mob/living/simple_animal/chicken/death(gibbed)
+	Friends = null
 	GLOB.total_chickens--
 	..()
 
 /mob/living/simple_animal/chicken/Destroy()
+	Friends = null
 	if(stat != DEAD)
 		GLOB.total_chickens--
 	return ..()
+
+/mob/living/simple_animal/chicken/attack_hand(mob/living/carbon/human/user)
+	..()
+	if(user.a_intent == "help")
+		set_friendship(user, 0.1)
 
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
 		if(!stat && current_feed_amount <= 3 )
 			feed_food(given_item, user)
+			set_friendship(user, 1)
 		else
 			var/turf/vomited_turf = get_turf(src)
 			vomited_turf.add_vomit_floor(src, VOMIT_TOXIC)
@@ -170,6 +173,11 @@
 			current_feed_amount -= 3
 	else
 		..()
+
+/mob/living/simple_animal/chicken/proc/set_friendship(new_friend, amount = 1)
+	if(!Friends[new_friend])
+		Friends[new_friend] = 0
+	Friends[new_friend] += amount
 
 /mob/living/simple_animal/chicken/proc/feed_food(obj/item/given_item, mob/user)
 	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
@@ -199,11 +207,61 @@
 	current_feed_amount ++
 	total_times_eaten ++
 
+/mob/living/simple_animal/chicken/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
+	. = ..()
+	if(speaker != src && !radio_freq && !stat)
+		if (speaker in Friends)
+			speech_buffer = list()
+			speech_buffer += speaker
+			speech_buffer += lowertext(html_decode(message))
+
+/mob/living/simple_animal/chicken/proc/handle_speech()
+	if (speech_buffer.len > 0)
+		var/who = speech_buffer[1] // Who said it?
+		var/phrase = speech_buffer[2] // What did they say?
+		if (findtext(phrase, "chickens")) // Talking to us
+			if(findtext(phrase, "follow"))
+				if (ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER])
+					if(Friends[who] > Friends[ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER]]) // following you bby
+						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
+						AIStatus = AI_STATUS_OFF
+						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 2)
+				else
+					if (Friends[who] >= CHICKEN_FRIENDSHIP_FOLLOW)
+						ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = who
+						AIStatus = AI_STATUS_OFF
+						SSmove_manager.hostile_jps_move(src, ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER], 3, minimum_distance = 2)
+
+			else if (findtext(phrase, "stop"))
+				ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = null
+
+			else if (findtext(phrase, "stay"))
+				if(ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] == who)
+					AIStatus = AI_STATUS_ON
+					ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = null
+					SSmove_manager.stop_looping(src)
+
+			else if (findtext(phrase, "attack"))
+				if (Friends[who] >= CHICKEN_FRIENDSHIP_ATTACK)
+					for (var/mob/living/L in view(7,src)-list(src,who))
+						if (findtext(phrase, lowertext(L.name)))
+							if (istype(L, /mob/living/simple_animal/chicken))
+								return
+							else if((!Friends[L] || Friends[L] < 1))
+								if(AIStatus == AI_STATUS_OFF)
+									AIStatus = AI_STATUS_ON
+									ai_controller.blackboard[BB_CHICKEN_CURRENT_LEADER] = null
+									SSmove_manager.stop_looping(src)
+								ai_controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = L
+						break
+		speech_buffer = list()
 
 /mob/living/simple_animal/chicken/Life()
 	. =..()
 	if(!.)
 		return
+
+	handle_speech()
 
 	if(COOLDOWN_FINISHED(src, age_cooldown))
 		COOLDOWN_START(src, age_cooldown, age_speed)
@@ -269,6 +327,7 @@
 			else
 				layed_egg = new egg_type(get_turf(src))
 
+			layed_egg.Friends = src.Friends
 			layed_egg.layer_hen_type = src.chicken_type
 			layed_egg.happiness = src.happiness
 			layed_egg.consumed_food = src.consumed_food
