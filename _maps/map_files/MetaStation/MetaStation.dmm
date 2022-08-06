@@ -17309,9 +17309,6 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bhV" = (
@@ -33692,7 +33689,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "cnV" = (
@@ -40200,6 +40196,7 @@
 /area/science/robotics/lab)
 "cIM" = (
 /obj/effect/turf_decal/delivery,
+/mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cIN" = (
