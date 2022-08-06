@@ -8,7 +8,7 @@
 	movedelay = 1
 	var/rotation = 0
 
-/obj/vehicle/ridden/Initialize(mapload)
+/obj/vehicle/ridden/monkey_ball/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/riding_component = LoadComponent(/datum/component/riding)
 	riding_component.vehicle_move_delay = movedelay
