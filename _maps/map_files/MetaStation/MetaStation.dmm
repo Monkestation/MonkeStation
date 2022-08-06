@@ -38311,17 +38311,17 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cCn" = (
-/turf/closed/wall/r_wall,
-/area/science/robotics/mechbay)
 "cCo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics_shutters";
 	name = "robotics shutters"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plating,
-/area/science/robotics/mechbay)
+/area/science/robotics/lab)
 "cCq" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics/lab)
@@ -38616,6 +38616,9 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics_shutters";
 	name = "robotics shutters"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
@@ -38967,19 +38970,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"cEi" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "cEj" = (
 /obj/structure/table/reinforced,
 /obj/item/pen,
@@ -39000,6 +38990,9 @@
 	name = "robotics shutters"
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cEk" = (
@@ -39009,6 +39002,9 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -39744,10 +39740,13 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cGZ" = (
-/obj/effect/spawner/structure/window,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cHb" = (
@@ -40132,9 +40131,6 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/primary/aft)
-"cIH" = (
-/turf/closed/wall/r_wall,
-/area/hallway/primary/aft)
 "cII" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
@@ -40217,7 +40213,10 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cIP" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cIS" = (
@@ -52395,6 +52394,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "gXM" = (
@@ -61368,8 +61370,11 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plasteel,
-/area/science/robotics/mechbay)
+/area/science/robotics/lab)
 "mgi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -75337,6 +75342,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -109623,14 +109631,14 @@ cxC
 cvH
 wwX
 cvH
-cvH
+cDi
 cqv
-cEi
+cpb
 cCq
 cCq
 cCq
 cCq
-cIH
+cCq
 cCq
 cCq
 inW
@@ -109880,7 +109888,7 @@ cyq
 czi
 shT
 cBg
-cCn
+cCq
 cDa
 cEj
 cCq
@@ -110651,7 +110659,7 @@ cys
 czk
 cAo
 cBi
-cCn
+cCq
 cDd
 jyE
 cFf
@@ -112457,7 +112465,7 @@ sHY
 dVZ
 cHb
 xCL
-cwN
+cHb
 wqH
 eno
 iWK
