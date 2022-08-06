@@ -20846,9 +20846,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/mineral/copper{
-	amount = 5
-	},
+/obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
 "bvi" = (
@@ -20858,6 +20856,9 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/light,
+/obj/item/stack/sheet/mineral/copper{
+	amount = 5
+	},
 /turf/open/floor/plasteel/dark/corner,
 /area/engine/storage_shared)
 "bvj" = (
@@ -34410,10 +34411,7 @@
 /turf/open/floor/plating,
 /area/science/lab)
 "cqx" = (
-/obj/machinery/cell_charger{
-	req_access_txt = nulll;
-	req_one_access_txt = null
-	},
+/obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high{
 	charge = 100;
 	maxcharge = 15000
@@ -54904,7 +54902,9 @@
 /obj/item/pen,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/westright,
+/obj/machinery/door/window/westright{
+	name = "Engineerring Service Desk"
+	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engiserv";
 	name = "Engineering Services Shutter"
