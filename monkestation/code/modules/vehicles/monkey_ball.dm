@@ -23,11 +23,8 @@
 	return ..()
 
 /obj/vehicle/ridden/monkey_ball/Moved()
-	if(dir == NORTH || dir == WEST)
-		rotation -= 25
-	else
-		rotation += 25
-	animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = 1, easing = LINEAR_EASING)
+	rotation += (dir == NORTH || dir == WEST) ? -30 : 30
+	animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = movedelay, easing = LINEAR_EASING)
 	. = ..()
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)

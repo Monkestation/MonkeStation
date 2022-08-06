@@ -32,7 +32,9 @@
 
 	playsound(current_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
 
-	for(var/i in 1 to 6)
-		new /mob/living/carbon/monkey/angry(current_turf, FALSE)
+	for(var/i in 1 to rand(5,7))
+		var/mob/living/carbon/monkey/angry/current_monkey = new(current_turf, FALSE)
+		current_monkey.Knockdown(2 SECONDS)
+		current_monkey.throw_at(get_edge_target_turf(current_monkey,pick(GLOB.alldirs)),rand(1,3),rand(1,3))
 
 	qdel(src)
