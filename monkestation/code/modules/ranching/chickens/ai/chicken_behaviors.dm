@@ -240,10 +240,7 @@
 	if(controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET]) // they care more about attacking right now
 		finish_action(controller, TRUE)
 	if(target)
-		var/step_timer = 0
-		if(step_timer >= 5)
-			step_to(living_pawn, target,1)
-			step_timer = 0
-		step_timer ++
+		step_to(living_pawn, target,1)
+		sleep(3)
 	else
 		finish_action(controller, TRUE)
