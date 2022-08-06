@@ -17,7 +17,6 @@
 	var/transfer_speed = 10
 	var/synth_speed = 5
 
-	var/power_mult = 1
 
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
@@ -149,17 +148,12 @@
 	flick("assembler-start", src)
 	icon_state = "assembler-running"
 
-	power_mult = parser.power_mult
-	idle_power_usage *= power_mult
-
 /obj/machinery/chem_assembler/proc/stop()
 	if (!current)
 		return
 	current = null
 	flick("assembler-stop", src)
 	icon_state = "assembler"
-
-	idle_power_usage = 200
 
 /obj/machinery/chem_assembler/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

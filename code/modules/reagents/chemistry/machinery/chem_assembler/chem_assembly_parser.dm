@@ -16,7 +16,6 @@
 
 	var/list/state
 
-	var/power_mult = 1
 
 /datum/chem_assembly_parser/New(S)
 	. = ..()
@@ -88,6 +87,4 @@
 			qdel(program[I][1])
 			program[I][1] = null
 		return error
-	for(var/ticker in program)
-		power_mult ++
 	return program[1][1]
