@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/knock/living_lube
 	action_background_icon_state = "bg_hive" //closest to a pink spell color we have
 	charge_max = 30 SECONDS
-	range = 6
+	range = 5
 	invocation = "AULIE HONKSIN FIERA"
 	invocation_type = "whisper"
 
