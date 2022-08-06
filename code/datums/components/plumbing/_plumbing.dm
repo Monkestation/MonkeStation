@@ -209,11 +209,30 @@
 		net.add_plumber(P, opposite_dir)
 
 ///has one pipe input that only takes, example is manual output pipe
-/datum/component/plumbing/simple_demand
+/datum/component/plumbing/demand/north
 	demand_connects = NORTH
+
+/datum/component/plumbing/demand/south
+	demand_connects = SOUTH
+
+/datum/component/plumbing/demand/east
+	demand_connects = EAST
+
+/datum/component/plumbing/demand/west
+	demand_connects = WEST
+
 ///has one pipe output that only supplies. example is liquid pump and manual input pipe
-/datum/component/plumbing/simple_supply
+/datum/component/plumbing/supply/north
 	supply_connects = NORTH
+
+/datum/component/plumbing/supply/south
+	supply_connects = SOUTH
+
+/datum/component/plumbing/supply/east
+	supply_connects = EAST
+
+/datum/component/plumbing/supply/west
+	supply_connects = WEST
 ///input and output, like a holding tank
 /datum/component/plumbing/tank
 	demand_connects = WEST

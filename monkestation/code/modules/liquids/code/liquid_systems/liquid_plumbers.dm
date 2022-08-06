@@ -47,7 +47,7 @@
 
 /obj/machinery/plumbing/liquid_input_pump/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/supply/south, bolt)
 
 /obj/machinery/plumbing/liquid_input_pump/update_icon_state()
 	. = ..()
@@ -196,7 +196,7 @@
 
 /obj/machinery/plumbing/liquid_output_pump/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/demand/south, bolt)
 
 /obj/machinery/plumbing/liquid_output_pump/update_icon_state()
 	. = ..()

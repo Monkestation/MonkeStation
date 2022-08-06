@@ -609,7 +609,16 @@
 
 
 //Medical
-
+/obj/item/circuitboard/machine/chem_assembler
+	name = "Chemical Assembler (Machine Board)"
+	icon_state = "medical"
+	build_path = /obj/machinery/chem_assembler
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/matter_bin = 4,
+		/obj/item/stock_parts/capacitor = 2,
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stack/sheet/glass = 1)
 
 /obj/item/circuitboard/machine/chem_dispenser
 	name = "chem dispenser (Machine Board)"

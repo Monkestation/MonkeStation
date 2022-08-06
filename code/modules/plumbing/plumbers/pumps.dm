@@ -23,7 +23,7 @@
 /obj/machinery/power/liquid_pump/Initialize(mapload)
 	. = ..()
 	create_reagents(volume)
-	AddComponent(/datum/component/plumbing/simple_supply, TRUE)
+	AddComponent(/datum/component/plumbing/supply/south, TRUE)
 
 /obj/machinery/power/liquid_pump/attackby(obj/item/W, mob/user, params)
 	if(!powered)

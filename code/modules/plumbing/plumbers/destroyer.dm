@@ -8,7 +8,7 @@
 
 /obj/machinery/plumbing/disposer/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/supply/south, bolt)
 
 /obj/machinery/plumbing/disposer/process(delta_time)
 	if(machine_stat & NOPOWER)

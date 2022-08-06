@@ -72,7 +72,7 @@
 
 /obj/machinery/plumbing/input/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/demand/south, bolt)
 
 ///We can fill beakers in here and everything. we dont inheret from input because it has nothing that we need
 /obj/machinery/plumbing/output
@@ -85,7 +85,7 @@
 
 /obj/machinery/plumbing/output/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/demand/south, bolt)
 
 /obj/machinery/plumbing/tank
 	name = "chemical tank"

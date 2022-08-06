@@ -54,7 +54,7 @@
 
 /obj/machinery/plumbing/synthesizer/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/supply/south, bolt)
 
 /obj/machinery/plumbing/synthesizer/process(delta_time)
 	if(machine_stat & NOPOWER || !reagent_id || !amount)

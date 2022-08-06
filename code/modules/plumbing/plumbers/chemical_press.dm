@@ -54,7 +54,7 @@
 /obj/machinery/plumbing/chemical_press/Initialize(mapload, bolt)
 	. = ..()
 	update_icon()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/demand/south, bolt, layer)
 
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()

@@ -252,7 +252,7 @@
 	return TRUE
 
 /obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
-	AddComponent(/datum/component/plumbing/simple_supply)
+	AddComponent(/datum/component/plumbing/supply/south)
 
 /obj/structure/reagent_dispensers/plumbed/storage
 	name = "stationairy storage tank"

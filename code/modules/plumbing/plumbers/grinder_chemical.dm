@@ -12,7 +12,7 @@
 
 /obj/machinery/plumbing/grinder_chemical/Initialize(mapload, bolt)
 	. = ..()
-	AddComponent(/datum/component/plumbing/simple_supply, bolt)
+	AddComponent(/datum/component/plumbing/supply/south, bolt)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
 	)
