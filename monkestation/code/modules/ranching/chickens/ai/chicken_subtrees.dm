@@ -12,7 +12,7 @@
 	if(length(enemies) || controller.blackboard[BB_CHICKEN_AGGRESSIVE]) //We have enemies or are pissed
 		var/list/valids = list()
 		for(var/mob/living/possible_enemy in view(CHICKEN_ENEMY_VISION, living_pawn))
-			if(possible_enemy == living_pawn || (!enemies[possible_enemy] && (!controller.blackboard[BB_CHICKEN_AGGRESSIVE] || HAS_AI_CONTROLLER_TYPE(possible_enemy, /datum/ai_controller/chicken)))) //Are they an enemy? (And do we even care?)
+			if(possible_enemy == living_pawn ||  !(living_pawn.Friends[human_target] >= CHICKEN_FRIENDSHIP_ATTACK) || (!enemies[possible_enemy] && (!controller.blackboard[BB_CHICKEN_AGGRESSIVE] || HAS_AI_CONTROLLER_TYPE(possible_enemy, /datum/ai_controller/chicken)))) //Are they an enemy? (And do we even care?)
 				continue
 			// Weighted list, so the closer they are the more likely they are to be chosen as the enemy
 			valids[possible_enemy] = CEILING(100 / (get_dist(living_pawn, possible_enemy) || 1), 1)
