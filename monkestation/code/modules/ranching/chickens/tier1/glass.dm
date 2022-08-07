@@ -8,3 +8,4 @@
 	name = "Glass Egg"
 	food_reagents = list()
 	max_volume = 5
+	icon_state = "glass"

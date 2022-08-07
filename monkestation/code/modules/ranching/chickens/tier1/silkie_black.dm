@@ -6,3 +6,4 @@
 
 /obj/item/food/egg/silkie_black
 	name = "Black Selkie Egg"
+	icon_state = "silkie_black"

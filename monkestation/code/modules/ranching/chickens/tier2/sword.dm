@@ -13,6 +13,7 @@
 
 /obj/item/food/egg/sword
 	name = "Gallant Egg"
+	icon_state = "sword"
 
 /obj/item/food/egg/sword/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()

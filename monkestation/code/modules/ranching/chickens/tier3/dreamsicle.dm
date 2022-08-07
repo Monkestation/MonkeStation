@@ -6,6 +6,7 @@
 
 /obj/item/food/egg/dreamsicle
 	name = "Dreamsicle Egg"
+	icon_state = "dreamsicle"
 
 /obj/item/food/egg/dreamsicle/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	to_chat(eater, "<span class='warning'>You start to feel a dreamsicle high coming on.</span>")

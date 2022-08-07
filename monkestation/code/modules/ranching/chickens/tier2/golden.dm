@@ -5,6 +5,7 @@
 
 /obj/item/food/egg/golden
 	name = "Golden Egg"
+	icon_state = "golden"
 
 /obj/item/food/egg/golden/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()

@@ -11,6 +11,7 @@
 
 /obj/item/food/egg/clown_sad
 	name = "Clown? Egg"
+	icon_state = "clown"
 
 /datum/status_effect/ranching/angry_honk
 	id = "pissed_sad_clown"

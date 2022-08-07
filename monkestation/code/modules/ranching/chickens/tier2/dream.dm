@@ -6,6 +6,7 @@
 
 /obj/item/food/egg/dream
 	name = "Dream Egg"
+	icon_state = "dream"
 
 /obj/item/food/egg/dream/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(DREAM_STATE)

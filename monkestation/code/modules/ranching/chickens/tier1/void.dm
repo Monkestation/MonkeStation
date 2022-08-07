@@ -6,6 +6,7 @@
 
 /obj/item/food/egg/void
 	name = "Void Egg"
+	icon_state = "void"
 
 /obj/item/food/egg/void/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(/datum/status_effect/ranching/void_egg)

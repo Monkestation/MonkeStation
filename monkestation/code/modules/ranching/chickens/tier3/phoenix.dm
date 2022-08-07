@@ -15,6 +15,7 @@
 
 /obj/item/food/egg/phoenix
 	name = "Burning Egg"
+	icon_state = "phoenix"
 
 /obj/item/food/egg/phoenix/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(/datum/status_effect/ranching/phoneix)

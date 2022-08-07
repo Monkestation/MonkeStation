@@ -15,6 +15,7 @@
 
 /obj/item/food/egg/wiznerd
 	name = "Bewitching Egg"
+	icon_state = "wiznerd"
 
 /obj/item/food/egg/wiznerd/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(WIZNERD_EGG)

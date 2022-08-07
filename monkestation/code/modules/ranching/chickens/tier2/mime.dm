@@ -5,6 +5,11 @@
 
 /obj/item/food/egg/mime
 	name = "Mime Egg"
+	icon_state = "mime"
+
+/obj/item/food/egg/mime/Initialize(mapload)
+	. = ..()
+	icon_state = "mime-[rand(1,3)]"
 
 /obj/item/food/egg/mime/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()

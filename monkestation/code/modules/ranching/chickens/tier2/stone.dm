@@ -7,6 +7,7 @@
 
 /obj/item/food/egg/stone
 	name = "Rocky Egg"
+	icon_state = "stone"
 
 /obj/item/food/egg/stone/attackby(obj/item/attacked_item, mob/user, params)
 	. = ..()

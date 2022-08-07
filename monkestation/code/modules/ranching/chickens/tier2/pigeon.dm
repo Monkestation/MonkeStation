@@ -23,7 +23,7 @@
 
 /obj/item/food/egg/pigeon
 	name = "Pigeon Egg"
-
+	icon_state = "pigeon"
 
 	///the radio inside the egg
 	var/obj/item/radio/pigeon/egg_radio = null

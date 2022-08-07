@@ -23,3 +23,4 @@
 
 /obj/item/food/egg/robot
 	name = "Robotic Egg"
+	icon_state = "robot"

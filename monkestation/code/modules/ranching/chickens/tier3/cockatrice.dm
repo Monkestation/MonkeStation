@@ -18,6 +18,7 @@
 
 /obj/item/food/egg/cockatrice
 	name = "Petrifying Egg"
+	icon_state = "cockatrice"
 
 /obj/item/food/egg/cockatrice/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()

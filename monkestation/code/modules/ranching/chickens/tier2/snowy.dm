@@ -7,6 +7,7 @@
 
 /obj/item/food/egg/snowy
 	name = "Snowy Egg"
+	icon_state = "snowy"
 
 
 /obj/item/food/egg/snowy/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)

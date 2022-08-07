@@ -15,3 +15,4 @@
 
 /obj/item/food/egg/rev_raptor
 	name = "Revolutionary Egg"
+	icon_state = "rev_raptor"

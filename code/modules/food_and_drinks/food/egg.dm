@@ -13,7 +13,7 @@
 /obj/item/food/egg
 	name = "egg"
 	desc = "An egg!"
-	icon_state = "egg"
+	icon_state = "chicken"
 	icon = 'monkestation/icons/obj/ranching/eggs.dmi'
 	food_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	microwaved_type = /obj/item/food/boiledegg

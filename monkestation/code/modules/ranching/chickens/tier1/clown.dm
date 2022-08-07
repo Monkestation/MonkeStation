@@ -12,6 +12,7 @@
 /obj/item/food/egg/clown
 	name = "Clown Egg?"
 	food_reagents = list(/datum/reagent/water = 50)
+	icon_state = "clown"
 
 /obj/item/food/egg/clown/attack_self(mob/user)
 	. = ..()
