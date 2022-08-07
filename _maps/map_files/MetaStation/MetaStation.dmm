@@ -70588,6 +70588,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "rxt" = (
