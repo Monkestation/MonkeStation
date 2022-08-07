@@ -59,7 +59,6 @@
 /obj/structure/low_wall/Initialize(mapload)
 	. = ..()
 	color = null //To remove the mapping preview color
-	AddElement(/datum/element/climbable)
 	set_material(plating_material)
 	if(wall_paint)
 		set_wall_paint(wall_paint)
@@ -119,7 +118,7 @@
 		var/obj/item/stack/sheet/my_sheet = weapon
 		if(my_sheet.try_install_window(user, src.loc, src))
 			return TRUE
-	if(!user.combat_mode && !(weapon.item_flags & ABSTRACT))
+	if(!user.a_intent == INTENT_HARM && !(weapon.item_flags & ABSTRACT))
 		if(user.transferItemToLoc(weapon, loc, silent = FALSE, user_click_modifiers = modifiers))
 			return TRUE
 	return ..()
@@ -144,7 +143,7 @@
 				delay = 4 SECONDS
 				cost = 12
 
-			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
+			return list("mode" = RCD_WINDOWGRILLE, "delay" = delay, "cost" = cost)
 	return FALSE
 
 /obj/structure/low_wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)

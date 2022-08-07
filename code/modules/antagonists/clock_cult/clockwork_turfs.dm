@@ -48,7 +48,7 @@
 	girder_type = /obj/structure/destructible/clockwork/wall_gear
 	baseturfs = /turf/open/floor/clockwork/reebe
 	var/obj/effect/clockwork/overlay/wall/realappearence
-	var/d_state = INTACT
+	d_state = INTACT
 	flags_1 = NOJAUNT_1
 
 /turf/closed/wall/clockwork/Initialize(mapload)
@@ -495,7 +495,6 @@
 	icon_state = "ratvargrille"
 	name = "cog grille"
 	desc = "A strangely-shaped grille."
-	broken_type = /obj/structure/grille/ratvar/broken
 
 /obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
@@ -524,8 +523,6 @@
 	rods_type = /obj/item/stack/tile/brass
 	rods_amount = 1
 	rods_broken = FALSE
-	grille_type = /obj/structure/grille/ratvar
-	broken_type = null
 
 //=================================================
 //Ratvar Window: A transparent window

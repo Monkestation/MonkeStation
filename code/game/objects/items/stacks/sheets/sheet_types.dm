@@ -551,6 +551,8 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/runed_metal
 	novariants = TRUE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
+	materials = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/runedmetal
 
 /obj/item/stack/sheet/runed_metal/ratvar_act()
 	new /obj/item/stack/tile/brass(loc, amount)

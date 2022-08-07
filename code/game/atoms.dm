@@ -1577,6 +1577,30 @@
 			.[comp_mat] += material_comp[comp_mat]
 
 /**
+ * Fetches a list of all of the materials this object has of the desired type. Returns null if there is no valid materials of the type
+ *
+ * Arguments:
+ * - [mat_type][/datum/material]: The type of material we are checking for
+ * - exact: Whether to search for the _exact_ material type
+ * - mat_amount: The minimum required amount of material
+ */
+/atom/proc/has_material_type(datum/material/mat_type, exact=FALSE, mat_amount=0)
+	var/list/cached_materials = custom_materials
+	if(!length(cached_materials))
+		return null
+
+	var/materials_of_type
+	for(var/current_material in cached_materials)
+		if(cached_materials[current_material] < mat_amount)
+			continue
+		var/datum/material/material = GET_MATERIAL_REF(current_material)
+		if(exact ? material.type != current_material : !istype(material, mat_type))
+			continue
+		LAZYSET(materials_of_type, material, cached_materials[current_material])
+
+	return materials_of_type
+
+/**
   * Causes effects when the atom gets hit by a rust effect from heretics
   *
   * Override this if you want custom behaviour in whatever gets hit by the rust

@@ -67,9 +67,6 @@
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
 	base_icon_state = "clockwork_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
 	icon_state = "hierophant_wall_temp-0"
@@ -93,6 +90,3 @@
 	smoothing_flags = SMOOTH_BITMASK
 
 
-/turf/closed/wall/mineral/titanium/survival/pod
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_TITANIUM_WALLS, SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
-	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)

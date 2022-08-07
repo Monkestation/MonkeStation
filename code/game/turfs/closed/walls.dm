@@ -34,6 +34,10 @@
 	var/stripe_paint
 	/// Whether this wall is hard to deconstruct, like a reinforced plasteel wall. Dictated by material
 	var/hard_decon
+	var/sheet_type = /obj/item/stack/sheet/iron
+	var/sheet_amount = 2
+	var/girder_type = /obj/structure/girder
+
 	/// Deconstruction state, matters if the wall is hard to deconstruct (hard_decon)
 	var/d_state = INTACT
 	/// Whether this wall is rusted or not, to apply the rusted overlay
@@ -114,9 +118,9 @@
 			/obj/machinery/door/airlock,
 			/obj/structure/window/reinforced/fulltile,
 			/obj/structure/window/fulltile,
-			/obj/structure/window/reinforced/shuttle,
+			/obj/structure/window/shuttle,
 			/obj/machinery/door/poddoor,
-			/obj/structure/window/reinforced/plasma/fulltile,
+			/obj/structure/window/plasma/reinforced/fulltile,
 			/obj/structure/window/plasma/fulltile,
 			/obj/structure/low_wall
 			))
@@ -235,14 +239,15 @@
 
 	ScrapeAway()
 
-/turf/closed/wall/proc/break_wall(drop_mats = TRUE)
-	if(drop_mats)
-		drop_materials_used()
-	return new /obj/structure/girder(src, reinf_material, wall_paint, stripe_paint)
+/turf/closed/wall/proc/break_wall()
+	new sheet_type(src, sheet_amount)
+	if(girder_type)
+		return new girder_type(src)
 
 /turf/closed/wall/proc/devastate_wall()
-	drop_materials_used(TRUE)
-	new /obj/item/stack/sheet/iron(src)
+	new sheet_type(src, sheet_amount)
+	if(girder_type)
+		new /obj/item/stack/sheet/iron(src)
 
 /turf/closed/wall/proc/drop_materials_used(drop_reinf = FALSE)
 	var/datum/material/plating_mat_ref = GET_MATERIAL_REF(plating_material)

@@ -543,7 +543,6 @@
 	greyscale_config = /datum/greyscale_config/fulltile_reinforced_window
 	greyscale_colors = "#c162ec"
 	alpha = 180
-	state = RWINDOW_SECURE
 	max_integrity = 500
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
@@ -566,7 +565,6 @@
 	max_integrity = 150
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	state = RWINDOW_SECURE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
@@ -615,7 +613,6 @@
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
 	receive_ricochet_chance_mod = 1.2
-	damage_deflection = 11
 
 /obj/structure/window/shuttle/narsie_act()
 	add_atom_colour("#3C3434", FIXED_COLOUR_PRIORITY)
@@ -646,7 +643,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	explosion_block = 3
-	damage_deflection = 21 //The same as reinforced plasma windows.3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
 
 /obj/structure/window/plastitanium/unanchored

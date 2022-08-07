@@ -23,14 +23,6 @@
 	var/rods_amount = 2
 	var/rods_broken = TRUE
 
-/obj/structure/grille/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/atmos_sensitive, mapload)
-
-/obj/structure/grille/Destroy()
-	update_cable_icons_on_turf(get_turf(src))
-	return ..()
-
 /obj/structure/grille/update_appearance(updates)
 	if(QDELETED(src))
 		return
@@ -65,7 +57,7 @@
 				delay = 4 SECONDS
 				cost = 12
 
-			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
+			return list("mode" = RCD_WINDOWGRILLE, "delay" = delay, "cost" = cost)
 	return FALSE
 
 /obj/structure/grille/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -210,7 +202,6 @@
 /obj/structure/grille/proc/repair_grille()
 	if(broken)
 		set_density(TRUE)
-		integrity = max_integrity
 		broken = FALSE
 		rods_amount = 2
 		rods_broken = TRUE

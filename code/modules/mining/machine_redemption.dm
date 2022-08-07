@@ -81,7 +81,7 @@
 		var/list/stack_mats = O.get_material_composition(BREAKDOWN_FLAGS_ORM)
 		var/mats = stack_mats & mat_container.materials
 		var/amount = O.amount
-		mat_container.insert_item(O, ore_multiplier, breakdown_flags=BREAKDOWN_FLAGS_ORM) //insert it
+		mat_container.insert_item(O, sheet_per_ore, breakdown_flags=BREAKDOWN_FLAGS_ORM) //insert it
 		materials.silo_log(src, "smelted", amount, "someone", mats)
 		qdel(O)
 

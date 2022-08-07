@@ -48,6 +48,8 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	sheettype = "sandstone"
 	merge_type = /obj/item/stack/sheet/mineral/sandstone
 	walltype = /turf/closed/wall/mineral/sandstone
+	mats_per_unit = list(/datum/material/sandstone=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/sandstone
 
 /obj/item/stack/sheet/mineral/sandstone/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.sandstone_recipes
@@ -442,6 +444,8 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	throwforce = 2
 	grind_results = list(/datum/reagent/consumable/ice = 20)
 	merge_type = /obj/item/stack/sheet/mineral/snow
+	mats_per_unit = list(/datum/material/snow = MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/snow
 
 GLOBAL_LIST_INIT(snow_recipes, list ( \
 	new/datum/stack_recipe("Snow wall", /turf/closed/wall/mineral/snow, 5, one_per_turf = 1, on_floor = 1), \

@@ -443,10 +443,6 @@ canSmoothWith = list(
 	smoothing_groups = list(SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
 
-/obj/structure/falsewall/brass
-	name = "clockwork wall"
-	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	plating_material = /datum/material/brass
 
 /obj/structure/falsewall/brass/New(loc)
 	..()

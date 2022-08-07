@@ -199,3 +199,36 @@
 	wall_color = "#93662C"
 	wall_type = /turf/closed/wall/mineral/wood
 	false_wall_type = /obj/structure/falsewall/wood
+
+//And now for our lavaland dwelling friends, sand, but in stone form! Truly revolutionary.
+/datum/material/sandstone
+	name = "sandstone"
+	desc = "Bialtaakid 'ant taerif ma hdha."
+	color = "#B77D31"
+	greyscale_colors = "#B77D31"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/sandstone
+
+/datum/material/snow
+	name = "snow"
+	desc = "There's no business like snow business."
+	color = "#FFFFFF"
+	greyscale_colors = "#FFFFFF"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/snow
+
+/datum/material/runedmetal
+	name = "runed metal"
+	desc = "Mir'ntrath barhah Nar'sie."
+	color = "#3C3434"
+	greyscale_colors = "#3C3434"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/runed_metal
+
+/datum/material/bronze
+	name = "bronze"
+	desc = "Clock Cult? Never heard of it."
+	color = "#92661A"
+	greyscale_colors = "#92661A"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	//sheet_type = /obj/item/stack/sheet/bronze
