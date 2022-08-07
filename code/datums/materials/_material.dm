@@ -28,22 +28,6 @@ Simple datum which is instanced once per type and is used for every object of sa
 	///This is a modifier for integrity, and resembles the strength of the material
 	var/integrity_modifier = 1
 
-	///Icon for walls which are plated with this material
-	var/wall_greyscale_config = /datum/greyscale_config/solid_wall
-	///Icon for reinforced walls which are plated with this material
-	var/reinforced_wall_greyscale_config = /datum/greyscale_config/reinforced_solid_wall
-	/// Icon for painted stripes on the walls
-	var/wall_stripe_greyscale_config = /datum/greyscale_config/wall_stripe
-	/// Color of walls constructed with this material as their plating
-	var/wall_color
-	/// Type of the wall this material makes when its used as a plating, null means can't make a wall out of it.
-	var/wall_type = /turf/closed/wall
-	/// Type of the false wall this material will make when used as its plating
-	var/false_wall_type
-	/// If true, walls plated with this material that have a reinforcement, will be hard to deconstruct
-	var/hard_wall_decon = FALSE
-
-
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
 	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
@@ -51,12 +35,6 @@ Simple datum which is instanced once per type and is used for every object of sa
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
 			source.alpha = alpha
-
-	if(!wall_color)
-		wall_color = greyscale_colors
-
-	if(wall_type && !false_wall_type)
-		false_wall_type = /obj/structure/falsewall
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)

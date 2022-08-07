@@ -15,16 +15,13 @@ handles linking back and forth.
 	var/category
 	var/allow_standalone
 	var/local_size = INFINITY
-	///Flags used when converting inserted materials into their component materials.
-	var/breakdown_flags = NONE
 
-/datum/component/remote_materials/Initialize(category, mapload, allow_standalone = TRUE, force_connect = FALSE, breakdown_flags=NONE)
+/datum/component/remote_materials/Initialize(category, mapload, allow_standalone = TRUE, force_connect = FALSE)
 	if (!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.category = category
 	src.allow_standalone = allow_standalone
-	src.breakdown_flags = breakdown_flags
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
 	RegisterSignal(parent, COMSIG_MOVABLE_Z_CHANGED, .proc/check_z_disconnect)
@@ -73,7 +70,7 @@ handles linking back and forth.
 		/datum/material/plastic,
 		)
 
-	mat_container = parent.AddComponent(/datum/component/material_container, allowed_mats, local_size, allowed_types=/obj/item/stack, _breakdown_flags=breakdown_flags)
+	mat_container = parent.AddComponent(/datum/component/material_container, allowed_mats, local_size, allowed_types=/obj/item/stack)
 
 /datum/component/remote_materials/proc/set_local_size(size)
 	local_size = size
@@ -143,7 +140,7 @@ handles linking back and forth.
 			return COMPONENT_NO_AFTERATTACK
 
 	else if (silo && istype(I, /obj/item/stack))
-		if (silo.remote_attackby(parent, user, I, breakdown_flags))
+		if (silo.remote_attackby(parent, user, I))
 			return COMPONENT_NO_AFTERATTACK
 
 /datum/component/remote_materials/proc/on_hold()

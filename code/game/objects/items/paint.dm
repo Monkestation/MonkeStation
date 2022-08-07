@@ -90,13 +90,13 @@
 	var/newcolor = "#" + paint_color
 	target.add_atom_colour(newcolor, WASHABLE_COLOUR_PRIORITY)
 
-/obj/item/paint_removerr
+/obj/item/paint/paint_remover
 	gender =  PLURAL
 	name = "paint remover"
 	desc = "Used to remove color and stickers from surfaces and objects." //MonkeStation Edit: Sticker Removal
 	icon_state = "paint_neutral"
 
-/obj/item/paint_removerr/afterattack(atom/target, mob/user, proximity)
+/obj/item/paint/paint_remover/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
