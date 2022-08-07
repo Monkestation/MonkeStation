@@ -285,7 +285,7 @@
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
-	if((!stat && prob(3) && eggs_left > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
+	if((!stat && prob(10) && eggs_left > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
 		ready_to_lay = TRUE
 
 	if(ready_to_lay == TRUE)
@@ -344,8 +344,8 @@
 			stop_automated_movement = 0
 
 /obj/item/food/egg/process(delta_time)
-	amount_grown += rand(4,8) * delta_time
-	if(amount_grown >= 200)
+	amount_grown += rand(3,6) * delta_time
+	if(amount_grown >= 100)
 		pre_hatch()
 
 /obj/item/food/egg/proc/pre_hatch()
