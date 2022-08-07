@@ -143,7 +143,7 @@ canSmoothWith = list(
 			overlays += smoothed_stripe
 		var/neighbor_stripe = NONE
 		if(!neighbor_typecache)
-			neighbor_typecache = typecacheof(list(/obj/machinery/door/airlock, /obj/structure/window/reinforced/fulltile, /obj/structure/window/fulltile, /obj/structure/window/reinforced/shuttle, /obj/machinery/door/poddoor))
+			neighbor_typecache = typecacheof(list(/obj/machinery/door/airlock, /obj/structure/window/reinforced/fulltile, /obj/structure/window/fulltile, /obj/structure/window/shuttle, /obj/machinery/door/poddoor))
 		for(var/cardinal in GLOB.cardinals)
 			var/turf/step_turf = get_step(src, cardinal)
 			for(var/atom/movable/movable_thing as anything in step_turf)
@@ -204,6 +204,7 @@ canSmoothWith = list(
 			icon_state = "fwall_open"
 
 /obj/structure/falsewall/proc/ChangeToWall(delete = 1)
+	var/datum/material/plating_mat_ref = GET_MATERIAL_REF(plating_material)
 	var/turf/T = get_turf(src)
 	T.PlaceOnTop(plating_mat_ref.wall_type)
 	var/turf/closed/wall/placed_wall = T
@@ -445,7 +446,7 @@ canSmoothWith = list(
 /obj/structure/falsewall/brass
 	name = "clockwork wall"
 	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
-	plating_material = /datum/material/alloy/brass
+	plating_material = /datum/material/brass
 
 /obj/structure/falsewall/brass/New(loc)
 	..()

@@ -194,7 +194,6 @@
 	color = "#bb8e53"
 	sheet_type = /obj/item/stack/sheet/mineral/wood
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
-	texture_layer_icon_state = "woodgrain"
 	wall_greyscale_config = /datum/greyscale_config/wood_wall
 	wall_stripe_greyscale_config = /datum/greyscale_config/wood_wall_stripe
 	wall_color = "#93662C"

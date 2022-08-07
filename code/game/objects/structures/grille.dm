@@ -65,10 +65,7 @@
 				delay = 4 SECONDS
 				cost = 12
 
-			return rcd_result_with_memory(
-				list("mode" = RCD_WINDOWGRILLE, "delay" = delay, "cost" = cost),
-				get_turf(src), RCD_MEMORY_WINDOWGRILLE,
-			)
+			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 	return FALSE
 
 /obj/structure/grille/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -140,7 +137,7 @@
 
 /obj/structure/grille/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
-	if(!. && istype(mover, /obj/projectile))
+	if(!. && istype(mover, /obj/item/projectile))
 		return prob(30)
 
 /obj/structure/grille/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
@@ -210,23 +207,10 @@
 		qdel(src)
 	..()
 
-/obj/structure/grille/atom_break()
-	. = ..()
-	if(!broken && !(flags_1 & NODECONSTRUCT_1))
-		set_density(FALSE)
-		atom_integrity = 20
-		broken = TRUE
-		rods_amount = 1
-		rods_broken = FALSE
-		var/obj/R = new rods_type(drop_location(), rods_broken)
-		transfer_fingerprints_to(R)
-		smoothing_flags = NONE
-		update_appearance()
-
 /obj/structure/grille/proc/repair_grille()
 	if(broken)
 		set_density(TRUE)
-		atom_integrity = max_integrity
+		integrity = max_integrity
 		broken = FALSE
 		rods_amount = 2
 		rods_broken = TRUE
@@ -256,12 +240,6 @@
 		else
 			return FALSE
 	return FALSE
-
-/obj/structure/grille/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
-	return exposed_temperature > T0C + 1500 && !broken
-
-/obj/structure/grille/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(1, BURN, 0, 0)
 
 /obj/structure/grille/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(isobj(AM))

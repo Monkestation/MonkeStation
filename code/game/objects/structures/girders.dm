@@ -67,11 +67,6 @@
 
 /obj/structure/girder/attackby(obj/item/W, mob/user, params)
 	var/platingmodifier = 1
-	if(HAS_TRAIT(user, TRAIT_QUICK_BUILD))
-		platingmodifier = 0.7
-		if(next_beep <= world.time)
-			next_beep = world.time + 10
-			playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/gun/energy/plasmacutter))
@@ -242,7 +237,7 @@
 
 /obj/structure/girder/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if((mover.pass_flags & PASSGRILLE) || istype(mover, /obj/projectile))
+	if((mover.pass_flags & PASSGRILLE) || istype(mover, /obj/item/projectile))
 		return prob(girderpasschance)
 
 /obj/structure/girder/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
@@ -271,9 +266,6 @@
 	reinforced_material = /datum/material/iron
 	girderpasschance = GIRDER_PASSCHANCE_REINFORCED
 
-/obj/structure/girder/tram
-	name = "tram girder"
-	state = GIRDER_TRAM
 
 //////////////////////////////////////////// cult girder //////////////////////////////////////////////
 
@@ -286,7 +278,7 @@
 
 /obj/structure/girder/cult/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
-	if(istype(W, /obj/item/melee/cultblade/dagger) && IS_CULTIST(user)) //Cultists can demolish cult girders instantly with their tomes
+	if(istype(W, /obj/item/melee/cultblade/dagger) && iscultist(user)) //Cultists can demolish cult girders instantly with their tomes
 		user.visible_message(span_warning("[user] strikes [src] with [W]!"), span_notice("You demolish [src]."))
 		new /obj/item/stack/sheet/runed_metal(drop_location(), 1)
 		qdel(src)
@@ -331,10 +323,7 @@
 /obj/structure/girder/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
 		if(RCD_FLOORWALL)
-			return rcd_result_with_memory(
-				list("mode" = RCD_FLOORWALL, "delay" = 2 SECONDS, "cost" = 8),
-				get_turf(src), RCD_MEMORY_WALL,
-			)
+			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 		if(RCD_DECONSTRUCT)
 			return list("mode" = RCD_DECONSTRUCT, "delay" = 20, "cost" = 13)
 	return FALSE
@@ -368,12 +357,12 @@
 		to_chat(user, span_notice("You start slicing apart [src]..."))
 		if(W.use_tool(src, user, 40, volume=50))
 			to_chat(user, span_notice("You slice apart [src]."))
-			var/obj/item/stack/sheet/bronze/B = new(drop_location(), 2)
+			var/obj/item/stack/tile/bronze/B = new(drop_location(), 2)
 			transfer_fingerprints_to(B)
 			qdel(src)
 
-	else if(istype(W, /obj/item/stack/sheet/bronze))
-		var/obj/item/stack/sheet/bronze/B = W
+	else if(istype(W, /obj/item/stack/tile/bronze))
+		var/obj/item/stack/tile/bronze/B = W
 		if(B.get_amount() < 2)
 			to_chat(user, span_warning("You need at least two bronze sheets to build a bronze wall!"))
 			return

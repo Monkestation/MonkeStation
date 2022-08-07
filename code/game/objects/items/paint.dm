@@ -144,7 +144,6 @@
 	desc = "Used to remove color and stickers from surfaces and objects." //MonkeStation Edit: Sticker Removal
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "paint_neutral"
-	inhand_icon_state = "paintcan"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 	max_integrity = 100

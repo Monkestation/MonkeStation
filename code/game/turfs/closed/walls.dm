@@ -16,8 +16,6 @@
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
 
-	rcd_memory = RCD_MEMORY_WALL
-
 	color = "#57575c" //To display in mapping softwares
 
 	greyscale_config = /datum/greyscale_config/solid_wall
@@ -304,7 +302,7 @@
 	return attack_hand(user)
 
 
-/turf/closed/wall/attack_animal(mob/living/simple_animal/M)
+/turf/closed/wall/attack_animal(mob/living/simple_animal/user)
 	if(hard_decon)
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src)

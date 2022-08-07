@@ -63,14 +63,6 @@
 	base_icon_state = "reinforced_wall"
 	smoothing_flags = SMOOTH_BITMASK
 
-/turf/closed/wall/mineral/brass
-	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
-	icon_state = "clockwork_wall-0"
-	base_icon_state = "clockwork_wall"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_BRASS_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_BRASS_WALLS)
-
 /obj/effect/clockwork/overlay/wall
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"

@@ -410,7 +410,7 @@
 	icon = 'icons/turf/smooth_wall.dmi'
 	icon_state = "smooth"
 	//smooth = SMOOTH_TRUE|SMOOTH_DIAGONAL|SMOOTH_BORDER //MONKESTATION REMOVAL
-	smoothing_flags = SMOOTH_CORNERS|SMOOTH_DIAGONAL_CORNERS|SMOOTH_BORDER //MONKESTATION ADDITION
+	smoothing_flags = SMOOTH_BORDER //MONKESTATION ADDITION
 	smoothing_groups = null  //MONKESTATION ADDITION
 	canSmoothWith = null
 

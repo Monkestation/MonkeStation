@@ -1,8 +1,6 @@
 /turf/closed/wall/mineral
 	name = "mineral wall"
 	desc = "This shouldn't exist"
-	rcd_memory = null
-	material_flags = MATERIAL_EFFECTS
 	var/last_event = 0
 	var/active = null
 

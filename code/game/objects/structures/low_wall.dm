@@ -144,10 +144,7 @@
 				delay = 4 SECONDS
 				cost = 12
 
-			return rcd_result_with_memory(
-				list("mode" = RCD_WINDOWGRILLE, "delay" = delay, "cost" = cost),
-				get_turf(src), RCD_MEMORY_WINDOWGRILLE,
-			)
+			return list("mode" = RCD_FLOORWALL, "delay" = 0, "cost" = 3)
 	return FALSE
 
 /obj/structure/low_wall/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)

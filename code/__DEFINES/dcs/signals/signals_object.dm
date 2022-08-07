@@ -15,11 +15,6 @@
 /// called in /obj/structure/set_anchored(): (value)
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"
 
-///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)
-#define COMSIG_OBJ_TAKE_DAMAGE	"obj_take_damage"
-	/// Return bitflags for the above signal which prevents the object taking any damage.
-	#define COMPONENT_NO_TAKE_DAMAGE	(1<<0)
-
 // /obj/machinery signals
 /// Sent from /obj/machinery/open_machine(): (drop)
 #define COMSIG_MACHINE_OPEN "machine_open"
