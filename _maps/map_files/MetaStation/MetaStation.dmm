@@ -54957,7 +54957,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/westright{
-	name = "Engineerring Service Desk"
+	name = "Engineering Service Desk"
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engiserv";
@@ -54974,7 +54974,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/eastleft{
-	name = "Engineering Services Desk";
+	name = "Engineering Service Desk";
 	req_one_access_txt = "32;19;10"
 	},
 /turf/open/floor/plasteel,
