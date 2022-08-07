@@ -410,3 +410,5 @@
 	feedMessages = list("It gobbles up the food voraciously.","It clucks happily.")
 	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
+	breed_name_male = "Turkey"
+	breed_name_female = "Turkey"
