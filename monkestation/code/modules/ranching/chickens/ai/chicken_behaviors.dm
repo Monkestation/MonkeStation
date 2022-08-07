@@ -209,7 +209,7 @@
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 60 SECONDS
+	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 10 SECONDS
 	if(living_pawn.current_feed_amount > 3) // so no vomit
 		finish_action(controller, TRUE)
 
