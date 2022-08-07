@@ -11,8 +11,14 @@ SUBSYSTEM_DEF(materials)
 	init_order = INIT_ORDER_MATERIALS
 	///Dictionary of material.type || material ref
 	var/list/materials = list()
+	///Dictionary of type || list of material refs
+	var/list/materials_by_type
+	///Dictionary of type || list of material ids
+	var/list/materialids_by_type
 	///Dictionary of category || list of material refs
-	var/list/materials_by_category = list()
+	var/list/materials_by_category
+	///Dictionary of category || list of material ids, mostly used by rnd machines like autolathes.
+	var/list/materialids_by_category
 
 /datum/controller/subsystem/materials/Initialize(timeofday)
 	InitializeMaterials()
@@ -21,14 +27,34 @@ SUBSYSTEM_DEF(materials)
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials(timeofday)
 	for(var/type in subtypesof(/datum/material))
-		var/datum/material/ref = type
-		if(!(initial(ref.init_flags) & MATERIAL_INIT_MAPLOAD))
-			continue // Do not initialize
+		var/datum/material/mat_type = type
+		if(!(initial(mat_type.init_flags) & MATERIAL_INIT_MAPLOAD))
+			continue // Do not initialize at mapload
+		InitializeMaterial(list(mat_type))
 
-		ref = new ref
-		materials[type] = ref
-		for(var/c in ref.categories)
-			materials_by_category[c] += list(ref)
+/** Creates and caches a material datum.
+ *
+ * Arugments:
+ * - [arguments][/list]: The arguments to use to create the material datum
+ *   - The first element is the type of material to initialize.
+ */
+/datum/controller/subsystem/materials/proc/InitializeMaterial(list/arguments)
+	var/datum/material/mat_type = arguments[1]
+
+	var/datum/material/mat_ref = new mat_type
+	if(!mat_ref.Initialize(arglist(arguments)))
+		return null
+
+	var/mat_id = mat_ref.id
+	materials[mat_id] = mat_ref
+	materials_by_type[mat_type] += list(mat_ref)
+	materialids_by_type[mat_type] += list(mat_id)
+	for(var/category in mat_ref.categories)
+		materials_by_category[category] += list(mat_ref)
+		materialids_by_category[category] += list(mat_id)
+
+	SEND_SIGNAL(src, COMSIG_MATERIALS_INIT_MAT, mat_ref)
+	return mat_ref
 
 /** Fetches a cached material singleton when passed sufficient arguments.
  *
@@ -60,7 +86,7 @@ SUBSYSTEM_DEF(materials)
 		CRASH("Attempted to fetch material ref with invalid key [key]")
 
 	key = GetIdFromArguments(arguments)
-	return materials[key] || InitializeMaterials(arguments)
+	return materials[key] || InitializeMaterial(arguments)
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom

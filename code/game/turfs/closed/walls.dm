@@ -136,7 +136,7 @@
 		overlays += neighb_stripe_appearace
 
 	if(rusted)
-		var/mutable_appearance/rust_overlay = mutable_appearance('icons/turf/rust_overlay.dmi', "blobby_rust", appearance_flags = RESET_COLOR)
+		var/mutable_appearance/rust_overlay = mutable_appearance('icons/effects/rust_overlay.dmi', "blobby_rust", appearance_flags = RESET_COLOR)
 		overlays += rust_overlay
 
 	if(hard_decon && d_state)

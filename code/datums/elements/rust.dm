@@ -1,6 +1,7 @@
 /**
  * Adding this element to an atom will have it automatically render an overlay.
- * The overlay can be specified in new as the first paramter; if not set it defaults to rust_overlay's rust_default
+ * The overlay can be specified in new as the first paramter; if not set it defaults to
+ * +'s rust_default
  */
 /datum/element/rust
 	element_flags = ELEMENT_BESPOKE|ELEMENT_DETACH

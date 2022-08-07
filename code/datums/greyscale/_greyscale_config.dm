@@ -197,7 +197,6 @@
 	for(var/state in icon_states)
 		var/datum/greyscale_state/gags_state = icon_states[state]
 		to_process += gags_state.layers
-
 		var/list/state_layers = list()
 
 		while(length(to_process))
@@ -240,11 +239,11 @@
 /datum/greyscale_config/proc/Generate(color_string, icon/last_external_icon)
 	var/key = color_string
 	var/icon/new_icon = icon_cache[key]
-	//MONKESTATION CHANGES START
 	if(new_icon)
 		return icon(new_icon)
 
-	var/icon/icon_bundle = GenerateBundle(color_string)
+	var/icon/icon_bundle = GenerateBundle(color_string, last_external_icon=last_external_icon)
+	icon_bundle = fcopy_rsc(icon_bundle)
 
 	// This block is done like this because generated icons are unable to be scaled before getting added to the rsc
 	icon_bundle = fcopy_rsc(icon_bundle)
@@ -259,10 +258,9 @@
 /// Handles the actual icon manipulation to create the spritesheet
 /datum/greyscale_config/proc/GenerateBundle(list/colors, list/render_steps, icon/last_external_icon)
 	if(!istype(colors))
-	//MONKESTATION CHANGES END
 		colors = SSgreyscale.ParseColorString(colors)
 	if(length(colors) != expected_colors)
-		CRASH("[DebugName()] expected [expected_colors] color arguments but received [length(colors)]")
+		CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 
 	var/list/generated_icons = list()
 	for(var/icon_state in icon_states)
@@ -306,7 +304,6 @@
 				generated_icons["[icon_state]-[bit_step]"] = generated_icon
 
 	var/icon/icon_bundle = icon('icons/testing/greyscale_error.dmi')
-
 	for(var/icon_state in generated_icons)
 		icon_bundle.Insert(generated_icons[icon_state], icon_state)
 
