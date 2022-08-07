@@ -128,13 +128,6 @@
 		to_chat(user, "<span class='warning'>[P] has no poster... inside it? Inform a coder!</span>")
 		return
 
-	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
-	if (smoothing_flags & SMOOTH_DIAGONAL_CORNERS) //MONKESTATION EDIT
-		for (var/O in overlays)
-			var/image/I = O
-			if(copytext(I.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
-				return
-
 	var/stuff_on_wall = 0
 	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(O, /obj/structure/sign/poster))

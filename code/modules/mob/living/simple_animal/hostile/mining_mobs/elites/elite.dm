@@ -331,7 +331,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/effect/temp_visual/elite_tumor_wall
 	name = "magic wall"
-	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
+	icon = 'icons/turf/walls/legacy/hierophant_wall_temp.dmi'
 	icon_state = "wall"
 	duration = 50
 	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL

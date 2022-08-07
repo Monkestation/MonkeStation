@@ -512,7 +512,7 @@ Difficulty: Hard
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
 	name = "vortex wall"
-	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
+	icon = 'icons/turf/walls/legacy/hierophant_wall_temp.dmi'
 	icon_state = "wall"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	duration = 100

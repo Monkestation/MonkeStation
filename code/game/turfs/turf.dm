@@ -59,7 +59,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
 
-	var/list/fixed_underlay = null //MONKESTATION ADDITION
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")

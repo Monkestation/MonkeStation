@@ -17,6 +17,8 @@ Simple datum which is instanced once per type and is used for every object of sa
 	var/greyscale_colors
 	///Base alpha of the material, is used for greyscale icons.
 	var/alpha
+	///Bitflags that influence how SSmaterials handles this material.
+	var/init_flags = MATERIAL_INIT_MAPLOAD
 	///Materials "Traits". its a map of key = category | Value = Bool. Used to define what it can be used for.gold
 	var/list/categories = list()
 	///The type of sheet this material creates. This should be replaced as soon as possible by greyscale sheets.
@@ -27,6 +29,28 @@ Simple datum which is instanced once per type and is used for every object of sa
 	var/strength_modifier = 1
 	///This is a modifier for integrity, and resembles the strength of the material
 	var/integrity_modifier = 1
+	///Icon for walls which are plated with this material
+	var/wall_greyscale_config = /datum/greyscale_config/solid_wall
+	///Icon for reinforced walls which are plated with this material
+	var/reinforced_wall_greyscale_config = /datum/greyscale_config/reinforced_solid_wall
+	/// Icon for painted stripes on the walls
+	var/wall_stripe_greyscale_config = /datum/greyscale_config/wall_stripe
+	/// Color of walls constructed with this material as their plating
+	var/wall_color
+	/// Type of the wall this material makes when its used as a plating, null means can't make a wall out of it.
+	var/wall_type = /turf/closed/wall
+	/// Type of the false wall this material will make when used as its plating
+	var/false_wall_type
+	/// If true, walls plated with this material that have a reinforcement, will be hard to deconstruct
+	var/hard_wall_decon = FALSE
+
+
+/datum/material/proc/Initialize(_id, ...)
+	if(!wall_color)
+		wall_color = greyscale_colors
+
+	if(wall_type && !false_wall_type)
+		false_wall_type = /obj/structure/falsewall
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
@@ -69,7 +93,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 
 ///This proc is called when the material is removed from an object.
-/datum/material/proc/on_removed(atom/source, material_flags)
+/datum/material/proc/on_removed(atom/source, amount, material_flags)
 	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color)
 			source.remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
@@ -79,7 +103,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 		source.set_greyscale(initial(source.greyscale_colors), initial(source.greyscale_config))
 
 	if(istype(source, /obj)) //objs
-		on_removed_obj(source, material_flags)
+		on_removed_obj(source, amount, material_flags)
 
 ///This proc is called when the material is removed from an object specifically.
 /datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
@@ -106,3 +130,14 @@ Simple datum which is instanced once per type and is used for every object of sa
 		if(type != initial(path.material_skin))
 			continue
 		return path
+
+/** Returns the composition of this material.
+  *
+  * Mostly used for alloys when breaking down materials.
+  *
+  * Arguments:
+  * - amount: The amount of the material to break down.
+  * - breakdown_flags: Some flags dictating how exactly this material is being broken down.
+  */
+/datum/material/proc/return_composition(amount=1, breakdown_flags=NONE)
+	return list((src) = amount) // Yes we need the parenthesis, without them BYOND stringifies src into "src" and things break.

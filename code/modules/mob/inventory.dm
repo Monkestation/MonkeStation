@@ -302,8 +302,16 @@
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
 
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, invdrop = TRUE) //monkestation edit: add nodrop to quickswap
-	return doUnEquip(I, force, null, TRUE, invdrop)
+//for when the item will be immediately placed in a loc other than the ground. Supports shifting the item's x and y from click modifiers.
+/mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = TRUE, list/user_click_modifiers)
+	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+	if(. && user_click_modifiers)
+		//Center the icon where the user clicked.
+		if(!LAZYACCESS(user_click_modifiers, ICON_X) || !LAZYACCESS(user_click_modifiers, ICON_Y))
+			return
+		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the location)
+		I.pixel_x = clamp(text2num(LAZYACCESS(user_click_modifiers, ICON_X)) - 16, -(world.icon_size/2), world.icon_size/2)
+		I.pixel_y = clamp(text2num(LAZYACCESS(user_click_modifiers, ICON_Y)) - 16, -(world.icon_size/2), world.icon_size/2)
 
 //DO NOT CALL THIS PROC
 //use one of the above 3 helper procs

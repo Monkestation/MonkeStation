@@ -2,19 +2,14 @@
 	name = "runed metal wall"
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
 	icon = 'icons/turf/walls/cult_wall.dmi'
-	icon_state = "cult"
+	smoothing_flags = SMOOTH_BITMASK
 	canSmoothWith = null
-	//smooth = SMOOTH_NONE //MONKESTATION REMOVAL
-	sheet_type = /obj/item/stack/sheet/runed_metal
-	sheet_amount = 1
-	girder_type = /obj/structure/girder/cult
+	plating_material = /datum/material/runedmetal
+	color = "#3C3434" //To display in mapping softwares
 
 /turf/closed/wall/mineral/cult/Initialize(mapload)
 	new /obj/effect/temp_visual/cult/turf(src)
 	. = ..()
-
-/turf/closed/wall/mineral/cult/devastate_wall()
-	new sheet_type(get_turf(src), sheet_amount)
 
 /turf/closed/wall/mineral/cult/try_destroy(obj/item/I, mob/user, turf/T)
 	return FALSE
@@ -41,12 +36,10 @@
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
 
 /turf/closed/wall/vault
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "rockvault"
+	smoothing_flags = NONE
+	canSmoothWith = null
 
 /turf/closed/wall/ice
-	icon = 'icons/turf/walls/icedmetal_wall.dmi'
-	icon_state = "iced"
 	desc = "A wall covered in a thick sheet of ice."
 	canSmoothWith = null
 	hardness = 35
@@ -102,11 +95,9 @@
 /turf/closed/wall/mineral/bronze
 	name = "clockwork wall"
 	desc = "A huge chunk of bronze, decorated like gears and cogs."
-	icon = 'icons/turf/walls/clockwork_wall.dmi'
-	icon_state = "clockwork_wall"
-	sheet_type = /obj/item/stack/tile/bronze
-	sheet_amount = 2
-	girder_type = /obj/structure/girder/bronze
+	smoothing_flags = SMOOTH_BITMASK
+	plating_material = /datum/material/bronze
+	color = "#92661A" //To display in mapping softwares
 
 
 /turf/closed/indestructible/cordon

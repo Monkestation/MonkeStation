@@ -11,7 +11,6 @@
 	initial_gas_mix = AIRLESS_ATMOS
 	opacity = 1
 	density = TRUE
-	layer = EDGED_TURF_LAYER
 	initial_temperature = 293.15
 	var/environment_type = "asteroid"
 	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/asteroid/airless
@@ -406,7 +405,7 @@
 /turf/closed/mineral/ash_rock //wall piece
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
-	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
+	smooth_icon = 'icons/turf/walls/legacy/rock_wall.dmi'
 	icon_state = "rock2"
 	base_icon_state = "rock_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER

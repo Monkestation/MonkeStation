@@ -56,6 +56,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("iron rod", /obj/item/stack/rods, 1, 2, 60), \
 	null, \
 	new/datum/stack_recipe("wall girders", /obj/structure/girder, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("low wall", /obj/structure/low_wall, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("modular console", /obj/machinery/modular_computer/console/buildable/, 10, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
@@ -173,7 +174,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
+	materials = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/alloy/plasteel
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80, "stamina" = 0)
@@ -230,7 +232,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe_list("pews", list(
 		new /datum/stack_recipe("pew (middle)", /obj/structure/chair/pew, 3, one_per_turf = TRUE, on_floor = TRUE),
 		new /datum/stack_recipe("pew (left)", /obj/structure/chair/pew/left, 3, one_per_turf = TRUE, on_floor = TRUE),
-		new /datum/stack_recipe("pew (right)", /obj/structure/chair/pew/right, 3, one_per_turf = TRUE, on_floor = TRUE)
+		new /datum/stack_recipe("pew (right)", /obj/structure/chair/pew/right, 3, one_per_turf = TRUE, on_floor = TRUE),
+		new/datum/stack_recipe("low wall", /obj/structure/low_wall/wood, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	null, \
 		)),
 	null, \
 	))
@@ -248,6 +252,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/wood
 	novariants = TRUE
 	grind_results = list(/datum/reagent/carbon = 20)
+	walltype = /turf/closed/wall/mineral/wood
 
 /obj/item/stack/sheet/mineral/wood/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.wood_recipes
@@ -678,6 +683,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/copper = 3) //we have no "tin" reagent so this is the closest thing
 	merge_type = /obj/item/stack/tile/bronze
 	tableVariant = /obj/structure/table/bronze
+	window_type = /obj/structure/window/bronze/fulltile
 
 /obj/item/stack/tile/bronze/attack_self(mob/living/user)
 	if(is_servant_of_ratvar(user))

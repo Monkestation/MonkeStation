@@ -11,6 +11,8 @@
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
+	if(SEND_SIGNAL(src, COMSIG_OBJ_TAKE_DAMAGE, damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration) & COMPONENT_NO_TAKE_DAMAGE)
+		return
 	. = damage_amount
 	var/old_integ = obj_integrity
 	obj_integrity = max(old_integ - damage_amount, 0)

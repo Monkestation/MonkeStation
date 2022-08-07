@@ -263,7 +263,8 @@
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			to_chat(user, "<span class='notice'>You build a wall.</span>")
-			PlaceOnTop(/turf/closed/wall)
+			var/turf/closed/wall/placed_wall = PlaceOnTop(/turf/closed/wall)
+			placed_wall.set_wall_information(/datum/material/iron)
 			return TRUE
 		if(RCD_LADDER)
 			to_chat(user, "<span class='notice'>You build a ladder.</span>")

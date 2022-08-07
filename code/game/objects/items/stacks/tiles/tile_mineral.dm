@@ -74,6 +74,7 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "tile_abductor"
 	item_state = "tile-abductor"
+	materials = list(/datum/material/alloy/alien=MINERAL_MATERIAL_AMOUNT*0.25)
 	turf_type = /turf/open/floor/mineral/abductor
 	mineralType = "abductor"
 
@@ -95,7 +96,7 @@
 	item_state = "tile-darkshuttle"
 	turf_type = /turf/open/floor/mineral/plastitanium
 	mineralType = "plastitanium"
-	materials = list(/datum/material/titanium=250, /datum/material/plasma=250)
+	materials = list(/datum/material/alloy/plastitanium=MINERAL_MATERIAL_AMOUNT*0.25)
 
 /obj/item/stack/tile/mineral/snow
 	name = "snow tile"

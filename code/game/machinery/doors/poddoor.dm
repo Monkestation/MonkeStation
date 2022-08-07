@@ -18,6 +18,7 @@
 	armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70, "stamina" = 0)
 	resistance_flags = FIRE_PROOF
 	damage_deflection = 70
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	var/datum/crafting_recipe/recipe_type = /datum/crafting_recipe/blast_doors
 	var/deconstruction = BLASTDOOR_FINISHED // deconstruction step
 	var/id = 1

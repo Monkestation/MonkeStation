@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	point_value = 1
 	tableVariant = /obj/structure/table/glass
 	matter_amount = 4
+	window_type = /obj/structure/window/fulltile
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to slice [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -87,12 +88,13 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-pglass"
 	item_state = "sheet-pglass"
-	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmaglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10)
 	tableVariant = /obj/structure/table/glass/plasma
+	window_type = /obj/structure/window/plasma/fulltile
 
 /obj/item/stack/sheet/plasmaglass/fifty
 	amount = 50
@@ -147,6 +149,7 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
 	point_value = 4
 	matter_amount = 6
+	window_type = /obj/structure/window/reinforced/fulltile
 
 /obj/item/stack/sheet/rglass/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -184,13 +187,14 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-prglass"
 	item_state = "sheet-prglass"
-	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5,)
+	materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5,)
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmarglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
 	point_value = 23
 	matter_amount = 8
+	window_type = /obj/structure/window/plasma/reinforced/fulltile
 
 /obj/item/stack/sheet/plasmarglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.prglass_recipes
@@ -206,10 +210,11 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	singular_name = "titanium glass sheet"
 	icon_state = "sheet-titaniumglass"
 	item_state = "sheet-titaniumglass"
-	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/alloy/titaniumglass=MINERAL_MATERIAL_AMOUNT)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/titaniumglass
+	window_type = /obj/structure/window/shuttle
 
 /obj/item/stack/sheet/titaniumglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.titaniumglass_recipes
@@ -225,10 +230,11 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	singular_name = "plastitanium glass sheet"
 	icon_state = "sheet-plastitaniumglass"
 	item_state = "sheet-plastitaniumglass"
-	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/alloy/plastitaniumglass=MINERAL_MATERIAL_AMOUNT)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plastitaniumglass
+	window_type = /obj/structure/window/reinforced/plasma/plastitanium
 
 /obj/item/stack/sheet/plastitaniumglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.plastitaniumglass_recipes
@@ -339,5 +345,5 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	force = 6
 	throwforce = 11
 	icon_state = "plasmalarge"
-	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"

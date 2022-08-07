@@ -361,7 +361,7 @@
 		cut_overlay(crack_overlay)
 		if(ratio > 75)
 			return
-		crack_overlay = mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1))
+		crack_overlay = mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer+0.1), appearance_flags = RESET_COLOR)
 		add_overlay(crack_overlay)
 
 /obj/structure/window/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -476,10 +476,21 @@
 /obj/structure/window/plasma/reinforced/unanchored
 	anchored = FALSE
 
-/obj/structure/window/reinforced/tinted
-	name = "tinted window"
-	icon_state = "twindow"
-	opacity = 1
+/obj/structure/window/reinforced/tinted/fulltile
+	icon = 'icons/obj/smooth_structures/window_reinforced.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#3b5461"
+	greyscale_config = /datum/greyscale_config/fulltile_reinforced_window
+	greyscale_colors = "#3b5461"
+	alpha = 180
+	fulltile = TRUE
+	flags_1 = PREVENT_CLICK_UNDER_1
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
+	glass_amount = 2
+
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
 	icon_state = "fwindow"
@@ -487,115 +498,78 @@
 /* Full Tile Windows (more obj_integrity) */
 
 /obj/structure/window/fulltile
-	icon = 'icons/obj/smooth_structures/window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "window"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 100
+	icon = 'icons/obj/smooth_structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#AFD3E6"
+	greyscale_config = /datum/greyscale_config/fulltile_window
+	greyscale_colors = "#AFD3E6"
+	alpha = 180
+	max_integrity = 50
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	glass_amount = 2
 
 /obj/structure/window/fulltile/unanchored
 	anchored = FALSE
 
 /obj/structure/window/plasma/fulltile
-	icon = 'icons/obj/smooth_structures/plasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "plasmawindow"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 600
+	icon = 'icons/obj/smooth_structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#c162ec"
+	greyscale_config = /datum/greyscale_config/fulltile_window
+	greyscale_colors = "#c162ec"
+	alpha = 180
+	max_integrity = 300
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	glass_amount = 2
 
 /obj/structure/window/plasma/fulltile/unanchored
 	anchored = FALSE
 
 /obj/structure/window/plasma/reinforced/fulltile
-	icon = 'icons/obj/smooth_structures/rplasma_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "rplasmawindow"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 4000
+	icon = 'icons/obj/smooth_structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#c162ec"
+	greyscale_config = /datum/greyscale_config/fulltile_reinforced_window
+	greyscale_colors = "#c162ec"
+	alpha = 180
+	state = RWINDOW_SECURE
+	max_integrity = 500
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	glass_amount = 2
 
 /obj/structure/window/plasma/reinforced/fulltile/unanchored
 	anchored = FALSE
 
 /obj/structure/window/reinforced/fulltile
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi' //OVERRIDEN - SEE MODULAR FILE
-	icon_state = "r_window"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 200
+	icon = 'icons/obj/smooth_structures/window_reinforced.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#829eb5"
+	greyscale_config = /datum/greyscale_config/fulltile_reinforced_window
+	greyscale_colors = "#829eb5"
+	alpha = 180
+	max_integrity = 150
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	/* //MONKESTATION REMOVAL
-	smooth = SMOOTH_TRUE
-	//MONKESTATION EDIT START: WALL AND WINDOW RESPRITE
-	canSmoothWith = list(/obj/structure/window/fulltile,
-	/obj/structure/window/reinforced/fulltile,
-	/obj/structure/window/reinforced/tinted/fulltile,
-	/obj/structure/window/plasma/fulltile,
-	/obj/structure/window/plasma/reinforced/fulltile,
-	/turf/closed/wall,
-	/turf/closed/wall/r_wall,
-	/obj/machinery/door/airlock,
-	/obj/machinery/door/airlock/command,
-	/obj/machinery/door/airlock/security,
-	/obj/machinery/door/airlock/engineering,
-	/obj/machinery/door/airlock/medical,
-	/obj/machinery/door/airlock/maintenance,
-	/obj/machinery/door/airlock/maintenance/external,
-	/obj/machinery/door/airlock/mining,
-	/obj/machinery/door/airlock/atmos,
-	/obj/machinery/door/airlock/research,
-	/obj/machinery/door/airlock/freezer,
-	/obj/machinery/door/airlock/science,
-	/obj/machinery/door/airlock/virology,
-	/obj/machinery/door/airlock/gold,
-	/obj/machinery/door/airlock/silver,
-	/obj/machinery/door/airlock/diamond,
-	/obj/machinery/door/airlock/uranium,
-	/obj/machinery/door/airlock/plasma,
-	/obj/machinery/door/airlock/bananium,
-	/obj/machinery/door/airlock/sandstone,
-	/obj/machinery/door/airlock/wood,
-	/obj/machinery/door/airlock/public,
-	/obj/machinery/door/airlock/external,
-	/obj/machinery/door/airlock/arrivals_external,
-	/obj/machinery/door/airlock/centcom,
-	/obj/machinery/door/airlock/grunge,
-	/obj/machinery/door/airlock/vault,
-	/obj/machinery/door/airlock/hatch,
-	/obj/machinery/door/airlock/maintenance_hatch,
-	/obj/machinery/door/airlock/highsecurity,
-	/obj/machinery/door/airlock/glass_large,
-	/obj/machinery/door/airlock/glass,
-	/obj/machinery/door/airlock/command/glass,
-	/obj/machinery/door/airlock/security/glass,
-	/obj/machinery/door/airlock/engineering/glass,
-	/obj/machinery/door/airlock/medical/glass,
-	/obj/machinery/door/airlock/maintenance/glass,
-	/obj/machinery/door/airlock/maintenance/external/glass,
-	/obj/machinery/door/airlock/mining/glass,
-	/obj/machinery/door/airlock/atmos/glass,
-	/obj/machinery/door/airlock/research/glass,
-	/obj/machinery/door/airlock/science/glass,
-	/obj/machinery/door/airlock/virology/glass,
-	/obj/machinery/door/airlock/gold/glass,
-	/obj/machinery/door/airlock/silver/glass,
-	/obj/machinery/door/airlock/diamond/glass,
-	/obj/machinery/door/airlock/uranium/glass,
-	/obj/machinery/door/airlock/plasma/glass,
-	/obj/machinery/door/airlock/bananium/glass,
-	/obj/machinery/door/airlock/sandstone/glass,
-	/obj/machinery/door/airlock/wood/glass,
-	/obj/machinery/door/airlock/public/glass,
-	/obj/machinery/door/airlock/external/glass)
-	//MONKESTATION EDIT END
-	*/ //MONKESTATION REMOVAL END
-	level = 3
+	state = RWINDOW_SECURE
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/unanchored
@@ -614,35 +588,34 @@
 	glass_amount = 2
 
 /obj/structure/window/reinforced/fulltile/ice
-	icon = 'icons/obj/smooth_structures/rice_window.dmi'
-	icon_state = "ice_window"
 	max_integrity = 150
-	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
-	level = 3
 	glass_amount = 2
 
-/obj/structure/window/shuttle
+/obj/structure/window/shuttle//this is called reinforced because it is reinforced w/titanium
 	name = "shuttle window"
 	desc = "A reinforced, air-locked pod window."
-	icon = 'icons/obj/smooth_structures/shuttle_window.dmi'
-	icon_state = "shuttle_window-0"
-	base_icon_state = "shuttle_window"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 500
+	icon = 'icons/obj/smooth_structures/window_reinforced.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#D0CBD4"
+	greyscale_config = /datum/greyscale_config/fulltile_reinforced_window
+	greyscale_colors = "#D0CBD4"
+	alpha = 180
+	max_integrity = 150
 	wtype = "shuttle"
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "stamina" = 0)
+	armor = list(MELEE = 75, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 80, ACID = 100)
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	explosion_block = 3
-	level = 3
 	glass_type = /obj/item/stack/sheet/titaniumglass
 	glass_amount = 2
-	receive_ricochet_chance_mod = 0.9
+	receive_ricochet_chance_mod = 1.2
+	damage_deflection = 11
 
 /obj/structure/window/shuttle/narsie_act()
 	add_atom_colour("#3C3434", FIXED_COLOUR_PRIORITY)
@@ -656,22 +629,25 @@
 /obj/structure/window/plastitanium
 	name = "plastitanium window"
 	desc = "A durable looking window made of an alloy of of plasma and titanium."
-	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
-	icon_state = "plastitanium_window"
-	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 200
+	icon = 'icons/obj/smooth_structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#D0CBD4"
+	greyscale_config = /datum/greyscale_config/fulltile_window
+	greyscale_colors = "#D0CBD4"
+	alpha = 180
+	max_integrity = 1200
 	wtype = "shuttle"
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
-	reinf = TRUE
 	heat_resistance = 1600
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "stamina" = 0)
-	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
-	//canSmoothWith = null //MONKESTATION REMOVAL
+	armor = list(MELEE = 95, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, FIRE = 80, ACID = 100)
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
 	explosion_block = 3
-	level = 3
+	damage_deflection = 21 //The same as reinforced plasma windows.3
 	glass_type = /obj/item/stack/sheet/plastitaniumglass
-	glass_amount = 2
 
 /obj/structure/window/plastitanium/unanchored
 	anchored = FALSE
@@ -760,12 +736,20 @@
 	..()
 	update_icon()
 
-/obj/structure/window/bronze
-	name = "brass window"
-	desc = "A paper-thin pane of translucent yet reinforced brass. Nevermind, this is just weak bronze!"
-	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
-	icon_state = "clockwork_window_single"
-	glass_type = /obj/item/stack/tile/bronze
+/obj/structure/window/bronze/fulltile
+	icon = 'icons/obj/smooth_structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
+	color = "#92661A"
+	greyscale_config = /datum/greyscale_config/fulltile_window
+	greyscale_colors = "#92661A"
+	alpha = 180
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_SHUTTERS_BLASTDOORS)
+	fulltile = TRUE
+	flags_1 = PREVENT_CLICK_UNDER_1
+	max_integrity = 50
 
 /obj/structure/window/bronze/unanchored
 	anchored = FALSE
