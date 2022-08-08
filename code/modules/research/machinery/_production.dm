@@ -248,7 +248,7 @@
 	for(var/i in 1 to amount)
 		var/obj/item/I = new path(get_turf(src))
 		if(efficient_with(I.type))
-			I.set_custom_materials(matlist.Copy())
+			I.set_custom_materials(matlist)
 			I.material_flags |= MATERIAL_NO_EFFECTS //Find a better way to do this
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 

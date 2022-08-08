@@ -18,11 +18,14 @@ SUBSYSTEM_DEF(materials)
 	var/list/materials_by_category
 	///Dictionary of category || list of material ids, mostly used by rnd machines like autolathes.
 	var/list/materialids_by_category
+	///A cache of all material combinations that have been used
+	var/list/list/material_combos
 	///List of stackcrafting recipes for materials using rigid materials
 	var/list/rigid_stack_recipes = list(new/datum/stack_recipe("chair", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE))
 
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()
+	material_combos = list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/mat_type = type
 		if(!(initial(mat_type.init_flags) & MATERIAL_INIT_MAPLOAD))
@@ -101,3 +104,22 @@ SUBSYSTEM_DEF(materials)
 		named_arguments = sort_list(named_arguments)
 		fullid += named_arguments
 	return list2params(fullid)
+
+///Returns a list to be used as an object's custom_materials. Lists will be cached and re-used based on the parameters.
+/datum/controller/subsystem/materials/proc/FindOrCreateMaterialCombo(list/materials_declaration, multiplier)
+	if(!material_combos)
+		InitializeMaterials()
+	var/list/combo_params = list()
+	for(var/x in materials_declaration)
+		var/datum/material/mat = x
+		var/path_name = ispath(mat) ? "[mat]" : "[mat.type]"
+		combo_params += "[path_name]=[materials_declaration[mat] * multiplier]"
+	sortTim(combo_params, /proc/cmp_text_asc) // We have to sort now in case the declaration was not in order
+	var/combo_index = combo_params.Join("-")
+	var/list/combo = material_combos[combo_index]
+	if(!combo)
+		combo = list()
+		for(var/mat in materials_declaration)
+			combo[GetMaterialRef(mat)] = materials_declaration[mat] * multiplier
+		material_combos[combo_index] = combo
+	return combo

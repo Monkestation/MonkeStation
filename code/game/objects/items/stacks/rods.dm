@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
-	custom_materials = list(/datum/material/iron=1000)
+	mats_per_unit = list(/datum/material/iron=1000)
 	max_amount = 50
 	merge_type = /obj/item/stack/rods
 	attack_verb = list("hit", "bludgeoned", "whacked")
@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 		return ..()
 
 /obj/item/stack/rods/cyborg
-	custom_materials = list()
+	mats_per_unit = list()
 	is_cyborg = 1
 	cost = 250
 
