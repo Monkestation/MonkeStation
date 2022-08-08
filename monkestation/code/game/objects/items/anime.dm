@@ -39,8 +39,8 @@
 	icon_state = "fox"
 	ears = new /obj/item/organ/ears/fox
 	tail = new /obj/item/organ/tail/fox
-	food_likes = MEAT | JUNKFOOD
-	food_dislikes = FRUIT | VEGETABLES | SUGAR | DAIRY
+	food_likes = MEAT | FRUIT | VEGETABLES
+	food_dislikes = GROSS | GRAIN
 	weeb_screams = list('monkestation/sound/voice/screams/misc/awoo1.ogg', 'monkestation/sound/voice/screams/misc/awoo2.ogg')
 	weeb_laughs = list('monkestation/sound/voice/laugh/felinid/cat_laugh0.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh1.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh2.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh3.ogg')
 
@@ -51,8 +51,8 @@
 	icon_state = "wolf"
 	ears = new /obj/item/organ/ears/fox
 	tail = new /obj/item/organ/tail/wolf
-	food_likes = MEAT | JUNKFOOD
-	food_dislikes = FRUIT | VEGETABLES | SUGAR | DAIRY
+	food_likes = MEAT | JUNKFOOD | RAW
+	food_dislikes = FRUIT | VEGETABLES | DAIRY
 	weeb_screams = list('monkestation/sound/voice/screams/misc/awoo1.ogg', 'monkestation/sound/voice/screams/misc/awoo2.ogg')
 	weeb_laughs = list('monkestation/sound/voice/laugh/felinid/cat_laugh0.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh1.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh2.ogg','monkestation/sound/voice/laugh/felinid/cat_laugh3.ogg')
 
@@ -62,8 +62,8 @@
 	desc = "A."
 	icon_state = "shark"
 	tail = new /obj/item/organ/tail/shark
-	food_likes = MEAT | JUNKFOOD
-	food_dislikes = FRUIT | VEGETABLES | SUGAR | DAIRY
+	food_likes = MEAT | JUNKFOOD | RAW
+	food_dislikes = FRUIT | VEGETABLES | DAIRY
 	weeb_screams = list('monkestation/sound/voice/screams/misc/shark_scream0.ogg')
 	weeb_laughs = list('monkestation/sound/voice/screams/misc/shark_scream0.ogg')
 
