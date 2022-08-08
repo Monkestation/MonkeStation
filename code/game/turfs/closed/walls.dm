@@ -85,6 +85,7 @@
 /turf/closed/wall/Initialize(mapload)
 	. = ..()
 	color = null // Remove the color that was set for mapping clarity
+	atom_colours = null
 	set_materials(plating_material, reinf_material)
 	if(is_station_level(src))
 		GLOB.station_turfs += src

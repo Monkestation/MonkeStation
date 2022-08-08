@@ -37,6 +37,7 @@
 /obj/structure/falsewall/Initialize()
 	. = ..()
 	color = null //Clear the color that's a mapping aid
+	atom_colours = null
 	air_update_turf(TRUE)
 	set_wall_information(plating_material, reinf_material, wall_paint, stripe_paint)
 

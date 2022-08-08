@@ -65,27 +65,23 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
-	if((material_flags & MATERIAL_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
+	if(material_flags & MATERIAL_COLOR) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color) //Do we have a custom color?
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
 			source.alpha = alpha
-
-	if(!wall_color)
-		wall_color = greyscale_colors
-
-	if(wall_type && !false_wall_type)
-		false_wall_type = /obj/structure/falsewall
-
-	if(material_flags & MATERIAL_ADD_PREFIX)
-		source.name = "[name] [source.name]"
-
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)
 		source.set_greyscale(greyscale_colors, config_path)
-
+	if(alpha < 255)
+		source.opacity = FALSE
+	if(material_flags & MATERIAL_ADD_PREFIX)
+		source.name = "[name] [source.name]"
 	if(istype(source, /obj)) //objs
 		on_applied_obj(source, amount, material_flags)
+	else if(istype(source, /turf)) //turfs
+		on_applied_turf(source, amount, material_flags)
+	source.mat_update_desc(src)
 
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)
@@ -111,6 +107,12 @@ Simple datum which is instanced once per type and is used for every object of sa
 			new_inhand_right = righthand_path
 		)
 
+///This proc is called when a material updates an object's description
+/atom/proc/mat_update_desc(datum/material/mat)
+	return
+
+/datum/material/proc/on_applied_turf(turf/T, amount, material_flags)
+	return
 
 ///This proc is called when the material is removed from an object.
 /datum/material/proc/on_removed(atom/source, amount, material_flags)

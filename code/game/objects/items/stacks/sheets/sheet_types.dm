@@ -113,6 +113,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
 	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/iron
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
