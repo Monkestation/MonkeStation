@@ -57,11 +57,11 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(I.item_flags & ABSTRACT)
 		return
 	if(!istype(I) || (I.flags_1 & HOLOGRAM_1) || (I.item_flags & NO_MAT_REDEMPTION))
-		to_chat(user, "<span class='warning'>[M] won't accept [I]!</span>")
+		to_chat(user, span_warning("[M] won't accept [I]!"))
 		return
-	var/item_mats = I.get_material_composition(breakdown_flags) & materials.materials
-	if(!length(item_mats))
-		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [M].</span>")
+	var/item_mats = materials.get_item_material_amount(I, breakdown_flags)
+	if(!item_mats)
+		to_chat(user, span_warning("[I] does not contain sufficient materials to be accepted by [M]."))
 		return
 	// assumes unlimited space...
 	var/amount = I.amount

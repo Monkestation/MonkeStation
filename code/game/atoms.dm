@@ -1566,10 +1566,11 @@
   */
 /atom/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
+
 	var/list/cached_materials = custom_materials
 	for(var/mat in cached_materials)
-		var/datum/material/material = SSmaterials.GetMaterialRef(mat)
-		var/list/material_comp = material.return_composition(cached_materials[material], breakdown_flags)
+		var/datum/material/material = GET_MATERIAL_REF(mat)
+		var/list/material_comp = material.return_composition(cached_materials[mat], breakdown_flags)
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
 
