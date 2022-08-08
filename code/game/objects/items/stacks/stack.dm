@@ -30,21 +30,11 @@
 	var/material_type
 	var/full_w_class = WEIGHT_CLASS_NORMAL //The weight class the stack should have at amount > 2/3rds max_amount
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
+	var/list/mats_per_unit //list that tells you how much is in a single unit.
 	//NOTE: When adding grind_results, the amounts should be for an INDIVIDUAL ITEM - these amounts will be multiplied by the stack size in on_grind()
 	var/obj/structure/table/tableVariant // we tables now (stores table variant to be built from this stack)
 	/// Amount of matter for RCD
 	var/matter_amount = 0
-
-/obj/item/stack/on_grind()
-	. = ..()
-	for(var/i in 1 to grind_results.len) //This should only call if it's ground, so no need to check if grind_results exists
-		grind_results[grind_results[i]] *= get_amount() //Gets the key at position i, then the reagent amount of that key, then multiplies it by stack size
-
-/obj/item/stack/grind_requirements()
-	if(is_cyborg)
-		to_chat(usr, "<span class='danger'>[src] is electronically synthesized in your chassis and can't be ground up!</span>")
-		return
-	return TRUE
 
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
 	if(new_amount != null)
@@ -53,8 +43,11 @@
 	if(!merge_type)
 		merge_type = type
 	if(custom_materials && custom_materials.len)
+		mats_per_unit = list()
+		var/in_process_mat_list = custom_materials.Copy()
 		for(var/i in custom_materials)
-			custom_materials[SSmaterials.GetMaterialRef(i)] = MINERAL_MATERIAL_AMOUNT * amount
+			mats_per_unit[SSmaterials.GetMaterialRef(i)] = in_process_mat_list[i]
+			custom_materials[i] *= amount
 	. = ..()
 	if(merge)
 		for(var/obj/item/stack/S in loc)
@@ -329,6 +322,8 @@
 	amount -= used
 	if(check)
 		zero_amount()
+	for(var/i in mats_per_unit)
+		custom_materials[i] = amount * mats_per_unit[i]
 	update_icon()
 	ui_update()
 	update_weight()
@@ -362,9 +357,9 @@
 	else
 		src.amount += amount
 		check_max_amount()
-	if(custom_materials && custom_materials.len)
-		for(var/i in custom_materials)
-			custom_materials[SSmaterials.GetMaterialRef(i)] = MINERAL_MATERIAL_AMOUNT * src.amount
+	if(mats_per_unit && mats_per_unit.len)
+		for(var/i in mats_per_unit)
+			custom_materials[i] = mats_per_unit[i] * src.amount
 		set_custom_materials() //Refresh
 	update_icon()
 	update_weight()
