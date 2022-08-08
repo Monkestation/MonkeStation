@@ -63,7 +63,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 7
+	weight = 4
 	cost = 8
 	minimum_players = 8
 	requirements = list(101,30,20,20,20,20,20,10,10,10)
@@ -85,10 +85,10 @@
 	enemy_roles = list("AI", "Cyborg", "Security Officer","Detective","Head of Security", "Captain", "Warden")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 2
+	weight = 4
 	delay = 1 MINUTES	// Prevents rule start while head is offstation.
-	cost = 40
-	minimum_players = 35
+	cost = 20
+	minimum_players = 30
 	requirements = list(101,101,70,40,30,20,20,20,20,20)
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/roundstart/revs)
@@ -160,8 +160,8 @@
 	protected_roles = list("Security Officer", "Warden", "Head of Personnel", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI","Cyborg")
 	required_candidates = 1
-	weight = 0
-	cost = 101
-	minimum_players = 15
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	weight = 2
+	cost = 25
+	minimum_players = 25
+	requirements = list(101,101,101,101,40,30,30,30,20,20)
 	repeatable = TRUE
