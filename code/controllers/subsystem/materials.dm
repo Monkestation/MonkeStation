@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(materials)
 	var/list/materials_by_category
 	///Dictionary of category || list of material ids, mostly used by rnd machines like autolathes.
 	var/list/materialids_by_category
+	///List of stackcrafting recipes for materials using rigid materials
+	var/list/rigid_stack_recipes = list(new/datum/stack_recipe("chair", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE))
 
 /datum/controller/subsystem/materials/Initialize(timeofday)
 	InitializeMaterials()

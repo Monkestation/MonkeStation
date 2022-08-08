@@ -6,12 +6,14 @@
 
 
 /// Gets the reference for the material type that was given
-#define getmaterialref(A) (SSmaterials.materials[A])
+#define getmaterialref(A) (SSmaterials.materials[A] || A)
 
 /// Flag for atoms, this flag ensures it isn't re-colored by materials. Useful for snowflake icons such as default toolboxes.
 #define MATERIAL_NO_COLOR (1<<0)
 /// Applies the material greyscale color to the atom's greyscale color.
 #define MATERIAL_GREYSCALE (1<<1)
+
+#define MATERIAL_ADD_PREFIX (1<<2)
 
 /// Used to make a material initialize at roundstart.
 #define MATERIAL_INIT_MAPLOAD	(1<<0)

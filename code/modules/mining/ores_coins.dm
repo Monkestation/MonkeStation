@@ -71,7 +71,7 @@
 	item_state = "Uranium ore"
 	singular_name = "uranium ore chunk"
 	points = 30
-	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 	scan_state = "rock_Uranium"
 	spreadChance = 5
@@ -82,7 +82,7 @@
 	item_state = "Iron ore"
 	singular_name = "iron ore chunk"
 	points = 1
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/iron
 	scan_state = "rock_Iron"
 	spreadChance = 20
@@ -93,7 +93,7 @@
 	item_state = "Glass ore"
 	singular_name = "sand pile"
 	points = 1
-	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
 
@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Plasma ore"
 	singular_name = "plasma ore chunk"
 	points = 15
-	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
 	scan_state = "rock_Plasma"
 	spreadChance = 8
@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Copper ore"
 	singular_name = "Copper ore chunk"
 	points = 5
-	materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/copper
 	scan_state = "rock_Copper"
 	spreadChance = 5
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Silver ore"
 	singular_name = "silver ore chunk"
 	points = 16
-	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
 	scan_state = "rock_Silver"
 	spreadChance = 5
@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "Gold ore"
 	singular_name = "gold ore chunk"
 	points = 18
-	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
 	scan_state = "rock_Gold"
 	spreadChance = 5
@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Diamond ore"
 	singular_name = "diamond ore chunk"
 	points = 50
-	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
 	scan_state = "rock_Diamond"
 
@@ -194,7 +194,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Bananium ore"
 	singular_name = "bananium ore chunk"
 	points = 60
-	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 	scan_state = "rock_Bananium"
 
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	item_state = "Titanium ore"
 	singular_name = "titanium ore chunk"
 	points = 50
-	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
 	scan_state = "rock_Titanium"
 	spreadChance = 5
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "gold"
 	icon_state = "coin_gold_heads"
 	value = 25
-	materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/gold = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/gold = 4)
 
 /obj/item/coin/silver
@@ -390,7 +390,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "silver"
 	icon_state = "coin_silver_heads"
 	value = 10
-	materials = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/silver = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/silver = 4)
 
 /obj/item/coin/diamond
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "diamond"
 	icon_state = "coin_diamond_heads"
 	value = 100
-	materials = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/diamond = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/carbon = 4)
 
 /obj/item/coin/iron
@@ -406,7 +406,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
 	value = 1
-	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/iron = 4)
 
 /obj/item/coin/plasma
@@ -414,7 +414,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "plasma"
 	icon_state = "coin_plasma_heads"
 	value = 40
-	materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/plasma = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/toxin/plasma = 4)
 
 /obj/item/coin/uranium
@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "uranium"
 	icon_state = "coin_uranium_heads"
 	value = 25
-	materials = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/uranium = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/uranium = 4)
 
 /obj/item/coin/bananium
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "bananium"
 	icon_state = "coin_bananium_heads"
 	value = 200 //makes the clown cry
-	materials = list(/datum/material/bananium = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/bananium = MINERAL_MATERIAL_AMOUNT*0.2)
 	grind_results = list(/datum/reagent/consumable/banana = 4)
 
 /obj/item/coin/adamantine
@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "coin_iron_heads"
 	desc = "Hey, this coin's the same on both sides!"
 	sideslist = list("heads")
-	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	value = 1
 	grind_results = list(/datum/reagent/iron = 4)
 

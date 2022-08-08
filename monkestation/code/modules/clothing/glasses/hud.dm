@@ -5,7 +5,7 @@
 	worn_icon = 'monkestation/icons/mob/head.dmi'
 	icon_state = "diagnostichudweld"
 	actions_types = list(/datum/action/item_action/toggle)
-	materials = list(/datum/material/iron = 250)
+	custom_materials = list(/datum/material/iron = 250)
 	flash_protect = 2
 	tint = 2
 	visor_vars_to_toggle = VISOR_FLASHPROTECT | VISOR_TINT

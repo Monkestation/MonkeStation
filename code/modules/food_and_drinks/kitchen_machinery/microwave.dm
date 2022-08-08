@@ -324,16 +324,17 @@
 /obj/machinery/microwave/proc/loop_finish()
 	operating = FALSE
 
-	var/iron = 0
+	var/metal = 0
 	for(var/obj/item/O in ingredients)
 		O.microwave_act(src)
-		if(O.materials[/datum/material/iron])
-			iron += O.materials[/datum/material/iron]
+		if(O.custom_materials || O.custom_materials.len)
+			if(O.custom_materials[getmaterialref(/datum/material/iron)])
+				metal += O.custom_materials[getmaterialref(/datum/material/iron)]
 
-	if(iron)
+	if(metal)
 		spark()
 		broken = 2
-		if(prob(max(iron / 2, 33)))
+		if(prob(max(metal / 2, 33)))
 			explosion(loc, 0, 1, 2)
 	else
 		dump_inventory_contents()

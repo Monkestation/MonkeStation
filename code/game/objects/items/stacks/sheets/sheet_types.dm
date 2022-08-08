@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	singular_name = "iron sheet"
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/iron/cyborg
-	materials = list()
+	custom_materials = list()
 	is_cyborg = 1
 	cost = 500
 
@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	materials = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
 	material_type = /datum/material/alloy/plasteel
 	throwforce = 10
 	flags_1 = CONDUCT_1
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/runed_metal
 	novariants = TRUE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/blood = 15)
-	materials = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
 	material_type = /datum/material/runedmetal
 
 /obj/item/stack/sheet/runed_metal/ratvar_act()
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	novariants = FALSE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/teslium = 15)
 	merge_type = /obj/item/stack/tile/brass
-	materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
+	custom_materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
 
 /obj/item/stack/tile/brass/narsie_act()
 	new /obj/item/stack/sheet/runed_metal(loc, amount)
@@ -646,7 +646,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/tile/brass/cyborg
-	materials = list()
+	custom_materials = list()
 	is_cyborg = 1
 	cost = 500
 
@@ -750,7 +750,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
 	item_state = "sheet-plastic"
-	materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	merge_type = /obj/item/stack/sheet/plastic
 

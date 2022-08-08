@@ -103,18 +103,10 @@
 		return
 	var/inserted = insert_item(I, stack_amt = requested_amount, breakdown_flags=breakdown_flags)
 	if(inserted)
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			to_chat(user, "<span class='notice'>You insert [inserted] [S.singular_name][inserted>1 ? "s" : ""] into [parent].</span>")
-			if(!QDELETED(I) && I == active_held && !user.put_in_hands(I))
-				stack_trace("Warning: User could not put object back in hand during material container insertion, line [__LINE__]! This can lead to issues.")
-				I.forceMove(user.drop_location())
-		else
-			to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
-			SEND_SIGNAL(I, COMSIG_OBJ_DECONSTRUCT) //Help prevent using material ingestors to void storage items.
-			qdel(I)
+		to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+		qdel(I)
 		if(after_insert)
-			after_insert.Invoke(I.type, last_inserted_id, inserted)
+			after_insert.Invoke(I, last_inserted_id, inserted)
 	else if(I == active_held)
 		user.put_in_active_hand(I)
 
@@ -122,8 +114,6 @@
 /datum/component/material_container/proc/insert_item(obj/item/I, var/multiplier = 1, stack_amt, breakdown_flags=src.breakdown_flags)
 	if(QDELETED(I))
 		return FALSE
-	if(istype(I, /obj/item/stack))
-		return insert_stack(I, stack_amt, multiplier)
 
 	multiplier = CEILING(multiplier, 0.01)
 
@@ -147,29 +137,6 @@
 	if(primary_mat)
 		SEND_SIGNAL(parent, COMSIG_MATERIAL_CONTAINER_CHANGED)
 	return primary_mat
-
-/// Proc for putting a stack inside of the container
-/datum/component/material_container/proc/insert_stack(obj/item/stack/S, amt, multiplier = 1)
-	if(isnull(amt))
-		amt = S.amount
-
-	if(amt <= 0)
-		return FALSE
-
-	if(amt > S.amount)
-		amt = S.amount
-
-	var/material_amt = get_item_material_amount(S)
-	if(!material_amt)
-		return FALSE
-
-	amt = min(amt, round(((max_amount - total_amount) / material_amt)))
-	if(!amt)
-		return FALSE
-
-	last_inserted_id = insert_item_materials(S,amt * multiplier)
-	S.use(amt)
-	return amt
 
 /// For inserting an amount of material
 /datum/component/material_container/proc/insert_amount_mat(amt, var/datum/material/mat)

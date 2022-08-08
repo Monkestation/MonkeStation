@@ -47,24 +47,40 @@
 	return TRUE
 
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
-	. = ..()
 	if(new_amount != null)
 		amount = new_amount
 	check_max_amount()
 	if(!merge_type)
 		merge_type = type
+	if(custom_materials && custom_materials.len)
+		for(var/i in custom_materials)
+			custom_materials[getmaterialref(i)] = MINERAL_MATERIAL_AMOUNT * amount
+	. = ..()
 	if(merge)
 		for(var/obj/item/stack/S in loc)
 			if(S.merge_type == merge_type)
 				merge(S)
 				if(QDELETED(src))
 					return
+	var/list/temp_recipes = get_main_recipes()
+	recipes = temp_recipes.Copy()
+	if(material_type)
+		var/datum/material/M = getmaterialref(material_type) //First/main material
+		for(var/i in M.categories)
+			switch(i)
+				if(MAT_CATEGORY_RIGID)
+					var/list/temp = SSmaterials.rigid_stack_recipes.Copy()
+					recipes += temp
 	update_weight()
 	update_icon()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/item/stack/proc/get_main_recipes()
+	SHOULD_CALL_PARENT(1)
+	return list()//empty list
 
 /obj/item/stack/proc/check_max_amount()
 	while(amount > max_amount)
@@ -230,13 +246,11 @@
 				O.setDir(usr.dir)
 			use(R.req_amount * multiplier)
 
-			/* // We don't have R.applies_mats, leaving this in here for convenience in case we get it
 			if(R.applies_mats && custom_materials && custom_materials.len)
 				var/list/used_materials = list()
 				for(var/i in custom_materials)
-					used_materials[SSmaterials.GetMaterialRef(i)] = R.req_amount / R.res_amount * (MINERAL_MATERIAL_AMOUNT / custom_materials.len)
+					used_materials[getmaterialref(i)] = R.req_amount * (MINERAL_MATERIAL_AMOUNT / custom_materials.len)
 				O.set_custom_materials(used_materials)
-			*/
 
 			if(istype(O, /obj/structure/windoor_assembly))
 				var/obj/structure/windoor_assembly/W = O
@@ -353,6 +367,10 @@
 	else
 		src.amount += amount
 		check_max_amount()
+	if(custom_materials && custom_materials.len)
+		for(var/i in custom_materials)
+			custom_materials[getmaterialref(i)] = MINERAL_MATERIAL_AMOUNT * src.amount
+		set_custom_materials() //Refresh
 	update_icon()
 	update_weight()
 	ui_update()
@@ -467,8 +485,9 @@
 	var/on_floor = FALSE
 	var/window_checks = FALSE
 	var/placement_checks = FALSE
+	var/applies_mats = FALSE
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE )
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1,time = 0, one_per_turf = FALSE, on_floor = FALSE, window_checks = FALSE, placement_checks = FALSE, applies_mats = FALSE)
 
 
 	src.title = title
@@ -481,6 +500,7 @@
 	src.on_floor = on_floor
 	src.window_checks = window_checks
 	src.placement_checks = placement_checks
+	src.applies_mats = applies_mats
 /*
  * Recipe list datum
  */

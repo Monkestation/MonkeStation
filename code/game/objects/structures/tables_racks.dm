@@ -13,6 +13,13 @@
  * Tables
  */
 
+/obj/structure/table/greyscale
+	icon = 'icons/obj/smooth_structures/table_greyscale.dmi'
+	icon_state = "table_greyscale-0"
+	base_icon_state = "table_greyscale"
+	material_flags = MATERIAL_ADD_PREFIX
+	buildstack = null //No buildstack, so generate from mat datums
+
 /obj/structure/table
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
@@ -704,7 +711,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
-	materials = list(/datum/material/iron=2000)
+	custom_materials = list(/datum/material/iron=2000)
 	var/building = FALSE
 
 /obj/item/rack_parts/attackby(obj/item/W, mob/user, params)
