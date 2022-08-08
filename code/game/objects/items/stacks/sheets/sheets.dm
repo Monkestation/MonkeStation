@@ -18,6 +18,11 @@
 	/// What type of fulltile window this sheet can construct.
 	var/window_type
 
+/obj/item/stack/sheet/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
+	. = ..()
+	pixel_x = rand(-4, 4)
+	pixel_y = rand(-4, 4)
+
 /// Mob action to try and install a window if the sheet can do that
 /obj/item/stack/sheet/proc/try_install_window(mob/living/user, turf/location, obj/mounted_on)
 	/// If we can't create a window out of this type, return FALSE to not affect attack chain.

@@ -28,7 +28,7 @@
 	stored_research = new
 	host_research = SSresearch.science_tech
 	update_research()
-	materials = AddComponent(/datum/component/remote_materials, "lathe", mapload, breakdown_flags=BREAKDOWN_FLAGS_LATHE)
+	materials = AddComponent(/datum/component/remote_materials, "lathe", mapload, mat_container_flags=BREAKDOWN_FLAGS_LATHE)
 	RefreshParts()
 	RegisterSignal(src, COMSIG_MATERIAL_CONTAINER_CHANGED, .proc/on_materials_changed)
 	RegisterSignal(src, COMSIG_REMOTE_MATERIALS_CHANGED, .proc/on_materials_changed)
@@ -252,19 +252,45 @@
 			I.material_flags |= MATERIAL_NO_EFFECTS //Find a better way to do this
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 
-/obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, var/mat)	// now returns how many times the item can be built with the material
-	if (!materials.mat_container)  // no connected silo
+/**
+ * Returns how many times over the given material requirement for the given design is satisfied.
+ *
+ * Arguments:
+ * - [being_built][/datum/design]: The design being referenced.
+ * - material: The material being checked.
+ */
+/obj/machinery/rnd/production/proc/check_material_req(datum/design/being_built, material)
+	if(!materials.mat_container)  // no connected silo
 		return 0
-	var/list/all_materials = being_built.reagents_list + being_built.materials
 
-	var/A = materials.mat_container.get_material_amount(mat)
-	if(!A)
-		A = reagents.get_reagent_amount(mat)
+	var/mat_amt = materials.mat_container.get_material_amount(material)
+	if(!mat_amt)
+		return 0
 
 	// these types don't have their .materials set in do_print, so don't allow
 	// them to be constructed efficiently
-	var/ef = efficient_with(being_built.build_path) ? efficiency_coeff : 1
-	return round(A / max(1, all_materials[mat] / ef))
+	var/efficiency = efficient_with(being_built.build_path) ? efficiency_coeff : 1
+	return round(mat_amt / max(1, being_built.materials[material] / efficiency))
+
+/**
+ * Returns how many times over the given reagent requirement for the given design is satisfied.
+ *
+ * Arguments:
+ * - [being_built][/datum/design]: The design being referenced.
+ * - reagent: The reagent being checked.
+ */
+/obj/machinery/rnd/production/proc/check_reagent_req(datum/design/being_built, reagent)
+	if(!reagents)  // no reagent storage
+		return 0
+
+	var/chem_amt = reagents.get_reagent_amount(reagent)
+	if(!chem_amt)
+		return 0
+
+	// these types don't have their .materials set in do_print, so don't allow
+	// them to be constructed efficiently
+	var/efficiency = efficient_with(being_built.build_path) ? efficiency_coeff : 1
+	return round(chem_amt / max(1, being_built.reagents_list[reagent] / efficiency))
 
 /obj/machinery/rnd/production/proc/efficient_with(path)
 	return !ispath(path, /obj/item/stack/sheet) && !ispath(path, /obj/item/stack/ore/bluespace_crystal)

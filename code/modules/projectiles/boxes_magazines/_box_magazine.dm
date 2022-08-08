@@ -25,14 +25,9 @@
 
 /obj/item/ammo_box/Initialize(mapload)
 	. = ..()
-	if (!bullet_cost)
-		for (var/material in custom_materials)
-			var/material_amount = custom_materials[material]
-			LAZYSET(base_cost, material, (material_amount * 0.10))
-
-			material_amount *= 0.90 // 10% for the container
-			material_amount /= max_ammo
-			LAZYSET(bullet_cost, material, material_amount)
+	if(!bullet_cost)
+		base_cost = SSmaterials.FindOrCreateMaterialCombo(custom_materials, 0.1)
+		bullet_cost = SSmaterials.FindOrCreateMaterialCombo(custom_materials, 0.9 / max_ammo)
 	if(!start_empty)
 		for(var/i = 1, i <= max_ammo, i++)
 			stored_ammo += new ammo_type(src)

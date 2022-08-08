@@ -171,7 +171,7 @@
 
 /obj/machinery/modular_fabricator/autolathe/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
 	. = ..()
-	if(custom_materials && custom_materials.len && custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)])
+	if(custom_materials && custom_materials.len && custom_materials[GET_MATERIAL_REF(/datum/material/glass)])
 		flick("autolathe_r",src)//plays glass insertion animation by default otherwise
 	else
 		flick("autolathe_o",src)//plays metal insertion animation

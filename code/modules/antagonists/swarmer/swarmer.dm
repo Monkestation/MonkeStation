@@ -194,7 +194,7 @@
 	return 0
 
 /obj/item/IntegrateAmount() //returns the amount of resources gained when eating this item
-	if(custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)] || custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)])
+	if(custom_materials[GET_MATERIAL_REF(/datum/material/iron)] || custom_materials[GET_MATERIAL_REF(/datum/material/glass)])
 		return 1
 	return ..()
 

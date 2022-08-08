@@ -6,10 +6,12 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 
 /datum/material
+	/// What the material is referred to as IC.
 	var/name = "material"
+	/// A short description of the material. Not used anywhere, yet...
 	var/desc = "its..stuff."
-	///Var that's mostly used by science machines to identify specific materials, should most likely be phased out at some point
-	var/id = "mat"
+	/// What the material is indexed by in the SSmaterials.materials list. Defaults to the type of the material.
+	var/id
 	///Base color of the material, is used for greyscale. Item isn't changed in color if this is null.
 	///Deprecated, use greyscale_color instead.
 	var/color
@@ -44,12 +46,22 @@ Simple datum which is instanced once per type and is used for every object of sa
 	/// If true, walls plated with this material that have a reinforcement, will be hard to deconstruct
 	var/hard_wall_decon = FALSE
 
+/** Handles initializing the material.
+ *
+ * Arugments:
+ * - _id: The ID the material should use. Overrides the existing ID.
+ */
 /datum/material/proc/Initialize(_id, ...)
+	if(_id)
+		id = _id
+	else if(isnull(id))
+		id = type
 	if(!wall_color)
 		wall_color = greyscale_colors
 
 	if(wall_type && !false_wall_type)
 		false_wall_type = /obj/structure/falsewall
+	return TRUE
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)

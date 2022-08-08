@@ -1543,22 +1543,23 @@
 
 	if(!(material_flags & MATERIAL_NO_EFFECTS))
 		for(var/x in materials)
-			var/datum/material/custom_material = SSmaterials.GetMaterialRef(x)
+			var/datum/material/custom_material = GET_MATERIAL_REF(x)
 			custom_material.on_applied(src, materials[x] * multiplier, material_flags)
 
 	custom_materials = SSmaterials.FindOrCreateMaterialCombo(materials, multiplier)
 
 
-/**Returns the material composition of the atom.
-  *
-  * Used when recycling items, specifically to turn alloys back into their component mats.
-  *
-  * Exists because I'd need to add a way to un-alloy alloys or otherwise deal
-  * with people converting the entire stations material supply into alloys.
-  *
-  * Arguments:
-  * - flags: A set of flags determining how exactly the materials are broken down.
-  */
+/**
+ * Returns the material composition of the atom.
+ *
+ * Used when recycling items, specifically to turn alloys back into their component mats.
+ *
+ * Exists because I'd need to add a way to un-alloy alloys or otherwise deal
+ * with people converting the entire stations material supply into alloys.
+ *
+ * Arguments:
+ * - flags: A set of flags determining how exactly the materials are broken down.
+ */
 /atom/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
 
@@ -1570,7 +1571,7 @@
 			.[comp_mat] += material_comp[comp_mat]
 
 /**
- * Fetches a list of all of the materials this object has of the desired type. Returns null if there is no valid materials of the type
+ * Fetches a list of all of the materials this object has of the desired type
  *
  * Arguments:
  * - [mat_type][/datum/material]: The type of material we are checking for
@@ -1582,16 +1583,69 @@
 	if(!length(cached_materials))
 		return null
 
-	var/materials_of_type
-	for(var/current_material in cached_materials)
-		if(cached_materials[current_material] < mat_amount)
+	. = list()
+	for(var/m in cached_materials)
+		if(cached_materials[m] < mat_amount)
 			continue
-		var/datum/material/material = GET_MATERIAL_REF(current_material)
-		if(exact ? material.type != current_material : !istype(material, mat_type))
+		var/datum/material/material = GET_MATERIAL_REF(m)
+		if(exact ? material.type != m : !istype(material, mat_type))
 			continue
-		LAZYSET(materials_of_type, material, cached_materials[current_material])
+		.[material] = cached_materials[m]
 
-	return materials_of_type
+/**
+ * Fetches a list of all of the materials this object has with the desired material category.
+ *
+ * Arguments:
+ * - category: The category to check for
+ * - any_flags: Any bitflags that must be present for the category
+ * - all_flags: All bitflags that must be present for the category
+ * - no_flags: Any bitflags that must not be present for the category
+ * - mat_amount: The minimum amount of materials that must be present
+ */
+/atom/proc/has_material_category(category, any_flags=0, all_flags=0, no_flags=0, mat_amount=0)
+	var/list/cached_materials = custom_materials
+	if(!length(cached_materials))
+		return null
+
+	. = list()
+	for(var/m in cached_materials)
+		if(cached_materials[m] < mat_amount)
+			continue
+		var/datum/material/material = GET_MATERIAL_REF(m)
+		var/category_flags = material?.categories[category]
+		if(isnull(category_flags))
+			continue
+		if(any_flags && !(category_flags & any_flags))
+			continue
+		if(all_flags && (all_flags != (category_flags & all_flags)))
+			continue
+		if(no_flags && (category_flags & no_flags))
+			continue
+		.[material] = cached_materials[m]
+
+/**
+ * Gets the most common material in the object.
+ */
+/atom/proc/get_master_material()
+	var/list/cached_materials = custom_materials
+	if(!length(cached_materials))
+		return null
+
+	var/most_common_material = null
+	var/max_amount = 0
+	for(var/m in cached_materials)
+		if(cached_materials[m] > max_amount)
+			most_common_material = m
+			max_amount = cached_materials[m]
+
+	if(most_common_material)
+		return GET_MATERIAL_REF(most_common_material)
+
+/**
+ * Gets the total amount of materials in this atom.
+ */
+/atom/proc/get_custom_material_amount()
+	return isnull(custom_materials) ? 0 : counterlist_sum(custom_materials)
 
 /**
   * Causes effects when the atom gets hit by a rust effect from heretics

@@ -8,8 +8,8 @@ These materials call on_applied() on whatever item they are applied to, common e
 SUBSYSTEM_DEF(materials)
 	name = "Materials"
 	flags = SS_NO_FIRE | SS_NO_INIT
-	///Dictionary of material.type || material ref
-	var/list/materials = list()
+	///Dictionary of material.id || material ref
+	var/list/materials
 	///Dictionary of type || list of material refs
 	var/list/materials_by_type
 	///Dictionary of type || list of material ids
@@ -20,11 +20,16 @@ SUBSYSTEM_DEF(materials)
 	var/list/materialids_by_category
 	///A cache of all material combinations that have been used
 	var/list/list/material_combos
-	///List of stackcrafting recipes for materials using rigid materials
+	///List of stackcrafting recipes for materials using base recipes
 	var/list/rigid_stack_recipes = list(new/datum/stack_recipe("chair", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE))
 
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials()
+	materials = list()
+	materials_by_type = list()
+	materialids_by_type = list()
+	materials_by_category = list()
+	materialids_by_category = list()
 	material_combos = list()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/mat_type = type
@@ -40,6 +45,8 @@ SUBSYSTEM_DEF(materials)
  */
 /datum/controller/subsystem/materials/proc/InitializeMaterial(list/arguments)
 	var/datum/material/mat_type = arguments[1]
+	if(initial(mat_type.init_flags) & MATERIAL_INIT_BESPOKE)
+		arguments[1] = GetIdFromArguments(arguments)
 
 	var/datum/material/mat_ref = new mat_type
 	if(!mat_ref.Initialize(arglist(arguments)))
@@ -68,10 +75,30 @@ SUBSYSTEM_DEF(materials)
  *       - If the material type is bespoke a text ID is generated from the arguments list and used to load a material datum from the cache.
  *   - The following elements are used to generate bespoke IDs
  */
-/datum/controller/subsystem/materials/proc/GetMaterialRef(datum/material/fakemat)
+/datum/controller/subsystem/materials/proc/_GetMaterialRef(list/arguments)
 	if(!materials)
 		InitializeMaterials()
-	return materials[fakemat] || fakemat
+	var/datum/material/key = arguments[1]
+	if(istype(key))
+		return key // We are assuming here that the only thing allowed to create material datums is [/datum/controller/subsystem/materials/proc/InitializeMaterial]
+
+	if(istext(key)) // Handle text id
+		. = materials[key]
+		if(!.)
+			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
+		return
+
+	if(!ispath(key, /datum/material))
+		CRASH("Attempted to fetch material ref with invalid key [key]")
+
+	if(!(initial(key.init_flags) & MATERIAL_INIT_BESPOKE))
+		. = materials[key]
+		if(!.)
+			WARNING("Attempted to fetch reference to an abstract material with key [key]")
+		return
+
+	key = GetIdFromArguments(arguments)
+	return materials[key] || InitializeMaterial(arguments)
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom
@@ -101,25 +128,27 @@ SUBSYSTEM_DEF(materials)
 			fullid += "[key]"
 
 	if(length(named_arguments))
-		named_arguments = sort_list(named_arguments)
+		named_arguments = sortList(named_arguments)
 		fullid += named_arguments
 	return list2params(fullid)
 
 ///Returns a list to be used as an object's custom_materials. Lists will be cached and re-used based on the parameters.
 /datum/controller/subsystem/materials/proc/FindOrCreateMaterialCombo(list/materials_declaration, multiplier)
+	if(!LAZYLEN(materials_declaration))
+		return null // If we get a null we pass it right back, we don't want to generate stack traces just because something is clearing out its materials list.
+
 	if(!material_combos)
 		InitializeMaterials()
 	var/list/combo_params = list()
 	for(var/x in materials_declaration)
 		var/datum/material/mat = x
-		var/path_name = ispath(mat) ? "[mat]" : "[mat.type]"
-		combo_params += "[path_name]=[materials_declaration[mat] * multiplier]"
+		combo_params += "[istype(mat) ? mat.id : mat]=[materials_declaration[mat] * multiplier]"
 	sortTim(combo_params, /proc/cmp_text_asc) // We have to sort now in case the declaration was not in order
 	var/combo_index = combo_params.Join("-")
 	var/list/combo = material_combos[combo_index]
 	if(!combo)
 		combo = list()
 		for(var/mat in materials_declaration)
-			combo[GetMaterialRef(mat)] = materials_declaration[mat] * multiplier
+			combo[GET_MATERIAL_REF(mat)] = materials_declaration[mat] * multiplier
 		material_combos[combo_index] = combo
 	return combo
