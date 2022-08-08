@@ -222,14 +222,14 @@
 		update_icon()
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
-	if(materials.len != 1 || materials[1] != getmaterialref(/datum/material/biomass))
+	if(materials.len != 1 || materials[1] != SSmaterials.GetMaterialRef(/datum/material/biomass))
 		return FALSE
-	if (materials[getmaterialref(/datum/material/biomass)]*multiplier/efficiency > points)
+	if (materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency > points)
 		return FALSE
 	else
 		if(remove_points)
 		//MonkeStation Edit Start (Round costs)
-			points -= round(materials[getmaterialref(/datum/material/biomass)]*multiplier/efficiency)
+			points -= round(materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]*multiplier/efficiency)
 		//MonkeStation Edit End
 			ui_update()
 		update_icon()
@@ -337,7 +337,7 @@
 				"id" = D.id,
 				"name" = D.name,
 				//MonkeStation Edit Start(Rounds price)
-				"cost" = round(D.materials[getmaterialref(/datum/material/biomass)]/efficiency),
+				"cost" = round(D.materials[SSmaterials.GetMaterialRef(/datum/material/biomass)]/efficiency),
 				//MonkeStation Edit End
 			))
 		data["categories"] += list(cat)

@@ -3,7 +3,7 @@
 	icon = 'monkestation/icons/obj/storage/toolbox.dmi'
 	icon_state = "toolbox_ce"
 	item_state = "toolbox_default"
-	material_flags = MATERIAL_NO_COLOR
+	material_flags = NONE
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15 // Hits slightly higher, throw range is lower because it is heavy
 	throwforce = 15

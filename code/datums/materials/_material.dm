@@ -53,7 +53,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
-	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
+	if((material_flags & MATERIAL_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color) //Do we have a custom color?
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
@@ -64,6 +64,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 	if(wall_type && !false_wall_type)
 		false_wall_type = /obj/structure/falsewall
+
+	if(material_flags & MATERIAL_ADD_PREFIX)
+		source.name = "[name] [source.name]"
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)
@@ -99,13 +102,16 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 ///This proc is called when the material is removed from an object.
 /datum/material/proc/on_removed(atom/source, amount, material_flags)
-	if(!(material_flags & MATERIAL_NO_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
+	if((material_flags & MATERIAL_COLOR)) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color)
 			source.remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
 		source.alpha = initial(source.alpha)
 
 	if(material_flags & MATERIAL_GREYSCALE)
 		source.set_greyscale(initial(source.greyscale_colors), initial(source.greyscale_config))
+
+	if(material_flags & MATERIAL_ADD_PREFIX)
+		source.name = initial(source.name)
 
 	if(istype(source, /obj)) //objs
 		on_removed_obj(source, amount, material_flags)

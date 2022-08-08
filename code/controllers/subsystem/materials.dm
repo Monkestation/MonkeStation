@@ -7,8 +7,7 @@ These materials call on_applied() on whatever item they are applied to, common e
 
 SUBSYSTEM_DEF(materials)
 	name = "Materials"
-	flags = SS_NO_FIRE
-	init_order = INIT_ORDER_MATERIALS
+	flags = SS_NO_FIRE | SS_NO_INIT
 	///Dictionary of material.type || material ref
 	var/list/materials = list()
 	///Dictionary of type || list of material refs
@@ -22,12 +21,8 @@ SUBSYSTEM_DEF(materials)
 	///List of stackcrafting recipes for materials using rigid materials
 	var/list/rigid_stack_recipes = list(new/datum/stack_recipe("chair", /obj/structure/chair/greyscale, one_per_turf = TRUE, on_floor = TRUE, applies_mats = TRUE))
 
-/datum/controller/subsystem/materials/Initialize(timeofday)
-	InitializeMaterials()
-	return ..()
-
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
-/datum/controller/subsystem/materials/proc/InitializeMaterials(timeofday)
+/datum/controller/subsystem/materials/proc/InitializeMaterials()
 	for(var/type in subtypesof(/datum/material))
 		var/datum/material/mat_type = type
 		if(!(initial(mat_type.init_flags) & MATERIAL_INIT_MAPLOAD))
@@ -70,25 +65,10 @@ SUBSYSTEM_DEF(materials)
  *       - If the material type is bespoke a text ID is generated from the arguments list and used to load a material datum from the cache.
  *   - The following elements are used to generate bespoke IDs
  */
-/datum/controller/subsystem/materials/proc/_GetMaterialRef(list/arguments)
+/datum/controller/subsystem/materials/proc/GetMaterialRef(datum/material/fakemat)
 	if(!materials)
 		InitializeMaterials()
-
-	var/datum/material/key = arguments[1]
-	if(istype(key))
-		return key // We are assuming here that the only thing allowed to create material datums is [/datum/controller/subsystem/materials/proc/InitializeMaterial]
-
-	if(istext(key)) // Handle text id
-		. = materials[key]
-		if(!.)
-			WARNING("Attempted to fetch material ref with invalid text id '[key]'")
-		return
-
-	if(!ispath(key, /datum/material))
-		CRASH("Attempted to fetch material ref with invalid key [key]")
-
-	key = GetIdFromArguments(arguments)
-	return materials[key] || InitializeMaterial(arguments)
+	return materials[fakemat] || fakemat
 
 /** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
  * Credit does to ninjanomnom

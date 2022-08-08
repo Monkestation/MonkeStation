@@ -224,10 +224,9 @@
 	if(custom_materials && custom_materials.len)
 		var/temp_list = list()
 		for(var/i in custom_materials)
-			var/datum/material/material = getmaterialref(i) || i
+			var/datum/material/material = SSmaterials.GetMaterialRef(i) || i
 			temp_list[material] = custom_materials[material] //Get the proper instanced version
 
-		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
 	ComponentInitialize()
@@ -1569,7 +1568,7 @@
 	. = list()
 	var/list/cached_materials = custom_materials
 	for(var/mat in cached_materials)
-		var/datum/material/material = GET_MATERIAL_REF(mat)
+		var/datum/material/material = SSmaterials.GetMaterialRef(mat)
 		var/list/material_comp = material.return_composition(cached_materials[material], breakdown_flags)
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
