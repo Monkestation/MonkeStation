@@ -171,7 +171,7 @@
 	flags_1 = CAN_BE_DIRTY_1
 	flags_ricochet = RICOCHET_SHINY | RICOCHET_HARD
 	smoothing_groups = list(SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
 	plating_material = /datum/material/titanium
 	color = "#b3c0c7" //To display in mapping softwares
 
@@ -205,7 +205,7 @@
 	icon = 'icons/turf/walls/metal_wall.dmi'
 	explosion_block = 4
 	smoothing_groups = list(SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
 	plating_material = /datum/material/alloy/plastitanium
 	color = "#3a313a" //To display in mapping softwares
 

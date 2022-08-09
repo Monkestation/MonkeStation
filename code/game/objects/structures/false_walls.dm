@@ -15,7 +15,7 @@
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE)
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -367,7 +367,7 @@
 	icon = 'icons/turf/walls/metal_wall.dmi'
 	plating_material = /datum/material/titanium
 	smoothing_groups = list(SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
 
 /obj/structure/falsewall/plastitanium
 	name = "wall"
@@ -375,7 +375,7 @@
 	icon = 'icons/turf/walls/metal_wall.dmi'
 	plating_material = /datum/material/alloy/plastitanium
 	smoothing_groups = list(SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
 
 
 /obj/structure/falsewall/brass/New(loc)

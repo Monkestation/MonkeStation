@@ -69,8 +69,8 @@
 	name = "uranium"
 	id = "uranium"
 	desc = "Uranium"
-	color = "#1fb83b"
-	greyscale_colors = "#1fb83b"
+	color = "#174207"
+	greyscale_colors = "#174207"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	coin_type = /obj/item/coin/uranium
