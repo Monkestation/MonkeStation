@@ -76,7 +76,7 @@
 	overlays += smoothed_stripe
 
 	if(!airlock_typecache)
-		airlock_typecache = typecacheof(list(/obj/machinery/door/airlock, /obj/machinery/door/poddoor))
+		airlock_typecache = typecacheof(list(/obj/machinery/door/airlock))
 	var/neighbor_stripe = NONE
 	for(var/cardinal in GLOB.cardinals)
 		var/turf/step_turf = get_step(src, cardinal)
@@ -175,6 +175,7 @@
 
 /obj/structure/low_wall/proc/set_stripe_paint(new_paint)
 	stripe_paint = new_paint
+	message_admins("[stripe_paint]")
 	update_appearance()
 
 /obj/structure/low_wall/proc/set_material(new_material_type)

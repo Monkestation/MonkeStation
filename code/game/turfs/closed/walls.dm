@@ -114,7 +114,7 @@
 		overlays += smoothed_stripe
 
 	var/neighbor_stripe = NONE
-	if(!neighbor_typecache)
+	if(!neighbor_typecache || !neighbor_typecache.len)
 		neighbor_typecache = typecacheof(list(
 			/obj/machinery/door/airlock,
 			/obj/structure/window/reinforced/fulltile,

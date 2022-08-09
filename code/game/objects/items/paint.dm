@@ -14,10 +14,11 @@
 	var/paint_color = COLOR_WHITE
 	/// How many uses are left
 	var/paintleft = 10
+	var/stripe_mode = FALSE
 
 /obj/item/paint/examine(mob/user)
 	. = ..()
-	. += span_notice("Paint wall stripes by right clicking a walls.")
+	. += span_notice("Paint wall stripes by Shift-Clicking the paintcan than clicking a wall.")
 
 /obj/item/paint/red
 	name = "red paint"
@@ -122,13 +123,13 @@
 		return
 	if(!proximity)
 		return
-	var/list/modifiers = params2list(params)
 	if(paintleft <= 0)
 		icon_state = "paint_empty"
 		return
 	if(istype(target, /obj/structure/low_wall))
 		var/obj/structure/low_wall/target_low_wall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
+			message_admins("boom")
 			target_low_wall.set_stripe_paint(paint_color)
 		else
 			target_low_wall.set_wall_paint(paint_color)
@@ -138,7 +139,7 @@
 		return TRUE
 	if(iswall(target))
 		var/turf/closed/wall/target_wall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
 			target_wall.paint_stripe(paint_color)
 		else
 			target_wall.paint_wall(paint_color)
@@ -148,7 +149,7 @@
 		return TRUE
 	if(isfalsewall(target))
 		var/obj/structure/falsewall/target_falsewall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
 			target_falsewall.paint_stripe(paint_color)
 		else
 			target_falsewall.paint_wall(paint_color)
@@ -160,6 +161,15 @@
 		return TRUE
 	target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
 
+/obj/item/paint/ShiftClick(mob/user)
+	. = ..()
+	if(stripe_mode == FALSE)
+		stripe_mode = TRUE
+		to_chat("Prepares to paint wall stripes")
+	else
+		stripe_mode = FALSE
+		to_chat("Prepares to paint walls")
+
 /obj/item/paint_remover
 	gender = PLURAL
 	name = "paint remover"
@@ -169,10 +179,20 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
+	var/stripe_mode = FALSE
 
 /obj/item/paint_remover/examine(mob/user)
 	. = ..()
-	. += span_notice("Remove wall stripe paint by right-clicking a wall.")
+	. += span_notice("Remove wall stripes by Shift-Clicking the paint remover than clicking a wall.")
+
+/obj/item/paint_remover/ShiftClick(mob/user)
+	. = ..()
+	if(stripe_mode == FALSE)
+		stripe_mode = TRUE
+		to_chat("Prepares to remove wall stripes")
+	else
+		stripe_mode = FALSE
+		to_chat("Prepares to remove wall paint")
 
 /obj/item/paint_remover/afterattack(atom/target, mob/user, proximity, params)
 	. = ..()
@@ -180,10 +200,9 @@
 		return
 	if(!proximity)
 		return
-	var/list/modifiers = params2list(params)
 	if(istype(target, /obj/structure/low_wall))
 		var/obj/structure/low_wall/target_low_wall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
 			if(!target_low_wall.stripe_paint)
 				to_chat(user, span_warning("There is no paint to strip!"))
 				return TRUE
@@ -199,7 +218,7 @@
 		return TRUE
 	if(iswall(target))
 		var/turf/closed/wall/target_wall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
 			if(!target_wall.stripe_paint)
 				to_chat(user, span_warning("There is no paint to strip!"))
 				return TRUE
@@ -215,7 +234,7 @@
 		return TRUE
 	if(isfalsewall(target))
 		var/obj/structure/falsewall/target_falsewall = target
-		if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		if(stripe_mode == TRUE)
 			if(!target_falsewall.stripe_paint)
 				to_chat(user, span_warning("There is no paint to strip!"))
 				return TRUE
