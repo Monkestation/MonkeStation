@@ -15,10 +15,10 @@
 	changed_turf.AddElement(/datum/element/rust)
 
 /turf/open/floor/plasteel/update_icon_state()
-	if(!..())
-		return 0
-	if(!broken && !burnt)
-		icon_state = icon_regular_floor
+	.=..()
+	if(broken || burnt)
+		return
+	icon_state = base_icon_state
 
 /turf/open/floor/plasteel/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -27,7 +27,7 @@
 
 /turf/open/floor/plasteel/dark
 	icon_state = "darkfull"
-	base_icon_state = "dark"
+	base_icon_state = "darkfull"
 /turf/open/floor/plasteel/dark/airless
 	initial_gas_mix = AIRLESS_ATMOS
 /turf/open/floor/plasteel/dark/telecomms
@@ -43,7 +43,8 @@
 	base_icon_state = "darkcorner"
 /turf/open/floor/plasteel/checker
 	icon_state = "checker"
-	base_icon_state = "checker"
+	base_icon_state = "darkcorner"
+
 
 /turf/open/floor/plasteel/white
 	icon_state = "white"
@@ -93,10 +94,10 @@
 /turf/open/floor/plasteel/solarpanel
 	icon_state = "solarpanel"
 	base_icon_state = "solarpanel"
-
 /turf/open/floor/plasteel/airless/solarpanel
 	icon_state = "solarpanel"
 	base_icon_state = "solarpanel"
+
 
 /turf/open/floor/plasteel/freezer
 	icon_state = "freezerfloor"
@@ -133,6 +134,8 @@
 	base_icon_state = "plaque"
 	name = "commemorative plaque"
 	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
+	icon_state = "plaque"
+	base_icon_state = "plaque"
 	tiled_dirt = FALSE
 
 /turf/open/floor/plasteel/cult/narsie_act()
@@ -150,7 +153,7 @@
 	base_icon_state = "stairs-l"
 /turf/open/floor/plasteel/stairs/medium
 	icon_state = "stairs-m"
-	base_icon_state = "stairs-m"
+	base_icon_state = "stairs-n"
 /turf/open/floor/plasteel/stairs/right
 	icon_state = "stairs-r"
 	base_icon_state = "stairs-r"

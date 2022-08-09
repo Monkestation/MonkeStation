@@ -100,6 +100,13 @@
 	.["grid"] = grid
 	.["name"] = painting_name
 	.["finalized"] = finalized
+	var/obj/item/painting_implement = user.get_active_held_item()
+	.["paint_tool_color"] = get_paint_tool_color(painting_implement)
+	// Clearing additional data so that it doesn't linger around if the painting tool is dropped.
+	.["paint_tool_palette"] = null
+	if(!painting_implement)
+		return
+	SEND_SIGNAL(painting_implement, COMSIG_PAINTING_TOOL_GET_ADDITIONAL_DATA, .)
 
 /obj/item/canvas/examine(mob/user)
 	. = ..()
@@ -122,6 +129,9 @@
 			used = TRUE
 			update_icon()
 			. = TRUE
+		if("select_color")
+			var/obj/item/painting_implement = user.get_active_held_item()
+			painting_implement?.set_painting_tool_color(params["selected_color"])
 		if("finalize")
 			. = TRUE
 			if(!finalized)

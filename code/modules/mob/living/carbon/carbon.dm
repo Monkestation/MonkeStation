@@ -262,6 +262,7 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+	SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_RESISTED)
 	if(!cuff_break)
 		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
 		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")
@@ -327,6 +328,9 @@
 
 	else
 		if(I == handcuffed)
+			//MONKESTATION EDIT
+			SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_REMOVED)
+			//MONKESTATION EDIT END
 			handcuffed.forceMove(drop_location())
 			handcuffed = null
 			I.dropped(src)
