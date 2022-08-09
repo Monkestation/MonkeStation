@@ -31350,9 +31350,7 @@
 	id = "engilobby";
 	name = "Engineering Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bUF" = (
@@ -32007,9 +32005,7 @@
 	id = "engilobby";
 	name = "Engineering Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bWN" = (
@@ -32383,9 +32379,7 @@
 	id = "engilobby";
 	name = "Engineering Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bXK" = (
@@ -32746,9 +32740,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bYQ" = (
@@ -32981,9 +32973,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable/yellow,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "bZD" = (
@@ -33000,9 +32990,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "bZE" = (
@@ -34535,11 +34523,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "ceB" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -34648,9 +34634,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "cfd" = (
@@ -42784,9 +42768,6 @@
 	id = "atmos";
 	name = "Atmospherics Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "fsC" = (
@@ -43919,9 +43900,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "gxA" = (
@@ -44705,9 +44684,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "hwv" = (
@@ -45537,9 +45514,7 @@
 /area/chapel/main)
 "iDR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "iEJ" = (
@@ -46136,9 +46111,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "jvq" = (
@@ -46512,9 +46485,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "jTN" = (
@@ -47153,9 +47124,6 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
 	name = "Atmospherics Blast Door"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
 	},
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
@@ -47853,9 +47821,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "lpU" = (
@@ -49227,9 +49193,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "mId" = (
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "mJd" = (
@@ -51821,9 +51785,7 @@
 	id = "engilobby";
 	name = "Engineering Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "qdJ" = (
@@ -52656,9 +52618,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "qYS" = (
@@ -53868,9 +53828,6 @@
 	id = "atmos";
 	name = "Atmospherics Blast Door"
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ssw" = (
@@ -54058,9 +54015,7 @@
 /area/maintenance/starboard)
 "sCT" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "sDi" = (
@@ -55196,9 +55151,7 @@
 /area/maintenance/port/fore)
 "ufv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "ufN" = (
@@ -58472,9 +58425,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 9
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "xHO" = (
@@ -58575,9 +58526,7 @@
 /area/quartermaster/exploration_prep)
 "xNI" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "xOL" = (
@@ -58956,9 +58905,7 @@
 	pixel_y = -32
 	},
 /obj/structure/cable/yellow,
-/obj/effect/spawner/structure/window/reinforced/shutter{
-	id = "test"
-	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "yis" = (
@@ -93933,8 +93880,8 @@ bOd
 cbG
 ccA
 cdC
+bTO
 ceB
-cez
 nRm
 sOq
 cix
