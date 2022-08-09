@@ -87,7 +87,7 @@
 	turf_type = /turf/open/floor/mineral/titanium
 	mineralType = "titanium"
 	mats_per_unit = list(/datum/material/titanium=500)
-	materials = list(/datum/material/titanium=500)
+	custom_materials = list(/datum/material/titanium=500)
 	tile_reskin_types = list(
 		/obj/item/stack/tile/mineral/titanium,
 		/obj/item/stack/tile/mineral/titanium/yellow,

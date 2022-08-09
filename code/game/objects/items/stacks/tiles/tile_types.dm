@@ -573,7 +573,7 @@
 	icon_state = "tile_glass"
 	turf_type = /turf/open/floor/glass
 	merge_type = /obj/item/stack/tile/glass
-	materials = list(/datum/material/glass=500) // 4 tiles per sheet
+	custom_materials = list(/datum/material/glass=500) // 4 tiles per sheet
 
 /obj/item/stack/tile/glass/sixty
 	amount = 60
@@ -585,7 +585,7 @@
 	icon_state = "tile_rglass"
 	turf_type = /turf/open/floor/glass/reinforced
 	merge_type = /obj/item/stack/tile/rglass
-	materials = list(/datum/material/iron=250, /datum/material/glass=250) // 4 tiles per sheet
+	custom_materials = list(/datum/material/iron=250, /datum/material/glass=250) // 4 tiles per sheet
 
 /obj/item/stack/tile/rglass/sixty
 	amount = 60
@@ -598,7 +598,7 @@
 	icon_state = "tile_pglass"
 	turf_type = /turf/open/floor/glass/plasma
 	merge_type = /obj/item/stack/tile/glass/plasma
-	materials = list(/datum/material/plasma =500)
+	custom_materials = list(/datum/material/plasma =500)
 
 /obj/item/stack/tile/rglass/plasma
 	name = "reinforced plasma glass floor"
@@ -607,4 +607,4 @@
 	icon_state = "tile_rpglass"
 	turf_type = /turf/open/floor/glass/reinforced/plasma
 	merge_type = /obj/item/stack/tile/rglass/plasma
-	materials = list(/datum/material/iron = 250, /datum/material/plasma = 250)
+	custom_materials = list(/datum/material/iron = 250, /datum/material/plasma = 250)
