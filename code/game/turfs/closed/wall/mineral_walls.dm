@@ -183,7 +183,7 @@
 
 /turf/closed/wall/mineral/titanium/interior
 
-turf/closed/wall/mineral/titanium/survival
+/turf/closed/wall/mineral/titanium/survival
 	name = "pod wall"
 	desc = "An easily-compressable wall used for temporary shelter."
 	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
