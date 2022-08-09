@@ -70,6 +70,10 @@ Simple datum which is instanced once per type and is used for every object of sa
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
 			source.alpha = alpha
+
+	if(alpha < 255)
+		source.opacity = FALSE
+
 	if(material_flags & MATERIAL_GREYSCALE)
 		var/config_path = get_greyscale_config_for(source.greyscale_config)
 		source.set_greyscale(greyscale_colors, config_path)
@@ -82,6 +86,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 	else if(istype(source, /turf)) //turfs
 		on_applied_turf(source, amount, material_flags)
 	source.mat_update_desc(src)
+
+	if(istype(source, /turf)) //turfs
+		on_applied_turf(source, amount, material_flags)
 
 ///This proc is called when the material is added to an object specifically.
 /datum/material/proc/on_applied_obj(obj/o, amount, material_flags)
@@ -107,12 +114,21 @@ Simple datum which is instanced once per type and is used for every object of sa
 			new_inhand_right = righthand_path
 		)
 
+
 ///This proc is called when a material updates an object's description
 /atom/proc/mat_update_desc(datum/material/mat)
 	return
 
 /datum/material/proc/on_applied_turf(turf/T, amount, material_flags)
+	if(alpha < 255)
+		T.AddElement(/datum/element/turf_z_transparency, TRUE)
 	return
+
+
+/datum/material/proc/on_removed_turf(turf/T, material_flags)
+	if(alpha)
+		RemoveElement(/datum/element/turf_z_transparency, FALSE)
+
 
 ///This proc is called when the material is removed from an object.
 /datum/material/proc/on_removed(atom/source, amount, material_flags)
@@ -129,6 +145,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 	if(istype(source, /obj)) //objs
 		on_removed_obj(source, amount, material_flags)
+
+	if(istype(source, /turf)) //turfs
+		on_removed_turf(source, material_flags)
 
 ///This proc is called when the material is removed from an object specifically.
 /datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
