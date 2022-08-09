@@ -30110,9 +30110,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /obj/structure/table,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -30338,6 +30335,9 @@
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -31961,6 +31961,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -50455,6 +50458,10 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/auto_name/north,
 /obj/structure/closet/emcloset,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -53273,13 +53280,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"rNt" = (
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = 0;
-	pixel_y = -8
-	},
-/turf/closed/wall/r_wall,
-/area/hallway/primary/aft)
 "rOJ" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/aft)
@@ -87455,7 +87455,7 @@ rOJ
 bAR
 bSB
 bTz
-rNt
+rOJ
 orT
 bWJ
 bYn
