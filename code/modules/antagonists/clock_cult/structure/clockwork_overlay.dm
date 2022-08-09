@@ -27,7 +27,7 @@
 
 /obj/effect/clockwork/overlay/wall
 	name = "clockwork wall"
-	icon = 'icons/turf/walls/clockwork_wall.dmi'
+	icon = 'icons/turf/walls/legacy/clockwork_wall.dmi'
 	icon_state = "clockwork_wall-0"
 	//canSmoothWith = list(/obj/effect/clockwork/overlay/wall, /obj/structure/falsewall/brass) //MONKESTATION REMOVAL
 	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL

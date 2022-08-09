@@ -183,7 +183,7 @@
 
 /turf/closed/wall/mineral/titanium/interior
 
-/turf/closed/wall/mineral/titanium/survival
+turf/closed/wall/mineral/titanium/survival
 	name = "pod wall"
 	desc = "An easily-compressable wall used for temporary shelter."
 	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
@@ -194,6 +194,8 @@
 /turf/closed/wall/mineral/titanium/survival/nodiagonal
 
 /turf/closed/wall/mineral/titanium/survival/pod
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
+	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
 
 /////////////////////Plastitanium walls/////////////////////
 

@@ -154,14 +154,6 @@
 //             WINDOWS            	  //
 ///////////////////////////////////////
 
-/obj/structure/window/shuttle/survival_pod
-	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/pod_window.dmi'
-	icon_state = "pod_window-0"
-	base_icon_state = "pod_window"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE_PARTS, SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
-	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD)
-
 /obj/structure/window/plastitanium
 	icon = 'monkestation/code/modules/bitmask_smoothing/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window-0"
