@@ -719,7 +719,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/{
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},

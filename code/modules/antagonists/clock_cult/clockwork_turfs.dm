@@ -353,9 +353,7 @@
 /obj/machinery/door/airlock/clockwork
 	name = "pinion airlock"
 	desc = "A massive cogwheel set into two heavy slabs of brass. Contains tiny vents for allowing the flow of pressure."
-	icon = 'icons/obj/doors/airlocks/clockwork/pinion_airlock.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/clockwork/overlays.dmi'
-	anim_parts = "left=-13,0;right=13,0"
+	airlock_paint = "#9c5f05"
 	hackProof = TRUE
 	aiControlDisabled = 1
 	req_access = list(ACCESS_CLOCKCULT)

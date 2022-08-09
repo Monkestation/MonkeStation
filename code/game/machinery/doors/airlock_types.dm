@@ -357,17 +357,16 @@
 	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	airlock_paint = "#9F2828"
 	assemblytype = /obj/structure/door_assembly/door_assembly_ext
-	anim_parts = "top=0,16;bottom=0,-16"
 	note_attachment = "bottom"
 	panel_attachment = "bottom"
 
 /obj/machinery/door/airlock/arrivals_external
 	name = "arrivals airlock"
-	icon = 'icons/obj/doors/airlocks/external/arrivals_external.dmi' //MONKESTATION EDIT - OVERRIDEN IN MODULAR FILE
-	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi' //MONKESTATION EDIT - OVERRIDEN IN MODULAR FILE
-	note_overlay_file = 'icons/obj/doors/airlocks/external/overlays.dmi' //MONKESTATION EDIT - OVERRIDEN IN MODULAR FILE
+	icon = 'icons/obj/doors/airlocks/external/airlock.dmi'
+	color_overlays = 'icons/obj/doors/airlocks/external/airlock_color.dmi'
+	glass_fill_overlays = 'icons/obj/doors/airlocks/external/glass_overlays.dmi'
+	overlays_file = 'icons/obj/doors/airlocks/external/overlays.dmi'
 	protected_door = TRUE
-	anim_parts = "top=0,16;bottom=0,-16"
 	note_attachment = "bottom"
 	panel_attachment = "bottom"
 
@@ -381,8 +380,7 @@
 */
 
 /obj/machinery/door/airlock/centcom //Use grunge as a station side version, as these have special effects related to them via phobias and such.
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/centcom/overlays.dmi'
+	icon = 'icons/obj/doors/airlocks/centcom/airlock.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_centcom
 	normal_integrity = 1000
 	security_level = 6

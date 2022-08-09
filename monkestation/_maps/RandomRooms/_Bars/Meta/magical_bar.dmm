@@ -65,7 +65,6 @@
 /area/crew_quarters/bar)
 "h" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
 	name = "Bar"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -106,7 +105,6 @@
 /area/crew_quarters/bar)
 "s" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
 	name = "Personal Quarters";
 	req_access_txt = "25"
 	},
@@ -204,7 +202,6 @@
 /area/crew_quarters/bar)
 "K" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
 	name = "Bar"
 	},
 /turf/open/floor/plasteel/cult,
@@ -240,7 +237,6 @@
 /area/crew_quarters/bar)
 "V" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
 	name = "Bar Access";
 	req_access_txt = "25"
 	},
