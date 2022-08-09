@@ -4,7 +4,7 @@
 	desc = "Heavy duty metal shutters that open mechanically."
 	icon = 'icons/obj/doors/shutters.dmi'
 	layer = SHUTTER_LAYER
-	closingLayer = SHUTTER_LAYER
+	closingLayer = SHUTTER_LAYER_CLOSED
 	damage_deflection = 20
 	recipe_type = /datum/crafting_recipe/shutters
 

@@ -37,9 +37,20 @@
 #define AIRLOCK_DAMAGE_DEFLECTION_N  21  // Normal airlock damage deflection
 #define AIRLOCK_DAMAGE_DEFLECTION_R  30  // Reinforced airlock damage deflection
 
+#define AIRLOCK_FRAME_CLOSED "closed"
+#define AIRLOCK_FRAME_CLOSING "closing"
+#define AIRLOCK_FRAME_OPEN "open"
+#define AIRLOCK_FRAME_OPENING "opening"
+
+#define AIRLOCK_LIGHT_BOLTS "bolts"
+#define AIRLOCK_LIGHT_EMERGENCY "emergency"
+#define AIRLOCK_LIGHT_DENIED "denied"
+#define AIRLOCK_LIGHT_CLOSING "closing"
+#define AIRLOCK_LIGHT_OPENING "opening"
+
 /obj/machinery/door/airlock
 	name = "airlock"
-	icon = 'icons/obj/doors/airlocks/station/public.dmi'
+	icon = 'icons/obj/doors/airlocks/station/airlock.dmi'
 	icon_state = "closed"
 	appearance_flags = TILE_BOUND | LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
 	max_integrity = 300
@@ -52,7 +63,12 @@
 	normalspeed = 1
 	explosion_block = 1
 	hud_possible = list(DIAG_AIRLOCK_HUD)
+	align_to_windows = TRUE
+	door_align_type = /obj/machinery/door/airlock
 	var/allow_repaint = TRUE //Set to FALSE if the airlock should not be allowed to be repainted.
+
+	var/forcedOpen = 'sound/machines/airlockforced.ogg'
+	var/forcedClosed = 'sound/machines/airlockforced.ogg'
 
 	FASTDMM_PROP(\
 		pinned_vars = list("req_access_txt", "req_one_access_txt", "name")\
@@ -81,16 +97,24 @@
 	var/abandoned = FALSE
 	var/cutAiWire = FALSE
 	var/autoname = FALSE
-	var/doorOpen = 'sound/machines/airlock.ogg'
-	var/doorClose = 'sound/machines/airlockclose.ogg'
-	var/doorDeni = 'sound/machines/deniedbeep.ogg' // i'm thinkin' Deni's
-	var/boltUp = 'sound/machines/boltsup.ogg'
-	var/boltDown = 'sound/machines/boltsdown.ogg'
+	var/doorOpen = 'monkestation/sound/machines/airlock/open.ogg'
+	var/doorClose = 'monkestation/sound/machines/airlock/close.ogg'
+	var/doorDeni = 'sound/machines/deniedbeep.ogg'
+	var/boltUp = 'monkestation/sound/machines/airlock/bolts_up.ogg'
+	var/boltDown = 'monkestation/sound/machines/airlock/bolts_down.ogg'
 	var/noPower = 'sound/machines/doorclick.ogg'
 	var/previous_airlock = /obj/structure/door_assembly //what airlock assembly mineral plating was applied to
-	var/airlock_material //material of inner filling; if its an airlock with glass, this should be set to "glass"
+	var/airlock_material
+	var/stripe_overlays = 'icons/obj/doors/airlocks/station/airlock_stripe.dmi'
+	var/color_overlays = 'icons/obj/doors/airlocks/station/airlock_color.dmi'
+	var/glass_fill_overlays = 'icons/obj/doors/airlocks/station/glass_overlays.dmi'
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
-	var/note_overlay_file = 'icons/obj/doors/airlocks/station/overlays.dmi' //Used for papers and photos pinned to the airlock
+	var/note_overlay_file = 'icons/obj/doors/airlocks/station/note_overlays.dmi' //Used for papers and photos pinned to the airlock
+
+	var/has_fill_overlays = TRUE
+
+	var/airlock_paint
+	var/stripe_paint
 	/* Note mask_file needed some change due to the change from 513 to 514(the behavior of alpha filters seems to have changed) thats the reason why the mask
 	dmi file for normal airlocks is not 32x32 but 64x64 and for the large airlocks instead of 64x32 its now 96x64 due to the fix to this problem*/
 	var/mask_file = 'icons/obj/doors/airlocks/mask_32x32_airlocks.dmi' // because filters aren't allowed to have icon_states :(
@@ -121,8 +145,6 @@
 	if(frequency)
 		set_frequency(frequency)
 
-	if(glass)
-		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_IRON)
 		obj_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
 		max_integrity = normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER
@@ -172,7 +194,7 @@
 		wires.cut(WIRE_AI)
 	if(autoname)
 		name = get_area_name(src, TRUE)
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/ComponentInitialize()
 	. = ..()
@@ -295,7 +317,7 @@
 				return
 
 			emergency = !emergency
-			update_icon()
+			update_appearance()
 
 /obj/machinery/door/airlock/lock()
 	bolt()
@@ -306,7 +328,7 @@
 	set_bolt(TRUE)
 	playsound(src, boltDown, 30, 0, 3)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/proc/set_bolt(should_bolt)
 	if(locked == should_bolt)
@@ -325,7 +347,7 @@
 	set_bolt(FALSE)
 	playsound(src,boltUp,30,0,3)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/narsie_act()
 	var/turf/T = get_turf(src)
@@ -395,7 +417,7 @@
 /obj/machinery/door/airlock/handle_atom_del(atom/A)
 	if(A == note)
 		note = null
-		update_icon()
+		update_appearance()
 
 /obj/machinery/door/airlock/Bumped(atom/movable/AM)
 	if(operating || (obj_flags & EMAGGED))
@@ -490,7 +512,7 @@
 /obj/machinery/door/airlock/proc/regainMainPower()
 	if(secondsMainPowerLost > 0)
 		secondsMainPowerLost = 0
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/proc/handlePowerRestore()
 	var/cont = TRUE
@@ -509,7 +531,7 @@
 			cont = TRUE
 	spawnPowerRestoreRunning = FALSE
 	ui_update()
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/proc/loseMainPower()
 	if(secondsMainPowerLost <= 0)
@@ -519,7 +541,7 @@
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
 	INVOKE_ASYNC(src, .proc/handlePowerRestore)
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
 	if(secondsBackupPowerLost < 60)
@@ -527,12 +549,12 @@
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
 	INVOKE_ASYNC(src, .proc/handlePowerRestore)
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/proc/regainBackupPower()
 	if(secondsBackupPowerLost > 0)
 		secondsBackupPowerLost = 0
-	update_icon()
+	update_appearance()
 
 // shock user with probability prb (if all connections & power are working)
 // returns TRUE if shocked, FALSE otherwise
@@ -552,22 +574,28 @@
 	else
 		return FALSE
 
-/obj/machinery/door/airlock/update_icon(state=0, override=FALSE)
+/obj/machinery/door/airlock/update_icon(updates=ALL, state=0, override=FALSE)
 	cut_overlays() // Needed without it you get like 300 unres indicator overlayers over time
 	if(operating && !override)
 		return
-	switch(state)
-		if(0)
-			if(density)
-				state = AIRLOCK_CLOSED
-			else
-				state = AIRLOCK_OPEN
-			icon_state = ""
+	if(!state)
+		state = density ? AIRLOCK_CLOSED : AIRLOCK_OPEN
+	airlock_state = state
+
+	. = ..()
+
+	if(hasPower() && unres_sides)
+		set_light(2, 1)
+	else
+		set_light(0)
+
+/obj/machinery/door/airlock/update_icon_state()
+	. = ..()
+	switch(airlock_state)
 		if(AIRLOCK_OPEN, AIRLOCK_CLOSED)
 			icon_state = ""
 		if(AIRLOCK_DENY, AIRLOCK_OPENING, AIRLOCK_CLOSING, AIRLOCK_EMAG)
 			icon_state = "nonexistenticonstate" //MADNESS
-	set_airlock_overlays(state)
 
 /obj/machinery/door/airlock/proc/set_side_overlays(obj/effect/overlay/airlock_part/base, show_lights = FALSE)
 	var/side = base.side_id
@@ -589,149 +617,131 @@
 		var/notetype = note_type()
 		base.add_overlay(get_airlock_overlay(notetype, note_overlay_file))
 
-/obj/machinery/door/airlock/proc/set_airlock_overlays(state)
-	for(var/obj/effect/overlay/airlock_part/part as() in part_overlays)
-		set_side_overlays(part, state == AIRLOCK_CLOSING || state == AIRLOCK_OPENING)
-		if(part.aperture_angle)
-			var/matrix/T
-			if(state == AIRLOCK_OPEN || state == AIRLOCK_OPENING || state == AIRLOCK_CLOSING)
-				T = matrix()
-				T.Translate(-part.open_px,-part.open_py)
-				T.Turn(part.aperture_angle)
-				T.Translate(part.open_px,part.open_py)
-			switch(state)
-				if(AIRLOCK_CLOSED, AIRLOCK_DENY, AIRLOCK_EMAG)
-					part.transform = matrix()
-				if(AIRLOCK_OPEN)
-					part.transform = T
-				if(AIRLOCK_CLOSING)
-					part.transform = T
-					animate(part, transform = T, time = open_speed - part.move_end_time, flags = ANIMATION_LINEAR_TRANSFORM)
-					animate(transform = matrix(), time = part.move_end_time - part.move_start_time, flags = ANIMATION_LINEAR_TRANSFORM)
-				if(AIRLOCK_OPENING)
-					part.transform = matrix()
-					animate(part, transform = matrix(), time = part.move_start_time, flags = ANIMATION_LINEAR_TRANSFORM)
-					animate(transform = T, time = part.move_end_time - part.move_start_time, flags = ANIMATION_LINEAR_TRANSFORM)
-		else
-			switch(state)
-				if(AIRLOCK_CLOSED, AIRLOCK_DENY, AIRLOCK_EMAG)
-					part.pixel_x = 0
-					part.pixel_y = 0
-				if(AIRLOCK_OPEN)
-					part.pixel_x = part.open_px
-					part.pixel_y = part.open_py
-				if(AIRLOCK_CLOSING)
-					part.pixel_x = part.open_px
-					part.pixel_y = part.open_py
-					animate(part, pixel_x = part.open_px, pixel_y = part.open_py, time = open_speed - part.move_end_time)
-					animate(pixel_x = 0, pixel_y = 0, time = part.move_end_time - part.move_start_time)
-				if(AIRLOCK_OPENING)
-					part.pixel_x = 0
-					part.pixel_y = 0
-					animate(part, pixel_x = 0, pixel_y = 0, time = part.move_start_time)
-					animate(pixel_x = part.open_px, pixel_y = part.open_py, time = part.move_end_time - part.move_start_time)
+/obj/machinery/door/airlock/update_overlays()
+	. = ..()
 
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
-	SSvis_overlays.add_vis_overlay(src, overlays_file, "frame", FLOAT_LAYER, FLOAT_PLANE, dir)
-
-	switch(state)
+	var/frame_state
+	var/light_state
+	switch(airlock_state)
 		if(AIRLOCK_CLOSED)
-			if(lights && hasPower())
-				if(locked)
-					SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_bolts", FLOAT_LAYER, FLOAT_PLANE, dir)
-				else if(emergency)
-					SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_emergency", FLOAT_LAYER, FLOAT_PLANE, dir)
-				else
-					SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_poweron", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(welded)
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(obj_integrity <integrity_failure)
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
-			else if(obj_integrity < (0.75 * max_integrity))
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
-
+			frame_state = AIRLOCK_FRAME_CLOSED
+			if(locked)
+				light_state = AIRLOCK_LIGHT_BOLTS
+			else if(emergency)
+				light_state = AIRLOCK_LIGHT_EMERGENCY
 		if(AIRLOCK_DENY)
-			if(!hasPower())
-				return
-			SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_denied", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(welded)
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
-			if(obj_integrity <integrity_failure)
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
-			else if(obj_integrity < (0.75 * max_integrity))
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
-
+			frame_state = AIRLOCK_FRAME_CLOSED
+			light_state = AIRLOCK_LIGHT_DENIED
 		if(AIRLOCK_EMAG)
-			if(welded)
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "welded", FLOAT_LAYER, FLOAT_PLANE, dir)
-			SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks", FLOAT_LAYER, FLOAT_PLANE, dir)
+			frame_state = AIRLOCK_FRAME_CLOSED
+		if(AIRLOCK_CLOSING)
+			frame_state = AIRLOCK_FRAME_CLOSING
+			light_state = AIRLOCK_LIGHT_CLOSING
+		if(AIRLOCK_OPEN)
+			frame_state = AIRLOCK_FRAME_OPEN
+		if(AIRLOCK_OPENING)
+			frame_state = AIRLOCK_FRAME_OPENING
+			light_state = AIRLOCK_LIGHT_OPENING
+
+	. += get_airlock_overlay(frame_state, icon)
+	if(has_fill_overlays)
+		if(glass)
+			. += get_airlock_overlay("glass_[frame_state]", glass_fill_overlays)
+		else
+			. += get_airlock_overlay("fill_[frame_state]", icon)
+
+	if(airlock_paint && color_overlays)
+		. += get_airlock_overlay(frame_state, color_overlays, color = airlock_paint)
+		if(!glass && has_fill_overlays)
+			. += get_airlock_overlay("fill_[frame_state]", color_overlays, color = airlock_paint)
+
+	if(stripe_paint && stripe_overlays)
+		. += get_airlock_overlay(frame_state, stripe_overlays, color = stripe_paint)
+		if(!glass && has_fill_overlays)
+			. += get_airlock_overlay("fill_[frame_state]", stripe_overlays, color = stripe_paint)
+
+	if(lights && hasPower())
+		. += get_airlock_overlay("lights_[light_state]", overlays_file)
+
+	if(panel_open)
+		. += get_airlock_overlay("panel_[frame_state][security_level ? "_protected" : null]", overlays_file)
+	if(frame_state == AIRLOCK_FRAME_CLOSED && welded)
+		. += get_airlock_overlay("welded", overlays_file)
+
+	if(airlock_state == AIRLOCK_EMAG)
+		. += get_airlock_overlay("sparks", overlays_file)
+
+	if(hasPower())
+		if(frame_state == AIRLOCK_FRAME_CLOSED)
 			if(obj_integrity <integrity_failure)
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_broken", FLOAT_LAYER, FLOAT_PLANE, dir)
 			else if(obj_integrity < (0.75 * max_integrity))
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_damaged", FLOAT_LAYER, FLOAT_PLANE, dir)
-		if(AIRLOCK_CLOSING)
-			if(lights && hasPower())
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_closing", FLOAT_LAYER, FLOAT_PLANE, dir)
 
-		if(AIRLOCK_OPEN)
-			if(obj_integrity < (0.75 * max_integrity))
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "sparks_open", FLOAT_LAYER, FLOAT_PLANE, dir)
+	if(note)
+		. += get_airlock_overlay(get_note_state(frame_state), note_overlay_file)
 
-		if(AIRLOCK_OPENING)
-			if(lights && hasPower())
-				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
-	check_unres()
 
-/proc/get_airlock_overlay(icon_state, icon_file)
+	if(hasPower() && unres_sides)
+		if(unres_sides & NORTH)
+			var/image/I = image(icon='icons/obj/doors/airlocks/unrestricted_overlays.dmi', icon_state="unres_n")
+			I.pixel_y = 32
+			. += I
+		if(unres_sides & SOUTH)
+			var/image/I = image(icon='icons/obj/doors/airlocks/unrestricted_overlays.dmi', icon_state="unres_s")
+			I.pixel_y = -32
+			. += I
+		if(unres_sides & EAST)
+			var/image/I = image(icon='icons/obj/doors/airlocks/unrestricted_overlays.dmi', icon_state="unres_e")
+			I.pixel_x = 32
+			. += I
+		if(unres_sides & WEST)
+			var/image/I = image(icon='icons/obj/doors/airlocks/unrestricted_overlays.dmi', icon_state="unres_w")
+			I.pixel_x = -32
+			. += I
+
+
+/**
+ * Returns a string representing the type of note pinned to this airlock
+ * Arguments:
+ * * frame_state - The AIRLOCK_FRAME_ value, as used in update_overlays()
+ **/
+/obj/machinery/door/airlock/proc/get_note_state(frame_state)
+	if(!note)
+		return
+	else if(istype(note, /obj/item/paper))
+		var/obj/item/paper/pinned_paper = note
+		if(pinned_paper.info && pinned_paper.show_written_words)
+			return "note_words_[frame_state]"
+		else
+			return "note_[frame_state]"
+
+	else if(istype(note, /obj/item/photo))
+		return "photo_[frame_state]"
+
+/proc/get_airlock_overlay(icon_state, icon_file, color)
 	var/obj/machinery/door/airlock/A
 	pass(A)	//suppress unused warning
 	var/list/airlock_overlays = A.airlock_overlays
-	var/iconkey = "[icon_state][icon_file]"
-	if((!(. = airlock_overlays[iconkey])))
-		. = airlock_overlays[iconkey] = mutable_appearance(icon_file, icon_state)
-
-/obj/machinery/door/airlock/proc/check_unres() //unrestricted sides. This overlay indicates which directions the player can access even without an ID
-	if(hasPower() && unres_sides)
-		if(unres_sides & NORTH)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_n")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_y = 32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & SOUTH)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_s")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_y = -32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & EAST)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_e")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_x = 32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & WEST)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_w")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_x = -32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-	else
-		set_light(0)
+	var/base_icon_key = "[icon_state][icon_file][color]"
+	if((!(. = airlock_overlays[base_icon_key])))
+		var/mutable_appearance/airlock_overlay = mutable_appearance(icon_file, icon_state)
+		if(color)
+			airlock_overlay.color = color
+		. = airlock_overlays[base_icon_key] = airlock_overlay
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			update_icon(AIRLOCK_OPENING)
+			update_icon(ALL, AIRLOCK_OPENING)
 		if("closing")
-			update_icon(AIRLOCK_CLOSING)
+			update_icon(ALL, AIRLOCK_CLOSING)
 		if("deny")
 			if(!machine_stat)
-				update_icon(AIRLOCK_DENY)
+				update_icon(ALL, AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
 				sleep(6)
-				update_icon(AIRLOCK_CLOSED)
+				update_icon(ALL, AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
@@ -949,7 +959,7 @@
 						user.visible_message("<span class='notice'>[user] reinforces \the [src] with iron.</span>",
 											"<span class='notice'>You reinforce \the [src] with iron.</span>")
 						security_level = AIRLOCK_SECURITY_IRON
-						update_icon()
+						update_appearance()
 					return
 				else if(istype(C, /obj/item/stack/sheet/plasteel))
 					var/obj/item/stack/sheet/plasteel/S = C
@@ -965,7 +975,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL
 						modify_max_integrity(normal_integrity * AIRLOCK_INTEGRITY_MULTIPLIER)
 						damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
-						update_icon()
+						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_IRON)
 				if(C.tool_behaviour == TOOL_WELDER)
@@ -980,7 +990,7 @@
 										"<span class='italics'>You hear welding.</span>")
 						security_level = AIRLOCK_SECURITY_NONE
 						spawn_atom_to_turf(/obj/item/stack/sheet/iron, user.loc, 2)
-						update_icon()
+						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
 				if(C.tool_behaviour == TOOL_CROWBAR)
@@ -997,7 +1007,7 @@
 						modify_max_integrity(normal_integrity)
 						damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_N
 						spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
-						update_icon()
+						update_appearance()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
 				if(C.tool_behaviour == TOOL_WELDER)
@@ -1057,13 +1067,13 @@
 		panel_open = !panel_open
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
-		update_icon()
+		update_appearance()
 	else if((C.tool_behaviour == TOOL_WIRECUTTER) && note)
 		user.visible_message("<span class='notice'>[user] cuts down [note] from [src].</span>", "<span class='notice'>You remove [note] from [src].</span>")
 		C.play_tool_sound(src)
 		note.forceMove(get_turf(user))
 		note = null
-		update_icon()
+		update_appearance()
 	else if(is_wire_tool(C) && panel_open)
 		attempt_wire_interaction(user)
 		return
@@ -1086,7 +1096,7 @@
 			return
 		to_chat(user, "<span class='warning'>You apply [C]. Next time someone opens the door, it will explode.</span>")
 		panel_open = FALSE
-		update_icon()
+		update_appearance()
 		user.transferItemToLoc(C, src, TRUE)
 		charge = C
 	else if(istype(C, /obj/item/paper) || istype(C, /obj/item/photo))
@@ -1098,7 +1108,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] pins [C] to [src].</span>", "<span class='notice'>You pin [C] to [src].</span>")
 		note = C
-		update_icon()
+		update_appearance()
 	else
 		return ..()
 
@@ -1115,7 +1125,7 @@
 				welded = !welded
 				user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
 									"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
-				update_icon()
+				update_appearance()
 		else
 			if(obj_integrity < max_integrity)
 				if(!W.tool_start_check(user, amount=0))
@@ -1128,7 +1138,7 @@
 					set_machine_stat(machine_stat & ~BROKEN)
 					user.visible_message("[user.name] has repaired [src].", \
 										"<span class='notice'>You finish repairing the airlock.</span>")
-					update_icon()
+					update_appearance()
 			else
 				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
 
@@ -1207,7 +1217,7 @@
 			return FALSE
 	if(charge && !detonated)
 		panel_open = TRUE
-		update_icon(AIRLOCK_OPENING)
+		update_icon(ALL, AIRLOCK_OPENING)
 		visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
 		charge.forceMove(drop_location())
 		charge.ex_act(EXPLODE_DEVASTATE)
@@ -1239,7 +1249,7 @@
 	ui_update()
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	operating = TRUE
-	update_icon(AIRLOCK_OPENING, 1)
+	update_icon(ALL, AIRLOCK_OPENING, TRUE)
 	sleep(1)
 	set_opacity(0)
 	update_freelook_sight()
@@ -1248,7 +1258,7 @@
 	air_update_turf(1)
 	sleep(1)
 	layer = OPEN_DOOR_LAYER
-	update_icon(AIRLOCK_OPEN, 1)
+	update_icon(ALL, AIRLOCK_OPEN, TRUE)
 	operating = FALSE
 	ui_update()
 	if(delayed_close_requested)
@@ -1288,7 +1298,7 @@
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_CLOSE, forced)
 	ui_update()
 	operating = TRUE
-	update_icon(AIRLOCK_CLOSING, 1)
+	update_icon(ALL, AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
@@ -1304,7 +1314,7 @@
 		set_opacity(1)
 	update_freelook_sight()
 	sleep(1)
-	update_icon(AIRLOCK_CLOSED, 1)
+	update_icon(ALL, AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
 	ui_update()
@@ -1338,20 +1348,22 @@
 	var/airlock_type = painter.available_paint_jobs["[current_paintjob]"] // get the airlock type path associated with the airlock name the user just chose
 	var/obj/machinery/door/airlock/airlock = airlock_type // we need to create a new typed variable of the airlock and assembly to read initial values from them
 	var/obj/structure/door_assembly/assembly = initial(airlock.assemblytype)
-	if(airlock_material == "glass" && initial(assembly.noglass)) // prevents painting glass airlocks with a paint job that doesn't have a glass version, such as the freezer
+	if(glass && initial(assembly.noglass)) // prevents painting glass airlocks with a paint job that doesn't have a glass version, such as the freezer
 		to_chat(user, "<span class='warning'>This paint job can only be applied to non-glass airlocks.</span>")
 		return
 	// applies the user-chosen airlock's icon, overlays, assemblytype anim_parts, panel_attachement and note_attachment to the src airlock
 	painter.use_paint(user)
 	icon = initial(airlock.icon)
+	stripe_overlays = initial(airlock.stripe_overlays)
+	color_overlays = initial(airlock.color_overlays)
+	glass_fill_overlays = initial(airlock.glass_fill_overlays)
 	overlays_file = initial(airlock.overlays_file)
 	note_overlay_file = initial(airlock.note_overlay_file)
+	airlock_paint = initial(airlock.airlock_paint)
+	stripe_paint = initial(airlock.stripe_paint)
 	assemblytype = initial(airlock.assemblytype)
-	anim_parts = initial(airlock.anim_parts)
-	panel_attachment = initial(airlock.panel_attachment)
-	note_attachment = initial(airlock.note_attachment)
 	rebuild_parts()
-	update_icon()
+	update_appearance()
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
 //Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
@@ -1363,13 +1375,13 @@
 		return
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
-		update_icon(AIRLOCK_EMAG, 1)
+		update_icon(ALL, AIRLOCK_EMAG, 1)
 		sleep(6)
 		if(QDELETED(src))
 			return
 		operating = FALSE
 		if(!open())
-			update_icon(AIRLOCK_CLOSED, 1)
+			update_icon(ALL, AIRLOCK_CLOSED, 1)
 		obj_flags |= EMAGGED
 		lights = FALSE
 		locked = TRUE
@@ -1426,7 +1438,7 @@
 		if(!panel_open)
 			panel_open = TRUE
 		wires.cut_all()
-		update_icon()
+		update_appearance()
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
@@ -1451,7 +1463,7 @@
 /obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))
-		update_icon()
+		update_appearance()
 
 /obj/machinery/door/airlock/deconstruct(disassembled = TRUE, mob/user)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -1468,7 +1480,7 @@
 		A.created_name = name
 		A.previous_assembly = previous_airlock
 		A.update_name()
-		A.update_icon()
+		A.update_appearance()
 
 		if(!disassembled)
 			if(A)
@@ -1581,14 +1593,14 @@
 		if("disrupt-main")
 			if(!secondsMainPowerLost)
 				loseMainPower()
-				update_icon()
+				update_appearance()
 			else
 				to_chat(usr, "Main power is already offline.")
 			. = TRUE
 		if("disrupt-backup")
 			if(!secondsBackupPowerLost)
 				loseBackupPower()
-				update_icon()
+				update_appearance()
 			else
 				to_chat(usr, "Backup power is already offline.")
 			. = TRUE
@@ -1612,7 +1624,7 @@
 			. = TRUE
 		if("light-toggle")
 			lights = !lights
-			update_icon()
+			update_appearance()
 			. = TRUE
 		if("safe-toggle")
 			safe = !safe
@@ -1670,7 +1682,7 @@
 	if(!user_allowed(user))
 		return
 	emergency = !emergency
-	update_icon()
+	update_appearance()
 	ui_update()
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)

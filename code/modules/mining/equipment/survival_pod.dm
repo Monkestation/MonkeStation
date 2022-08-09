@@ -141,10 +141,8 @@
 //Door
 /obj/machinery/door/airlock/survival_pod
 	name = "airlock"
-	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
-	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
-	anim_parts = "topbolts=0,6,0,3;bottombolts=0,-6,3,-6;top=0,4,0,2;bottom=0,-4,0,2;rightbolts=14,0,1.5,5;left=-15,0,1.5,5;right=14,0,1.5,5"
+	airlock_paint = "#333333"
 
 /obj/machinery/door/airlock/survival_pod/glass
 	opacity = FALSE
@@ -152,9 +150,7 @@
 
 /obj/structure/door_assembly/door_assembly_pod
 	name = "pod airlock assembly"
-	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	base_name = "pod airlock"
-	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/survival_pod
 	glass_type = /obj/machinery/door/airlock/survival_pod/glass
 

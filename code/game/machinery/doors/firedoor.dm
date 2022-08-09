@@ -387,6 +387,7 @@
 	flags_1 = ON_BORDER_1
 	CanAtmosPass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
+	auto_dir_align = FALSE
 
 /obj/machinery/door/firedoor/border_only/Initialize(mapload)
 	. = ..()
