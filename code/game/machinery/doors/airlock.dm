@@ -62,7 +62,6 @@
 
 	align_to_windows = TRUE
 	door_align_type = /obj/machinery/door/airlock
-	var/allow_repaint = TRUE //Set to FALSE if the airlock should not be allowed to be repainted.
 
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
