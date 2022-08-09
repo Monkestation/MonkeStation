@@ -13,6 +13,7 @@
 	maxHealth = 200
 	health = 200
 	melee_damage = 10
+	a_intent = INTENT_HARM
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	del_on_death = TRUE
