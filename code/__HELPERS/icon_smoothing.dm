@@ -145,7 +145,9 @@
 //MONKESTATION ADDITION END
 
 //MONKESTATION REPLACE START > diagonal_smooth to corners_cardinal_smooth
-/atom/proc/corners_cardinal_smooth(atom/A, adjacencies)
+/atom/proc/corners_cardinal_smooth(adjacencies)
+	var/mutable_appearance/temp_ma
+
 	//NW CORNER
 	var/nw = "1-i"
 	if((adjacencies & NORTH_JUNCTION) && (adjacencies & WEST_JUNCTION))
@@ -158,6 +160,8 @@
 			nw = "1-n"
 		else if(adjacencies & WEST_JUNCTION)
 			nw = "1-w"
+	temp_ma = mutable_appearance(icon, nw)
+	nw = temp_ma.appearance
 
 	//NE CORNER
 	var/ne = "2-i"
@@ -171,6 +175,8 @@
 			ne = "2-n"
 		else if(adjacencies & EAST_JUNCTION)
 			ne = "2-e"
+	temp_ma = mutable_appearance(icon, ne)
+	ne = temp_ma.appearance
 
 	//SW CORNER
 	var/sw = "3-i"
@@ -184,6 +190,8 @@
 			sw = "3-s"
 		else if(adjacencies & WEST_JUNCTION)
 			sw = "3-w"
+	temp_ma = mutable_appearance(icon, sw)
+	sw = temp_ma.appearance
 
 	//SE CORNER
 	var/se = "4-i"
@@ -197,31 +205,33 @@
 			se = "4-s"
 		else if(adjacencies & EAST_JUNCTION)
 			se = "4-e"
+	temp_ma = mutable_appearance(icon, se)
+	se = temp_ma.appearance
 
-	var/list/new_overlays = list()
+	var/list/new_overlays
 
-	if(A.top_left_corner != nw)
-		A.cut_overlay(top_left_corner)
-		A.top_left_corner = nw
-		new_overlays += nw
+	if(top_left_corner != nw)
+		cut_overlay(top_left_corner)
+		top_left_corner = nw
+		LAZYADD(new_overlays, nw)
 
-	if(A.top_right_corner != ne)
-		A.cut_overlay(top_right_corner)
-		A.top_right_corner = ne
-		new_overlays += ne
+	if(top_right_corner != ne)
+		cut_overlay(top_right_corner)
+		top_right_corner = ne
+		LAZYADD(new_overlays, ne)
 
-	if(A.bottom_right_corner != sw)
-		A.cut_overlay(bottom_right_corner)
-		A.bottom_right_corner = sw
-		new_overlays += sw
+	if(bottom_right_corner != sw)
+		cut_overlay(bottom_right_corner)
+		bottom_right_corner = sw
+		LAZYADD(new_overlays, sw)
 
-	if(A.bottom_left_corner != se)
-		A.cut_overlay(bottom_left_corner)
-		A.bottom_left_corner = se
-		new_overlays += se
+	if(bottom_left_corner != se)
+		cut_overlay(bottom_left_corner)
+		bottom_left_corner = se
+		LAZYADD(new_overlays, se)
 
-	if(new_overlays.len)
-		A.add_overlay(new_overlays)
+	if(new_overlays)
+		add_overlay(new_overlays)
 //MONKESTATION REPLACE END
 
 ///Scans direction to find targets to smooth with.
