@@ -7,7 +7,8 @@
 	item_state = "medical_gown"
 	alt_covers_chest = FALSE
 	fitted = NO_FEMALE_UNIFORM
-	
+	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 /obj/item/clothing/under/invisible
 	name = "invisible jumpsuit"
 	desc = "Some sort of jumpsuit that disappears when worn, but still behaves as a normal jumpsuit."
@@ -17,3 +18,4 @@
 	item_state = "invisible"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	can_adjust = FALSE
+	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON

@@ -520,18 +520,24 @@
 /datum/config_entry/number/topic_rate_limit
 	default = 5
 	min_val = 1
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/topic_max_fails
 	default = 5
 	min_val = 1
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/topic_rule_name
 	default = "_DD_Fail2topic"
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/topic_max_size
 	default = 500
+	config_entry_value = "_DD_Fail2topic"
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/topic_enabled
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/auto_profile
 
@@ -545,6 +551,9 @@
 /datum/config_entry/number/hard_deletes_overrun_limit
 	default = 0
 	min_val = 0
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
 
 /datum/config_entry/flag/ic_filter_enabled
 

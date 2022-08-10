@@ -25,6 +25,7 @@
 	tastes = list("meat" = 1, "black pudding" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/raw_headcheese
 	name = "raw headcheese block"
@@ -49,6 +50,7 @@
 	tastes = list("cheese" = 1, "salt" = 1)
 	foodtypes = MEAT | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/headcheese/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/headcheese_slice, 5, 30)
@@ -62,6 +64,7 @@
 	tastes = list("cheese" = 1, "salt" = 1)
 	foodtypes = MEAT | GROSS
 	w_class = WEIGHT_CLASS_TINY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/shredded_lungs
 	name = "crispy shredded lung stirfry"
@@ -72,6 +75,7 @@
 	tastes = list("meat" = 1, "heat" = 1, "veggies" = 1)
 	foodtypes = MEAT | VEGETABLES | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/tsatsikh
 	name = "tsatsikh"
@@ -82,6 +86,7 @@
 	tastes = list("assorted minced organs" = 1)
 	foodtypes = MEAT | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 /obj/item/food/liver_pate
 	name = "liver pate"
@@ -92,6 +97,7 @@
 	tastes = list("liver" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/moonfish_eggs
 	name = "moonfish eggs"
@@ -102,6 +108,7 @@
 	tastes = list("caviar" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/moonfish_caviar
 	name = "moonfish caviar paste"
@@ -112,6 +119,7 @@
 	tastes = list("caviar" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/lizard_escargot
 	name = "desert snail cocleas"
@@ -122,6 +130,7 @@
 	tastes = list("snails" = 1, "garlic" = 1, "oil" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/fried_blood_sausage
 	name = "fried blood sausage"
@@ -132,6 +141,7 @@
 	tastes = list("black pudding" = 1, "batter" = 1, "oil" = 1)
 	foodtypes = MEAT | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 //Why does like, every language on the planet besides English call them pommes? Who knows, who cares- the lizards call them it too, because funny.
 /obj/item/food/lizard_fries
@@ -143,6 +153,7 @@
 	tastes = list("fries" = 2, "bbq sauce" = 1, "barbecued meat" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_TINY
 
 /obj/item/food/brain_pate
 	name = "eyeball-and-brain pate"
@@ -153,6 +164,7 @@
 	tastes = list("brains" = 2)
 	foodtypes = MEAT | VEGETABLES | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/crispy_headcheese
 	name = "crispy breaded headcheese"
@@ -163,6 +175,7 @@
 	tastes = list("cheese" = 1, "oil" = 1)
 	foodtypes = MEAT | VEGETABLES | NUTS | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/kebab/picoss_skewers
 	name = "picoss skewer"
@@ -173,6 +186,7 @@
 	tastes = list("fish" = 1, "acid" = 1, "onion" = 1, "heat" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_FIREBURPS // id say lizards like spicy foods
 
 /obj/item/food/nectar_larvae
 	name = "nectar larvae"
@@ -183,6 +197,7 @@
 	tastes = list("meat" = 1, "sweet" = 1, "heat" = 1)
 	foodtypes = GROSS | MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_LARGE
 
 /obj/item/food/mushroomy_stirfry
 	name = "mushroomy stirfry"
@@ -193,6 +208,7 @@
 	tastes = list("marvelous mushrooms" = 1, "sublime shrooms" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 //Fish Dishes
 /obj/item/food/grilled_moonfish
@@ -205,6 +221,7 @@
 	foodtypes = MEAT
 	burns_on_grill = TRUE
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/moonfish_demiglace
 	name = "moonfish demiglace"
@@ -215,6 +232,7 @@
 	tastes = list("fish" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/lizard_surf_n_turf
 	name = "\improper Zagosk surf 'n' turf smorgasbord"
@@ -225,6 +243,7 @@
 	tastes = list("surf" = 1, "turf" = 1)
 	foodtypes = MEAT | VEGETABLES
 	w_class = WEIGHT_CLASS_BULKY
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 //Spaghetti Dishes
 
@@ -237,6 +256,7 @@
 	microwaved_type = null
 	tastes = list("gnocchi" = 1)
 	foodtypes = VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/spaghetti/snail_nizaya
 	name = "desert snail nizaya"
@@ -247,6 +267,7 @@
 	microwaved_type = null
 	tastes = list("snails" = 1, "wine" = 1, "gnocchi" = 1)
 	foodtypes = VEGETABLES | MEAT | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_SLIDE
 
 /obj/item/food/spaghetti/garlic_nizaya
 	name = "garlic-and-oil nizaya"
@@ -257,6 +278,7 @@
 	microwaved_type = null
 	tastes = list("garlic" = 1, "oil" = 1, "gnocchi" = 1)
 	foodtypes = VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_JOB_MINER
 
 /obj/item/food/spaghetti/demit_nizaya
 	name = "demit nizaya"
@@ -267,6 +289,7 @@
 	microwaved_type = null
 	tastes = list("peppery sweet" = 1, "veggies" = 1, "gnocchi" = 1)
 	foodtypes = VEGETABLES | SUGAR | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/spaghetti/mushroom_nizaya
 	name = "mushroom nizaya"
@@ -277,6 +300,7 @@
 	microwaved_type = null
 	tastes = list("savouriness" = 1, "nuttiness" = 1, "gnocchi" = 1)
 	foodtypes = VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 //Dough Dishes
 
@@ -333,6 +357,7 @@
 	tastes = list("bread" = 1, "earthy heat" = 1)
 	foodtypes = VEGETABLES | NUTS
 	burns_on_grill = TRUE
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/rootroll
 	name = "rootroll"
@@ -343,6 +368,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	tastes = list("roll" = 1) // the roll tastes of roll.
 	foodtypes = VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 //Bread Dishes
 
@@ -355,6 +381,7 @@
 	tastes = list("bread" = 8, "nuts" = 2)
 	foodtypes = VEGETABLES | NUTS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/bread/root/Initialize()
 	. = ..()
@@ -371,6 +398,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("bread" = 8, "nuts" = 2)
 	foodtypes = VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_STAM_TINY
 
 /obj/item/food/breadslice/root/Initialize()
 	. = ..()
@@ -421,6 +449,7 @@
 	foodtypes = VEGETABLES | NUTS | MEAT | GROSS
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/honey_roll
 	name = "honey sweetroll"
@@ -432,6 +461,7 @@
 	foodtypes = VEGETABLES | NUTS | FRUIT
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 //Soup Dishes
 /obj/item/food/soup/atrakor_dumplings
@@ -442,6 +472,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bone broth" = 1, "onion" = 1, "potato" = 1)
 	foodtypes = MEAT | VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_FOOD_RESISTANCE
 
 /obj/item/food/soup/meatball_noodles
 	name = "meatball noodle soup"
@@ -451,6 +482,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bone broth" = 1, "meat" = 1, "gnocchi" = 1, "peanuts" = 1)
 	foodtypes = MEAT | VEGETABLES | NUTS
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/soup/black_broth
 	name = "\improper Tiziran black broth"
@@ -460,6 +492,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/blood = 5)
 	tastes = list("vinegar" = 1, "metal" = 1)
 	foodtypes = MEAT | VEGETABLES | GROSS
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/soup/jellyfish
 	name = "jellyfish stew"
@@ -469,6 +502,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("slime" = 1)
 	foodtypes = MEAT | VEGETABLES | GROSS
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/soup/rootbread_soup
 	name = "rootbread soup"
@@ -478,6 +512,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("bread" = 1, "egg" = 1, "sausage" = 1, "garlic" = 1)
 	foodtypes = MEAT | VEGETABLES
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 //Egg Dishes
 /obj/item/food/black_eggs
@@ -489,6 +524,7 @@
 	tastes = list("eggs" = 1, "greens" = 1, "blood" = 1)
 	foodtypes = MEAT | BREAKFAST | GROSS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 /obj/item/food/patzikula
 	name = "patzikula"
@@ -499,6 +535,7 @@
 	tastes = list("eggs" = 1, "tomato" = 1, "heat" = 1)
 	foodtypes = VEGETABLES | MEAT | BREAKFAST
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
 //Cakes/Sweets
 
@@ -510,6 +547,7 @@
 	food_reagents = list(/datum/reagent/consumable/sugar = 10, /datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/korta_nectar = 5)
 	tastes = list("peppery heat" = 1, "sweetness" = 1)
 	foodtypes = NUTS | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_LARGE
 
 /obj/item/food/cake/korta_brittle/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/cakeslice/korta_brittle, 5, 30)
@@ -522,6 +560,7 @@
 	food_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/korta_nectar = 1)
 	tastes = list("peppery heat" = 1, "sweetness" = 1)
 	foodtypes = NUTS | SUGAR
+	food_buffs = STATUS_EFFECT_FOOD_STAM_MEDIUM
 
 /obj/item/food/snowcones/korta_ice
 	name = "korta ice"
@@ -540,6 +579,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/consumable/caramel = 3)
 	tastes = list("savouriness" = 1, "sweetness" = 1)
 	foodtypes = SUGAR | VEGETABLES | GROSS
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 //Misc Dishes
 /obj/item/food/sauerkraut
@@ -551,6 +591,7 @@
 	tastes = list("cabbage" = 1, "acid" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_SMALL
 
 /obj/item/food/lizard_dumplings
 	name = "\improper Tiziran dumplings"
@@ -561,6 +602,7 @@
 	tastes = list("potato" = 1, "earthy heat" = 1)
 	foodtypes = VEGETABLES | NUTS
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/steeped_mushrooms
 	name = "steeped seraka mushrooms"
@@ -571,6 +613,7 @@
 	tastes = list("savouriness" = 1, "nuttiness" = 1)
 	foodtypes = VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
+	food_buffs = STATUS_EFFECT_STAM_REGEN_MEDIUM
 
 /obj/item/food/canned_jellyfish
 	name = "canned gunner jellyfish"

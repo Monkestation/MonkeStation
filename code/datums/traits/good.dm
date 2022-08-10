@@ -231,11 +231,35 @@
 
 /datum/quirk/voracious
 	name = "Voracious"
-	desc = "Nothing gets between you and your food. You eat faster and can binge on junk food! Being fat suits you just fine."
-	value = 1
+	desc = "Nothing gets between you and your food. You eat faster and can binge on junk food! Being fat suits you just fine. Also allows you to have an additional food buff."
+	value = 2
 	mob_trait = TRAIT_VORACIOUS
 	gain_text = "<span class='notice'>You feel HONGRY.</span>"
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"
+
+/datum/quirk/voracious/on_spawn()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs ++
+
+/datum/quirk/voracious/remove()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs --
+
+/datum/quirk/gourmand
+	name = "Gourmand"
+	desc = "You can enjoy the finer things in life. You are able to have one more food buff applied at once."
+	value = 2
+	mob_trait = TRAIT_GOURMAND
+	gain_text = "<span class='notice'>You start to enjoy fine cuisine.</span>"
+	lose_text = "<span class='danger'>Those Space Twinkies are starting to look mighty fine.</span>"
+
+/datum/quirk/gourmand/on_spawn()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs ++
+
+/datum/quirk/gourmand/remove()
+	var/mob/living/carbon/human/holder = quirk_holder
+	holder.max_food_buffs --
 
 /datum/quirk/neet
 	name = "NEET"
