@@ -8,12 +8,13 @@ SUBSYSTEM_DEF(icon_smooth)
 	var/list/blueprint_queue = list() //MONKESTATION ADDITION
 	var/list/smooth_queue = list()
 	var/list/deferred = list()
+
 //MONKESTATION ADDITION START
 /datum/controller/subsystem/icon_smooth/fire()
-	var/list/smooth_queue_cache = smooth_queue
-	while(length(smooth_queue_cache))
-		var/atom/smoothing_atom = smooth_queue_cache[length(smooth_queue_cache)]
-		smooth_queue_cache.len--
+	var/list/cached = smooth_queue
+	while(length(cached))
+		var/atom/smoothing_atom = cached[length(cached)]
+		cached.len--
 		if(QDELETED(smoothing_atom) || !(smoothing_atom.smoothing_flags & SMOOTH_QUEUED))
 			continue
 		if(smoothing_atom.flags_1 & INITIALIZED_1)
@@ -23,13 +24,12 @@ SUBSYSTEM_DEF(icon_smooth)
 		if (MC_TICK_CHECK)
 			return
 
-	if (!length(smooth_queue_cache))
+	if (!cached.len)
 		if (deferred.len)
 			smooth_queue = deferred
-			deferred = smooth_queue_cache
+			deferred = cached
 		else
 			can_fire = FALSE
-
 
 /datum/controller/subsystem/icon_smooth/Initialize()
 	smooth_zlevel(1, TRUE)
