@@ -660,21 +660,24 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	//Tells the engi team to get their butt in gear
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
-		if((REALTIMEOFDAY - last_warning) / 10 >= WARNING_DELAY)
+		if(damage_archived < warning_point) //If damage_archive is under the warning point, this is the very first cycle that we've reached said point.
+			SEND_SIGNAL(src, COMSIG_SUPERMATTER_DELAM_START_ALARM)
+		if((REALTIMEOFDAY - lastwarning) / 10 >= WARNING_DELAY)
 			alarm()
 
 			//Oh shit it's bad, time to freak out
 			if(damage > emergency_point)
-				// it's bad, LETS YELL
-				radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel, list(SPAN_YELL))
-				last_warning = REALTIMEOFDAY
+				radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel)
+				SEND_SIGNAL(src, COMSIG_SUPERMATTER_DELAM_ALARM)
+				lastwarning = REALTIMEOFDAY
 				if(!has_reached_emergency)
 					investigate_log("has reached the emergency point for the first time.", INVESTIGATE_ENGINES)
 					message_admins("[src] has reached the emergency point [ADMIN_JMP(src)].")
 					has_reached_emergency = TRUE
 			else if(damage >= damage_archived) // The damage is still going up
 				radio.talk_into(src, "[warning_alert] Integrity: [get_integrity()]%", engineering_channel)
-				last_warning = REALTIMEOFDAY - (WARNING_DELAY * 5)
+				SEND_SIGNAL(src, COMSIG_SUPERMATTER_DELAM_ALARM)
+				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 5)
 
 			else                                                 // Phew, we're safe
 				radio.talk_into(src, "[safe_alert] Integrity: [get_integrity()]%", engineering_channel)
