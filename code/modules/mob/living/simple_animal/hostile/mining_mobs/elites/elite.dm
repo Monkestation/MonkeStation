@@ -242,17 +242,15 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		onEliteLoss()
 
 /obj/structure/elite_tumor/proc/arena_trap()
-	var/turf/tumor_turf = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(loc == null)
 		return
-	var/datum/weakref/activator_ref = WEAKREF(activator)
-	var/datum/weakref/mychild_ref = WEAKREF(mychild)
-	for(var/tumor_range_turfs in RANGE_TURFS(12, tumor_turf))
-		if(get_dist(tumor_range_turfs, tumor_turf) == 12)
+	for(var/t in RANGE_TURFS(12, T))
+		if(get_dist(t, T) == 12)
 			var/obj/effect/temp_visual/elite_tumor_wall/newwall
-			newwall = new /obj/effect/temp_visual/elite_tumor_wall(tumor_range_turfs, src)
-			newwall.activator_ref = activator_ref
-			newwall.ourelite_ref = mychild_ref
+			newwall = new /obj/effect/temp_visual/elite_tumor_wall(t, src)
+			newwall.activator = src.activator
+			newwall.ourelite = src.mychild
 
 /obj/structure/elite_tumor/proc/border_check()
 	if(activator != null && get_dist(src, activator) >= 12)
@@ -334,33 +332,28 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/effect/temp_visual/elite_tumor_wall
 	name = "magic wall"
 	icon = 'icons/turf/walls/legacy/hierophant_wall_temp.dmi'
-	icon_state = "hierophant_wall_temp-0"
-	base_icon_state = "hierophant_wall_temp"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_HIERO_WALL)
-	canSmoothWith = list(SMOOTH_GROUP_HIERO_WALL)
+	icon_state = "wall"
 	duration = 50
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	layer = BELOW_MOB_LAYER
-	plane = GAME_PLANE
 	color = rgb(255,0,0)
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
-	light_color = COLOR_SOFT_RED
-	var/datum/weakref/activator_ref
-	var/datum/weakref/ourelite_ref
+	light_color = LIGHT_COLOR_RED
+	var/mob/living/carbon/human/activator = null
+	var/mob/living/simple_animal/hostile/asteroid/elite/ourelite = null
 
 /obj/effect/temp_visual/elite_tumor_wall/Initialize(mapload, new_caster)
 	. = ..()
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 /obj/effect/temp_visual/elite_tumor_wall/Destroy()
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-		QUEUE_SMOOTH_NEIGHBORS(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	activator = null
+	ourelite = null
 	return ..()
 
-/obj/effect/temp_visual/elite_tumor_wall/CanAllowThrough(atom/movable/mover, border_dir)
+/obj/effect/temp_visual/elite_tumor_wall/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(mover == ourelite_ref.resolve() || mover == activator_ref.resolve())
+	if(mover == ourelite || mover == activator)
 		return FALSE
-

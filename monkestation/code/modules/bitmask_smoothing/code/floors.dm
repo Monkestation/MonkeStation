@@ -1,5 +1,6 @@
 /turf/open/indestructible/hierophant
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors/hierophant_floor.dmi'
+	smoothing_flags = SMOOTH_CORNERS
 
 /turf/open/chasm
 	icon = 'monkestation/code/modules/bitmask_smoothing/turf/floors/chasms.dmi'
