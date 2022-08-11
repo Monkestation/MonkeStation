@@ -1507,7 +1507,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/super_pointy_tape
 	name = "Super Pointy Tape"
 	desc = "An all-purpose super pointy tape roll. The tape is built with hundreds of tiny metal needles, the roll comes with in 5 pieces. When added to items the \
-			item that was taped will embed when thrown at people. Taping people's mouthes with it will hurt them if pulled off by someone else."
+			item that was taped will embed when thrown at people. Taping people's mouths with it will hurt them if pulled off by someone else."
 	item = /obj/item/stack/sticky_tape/pointy/super
 	cost = 1
 
