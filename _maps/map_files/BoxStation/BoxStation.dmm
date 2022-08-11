@@ -19014,6 +19014,8 @@
 	dir = 1
 	},
 /mob/living/simple_animal/butterfly,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/bridge)
 "bed" = (
@@ -19056,6 +19058,7 @@
 	dir = 1
 	},
 /obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/bridge)
 "bei" = (
@@ -41357,6 +41360,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"cOS" = (
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "cOT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -56815,16 +56828,6 @@
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"rvW" = (
-/obj/effect/turf_decal/tile/neutral/tile_full,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
 "rwH" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -58477,7 +58480,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	name = "Evacuation Security Shutter";
-	id = "EVACSEC"
+	id = s
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -62542,7 +62545,7 @@
 /obj/machinery/button{
 	pixel_y = -23;
 	pixel_x = 1;
-	id = sssd;
+	id = "EVACSEC";
 	name = "Evacuation Security Shutters"
 	},
 /obj/structure/cable/yellow{
@@ -97052,7 +97055,7 @@ aXD
 hRk
 jIW
 gfL
-rvW
+cOS
 gfL
 gfL
 gfL
@@ -112451,7 +112454,7 @@ jXS
 jXS
 jXS
 jXS
-aCR
+jXS
 aTl
 aUL
 aVW
