@@ -86,7 +86,7 @@
 			on = FALSE
 		return PROCESS_KILL
 
-	if(!cell || cell.charge <= 2)
+	if(!cell || cell.charge <= 5) //so it doesn't get stuck on
 		on = FALSE
 		update_appearance()
 		return PROCESS_KILL
@@ -137,9 +137,9 @@
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
 
-	heating_power = (laser * 3) * 100000
+	heating_power = (laser * 2) * 100000
 	settable_temperature_range = cap * 30
-	efficiency = (cap + 12) * 10000
+	efficiency = (cap + 10) * 10000
 
 	target_temperature = clamp(target_temperature,
 		max(settable_temperature_median - settable_temperature_range, TCMB),
