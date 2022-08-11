@@ -23,8 +23,8 @@
 	worn_icon_state = "tape_piece_worn"
 	w_class = WEIGHT_CLASS_TINY
 	clothing_flags = INEDIBLE_CLOTHING
-	equip_delay_other = 40
-	strip_delay = 40
+	equip_delay_other = 4 SECONDS
+	strip_delay = 4 SECONDS
 	greyscale_config = /datum/greyscale_config/tape_piece
 	greyscale_config_worn = /datum/greyscale_config/tape_piece/worn
 	greyscale_colors = "#B2B2B2"
@@ -64,14 +64,14 @@
 	name = "super tape piece"
 	desc = "A piece of tape that can be put over someone's mouth. This one has extra strengh."
 	greyscale_colors = "#4D4D4D"
-	strip_delay = 80
+	strip_delay = 8 SECONDS
 
 /obj/item/clothing/mask/muzzle/tape/surgical
 	name = "surgical tape piece"
 	desc = "A piece of tape that can be put over someone's mouth. As long as you apply this to your patient, you won't hear their screams of pain!"
 	greyscale_colors = "#70BAE7"
-	equip_delay_other = 30
-	strip_delay = 30
+	equip_delay_other = 3 SECONDS
+	strip_delay = 3 SECONDS
 
 /obj/item/clothing/mask/muzzle/tape/pointy
 	name = "pointy tape piece"
@@ -88,7 +88,7 @@
 	name = "super pointy tape piece"
 	desc = "A piece of tape that can be put over someone's mouth. This thing could rip your face into a thousand pieces if ripped off."
 	greyscale_colors = "#8C0A00#300008"
-	strip_delay = 60
+	strip_delay = 6 SECONDS
 	stripping_damage = 20
 
 /obj/item/clothing/mask/surgical
