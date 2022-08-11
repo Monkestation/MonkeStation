@@ -1,0 +1,8 @@
+author: DoctorSquishy
+delete-after: true
+changes:
+  - rscadd: Added balloon alerts (on screen text alerts) for tool interactions with
+      conveyor belts and switches,
+  - rscadd: Fixes the movement delay on conveyors.
+  - tweak: Multitool on conveyor belts now inverts their movement direction, while
+      screwdriver flips their entire orientation.

@@ -34,6 +34,8 @@
 	var/burns_on_grill = FALSE
 	///Will this food turn into badrecipe in an oven? Don't use this for everything; preferably mostly for food that is made in an oven to begin with so it burns after some time
 	var/burns_in_oven = FALSE
+	///The food buffs the food has
+	var/food_buffs
 	///Food that's immune to decomposition.
 	var/preserved_food = FALSE
 	///Does our food normally attract ants?
@@ -72,7 +74,8 @@
 				eatverbs = eatverbs,\
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
-				junkiness = junkiness)
+				junkiness = junkiness,\
+				food_buffs = food_buffs)
 
 ///This proc handles processable elements, overwrite this if you want to add behavior such as slicing, forking, spooning, whatever, to turn the item into something else
 

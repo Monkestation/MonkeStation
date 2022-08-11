@@ -3,10 +3,16 @@
 	specific_heat = 20
 	name = "Oxygen"
 	oxidation_temperature = T0C - 100 // it checks max of this and fire temperature, so rarely will things spontaneously combust
+	powermix = 1
+	heat_penalty = 1
+	transmit_modifier = 1.5
 
 /datum/gas/nitrogen
 	id = GAS_N2
 	specific_heat = 20
+	name = "Nitrogen"
+	powermix = -1
+	heat_penalty = -1.5
 	breath_alert_info = list(
 		not_enough_alert = list(
 			alert_category = "not_enough_nitro",
@@ -17,12 +23,14 @@
 			alert_type = /atom/movable/screen/alert/too_much_nitro
 		)
 	)
-	name = "Nitrogen"
 
 /datum/gas/carbon_dioxide //what the fuck is this?
 	id = GAS_CO2
 	specific_heat = 30
 	name = "Carbon Dioxide"
+	powermix = 1
+	heat_penalty = 0.1
+	powerloss_inhibition = 1
 	breath_results = GAS_O2
 	breath_alert_info = list(
 		not_enough_alert = list(
@@ -35,6 +43,7 @@
 		)
 	)
 	fusion_power = 3
+	enthalpy = -393500
 
 /datum/gas/plasma
 	id = GAS_PLASMA
@@ -43,7 +52,11 @@
 	gas_overlay = "plasma"
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
+	heat_penalty = 15
+	transmit_modifier = 4
+	powermix = 1
 	// no fire info cause it has its own bespoke reaction for trit generation reasons
+	enthalpy = FIRE_PLASMA_ENERGY_RELEASED // 3000000, 3 megajoules, 3000 kj
 
 /datum/gas/water_vapor
 	id = GAS_H2O
@@ -52,7 +65,10 @@
 	gas_overlay = "water_vapor"
 	moles_visible = MOLES_GAS_VISIBLE
 	fusion_power = 8
+	heat_penalty = 8
+	powermix = 1
 	breath_reagent = /datum/reagent/water
+	enthalpy = -241800 // FIRE_HYDROGEN_ENERGY_RELEASED is actually what this was supposed to be
 
 /datum/gas/hypernoblium
 	id = GAS_HYPERNOB
@@ -60,6 +76,7 @@
 	name = "Hyper-noblium"
 	gas_overlay = "freon"
 	moles_visible = MOLES_GAS_VISIBLE
+	enthalpy = 81600
 
 /datum/gas/nitrous_oxide
 	id = GAS_NITROUS
@@ -71,6 +88,8 @@
 	fire_products = list(GAS_N2 = 1)
 	oxidation_rate = 0.5
 	oxidation_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100
+	heat_resistance = 6
+	enthalpy = 33200
 
 /datum/gas/nitryl
 	id = GAS_NITRYL
@@ -91,11 +110,14 @@
 	moles_visible = MOLES_GAS_VISIBLE
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 1
+	powermix = 1
+	heat_penalty = 10
+	transmit_modifier = 30
 	/*
 	these are for when we add hydrogen, trit gets to keep its hardcoded fire for legacy reasons
 	fire_provides = list(GAS_H2O = 2)
 	fire_burn_rate = 2
-	fire_energy_released = FIRE_HYDROGEN_ENERGY_RELEASED
+	enthalpy = FIRE_HYDROGEN_ENERGY_RELEASED
 	fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST - 50
 	*/
 
@@ -105,6 +127,11 @@
 	name = "BZ"
 	flags = GAS_FLAG_DANGEROUS
 	fusion_power = 8
+	powermix = 1
+	heat_penalty = 5
+	transmit_modifier = -2
+	radioactivity_modifier = 5
+	enthalpy = FIRE_CARBON_ENERGY_RELEASED // it is a mystery
 
 /datum/gas/stimulum
 	id = GAS_STIMULUM
@@ -119,7 +146,12 @@
 	fusion_power = 10
 	oxidation_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 1000 // it is VERY stable
 	oxidation_rate = 8
-
+	powermix = -1
+	heat_penalty = -1
+	transmit_modifier = -5
+	heat_resistance = 3
+	enthalpy = -50000 // but it reduces the heat output a bit
+  
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20

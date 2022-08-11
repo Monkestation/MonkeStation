@@ -1,23 +1,24 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
+	desc = "The world of janitalia wouldn't be complete without a mop."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
+	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
+	force_string = "robust... against germs"
 	force = 8
 	throwforce = 10
 	block_upgrade_walk = 1
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	resistance_flags = FLAMMABLE
+
 	var/mopping = 0
 	var/mopcount = 0
-	var/mopcap = 50 //MONKESTATION EDIT CHANGE
+	var/mopcap = 100 //MONKESTATION EDIT CHANGE
 	var/mopspeed = 15
-	force_string = "robust... against germs"
 	var/insertable = TRUE
 
 /obj/item/mop/Initialize(mapload)
@@ -131,6 +132,7 @@
 	var/refill_rate = 0.5
 	var/refill_reagent = /datum/reagent/water //Determins what reagent to use for refilling, just in case someone wanted to make a HOLY MOP OF PURGING
 	var/drying_mode = FALSE
+
 /obj/item/mop/advanced/New()
 	..()
 	START_PROCESSING(SSobj, src)
@@ -150,6 +152,7 @@
 			reagents.add_reagent(refill_reagent, amadd)
 	else if(drying_mode)
 		reagents.remove_all(mopcap)
+
 /obj/item/mop/advanced/AltClick(mob/user)
 	if(refill_enabled)
 		to_chat(user, "<span class = 'notice'> Please turn off the condenser before enabling drying mode.</span>")
@@ -157,10 +160,12 @@
 	drying_mode = !drying_mode
 	to_chat(user, "<span class = 'notice'>You set the drying switch to the '[drying_mode ? "ON" : "OFF"] position.'</span>" )
 	playsound(user, 'sound/machines/click.ogg', 30, 1)
+
 /obj/item/mop/advanced/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>The condenser switch is set to <b>[refill_enabled ? "ON" : "OFF"]</b>.</span>"
 	. += "<span class='notice'>The drying switch is set to <b>[drying_mode ? "ON" : "OFF"]</b>.</span>"
+
 /obj/item/mop/advanced/Destroy()
 	if(refill_enabled)
 		STOP_PROCESSING(SSobj, src)
