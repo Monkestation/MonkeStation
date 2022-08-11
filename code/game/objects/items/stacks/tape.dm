@@ -26,14 +26,12 @@
 	if(user.get_inactive_held_item() == src)
 		if(is_zero_amount(delete_if_zero = TRUE))
 			return
-		//playsound(user, 'sound/items/duct_tape_rip.ogg', 50, TRUE)
 		if(!do_after(user, 1 SECONDS))
 			return
 		var/new_tape_gag = new tape_gag(src)
 		user.put_in_hands(new_tape_gag)
 		use(1)
 		to_chat(user, span_notice("You rip off a piece of tape."))
-		//playsound(user, 'sound/items/duct_tape_snap.ogg', 50, TRUE)
 		return TRUE
 	return ..()
 
@@ -50,10 +48,8 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] begins wrapping [I] with [src].</span>", "<span class='notice'>You begin wrapping [I] with [src].</span>")
-	//playsound(user, 'sound/items/duct_tape_rip.ogg', 50, TRUE)
 
 	if(do_after(user, 30, target=I))
-		//playsound(user, 'sound/items/duct_tape_snap.ogg', 50, TRUE)
 		I.embedding = conferred_embed
 		I.updateEmbedding()
 		to_chat(user, "<span class='notice'>You finish wrapping [I] with [src].</span>")
