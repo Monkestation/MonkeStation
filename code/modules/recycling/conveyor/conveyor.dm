@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return ..()
 
 /obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/crowbar)
-	balloon_alert(user, "struggles to pry up [src].")
+	balloon_alert(user, "starts prying up [src].")
 	if(!crowbar.use_tool(src, user, 4 SECONDS, volume = 40))
 		return
 	set_operating(FALSE)
