@@ -182,7 +182,7 @@
 /datum/dynamic_ruleset/midround/autotraitor/acceptable(population = 0, threat = 0)
 	var/player_count = mode.current_players[CURRENT_LIVING_PLAYERS].len
 	var/antag_count = mode.current_players[CURRENT_LIVING_ANTAGS].len
-	var/max_traitors = round(player_count / 15) + 1
+	var/max_traitors = round(player_count / 10) + 1
 
 	// adding traitors if the antag population is getting low
 	var/too_little_antags = antag_count < max_traitors
