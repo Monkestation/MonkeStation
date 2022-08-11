@@ -9172,7 +9172,6 @@
 	dir = 1
 	},
 /obj/machinery/newscaster{
-	pixel_y = 0;
 	pixel_x = 28
 	},
 /obj/structure/disposalpipe/segment{
@@ -14345,8 +14344,7 @@
 	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -23944,6 +23942,12 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/warning{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "btP" = (
@@ -26650,8 +26654,7 @@
 	pixel_y = 9
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -33200,8 +33203,7 @@
 	},
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 5;
-	pixel_y = 0
+	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
@@ -47434,7 +47436,6 @@
 	department = "Bridge";
 	departmentType = 5;
 	name = "Bridge RC";
-	pixel_y = 0;
 	pixel_x = 30
 	},
 /turf/open/floor/wood,
@@ -56812,6 +56813,16 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/tile/neutral/tile_full,
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
+"rvW" = (
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "rwH" = (
@@ -97041,7 +97052,7 @@ aXD
 hRk
 jIW
 gfL
-gfL
+rvW
 gfL
 gfL
 gfL
