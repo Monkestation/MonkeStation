@@ -7,6 +7,7 @@
 	layer = ABOVE_MOB_LAYER
 	movedelay = 1
 	var/rotation = 0
+	var/last_bump = 0
 
 /obj/vehicle/ridden/monkey_ball/Initialize(mapload)
 	. = ..()
@@ -23,12 +24,14 @@
 	return ..()
 
 /obj/vehicle/ridden/monkey_ball/Moved()
-	rotation += (dir == NORTH || dir == WEST) ? -30 : 30
+	rotation += (dir == NORTH || dir == WEST || dir == NORTHWEST) ? -30 : 30
 	animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = movedelay, easing = LINEAR_EASING)
 	. = ..()
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)
 	. = ..()
+	if(world.time > last_bump)
+		return
 	if(isliving(victim))
 		var/atom/throw_target = get_edge_target_turf(victim, dir)
 		var/mob/living/living_victim = victim
@@ -36,4 +39,5 @@
 		living_victim.Knockdown(4 SECONDS)
 		living_victim.adjustStaminaLoss(20)
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		last_bump = world.time + 1 SECONDS
 
