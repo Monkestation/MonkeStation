@@ -583,6 +583,7 @@ GENE SCANNER
 				to_chat(user, "<span class='notice'>This node is empty!</span>")
 			else
 				to_chat(user, "<span class='notice'>[target] is empty!</span>")
+			to_chat(user, "<span class='notice'>Volume: [volume] L</span>")
 
 		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
 			var/instability = round(cached_scan_results["fusion"], 0.01)
