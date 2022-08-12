@@ -3,7 +3,7 @@
 	desc = "An ominously monkey-sized ball."
 	icon = 'monkestation/icons/obj/vehicles.dmi'
 	icon_state = "monkey_ball"
-	max_integrity = 200
+	max_integrity = 100
 	layer = ABOVE_MOB_LAYER
 	movedelay = 1
 	var/rotation = 0
