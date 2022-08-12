@@ -103,7 +103,6 @@
 /datum/component/customizable_reagent_holder/proc/customizable_attack(datum/source, obj/ingredient, mob/attacker, silent = FALSE, force = FALSE)
 	SIGNAL_HANDLER
 
-	message_admins("test")
 	var/valid_ingredient = TRUE
 
 	switch (ingredient_type)
