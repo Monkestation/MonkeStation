@@ -455,7 +455,7 @@ SUBSYSTEM_DEF(air)
 	map_loading = FALSE
 
 /datum/controller/subsystem/air/proc/pause_z(z_level)
-	paused_z_levels[z_level] = TRUE
+	paused_z_levels["[z_level]"] = TRUE
 	var/list/turfs_to_disable = block(locate(1, 1, z_level), locate(world.maxx, world.maxy, z_level))
 	for(var/turf/T as anything in turfs_to_disable)
 		T.ImmediateDisableAdjacency(FALSE)
@@ -466,7 +466,7 @@ SUBSYSTEM_DEF(air)
 	for(var/turf/T as anything in turfs_to_reinit)
 		T.Initalize_Atmos()
 		CHECK_TICK
-	paused_z_levels[z_level] = FALSE
+	paused_z_levels["[z_level]"] = FALSE
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
 	var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
