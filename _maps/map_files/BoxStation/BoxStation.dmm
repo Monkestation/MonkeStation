@@ -19173,6 +19173,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/darkblue/filled/warning{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bal" = (
@@ -19206,11 +19209,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
@@ -19553,6 +19556,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/darkblue/filled/warning{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/warning,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bbq" = (
@@ -49933,6 +49940,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"hIy" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "hIA" = (
 /obj/structure/sign/departments/minsky/engineering/atmospherics{
 	pixel_x = 32
@@ -101058,7 +101074,7 @@ bcm
 bem
 bfD
 bgW
-bfD
+hIy
 bjI
 aZV
 gRD
