@@ -20292,6 +20292,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/grid,
 /area/medical/apothecary)
 "bdr" = (
@@ -21683,14 +21684,7 @@
 	id = "pharmacy_shutters";
 	name = "Pharmacy Shutters"
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/green/tile_marquee{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple/tile_marquee,
-/obj/effect/turf_decal/stripes/closeup{
-	dir = 1
-	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/apothecary)
 "bhh" = (
@@ -22230,6 +22224,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
 "biz" = (
@@ -22885,6 +22880,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
 "bjV" = (
@@ -25118,6 +25114,7 @@
 	id = "apothecary_shutters";
 	name = "Apothecary Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/apothecary)
 "bqP" = (
@@ -25175,10 +25172,9 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/machinery/door/firedoor,
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/green/tile_full,
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
 "bqV" = (
@@ -25189,12 +25185,11 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/machinery/door/firedoor,
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/green/tile_full,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 10
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
 "bqX" = (
@@ -25597,11 +25592,10 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/green/tile_full,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
 "bsz" = (
@@ -26970,6 +26964,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "bxc" = (
@@ -32199,6 +32194,7 @@
 /area/medical/morgue)
 "bMc" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/genetics)
 "bMd" = (
@@ -33561,6 +33557,7 @@
 	icon_state = "0-4"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
 "bQl" = (
@@ -45595,7 +45592,6 @@
 /area/security/brig)
 "dJp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
@@ -45727,7 +45723,6 @@
 /area/ai_monitored/security/armory)
 "dPF" = (
 /obj/machinery/door/firedoor/window,
-/obj/machinery/door/firedoor/window,
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "emmd";
@@ -45792,6 +45787,7 @@
 /area/science/research)
 "dSA" = (
 /obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/surgery)
 "dSG" = (
@@ -46632,9 +46628,6 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/lab)
 "ewp" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/advanced_airlock_controller{
 	dir = 1;
 	pixel_y = -24
@@ -46645,6 +46638,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
 "ewy" = (
@@ -47036,7 +47030,6 @@
 /area/science/research)
 "eLl" = (
 /obj/effect/spawner/structure/window,
-/obj/machinery/door/firedoor/window,
 /obj/machinery/door/firedoor/window,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "emmd";
@@ -49039,6 +49032,10 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "gmT" = (
@@ -50145,7 +50142,6 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
 	},
-/obj/machinery/door/firedoor,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
@@ -51552,6 +51548,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
 "iqE" = (
@@ -53189,6 +53186,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"jMZ" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "jNO" = (
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/machinery/computer/security{
@@ -53641,6 +53645,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/genetics)
 "kik" = (
@@ -54259,6 +54264,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "kCW" = (
@@ -54430,6 +54436,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"kIT" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "apothecary_shutters";
+	name = "Apothecary Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/medical/apothecary)
 "kJu" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -58056,6 +58071,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "nro" = (
@@ -58676,6 +58692,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"nWc" = (
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/hallway/secondary/exit/departure_lounge)
 "nWm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment,
@@ -59031,6 +59062,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/end{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "ohL" = (
@@ -61352,6 +61384,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
+"qkY" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Surgery";
+	req_access_txt = "45"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plasteel/grid,
+/area/medical/surgery)
 "qlp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -63097,6 +63144,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "rGV" = (
@@ -63892,6 +63940,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
 "soo" = (
@@ -64816,6 +64865,11 @@
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/office)
+"tfv" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/medical/genetics/cloning)
 "tfx" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/arrow_ccw,
@@ -65780,6 +65834,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "ucO" = (
@@ -67525,7 +67580,7 @@
 /obj/item/folder/white,
 /obj/item/pen,
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/firedoor,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/apothecary)
 "vEk" = (
@@ -104887,13 +104942,13 @@ vLt
 dLd
 bok
 bok
-nYd
+kIT
 vEg
 bok
 bok
 bok
-nYd
-nYd
+kIT
+kIT
 bok
 ydt
 nqp
@@ -105151,7 +105206,7 @@ bmF
 bob
 bpF
 bio
-nYd
+kIT
 kCK
 nrc
 bof
@@ -105160,7 +105215,7 @@ bof
 bxa
 rGU
 bDJ
-nrv
+qkY
 bDJ
 jmx
 dSA
@@ -106685,7 +106740,7 @@ aYV
 bep
 gMn
 bok
-nYd
+kIT
 bdq
 bhg
 bjX
@@ -107205,7 +107260,7 @@ aOm
 aOm
 gjj
 vRT
-vRT
+jMZ
 wKI
 bGO
 bRv
@@ -109010,7 +109065,7 @@ bMc
 bRv
 bYa
 uIR
-xkB
+tfv
 bzi
 eke
 hBL
@@ -109781,7 +109836,7 @@ vog
 tSf
 uzL
 gQV
-xkB
+tfv
 vHJ
 uVF
 oGY
@@ -122094,7 +122149,7 @@ aaa
 lar
 fKV
 evM
-ewp
+wtq
 fbn
 wfv
 vAz
@@ -122102,7 +122157,7 @@ pEu
 bjS
 ewp
 aMZ
-wtq
+nWc
 aNa
 aaa
 aaa
@@ -122351,7 +122406,7 @@ aaa
 lar
 tZV
 evM
-ucO
+dGU
 bjS
 bjS
 bjS
