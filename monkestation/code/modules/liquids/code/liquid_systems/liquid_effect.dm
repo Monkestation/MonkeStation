@@ -174,7 +174,7 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			var/evaporation_mult = min((reagents.chem_temp - T0C)/10, 1)
+			var/evaporation_mult = min((temp - T0C)/10, 1)
 			passthrough_evaporation_reaction(R, min((initial(R.evaporation_rate) * evaporation_mult), reagent_list[reagent_type]))
 			total_reagents -= initial(R.evaporation_rate)
 			reagent_list[reagent_type] -= initial(R.evaporation_rate)
