@@ -40262,9 +40262,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -50864,13 +50861,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
-"hGk" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 6
-	},
-/turf/open/space,
-/area/space)
 "hGq" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/effect/turf_decal/trimline/purple/line{
@@ -62540,11 +62530,6 @@
 /obj/effect/turf_decal/trimline/green/line,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"rbc" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/open/space,
-/area/space)
 "rcM" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -67830,11 +67815,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"vFk" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/turf/open/space,
-/area/space)
 "vFL" = (
 /obj/structure/chair/wood/normal{
 	dir = 4
@@ -113911,12 +113891,12 @@ aaa
 aaa
 aaa
 aaa
-rbc
-rbc
-rbc
-rbc
-rbc
-rbc
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -114168,9 +114148,9 @@ aaa
 aaa
 aaa
 aaa
-aoV
-aoV
-aoV
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -114425,9 +114405,9 @@ aaa
 aaa
 aaa
 aaa
-hGk
-vFk
-vFk
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
