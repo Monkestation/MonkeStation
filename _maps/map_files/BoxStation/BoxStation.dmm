@@ -32526,6 +32526,9 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bNn" = (
@@ -42327,9 +42330,12 @@
 "cwe" = (
 /obj/machinery/button/door{
 	id = "apothecary_factory_shutters";
-	name = "Apothecary factory shutters control";
+	name = "Garage Door Opener";
 	pixel_x = 24;
 	req_access_txt = "5;33"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -52264,14 +52270,14 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "jdU" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "apothecary_factory_shutters";
-	name = "Apothercary Factory Shutters"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/space/basic,
+/obj/machinery/door/poddoor/shutters{
+	id = "apothecary_factory_shutters";
+	name = "Medical Garage"
+	},
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "jel" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -64761,9 +64767,9 @@
 "tkd" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "apothecary_factory_shutters";
-	name = "Apothercary Factory Shutters"
+	name = "Medical Garage"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "tkT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -67476,6 +67482,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
+"vGI" = (
+/obj/machinery/button/door{
+	id = "apothecary_factory_shutters";
+	name = "Garage Door Opener";
+	pixel_x = 8;
+	req_access_txt = "5;33"
+	},
+/turf/closed/wall,
+/area/medical/chemistry)
 "vGN" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -67767,6 +67782,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"vOu" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "vPE" = (
 /obj/item/assembly/signaler{
 	pixel_y = 8
@@ -109850,7 +109871,7 @@ yll
 gVE
 xJf
 bCR
-nWN
+vOu
 bNh
 cwe
 bLV
@@ -110109,7 +110130,7 @@ xJf
 wzA
 xJf
 xJf
-xJf
+vGI
 tkd
 tkd
 jdU
