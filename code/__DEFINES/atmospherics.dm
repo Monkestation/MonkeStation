@@ -341,11 +341,17 @@
 #define GAS_STIMULUM			"stim"
 #define GAS_PLUOXIUM			"pluox"
 #define GAS_MIASMA				"miasma"
+#define GAS_GROUP_CHEMICALS 	"Chemicals"
+#define GAS_BROMINE				"bromine"
+#define GAS_AMMONIA				"ammonia"
+#define GAS_FLUORINE			"fluorine"
+#define GAS_ETHANOL				"ethanol"
 //NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 #define GAS_NUCLEIUM			"nucleium"
 
 #define GAS_FLAG_DANGEROUS		(1<<0)
 #define GAS_FLAG_BREATH_PROC	(1<<1)
+#define GAS_FLAG_CHEMICAL 		(1<<2)
 
 //SUPERMATTER DEFINES
 #define HEAT_PENALTY "heat penalties"

@@ -204,9 +204,9 @@
 	for(var/gas in breath.get_gases())
 		if(gas in breath_reagents)
 			var/datum/reagent/R = breath_reagents[gas]
-			//H.reagents.add_reagent(R, breath.get_moles(gas) * R.molarity) // See next line
-			H.reagents.add_reagent(R, breath.get_moles(gas) * 2) // 2 represents molarity of O2, we don't have citadel molarity
+			H.reagents.add_reagent(R, breath.get_moles(gas) * initial(R.molarity))
 			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath.get_moles(gas) : -breath.get_moles(gas)
+	H.reagents.reaction(H, VAPOR, from_gas = 1)
 
 	for(var/gas in mole_adjustments)
 		breath.adjust_moles(gas, mole_adjustments[gas])
