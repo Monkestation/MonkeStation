@@ -595,10 +595,6 @@
 /obj/item/gun/grenadelauncher{
 	pixel_y = 4
 	},
-/obj/machinery/camera/motion{
-	c_tag = "Armory - Interior";
-	dir = 6
-	},
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
 	},
@@ -1097,6 +1093,11 @@
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
+	},
+/obj/machinery/camera/motion{
+	c_tag = "MiniSat Core Hallway";
+	dir = 4;
+	network = list("aicore")
 	},
 /turf/open/floor/vault,
 /area/ai_monitored/security/armory)
@@ -3394,6 +3395,10 @@
 	color = "#c45c57";
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 64;
+	pixel_x = -64
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "agT" = (
@@ -3874,6 +3879,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
+/obj/item/key/security,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "ahR" = (
@@ -3890,7 +3896,8 @@
 	id = "Secure Gate";
 	name = "Cell Shutters";
 	pixel_x = -27;
-	pixel_y = -2
+	pixel_y = -2;
+	req_access_txt = "2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -40643,9 +40650,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "cny" = (
@@ -44433,6 +44437,10 @@
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"cQh" = (
+/obj/machinery/vending/wardrobe/robo_wardrobe,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cQz" = (
@@ -59981,6 +59989,10 @@
 	},
 /turf/open/floor/plasteel/stairs/left,
 /area/hallway/secondary/exit/departure_lounge)
+"pdM" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/plasteel/dark,
+/area/science/robotics/lab)
 "peq" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 10
@@ -114507,7 +114519,7 @@ blx
 box
 bpS
 hYs
-bsQ
+pdM
 box
 bpZ
 aII
@@ -118136,7 +118148,7 @@ cba
 gZY
 cbc
 aZm
-cOe
+cQh
 cPA
 cOx
 cNW
