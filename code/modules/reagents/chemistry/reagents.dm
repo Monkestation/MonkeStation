@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	G.name = name
 	G.specific_heat = specific_heat / 10
 	G.color = color
-	G.breath_reagent = src
+	G.breath_reagent = src.type
 	G.group = GAS_GROUP_CHEMICALS
 	G.moles_visible = MOLES_GAS_VISIBLE
 	return G
