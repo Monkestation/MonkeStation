@@ -24289,6 +24289,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
+/obj/item/tank/internals/anesthetic{
+	pixel_y = 4;
+	pixel_x = -6
+	},
+/obj/item/clothing/mask/breath/medical{
+	pixel_x = 4;
+	pixel_y = 7
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bos" = (
@@ -30120,6 +30128,7 @@
 	icon_state = "0-2"
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bFj" = (
@@ -30937,6 +30946,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bIc" = (
