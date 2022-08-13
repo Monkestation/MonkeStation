@@ -46632,8 +46632,14 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "evM" = (
-/turf/closed/wall,
-/area/security/checkpoint/escape)
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Evacuation Security Shutter";
+	id = "EVACSEC"
+	},
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/hallway/secondary/exit/departure_lounge)
 "evR" = (
 /obj/machinery/door/airlock/research{
 	name = "Robotics Lab";
@@ -48272,7 +48278,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "fLo" = (
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 1
@@ -59631,7 +59637,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "oKK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -61666,7 +61672,7 @@
 	req_access_txt = "2"
 	},
 /turf/open/floor/plating,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "qto" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -65796,7 +65802,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "uao" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -65904,7 +65910,7 @@
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
 /turf/open/floor/plasteel,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "uew" = (
 /obj/effect/turf_decal/bot,
 /obj/item/storage/box/firingpins,
@@ -67563,7 +67569,7 @@
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
 /turf/open/floor/plasteel,
-/area/security/checkpoint/escape)
+/area/hallway/secondary/exit/departure_lounge)
 "vCt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -121919,9 +121925,9 @@ aaa
 lar
 lar
 lar
-lar
-qsL
 evM
+qsL
+aMZ
 lLL
 fbn
 cyP
@@ -122176,9 +122182,9 @@ aaa
 aaa
 aaa
 aaa
-lar
-fKV
 evM
+fKV
+aMZ
 wtq
 fbn
 wfv
@@ -122433,9 +122439,9 @@ aaa
 aaa
 aaa
 aaa
-lar
-tZV
 evM
+tZV
+aMZ
 dGU
 bjS
 bjS
