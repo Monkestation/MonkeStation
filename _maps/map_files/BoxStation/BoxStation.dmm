@@ -20746,6 +20746,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/effect/turf_decal/trimline/neutral/filled/line,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "beE" = (
@@ -25544,12 +25545,17 @@
 /obj/machinery/power/apc/auto_name/south{
 	pixel_y = -24
 	},
-/obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /obj/effect/turf_decal/trimline/neutral/filled/warning{
 	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -26945,6 +26951,10 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emmd";
+	name = "Emergency Medical Lockdown Shutters"
+	},
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "bxc" = (
@@ -27975,6 +27985,9 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bzT" = (
@@ -28800,6 +28813,9 @@
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "bBO" = (
@@ -29071,8 +29087,10 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "bCD" = (
-/obj/structure/closet/secure_closet/chemical,
 /obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bCF" = (
@@ -29162,9 +29180,6 @@
 	name = "Chemistry RC";
 	pixel_y = 30;
 	receive_ore_updates = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
@@ -31066,9 +31081,6 @@
 	},
 /obj/item/book/manual/wiki/plumbing,
 /obj/item/hand_labeler,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -32706,6 +32718,9 @@
 	name = "Apothecary Maintenance";
 	req_access_txt = "5;33"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/aft)
 "bNP" = (
@@ -33179,9 +33194,6 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
@@ -33666,9 +33678,6 @@
 	pixel_x = -22
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -42127,9 +42136,6 @@
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
-	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Apothecary factory";
 	dir = 6;
@@ -42155,9 +42161,6 @@
 /obj/item/stock_parts/cell/high/plus,
 /obj/machinery/status_display/ai{
 	pixel_y = 32
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -42297,9 +42300,6 @@
 /obj/item/construction/plumbing,
 /obj/item/plunger,
 /obj/structure/table,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
@@ -45864,9 +45864,6 @@
 "dXb" = (
 /obj/structure/sink{
 	pixel_y = 30
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -50305,6 +50302,10 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+"hld" = (
+/obj/structure/closet/secure_closet/chemical,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "hmb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/grid/steel,
@@ -52080,6 +52081,7 @@
 /area/security/brig)
 "iUN" = (
 /obj/effect/turf_decal/box/corners,
+/obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "iVr" = (
@@ -52261,6 +52263,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"jdU" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "apothecary_factory_shutters";
+	name = "Apothercary Factory Shutters"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/space/basic,
+/area/medical/chemistry)
 "jel" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -52335,6 +52347,16 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
+"jhg" = (
+/obj/effect/turf_decal/trimline/darkblue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/line,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "jht" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -52384,9 +52406,6 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "jiK" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -54119,6 +54138,10 @@
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/brflowers,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emmd";
+	name = "Emergency Medical Lockdown Shutters"
+	},
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "kCW" = (
@@ -54971,6 +54994,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "lgO" = (
@@ -55709,9 +55735,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
 "lHW" = (
-/obj/item/kitchen/knife/combat/survival,
-/turf/closed/wall/r_wall,
-/area/crew_quarters/heads/cmo)
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/starboard)
 "lIa" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/table/glass,
@@ -57905,6 +57935,10 @@
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/grass/jungle/b,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emmd";
+	name = "Emergency Medical Lockdown Shutters"
+	},
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "nro" = (
@@ -62914,6 +62948,10 @@
 /obj/structure/disposalpipe/junction{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emmd";
+	name = "Emergency Medical Lockdown Shutters"
+	},
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "rGV" = (
@@ -65517,27 +65555,15 @@
 /turf/open/floor/plating,
 /area/security/checkpoint/escape)
 "uao" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+/obj/effect/turf_decal/trimline/green/line,
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/warning{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/aft)
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "uaR" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -68781,9 +68807,6 @@
 /obj/machinery/door/airlock/medical/glass{
 	name = "Apothecary factory";
 	req_access_txt = "5;33"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -98223,7 +98246,7 @@ ayL
 aBt
 ayL
 ayL
-bwh
+jhg
 aXD
 aXD
 aOE
@@ -101821,7 +101844,7 @@ anF
 ahn
 aJw
 aJw
-raT
+uao
 wUS
 aXD
 aOE
@@ -109288,7 +109311,7 @@ kzO
 bvs
 bep
 bep
-bes
+lHW
 vog
 bdc
 jhL
@@ -109572,7 +109595,7 @@ xJf
 dXb
 nWN
 nWN
-nWN
+hld
 lty
 iUN
 bCD
@@ -109828,8 +109851,8 @@ gVE
 xJf
 bCR
 nWN
-cwe
 bNh
+cwe
 bLV
 bLV
 lgj
@@ -110089,7 +110112,7 @@ xJf
 xJf
 tkd
 tkd
-tkd
+jdU
 cBD
 bUb
 iNR
@@ -110340,7 +110363,7 @@ bST
 bST
 cvg
 bGX
-uao
+jIS
 cvU
 bzU
 cvU
@@ -111354,7 +111377,7 @@ ied
 bLU
 bLU
 ecD
-lHW
+bOt
 rro
 bvn
 irt
