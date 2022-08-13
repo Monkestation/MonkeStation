@@ -22867,10 +22867,17 @@
 	},
 /obj/machinery/button/door{
 	id = "chemdesk";
-	name = "Chemistry Desk Shutter";
+	name = "Chemistry desk shutter";
 	pixel_x = 8;
 	req_access_txt = "5;33";
 	pixel_y = -23
+	},
+/obj/machinery/button/door{
+	id = "apothecary_shutters";
+	name = "Chemistry window shutters";
+	pixel_x = 8;
+	req_access_txt = "5;33";
+	pixel_y = -33
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
@@ -33128,6 +33135,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "bOT" = (
@@ -41493,6 +41501,7 @@
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table,
 /obj/item/book/manual/wiki/medicine,
+/obj/item/crowbar,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "ctB" = (
@@ -42016,6 +42025,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
 	},
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "cvc" = (
@@ -42305,6 +42315,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "cvO" = (
@@ -45319,6 +45330,7 @@
 /area/maintenance/port/aft)
 "dsl" = (
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "dss" = (
@@ -45554,11 +45566,11 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/external{
-	name = "Cargo Escape Airlock"
-	},
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Departure Lounge Airlock"
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
@@ -48286,7 +48298,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
-/area/maintenance/aft)
+/area/medical/virology)
 "fMx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -56080,9 +56092,6 @@
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "lLL" = (
-/obj/machinery/door/airlock/external{
-	name = "Cargo Escape Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -56091,6 +56100,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/machinery/door/airlock/external{
+	name = "Departure Lounge Airlock"
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
@@ -60690,6 +60702,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
+"pLB" = (
+/obj/machinery/firealarm/directional/south,
+/turf/closed/wall,
+/area/security/checkpoint/medical)
 "pLK" = (
 /obj/machinery/turretid{
 	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
@@ -61632,9 +61648,6 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "qsL" = (
-/obj/machinery/door/airlock/external{
-	name = "Cargo Escape Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -61647,6 +61660,10 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	name = "Evacuation Security Shutter";
 	id = "EVACSEC"
+	},
+/obj/machinery/door/airlock/external{
+	name = "Security Escape Airlock";
+	req_access_txt = "2"
 	},
 /turf/open/floor/plating,
 /area/security/checkpoint/escape)
@@ -64126,13 +64143,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/machinery/button/door{
-	id = "apothecary_shutters";
-	name = "Apothecary shutters control";
-	pixel_x = 24;
-	req_access_txt = "5;33";
-	pixel_y = 9
-	},
 /obj/item/stack/cable_coil/white,
 /obj/item/stack/cable_coil/white{
 	pixel_x = 3;
@@ -65857,17 +65867,10 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "ucO" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/airlock/external{
-	name = "Escape Airlock"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/hallway/secondary/exit/departure_lounge)
+/obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plasteel/grid/steel,
+/area/medical/genetics)
 "ucP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -107808,7 +107811,7 @@ bSD
 bvh
 mlN
 wLB
-btZ
+pLB
 fkX
 kwV
 bfG
@@ -109595,7 +109598,7 @@ bep
 lHW
 vog
 bdc
-jhL
+ucO
 bll
 bsr
 bxc
@@ -112969,8 +112972,8 @@ cBd
 clf
 bzs
 fLK
-bzs
-bnc
+cdH
+bNd
 bnc
 bnc
 bnc
@@ -122439,7 +122442,7 @@ bjS
 bjS
 bjS
 bjS
-ucO
+dGU
 aMZ
 dGU
 aNa
