@@ -28085,10 +28085,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/power/apc/auto_name/east,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
 /obj/structure/chair/sofa/corp/right{
 	color = "#7fb3d5";
 	dir = 8
@@ -32159,6 +32155,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/medbay/central)
 "bLJ" = (
@@ -34927,6 +34924,7 @@
 	},
 /obj/item/stack/sheet/glass/fifty,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
+/obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "bUH" = (
@@ -45659,6 +45657,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/medbay/lobby)
 "dKL" = (
@@ -50217,6 +50216,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/medbay/lobby)
 "hau" = (
@@ -50672,6 +50672,10 @@
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/south,
+/obj/structure/chair/sofa/corp{
+	color = "#7fb3d5";
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "hwv" = (
@@ -52217,8 +52221,16 @@
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/exploration_dock)
 "iRZ" = (
-/turf/open/space/basic,
-/area/engine/engineering)
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp/left{
+	color = "#7fb3d5";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "iSq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/turf_decal/trimline/yellow/line{
@@ -52568,6 +52580,7 @@
 /area/maintenance/solars/port/fore)
 "jhL" = (
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "jik" = (
@@ -63140,6 +63153,17 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/aft)
+"rGp" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "rGC" = (
 /obj/machinery/button/door{
 	desc = "A remote control switch for the medbay foyer.";
@@ -65790,6 +65814,10 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"tXz" = (
+/obj/structure/sign/departments/minsky/research/genetics,
+/turf/closed/wall,
+/area/medical/medbay/lobby)
 "tYi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -65910,6 +65938,7 @@
 "ucO" = (
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/machinery/firealarm/directional/east,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "ucP" = (
@@ -70479,6 +70508,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/unres,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/medbay/central)
 "xCn" = (
@@ -71445,6 +71475,23 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
+"ykV" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp/right{
+	color = "#7fb3d5";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "yll" = (
 /turf/closed/wall,
 /area/medical/genetics/cloning)
@@ -93248,7 +93295,7 @@ aUd
 eRX
 aTQ
 btG
-iRZ
+aaa
 aaa
 aaa
 aaa
@@ -107584,10 +107631,10 @@ beu
 dJp
 bdb
 oAW
-mML
+bog
 mML
 pRd
-bog
+mML
 mML
 eqr
 bLH
@@ -107841,10 +107888,10 @@ bet
 hap
 biu
 aOm
-aOm
+boi
 aOm
 oBg
-boi
+aOm
 aOm
 fNW
 xCm
@@ -108098,7 +108145,7 @@ bes
 eLl
 oXC
 fhv
-fhv
+rGp
 fhv
 fZJ
 bzV
@@ -108358,7 +108405,7 @@ kih
 vog
 kih
 ubP
-boj
+tXz
 som
 som
 bof
@@ -108621,7 +108668,7 @@ izF
 bMc
 bRv
 bYa
-mlN
+ykV
 ipA
 nZk
 wxp
@@ -109135,7 +109182,7 @@ jak
 bMc
 bRv
 bYa
-uIR
+iRZ
 tfv
 bzi
 eke
