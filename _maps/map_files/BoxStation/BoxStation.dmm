@@ -67389,9 +67389,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "vtK" = (
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
@@ -67399,6 +67396,9 @@
 /obj/machinery/shower{
 	name = "emergency shower";
 	pixel_y = 12
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
 	},
 /turf/open/floor/noslip/dark,
 /area/science/lab)
