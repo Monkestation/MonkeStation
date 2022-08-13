@@ -25899,7 +25899,7 @@
 /area/crew_quarters/heads/hop)
 "btC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/hop)
 "btD" = (
 /obj/structure/table,
@@ -26195,7 +26195,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/hop)
 "buO" = (
 /obj/structure/table,
@@ -44075,7 +44075,7 @@
 	},
 /mob/living/simple_animal/pet/cat{
 	name = "Blu";
-	desc = "Legend says this cat built the station, don't ask how.";
+	desc = "Legend says this cat built the station, don't ask how. She seems content to hang out on the bridge now.";
 	gender = "female"
 	},
 /turf/open/floor/plasteel/dark,
