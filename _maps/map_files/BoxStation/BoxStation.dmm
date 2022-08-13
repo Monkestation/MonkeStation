@@ -23219,6 +23219,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/carpet/cyan,
 /area/medical/break_room)
 "bkT" = (
@@ -41496,6 +41497,7 @@
 /obj/structure/table,
 /obj/item/book/manual/wiki/medicine,
 /obj/item/crowbar,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "ctB" = (
@@ -64259,6 +64261,7 @@
 /obj/item/screwdriver,
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "svU" = (
