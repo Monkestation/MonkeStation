@@ -20924,6 +20924,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/plasteel/ridged/steel,
 /area/medical/break_room)
 "beZ" = (
@@ -21762,6 +21766,7 @@
 	icon_state = "0-4"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bhq" = (
@@ -21776,6 +21781,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bhu" = (
@@ -25265,6 +25271,7 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/medical/break_room)
 "brk" = (
@@ -26092,6 +26099,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/medical/break_room)
 "bux" = (
@@ -27646,6 +27654,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bze" = (
@@ -27721,6 +27730,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 10
 	},
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
 "bzm" = (
@@ -29183,6 +29193,7 @@
 /area/medical/genetics)
 "bCO" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/cryo)
 "bCR" = (
@@ -30049,6 +30060,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bFg" = (
@@ -30149,6 +30161,7 @@
 	name = "Emergency Medical Lockdown Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/cryo)
 "bFH" = (
@@ -31734,6 +31747,7 @@
 /area/space)
 "bKN" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/storage)
 "bKP" = (
@@ -38682,6 +38696,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/break_room)
 "cga" = (
@@ -41562,6 +41577,7 @@
 	},
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/wrench/medical,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "ctM" = (
@@ -42049,6 +42065,7 @@
 	name = "CMO Office Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "cvj" = (
@@ -43657,6 +43674,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 10
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/cyan,
 /area/medical/break_room)
 "cFW" = (
@@ -46991,6 +47009,7 @@
 	id = "medpriv2";
 	name = "privacy door"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/patients_rooms/room_a)
 "eKM" = (
@@ -48255,6 +48274,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "fMx" = (
@@ -48726,6 +48746,10 @@
 	dir = 1
 	},
 /area/quartermaster/office)
+"gbO" = (
+/obj/machinery/smartfridge/chemistry/preloaded,
+/turf/closed/wall,
+/area/medical/chemistry)
 "gbR" = (
 /obj/machinery/button/door{
 	id = "atmos";
@@ -50577,6 +50601,14 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"hwm" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "hwv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -50857,6 +50889,13 @@
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/office)
+"hKD" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plasteel/cafeteria,
+/area/medical/break_room)
 "hMJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -51160,6 +51199,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "ieA" = (
@@ -55402,6 +55442,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 1
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/morgue)
 "lty" = (
@@ -57022,6 +57063,7 @@
 	name = "CMO Office Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "mzB" = (
@@ -60321,6 +60363,7 @@
 	name = "privacy door"
 	},
 /obj/effect/spawner/structure/window,
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/patients_rooms/room_b)
 "pBW" = (
@@ -65294,6 +65337,7 @@
 	id = "emmd";
 	name = "Emergency Medical Lockdown Shutters"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/medical/cryo)
 "tIx" = (
@@ -66910,6 +66954,7 @@
 "vjk" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/cyan,
 /area/medical/break_room)
 "vke" = (
@@ -67696,6 +67741,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "vIm" = (
@@ -68964,6 +69010,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 1
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "wCb" = (
@@ -105875,7 +105922,7 @@ bMe
 bok
 bok
 nYd
-bok
+bjX
 gNL
 gjw
 ceF
@@ -108705,7 +108752,7 @@ bwz
 bMc
 bRv
 bYa
-uIR
+hwm
 yll
 yll
 yll
@@ -110259,7 +110306,7 @@ qSR
 sWd
 xJf
 wzA
-xJf
+gbO
 xJf
 qnk
 tkd
@@ -110756,7 +110803,7 @@ rtp
 tDU
 rtp
 rtp
-rtp
+hKD
 rtp
 but
 bWe
