@@ -44084,7 +44084,8 @@
 /mob/living/simple_animal/pet/cat{
 	name = "Blu";
 	desc = "Legend says this cat built the station, don't ask how. She seems content to hang out on the bridge now.";
-	gender = "female"
+	gender = "female";
+	health = 250
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
