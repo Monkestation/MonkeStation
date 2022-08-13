@@ -27480,6 +27480,8 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
+/obj/item/clothing/head/helmet/hat/cowboy/cargo,
+/obj/item/clothing/suit/armor/secduster/cargo,
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/supply)
 "byI" = (
@@ -27886,6 +27888,8 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
+/obj/item/clothing/head/helmet/hat/cowboy/science,
+/obj/item/clothing/suit/armor/secduster/science,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "bzA" = (
@@ -35970,6 +35974,8 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/item/clothing/suit/armor/secduster/engineering,
+/obj/item/clothing/head/helmet/hat/cowboy/engineering,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bXQ" = (
@@ -58066,6 +58072,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/item/clothing/head/helmet/hat/cowboy/medical,
+/obj/item/clothing/suit/armor/secduster/medical,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "njV" = (
