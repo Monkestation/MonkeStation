@@ -5407,8 +5407,8 @@
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
 "akL" = (
-/obj/machinery/computer/atmos_alert,
 /obj/effect/turf_decal/tile/yellow/tile_full,
+/obj/machinery/computer/apc_control,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "akM" = (
