@@ -162,11 +162,11 @@
 		return
 	..()
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user, access_bypass = FALSE)
+/obj/machinery/door/proc/try_to_activate_door(obj/I, mob/user)
 	add_fingerprint(user)
 	if(operating || (obj_flags & EMAGGED))
 		return
-	if(access_bypass || (requiresID() && allowed(user)))
+	if((requiresID() && allowed(user)))
 		if(density)
 			open()
 		else
