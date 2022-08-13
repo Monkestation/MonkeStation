@@ -174,7 +174,9 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			passthrough_evaporation_reaction(R, min(initial(R.evaporation_rate), reagent_list[reagent_type]))
+			var/turf/open/location = get_turf(src)
+			var/evaporation_mult = min((location.return_temperature() - T0C)/50, 1)
+			passthrough_evaporation_reaction(R, min((initial(R.evaporation_rate) * evaporation_mult), reagent_list[reagent_type]))
 			total_reagents -= initial(R.evaporation_rate)
 			reagent_list[reagent_type] -= initial(R.evaporation_rate)
 			if(reagent_list[reagent_type] <= 0)

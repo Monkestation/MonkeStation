@@ -122,7 +122,7 @@
 	if(!istype(R))
 		return
 	min_requirements = list(
-		"MAX_TEMP" = initial(R.boiling_point)
+		"MAX_TEMP" = min(initial(R.boiling_point), 40)
 	)
 	min_requirements[R.get_gas()] = MOLES_GAS_VISIBLE
 	name = "[R.name] condensation"
@@ -136,19 +136,10 @@
 	if(!istype(location))
 		return
 	var/temperature = air.return_temperature()
-	var/static/datum/reagents/reagents_holder = new
-	reagents_holder.clear_reagents()
-	reagents_holder.chem_temp = temperature
 	var/G = condensing_reagent.get_gas()
 	var/amt = air.get_moles(G)
+	location.add_liquid(condensing_reagent, amt, FALSE, temperature)
 	air.adjust_moles(G, -min(initial(condensing_reagent.condensation_amount), amt))
-	reagents_holder.add_reagent(condensing_reagent, amt)
-	. = REACTING
-	for(var/atom/movable/AM in location)
-		if(location.intact && AM.level == 1)
-			continue
-		reagents_holder.reaction(AM, TOUCH)
-	reagents_holder.reaction(location, TOUCH)
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire

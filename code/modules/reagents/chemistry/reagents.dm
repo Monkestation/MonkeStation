@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/list/addiction_types = null
 
 	var/gas = null //do we have an associated gas? (expects a string, not a datum typepath!)
-	var/boiling_point = null // point at which this gas boils; if null, will never boil (and thus not become a gas)
+	var/boiling_point = 700 // point at which this gas boils; if null, will never boil (and thus not become a gas)
 	var/condensation_amount = 1
 	var/molarity = 5 // How many units per mole of this reagent. Technically this is INVERSE molarity, but hey.
 

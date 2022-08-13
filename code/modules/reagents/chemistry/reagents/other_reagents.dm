@@ -2142,7 +2142,6 @@
 	reaction_turf(my_turf, reac_volume)
 
 /datum/reagent/ants/reaction_evaporation(turf/exposed_turf, reac_volume)
-	. = ..()
 	if(!istype(exposed_turf) || isspaceturf(exposed_turf)) // Is the turf valid
 		return
 	var/turf/pest_turf
