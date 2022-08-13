@@ -2,7 +2,7 @@
 	name = "gas flow meter"
 	desc = "It measures something."
 	icon = 'icons/obj/atmospherics/pipes/meter.dmi'
-	icon_state = "meter_base"
+	icon_state = "meter"
 	greyscale_config = /datum/greyscale_config/meter
 	greyscale_colors = COLOR_GRAY
 	layer = GAS_PUMP_LAYER
@@ -113,14 +113,14 @@
 		))
 		radio_connection.post_signal(src, signal)
 
-/obj/machinery/meter/proc/status()
+/obj/machinery/meter/proc/status(mob/user)
 	if(target)
 		var/datum/gas_mixture/pipe_air = target.return_air()
 		if(pipe_air)
-			. = "The pressure gauge reads:"
-			. = "Temperature: [round(pipe_air.return_temperature(),0.01)] K ([round(pipe_air.return_temperature()-T0C,0.01)]&deg;C)"
-			. = "Pressure[round(pipe_air.return_pressure(), 0.01)] kPa"
-			. = "Pipenet Volume: [pipe_air.return_volume()] L"
+			to_chat(user, span_info("The thermometrics gauge reads:"))
+			to_chat(user, span_info("Temperature: [round(pipe_air.return_temperature(),0.01)] K ([round(pipe_air.return_temperature()-T0C,0.01)]&deg;C)"))
+			to_chat(user, span_info("Pressure: [round(pipe_air.return_pressure(), 0.01)] kPa"))
+			to_chat(user, span_info("Volume of Pipenet: [pipe_air.return_volume()] L"))
 		else
 			. = "The sensor error light is blinking."
 	else
@@ -128,7 +128,7 @@
 
 /obj/machinery/meter/examine(mob/user)
 	. = ..()
-	. += status()
+	status(user)
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/wrench)
 	..()
@@ -151,7 +151,7 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	else
-		to_chat(user, status())
+		status(user)
 
 /obj/machinery/meter/singularity_pull(S, current_size)
 	..()
