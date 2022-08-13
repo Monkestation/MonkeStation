@@ -2505,6 +2505,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Armoury"
 	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "aeZ" = (
