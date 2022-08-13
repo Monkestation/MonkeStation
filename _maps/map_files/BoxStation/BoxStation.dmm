@@ -21466,6 +21466,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
 	},
+/obj/machinery/button/door{
+	id = "chemdesk2";
+	name = "Chemistry Desk Shutter";
+	pixel_x = 24;
+	req_access_txt = "5;33";
+	pixel_y = -23
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/apothecary)
 "bgH" = (
@@ -21605,7 +21612,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "bhb" = (
-/obj/structure/table,
 /obj/machinery/requests_console{
 	department = "Chemistry Lab";
 	name = "Chemistry RC";
@@ -21627,10 +21633,10 @@
 	pixel_y = -4
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "bhc" = (
-/obj/structure/table,
 /obj/machinery/reagentgrinder{
 	pixel_y = 5
 	},
@@ -21644,6 +21650,7 @@
 	pixel_x = -3
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "bhd" = (
@@ -21681,8 +21688,8 @@
 /obj/item/folder/white,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "pharmacy_shutters";
-	name = "Pharmacy Shutters"
+	id = "chemdesk";
+	name = "Chemistry Shutters"
 	},
 /obj/machinery/door/firedoor/window,
 /turf/open/floor/plasteel/techmaint,
@@ -22831,6 +22838,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/apothecary)
 "bjL" = (
@@ -22856,6 +22864,13 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "chemdesk";
+	name = "Chemistry Desk Shutter";
+	pixel_x = 8;
+	req_access_txt = "5;33";
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
@@ -23285,6 +23300,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "blj" = (
@@ -23776,7 +23792,6 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "bmI" = (
-/obj/structure/table,
 /obj/item/clipboard{
 	pixel_x = 4;
 	pixel_y = -4
@@ -23793,6 +23808,7 @@
 	},
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "bmN" = (
@@ -25110,11 +25126,11 @@
 	pixel_y = 6
 	},
 /obj/item/pen,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "apothecary_shutters";
-	name = "Apothecary Shutters"
-	},
 /obj/machinery/door/firedoor/window,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "chemdesk";
+	name = "Chemistry Shutters"
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/medical/apothecary)
 "bqP" = (
@@ -25163,6 +25179,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/apothecary)
 "bqU" = (
@@ -32203,7 +32220,6 @@
 	},
 /area/medical/storage)
 "bMe" = (
-/obj/structure/table,
 /obj/item/folder/white,
 /obj/item/reagent_containers/glass/beaker{
 	pixel_x = 3
@@ -32218,6 +32234,7 @@
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "bMg" = (
@@ -48939,6 +48956,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/apothecary)
 "gjV" = (
@@ -64112,9 +64130,9 @@
 	id = "apothecary_shutters";
 	name = "Apothecary shutters control";
 	pixel_x = 24;
-	req_access_txt = "5;33"
+	req_access_txt = "5;33";
+	pixel_y = 9
 	},
-/obj/structure/table,
 /obj/item/stack/cable_coil/white,
 /obj/item/stack/cable_coil/white{
 	pixel_x = 3;
@@ -64146,6 +64164,7 @@
 	},
 /obj/item/screwdriver,
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/apothecary)
 "svU" = (
@@ -67569,7 +67588,7 @@
 "vEg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistbot";
+	id = "chemdesk2";
 	name = "Chemistry Side Shutters"
 	},
 /obj/machinery/door/window/southleft{
@@ -70119,6 +70138,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
 	},
+/obj/machinery/button/door{
+	id = "chemdesk";
+	name = "Chemistry Desk Shutter";
+	pixel_x = -8;
+	req_access_txt = "5;33";
+	pixel_y = 9
+	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/apothecary)
 "xrh" = (
