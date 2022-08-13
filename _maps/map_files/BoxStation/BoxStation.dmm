@@ -12806,7 +12806,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/effect/spawner/lootdrop/pizzaparty,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aGE" = (
@@ -46802,7 +46801,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "eHr" = (
-/obj/machinery/holopad,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -46876,6 +46874,10 @@
 	},
 /turf/open/floor/noslip/standard,
 /area/ai_monitored/storage/eva)
+"eLx" = (
+/obj/machinery/holopad,
+/turf/open/floor/carpet/orange,
+/area/crew_quarters/heads/chief)
 "eMO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -100500,7 +100502,7 @@ bZe
 cfb
 cfH
 cSL
-cim
+eLx
 cim
 ceo
 cfb
