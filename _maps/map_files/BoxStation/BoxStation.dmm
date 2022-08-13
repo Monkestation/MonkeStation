@@ -982,11 +982,8 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	icon_state = "secbot1";
-	idcheck = 1;
 	name = "Sergeant-First-Class-at-Armsky";
-	weaponscheck = 1;
 	desc = "An older model little security robot.  We don't know how he got in there, but getting him out would be cost-prohibitive. The battery has long since died.";
 	allow_pai = 1;
 	health = 50;
@@ -1032,6 +1029,9 @@
 	desc = "A door remote control switch. it is officially NT suggested that you keep this one closed at all times"
 	},
 /obj/structure/table/reinforced,
+/obj/item/toy/plush/carpplushie{
+	name = "Jeff"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "acn" = (
@@ -41062,6 +41062,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
+/obj/effect/landmark/start/warden,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "cpC" = (
@@ -49434,6 +49435,7 @@
 	dir = 8
 	},
 /mob/living/simple_animal/butterfly,
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/grass,
 /area/ai_monitored/security/armory)
 "gyH" = (
@@ -63455,6 +63457,7 @@
 	dir = 10
 	},
 /obj/machinery/light,
+/obj/item/bedsheet/hos,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "rTB" = (
