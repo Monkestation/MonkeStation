@@ -70955,6 +70955,9 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 6
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/hallway/primary/port)
 "xNj" = (
