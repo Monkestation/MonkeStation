@@ -17855,6 +17855,7 @@
 /area/hallway/primary/port)
 "aVd" = (
 /obj/structure/flora/rock,
+/obj/item/food/grown/banana,
 /turf/open/floor/grass,
 /area/crew_quarters/park)
 "aVe" = (
@@ -23453,7 +23454,7 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/lab)
 "blB" = (
-/mob/living/simple_animal/pet/dog/corgi/borgi,
+/obj/structure/bookcase/random/reference,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "blC" = (
@@ -42786,6 +42787,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"cyB" = (
+/obj/structure/bookcase/random/reference{
+	desc = "Here in my garage, just bought this new Lamborghini here. It's fun to drive up here in the Hollywood hills. But you know what I like more than materialistic things? Knowledge. In fact, I'm a lot more proud of these seven new bookshelves that I had to get installed to hold two thousand new books that I bought. It's like the billionaire Warren Buffett says, the more you learn, the more you earn.";
+	name = "bookcase (Knowledge)"
+	},
+/turf/open/floor/wood,
+/area/library)
 "cyD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -45870,14 +45878,10 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "dTg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/mob/living/carbon/monkey,
+/obj/item/food/grown/banana,
+/turf/open/floor/grass,
+/area/crew_quarters/park)
 "dTW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -49173,10 +49177,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "gpk" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/obj/item/food/grown/banana,
+/turf/open/floor/grass,
+/area/crew_quarters/park)
 "gpn" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /turf/open/floor/plating,
@@ -52664,8 +52667,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "jmx" = (
@@ -52840,6 +52841,8 @@
 /turf/open/floor/plasteel/techmaint,
 /area/security/checkpoint/escape)
 "jtx" = (
+/obj/item/seeds/banana,
+/obj/item/seeds/banana,
 /obj/item/seeds/banana,
 /turf/open/floor/grass,
 /area/crew_quarters/park)
@@ -56188,6 +56191,10 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
 "lLj" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "lLp" = (
@@ -61239,11 +61246,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -92328,9 +92335,9 @@ bCq
 cqn
 pYX
 jkG
-gpk
-gpk
-dTg
+bHE
+bHE
+bHE
 bHE
 bHE
 btG
@@ -94291,7 +94298,7 @@ aaa
 alU
 amC
 amC
-abe
+amC
 asc
 ali
 aaa
@@ -98183,7 +98190,7 @@ aXD
 aOE
 aRq
 iFr
-aSD
+gpk
 aSD
 aWL
 aVl
@@ -103323,7 +103330,7 @@ aXD
 aOE
 aRq
 qWm
-ceh
+dTg
 aVd
 aSD
 aVl
@@ -103581,7 +103588,7 @@ aOE
 aRq
 aSD
 aEV
-aSD
+gpk
 aSD
 smZ
 bfr
@@ -103837,7 +103844,7 @@ aXD
 aOE
 aRq
 aSD
-aSD
+gpk
 aSD
 aSD
 aYF
@@ -115398,7 +115405,7 @@ aJR
 aJR
 aIt
 aIt
-aPd
+cyB
 aIt
 aRO
 aRO
