@@ -6364,13 +6364,13 @@
 	name = "Medbay RC";
 	pixel_y = 30
 	},
-/obj/item/kirbyplants/random,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "amC" = (
@@ -26357,6 +26357,19 @@
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
+/obj/structure/closet/wardrobe/robotics_black{
+	name = "Weeb Shit";
+	desc = "A locker seemingly used by robotics to hide their shame"
+	},
+/obj/item/clothing/under/costume/schoolgirl,
+/obj/item/clothing/under/costume/mech_suit/white,
+/obj/item/clothing/under/costume/mech_suit/blue,
+/obj/item/clothing/under/costume/mech_suit,
+/obj/item/clothing/under/costume/maid,
+/obj/item/clothing/head/kitty,
+/obj/item/choice_beacon/anime{
+	layer = 2.95
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/maintenance/aft)
 "bvD" = (
@@ -28961,6 +28974,7 @@
 "bCj" = (
 /obj/structure/closet/secure_closet/RD,
 /obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/item/clothing/under/costume/mech_suit/white,
 /turf/open/floor/vault,
 /area/crew_quarters/heads/hor)
 "bCk" = (
@@ -47655,16 +47669,6 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"fhE" = (
-/obj/effect/turf_decal/tile/neutral/tile_full,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/security/checkpoint/escape)
 "fhF" = (
 /obj/structure/sign/departments/minsky/medical/medical2,
 /turf/closed/wall,
@@ -49556,6 +49560,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/security/med,
+/obj/item/clothing/suit/armor/secduster/medical,
+/obj/item/clothing/head/helmet/hat/cowboy/medical,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "gEJ" = (
@@ -58035,12 +58042,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/structure/closet/secure_closet/security/med,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/item/clothing/head/helmet/hat/cowboy/medical,
-/obj/item/clothing/suit/armor/secduster/medical,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "njV" = (
@@ -59509,6 +59514,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"ozd" = (
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/security/checkpoint/escape)
 "ozs" = (
 /obj/structure/window/spawner/east,
 /obj/effect/turf_decal/monke/siding/wood{
@@ -59634,6 +59649,11 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/structure/closet/wardrobe,
+/obj/item/choice_beacon/anime,
+/obj/item/choice_beacon/anime,
+/obj/item/choice_beacon/anime,
+/obj/item/choice_beacon/anime,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "oHu" = (
@@ -121050,7 +121070,7 @@ aaa
 aaa
 lar
 wGZ
-fhE
+ozd
 iFn
 aVX
 jPx
