@@ -18737,6 +18737,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/grass,
 /area/crew_quarters/park)
 "aYF" = (
@@ -37049,6 +37050,10 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 5
 	},
+/obj/item/tank/internals/oxygen/yellow{
+	pixel_y = -3;
+	pixel_x = 5
+	},
 /turf/open/floor/pod,
 /area/crew_quarters/heads/chief)
 "cbq" = (
@@ -39759,6 +39764,10 @@
 	icon_state = "1-2"
 	},
 /obj/item/crowbar/large,
+/obj/item/tank/internals/oxygen/yellow{
+	pixel_y = -3;
+	pixel_x = 5
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ckG" = (
@@ -51756,6 +51765,7 @@
 /obj/structure/railing{
 	dir = 6
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/grass,
 /area/crew_quarters/park)
 "ixq" = (
