@@ -67171,6 +67171,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics/garden)
+"viC" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/turf_decal/trimline/purple/line{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "RoboGarage";
+	name = "Garage Door Opener";
+	pixel_x = -4;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/starboard)
 "viN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -115931,7 +115944,7 @@ aIt
 bbD
 byX
 bov
-bAl
+viC
 gQx
 bhw
 cHM
