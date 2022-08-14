@@ -21765,10 +21765,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
-/obj/item/book/manual/wiki/robotics_cyborgs{
-	pixel_x = 2;
-	pixel_y = 5
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bhw" = (
@@ -21882,6 +21878,7 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
+/obj/item/storage/box/monkeycubes,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
 "bhH" = (
@@ -29652,6 +29649,9 @@
 "bEl" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 60
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -41614,6 +41614,9 @@
 "ctV" = (
 /obj/machinery/light,
 /obj/structure/table/glass,
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/airless,
 /area/medical/sleeper)
 "ctX" = (
