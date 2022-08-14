@@ -24864,6 +24864,12 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
+/obj/item/stack/sheet/plasteel/fifty{
+	layer = 2.81
+	},
+/obj/item/stack/sheet/rglass{
+	amount = 50
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/lab)
 "bpS" = (
