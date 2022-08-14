@@ -729,7 +729,9 @@
 	anchored = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/item/clothing/head/helmet/hat/cowboy/engineering,
+/obj/item/clothing/suit/armor/secduster/engineering,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -778,11 +780,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/item/clothing/head/helmet/hat/cowboy/cargo,
+/obj/item/clothing/suit/armor/secduster/cargo,
+/obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
@@ -15832,6 +15833,9 @@
 /obj/structure/table/reinforced,
 /obj/item/radio,
 /obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/security/checkpoint/escape)
 "aOe" = (
@@ -16229,9 +16233,6 @@
 	pixel_x = -25
 	},
 /obj/structure/chair{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /obj/machinery/camera/autoname{
@@ -18021,14 +18022,15 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "aVX" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
+/obj/effect/turf_decal/tile/red/tile_full,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral/tile_full,
-/turf/open/floor/plasteel/techmaint,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel,
 /area/security/checkpoint/escape)
 "aWc" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -44866,15 +44868,15 @@
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "deg" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/red/tile_full,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/escape)
@@ -47653,6 +47655,16 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"fhE" = (
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/security/checkpoint/escape)
 "fhF" = (
 /obj/structure/sign/departments/minsky/medical/medical2,
 /turf/closed/wall,
@@ -51935,6 +51947,9 @@
 	pixel_y = 10;
 	pixel_x = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/security/checkpoint/escape)
 "iFr" = (
@@ -52646,12 +52661,11 @@
 /obj/structure/closet/secure_closet/security/sec{
 	anchored = 1
 	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/item/clothing/head/helmet/hat/cowboy/science,
+/obj/item/clothing/suit/armor/secduster/science,
+/obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
-/obj/item/clothing/suit/armor/secduster,
-/obj/item/clothing/head/helmet/hat/cowboy,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "joo" = (
@@ -52880,14 +52894,12 @@
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "jxL" = (
+/obj/effect/turf_decal/tile/red/tile_full,
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red/tile_full,
-/obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/escape)
 "jyC" = (
@@ -53109,6 +53121,8 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
+/obj/item/clothing/suit/armor/secduster,
+/obj/item/clothing/head/helmet/hat/cowboy,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "jHY" = (
@@ -53301,6 +53315,9 @@
 "jNO" = (
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/machinery/computer/security{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
 /turf/open/floor/plasteel/techmaint,
@@ -60181,11 +60198,11 @@
 	anchored = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/filled/line{
+/obj/item/clothing/head/helmet/hat/cowboy/medical,
+/obj/item/clothing/suit/armor/secduster/medical,
+/obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/item/clothing/head/helmet/hat/cowboy,
-/obj/item/clothing/suit/armor/secduster,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "plV" = (
@@ -65699,6 +65716,12 @@
 "tRB" = (
 /obj/structure/chair/office/light,
 /obj/effect/turf_decal/tile/neutral/tile_full,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/security/checkpoint/escape)
 "tSf" = (
@@ -120514,7 +120537,7 @@ aaa
 jPx
 faa
 tHx
-aVX
+tHx
 deg
 gyr
 tnF
@@ -121027,9 +121050,9 @@ aaa
 aaa
 lar
 wGZ
-tHx
+fhE
 iFn
-msB
+aVX
 jPx
 fbn
 fbn
