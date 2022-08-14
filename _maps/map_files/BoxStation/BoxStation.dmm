@@ -23350,7 +23350,10 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/lab)
 "blB" = (
-/obj/structure/bookcase/random/reference,
+/obj/structure/bookcase/random/reference{
+	desc = "Here in my garage, just bought this new Lamborghini here. It's fun to drive up here in the Hollywood hills. But you know what I like more than materialistic things? Knowledge. In fact, I'm a lot more proud of these seven new bookshelves that I had to get installed to hold two thousand new books that I bought. It's like the billionaire Warren Buffett says, the more you learn, the more you earn.";
+	name = "bookcase (Knowledge)"
+	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "blC" = (
@@ -65386,7 +65389,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
 	name = "The Tider Lounge";
-	desc = "The preferred hangout for the station's \"prestegious\" and \"classy\'" \"men\" in grey and or gray"
+	desc = "The preferred hangout for the station's \"prestegious\" and \"classy\'"\"men\" in grey and or gray"
 	},
 /obj/effect/turf_decal/trimline/neutral/filled/warning{
 	dir = 8
@@ -66672,7 +66675,7 @@
 	},
 /obj/machinery/door/airlock/public/glass{
 	name = "The Tider Lounge";
-	desc = "The preferred hangout for the station's \"prestegious\" and \"classy\'" \"men\" in grey and or gray"
+	desc = "The preferred hangout for the station's \"prestegious\" and \"classy\'"\"men\" in grey and or gray"
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
