@@ -729,8 +729,6 @@
 	anchored = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/clothing/head/helmet/hat/cowboy/engineering,
-/obj/item/clothing/suit/armor/secduster/engineering,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
 	},
@@ -780,8 +778,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/clothing/head/helmet/hat/cowboy/cargo,
-/obj/item/clothing/suit/armor/secduster/cargo,
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
 	},
@@ -27424,8 +27420,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
-/obj/item/clothing/head/helmet/hat/cowboy/cargo,
-/obj/item/clothing/suit/armor/secduster/cargo,
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/supply)
 "byI" = (
@@ -27833,8 +27827,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
-/obj/item/clothing/head/helmet/hat/cowboy/science,
-/obj/item/clothing/suit/armor/secduster/science,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
 "bzA" = (
@@ -35916,8 +35908,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
-/obj/item/clothing/suit/armor/secduster/engineering,
-/obj/item/clothing/head/helmet/hat/cowboy/engineering,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bXQ" = (
@@ -49561,8 +49551,6 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/security/med,
-/obj/item/clothing/suit/armor/secduster/medical,
-/obj/item/clothing/head/helmet/hat/cowboy/medical,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
 "gEJ" = (
@@ -50436,8 +50424,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
 	},
-/obj/item/clothing/suit/armor/secduster,
-/obj/item/clothing/head/helmet/hat/cowboy,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "hld" = (
@@ -52668,8 +52654,6 @@
 /obj/structure/closet/secure_closet/security/sec{
 	anchored = 1
 	},
-/obj/item/clothing/head/helmet/hat/cowboy/science,
-/obj/item/clothing/suit/armor/secduster/science,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
@@ -53128,8 +53112,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
-/obj/item/clothing/suit/armor/secduster,
-/obj/item/clothing/head/helmet/hat/cowboy,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
 "jHY" = (
@@ -60218,8 +60200,6 @@
 	anchored = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/clothing/head/helmet/hat/cowboy/medical,
-/obj/item/clothing/suit/armor/secduster/medical,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
