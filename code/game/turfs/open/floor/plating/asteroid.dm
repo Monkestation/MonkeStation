@@ -1,4 +1,7 @@
 
+#define SEISMIC_MIN 1
+#define SEISMIC_MAX 7
+
 /**********************Asteroid**************************/
 
 /turf/open/floor/plating/asteroid //floor piece
@@ -20,12 +23,16 @@
 	var/obj/item/stack/digResult = /obj/item/stack/ore/glass/basalt
 	var/dug
 
+	var/seismic_activity = null
+
 /turf/open/floor/plating/asteroid/Initialize(mapload)
 	var/proper_name = name
 	. = ..()
 	name = proper_name
 	if(prob(floor_variance))
 		icon_state = "[environment_type][rand(0,12)]"
+
+	seismic_activity = rand(SEISMIC_MIN, SEISMIC_MAX)
 
 /turf/open/floor/plating/asteroid/proc/getDug()
 	new digResult(src, 5)

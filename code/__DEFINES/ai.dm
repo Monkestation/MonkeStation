@@ -67,7 +67,11 @@
 #define BB_MONKEY_DISPOSING "BB_monkey_disposing"
 #define BB_MONKEY_RECRUIT_COOLDOWN "BB_monkey_recruit_cooldown"
 
-
+#define BB_GOLEM_ATTACK_PLAYERS "BB_golem_attack_players"
+#define BB_GOLEM_ENEMIES "BB_golem_enemies"
+#define BB_GOLEM_CURRENT_ATTACK_TARGET "BB_golem_current_target"
+#define BB_GOLEM_TYPE "BB_golem_type"
+#define BB_GOLEM_RECRUIT_COOLDOWN "BB_golem_cooldown"
 ///Haunted item controller defines
 
 ///Chance for haunted item to haunt someone
