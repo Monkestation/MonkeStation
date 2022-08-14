@@ -18413,6 +18413,7 @@
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/tile/yellow/tile_full,
+/obj/item/multitool,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aXm" = (
