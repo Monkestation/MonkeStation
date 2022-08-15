@@ -263,6 +263,7 @@
 
 /mob/living/simple_animal/hostile/alien_mimic/attacked_by(obj/item/item, mob/living/target)
 	if(src in target.buckled_mobs) //Can't attack if its Got ya
+		to_chat(target,"<span class='warning'>You can't manage to hit \the [src] wrapped around you.</span>")
 		return FALSE
 	..()
 
