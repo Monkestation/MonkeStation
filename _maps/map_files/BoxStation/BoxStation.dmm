@@ -52178,6 +52178,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"iOx" = (
+/obj/machinery/door/airlock/security{
+	name = "Lair of The Forbidden One";
+	req_access_txt = "63";
+	welded = 1;
+	desc = "There appears to be some writing scrawled in blood begging you not to open this door under any circumstances"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "iPT" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 6
@@ -55853,6 +55863,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
+"lCg" = (
+/obj/effect/decal/remains/robot,
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "lCi" = (
 /obj/docking_port/stationary/public_mining_dock{
 	dir = 8
@@ -56494,6 +56508,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/secbot/beepsky,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "lXT" = (
@@ -57824,6 +57839,10 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/starboard)
+"nae" = (
+/obj/effect/decal/remains/xeno/larva,
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "nah" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -58384,6 +58403,10 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"nBE" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "nCL" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -58492,6 +58515,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/processing)
+"nFo" = (
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "nFu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -59411,6 +59437,18 @@
 /obj/effect/turf_decal/tile/blue/tile_full,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"ors" = (
+/mob/living/simple_animal/bot/secbot{
+	arrest_type = 1;
+	health = 45;
+	icon_state = "secbot1";
+	idcheck = 1;
+	name = "The Forbidden One";
+	weaponscheck = 1;
+	desc = "HE COMES"
+	},
+/turf/open/floor/plasteel/cult,
+/area/ai_monitored/security/armory)
 "orT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -65553,6 +65591,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"tJv" = (
+/turf/closed/wall,
+/area/ai_monitored/security/armory)
 "tJL" = (
 /obj/item/radio/intercom{
 	pixel_x = -27
@@ -94053,10 +94094,10 @@ aaa
 aaa
 aaa
 alU
-alU
-alU
-alU
-alU
+tJv
+tJv
+tJv
+tJv
 asK
 ali
 aaa
@@ -94310,10 +94351,10 @@ adB
 aaa
 aaa
 aaa
-alU
-amC
-amC
-amC
+tJv
+nBE
+nae
+tJv
 asc
 ali
 aaa
@@ -94567,10 +94608,10 @@ abc
 afu
 afu
 afu
-abc
-amC
-amC
-amC
+tJv
+ors
+nFo
+iOx
 asc
 alU
 aaa
@@ -94824,10 +94865,10 @@ afu
 aea
 aeH
 aft
-abc
-amC
-amC
-amC
+tJv
+nFo
+lCg
+tJv
 asc
 alU
 aaa
@@ -95081,10 +95122,10 @@ abc
 aec
 aeJ
 afw
-abc
-abc
-amC
-amC
+tJv
+tJv
+tJv
+tJv
 asc
 alU
 aaf

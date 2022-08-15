@@ -4,6 +4,11 @@
 /obj/item/bikehorn{
 	pixel_y = 9
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "bG" = (
@@ -42,12 +47,22 @@
 "fP" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/gas/clown_hat,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "gG" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/pill/floorpill{
 	pixel_x = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -60,6 +75,14 @@
 	},
 /obj/structure/chair/comfy/brown,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
+/area/crew_quarters/bar)
+"in" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
+/turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "io" = (
 /obj/structure/disposalpipe/segment{
@@ -91,6 +114,11 @@
 /obj/structure/table/wood,
 /obj/item/toy/crayon/spraycan{
 	pixel_y = 11
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -174,6 +202,11 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "tk" = (
@@ -214,6 +247,11 @@
 	pixel_x = 5;
 	pixel_y = 6
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "zf" = (
@@ -233,6 +271,11 @@
 	pixel_x = -2;
 	pixel_y = 5
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "zC" = (
@@ -247,6 +290,11 @@
 /obj/item/storage/pill_bottle/happiness{
 	pixel_y = 6;
 	pixel_x = 7
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -292,6 +340,11 @@
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_y = 17;
 	pixel_x = -9
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -388,6 +441,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "MA" = (
@@ -395,6 +453,11 @@
 /obj/item/food/pie/cream{
 	pixel_x = 1;
 	pixel_y = 7
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -410,6 +473,11 @@
 /obj/machinery/button/door{
 	id = "barShutters";
 	name = "bar shutters"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -458,6 +526,11 @@
 "Sg" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/gas/sexyclown,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "SA" = (
@@ -465,6 +538,11 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 6;
 	pixel_y = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -488,6 +566,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/button/door{
+	id = "barShutters";
+	name = "bar shutters";
+	pixel_y = -4;
+	req_access_txt = "25"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "VK" = (
@@ -504,6 +588,11 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = 6
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -530,6 +619,11 @@
 /area/crew_quarters/bar)
 "ZK" = (
 /obj/structure/table/wood,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "ZU" = (
@@ -537,6 +631,11 @@
 /obj/item/toy/crayon/spraycan{
 	pixel_x = 2;
 	pixel_y = 11
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
@@ -678,7 +777,7 @@ iT
 zC
 ZK
 DW
-Qp
+in
 ZK
 mn
 Ew

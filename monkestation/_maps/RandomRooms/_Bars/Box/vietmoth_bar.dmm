@@ -43,6 +43,11 @@
 /obj/machinery/door/airlock/wood/glass{
 	req_access_txt = "25"
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/crew_quarters/bar)
 "fP" = (
@@ -284,6 +289,11 @@
 /obj/machinery/light/small/broken{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plating/dirt/jungle,
 /area/crew_quarters/bar)
 "Fd" = (
@@ -305,6 +315,11 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 4;
 	pixel_y = 7
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/crew_quarters/bar)
@@ -343,6 +358,11 @@
 	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/crew_quarters/bar)
@@ -391,6 +411,14 @@
 "Ur" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses,
+/obj/machinery/button/door{
+	id = "barsec";
+	name = "Bar Security Shutters";
+	pixel_x = 24;
+	pixel_y = 6;
+	req_access_txt = "25";
+	desc = "Stay off my FUCKING counter."
+	},
 /turf/open/floor/plating/dirt/jungle,
 /area/crew_quarters/bar)
 "Va" = (
@@ -417,6 +445,16 @@
 /turf/closed/wall/mineral/wood,
 /area/crew_quarters/bar)
 "WV" = (
+/turf/open/floor/plating/dirt/jungle,
+/area/crew_quarters/bar)
+"Xk" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plating/dirt/jungle,
 /area/crew_quarters/bar)
 "Xr" = (
@@ -449,7 +487,7 @@ ZI
 MB
 mf
 zf
-mf
+Xk
 zf
 zf
 "}
