@@ -956,6 +956,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/table/reinforced,
 /obj/item/beacon,
+/obj/item/soap/nanotrasen{
+	layer = 2.9
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "acj" = (
@@ -1026,7 +1029,8 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/carpplushie{
-	name = "Jeff"
+	name = "Jeff";
+	desc = "An adorable stuffed toy that resembles a space carp. The warden was given Jeff to soothe rampant anger issues"
 	},
 /obj/item/storage/box/hug{
 	layer = 2.9;
@@ -2234,15 +2238,13 @@
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/hos)
 "aez" = (
-/obj/structure/closet{
-	name = "Evidence Closet"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/evidence,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aeA" = (
@@ -2904,9 +2906,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afL" = (
-/obj/structure/closet{
-	name = "Evidence Closet"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -2916,6 +2915,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/evidence,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afM" = (
@@ -2930,9 +2930,11 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afO" = (
-/obj/item/kirbyplants/random,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/closet/crate/rcd{
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
@@ -3936,9 +3938,6 @@
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "ahU" = (
-/obj/structure/closet{
-	name = "Evidence Closet"
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -3946,6 +3945,7 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/evidence,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ahV" = (
@@ -40566,21 +40566,14 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/rack,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/clothing/mask/gas/sechailer,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
+	},
+/obj/machinery/suit_storage_unit/security{
+	name = "Warden's suit storage unit"
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
@@ -41103,9 +41096,9 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
 "cqG" = (
-/obj/structure/closet/l3closet/security,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/filled/line,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "cqJ" = (
@@ -42585,11 +42578,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/patients_rooms/room_a)
 "cwM" = (
-/obj/structure/closet/bombcloset/security,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
+/area/ai_monitored/storage/eva)
 "cwT" = (
 /obj/machinery/light/small,
 /obj/machinery/camera/autoname{
@@ -52448,6 +52439,11 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
+/obj/item/clothing/mask/gas/sechailer,
+/obj/item/clothing/mask/gas/sechailer{
+	pixel_x = -3;
+	pixel_y = 3
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "jdU" = (
@@ -57474,6 +57470,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"mHN" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance{
+	name = "Security Maintenance";
+	req_access_txt = "1"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "mId" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -95126,7 +95138,7 @@ tJv
 tJv
 tJv
 tJv
-asc
+mHN
 alU
 aaf
 aaf
@@ -99003,7 +99015,7 @@ awg
 ayE
 ayR
 azR
-aEZ
+cwM
 tsR
 afO
 ayL
@@ -100774,7 +100786,7 @@ abJ
 gyE
 acM
 xHA
-cwM
+cqG
 aeZ
 agr
 agt
