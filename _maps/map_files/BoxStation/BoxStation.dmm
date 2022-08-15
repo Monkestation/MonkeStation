@@ -2505,7 +2505,8 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Armoury"
+	name = "Armoury";
+	req_access_txt = "3"
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
@@ -3160,7 +3161,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/security/glass{
-	name = "Armoury"
+	name = "Armoury";
+	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -14242,7 +14244,10 @@
 /area/maintenance/starboard/fore)
 "aKd" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/eastright{
+	name = "The Jungle";
+	desc = "Fun and Games not included"
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -17007,7 +17012,10 @@
 /area/crew_quarters/park)
 "aSv" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/westleft{
+	name = "The Jungle";
+	desc = "Fun and Games not included"
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -26938,6 +26946,9 @@
 	name = "Emergency Medical Lockdown Shutters"
 	},
 /obj/machinery/door/firedoor/window,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/medical/medbay/central)
 "bxc" = (
@@ -27977,17 +27988,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bzT" = (
-/obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/tile/neutral/tile_full,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
 "bzU" = (
 /obj/structure/disposalpipe/junction{
 	dir = 1
@@ -49080,19 +49080,21 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "gmJ" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
 	},
-/obj/effect/turf_decal/trimline/blue/line{
-	dir = 8
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "emmd";
+	name = "Emergency Medical Lockdown Shutters"
 	},
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
+/obj/machinery/door/airlock/medical/glass{
+	name = "Paramedic Entrance";
+	req_access_txt = "45";
+	desc = "A way into the medbay for Evil and Poisonous rubbi- er Paramedics."
 	},
 /turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
+/area/medical/medbay/central)
 "gmT" = (
 /obj/machinery/light,
 /obj/structure/window/reinforced{
@@ -55479,15 +55481,11 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
 "lqA" = (
-/obj/structure/chair/sofa/corp/right{
-	color = "#7fb3d5";
+/obj/effect/turf_decal/trimline/blue/warning{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
+/obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/line{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -63103,6 +63101,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
+/obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "rDS" = (
@@ -102568,7 +102567,7 @@ ahn
 aJv
 aKG
 aMg
-bzT
+wUS
 aXD
 aOE
 aRq
@@ -105166,7 +105165,7 @@ ydt
 nqp
 wdz
 vhS
-gmJ
+swz
 bxL
 chy
 bDJ
@@ -105423,7 +105422,7 @@ kCK
 nrc
 bof
 bof
-bof
+gmJ
 bxa
 rGU
 bDJ
