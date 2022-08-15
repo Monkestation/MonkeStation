@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	update_move_direction()
 
-/obj/machinery/conveyor/Moved(atom/OldLoc, Dir)
+/obj/machinery/conveyor/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!.)
 		return
@@ -214,6 +214,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		set_operating(FALSE)
 		return FALSE
 
+	update_appearance()
 	// If we're on, start conveying so moveloops on our tile can be refreshed if they stopped for some reason
 	if(operating != CONVEYOR_OFF)
 		for(var/atom/movable/movable in get_turf(src))
