@@ -67,3 +67,13 @@
 				. += A
 	else
 		. = oview(vision_range, target_from)
+
+/mob/living/simple_animal/hostile/golem/DestroySurroundings()
+	// Get next turf the golem wants to walk on
+	var/turf/T = get_step_towards(src, target)
+	if(isclosedturf(T))  // Wall breaker attack
+		T.attack_animal(src, obj_damage)
+	else
+		var/obj/structure/obstacle = locate(/obj/structure) in T
+		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
+			obstacle.attack_animal(src,obj_damage)
