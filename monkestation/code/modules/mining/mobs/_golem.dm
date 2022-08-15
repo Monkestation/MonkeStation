@@ -17,20 +17,30 @@
 
 	var/ore_type = /obj/item/stack/ore/iron
 	var/wave_spawned = 1
-	var/freeform = TRUE
+	var/obj/machinery/drill/nearby_drill
 
 
 /mob/living/simple_animal/hostile/golem/Initialize(mapload)
 	. = ..()
-	if(freeform == TRUE)
-		var/drill = locate(/obj/machinery/drill) in view(10, src.loc)
-		if(drill)
-			target = drill
+	nearby_drill = locate(/obj/machinery/drill) in view(10, src.loc)
+	if(nearby_drill && prob(50))
+		target = nearby_drill
 
+/mob/living/simple_animal/hostile/golem/Destroy()
+	. = ..()
+	nearby_drill = null
 
-/mob/living/simple_animal/hostile/golem/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	.=..()
+/mob/living/simple_animal/hostile/golem/death(gibbed)
+	..()
 
+	// Spawn ores
+	if(ore_type)
+		var/nb_ores = rand(3, 5) + wave_spawned
+		for(var/i in 1 to nb_ores)
+			new ore(loc)
+
+	// Poof
+	qdel(src)
 /mob/living/simple_animal/hostile/golem/ListTargets() //Step 1, find out what we can see
 	var/atom/target_from = GET_TARGETS_FROM(src)
 	if(!search_objects)
