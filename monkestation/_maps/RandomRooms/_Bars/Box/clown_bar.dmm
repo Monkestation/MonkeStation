@@ -488,12 +488,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
-	pixel_y = -4;
-	req_access_txt = "25"
-	},
 /turf/open/floor/mineral/bananium/no_return,
 /area/crew_quarters/bar)
 "VK" = (

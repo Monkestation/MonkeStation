@@ -1833,7 +1833,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
 	},
-/obj/item/clothing/suit/armor/laserproof,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "adR" = (
@@ -46415,6 +46414,7 @@
 /obj/item/storage/toolbox/electrical,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/crowbar/large,
+/obj/item/clothing/suit/armor/laserproof,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "enU" = (
@@ -53806,7 +53806,6 @@
 /area/medical/genetics)
 "kik" = (
 /obj/machinery/holopad,
-/mob/living/simple_animal/bot/secbot/pingsky,
 /obj/effect/turf_decal/box,
 /obj/item/beacon,
 /turf/open/floor/plasteel/dark,
@@ -59477,15 +59476,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "ors" = (
-/mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
-	health = 45;
-	icon_state = "secbot1";
-	idcheck = 1;
-	name = "The Forbidden One";
-	weaponscheck = 1;
-	desc = "HE COMES"
-	},
+/obj/item/toy/plush/carpplushie,
 /turf/open/floor/plasteel/cult,
 /area/ai_monitored/security/armory)
 "orT" = (
