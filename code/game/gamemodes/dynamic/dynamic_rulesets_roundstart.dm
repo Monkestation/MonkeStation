@@ -380,7 +380,7 @@
 	weight = 4
 	delay = 7 MINUTES
 	cost = 20
-	requirements = list(101,101,101,101,101,20,10,10,10,10)
+	requirements = list(101,101,101,101,101,20,20,20,20,20)
 	antag_cap = 3
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
