@@ -3,12 +3,13 @@
 	desc = "A moving pile of rocks with diamond specks in it."
 
 	icon_state = "golem_diamond"
+	icon_dead = "golem_diamond"
 
 	maxHealth = 300
 	health = 300
 
 	melee_damage = 8
-	obj_damage = 8
+	obj_damage = 16
 
 	ore_type = /obj/item/stack/ore/diamond
 
