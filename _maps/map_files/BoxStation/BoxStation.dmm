@@ -39686,14 +39686,14 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ckk" = (
-/obj/structure/chair/sofa/corp{
-	color = "#7fb3d5";
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/structure/chair/sofa/corp/right{
+	color = "#7fb3d5";
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
