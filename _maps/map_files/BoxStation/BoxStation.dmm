@@ -5261,10 +5261,10 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "akt" = (
-/obj/effect/turf_decal/trimline/red/line{
+/obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/turf_decal/trimline/red/warning{
 	dir = 9
 	},
-/obj/effect/turf_decal/trimline/red/filled/corner,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aku" = (
@@ -5596,7 +5596,7 @@
 	name = "Brig";
 	req_access_txt = "63"
 	},
-/obj/effect/turf_decal/trimline/red/line{
+/obj/effect/turf_decal/trimline/red/warning{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -5615,7 +5615,7 @@
 	name = "Brig";
 	req_access_txt = "63"
 	},
-/obj/effect/turf_decal/trimline/red/line{
+/obj/effect/turf_decal/trimline/red/warning{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -71385,11 +71385,11 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "ybe" = (
-/obj/effect/turf_decal/trimline/red/line{
-	dir = 5
-	},
 /obj/effect/turf_decal/trimline/red/filled/corner{
 	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/warning{
+	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
