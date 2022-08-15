@@ -34,7 +34,7 @@
 	var/datum/movement_packet/move_packet
 	var/list/acted_explosions	//for explosion dodging
 	glide_size = 8
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/datum/forced_movement/force_moving = null	//handled soley by forced_movement.dm
 	var/movement_type = GROUND		//Incase you have multiple types, you automatically use the most useful one. IE: Skating on ice, flippers on water, flying over chasm/space, etc.
 	var/atom/movable/pulling
@@ -235,20 +235,21 @@
 
 /atom/movable/proc/Move_Pulled(atom/A)
 	if(!pulling)
-		return
+		return FALSE
 	if(pulling.anchored || pulling.move_resist > move_force || !pulling.Adjacent(src))
 		stop_pulling()
-		return
+		return FALSE
 	if(isliving(pulling))
 		var/mob/living/L = pulling
 		if(L.buckled?.buckle_prevents_pull) //if they're buckled to something that disallows pulling, prevent it
 			stop_pulling()
-			return
+			return FALSE
 	if(A == loc && pulling.density)
-		return
-	if(!Process_Spacemove(get_dir(pulling.loc, A)))
-		return
-	step(pulling, get_dir(pulling.loc, A))
+		return FALSE
+	var/move_dir = get_dir(pulling.loc, A)
+	if(!Process_Spacemove(move_dir))
+		return FALSE
+	pulling.Move(get_step(pulling.loc, move_dir), move_dir, glide_size)
 	return TRUE
 
 /mob/living/Move_Pulled(atom/A)
@@ -277,15 +278,15 @@
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)		//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
-/* SMOOTH MOVEMENTS SHIT, PORT LATER
+
 /atom/movable/proc/set_glide_size(target = 8)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
 	glide_size = target
 
-	for(var/m in buckled_mobs)
+	for(var/atom/movable/m in buckled_mobs)
 		var/mob/buckled_mob = m
 		buckled_mob.set_glide_size(target)
-*/
+
 
 /**
  * meant for movement with zero side effects. only use for objects that are supposed to move "invisibly" (like camera mobs or ghosts)
@@ -302,7 +303,7 @@
 // Here's where we rewrite how byond handles movement except slightly different
 // To be removed on step_ conversion
 // All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direction)
+/atom/movable/Move(atom/newloc, direction, glide_size_override = 0)
 	. = FALSE
 	if(!newloc || newloc == loc)
 		return
@@ -374,7 +375,7 @@
 
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct)
+/atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
@@ -382,6 +383,9 @@
 	if(!loc || !newloc)
 		return FALSE
 	var/atom/oldloc = loc
+	//Early override for some cases like diagonal movement
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
 		var/flat_direct = direct & ~(UP|DOWN)
@@ -452,13 +456,18 @@
 			//puller and pullee more than one tile away or in diagonal position and whatever the pullee is pulling isn't already moving from a pull as it'll most likely result in an infinite loop a la ouroborus.
 			if(!pulling.pulling?.moving_from_pull && (get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir))))
 				pulling.moving_from_pull = src
-				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				pulling.Move(T, get_dir(pulling, T), glide_size) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
 
+	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
+	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
+
 	last_move = direct
 	setDir(direct)
-	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direct)) //movement failed due to buckled mob(s)
+	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc, direct, glide_size_override)) //movement failed due to buckled mob(s)
 		return FALSE
 
 /**
@@ -842,11 +851,11 @@
 	if(quickstart)
 		TT.tick()
 
-/atom/movable/proc/handle_buckled_mob_movement(newloc,direct)
+/atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override)
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
-		if(!buckled_mob.Move(newloc, direct))
-			doMove(buckled_mob.loc) //forceMove breaks buckles on stairs, use doMove
+		if(!buckled_mob.Move(newloc, direct, glide_size_override))
+			doMove(buckled_mob.loc)
 			last_move = buckled_mob.last_move
 			return FALSE
 	return TRUE
@@ -920,20 +929,26 @@
 		return //don't do an animation if attacking self
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
+	var/turn_dir = 1
 
 	var/direction = get_dir(src, A)
 	if(direction & NORTH)
 		pixel_y_diff = 8
+		turn_dir = prob(50) ? -1 : 1
 	else if(direction & SOUTH)
 		pixel_y_diff = -8
+		turn_dir = prob(50) ? -1 : 1
 
 	if(direction & EAST)
 		pixel_x_diff = 8
 	else if(direction & WEST)
 		pixel_x_diff = -8
+		turn_dir = -1
 
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(src, pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 2)
+	var/matrix/initial_transform = matrix(transform)
+	var/matrix/rotated_transform = transform.Turn(rand(13,17) * turn_dir)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, transform=rotated_transform, time = 1, easing=BACK_EASING|EASE_IN)
+	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, transform=initial_transform, time = 2, easing=SINE_EASING)
 
 /atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
 	var/image/I
@@ -944,21 +959,21 @@
 		I.plane = GAME_PLANE
 
 		// Scale the icon.
-		I.transform *= 0.75
+		I.transform *= pick(0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55)
 		// The icon should not rotate.
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
 		// Set the direction of the icon animation.
 		var/direction = get_dir(src, A)
 		if(direction & NORTH)
-			I.pixel_y = -16
+			I.pixel_y = rand(-15,-11)
 		else if(direction & SOUTH)
-			I.pixel_y = 16
+			I.pixel_y = rand(11,15)
 
 		if(direction & EAST)
-			I.pixel_x = -16
+			I.pixel_x = rand(-15,-11)
 		else if(direction & WEST)
-			I.pixel_x = 16
+			I.pixel_x = rand(11,15)
 
 		if(!direction) // Attacked self?!
 			I.pixel_z = 16
@@ -966,10 +981,22 @@
 	if(!I)
 		return
 
-	flick_overlay(I, GLOB.clients, 5) // 5 ticks/half a second
+	flick_overlay(I, GLOB.clients, 10)
 
 	// And animate the attack!
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	animate(I, alpha = 175, transform = matrix() * 0.75, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	animate(time = 1)
+	animate(alpha = 0, time = 3, easing = CIRCULAR_EASING|EASE_OUT)
+
+/// Common proc used by painting tools like spraycans and palettes that can access the entire 24 bits color space.
+/obj/item/proc/pick_painting_tool_color(mob/user, default_color)
+	var/chosen_color = input(user,"Pick new color", "[src]", default_color) as color|null
+	if(!chosen_color || QDELETED(src) || IS_DEAD_OR_INCAP(user) || !user.is_holding(src))
+		return
+	set_painting_tool_color(chosen_color)
+
+/obj/item/proc/set_painting_tool_color(chosen_color)
+	SEND_SIGNAL(src, COMSIG_PAINTING_TOOL_SET_COLOR, chosen_color)
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
