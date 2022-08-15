@@ -23835,6 +23835,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/trimline/purple/corner,
+/obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
 "bni" = (
