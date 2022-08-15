@@ -21800,10 +21800,6 @@
 	pixel_x = 6;
 	pixel_y = 24
 	},
-/obj/item/crowbar/large,
-/obj/item/storage/belt/utility{
-	pixel_y = 5
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "bhx" = (
@@ -52995,6 +52991,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
+"jDu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/crowbar/large,
+/obj/item/storage/belt/utility{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/science/robotics/mechbay)
 "jDw" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 1
@@ -65671,6 +65678,13 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
+"tNx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/techmaint,
+/area/science/robotics/mechbay)
 "tOl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -116451,7 +116465,7 @@ biN
 bni
 bni
 bni
-bni
+tNx
 cHX
 blw
 bfU
@@ -116965,7 +116979,7 @@ biP
 bko
 bnj
 bnj
-bnj
+jDu
 bpU
 brq
 bsW
