@@ -10,7 +10,7 @@
 	move_resist = INFINITY
 	layer = MASSIVE_OBJ_LAYER
 	light_range = 6
-	appearance_flags = 0
+	appearance_flags = LONG_GLIDE
 	var/current_size = 1
 	var/allowed_size = 1
 	energy = 100 //How strong are we?
