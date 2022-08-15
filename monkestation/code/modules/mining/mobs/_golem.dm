@@ -19,25 +19,37 @@
 	var/wave_spawned = 1
 	var/obj/machinery/drill/nearby_drill
 
+	// Controller that spawned the golem
+	var/datum/golem_controller/controller
 
-/mob/living/simple_animal/hostile/golem/Initialize(mapload)
-	. = ..()
-	nearby_drill = locate(/obj/machinery/drill) in view(10, src.loc)
-	if(nearby_drill && prob(50))
-		target = nearby_drill
+
+
+/mob/living/simple_animal/hostile/golem/New(loc, obj/machinery/drill, datum/golem_controller/parent)
+	..()
+	if(parent)
+		controller = parent  // Link golem with golem controller
+		controller.golems += src
+	if(drill)
+		nearby_drill = drill
+		if(prob(50))
+			target= drill
 
 /mob/living/simple_animal/hostile/golem/Destroy()
 	. = ..()
 	nearby_drill = null
 
 /mob/living/simple_animal/hostile/golem/death(gibbed)
-	..()
+	if(controller) // Unlink from controller
+		controller.golems -= src
+		controller = null
+
+	. = ..()
 
 	// Spawn ores
 	if(ore_type)
 		var/nb_ores = rand(3, 5) + wave_spawned
 		for(var/i in 1 to nb_ores)
-			new ore(loc)
+			new ore_type(loc)
 
 	// Poof
 	qdel(src)

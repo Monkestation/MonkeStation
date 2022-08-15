@@ -54,7 +54,8 @@
 	addtimer(CALLBACK(src, .proc/teleport_target,), 54)
 
 /mob/living/simple_animal/hostile/golem/bluespace/Life()
-	if(isliving(target) && (world.time - teleport_cooldown > 1 MINUTES))  // Do not teleport the drill
-		teleport_cooldown = world.time
-		focus_target()
+	if(controller)
+		if(isliving(target) && (world.time - teleport_cooldown > 1 MINUTES))  // Do not teleport the drill
+			teleport_cooldown = world.time
+			focus_target()
 	. = ..()
