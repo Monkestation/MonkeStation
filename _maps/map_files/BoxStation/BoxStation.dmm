@@ -25641,7 +25641,9 @@
 	},
 /obj/structure/sink/kitchen{
 	dir = 4;
-	pixel_x = -14
+	pixel_x = -11;
+	name = "Industrial Sink";
+	desc = "A sink used for washing one's hands and face. This one is extra robust looking."
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
