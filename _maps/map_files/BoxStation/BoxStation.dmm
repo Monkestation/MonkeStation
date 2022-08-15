@@ -24233,6 +24233,7 @@
 /obj/machinery/ecto_sniffer{
 	anchored = 1
 	},
+/obj/item/discovery_scanner,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/lab)
 "bou" = (
@@ -25635,7 +25636,6 @@
 	},
 /obj/structure/sink/kitchen{
 	dir = 4;
-	pixel_y = 0;
 	pixel_x = -14
 	},
 /turf/open/floor/plasteel/dark,
@@ -33337,6 +33337,7 @@
 /obj/item/slime_scanner,
 /obj/item/clothing/gloves/color/latex,
 /obj/item/clothing/glasses/science,
+/obj/item/discovery_scanner,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/xenobiology)
 "bPI" = (
@@ -59274,6 +59275,7 @@
 /obj/effect/turf_decal/trimline/purple/line{
 	dir = 8
 	},
+/obj/item/discovery_scanner,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
 "olS" = (
