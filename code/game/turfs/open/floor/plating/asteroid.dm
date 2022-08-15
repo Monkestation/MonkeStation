@@ -1,6 +1,6 @@
 
 #define SEISMIC_MIN 1
-#define SEISMIC_MAX 7
+#define SEISMIC_MAX 6
 
 /**********************Asteroid**************************/
 
