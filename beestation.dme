@@ -3820,6 +3820,7 @@
 #include "monkestation\code\modules\mining\drilling\drill.dm"
 #include "monkestation\code\modules\mining\mobs\_golem.dm"
 #include "monkestation\code\modules\mining\mobs\bluespace_golem.dm"
+#include "monkestation\code\modules\mining\mobs\diamond_golem.dm"
 #include "monkestation\code\modules\mining\mobs\plasma_golem.dm"
 #include "monkestation\code\modules\mining\mobs\uranium_golem.dm"
 #include "monkestation\code\modules\mob\inventory.dm"
