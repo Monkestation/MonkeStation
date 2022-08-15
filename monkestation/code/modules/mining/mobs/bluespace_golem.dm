@@ -38,9 +38,10 @@
 		var/list/golems = list()
 		for(var/mob/living/simple_animal/hostile/golem/surrounding_golem in range(10, src.loc))
 			golems |= surrounding_golem
+		var/mob/living/simple_animal/hostile/golem/picked_golem = pick(golems)
 		var/mob/living/target_mob = teleportee
 		to_chat(target_mob, span_warning("You are transported away by the [src.name]!"))
-		target_mob.forceMove(get_step(pick(golems), pick(GLOB.cardinals)))
+		target_mob.forceMove(get_step(picked_golem.loc, pick(GLOB.cardinals)))
 		playsound(teleportee, 'sound/magic/wand_teleport.ogg', 50)
 
 /mob/living/simple_animal/hostile/golem/bluespace/proc/focus_target()
