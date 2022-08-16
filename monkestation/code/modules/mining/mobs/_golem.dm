@@ -88,5 +88,5 @@
 
 /mob/living/simple_animal/hostile/golem/Life()
 	. = ..()
-	if(prob(20) && nearby_drill)
+	if(prob(20) && nearby_drill && !target)
 		target= nearby_drill //i hate this but ai code is so slow i need to do this or risk massive delays in target finding
