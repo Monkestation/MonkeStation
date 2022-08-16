@@ -1,7 +1,7 @@
 // Normal types of golems
 GLOBAL_LIST_INIT(golems_normal, list(
                                     /mob/living/simple_animal/hostile/asteroid/golem/iron,
-									/mob/living/simple_animal/hostile/asteroid/golem/coal))
+									/mob/living/simple_animal/hostile/asteroid/golem/coal,))
 
 // Special types of golems
 GLOBAL_LIST_INIT(golems_special, list(

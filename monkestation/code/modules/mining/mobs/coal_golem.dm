@@ -10,7 +10,7 @@
 	melee_damage = 6
 	obj_damage = 6
 
-	ore_type = /obj/item/stack/ore/coal
+	ore_type = /obj/item/stack/sheet/mineral/coal
 
 /mob/living/simple_animal/hostile/asteroid/golem/coal/Life()
 	if(on_fire)
