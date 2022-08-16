@@ -36,6 +36,8 @@
 
 /mob/living/simple_animal/hostile/asteroid/golem/Initialize(mapload)
 	. = ..()
+	icon_living = icon_state
+	icon_aggro = icon_state
 	nearby_drill = locate(/obj/machinery/drill) in range(10, src.loc)
 	if(prob(50))
 		target= nearby_drill
