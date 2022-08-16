@@ -11,6 +11,7 @@
 	melee_damage = 10
 	obj_damage = 10
 	move_to_delay = 8
+	vision_range = 10
 
 	faction = list("golem")
 	wanted_objects = list(/obj/machinery/drill)

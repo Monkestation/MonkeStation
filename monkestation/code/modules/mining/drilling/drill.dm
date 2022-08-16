@@ -108,7 +108,6 @@
 			/obj/item/stack/ore/titanium = 20))
 
 /obj/machinery/drill/proc/extract_ores(delta_time)
-	message_admins("ping")
 	extraction_amount += ore_extraction_rate * EXTRACTION_ORE_AMOUNT * delta_time * (seismic_activity * 0.5)
 	if(extraction_amount >= 1)
 		var/ore_amount = round(extraction_amount, 1)
