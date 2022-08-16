@@ -175,7 +175,7 @@
 	var/power_drill = 0
 	for(var/obj/machinery/drill/considered_drill in drills)
 		if(considered_drill.operating && considered_drill.is_powered && considered_drill.ore_extraction_rate > 0 && considered_drill.connected)
-			power_drill += considered_drill.ore_extraction_rate * 20000
+			power_drill += considered_drill.ore_extraction_rate * 200000
 
 	if(power_drill > 0)
 		use_power(power_drill, AREA_USAGE_EQUIP)

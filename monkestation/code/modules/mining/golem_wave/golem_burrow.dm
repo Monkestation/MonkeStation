@@ -20,10 +20,12 @@ GLOBAL_LIST_INIT(golems_special, list(
 	var/max_health = 50
 	var/health = 50
 	var/datum/golem_controller/controller
+	var/obj/machinery/drill/nearby_drill
 
-/obj/structure/golem_burrow/New(loc, parent)
+/obj/structure/golem_burrow/New(loc, parent, obj/machinery/drill)
 	..()
 	controller = parent  // Link burrow with golem controller
+	nearby_drill = drill
 
 /obj/structure/golem_burrow/Destroy()
 	visible_message(span_danger("\The [src] crumbles!"))

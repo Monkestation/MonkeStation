@@ -34,6 +34,14 @@
 		if(prob(50))
 			target= drill
 
+/mob/living/simple_animal/hostile/golem/Initialize(mapload)
+	. = ..()
+	nearby_drill = locate(/obj/machinery/drill) in range(10, src.loc)
+	if(prob(50))
+		target= nearby_drill
+	else
+		target = locate(/mob/living/carbon/human) in range(10, src.loc)
+
 /mob/living/simple_animal/hostile/golem/Destroy()
 	. = ..()
 	nearby_drill = null
