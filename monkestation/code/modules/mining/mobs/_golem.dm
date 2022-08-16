@@ -85,3 +85,8 @@
 		var/obj/structure/obstacle = locate(/obj/structure) in T
 		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
 			obstacle.attack_animal(src,obj_damage)
+
+/mob/living/simple_animal/hostile/golem/Life()
+	. = ..()
+	if(prob(20) && nearby_drill)
+		target= nearby_drill //i hate this but ai code is so slow i need to do this or risk massive delays in target finding
