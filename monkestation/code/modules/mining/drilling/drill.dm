@@ -15,7 +15,7 @@
 	var/seismic_activity = null
 
 	var/obj/machinery/ore_exit_port/port
-	var/obj/machinery/drills_controller/controller
+	var/obj/machinery/computer/drills_controller/controller
 
 	var/connected = FALSE
 
@@ -139,8 +139,8 @@
 
 /obj/item/drill_package
 	name = "drill pack"
-	icon = 'monkestation/icons/obj/mining/drill.dmi'
-	icon_state = "mining_drill"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "deliverypackage3"
 
 /obj/item/drill_package/Initialize()
 	. = ..()
@@ -155,16 +155,16 @@
 		new/obj/machinery/drill(user_location)
 		qdel(src)
 
-/obj/machinery/drills_controller
+/obj/machinery/computer/drills_controller
 	name = "mining drills controller"
-	icon = 'icons/obj/atmospherics/components/thermomachine.dmi'
-	icon_state = "freezer"
 	density = TRUE
 	anchored = TRUE
+
+	circuit = /obj/item/circuitboard/computer/drill_controller
 	var/list/obj/machinery/drill/drills = list()
 	var/connecting = FALSE
 
-/obj/machinery/drills_controller/process()
+/obj/machinery/computer/drills_controller/process()
 	if(!drills.len)
 		return
 
@@ -179,13 +179,13 @@
 	if(power_drill > 0)
 		use_power(power_drill, AREA_USAGE_EQUIP)
 
-/obj/machinery/drills_controller/proc/get_drills()
+/obj/machinery/computer/drills_controller/proc/get_drills()
 	for(var/obj/machinery/drill/drill_to_check in GLOB.machines)
 		drills |= drill_to_check
 		drill_to_check.controller = src
 		drill_to_check.connect_port()
 
-/obj/machinery/drills_controller/proc/remove_drills()
+/obj/machinery/computer/drills_controller/proc/remove_drills()
 	for(var/obj/machinery/drill/considered_drill in drills)
 		considered_drill.is_powered = FALSE
 		considered_drill.operating = FALSE
@@ -195,7 +195,7 @@
 			considered_drill.GC = null
 		drills -= considered_drill
 
-/obj/machinery/drills_controller/proc/connected()
+/obj/machinery/computer/drills_controller/proc/connected()
 	get_drills()
 	connecting = FALSE
 	if(drills.len)
@@ -203,7 +203,7 @@
 	else
 		visible_message("<span class='notice'>No drills found.</span>")
 
-/obj/machinery/drills_controller/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/drills_controller/ui_interact(mob/user, datum/tgui/ui)
 	if(panel_open)
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -211,7 +211,7 @@
 		ui = new(user, src, "DrillsController", name)
 		ui.open()
 
-/obj/machinery/drills_controller/ui_data()
+/obj/machinery/computer/drills_controller/ui_data()
 	var/data = list()
 	for(var/obj/machinery/drill/considered_drill in drills)
 		data["online_drills"] += list(list(
@@ -227,7 +227,7 @@
 			))
 	return data
 
-/obj/machinery/drills_controller/ui_act(action, params)
+/obj/machinery/computer/drills_controller/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -265,3 +265,8 @@
 				. = TRUE
 			else
 				visible_message("<span class='warning'>Operation not available.</span>")
+
+/obj/item/circuitboard/computer/drill_controller
+	name = "drill controller (Computer Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/computer/drills_controller
