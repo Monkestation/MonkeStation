@@ -223,6 +223,11 @@
 	materials = list(/datum/material/glass=50)
 	chargerate = 1000
 
+/obj/item/stock_parts/cell/upgraded/empty/Initialize(mapload)
+	. = ..()
+	charge = 0
+	update_icon()
+
 /obj/item/stock_parts/cell/upgraded/plus
 	name = "upgraded power cell+"
 	desc = "A power cell with an even higher capacity than the base model!"
