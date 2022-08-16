@@ -36,4 +36,5 @@
 			to_chat(user, span_notice("Bluespace Interference: Please make sure there are no exit ports and please try again!"))
 			return
 
-	new /obj/machinery/ore_exit_port(src.loc)
+	new /obj/machinery/ore_exit_port(get_turf(src.loc))
+	qdel(src)
