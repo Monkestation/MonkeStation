@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	icon_state = "drone_clock"
 	icon_living = "drone_clock"
 	icon_dead = "drone_clock_dead"
+	density = TRUE
 	health = 30
 	maxHealth = 30
 	faction = list("neutral", "silicon", "turret", "ratvar")
@@ -43,11 +44,6 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 		var/turf/T = get_turf(pick(GLOB.servant_spawns))
 		try_warp_servant(src, T, FALSE)
 	. = ..()
-
-/mob/living/simple_animal/drone/cogscarab/force_hit_projectile(obj/item/projectile/projectile)
-	if(isliving(projectile.fired_from) && is_servant_of_ratvar(projectile.fired_from))
-		return FALSE
-	return TRUE
 
 //====Shell====
 

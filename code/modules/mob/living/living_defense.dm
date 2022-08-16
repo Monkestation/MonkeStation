@@ -426,6 +426,3 @@
 
 /mob/living/proc/ishellbound()
 	return mind && mind.hellbound
-
-/mob/living/proc/force_hit_projectile(obj/item/projectile/projectile)
-	return FALSE
