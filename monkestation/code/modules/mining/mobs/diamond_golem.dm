@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/golem/diamond
+/mob/living/simple_animal/hostile/asteroid/golem/diamond
 	name = "diamond golem"
 	desc = "A moving pile of rocks with diamond specks in it."
 
@@ -15,7 +15,7 @@
 
 	var/destroy_cooldown = 0
 
-/mob/living/simple_animal/hostile/golem/diamond/Life()
+/mob/living/simple_animal/hostile/asteroid/golem/diamond/Life()
 	if((world.time - destroy_cooldown > 1 MINUTES))
 		destroy_cooldown = world.time
 		DestroyPathToTarget()

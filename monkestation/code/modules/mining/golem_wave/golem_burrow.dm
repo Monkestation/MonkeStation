@@ -1,13 +1,13 @@
 // Normal types of golems
 GLOBAL_LIST_INIT(golems_normal, list(
-                                    /mob/living/simple_animal/hostile/golem))
+                                    /mob/living/simple_animal/hostile/asteroid/golem))
 
 // Special types of golems
 GLOBAL_LIST_INIT(golems_special, list(
-									 /mob/living/simple_animal/hostile/golem/plasma,
-									 /mob/living/simple_animal/hostile/golem/diamond,
-									 /mob/living/simple_animal/hostile/golem/bluespace,
-									 /mob/living/simple_animal/hostile/golem/uranium))
+									 /mob/living/simple_animal/hostile/asteroid/golem/plasma,
+									 /mob/living/simple_animal/hostile/asteroid/golem/diamond,
+									 /mob/living/simple_animal/hostile/asteroid/golem/bluespace,
+									 /mob/living/simple_animal/hostile/asteroid/golem/uranium))
 
 /obj/structure/golem_burrow
 	name = "golem burrow"

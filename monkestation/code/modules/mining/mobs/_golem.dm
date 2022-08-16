@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/golem
+/mob/living/simple_animal/hostile/asteroid/golem
 	name = "Base Golem"
 	desc = "You shouldn't see this"
 
@@ -24,7 +24,7 @@
 
 
 
-/mob/living/simple_animal/hostile/golem/New(loc, obj/machinery/drill, datum/golem_controller/parent)
+/mob/living/simple_animal/hostile/asteroid/golem/New(loc, obj/machinery/drill, datum/golem_controller/parent)
 	..()
 	if(parent)
 		controller = parent  // Link golem with golem controller
@@ -34,7 +34,7 @@
 		if(prob(50))
 			target= drill
 
-/mob/living/simple_animal/hostile/golem/Initialize(mapload)
+/mob/living/simple_animal/hostile/asteroid/golem/Initialize(mapload)
 	. = ..()
 	nearby_drill = locate(/obj/machinery/drill) in range(10, src.loc)
 	if(prob(50))
@@ -42,11 +42,11 @@
 	else
 		target = locate(/mob/living/carbon/human) in range(10, src.loc)
 
-/mob/living/simple_animal/hostile/golem/Destroy()
+/mob/living/simple_animal/hostile/asteroid/golem/Destroy()
 	. = ..()
 	nearby_drill = null
 
-/mob/living/simple_animal/hostile/golem/death(gibbed)
+/mob/living/simple_animal/hostile/asteroid/golem/death(gibbed)
 	if(controller) // Unlink from controller
 		controller.golems -= src
 		controller = null
@@ -61,7 +61,7 @@
 
 	// Poof
 	qdel(src)
-/mob/living/simple_animal/hostile/golem/ListTargets() //Step 1, find out what we can see
+/mob/living/simple_animal/hostile/asteroid/golem/ListTargets() //Step 1, find out what we can see
 	var/atom/target_from = GET_TARGETS_FROM(src)
 	if(!search_objects)
 		var/static/target_list = typecacheof(list(/obj/machinery/porta_turret, /obj/machinery/drill)) //mobs are handled via ismob(A)
@@ -76,7 +76,7 @@
 	else
 		. = oview(vision_range, target_from)
 
-/mob/living/simple_animal/hostile/golem/DestroySurroundings()
+/mob/living/simple_animal/hostile/asteroid/golem/DestroySurroundings()
 	// Get next turf the golem wants to walk on
 	var/turf/T = get_step_towards(src, target)
 	if(isclosedturf(T))  // Wall breaker attack
@@ -86,7 +86,7 @@
 		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
 			obstacle.attack_animal(src,obj_damage)
 
-/mob/living/simple_animal/hostile/golem/Life()
+/mob/living/simple_animal/hostile/asteroid/golem/Life()
 	. = ..()
 	if(prob(20) && nearby_drill && !target)
 		target= nearby_drill //i hate this but ai code is so slow i need to do this or risk massive delays in target finding

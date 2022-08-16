@@ -2,7 +2,7 @@
 #define DET_BLOWING 1
 #define DET_DEFUSED 2
 
-/mob/living/simple_animal/hostile/golem/plasma
+/mob/living/simple_animal/hostile/asteroid/golem/plasma
 	name = "plasma golem"
 	desc = "A moving pile of rocks with plasma specks in it."
 
@@ -30,7 +30,7 @@
 	var/det_status = DET_STABLE
 
 // Special capacity of plasma golem: blow up upon death except if hit with melee weapon
-/mob/living/simple_animal/hostile/golem/plasma/death(gibbed, message = deathmessage)
+/mob/living/simple_animal/hostile/asteroid/golem/plasma/death(gibbed, message = deathmessage)
 	if(det_status == DET_STABLE)
 		det_status = DET_BLOWING
 		icon_state = "golem_plasma_idle"
@@ -51,7 +51,7 @@
 		. = ..()
 
 // Called when the mob is hit with an item in combat.
-/mob/living/simple_animal/hostile/golem/plasma/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/asteroid/golem/plasma/attacked_by(obj/item/I, mob/living/user)
 	if(det_status == DET_BLOWING)
 		det_status = DET_DEFUSED
 		icon_state = "golem_plasma"

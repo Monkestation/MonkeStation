@@ -11,7 +11,7 @@
 	var/time_burrow = 0  // Timestamp of last created burrow
 	var/time_spawn = 0  // Timestamp of last spawn wave
 
-	var/list/mob/living/simple_animal/hostile/golem/golems = list()
+	var/list/mob/living/simple_animal/hostile/asteroid/golem/golems = list()
 
 /datum/golem_controller/New(turf/location, seismic, drill)
 	loc = location
@@ -107,7 +107,7 @@
 			qdel(BU)
 
 		// Delete golems
-		for(var/mob/living/simple_animal/hostile/golem/GO in golems)
+		for(var/mob/living/simple_animal/hostile/asteroid/golem/GO in golems)
 			GO.ore_type = null  // Do not spawn ores
 			GO.death(FALSE, "burrows into the ground.")
 
