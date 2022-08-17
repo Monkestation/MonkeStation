@@ -13,9 +13,15 @@
 
 	var/list/mob/living/simple_animal/hostile/asteroid/golem/golems = list()
 
+
+	var/destroyed_burrows
+	var/wave_number = 1
+	var/initial_seismic = 0
+
 /datum/golem_controller/New(turf/location, seismic, drill)
 	loc = location
 	var/path = GLOB.golem_waves[seismic]  // Retrieve which kind of wave it is depending on seismic activity
+	initial_seismic = seismic
 	GW = new path()
 	if(drill)
 		nearby_drill = drill
@@ -36,6 +42,13 @@
 	// This is a quick and dirty fix for runtime error spam caused by this
 	if(!processing)
 		return
+
+	if(destroyed_burrows >= GW.burrow_count)
+		destroyed_burrows = 0
+
+		var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
+		GW = null
+		GW = new path()
 
 	// Check if a new burrow should be created
 	if(count < GW.burrow_count && (world.time - time_burrow) > GW.burrow_interval)
