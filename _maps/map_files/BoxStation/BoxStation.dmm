@@ -7536,6 +7536,13 @@
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/starboard/fore)
+"aqz" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/photocopier,
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/hop)
 "aqA" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -40216,6 +40223,11 @@
 	},
 /turf/open/floor/carpet,
 /area/vacant_room/office)
+"coH" = (
+/obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/machinery/photocopier,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "coS" = (
 /obj/structure/rack,
 /obj/item/gun/energy/disabler{
@@ -97262,7 +97274,7 @@ rex
 bnR
 bpe
 bqB
-bqq
+aqz
 btD
 buO
 bwk
@@ -100084,7 +100096,7 @@ bfw
 boa
 bnU
 gat
-bjy
+coH
 bnV
 bnV
 bnV
