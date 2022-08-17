@@ -9309,6 +9309,10 @@
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 4
 	},
+/obj/item/radio/intercom{
+	pixel_y = 4;
+	pixel_x = -28
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
 "axE" = (
@@ -17548,6 +17552,14 @@
 	id = "AI";
 	pixel_y = -8;
 	pixel_x = -26
+	},
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1447;
+	listening = 0;
+	name = "Station Intercom (AI Private)";
+	pixel_y = 5;
+	pixel_x = -29
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -57301,6 +57313,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1447;
+	listening = 0;
+	name = "Station Intercom (AI Private)";
+	pixel_y = 5;
+	pixel_x = 29
+	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "mAO" = (
@@ -61628,6 +61648,10 @@
 	name = "medbay camera";
 	network = list("ss13","medbay")
 	},
+/obj/item/radio/intercom{
+	pixel_y = 4;
+	pixel_x = -28
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "qkF" = (
@@ -62486,6 +62510,16 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"qSh" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = -29
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "qSE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -64119,6 +64153,14 @@
 	},
 /obj/machinery/camera/emp_proof/motion{
 	dir = 9
+	},
+/obj/item/radio/intercom{
+	broadcasting = 1;
+	frequency = 1447;
+	listening = 0;
+	name = "Station Intercom (AI Private)";
+	pixel_y = 5;
+	pixel_x = 29
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -67474,6 +67516,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vpF" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/line,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "vpT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -101637,7 +101689,7 @@ aHp
 aIF
 ajc
 dJn
-akk
+qSh
 akQ
 alA
 amm
@@ -112226,7 +112278,7 @@ bWj
 ied
 bWj
 bOt
-rro
+vpF
 bvn
 cum
 bye
