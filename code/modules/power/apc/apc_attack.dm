@@ -252,6 +252,7 @@
 		return
 
 
+// Damage Acts
 /obj/machinery/power/apc/eminence_act(mob/living/simple_animal/eminence/eminence)
 	. = ..()
 	ui_interact(eminence)
@@ -273,7 +274,8 @@
 	. = ..()
 
 /obj/machinery/power/apc/obj_break(damage_flag)
-	if(!(flags_1 & NODECONSTRUCT_1))
+	. = ..()
+	if(.)
 		set_broken()
 
 
