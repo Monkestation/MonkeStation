@@ -34,7 +34,6 @@ GLOBAL_LIST_INIT(golems_special, list(
 	visible_message(span_danger("\The [src] crumbles!"))
 	if(controller)
 		controller.burrows -= src
-		controller.destroyed_burrows ++
 		controller = null
 	..()
 

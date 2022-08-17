@@ -14,7 +14,6 @@
 	var/list/mob/living/simple_animal/hostile/asteroid/golem/golems = list()
 
 
-	var/destroyed_burrows
 	var/wave_number = 1
 	var/initial_seismic = 0
 
@@ -43,8 +42,8 @@
 	if(!processing)
 		return
 
-	if(destroyed_burrows >= GW.burrow_count)
-		destroyed_burrows = 0
+	if(count >= GW.burrow_count)
+		count = 0
 
 		var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
 		GW = null
