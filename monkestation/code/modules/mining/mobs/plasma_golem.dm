@@ -9,10 +9,8 @@
 	icon_state = "golem_plasma"
 	ore_type = /obj/item/stack/ore/plasma
 
-	move_to_delay = 5
+	move_to_delay = GOLEM_SPEED_MED
 
-	health = 50
-	maxHealth = 50
 
 	// Ranged attack related variables
 	ranged = TRUE // Will it shoot?

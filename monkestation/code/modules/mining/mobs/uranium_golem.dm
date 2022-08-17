@@ -4,8 +4,8 @@
 
 	icon_state = "golem_uranium_idle"
 
-	maxHealth = 150
-	health = 150
+	maxHealth = GOLEM_HEALTH_HIGH
+	health = GOLEM_HEALTH_HIGH
 
 	melee_damage = 0
 	obj_damage = 0

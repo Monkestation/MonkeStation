@@ -5,11 +5,11 @@
 	icon_state = "golem_diamond"
 	icon_dead = "golem_diamond"
 
-	maxHealth = 300
-	health = 300
+	maxHealth = GOLEM_HEALTH_ULTRA
+	health = GOLEM_HEALTH_ULTRA
 
-	melee_damage = 8
-	obj_damage = 16
+	melee_damage = GOLEM_DMG_LOW
+	obj_damage = GOLEM_DMG_MED
 
 	ore_type = /obj/item/stack/ore/diamond
 

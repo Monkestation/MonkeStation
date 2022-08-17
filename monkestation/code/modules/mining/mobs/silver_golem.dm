@@ -4,11 +4,13 @@
 
 	icon_state = "golem_silver"
 
-	maxHealth = 150
-	health = 150
+	maxHealth = GOLEM_HEALTH_HIGH
+	health = GOLEM_HEALTH_HIGH
 
-	melee_damage = 6
-	obj_damage = 6
+	melee_damage = GOLEM_DMG_MED
+	obj_damage = GOLEM_DMG_MED
+
+	move_to_delay = GOLEM_SPEED_MED
 
 	ore_type = /obj/item/stack/ore/silver
 

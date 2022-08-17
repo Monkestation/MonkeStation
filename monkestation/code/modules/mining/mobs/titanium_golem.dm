@@ -8,10 +8,7 @@
 	icon_state = "golem_titanium"
 	ore_type = /obj/item/stack/ore/titanium
 
-	move_to_delay = 6
-
-	health = 100
-	maxHealth = 100
+	move_to_delay = GOLEM_SPEED_LOW
 
 	// Ranged attack related variables
 	ranged = TRUE // Will it shoot?

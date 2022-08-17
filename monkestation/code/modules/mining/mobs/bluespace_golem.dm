@@ -5,8 +5,8 @@
 	icon_state = "golem_blue_idle"
 	icon_dead = "golem_blue"
 
-	maxHealth = 75
-	health = 75
+	maxHealth = GOLEM_HEALTH_MED
+	health = GOLEM_HEALTH_MED
 
 	melee_damage = 0
 	obj_damage = 0

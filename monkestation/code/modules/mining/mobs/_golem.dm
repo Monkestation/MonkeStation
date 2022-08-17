@@ -6,11 +6,14 @@
 	icon = 'monkestation/icons/mob/mining/golems.dmi'
 	icon_state = "golem_iron"
 
-	health = 100
-	maxHealth = 100
-	melee_damage = 10
-	obj_damage = 10
-	move_to_delay = 8
+	health = GOLEM_HEALTH_LOW
+	maxHealth = GOLEM_HEALTH_LOW
+
+	melee_damage = GOLEM_DMG_LOW * 0.5
+	obj_damage = GOLEM_DMG_LOW
+
+	move_to_delay = GOLEM_SPEED_SLUG
+
 	vision_range = 10
 
 	faction = list("golem")
@@ -23,6 +26,7 @@
 	// Controller that spawned the golem
 	var/datum/golem_controller/controller
 
+	var/timeout_death
 
 
 /mob/living/simple_animal/hostile/asteroid/golem/New(loc, obj/machinery/drill, datum/golem_controller/parent)
@@ -37,6 +41,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/golem/Initialize(mapload)
 	. = ..()
+	timeout_death = addtimer(CALLBACK(src, .proc/timeout_death), 3 MINUTES)
 	icon_living = icon_state
 	icon_aggro = icon_state
 	nearby_drill = locate(/obj/machinery/drill) in range(10, src.loc)
@@ -45,11 +50,16 @@
 	else
 		target = locate(/mob/living/carbon/human) in range(10, src.loc)
 
+/mob/living/simple_animal/hostile/asteroid/golem/proc/timeout_death()
+	visible_message(span_notice("\The [src] crumbles into dust"))
+	qdel(src)
+
 /mob/living/simple_animal/hostile/asteroid/golem/Destroy()
 	. = ..()
 	nearby_drill = null
 
 /mob/living/simple_animal/hostile/asteroid/golem/death(gibbed)
+	deltimer(timeout_death)
 	if(controller) // Unlink from controller
 		controller.golems -= src
 		controller = null
@@ -64,6 +74,7 @@
 
 	// Poof
 	qdel(src)
+
 /mob/living/simple_animal/hostile/asteroid/golem/ListTargets() //Step 1, find out what we can see
 	var/atom/target_from = GET_TARGETS_FROM(src)
 	if(!search_objects)
