@@ -91,6 +91,7 @@
 	target.update_handcuffed()
 	if(trashtype && !dispense)
 		qdel(src)
+	SEND_SIGNAL(src, COMSIG_CIRCUIT_CUFFS_APPLIED, target)
 	return
 
 /obj/item/restraints/handcuffs/cable/sinew

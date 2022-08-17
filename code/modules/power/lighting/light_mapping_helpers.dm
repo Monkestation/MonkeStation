@@ -43,7 +43,13 @@
 /obj/machinery/light/dim
 	nightshift_allowed = FALSE
 	bulb_colour = "#FFDDCC"
-	bulb_power = 0.6
+	bulb_power = 0.4
+
+/obj/machinery/light/extra_dim
+	nightshift_allowed = FALSE
+	bulb_colour = "#e0a181"
+	bulb_power = 0.2
+
 
 // the smaller bulb light fixture
 
@@ -83,6 +89,20 @@
 	brightness = 2
 	bulb_power = 0.9
 
+/obj/machinery/light/small/dim
+	nightshift_allowed = FALSE
+	bulb_colour = "#FFDDCC"
+	bulb_power = 0.4
+	nightshift_allowed = FALSE
+
+/obj/machinery/light/small/extra_dim
+	nightshift_allowed = FALSE
+	bulb_colour = "#e0a181"
+	bulb_power = 0.2
+	nightshift_allowed = FALSE
+
+
+
 // -------- Directional presets
 // The directions are backwards on the lights we have now
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light, 0)
@@ -120,6 +140,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/blacklight, 0)
 // ---- Dim tubes
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/dim, 0)
 
+// ---- Extra-Dim tubes
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/extra_dim, 0)
 
 // -------- Bulb lights
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small, 0)
@@ -138,3 +160,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/red, 0)
 
 // ---- Blacklight bulbs
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/blacklight, 0)
+
+// ---- Dim bulbs
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/dim, 0)
+
+// ---- Extra-Dim bulbs
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/small/extra_dim, 0)

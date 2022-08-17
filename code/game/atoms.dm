@@ -203,7 +203,7 @@
 	flags_1 |= INITIALIZED_1
 
 	if(loc)
-		SEND_SIGNAL(loc, COMSIG_ATOM_CREATED, src) /// Sends a signal that the new atom `src`, has been created at `loc`
+		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) /// Sends a signal that the new atom `src`, has been created at `loc`
 
 	if(greyscale_config && greyscale_colors)
 		update_greyscale()
@@ -433,10 +433,6 @@
 			else
 				M.forceMove(src)
 	parts_list.Cut()
-
-///Hook for multiz???
-/atom/proc/update_multiz(prune_on_fail = FALSE)
-	return FALSE
 
 ///Take air from the passed in gas mixture datum
 /atom/proc/assume_air(datum/gas_mixture/giver)
@@ -1562,7 +1558,9 @@
   * Override this if you want custom behaviour in whatever gets hit by the rust
   */
 /atom/proc/rust_heretic_act()
-	return
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		return
+	AddElement(/datum/element/rust)
 
 /**
   * Used to set something as 'open' if it's being used as a supplypod

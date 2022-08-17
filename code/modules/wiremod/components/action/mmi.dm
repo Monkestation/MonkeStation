@@ -25,13 +25,23 @@
 
 	/// Returns what the MMI last clicked on.
 	var/datum/port/output/clicked_atom
+
+	//MONKESTATION EDIT: replaces secondary attack with the the trigger action
+
+	/// Called when the MMI presses their trigger.
+	var/datum/port/output/trigger_button
+
+	//The trigger action to grant/remove from mmis
+	var/datum/action/innate/mmi_component_trigger/trigger_action = new
+
+	//MONKESTATION EDIT END
+
 	/// Called when the MMI clicks.
 	var/datum/port/output/attack
-	/// Called when the MMI right clicks.
-	var/datum/port/output/secondary_attack
 
 	/// The current MMI card
 	var/obj/item/mmi/brain
+
 
 	/// Maximum length of the message that can be sent to the MMI
 	var/max_length = 300
@@ -47,8 +57,9 @@
 	south = add_output_port("South", PORT_TYPE_SIGNAL)
 	west = add_output_port("West", PORT_TYPE_SIGNAL)
 
+	trigger_button = add_output_port("Triggered", PORT_TYPE_SIGNAL)
+
 	attack = add_output_port("Attack", PORT_TYPE_SIGNAL)
-	secondary_attack = add_output_port("Secondary Attack", PORT_TYPE_SIGNAL)
 	clicked_atom = add_output_port("Target Entity", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/mmi/Destroy()
@@ -61,8 +72,9 @@
 	south = null
 	west = null
 	attack = null
-	secondary_attack = null
+	trigger_button = null
 	clicked_atom = null
+	trigger_action = null
 	return ..()
 
 /obj/item/circuit_component/mmi/input_received(datum/port/input/port)
@@ -85,7 +97,7 @@
 		if(!target)
 			return
 
-		to_chat(target, "<span class='bold'>You hear a message in your ear: </span>[msg_str]")
+		to_chat(target, "<span class='bold'>A message echoes through your mind: </span>[msg_str]")
 
 
 /obj/item/circuit_component/mmi/register_shell(atom/movable/shell)
@@ -113,6 +125,7 @@
 	if(to_add.brainmob)
 		update_mmi_mob(to_add, null, to_add.brainmob)
 	brain = to_add
+	trigger_action.Grant(to_add.brainmob, src)
 	RegisterSignal(to_add, COMSIG_PARENT_QDELETING, .proc/remove_current_brain)
 	RegisterSignal(to_add, COMSIG_MOVABLE_MOVED, .proc/mmi_moved)
 
@@ -122,6 +135,7 @@
 
 /obj/item/circuit_component/mmi/proc/remove_current_brain()
 	SIGNAL_HANDLER
+
 	if(!brain)
 		return
 
@@ -133,6 +147,7 @@
 	))
 	if(brain.loc == src)
 		brain.forceMove(drop_location())
+	trigger_action.Remove(brain.brainmob)
 	brain = null
 
 /obj/item/circuit_component/mmi/proc/update_mmi_mob(datum/source, mob/living/old_mmi, mob/living/new_mmi)
@@ -162,14 +177,9 @@
 /obj/item/circuit_component/mmi/proc/handle_mmi_attack(mob/living/source, atom/target)
 	SIGNAL_HANDLER
 
-	if(source.a_intent == INTENT_HARM)
-		clicked_atom.set_output(target)
-		secondary_attack.set_output(COMPONENT_SIGNAL)
-		. = COMSIG_MOB_CANCEL_CLICKON
-	else
-		clicked_atom.set_output(target)
-		attack.set_output(COMPONENT_SIGNAL)
-		. = COMSIG_MOB_CANCEL_CLICKON
+	clicked_atom.set_output(target)
+	attack.set_output(COMPONENT_SIGNAL)
+	. = COMSIG_MOB_CANCEL_CLICKON
 
 /obj/item/circuit_component/mmi/add_to(obj/item/integrated_circuit/add_to)
 	. = ..()
@@ -181,3 +191,24 @@
 	REMOVE_TRAIT(removed_from, TRAIT_COMPONENT_MMI, src)
 	remove_current_brain()
 	return ..()
+
+/obj/item/circuit_component/mmi/proc/activate_trigger()
+	trigger_button.set_output(COMPONENT_SIGNAL)
+
+/datum/action/innate/mmi_component_trigger
+	name = "Trigger"
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "power_green"
+	var/obj/item/circuit_component/mmi/component
+
+/datum/action/innate/mmi_component_trigger/Grant(mob/living/grantee, obj/item/circuit_component/mmi/new_component)
+	if(new_component)
+		component = new_component
+	..()
+
+/datum/action/innate/mmi_component_trigger/Destroy()
+	component = null
+	return ..()
+
+/datum/action/innate/mmi_component_trigger/Activate()
+	component.activate_trigger()
