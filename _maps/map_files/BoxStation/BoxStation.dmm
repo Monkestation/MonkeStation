@@ -18714,7 +18714,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/machinery/camera/autoname{
+/obj/machinery/camera/emp_proof/motion{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -23825,6 +23825,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/machinery/camera{
+	c_tag = "Medbay - Cloning Lab";
+	dir = 4;
+	name = "medbay camera";
+	network = list("ss13","medbay")
+	},
 /turf/open/floor/carpet/cyan,
 /area/medical/break_room)
 "bnb" = (
@@ -28023,6 +28029,12 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "Medbay - Cloning Lab";
+	dir = 4;
+	name = "medbay camera";
+	network = list("ss13","medbay")
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "bzV" = (
@@ -28241,6 +28253,9 @@
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/checkpoint/medical)
@@ -30583,6 +30598,10 @@
 	},
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27;
+	pixel_y = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
@@ -41661,6 +41680,9 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 4
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "cud" = (
@@ -49115,6 +49137,19 @@
 	},
 /turf/open/floor/grass,
 /area/bridge)
+"gnj" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "gnX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -54354,14 +54389,14 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/corner{
 	dir = 4
 	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = -8;
 	pixel_x = -26
+	},
+/obj/machinery/camera/emp_proof/motion{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -56881,6 +56916,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"mjT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "mke" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -59523,6 +59578,22 @@
 /obj/effect/turf_decal/trimline/purple/filled/warning,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
+"oxT" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay - Storage";
+	dir = 1;
+	name = "medbay camera";
+	network = list("ss13","medbay");
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "oxW" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/holopad,
@@ -60694,7 +60765,8 @@
 	c_tag = "Medbay - Storage";
 	dir = 1;
 	name = "medbay camera";
-	network = list("ss13","medbay")
+	network = list("ss13","medbay");
+	pixel_x = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 6
@@ -61543,6 +61615,21 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"qkj" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay - Cloning Lab";
+	dir = 4;
+	name = "medbay camera";
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "qkF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -62066,9 +62153,6 @@
 "qDu" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/machinery/camera/autoname{
-	dir = 8
 	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 6
@@ -62947,6 +63031,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/hallway)
+"ryG" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/line,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -8;
+	pixel_y = 31
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "ryK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -64021,6 +64116,9 @@
 	id = "AI";
 	pixel_y = -8;
 	pixel_x = 23
+	},
+/obj/machinery/camera/emp_proof/motion{
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -66744,6 +66842,9 @@
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 10
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/virology)
 "uNN" = (
@@ -66953,9 +67054,6 @@
 /area/medical/medbay/central)
 "uWn" = (
 /obj/structure/closet/secure_closet/personal/patient,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -26
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
@@ -69078,6 +69176,9 @@
 	dir = 8
 	},
 /obj/item/kirbyplants/random,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "wtq" = (
@@ -107758,7 +107859,7 @@ eqr
 bLH
 cfE
 yew
-hql
+oxT
 oEw
 btZ
 amB
@@ -110587,10 +110688,10 @@ bWe
 bvn
 bwL
 qSR
+gnj
 qSR
 qSR
-qSR
-qSR
+qkj
 qSR
 qSR
 qSR
@@ -111117,7 +111218,7 @@ pVZ
 pVZ
 blp
 lXD
-eVB
+mjT
 eVB
 cBf
 bMH
@@ -111354,7 +111455,7 @@ bOt
 bOt
 bOt
 bOt
-rro
+ryG
 bvn
 vTv
 txx
