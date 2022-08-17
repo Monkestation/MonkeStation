@@ -222,7 +222,7 @@
 			"connected" = considered_drill.connected,
 			"extraction_rate" = considered_drill.ore_extraction_rate * 10,
 			"seismic_level" = considered_drill.seismic_activity,
-			"power_consumption" = considered_drill.ore_extraction_rate * 20000,
+			"power_consumption" = considered_drill.ore_extraction_rate * 200000,
 			"drill_id" = considered_drill.id_tag
 			))
 	return data
