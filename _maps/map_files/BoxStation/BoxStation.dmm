@@ -70572,7 +70572,6 @@
 	name = "Garage Door Opener";
 	pixel_x = -24;
 	req_access_txt = "5;33";
-	pixel_y = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
