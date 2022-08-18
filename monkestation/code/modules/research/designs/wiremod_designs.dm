@@ -1,12 +1,3 @@
-/datum/design/component/security_record
-	name = "Security Record Component"
-	id = "comp_sec"
-	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(/datum/material/glass = 500, /datum/material/copper = 1500)
-	build_path = /obj/item/circuit_component/sec_status
-	category = list(WIREMOD_CIRCUITRY, "initial", "Security")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
 /datum/design/component/send_data
 	name = "Send Data Component"
 	id = "comp_data_send"
@@ -67,3 +58,27 @@
 		/datum/material/gold = 250,
 	)
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
+
+//Security Lathe Designs
+/datum/design/handcuffs_shell
+	name = "Handcuff Circuit Shell"
+	desc = "A small shell used to restrain people."
+	id = "handcuff_shell"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(
+		/datum/material/glass = 2000,
+		/datum/material/iron = 1250,
+		/datum/material/gold = 500
+	)
+	build_path = /obj/item/restraints/handcuffs/circuit
+	category = list(WIREMOD_CIRCUITRY, "initial", "Security")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/component/security_record
+	name = "Security Record Component"
+	id = "comp_sec"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/glass = 500, /datum/material/copper = 1500)
+	build_path = /obj/item/circuit_component/sec_status
+	category = list(WIREMOD_CIRCUITRY, "initial", "Security")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

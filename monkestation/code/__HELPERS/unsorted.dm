@@ -42,6 +42,7 @@
 		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, SPECIES_TRAIT)
 	if(((M in equipped) && (S in equipped)))
 		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, CLOTHING_TRAIT)
+
 // Takes an input direction and then outputs the opposite direction.
 /proc/getOppositeDir(var/direction, var/always_return_cardinal = 0) // always_return_cardinal is for conveyors and anything else that uses their style of turning.
 	switch(direction)

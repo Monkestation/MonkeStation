@@ -156,7 +156,7 @@
 	},
 /obj/item/clothing/gloves/color/rainbow,
 /obj/item/lipstick/random,
-/obj/structure/closet/crate/wooden/toy,
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "fg" = (
