@@ -111,7 +111,7 @@
 	if(target)
 		if(target.buckle_mob(src, TRUE))
 			target.Knockdown(10 SECONDS)
-			target.Stun(5 SECONDS)
+			target.Stun(7 SECONDS)
 			target.drop_all_held_items()
 			layer = target.layer+0.01
 			visible_message("<span class='warning'>[src] latches onto [target]!</span>")
