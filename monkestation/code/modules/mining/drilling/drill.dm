@@ -10,7 +10,6 @@
 	var/ore_extraction_rate = 0.1
 	var/extraction_amount
 	var/obj/item/stack/ore/ore_to_spawn
-	var/item/stack/ore/ore_to_spawn
 	var/operating = FALSE
 	var/is_powered = FALSE
 	var/seismic_activity = null
@@ -30,9 +29,10 @@
 	if(!seismic_activity)
 		repack()
 		return
+
 /obj/machinery/drill/AltClick(mob/user)
 	. = ..()
-	to_chat("You flip the switch on the drill ceasing its operations!")
+	to_chat("You flip the switch on the drill ceasing its operation")
 	operating = !operating
 
 
