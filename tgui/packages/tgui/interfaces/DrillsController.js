@@ -17,12 +17,11 @@ export const DrillsController = (props, context) => {
           color={"green"}
           onClick={() => act('reconnect', {})} />
         {onlineDrills.map(drill => (
-          <Section title={drill.name+" "+drill.coord+" "+drill.seismic_activity}>
+          <Section title={drill.name+" "+drill.coord+" "+drill.seismic_activity} key={drill.drill_id}>
             <LabeledList>
               <LabeledList.Item label="Controls">
                 <Button
                   disabled={!drill.connected}
-                  key={drill.drill_id}
                   content={drill.operating ? 'Drill operational' : 'Drill off'}
                   color={drill.operating ? "green" : "red"}
                   onClick={() => act('operating', {
@@ -30,7 +29,6 @@ export const DrillsController = (props, context) => {
                   })} />
                 <Button
                   disabled={!drill.connected}
-                  key={drill.drill_id}
                   content={drill.powered ? 'Power ON' : 'Power OFF'}
                   color={drill.powered ? "green" : "red"}
                   onClick={() => act('power', {
