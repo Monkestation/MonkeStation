@@ -186,6 +186,7 @@
 /turf/closed/wall/mineral/titanium/survival
 	name = "pod wall"
 	desc = "An easily-compressable wall used for temporary shelter."
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_SURVIVAL_TIANIUM_POD, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_SHUTTLE_PARTS)
 	color = "#242424" //To display in mapping softwares
 	wall_paint = "#242424"
