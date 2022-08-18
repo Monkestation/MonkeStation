@@ -59,7 +59,6 @@
 	nearby_drill = null
 
 /mob/living/simple_animal/hostile/asteroid/golem/death(gibbed)
-	deltimer(timeout_death)
 	if(controller) // Unlink from controller
 		controller.golems -= src
 		controller = null
