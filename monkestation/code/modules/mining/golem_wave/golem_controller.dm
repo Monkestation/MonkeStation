@@ -1,3 +1,34 @@
+//Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value. Lower bound takes priority.
+/proc/between(var/low, var/middle, var/high)
+	return max(min(middle, high), low)
+
+#define LOCATE_COORDS(X, Y, Z) locate(between(1, X, world.maxx), between(1, Y, world.maxy), Z)
+/proc/getcircle(turf/center, var/radius) //Uses a fast Bresenham rasterization algorithm to return the turfs in a thin circle.
+	if(!radius) return list(center)
+
+	var/x = 0
+	var/y = radius
+	var/p = 3 - 2 * radius
+
+	. = list()
+	while(y >= x) // only formulate 1/8 of circle
+
+		. += LOCATE_COORDS(center.x - x, center.y - y, center.z) //upper left left
+		. += LOCATE_COORDS(center.x - y, center.y - x, center.z) //upper upper left
+		. += LOCATE_COORDS(center.x + y, center.y - x, center.z) //upper upper right
+		. += LOCATE_COORDS(center.x + x, center.y - y, center.z) //upper right right
+		. += LOCATE_COORDS(center.x - x, center.y + y, center.z) //lower left left
+		. += LOCATE_COORDS(center.x - y, center.y + x, center.z) //lower lower left
+		. += LOCATE_COORDS(center.x + y, center.y + x, center.z) //lower lower right
+		. += LOCATE_COORDS(center.x + x, center.y + y, center.z) //lower right right
+
+		if(p < 0)
+			p += 4*x++ + 6;
+		else
+			p += 4*(x++ - y--) + 10;
+
+#undef LOCATE_COORDS
+
 /datum/golem_controller
 
 	var/turf/loc  // Location of the golem_controller
@@ -65,9 +96,9 @@
 
 /datum/golem_controller/proc/spawn_golem_burrow()
 	// Spawn burrow randomly in a donut around the drill
-	var/turf/T = pick(range(7, loc))
+	var/turf/T = pick(getcircle(loc, 7))
 	if(!istype(T))  // Try again with a smaller circle
-		T = pick(range(6, loc))
+		T = pick(getcircle(loc, 6))
 		if(!istype(T))  // Something wrong is happening
 			return
 	while(loc && check_density_no_mobs(T) && T != loc)
