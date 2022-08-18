@@ -3,10 +3,12 @@
 /turf/closed/mineral //wall piece
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
-	icon_state = "rock"
+	icon_state = "smoothrocks"
+	base_icon_state = "smoothrocks"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
-	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
-	//canSmoothWith = null //MONKESTATION REMOVAL
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
 	baseturfs = /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = AIRLESS_ATMOS
 	opacity = 1
