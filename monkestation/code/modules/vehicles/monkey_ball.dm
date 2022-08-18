@@ -8,6 +8,7 @@
 	movedelay = 1
 	var/rotation = 0
 	var/last_bump = 0
+	var/animation_delay = 0
 
 /obj/vehicle/ridden/monkey_ball/Initialize(mapload)
 	. = ..()
@@ -24,8 +25,10 @@
 	return ..()
 
 /obj/vehicle/ridden/monkey_ball/Moved()
-	rotation += (dir == NORTH || dir == WEST || dir == NORTHWEST) ? -30 : 30
-	animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = movedelay, easing = LINEAR_EASING)
+	if(world.time > animation_delay)
+		rotation += (dir == NORTH || dir == WEST || dir == NORTHWEST) ? -30 : 30
+		animate(src,transform = matrix(rotation, MATRIX_ROTATE), time = 2, easing = LINEAR_EASING)
+		animation_delay = world.time + 1
 	. = ..()
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)
