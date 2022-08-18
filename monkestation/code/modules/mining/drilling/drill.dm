@@ -20,6 +20,7 @@
 	var/connected = FALSE
 
 	var/datum/golem_controller/GC
+	var/obj/item/radio/radio
 
 /obj/machinery/drill/Initialize()
 	. = ..()
@@ -30,6 +31,7 @@
 		return
 
 /obj/machinery/drill/Destroy()
+	radio.talk_into(src, "WARNING DRILL INTEGRITY HAS REACHED CRITIAL FAILURE: PERSONNEL DEPLOYED TO THE DRILL MAY BE IN DANGER!", RADIO_CHANNEL_SUPPLY)
 	if(controller)
 		controller.drills -= src
 	if(seismic_activity)

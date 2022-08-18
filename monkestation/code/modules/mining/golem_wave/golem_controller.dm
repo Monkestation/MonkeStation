@@ -42,10 +42,8 @@
 	if(!processing)
 		return
 	if(count >= GW.burrow_count)
-		count = 0
-		var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
-		GW = null
-		GW = new path()
+		nearby_drill.radio.talk_into(src, "WAVE COMPLETED NEXT WAVE WILL BEGIN IN 30 SECONDS", RADIO_CHANNEL_SUPPLY)
+		addtimer(CALLBACK(src, .proc/next_wave), 30 SECONDS)
 
 	// Check if a new burrow should be created
 	if(count < GW.burrow_count && (world.time - time_burrow) > GW.burrow_interval)
@@ -57,6 +55,13 @@
 	if((world.time - time_spawn) > GW.spawn_interval)
 		time_spawn = world.time
 		spawn_golems()
+
+/datum/golem_controller/proc/next_wave()
+	nearby_drill.radio.talk_into(src, "NEXT WAVE COMMENCING", RADIO_CHANNEL_SUPPLY)
+	count = 0
+	var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
+	GW = null
+	GW = new path()
 
 /datum/golem_controller/proc/spawn_golem_burrow()
 	// Spawn burrow randomly in a donut around the drill
