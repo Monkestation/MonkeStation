@@ -27,7 +27,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/golem_controller/Destro()
+/datum/golem_controller/Destroy()
 	processing = FALSE  // Stop processing
 	qdel(GW)  // Destroy wave object
 	GW = null
@@ -111,18 +111,20 @@
 	processing = FALSE
 
 	// Delete controller and all golems after given delay
-	spawn(3 MINUTES)
-		// Delete burrows
-		for(var/obj/structure/golem_burrow/BU in burrows)
-			qdel(BU)
+	addtimer(CALLBACK(src, .proc/remove_controller), 3 MINUTES)
 
-		// Delete golems
-		for(var/mob/living/simple_animal/hostile/asteroid/golem/GO in golems)
-			GO.ore_type = null  // Do not spawn ores
-			GO.death(FALSE, "burrows into the ground.")
+/datum/golem_controller/proc/remove_controller()
+	// Delete burrows
+	for(var/obj/structure/golem_burrow/BU in burrows)
+		qdel(BU)
 
-		// Delete controller
-		qdel(src)
+	// Delete golems
+	for(var/mob/living/simple_animal/hostile/asteroid/golem/GO in golems)
+		GO.ore_type = null  // Do not spawn ores
+		GO.death(FALSE, "burrows into the ground.")
+
+	// Delete controller
+	qdel(src)
 
 /datum/golem_controller/proc/check_density_no_mobs(turf/F)
 	if(F.density)
