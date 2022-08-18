@@ -31,7 +31,7 @@
 		return
 
 /obj/machinery/drill/Destroy()
-	radio.talk_into(src, "WARNING DRILL INTEGRITY HAS REACHED CRITIAL FAILURE: PERSONNEL DEPLOYED TO THE DRILL MAY BE IN DANGER!", RADIO_CHANNEL_SUPPLY)
+	radio.talk_into(src, "WARNING DRILL INTEGRITY HAS REACHED CRITIAL FAILURE: PERSONNEL DEPLOYED TO THE DRILL MAY BE IN DANGER! DRILL LOCATION IS:[x], [y], [z]", RADIO_CHANNEL_SUPPLY)
 	if(controller)
 		controller.drills -= src
 	if(seismic_activity)
