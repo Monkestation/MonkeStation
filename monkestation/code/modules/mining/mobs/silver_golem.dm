@@ -14,8 +14,8 @@
 
 	ore_type = /obj/item/stack/ore/silver
 
-/mob/living/simple_animal/hostile/asteroid/golem/silver/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/asteroid/golem/silver/attacked_by(obj/item/item, mob/living/user)
 	. = ..()
-	if(I.force > 5)
-		visible_message(span_danger("\The [src] reflects \the [I.name]!"))
-		user.adjustBruteLoss(I.force * 0.2)
+	if(item.force > 5)
+		visible_message(span_danger("\The [src] reflects \the [item.name]!"))
+		user.adjustBruteLoss(item.force * 0.2)
