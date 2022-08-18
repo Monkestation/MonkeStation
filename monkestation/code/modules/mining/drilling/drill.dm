@@ -32,7 +32,6 @@
 /obj/machinery/drill/Destroy()
 	if(controller)
 		controller.drills -= src
-		qdel(controller)
 	if(seismic_activity)
 		ore_to_spawn = null
 	if(port)

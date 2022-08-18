@@ -41,6 +41,8 @@
 	// This is a quick and dirty fix for runtime error spam caused by this
 	if(!processing)
 		return
+	if(!nearby_drill)
+		Destroy()
 
 	if(count >= GW.burrow_count)
 		count = 0
