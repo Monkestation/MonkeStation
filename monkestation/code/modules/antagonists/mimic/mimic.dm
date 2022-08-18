@@ -25,7 +25,7 @@
 	maxbodytemp = T0C + 40
 	maxHealth = 75
 	health = 75
-	melee_damage = 5
+	melee_damage = 7
 	obj_damage = 21 //21 is the minimum damage to hurt doors, which they need since they can't vent crawl.
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
