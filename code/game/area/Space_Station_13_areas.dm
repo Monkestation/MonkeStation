@@ -617,8 +617,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "bar"
 	mood_bonus = 5
 	mood_message = "<span class='nicegreen'>I love being in the bar!\n</span>"
-	lighting_colour_tube = "#fff4d6"
-	lighting_colour_bulb = "#ffebc1"
+//	lighting_colour_tube = "#fff4d6" //MonkeStation Edit for Random Bars
+//	lighting_colour_bulb = "#ffebc1"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
 /area/crew_quarters/bar/bar_spawn_area

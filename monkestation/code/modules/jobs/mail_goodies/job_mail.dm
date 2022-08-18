@@ -342,6 +342,7 @@
 	)
 
 //QUARTERMASTER
+/datum/job/qm
 	mail_goodies = list(
 		/obj/item/clothing/accessory/medal/ribbon/cargo = 10,
 		/mob/living/simple_animal/sloth = 5,
@@ -390,7 +391,7 @@
 		/mob/living/simple_animal/pet/cat = 4, //You all know what this means.
 		/obj/item/clipboard = 4, //Will you sign my petition?
 		/obj/item/toy/katana = 4,
-		/obj/item/toy/plush/moth = 4 //OH MY GOD IT'S KROTCHY THE MOTH
+		/obj/item/toy/plush/moth/tyriaplush = 4 //OH MY GOD IT'S KROTCHY THE MOTH
 	)
 
 //SHAFT MINER

@@ -98,37 +98,44 @@
 		EK.on_life(owner.current)
 
 /datum/antagonist/heretic/proc/forge_primary_objectives()
-	if (prob(5))
-		if (prob(66))
+	if (prob(5)) //5% chance for Ascend OR Hijack
+		if (prob(66)) //3.3% chance for ascend
 			var/datum/objective/ascend/AE = new()
 			AE.owner = owner
 			AE.update_explanation_text()
 			objectives += AE
 			log_objective(owner, AE.explanation_text)
-		else
+		else //2.7% chance to hijack
 			var/datum/objective/hijack/hijack_objective = new
 			hijack_objective.owner = owner
 			hijack_objective.update_explanation_text()
 			objectives += hijack_objective
 			log_objective(owner, hijack_objective.explanation_text)
-	else
-		var/list/assasination = list()
+	else //95% chance of assassination, stalk or steal
+		var/list/assassination = list()
 		var/list/protection = list()
 		for(var/i in 1 to 2)
-			if (prob(35))
+			if (prob(35)) //35% chance to stalk
 				var/datum/objective/stalk/S = new()
 				S.owner = owner
 				S.find_target()
 				objectives += S
 				log_objective(owner, S.explanation_text)
-			else
+				continue
+			if(prob(35)) //35% chance to assassinate
 				var/datum/objective/assassinate/A = new()
 				A.owner = owner
 				var/list/owners = A.get_owners()
 				A.find_target(owners,protection)
-				assasination += A.target
+				assassination += A.target
 				objectives += A
 				log_objective(owner, A.explanation_text)
+				continue
+			else //30% chance to steal
+				var/datum/objective/steal/steal_objective = new
+				steal_objective.owner = owner
+				steal_objective.find_target()
+				objectives += steal_objective
 		var/datum/objective/sacrifice_ecult/SE = new()
 		SE.owner = owner
 		SE.update_explanation_text()
@@ -265,10 +272,10 @@
 
 /datum/objective/sacrifice_ecult/New()
 	..()
-	target_amount = rand(2,6)
+	target_amount = rand(1,3)
 
 /datum/objective/sacrifice_ecult/update_explanation_text()
-	explanation_text = "Sacrifice at least [target_amount] people."
+	explanation_text = "Sacrifice [target_amount] people."
 
 /datum/objective/sacrifice_ecult/check_completion()
 	if(!owner)

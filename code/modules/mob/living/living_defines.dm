@@ -80,6 +80,12 @@
 	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
 	var/melee_damage = 0
 
+	//Damage dealing vars! These are meaningless outside of specific instances where it's checked and defined.
+	/// Lower bound of damage done by unarmed melee attacks. Mob code is a mess, only works where this is checked for.
+	var/melee_damage_lower = 0
+	/// Upper bound of damage done by unarmed melee attacks. Please ensure you check the xyz_defenses.dm for the mobs in question to see if it uses this or hardcoded values.
+	var/melee_damage_upper = 0
+
 	var/list/weather_immunities = list()
 
 	var/stun_absorption = null //converted to a list of stun absorption sources this mob has when one is added

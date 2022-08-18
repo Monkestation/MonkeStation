@@ -4,11 +4,6 @@
 #define AI_STATUS_ON 1
 #define AI_STATUS_OFF 2
 
-
-///Monkey checks
-#define SHOULD_RESIST(source) (source.on_fire || source.buckled || source.restrained() || (source.pulledby && source.pulledby.grab_state > GRAB_PASSIVE))
-#define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
-
 ///For JPS pathing, the maximum length of a path we'll try to generate. Should be modularized depending on what we're doing later on
 #define AI_MAX_PATH_LENGTH 30 // 30 is possibly overkill since by default we lose interest after 14 tiles of distance, but this gives wiggle room for weaving around obstacles
 
@@ -27,16 +22,36 @@
 ///AI flags
 #define STOP_MOVING_WHEN_PULLED (1<<0)
 
-///Subtree defines
+///Base Subtree defines
 
 ///This subtree should cancel any further planning, (Including from other subtrees)
 #define SUBTREE_RETURN_FINISH_PLANNING 1
 
+//Generic subtree defines
+
+/// probability that the pawn should try resisting out of restraints
+#define RESIST_SUBTREE_PROB 70
+///macro for whether it's appropriate to resist right now, used by resist subtree
+#define SHOULD_RESIST(source) (source.on_fire || source.buckled || source.restrained(TRUE) || (source.pulledby && source.pulledby.grab_state > GRAB_PASSIVE))
+///macro for whether the pawn can act, used generally to prevent some horrifying ai disasters
+#define IS_DEAD_OR_INCAP(source) (source.incapacitated() || source.stat)
+
+
 //Generic BB keys
 #define BB_CURRENT_MIN_MOVE_DISTANCE "min_move_distance"
+///time until we should next eat, set by the generic hunger subtree
+#define BB_NEXT_HUNGRY "BB_NEXT_HUNGRY"
+///what we're going to eat next
+#define BB_FOOD_TARGET "bb_food_target"
+
+//for songs
+
+///song instrument blackboard, set by instrument subtrees
+#define BB_SONG_INSTRUMENT "BB_SONG_INSTRUMENT"
+///song lines blackboard, set by default on controllers
+#define BB_SONG_LINES "song_lines"
 
 // Monkey AI controller blackboard keys
-
 #define BB_MONKEY_AGGRESSIVE "BB_monkey_aggressive"
 #define BB_MONKEY_GUN_NEURONS_ACTIVATED "BB_monkey_gun_aware"
 #define BB_MONKEY_GUN_WORKED "BB_monkey_gun_worked"
@@ -51,7 +66,6 @@
 #define BB_MONKEY_TARGET_DISPOSAL "BB_monkey_target_disposal"
 #define BB_MONKEY_DISPOSING "BB_monkey_disposing"
 #define BB_MONKEY_RECRUIT_COOLDOWN "BB_monkey_recruit_cooldown"
-#define BB_MONKEY_NEXT_HUNGRY "BB_monkey_next_hungry"
 
 
 ///Haunted item controller defines
@@ -138,6 +152,7 @@
 #define BB_DOG_ORDER_MODE "BB_DOG_ORDER_MODE"
 #define BB_DOG_PLAYING_DEAD "BB_DOG_PLAYING_DEAD"
 #define BB_DOG_HARASS_TARGET "BB_DOG_HARASS_TARGET"
+#define BB_DOG_HARASS_FRUSTRATION "BB_DOG_HARASS_FRUSTRATION"
 
 /// Basically, what is our vision/hearing range for picking up on things to fetch/
 #define AI_DOG_VISION_RANGE	10
@@ -149,6 +164,8 @@
 #define AI_DOG_HEEL_DURATION 20 SECONDS
 /// After either being given a verbal order or a pointing order, ignore further of each for this duration
 #define AI_DOG_COMMAND_COOLDOWN	2 SECONDS
+/// If the dog is set to harass someone but doesn't bite them for this long, give up
+#define AI_DOG_HARASS_FRUSTRATE_TIME 50 SECONDS
 
 // dog command modes (what pointing at something/someone does depending on the last order the dog heard)
 /// Don't do anything (will still react to stuff around them though)

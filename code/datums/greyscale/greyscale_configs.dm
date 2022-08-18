@@ -126,3 +126,16 @@
 /datum/greyscale_config/carp/disk_mouth
 	name = "Space Carp Disk in Mouth"
 	json_config = 'code/datums/greyscale/json_configs/carp_disk_mouth.json'
+
+/datum/greyscale_config/janicart_upgrade
+	name = "Janicart Upgrade"
+	icon_file = 'monkestation/icons/obj/janitor/janicart_upgrade.dmi'
+	json_config = 'code/datums/greyscale/json_configs/janicart_upgrade.json'
+
+/datum/greyscale_config/janicart_upgrade/installed
+	json_config = 'code/datums/greyscale/json_configs/janicart_upgrade_installed.json'
+
+/datum/greyscale_config/meter
+	name = "Meter"
+	icon_file = 'icons/obj/atmospherics/pipes/meter.dmi'
+	json_config = 'code/datums/greyscale/json_configs/meter.json'

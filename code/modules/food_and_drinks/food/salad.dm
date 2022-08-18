@@ -37,6 +37,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/medicine/omnizine = 10, /datum/reagent/consumable/nutriment/vitamin = 12)
 	tastes = list("leaves" = 1)
 	foodtypes = VEGETABLES | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 /obj/item/food/salad/herbsalad
 	name = "herb salad"
