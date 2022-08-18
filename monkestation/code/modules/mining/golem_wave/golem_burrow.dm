@@ -43,15 +43,15 @@ GLOBAL_LIST_INIT(golems_special, list(
 	take_damage(damage)
 	//user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
-/obj/structure/golem_burrow/attackby(obj/item/I, mob/user)
+/obj/structure/golem_burrow/attackby(obj/item/item, mob/user)
 	if (user.a_intent == INTENT_HARM && user.Adjacent(src))
-		if(!(I.sharpness == IS_BLUNT))
+		if(!(item.sharpness == IS_BLUNT))
 			user.do_attack_animation(src)
-			var/damage = I.force
+			var/damage = item.force
 			var/volume =  min(damage * 3.5, 15)
-			if (I.hitsound)
-				playsound(src, I.hitsound, volume, 1, -1)
-			visible_message(span_danger("[src] has been hit by [user] with [I]."))
+			if (item.hitsound)
+				playsound(src, item.hitsound, volume, 1, -1)
+			visible_message(span_danger("[src] has been hit by [user] with [item]."))
 			take_damage(damage)
 			//user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 	return TRUE

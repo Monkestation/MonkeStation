@@ -19,7 +19,7 @@
 
 	var/connected = FALSE
 
-	var/datum/golem_controller/GC
+	var/datum/golem_controller/attached_golem_controller
 	var/obj/item/radio/radio
 
 /obj/machinery/drill/Initialize()
@@ -44,23 +44,23 @@
 		ore_to_spawn = null
 	if(port)
 		port = null
-	if(GC)
-		GC.stop()
+	if(attached_golem_controller)
+		attached_golem_controller.stop()
 	return ..()
 
 /obj/machinery/drill/process(delta_time)
 	if(!seismic_activity || !operating || !is_powered || !connected)
-		if(GC)
-			GC.stop()
-			GC = null
+		if(attached_golem_controller)
+			attached_golem_controller.stop()
+			attached_golem_controller = null
 		return
 	if(!ore_to_spawn)
 		pick_ore()
 	if(!port)
 		return
-	if(!GC)
+	if(!attached_golem_controller)
 		var/turf/open/floor/plating/asteroid/T = get_turf(loc)
-		GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
+		attached_golem_controller = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
 	extract_ores(delta_time)
 	if(operating && is_powered)
 		if(icon_state == "mining_drill_active")
@@ -200,9 +200,9 @@
 		considered_drill.is_powered = FALSE
 		considered_drill.operating = FALSE
 		considered_drill.controller = null
-		if(considered_drill.GC)
-			considered_drill.GC.stop()
-			considered_drill.GC = null
+		if(considered_drill.attached_golem_controller)
+			considered_drill.attached_golem_controller.stop()
+			considered_drill.attached_golem_controller = null
 		drills -= considered_drill
 
 /obj/machinery/computer/drills_controller/proc/connected()
