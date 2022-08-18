@@ -92,7 +92,7 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/proc/allowed(atom/movable/target_item)
-	return isitem(target_item) & !istype(target_item, /obj/item/radio/intercom)
+	return isitem(target_item) && !istype(target_item, /obj/item/radio/intercom)
 
 /mob/living/simple_animal/hostile/alien_mimic/proc/is_table(atom/possible_table)
 	return istype(possible_table, /obj/structure/table) || istype(possible_table, /obj/structure/rack)
@@ -330,9 +330,9 @@
 	if(target == src) //Remove your disguise
 		restore()
 		return
-	if(isliving(target) & !buckled) //Latch onto people
+	if(isliving(target) && !buckled) //Latch onto people
 		var/mob/living/victim = target
-		if(iscarbon(victim) & victim.stat == DEAD & !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
+		if(iscarbon(victim) && victim.stat == DEAD && !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
 			var/mob/living/carbon/carbon_victim = victim
 			if(NOHUSK in carbon_victim.dna.species.species_traits)
 				to_chat("<span class='warning'>You can't absorb this person!</span>")
@@ -356,13 +356,13 @@
 		else if(do_mob(src, target, 3 SECONDS)) //Latch after a bit if you arent
 			latch(victim)
 			return
-	if(buckled || !ismob(target)) //If you're buckled to them, or attacking a non-human
-		if(target != buckled)
-			return
+	if(!ismob(target))
+		return
+	if(buckled && target != buckled) //If you're buckled to them, or attacking a non-human
 		return ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Aggro()
-	if(disguised & get_dist(src,target)<=1) //Instantly latch onto them
+	if(disguised && get_dist(src,target)<=1) //Instantly latch onto them
 		latch(target)
 		restore()
 		toggle_ai(AI_ON)
@@ -382,15 +382,15 @@
 		fleeing = FALSE
 	..()
 
-/mob/living/simple_animal/hostile/alien_mimic/ListTargets()
-	var/atom/target_from = GET_TARGETS_FROM(src)
-	if(!search_objects)
-		. = list()
-		for(var/atom/possible_target as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
-			if(ismob(possible_target) && possible_target != src && !istype(possible_target,/mob/living/simple_animal/hostile/alien_mimic))
-				. += possible_target
-	else
-		. = oview(vision_range, target_from)
+// /mob/living/simple_animal/hostile/alien_mimic/ListTargets()
+// 	var/atom/target_from = GET_TARGETS_FROM(src)
+// 	if(!search_objects)
+// 		. = list()
+// 		for(var/atom/possible_target as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
+// 			if(ismob(possible_target) && possible_target != src && !istype(possible_target,/mob/living/simple_animal/hostile/alien_mimic))
+// 				. += possible_target
+// 	else
+// 		. = oview(vision_range, target_from)
 
 /mob/living/simple_animal/hostile/alien_mimic/handle_automated_action()
 	if(AIStatus == AI_OFF)
@@ -410,8 +410,6 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/alien_mimic/AIShouldSleep(var/list/possible_targets)
-	if(mind)
-		return TRUE
 	var/should_sleep = !FindTarget(possible_targets, 1)
 	if(should_sleep) //Attempt to disguise
 		if(!ai_disg_target)
@@ -456,7 +454,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/victim = target
 
-		if(victim.stat == DEAD & should_heal() & !HAS_TRAIT(victim, TRAIT_HUSK)) //Heal if you're supposed to
+		if(victim.stat == DEAD && should_heal() && !HAS_TRAIT(victim, TRAIT_HUSK)) //Heal if you're supposed to
 			toggle_ai(AI_ON)
 			restore()
 			return
