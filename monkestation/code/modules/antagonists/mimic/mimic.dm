@@ -191,6 +191,10 @@
 	if(splitting)
 		to_chat(src,"<span class='warning'>You can't disguise while splitting!</span>")
 		return
+
+	visible_message("<span class='warning'>[src] changes shape, becoming a copy of [target]!</span>", \
+					"<span class='notice'>You assume the form of [target].</span>")
+
 	ai_disg_target = null
 	disguised = TRUE
 	form = target
@@ -205,8 +209,6 @@
 	pixel_x = initial(pixel_x)
 	density = target.density
 
-	visible_message("<span class='warning'>[src] changes shape, becoming a copy of [target]!</span>", \
-					"<span class='notice'>You assume the form of [target].</span>")
 
 	if(isliving(target))
 		var/mob/living/living_target = target
@@ -230,15 +232,15 @@
 	maptext = null
 	density = initial(density)
 
+	visible_message("<span class='warning'>A mimic jumps out of \the [src]!</span>", \
+					"<span class='notice'>You reform to your normal body.</span>")
+
 	name = initial(name)
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 
 	disguise_time = world.time + MIMIC_DISGUISE_COOLDOWN
-
-	visible_message("<span class='warning'>A mimic jumps out of \the [src]!</span>", \
-					"<span class='notice'>You reform to your normal body.</span>")
 
 	cut_overlays()
 	set_varspeed(initial(move_to_delay))
