@@ -77,25 +77,25 @@
 /mob/living/simple_animal/hostile/asteroid/golem/ListTargets() //Step 1, find out what we can see
 	var/atom/target_from = GET_TARGETS_FROM(src)
 	if(!search_objects)
-		var/static/target_list = typecacheof(list(/obj/machinery/porta_turret, /obj/machinery/drill)) //mobs are handled via ismob(A)
+		var/static/target_list = typecacheof(list(/obj/machinery/porta_turret, /obj/machinery/drill)) //mobs are handled via ismob(atom_target)
 		. = list()
-		for(var/atom/A as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
-			if((ismob(A) && A != src) || target_list[A.type])
-				if(ishostile(A))
-					var/mob/living/simple_animal/hostile/temp = A
+		for(var/atom/atom_target as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
+			if((ismob(atom_target) && atom_target != src) || target_list[atom_target.type])
+				if(ishostile(atom_target))
+					var/mob/living/simple_animal/hostile/temp = atom_target
 					if("golem" in temp.faction)
 						return
-				. += A
+				. += atom_target
 	else
 		. = oview(vision_range, target_from)
 
 /mob/living/simple_animal/hostile/asteroid/golem/DestroySurroundings()
 	// Get next turf the golem wants to walk on
-	var/turf/T = get_step_towards(src, target)
-	if(isclosedturf(T))  // Wall breaker attack
-		T.attack_animal(src, obj_damage)
+	var/turf/attacked_turf = get_step_towards(src, target)
+	if(isclosedturf(attacked_turf))  // Wall breaker attack
+		attacked_turf.attack_animal(src, obj_damage)
 	else
-		var/obj/structure/obstacle = locate(/obj/structure) in T
+		var/obj/structure/obstacle = locate(/obj/structure) in attacked_turf
 		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
 			obstacle.attack_animal(src,obj_damage)
 
