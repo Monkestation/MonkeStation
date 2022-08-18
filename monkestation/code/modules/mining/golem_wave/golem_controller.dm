@@ -43,11 +43,13 @@
 		return
 
 	if(count >= GW.burrow_count)
-		count = 0
-
-		var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
-		GW = null
-		GW = new path()
+		nearby_drill.balloon_alert_to_viewers("WAVE COMPLETED: 30 SECONDS UNTIL THE NEXT WAVE WILL COMMENCE", vison_distance = 10)
+		spawn(30 SECONDS)
+			nearby_drill.balloon_alert_to_viewers("NEW WAVE HAS COMMENCED", vison_distance = 10)
+			count = 0
+			var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]
+			GW = null
+			GW = new path()
 
 	// Check if a new burrow should be created
 	if(count < GW.burrow_count && (world.time - time_burrow) > GW.burrow_interval)
