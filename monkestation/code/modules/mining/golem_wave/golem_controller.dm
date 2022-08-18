@@ -27,7 +27,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/datum/golem_controller/Destroy()
+/datum/golem_controller/Destro()
 	processing = FALSE  // Stop processing
 	qdel(GW)  // Destroy wave object
 	GW = null
@@ -41,9 +41,6 @@
 	// This is a quick and dirty fix for runtime error spam caused by this
 	if(!processing)
 		return
-	if(!nearby_drill)
-		Destroy()
-
 	if(count >= GW.burrow_count)
 		count = 0
 		var/path = GLOB.golem_waves[min(initial_seismic+1, 8)]

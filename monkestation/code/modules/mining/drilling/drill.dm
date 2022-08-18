@@ -36,6 +36,8 @@
 		ore_to_spawn = null
 	if(port)
 		port = null
+	if(GC)
+		GC.stop()
 	return ..()
 
 /obj/machinery/drill/process(delta_time)
