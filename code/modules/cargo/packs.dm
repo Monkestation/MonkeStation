@@ -1823,6 +1823,16 @@
 					/obj/item/stack/packageWrap)
 	crate_name = "cargo supplies crate"
 
+/datum/supply_pack/service/drill_kit
+	name = "Drill Kit"
+	desc = "Includes everything to start drilling on lavaland, robustness not included."
+	cost = 4000
+	access_budget = ACCESS_CARGO
+	contains = list(/obj/item/drill_package,
+					/obj/item/circuitboard/computer/drill_controller,
+					/obj/item/beacon/ore_exit_beacon)
+	crate_name = "drill startup crate"
+
 /datum/supply_pack/service/noslipfloor
 	name = "High-traction Floor Tiles"
 	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floor tiles!"
