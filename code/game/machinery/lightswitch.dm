@@ -1,7 +1,7 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
-	icon = 'monkestation/icons/obj/machinery/lightswitch.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "light-nopower"
 	base_icon_state = "light"
 	desc = "Make dark."
@@ -53,7 +53,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	. = ..()
 	if(machine_stat & NOPOWER)
 		return ..()
-	. += emissive_appearance(icon, "[base_icon_state]-glow", alpha = src.alpha)
+	. += emissive_appearance(icon, "[base_icon_state]-emissive[area.lightswitch ? "-on" : "-off"]", alpha = src.alpha)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
