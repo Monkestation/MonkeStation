@@ -9862,6 +9862,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "azj" = (
@@ -10180,12 +10181,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 8
-	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "azY" = (
@@ -11361,6 +11357,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aDf" = (
@@ -11874,6 +11871,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aEk" = (
@@ -12023,6 +12023,9 @@
 	name = "Garden"
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics/garden)
 "aEM" = (
@@ -12244,6 +12247,9 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aFi" = (
@@ -12947,6 +12953,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aGN" = (
@@ -14390,6 +14397,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aKt" = (
@@ -14754,6 +14762,9 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "aLc" = (
@@ -23193,6 +23204,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
@@ -36336,13 +36350,15 @@
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "bYX" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/structure/sink/kitchen{
+	desc = "A sink used for washing one's hands and face. This one is extra robust looking.";
+	dir = 1;
+	name = "Industrial Sink";
+	pixel_y = 25;
+	pixel_x = -4
 	},
 /turf/open/floor/noslip/blue,
 /area/medical/virology)
@@ -36893,11 +36909,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "caN" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/machinery/doorButtons/access_button{
 	idDoor = "virology_airlock_interior";
 	idSelf = "virology_airlock_control";
@@ -55545,9 +55556,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/purple/filled/warning{
-	dir = 1
-	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/robotics/mechbay)
 "lmX" = (
@@ -55565,14 +55573,6 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/effect/turf_decal/trimline/brown/filled/warning{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/warning,
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
@@ -61723,6 +61723,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "qgW" = (
@@ -65893,7 +65894,8 @@
 "tHW" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
-	name = "The Tider Lounge"
+	name = "The Tider Lounge";
+	desc = "This former locker room has been taken over by a 'respectable' group of 'gentle''men' who identify themselves as the 'Tophat Clan''"
 	},
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel/dark,
@@ -67208,10 +67210,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/public/glass{
-	name = "The Tider Lounge"
-	},
 /obj/effect/turf_decal/stripes/closeup,
+/obj/machinery/door/airlock/public/glass{
+	name = "The Tider Lounge";
+	desc = "This former locker room has been taken over by a 'respectable' group of 'gentle''men' who identify themselves as the 'Tophat Clan''"
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
 "uSv" = (
@@ -70589,12 +70592,7 @@
 	req_access_txt = "50"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/brown/filled/warning{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/brown/filled/warning{
-	dir = 8
-	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)
 "xnm" = (
