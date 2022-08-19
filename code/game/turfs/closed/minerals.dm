@@ -3,17 +3,18 @@
 /turf/closed/mineral //wall piece
 	name = "rock"
 	icon = 'icons/turf/mining.dmi'
-	icon_state = "smoothrocks"
+	icon_state = "smoothrocks-0"
 	base_icon_state = "smoothrocks"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_LOW_WALL, SMOOTH_GROUP_WINDOW_FULLTILE)
 	baseturfs = /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = AIRLESS_ATMOS
 	opacity = 1
 	density = TRUE
 	initial_temperature = 293.15
+	color = COLOR_DARK_GRAY
 	var/environment_type = "asteroid"
 	var/turf/open/floor/plating/turf_type = /turf/open/floor/plating/asteroid/airless
 	var/obj/item/stack/ore/mineralType = null
@@ -23,13 +24,6 @@
 	var/defer_change = 0
 
 /turf/closed/mineral/Initialize(mapload)
-	/* //MONKESTATION REMOVAL
-	if (!canSmoothWith)
-		canSmoothWith = list(/turf/closed/mineral, /turf/closed/indestructible)
-	*/ //MONKESTATION REMOVAL END
-	var/matrix/M = new
-	M.Translate(-4, -4)
-	transform = M
 	icon = smooth_icon
 	. = ..()
 

@@ -3,7 +3,6 @@
 	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
 	icon = 'icons/turf/walls/cult_wall.dmi'
 	smoothing_flags = SMOOTH_BITMASK
-	canSmoothWith = null
 	plating_material = /datum/material/runedmetal
 	color = "#3C3434" //To display in mapping softwares
 
