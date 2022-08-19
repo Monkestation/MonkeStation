@@ -4,6 +4,7 @@
 	icon = 'icons/turf/walls/cult_wall.dmi'
 	smoothing_flags = SMOOTH_BITMASK
 	plating_material = /datum/material/runedmetal
+	stripe_paint = "#990000"
 	color = "#3C3434" //To display in mapping softwares
 
 /turf/closed/wall/mineral/cult/Initialize(mapload)
