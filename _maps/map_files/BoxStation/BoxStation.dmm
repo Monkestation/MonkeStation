@@ -41531,9 +41531,6 @@
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/machinery/firealarm/directional/north,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/plasteel/grid,
 /area/medical/surgery)
 "ctP" = (
@@ -41546,6 +41543,9 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/surgery)
@@ -41904,9 +41904,7 @@
 "cuW" = (
 /obj/machinery/anesthetic_machine,
 /obj/effect/turf_decal/tile/blue/tile_full,
-/obj/item/radio/intercom{
-	pixel_y = -28
-	},
+/obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "cuX" = (
@@ -47885,12 +47883,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/primary)
-"fxC" = (
-/obj/machinery/anesthetic_machine,
-/obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/airalarm/directional/south,
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "fxL" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple/tile_full,
@@ -52139,6 +52131,12 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/cult,
 /area/ai_monitored/security/armory)
+"iPD" = (
+/obj/effect/turf_decal/tile/blue/tile_full,
+/obj/structure/table/glass,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "iPT" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 6
@@ -52734,17 +52732,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "jrm" = (
-/obj/structure/chair{
-	dir = 8
+/obj/machinery/anesthetic_machine,
+/obj/effect/turf_decal/tile/blue/tile_full,
+/obj/item/radio/intercom{
+	pixel_y = -28
 	},
-/obj/effect/turf_decal/trimline/yellow/warning{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/secondary/exit/departure_lounge)
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "jsc" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
@@ -59404,7 +59398,6 @@
 /obj/structure/table/glass,
 /obj/item/wrench/medical,
 /obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "ors" = (
@@ -63881,6 +63874,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"sjd" = (
+/obj/machinery/button/door{
+	id = "surgicalpriv";
+	name = "Surgery Privacy";
+	pixel_x = -7;
+	pixel_y = 60;
+	req_access_txt = "45"
+	},
+/turf/open/floor/plasteel/grid,
+/area/medical/surgery)
 "sjr" = (
 /obj/effect/turf_decal/loading_area,
 /obj/machinery/airalarm{
@@ -64967,15 +64970,17 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "tcR" = (
-/obj/machinery/button/door{
-	id = "surgicalpriv";
-	name = "Surgery Privacy";
-	pixel_x = -7;
-	pixel_y = 60;
-	req_access_txt = "45"
+/obj/structure/chair{
+	dir = 8
 	},
-/turf/open/floor/plasteel/grid,
-/area/medical/surgery)
+/obj/effect/turf_decal/trimline/yellow/warning{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/exit/departure_lounge)
 "tdz" = (
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/effect/turf_decal/trimline/blue/warning{
@@ -102891,7 +102896,7 @@ bDJ
 dsl
 ctX
 cAT
-cuW
+jrm
 bzs
 bZN
 bnc
@@ -103146,9 +103151,9 @@ gdS
 byW
 bDJ
 bAV
-tcR
+sjd
 cAT
-fxC
+cuW
 bzs
 bZN
 bnc
@@ -104433,7 +104438,7 @@ bDJ
 ctP
 aLW
 cWG
-cWG
+iPD
 bzs
 bKG
 bnc
@@ -120852,10 +120857,10 @@ msB
 sZm
 mrE
 nFB
-jrm
-jrm
-jrm
-jrm
+tcR
+tcR
+tcR
+tcR
 rJv
 maR
 cBl
