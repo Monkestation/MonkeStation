@@ -27565,6 +27565,7 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "byX" = (
@@ -28672,16 +28673,11 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/cmo)
 "bBy" = (
-/obj/machinery/light,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/effect/turf_decal/trimline/blue/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
+/obj/machinery/anesthetic_machine,
+/obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "bBz" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -29447,22 +29443,10 @@
 /area/medical/surgery)
 "bDO" = (
 /obj/structure/table/optable,
-/obj/machinery/camera{
-	c_tag = "Medbay - Surgery";
-	dir = 6;
-	name = "medbay camera";
-	network = list("ss13","medbay")
-	},
-/obj/item/radio/intercom{
-	pixel_y = 24
-	},
 /obj/effect/turf_decal/tile/blue/tile_full,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "bDP" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
@@ -32110,7 +32094,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bMa" = (
-/obj/machinery/light/small,
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -35960,9 +35943,6 @@
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
 "bXZ" = (
-/obj/machinery/airalarm{
-	pixel_y = 22
-	},
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery{
 	pixel_y = 6
@@ -41548,6 +41528,9 @@
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/machinery/firealarm/directional/north,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/surgery)
 "ctP" = (
@@ -41918,6 +41901,9 @@
 "cuW" = (
 /obj/machinery/anesthetic_machine,
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/item/radio/intercom{
+	pixel_y = -28
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "cuX" = (
@@ -41963,7 +41949,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
 	},
-/obj/machinery/firealarm/directional/south,
+/obj/machinery/camera{
+	c_tag = "Medbay - Storage";
+	dir = 1;
+	name = "medbay camera";
+	network = list("ss13","medbay");
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "cvc" = (
@@ -42923,6 +42915,15 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/camera{
+	c_tag = "Medbay - Surgery";
+	dir = 6;
+	name = "medbay camera";
+	network = list("ss13","medbay")
+	},
+/obj/structure/mirror{
+	pixel_y = 27
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "cAN" = (
@@ -42994,12 +42995,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 1
 	},
-/turf/open/floor/plasteel/techmaint,
-/area/medical/morgue)
-"cAZ" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
+/turf/open/floor/plasteel/techmaint,
+/area/medical/morgue)
+"cAZ" = (
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -48020,6 +48021,7 @@
 "fBK" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/morgue)
 "fCa" = (
@@ -49048,7 +49050,6 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
 "gmT" = (
-/obj/machinery/light,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -50286,6 +50287,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"hfC" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/curtain,
+/turf/open/floor/plating,
+/area/medical/surgery)
 "hfE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -51264,6 +51270,7 @@
 /obj/effect/turf_decal/trimline/blue/line{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "ifW" = (
@@ -59399,6 +59406,7 @@
 /obj/structure/table/glass,
 /obj/item/wrench/medical,
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "ors" = (
@@ -68066,6 +68074,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "vIU" = (
@@ -103146,7 +103155,7 @@ bDJ
 bAV
 ctX
 cAT
-cuW
+bBy
 bzs
 bZN
 bnc
@@ -103399,7 +103408,7 @@ bqH
 bwb
 gdS
 ufK
-bDJ
+hfC
 bDP
 bFp
 cus
@@ -103655,8 +103664,8 @@ buX
 bqH
 bwb
 gdS
-bBy
-bDJ
+ufK
+hfC
 bDO
 bFo
 xtS
@@ -103913,7 +103922,7 @@ bqH
 byN
 gdS
 ufK
-bDJ
+hfC
 bXZ
 ctX
 cAT
