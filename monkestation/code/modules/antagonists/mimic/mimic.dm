@@ -111,7 +111,7 @@
 	if(target)
 		if(target.buckle_mob(src, TRUE))
 			target.Knockdown(10 SECONDS)
-			target.Stun(7 SECONDS)
+			target.Stun(5 SECONDS)
 			target.drop_all_held_items()
 			layer = target.layer+0.01
 			visible_message("<span class='warning'>[src] latches onto [target]!</span>")
@@ -353,6 +353,9 @@
 				adjustHealth(-30)
 			return
 		if(disguised) //Insta latch if youre disguised
+			if(victim.stat == DEAD)
+				to_chat("<span class='warning'>You can't absorb a body while disguised!</span>")
+				return
 			latch(victim)
 			restore()
 			return
@@ -385,15 +388,17 @@
 		fleeing = FALSE
 	..()
 
-// /mob/living/simple_animal/hostile/alien_mimic/ListTargets()
-// 	var/atom/target_from = GET_TARGETS_FROM(src)
-// 	if(!search_objects)
-// 		. = list()
-// 		for(var/atom/possible_target as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
-// 			if(ismob(possible_target) && possible_target != src && !istype(possible_target,/mob/living/simple_animal/hostile/alien_mimic))
-// 				. += possible_target
-// 	else
-// 		. = oview(vision_range, target_from)
+/mob/living/simple_animal/hostile/alien_mimic/ListTargets()
+	var/atom/target_from = GET_TARGETS_FROM(src)
+	if(!search_objects)
+		. = list()
+		for(var/atom/possible_target as() in dview(vision_range, get_turf(target_from), SEE_INVISIBLE_MINIMUM))
+			if(ismob(possible_target) && possible_target != src && !ismimic(possible_target))
+				var/mob/mob_target = possible_target
+				if(mob_target.stat != DEAD)
+					. += possible_target
+	else
+		. = oview(vision_range, target_from)
 
 /mob/living/simple_animal/hostile/alien_mimic/handle_automated_action()
 	if(AIStatus == AI_OFF)
