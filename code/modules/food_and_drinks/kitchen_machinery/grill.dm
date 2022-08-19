@@ -19,7 +19,7 @@
 
 /obj/machinery/grill/Initialize(mapload)
 	. = ..()
-	grill_loop = new(src, FALSE)
+	grill_loop = new(list(src), FALSE)
 
 /obj/machinery/grill/Destroy()
 	QDEL_NULL(grill_loop)
@@ -60,9 +60,6 @@
 	else if(IS_EDIBLE(I))
 		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
 			return ..()
-		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
-			to_chat(user, span_notice("[I] has already been grilled!"))
-			return
 		else if(grill_fuel <= 0)
 			to_chat(user, span_warning("There is not enough fuel!"))
 			return
