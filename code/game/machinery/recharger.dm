@@ -50,7 +50,7 @@
 		update_use_power(ACTIVE_POWER_USE)
 		finished_recharging = FALSE
 		using_power = TRUE
-		update_icon(scan = TRUE)
+		update_icon()
 	else
 		update_use_power(IDLE_POWER_USE)
 		using_power = FALSE

@@ -59,6 +59,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	payment_department = ACCOUNT_SRV
 
 	light_color = LIGHT_COLOR_BLUE
+	light_power = 0.5
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -165,6 +167,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 	/// how many items have been inserted in a vendor
 	var/loaded_items = 0
+
+	///Name of lighting mask for the vending machine
+	var/light_mask
 
 /obj/item/circuitboard
     ///determines if the circuit board originated from a vendor off station or not.
