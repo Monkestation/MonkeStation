@@ -24228,6 +24228,9 @@
 	pixel_x = 4;
 	pixel_y = 7
 	},
+/obj/item/clothing/gloves/color/latex/nitrile{
+	layer = 2.91
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
 "bos" = (
