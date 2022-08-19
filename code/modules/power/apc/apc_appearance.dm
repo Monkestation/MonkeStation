@@ -1,142 +1,117 @@
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
-/obj/machinery/power/apc/update_icon()
-	var/update = check_updates()
-	//returns 0 if no need to update icons.
-	// 1 if we need to update the icon_state
-	// 2 if we need to update the overlays
-	if(!update)
-		icon_update_needed = FALSE
+/obj/machinery/power/apc/update_appearance(updates=check_updates())
+	icon_update_needed = FALSE
+	if(!updates)
 		return
 
-	if(update & 1) // Updating the icon state
-		if(update_state & UPSTATE_ALLGOOD)
-			icon_state = "apc0"
-		else if(update_state & (UPSTATE_OPENED1|UPSTATE_OPENED2))
-			var/basestate = "apc[ cell ? "2" : "1" ]"
-			if(update_state & UPSTATE_OPENED1)
-				if(update_state & (UPSTATE_MAINT|UPSTATE_BROKE))
-					icon_state = "apcmaint" //disabled APC cannot hold cell
-				else
-					icon_state = basestate
-			else if(update_state & UPSTATE_OPENED2)
-				if (update_state & UPSTATE_BROKE || malfhack)
-					icon_state = "[basestate]-b-nocover"
-				else
-					icon_state = "[basestate]-nocover"
-		else if(update_state & UPSTATE_BROKE)
-			icon_state = "apc-b"
-		else if(update_state & UPSTATE_BLUESCREEN)
-			icon_state = "apcemag"
-		else if(update_state & UPSTATE_WIREEXP)
-			icon_state = "apcewires"
-		else if(update_state & UPSTATE_MAINT)
-			icon_state = "apc0"
-
-	if(!(update_state & UPSTATE_ALLGOOD))
-		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
-	if(update & 2)
-		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-		if(!(machine_stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, plane, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, EMISSIVE_PLANE, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, plane, dir)
-			SSvis_overlays.add_vis_overlay(src, icon, "apco3-[charging]", layer, EMISSIVE_PLANE, dir)
-			if(operating)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, plane, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco0-[equipment]", layer, EMISSIVE_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, plane, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco1-[lighting]", layer, EMISSIVE_PLANE, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, plane, dir)
-				SSvis_overlays.add_vis_overlay(src, icon, "apco2-[environ]", layer, EMISSIVE_PLANE, dir)
-
+	. = ..()
 	// And now, separately for cleanness, the lighting changing
-	if(update_state & UPSTATE_ALLGOOD)
+	if(!update_state)
 		switch(charging)
 			if(APC_NOT_CHARGING)
-				light_color = LIGHT_COLOR_RED
+				set_light_color(COLOR_SOFT_RED)
 			if(APC_CHARGING)
-				light_color = LIGHT_COLOR_BLUE
+				set_light_color(LIGHT_COLOR_BLUE)
 			if(APC_FULLY_CHARGED)
-				light_color = LIGHT_COLOR_GREEN
-		set_light(lon_range)
-	else if(update_state & UPSTATE_BLUESCREEN)
-		light_color = LIGHT_COLOR_BLUE
-		set_light(lon_range)
-	else
-		set_light(0)
+				set_light_color(LIGHT_COLOR_GREEN)
+		set_light(light_on_range)
+		return
 
-	icon_update_needed = FALSE
+	if(update_state & UPSTATE_BLUESCREEN)
+		set_light_color(LIGHT_COLOR_BLUE)
+		set_light(light_on_range)
+		return
 
+	set_light(0)
+
+/obj/machinery/power/apc/update_icon_state()
+	if(!update_state)
+		icon_state = "apc0"
+		return ..()
+	if(update_state & (UPSTATE_OPENED1|UPSTATE_OPENED2))
+		var/basestate = "apc[cell ? 2 : 1]"
+		if(update_state & UPSTATE_OPENED1)
+			icon_state = (update_state & (UPSTATE_MAINT|UPSTATE_BROKE)) ? "apcmaint" : basestate
+		else if(update_state & UPSTATE_OPENED2)
+			icon_state = "[basestate][((update_state & UPSTATE_BROKE) || malfhack) ? "-b" : null]-nocover"
+		return ..()
+	if(update_state & UPSTATE_BROKE)
+		icon_state = "apc-b"
+		return ..()
+	if(update_state & UPSTATE_BLUESCREEN)
+		icon_state = "apcemag"
+		return ..()
+	if(update_state & UPSTATE_WIREEXP)
+		icon_state = "apcewires"
+		return ..()
+	if(update_state & UPSTATE_MAINT)
+		icon_state = "apc0"
+	return ..()
+
+/obj/machinery/power/apc/update_overlays()
+	. = ..()
+	if((machine_stat & (BROKEN|MAINT)) || update_state)
+		return
+
+	. += mutable_appearance(icon, "apcox-[locked]")
+	. += emissive_appearance(icon, "apcox-[locked]")
+	. += mutable_appearance(icon, "apco3-[charging]")
+	. += emissive_appearance(icon, "apco3-[charging]")
+	if(!operating)
+		return
+
+	. += mutable_appearance(icon, "apco0-[equipment]")
+	. += emissive_appearance(icon, "apco0-[equipment]")
+	. += mutable_appearance(icon, "apco1-[lighting]")
+	. += emissive_appearance(icon, "apco1-[lighting]")
+	. += mutable_appearance(icon, "apco2-[environ]")
+	. += emissive_appearance(icon, "apco2-[environ]")
+
+/// Checks for what icon updates we will need to handle
 /obj/machinery/power/apc/proc/check_updates()
-	var/last_update_state = update_state
-	var/last_update_overlay = update_overlay
-	update_state = 0
-	update_overlay = 0
+	SIGNAL_HANDLER
+	. = NONE
 
-	if(cell)
-		update_state |= UPSTATE_CELL_IN
+	// Handle icon status:
+	var/new_update_state = NONE
 	if(machine_stat & BROKEN)
-		update_state |= UPSTATE_BROKE
+		new_update_state |= UPSTATE_BROKE
 	if(machine_stat & MAINT)
-		update_state |= UPSTATE_MAINT
+		new_update_state |= UPSTATE_MAINT
+
 	if(opened)
-		if(opened==APC_COVER_OPENED)
-			update_state |= UPSTATE_OPENED1
-		if(opened==APC_COVER_REMOVED)
-			update_state |= UPSTATE_OPENED2
+		new_update_state |= (opened << UPSTATE_COVER_SHIFT)
+		if(cell)
+			new_update_state |= UPSTATE_CELL_IN
+
 	else if((obj_flags & EMAGGED) || malfai)
-		update_state |= UPSTATE_BLUESCREEN
+		new_update_state |= UPSTATE_BLUESCREEN
 	else if(panel_open)
-		update_state |= UPSTATE_WIREEXP
-	if(update_state <= 1)
-		update_state |= UPSTATE_ALLGOOD
+		new_update_state |= UPSTATE_WIREEXP
 
+	if(new_update_state != update_state)
+		update_state = new_update_state
+		. |= UPDATE_ICON_STATE
+
+	// Handle overlay status:
+	var/new_update_overlay = NONE
 	if(operating)
-		update_overlay |= APC_UPOVERLAY_OPERATING
+		new_update_overlay |= UPOVERLAY_OPERATING
 
-	if(update_state & UPSTATE_ALLGOOD)
+	if(!update_state)
 		if(locked)
-			update_overlay |= APC_UPOVERLAY_LOCKED
+			new_update_overlay |= UPOVERLAY_LOCKED
 
-		if(!charging)
-			update_overlay |= APC_UPOVERLAY_CHARGEING0
-		else if(charging == APC_CHARGING)
-			update_overlay |= APC_UPOVERLAY_CHARGEING1
-		else if(charging == APC_FULLY_CHARGED)
-			update_overlay |= APC_UPOVERLAY_CHARGEING2
+		new_update_overlay |= (charging << UPOVERLAY_CHARGING_SHIFT)
+		new_update_overlay |= (equipment << UPOVERLAY_EQUIPMENT_SHIFT)
+		new_update_overlay |= (lighting << UPOVERLAY_LIGHTING_SHIFT)
+		new_update_overlay |= (environ << UPOVERLAY_ENVIRON_SHIFT)
 
-		if (!equipment)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT0
-		else if(equipment == 1)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT1
-		else if(equipment == 2)
-			update_overlay |= APC_UPOVERLAY_EQUIPMENT2
+	if(new_update_overlay != update_overlay)
+		update_overlay = new_update_overlay
+		. |= UPDATE_OVERLAYS
 
-		if(!lighting)
-			update_overlay |= APC_UPOVERLAY_LIGHTING0
-		else if(lighting == 1)
-			update_overlay |= APC_UPOVERLAY_LIGHTING1
-		else if(lighting == 2)
-			update_overlay |= APC_UPOVERLAY_LIGHTING2
-
-		if(!environ)
-			update_overlay |= APC_UPOVERLAY_ENVIRON0
-		else if(environ==1)
-			update_overlay |= APC_UPOVERLAY_ENVIRON1
-		else if(environ==2)
-			update_overlay |= APC_UPOVERLAY_ENVIRON2
-
-
-	var/results = 0
-	if(last_update_state == update_state && last_update_overlay == update_overlay)
-		return 0
-	if(last_update_state != update_state)
-		results += 1
-	if(last_update_overlay != update_overlay)
-		results += 2
-	return results
 
 // Used in process so it doesn't update the icon too much
 /obj/machinery/power/apc/proc/queue_icon_update()
