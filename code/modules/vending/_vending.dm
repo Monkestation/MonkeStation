@@ -61,6 +61,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	light_color = LIGHT_COLOR_BLUE
 	light_power = 0.5
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	light_mask = "generic-light-mask"
 
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -1031,6 +1032,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/max_loaded_items = 20
 	/// Base64 cache of custom icons.
 	var/list/base64_cache = list()
+	light_mask = "robotics-light-mask"
 
 /obj/machinery/vending/custom/compartmentLoadAccessCheck(mob/user)
 	. = FALSE
