@@ -48,6 +48,15 @@
 	/// Typecache of all objects that we seek out to apply a neighbor stripe overlay
 	var/static/list/neighbor_typecache
 
+/turf/closed/wall/Initialize(mapload)
+	. = ..()
+	if(stripe_paint)
+		addtimer(CALLBACK(src, .proc/repaint)) //i hate this but i am missing something that makes me not need this
+
+/turf/closed/wall/proc/repaint()
+	paint_wall(wall_paint)
+	paint_stripe(stripe_paint)
+
 /turf/closed/wall/update_greyscale()
 	greyscale_colors = get_wall_color()
 	return ..()
