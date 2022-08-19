@@ -552,7 +552,7 @@
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "Nk" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/turf/closed/wall/mineral/titanium/survival,
 /area/shuttle/escape)
 "NR" = (
 /obj/machinery/computer/security{

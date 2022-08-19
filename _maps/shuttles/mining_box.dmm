@@ -62,9 +62,6 @@
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/open/floor/plating/airless,
 /area/shuttle/mining)
-"q" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
-/area/shuttle/mining)
 "K" = (
 /turf/open/floor/pod/light,
 /area/shuttle/mining)
@@ -77,21 +74,21 @@
 
 (1,1,1) = {"
 a
-q
+a
 b
-q
+a
 b
-q
+a
 a
 "}
 (2,1,1) = {"
-q
+a
 c
 e
 g
 f
 i
-q
+a
 "}
 (3,1,1) = {"
 b
@@ -103,20 +100,20 @@ j
 l
 "}
 (4,1,1) = {"
-q
+a
 c
 e
 K
 f
 k
-q
+a
 "}
 (5,1,1) = {"
 a
-q
+a
 b
 h
 b
-q
+a
 a
 "}

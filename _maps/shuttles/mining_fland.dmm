@@ -206,7 +206,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/mining/large)
 "I" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/turf/closed/wall/mineral/titanium/survival,
 /area/shuttle/mining/large)
 "K" = (
 /obj/effect/turf_decal/stripes/line{

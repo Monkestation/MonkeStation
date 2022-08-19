@@ -46,7 +46,7 @@
 /turf/closed/wall/mineral/titanium/survival,
 /area/shuttle/escape)
 "aj" = (
-/turf/closed/wall/mineral/titanium/survival/nodiagonal,
+/turf/closed/wall/mineral/titanium/survival,
 /area/shuttle/escape)
 "ak" = (
 /obj/item/gps/computer,

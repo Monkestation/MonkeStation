@@ -175,7 +175,6 @@
 
 /obj/structure/low_wall/proc/set_stripe_paint(new_paint)
 	stripe_paint = new_paint
-	message_admins("[stripe_paint]")
 	update_appearance()
 
 /obj/structure/low_wall/proc/set_material(new_material_type)
