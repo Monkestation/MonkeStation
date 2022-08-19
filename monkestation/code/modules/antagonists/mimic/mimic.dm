@@ -26,7 +26,7 @@
 	maxHealth = 75
 	health = 75
 	melee_damage = 7
-	obj_damage = 21 //21 is the minimum damage to hurt doors, which they need since they can't vent crawl.
+	obj_damage = 30
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	wander = FALSE
@@ -191,6 +191,9 @@
 /mob/living/simple_animal/hostile/alien_mimic/proc/disguise(atom/movable/target)
 	if(splitting)
 		to_chat(src,"<span class='warning'>You can't disguise while splitting!</span>")
+		return
+	if(isliving(buckled))
+		to_chat(src,"<span class='warning'>You can't disguise while latched onto someone!</span>")
 		return
 
 	visible_message("<span class='warning'>[src] changes shape, becoming a copy of [target]!</span>", \
