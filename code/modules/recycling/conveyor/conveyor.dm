@@ -266,6 +266,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	balloon_alert(user, "starts prying up [src].")
 	if(!crowbar.use_tool(src, user, 4 SECONDS, volume = 40))
 		return
+	if(processing_flags == START_PROCESSING_ON_INIT)
+		operating = CONVEYOR_OFF
 	set_operating(FALSE)
 	var/obj/item/stack/conveyor/belt_item = new /obj/item/stack/conveyor(loc, 1, TRUE, null, null, id)
 	if(!QDELETED(belt_item)) //God I hate stacks
@@ -385,7 +387,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /// Updates the switch's `position` and `last_pos` variable. Useful so that the switch can properly cycle between the forwards, backwards and neutral positions.
 /obj/machinery/conveyor_switch/proc/update_position()
 	if(position == CONVEYOR_OFF)
-		if(oneway)   //is it a oneway switch
+		if(oneway) //is it a oneway switch
 			position = oneway
 		else
 			if(last_pos < CONVEYOR_OFF)
@@ -429,7 +431,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	balloon_alert(user, "detaching [src].")
 	if(!crowbar.use_tool(src, user, 2 SECONDS, volume = 40))
 		return
-//	crowbar.play_tool_sound(src, 50)
 	var/obj/item/conveyor_switch_construct/switch_construct = new/obj/item/conveyor_switch_construct(src.loc)
 	switch_construct.id = id
 	transfer_fingerprints_to(switch_construct)

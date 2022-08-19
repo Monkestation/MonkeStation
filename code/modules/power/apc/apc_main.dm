@@ -124,7 +124,8 @@
 	var/integration_cog = null
 
 	/// To prevent sound loop bugs
-	var/apc_sound_stage = null
+	var/apc_sound_stage = 0
+	var/sound_spam_timer = 0
 
 /obj/machinery/power/apc/New(turf/loc, ndir, var/building=0)
 	if (!req_access)
@@ -360,11 +361,11 @@
 					update_appearance()
 					. = TRUE
 		if("cover")
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Cover.ogg', 10, 5)
+			playsound(src, 'sound/machines/apc/PowerSwitch_Cover.ogg', 10, 5)
 			coverlocked = !coverlocked
 			. = TRUE
 		if("breaker")
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 30, 2)
+			playsound(src, 'sound/machines/apc/PowerSwitch_Zap.ogg', 30, 2)
 			toggle_breaker(usr)
 			. = TRUE
 		if("toggle_nightshift")
@@ -410,7 +411,7 @@
 			if(get_malf_status(usr))
 				malfvacate()
 		if("reboot")
-			playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 30, 1)
+			playsound(src, 'sound/machines/apc/PowerUp_001.ogg', 30, 1)
 			failure_timer = 0
 			update_appearance()
 			update()
@@ -569,16 +570,16 @@
 
 		/// Sounds for power off and on stages in APCs
 		if(ISINRANGE(cell.percent(), 14, 16) && charging == APC_NOT_CHARGING && apc_sound_stage != 1)
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Place.ogg', 20, 1)
+			playsound(src, 'sound/machines/apc/PowerSwitch_Zap.ogg', 20, 1)
 			apc_sound_stage = 1
 		if(ISINRANGE(cell.percent(), 29, 31) && charging == APC_NOT_CHARGING && apc_sound_stage != 2)
-			playsound(src, 'monkestation/sound/machines/apc/PowerSwitch_Off.ogg', 10, 1)
+			playsound(src, 'sound/machines/apc/PowerSwitch_Off.ogg', 10, 1)
 			apc_sound_stage = 2
 		if(ISINRANGE(cell.percent(), 1, 3) && charging == APC_NOT_CHARGING  && apc_sound_stage != 3)
-			playsound(src, 'monkestation/sound/machines/apc/PowerDown_001.ogg', 10, 1)
+			playsound(src, 'sound/machines/apc/PowerDown_001.ogg', 10, 1)
 			apc_sound_stage = 3
 		if(ISINRANGE(cell.percent(), 1, 3) && charging == APC_CHARGING && apc_sound_stage != 4)
-			playsound(src, 'monkestation/sound/machines/apc/PowerUp_001.ogg', 10, 1)
+			playsound(src, 'sound/machines/apc/PowerUp_001.ogg', 10, 1)
 			apc_sound_stage = 4
 
 	else // no cell, switch everything off

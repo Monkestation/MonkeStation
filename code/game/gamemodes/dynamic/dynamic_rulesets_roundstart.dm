@@ -17,7 +17,7 @@
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
-	cost = 7	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
+	cost = 8	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
 	scaling_cost = 12
 	minimum_players = 8
 	requirements = list(101,10,10,10,10,10,10,10,10,10)
@@ -29,6 +29,8 @@
 	COOLDOWN_START(src, autotraitor_cooldown_check, TRAITOR_COOLDOWN)
 	var/num_traitors = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_traitors)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
@@ -56,9 +58,9 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg", "AI")
 	required_candidates = 2
-	weight = 4
-	cost = 15
-	scaling_cost = 15 //15(15), 30(45), 45(80)
+	weight = 2
+	cost = 13
+	scaling_cost = 13
 	minimum_players = 20
 	requirements = list(40,30,30,20,20,15,15,15,10,10)
 	antag_cap = 2
@@ -104,8 +106,8 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
-	weight = 3
-	cost = 15
+	weight = 4
+	cost = 17
 	scaling_cost = 15 //15(15), 30(45), 45(80)
 	minimum_players = 25
 	requirements = list(70,70,60,50,40,20,20,10,10,10)
@@ -115,6 +117,8 @@
 	. = ..()
 	var/num_changelings = get_antag_cap(population) * (scaled_times + 1)
 	for (var/i = 1 to num_changelings)
+		if(candidates.len <= 0)
+			break
 		var/mob/M = pick_n_take(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
@@ -140,11 +144,11 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("AI", "Cyborg")
 	required_candidates = 1
-	weight = 0
-	cost = 101
+	weight = 3
+	cost = 25
 	scaling_cost = 15 //15(15), 30(45), 45(80)
-	minimum_players = 15
-	requirements = list(101,101,101,101,101,101,101,101,101,101)
+	minimum_players = 25
+	requirements = list(101,101,101,101,40,30,30,30,20,20)
 	antag_cap = 1
 
 
@@ -153,6 +157,8 @@
 	var/num_ecult = get_antag_cap(population) * (scaled_times + 1)
 
 	for (var/i = 1 to num_ecult)
+		if(candidates.len <= 0)
+			break
 		var/mob/picked_candidate = pick_n_take(candidates)
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
@@ -180,13 +186,13 @@
 	name = "Wizard"
 	antag_flag = ROLE_WIZARD
 	antag_datum = /datum/antagonist/wizard
-	flags = LONE_RULESET
+	flags = HIGH_IMPACT_RULESET
 	minimum_required_age = 14
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a wizard getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 1
 	minimum_players = 30
-	weight = 2
-	cost = 40
+	weight = 5
+	cost = 30
 	requirements = list(101,101,101,101,101,50,40,30,30,30)
 	var/list/roundstart_wizards = list()
 
@@ -230,8 +236,8 @@
 	required_candidates = 2
 	minimum_players = 30
 	weight = 3
-	cost = 30
-	requirements = list(101,101,101,101,101,30,30,20,10,10)
+	cost = 25
+	requirements = list(101,101,101,101,101,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = 4
 	var/datum/team/cult/main_cult
@@ -286,8 +292,8 @@
 	restricted_roles = list("Head of Security", "Captain") // Just to be sure that a nukie getting picked won't ever imply a Captain or HoS not getting drafted
 	required_candidates = 5
 	minimum_players = 30
-	weight = 3
-	cost = 50
+	weight = 4
+	cost = 25
 	requirements = list(101,101,101,101,101,40,30,20,10,10)
 	flags = HIGH_IMPACT_RULESET
 	antag_cap = list("denominator" = 18, "offset" = 1)
@@ -371,15 +377,15 @@
 	minimum_required_age = 14
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director")
 	required_candidates = 3
-	weight = 3
+	weight = 4
 	delay = 7 MINUTES
 	cost = 20
-	requirements = list(101,101,101,101,101,20,10,10,10,10)
+	requirements = list(101,101,101,101,101,20,20,20,20,20)
 	antag_cap = 3
 	flags = HIGH_IMPACT_RULESET
 	blocking_rules = list(/datum/dynamic_ruleset/latejoin/provocateur)
-	// I give up, just there should be enough heads with 35 players...
-	minimum_players = 35
+	// I give up, just there should be enough heads with 30 players...
+	minimum_players = 30
 	/// How much threat should be injected when the revolution wins?
 	var/revs_win_threat_injection = 20
 	var/datum/team/revolution/revolution
@@ -474,6 +480,7 @@
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops
 	name = "Clown Ops"
+	weight = 2
 	minimum_players = 30
 	antag_datum = /datum/antagonist/nukeop/clownop
 	antag_leader_datum = /datum/antagonist/nukeop/leader/clownop
@@ -570,7 +577,7 @@
 	var/carriers_to_make = get_antag_cap(population) * (scaled_times + 1)
 
 	for(var/j = 0, j < carriers_to_make, j++)
-		if (!candidates.len)
+		if (candidates.len <= 0)
 			break
 		var/mob/carrier = pick_n_take(candidates)
 		assigned += carrier.mind
@@ -655,8 +662,8 @@
 	required_candidates = 4
 	minimum_players = 30
 	weight = 3
-	cost = 40
-	requirements = list(101,101,101,101,101,50,30,30,30,30)
+	cost = 25
+	requirements = list(101,101,101,101,101,40,30,30,20,20)
 	flags = HIGH_IMPACT_RULESET
 	var/datum/team/clock_cult/main_cult
 	var/list/selected_servants = list()
