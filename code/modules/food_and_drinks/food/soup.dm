@@ -253,3 +253,15 @@
 	desc = "A bowl of mushy bread and milk. It reminds you, not too fondly, of a bowel movement."
 	icon_state = "mammi"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/consumable/nutriment/vitamin = 2)
+
+// empty soup for custom soups
+/obj/item/food/soup/empty
+	name = "soup"
+	icon_state = "soup"
+	foodtypes = NONE
+	tastes = list()
+	desc = "A delicious customized soup."
+
+/obj/item/food/soup/empty/Initialize(mapload)
+	. = ..()
+	reagents.flags |= NO_REACT

@@ -20,7 +20,7 @@
 	///Amount of power used
 	var/static_power_used = 0
 	///Luminosity when on, also used in power calculation
-	var/brightness = 8
+	var/brightness = 10
 	///Basically the alpha of the emitted light source
 	var/bulb_power = 1
 	///Default colour of the light.
