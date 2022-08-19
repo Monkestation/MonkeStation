@@ -24,6 +24,7 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SCI
+	light_mask = "robotics-light-mask"
 
 /obj/item/vending_refill/robotics
 	machine_name = "Robotech Deluxe"
