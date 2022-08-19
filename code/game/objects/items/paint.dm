@@ -129,7 +129,6 @@
 	if(istype(target, /obj/structure/low_wall))
 		var/obj/structure/low_wall/target_low_wall = target
 		if(stripe_mode == TRUE)
-			message_admins("boom")
 			target_low_wall.set_stripe_paint(paint_color)
 		else
 			target_low_wall.set_wall_paint(paint_color)
