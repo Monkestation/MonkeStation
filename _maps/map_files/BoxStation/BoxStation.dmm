@@ -3543,7 +3543,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
-/turf/open/floor/plasteel/white,
+/obj/effect/turf_decal/stripes/end,
+/obj/machinery/shower{
+	name = "emergency shower";
+	pixel_y = 12
+	},
+/turf/open/floor/noslip/white,
 /area/security/brig)
 "ahn" = (
 /turf/closed/wall,
@@ -4274,7 +4279,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/white,
 /area/security/brig)
 "aiE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -39216,7 +39221,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/central)
 "ciC" = (
 /obj/effect/landmark/event_spawn,
@@ -56917,7 +56922,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/central)
 "mjT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -61015,9 +61020,6 @@
 "pPk" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
-	},
-/obj/structure/sign/warning/securearea{
-	pixel_x = -32
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "Prison Gate";
@@ -68630,6 +68632,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"vWv" = (
+/obj/machinery/shower{
+	dir = 8;
+	name = "emergency shower"
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/turf/open/floor/noslip/dark,
+/area/medical/storage)
 "vWx" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -70760,6 +70772,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
+"xyi" = (
+/obj/machinery/door/firedoor,
+/obj/effect/turf_decal/trimline/darkblue/line,
+/obj/effect/turf_decal/trimline/darkblue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grid/steel,
+/area/hallway/primary/central)
 "xyH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -70860,6 +70883,9 @@
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 5
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -102059,7 +102085,7 @@ pJA
 lrp
 bRO
 dOP
-cuS
+vWv
 bGE
 eGu
 cvh
@@ -103082,7 +103108,7 @@ btK
 btd
 bwt
 bqH
-vGW
+xyi
 ciz
 mjS
 bDJ
