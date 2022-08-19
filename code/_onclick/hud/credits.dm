@@ -12,11 +12,15 @@ GLOBAL_LIST(end_titles)
 		GLOB.end_titles += "<br>"
 		GLOB.end_titles += "<br>"
 
+		GLOB.end_titles += "<center><h1>Music Credits</h1>"
+		if(SSticker.login_music_name)
+			GLOB.end_titles += "<center><h2>Lobby Song:"
+			GLOB.end_titles += "<center><h2>[sanitize(SSticker.login_music_name)]</h2>"
 		if(GLOB.soundtrack_this_round.len)
-			GLOB.end_titles += "<center><h1>Music Credits</h1>"
+			GLOB.end_titles += "<center><h2>Soundtrack Music:</h2>"
 			for(var/song_path in GLOB.soundtrack_this_round)
 				var/datum/soundtrack_song/song = song_path
-				GLOB.end_titles += "<center><h2>[sanitize(initial(song.artist))] - \"[sanitize(initial(song.title))]\" ([sanitize(initial(song.album))])</h2>"
+				GLOB.end_titles += "<center><h2>[sanitize(song.artist)] - \"[sanitize(song.title)]\" ([sanitize(song.album)])</h2>"
 			GLOB.end_titles += "<br>"
 			GLOB.end_titles += "<br>"
 

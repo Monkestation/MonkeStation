@@ -15,7 +15,7 @@
 /turf/open/floor/mineral/bananium,
 /area/template_noop)
 "d" = (
-/obj/structure/closet/crate/wooden/toy,
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/mineral/bananium,
 /area/template_noop)
 "e" = (

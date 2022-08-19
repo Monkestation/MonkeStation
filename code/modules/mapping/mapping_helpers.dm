@@ -143,9 +143,9 @@
 			if(24 to 30)
 				airlock.panel_open = TRUE
 	if(airlock.cutAiWire)
-		wires.cut(WIRE_AI)
+		airlock.wires.cut(WIRE_AI)
 	if(airlock.autoname)
-		name = get_area_name(src, TRUE)
+		airlock.name = get_area_name(src, TRUE)
 	update_icon()
 	qdel(src)
 

@@ -60,6 +60,10 @@
 
 /datum/component/shell/proc/on_object_deconstruct()
 	SIGNAL_HANDLER
+	if(!attached_circuit)
+		return
+	if(shell_flags & SHELL_FLAG_CIRCUIT_FIXED)
+		return
 	remove_circuit()
 
 /datum/component/shell/proc/on_attack_ghost(datum/source, mob/dead/observer/ghost)
