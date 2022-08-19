@@ -61,7 +61,6 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	light_color = LIGHT_COLOR_BLUE
 	light_power = 0.5
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
-	light_mask = "generic-light-mask" //this might need to be changed depending on if we want some dark vending machines
 
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -170,7 +169,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/loaded_items = 0
 
 	///Name of lighting mask for the vending machine
-	var/light_mask
+	var/light_mask = "generic-light-mask" //this might need to be changed depending on if we want some dark vending machines
 
 /obj/item/circuitboard
     ///determines if the circuit board originated from a vendor off station or not.
