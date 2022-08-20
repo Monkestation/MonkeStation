@@ -64,6 +64,11 @@
 
 #define AALARM_REPORT_TIMEOUT 100
 
+#define AALARM_OVERLAY_OFF		"alarm_off"
+#define AALARM_OVERLAY_GREEN	"alarm_green"
+#define AALARM_OVERLAY_WARN		"alarm_amber"
+#define AALARM_OVERLAY_DANGER	"alarm_red"
+
 /obj/machinery/airalarm
 	name = "air alarm"
 	desc = "A machine that monitors atmosphere levels and alerts if the area is dangerous."
@@ -91,6 +96,7 @@
 	var/aidisabled = 0
 	var/shorted = 0
 	var/buildstage = AIRALARM_BUILD_COMPLETE // 2 = complete, 1 = no wires,  0 = circuit gone
+	var/brightness_on = 1
 
 	var/frequency = FREQ_ATMOS_CONTROL
 	var/alarm_frequency = FREQ_ATMOS_ALARMS
@@ -567,37 +573,51 @@
 	set_light(1.4, 1, color)
 
 /obj/machinery/airalarm/update_icon_state()
-	if(panel_open)
-		switch(buildstage)
-			if(AIRALARM_BUILD_COMPLETE)
-				icon_state = "alarmx"
-			if(AIRALARM_BUILD_NO_WIRES)
-				icon_state = "alarm_b2"
-			if(AIRALARM_BUILD_NO_CIRCUIT)
-				icon_state = "alarm_b1"
-		return ..()
+	if(machine_stat & NOPOWER)
+		icon_state = "alarm0"
+		return
 
-	icon_state = "alarmp"
-	return ..()
+	if(machine_stat & BROKEN)
+		icon_state = "alarmx"
+		return
+
+	if(!panel_open)
+		icon_state = "alarm1"
+		return
+
+	switch(buildstage)
+		if(2)
+			icon_state = "alarmx"
+		if(1)
+			icon_state = "alarm_b2"
+		if(0)
+			icon_state = "alarm_b1"
 
 /obj/machinery/airalarm/update_overlays()
 	. = ..()
-
-	if(panel_open || (machine_stat & (NOPOWER|BROKEN)) || shorted)
-		return
-
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	var/overlay_state = AALARM_OVERLAY_OFF
 	var/area/our_area = get_area(src)
-	var/state
 	switch(max(danger_level, !!our_area.active_alarms[ALARM_ATMOS]))
 		if(0)
-			state = "alarm0"
+			overlay_state = AALARM_OVERLAY_GREEN
+			light_color = LIGHT_COLOR_GREEN
 		if(1)
-			state = "alarm2" //yes, alarm2 is yellow alarm
+			overlay_state = AALARM_OVERLAY_WARN
+			light_color = LIGHT_COLOR_LAVA
 		if(2)
-			state = "alarm1"
+			overlay_state = AALARM_OVERLAY_DANGER
+			light_color = LIGHT_COLOR_RED
 
-	. += mutable_appearance(icon, state)
-	. += emissive_appearance(icon, state, alpha = src.alpha)
+	if(overlay_state != AALARM_OVERLAY_OFF)
+		. += overlay_state
+		set_light(brightness_on)
+	else
+		set_light(0)
+
+	. += mutable_appearance(icon, overlay_state)
+	. += emissive_appearance(icon, overlay_state, alpha = src.alpha)
+	update_light()
 
 
 /obj/machinery/airalarm/process()
