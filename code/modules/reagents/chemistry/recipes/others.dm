@@ -838,3 +838,7 @@
 	for(var/i in rand(1, created_volume) to created_volume)
 		new /mob/living/simple_animal/hostile/ant(location)
 	..()
+/datum/chemical_reaction/hydrogen_peroxide
+	results = list(/datum/reagent/hydrogen_peroxide = 3)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DAMAGING | REACTION_TAG_BURN

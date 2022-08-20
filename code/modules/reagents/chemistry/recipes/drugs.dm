@@ -62,3 +62,21 @@
 	required_reagents = list(/datum/reagent/medicine/morphine = 3, /datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/toxin/fentanyl = 3, /datum/reagent/medicine/epinephrine =3)
 	required_temp = 370
 	reaction_tags = REACTION_TAG_HARD | REACTION_TAG_DRUG
+
+/datum/chemical_reaction/maint_tar
+	requires_liquids = TRUE
+	results = list(/datum/reagent/toxin/acid = 1 ,/datum/reagent/drug/maint/tar = 3)
+	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/enzyme = 3 , /datum/reagent/fuel = 1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_TOXIN | REACTION_TAG_DAMAGING
+
+/datum/chemical_reaction/maint_tar2
+	requires_liquids = TRUE
+	results = list(/datum/reagent/toxin/acid = 1 ,/datum/reagent/drug/maint/tar = 3)
+	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/toxin/bad_food = 1 , /datum/reagent/fuel = 1)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_TOXIN | REACTION_TAG_DAMAGING
+
+/datum/chemical_reaction/maint_sludge
+	results = list(/datum/reagent/drug/maint/sludge = 1)
+	required_reagents = list(/datum/reagent/drug/maint/tar = 3 , /datum/reagent/toxin/acid/fluacid = 1)
+	required_catalysts = list(/datum/reagent/hydrogen_peroxide = 5)
+	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_TOXIN | REACTION_TAG_DAMAGING

@@ -375,3 +375,68 @@
 		M.drop_all_held_items()
 		M.Dizzy(5)
 	..()
+
+
+/datum/reagent/drug/maint
+	name = "Maintenance Drugs"
+/datum/reagent/drug/maint/sludge
+	name = "Maintenance Sludge"
+	description = "An unknown sludge that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Half refined, it fills your body with itself, making it more resistant to death, but causes toxins to accumulate."
+	reagent_state = LIQUID
+	color = "#203d2c"
+	metabolization_rate = 2 * REAGENTS_METABOLISM
+	overdose_threshold = 25
+	addiction_types = list(/datum/addiction/maintenance_drugs = 8)
+
+/datum/reagent/drug/maint/sludge/on_mob_metabolize(mob/living/L)
+
+	. = ..()
+	ADD_TRAIT(L,TRAIT_NOSOFTCRIT,type)
+
+/datum/reagent/drug/maint/sludge/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	. = ..()
+	M.adjustToxLoss(0.5 * REM * delta_time)
+
+/datum/reagent/drug/maint/sludge/on_mob_end_metabolize(mob/living/M)
+	. = ..()
+	REMOVE_TRAIT(M,TRAIT_NOSOFTCRIT,type)
+
+/datum/reagent/drug/maint/sludge/overdose_process(mob/living/M, delta_time, times_fired)
+	. = ..()
+	if(!iscarbon(M))
+		return
+	var/mob/living/carbon/carbie = M
+	//You will be vomiting so the damage is really for a few ticks before you flush it out of your system
+	carbie.adjustToxLoss(1 * REM * delta_time)
+	if(DT_PROB(5, delta_time))
+		carbie.adjustToxLoss(5)
+		carbie.vomit()
+
+/datum/reagent/drug/maint/tar
+	name = "Maintenance Tar"
+	description = "An unknown tar that you most likely gotten from an assistant, a bored chemist... or cooked yourself. Raw tar, straight from the floor. It can help you with escaping bad situations at the cost of liver damage."
+	reagent_state = LIQUID
+	color = "#000000"
+	overdose_threshold = 30
+	addiction_types = list(/datum/addiction/maintenance_drugs = 5)
+
+	evaporates = FALSE
+	evaporation_rate = 0
+
+	opacity = 255
+
+/datum/reagent/drug/maint/tar/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
+	. = ..()
+
+	M.AdjustStun(-10 * REM * delta_time)
+	M.AdjustKnockdown(-10 * REM * delta_time)
+	M.AdjustUnconscious(-10 * REM * delta_time)
+	M.AdjustParalyzed(-10 * REM * delta_time)
+	M.AdjustImmobilized(-10 * REM * delta_time)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1.5 * REM * delta_time)
+
+/datum/reagent/drug/maint/tar/overdose_process(mob/living/M, delta_time, times_fired)
+	. = ..()
+
+	M.adjustToxLoss(5 * REM * delta_time)
+	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 3 * REM * delta_time)

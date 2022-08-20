@@ -2124,3 +2124,35 @@
 	if(method in list(PATCH,TOUCH,VAPOR))
 		amount_left = round(reac_volume,0.1)
 		exposed_mob.apply_status_effect(STATUS_EFFECT_ANTS, amount_left)
+
+/datum/reagent/hydrogen_peroxide
+	name = "Hydrogen Peroxide"
+	description = "An ubiquitous chemical substance that is composed of hydrogen and oxygen and oxygen." //intended intended
+	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
+	taste_description = "burning water"
+	var/cooling_temperature = 2
+	glass_icon_state = "glass_clear"
+	glass_name = "glass of oxygenated water"
+	glass_desc = "The father of all refreshments. Surely it tastes great, right?"
+	shot_glass_icon_state = "shotglassclear"
+
+	evaporation_rate = 4
+
+/*
+ * Water reaction to turf
+ */
+
+/datum/reagent/hydrogen_peroxide/reaction_mob(turf/open/exposed_turf, reac_volume)
+	. = ..()
+	if(!istype(exposed_turf))
+		return
+	if(reac_volume >= 5)
+		exposed_turf.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
+/*
+ * Water reaction to a mob
+ */
+
+/datum/reagent/hydrogen_peroxide/reaction_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with h2o2 can burn them !
+	. = ..()
+	if(methods & TOUCH)
+		exposed_mob.adjustFireLoss(2, 0) // burns
