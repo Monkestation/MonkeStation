@@ -246,7 +246,7 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
 		if(user.has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
-			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING)
+			user.remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING)
 		ADD_TRAIT(user, FOOD_SLIDE, "food_buffs")
 	return ..()
 
