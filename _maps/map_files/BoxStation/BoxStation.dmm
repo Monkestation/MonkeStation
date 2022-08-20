@@ -30475,7 +30475,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bGF" = (
 /obj/structure/cable/yellow{
@@ -41675,6 +41680,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/item/roller,
 /turf/open/floor/plasteel/dark/airless,
 /area/medical/sleeper)
 "ctX" = (
@@ -41926,8 +41932,10 @@
 /turf/open/floor/plasteel/dark/side,
 /area/medical/genetics/cloning)
 "cuK" = (
-/obj/effect/spawner/room/threexthree,
-/turf/open/floor/plating,
+/obj/item/skub,
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cuL" = (
 /obj/structure/cable/yellow{
@@ -41987,7 +41995,11 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/service)
 "cuS" = (
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cuV" = (
 /obj/structure/cable/yellow{
@@ -42114,6 +42126,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/stripes/closeup,
+/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cvi" = (
@@ -45816,6 +45829,8 @@
 /obj/machinery/newscaster{
 	pixel_y = 31
 	},
+/obj/structure/bed/roller,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/medical/storage)
 "dOV" = (
@@ -46151,6 +46166,14 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+"ebY" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/storage/fancy/cigarettes/cigpack_carp,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/medical/storage)
 "ecA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -46612,6 +46635,10 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/quartermaster/exploration_dock)
+"erE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/medical/storage)
 "erT" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -47047,6 +47074,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating,
 /area/medical/storage)
 "eGy" = (
@@ -49026,6 +49055,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
+"ggG" = (
+/obj/structure/bed/roller,
+/obj/structure/light_construct/directional/north,
+/turf/open/floor/plating,
+/area/medical/storage)
 "ghJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -49183,14 +49217,13 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "gmJ" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/machinery/door/airlock/medical/glass{
 	desc = "A way into the medbay for Evil and Poisonous rubbi- er Paramedics.";
 	name = "Paramedic Entrance";
 	req_access_txt = "45"
+	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/medbay/central)
@@ -52273,6 +52306,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/medical/morgue)
 "iNZ" = (
@@ -53126,6 +53162,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "jCq" = (
@@ -53581,6 +53618,18 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/crew_quarters/dorms)
+"jRg" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/blue/corner{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "jRm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -54108,6 +54157,24 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
+"kpd" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_y = 9;
+	pixel_x = -8
+	},
+/obj/item/toy/cattoy{
+	pixel_y = 4;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 7;
+	pixel_x = 9
+	},
+/obj/structure/light_construct/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "kpk" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/darkblue/tile_full,
@@ -54703,6 +54770,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"kHX" = (
+/obj/structure/showcase/horrific_experiment,
+/turf/open/floor/plating,
+/area/medical/storage)
 "kIA" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
 	dir = 1
@@ -59869,6 +59940,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"oFS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "oGf" = (
 /obj/machinery/door/airlock/science{
 	name = "exploration preparation room";
@@ -68827,6 +68903,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/noslip/dark,
 /area/medical/storage)
 "vWx" = (
@@ -70654,6 +70731,16 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
+"xoa" = (
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/aft)
 "xos" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Office";
@@ -101774,10 +101861,10 @@ eiV
 qpU
 bBu
 bRO
-cuS
-cuS
+kHX
+oFS
 cuK
-cuS
+ebY
 bzs
 bZN
 bnc
@@ -102031,10 +102118,10 @@ bwb
 chm
 bBt
 bRO
+ggG
+erE
 cuS
-cuS
-cuS
-cuS
+kpd
 bzs
 bZN
 bnc
@@ -111796,7 +111883,7 @@ txx
 bzm
 bzm
 bPr
-bzm
+xoa
 tDp
 tIu
 bCO
@@ -113331,7 +113418,7 @@ bAq
 iZP
 bDF
 bOt
-biw
+jRg
 bvu
 bux
 cZK
