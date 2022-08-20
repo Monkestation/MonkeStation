@@ -55,6 +55,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/opacity = 175
 	///The rate of evaporation in units per call
 	var/evaporation_rate = 0.5
+	///The unique effect that will sometimes play if this liquid is on its turf
+	var/liquid_effect = null
 	//MONKESTATION EDIT END
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()

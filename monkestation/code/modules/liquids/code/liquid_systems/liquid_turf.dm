@@ -212,6 +212,13 @@
 /turf/proc/process_liquid_cell()
 
 	if(liquids)
+		for(var/reagent in liquids.reagent_list)
+			var/datum/reagent/temp = reagent
+			if(initial(temp.liquid_effect) && prob(4))
+				var/obj/effect/tempr = initial(temp.liquid_effect)
+				var/turf/open/temp_turf = get_turf(src)
+				new tempr(temp_turf)
+
 		var/turf/open/temp_turf = get_turf(src)
 		var/datum/gas_mixture/gas = temp_turf.air
 		if(gas)
