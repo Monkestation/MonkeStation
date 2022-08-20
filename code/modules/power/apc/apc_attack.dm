@@ -264,7 +264,10 @@
 	if(machine_stat & BROKEN && obj_integrity <= 0)
 		if(sound_effect)
 			play_attack_sound(damage_amount, damage_type, damage_flag)
-		new /obj/item/stock_parts/cell/upgraded/empty(loc)
+		if(cell)
+			cell.forceMove(loc)
+			cell.update_appearance()
+			cell = null
 		new /obj/item/stack/sheet/iron(loc)
 		qdel(src)
 		return
