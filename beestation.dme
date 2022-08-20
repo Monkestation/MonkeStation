@@ -2195,6 +2195,7 @@
 #include "code\modules\food_and_drinks\drinks\drinks\bottle.dm"
 #include "code\modules\food_and_drinks\drinks\drinks\drinkingglass.dm"
 #include "code\modules\food_and_drinks\food\_food.dm"
+#include "code\modules\food_and_drinks\food\bowl.dm"
 #include "code\modules\food_and_drinks\food\bread.dm"
 #include "code\modules\food_and_drinks\food\burger.dm"
 #include "code\modules\food_and_drinks\food\cake.dm"
