@@ -573,6 +573,7 @@
 	set_light(1.4, 1, color)
 
 /obj/machinery/airalarm/update_icon_state()
+	.=..()
 	if(machine_stat & NOPOWER)
 		icon_state = "alarm0"
 		return
