@@ -71,45 +71,16 @@
 	var/bulb_low_power_pow_min = 0.5
 	///Power usage - W per unit of luminosity
 	var/power_consumption_rate = 20
-	var/maploaded = FALSE //So we don't have a lot of stress on startup.
-	var/turning_on = FALSE //More stress stuff.
 
-/obj/machinery/light/proc/turn_on(trigger)
-	if(QDELETED(src))
-		return
-	turning_on = FALSE
-	if(!on)
-		return
-	var/BR = brightness
-	var/PO = bulb_power
-	var/CO = bulb_colour
-	if(color)
-		CO = color
-	var/area/A = get_area(src)
-	if (A?.fire)
-		CO = bulb_emergency_colour
-	else if (nightshift_enabled)
-		BR = nightshift_brightness
-		PO = nightshift_light_power
-		if(!color)
-			CO = nightshift_light_color
-	var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
-	if(!matching)
-		switchcount++
-		if(rigged)
-			if(status == LIGHT_OK && trigger)
-				explode()
-		else if( prob( min(60, (switchcount^2)*0.01) ) )
-			if(trigger)
-				burn_out()
-		else
-			use_power = ACTIVE_POWER_USE
-			set_light(BR, PO, CO)
-			playsound(src.loc, 'sound/misc/light_on.ogg', 65, 1)
+/obj/machinery/light/Move()
+	if(status != LIGHT_BROKEN)
+		break_light_tube(TRUE)
+	return ..()
 
-/obj/machinery/light/Initialize(mapload = TRUE)
+// create a new lighting fixture
+/obj/machinery/light/Initialize(mapload)
 	. = ..()
-	maploaded = TRUE
+
 	//Setup area colours
 	var/area/our_area = get_area(src)
 	if(bulb_colour == initial(bulb_colour))
@@ -132,11 +103,6 @@
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
 
 	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/light/Move()
-	if(status != LIGHT_BROKEN)
-		break_light_tube(TRUE)
-	return ..()
 
 /obj/machinery/light/LateInitialize()
 	. = ..()
@@ -210,9 +176,6 @@
 	SIGNAL_HANDLER
 	update()
 
-#define LIGHT_ON_DELAY_UPPER 3 SECONDS
-#define LIGHT_ON_DELAY_LOWER 1 SECONDS
-
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
 	switch(status)
@@ -220,7 +183,6 @@
 			on = FALSE
 	low_power_mode = FALSE
 	if(on)
-	/*
 		var/brightness_set = brightness
 		var/power_set = bulb_power
 		var/color_set = bulb_colour
@@ -253,14 +215,6 @@
 					l_power = power_set,
 					l_color = color_set
 					)
-	*/
-	if(maploaded)
-		turn_on(trigger)
-		maploaded = FALSE
-	else if(!turning_on)
-		turning_on = TRUE
-		addtimer(CALLBACK(src, .proc/turn_on, trigger), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
-
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		low_power_mode = TRUE
@@ -271,9 +225,6 @@
 	update_appearance()
 	update_current_power_usage()
 	broken_sparks(start_only=TRUE)
-
-#undef LIGHT_ON_DELAY_UPPER
-#undef LIGHT_ON_DELAY_LOWER
 
 /obj/machinery/light/update_current_power_usage()
 	if(!on && static_power_used > 0) //Light is off but still powered

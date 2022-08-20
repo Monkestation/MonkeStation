@@ -13,26 +13,6 @@
 	///Range of the light emitted when powered, but off
 	var/light_on_range = 1
 
-/obj/machinery/light_switch/interact(mob/user)
-	. = ..()
-	playsound(src, 'sound/misc/lightswitch.ogg', 100, 1)
-
-/obj/machinery/light_switch/LateInitialize()
-	. = ..()
-	if(area.lightswitch)
-		turn_off()
-
-/obj/machinery/light_switch/proc/turn_off()
-	if(!area.lightswitch)
-		return
-	area.lightswitch = FALSE
-	area.update_icon()
-
-	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
-
-	area.power_change()
-
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 /*
