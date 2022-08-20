@@ -104,7 +104,7 @@
 		create_reagents(100000) //Reagents are on turf level, should they be on liquids instead?
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 		reagents.chem_temp = liquids.temp
-		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		reagents.handle_reactions(liquid_turf = TRUE)//Any reactions happened, so re-calculate our reagents
 		liquids.reagent_list = list()
 		liquids.total_reagents = 0
 		//alpha stuff
@@ -156,7 +156,7 @@
 		create_reagents(100000)
 		reagents.add_reagent_list(liquids.reagent_list, no_react = TRUE)
 
-		reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		reagents.handle_reactions(liquid_turf = TRUE)//Any reactions happened, so re-calculate our reagents
 		liquids.reagent_list = list()
 		liquids.total_reagents = 0
 		//alpha stuff

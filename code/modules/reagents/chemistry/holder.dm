@@ -761,7 +761,7 @@
 		R.on_update (A)
 	update_total()
 
-/datum/reagents/proc/handle_reactions()
+/datum/reagents/proc/handle_reactions(liquid_turf)
 	if(flags & NO_REACT)
 		return //Yup, no reactions here. No siree.
 
@@ -791,6 +791,12 @@
 				var/required_temp = C.required_temp
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
+				var/meets_liquid_requirements = 0
+
+				if(C.requires_liquids && liquid_turf == TRUE)
+					meets_liquid_requirements = 1
+				if(!C.requires_liquids)
+					meets_liquid_requirements = 1
 
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
@@ -826,7 +832,7 @@
 				if(required_temp == 0 || (is_cold_recipe && chem_temp <= required_temp) || (!is_cold_recipe && chem_temp >= required_temp))
 					meets_temp_requirement = 1
 
-				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other && meets_temp_requirement)
+				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other && meets_temp_requirement && meets_liquid_requirements)
 					possible_reactions  += C
 
 		if(possible_reactions.len)

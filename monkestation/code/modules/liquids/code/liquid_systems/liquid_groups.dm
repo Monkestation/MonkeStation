@@ -208,7 +208,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		T.create_reagents(10000)
 		T.reagents.add_reagent_list(T.liquids.reagent_list, no_react = TRUE)
 
-		T.reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
+		T.reagents.handle_reactions(liquid_turf = TRUE)//Any reactions happened, so re-calculate our reagents
 		T.liquids.reagent_list = list()
 		T.liquids.total_reagents = 0
 		//alpha stuff

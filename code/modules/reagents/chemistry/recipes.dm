@@ -17,6 +17,8 @@
 	var/mix_sound = 'sound/effects/bubbles.ogg' //The sound played upon mixing, if applicable
 	var/reaction_tags = NONE
 
+	var/requires_liquids = FALSE
+
 /datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	return
 	//I recommend you set the result amount to the total volume of all components.
