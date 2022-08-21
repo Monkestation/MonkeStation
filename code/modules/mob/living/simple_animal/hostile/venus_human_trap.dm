@@ -92,7 +92,7 @@
 			if(L.stat == DEAD)
 				var/datum/beam/B = grasping[L]
 				if(B)
-					B.End()
+					qdel(B)
 				grasping -= L
 
 			//Can attack+pull multiple times per cycle
