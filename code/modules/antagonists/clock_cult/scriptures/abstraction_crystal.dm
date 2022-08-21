@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(abstraction_crystals, list())
 		item.alpha = 180
 		item.flags_1 |= HOLOGRAM_1
 		tracked_items += item
-	Beam(active_hologram, icon_state="nzcrentrs_power", time=INFINITY)
+	Beam(active_hologram, icon_state = "nzcrentrs_power", time = INFINITY)
 	START_PROCESSING(SSobj, src)
 	processing = TRUE
 

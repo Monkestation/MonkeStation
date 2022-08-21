@@ -46,7 +46,7 @@
 		if(obj_integrity < max_integrity)
 			M.changeNext_move(CLICK_CD_MELEE)
 			obj_integrity = min(max_integrity, obj_integrity + 5)
-			Beam(M, icon_state="sendbeam", time=4)
+			Beam(M, icon_state = "sendbeam", time = 4)
 			M.visible_message("<span class='danger'>[M] repairs \the <b>[src]</b>.</span>", \
 				"<span class='cult'>You repair <b>[src]</b>, leaving [p_they()] at <b>[round(obj_integrity * 100 / max_integrity)]%</b> stability.</span>")
 		else

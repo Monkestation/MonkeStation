@@ -9,7 +9,7 @@
 
 /obj/item/projectile/energy/tesla/fire(setAngle)
 	if(firer)
-		chain = firer.Beam(src, icon_state = "lightning[rand(1, 12)]", time = INFINITY, maxdistance = INFINITY)
+		chain = firer.Beam(src, icon_state = "lightning[rand(1, 12)]", time = INFINITY)
 	..()
 
 /obj/item/projectile/energy/tesla/on_hit(atom/target)

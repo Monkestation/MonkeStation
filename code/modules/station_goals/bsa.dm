@@ -207,7 +207,7 @@
 		else
 			SSexplosions.highturf += tile
 
-	point.Beam(target, icon_state = "bsa_beam", time = 50, maxdistance = world.maxx) //ZZZAP
+	point.Beam(target, icon_state = "bsa_beam", time = 5 SECONDS) //ZZZAP
 	new /obj/effect/temp_visual/bsa_splash(point, dir)
 
 	if(!blocker)

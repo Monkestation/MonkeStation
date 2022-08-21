@@ -33,13 +33,13 @@
 /datum/action/innate/dash/proc/Teleport(mob/user, atom/target)
 	if(!IsAvailable())
 		return
-	var/turf/T = get_turf(target)
-	if(user in viewers(user.client.view, T))
+	var/turf/target_turf = get_turf(target)
+	if(user in viewers(user.client.view, target_turf))
 		var/obj/spot1 = new phaseout(get_turf(user), user.dir)
-		if(do_teleport(user, T, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE))
-			playsound(T, dash_sound, 25, 1)
+		if(do_teleport(user, target_turf, channel = TELEPORT_CHANNEL_FREE, no_effects = TRUE))
+			playsound(target_turf, dash_sound, 25, 1)
 			var/obj/spot2 = new phasein(get_turf(user), user.dir)
-			spot1.Beam(spot2,beam_effect,time=20)
+			spot1.Beam(spot2, beam_effect, time= 2 SECONDS)
 			current_charges--
 			owner.update_action_buttons_icon()
 			addtimer(CALLBACK(src, .proc/charge), charge_rate)

@@ -77,7 +77,7 @@
 											   "<span class='revenwarning'>Violet lights, dancing in your vision, receding--</span>")
 					draining = FALSE
 					return
-				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
+				var/datum/beam/B = Beam(target, icon_state = "drain_life", time = INFINITY)
 				if(do_after(src, 46, 0, target)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
 					if(essence_drained <= 90 && target.stat != DEAD)
@@ -219,7 +219,7 @@
 	for(var/mob/living/carbon/human/M in hearers(shock_range, L))
 		if(M == user)
 			continue
-		L.Beam(M,icon_state="purple_lightning",time=5)
+		L.Beam(M, icon_state = "purple_lightning", time = 5)
 		do_sparks(4, FALSE, M)
 		playsound(M, 'sound/machines/defib_zap.ogg', 50, 1, -1)
 		if(!M.anti_magic_check(FALSE, TRUE))
