@@ -974,7 +974,7 @@
 /mob/living/silicon/ai/proc/malfhacked(obj/machinery/power/apc/apc)
 	malfhack = null
 	malfhacking = 0
-	clear_alert("hackingapc")
+	clear_alert(ALERT_HACKING_APC)
 
 	if(!istype(apc) || QDELETED(apc) || apc.machine_stat & BROKEN)
 		to_chat(src, "<span class='danger'>Hack aborted. The designated APC no longer exists on the power network.</span>")

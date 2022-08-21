@@ -448,6 +448,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(inherent_factions)
 		for(var/i in inherent_factions)
 			C.faction -= i
+	C.maxHealth = C.maxHealth / maxhealthmod
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
 
