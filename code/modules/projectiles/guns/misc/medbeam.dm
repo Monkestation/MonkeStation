@@ -53,7 +53,7 @@
 
 	current_target = target
 	active = TRUE
-	current_beam = new(user,current_target,time=6000,beam_icon_state="medbeam",btype=/obj/effect/ebeam/medical)
+	current_beam = new(user,current_target,time=6000, icon_state="medbeam",beam_type=/obj/effect/ebeam/medical)
 	INVOKE_ASYNC(current_beam, /datum/beam.proc/Start)
 
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)

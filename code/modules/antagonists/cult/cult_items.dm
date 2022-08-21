@@ -888,7 +888,7 @@
 						L.adjustBruteLoss(45)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
-		var/datum/beam/current_beam = new(user,temp_target,time=7,beam_icon_state="blood_beam",btype=/obj/effect/ebeam/blood)
+		var/datum/beam/current_beam = new(user,temp_target,time=7, icon_state="blood_beam",beam_type=/obj/effect/ebeam/blood)
 		INVOKE_ASYNC(current_beam, /datum/beam.proc/Start)
 
 

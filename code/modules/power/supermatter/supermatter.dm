@@ -185,6 +185,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/power_changes = TRUE
 	///Disables the sm's proccessing totally.
 	var/processes = TRUE
+	///Hue shift of the zaps color based on the power of the crystal
+	var/hue_angle_shift = 0
 
 /obj/machinery/power/supermatter_crystal/Initialize()
 	. = ..()
@@ -503,6 +505,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/h2obonus = 1 - (gas_comp[GAS_H2O] * 0.25)//At min this value should be 0.75
 //		var/freonbonus = (gas_comp[/datum/gas/freon] <= 0.03) //Let's just yeet power output if this shit is high
 
+	var/zap_color = color_matrix_rotate_hue(hue_angle_shift)
+
 	threshold_mod[GAS_PLUOXIUM] = pluoxiumbonus
 
 	//No less then zero, and no greater then one, we use this to do explosions and heat to power transfer
@@ -645,7 +649,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(zap_count >= 1)
 			playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, TRUE, extrarange = 10)
 			for(var/i in 1 to zap_count)
-				supermatter_zap(src, range, clamp(power*2, 4000, 20000), flags)
+				supermatter_zap(src, range, clamp(power*2, 4000, 20000), flags, color = zap_color)
 
 		if(prob(5))
 			supermatter_anomaly_gen(src, FLUX_ANOMALY, rand(5, 10))
@@ -997,7 +1001,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(PYRO_ANOMALY)
 				new /obj/effect/anomaly/pyro(listener, 200)
 
-/obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart = src, range = 5, zap_str = 4000, zap_flags = ZAP_GENERATES_POWER, list/targets_hit = list())
+/obj/machinery/power/supermatter_crystal/proc/supermatter_zap(atom/zapstart = src, range = 5, zap_str = 4000, zap_flags = ZAP_GENERATES_POWER, list/targets_hit = list(), color = null)
 	if(QDELETED(zapstart))
 		return
 	. = zapstart.dir
@@ -1084,7 +1088,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		//Do the animation to zap to it from here
 		if(!(zap_flags & ZAP_ALLOW_DUPLICATES))
 			LAZYSET(targets_hit, target, TRUE)
-		zapstart.Beam(target, icon_state=zap_icon, time=5)
+		zapstart.Beam(target, icon_state=zap_icon, time = 0.5 SECONDS, beam_color = color)
 		var/zapdir = get_dir(zapstart, target)
 		if(zapdir)
 			. = zapdir
@@ -1138,7 +1142,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		for(var/j in 1 to zap_count)
 			if(zap_count > 1)
 				targets_hit = targets_hit.Copy() //Pass by ref begone
-			supermatter_zap(target, new_range, zap_str, zap_flags, targets_hit)
+			supermatter_zap(target, new_range, zap_str, zap_flags, targets_hit, color)
 
 #undef HALLUCINATION_RANGE
 #undef GRAVITATIONAL_ANOMALY
