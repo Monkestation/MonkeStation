@@ -33,7 +33,7 @@
 
 /obj/vehicle/ridden/monkey_ball/Bump(atom/movable/victim)
 	. = ..()
-	if(world.time > last_bump)
+	if(world.time < last_bump)
 		return
 	if(isliving(victim))
 		var/atom/throw_target = get_edge_target_turf(victim, dir)
