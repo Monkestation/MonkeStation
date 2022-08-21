@@ -4,8 +4,6 @@
 #define CONVEYOR_FORWARD 1
 /// Conveyor is currently configured to move items backwards.
 #define CONVEYOR_BACKWARDS -1
-/// Conveyor default delay for convey movement
-#define CONVEYOR_DELAY 0.2 SECONDS
 
 GLOBAL_LIST_EMPTY(conveyors_by_id)
 
@@ -25,8 +23,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/backwards
 	/// The actual direction to move stuff in.
 	var/movedir
-	/// The time between movements of the conveyor belts, default 0.2 seconds
-	var/delay = CONVEYOR_DELAY
+	/// The time between movements of the conveyor belts, default 0.2 seconds.
+	var/speed = 0.2
 	/// The control ID - must match at least one conveyor switch's ID to be useful.
 	var/id = ""
 	/// Inverts the direction the conveyor belt moves when true.
@@ -42,9 +40,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if(inverted)
 		. += span_notice("It is currently set to go in reverse.")
+	if(flipped)
+		. += span_notice("It is currently flipped")
 	. += "\nLeft-click with a <b>wrench</b> to rotate."
-	. += "Left-click with a <b>screwdriver</b> to invert its direction."
-	. += "Left-click with a <b>multi-tool</b> to flip its belt around."
+	. += "Left-click with a <b>screwdriver</b> to flip its belt around."
+	. += "Left-click with a <b>multi-tool</b> to invert its direction."
 
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/auto/Initialize(mapload, newdir)
 	. = ..()
 	set_operating(TRUE)
-	update_icon()
+	update_appearance()
 
 
 /obj/machinery/conveyor/auto/update()
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	update_move_direction()
 	LAZYADD(GLOB.conveyors_by_id[id], src)
-	update_icon()
+	update_appearance()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/conveyor/LateInitialize()
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	update_move_direction()
 
-/obj/machinery/conveyor/Moved(atom/OldLoc, Dir)
+/obj/machinery/conveyor/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	if(!.)
 		return
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(operating == new_value)
 		return
 	operating = new_value
-	update_icon()
+	update_appearance()
 	update_move_direction()
 	//If we ever turn off, disable moveloops
 	if(operating == CONVEYOR_OFF)
@@ -214,6 +214,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		set_operating(FALSE)
 		return FALSE
 
+	update_appearance()
 	// If we're on, start conveying so moveloops on our tile can be refreshed if they stopped for some reason
 	if(operating != CONVEYOR_OFF)
 		for(var/atom/movable/movable in get_turf(src))
@@ -237,58 +238,61 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/datum/move_loop/move/moving_loop = SSmove_manager.processing_on(moving, SSconveyors)
 	if(moving_loop)
 		moving_loop.direction = movedir
-		moving_loop.delay = delay * 1 SECONDS
+		moving_loop.delay = speed * 1 SECONDS
 		return
 
 	var/static/list/unconveyables = typecacheof(list(/obj/effect, /mob/dead))
 	if(!istype(moving) || is_type_in_typecache(moving, unconveyables) || moving == src)
 		return
-	moving.AddComponent(/datum/component/convey, movedir, delay * 1 SECONDS)
+	moving.AddComponent(/datum/component/convey, movedir, speed * 1 SECONDS)
 
 /obj/machinery/conveyor/proc/stop_conveying(atom/movable/thing)
 	if(!ismovable(thing))
 		return
 	SSmove_manager.stop_looping(thing, SSconveyors)
 
-// attack with item, place item on conveyor
+
+//Tool Acts
+///attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(obj/item/attacking_item, mob/living/user, params)
-	if(attacking_item.tool_behaviour == TOOL_CROWBAR)
-		user.visible_message(span_notice("[user] struggles to pry up [src] with [attacking_item]."), \
-		span_notice("You struggle to pry up [src] with [attacking_item]."))
-
-		if(!attacking_item.use_tool(src, user, 4 SECONDS, volume = 40))
-			return
-		set_operating(FALSE)
-		var/obj/item/stack/conveyor/belt_item = new /obj/item/stack/conveyor(loc, 1, TRUE, null, null, id)
-		if(!QDELETED(belt_item)) //God I hate stacks
-			transfer_fingerprints_to(belt_item)
-
-		to_chat(user, span_notice("You remove [src]."))
-		qdel(src)
-
-	else if(attacking_item.tool_behaviour == TOOL_WRENCH)
-		attacking_item.play_tool_sound(src)
-		setDir(turn(dir, -45))
-		to_chat(user, span_notice("You rotate [src]."))
-
-	else if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
-		attacking_item.play_tool_sound(src)
-		inverted = !inverted
-		update_move_direction()
-		to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
-		update_icon()
-
-	else if(attacking_item.tool_behaviour == TOOL_MULTITOOL)
-		attacking_item.play_tool_sound(src)
-		flipped = !flipped
-		update_move_direction()
-		to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
-		update_icon()
-
-	else if(user.a_intent != INTENT_HARM)
+	if(attacking_item.tool_behaviour == TOOL_CROWBAR || attacking_item.tool_behaviour == TOOL_WRENCH || attacking_item.tool_behaviour == TOOL_SCREWDRIVER || attacking_item.tool_behaviour == TOOL_MULTITOOL)
+		return
+	if(user.a_intent != INTENT_HARM)
 		user.transferItemToLoc(attacking_item, drop_location())
 	else
 		return ..()
+
+/obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/crowbar)
+	balloon_alert(user, "starts prying up [src].")
+	if(!crowbar.use_tool(src, user, 4 SECONDS, volume = 40))
+		return
+	if(processing_flags == START_PROCESSING_ON_INIT)
+		operating = CONVEYOR_OFF
+	set_operating(FALSE)
+	var/obj/item/stack/conveyor/belt_item = new /obj/item/stack/conveyor(loc, 1, TRUE, null, null, id)
+	if(!QDELETED(belt_item)) //God I hate stacks
+		transfer_fingerprints_to(belt_item)
+	qdel(src)
+
+/obj/machinery/conveyor/wrench_act(mob/living/user, obj/item/wrench)
+	wrench.play_tool_sound(src)
+	setDir(turn(dir, -45))
+	balloon_alert(user, "Rotated [src].")
+
+/obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/screwdriver)
+	screwdriver.play_tool_sound(src)
+	flipped = !flipped
+	update_move_direction()
+	balloon_alert(user, "Flipped [flipped ? "around" : "to normal"].")
+	update_appearance()
+
+/obj/machinery/conveyor/multitool_act(mob/living/user, obj/item/multitool)
+	multitool.play_tool_sound(src)
+	inverted = !inverted
+	update_move_direction()
+	balloon_alert(user, "Direction: [inverted ? "backwards" : "default"].")
+	update_appearance()
+
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user, list/modifiers)
@@ -323,14 +327,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	/// The ID of the switch, must match conveyor IDs to control them.
 	var/id = ""
 	/// The set time between movements of the conveyor belts
-	var/conveyor_delay = CONVEYOR_DELAY
+	var/conveyor_speed = 0.2
 
 /obj/machinery/conveyor_switch/Initialize(mapload, newid)
 	. = ..()
 	if (newid)
 		id = newid
 
-	update_icon()
+	update_appearance()
 	LAZYADD(GLOB.conveyors_by_id[id], src)
 	wires = new /datum/wires/conveyor(src)
 
@@ -338,6 +342,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	LAZYREMOVE(GLOB.conveyors_by_id[id], src)
 	QDEL_NULL(wires)
 	. = ..()
+
+/obj/machinery/conveyor_switch/examine(mob/user)
+	. = ..()
+	. += span_notice("[src] is set to [oneway ? "one way" : "default"] configuration. It can be changed with a <b>screwdriver</b>.")
+	. += span_notice("[src] is set to [invert_icon ? "inverted": "normal"] position. It can be rotated with a <b>wrench</b>.")
+	. += span_notice("[src] is set to move [conveyor_speed] seconds per belt. It can be changed with a <b>multitool</b>.")
 
 /obj/machinery/conveyor_switch/vv_edit_var(var_name, var_value)
 	if (var_name == NAMEOF(src, id))
@@ -362,7 +372,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/proc/update_linked_conveyors()
 	for(var/obj/machinery/conveyor/belt in GLOB.conveyors_by_id[id])
 		belt.set_operating(position)
-		belt.delay = conveyor_delay
+		belt.speed = conveyor_speed
 		CHECK_TICK
 
 /// Finds any switches with same `id` as this one, and set their position and icon to match us.
@@ -370,14 +380,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	for(var/obj/machinery/conveyor_switch/belt_switch in GLOB.conveyors_by_id[id])
 		belt_switch.invert_icon = invert_icon
 		belt_switch.position = position
-		belt_switch.conveyor_delay = conveyor_delay
-		belt_switch.update_icon()
+		belt_switch.conveyor_speed = conveyor_speed
+		belt_switch.update_appearance()
 		CHECK_TICK
 
 /// Updates the switch's `position` and `last_pos` variable. Useful so that the switch can properly cycle between the forwards, backwards and neutral positions.
 /obj/machinery/conveyor_switch/proc/update_position()
 	if(position == CONVEYOR_OFF)
-		if(oneway)   //is it a oneway switch
+		if(oneway) //is it a oneway switch
 			position = oneway
 		else
 			if(last_pos < CONVEYOR_OFF)
@@ -394,54 +404,52 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/interact(mob/user)
 	add_fingerprint(user)
 	update_position()
-	update_icon()
+	update_appearance()
 	update_linked_conveyors()
 	update_linked_switches()
 
+
+// Tool Acts
 /obj/machinery/conveyor_switch/attackby(obj/item/attacking_item, mob/user, params)
 	if(is_wire_tool(attacking_item))
 		wires.interact(user)
 		return TRUE
 
-/obj/machinery/conveyor_switch/multitool_act(mob/living/user, obj/item/I)
-	var/input_speed = input(user, "Set the speed of the conveyor belts in seconds", "Speed", conveyor_delay) as null|num
+/obj/machinery/conveyor_switch/multitool_act(mob/living/user, obj/item/multitool)
+	var/input_speed = input(user, "Set the speed of the conveyor belts in seconds", "Speed", conveyor_speed) as null|num
 	if(!input_speed || QDELETED(user) || QDELETED(src) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	if(input_speed < 0.2 || input_speed > 20)
+	if(input_speed < 0.1 || input_speed > 20)
 		to_chat(user, "<span class='warning'>Input speed is out of range of conveyor limitations. Must be between 0.1 and 20.</span>")
 		return
-	conveyor_delay = input_speed
-	to_chat(user, span_notice("You change the time between moves to [input_speed] seconds."))
+	conveyor_speed = input_speed
+	balloon_alert(user, "Speed set to [input_speed] seconds.")
 	update_linked_conveyors()
 	return TRUE
 
-/obj/machinery/conveyor_switch/crowbar_act(mob/user, obj/item/tool)
-	tool.play_tool_sound(src, 50)
+/obj/machinery/conveyor_switch/crowbar_act(mob/user, obj/item/crowbar)
+	balloon_alert(user, "detaching [src].")
+	if(!crowbar.use_tool(src, user, 2 SECONDS, volume = 40))
+		return
 	var/obj/item/conveyor_switch_construct/switch_construct = new/obj/item/conveyor_switch_construct(src.loc)
 	switch_construct.id = id
 	transfer_fingerprints_to(switch_construct)
-	to_chat(user, span_notice("You detach [src]."))
 	qdel(src)
 	return TRUE
 
-/obj/machinery/conveyor_switch/screwdriver_act(mob/user, obj/item/tool)
-	tool.play_tool_sound(src, 50)
+/obj/machinery/conveyor_switch/screwdriver_act(mob/user, obj/item/screwdriver)
+	screwdriver.play_tool_sound(src, 50)
 	oneway = !oneway
-	to_chat(user, span_notice("You set [src] to [oneway ? "one way" : "default"] configuration."))
+	balloon_alert(user, "Set to [oneway ? "one way" : "default"] configuration.")
 	return TRUE
 
-/obj/machinery/conveyor_switch/wrench_act(mob/user, obj/item/tool)
-	tool.play_tool_sound(src, 50)
+/obj/machinery/conveyor_switch/wrench_act(mob/user, obj/item/wrench)
+	wrench.play_tool_sound(src, 50)
 	invert_icon = !invert_icon
-	update_icon()
-	to_chat(user, span_notice("You set [src] to [invert_icon ? "inverted": "normal"] position."))
+	update_appearance()
+	balloon_alert(user, "Set to [invert_icon ? "inverted": "normal"] position.")
 	return TRUE
 
-/obj/machinery/conveyor_switch/examine(mob/user)
-	. = ..()
-	. += span_notice("[src] is set to [oneway ? "one way" : "default"] configuration. It can be changed with a <b>screwdriver</b>.")
-	. += span_notice("[src] is set to [invert_icon ? "inverted": "normal"] position. It can be rotated with a <b>wrench</b>.")
-	. += span_notice("[src] is set to move [conveyor_delay] seconds per belt. It can be changed with a <b>multitool</b>.")
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
@@ -452,6 +460,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if((dir == NORTH) || (dir == WEST))
 		invert_icon = TRUE
+
 
 /obj/item/conveyor_switch_construct
 	name = "conveyor switch assembly"
@@ -469,6 +478,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/conveyor_switch_construct/attack_self(mob/user)
 	for(var/obj/item/stack/conveyor/belt in view())
 		belt.id = id
+	balloon_alert(user, "Nearby conveyor belts linked")
 	to_chat(user, span_notice("You have linked all nearby conveyor belt assemblies to this switch."))
 
 /obj/item/conveyor_switch_construct/afterattack(atom/target, mob/user, proximity)
@@ -482,6 +492,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			found = TRUE
 			break
 	if(!found)
+		balloon_alert(user, "conveyor belts not detected")
 		to_chat(user, "[icon2html(src, user)]" + span_notice("The conveyor switch did not detect any linked conveyor belts in range."))
 		return
 	var/obj/machinery/conveyor_switch/built_switch = new/obj/machinery/conveyor_switch(target, id)
@@ -489,7 +500,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	qdel(src)
 
 
-/* Disabled for now
+/* Circuit Code, if someone wants to
 /obj/item/circuit_component/conveyor_switch
 	display_name = "Conveyor Switch"
 	desc = "Allows to control connected conveyor belts."
@@ -527,12 +538,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return
 
 	attached_switch.update_position()
-	attached_switch.update_icon()
+	attached_switch.update_appearance()
 	attached_switch.update_linked_conveyors()
 	attached_switch.update_linked_switches()
 	direction.set_output(attached_switch.position)
 */
-#undef CONVEYOR_DELAY
+
 #undef CONVEYOR_BACKWARDS
 #undef CONVEYOR_OFF
 #undef CONVEYOR_FORWARD
