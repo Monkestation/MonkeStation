@@ -265,6 +265,12 @@
 	if(machine_stat & BROKEN && obj_integrity <= 0)
 		if(sound_effect)
 			play_attack_sound(damage_amount, damage_type, damage_flag)
+		if(cell)
+			cell.forceMove(loc)
+			cell.update_appearance()
+			cell = null
+		new /obj/item/stack/sheet/iron(loc)
+		qdel(src)
 		return
 	return ..()
 
@@ -277,7 +283,6 @@
 	. = ..()
 	if(.)
 		set_broken()
-
 
 /obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
 	if(IsAdminGhost(user))
@@ -305,6 +310,7 @@
 	if(occupier)
 		malfvacate(TRUE)
 	update()
+	do_sparks(5, TRUE, src)
 
 /obj/machinery/power/apc/proc/shock(mob/user, prb)
 	if(!prob(prb))
