@@ -771,7 +771,7 @@
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_icon()
+		update_appearance()
 		return TRUE
 
 /obj/machinery/contents_explosion(severity, target)
