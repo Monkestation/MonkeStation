@@ -16300,10 +16300,10 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/red/tile_full,
+/obj/machinery/camera/autoname{
+	dir = 5
+	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/escape)
 "aPt" = (
@@ -21951,6 +21951,9 @@
 	},
 /obj/structure/table/glass,
 /obj/item/crowbar/large,
+/obj/machinery/camera/autoname{
+	dir = 6
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
 "bhF" = (
@@ -27875,9 +27878,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 1
 	},
@@ -28917,6 +28917,9 @@
 /obj/item/pen,
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 6
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
@@ -32145,6 +32148,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/camera/autoname{
+	dir = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "bLM" = (
@@ -32780,7 +32786,6 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "bNT" = (
@@ -62597,9 +62602,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "qAF" = (
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
 	},
