@@ -177,6 +177,7 @@
 	plane = RUNECHAT_PLANE
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
+	render_relay_plane = RENDER_PLANE_NON_GAME
 
 /atom/movable/screen/plane_master/runechat/backdrop(mob/mymob)
 	. = ..()

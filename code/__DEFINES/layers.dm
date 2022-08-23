@@ -137,7 +137,7 @@
 #define CAMERA_STATIC_PLANE 200
 
 ///Popup Chat Messages
-#define RUNECHAT_PLANE 250
+#define RUNECHAT_PLANE 501
 
 ///Debug Atmos Overlays
 #define ATMOS_GROUP_PLANE 450
