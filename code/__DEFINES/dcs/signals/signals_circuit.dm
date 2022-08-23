@@ -64,4 +64,9 @@
 /// Sent when someone with circuit goggles turned on examines something
 #define COMSIG_CIRCUIT_GOGGLES_USED "circuit_goggles_used"
 
+/// Handcuff related defines
+#define COMSIG_CIRCUIT_CUFFS_APPLIED "circuit_cuffs_applied"
+#define COMSIG_CIRCUIT_CUFFS_REMOVED "circuit_cuffs_removed"
+#define COMSIG_CIRCUIT_CUFFS_RESISTED "circuit_cuffs_resisted"
+
 //MONKESTATION EDIT END

@@ -90164,7 +90164,7 @@
 /turf/open/floor/plasteel/checker,
 /area/quartermaster/storage)
 "vcV" = (
-/obj/structure/closet/crate/wooden/toy,
+/obj/structure/closet/crate/secure/clown/toy,
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/requests_console{

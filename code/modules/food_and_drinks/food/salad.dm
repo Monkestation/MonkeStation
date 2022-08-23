@@ -1,16 +1,3 @@
-//this category is very little but I think that it has great potential to grow
-/obj/item/reagent_containers/glass/bowl
-	name = "bowl"
-	desc = "A simple bowl, used for soups and salads."
-	icon = 'icons/obj/food/soupsalad.dmi'
-	icon_state = "bowl"
-	reagent_flags = OPENCONTAINER
-	custom_materials = list(/datum/material/glass = 500)
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/reagent_containers/glass/bowl/Initialize()
-	. = ..()
-	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/salad/empty, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 6)
 
 // empty salad for custom salads
 /obj/item/food/salad/empty
@@ -37,6 +24,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/medicine/omnizine = 10, /datum/reagent/consumable/nutriment/vitamin = 12)
 	tastes = list("leaves" = 1)
 	foodtypes = VEGETABLES | FRUIT
+	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
 
 /obj/item/food/salad/herbsalad
 	name = "herb salad"

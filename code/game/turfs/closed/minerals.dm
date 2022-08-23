@@ -81,7 +81,33 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled()
+/turf/closed/mineral/proc/gets_drilled(mob/user)
+	if(user)
+		if(ishuman(user))
+			var/mob/living/carbon/human/checking = user
+			if(HAS_TRAIT(checking, FOOD_JOB_MINER))
+				var/obj/item/stack/ore/picked_ore
+				if(prob(20))
+					switch(rand(122))
+						if(0 to 50)
+							picked_ore = /obj/item/stack/ore/iron
+						if(51 to 70)
+							picked_ore = /obj/item/stack/ore/copper
+						if(71 to 85)
+							picked_ore = /obj/item/stack/ore/plasma
+						if(86 to 105)
+							picked_ore = /obj/item/stack/ore/silver
+						if(106 to 120)
+							picked_ore = /obj/item/stack/ore/gold
+						if(121)
+							picked_ore = /obj/item/stack/ore/diamond
+						if(122)
+							picked_ore = /obj/item/stack/ore/bluespace_crystal
+
+				if(picked_ore)
+					new picked_ore(src, 1)
+					SSblackbox.record_feedback("tally", "ore_mined", 1, picked_ore)
+
 	if (mineralType && (mineralAmt > 0))
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
