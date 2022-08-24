@@ -70,6 +70,15 @@
 		ui_update()
 		new type(loc, max_amount, FALSE)
 
+/obj/item/stack/proc/is_zero_amount(delete_if_zero = TRUE)
+	if(is_cyborg)
+		return source.energy < cost
+	if(amount < 1)
+		if(delete_if_zero)
+			qdel(src)
+		return TRUE
+	return FALSE
+
 /obj/item/stack/proc/update_weight()
 	if(amount <= (max_amount * (1/3)))
 		w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
