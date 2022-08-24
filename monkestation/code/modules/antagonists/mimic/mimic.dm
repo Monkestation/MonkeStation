@@ -105,7 +105,7 @@
 	if(!istype(target))
 		return
 	if(target.has_buckled_mobs())
-		unbuckle_all_mobs(force=TRUE)
+		target.unbuckle_all_mobs(force=TRUE)
 	if(target.buckled)
 		target.buckled.unbuckle_mob(target,TRUE)
 	if(target)
@@ -289,6 +289,8 @@
 
 /mob/living/simple_animal/hostile/alien_mimic/death(gibbed)
 	if(disguised)
+		if(buckled)
+			buckled.unbuckle_mob(src,TRUE)
 		visible_message("<span class='warning'>[src] explodes in a pile of black goo!</span>", \
 						"<span class='userdanger'>You feel weak as your disguise start to dissolve.</span>")
 		restore()
