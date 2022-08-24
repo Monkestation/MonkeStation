@@ -1100,7 +1100,7 @@
 	dir = 5
 	},
 /obj/machinery/camera/motion{
-	c_tag = "Armoury";
+	c_tag = "Armoury - Interior";
 	dir = 4;
 	network = list("aicore")
 	},
@@ -3580,7 +3580,7 @@
 "aht" = (
 /obj/structure/lattice,
 /obj/machinery/camera/motion{
-	c_tag = "Armory - External";
+	c_tag = "Armoury - External B";
 	dir = 4
 	},
 /turf/open/space,
@@ -4752,7 +4752,7 @@
 /area/security/brig)
 "ajC" = (
 /obj/machinery/camera/motion{
-	c_tag = "AI Upload Chamber - Port";
+	c_tag = "Armoury - External A";
 	dir = 1;
 	network = list("aiupload")
 	},
