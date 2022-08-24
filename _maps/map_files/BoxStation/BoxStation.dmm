@@ -677,6 +677,7 @@
 	req_one_access_txt = "1;4"
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
+/obj/item/clothing/suit/armor/vest/blueshirt,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "abK" = (
@@ -2155,10 +2156,6 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/mask/gas/sechailer,
-/obj/item/clothing/mask/gas/sechailer{
-	pixel_x = 3;
-	pixel_y = -3
-	},
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
@@ -64145,8 +64142,6 @@
 /obj/item/clothing/under/rank/security/officer/formal,
 /obj/item/clothing/under/rank/security/officer/formal,
 /obj/item/clothing/under/rank/security/officer/formal,
-/obj/item/clothing/under/rank/security/officer/formal,
-/obj/item/clothing/suit/security/officer,
 /obj/item/clothing/suit/security/officer,
 /obj/item/clothing/suit/security/officer,
 /obj/item/clothing/suit/security/officer,
@@ -64156,7 +64151,6 @@
 /obj/item/clothing/suit/security/warden,
 /obj/item/clothing/under/rank/security/head_of_security/formal,
 /obj/item/clothing/suit/security/hos,
-/obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
@@ -103729,7 +103723,7 @@ bwt
 bqH
 dLd
 kfK
-dLd
+sPx
 bDJ
 dsl
 ctX
