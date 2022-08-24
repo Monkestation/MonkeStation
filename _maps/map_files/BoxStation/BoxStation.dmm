@@ -26314,6 +26314,9 @@
 /obj/item/choice_beacon/anime{
 	layer = 2.95
 	},
+/obj/item/clothing/glasses/sunglasses/advanced/garb{
+	layer = 2.9
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/maintenance/aft)
 "bvD" = (
@@ -53725,6 +53728,22 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_y = -4;
+	pixel_x = 3
+	},
+/obj/item/clothing/glasses/regular,
+/obj/item/clothing/glasses/regular,
+/obj/item/healthanalyzer{
+	pixel_y = 4;
+	pixel_x = -6;
+	layer = 2.9
+	},
+/obj/item/clothing/glasses/regular,
+/obj/item/clothing/glasses/hud/health{
+	pixel_y = -4;
+	pixel_x = 3
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "keA" = (
@@ -53926,13 +53945,10 @@
 	pixel_x = -3;
 	pixel_y = 2
 	},
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/neck/stethoscope,
 /obj/item/clothing/neck/stethoscope,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
-/obj/item/wrench/medical,
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
@@ -54342,6 +54358,16 @@
 	},
 /obj/structure/table/glass,
 /obj/structure/window/reinforced,
+/obj/item/wrench/medical,
+/obj/item/wrench/medical,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = -2;
+	pixel_x = -4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "kxA" = (
