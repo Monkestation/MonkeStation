@@ -109,6 +109,7 @@
 			),
 		),
 	)
+
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 		              /obj/item/clothing/mask/balaclava = 1,
 		              /obj/item/clothing/head/ushanka = 1,
