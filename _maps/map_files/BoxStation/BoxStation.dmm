@@ -51951,6 +51951,7 @@
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
+/obj/effect/landmark/start/chemist,
 /turf/open/floor/noslip/dark,
 /area/medical/chemistry)
 "ixb" = (
@@ -65551,6 +65552,7 @@
 "sFF" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/effect/landmark/start/chemist,
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "sGA" = (
