@@ -9496,6 +9496,7 @@
 	dir = 4
 	},
 /obj/machinery/space_heater,
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "ayw" = (
@@ -9598,6 +9599,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/effect/turf_decal/delivery/white,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "ayN" = (
@@ -9618,6 +9620,7 @@
 /obj/machinery/door/window/brigdoor{
 	req_access_txt = "18"
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "ayO" = (
@@ -9630,16 +9633,18 @@
 	pixel_y = 5
 	},
 /obj/item/flashlight,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/storage/eva)
-"ayP" = (
-/obj/effect/turf_decal/delivery/white,
-/obj/structure/tank_dispenser/oxygen,
-/obj/machinery/light/directional/north,
 /obj/structure/sign/warning/securearea{
 	pixel_y = 32
 	},
-/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/storage/eva)
+"ayP" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/beacon,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "ayQ" = (
@@ -9648,6 +9653,7 @@
 	},
 /obj/machinery/space_heater,
 /obj/machinery/airalarm/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "ayR" = (
@@ -52812,6 +52818,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "jhk" = (
@@ -56519,6 +56528,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"lKq" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "e.v.a. maintenance";
+	req_access_txt = "18"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "lKF" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -56779,7 +56795,6 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/misc_lab)
 "lSc" = (
-/obj/item/beacon,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -56789,6 +56804,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/tank_dispenser/oxygen,
+/obj/effect/turf_decal/delivery/white,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "lST" = (
@@ -99009,10 +99026,10 @@ asn
 atK
 arP
 awg
-ayE
-ayP
+lKq
+aEZ
 azU
-aBo
+ayP
 aBo
 lSc
 aBo
