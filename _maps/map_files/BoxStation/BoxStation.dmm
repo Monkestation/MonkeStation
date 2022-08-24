@@ -55987,6 +55987,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
+/obj/item/stack/tile/lowered/iron/pool,
+/obj/item/pool/pool_noodle,
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "ltG" = (
