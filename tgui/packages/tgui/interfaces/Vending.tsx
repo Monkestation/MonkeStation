@@ -61,14 +61,19 @@ type CustomInput = {
   img: string;
 };
 
-export const Vending = (props, context) => {
+
+export const Vending = (_, context) => {
+  const { data } = useBackend<VendingData>(context);
+  const { onstation } = data;
   return (
     <Window width={450} height={600}>
       <Window.Content>
         <Stack fill vertical>
-          <Stack.Item>
-            <UserDetails />
-          </Stack.Item>
+          {!!onstation && (
+            <Stack.Item>
+              <UserDetails />
+            </Stack.Item>
+          )}
           <Stack.Item grow>
             <ProductDisplay />
           </Stack.Item>
@@ -81,11 +86,9 @@ export const Vending = (props, context) => {
 /** Displays user details if an ID is present and the user is on the station */
 const UserDetails = (_, context) => {
   const { data } = useBackend<VendingData>(context);
-  const { user, onstation } = data;
+  const { user } = data;
 
-  if (!onstation) {
-    return <NoticeBox>Error!</NoticeBox>;
-  } else if (!user) {
+  if (!user) {
     return (
       <NoticeBox>No ID detected! Contact the Head of Personnel.</NoticeBox>
     );
@@ -114,6 +117,7 @@ const UserDetails = (_, context) => {
 const ProductDisplay = (_, context) => {
   const { data } = useBackend<VendingData>(context);
   const {
+    onstation,
     user,
     product_records = [],
     coin_records = [],
@@ -139,9 +143,11 @@ const ProductDisplay = (_, context) => {
       scrollable
       title="Products"
       buttons={
-        <Box fontSize="16px" color="green">
-          {(user && user.cash) || 0} cr <Icon name="coins" color="gold" />
-        </Box>
+        !!onstation
+        && user && (
+          <Box fontSize="16px" color="green">
+            {(user && user.cash) || 0} cr <Icon name="coins" color="gold" />
+          </Box>)
       }>
       <Table>
         {inventory.map((product) => (
