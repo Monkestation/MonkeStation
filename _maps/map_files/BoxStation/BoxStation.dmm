@@ -18769,14 +18769,14 @@
 	name = "Central Access"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/central)
 "aYP" = (
 /obj/structure/reagent_dispensers/watertank/high,
@@ -22005,6 +22005,7 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "bie" = (
@@ -45817,14 +45818,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/green/line,
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/entry)
 "dUy" = (
 /obj/effect/turf_decal/trimline/green/filled/line,
@@ -48385,7 +48382,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/secondary/entry)
 "fMz" = (
 /obj/structure/cable/yellow{
@@ -49760,9 +49757,9 @@
 /area/hallway/primary/aft)
 "gKr" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/effect/turf_decal/stripes/closeup,
-/turf/open/floor/plasteel/dark,
+/obj/effect/turf_decal/tile/neutral/tile_full,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/central)
 "gKu" = (
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -52846,7 +52843,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/port)
 "jhG" = (
 /obj/structure/cable{
@@ -53014,10 +53011,6 @@
 	name = "Central Access"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -53027,7 +53020,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/central)
 "jqA" = (
 /obj/structure/cable/yellow{
@@ -57598,17 +57591,6 @@
 /obj/structure/sign/departments/minsky/medical/virology/virology1,
 /turf/closed/wall,
 /area/medical/virology)
-"muV" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/darkblue/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/closeup,
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
 "mwb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -59118,14 +59100,10 @@
 	name = "Central Access"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/green/filled/line,
-/obj/effect/turf_decal/trimline/green/line{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/central)
 "nJs" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -60697,14 +60675,10 @@
 /area/maintenance/starboard/aft)
 "paC" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/line,
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/port)
 "pcB" = (
 /obj/machinery/airalarm{
@@ -63381,15 +63355,11 @@
 /area/space)
 "qVS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/neutral/filled/line{
-	dir = 8
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
 	},
-/obj/effect/turf_decal/trimline/neutral/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/closeup,
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/central)
+/turf/open/floor/plasteel/techmaint,
+/area/hallway/secondary/entry)
 "qVW" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/chair,
@@ -65564,8 +65534,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/effect/turf_decal/stripes/closeup,
+/obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/primary/central)
 "sFF" = (
@@ -66605,17 +66575,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"tFe" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/neutral/filled/line,
-/obj/effect/turf_decal/trimline/neutral/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/closeup{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/hallway/primary/port)
 "tGp" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -88526,7 +88485,7 @@ azF
 azF
 dUn
 fMx
-fmU
+qVS
 aXP
 aXP
 aXP
@@ -92895,7 +92854,7 @@ aaa
 aKu
 paC
 jht
-tFe
+paC
 aPG
 aPG
 aPG
@@ -97529,7 +97488,7 @@ cIm
 jNX
 aDq
 aDq
-qVS
+oAo
 aJq
 aJq
 aJq
@@ -98043,7 +98002,7 @@ aLX
 aLX
 xac
 aLX
-muV
+oAo
 aLX
 aLX
 aLX
