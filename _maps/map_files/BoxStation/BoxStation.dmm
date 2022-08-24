@@ -1100,7 +1100,7 @@
 	dir = 5
 	},
 /obj/machinery/camera/motion{
-	c_tag = "MiniSat Core Hallway";
+	c_tag = "Armoury";
 	dir = 4;
 	network = list("aicore")
 	},
@@ -12310,7 +12310,8 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname{
-	dir = 1
+	dir = 1;
+	c_tag = "Customs"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
@@ -13004,6 +13005,9 @@
 	req_access_txt = "1"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aHc" = (
@@ -13670,7 +13674,7 @@
 "aIM" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/line,
-/obj/effect/turf_decal/trimline/red/warning{
+/obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -16200,7 +16204,8 @@
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
 /obj/machinery/camera/autoname{
-	dir = 5
+	dir = 5;
+	c_tag = "Evacuation Security Point"
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/escape)
@@ -18660,7 +18665,8 @@
 	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/machinery/camera/emp_proof/motion{
-	dir = 4
+	dir = 4;
+	c_tag = "ai upload"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -23779,7 +23785,7 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay - Cloning Lab";
+	c_tag = "Medbay - Break Area";
 	dir = 4;
 	name = "medbay camera";
 	network = list("ss13","medbay")
@@ -25244,6 +25250,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
 "brq" = (
@@ -26150,7 +26159,7 @@
 	name = "Bridge Access Blast door"
 	},
 /obj/machinery/camera{
-	c_tag = "Bridge - Port Central";
+	c_tag = "Bridge - Central Access";
 	dir = 8;
 	name = "command camera"
 	},
@@ -27911,7 +27920,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay - Cloning Lab";
+	c_tag = "Medbay - Aft 2";
 	dir = 4;
 	name = "medbay camera";
 	network = list("ss13","medbay")
@@ -41906,7 +41915,7 @@
 	dir = 6
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay - Storage";
+	c_tag = "Medbay - Surgery Viewing Area";
 	dir = 1;
 	name = "medbay camera";
 	network = list("ss13","medbay");
@@ -42752,12 +42761,6 @@
 /obj/item/storage/toolbox/mechanical{
 	pixel_x = -2;
 	pixel_y = -1
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay - Apothecary factory";
-	dir = 6;
-	name = "medbay camera";
-	network = list("ss13","medbay")
 	},
 /obj/item/wrench/medical,
 /obj/structure/table/glass,
@@ -45099,7 +45102,7 @@
 /obj/item/aicard,
 /obj/item/storage/secure/briefcase,
 /obj/machinery/camera{
-	c_tag = "Bridge - Port Central";
+	c_tag = "Bridge - Teleporter Access";
 	dir = 8;
 	name = "command camera"
 	},
@@ -54765,7 +54768,8 @@
 	pixel_y = -8
 	},
 /obj/machinery/camera/emp_proof/motion{
-	dir = 4
+	dir = 4;
+	c_tag = "ai upload foyer"
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -57312,7 +57316,7 @@
 	pixel_x = -26
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay - Cloning Lab";
+	c_tag = "Medbay - Aft 3";
 	dir = 4;
 	name = "medbay camera";
 	network = list("ss13","medbay")
@@ -57423,6 +57427,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/structure/railing,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
 "mnC" = (
@@ -62324,7 +62329,7 @@
 	dir = 4
 	},
 /obj/machinery/camera{
-	c_tag = "Medbay - Cloning Lab";
+	c_tag = "Medbay - Aft";
 	dir = 4;
 	name = "medbay camera";
 	network = list("ss13","medbay")
@@ -64821,6 +64826,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/miningdock)
+"sig" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/red/arrow_ccw,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "siz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
@@ -64980,7 +64996,8 @@
 	pixel_y = -8
 	},
 /obj/machinery/camera/emp_proof/motion{
-	dir = 9
+	dir = 9;
+	c_tag = "ai upload 2"
 	},
 /obj/item/radio/intercom{
 	broadcasting = 1;
@@ -65663,6 +65680,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"sKY" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/red/line,
+/obj/structure/railing,
+/obj/effect/turf_decal/arrows/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/secondary/entry)
 "sKZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
@@ -65999,7 +66028,7 @@
 "tdC" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/camera{
-	c_tag = "Bridge - Port Central";
+	c_tag = "Bridge - Butterfly Garden";
 	dir = 8;
 	name = "command camera"
 	},
@@ -66062,6 +66091,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
+/obj/structure/railing,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
 "tfJ" = (
@@ -86179,7 +86209,7 @@ aCL
 aEG
 aFI
 aBI
-tfx
+sig
 aKk
 aLy
 aNd
@@ -86950,7 +86980,7 @@ aDc
 aEH
 bxM
 aHa
-aIM
+sKY
 qdJ
 aSo
 aMP
