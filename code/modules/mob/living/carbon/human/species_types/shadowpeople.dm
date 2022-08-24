@@ -23,6 +23,7 @@
 
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
+	..()
 	var/turf/T = H.loc
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
