@@ -42762,6 +42762,7 @@
 /obj/item/wrench/medical,
 /obj/structure/table/glass,
 /obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/stack/cable_coil/pink,
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "cAe" = (
@@ -47067,6 +47068,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/power/floodlight,
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "eKo" = (
@@ -58811,6 +58813,10 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "nwC" = (
@@ -59539,6 +59545,9 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
@@ -61881,7 +61890,6 @@
 	id = "apothecary_factory_shutters2";
 	name = "Garage Door Opener";
 	pixel_x = 8;
-	req_access_txt = "5;33";
 	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
@@ -61889,6 +61897,9 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
+	},
+/obj/machinery/light_switch/directional/north{
+	pixel_x = -8
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
@@ -63013,6 +63024,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "qJM" = (
@@ -70109,6 +70121,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/power/floodlight,
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "wnd" = (
@@ -71138,6 +71151,10 @@
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
+	},
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
@@ -115008,15 +115025,15 @@ bzs
 vQV
 jUc
 ecA
-ktW
+xJf
 ktW
 xJf
 ktW
 ktW
 ktW
 ktW
-ktW
-ktW
+xJf
+xJf
 qVP
 tbv
 aaa
@@ -115273,7 +115290,7 @@ brP
 brP
 brP
 wZe
-ktW
+xJf
 eeN
 tbv
 aaa
