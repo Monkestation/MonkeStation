@@ -571,6 +571,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	desc = "A metallic container containing tasty paint."
 
+	w_class = WEIGHT_CLASS_NORMAL
 	instant = TRUE
 	edible = FALSE
 	has_cap = TRUE
