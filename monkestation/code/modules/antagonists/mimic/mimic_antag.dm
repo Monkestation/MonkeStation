@@ -2,6 +2,8 @@
 	name = "mimic"
 	show_name_in_check_antagonists = TRUE
 	show_in_antagpanel = FALSE
+	//The file id for the antag tip window that will pop up
+	tips = "mimic"
 
 /datum/antagonist/mimic/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'monkestation/sound/ambience/antag/mimic.ogg',100,0, use_reverb = FALSE)

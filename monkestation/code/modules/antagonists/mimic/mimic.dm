@@ -288,9 +288,9 @@
 		..()
 
 /mob/living/simple_animal/hostile/alien_mimic/death(gibbed)
+	if(buckled)
+		buckled.unbuckle_mob(src,TRUE)
 	if(disguised)
-		if(buckled)
-			buckled.unbuckle_mob(src,TRUE)
 		visible_message("<span class='warning'>[src] explodes in a pile of black goo!</span>", \
 						"<span class='userdanger'>You feel weak as your disguise start to dissolve.</span>")
 		restore()

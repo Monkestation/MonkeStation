@@ -426,7 +426,8 @@
 		"mech.png" = 'html/img/mech.png',
 		"scitool.png" = 'html/img/scitool.png',
 		"alienorgan.png"= 'html/img/alienorgan.png',
-		"abaton.png"= 'html/img/abaton.png'
+		"abaton.png"= 'html/img/abaton.png',
+		"mimic.png"= 'html/img/mimic.png' //Monkestation Edit
 	)
 
 /datum/asset/simple/orbit
