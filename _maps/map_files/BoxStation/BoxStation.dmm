@@ -13918,7 +13918,8 @@
 	id = "EVA";
 	name = "EVA Door Control";
 	pixel_x = -7;
-	pixel_y = -24
+	pixel_y = -24;
+	req_access_txt = "18"
 	},
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -30421,6 +30422,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/machinery/door/airlock/research{
+	name = "Toxins Launch Room Access";
+	req_access_txt = "8"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/mixing)
 "bGN" = (
@@ -30606,10 +30614,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bHs" = (
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel/grid/steel,
-/area/science/mixing)
 "bHt" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/tile/neutral/tile_full,
@@ -30620,6 +30624,9 @@
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/camera/autoname{
+	dir = 6
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/science/mixing)
 "bHv" = (
@@ -31397,15 +31404,6 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/mixing)
-"bKd" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/plasteel/grid/steel,
-/area/science/mixing)
 "bKf" = (
 /turf/open/floor/plasteel/techmaint,
 /area/science/mixing)
@@ -31788,9 +31786,9 @@
 /turf/closed/wall,
 /area/crew_quarters/heads/hor)
 "bLj" = (
-/obj/effect/spawner/structure/window,
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/door/firedoor/window,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/mixing)
 "bLk" = (
@@ -41316,7 +41314,7 @@
 	},
 /obj/machinery/door/airlock/research{
 	name = "Research Access";
-	req_access_txt = "9"
+	req_one_access_txt = "47,5"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -48392,9 +48390,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "fLK" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -48408,6 +48403,10 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance{
+	name = "Medbay Maintenance";
+	req_access_txt = "5"
+	},
 /turf/open/floor/plating,
 /area/medical/virology)
 "fMx" = (
@@ -70205,7 +70204,8 @@
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	name = "Medbay Maintenance";
+	req_access_txt = "5"
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/medical/storage)
@@ -91709,7 +91709,7 @@ uRR
 bHE
 bHE
 bHE
-agZ
+agL
 bHE
 bHE
 vCP
@@ -123289,9 +123289,9 @@ aEg
 btp
 vqI
 bky
-bHs
+bEs
 bGL
-bKd
+bEs
 cNW
 bMC
 cOe
