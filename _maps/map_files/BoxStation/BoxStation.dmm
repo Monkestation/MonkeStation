@@ -30066,6 +30066,10 @@
 	req_access_txt = "5"
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bFL" = (
@@ -46357,6 +46361,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "elL" = (
@@ -46637,6 +46644,9 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 1
 	},
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "euk" = (
@@ -46692,6 +46702,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "evR" = (
@@ -47096,7 +47109,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/power/floodlight,
+/obj/machinery/chem_master{
+	anchored = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "eKo" = (
@@ -52439,6 +52454,15 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"iPI" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/grid,
+/area/medical/chemistry)
 "iPT" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 6
@@ -60132,6 +60156,9 @@
 	},
 /obj/structure/table/glass,
 /obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "oxW" = (
@@ -63586,6 +63613,9 @@
 	pixel_x = 16;
 	pixel_y = 16
 	},
+/obj/machinery/chem_heater{
+	anchored = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "rlD" = (
@@ -66071,6 +66101,9 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "tfv" = (
@@ -67336,6 +67369,12 @@
 	},
 /turf/open/floor/wood,
 /area/hallway/secondary/exit/departure_lounge)
+"uoE" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/grid,
+/area/medical/chemistry)
 "uoT" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 1
@@ -67966,6 +68005,9 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
 "uRi" = (
@@ -68109,6 +68151,9 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
@@ -70143,7 +70188,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
-/obj/machinery/power/floodlight,
+/obj/machinery/chem_dispenser{
+	anchored = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "wnd" = (
@@ -116846,10 +116893,10 @@ czQ
 czU
 cvO
 ooI
-tAC
-uRq
-uRq
-uRq
+iPI
+uoE
+uoE
+uoE
 tfr
 uWl
 qrT
