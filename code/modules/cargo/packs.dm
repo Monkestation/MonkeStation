@@ -1682,6 +1682,14 @@
 	contains = list(/obj/machinery/computer/pandemic)
 	crate_name = "P.A.N.D.E.M.I.C. Replacement Crate"
 	dangerous = TRUE
+
+/datum/supply_pack/medical/cartridge
+	name = "Chemical Cartridge Crate"
+	desc = "Contains one large chemical cartridge."
+	cost = 1500
+	contains = list(/obj/item/chemical_cartridge/large)
+	crate_name = "chemical cartridge crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Science /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
