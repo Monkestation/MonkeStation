@@ -100,9 +100,6 @@
 /obj/item/construction/plumbing/engineering/set_plumbing_designs()
 	plumbing_design_types = list(
 	/obj/machinery/plumbing/input = 5,
-	/obj/machinery/plumbing/filter = 5,
-	/obj/machinery/plumbing/splitter = 5,
-	/obj/machinery/plumbing/disposer = 10,
 	/obj/machinery/plumbing/liquid_input_pump = 20,)
 
  //OUTPUT PUMPS BUT CRAFTABLE INSTEAD
