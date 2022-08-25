@@ -222,4 +222,3 @@
 	name = "fullscreen alert plane"
 	plane = FULLSCREEN_PLANE
 	render_relay_plane = RENDER_PLANE_NON_GAME
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
