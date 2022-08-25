@@ -149,6 +149,7 @@
 	if (!current)
 		return
 
+
 	if(istype(current, /datum/chem_assembly_instruction/synthesise))
 		var/datum/chem_assembly_instruction/synthesise/tempr = current
 		if(internal.chemical_volume >= tempr.amount)
@@ -161,6 +162,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 		stop()
 	else if (R == CHEM_INST_SUCCESS)
+		use_power(200)
 		if (!current.next)
 			stop()
 		else
