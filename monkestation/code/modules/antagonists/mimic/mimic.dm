@@ -25,7 +25,7 @@
 	maxbodytemp = T0C + 40
 	maxHealth = 75
 	health = 75
-	melee_damage = 7
+	melee_damage = 10
 	obj_damage = 30
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
