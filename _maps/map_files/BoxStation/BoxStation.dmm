@@ -35036,6 +35036,18 @@
 	dir = 10
 	},
 /obj/structure/table/glass,
+/obj/item/grenade/chem_grenade/smart_metal_foam{
+	pixel_y = 10;
+	pixel_x = -2
+	},
+/obj/item/grenade/chem_grenade/smart_metal_foam{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/grenade/chem_grenade/smart_metal_foam{
+	pixel_y = 10;
+	pixel_x = -8
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "bVP" = (
@@ -64451,7 +64463,6 @@
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navywarden,
-/obj/item/clothing/head/beret/sec/navyhos,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
