@@ -21602,6 +21602,7 @@
 	name = "emergency shower";
 	pixel_y = 12
 	},
+/obj/effect/turf_decal/stripes/end,
 /turf/open/floor/noslip/blue,
 /area/medical/medbay/lobby)
 "bhg" = (
@@ -23942,6 +23943,9 @@
 /obj/effect/turf_decal/trimline/brown/corner{
 	dir = 8
 	},
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/office)
 "bnI" = (
@@ -24916,6 +24920,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/brown/line,
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/sorting)
 "bqq" = (
@@ -25781,6 +25788,9 @@
 	},
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 4
+	},
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/office)
@@ -27246,6 +27256,9 @@
 	},
 /obj/item/pen/red,
 /obj/structure/table/glass,
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/cyan,
 /area/quartermaster/qm)
 "byn" = (
@@ -45582,9 +45595,6 @@
 	name = "Medbay"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 8
-	},
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel/grid/steel,
@@ -50303,9 +50313,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
 	name = "Medbay"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 4
 	},
 /obj/effect/mapping_helpers/airlock/unres,
 /obj/effect/turf_decal/stripes/closeup,
@@ -59571,10 +59578,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters{
-	id = "armouryaccess";
-	name = "Armoury Shutter"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -62829,16 +62832,6 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
-"qBf" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "robotics_shutters";
-	name = "robotics shutters"
-	},
-/obj/machinery/door/poddoor/shutters/preopen,
-/obj/machinery/door/firedoor/window,
-/turf/open/floor/plating,
-/area/science/robotics/lab)
 "qBw" = (
 /obj/machinery/door/airlock/security{
 	name = "Brig";
@@ -67588,6 +67581,10 @@
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 4
 	},
+/obj/item/clothing/gloves/cargo_gauntlet,
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "uyl" = (
@@ -68395,7 +68392,8 @@
 	id = "RoboGarage";
 	name = "Garage Door Opener";
 	pixel_x = -4;
-	pixel_y = -24
+	pixel_y = -24;
+	req_access_txt = "29"
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
@@ -68744,9 +68742,7 @@
 	name = "emergency shower";
 	pixel_y = 12
 	},
-/obj/effect/turf_decal/stripes/end{
-	dir = 4
-	},
+/obj/effect/turf_decal/stripes/end,
 /turf/open/floor/noslip/dark,
 /area/science/lab)
 "vug" = (
@@ -117052,7 +117048,7 @@ gLd
 gLd
 box
 gvz
-qBf
+gLd
 bpZ
 kNa
 byf
