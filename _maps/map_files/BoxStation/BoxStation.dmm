@@ -64469,6 +64469,8 @@
 	},
 /obj/machinery/light,
 /obj/item/bedsheet/hos,
+/obj/item/clothing/head/hos/beret/navyhos,
+/obj/item/clothing/head/hos/beret,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "rTB" = (
@@ -66250,6 +66252,9 @@
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
+	},
+/obj/item/clothing/head/hos/beret/syndicate{
+	layer = 2.91
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
