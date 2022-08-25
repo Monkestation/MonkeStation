@@ -17,6 +17,7 @@
 	var/transfer_speed = 10
 	var/synth_speed = 5
 
+	var/obj/item/chemical_cartridge/internal
 
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
@@ -100,6 +101,13 @@
 	qdel(chem_holder)
 	chem_holder = null
 
+/obj/machinery/chem_assembler/examine(mob/user)
+	. = ..()
+	if(internal)
+		.+= span_notice("The assembler contains a [internal.name] and it contains [internal.chemical_volume] out of [initial(internal.chemical_volume)] chemical units")
+	else
+		.+= span_warning("The assembler is missing a cartridge, synthesising will not function")
+
 /obj/machinery/chem_assembler/RefreshParts()
 	. = ..()
 	heater_coefficient = 0.1
@@ -112,7 +120,17 @@
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		synth_speed *= M.rating
 
+/obj/machinery/chem_assembler/AltClick(mob/user)
+	. = ..()
+	if(internal)
+		to_chat(user, span_notice("You remove the [internal.name] from the [src.name]"))
+		internal.forceMove(user)
+		internal = null
+
 /obj/machinery/chem_assembler/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/chemical_cartridge) && !internal)
+		internal = I
+		qdel(I)
 	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_screwdriver(user, "dispenser", "dispenser", I))
@@ -130,6 +148,13 @@
 		heater.handle_reactions()
 	if (!current)
 		return
+
+	if(istype(current, /datum/chem_assembly_instruction/synthesise))
+		var/datum/chem_assembly_instruction/synthesise/tempr = current
+		if(internal.chemical_volume >= tempr.amount)
+			internal.chemical_volume -= tempr.amount
+		else
+			stop()
 
 	var/R = current.execute(src, delta_time)
 	if (R == CHEM_INST_FAIL)

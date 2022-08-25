@@ -3154,6 +3154,7 @@
 #include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 #include "code\modules\reagents\chemistry\machinery\smoke_machine.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_assembler\_instructions.dm"
+#include "code\modules\reagents\chemistry\machinery\chem_assembler\cartridge.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_assembler\chem_assembler.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_assembler\chem_assembly_parser.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_assembler\guide.dm"
