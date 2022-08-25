@@ -931,8 +931,7 @@ RLD
 	/obj/machinery/plumbing/input = 5,
 	//Above are the most common machinery which is shown on the first cycle. Keep new additions below THIS line, unless they're probably gonna be needed alot
 	/obj/machinery/plumbing/chemical_press = 20,
-	/obj/machinery/plumbing/grinder_chemical = 30,
-	/obj/machinery/plumbing/splitter = 5
+	/obj/machinery/plumbing/grinder_chemical = 30
 )
 
 /obj/item/construction/plumbing/attack_self(mob/user)
