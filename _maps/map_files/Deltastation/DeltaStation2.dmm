@@ -76404,15 +76404,15 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
-"dbc" = (
-/obj/structure/table/glass,
+/obj/item/toy/figure/chemist{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/book/manual/wiki/grenades,
 /obj/item/book/manual/wiki/chemistry{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/book/manual/wiki/grenades,
 /obj/item/clipboard{
 	pixel_x = 4;
 	pixel_y = -4
@@ -76421,9 +76421,13 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
+"dbc" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/machinery/chem_assembler,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "dbd" = (

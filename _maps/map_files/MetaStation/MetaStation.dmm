@@ -31662,8 +31662,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "chc" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -31674,6 +31672,7 @@
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
+/obj/machinery/chem_assembler,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "chd" = (
@@ -32493,10 +32492,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"cjT" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "cjV" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -33135,7 +33130,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/holopad,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "cmC" = (
@@ -33623,14 +33617,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "cnI" = (
-/obj/structure/disposalpipe/junction/flip{
-	dir = 2
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
@@ -73399,7 +73393,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
@@ -107645,8 +107638,8 @@ wYG
 cfX
 chc
 tyD
-cjT
-cjT
+coV
+coV
 cmA
 cnI
 coU

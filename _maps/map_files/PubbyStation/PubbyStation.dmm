@@ -26518,9 +26518,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bsL" = (
-/obj/item/storage/box/beakers,
-/obj/structure/table/glass,
-/obj/item/stack/cable_coil/random,
+/obj/machinery/chem_assembler,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bsN" = (
@@ -49104,6 +49102,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/storage/box/beakers,
+/obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "gHD" = (

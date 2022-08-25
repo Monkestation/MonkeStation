@@ -133,6 +133,8 @@
 	new /obj/item/construction/plumbing(src)
 	new	/obj/item/plunger(src)
 	new	/obj/item/plunger(src)
+	new /obj/item/chemical_cartridge(src)
+	new /obj/item/chemical_cartridge(src)
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
 	name = "advanced chemical closet"
