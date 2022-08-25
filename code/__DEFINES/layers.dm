@@ -153,9 +153,9 @@
 
 
 ///-------------------- Rendering ---------------------
-#define RENDER_PLANE_GAME 9990
-#define RENDER_PLANE_NON_GAME 9995
-#define RENDER_PLANE_MASTER 9999
+#define RENDER_PLANE_GAME 990
+#define RENDER_PLANE_NON_GAME 995
+#define RENDER_PLANE_MASTER 999
 
 //-------------------- HUD ---------------------
 //HUD layer defines
