@@ -139,7 +139,7 @@
 		return
 
 /obj/machinery/chem_assembler/process(delta_time)
-	if (!anchored)
+	if (!anchored && !internal)
 		return
 
 	var/datum/reagents/heater = slots["H"]
