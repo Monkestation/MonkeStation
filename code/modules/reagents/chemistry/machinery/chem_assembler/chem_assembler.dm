@@ -124,7 +124,7 @@
 	. = ..()
 	if(internal)
 		to_chat(user, span_notice("You remove the [internal.name] from the [src.name]"))
-		internal.forceMove(user)
+		user.put_in_hand(internal)
 		internal = null
 
 /obj/machinery/chem_assembler/attackby(obj/item/I, mob/user, params)
