@@ -150,12 +150,13 @@
 #define BLIND_LAYER 4
 #define CRIT_LAYER 5
 #define CURSE_LAYER 6
+#define FOV_EFFECTS_LAYER 10000 //Blindness effects are not layer 4, they lie to you
 
 
 ///-------------------- Rendering ---------------------
-#define RENDER_PLANE_GAME 990
-#define RENDER_PLANE_NON_GAME 995
-#define RENDER_PLANE_MASTER 999
+#define RENDER_PLANE_GAME 9990
+#define RENDER_PLANE_NON_GAME 9995
+#define RENDER_PLANE_MASTER 9999
 
 //-------------------- HUD ---------------------
 //HUD layer defines
@@ -167,7 +168,7 @@
 #define RADIAL_CONTENT_LAYER 1
 
 ///Plane of the "splash" icon used that shows on the lobby screen. Nothing should ever be above this.
-#define SPLASHSCREEN_PLANE 9999
+#define SPLASHSCREEN_PLANE 9900
 
 ///cinematics are "below" the splash screen
 #define CINEMATIC_LAYER -1
