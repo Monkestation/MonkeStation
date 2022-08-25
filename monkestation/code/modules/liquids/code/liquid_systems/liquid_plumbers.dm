@@ -102,7 +102,6 @@
 	/obj/machinery/plumbing/input = 5,
 	/obj/machinery/plumbing/output = 5,
 	/obj/machinery/plumbing/tank = 20,
-	/obj/machinery/plumbing/acclimator = 10,
 	/obj/machinery/plumbing/filter = 5,
 	/obj/machinery/plumbing/splitter = 5,
 	/obj/machinery/plumbing/disposer = 10,
