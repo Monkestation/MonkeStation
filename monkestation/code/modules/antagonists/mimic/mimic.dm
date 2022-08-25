@@ -13,7 +13,8 @@
 	icon_state = "mimic"
 	icon_living = "mimic"
 	icon_dead = "mimic_dead"
-	move_to_delay = 2
+	move_to_delay = 0.5
+	var/disguised_move_delay = 4
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
@@ -220,7 +221,7 @@
 	else
 		mobchatspan = initial(mobchatspan)
 
-	set_varspeed(move_to_delay*4) //4x slower when disguised
+	set_varspeed(disguised_move_delay) //slower when disguised
 	med_hud_set_health()
 	med_hud_set_status()
 	return
@@ -247,7 +248,7 @@
 	disguise_time = world.time + MIMIC_DISGUISE_COOLDOWN
 
 	cut_overlays()
-	set_varspeed(initial(move_to_delay))
+	set_varspeed(move_to_delay)
 	med_hud_set_health()
 	med_hud_set_status() //we are not an object
 
