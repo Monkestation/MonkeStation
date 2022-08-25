@@ -40,3 +40,13 @@
 
 /datum/greyscale_config/janicart_upgrade/installed
 	json_config = 'code/datums/greyscale/json_configs/janicart_upgrade_installed.json'
+
+/datum/greyscale_config/kimono_fancy
+	name = "Fancy Kimono"
+	icon_file = 'monkestation/icons/obj/clothing/kimono.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kimono_fancy.json'
+
+/datum/greyscale_config/kimono_fancy_worn
+	name = "Fancy Kimono Worn"
+	icon_file = 'monkestation/icons/mob/kimono.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kimono_fancy_worn.json'

@@ -20,6 +20,8 @@
 	required_type = /mob/dead/observer
 	/// Whether the ruleset should call generate_ruleset_body or not.
 	var/makeBody = TRUE
+	/// The rule needs this many applicants to be properly executed.
+	var/required_applicants = 1
 
 /datum/dynamic_ruleset/midround/trim_candidates()
 	living_players = trim_list(mode.current_players[CURRENT_LIVING_PLAYERS])
@@ -113,6 +115,9 @@
 /// Here is where you can check if your ghost applicants are valid for the ruleset.
 /// Called by send_applications().
 /datum/dynamic_ruleset/midround/from_ghosts/proc/review_applications()
+	if(candidates.len < required_applicants)
+		mode.executed_rules -= src
+		return
 	for (var/i = 1, i <= required_candidates, i++)
 		if(candidates.len <= 0)
 			if(i == 1)
@@ -169,7 +174,7 @@
 	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
 	required_candidates = 1
 	minimum_players = 8
-	weight = 7
+	weight = 5
 	cost = 10
 	requirements = list(20,20,20,20,20,20,20,20,20,20)
 	repeatable = TRUE
@@ -285,11 +290,11 @@
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain", "Research Director") //RD doesn't believe in magic
 	required_enemies = list(2,2,1,1,1,1,1,1,1,1)
 	required_candidates = 1
-	weight = 1
+	weight = 3
 	cost = 20
 	minimum_players = 30
 	requirements = list(101,101,101,101,40,30,10,10,10,10)
-	repeatable = TRUE
+	flags = HIGH_IMPACT_RULESET
 
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
@@ -317,7 +322,7 @@
 	enemy_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	required_enemies = list(3,3,3,3,3,2,1,1,0,0)
 	required_candidates = 3
-	weight = 5
+	weight = 4
 	cost = 20
 	minimum_players = 30
 	requirements = list(101,101,101,101,101,40,30,20,10,10)
@@ -360,8 +365,8 @@
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 4
-	cost = 10
+	weight = 3
+	cost = 25
 	minimum_players = 30
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
@@ -384,7 +389,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
-	cost = 10
+	cost = 25
 	minimum_players = 30
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	repeatable = TRUE
@@ -431,7 +436,7 @@
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
 	weight = 3
-	cost = 10
+	cost = 15
 	minimum_players = 30
 	requirements = list(101,101,101,70,50,40,20,15,10,10)
 	repeatable = TRUE
@@ -477,8 +482,9 @@
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 2
+	required_applicants = 2
 	weight = 4
-	cost = 10
+	cost = 15
 	minimum_players = 20
 	requirements = list(101,101,101,40,30,30,30,20,10,10)
 	repeatable = TRUE
@@ -501,3 +507,122 @@
 		new_character.mind.add_antag_datum(new_role, new_team)
 
 #undef ABDUCTOR_MAX_TEAMS
+
+//////////////////////////////////////////////
+//                                          //
+//           PIRATES      (GHOST)           //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/pirates
+	name = "Space Pirates"
+	antag_flag = ROLE_TRAITOR
+	required_type = /mob/dead/observer
+	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
+	required_enemies = list(2,2,2,2,2,2,2,2,2,2)
+	weight = 5
+	cost = 10
+	minimum_players = 25
+	requirements = list(101,101,101,80,60,50,30,20,10,10)
+
+/datum/dynamic_ruleset/midround/pirates/acceptable(population=0, threat=0)
+	if (!SSmapping.empty_space)
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/midround/pirates/execute()
+	send_pirate_threat()
+
+//////////////////////////////////////////////
+//                                          //
+//           REVENANT      (GHOST)          //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_ghosts/revenant
+	name = "Revenant"
+	antag_datum = /datum/antagonist/revenant
+	antag_flag = "Revenant"
+	antag_flag_override = ROLE_REVENANT
+	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
+	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_candidates = 1
+	weight = 4
+	cost = 10
+	requirements = list(101,101,101,70,50,40,20,15,10,10)
+	repeatable = TRUE
+	var/dead_mobs_required = 20
+	var/need_extra_spawns_value = 15
+	var/list/spawn_locs = list()
+
+/datum/dynamic_ruleset/midround/from_ghosts/revenant/acceptable(population=0, threat=0)
+	if(GLOB.dead_mob_list.len < dead_mobs_required)
+		return FALSE
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/revenant/execute()
+	for(var/mob/living/corpse in GLOB.dead_mob_list) //look for any dead bodies
+		var/turf/corpse_turf = get_turf(corpse)
+		if(corpse_turf && is_station_level(corpse_turf.z))
+			spawn_locs += corpse_turf
+	if(!spawn_locs.len || spawn_locs.len < need_extra_spawns_value) //look for any morgue trays, crematoriums, ect if there weren't alot of dead bodies on the station to pick from
+		for(var/obj/structure/bodycontainer/corpse_container in GLOB.bodycontainers)
+			var/turf/container_turf = get_turf(corpse_container)
+			if(container_turf && is_station_level(container_turf.z))
+				spawn_locs += container_turf
+	if(!spawn_locs.len) //If we can't find any valid spawnpoints, try the carp spawns
+		for(var/obj/effect/landmark/carpspawn/carp_spawnpoint in GLOB.landmarks_list)
+			if(isturf(carp_spawnpoint.loc))
+				spawn_locs += carp_spawnpoint.loc
+	if(!spawn_locs.len) //If we can't find THAT, then just give up and cry
+		return FALSE
+	. = ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/revenant/generate_ruleset_body(mob/applicant)
+	var/mob/living/simple_animal/revenant/revenant = new(pick(spawn_locs))
+	revenant.key = applicant.key
+	message_admins("[ADMIN_LOOKUPFLW(revenant)] has been made into a revenant by the midround ruleset.")
+	log_game("[key_name(revenant)] was spawned as a revenant by the midround ruleset.")
+	return revenant
+
+//////////////////////////////////////////////
+//                                          //
+//           		OBSESSED			    //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/obsessed
+	name = "Obsessed"
+	antag_datum = /datum/antagonist/obsessed
+	antag_flag = ROLE_OBSESSED
+	restricted_roles = list("Cyborg", "AI", "Positronic Brain")
+	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
+	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
+	required_candidates = 1
+	weight = 3
+	cost = 5
+	requirements = list(101,101,101,80,60,50,30,20,10,10)
+	repeatable = TRUE
+
+/datum/dynamic_ruleset/midround/obsessed/trim_candidates()
+	..()
+	candidates = living_players
+	for(var/mob/living/carbon/human/candidate in candidates)
+		if( \
+			!candidate.getorgan(/obj/item/organ/brain) \
+			|| candidate.mind.has_antag_datum(/datum/antagonist/obsessed) \
+			|| candidate.stat == DEAD \
+			|| !(ROLE_OBSESSED in candidate.client?.prefs?.be_special) \
+			|| !SSjob.GetJob(candidate.mind.assigned_role) \
+			|| (candidate.mind.assigned_role in GLOB.nonhuman_positions) \
+		)
+			candidates -= candidate
+
+/datum/dynamic_ruleset/midround/obsessed/execute()
+	if(!candidates || !candidates.len)
+		return FALSE
+	var/mob/living/carbon/human/obsessed = pick_n_take(candidates)
+	obsessed.gain_trauma(/datum/brain_trauma/special/obsessed)
+	message_admins("[ADMIN_LOOKUPFLW(obsessed)] has been made Obsessed by the midround ruleset.")
+	log_game("[key_name(obsessed)] was made Obsessed by the midround ruleset.")
+	return ..()
