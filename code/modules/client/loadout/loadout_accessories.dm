@@ -28,12 +28,12 @@
 
 /datum/gear/accessory/scarf/stripedred
 	display_name = "scarf, striped red"
-	path = /obj/item/clothing/neck/stripedredscarf
+	path = /obj/item/clothing/neck/large_scarf/red
 	cost = 1200
 
 /datum/gear/accessory/scarf/stripedblue
 	display_name = "scarf, striped blue"
-	path = /obj/item/clothing/neck/stripedbluescarf
+	path = /obj/item/clothing/neck/large_scarf/blue
 	cost = 1200
 
 //armbands

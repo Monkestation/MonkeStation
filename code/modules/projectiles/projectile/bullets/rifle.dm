@@ -12,5 +12,9 @@
 
 /obj/item/projectile/bullet/a762_enchanted
 	name = "enchanted 7.62 bullet"
-	damage = 20
-	stamina = 80
+	damage = 30
+
+/obj/item/projectile/bullet/a762_enchanted/Impact(atom/A)
+	damage_type = pick(BRUTE, BURN, CLONE, TOX, STAMINA, BRAIN)
+	..()
+

@@ -247,16 +247,15 @@
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip)
-	if(get_blood_id() != /datum/reagent/blood)
-		return
 	if(!T)
 		T = get_turf(src)
 
+	var/datum/reagent/blood_type = get_blood_id()
 	var/list/temp_blood_DNA
 	if(small_drip)
 
 		if(T.liquids)
-			var/list/blood_drop = list(/datum/reagent/blood = 0.1)
+			var/list/blood_drop = list(get_blood_id() = 0.1)
 			T.add_liquid_list(blood_drop, FALSE, 300)
 			return
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
@@ -272,6 +271,7 @@
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
 			drop = new(T, get_static_viruses())
+			drop.color = initial(blood_type.color) // poor mans gags this doesn't need its own config
 			drop.transfer_mob_blood_dna(src)
 			return
 
@@ -283,6 +283,7 @@
 	if(QDELETED(B)) //Give it up
 		return
 	if(B.count < 10 )
+		B.color = blood_type.color
 		B.count ++
 		B.transfer_mob_blood_dna(src)
 	if (B.bloodiness < MAX_SHOE_BLOODINESS) //add more blood, up to a limit
@@ -293,7 +294,7 @@
 
 	if(B.count > 9)
 		qdel(B)
-		var/list/blood_large = list(/datum/reagent/blood = 20)
+		var/list/blood_large = list(get_blood_id() = 20)
 		T.add_liquid_list(blood_large, FALSE, 300)
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)

@@ -54,6 +54,7 @@
 			new /obj/item/storage/secure/briefcase/syndie(src) //1 tc
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) // 0 tc
 			new /obj/item/clothing/under/suit/black_really(src) // 0 tc
+			new /obj/item/clothing/neck/tie/red/hitman(src) // 0 tc
 
 		if("screwed") // 35 tc
 			new /obj/item/sbeacondrop/bomb(src) // 12 tc

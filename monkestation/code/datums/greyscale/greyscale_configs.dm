@@ -32,3 +32,21 @@
 	name = "Catgloves Worn"
 	icon_file = 'monkestation/icons/mob/catgloves.dmi'
 	json_config = 'code/datums/greyscale/json_configs/catgloves_worn.json'
+
+/datum/greyscale_config/janicart_upgrade
+	name = "Janicart Upgrade"
+	icon_file = 'monkestation/icons/obj/janitor/janicart_upgrade.dmi'
+	json_config = 'code/datums/greyscale/json_configs/janicart_upgrade.json'
+
+/datum/greyscale_config/janicart_upgrade/installed
+	json_config = 'code/datums/greyscale/json_configs/janicart_upgrade_installed.json'
+
+/datum/greyscale_config/kimono_fancy
+	name = "Fancy Kimono"
+	icon_file = 'monkestation/icons/obj/clothing/kimono.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kimono_fancy.json'
+
+/datum/greyscale_config/kimono_fancy_worn
+	name = "Fancy Kimono Worn"
+	icon_file = 'monkestation/icons/mob/kimono.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kimono_fancy_worn.json'
