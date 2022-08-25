@@ -2,6 +2,10 @@ import { useBackend, useSharedState } from '../backend';
 import { Tabs, ProgressBar, Flex, TextArea, NoticeBox, Section, Button } from '../components';
 import { Window } from '../layouts';
 
+const handleChange = (e) => {
+  e.preventDefault();
+};
+
 export const ChemAssembler = (props, context) => {
   const { act, data } = useBackend(context);
   const [tab, setTab] = useSharedState(context, 'tab', 1);
@@ -77,7 +81,7 @@ export const ChemAssembler = (props, context) => {
               </NoticeBox>
             )}
             <Section>
-              <TextArea fontFamily="monospace" fluid width="100%" height={data.error ? "298px" : "327px"} value={program_text}
+              <TextArea fontFamily="monospace" onCopy={handleChange} onPaste={handleChange} fluid width="100%" height={data.error ? "298px" : "327px"} value={program_text}
                 onChange={(e, value) => act("update_program", {
                   text: value,
                 })} />
