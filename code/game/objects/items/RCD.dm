@@ -929,8 +929,6 @@ RLD
 /obj/item/construction/plumbing/proc/set_plumbing_designs()
 	plumbing_design_types = list(
 	/obj/machinery/plumbing/input = 5,
-	/obj/machinery/plumbing/output = 5,
-	/obj/machinery/plumbing/tank = 20,
 	//Above are the most common machinery which is shown on the first cycle. Keep new additions below THIS line, unless they're probably gonna be needed alot
 	/obj/machinery/plumbing/chemical_press = 20,
 	/obj/machinery/plumbing/disposer = 10,

@@ -74,27 +74,3 @@
 	. = ..()
 	AddComponent(/datum/component/plumbing/demand/south, bolt)
 
-///We can fill beakers in here and everything. we dont inheret from input because it has nothing that we need
-/obj/machinery/plumbing/output
-	name = "output gate"
-	desc = "A manual output for plumbing systems, for taking reagents directly into containers."
-	icon_state = "pipe_output"
-	reagent_flags = TRANSPARENT | DRAINABLE
-	rcd_cost = 5
-	rcd_delay = 5
-
-/obj/machinery/plumbing/output/Initialize(mapload, bolt)
-	. = ..()
-	AddComponent(/datum/component/plumbing/demand/south, bolt)
-
-/obj/machinery/plumbing/tank
-	name = "chemical tank"
-	desc = "A massive chemical holding tank."
-	icon_state = "tank"
-	buffer = 400
-	rcd_cost = 25
-	rcd_delay = 20
-
-/obj/machinery/plumbing/tank/Initialize(mapload, bolt)
-	. = ..()
-	AddComponent(/datum/component/plumbing/tank, bolt)

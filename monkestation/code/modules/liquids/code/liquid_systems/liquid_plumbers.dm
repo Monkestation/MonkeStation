@@ -100,8 +100,6 @@
 /obj/item/construction/plumbing/engineering/set_plumbing_designs()
 	plumbing_design_types = list(
 	/obj/machinery/plumbing/input = 5,
-	/obj/machinery/plumbing/output = 5,
-	/obj/machinery/plumbing/tank = 20,
 	/obj/machinery/plumbing/filter = 5,
 	/obj/machinery/plumbing/splitter = 5,
 	/obj/machinery/plumbing/disposer = 10,
