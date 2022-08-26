@@ -3,6 +3,7 @@
 	icon_state = "blank"
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	blend_mode = BLEND_OVERLAY
+	plane = LOWEST_EVER_PLANE
 	var/show_alpha = 255
 	var/hide_alpha = 0
 
@@ -221,4 +222,12 @@
 /atom/movable/screen/plane_master/fullscreen
 	name = "fullscreen alert plane"
 	plane = FULLSCREEN_PLANE
+	render_relay_plane = RENDER_PLANE_NON_GAME
+/atom/movable/screen/plane_master/hud
+	name = "HUD plane"
+	plane = HUD_PLANE
+	render_relay_plane = RENDER_PLANE_NON_GAME
+/atom/movable/screen/plane_master/above_hud
+	name = "above HUD plane"
+	plane = ABOVE_HUD_PLANE
 	render_relay_plane = RENDER_PLANE_NON_GAME
