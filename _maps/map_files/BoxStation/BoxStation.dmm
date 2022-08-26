@@ -49192,7 +49192,7 @@
 /obj/machinery/door/airlock/medical/glass{
 	desc = "A way into the medbay for Evil and Poisonous rubbi- er Paramedics.";
 	name = "Paramedic Entrance";
-	req_access_txt = "45"
+	req_access_txt = "5"
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
