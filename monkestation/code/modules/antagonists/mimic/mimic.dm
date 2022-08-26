@@ -24,15 +24,15 @@
 	unsuitable_atmos_damage = 0 //They won't die in Space!
 	minbodytemp = TCMB
 	maxbodytemp = T0C + 40
-	maxHealth = 75
-	health = 75
+	maxHealth = 90
+	health = 90
 	melee_damage = 10
 	obj_damage = 30
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	wander = FALSE
 	initial_language_holder = /datum/language_holder/mimic
-	attacktext = "consumes"
+	attacktext = "smothers"
 	attack_sound = 'monkestation/sound/creatures/mimic/mimicattack.ogg'
 	var/absorb_sound = 'monkestation/sound/creatures/mimic/mimicabsorb.ogg'
 	var/split_sound = 'monkestation/sound/creatures/mimic/mimicsplit.ogg'
@@ -353,7 +353,7 @@
 							"<span class='userdanger'>[carbon_victim]'s corpse decays as you absorb the nutrients from their body.</span>")
 				carbon_victim.become_husk(MIMIC_ABSORB)
 				people_absorbed++
-				adjustHealth(-30)
+				adjustHealth(-40)
 			return
 		if(disguised) //Insta latch if youre disguised
 			if(victim.stat == DEAD)
@@ -365,12 +365,16 @@
 		else if(do_mob(src, target, 3 SECONDS)) //Latch after a bit if you arent
 			latch(victim)
 			return
-	if(!ismob(target))
+	if(!ismob(target)) //If you're attacking something or other
+		if(disguised)
+			restore()
 		return ..()
 	if(buckled && target == buckled) //If you're buckled to them, or attacking a non-human
 		return ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Aggro()
+	if(mind)
+		return
 	if(disguised && get_dist(src,target)<=1) //Instantly latch onto them
 		latch(target)
 		restore()
