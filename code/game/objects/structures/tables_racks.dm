@@ -168,69 +168,67 @@
 	log_combat(user, pushed_mob, "head slammed", null, "against [src]")
 	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_headsmash)
 
-/obj/structure/table/attackby(obj/item/I, mob/user, params)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		if(I.tool_behaviour == TOOL_SCREWDRIVER && deconstruction_ready && user.a_intent != INTENT_HELP)
-			to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
-			if(I.use_tool(src, user, 20, volume=50))
-				deconstruct(TRUE)
-			return
-
-		if(I.tool_behaviour == TOOL_WRENCH && deconstruction_ready && user.a_intent != INTENT_HELP)
-			to_chat(user, "<span class='notice'>You start deconstructing [src]...</span>")
-			if(I.use_tool(src, user, 40, volume=50))
-				playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-				deconstruct(TRUE, 1)
-			return
+/obj/structure/table/attackby(obj/item/I, mob/living/user, params)
+	var/list/modifiers = params2list(params)
 
 	if(istype(I, /obj/item/storage/bag/tray))
 		var/obj/item/storage/bag/tray/T = I
 		if(T.contents.len > 0) // If the tray isn't empty
+			for(var/x in T.contents)
+				var/obj/item/item = x
+				AfterPutItemOnTable(item, user)
 			SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
-			user.visible_message("[user] empties [I] on [src].")
+			user.visible_message(span_notice("[user] empties [I] on [src]."))
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
+
+	if(istype(I, /obj/item/toy/cards/deck))
+		var/obj/item/toy/cards/deck/dealer_deck = I
+		if(dealer_deck.wielded) // deal a card facedown on the table
+			var/obj/item/toy/singlecard/card = dealer_deck.draw(user)
+			if(card)
+				attackby(card, user, params)
+			return
 
 	if(istype(I, /obj/item/riding_offhand))
 		var/obj/item/riding_offhand/riding_item = I
 		var/mob/living/carried_mob = riding_item.rider
 		if(carried_mob == user) //Piggyback user.
 			return
-		switch(user.a_intent)
-			if(INTENT_HARM)
+		if(user.combat_mode)
+			user.unbuckle_mob(carried_mob)
+			tablelimbsmash(user, carried_mob)
+		else
+			var/tableplace_delay = 3.5 SECONDS
+			var/skills_space = ""
+			if(HAS_TRAIT(user, TRAIT_QUICKER_CARRY))
+				tableplace_delay = 2 SECONDS
+				skills_space = " expertly"
+			else if(HAS_TRAIT(user, TRAIT_QUICK_CARRY))
+				tableplace_delay = 2.75 SECONDS
+				skills_space = " quickly"
+			carried_mob.visible_message(span_notice("[user] begins to[skills_space] place [carried_mob] onto [src]..."),
+				span_userdanger("[user] begins to[skills_space] place [carried_mob] onto [src]..."))
+			if(do_after(user, tableplace_delay, target = carried_mob))
 				user.unbuckle_mob(carried_mob)
-				tableheadsmash(user, carried_mob)
-			if(INTENT_HELP)
-				var/tableplace_delay = 3.5 SECONDS
-				var/skills_space = ""
-				if(HAS_TRAIT(user, TRAIT_QUICKER_CARRY))
-					tableplace_delay = 2 SECONDS
-					skills_space = " expertly"
-				else if(HAS_TRAIT(user, TRAIT_QUICK_CARRY))
-					tableplace_delay = 2.75 SECONDS
-					skills_space = " quickly"
-				carried_mob.visible_message("<span class='notice'>[user] begins to[skills_space] place [carried_mob] onto [src]...</span>",
-					"<span class='userdanger'>[user] begins to[skills_space] place [carried_mob] onto [src]...</span>")
-				if(do_after(user, tableplace_delay, target = carried_mob))
-					user.unbuckle_mob(carried_mob)
-					tableplace(user, carried_mob)
-			else
-				user.unbuckle_mob(carried_mob)
-				tablepush(user, carried_mob)
+				tableplace(user, carried_mob)
 		return TRUE
 
-	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
+	if(!user.combat_mode && !(I.item_flags & ABSTRACT))
 		if(user.transferItemToLoc(I, drop_location(), silent = FALSE))
-			var/list/click_params = params2list(params)
 			//Center the icon where the user clicked.
-			if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+			if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
 				return
 			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
-			return 1
+			I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(world.icon_size/2), world.icon_size/2)
+			I.pixel_y = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(world.icon_size/2), world.icon_size/2)
+			AfterPutItemOnTable(I, user)
+			return TRUE
 	else
 		return ..()
+
+/obj/structure/table/proc/AfterPutItemOnTable(obj/item/I, mob/living/user)
+	return
 
 
 /obj/structure/table/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
