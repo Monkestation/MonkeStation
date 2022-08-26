@@ -12,7 +12,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/plane_master_controller)
 	. = ..()
 	if(!istype(hud))
 		return
-
 	owner_hud = hud
 	var/assoc_controlled_planes = list()
 	for(var/i in controlled_planes)
