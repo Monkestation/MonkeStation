@@ -3787,6 +3787,7 @@
 #include "monkestation\code\modules\clothing\suits\toggles.dm"
 #include "monkestation\code\modules\clothing\under\costume.dm"
 #include "monkestation\code\modules\clothing\under\miscellaneous.dm"
+#include "monkestation\code\modules\clothing\under\jobs\engineering.dm"
 #include "monkestation\code\modules\clothing\under\jobs\civilian\civilian.dm"
 #include "monkestation\code\modules\clothing\under\jobs\plasmaman\civilian_service.dm"
 #include "monkestation\code\modules\events\anomaly_clown.dm"
