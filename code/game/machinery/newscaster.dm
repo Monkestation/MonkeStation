@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	name = "newscaster"
 	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
 	icon = 'icons/obj/terminals.dmi'
-	icon_state = "newscaster_normal"
+	icon_state = "newscaster_off"
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
@@ -227,29 +227,38 @@ GLOBAL_LIST_EMPTY(allCasters)
 	picture = null
 	return ..()
 
-/obj/machinery/newscaster/update_icon()
-	cut_overlays()
+/obj/machinery/newscaster/update_appearance(updates=ALL)
+	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
-		icon_state = "newscaster_off"
 		set_light(0)
-	else
-		if(GLOB.news_network.wanted_issue.active)
-			icon_state = "newscaster_wanted"
-		else
-			icon_state = "newscaster_normal"
-			if(alert)
-				add_overlay("newscaster_alert")
-		set_light(1)
+		return
+	set_light(1.4,0.7,"#34D352") // green light
+
+/obj/machinery/newscaster/update_overlays()
+	. = ..()
+
+	if(!(machine_stat & (NOPOWER|BROKEN)))
+		var/state = "[base_icon_state]_[GLOB.news_network.wanted_issue.active ? "wanted" : "normal"]"
+		. += mutable_appearance(icon, state)
+		. += emissive_appearance(icon, state, alpha = src.alpha)
+
+		if(!GLOB.news_network.wanted_issue.active && alert)
+			. += mutable_appearance(icon, "[base_icon_state]_alert")
+			. += emissive_appearance(icon, "[base_icon_state]_alert", alpha = src.alpha)
+
 	var/hp_percent = obj_integrity * 100 /max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
 		if(50 to 75)
-			add_overlay("crack1")
+			. += "crack1"
+			. += emissive_blocker(icon, "crack1", alpha = src.alpha)
 		if(25 to 50)
-			add_overlay("crack2")
+			. += "crack2"
+			. += emissive_blocker(icon, "crack2", alpha = src.alpha)
 		else
-			add_overlay("crack3")
+			. += "crack3"
+			. += emissive_blocker(icon, "crack3", alpha = src.alpha)
 
 
 /obj/machinery/newscaster/power_change()
