@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
 	icon = 'icons/obj/terminals.dmi'
-	icon_state = "req_comp_off"
+	base_icon_state = "req_comp"
 	icon_state = "req_comp_off"
 	layer = ABOVE_WINDOW_LAYER
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
