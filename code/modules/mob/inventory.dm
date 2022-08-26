@@ -299,11 +299,16 @@
 //for when you want the item to end up on the ground
 //will force move the item to the ground and call the turf's Entered
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE, thrown = FALSE, silent = FALSE)
-	return doUnEquip(I, force, drop_location(), FALSE, was_thrown = thrown, silent = FALSE)
+	.= doUnEquip(I, force, drop_location(), FALSE, was_thrown = thrown, silent = FALSE)
+	if(!. || !I) //ensure the item exists and that it was dropped properly.
+		return
+
+	I.do_drop_animation(src)
 
 //for when the item will be immediately placed in a loc other than the ground
 /mob/proc/transferItemToLoc(obj/item/I, newloc = null, force = FALSE, silent = FALSE)
-	return doUnEquip(I, force, newloc, FALSE, silent = FALSE)
+	. = doUnEquip(I, force, newloc, FALSE, silent = silent)
+	I.do_drop_animation(src)
 
 //visibly unequips I but it is NOT MOVED AND REMAINS IN SRC
 //item MUST BE FORCEMOVE'D OR QDEL'D
