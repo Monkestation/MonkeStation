@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			playeffect = FALSE
 			. = TRUE
 		if("piping_layer")
-			piping_layer = text2num(params["piping_layer"])
+			piping_layer = clamp(round(text2num(params["piping_layer"])), PIPING_LAYER_MIN, PIPING_LAYER_MAX)
 			playeffect = FALSE
 			. = TRUE
 		if("ducting_layer")
