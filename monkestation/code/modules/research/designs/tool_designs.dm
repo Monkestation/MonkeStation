@@ -7,3 +7,13 @@
 	build_path = /obj/item/rpd_upgrade/unwrench
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/rpd_upgrade/amend
+	name = "RPD amending upgrade"
+	desc = "Adds pipe amending functionality to the RPD. Right-click a pipe with the RPD to activate."
+	id = "rpd_upgrade_amend"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500)
+	build_path = /obj/item/rpd_upgrade/amend
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING

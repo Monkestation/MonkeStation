@@ -14,6 +14,8 @@
 
 	device_type = BINARY
 
+	amendable = TRUE
+
 	construction_type = /obj/item/pipe/binary/bendable
 	pipe_state = "simple"
 
@@ -36,3 +38,8 @@
 	icon_state = "pipe[nodes[1] ? "1" : "0"][nodes[2] ? "1" : "0"]-[piping_layer]"
 	update_layer()
 	update_alpha()
+
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple/createAmend(turf/T, direction)
+	var/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/new_pipe = new /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/(T)
+	new_pipe.setDir((initialize_directions | direction) ^ 15)
+	return new_pipe

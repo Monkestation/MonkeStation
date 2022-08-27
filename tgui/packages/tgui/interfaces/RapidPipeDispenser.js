@@ -52,6 +52,10 @@ const TOOLS = [
     name: 'Paint',
     bitmask: 8,
   },
+  {
+    name: 'Amend',
+    bitmask: 16,
+  },
 ];
 
 export const RapidPipeDispenser = (props, context) => {

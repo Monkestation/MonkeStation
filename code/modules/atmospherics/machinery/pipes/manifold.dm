@@ -12,6 +12,8 @@
 
 	device_type = TRINARY
 
+	amendable = TRUE
+
 	construction_type = /obj/item/pipe/trinary
 	pipe_state = "manifold"
 
@@ -49,3 +51,7 @@
 
 	update_layer()
 	update_alpha()
+
+
+/obj/machinery/atmospherics/pipe/manifold/createAmend(turf/T, direction)
+	return new /obj/machinery/atmospherics/pipe/manifold4w(T)

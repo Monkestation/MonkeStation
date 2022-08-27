@@ -155,7 +155,9 @@
 	return
 
 /obj/machinery/atmospherics/pipe/addMember(obj/machinery/atmospherics/A)
-	parent.addMember(A, src)
+	// This will be added when rebuild creates a pipeline if not available
+	if(parent)
+		parent.addMember(A, src)
 
 /obj/machinery/atmospherics/components/addMember(obj/machinery/atmospherics/A)
 	var/datum/pipeline/P = return_pipenet(A)
