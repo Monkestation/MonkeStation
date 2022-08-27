@@ -253,7 +253,7 @@
 				user.client.give_award(/datum/award/achievement/misc/pressure, user)
 
 
-		deconstruct(TRUE)
+		return deconstruct(TRUE)
 	return TRUE
 
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)
@@ -289,6 +289,7 @@
 			if(!disassembled)
 				stored.obj_integrity = stored.max_integrity * 0.5
 			transfer_fingerprints_to(stored)
+			. = stored
 	..()
 
 /**
