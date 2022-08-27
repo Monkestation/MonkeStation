@@ -30,6 +30,9 @@
 	nullifyAllNodes()
 	return ..()
 
+/obj/machinery/atmospherics/pipe/layer_manifold/update_pipe_icon()
+	return
+
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/nullifyAllNodes()
 	var/list/obj/machinery/atmospherics/needs_nullifying = get_all_connected_nodes()
 	front_nodes = null
@@ -43,36 +46,35 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/get_all_connected_nodes()
 	return front_nodes + back_nodes + nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/update_icon()
-	cut_overlays()
-	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE)	//This is above everything else.
+/obj/machinery/atmospherics/pipe/layer_manifold/update_layer()
+	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE) //This is above everything else.
+
+/obj/machinery/atmospherics/pipe/layer_manifold/update_overlays()
+	. = ..()
 
 	for(var/node in front_nodes)
-		add_attached_images(node)
+		var/list/front_images = get_attached_images(node)
+		if(length(front_images))
+			. += front_images
 	for(var/node in back_nodes)
-		add_attached_images(node)
+		var/list/back_images = get_attached_images(node)
+		if(length(back_images))
+			. += back_images
 
-	update_alpha()
-
-/obj/machinery/atmospherics/pipe/layer_manifold/proc/add_attached_images(obj/machinery/atmospherics/A)
+/obj/machinery/atmospherics/pipe/layer_manifold/proc/get_attached_images(obj/machinery/atmospherics/A)
 	if(!A)
 		return
+	. = list()
 	if(istype(A, /obj/machinery/atmospherics/pipe/layer_manifold))
 		for(var/i in PIPING_LAYER_MIN to PIPING_LAYER_MAX)
-			add_attached_image(get_dir(src, A), i)
-			return
-	add_attached_image(get_dir(src, A), A.piping_layer, A.pipe_color)
+			. += get_attached_image(get_dir(src, A), i, COLOR_VERY_LIGHT_GRAY)
+		return
+	. += get_attached_image(get_dir(src, A), A.piping_layer, A.pipe_color)
 
-/obj/machinery/atmospherics/pipe/layer_manifold/proc/add_attached_image(p_dir, p_layer, p_color = null)
-	var/image/I
-
-	if(p_color)
-		I = getpipeimage(icon, "pipe", p_dir, p_color, piping_layer = p_layer)
-	else
-		I = getpipeimage(icon, "pipe", p_dir, piping_layer = p_layer)
-
-	I.layer = layer - 0.01
-	add_overlay(I)
+/obj/machinery/atmospherics/pipe/layer_manifold/proc/get_attached_image(p_dir, p_layer, p_color)
+	var/mutable_appearance/muta = mutable_appearance('icons/obj/atmospherics/pipes/layer_manifold_underlays.dmi', "intact_[p_dir]_[p_layer]", layer = layer - 0.01, appearance_flags = RESET_COLOR)
+	muta.color = p_color
+	return muta
 
 /obj/machinery/atmospherics/pipe/layer_manifold/SetInitDirections()
 	switch(dir)

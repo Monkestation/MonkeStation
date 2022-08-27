@@ -26,9 +26,6 @@
 	var/piping_layer = PIPING_LAYER_DEFAULT
 	var/pipe_flags = NONE
 
-	var/static/list/iconsetids = list()
-	var/static/list/pipeimages = list()
-
 	var/image/pipe_vision_img = null
 
 	var/device_type = 0
@@ -294,22 +291,25 @@
 			transfer_fingerprints_to(stored)
 	..()
 
-/obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=3, trinary = FALSE)
-
-	//Add identifiers for the iconset
-	if(iconsetids[iconset] == null)
-		iconsetids[iconset] = num2text(iconsetids.len + 1)
-
-	//Generate a unique identifier for this image combination
-	var/identifier = iconsetids[iconset] + "_[iconstate]_[direction]_[col]_[piping_layer]"
-
-	if((!(. = pipeimages[identifier])))
-		var/image/pipe_overlay
-		pipe_overlay = . = pipeimages[identifier] = image(iconset, iconstate, dir = direction)
-		pipe_overlay.color = col
-		PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
-		if(trinary && (piping_layer == 1 || piping_layer == 5))
-			PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
+/**
+ * Getter for piping layer shifted, pipe colored overlays
+ *
+ * Creates the image for the pipe underlay that all components use, called by get_pipe_underlay() in components_base.dm
+ * Arguments:
+ * * iconfile - path of the iconstate we are using (ex: 'icons/obj/atmospherics/components/thermomachine.dmi')
+ * * iconstate - the image we are using inside the file
+ * * direction - the direction of our device
+ * * col - the color (in hex value, like #559900) that the pipe should have
+ * * piping_layer - the piping_layer the device is in, used inside PIPING_LAYER_SHIFT
+ * * trinary - if TRUE we also use PIPING_FORWARD_SHIFT on layer 1 and 5 for trinary devices (filters and mixers)
+ */
+/obj/machinery/atmospherics/proc/getpipeimage(iconfile, iconstate, direction, col = COLOR_VERY_LIGHT_GRAY, piping_layer = 3, trinary = FALSE)
+	var/image/pipe_overlay = image(iconfile, iconstate, dir = direction)
+	pipe_overlay.color = col
+	PIPING_LAYER_SHIFT(pipe_overlay, piping_layer)
+	if(trinary == TRUE && (piping_layer == 1 || piping_layer == 5))
+		PIPING_FORWARD_SHIFT(pipe_overlay, piping_layer, 2)
+	return pipe_overlay
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)
