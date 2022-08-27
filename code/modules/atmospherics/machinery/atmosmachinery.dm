@@ -41,6 +41,9 @@
 	var/paintable = FALSE
 	var/interacts_with_air = FALSE
 
+	///Is the thing being rebuilt by SSair or not. Prevents list blaot
+	var/rebuilding = FALSE
+
 	///keeps the name of the object from being overridden if it's vareditted.
 	var/override_naming
 
@@ -87,7 +90,10 @@
 
 	SSair.atmos_machinery -= src
 	SSair.atmos_air_machinery -= src
-	SSair.pipenets_needing_rebuilt -= src
+	if(SSair.currentpart == SSAIR_ATMOSMACHINERY_AIR)
+		SSair.currentrun -= src
+
+	SSair.rebuild_queue -= src
 
 	if(pipe_vision_img)
 		qdel(pipe_vision_img)
@@ -98,7 +104,15 @@
 /obj/machinery/atmospherics/proc/destroy_network()
 	return
 
-/obj/machinery/atmospherics/proc/build_network()
+/// This should only be called by SSair as part of the rebuild queue.
+/// Handles rebuilding pipelines after init or they've been changed.
+/obj/machinery/atmospherics/proc/rebuild_pipes()
+	var/list/targets = get_rebuild_targets()
+	rebuilding = FALSE
+	for(var/datum/pipeline/build_off as anything in targets)
+		build_off.build_pipeline(src) //This'll add to the expansion queue
+
+/obj/machinery/atmospherics/proc/get_rebuild_targets()
 	// Called to build a network from this node
 	return
 
@@ -310,7 +324,7 @@
 	for(var/obj/machinery/atmospherics/A in nodes)
 		A.atmosinit()
 		A.addMember(src)
-	build_network()
+	SSair.add_to_rebuild_queue(src)
 
 /obj/machinery/atmospherics/update_name()
 	if(!override_naming)

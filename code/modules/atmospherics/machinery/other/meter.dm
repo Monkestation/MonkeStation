@@ -47,6 +47,10 @@
 	PIPING_LAYER_DOUBLE_SHIFT(src, target_layer)
 
 /obj/machinery/meter/process_atmos()
+	if(!target)
+		reattach_to_layer()
+		return 0
+
 	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "meter"
 		return FALSE
