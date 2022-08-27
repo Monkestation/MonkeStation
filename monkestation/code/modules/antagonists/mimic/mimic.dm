@@ -45,13 +45,20 @@
 	var/disguised = FALSE
 	var/atom/movable/form = null
 	var/disguise_time = 0
-	var/people_absorbed = 0
+	var/static/people_absorbed = 0
+
+	//The number of current mimics
+	var/static/mimic_count = 0
+	//The name used in the hivemind chat
+	var/hivemind_name
+
 	//If this is currently reproducing
 	var/splitting = FALSE
 	//The target npc mimic's try to disguise as.
 	var/atom/movable/ai_disg_target = null
 	//attempts to reach a disguise target
 	var/ai_disg_reach_attempts = 0
+
 	var/fleeing = FALSE
 	mobchatspan = "blob"
 	discovery_points = 2000
@@ -62,6 +69,7 @@
 		. += "<span class='warning'>It jitters a little bit...</span>"
 
 /mob/living/simple_animal/hostile/alien_mimic/Destroy()
+	mimic_count--
 	ai_disg_target = null
 	. = ..()
 
@@ -98,6 +106,9 @@
 /mob/living/simple_animal/hostile/alien_mimic/proc/is_table(atom/possible_table)
 	return istype(possible_table, /obj/structure/table) || istype(possible_table, /obj/structure/rack)
 
+/mob/living/simple_animal/hostile/alien_mimic/proc/replication_cost()
+	return 1 + round((mimic_count / 2))
+
 //Whether the AI should absorb a corpse when it gets the chance
 /mob/living/simple_animal/hostile/alien_mimic/proc/should_heal()
 	return health <= MIMIC_HEALTH_FLEE_AMOUNT
@@ -129,18 +140,20 @@
 	if(splitting) //prevent stacking a bunch
 		return
 
-	if(people_absorbed > 0)
+	var/split_cost = replication_cost()
+
+	if(people_absorbed >= split_cost)
 		splitting = TRUE
 		to_chat(src,"<span class='warning'>You start splitting yourself in two!</span>")
 		playsound(get_turf(src), split_sound,100)
 		if(do_mob(src, src, 5 SECONDS))
 			splitting = FALSE
-			if(people_absorbed <= 0 && !disguised)
+			if(people_absorbed < split_cost)
 				return
 			to_chat(src,"<span class='warning'>You make another mimic!</span>")
 			var/mob/living/simple_animal/hostile/alien_mimic/split_mimic = new(loc)
 			split_mimic.ping_ghosts()
-			people_absorbed--
+			people_absorbed -= split_cost
 			return
 		splitting = FALSE
 		to_chat(src,"<span class='warning'>You fail to split!</span>")
@@ -253,8 +266,15 @@
 	med_hud_set_status() //we are not an object
 
 /mob/living/simple_animal/hostile/alien_mimic/Initialize(mapload)
-	var/datum/action/innate/mimic_reproduce/ability = new
-	ability.Grant(src)
+	if(!hivemind_name)
+		//1% chance for some silly names
+		hivemind_name = rand(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","sshshChsSh","mimic hater")
+
+	mimic_count++
+	var/datum/action/innate/mimic_reproduce/replicate = new
+	var/datum/action/innate/mimic_hivemind/hivemind = new
+	replicate.Grant(src)
+	hivemind.Grant(src)
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, INNATE_TRAIT) //Needs this so breaking down a single door doesnt kill em
 	. = ..()
 
@@ -270,7 +290,7 @@
 
 /mob/living/simple_animal/hostile/alien_mimic/attacked_by(obj/item/item, mob/living/target)
 	if(src in target.buckled_mobs) //Can't attack if its Got ya
-		to_chat(target,"<span class='warning'>You can't manage to hit \the [src] wrapped around you.</span>")
+		to_chat(target,"<span class='userdanger'>You can't manage to hit \the [src] wrapped around you.</span>")
 		return FALSE
 	..()
 
@@ -289,6 +309,7 @@
 		..()
 
 /mob/living/simple_animal/hostile/alien_mimic/death(gibbed)
+	mimic_count--
 	if(buckled)
 		buckled.unbuckle_mob(src,TRUE)
 	if(disguised)
@@ -340,8 +361,11 @@
 		var/mob/living/victim = target
 		if(iscarbon(victim) && victim.stat == DEAD && !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
 			var/mob/living/carbon/carbon_victim = victim
+			if(!carbon_victim.mind)
+				to_chat(src, "<span class='warning'>They have no mind to gather information from!</span>")
+				return
 			if(NOHUSK in carbon_victim.dna.species.species_traits)
-				to_chat("<span class='warning'>You can't absorb this person!</span>")
+				to_chat(src, "<span class='warning'>You can't absorb this person!</span>")
 				return
 			visible_message("<span class='warning'>[src] starts absorbing [carbon_victim]!</span>", \
 						"<span class='userdanger'>You start absorbing [carbon_victim].</span>")
@@ -406,6 +430,12 @@
 					. += possible_target
 	else
 		. = oview(vision_range, target_from)
+
+/mob/living/simple_animal/hostile/alien_mimic/get_stat_tab_status()
+	var/list/tab_data = ..()
+	tab_data["Replication Cost"] = GENERATE_STAT_TEXT("[replication_cost()]")
+	tab_data["People Absorbed"] = GENERATE_STAT_TEXT("[people_absorbed]")
+	return tab_data
 
 /mob/living/simple_animal/hostile/alien_mimic/handle_automated_action()
 	if(AIStatus == AI_OFF)
@@ -491,3 +521,41 @@
 /datum/action/innate/mimic_reproduce/Activate()
 	var/mob/living/simple_animal/hostile/alien_mimic/mimic = owner
 	mimic.attempt_reproduce()
+
+/datum/action/innate/mimic_hivemind
+	name = "Communicate"
+	icon_icon = 'icons/mob/actions/actions_changeling.dmi' //I will try to make action sprites either before the merge or soon after it
+	button_icon_state = "hivemind_channel"
+	background_icon_state = "bg_alien"
+
+/datum/action/innate/mimic_hivemind/Activate()
+	if(!ismimic(usr))
+		to_chat(usr, "<span class='warning'>You shouldn't have this ability!</span>")
+		return
+	var/input = stripped_input(usr, "Send a message to the hivemind.", "Communication", "")
+	if(!input || !IsAvailable())
+		return
+	if(CHAT_FILTER_CHECK(input))
+		to_chat(usr, "<span class='warning'>You cannot send a message that contains a word prohibited in IC chat!</span>")
+		return
+	hivemind_message(usr, input)
+
+/datum/action/innate/mimic_hivemind/proc/hivemind_message(mob/living/user, message)
+	var/my_message
+	if(!message)
+		return
+
+	var/name_to_use
+	var/mob/living/simple_animal/hostile/alien_mimic/mimic_user = user
+	name_to_use = mimic_user.hivemind_name
+
+	my_message = "<span class='mimichivemindtitle'><b>Mimic Hivemind</b></span> <span class='mimichivemind'><b>[name_to_use]:</b> [message]</span>"
+	for(var/player in GLOB.player_list)
+		var/mob/recipient = player
+		if(ismimic(recipient))
+			to_chat(recipient, my_message)
+		else if(recipient in GLOB.dead_mob_list)
+			var/link = FOLLOW_LINK(recipient, user)
+			to_chat(recipient, "[link] [my_message]")
+
+	user.log_talk(message, LOG_SAY, tag="mimic hivemind")

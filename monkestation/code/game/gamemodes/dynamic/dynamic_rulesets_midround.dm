@@ -34,6 +34,9 @@
 	player_mind.transfer_to(spawned_mimic)
 	player_mind.add_antag_datum(/datum/antagonist/mimic)
 
+	//Give them a special name in the hivemind for being the first one
+	spawned_mimic.hivemind_name = pick("Mimic Leader","Mimic Queen","The First Mimic","The Original")
+
 	message_admins("[ADMIN_LOOKUPFLW(spawned_mimic)] has been made into a Mimic by the midround ruleset.")
 	log_game("DYNAMIC: [key_name(spawned_mimic)] was spawned as a Mimic by the midround ruleset.")
 	return spawned_mimic
