@@ -361,7 +361,7 @@
 		var/mob/living/victim = target
 		if(iscarbon(victim) && victim.stat == DEAD && !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
 			var/mob/living/carbon/carbon_victim = victim
-			if(!carbon_victim.mind)
+			if(!carbon_victim.last_mind)
 				to_chat(src, "<span class='warning'>They have no mind to gather information from!</span>")
 				return
 			if(NOHUSK in carbon_victim.dna.species.species_traits)
