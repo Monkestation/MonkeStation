@@ -268,7 +268,7 @@
 /mob/living/simple_animal/hostile/alien_mimic/Initialize(mapload)
 	if(!hivemind_name)
 		//1% chance for some silly names
-		hivemind_name = rand(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","sshshChsSh","mimic hater")
+		hivemind_name = rand(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","Syndicate Infiltrator","Mimic Hater","Nar'sie Enthusiast")
 
 	mimic_count++
 	var/datum/action/innate/mimic_reproduce/replicate = new
