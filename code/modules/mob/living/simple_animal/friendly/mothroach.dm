@@ -30,7 +30,7 @@
 	verb_exclaim = "flutters loudly"
 	verb_yell = "flutters loudly"
 	response_help = "pets"
-	attacked_sound = 'sound/voice/moth/scream_moth.ogg'
+	attacked_sound = null
 
 	faction = list("neutral")
 
@@ -46,14 +46,14 @@
 		icon_state = "mothroach"
 	regenerate_icons()
 
-/mob/living/basic/mothroach/attack_hand(mob/living/carbon/human/user, list/modifiers)
+/mob/living/simple_animal/mothroach/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	. = ..()
 	if(src.stat == DEAD)
 		return
 	else
 		playsound(loc, 'sound/voice/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/basic/mothroach/attackby(obj/item/attacking_item, mob/living/user, params)
+/mob/living/simple_animal/mothroach/attackby(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
 	if(src.stat == DEAD)
 		return
