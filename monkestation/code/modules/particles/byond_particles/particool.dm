@@ -1,4 +1,15 @@
 /*
+ * Copyright 2021 Gomble (https://github.com/AndrewL97)
+ * Changes: Azrun (https://github.com/Azrun)
+ * Changes: Sovexe (https://github.com/Sovexe)
+ * Licensed under MIT to Goonstation only (https://choosealicense.com/licenses/mit/)
+ */
+
+
+
+///This was ported from Mojave but its literally just goons system so adding the proper licenses here because yea thats what ya should do.
+
+/*
 	atom.particles
 
 
