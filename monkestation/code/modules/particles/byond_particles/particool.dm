@@ -7,7 +7,7 @@
 
 
 
-///This was ported from Mojave but its literally just goons system so adding the proper licenses here because yea thats what ya should do.
+///This was ported from Mojave but its literally just goons system so adding the proper licenses.
 
 /*
 	atom.particles
