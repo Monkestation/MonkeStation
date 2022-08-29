@@ -58,6 +58,8 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	if(toNum)
 		for(var/i = 1; i <= length(.); ++i)
 			.[i] = stringToNum(.[i], restoreNull)
+	if(length(.) == 1 && (isnull(.[1]) || .[1] == ""))
+		. = null
 
 /datum/particle_editor/proc/stringToNum(str, restoreNull = FALSE)
 	. = text2num(str)
@@ -108,7 +110,10 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 		if("string") return L["value"]
 		if("float") return L["value"]
 		if("int") return L["value"]
+		if("vector") return L["value"]
+		if("vector2") return L["value"]
 		if("color") return stringToNum(L["value"], TRUE)
+		if("text") return L["value"]
 		if("list") return stringToList(L["value"], TRUE, TRUE)
 		if("numList") return stringToList(L["value"],TRUE)
 		if("matrix") return ListToMatrix(L["value"])
@@ -141,7 +146,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 		if("box")    return generator(L["genType"], a, b, rand_type)
 		if("color") //Color can be string or matrix
 			a = length(a) > 1 ? a : L["a"]
-			b = length(a) > 1 ? b : L["b"]
+			b = length(b) > 1 ? b : L["b"]
 			return generator(L["genType"], a, b, rand_type)
 		if("circle") return generator(L["genType"], a, b, rand_type)
 		if("sphere") return generator(L["genType"], a, b, rand_type)
@@ -242,6 +247,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 /atom/movable/proc/transition_particle(time, list/new_params, easing, loop)
 	if(particles)
 		animate(particles, new_params, time = time, easing = easing, loop = loop)
+
 
 
 
