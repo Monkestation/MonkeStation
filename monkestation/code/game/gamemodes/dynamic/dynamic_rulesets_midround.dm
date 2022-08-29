@@ -9,8 +9,8 @@
 	antag_datum = /datum/antagonist/mimic
 	antag_flag = "Mimic"
 	antag_flag_override = ROLE_ALIEN
-	enemy_roles = list("AI", "Security Officer", "Detective", "Warden", "Head of Security", "Captain")
-	required_enemies = list(4,3,2,2,1,1,1,1,0,0)
+	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain")
+	required_enemies = list(4,3,3,3,2,2,1,1,1,0)
 	required_candidates = 1
 	weight = 2
 	cost = 15

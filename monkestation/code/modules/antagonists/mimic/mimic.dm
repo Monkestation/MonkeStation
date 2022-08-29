@@ -2,6 +2,8 @@
 #define MIMIC_JITTER_CHANCE 0.8
 #define MIMIC_DISGUISE_COOLDOWN 5 SECONDS
 
+#define REPLICATION_COST(mimic_count) (1 + round((mimic_count / 2)))
+
 /mob/living/simple_animal/hostile/alien_mimic
 	name = "mimic"
 	real_name = "mimic"
@@ -24,8 +26,8 @@
 	unsuitable_atmos_damage = 0 //They won't die in Space!
 	minbodytemp = TCMB
 	maxbodytemp = T0C + 40
-	maxHealth = 90
-	health = 90
+	maxHealth = 125
+	health = 125
 	melee_damage = 10
 	obj_damage = 30
 	see_in_dark = 8
@@ -106,9 +108,6 @@
 /mob/living/simple_animal/hostile/alien_mimic/proc/is_table(atom/possible_table)
 	return istype(possible_table, /obj/structure/table) || istype(possible_table, /obj/structure/rack)
 
-/mob/living/simple_animal/hostile/alien_mimic/proc/replication_cost()
-	return 1 + round((mimic_count / 2))
-
 //Whether the AI should absorb a corpse when it gets the chance
 /mob/living/simple_animal/hostile/alien_mimic/proc/should_heal()
 	return health <= MIMIC_HEALTH_FLEE_AMOUNT
@@ -140,7 +139,7 @@
 	if(splitting) //prevent stacking a bunch
 		return
 
-	var/split_cost = replication_cost()
+	var/split_cost = REPLICATION_COST(mimic_count)
 
 	if(people_absorbed >= split_cost)
 		splitting = TRUE
@@ -268,7 +267,7 @@
 /mob/living/simple_animal/hostile/alien_mimic/Initialize(mapload)
 	if(!hivemind_name)
 		//1% chance for some silly names
-		hivemind_name = rand(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","Syndicate Infiltrator","Mimic Hater","Nar'sie Enthusiast")
+		hivemind_name = prob(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","Syndicate Infiltrator","Mimic Hater","Nar'sie Enthusiast")
 
 	mimic_count++
 	var/datum/action/innate/mimic_reproduce/replicate = new
@@ -433,7 +432,7 @@
 
 /mob/living/simple_animal/hostile/alien_mimic/get_stat_tab_status()
 	var/list/tab_data = ..()
-	tab_data["Replication Cost"] = GENERATE_STAT_TEXT("[replication_cost()]")
+	tab_data["Replication Cost"] = GENERATE_STAT_TEXT("[REPLICATION_COST(mimic_count)]")
 	tab_data["People Absorbed"] = GENERATE_STAT_TEXT("[people_absorbed]")
 	return tab_data
 
@@ -559,3 +558,7 @@
 			to_chat(recipient, "[link] [my_message]")
 
 	user.log_talk(message, LOG_SAY, tag="mimic hivemind")
+
+#undef MIMIC_HEALTH_FLEE_AMOUNT 30
+#undef MIMIC_JITTER_CHANCE 0.8
+#undef MIMIC_DISGUISE_COOLDOWN 5 SECONDS
