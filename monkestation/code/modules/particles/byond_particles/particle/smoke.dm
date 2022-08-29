@@ -15,4 +15,6 @@
 	rotation = generator("num", -90, 90, NORMAL_RAND)
 	spin = generator("num", -5, 5, UNIFORM_RAND)
 	grow = generator("num", 0.1, 0.1, UNIFORM_RAND)
+#ifndef SPACEMAN_DMM
 	fadein = 0.2 SECONDS
+#endif

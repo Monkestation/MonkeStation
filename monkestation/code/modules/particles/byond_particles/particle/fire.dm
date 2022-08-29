@@ -9,4 +9,6 @@
 	color_change = 0
 	friction = 0.2
 	drift = generator("vector", list(0.25,0,0), list(-0.25,0,0), UNIFORM_RAND)
+#ifndef SPACEMAN_DMM
 	fadein = 10
+#endif
