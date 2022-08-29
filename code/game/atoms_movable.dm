@@ -1003,6 +1003,14 @@
 	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
 	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
+
+/atom/movable/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_EDIT_PARTICLES] && check_rights(R_VAREDIT))
+		var/client/C = usr.client
+		C?.open_particle_editor(src)
+
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)
 		return TRUE

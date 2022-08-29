@@ -1,5 +1,8 @@
 /*
 	atom.particles
+
+
+
 		Particle vars that affect the entire set (generators are not allowed for these)
 			Var	Type	Description
 			width	num	Size of particle image in pixels
@@ -11,6 +14,7 @@
 			gravity	vector	Constant acceleration applied to all particles in this set (pixels per squared tick)
 			gradient	color gradient	Color gradient used, if any
 			transform	matrix	Transform done to all particles, if any (can be higher than 2D)
+
 		Vars that apply when a particle spawns
 			lifespan	num	Maximum life of the particle, in ticks
 			fade	num	Fade-out time at end of lifespan, in ticks
@@ -27,8 +31,12 @@
 			rotation	num	Angle of rotation (clockwise); applies only if using an icon
 			spin	num	Change in rotation per tick
 			friction	num	Amount of velocity to shed (0 to 1) per tick, also applied to acceleration from drift
+
 		Vars that are evalulated every tick
 			drift	vector	Added acceleration every tick; e.g. a circle or sphere generator can be applied to produce snow or ember effects
+
+
+
 */
 
 //This should should have a default at some point
@@ -43,13 +51,16 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 		if(6)
 			return matrix(L[1],L[2],L[3],L[4],L[5],L[6])
 
-/datum/particle_editor/proc/stringToList(str, toNum = FALSE)
+/datum/particle_editor/proc/stringToList(str, toNum = FALSE, restoreNull = FALSE)
 	. = splittext(str,regex(@"(?<!\\),"))
 	if(toNum)
 		for(var/i = 1; i <= length(.); ++i)
-			.[i] = text2num(.[i])
+			.[i] = stringToNum(.[i], restoreNull)
 
-
+/datum/particle_editor/proc/stringToNum(str, restoreNull = FALSE)
+	. = text2num(str)
+	if(isnull(.) && restoreNull)
+		. = str
 
 /datum/particle_editor/proc/stringToMatrix(str)
 	return ListToMatrix(stringToList(str))
@@ -95,8 +106,8 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 		if("string") return L["value"]
 		if("float") return L["value"]
 		if("int") return L["value"]
-		if("color") return L["value"]
-		if("list") return stringToList(L["value"])
+		if("color") return stringToNum(L["value"], TRUE)
+		if("list") return stringToList(L["value"], TRUE, TRUE)
 		if("numList") return stringToList(L["value"],TRUE)
 		if("matrix") return ListToMatrix(L["value"])
 		if("generator") return generateGenerator(L["value"]) // This value should be a new list, if it isn't then we will explode
@@ -183,9 +194,43 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	particles = null
 
 /atom/movable/proc/modify_particle_value(varName, varVal)
+	var/list/default_particle = list(width = 100,
+									height = 100,
+									count = 100,
+									spawning = 1,
+									bound1 = -1000,
+									bound2 = 1000,
+									icon_state="",
+									grow = 0,
+									position = 0,
+									velocity = 0,
+									scale = generator("num",1,1),
+									velocity = 0,
+									rotation = 0,
+									spin = 0,
+									friction = 0,
+									drift = 0
+									// The following variables either handle null or will evaluate to 0 via Particool
+									// gravity
+									// gradient
+									// transform
+									// lifespan
+									// fade
+									// fadein
+									// icon
+									// color
+									// color_change
+									)
+
 	if(particles)
+		if(isnull(varVal) && !isnull(default_particle[varName]))
+			varVal = default_particle[varName]
 		particles.vars[varName] = varVal
 
 /atom/movable/proc/transition_particle(time, list/new_params, easing, loop)
 	if(particles)
 		animate(particles, new_params, time = time, easing = easing, loop = loop)
+
+
+
+
