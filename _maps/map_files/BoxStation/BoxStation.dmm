@@ -16482,15 +16482,11 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
+/turf/open/floor/stone,
 /area/crew_quarters/locker)
 "aQQ" = (
 /obj/structure/fireplace,
-/turf/open/floor/plasteel/dark/side{
-	dir = 1
-	},
+/turf/open/floor/stone,
 /area/crew_quarters/locker)
 "aQR" = (
 /turf/open/floor/wood,
@@ -25785,6 +25781,7 @@
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 8
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -39076,12 +39073,14 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "ciz" = (
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral/tile_full,
-/obj/effect/turf_decal/stripes/closeup{
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/effect/turf_decal/trimline/blue/warning{
 	dir = 1
 	},
-/turf/open/floor/plasteel/techmaint,
+/turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "ciC" = (
 /obj/effect/landmark/event_spawn,
@@ -43349,6 +43348,9 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cCY" = (
@@ -46288,7 +46290,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/fore)
@@ -49616,7 +49617,6 @@
 "gKr" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/closeup,
-/obj/effect/turf_decal/tile/neutral/tile_full,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -52673,20 +52673,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"jhk" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "jht" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -53931,6 +53917,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/primary/central)
 "kfM" = (
@@ -54699,6 +54688,9 @@
 	},
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/effect/turf_decal/stripes/closeup,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "kDX" = (
@@ -55952,9 +55944,7 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/research)
 "lxj" = (
-/turf/open/floor/plasteel/dark/corner{
-	dir = 4
-	},
+/turf/open/floor/stone,
 /area/crew_quarters/locker)
 "lxp" = (
 /obj/structure/grille,
@@ -59592,6 +59582,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/brown/line,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "ogc" = (
@@ -60097,6 +60088,9 @@
 	req_access_txt = "13"
 	},
 /obj/effect/turf_decal/stripes/closeup,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "oAW" = (
@@ -64998,6 +64992,9 @@
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -71520,7 +71517,7 @@
 "xos" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Office";
-	req_access_txt = "1"
+	req_access_txt = "63"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -104755,7 +104752,7 @@ hNQ
 bqH
 bwb
 gdS
-ufK
+ciz
 iPD
 bFp
 bFp
@@ -105012,7 +105009,7 @@ buX
 bqH
 bwb
 gdS
-ufK
+ciz
 iPD
 bDO
 bFo
@@ -105269,7 +105266,7 @@ buZ
 bqH
 byN
 gdS
-ufK
+ciz
 iPD
 xtS
 bFp
@@ -106536,7 +106533,7 @@ rVT
 rVT
 ndz
 vGW
-ciz
+dLd
 dLd
 bok
 bok
@@ -114806,7 +114803,7 @@ dVL
 bLT
 bLT
 bLT
-jhk
+bLT
 bLT
 erT
 loc
