@@ -5,7 +5,7 @@
 	icon_state = list("smoke_3")
 	color = "#2222225A"
 	height = 200
-	spawning = 0.08
+	spawning = 1
 	count = 3
 	lifespan = 2 SECONDS
 	fade = 1 SECONDS
