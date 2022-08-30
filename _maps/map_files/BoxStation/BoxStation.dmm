@@ -19310,6 +19310,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/export_scanner,
 /obj/effect/turf_decal/bot_white,
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6;
+	layer = 2.801
+	},
 /turf/open/floor/noslip,
 /area/quartermaster/warehouse)
 "baU" = (
@@ -23903,9 +23907,6 @@
 /obj/effect/turf_decal/trimline/brown/corner{
 	dir = 8
 	},
-/obj/item/clothing/gloves/cargo_gauntlet{
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/office)
 "bnI" = (
@@ -27235,9 +27236,6 @@
 	},
 /obj/item/pen/red,
 /obj/structure/table/glass,
-/obj/item/clothing/gloves/cargo_gauntlet{
-	pixel_y = 6
-	},
 /turf/open/floor/carpet/cyan,
 /area/quartermaster/qm)
 "byn" = (
@@ -27335,6 +27333,9 @@
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/machinery/airalarm{
 	pixel_y = 23
+	},
+/obj/item/clothing/gloves/cargo_gauntlet{
+	pixel_y = 6
 	},
 /turf/open/floor/wood,
 /area/quartermaster/qm)
@@ -41511,6 +41512,10 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
+/obj/structure/mirror{
+	pixel_y = 10;
+	pixel_x = 25
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -55295,6 +55300,7 @@
 /obj/structure/table/glass,
 /obj/item/wrench/medical,
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/effect/turf_decal/tile/blue/tile_full,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "kZs" = (
@@ -67075,7 +67081,9 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "ucO" = (
-/obj/effect/turf_decal/tile/blue/tile_full,
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 4
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/genetics)
 "ucP" = (
@@ -67561,9 +67569,6 @@
 	dir = 4
 	},
 /obj/item/clothing/gloves/cargo_gauntlet,
-/obj/item/clothing/gloves/cargo_gauntlet{
-	pixel_y = 6
-	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "uyl" = (
@@ -69346,6 +69351,10 @@
 	},
 /turf/closed/wall,
 /area/maintenance/aft)
+"vKX" = (
+/obj/effect/turf_decal/tile/blue/tile_full,
+/turf/closed/wall,
+/area/medical/genetics)
 "vLh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -110390,7 +110399,7 @@ aJI
 cMw
 bep
 bes
-vog
+vKX
 kYz
 xsb
 bPp
