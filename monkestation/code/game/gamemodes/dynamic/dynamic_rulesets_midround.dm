@@ -11,7 +11,7 @@
 	antag_flag_override = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain")
 	required_enemies = list(4,3,3,3,2,2,1,1,1,0)
-	required_candidates = 1
+	required_candidates = 2
 	weight = 2
 	cost = 15
 	minimum_players = 30
@@ -35,7 +35,10 @@
 	player_mind.add_antag_datum(/datum/antagonist/mimic)
 
 	//Give them a special name in the hivemind for being the first one
-	spawned_mimic.hivemind_name = pick("Mimic Leader","Mimic Queen","The First Mimic","The Original")
+	if(spawned_mimic.mimic_count <= 1)
+		spawned_mimic.hivemind_name = pick("Mimic Leader","Mimic [pick("King","Queen","Monarch")]","The Broodmother","The Original","Mimic Prime")
+	else
+		spawned_mimic.hivemind_name = pick("Mimic Commander","Mimic Centurion","Mimic General","Mimic Lord","Mimic Legionnaire","Mimic Elder") + " [rand(1,99)]" //Unless multiple spawned, then any others get their own names
 
 	message_admins("[ADMIN_LOOKUPFLW(spawned_mimic)] has been made into a Mimic by the midround ruleset.")
 	log_game("DYNAMIC: [key_name(spawned_mimic)] was spawned as a Mimic by the midround ruleset.")
