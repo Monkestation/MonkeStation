@@ -204,10 +204,9 @@
 	render_target = GRAVITY_PULSE_RENDER_TARGET
 	render_relay_plane = null
 
-/atom/movable/screen/plane_master/area
+/atom/movable/screen/plane_master/area_master
 	name = "area plane"
 	plane = AREA_PLANE
-
 
 /atom/movable/screen/plane_master/radtext
 	name = "radtext plane"
