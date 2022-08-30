@@ -25,7 +25,7 @@
     lifespan = 10
     fade = 10
     velocity = list(0, 0)
-    position = generator("circle", 0, 8, NORMAL_RAND)
+    position = generator("vector", list(-9,3,0), list(9,3,0), NORMAL_RAND)
     drift = generator("vector", list(0, -0.2), list(0, 0.2))
     gravity = list(0, 0.65)
     color = "white"

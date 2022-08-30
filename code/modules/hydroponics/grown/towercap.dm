@@ -306,7 +306,7 @@
 /obj/structure/bonfire/extinguish()
 	if(burning)
 		remove_emitter("fire")
-		remove_emitter("fire_sparks")
+		remove_emitter("fire_spark")
 		remove_emitter("smoke")
 		icon_state = "bonfire"
 		burning = 0
