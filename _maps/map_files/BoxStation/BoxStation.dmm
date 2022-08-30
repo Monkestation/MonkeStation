@@ -50644,6 +50644,10 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/exploration_prep)
+"hyf" = (
+/obj/effect/turf_decal/tile/blue/tile_full,
+/turf/closed/wall,
+/area/medical/genetics)
 "hzs" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -64735,7 +64739,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "sha" = (
-/obj/structure/table/glass,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
@@ -69351,10 +69354,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/aft)
-"vKX" = (
-/obj/effect/turf_decal/tile/blue/tile_full,
-/turf/closed/wall,
-/area/medical/genetics)
 "vLh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -70539,15 +70538,13 @@
 /area/maintenance/aft)
 "wCc" = (
 /obj/structure/window/spawner/north,
-/obj/structure/chair/comfy{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
 /obj/item/radio/intercom{
 	pixel_x = -32
 	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
 "wCB" = (
@@ -110399,7 +110396,7 @@ aJI
 cMw
 bep
 bes
-vKX
+hyf
 kYz
 xsb
 bPp
