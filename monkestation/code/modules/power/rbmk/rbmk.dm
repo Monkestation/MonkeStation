@@ -628,6 +628,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
 	STOP_PROCESSING(SSmachines, src)
+	SSair.stop_processing_machine(src)
 	stop_relay(CHANNEL_ENGINE_ALERT)
 
 	investigate_log("Reactor shutdown at [pressure] kPa and [temperature] C.", INVESTIGATE_ENGINES)
