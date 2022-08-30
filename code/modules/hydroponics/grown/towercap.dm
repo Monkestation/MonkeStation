@@ -249,8 +249,9 @@
 
 /obj/structure/bonfire/proc/StartBurning()
 	if(!burning && (!needs_oxygen || CheckOxygen()))
-		update_or_add_particles(new/particles/embers, "ember")
-		update_or_add_particles(new/particles/smoke, "smoke")
+		add_emitter(/obj/emitter/fire, "fire")
+		add_emitter(/obj/emitter/fire_sparks, "fire_spark")
+		add_emitter(/obj/emitter/fire_smoke, "smoke")
 		icon_state = burn_icon
 		burning = TRUE
 		set_light(6)
@@ -304,8 +305,9 @@
 
 /obj/structure/bonfire/extinguish()
 	if(burning)
-		remove_specific_particle("ember")
-		remove_specific_particle("smoke")
+		remove_emitter("fire")
+		remove_emitter("fire_sparks")
+		remove_emitter("smoke")
 		icon_state = "bonfire"
 		burning = 0
 		set_light(0)

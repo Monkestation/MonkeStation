@@ -12,3 +12,35 @@
 #ifndef SPACEMAN_DMM
 	fadein = 10
 #endif
+
+
+
+
+///GENERIC FIRE EFEFCT
+/particles/fire
+    width = 500
+    height = 500
+    count = 3000
+    spawning = 3
+    lifespan = 10
+    fade = 10
+    velocity = list(0, 0)
+    position = generator("circle", 0, 8, NORMAL_RAND)
+    drift = generator("vector", list(0, -0.2), list(0, 0.2))
+    gravity = list(0, 0.65)
+    color = "white"
+
+/particles/fire_sparks
+    width = 500
+    height = 500
+    count = 3000
+    spawning = 1
+    lifespan = 40
+    fade = 20
+    position = 0
+    gravity = list(0, 1)
+
+    friction = 0.25
+    drift = generator("sphere", 0, 2)
+    gradient = list(0, "yellow", 1, "red")
+    color = "yellow"
