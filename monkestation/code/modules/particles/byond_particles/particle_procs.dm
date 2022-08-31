@@ -10,7 +10,12 @@ particles like bonfires.
 	var/obj/effect/abstract/particle_holder/master_holder
 
 
-/atom/proc/add_emitter(obj/emitter/updatee, particle_key, offsets[] = list(0,0))
+/atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority)
+	if(!priority)
+		priority = 100
+
+	priority = clamp(priority, 1, 100)
+
 	if(!particle_key)
 		CRASH("add_emitter called without a key ref.")
 
@@ -19,9 +24,7 @@ particles like bonfires.
 
 	var/obj/emitter/new_emitter = new updatee
 
-	if(offsets && islist(offsets))
-		new_emitter.x = offsets[1]
-		new_emitter.y = offsets[2]
+	new_emitter.layer -= (priority / 1000)
 	new_emitter.vis_locs |= src
 	master_holder.emitters[particle_key] = new_emitter
 

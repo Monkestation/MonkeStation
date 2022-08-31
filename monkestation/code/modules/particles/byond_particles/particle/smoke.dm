@@ -4,8 +4,8 @@
     height = 500
     count = 3000
     spawning = 3
-	bound1 = list(-1000,0,-1000)
-	bound2 = list(1000,75,1000)
+    bound1 = list(-1000,0,-1000)
+    bound2 = list(1000,75,1000)
     lifespan = 20
     fade = 30
 #ifdef SPACEMAN_DMM
