@@ -251,7 +251,7 @@
 	if(!burning && (!needs_oxygen || CheckOxygen()))
 		add_emitter(/obj/emitter/fire, "fire")
 		add_emitter(/obj/emitter/fire_sparks, "fire_spark")
-		add_emitter(/obj/emitter/fire_smoke, "smoke", 99)
+		add_emitter(/obj/emitter/fire_smoke, "smoke", 9)
 		icon_state = burn_icon
 		burning = TRUE
 		set_light(6)
