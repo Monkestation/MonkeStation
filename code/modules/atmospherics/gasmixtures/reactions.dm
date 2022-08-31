@@ -897,19 +897,19 @@ nobliumformation = 1001
 			air.set_temperature(max(((old_thermal_energy - energy_used) / new_heat_capacity), TCMB))
 	return REACTING
 
-/datum/gas_reaction/halon_o2removal
+/datum/gas_reaction/halon_o2_removal
 	priority = -1
 	name = "Halon o2 removal"
 	id = "halon_o2removal"
 
-/datum/gas_reaction/halon_o2removal/init_reqs()
+/datum/gas_reaction/halon_o2_removal/init_reqs()
 	min_requirements = list(
 		GAS_HALON = MINIMUM_MOLE_COUNT,
 		GAS_O2 = MINIMUM_MOLE_COUNT,
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	)
 
-/datum/gas_reaction/halon_o2removal/react(datum/gas_mixture/air, datum/holder)
+/datum/gas_reaction/halon_o2_removal/react(datum/gas_mixture/air, datum/holder)
 	var/temperature = air.return_temperature()
 	var/old_thermal_energy = air.thermal_energy()
 	var/initial_o2 = air.get_moles(GAS_O2)
