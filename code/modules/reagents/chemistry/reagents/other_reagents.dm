@@ -1389,12 +1389,18 @@
 	color = "90560B"
 	taste_description = "rubbery"
 
+/datum/reagent/healium/on_mob_life(mob/living/L, delta_time, times_fired)
+	. = ..()
+	L.adjustFireLoss(-2 * REM * delta_time, FALSE)
+	L.adjustToxLoss(-5 * REM * delta_time, FALSE)
+	L.adjustBruteLoss(-2 * REM * delta_time, FALSE)
+
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	L.SetSleeping(1000)
+	L.SetSleeping(100 SECONDS)
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10)
+	L.SetSleeping(1 SECONDS)
 	return ..()
 
 /datum/reagent/halon
