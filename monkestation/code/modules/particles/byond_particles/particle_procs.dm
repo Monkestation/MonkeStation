@@ -10,7 +10,7 @@ particles like bonfires.
 	var/obj/effect/abstract/particle_holder/master_holder
 
 /// priority is in descending order so 10 is the highest 1 is the lowest
-/atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10)
+/atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10, var/lifespan = null)
 
 	priority = clamp(priority, 1, 10)
 
@@ -25,6 +25,10 @@ particles like bonfires.
 	new_emitter.layer += (priority / 100)
 	new_emitter.vis_locs |= src
 	master_holder.emitters[particle_key] = new_emitter
+
+	if(lifespan)
+		spawn(lifespan)
+			remove_emitter(particle_key)
 
 /atom/proc/remove_emitter(particle_key)
 	if(!particle_key)
