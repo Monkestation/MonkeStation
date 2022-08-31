@@ -394,6 +394,8 @@
 		return ..()
 	if(buckled && target == buckled) //If you're buckled to them, or attacking a non-human
 		return ..()
+	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
+		return ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Aggro()
 	if(mind)
