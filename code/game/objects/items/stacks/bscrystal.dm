@@ -103,9 +103,9 @@
 /obj/item/stack/ore/dilithium_crystal
 	name = "dilithium crystal"
 	desc = "A glowing dilithium crystal. It looks very delicate."
-	icon = 'icons/obj/telescience.dmi'
-	icon_state = "polycrystal"
-	item_state = "sheet-polycrystal"
+	icon = 'monkestation/icons/obj/telescience.dmi'
+	icon_state = "dilithium_crystal"
+	item_state = "dilithium_polycrystal"
 	singular_name = "dilithium crystal"
 	w_class = WEIGHT_CLASS_TINY
 	points = 50
