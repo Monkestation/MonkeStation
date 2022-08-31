@@ -1,4 +1,4 @@
-#define MIMIC_HEALTH_FLEE_AMOUNT 30
+#define MIMIC_HEALTH_FLEE_AMOUNT 50
 #define MIMIC_JITTER_CHANCE 0.8
 #define MIMIC_DISGUISE_COOLDOWN 5 SECONDS
 
@@ -15,9 +15,9 @@
 	icon_state = "mimic"
 	icon_living = "mimic"
 	icon_dead = "mimic_dead"
-	move_to_delay = 5
-	var/disguised_move_delay = 4
-	var/undisguised_move_delay = 0.5
+	move_to_delay = 0.5 SECONDS
+	var/disguised_move_delay = 0.4 SECONDS
+	var/undisguised_move_delay = 0.05 SECONDS
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
@@ -358,6 +358,16 @@
 	if(target == src) //Remove your disguise
 		restore()
 		return
+
+	if(buckled && target == buckled) //If you're buckled to them
+		return ..()
+	if(!ismob(target)) //If you're attacking something or other
+		if(disguised)
+			restore()
+		return ..()
+	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
+		return ..()
+
 	if(isliving(target) && !buckled) //Latch onto people
 		var/mob/living/victim = target
 		if(iscarbon(victim) && victim.stat == DEAD && !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
@@ -390,14 +400,6 @@
 		else if(do_mob(src, target, 3 SECONDS)) //Latch after a bit if you arent
 			latch(victim)
 			return
-	if(!ismob(target)) //If you're attacking something or other
-		if(disguised)
-			restore()
-		return ..()
-	if(buckled && target == buckled) //If you're buckled to them, or attacking a non-human
-		return ..()
-	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
-		return ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Aggro()
 	if(mind)
