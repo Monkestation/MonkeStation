@@ -170,6 +170,9 @@
 			update_icon()
 			if (on)
 				SSair.atmos_air_machinery += src
+			else
+				SSair.atmos_air_machinery -= src
+
 			. = TRUE
 		if("eject")
 			if(panel_open && cell)
