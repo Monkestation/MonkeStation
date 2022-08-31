@@ -12,7 +12,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby_react)
 	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, .proc/flame_react)
 
-/datum/component/thermite/UnregisterFromParent()
+/datum/component/hot_ice/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
 	UnregisterSignal(parent, COMSIG_ATOM_FIRE_ACT)
 
