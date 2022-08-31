@@ -15,8 +15,9 @@
 	icon_state = "mimic"
 	icon_living = "mimic"
 	icon_dead = "mimic_dead"
-	move_to_delay = 0.5
+	move_to_delay = 5
 	var/disguised_move_delay = 4
+	var/undisguised_move_delay = 0.5
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
@@ -260,7 +261,7 @@
 	disguise_time = world.time + MIMIC_DISGUISE_COOLDOWN
 
 	cut_overlays()
-	set_varspeed(move_to_delay)
+	set_varspeed(undisguised_move_delay)
 	med_hud_set_health()
 	med_hud_set_status() //we are not an object
 
@@ -275,6 +276,7 @@
 	replicate.Grant(src)
 	hivemind.Grant(src)
 	ADD_TRAIT(src, TRAIT_SHOCKIMMUNE, INNATE_TRAIT) //Needs this so breaking down a single door doesnt kill em
+	set_varspeed(undisguised_move_delay)
 	. = ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Life()
@@ -406,6 +408,7 @@
 		toggle_ai(AI_ON)
 
 /mob/living/simple_animal/hostile/alien_mimic/MoveToTarget(list/possible_targets)
+	to_chat(world,"MOVETOTARGET")
 	if(fleeing)
 		SSmove_manager.move_away(src, target, 15, move_to_delay)
 		stop_automated_movement = 1
