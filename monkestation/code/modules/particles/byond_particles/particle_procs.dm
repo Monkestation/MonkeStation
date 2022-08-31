@@ -11,12 +11,13 @@ particles like bonfires.
 
 
 /atom/proc/add_emitter(obj/emitter/updatee, particle_key, offsets[] = list(0,0))
-	var/obj/emitter/new_emitter = new updatee
 	if(!particle_key)
 		CRASH("add_emitter called without a key ref.")
 
 	if(!master_holder)
 		master_holder = new(src.loc)
+
+	var/obj/emitter/new_emitter = new updatee
 
 	if(offsets && islist(offsets))
 		new_emitter.x = offsets[1]
