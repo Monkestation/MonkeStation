@@ -23764,12 +23764,10 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/office)
 "bmV" = (
-/obj/machinery/computer/cloning{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
+/obj/machinery/dna_scannernew,
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
@@ -28366,18 +28364,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/miningdock)
-"bBc" = (
-/obj/structure/chair/office/light{
-	dir = 8
-	},
-/obj/effect/landmark/start/geneticist,
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 4
-	},
-/area/awaymission/research/interior/clonestorage)
 "bBe" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -30381,6 +30367,10 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 4
 	},
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/obj/effect/landmark/start/geneticist,
 /turf/open/floor/plasteel/white/corner{
 	dir = 4
 	},
@@ -53440,9 +53430,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "jLS" = (
-/obj/machinery/dna_scannernew,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
+	},
+/obj/machinery/computer/cloning{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
@@ -111977,7 +111969,7 @@ bEd
 bkR
 bkR
 bkR
-bBc
+bkR
 bGT
 ctp
 vjk
