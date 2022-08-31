@@ -1,3 +1,3 @@
 /obj/emitter/fire_smoke
-	alpha = 225
+	alpha = 150
 	particles = new/particles/fire_smoke
