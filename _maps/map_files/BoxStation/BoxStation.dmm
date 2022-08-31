@@ -10456,7 +10456,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "aAX" = (
-/turf/template_noop,
+/obj/effect/spawner/room/threexthree,
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
 /area/maintenance/port)
 "aAY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -38825,7 +38827,6 @@
 /turf/open/floor/plasteel/techmaint,
 /area/science/xenobiology)
 "chy" = (
-/obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
@@ -38834,6 +38835,10 @@
 	},
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
+	},
+/obj/structure/disposaloutlet{
+	dir = 1;
+	name = "Delivery Chute"
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
@@ -44590,7 +44595,7 @@
 /area/maintenance/starboard/fore)
 "cWG" = (
 /obj/effect/turf_decal/tile/blue/tile_full,
-/obj/structure/table/glass,
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "cYD" = (
@@ -49982,6 +49987,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "gUX" = (
@@ -54505,7 +54511,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "kxA" = (
-/obj/machinery/disposal/bin,
+/obj/machinery/disposal/bin{
+	name = "Delivery Chute"
+	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -70618,6 +70626,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"wFv" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/port)
 "wFT" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -90864,9 +90876,9 @@ aYH
 ydA
 bnn
 aPz
+aSg
+aSg
 aAX
-aSg
-aSg
 aSX
 aPz
 aaa
@@ -91121,9 +91133,9 @@ lJs
 cBh
 aQW
 aPz
-aAX
 aSg
 aSg
+wFv
 aSX
 aPz
 qjV
@@ -91378,9 +91390,9 @@ aYS
 aZx
 bnn
 aPz
-aAX
 aSg
 aSg
+wFv
 aSX
 aPz
 blY
