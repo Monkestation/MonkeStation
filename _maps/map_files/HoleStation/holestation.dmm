@@ -2549,7 +2549,7 @@
 "ajZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed/roller,
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard_plushie/green,
 /turf/open/floor/grass/fakebasalt,
 /area/maintenance/starboard/aft)
 "aka" = (

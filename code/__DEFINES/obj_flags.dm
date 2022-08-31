@@ -49,6 +49,7 @@
 #define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
 #define NOTCONSUMABLE			(1<<13) //! Moths cannot eat clothing with that flag
 #define NOTDROPPABLE			(1<<14) //! Monkestation edit: The user is unable to remove the clothing.
+#define INEDIBLE_CLOTHING 		(1<<25) //!Moths can't eat the clothing that has this flag.
 
 /// Flags for the organ_flags var on /obj/item/organ
 

@@ -84449,7 +84449,7 @@
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navyofficer,
 /obj/item/clothing/head/beret/sec/navywarden,
-/obj/item/clothing/head/beret/sec/navyhos,
+/obj/item/clothing/head/hos/beret/navyhos,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -86218,7 +86218,7 @@
 /area/vacant_room/commissary/commissaryFood)
 "ugx" = (
 /obj/structure/closet/secure_closet/hos,
-/obj/item/clothing/head/HoS/beret,
+/obj/item/clothing/head/hos/beret,
 /obj/item/clothing/suit/armor/hos/trenchcoat,
 /obj/item/clothing/shoes/sneakers/white,
 /obj/effect/turf_decal/stripes/line{
@@ -96135,7 +96135,7 @@
 /turf/closed/wall,
 /area/crew_quarters/locker)
 "wDT" = (
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard_plushie/green,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
 "wDZ" = (
