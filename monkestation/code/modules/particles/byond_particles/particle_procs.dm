@@ -9,7 +9,7 @@ particles like bonfires.
 /atom
 	var/obj/effect/abstract/particle_holder/master_holder
 
-
+/// priority is in descending order so 10 is the highest 1 is the lowest
 /atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10)
 
 	priority = clamp(priority, 1, 10)

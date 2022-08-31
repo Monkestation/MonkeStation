@@ -9,8 +9,8 @@
     lifespan = 20
     fade = 30
     #ifndef SPACEMAN_DMM // Waiting on next release of DreamChecker
-	fadein = 5
-	#endif
+    fadein = 5
+    #endif
     velocity = list(0, 2)
     position = list(0, 8)
     gravity = list(0, 1)
