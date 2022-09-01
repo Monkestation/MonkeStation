@@ -36305,7 +36305,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance{
 	name = "Engineering Maintenance";
-	req_access_txt = "10"
+	req_access_txt = "12"
 	},
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
