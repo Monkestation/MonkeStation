@@ -364,11 +364,11 @@
 	if(!isliving(target))
 		return
 
+	var/mob/living/victim = target
+
 	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
 		victim.apply_damage(melee_damage, BRUTE, victim.get_bodypart(BODY_ZONE_CHEST)) //mimics still get the full damage, though it does feel a little dirty to deal the same damage twice
 		return ..()
-
-	var/mob/living/victim = target
 
 	if(buckled && victim == buckled) //If you're buckled to them
 		victim.apply_damage(melee_damage, CLONE, victim.get_bodypart(BODY_ZONE_CHEST))
