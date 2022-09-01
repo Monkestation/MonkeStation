@@ -22642,6 +22642,7 @@
 /area/maintenance/central)
 "bjA" = (
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bjB" = (
@@ -22652,9 +22653,6 @@
 /area/maintenance/central)
 "bjC" = (
 /obj/structure/closet/wardrobe/black,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bjE" = (
@@ -23121,19 +23119,6 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bkX" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
-"bkY" = (
-/obj/effect/landmark/blobstart,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bkZ" = (
@@ -42676,9 +42661,6 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "cAG" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/machinery/power/apc/auto_name/south{
 	pixel_y = -24
 	},
@@ -43969,12 +43951,6 @@
 /obj/effect/turf_decal/tile/neutral/tile_full,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/sorting)
-"cNL" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "cNM" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -99184,8 +99160,8 @@ eXi
 mAW
 bgJ
 rex
-cNL
-bkY
+bkX
+bkX
 rex
 bnP
 bpc
