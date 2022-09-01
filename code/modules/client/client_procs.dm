@@ -543,8 +543,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				"Kigor has found a way back onto the server.",
 				"The drones need you. They look up to you.",
 				"An assistant with a toolbox just killed 90% of the crew. You're next.",
-				"Insert Funny Joke Here."
-				)
+				"Insert Funny Joke Here.")
 
 			send2tgs("Server", "[cheesy_message] (No admins online)")
 
