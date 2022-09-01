@@ -10,12 +10,12 @@
 	antag_flag = "Mimic"
 	antag_flag_override = ROLE_ALIEN
 	enemy_roles = list("Security Officer", "Detective", "Warden", "Head of Security", "Captain")
-	required_enemies = list(4,3,3,3,2,2,1,1,1,0)
+	required_enemies = list(2,2,2,2,2,2,2,1,1,0)
 	required_candidates = 2
-	weight = 2
+	weight = 3
 	cost = 15
 	minimum_players = 30
-	requirements = list(101,101,101,60,50,40,20,15,10,10)
+	requirements = list(101,101,101,30,30,30,30,30,10,10)
 	repeatable = FALSE
 
 /datum/dynamic_ruleset/midround/from_ghosts/mimic/execute()
