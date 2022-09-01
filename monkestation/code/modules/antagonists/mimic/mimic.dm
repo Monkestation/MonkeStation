@@ -406,7 +406,6 @@
 		toggle_ai(AI_ON)
 
 /mob/living/simple_animal/hostile/alien_mimic/MoveToTarget(list/possible_targets)
-	to_chat(world,"MOVETOTARGET")
 	if(fleeing)
 		SSmove_manager.move_away(src, target, 15, move_to_delay)
 		stop_automated_movement = 1
