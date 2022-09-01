@@ -50004,7 +50004,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
-/obj/effect/spawner/structure/window,
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "gUX" = (
