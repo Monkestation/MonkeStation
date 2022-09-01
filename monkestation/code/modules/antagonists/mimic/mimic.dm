@@ -23,12 +23,13 @@
 	stat_attack = UNCONSCIOUS
 	mob_size = MOB_SIZE_SMALL
 	pass_flags = PASSTABLE | PASSMOB
+	ventcrawler = VENTCRAWLER_ALWAYS
 	unsuitable_atmos_damage = 0 //They won't die in Space!
 	minbodytemp = TCMB
 	maxbodytemp = T0C + 40
 	maxHealth = 125
 	health = 125
-	melee_damage = 10
+	melee_damage = 7
 	obj_damage = 30
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -355,8 +356,6 @@
 		restore()
 		return
 
-	if(buckled && target == buckled) //If you're buckled to them
-		return ..()
 	if(!ismob(target)) //If you're attacking something or other
 		if(disguised)
 			restore()
@@ -364,8 +363,16 @@
 	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
 		return ..()
 
-	if(isliving(target) && !buckled) //Latch onto people
-		var/mob/living/victim = target
+	if(!isliving(target))
+		return
+
+	var/mob/living/victim = target
+
+	if(buckled && victim == buckled) //If you're buckled to them
+		victim.apply_damage(melee_damage, CLONE, victim.get_bodypart(BODY_ZONE_CHEST))
+		return ..()
+
+	if(!buckled) //Latch onto people
 		if(iscarbon(victim) && victim.stat == DEAD && !HAS_TRAIT(victim, TRAIT_HUSK)) //Absorb someone to heal
 			var/mob/living/carbon/carbon_victim = victim
 			if(!carbon_victim.last_mind)
