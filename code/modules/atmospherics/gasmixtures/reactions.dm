@@ -721,6 +721,37 @@ nobliumformation = 1001
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature((old_thermal_energy + energy_released) / new_heat_capacity)
 
+/datum/gas_reaction/freonformation
+	priority = 5
+	name = "Freon formation"
+	id = "freonformation"
+
+/datum/gas_reaction/freonformation/init_reqs() //minimum requirements for freon formation
+	min_requirements = list(
+		GAS_PLASMA = 40,
+		GAS_CO2 = 20,
+		GAS_BZ = 20,
+		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST + 100
+		)
+
+/datum/gas_reaction/freonformation/react(datum/gas_mixture/air)
+	var/temperature = air.return_temperature()
+	var/old_heat_capacity = air.heat_capacity()
+	var/heat_efficency = min(temperature / (FIRE_MINIMUM_TEMPERATURE_TO_EXIST * 10), air.get_moles(GAS_PLASMA), air.get_moles(GAS_CO2), air.get_moles(GAS_BZ))
+	var/energy_used = heat_efficency * 100
+	if ((air.get_moles(GAS_PLASMA) - heat_efficency * 1.5 < 0 ) || (air.get_moles(GAS_CO2) - heat_efficency * 0.75 < 0) || (air.get_moles(GAS_BZ) - heat_efficency * 0.25 < 0)) //Shouldn't produce gas from nothing.
+		return NO_REACTION
+	air.adjust_moles(GAS_PLASMA, -(heat_efficency * 1.5))
+	air.adjust_moles(GAS_CO2, -(heat_efficency * 0.75))
+	air.adjust_moles(GAS_BZ, -(heat_efficency * 0.25))
+	air.adjust_moles(GAS_FREON, (heat_efficency * 2.5))
+
+	if(energy_used > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature(max(((temperature * old_heat_capacity - energy_used)/new_heat_capacity), TCMB))
+		return REACTING
+
 /datum/gas_reaction/h2fire/init_reqs()
 	min_requirements = list(
 		"TEMP" = FIRE_MINIMUM_TEMPERATURE_TO_EXIST,
