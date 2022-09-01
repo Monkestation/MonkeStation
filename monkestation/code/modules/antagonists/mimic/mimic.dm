@@ -360,11 +360,13 @@
 		if(disguised)
 			restore()
 		return ..()
-	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
-		return ..()
 
 	if(!isliving(target))
 		return
+
+	if(iscyborg(target) || isAI(target)) //stinky sillicons with their no mounting rules
+		victim.apply_damage(melee_damage, BRUTE, victim.get_bodypart(BODY_ZONE_CHEST)) //mimics still get the full damage, though it does feel a little dirty to deal the same damage twice
+		return ..()
 
 	var/mob/living/victim = target
 
