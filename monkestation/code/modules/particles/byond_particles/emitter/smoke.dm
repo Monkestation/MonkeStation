@@ -9,6 +9,7 @@
 
 /obj/emitter/flare_smoke
 	particles = new/particles/smoke
+	layer = OBJ_LAYER
 
 /obj/emitter/flare_smoke/Initialize(mapload, time, _color)
 	. = ..()
