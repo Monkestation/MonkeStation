@@ -17,8 +17,11 @@ particles like bonfires.
 	if(!particle_key)
 		CRASH("add_emitter called without a key ref.")
 
+	if(!src.loc)
+		CRASH("add_emitter called on a turf without a loc, avoid this!.")
+
 	if(!master_holder)
-		master_holder = new(src.loc)
+		master_holder = new(src)
 
 	var/obj/emitter/new_emitter = new updatee
 

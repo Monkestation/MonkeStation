@@ -3852,6 +3852,8 @@
 #include "monkestation\code\modules\particles\byond_particles\particle\fire.dm"
 #include "monkestation\code\modules\particles\byond_particles\particle\rain.dm"
 #include "monkestation\code\modules\particles\byond_particles\particle\smoke.dm"
+#include "monkestation\code\modules\particles\byond_particles\testing\area.dm"
+#include "monkestation\code\modules\particles\byond_particles\testing\turf.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk_admin_procs.dm"
 #include "monkestation\code\modules\power\rbmk\rbmk_areas.dm"

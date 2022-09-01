@@ -63,7 +63,7 @@
 	if(weak_additional)
 		var/atom/movable/resolved_location = weak_additional.resolve()
 		if(resolved_location)
-			resolved_location.vis_contents -= src
+			resolved_location.vis_locs -= src
 	//add to new
 	if(isitem(attached_to) && ismob(attached_to.loc)) //special case we want to also be emitting from the mob
 		var/mob/particle_mob = attached_to.loc
