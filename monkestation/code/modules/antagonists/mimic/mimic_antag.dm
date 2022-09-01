@@ -1,6 +1,7 @@
 /datum/antagonist/mimic
 	name = "mimic"
 	show_name_in_check_antagonists = TRUE
+	show_to_ghosts = TRUE
 	show_in_antagpanel = FALSE
 	//The file id for the antag tip window that will pop up
 	tips = "mimic"
