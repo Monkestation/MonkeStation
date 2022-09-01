@@ -12,3 +12,12 @@
 /obj/emitter/fire_sparks
 	alpha = 225
 	particles = new/particles/fire_sparks
+
+
+
+/obj/emitter/sparks_flare
+	particles = new/particles/flare_sparks
+
+/obj/emitter/sparks_flare/Initialize(mapload)
+	. = ..()
+	add_filter("bloom" , 1 , list(type="bloom", size=3, offset = 0.5, alpha = 220))

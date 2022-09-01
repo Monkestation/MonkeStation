@@ -21,3 +21,18 @@
     friction = 0.2
     drift = generator("vector", list(-0.16, -0.2), list(0.16, 0.2))
     color = "white"
+
+
+/particles/flare_smoke
+	width = 500
+	height = 1000
+	count = 3000
+	spawning = 5
+	lifespan = 40
+	fade = 40
+	velocity = generator("box", list(-1, 2), list(1, 2), NORMAL_RAND)
+	gravity = list(0, 1)
+	position = list(10,1,0)
+	friction = 0.1
+	drift = generator("vector", list(-0.2, -0.3), list(0.2, 0.3))
+	color = "#fa7f7f"

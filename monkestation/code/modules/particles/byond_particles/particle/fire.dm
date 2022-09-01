@@ -44,3 +44,17 @@
     drift = generator("sphere", 0, 2)
     gradient = list(0, "yellow", 1, "red")
     color = "yellow"
+
+
+/particles/flare_sparks
+	width = 500
+	height = 500
+	count = 2000
+	spawning = 12
+	lifespan = 0.75 SECONDS
+	fade = 0.95 SECONDS
+	position = generator("vector", list(10,0,0), list(10,0,0), NORMAL_RAND)
+	velocity = generator("circle", -6, 6, NORMAL_RAND)
+	friction = 0.15
+	gradient = list(0, COLOR_WHITE, 0.4, COLOR_RED)
+	color_change = 0.125
