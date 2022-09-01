@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(random_drug_names, list("Adam", "Airplane", "Alcohol", "All-Acc
 "Organic", "Pete", "Pineapple", "Piss", "Pit", "Poor", "Power", "Pressure", "prob(80)", "Psycho", "Quaalude", "Quesarito", "Railroad", "Rasta",
 "Red", "Robo", "Roses", "Russian", "Salty", "Sangria", "Scream", "Scrungularity", "Security", "Shotgun", "Shuttle", "Silicon", "Singing", "Singularity",
  "Skippy", "Sky", "Sleep", "Smart", "Smarties", "Society", "Somatomax", "South", "Space", "Spaceman", "Speed", "Spess", "Spessman", "Spicy", "Sseth",
- "Star", "Stellar", "Study", "Sugar", "Supermatter", "Suplex", "Sus", "Sussy", "Switchblade", "Squall" "Syndi", "Syndicate", "TEG", "Tech", "Tesla",
+ "Star", "Stellar", "Study", "Sugar", "Supermatter", "Suplex", "Sus", "Sussy", "Switchblade", "Squall", "Syndi", "Syndicate", "TEG", "Tech", "Tesla",
  "Toenail Slobber", "Turbo", "Tweak", "Uppers", "Vitamin", "Voodoo", "Vorpal", "Warden", "Water", "Wendy", "West", "White", "Woman", "Working", "Xeno",
  "Yuppie", "Yuppie", "Zanden", "\[ABOVE YOUR PAYGRADE]", "\[ACCESS DENIED\]", "\[FORBIDDEN\]", "\[REDACTED\]"))
 
