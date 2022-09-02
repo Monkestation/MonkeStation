@@ -2,7 +2,7 @@
 	width = 124
 	height = 124
 	count = 256
-	spawning = 999999 //spawn all instantly
+	spawning = SPAWN_ALL_PARTICLES_INSTANTLY //spawn all instantly
 	lifespan = 0.75 SECONDS
 	fade = 0.35 SECONDS
 	position = generator("box", list(-16, -16), list(16, 16), NORMAL_RAND)
@@ -14,7 +14,7 @@
 	width = 124
 	height = 124
 	count = 16
-	spawning = 999999 //spawn all instantly
+	spawning = SPAWN_ALL_PARTICLES_INSTANTLY //spawn all instantly
 	lifespan = 0.75 SECONDS
 	fade = 0.35 SECONDS
 	position = generator("box", list(-10, -10), list(10, 10), NORMAL_RAND)
