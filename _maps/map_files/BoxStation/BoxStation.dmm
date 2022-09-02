@@ -15628,10 +15628,6 @@
 /turf/open/floor/grass,
 /area/bridge)
 "aNC" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=EVA2";
-	location = "Dorm"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
@@ -16594,10 +16590,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aRn" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=Lockers";
-	location = "EVA"
-	},
 /obj/effect/turf_decal/plaque{
 	icon_state = "L6"
 	},
@@ -16616,10 +16608,6 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aRp" = (
-/obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=Security";
-	location = "EVA2"
-	},
 /obj/effect/turf_decal/plaque{
 	icon_state = "L10"
 	},
@@ -46423,6 +46411,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
+"euj" = (
+/obj/effect/turf_decal/trimline/darkblue/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=Security";
+	location = "EVA2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "euk" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -57320,6 +57319,17 @@
 	},
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry)
+"mmQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=EVA2";
+	location = "Dorm"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "mnk" = (
 /obj/effect/turf_decal/trimline/red/arrow_ccw,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -61335,6 +61345,9 @@
 /obj/machinery/computer/cargo/request{
 	dir = 1
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "pGw" = (
@@ -61356,9 +61369,6 @@
 "pHe" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 6
-	},
-/obj/structure/window/reinforced{
-	dir = 8
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -65521,6 +65531,17 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/quartermaster/exploration_dock)
+"sDo" = (
+/obj/effect/turf_decal/trimline/darkblue/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line,
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=Lockers";
+	location = "EVA"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/central)
 "sEo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -101714,7 +101735,7 @@ hqe
 nwZ
 nwZ
 nwZ
-aOE
+sDo
 aPS
 aRn
 aSD
@@ -102228,7 +102249,7 @@ aJt
 nwZ
 nwZ
 wUS
-aOE
+euj
 mnR
 aRp
 aSD
@@ -106083,7 +106104,7 @@ aDN
 aAh
 aMo
 aNC
-aWR
+mmQ
 aWR
 aWR
 aWR
