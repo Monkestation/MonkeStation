@@ -297,7 +297,7 @@
 	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	greyscale_colors = "#3F3C40#FFFFFF"
+	greyscale_colors = "#FFFFFF#FFD700"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 20, "fire" = 30, "acid" = 0, "stamina" = 0)
 	strip_delay = 60
 
@@ -322,12 +322,12 @@
 /obj/item/clothing/head/beret/med
 	name = "medical beret"
 	desc = "A medical-flavored beret for the doctor in you!"
-	greyscale_colors = "#FFFFFF"
+	greyscale_colors = "#ADD8E6"
 
 /obj/item/clothing/head/beret/med/paramedic
 	name = "paramedic beret"
 	desc = "For finding corpses in style!"
-	greyscale_colors = "#16313D"
+	greyscale_colors = "#ADD8E6"
 
 
 //Engineering
@@ -360,7 +360,7 @@
 	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn
-	greyscale_colors = "#3F3C40#03e3fc"
+	greyscale_colors = "#ADD8E6#FFD700"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 30, "rad" = 10, "fire" = 0, "acid" = 20, "stamina" = 0)
 	strip_delay = 60
 

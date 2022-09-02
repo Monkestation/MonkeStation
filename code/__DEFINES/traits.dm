@@ -400,6 +400,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Monkestation Changes Start
 #define TRAIT_TRASH_EATER "trash_eater" //goat.dm symptom requirement
 #define TRAIT_VAULTING "vaulting" //simian trait
+#define MIMIC_ABSORB "absorb" //alien_mimic absorbing
 ///Turf trait for when a turf is transparent
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 // Monkestation Changes End
