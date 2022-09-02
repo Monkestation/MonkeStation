@@ -1020,17 +1020,22 @@
 			return
 
 		var/key = stripped_input(usr, "Enter a key for your emitter", "Emitter Key")
-		var/lifetime = input("how long should this live for in seconds? 0 for infinite", "Lifespan") as null|num
+		var/lifetime = input("how long should this live for in deci seconds (10 per second)? 0 for infinite, -1 for particle lifespan(burst particle)", "Lifespan") as null|num
 
 		if(!key)
 			return
 		switch(alert("Should this be a pre-filled emitter?",,"Yes","No","Cancel"))
 			if("Yes")
-				var/choice = input(usr, "Choose an emitter to add", "Choose an Emitter") as null|anything in subtypesof(/obj/emitter)
+				var/obj/emitter/choice = input(usr, "Choose an emitter to add", "Choose an Emitter") as null|anything in subtypesof(/obj/emitter)
+				if(lifetime == -1)
+					var/obj/emitter/tempr = new choice
+					lifetime = tempr.particles.lifespan
+					qdel(tempr)
+
 				if(choice)
-					add_emitter(choice, key, lifespan = lifetime SECONDS)
+					add_emitter(choice, key, lifespan = lifetime)
 			if("No")
-				add_emitter(/obj/emitter, key, lifespan = lifetime SECONDS)
+				add_emitter(/obj/emitter, key, lifespan = lifetime)
 			else
 				return
 

@@ -30,17 +30,20 @@ particles like bonfires.
 	master_holder.emitters[particle_key] = new_emitter
 
 	if(lifespan)
-		addtimer(CALLBACK(src, .proc/remove_emitter, particle_key), lifespan)
+		if(lifespan == new_emitter.particles.lifespan)
+			remove_emitter(particle_key, TRUE)
+		else
+			addtimer(CALLBACK(src, .proc/remove_emitter, particle_key), lifespan)
 
-/atom/proc/remove_emitter(particle_key)
+/atom/proc/remove_emitter(particle_key, burst_mode = FALSE)
 	if(!particle_key)
 		CRASH("remove_emitter called without a key ref.")
 
 	if(!master_holder || !master_holder.emitters[particle_key])
 		return
 	var/obj/emitter/removed_emitter = master_holder.emitters[particle_key]
-
-	removed_emitter.particles.spawning = 0 //this way it gracefully dies out instead
+	if(!burst_mode)
+		removed_emitter.particles.spawning = 0 //this way it gracefully dies out instead
 	addtimer(CALLBACK(src, .proc/handle_deletion, particle_key), removed_emitter.particles.lifespan)
 
 /atom/proc/handle_deletion(particle_key)
