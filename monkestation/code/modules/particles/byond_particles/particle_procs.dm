@@ -31,9 +31,7 @@ particles like bonfires.
 
 	if(lifespan)
 		spawn(lifespan)
-			new_emitter.particles.spawning = 0
-			spawn(new_emitter.particles.lifespan) //MFW Double spawn proc to make them fade out
-				remove_emitter(particle_key)
+			remove_emitter(particle_key)
 
 /atom/proc/remove_emitter(particle_key)
 	if(!particle_key)
