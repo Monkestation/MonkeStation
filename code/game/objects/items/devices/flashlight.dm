@@ -315,8 +315,9 @@
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
 		force = on_damage
 		damtype = "fire"
-		add_emitter(/obj/emitter/sparks/flare, "spark", 10)
-		add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
+		if(!istype(src, /obj/item/flashlight/flare/torch))
+			add_emitter(/obj/emitter/sparks/flare, "spark", 10)
+			add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/is_hot()
