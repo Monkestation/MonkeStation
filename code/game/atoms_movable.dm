@@ -1020,7 +1020,7 @@
 			return
 
 		var/key = stripped_input(usr, "Enter a key for your emitter", "Emitter Key")
-		var/lifetime = input("how long should this live for in deci seconds (10 per second)? 0 for infinite, -1 for particle lifespan(burst particle)", "Lifespan") as null|num
+		var/lifetime = input("How long should this live for in deciseconds? 0 for infinite, -1 for a single burst.", "Lifespan") as null|num
 
 		if(!key)
 			return
