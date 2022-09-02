@@ -1,2 +1,2 @@
 /obj/emitter/stink_lines
-	paritcles = new/particles/stink_lines
+	particles = new/particles/stink_lines
