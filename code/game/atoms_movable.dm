@@ -1020,9 +1020,7 @@
 			return
 
 		var/key = stripped_input(usr, "Enter a key for your emitter", "Emitter Key")
-		var/lifetime = input("how long should this live for in seconds? -1 for infinite", "Lifespan") as null|num
-		if(lifetime == -1)
-			lifetime = null
+		var/lifetime = input("how long should this live for in seconds? 0 for infinite", "Lifespan") as null|num
 
 		if(!key)
 			return

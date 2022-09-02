@@ -30,8 +30,7 @@ particles like bonfires.
 	master_holder.emitters[particle_key] = new_emitter
 
 	if(lifespan)
-		spawn(lifespan)
-			remove_emitter(particle_key)
+		addtimer(CALLBACK(src, .proc/remove_emitter, particle_key), lifespan)
 
 /atom/proc/remove_emitter(particle_key)
 	if(!particle_key)
@@ -42,8 +41,11 @@ particles like bonfires.
 	var/obj/emitter/removed_emitter = master_holder.emitters[particle_key]
 
 	removed_emitter.particles.spawning = 0 //this way it gracefully dies out instead
-	spawn(removed_emitter.particles.lifespan)
-		removed_emitter.vis_locs -= src
+	addtimer(CALLBACK(src, .proc/handle_deletion, particle_key), removed_emitter.particles.lifespan)
 
-		master_holder.emitters -= particle_key
-		qdel(removed_emitter)
+/atom/proc/handle_deletion(particle_key)
+	var/obj/emitter/removed_emitter = master_holder.emitters[particle_key]
+	removed_emitter.vis_locs -= src
+
+	master_holder.emitters -= particle_key
+	qdel(removed_emitter)
