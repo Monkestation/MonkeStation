@@ -1,6 +1,7 @@
 /obj/emitter
 	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags |= VIS_INHERIT_ID
 	anchored = TRUE
 
 
@@ -9,6 +10,7 @@
 ///also because some objects do not display particles due to how their visuals are built
 /obj/effect/abstract/particle_holder
 	anchored = TRUE
+	vis_flags |= VIS_INHERIT_ID
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = ABOVE_ALL_MOB_LAYER
 	///typepath of the last location we're in, if it's different when moved then we need to update vis contents

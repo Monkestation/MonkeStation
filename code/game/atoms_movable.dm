@@ -1024,18 +1024,16 @@
 
 		if(!key)
 			return
-		switch(alert("Should this be a pre-filled emitter?",,"Yes","No","Cancel"))
+		switch(alert("Should this be a pre-filled emitter (empty emitters don't support timers)?",,"Yes","No","Cancel"))
 			if("Yes")
-				var/obj/emitter/choice = input(usr, "Choose an emitter to add", "Choose an Emitter") as null|anything in subtypesof(/obj/emitter)
+				var/choice = input(usr, "Choose an emitter to add", "Choose an Emitter") as null|anything in subtypesof(/obj/emitter)
+				var/should_burst = FALSE
 				if(lifetime == -1)
-					var/obj/emitter/tempr = new choice
-					lifetime = tempr.particles.lifespan
-					qdel(tempr)
-
+					should_burst = TRUE
 				if(choice)
-					add_emitter(choice, key, lifespan = lifetime)
+					add_emitter(choice, key, lifespan = lifetime, burst_mode = should_burst)
 			if("No")
-				add_emitter(/obj/emitter, key, lifespan = lifetime)
+				add_emitter(/obj/emitter, key)
 			else
 				return
 

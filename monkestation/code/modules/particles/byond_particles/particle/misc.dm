@@ -6,6 +6,7 @@
 	lifespan = 30
 	fade = 10
 	fadein = 10
+	gravity = list(0, 0.2, 0)
 	position = generator("circle", 10, 12, NORMAL_RAND)
 	friction = generator("num", 0.1, 0.3, NORMAL_RAND)
 	drift = generator("box", list(0.1,0.05,0), list(-0.1,0,0), UNIFORM_RAND)
