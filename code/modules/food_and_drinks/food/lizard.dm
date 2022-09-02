@@ -309,11 +309,13 @@
 	desc = "A root based dough, made with nuts and tubers. Used in a wide range of Tiziran cooking."
 	icon = 'icons/obj/food/lizard.dmi'
 	icon_state = "rootdough"
-	microwaved_type = /obj/item/food/bread/root
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	w_class = WEIGHT_CLASS_SMALL
 	tastes = list("potato" = 1, "earthy heat" = 1)
 	foodtypes = VEGETABLES | NUTS
+
+/obj/item/food/rootdough/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/bread/root, rand(30 SECONDS, 45 SECONDS), TRUE, TRUE)
 
 /obj/item/food/rootdough/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/food/flatrootdough, 1, 30)
@@ -334,6 +336,7 @@
 /obj/item/food/flatrootdough/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/root_flatbread, rand(25 SECONDS, 35 SECONDS), TRUE, TRUE)
 
+
 /obj/item/food/rootdoughslice
 	name = "rootdough ball"
 	desc = "A ball of root dough. Perfect for making pasta or rolls."
@@ -347,6 +350,9 @@
 
 /obj/item/food/rootdoughslice/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/spaghetti/nizaya, 1, 30)
+
+/obj/item/food/rootdoughslice/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/food/rootroll, rand(30 SECONDS, 45 SECONDS), TRUE, TRUE)
 
 /obj/item/food/root_flatbread
 	name = "root flatbread"
