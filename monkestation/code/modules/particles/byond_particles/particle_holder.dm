@@ -1,7 +1,7 @@
 /obj/emitter
+	appearance_flags = LONG_GLIDE | KEEP_APART | TILE_BOUND | PIXEL_SCALE
 	layer = ABOVE_ALL_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE
 	anchored = TRUE
 
 
