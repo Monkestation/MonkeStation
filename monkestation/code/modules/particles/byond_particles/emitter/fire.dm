@@ -9,6 +9,3 @@
 	add_filter("outline", 1, list(type = "outline", size = 3,  color = "#FF3300"))
 	add_filter("bloom", 2 , list(type = "bloom", threshold = rgb(255,128,255), size = 6, offset = 4, alpha = 255))
 
-/obj/emitter/fire_sparks
-	alpha = 225
-	particles = new/particles/fire_sparks

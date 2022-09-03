@@ -283,7 +283,8 @@
 	if(QDELETED(B)) //Give it up
 		return
 	if(B.count < 10 )
-		B.color = blood_type.color
+		if(blood_type)
+			B.color = initial(blood_type.color)
 		B.count ++
 		B.transfer_mob_blood_dna(src)
 	if (B.bloodiness < MAX_SHOE_BLOODINESS) //add more blood, up to a limit

@@ -9,9 +9,9 @@
 	color_change = 0
 	friction = 0.2
 	drift = generator("vector", list(0.25,0,0), list(-0.25,0,0), UNIFORM_RAND)
-#ifndef SPACEMAN_DMM
+	#ifndef SPACEMAN_DMM
 	fadein = 10
-#endif
+	#endif
 
 
 
@@ -30,17 +30,3 @@
     gravity = list(0, 0.65)
     color = "white"
 
-/particles/fire_sparks
-    width = 500
-    height = 500
-    count = 3000
-    spawning = 1
-    lifespan = 40
-    fade = 20
-    position = 0
-    gravity = list(0, 1)
-
-    friction = 0.25
-    drift = generator("sphere", 0, 2)
-    gradient = list(0, "yellow", 1, "red")
-    color = "yellow"
