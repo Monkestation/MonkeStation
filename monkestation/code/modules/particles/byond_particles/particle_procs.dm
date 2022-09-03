@@ -47,6 +47,9 @@ particles like bonfires.
 
 /atom/proc/handle_deletion(particle_key)
 	var/obj/emitter/removed_emitter = master_holder.emitters[particle_key]
+
+	if(!removed_emitter)
+		return
 	removed_emitter.vis_locs -= src
 
 	master_holder.emitters -= particle_key
