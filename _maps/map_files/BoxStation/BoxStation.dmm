@@ -56188,10 +56188,6 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"lDe" = (
-/obj/structure/rack,
-/turf/closed/wall,
-/area/maintenance/port)
 "lDD" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -93022,7 +93018,7 @@ aPG
 aPG
 aPz
 aPz
-lDe
+aPz
 aPz
 aPz
 aPz
