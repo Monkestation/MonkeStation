@@ -10,7 +10,7 @@ particles like bonfires.
 	var/obj/effect/abstract/particle_holder/master_holder
 
 /// priority is in descending order so 10 is the highest 1 is the lowest
-/atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10, var/lifespan = null, burst_mode = FALSE)
+/atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10, var/lifespan = null, burst_mode = FALSE, force = FALSE)
 
 	priority = clamp(priority, 1, 10)
 
@@ -27,7 +27,7 @@ particles like bonfires.
 	var/obj/emitter/new_emitter = new updatee
 
 	if(current_emitter)
-		if(current_emitter.type == new_emitter.type)
+		if(!force && current_emitter.type == new_emitter.type)
 			return
 		current_emitter.vis_locs -= src
 		qdel(current_emitter)
