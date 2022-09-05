@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	particles = null
 
 /atom/movable/proc/modify_particle_value(varName, varVal)
-	var/list/default_particle = list(width = 100,
+	var/list/default_particle = list(width = 100, ///DO NOT make this list look nicer, maintainers at tg didn't like the fact its like this and its funny so keep it :) - Borbop
 									height = 100,
 									count = 100,
 									spawning = 1,
