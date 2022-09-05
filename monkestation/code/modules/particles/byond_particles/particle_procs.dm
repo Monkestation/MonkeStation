@@ -22,8 +22,15 @@ particles like bonfires.
 
 	if(!master_holder)
 		master_holder = new(src)
+	var/obj/emitter/current_emitter = master_holder.emitters[particle_key]
 
 	var/obj/emitter/new_emitter = new updatee
+
+	if(current_emitter)
+		if(current_emitter.type == new_emitter.type)
+			return
+		current_emitter.vis_locs -= src
+		qdel(current_emitter)
 
 	new_emitter.layer += (priority / 100)
 	new_emitter.vis_locs |= src
