@@ -54,3 +54,39 @@ particles like bonfires.
 
 	master_holder.emitters -= particle_key
 	qdel(removed_emitter)
+
+///checks if it has the specific particle key
+/atom/proc/has_particle(particle_key)
+	if(!master_holder || !master_holder.emitters.len) /// does the holder exist, or does the holder list hold nothing? Return False
+		return FALSE
+
+	if(!master_holder.emitters[particle_key]) /// does it have a particle with the correct key?  if not return
+		return FALSE
+
+	return TRUE
+
+///checks for a matching particle type from a given particle key
+/atom/proc/matching_particle(particle_key, obj/emitter/particle_type)
+	if(!master_holder || !master_holder.emitters.len) /// does the holder exist, or does the holder list hold nothing? Return False
+		return FALSE
+
+	if(!master_holder.emitters[particle_key]) /// does it have a particle with the correct key?  if not return
+		return FALSE
+
+	if(!istype(master_holder.emitters[particle_key], particle_type))
+		return FALSE
+
+	return TRUE
+
+///Returns the particle with the correct key
+/atom/proc/return_particle(particle_key)
+	if(!particle_key) ///this should never happen but just incase
+		return
+
+	if(!master_holder || !master_holder.emitters.len) /// does the holder exist, or does the holder list hold nothing? Return False
+		return FALSE
+
+	if(!master_holder.emitters[particle_key]) /// does it have a particle with the correct key?  if not return
+		return FALSE
+
+	return master_holder.emitters[particle_key]
