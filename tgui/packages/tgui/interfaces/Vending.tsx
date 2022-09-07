@@ -319,7 +319,7 @@ const ProductButton = (props, context) => {
   const { act, data } = useBackend<VendingData>(context);
   const { access, department, user } = data;
   const { custom, free, product, productStock } = props;
-  const discount = department === user?.department;
+  const discount = department === user?.department && !product.premium;
   const redPrice = Math.round(product.price * 0);
 
   return custom ? (
