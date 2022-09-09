@@ -15251,7 +15251,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/brown/line{
+/obj/effect/turf_decal/trimline/brown/warning{
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -23791,7 +23791,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/brown/line{
+/obj/effect/turf_decal/trimline/brown/warning{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
@@ -53832,16 +53832,13 @@
 /area/maintenance/aft)
 "jGO" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/brown/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/line,
 /obj/machinery/door/airlock/public/glass{
 	name = "Cargo"
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/brown/warning,
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
@@ -59656,7 +59653,7 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/brown/line{
+/obj/effect/turf_decal/trimline/brown/warning{
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark/corner{
@@ -62827,14 +62824,13 @@
 /area/maintenance/port)
 "pVd" = (
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/trimline/brown/filled/line,
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 1
-	},
 /obj/machinery/door/airlock/public/glass{
 	name = "Cargo"
 	},
 /obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/warning{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark/side,
@@ -68952,7 +68948,7 @@
 /area/medical/surgery)
 "uAj" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner,
-/obj/effect/turf_decal/trimline/brown/line{
+/obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark/corner,
