@@ -5215,9 +5215,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
 /turf/open/floor/carpet/red,
 /area/security/courtroom)
 "akx" = (
@@ -6265,6 +6262,7 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 1
 	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "ams" = (
@@ -51528,6 +51526,7 @@
 	department = "Crew Quarters";
 	pixel_y = 30
 	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "hTu" = (
@@ -64902,9 +64901,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "rzI" = (
@@ -71734,6 +71730,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "wvY" = (
@@ -72579,14 +72578,14 @@
 /turf/open/floor/plasteel/techmaint,
 /area/science/nanite)
 "xcg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
 	},
 /turf/open/floor/carpet/red,
 /area/security/courtroom)
