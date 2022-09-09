@@ -305,7 +305,6 @@
 	name = "Revolution"
 	var/max_headrevs = 3
 	var/announced_revolution = FALSE
-	var/highest_head_count
 	var/list/ex_headrevs = list() // Dynamic removes revs on loss, used to keep a list for the roundend report.
 	var/list/ex_revs = list()
 
@@ -346,15 +345,7 @@
 /datum/team/revolution/proc/update_heads()
 	if(SSticker.HasRoundStarted())
 
-		var/list/living_heads = SSjob.get_living_heads()
 		var/list/datum/mind/heads = SSjob.get_all_heads()
-		if(!highest_head_count || heads.len > highest_head_count)
-			highest_head_count = heads.len
-		if(!announced_revolution)
-			if(living_heads.len  >= highest_head_count - 2)
-				priority_announce("Behavior unacceptable to the Corporation has been detected on your station.\nAll crew are required to quell any and all unionization attempts by any means necessary.\nGlory to Nanotrasen.", null, SSstation.announcer.get_rand_report_sound(), null, "Central Command Loyalty Monitoring Division")
-				announced_revolution = TRUE
-
 		var/list/datum/mind/head_revolutionaries = head_revolutionaries()
 		var/list/sec = SSjob.get_all_sec()
 
