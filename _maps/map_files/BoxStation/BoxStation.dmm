@@ -6950,11 +6950,6 @@
 "aoC" = (
 /turf/open/floor/carpet/red,
 /area/security/courtroom)
-"aoD" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/trimline/red/filled/line,
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
 "aoF" = (
 /obj/structure/chair/pew/left{
 	dir = 4
@@ -7171,7 +7166,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/power/apc/auto_name/west{
-	pixel_x = -24
+	pixel_x = -24;
+	name = "Private Interrogation"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -30434,7 +30430,7 @@
 /obj/item/bedsheet/red,
 /obj/structure/bed,
 /turf/open/floor/wood,
-/area/security/detectives_office/private_investigators_office)
+/area/security/detectives_office)
 "bGN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -53281,7 +53277,6 @@
 /area/maintenance/port/aft)
 "jml" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Fitness Maintenance";
 	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
@@ -61389,7 +61384,7 @@
 /area/hallway/primary/port)
 "oWi" = (
 /turf/open/floor/wood,
-/area/security/detectives_office/private_investigators_office)
+/area/security/detectives_office)
 "oWu" = (
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
@@ -70988,7 +70983,7 @@
 	pixel_x = 9
 	},
 /turf/open/floor/wood,
-/area/security/detectives_office/private_investigators_office)
+/area/security/detectives_office)
 "vYt" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
@@ -72592,7 +72587,7 @@
 "xcn" = (
 /obj/structure/closet/secure_closet/detective,
 /turf/open/floor/wood,
-/area/security/detectives_office/private_investigators_office)
+/area/security/detectives_office)
 "xcx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -102315,7 +102310,7 @@ oWi
 oWi
 oWi
 oWi
-kdH
+apd
 awg
 ayE
 gqE
@@ -102572,7 +102567,7 @@ xcn
 vYg
 bGM
 oWi
-kdH
+apd
 awg
 ayE
 ayL
@@ -102825,11 +102820,11 @@ bON
 bON
 apd
 apd
-kdH
-kdH
-kdH
-kdH
-kdH
+apd
+apd
+apd
+apd
+apd
 awj
 arP
 agm
@@ -105649,7 +105644,7 @@ rXY
 akn
 akw
 aoC
-aoD
+jcm
 ajo
 aqh
 arh
