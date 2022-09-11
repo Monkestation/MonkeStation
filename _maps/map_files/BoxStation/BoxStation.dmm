@@ -38505,6 +38505,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/stripes/closeup,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cfE" = (
@@ -38797,6 +38798,9 @@
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
@@ -39438,6 +39442,9 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cjo" = (
@@ -39553,6 +39560,9 @@
 /area/engine/engineering)
 "cjT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cjU" = (
@@ -39567,6 +39577,7 @@
 /area/crew_quarters/heads/chief)
 "cjV" = (
 /obj/structure/closet/emcloset,
+/obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cjX" = (
@@ -40529,12 +40540,10 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner{
-	dir = 1
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/yellow/line{
-	dir = 6
-	},
+/obj/effect/turf_decal/trimline/yellow/end,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cnv" = (
@@ -41224,6 +41233,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
+/obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "crR" = (
@@ -45818,15 +45828,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
-"dQs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "dSt" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -107422,7 +107423,7 @@ cpI
 ccw
 cDL
 cjl
-dQs
+cOk
 cjV
 cig
 aaf
