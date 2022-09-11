@@ -5924,7 +5924,10 @@
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "alI" = (
-/obj/machinery/door/window/eastright,
+/obj/machinery/door/window/eastright{
+	req_access_txt = "42";
+	name = "Courtroom"
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
