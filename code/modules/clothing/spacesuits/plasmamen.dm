@@ -629,7 +629,7 @@
 	icon_state = "ce_openvirohelm"
 	item_state = "ce_openvirohelm"
 	visor_icon = "openvisor"
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/cmo/mark2
 	name = "chief medical officer's Mk.II envirohelmet"
 	desc = "A sleek new helmet issued to the chief of the medical staff. Show off that big forehead of yours to all the squares in science."
@@ -795,7 +795,7 @@
 	icon_state = "atmos_armouredenvirohelm"
 	item_state = "atmos_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/cargo/protective
 	name = "cargo Mk.II envirosuit helmet"
 	desc = "A braced plasmaman containment helmet design for cargo techs and quartermasters."
