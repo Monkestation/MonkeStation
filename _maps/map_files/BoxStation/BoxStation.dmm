@@ -57455,6 +57455,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "lSc" = (
@@ -60135,6 +60138,9 @@
 /obj/structure/window/spawner,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
@@ -71943,8 +71949,7 @@
 /area/bridge)
 "wzA" = (
 /obj/machinery/door/airlock/medical/glass{
-	name = "Apothecary factory";
-	req_access_txt = "5;33"
+	name = "Break Room"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
