@@ -216,6 +216,7 @@
 	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
 	icon_state = "atmos_envirohelm"
 	item_state = "atmos_envirohelm"
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
 
 /obj/item/clothing/head/helmet/space/plasmaman/cargo
 	name = "cargo envirosuit helmet"
@@ -310,7 +311,8 @@
 	desc = "An envirohelmet designed for the Chief Engineer. It reeks of Poly and plasma."
 	icon_state = "ce_envirohelm"
 	item_state = "ce_envirohelm"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/cmo
 	name = "chief medical officer's envirohelmet"
 	desc = "A helmet issued to the chief of the medical staff."
@@ -420,7 +422,8 @@
 	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
 	icon_state = "atmos_envirohelm"
 	item_state = "atmos_envirohelm"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/replacement/cargo
 	name = "cargo replacement envirosuit helmet"
 	desc = "An replacement envirohelmet designed for cargo techs and quartermasters."
@@ -562,7 +565,8 @@
 	icon_state = "atmos_openvirohelm"
 	item_state = "atmos_openvirohelm"
 	visor_icon = "openvisor"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/cargo/mark2
 	name = "cargo Mk.II envirosuit helmet"
 	desc = "A stylish new iteration upon the original plasmaman containment helmet design for cargo techs and quartermasters. Neo-liberal grifting has never been this groovy"
@@ -626,7 +630,8 @@
 	icon_state = "ce_openvirohelm"
 	item_state = "ce_openvirohelm"
 	visor_icon = "openvisor"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/cmo/mark2
 	name = "chief medical officer's Mk.II envirohelmet"
 	desc = "A sleek new helmet issued to the chief of the medical staff. Show off that big forehead of yours to all the squares in science."
@@ -670,7 +675,8 @@
 	icon_state = "ce_armouredenvirohelm"
 	item_state = "ce_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/cmo/protective
 	name = "chief medical officer's Mk.II envirohelmet"
 	desc = "A bulky new helmet issued to the chief of the medical staff."
@@ -791,7 +797,8 @@
 	icon_state = "atmos_armouredenvirohelm"
 	item_state = "atmos_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
-
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
+	
 /obj/item/clothing/head/helmet/space/plasmaman/cargo/protective
 	name = "cargo Mk.II envirosuit helmet"
 	desc = "A braced plasmaman containment helmet design for cargo techs and quartermasters."
