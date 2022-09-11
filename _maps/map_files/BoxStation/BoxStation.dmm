@@ -30479,6 +30479,9 @@
 "bGM" = (
 /obj/item/bedsheet/red,
 /obj/structure/bed,
+/obj/item/radio/intercom{
+	pixel_y = -32
+	},
 /turf/open/floor/wood,
 /area/security/detectives_office)
 "bGN" = (
@@ -49633,8 +49636,7 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "gvb" = (
 /obj/machinery/door/airlock/security{
-	name = "Detective's Bedroom";
-	req_access_txt = "4"
+	name = "Detective's Bedroom"
 	},
 /turf/open/floor/wood,
 /area/security/detectives_office)
@@ -56282,9 +56284,7 @@
 /area/hallway/primary/central)
 "lhx" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/structure/window/hollow/directional,
-/obj/item/shard,
-/turf/open/floor/plating,
+/turf/closed/wall,
 /area/lawoffice)
 "lhK" = (
 /obj/structure/disposalpipe/segment{
@@ -58376,12 +58376,6 @@
 /obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/carpet/cyan,
 /area/quartermaster/qm)
-"mAe" = (
-/obj/effect/spawner/structure/window/hollow/end{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "mAr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -99621,7 +99615,7 @@ arP
 arP
 arP
 jsv
-mAe
+arP
 fax
 fax
 fax
