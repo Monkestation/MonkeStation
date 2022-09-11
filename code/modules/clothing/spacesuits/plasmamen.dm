@@ -210,13 +210,13 @@
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics
 	name = "atmospherics envirosuit helmet"
 	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
 	icon_state = "atmos_envirohelm"
 	item_state = "atmos_envirohelm"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
 
 /obj/item/clothing/head/helmet/space/plasmaman/cargo
 	name = "cargo envirosuit helmet"
@@ -311,8 +311,7 @@
 	desc = "An envirohelmet designed for the Chief Engineer. It reeks of Poly and plasma."
 	icon_state = "ce_envirohelm"
 	item_state = "ce_envirohelm"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/cmo
 	name = "chief medical officer's envirohelmet"
 	desc = "A helmet issued to the chief of the medical staff."
@@ -416,14 +415,14 @@
 	item_state = "engineer_envirohelm"
 	icon_state = "engineer_envirohelm"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/replacement/engineering/atmospherics
 	name = "atmospherics replacement envirosuit helmet"
 	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
 	icon_state = "atmos_envirohelm"
 	item_state = "atmos_envirohelm"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/replacement/cargo
 	name = "cargo replacement envirosuit helmet"
 	desc = "An replacement envirohelmet designed for cargo techs and quartermasters."
@@ -558,6 +557,7 @@
 	item_state = "engineer_openvirohelm"
 	visor_icon = "openvisor"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics/mark2
 	name = "atmospherics Mk.II envirosuit helmet"
@@ -565,8 +565,7 @@
 	icon_state = "atmos_openvirohelm"
 	item_state = "atmos_openvirohelm"
 	visor_icon = "openvisor"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/cargo/mark2
 	name = "cargo Mk.II envirosuit helmet"
 	desc = "A stylish new iteration upon the original plasmaman containment helmet design for cargo techs and quartermasters. Neo-liberal grifting has never been this groovy"
@@ -630,7 +629,6 @@
 	icon_state = "ce_openvirohelm"
 	item_state = "ce_openvirohelm"
 	visor_icon = "openvisor"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
 	
 /obj/item/clothing/head/helmet/space/plasmaman/cmo/mark2
 	name = "chief medical officer's Mk.II envirohelmet"
@@ -675,8 +673,7 @@
 	icon_state = "ce_armouredenvirohelm"
 	item_state = "ce_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Chief Engineer plasmaman helmet now gives max heat protection
-	
+
 /obj/item/clothing/head/helmet/space/plasmaman/cmo/protective
 	name = "chief medical officer's Mk.II envirohelmet"
 	desc = "A bulky new helmet issued to the chief of the medical staff."
@@ -790,6 +787,7 @@
 	item_state = "engineer_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics/protective
 	name = "atmospherics Mk.II envirosuit helmet"
@@ -797,7 +795,6 @@
 	icon_state = "atmos_armouredenvirohelm"
 	item_state = "atmos_armouredenvirohelm"
 	visor_icon = "armouredenvisor"
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE: The Atmospherics plasmaman helmet now gives max heat protection
 	
 /obj/item/clothing/head/helmet/space/plasmaman/cargo/protective
 	name = "cargo Mk.II envirosuit helmet"
