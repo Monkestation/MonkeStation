@@ -63419,7 +63419,8 @@
 "qlD" = (
 /obj/machinery/door/airlock/research{
 	name = "Robotics Garage";
-	req_access_txt = "29"
+	req_access_txt = "29";
+	normalspeed = 0
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
