@@ -6090,6 +6090,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
 	},
+/obj/item/food/grown/banana,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "amg" = (
@@ -7288,6 +7289,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "apy" = (
@@ -7988,6 +7992,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/lawoffice)
 "asp" = (
@@ -10373,6 +10378,7 @@
 "aAn" = (
 /obj/structure/bed/dogbed/walter,
 /mob/living/simple_animal/pet/dog/bullterrier/walter,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aAo" = (
@@ -49645,6 +49651,7 @@
 /obj/machinery/door/airlock/security{
 	name = "Detective's Bedroom"
 	},
+/obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/wood,
 /area/security/detectives_office)
 "gve" = (
@@ -53402,12 +53409,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"jml" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/secondary)
 "jmx" = (
 /obj/effect/decal/cleanable/greenglow,
 /obj/structure/table_frame/wood,
@@ -58975,6 +58976,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/security/courtroom)
 "mSI" = (
@@ -60189,25 +60193,12 @@
 /area/security/courtroom)
 "nVZ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
+/obj/effect/turf_decal/trimline/neutral/filled/line,
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/yellow/filled/line,
 /mob/living/carbon/monkey{
 	name = "Ook";
 	unique_name = 0
-	},
-/obj/effect/turf_decal/trimline/neutral/filled/line{
-	dir = 1
-	},
-/obj/item/food/grown/banana,
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -73751,7 +73742,10 @@
 /area/library)
 "xIc" = (
 /obj/item/kirbyplants/random,
-/turf/open/floor/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
 /area/lawoffice)
 "xIO" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -101239,7 +101233,7 @@ auj
 akl
 akO
 aww
-alx
+nVZ
 amR
 gOW
 mCl
@@ -102266,7 +102260,7 @@ aiz
 ajg
 akl
 akR
-nVZ
+aww
 alx
 amR
 gOW
@@ -108692,7 +108686,7 @@ anF
 anF
 anF
 ahn
-jml
+aoa
 ahn
 ahn
 dOw
@@ -108944,7 +108938,7 @@ ahl
 dOw
 aic
 dOw
-jml
+aoa
 ahn
 ahn
 ahn
