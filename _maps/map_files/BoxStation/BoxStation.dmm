@@ -57224,7 +57224,7 @@
 /area/hallway/primary/fore)
 "lLj" = (
 /obj/structure/railing{
-	dir = 1
+	dir = 5
 	},
 /mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel,
