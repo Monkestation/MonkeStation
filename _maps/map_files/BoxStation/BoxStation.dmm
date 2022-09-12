@@ -4567,6 +4567,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/security/brig)
 "ajk" = (
@@ -14516,6 +14517,9 @@
 	},
 /obj/effect/turf_decal/trimline/yellow/corner{
 	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
@@ -45243,6 +45247,7 @@
 	id = "Secure Gate";
 	name = "brig shutters"
 	},
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/security/brig)
 "dqa" = (
@@ -50207,6 +50212,10 @@
 	dir = 8
 	},
 /obj/structure/table,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "gNK" = (
@@ -51851,6 +51860,21 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/xenobiology)
+"ieI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "ieS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -53227,6 +53251,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "jfL" = (
@@ -59079,6 +59104,19 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/maintenance/starboard)
+"nab" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/line,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "nae" = (
 /obj/effect/decal/remains/xeno/larva,
 /turf/open/floor/plasteel/cult,
@@ -63112,6 +63150,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"qcT" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "qde" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -68991,8 +69039,22 @@
 	name = "brig shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/security/courtroom)
+"uCL" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "uCO" = (
 /obj/structure/chair/sofa/corp{
 	dir = 1
@@ -69974,6 +70036,7 @@
 	icon_state = "0-4"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "vqI" = (
@@ -74137,6 +74200,18 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"xXa" = (
+/obj/effect/turf_decal/trimline/red/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/brig)
 "xXR" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/research{
@@ -106556,9 +106631,9 @@ ahb
 ahI
 qDU
 adR
-ajc
-dJn
-akk
+nab
+ieI
+uCL
 aiX
 aiX
 aiX
@@ -107071,9 +107146,9 @@ ahH
 aiq
 adR
 kjL
+qcT
 ajl
-ajl
-ajl
+xXa
 ajl
 dJN
 ajP
