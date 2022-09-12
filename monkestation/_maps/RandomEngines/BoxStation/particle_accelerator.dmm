@@ -83,6 +83,9 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering)
 "ah" = (
@@ -227,6 +230,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
+	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering)

@@ -83,6 +83,9 @@
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering)
 "ah" = (
@@ -232,6 +235,9 @@
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
+	},
+/obj/effect/turf_decal/stripes/closeup{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/engine/engineering)
@@ -672,7 +678,6 @@
 /area/engine/engineering)
 "bh" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
@@ -691,6 +696,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "bk" = (
