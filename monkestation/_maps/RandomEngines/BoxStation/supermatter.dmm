@@ -1457,7 +1457,7 @@
 	name = "Supermatter Crystal"
 	})
 "cP" = (
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "cQ" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2289,7 +2289,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eC" = (
 /obj/structure/cable/yellow{
@@ -2304,7 +2304,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 5
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2314,7 +2314,7 @@
 /obj/effect/turf_decal/caution/stand_clear/red{
 	dir = 8
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eE" = (
 /obj/machinery/light{
@@ -2329,7 +2329,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 6
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eF" = (
 /obj/structure/reflector/double/anchored{
@@ -2344,7 +2344,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eG" = (
 /obj/structure/reflector/box/anchored{
@@ -2356,7 +2356,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2365,7 +2365,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eI" = (
 /obj/machinery/light{
@@ -2374,13 +2374,13 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 10
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eJ" = (
 /obj/effect/turf_decal/caution/stand_clear/red{
 	dir = 4
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eK" = (
 /obj/structure/cable/yellow{
@@ -2389,7 +2389,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eL" = (
 /obj/structure/table,
@@ -2397,7 +2397,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 5
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eM" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/engine_waste{
@@ -2434,13 +2434,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eS" = (
 /obj/structure/cable/yellow{
@@ -2471,7 +2471,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eV" = (
 /obj/structure/cable/yellow{
@@ -2502,7 +2502,7 @@
 /obj/structure/reflector/box/anchored{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "eY" = (
 /obj/structure/cable/yellow{
@@ -2536,17 +2536,17 @@
 /obj/structure/reflector/single/anchored{
 	dir = 9
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "fc" = (
 /obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "fd" = (
 /obj/structure/reflector/single/anchored{
 	dir = 5
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "fe" = (
 /obj/structure/reflector/double/anchored{
@@ -2555,7 +2555,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "ff" = (
 /turf/closed/wall/r_wall,
@@ -2571,7 +2571,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 10
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "fh" = (
 /obj/machinery/light,
@@ -2590,7 +2590,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 6
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "fp" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
@@ -2674,7 +2674,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 9
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "oV" = (
 /obj/structure/sign/warning/securearea,
@@ -2717,7 +2717,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 1
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "wC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2760,7 +2760,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "Cw" = (
 /obj/machinery/light,
@@ -2809,13 +2809,13 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "Gg" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 5
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "GC" = (
 /obj/structure/cable/yellow{
@@ -2882,7 +2882,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "PU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2917,7 +2917,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "SI" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -2948,7 +2948,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 8
 	},
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "WE" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
@@ -2971,7 +2971,7 @@
 /area/engine/engineering)
 "Yk" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
-/turf/open/floor/engine/air/light,
+/turf/open/floor/engine/light,
 /area/engine/engineering)
 "ZH" = (
 /obj/machinery/light/small{
