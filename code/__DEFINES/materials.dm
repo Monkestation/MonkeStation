@@ -12,3 +12,6 @@
 #define MATERIAL_NO_COLOR (1<<0)
 /// Applies the material greyscale color to the atom's greyscale color.
 #define MATERIAL_GREYSCALE (1<<1)
+
+//All current materials in a list
+#define ALL_MATERIALS list(/datum/material/iron,/datum/material/glass,/datum/material/copper,/datum/material/gold,/datum/material/silver,/datum/material/diamond,/datum/material/uranium,/datum/material/plasma,/datum/material/bluespace,/datum/material/bananium,/datum/material/titanium,/datum/material/plastic)

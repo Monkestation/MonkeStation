@@ -265,7 +265,7 @@
 	desc = "A housing that serves as the base for constructing Larries."
 	id = "larry"
 	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 200)
+	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/larryframe
 	category = list("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

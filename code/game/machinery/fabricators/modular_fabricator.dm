@@ -64,7 +64,7 @@
 	var/stored_research_type = /datum/techweb/specialized/autounlocking/autolathe
 
 /obj/machinery/modular_fabricator/Initialize(mapload)
-	local_storage = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium, /datum/material/plastic), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert), allowed_types = /obj/item/stack)
+	local_storage = AddComponent(/datum/component/material_container, ALL_MATERIALS, 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert), allowed_types = /obj/item/stack)
 	RefreshParts()
 	. = ..()
 	stored_research = new stored_research_type

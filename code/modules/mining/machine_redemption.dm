@@ -30,7 +30,7 @@
 /obj/machinery/mineral/ore_redemption/Initialize(mapload)
 	. = ..()
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
-	local_storage = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 50000, FALSE, null, null, allowed_types = /obj/item/stack)
+	local_storage = AddComponent(/datum/component/material_container, ALL_MATERIALS, 50000, FALSE, null, null, allowed_types = /obj/item/stack)
 
 /obj/machinery/mineral/ore_redemption/Destroy()
 	QDEL_NULL(stored_research)
