@@ -75,10 +75,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Power Storage";
-	req_one_access_txt = "32;19;10"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
+	req_one_access_txt = "32;19;10";
+	normalspeed = 0
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
@@ -228,10 +226,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Power Storage";
-	req_one_access_txt = "32;19;10"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
+	req_one_access_txt = "32;19;10";
+	normalspeed = 0
 	},
 /obj/effect/mapping_helpers/airlock/unres{
 	dir = 4
