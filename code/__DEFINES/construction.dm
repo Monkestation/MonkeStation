@@ -112,8 +112,7 @@
 
 #define RCD_UPGRADE_FRAMES (1<<0)
 #define RCD_UPGRADE_SIMPLE_CIRCUITS	(1<<1)
-#define RCD_UPGRADE_SILO_LINK (1<<2)
-#define RCD_UPGRADE_FURNISHING (1<<3)
+#define RCD_UPGRADE_FURNISHING (1<<2)
 
 #define RCD_WINDOW_FULLTILE "full tile"
 #define RCD_WINDOW_DIRECTIONAL "directional"

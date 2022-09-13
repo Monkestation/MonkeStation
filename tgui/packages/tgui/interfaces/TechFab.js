@@ -158,7 +158,6 @@ const TechFabHeader = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     materials = {},
-    materials_label = "0/unlimited", // Placeholder
     reagents = {},
     reagents_label = "",
   } = data;
@@ -167,7 +166,7 @@ const TechFabHeader = (props, context) => {
     <Stack.Item>
       <Section>
         <Collapsible
-          title={"Materials ("+materials_label+")"}
+          title={"Materials"}
           disabled={materials === null}>
           <Flex wrap="wrap" align="baseline">
             {
@@ -185,7 +184,7 @@ const TechFabHeader = (props, context) => {
           title={"Reagents ("+reagents_label+")"}
           disabled={materials === null}
           buttons={<Button
-            content="Purge all" 
+            content="Purge all"
             onClick={() => act("disposeall")}
           />}>
           <Flex wrap="wrap" align="baseline">
@@ -224,7 +223,7 @@ const ConditionalTooltip = (props, context) => {
   {
     return children;
   }
-  
+
   return (
     <Tooltip {...rest}>
       {children}
@@ -269,7 +268,7 @@ const Recipe = (props, context) => {
     const reagent = reagents[id];
     const total = reagent?.volume || 0;
     const recipeReagent = recipe.reagents[id];
-    const amountNeeded = Math.floor(recipeReagent.volume 
+    const amountNeeded = Math.floor(recipeReagent.volume
       / (recipe.efficiency_affects ? efficiency : 1));
     const mat_max = Math.floor(total/amountNeeded);
     max = Math.min(max, mat_max);
@@ -317,7 +316,7 @@ const Recipe = (props, context) => {
                       className="TechFab__NumberButton"
                       content={"x"+amount}
                       disabled={amount>max}
-                      onClick={() => act("build", 
+                      onClick={() => act("build",
                         { "design_id": recipe.id, "amount": amount }
                       )}
                     />

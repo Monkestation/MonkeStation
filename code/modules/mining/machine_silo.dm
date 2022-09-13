@@ -1,16 +1,14 @@
-GLOBAL_DATUM(ore_silo_default, /obj/machinery/ore_silo)
 GLOBAL_LIST_EMPTY(silo_access_logs)
 
 /obj/machinery/ore_silo
 	name = "ore silo"
-	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
+	desc = "An advanced bluespace storage system for the station's mineral needs."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "silo"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/ore_silo
 
 	var/list/holds = list()
-	var/list/datum/component/remote_materials/connected = list()
 	var/log_page = 1
 
 /obj/machinery/ore_silo/Initialize(mapload)
@@ -31,19 +29,8 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		)
 	AddComponent(/datum/component/material_container, materials_list, INFINITY, allowed_types=/obj/item/stack, _disable_attackby=TRUE)
 
-	if (!GLOB.ore_silo_default && mapload && is_station_level(z))
-		GLOB.ore_silo_default = src
 
 /obj/machinery/ore_silo/Destroy()
-	if (GLOB.ore_silo_default == src)
-		GLOB.ore_silo_default = null
-
-	for(var/C in connected)
-		var/datum/component/remote_materials/mats = C
-		mats.disconnect_from(src)
-
-	connected = null
-
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	materials.retrieve_all()
 
@@ -115,16 +102,6 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(!any)
 		ui += "Nothing!"
 
-	ui += "</div><div class='statusDisplay'><h2>Connected Machines:</h2>"
-	for(var/C in connected)
-		var/datum/component/remote_materials/mats = C
-		var/atom/parent = mats.parent
-		var/hold_key = "[get_area(parent)]/[mats.category]"
-		ui += "<a href='?src=[REF(src)];remove=[REF(mats)]'>Remove</a>"
-		ui += "<a href='?src=[REF(src)];hold[!holds[hold_key]]=[rustg_url_encode(hold_key)]'>[holds[hold_key] ? "Allow" : "Hold"]</a>"
-		ui += " <b>[parent.name]</b> in [get_area_name(parent, TRUE)]<br>"
-	if(!connected.len)
-		ui += "Nothing!"
 
 	ui += "</div><div class='statusDisplay'><h2>Access Logs:</h2>"
 	var/list/logs = GLOB.silo_access_logs[REF(src)]
@@ -156,14 +133,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	add_fingerprint(usr)
 	usr.set_machine(src)
 
-	if(href_list["remove"])
-		var/datum/component/remote_materials/mats = locate(href_list["remove"]) in connected
-		if (mats)
-			mats.disconnect_from(src)
-			connected -= mats
-			updateUsrDialog()
-			return TRUE
-	else if(href_list["hold1"])
+	if(href_list["hold1"])
 		holds[href_list["hold1"]] = TRUE
 		updateUsrDialog()
 		return TRUE
@@ -182,12 +152,6 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	else if(href_list["page"])
 		log_page = text2num(href_list["page"]) || 1
 		updateUsrDialog()
-		return TRUE
-
-/obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
-	if (istype(I))
-		to_chat(user, "<span class='notice'>You log [src] in the multitool's buffer.</span>")
-		I.buffer = src
 		return TRUE
 
 /obj/machinery/ore_silo/proc/silo_log(obj/machinery/M, action, amount, noun, list/mats)

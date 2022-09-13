@@ -25,16 +25,17 @@
 	var/console_notify_timer
 	var/datum/techweb/stored_research
 	var/obj/item/disk/design_disk/inserted_disk
-	var/datum/component/remote_materials/materials
+	var/datum/component/material_container/local_storage
 
 /obj/machinery/mineral/ore_redemption/Initialize(mapload)
 	. = ..()
 	stored_research = new /datum/techweb/specialized/autounlocking/smelter
-	materials = AddComponent(/datum/component/remote_materials, "orm", mapload)
+	local_storage = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 50000, FALSE, null, null, allowed_types = /obj/item/stack)
 
 /obj/machinery/mineral/ore_redemption/Destroy()
 	QDEL_NULL(stored_research)
-	materials = null
+	local_storage.retrieve_all()
+	local_storage = null
 	return ..()
 
 /obj/machinery/mineral/ore_redemption/RefreshParts()
@@ -58,8 +59,7 @@
 /obj/machinery/mineral/ore_redemption/proc/smelt_ore(obj/item/stack/ore/O)
 	if(QDELETED(O))
 		return
-	var/datum/component/material_container/mat_container = materials.mat_container
-	if (!mat_container)
+	if (!local_storage)
 		return
 
 	console_notify_timer = null
@@ -67,33 +67,31 @@
 	if(O.refined_type == null)
 		return
 
-	var/material_amount = mat_container.get_item_material_amount(O)
+	var/material_amount = local_storage.get_item_material_amount(O)
 
 	if(!material_amount)
 		qdel(O) //no materials, incinerate it
 
-	else if(!mat_container.has_space(material_amount * sheet_per_ore * O.amount)) //if there is no space, eject it
-		unload_mineral(O)
-
 	else
 		if(O?.refined_type)
 			points += O.points * point_upgrade * O.amount
-		var/mats = O.materials & mat_container.materials
-		var/amount = O.amount
-		mat_container.insert_item(O, sheet_per_ore) //insert it
-		materials.silo_log(src, "smelted", amount, "someone", mats)
+		if(!local_storage.has_space(material_amount * sheet_per_ore * O.amount) && O?.refined_type) //if there is no space, eject it
+			var/obj/item/stack/sheet/overflow = new O.refined_type
+			overflow.amount = (O.amount * sheet_per_ore)
+			unload_mineral(overflow)
+		else
+			local_storage.insert_item(O, sheet_per_ore) //insert it
 		qdel(O)
 
 /obj/machinery/mineral/ore_redemption/proc/can_smelt_alloy(datum/design/D)
-	var/datum/component/material_container/mat_container = materials.mat_container
-	if(!mat_container || D.make_reagents.len)
+	if(!local_storage || D.make_reagents.len)
 		return FALSE
 
 	var/build_amount = 0
 
 	for(var/mat in D.materials)
 		var/amount = D.materials[mat]
-		var/datum/material/redemption_mat_amount = mat_container.materials[mat]
+		var/datum/material/redemption_mat_amount = local_storage.materials[mat]
 
 		if(!amount || !redemption_mat_amount)
 			return FALSE
@@ -115,8 +113,7 @@
 		smelt_ore(ore)
 
 /obj/machinery/mineral/ore_redemption/proc/send_console_message()
-	var/datum/component/material_container/mat_container = materials.mat_container
-	if(!mat_container || !is_station_level(z))
+	if(!local_storage || !is_station_level(z))
 		return
 
 	console_notify_timer = null
@@ -126,9 +123,9 @@
 
 	var/has_minerals = FALSE
 
-	for(var/mat in mat_container.materials)
+	for(var/mat in local_storage.materials)
 		var/datum/material/M = mat
-		var/mineral_amount = mat_container.materials[mat] / MINERAL_MATERIAL_AMOUNT
+		var/mineral_amount = local_storage.materials[mat] / MINERAL_MATERIAL_AMOUNT
 		if(mineral_amount)
 			has_minerals = TRUE
 		msg += "[capitalize(M.name)]: [mineral_amount] sheets<br>"
@@ -148,7 +145,7 @@
 /obj/machinery/mineral/ore_redemption/pickup_item(datum/source, atom/movable/target, atom/oldLoc)
 	if(QDELETED(target))
 		return
-	if(!materials.mat_container || panel_open || !powered())
+	if(!local_storage || panel_open || !powered())
 		return
 
 	if(istype(target, /obj/structure/ore_box))
@@ -226,11 +223,10 @@
 	data["unclaimedPoints"] = points
 
 	data["materials"] = list()
-	var/datum/component/material_container/mat_container = materials.mat_container
-	if (mat_container)
-		for(var/mat in mat_container.materials)
+	if (local_storage)
+		for(var/mat in local_storage.materials)
 			var/datum/material/M = mat
-			var/amount = mat_container.materials[M]
+			var/amount = local_storage.materials[M]
 			var/sheet_amount = amount / MINERAL_MATERIAL_AMOUNT
 			var/ref = REF(M)
 			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "value" = ore_values[M.type] * point_upgrade))
@@ -242,12 +238,8 @@
 	else
 		data["alloys"] = null // In case we lose mat_container while UI is open somehow
 
-	if (!mat_container)
+	if (!local_storage)
 		data["disconnected"] = "local mineral storage is unavailable"
-	else if (!materials.silo)
-		data["disconnected"] = "no ore silo connection is available; storing locally"
-	else if (materials.on_hold())
-		data["disconnected"] = "mineral withdrawal is on hold"
 	else
 		data["disconnected"] = null
 
@@ -266,7 +258,6 @@
 /obj/machinery/mineral/ore_redemption/ui_act(action, params)
 	if(..())
 		return
-	var/datum/component/material_container/mat_container = materials.mat_container
 	switch(action)
 		if("Claim")
 			var/mob/M = usr
@@ -280,17 +271,14 @@
 			else
 				to_chat(usr, "<span class='warning'>No points to claim.</span>")
 		if("Release")
-			if(!mat_container)
+			if(!local_storage)
 				return
-
-			if(materials.on_hold())
-				to_chat(usr, "<span class='warning'>Mineral access is on hold, please contact the quartermaster.</span>")
-			else if(!allowed(usr)) //Check the ID inside, otherwise check the user
+			if(!allowed(usr)) //Check the ID inside, otherwise check the user
 				to_chat(usr, "<span class='warning'>Required access not found.</span>")
 			else
 				var/datum/material/mat = locate(params["id"])
 
-				var/amount = mat_container.materials[mat]
+				var/amount = local_storage.materials[mat]
 				if(!amount)
 					return
 
@@ -307,11 +295,7 @@
 
 				var/sheets_to_remove = round(min(desired,50,stored_amount))
 
-				var/count = mat_container.retrieve_sheets(sheets_to_remove, mat, get_step(src, output_dir))
-				var/list/mats = list()
-				mats[mat] = MINERAL_MATERIAL_AMOUNT
-				materials.silo_log(src, "released", -count, "sheets", mats)
-				//Logging deleted for quick coding
+				local_storage.retrieve_sheets(sheets_to_remove, mat, get_step(src, output_dir))
 				. = TRUE
 		if("diskInsert")
 			var/obj/item/disk/design_disk/disk = usr.get_active_held_item()
@@ -333,10 +317,7 @@
 				stored_research.add_design(inserted_disk.blueprints[n])
 				. = TRUE
 		if("Smelt")
-			if(!mat_container)
-				return
-			if(materials.on_hold())
-				to_chat(usr, "<span class='warning'>Mineral access is on hold, please contact the quartermaster.</span>")
+			if(!local_storage)
 				return
 			var/alloy_id = params["id"]
 			var/datum/design/alloy = stored_research.isDesignResearchedID(alloy_id)
@@ -348,8 +329,7 @@
 				else
 					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
 				var/amount = round(min(desired,50,smelt_amount))
-				mat_container.use_materials(alloy.materials, amount)
-				materials.silo_log(src, "released", -amount, "sheets", alloy.materials)
+				local_storage.use_materials(alloy.materials, amount)
 				var/output
 				if(ispath(alloy.build_path, /obj/item/stack/sheet))
 					output = new alloy.build_path(src, amount)

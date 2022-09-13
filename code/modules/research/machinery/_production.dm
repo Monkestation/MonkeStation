@@ -5,7 +5,6 @@
 	var/consoleless_interface = FALSE			//Whether it can be used without a console.
 	var/efficiency_coeff = 1				//Materials needed / coeff = actual.
 	var/list/categories = list()
-	var/datum/component/remote_materials/materials
 	var/allowed_department_flags = ALL
 	var/production_animation				//What's flick()'d on print.
 	var/allowed_buildtypes = NONE
@@ -20,25 +19,28 @@
 
 	var/list/mob/viewing_mobs = list()
 
+	var/datum/component/material_container/local_storage
+
 /obj/machinery/rnd/production/Initialize(mapload)
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
+	local_storage = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 0, TRUE, null, null, allowed_types = /obj/item/stack)
 	matching_designs = list()
 	cached_designs = list()
 	stored_research = new
 	host_research = SSresearch.science_tech
 	update_research()
-	materials = AddComponent(/datum/component/remote_materials, "lathe", mapload)
 	RefreshParts()
 	RegisterSignal(src, COMSIG_MATERIAL_CONTAINER_CHANGED, .proc/on_materials_changed)
 	RegisterSignal(src, COMSIG_REMOTE_MATERIALS_CHANGED, .proc/on_materials_changed)
 
 /obj/machinery/rnd/production/Destroy()
-	materials = null
 	cached_designs = null
 	matching_designs = null
 	QDEL_NULL(stored_research)
 	host_research = null
+	local_storage.retrieve_all()
+	local_storage = null
 	return ..()
 
 /obj/machinery/rnd/production/proc/on_materials_changed()
@@ -98,20 +100,20 @@
 	return data
 
 /obj/machinery/rnd/production/proc/build_materials()
-	if(!materials || !materials.mat_container)
+	if(!local_storage)
 		return null
 
 	var/list/L = list()
-	for(var/datum/material/material as() in materials.mat_container.materials)
+	for(var/datum/material/material as() in local_storage.materials)
 		L[material.id] = list(
 				name = material.name,
-				amount = materials.mat_container.materials[material]/MINERAL_MATERIAL_AMOUNT,
+				amount = local_storage.materials[material]/MINERAL_MATERIAL_AMOUNT,
 				id = material.id,
 			)
 
 	return list(
 		materials = L,
-		materials_label = materials.format_amount()
+		materials_label = local_storage.materials
 	)
 
 /obj/machinery/rnd/production/proc/build_reagents()
@@ -190,9 +192,9 @@
 	if(action == "disposeall")
 		reagents.clear_reagents()
 		. = TRUE
-	if(action == "ejectsheet" && materials && materials.mat_container)
+	if(action == "ejectsheet" && local_storage)
 		var/datum/material/M
-		for(var/datum/material/potential_material as() in materials.mat_container.materials)
+		for(var/datum/material/potential_material as() in local_storage.materials)
 			if(potential_material.id == params["material_id"])
 				M = potential_material
 				break
@@ -222,11 +224,11 @@
 		for(var/obj/item/reagent_containers/glass/G in component_parts)
 			reagents.maximum_volume += G.volume
 			G.reagents.trans_to(src, G.reagents.total_volume)
-	if(materials)
+	if(local_storage)
 		var/total_storage = 0
 		for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-			total_storage += M.rating * 75000
-		materials.set_local_size(total_storage)
+			total_storage += M.rating * 150000 //Double normal capacity
+		local_storage.max_amount = total_storage
 	var/total_rating = 1.2
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		total_rating = CLAMP(total_rating - (M.rating * 0.1), 0, 1)
@@ -252,11 +254,11 @@
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, var/mat)	// now returns how many times the item can be built with the material
-	if (!materials.mat_container)  // no connected silo
+	if (!local_storage)
 		return 0
 	var/list/all_materials = being_built.reagents_list + being_built.materials
 
-	var/A = materials.mat_container.get_material_amount(mat)
+	var/A = local_storage.get_material_amount(mat)
 	if(!A)
 		A = reagents.get_reagent_amount(mat)
 
@@ -284,12 +286,6 @@
 	if(D.build_type && !(D.build_type & allowed_buildtypes))
 		say("This machine does not have the necessary manipulation systems for this design. Please contact Nanotrasen Support!")
 		return FALSE
-	if(!materials.mat_container)
-		say("No connection to material storage, please contact the quartermaster.")
-		return FALSE
-	if(materials.on_hold())
-		say("Mineral access is on hold, please contact the quartermaster.")
-		return FALSE
 	var/power = 1000
 	amount = CLAMP(amount, 1, 10)
 	for(var/M in D.materials)
@@ -300,15 +296,14 @@
 	var/list/efficient_mats = list()
 	for(var/MAT in D.materials)
 		efficient_mats[MAT] = D.materials[MAT]/coeff
-	if(!materials.mat_container.has_materials(efficient_mats, amount))
+	if(!local_storage.has_materials(efficient_mats, amount))
 		say("Not enough materials to complete prototype[amount > 1? "s" : ""].")
 		return FALSE
 	for(var/R in D.reagents_list)
 		if(!reagents.has_reagent(R, D.reagents_list[R]*amount/coeff))
 			say("Not enough reagents to complete prototype[amount > 1? "s" : ""].")
 			return FALSE
-	materials.mat_container.use_materials(efficient_mats, amount)
-	materials.silo_log(src, "built", -amount, "[D.name]", efficient_mats)
+	local_storage.use_materials(efficient_mats, amount)
 	for(var/R in D.reagents_list)
 		reagents.remove_reagent(R, D.reagents_list[R]*amount/coeff)
 	busy = TRUE
@@ -320,17 +315,10 @@
 	return TRUE
 
 /obj/machinery/rnd/production/proc/eject_sheets(eject_sheet, eject_amt)
-	var/datum/component/material_container/mat_container = materials.mat_container
-	if (!mat_container)
-		say("No access to material storage, please contact the quartermaster.")
-		return 0
-	if (materials.on_hold())
-		say("Mineral access is on hold, please contact the quartermaster.")
-		return 0
-	var/count = mat_container.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
+
+	var/count = local_storage.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
 	var/list/matlist = list()
 	matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT
-	materials.silo_log(src, "ejected", -count, "sheets", matlist)
 	return count
 
 /obj/machinery/rnd/production/reset_busy()

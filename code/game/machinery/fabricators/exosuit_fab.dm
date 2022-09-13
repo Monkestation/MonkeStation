@@ -12,7 +12,6 @@
 
 	output_direction = SOUTH
 
-	remote_materials = TRUE
 	can_sync = TRUE
 	can_print_category = TRUE
 
@@ -65,4 +64,3 @@
 	add_overlay("fab-active")
 
 /obj/machinery/modular_fabricator/exosuit_fab/maint
-	auto_link = FALSE

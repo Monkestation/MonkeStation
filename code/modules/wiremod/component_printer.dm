@@ -5,8 +5,6 @@
 	icon_state = "fab-idle"
 	circuit = /obj/item/circuitboard/machine/component_printer
 
-	remote_materials = TRUE
-	auto_link = TRUE
 	can_sync = TRUE
 
 	//Quick.

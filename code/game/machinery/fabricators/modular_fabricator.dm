@@ -16,7 +16,7 @@
 
 	var/busy = FALSE
 	///the multiplier for how much materials the created object takes from this machines stored materials
-	var/creation_efficiency = 1.6
+	var/creation_efficiency = 1
 
 	var/can_sync = FALSE
 	var/can_be_hacked_or_unlocked = FALSE
@@ -26,6 +26,7 @@
 	var/process_completion_world_tick = 0
 	var/total_build_time = 0
 	var/datum/techweb/stored_research
+	var/datum/component/material_container/local_storage
 
 	var/list/categories = list(
 		"Tools",
@@ -43,9 +44,6 @@
 	var/output_direction = 0
 	var/accepts_disks = FALSE
 	var/obj/item/disk/design_disk/inserted_disk
-
-	var/remote_materials = FALSE
-	var/auto_link = FALSE
 
 	//A list of all the printable items
 
@@ -66,47 +64,35 @@
 	var/stored_research_type = /datum/techweb/specialized/autounlocking/autolathe
 
 /obj/machinery/modular_fabricator/Initialize(mapload)
-	if(remote_materials)
-		AddComponent(/datum/component/remote_materials, "modfab", mapload, TRUE, auto_link)
-	else
-		AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
+	local_storage = AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert), allowed_types = /obj/item/stack)
+	RefreshParts()
 	. = ..()
 	stored_research = new stored_research_type
 
 /obj/machinery/modular_fabricator/Destroy()
 	QDEL_NULL(wires)
+	local_storage.retrieve_all()
+	local_storage = null
 	return ..()
 
-/obj/machinery/modular_fabricator/proc/get_material_container()
-	var/datum/component/remote_materials/materials = GetComponent(/datum/component/remote_materials)
-	if(materials?.mat_container)
-		return materials.mat_container
-	var/datum/component/material_container/container = GetComponent(/datum/component/material_container)
-	return container
 
 /obj/machinery/modular_fabricator/RefreshParts()
 	. = ..()
 	var/mat_capacity = 0
 	for(var/obj/item/stock_parts/matter_bin/new_matter_bin in component_parts)
-		mat_capacity += new_matter_bin.rating*75000
+		mat_capacity += new_matter_bin.rating*150000 //Doubled from normal
 	//Material container
-	var/datum/component/remote_materials/materials = GetComponent(/datum/component/remote_materials)
-	if(materials)
-		materials.set_local_size(mat_capacity)
-	else
-		var/datum/component/material_container/container = GetComponent(/datum/component/material_container)
-		container.max_amount = mat_capacity
+	local_storage.max_amount = mat_capacity
 
-	var/efficiency = 1.8
+	var/efficiency = 1.1
 	for(var/obj/item/stock_parts/manipulator/new_manipulator in component_parts)
-		efficiency -= new_manipulator.rating*0.2
-	creation_efficiency = max(1,efficiency) // creation_efficiency goes 1.6 -> 1.4 -> 1.2 -> 1 per level of manipulator efficiency
+		efficiency -= new_manipulator.rating*0.1
+	creation_efficiency = max(0.7,efficiency) // creation_efficiency goes 1 -> 0.9 -> 0.8 -> 0.7 per level of manipulator efficiency
 
 /obj/machinery/modular_fabricator/examine(mob/user)
 	. += ..()
-	var/datum/component/material_container/materials = get_material_container()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.</span>"
+		. += "<span class='notice'>The status display reads: Storing up to <b>[local_storage.max_amount]</b> material units.<br>Material consumption at <b>[creation_efficiency*100]%</b>.</span>"
 
 /obj/machinery/modular_fabricator/ui_state()
 	return GLOB.default_state
@@ -192,10 +178,9 @@
 
 	//Materials
 	data["materials"] = list()
-	var/datum/component/material_container/materials = get_material_container()
-	for(var/material in materials.materials)
+	for(var/material in local_storage.materials)
 		var/datum/material/M = material
-		var/mineral_amount = materials.materials[material] / MINERAL_MATERIAL_AMOUNT
+		var/mineral_amount = local_storage.materials[material] / MINERAL_MATERIAL_AMOUNT
 		data["materials"] += list(list(
 			"name" = M.name,
 			"amount" = mineral_amount,
@@ -263,15 +248,14 @@
 			. = TRUE
 
 		if("eject_material")
-			var/datum/component/material_container/materials = get_material_container()
 			var/material_datum = params["material_datum"]	//Comes out as text
 			var/amount = text2num(params["amount"])
 			if(amount <= 0 || amount > 50)
 				return
-			for(var/mat in materials.materials)
+			for(var/mat in local_storage.materials)
 				var/datum/material/M = mat
 				if("[M.type]" == material_datum)
-					materials.retrieve_sheets(amount, M, get_release_turf())
+					local_storage.retrieve_sheets(amount, M, get_release_turf())
 					. = TRUE
 					break
 
@@ -334,10 +318,9 @@
 		for(var/MAT in requested_item.materials)
 			used_material = MAT
 			if(istext(used_material)) //This means its a category
-				var/datum/component/material_container/materials = get_material_container()
 				var/list/list_to_show = list()
 				for(var/i in SSmaterials.materials_by_category[used_material])
-					if(materials.materials[i] > 0)
+					if(local_storage.materials[i] > 0)
 						list_to_show += i
 				used_material = input("Choose [used_material]", "Custom Material") as null|anything in sortList(list_to_show, /proc/cmp_typepaths_asc)
 				if(!used_material)
@@ -360,8 +343,7 @@
 	return T
 
 /obj/machinery/modular_fabricator/on_deconstruction()
-	var/datum/component/material_container/materials = get_material_container()
-	materials.retrieve_all()
+	local_storage.retrieve_all()
 
 /obj/machinery/modular_fabricator/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
 	if(ispath(type_inserted, /obj/item/stack/ore/bluespace_crystal))
@@ -410,8 +392,6 @@
 
 	var/power = max(MODFAB_MAX_POWER_USE, (total_amount)*multiplier/5) //Change this to use all materials
 
-	var/datum/component/material_container/materials = get_material_container()
-
 	var/list/materials_used = list()
 	var/list/custom_materials = list() //These will apply their material effect, This should usually only be one.
 
@@ -428,7 +408,7 @@
 
 		materials_used[used_material] = amount_needed
 
-	if(materials.has_materials(materials_used))
+	if(local_storage.has_materials(materials_used))
 		busy = TRUE
 		use_power(power)
 		set_working_sprite()
@@ -473,10 +453,9 @@
 	if(disabled)
 		operating = FALSE
 		return
-	var/datum/component/material_container/materials = get_material_container()
 	var/turf/A = get_release_turf()
 	use_power(power)
-	materials.use_materials(materials_used)
+	local_storage.use_materials(materials_used)
 	if(is_stack)
 		var/obj/item/stack/N = new being_built.build_path(A, multiplier)
 		N.update_icon()
