@@ -168,10 +168,6 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	updateUsrDialog()
 	flick("silo_active", src)
 
-/obj/machinery/ore_silo/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>[src] can be linked to techfabs, circuit printers and protolathes with a multitool.</span>"
-
 /obj/machinery/ore_silo/on_object_saved(var/depth = 0)
 	if(depth >= 10)
 		return ""
