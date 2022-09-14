@@ -27118,6 +27118,7 @@
 	},
 /obj/item/aicard,
 /obj/structure/table,
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/heads/hor)
 "bxm" = (
