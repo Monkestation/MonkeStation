@@ -45370,6 +45370,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/stairs/medium,
 /area/hallway/secondary/exit/departure_lounge)
 "duW" = (
@@ -56933,6 +56934,7 @@
 "lBj" = (
 /obj/machinery/door/firedoor/window,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
 "lCg" = (
@@ -61337,6 +61339,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
 "oKK" = (
@@ -61728,6 +61731,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/stairs/left,
 /area/hallway/secondary/exit/departure_lounge)
 "pdM" = (
@@ -67250,6 +67254,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/security/checkpoint/escape)
 "sZt" = (
@@ -71516,6 +71521,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/security/checkpoint/escape)
 "wer" = (
@@ -74156,6 +74162,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/stairs/medium,
 /area/hallway/secondary/exit/departure_lounge)
 "xSv" = (
