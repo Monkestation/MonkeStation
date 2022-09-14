@@ -11119,6 +11119,12 @@
 /area/crew_quarters/toilet)
 "aCf" = (
 /obj/machinery/camera/autoname,
+/obj/item/storage/secure/safe{
+	pixel_y = 24;
+	pixel_x = 8;
+	desc = "Excellent for securing things away from funny hands.";
+	name = "silent safe"
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -13550,6 +13556,12 @@
 	},
 /obj/structure/closet/crate/secure/clown/toy,
 /obj/item/bedsheet/clown,
+/obj/item/storage/secure/safe{
+	pixel_y = -24;
+	pixel_x = 6;
+	name = "Funny Safe";
+	desc = "Excellent for securing things away from Mime hands."
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/theatre)
 "aId" = (
