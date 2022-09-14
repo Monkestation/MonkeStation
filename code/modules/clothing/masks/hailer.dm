@@ -187,6 +187,9 @@
 					phrase_sound = "dredd"
 
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
-		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
+		if(phrase_sound == "emag")
+			playsound(src.loc, 'sound/voice/beepsky/insult.ogg', 100, 0, 4) //reuse the beepsky file instead of duplicating the file for little reason
+		else
+			playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
 		cooldown = world.time
 		cooldown_special = world.time
