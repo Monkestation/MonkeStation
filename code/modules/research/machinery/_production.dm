@@ -24,13 +24,18 @@
 /obj/machinery/rnd/production/Initialize(mapload)
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
-	local_storage = AddComponent(/datum/component/material_container, ALL_MATERIALS, 0, TRUE, null, null, allowed_types = /obj/item/stack)
+	if(!local_storage)
+		local_storage = AddComponent(/datum/component/material_container, ALL_MATERIALS, 0, TRUE, null, null, allowed_types = /obj/item/stack)
 	matching_designs = list()
 	cached_designs = list()
 	stored_research = new
 	host_research = SSresearch.science_tech
 	update_research()
 	RefreshParts()
+	if(!SSticker.HasRoundStarted())
+		local_storage.insert_amount_mat(40000, /datum/material/iron) //20 Sheets of Iron
+		local_storage.insert_amount_mat(40000, /datum/material/glass) //20 Sheets of Glass
+		local_storage.insert_amount_mat(10000, /datum/material/copper) //5 Sheets of Copper
 	RegisterSignal(src, COMSIG_MATERIAL_CONTAINER_CHANGED, .proc/on_materials_changed)
 	RegisterSignal(src, COMSIG_REMOTE_MATERIALS_CHANGED, .proc/on_materials_changed)
 
