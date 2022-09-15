@@ -287,7 +287,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			if("revolver_spin")
 				soundin = pick('sound/weapons/revolverspin1.ogg', 'sound/weapons/revolverspin2.ogg', 'sound/weapons/revolverspin3.ogg')
 			if("law")
-				soundin = pick('sound/voice/beepsky/god.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/secureday.ogg', 'sound/voice/beepsky/radio.ogg', 'sound/voice/beepsky/insult.ogg', 'sound/voice/beepsky/creep.ogg')
+				soundin = pick('sound/voice/beepsky/god.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/secureday.ogg', 'sound/voice/beepsky/radio.ogg', 'sound/voice/beepsky/creep.ogg')
 			//Monkestation edit begin
 			if("pizzky")
 				soundin = pick('monkestation/sound/voice/pizzky/criminal.ogg','monkestation/sound/voice/pizzky/god.ogg','monkestation/sound/voice/pizzky/lmaoing.ogg','monkestation/sound/voice/pizzky/justice.ogg','monkestation/sound/voice/pizzky/secureday.ogg','monkestation/sound/voice/pizzky/radio.ogg','monkestation/sound/voice/pizzky/insult.ogg')
