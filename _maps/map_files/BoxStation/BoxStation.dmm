@@ -12615,6 +12615,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "aGa" = (
@@ -48661,10 +48664,6 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/storage)
 "fNh" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "EVA Storage";
-	req_access_txt = "18"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -48679,6 +48678,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 4
+	},
+/obj/machinery/door/airlock/public/glass{
+	name = "EVA Storage";
+	req_access_txt = "18"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
