@@ -61,8 +61,9 @@ SUBSYSTEM_DEF(air)
 	var/share_max_steps = 3
 	// Excited group processing will try to equalize groups with total pressure difference less than this amount.
 	var/excited_group_pressure_goal = 1
+	//Paused z-levels will not add turfs to active
+	var/list/paused_z_levels = list()
 
-	var/list/paused_z_levels = list() //Paused z-levels will not add turfs to active
 
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
@@ -336,12 +337,12 @@ SUBSYSTEM_DEF(air)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
+		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
-		if(M == null)
-			atmos_machinery.Remove(M)
-		if(!M || (M.process_atmos() == PROCESS_KILL))
-			atmos_machinery.Remove(M)
+		if(!Machinery)
+			atmos_machinery -= Machinery
+		if(Machinery.process_atmos() == PROCESS_KILL)
+			stop_processing_machine(Machinery)
 		if(MC_TICK_CHECK)
 			return
 
@@ -352,12 +353,53 @@ SUBSYSTEM_DEF(air)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
+		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
-		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
-			atmos_air_machinery.Remove(M)
+		if(!Machinery)
+			atmos_air_machinery -= Machinery
+		if(Machinery.process_atmos(seconds) == PROCESS_KILL)
+			stop_processing_machine(Machinery)
 		if(MC_TICK_CHECK)
 			return
+
+/**
+ * Adds a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
+ *
+ * Arguments:
+ * * machine - The machine to start processing. Can be any /obj/machinery.
+ */
+/datum/controller/subsystem/air/proc/start_processing_machine(obj/machinery/machine)
+	if(machine.atmos_processing)
+		return
+	machine.atmos_processing = TRUE
+	if(machine.interacts_with_air)
+		atmos_air_machinery += machine
+	else
+		atmos_machinery += machine
+
+/**
+ * Removes a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
+ *
+ * Arguments:
+ * * machine - The machine to stop processing.
+ */
+/datum/controller/subsystem/air/proc/stop_processing_machine(obj/machinery/machine)
+	if(!machine.atmos_processing)
+		return
+	machine.atmos_processing = FALSE
+	if(machine.interacts_with_air)
+		atmos_air_machinery -= machine
+	else
+		atmos_machinery -= machine
+
+	// If we're currently processing atmos machines, there's a chance this machine is in
+	// the currentrun list, which is a cache of atmos_machinery. Remove it from that list
+	// as well to prevent processing qdeleted objects in the cache.
+	if(currentpart == SSAIR_ATMOSMACHINERY)
+		currentrun -= machine
+	if(machine.interacts_with_air && currentpart == SSAIR_ATMOSMACHINERY_AIR)
+		currentrun -= machine
+
 
 /datum/controller/subsystem/air/proc/process_turf_heat()
 
@@ -518,6 +560,7 @@ SUBSYSTEM_DEF(air)
 		qdel(temp)
 
 	return pipe_init_dirs_cache[type]["[dir]"]
+
 
 #undef SSAIR_PIPENETS
 #undef SSAIR_ATMOSMACHINERY

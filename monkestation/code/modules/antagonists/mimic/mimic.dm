@@ -24,6 +24,7 @@
 	mob_size = MOB_SIZE_SMALL
 	pass_flags = PASSTABLE | PASSMOB
 	ventcrawler = VENTCRAWLER_ALWAYS
+	sight = SEE_MOBS
 	unsuitable_atmos_damage = 0 //They won't die in Space!
 	minbodytemp = TCMB
 	maxbodytemp = T0C + 40

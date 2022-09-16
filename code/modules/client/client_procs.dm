@@ -108,6 +108,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	// hippie end
 
+	//monkestation edit - mentor imaginary friend
+	if(mentor_friend(href_list))
+		return
+	//monkestation edit end
+
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
