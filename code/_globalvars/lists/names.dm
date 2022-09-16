@@ -37,19 +37,19 @@ GLOBAL_LIST_INIT(simian_names_male, world.file2list("monkestation/strings/names/
 //Why can't a file be read before map generation?
 //If you read this, avenge me by fixing that issue so that drugs may properly generate at mapgen.
 GLOBAL_LIST_INIT(random_drug_names, list("Adam", "Airplane", "Alcohol", "All-Access", "Anger", "Anime", "Arse", "Ass", "Assistant",
-"Atomic", "Australian", "Bacon", "Baller", "Barfbag", "Beauty", "Beefaroni", "Beepsky", "Bennies", "Bepis", "Bingoparlor", "Black",
-"Blitz", "Bloody", "Blue", "Bomb", "Bot", "Bourbon", "Boy", "Breeze", "Butt", "Byond", "Cammie", "Captain", "Carbon", "Cargo", "Cat",
+"Atomic", "Australian", "Bacon", "Baller", "Barfbag", "Beauty", "Beefaroni", "Beepsky", "Beepelene", "Bennies", "Bepis", "Bingoparlor", "Black",
+"Blitz", "Bloody", "Blue", "Bomb", "Bot", "Bourbon", "Borbop", "Boy", "Breeze", "Butt", "Byond", "Cammie", "Captain", "Carbon", "Cargo", "Cat",
 "Cheese", "Chemist", "Cherry", "Chief", "Chokeslam", "Clarity", "Clown", "Coal", "Coast", "Coder", "Coderbus", "Company", "Corpse",
-"Crypto", "Cuban", "Cut", "Daikatana", "Danger", "Dayglo", "Death", "Deep", "Delights", "Dioxide", "Disclaimer", "Doctor", "Dog",
+"Crypto", "Cuban", "Cut", "Daikatana", "Danger", "Dwasint", "Dayglo", "Death", "Deep", "Delights", "Dioxide", "Disclaimer", "Doctor", "Dog",
 "Doughy", "Drink", "Drug", "ERPer", "East", "Eclipse", "Ecstasy", "Emissary", "Engineer", "Engineering", "Fantasy", "Fart", "Feeschy",
 "Felinid", "Finnish", "Fireball", "Flex", "Fortnite", "Frozen", "Fudge", "Fuji", "Fun", "Funny", "G-riffic", "Gamer", "Gamma", "Garfunkel",
-"Glorious", "Goblin", "Green", "Grief", "Grievous", "Gun", "Hacker", "Happy", "Harm", "Health", "Hearts", "Hero", "Hex", "Hipster", "Home",
-"Horrifying", "Hyper", "Hyper", "Ian", "Ice", "Jumper", "Kilgor", "Lettuce", "Lightning", "Liquid", "Lover", "Macho", "Maid", "Man", "McPiss",
+"Glorious", "Goblin", "Green", "Grief", "Grievous", "Gun", "Hacker", "Happy", "Harm", "Health", "Hearts", "Hero", "Hex", "Himeko", "Hipster", "Home",
+"Horrifying", "Hyper", "Hyper", "Ian", "Ice", "Jumper", "Kat", "Kilgor", "Lettuce", "Lightning", "Liquid", "Lover", "Macho", "Maid", "Man", "McPiss",
 "Medbay", "Meme", "Merlin", "Merry", "Meth", "Miner", "Moff", "Moist", "Monkey", "Moth", "NFT", "Nano", "Neon", "Noise", "North", "One", "Ook",
 "Organic", "Pete", "Pineapple", "Piss", "Pit", "Poor", "Power", "Pressure", "prob(80)", "Psycho", "Quaalude", "Quesarito", "Railroad", "Rasta",
 "Red", "Robo", "Roses", "Russian", "Salty", "Sangria", "Scream", "Scrungularity", "Security", "Shotgun", "Shuttle", "Silicon", "Singing", "Singularity",
  "Skippy", "Sky", "Sleep", "Smart", "Smarties", "Society", "Somatomax", "South", "Space", "Spaceman", "Speed", "Spess", "Spessman", "Spicy", "Sseth",
- "Star", "Stellar", "Study", "Sugar", "Supermatter", "Suplex", "Sus", "Sussy", "Switchblade", "Syndi", "Syndicate", "TEG", "Tech", "Tesla",
+ "Star", "Stellar", "Study", "Sugar", "Supermatter", "Suplex", "Sus", "Sussy", "Switchblade", "Squall", "Syndi", "Syndicate", "TEG", "Tech", "Tesla",
  "Toenail Slobber", "Turbo", "Tweak", "Uppers", "Vitamin", "Voodoo", "Vorpal", "Warden", "Water", "Wendy", "West", "White", "Woman", "Working", "Xeno",
  "Yuppie", "Yuppie", "Zanden", "\[ABOVE YOUR PAYGRADE]", "\[ACCESS DENIED\]", "\[FORBIDDEN\]", "\[REDACTED\]"))
 

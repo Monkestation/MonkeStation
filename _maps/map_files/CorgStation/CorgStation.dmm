@@ -8990,7 +8990,7 @@
 	},
 /obj/structure/closet/secure_closet/personal,
 /obj/item/clothing/under/suit/red,
-/obj/item/clothing/under/dress/blacktango,
+/obj/item/clothing/under/dress/tango,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
 "cgG" = (
@@ -9483,7 +9483,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
-/obj/item/clothing/under/dress/skirt/purple,
+/obj/item/clothing/under/dress/skirt,
 /obj/item/clothing/under/suit/black,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
@@ -24802,7 +24802,7 @@
 	dir = 4
 	},
 /obj/item/clothing/head/collectable/kitty,
-/obj/item/clothing/under/dress/skirt/plaid/green,
+/obj/item/clothing/under/dress/skirt,
 /obj/item/clothing/under/misc/assistantformal,
 /obj/machinery/light_switch{
 	pixel_x = -25
@@ -95712,7 +95712,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/item/clothing/under/dress/skirt/blue,
+/obj/item/clothing/under/dress/skirt,
 /obj/item/clothing/under/suit/navy,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/dorms)
