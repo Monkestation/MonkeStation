@@ -129,31 +129,9 @@
 			active = null
 			return
 
-		data["active"] = TRUE
-		data["SM_integrity"] = active.get_integrity()
-		data["SM_power"] = active.power
-		data["SM_radiation"] = active.last_rads
-		data["SM_ambienttemp"] = air.return_temperature()
-		data["SM_ambientpressure"] = air.return_pressure()
-		data["SM_bad_moles_amount"] = MOLE_PENALTY_THRESHOLD / active.gasefficency
-		data["SM_moles"] = 0
+		data += active.ui_data()
+		data["singlecrystal"] = FALSE
 
-		var/list/gasdata = list()
-
-		if(air.total_moles())
-			data["SM_moles"] = air.total_moles()
-			for(var/gasid in air.get_gases())
-				gasdata.Add(list(list(
-				"name"= GLOB.gas_data.names[gasid],
-				"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
-
-		else
-			for(var/gasid in air.get_gases())
-				gasdata.Add(list(list(
-					"name"= GLOB.gas_data.names[gasid],
-					"amount" = 0)))
-
-		data["gases"] = gasdata
 	else
 		var/list/SMS = list()
 		for(var/obj/machinery/power/supermatter_crystal/S in supermatters)

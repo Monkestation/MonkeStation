@@ -645,7 +645,7 @@
 	updates &= ~SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON, updates)
 	if(updates & UPDATE_ICON_STATE)
 		update_icon_state()
-		. |= UPDATE_ICON_STATEd
+		. |= UPDATE_ICON_STATE
 
 	if(updates & UPDATE_OVERLAYS)
 		if(LAZYLEN(managed_vis_overlays))
