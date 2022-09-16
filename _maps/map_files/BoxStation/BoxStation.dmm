@@ -30430,6 +30430,7 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plasteel/grid,
 /area/vacant_room/commissary/commissary2)
 "bGE" = (
@@ -42039,6 +42040,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cvi" = (
@@ -45200,6 +45202,11 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/medical/break_room)
+"dmV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/vaporwave,
+/area/medical/medbay/central)
 "dng" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/plating,
@@ -56321,7 +56328,10 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/vomit/old,
-/obj/machinery/light/extra_dim/directional/north,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
 "lgO" = (
@@ -63509,6 +63519,7 @@
 	name = "Storage";
 	req_access_txt = "5"
 	},
+/obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plasteel/grid,
 /area/medical/medbay/central)
 "qlp" = (
@@ -70784,6 +70795,15 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/quartermaster/exploration_prep)
+"vHa" = (
+/obj/machinery/door/airlock/medical{
+	name = "Storage";
+	req_access_txt = "5"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plasteel/vaporwave,
+/area/medical/medbay/central)
 "vHo" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "rnd2";
@@ -107636,7 +107656,7 @@ bof
 ctP
 bof
 bof
-bof
+vHa
 bzs
 bKG
 bnc
@@ -108150,7 +108170,7 @@ bof
 ezR
 bGB
 pWT
-bHW
+dmV
 bzs
 bKI
 bLQ
