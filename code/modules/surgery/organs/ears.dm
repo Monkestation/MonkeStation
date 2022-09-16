@@ -45,6 +45,10 @@
 			to_chat(C, "<span class='warning'>The ringing in your ears grows louder, blocking out any external noises for a moment.</span>")
 	else if((organ_flags & ORGAN_FAILING) && (deaf == 0))
 		deaf = 1	//stop being not deaf you deaf idiot
+	if(deaf)
+		owner.apply_status_effect(/datum/status_effect/deafened)
+	else
+		owner.remove_status_effect(/datum/status_effect/deafened)
 
 /obj/item/organ/ears/proc/restoreEars()
 	deaf = 0
