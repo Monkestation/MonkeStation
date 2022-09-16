@@ -168,7 +168,7 @@
 			if(!computer || !authenticated)
 				return
 			if(minor)
-				if(!(target_id_card.assignment in head_subordinates) && target_id_card.assignment != JOB_NAME_ASSISTANT)
+				if(!(target_id_card.assignment in head_subordinates) && target_id_card.assignment != "Assistant")
 					return
 
 			target_id_card.access -= get_all_centcom_access() + get_all_accesses()
