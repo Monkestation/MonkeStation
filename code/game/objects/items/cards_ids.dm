@@ -549,7 +549,6 @@ update_label("John Doe", "Clowny")
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	registered_name = "Captain"
 	assignment = "Captain"
-	investigate_flags = ADMIN_INVESTIGATE_TARGET
 	hud_state = JOB_HUD_ACTINGCAPTAIN
 
 /obj/item/card/id/captains_spare/Initialize(mapload)

@@ -179,7 +179,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card/AltClick(mob/user)
 	..()
-	if(!user.canUseTopic(src, !issilicon(user)) || !is_operational())
+	if(!user.canUseTopic(src, !issilicon(user)) || !is_operational)
 		return
 	if(inserted_modify_id)
 		if(id_eject(user, inserted_modify_id))
