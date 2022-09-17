@@ -53653,8 +53653,8 @@
 /area/crew_quarters/park)
 "jtC" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/modular_computer/console/preset/command,
 /obj/effect/turf_decal/tile/purple/tile_full,
+/obj/machinery/computer/rdconsole/core,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "jtK" = (
@@ -64255,6 +64255,12 @@
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"qLg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/bot_white/right,
+/obj/structure/ore_box,
+/turf/open/floor/noslip,
+/area/quartermaster/warehouse)
 "qLo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -96070,7 +96076,7 @@ aZp
 bbP
 boN
 bcE
-boN
+qLg
 bex
 gjl
 bgu
