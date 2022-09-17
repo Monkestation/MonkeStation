@@ -317,9 +317,10 @@ const ProductColorSelect = (props, context) => {
 /** The main button to purchase an item. */
 const ProductButton = (props, context) => {
   const { act, data } = useBackend<VendingData>(context);
-  const { access, department, user } = data;
+  const { access, department, user, onstation } = data;
   const { custom, free, product, productStock } = props;
-  const discount = department === user?.department && !product.premium;
+  const discount
+  = department === user?.department && !product.premium || !data.onstation;
   const redPrice = Math.round(product.price * 0);
 
   return custom ? (
@@ -327,7 +328,7 @@ const ProductButton = (props, context) => {
       fluid
       disabled={
         productStock.amount === 0
-      || (!user || product.price > user.cash)
+      || ((!user || product.price > user.cash) && onstation)
       }
       content={access ? 'FREE' : product.price + ' cr'}
       onClick={() =>
@@ -340,7 +341,7 @@ const ProductButton = (props, context) => {
       fluid
       disabled={
         productStock.amount === 0
-      || (!user || product.price > user.cash)
+      || ((!user || product.price > user.cash) && onstation)
       }
       content={discount ? 'FREE' : product.price + ' cr'}
       onClick={() =>
