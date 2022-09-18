@@ -11147,7 +11147,8 @@
 /obj/structure/showcase/machinery/tv{
 	desc = "The clown sits far too close to this and watches cartoons all day.";
 	name = "Clown's Television";
-	pixel_y = -8
+	pixel_y = -8;
+	pixel_x = 3
 	},
 /obj/structure/table/wood,
 /obj/structure/window/reinforced/tinted{
