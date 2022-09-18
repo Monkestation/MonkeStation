@@ -11151,9 +11151,6 @@
 	pixel_x = 3
 	},
 /obj/structure/table/wood,
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/purple/tile_marquee,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -11258,7 +11255,6 @@
 /obj/structure/closet/crate/secure/clown/toy{
 	anchored = 1
 	},
-/obj/structure/window/reinforced/tinted,
 /obj/item/stack/spacecash/c100{
 	name = "Clown's Life Savings"
 	},
@@ -11919,9 +11915,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/theatre/backstage)
 "aEc" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/purple/tile_marquee,
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
@@ -12373,10 +12366,6 @@
 	},
 /area/crew_quarters/theatre/backstage)
 "aFk" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted,
 /obj/effect/turf_decal/tile/purple/tile_marquee,
 /obj/structure/chair/comfy/teal{
 	dir = 1
@@ -44462,12 +44451,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral/tile_side{
 	dir = 1
 	},
@@ -45920,10 +45903,6 @@
 	},
 /obj/structure/sign/poster/ripped{
 	pixel_y = -32
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
 	},
 /obj/structure/closet/cardboard{
 	name = "Mime's Cardboard box";
@@ -57211,12 +57190,6 @@
 /obj/structure/mirror{
 	pixel_y = 30
 	},
-/obj/structure/sink/kitchen{
-	desc = "A sink used for washing one's hands and face. This one is extra robust looking.";
-	dir = 1;
-	name = "Industrial Sink";
-	pixel_y = 18
-	},
 /obj/effect/turf_decal/tile/purple/tile_marquee,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/theatre/backstage)
@@ -59651,10 +59624,6 @@
 	dir = 8
 	},
 /obj/machinery/light/small/broken/directional/east,
-/obj/machinery/door/window/northleft{
-	req_one_access_txt = "32;19;10";
-	req_access_txt = "46"
-	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
 "nnA" = (
@@ -60345,14 +60314,6 @@
 /area/hallway/secondary/entry)
 "nOj" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
 /obj/structure/table/wood,
 /obj/item/cigbutt,
 /obj/item/storage/fancy/cigarettes/dromedaryco{
@@ -63494,12 +63455,8 @@
 /turf/open/floor/plating,
 /area/engine/break_room)
 "qdz" = (
-/obj/machinery/door/window/survival_pod{
-	req_access_txt = "46";
-	desc = "Clown's Bedroom.";
-	name = "Clown's Bedroom"
-	},
-/turf/open/floor/plasteel/stairs/medium,
+/obj/effect/turf_decal/tile/purple/tile_marquee,
+/turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/theatre/backstage)
 "qdB" = (
 /obj/structure/cable/yellow{
@@ -63707,12 +63664,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "qiL" = (
-/obj/item/storage/secure/safe{
-	pixel_y = 26;
-	pixel_x = 6;
-	name = "Funny Safe";
-	desc = "Excellent for securing things away from Mime hands."
-	},
 /obj/item/bedsheet/clown,
 /obj/structure/bed/pod,
 /obj/effect/landmark/start/clown,
