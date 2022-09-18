@@ -11259,6 +11259,9 @@
 	anchored = 1
 	},
 /obj/structure/window/reinforced/tinted,
+/obj/item/stack/spacecash/c100{
+	name = "Clown's Life Savings"
+	},
 /turf/open/floor/eighties,
 /area/crew_quarters/theatre/backstage)
 "aCy" = (
@@ -11921,16 +11924,16 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
 	pixel_x = -6
 	},
-/obj/item/stack/spacecash/c100{
-	pixel_y = 10;
-	pixel_x = 5;
-	name = "play space cash";
-	desc = "The clown photocopied it themselves!"
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/item/stack/spacecash/c1000{
+	pixel_y = 11;
+	pixel_x = 5;
+	value = 1;
+	name = "spess-opoly cash"
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/theatre/backstage)
 "aEg" = (
@@ -54675,6 +54678,10 @@
 /obj/item/clothing/head/that,
 /turf/open/floor/wood,
 /area/crew_quarters/locker)
+"kda" = (
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "kdh" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/cable/yellow{
@@ -60348,6 +60355,9 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco{
 	pixel_y = -5;
 	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 10
 	},
 /turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
@@ -73796,6 +73806,10 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/exploration_prep)
+"xtN" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "xtS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -111524,8 +111538,8 @@ auB
 auB
 auB
 auB
-vCP
-alO
+xtN
+kda
 aGJ
 alP
 alP
@@ -111781,8 +111795,8 @@ aro
 aro
 aro
 auB
-aaf
-alP
+alO
+alO
 aGJ
 alP
 aJE
@@ -112039,7 +112053,7 @@ aro
 aro
 auB
 aaa
-alP
+alO
 aGA
 aHS
 aJx
