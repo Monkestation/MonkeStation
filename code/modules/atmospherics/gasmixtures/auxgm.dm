@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	if(flags & GAS_FLAG_DANGEROUS)
 		return new/datum/tlv/dangerous
 	else
-		return new/datum/tlv(-1, -1, 1000, 1000)
+		return new/datum/tlv(TLV_DONT_CHECK, TLV_DONT_CHECK, 1000, 1000)
 
 /datum/gas/proc/breath(partial_pressure, light_threshold, heavy_threshold, moles, mob/living/carbon/C, obj/item/organ/lungs/lungs)
 	// This is only called on gases with the GAS_FLAG_BREATH_PROC flag. When possible, do NOT use this--
