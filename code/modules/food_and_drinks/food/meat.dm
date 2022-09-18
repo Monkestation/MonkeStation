@@ -682,13 +682,16 @@
 	desc = "A slab of mouse meat. Best not eat it raw."
 	foodtypes = RAW | MEAT | GROSS
 
+/obj/item/food/meat/slab/mothroach
+	name = "mothroach meat"
+	desc = "A light slab of meat."
+	foodtypes = RAW | MEAT | GROSS
 
 /obj/item/food/meat/slab/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well you know..."
 	tastes = list("meat" = 4, "a fondness for wearing hats" = 1)
 	foodtypes = RAW | MEAT | GROSS
-
 
 /obj/item/food/meat/slab/pug
 	name = "pug meat"

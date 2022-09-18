@@ -24,12 +24,19 @@
 		area.power_light = (lighting > APC_CHANNEL_AUTO_OFF)
 		area.power_equip = (equipment > APC_CHANNEL_AUTO_OFF)
 		area.power_environ = (environ > APC_CHANNEL_AUTO_OFF)
-		playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, FALSE)
+
+		if(sound_spam_timer < world.time)
+			playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, FALSE)
+			sound_spam_timer = world.time + 5 SECONDS
+
 	else
 		area.power_light = FALSE
 		area.power_equip = FALSE
 		area.power_environ = FALSE
-		playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, FALSE)
+		if(sound_spam_timer < world.time)
+			playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, FALSE)
+			sound_spam_timer = world.time + 5 SECONDS
+
 	area.power_change()
 
 /obj/machinery/power/apc/proc/toggle_breaker(mob/user)

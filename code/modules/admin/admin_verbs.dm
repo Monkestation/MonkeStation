@@ -279,6 +279,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 		var/rights = holder.rank.rights
 		add_verb(GLOB.admin_verbs_default)
+		add_verb(GLOB.mentor_verbs)
 		if(rights & R_BUILD)
 			add_verb(/client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)
@@ -328,7 +329,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.admin_verbs_debug_mapping,
 		/client/proc/disable_debug_verbs,
 		/client/proc/readmin,
-		/client/proc/fix_say
+		/client/proc/fix_say,
+		GLOB.mentor_verbs
 		)
 	remove_verb(verb_list)
 	reset_badges()

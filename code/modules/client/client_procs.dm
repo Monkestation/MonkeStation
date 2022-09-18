@@ -108,6 +108,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	// hippie end
 
+	//monkestation edit - mentor imaginary friend
+	if(mentor_friend(href_list))
+		return
+	//monkestation edit end
+
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
@@ -534,14 +539,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.admins -= src
 		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			var/cheesy_message = pick(
-				"ook is stinky",
-				"OOOH OOH OOK!!",
-				":noerp:",
-				"I literally made this ping myself @Zanden#4153",
-				"If you're reading this, the clown has already stolen your shoes.",
-				"oh no.",
-				":Monkeygun::Monkeygun::Monkeygun:",
-				"hello.")
+				"No nerds detected.",
+				"The clown has already caused a plasmafire.",
+				"A fresh account warden is rushing the armoury.",
+				"WGW will be announced in ten seconds.",
+				"Cargonia has risen.",
+				"Ian is unsafe.",
+				"Kigor has found a way back onto the server.",
+				"The drones need you. They look up to you.",
+				"An assistant with a toolbox just killed 90% of the crew. You're next.",
+				"Insert Funny Joke Here.")
 
 			send2tgs("Server", "[cheesy_message] (No admins online)")
 
@@ -1101,6 +1108,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(holder)
 		holder.filteriffic = new /datum/filter_editor(in_atom)
 		holder.filteriffic.ui_interact(mob)
+
+/client/proc/open_particle_editor(atom/in_atom)
+	if(holder)
+		holder.particool = new /datum/particle_editor(in_atom)
+		holder.particool.ui_interact(mob)
 
 /client/proc/update_ambience_pref()
 	if(prefs.toggles & SOUND_AMBIENCE)
