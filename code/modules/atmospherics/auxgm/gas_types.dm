@@ -161,7 +161,7 @@
 	enthalpy = -50000 // but it reduces the heat output a bit
 
 /datum/gas/pluoxium/generate_TLV()
-	return new/datum/tlv(-1, -1, 5, 6)
+	return new/datum/tlv(TLV_DONT_CHECK, TLV_DONT_CHECK, 5, 6)
 
 /datum/gas/miasma
 	id = GAS_MIASMA
