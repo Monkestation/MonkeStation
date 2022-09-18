@@ -44465,6 +44465,10 @@
 /obj/effect/turf_decal/tile/neutral/tile_side{
 	dir = 1
 	},
+/obj/item/cigbutt{
+	pixel_y = -6;
+	pixel_x = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre/backstage)
 "cRa" = (
@@ -45905,16 +45909,21 @@
 /area/quartermaster/exploration_dock)
 "dPq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/monke/tile/dark/tile_marquee,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /obj/structure/sign/poster/ripped{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/white/side{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
 	},
+/obj/structure/closet/cardboard{
+	name = "Mime's Cardboard box";
+	desc = "The mime uses this box to store his resentment for the clown for getting so many brand deals. It also serves as a bed"
+	},
+/turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
 "dPu" = (
 /obj/machinery/door/airlock/maintenance{
@@ -59622,11 +59631,6 @@
 /obj/effect/landmark/start/mime,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/monke/tile/dark/tile_marquee,
-/obj/structure/closet/cardboard{
-	name = "Mime's Cardboard box";
-	desc = "The mime uses this box to store his resentment for the clown for getting so many brand deals. It also serves as a bed"
-	},
 /obj/item/storage/secure/safe{
 	pixel_y = -26;
 	pixel_x = 8;
@@ -59637,9 +59641,11 @@
 	dir = 8
 	},
 /obj/machinery/light/small/broken/directional/east,
-/turf/open/floor/plasteel/white/side{
-	dir = 1
+/obj/machinery/door/window/northleft{
+	req_one_access_txt = "32;19;10";
+	req_access_txt = "46"
 	},
+/turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
 "nnA" = (
 /obj/structure/disposalpipe/segment{
@@ -60329,10 +60335,21 @@
 /area/hallway/secondary/entry)
 "nOj" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/monke/tile/dark/tile_marquee,
-/turf/open/floor/plasteel/white/side{
-	dir = 9
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
 	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/table/wood,
+/obj/item/cigbutt,
+/obj/item/storage/fancy/cigarettes/dromedaryco{
+	pixel_y = -5;
+	pixel_x = -4
+	},
+/turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
 "nPs" = (
 /obj/machinery/computer/station_alert,
