@@ -11262,6 +11262,9 @@
 /obj/item/stack/spacecash/c100{
 	name = "Clown's Life Savings"
 	},
+/obj/item/clothing/gloves/color/fyellow{
+	name = "insuls"
+	},
 /turf/open/floor/eighties,
 /area/crew_quarters/theatre/backstage)
 "aCy" = (
