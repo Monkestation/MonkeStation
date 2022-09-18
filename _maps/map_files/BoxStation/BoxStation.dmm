@@ -11925,7 +11925,7 @@
 	pixel_y = 10;
 	pixel_x = 5;
 	name = "play space cash";
-	desc = "The clown printed it themselves!"
+	desc = "The clown photocopied it themselves!"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -12954,6 +12954,7 @@
 /obj/effect/turf_decal/tile/neutral/tile_side{
 	dir = 1
 	},
+/obj/item/food/grown/banana,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre/backstage)
 "aGE" = (
@@ -45908,6 +45909,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/structure/sign/poster/ripped{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
@@ -57071,6 +57075,10 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
+"lBF" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall,
+/area/crew_quarters/toilet)
 "lCg" = (
 /obj/effect/decal/remains/robot,
 /obj/item/paper/fluff/jobs/security/beepsky_mom,
@@ -63459,7 +63467,6 @@
 /obj/machinery/door/window/survival_pod{
 	req_access_txt = "46";
 	desc = "Clown's Bedroom.";
-	id_tag = "funnydoor";
 	name = "Clown's Bedroom"
 	},
 /turf/open/floor/plasteel/stairs/medium,
@@ -66824,6 +66831,10 @@
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/science/breakroom)
+"suW" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall,
+/area/crew_quarters/theatre/backstage)
 "suZ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -73689,6 +73700,10 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/grid/steel,
 /area/medical/chemistry)
+"xqK" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "xrh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -108672,7 +108687,7 @@ aAh
 aBy
 aAh
 aCr
-aCr
+xqK
 aCr
 rVT
 rVT
@@ -109184,7 +109199,7 @@ aAh
 aAh
 aAh
 aAh
-aAh
+lBF
 aMp
 aMr
 aOH
@@ -110977,7 +110992,7 @@ gPV
 aHT
 rtn
 arj
-aId
+suW
 hFH
 aId
 aGI
