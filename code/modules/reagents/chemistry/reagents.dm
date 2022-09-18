@@ -86,7 +86,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/temp = holder ? holder.chem_temp : T20C
 	if(get_gas())
 		T.atmos_spawn_air("[get_gas()]=[volume/molarity];TEMP=[temp]")
-	return
 
 /datum/reagent/proc/reaction_turf(turf/T, volume, show_message, from_gas)
 	if(!from_gas && boiling_point)
@@ -192,28 +191,28 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /datum/reagent/proc/define_gas()
 	var/list/cached_reactions = GLOB.chemical_reactions_list
 	for(var/reaction in cached_reactions[src.type])
-		var/datum/chemical_reaction/C = reaction
-		if(!istype(C))
+		var/datum/chemical_reaction/new_reaction = reaction
+		if(!istype(new_reaction))
 			continue
-		if(C.required_reagents.len < 2) // no reagents that react on their own
+		if(new_reaction.required_reagents.len < 2) // no reagents that react on their own
 			return null
-	var/datum/gas/G = new
-	G.id = "[src.type]"
-	G.name = name
-	G.specific_heat = specific_heat / 10
-	G.color = color
-	G.breath_reagent = src.type
-	G.group = GAS_GROUP_CHEMICALS
-	G.moles_visible = MOLES_GAS_VISIBLE
-	return G
+	var/datum/gas/new_gas = new
+	new_gas.id = "[src.type]"
+	new_gas.name = name
+	new_gas.specific_heat = specific_heat / 10
+	new_gas.color = color
+	new_gas.breath_reagent = src.type
+	new_gas.group = GAS_GROUP_CHEMICALS
+	new_gas.moles_visible = MOLES_GAS_VISIBLE
+	return new_gas
 
 /datum/reagent/proc/create_gas()
-	var/datum/gas/G = define_gas()
-	if(istype(G)) // if this reagent should never be a gas, define_gas may return null
-		GLOB.gas_data.add_gas(G)
+	var/datum/gas/new_gas = define_gas()
+	if(istype(new_gas)) // if this reagent should never be a gas, define_gas may return null
+		GLOB.gas_data.add_gas(new_gas)
 		var/datum/gas_reaction/condensation/condensation_reaction = new(src) // did you know? you can totally just add new reactions at runtime. it's allowed
 		SSair.add_reaction(condensation_reaction)
-	return G
+	return new_gas
 
 
 /datum/reagent/proc/get_gas()

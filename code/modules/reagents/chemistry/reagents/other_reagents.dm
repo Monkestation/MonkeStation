@@ -1059,12 +1059,12 @@
 	boiling_point = 400
 
 /datum/reagent/fuel/define_gas()
-	var/datum/gas/G = ..()
-	G.enthalpy = 227400
-	G.fire_burn_rate = 2 / 5
-	G.fire_products = list(GAS_CO2 = 2, GAS_H2O = 1)
-	G.fire_temperature = T0C+300
-	return G
+	var/datum/gas/new_gas = ..()
+	new_gas.enthalpy = 227400
+	new_gas.fire_burn_rate = 2 / 5
+	new_gas.fire_products = list(GAS_CO2 = 2, GAS_H2O = 1)
+	new_gas.fire_temperature = T0C+300
+	return new_gas
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(method == TOUCH || method == VAPOR)
@@ -1298,12 +1298,12 @@
 	boiling_point = 328
 
 /datum/reagent/diethylamine/define_gas()
-	var/datum/gas/G = ..()
-	G.fire_burn_rate = 1 / 6
-	G.fire_products = list(GAS_H2O = 4, GAS_AMMONIA = 1, GAS_CO2 = 4)
-	G.enthalpy = -131000
-	G.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
-	return G
+	var/datum/gas/new_gas = ..()
+	new_gas.fire_burn_rate = 1 / 6
+	new_gas.fire_products = list(GAS_H2O = 4, GAS_AMMONIA = 1, GAS_CO2 = 4)
+	new_gas.enthalpy = -131000
+	new_gas.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	return new_gas
 
 /datum/reagent/carbondioxide
 	name = "Carbon Dioxide"

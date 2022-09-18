@@ -144,17 +144,17 @@ nobliumformation = 1001
 	exclude = TRUE
 	var/datum/reagent/condensing_reagent
 
-/datum/gas_reaction/condensation/New(datum/reagent/R)
+/datum/gas_reaction/condensation/New(datum/reagent/condensed_reagent)
 	. = ..()
-	if(!istype(R))
+	if(!istype(condensed_reagent))
 		return
 	min_requirements = list(
-		"MAX_TEMP" = min(initial(R.boiling_point), 40)
+		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 40)
 	)
-	min_requirements[R.get_gas()] = MOLES_GAS_VISIBLE
-	name = "[R.name] condensation"
-	id = "[R.type] condensation"
-	condensing_reagent = R
+	min_requirements[condensed_reagent.get_gas()] = MOLES_GAS_VISIBLE
+	name = "[condensed_reagent.name] condensation"
+	id = "[condensed_reagent.type] condensation"
+	condensing_reagent = condensed_reagent
 	exclude = FALSE
 
 /datum/gas_reaction/condensation/react(datum/gas_mixture/air, datum/holder)

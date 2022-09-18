@@ -51,10 +51,10 @@
 	condensation_amount = 2
 
 /datum/reagent/clf3/define_gas()
-	var/datum/gas/G = ..()
-	G.enthalpy = -163200
-	G.oxidation_temperature = T0C - 50
-	return G
+	var/datum/gas/new_gas = ..()
+	new_gas.enthalpy = -163200
+	new_gas.oxidation_temperature = T0C - 50
+	return new_gas
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -160,12 +160,12 @@
 	boiling_point = T20C-10
 
 /datum/reagent/phlogiston/define_gas()
-	var/datum/gas/G = ..()
-	G.enthalpy = FIRE_PLASMA_ENERGY_RELEASED / 100
-	G.fire_products = list(GAS_O2 = 0.25, GAS_METHANE = 0.75) // meanwhile this is just magic
-	G.fire_burn_rate = 1
-	G.fire_temperature = T20C+1
-	return G
+	var/datum/gas/new_gas = ..()
+	new_gas.enthalpy = FIRE_PLASMA_ENERGY_RELEASED / 100
+	new_gas.fire_products = list(GAS_O2 = 0.25, GAS_METHANE = 0.75) // meanwhile this is just magic
+	new_gas.fire_burn_rate = 1
+	new_gas.fire_temperature = T20C+1
+	return new_gas
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)

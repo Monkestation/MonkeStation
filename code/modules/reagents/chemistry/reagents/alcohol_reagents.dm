@@ -39,18 +39,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 */
 
 /datum/reagent/consumable/ethanol/define_gas() // So that all alcohols have the same gas, i.e. "ethanol"
-	var/datum/gas/G = new
-	G.id = GAS_ETHANOL
-	G.name = "Ethanol"
-	G.enthalpy = -234800
-	G.specific_heat = 38
-	G.fire_products = list(GAS_CO2 = 1, GAS_H2O = 1.5)
-	G.fire_burn_rate = 1 / 3
-	G.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
-	G.color = "#404030"
-	G.breath_reagent = /datum/reagent/consumable/ethanol
-	G.group = GAS_GROUP_CHEMICALS
-	return G
+	var/datum/gas/new_gas = new
+	new_gas.id = GAS_ETHANOL
+	new_gas.name = "Ethanol"
+	new_gas.enthalpy = -234800
+	new_gas.specific_heat = 38
+	new_gas.fire_products = list(GAS_CO2 = 1, GAS_H2O = 1.5)
+	new_gas.fire_burn_rate = 1 / 3
+	new_gas.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
+	new_gas.color = "#404030"
+	new_gas.breath_reagent = /datum/reagent/consumable/ethanol
+	new_gas.group = GAS_GROUP_CHEMICALS
+	return new_gas
 
 /datum/reagent/consumable/ethanol/get_gas()
 	var/datum/auxgm/cached_gas_data = GLOB.gas_data
