@@ -1061,7 +1061,7 @@
 /datum/reagent/fuel/define_gas()
 	var/datum/gas/new_gas = ..()
 	new_gas.enthalpy = 227400
-	new_gas.fire_burn_rate = 2 / 5
+	new_gas.fire_burn_rate = 0.4
 	new_gas.fire_products = list(GAS_CO2 = 2, GAS_H2O = 1)
 	new_gas.fire_temperature = T0C+300
 	return new_gas
@@ -1299,7 +1299,7 @@
 
 /datum/reagent/diethylamine/define_gas()
 	var/datum/gas/new_gas = ..()
-	new_gas.fire_burn_rate = 1 / 6
+	new_gas.fire_burn_rate = 0.17
 	new_gas.fire_products = list(GAS_H2O = 4, GAS_AMMONIA = 1, GAS_CO2 = 4)
 	new_gas.enthalpy = -131000
 	new_gas.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
