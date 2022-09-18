@@ -46,6 +46,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 	. = ..()
 	internal_shuttle_creator = new()
 	internal_shuttle_creator.owner_rsd = src
+	internal_shuttle_creator.is_operational = TRUE
 	overlay_holder = new()
 
 /obj/item/shuttle_creator/Destroy()

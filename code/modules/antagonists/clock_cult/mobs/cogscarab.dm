@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(cogscarabs, list())
 	icon_state = "drone_clock"
 	icon_living = "drone_clock"
 	icon_dead = "drone_clock_dead"
+	density = TRUE
 	health = 30
 	maxHealth = 30
 	faction = list("neutral", "silicon", "turret", "ratvar")

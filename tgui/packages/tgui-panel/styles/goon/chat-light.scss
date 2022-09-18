@@ -465,6 +465,12 @@ h1.alert, h2.alert		{color: #000000;}
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
 
+.examine_block {
+  background: #f2f7fa;
+  border: 1px solid #111a27;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+}
 //Job Colours
 //Make sure you add to replacementNodes in renderer.js
 .unknown {color: #313131}
@@ -542,3 +548,12 @@ h1.alert, h2.alert		{color: #000000;}
 .stat_infomation				{color: #be8530;}
 
 .stat_br				        {color: #2ace53;}
+
+
+//Monkestation Edit
+
+
+.mimichivemind				{color: #453768;}
+.mimichivemindtitle				{color: #3e1996;}
+
+//Monkestation Edit End

@@ -45,9 +45,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	..()
 	update_icon()
 
-/obj/structure/bodycontainer/update_icon()
-	return
-
 /obj/structure/bodycontainer/relaymove(mob/user)
 	if(user.stat || !isturf(loc))
 		return

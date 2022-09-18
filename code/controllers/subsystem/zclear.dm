@@ -30,6 +30,13 @@ SUBSYSTEM_DEF(zclear)
 	//List of z-levels being docked with
 	var/list/docking_levels = list()
 
+	//The amoutn of ticks we fell behind on processing
+	var/processing_fallbehind = 0
+
+	//Current run
+	var/processing_start = 0
+	var/processing_end = 0
+
 	//Announced zombie levels
 	var/list/announced_zombie_levels = list()
 
@@ -40,8 +47,28 @@ SUBSYSTEM_DEF(zclear)
 /datum/controller/subsystem/zclear/fire(resumed)
 	if(times_fired % CHECK_ZLEVEL_TICKS == 0)
 		check_for_empty_levels()
-	for(var/datum/zclear_data/cleardata as() in processing_levels)
-		continue_wipe(cleardata)
+	if(!processing_start || !processing_end)
+		processing_start = 1
+		processing_end = length(processing_levels)
+	for(var/i in processing_start to processing_end)
+		//Element was deleted during processing
+		if(i > length(processing_levels))
+			processing_start = 0
+			processing_end = 0
+			return
+		var/datum/zclear_data/cleardata = processing_levels[i]
+		//If we are forced to early return (overrun), then continue from the next element
+		processing_start = i + 1
+		//Process current element
+		if(!continue_wipe(cleardata))
+			processing_fallbehind ++
+			return
+	//Reset the processor
+	if(processing_start >= processing_end)
+		processing_start = 0
+
+/datum/controller/subsystem/zclear/stat_entry(msg)
+	. = ..("Processing: [length(processing_levels)], Free: [length(free_levels)], Fallbehind: [processing_fallbehind], Start: [processing_start], End: [processing_end]")
 
 /datum/controller/subsystem/zclear/Recover()
 	if(!islist(autowipe)) autowipe = list()
@@ -210,13 +237,14 @@ SUBSYSTEM_DEF(zclear)
 */
 /datum/controller/subsystem/zclear/proc/continue_wipe(datum/zclear_data/cleardata)
 	var/list_element = (cleardata.process_num % (CLEAR_TURF_PROCESSING_TIME * 0.5)) + 1
+	. = TRUE
 	switch(cleardata.process_num)
 		if(0 to (CLEAR_TURF_PROCESSING_TIME*0.5)-1)
 			if(list_element <= length(cleardata.divided_turfs))
-				reset_turfs(cleardata.divided_turfs[list_element])
+				. = reset_turfs(cleardata.divided_turfs[list_element])
 		if((CLEAR_TURF_PROCESSING_TIME*0.5) to (CLEAR_TURF_PROCESSING_TIME-1))
 			if(list_element <= length(cleardata.divided_turfs))
-				clear_turf_atoms(cleardata.divided_turfs[list_element])
+				. = clear_turf_atoms(cleardata.divided_turfs[list_element])
 		else
 			//Done
 			LAZYREMOVE(processing_levels, cleardata)
@@ -237,19 +265,22 @@ SUBSYSTEM_DEF(zclear)
 						valid = TRUE
 				if(valid)
 					priority_announce("A mass casualty has occured on your nearest priority waypoint. You are recommended to fly out and rescue the following personnel: \n[nullspaced_mob_names]", "Exploration Crew Monitor", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
-	cleardata.process_num ++
+	//Process num needs incrementing
+	if(.)
+		cleardata.process_num ++
 
 /*
  * Deletes all the atoms within a given turf.
 */
 /datum/controller/subsystem/zclear/proc/clear_turf_atoms(list/turfs)
 	//Clear atoms
-	for(var/turf/T as() in turfs)
+	for(var/i in 1 to length(turfs))
+		var/turf/T = turfs[i]
 		// Remove all atoms except abstract mobs
 		var/list/allowed_contents = T.get_all_contents_ignoring(ignored_atoms)
 		allowed_contents -= T
-		for(var/i in 1 to allowed_contents.len)
-			var/thing = allowed_contents[i]
+		for(var/j in 1 to allowed_contents.len)
+			var/thing = allowed_contents[j]
 			//Remove powernet to prevent massive amounts of propagate networks, everythings getting deleted so who cares.
 			if(istype(thing, /obj/structure/cable))
 				var/obj/structure/cable/cable = thing
@@ -274,7 +305,10 @@ SUBSYSTEM_DEF(zclear)
 					delete_atom(thing)
 			else
 				delete_atom(thing)
-
+		if(MC_TICK_CHECK)
+			turfs.Cut(1, i)
+			return FALSE
+	return TRUE
 /*
  * DELETES AN ATOM OR TELEPORTS IT TO A RANDOM LOCATION IF IT IS INDESTRUCTIBLE
 */
@@ -322,9 +356,14 @@ SUBSYSTEM_DEF(zclear)
 	var/turf/T = locate(_x, _y, _z)
 	AM.forceMove(T)
 
+/**
+ * Resets a list of turfs provided.
+ * Is MC tick checked.
+ * The list coming in should be a reference, as it is reduced if this proc overruns.
+ */
 /datum/controller/subsystem/zclear/proc/reset_turfs(list/turfs)
-	var/list/new_turfs = list()
-	for(var/turf/T as() in turfs)
+	for(var/i in 1 to length(turfs))
+		var/turf/T = turfs[i]
 		var/turf/newT
 		if(istype(T, /turf/open/space))
 			newT = T
@@ -335,8 +374,11 @@ SUBSYSTEM_DEF(zclear)
 			newA.contents += newT
 			newT.change_area(newT.loc, newA)
 		newT.flags_1 &= ~NO_RUINS_1
-		new_turfs += newT
-	return new_turfs
+		//Check for overrun
+		if(MC_TICK_CHECK)
+			turfs.Cut(1, i)
+			return FALSE
+	return TRUE
 
 /datum/zclear_data
 	var/zvalue
