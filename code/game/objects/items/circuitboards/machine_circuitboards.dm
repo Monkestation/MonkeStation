@@ -798,7 +798,6 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stock_parts/cell = 1)
 	needs_anchored = FALSE
-
 /obj/item/circuitboard/machine/stasis
 	name = "lifeform stasis unit (Machine Board)"
 	icon_state = "medical"

@@ -1,3 +1,4 @@
+///This is mainly a debug item for testing various chemical gases and how much each chem gives in terms of gas.
 /obj/item/reagent_containers/glass/beaker/gasifier
 	name = "Gasifier"
 	desc = "A large beaker with the added function of being able to convert the chemicals inside it into gas."

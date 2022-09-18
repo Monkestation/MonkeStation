@@ -803,6 +803,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_mult = 0
 	random_unrestricted = FALSE
+	gas = GAS_H2
 
 /datum/reagent/potassium
 	name = "Potassium"

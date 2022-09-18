@@ -3890,6 +3890,7 @@
 #include "monkestation\code\modules\reagents\chemistry\reagents\food_reagents.dm"
 #include "monkestation\code\modules\reagents\chemistry\reagents\other_reagents.dm"
 #include "monkestation\code\modules\reagents\chemistry\reagents\toxin_reagents.dm"
+#include "monkestation\code\modules\reagents\chemistry\machinery\atmos_machine.dm"
 #include "monkestation\code\modules\reagents\reagent_containers\bottle.dm"
 #include "monkestation\code\modules\reagents\reagent_containers\medspray.dm"
 #include "monkestation\code\modules\reagents\reagent_containers\spray.dm"
