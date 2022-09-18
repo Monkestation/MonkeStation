@@ -92,11 +92,7 @@
 
 	var/list/f_types = list()
 	for(var/id in GLOB.gas_data.ids)
-		if(!(id in GLOB.gas_data.groups_by_gas))
-			f_types += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.names[id], "enabled" = (id in filter_types)))
-
-	for(var/group in GLOB.gas_data.groups)
-		f_types += list(list("gas_id" = group, "gas_name" = group, "enabled" = (group in filter_types)))
+		f_types += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.names[id], "enabled" = (id in filter_types)))
 
 	var/datum/signal/signal = new(list(
 		"tag" = id_tag,

@@ -126,10 +126,7 @@
 	data["filter_types"] = list()
 	data["filter_types"] += list(list("name" = "Nothing", "id" = "", "selected" = !filter_type))
 	for(var/id in GLOB.gas_data.ids)
-		if(!(id in GLOB.gas_data.groups_by_gas))
-			data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
-	for(var/group in GLOB.gas_data.groups)
-		data["filter_types"] += list(list("name" = group, "id" = group, "selected" = (group == filter_type)))
+		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
 
 	return data
 

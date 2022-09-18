@@ -25,6 +25,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/list/ids = list()
 	var/list/typepaths = list()
 	var/list/fusion_powers = list()
+	var/list/TLV = list()
 	var/list/breathing_classes = list()
 	var/list/breath_results = list()
 	var/list/breath_reagents = list()
@@ -39,6 +40,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/list/supermatter = list()
 	var/list/groups_by_gas = list()
 	var/list/groups = list()
+	var/list/TLVs = list()
 
 
 /datum/gas
@@ -85,11 +87,13 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 		datums[g] = gas
 		specific_heats[g] = gas.specific_heat
 		names[g] = gas.name
+		TLVs[g] = gas.generate_TLV()
 		if(gas.moles_visible)
 			visibility[g] = gas.moles_visible
 			overlays[g] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
 				var/obj/effect/overlay/gas/overlay = new(gas.gas_overlay)
+				overlay.color = gas.color
 				overlay.alpha = i * 255 / FACTOR_GAS_VISIBLE_MAX
 				overlays[g][i] = overlay
 		else
@@ -135,6 +139,18 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 				R.init_reqs()
 			SSair.auxtools_update_reactions()
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_GAS, g)
+
+/datum/auxgm/proc/get_by_flag(flag)
+	var/static/list/gases_by_flag
+	if(!gases_by_flag)
+		gases_by_flag = list()
+	if(!(flag in gases_by_flag))
+		gases_by_flag += flag
+		gases_by_flag[flag] = list()
+		for(var/g in flags)
+			if(flags[g] & flag)
+				gases_by_flag[flag] += g
+	return gases_by_flag[flag]
 
 /proc/finalize_gas_refs()
 
