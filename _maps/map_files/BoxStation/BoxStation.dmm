@@ -11931,7 +11931,7 @@
 /obj/item/stack/spacecash/c1000{
 	pixel_y = 11;
 	pixel_x = 5;
-	value = 1;
+	value = 0;
 	name = "spess-opoly cash"
 	},
 /turf/open/floor/plasteel/showroomfloor,
