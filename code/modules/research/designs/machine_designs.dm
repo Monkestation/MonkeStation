@@ -674,3 +674,12 @@
 	build_path = /obj/item/circuitboard/machine/component_printer
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/obj/item/circuitboard/machine/crystallizer
+	name = "Crystallizer (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/binary/crystallizer
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 5)
