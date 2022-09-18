@@ -37,7 +37,7 @@
 	else if(istype(parent, /obj/effect/decal/cleanable/blood/gibs))
 		RegisterSignal(parent, COMSIG_GIBS_STREAK, .proc/try_infect_streak)
 
-/datum/component/infective/proc/try_infect_eat(datum/source, mob/living/eater, mob/living/feeder)
+/datum/component/infective/proc/try_infect_eat(datum/source, mob/living/carbon/eater, mob/living/feeder)
 	SIGNAL_HANDLER
 
 	for(var/V in diseases)
@@ -111,7 +111,7 @@
 
 	output_diseases |= diseases
 
-/datum/component/infective/proc/try_infect(mob/living/L, target_zone)
+/datum/component/infective/proc/try_infect(mob/living/carbon/L, target_zone)
 	for(var/V in diseases)
 		L.ContactContractDisease(V, target_zone)
 

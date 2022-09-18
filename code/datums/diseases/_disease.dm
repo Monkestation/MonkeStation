@@ -47,8 +47,8 @@
 	return TRUE
 
 //add the disease with no checks
-/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
-	var/datum/disease/D = make_copy ? Copy() : src	
+/datum/disease/proc/infect(var/mob/living/carbon/infectee, make_copy = TRUE)
+	var/datum/disease/D = make_copy ? Copy() : src
 	infectee.diseases += D
 	D.affected_mob = infectee
 	SSdisease.active_diseases += D //Add it to the active diseases list, now that it's actually in a mob and being processed.

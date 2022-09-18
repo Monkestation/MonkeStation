@@ -640,8 +640,9 @@
 
 /datum/reagent/medicine/ephedrine/overdose_process(mob/living/M)
 	if(prob(2) && iscarbon(M))
+		var/mob/living/carbon/affected = M
 		var/datum/disease/D = new /datum/disease/heart_failure
-		M.ForceContractDisease(D)
+		affected.ForceContractDisease(D)
 		to_chat(M, "<span class='userdanger'>You're pretty sure you just felt your heart stop for a second there..</span>")
 		M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
 

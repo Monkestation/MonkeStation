@@ -695,7 +695,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/AllowDrop()
 	return TRUE
 
-/turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE)
+/turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = NONE)
 
 	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
 

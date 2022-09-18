@@ -1,5 +1,5 @@
 
-/mob/living/proc/HasDisease(datum/disease/D)
+/mob/living/carbon/proc/HasDisease(datum/disease/D)
 	for(var/thing in diseases)
 		var/datum/disease/DD = thing
 		if(D.IsSame(DD))
@@ -7,7 +7,7 @@
 	return FALSE
 
 
-/mob/living/proc/CanContractDisease(datum/disease/D)
+/mob/living/carbon/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD && !D.process_dead)
 		return FALSE
 
@@ -31,7 +31,7 @@
 	return TRUE
 
 
-/mob/living/proc/ContactContractDisease(datum/disease/D)
+/mob/living/carbon/proc/ContactContractDisease(datum/disease/D)
 	if(!CanContractDisease(D))
 		return FALSE
 	D.try_infect(src)
@@ -110,7 +110,7 @@
 	if(passed)
 		D.try_infect(src)
 
-/mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
+/mob/living/carbon/proc/AirborneContractDisease(datum/disease/D, force_spread)
 	if( ((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob((50*D.permeability_mod) - 1))
 		ForceContractDisease(D)
 
@@ -123,7 +123,7 @@
 
 
 //Proc to use when you 100% want to try to infect someone (ignoreing protective clothing and such), as long as they aren't immune
-/mob/living/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
+/mob/living/carbon/proc/ForceContractDisease(datum/disease/D, make_copy = TRUE, del_on_fail = FALSE)
 	if(!CanContractDisease(D))
 		if(del_on_fail)
 			qdel(D)

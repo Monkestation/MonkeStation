@@ -45,6 +45,10 @@
 			adjustBruteLoss(2)
 
 		if(stat != DEAD)
+			//Random events (vomiting etc)
+			handle_random_events()
+
+		if(stat != DEAD)
 			//Handle hygiene
 			if(HAS_TRAIT(src, TRAIT_ALWAYS_CLEAN))
 				set_hygiene(HYGIENE_LEVEL_CLEAN)
@@ -309,7 +313,7 @@
 
 	return min(1,thermal_protection)
 
-/mob/living/carbon/human/handle_random_events()
+/mob/living/carbon/human/proc/handle_random_events()
 	//Puke if toxloss is too high
 	if(!stat)
 		if(getToxLoss() >= 45 && nutrition > 20)

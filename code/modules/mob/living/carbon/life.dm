@@ -10,6 +10,12 @@
 
 	if(!IsInStasis())
 
+		// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
+		handle_diseases()
+
+		if(QDELETED(src))
+			return
+
 		//Reagent processing needs to come before breathing, to prevent edge cases.
 		if(stat != DEAD)
 			for(var/V in internal_organs)
@@ -21,10 +27,13 @@
 					var/obj/item/organ/O = V
 					O.on_death() //Needed so organs decay while inside the body.
 
+		if(stat != DEAD)
+			//Breathing
+			handle_breathing(times_fired)
+
 		. = ..()
 
-		if(QDELETED(src))
-			return
+
 
 		if(.) //not dead
 			handle_blood()
@@ -34,6 +43,12 @@
 			if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
 				update_stamina() //needs to go before updatehealth to remove stamcrit
 				updatehealth()
+
+		if(stat != DEAD)
+			//Mutations and radiation
+			handle_mutations_and_radiation()
+			// eye, ear, brain damages
+			handle_traits()
 
 		if(stat != DEAD) //Handle brain damage
 			for(var/T in get_traumas())
@@ -69,7 +84,7 @@
 ///////////////
 
 //Start of a breath chain, calls breathe()
-/mob/living/carbon/handle_breathing(times_fired)
+/mob/living/carbon/proc/handle_breathing(times_fired)
 	var/next_breath = 4
 	var/obj/item/organ/lungs/L = getorganslot(ORGAN_SLOT_LUNGS)
 	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
@@ -344,7 +359,7 @@
 		if(BP.needs_processing)
 			. |= BP.on_life(force_heal + ((stam_regen * stam_heal * stam_heal_multiplier) / max(bodyparts_with_stam, 1)))
 
-/mob/living/carbon/handle_diseases()
+/mob/living/carbon/proc/handle_diseases()
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
 		if(prob(D.infectivity))
@@ -353,7 +368,24 @@
 		if(stat != DEAD || D.process_dead)
 			D.stage_act()
 
-/mob/living/carbon/handle_mutations_and_radiation()
+/mob/living/carbon/proc/handle_traits()
+	//Eyes
+	if(eye_blind)			//blindness, heals slowly over time
+		if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
+			eye_blind = max(eye_blind-1,0)
+			if(client && !eye_blind)
+				clear_alert("blind")
+				clear_fullscreen("blind")
+			//Prevents healing blurryness while blind from normal means
+			return
+		else
+			eye_blind = max(eye_blind-1,1)
+	if(eye_blurry)			//blurry eyes heal slowly
+		eye_blurry = max(eye_blurry-1, 0)
+		if(client)
+			update_eye_blur()
+
+/mob/living/carbon/proc/handle_mutations_and_radiation()
 	if(dna && dna.temporary_mutations.len)
 		for(var/mut in dna.temporary_mutations)
 			if(dna.temporary_mutations[mut] < world.time)

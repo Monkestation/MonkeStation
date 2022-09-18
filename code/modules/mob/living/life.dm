@@ -12,22 +12,8 @@
 
 	if(!has_status_effect(STATUS_EFFECT_STASIS))
 
-		if(stat != DEAD)
-			//Mutations and radiation
-			handle_mutations_and_radiation()
-
-		if(stat != DEAD)
-			//Breathing, if applicable
-			handle_breathing(times_fired)
-
-		handle_diseases()// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
-
-		if (QDELETED(src)) // diseases can qdel the mob via transformations
+		if (QDELETED(src))
 			return
-
-		if(stat != DEAD)
-			//Random events (vomiting etc)
-			handle_random_events()
 
 		//Handle temperature/pressure differences between body and environment
 		var/datum/gas_mixture/environment = loc.return_air()
@@ -38,14 +24,7 @@
 		var/gravity = has_gravity()
 		update_gravity(gravity)
 
-		if(gravity > STANDARD_GRAVITY)
-			if(!get_filter("gravity"))
-				add_filter("gravity",1,list("type"="motion_blur", "x"=0, "y"=0))
-			INVOKE_ASYNC(src, .proc/gravity_pulse_animation)
-			handle_high_gravity(gravity)
-
 		if(stat != DEAD)
-			handle_traits() // eye, ear, brain damages
 			handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	handle_fire()
@@ -54,20 +33,7 @@
 		machine.check_eye(src)
 
 	if(stat != DEAD)
-		return 1
-
-/mob/living/proc/handle_breathing(times_fired)
-	return
-
-/mob/living/proc/handle_mutations_and_radiation()
-	radiation = 0 //so radiation don't accumulate in simple animals
-	return
-
-/mob/living/proc/handle_diseases()
-	return
-
-/mob/living/proc/handle_random_events()
-	return
+		return TRUE
 
 /mob/living/proc/handle_environment(datum/gas_mixture/environment)
 	return
@@ -100,23 +66,6 @@
 /mob/living/proc/handle_status_effects()
 	if(confused)
 		confused = max(0, confused - 1)
-
-/mob/living/proc/handle_traits()
-	//Eyes
-	if(eye_blind)			//blindness, heals slowly over time
-		if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
-			eye_blind = max(eye_blind-1,0)
-			if(client && !eye_blind)
-				clear_alert("blind")
-				clear_fullscreen("blind")
-			//Prevents healing blurryness while blind from normal means
-			return
-		else
-			eye_blind = max(eye_blind-1,1)
-	if(eye_blurry)			//blurry eyes heal slowly
-		eye_blurry = max(eye_blurry-1, 0)
-		if(client)
-			update_eye_blur()
 
 /mob/living/proc/update_damage_hud()
 	return

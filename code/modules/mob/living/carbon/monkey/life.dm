@@ -123,10 +123,6 @@
 			return ONE_ATMOSPHERE
 	return pressure
 
-/mob/living/carbon/monkey/handle_random_events()
-	if (prob(1) && prob(2))
-		emote("scratch")
-
 /mob/living/carbon/monkey/has_smoke_protection()
 	if(wear_mask)
 		if(wear_mask.clothing_flags & BLOCK_GAS_SMOKE_EFFECT)

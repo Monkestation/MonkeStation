@@ -135,7 +135,7 @@
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
-/datum/symptom/heal/coma/proc/coma(mob/living/M)
+/datum/symptom/heal/coma/proc/coma(mob/living/carbon/M)
 	if(deathgasp)
 		M.fakedeath(TRAIT_REGEN_COMA)
 	else
