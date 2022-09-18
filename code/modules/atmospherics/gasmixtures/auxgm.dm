@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 	var/list/supermatter = list()
 	var/list/groups_by_gas = list()
 	var/list/groups = list()
-	var/list/TLVs = list()
+	var/list/TLV_list = list()
 
 
 /datum/gas
@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(GAS_O2, GAS_N2, GAS_CO2, GA
 		datums[g] = gas
 		specific_heats[g] = gas.specific_heat
 		names[g] = gas.name
-		TLVs[g] = gas.generate_TLV()
+		TLV_list[g] = gas.generate_TLV()
 		if(gas.moles_visible)
 			visibility[g] = gas.moles_visible
 			overlays[g] = new /list(FACTOR_GAS_VISIBLE_MAX)

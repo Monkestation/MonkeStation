@@ -129,9 +129,9 @@
 	)
 
 /obj/machinery/airalarm/proc/regenerate_TLV()
-	var/list/TLVs = GLOB.gas_data.TLVs
-	for(var/g in TLVs)
-		TLV[g] = TLVs[g]
+	var/list/TLV_list = GLOB.gas_data.TLV_list
+	for(var/g in TLV_list)
+		TLV[g] = TLV_list[g]
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
 	. = ..()
@@ -881,8 +881,8 @@
 	)
 
 /obj/machinery/airalarm/server/regenerate_TLV()
-	var/list/TLVs = GLOB.gas_data.TLVs
-	for(var/g in TLVs)
+	var/list/TLV_list = GLOB.gas_data.TLV_list
+	for(var/g in TLV_list)
 		TLV[g] = new/datum/tlv/no_checks
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -20°C or 253.15°K.
 	TLV = list(
