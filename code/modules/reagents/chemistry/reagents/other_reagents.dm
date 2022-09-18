@@ -179,6 +179,7 @@
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
 	evaporation_rate = 3
+	gas = GAS_H2O
 
 /*
  *	Water reaction to turf
