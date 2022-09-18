@@ -94,7 +94,7 @@
 					temp = air.return_temperature()
 				else
 					temp = T20C
-			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[contained_reagent.volume/contained_reagent.molarity];TEMP=[temp]")
+			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume * multiplier) /contained_reagent.molarity];TEMP=[temp]") //yes yes i know this is more chemicals than was inputed but like this would be slow as fuck otherwise
 			reagents.reagent_list -= contained_reagent
 		qdel(chemholder)
 
