@@ -49,7 +49,7 @@
 	enthalpy = -393500
 
 /datum/gas/carbon_dioxide/generate_TLV()
-	return new/datum/tlv(-1, -1, 5, 10)
+	return new/datum/tlv(TLV_DONT_CHECK, TLV_DONT_CHECK, 5, 10)
 
 /datum/gas/plasma
 	id = GAS_PLASMA
