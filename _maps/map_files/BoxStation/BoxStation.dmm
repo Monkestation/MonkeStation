@@ -19251,7 +19251,6 @@
 /area/bridge)
 "aZU" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/mob/living/simple_animal/bot/cleanbot/larry,
 /obj/machinery/airalarm/directional/east,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
