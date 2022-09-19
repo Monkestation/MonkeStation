@@ -16813,6 +16813,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/power/apc/highcap/fifteen_k{
+	pixel_y = -24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
 "aRt" = (
@@ -20278,9 +20284,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
@@ -41284,16 +41287,6 @@
 	},
 /obj/item/storage/crayons{
 	layer = 2.8
-	},
-/obj/machinery/button/door{
-	id = "funnydoor";
-	name = "Bedroom Door Lock";
-	normaldoorcontrol = 1;
-	pixel_x = -6;
-	pixel_y = 8;
-	specialfunctions = 4;
-	layer = 2.8;
-	desc = "A door remote control switch. The clown set this up to keep the mime out of their bedroom, to no avail."
 	},
 /obj/item/toy/figure/clown{
 	pixel_y = 7;
@@ -68613,14 +68606,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/highcap/ten_k{
-	pixel_y = 23;
-	name = "Bridge APC";
-	desc = "A control terminal for the area's electrical systems. This one has a more robust bettery"
-	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "tWc" = (
@@ -74953,9 +74938,6 @@
 "yfS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
