@@ -70573,10 +70573,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/arrows,
-/obj/machinery/door/window/eastright{
-	req_access_txt = "42";
-	name = "Courtroom"
-	},
 /turf/open/floor/pod,
 /area/crew_quarters/cryopods)
 "vtj" = (
