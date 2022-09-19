@@ -59596,12 +59596,6 @@
 /obj/effect/landmark/start/mime,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/secure/safe{
-	pixel_y = -26;
-	pixel_x = 8;
-	desc = "Excellent for securing things away from funny hands.";
-	name = "silent safe"
-	},
 /obj/machinery/light/small/broken/directional/east,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
@@ -63648,6 +63642,10 @@
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 10
+	},
+/obj/item/storage/secure/safe{
+	pixel_y = 26;
+	pixel_x = 5
 	},
 /turf/open/floor/eighties,
 /area/crew_quarters/theatre/backstage)
