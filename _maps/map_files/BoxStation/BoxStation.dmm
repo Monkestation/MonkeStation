@@ -5301,8 +5301,6 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/end{
 	dir = 1
 	},
-/obj/item/clothing/suit/judgerobe,
-/obj/item/clothing/head/powdered_wig,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "akC" = (
@@ -48056,6 +48054,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"fmL" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "42"
+	},
+/turf/closed/wall,
+/area/security/courtroom)
 "fmU" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/trimline/neutral/filled/line,
@@ -108876,7 +108880,7 @@ ajo
 ajo
 ajo
 ajo
-ajo
+fmL
 gBE
 ahn
 ehl
