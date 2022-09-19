@@ -59598,9 +59598,6 @@
 	desc = "Excellent for securing things away from funny hands.";
 	name = "silent safe"
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /obj/machinery/light/small/broken/directional/east,
 /turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
