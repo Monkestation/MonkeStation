@@ -74049,7 +74049,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple/tile_full,
 /obj/structure/chair/comfy/shuttle{
-	dir = 1
+	dir = 1;
+	name = "Scientific Seat"
 	},
 /obj/effect/landmark/start/research_director,
 /turf/open/floor/plasteel/dark,
