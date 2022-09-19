@@ -32,7 +32,7 @@ BONUS
 
 /datum/symptom/vitiligo/Start(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(SKINTONES in H.dna.species.species_traits)
@@ -43,7 +43,7 @@ BONUS
 /datum/symptom/vitiligo/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.skin_tone == "albino")
@@ -62,7 +62,7 @@ BONUS
 
 /datum/symptom/vitiligo/End(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(SKINTONES in H.dna.species.species_traits)
@@ -104,7 +104,7 @@ BONUS
 
 /datum/symptom/revitiligo/Start(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(SKINTONES in H.dna.species.species_traits)
@@ -115,7 +115,7 @@ BONUS
 /datum/symptom/revitiligo/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.skin_tone == "african2")
@@ -134,7 +134,7 @@ BONUS
 
 /datum/symptom/revitiligo/End(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(SKINTONES in H.dna.species.species_traits)
@@ -177,7 +177,7 @@ BONUS
 /datum/symptom/polyvitiligo/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(5)
 			var/static/list/banned_reagents = list(/datum/reagent/colorful_reagent/powder/invisible, /datum/reagent/colorful_reagent/powder/white)
@@ -256,7 +256,7 @@ BONUS
 /datum/symptom/skineggs/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	var/list/diseases = list(A)
 	switch(A.stage)
 		if(5)

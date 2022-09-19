@@ -103,7 +103,7 @@ Bonus
 	if(time_to_cure > 0)
 		time_to_cure--
 	else
-		var/mob/living/M = A.affected_mob
+		var/mob/living/carbon/M = A.affected_mob
 		Heal(M, A)
 
 /datum/symptom/viralreverse/proc/Heal(mob/living/M, datum/disease/advance/A)

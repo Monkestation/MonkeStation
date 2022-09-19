@@ -25,7 +25,7 @@
 /datum/symptom/heal/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(4, 5)
 			var/effectiveness = CanHeal(A)
@@ -119,7 +119,7 @@
 	REMOVE_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
 
 /datum/symptom/heal/coma/CanHeal(datum/disease/advance/A)
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(stabilize)
 		ADD_TRAIT(M, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
 	if(HAS_TRAIT(M, TRAIT_DEATHCOMA))
@@ -135,7 +135,7 @@
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
-/datum/symptom/heal/coma/proc/coma(mob/living/M)
+/datum/symptom/heal/coma/proc/coma(mob/living/carbon/M)
 	if(deathgasp)
 		M.fakedeath(TRAIT_REGEN_COMA)
 	else

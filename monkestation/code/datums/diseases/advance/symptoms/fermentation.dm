@@ -43,7 +43,7 @@
 /datum/symptom/fermentation/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	var/mob/living/carbon/C = M
 
 	if(A.stage >= 2)
@@ -91,7 +91,7 @@
 
 /datum/symptom/fermentation/End(datum/disease/advance/A) //Restore traits as needed.
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	QDEL_NULL(is_waddling)
 	if(has_light_drinker == TRUE)
 		REMOVE_TRAIT(M, TRAIT_DRUNK_HEALING, DISEASE_TRAIT)

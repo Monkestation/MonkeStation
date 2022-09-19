@@ -40,7 +40,7 @@
 /datum/symptom/gateway/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 
 	if(A.stage >= 2 && random_teleportation)
 		if(prob(15))
@@ -76,7 +76,7 @@
 
 /datum/symptom/gateway/End(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = A.affected_mob
