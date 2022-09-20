@@ -206,7 +206,6 @@
 			var/datum/reagent/R = breath_reagents[gas]
 			H.reagents.add_reagent(R, (breath.total_moles() * initial(R.molarity)))
 			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath.get_moles(gas) : -breath.get_moles(gas)
-	H.reagents.reaction(H, VAPOR, from_gas = 1)
 
 	for(var/gas in mole_adjustments)
 		breath.adjust_moles(gas, mole_adjustments[gas])
