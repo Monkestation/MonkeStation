@@ -24916,28 +24916,22 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
 "bpO" = (
-/obj/item/storage/firstaid/fire{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/fire{
-	pixel_x = -3;
-	pixel_y = -3
-	},
 /obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/door/window/southleft{
-	name = "First-Aid Supplies";
-	req_access_txt = "5";
-	dir = 4
-	},
 /obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/obj/item/wrench/medical,
+/obj/item/wrench/medical,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = -2;
+	pixel_x = -4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /obj/structure/window/reinforced{
-	dir = 1
+	dir = 4;
+	layer = 2.9
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -29465,9 +29459,24 @@
 	},
 /area/storage/tech)
 "bDD" = (
+/obj/item/storage/firstaid/fire{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/fire{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -30176,35 +30185,27 @@
 /turf/open/floor/engine,
 /area/science/storage)
 "bFJ" = (
-/obj/item/storage/firstaid/toxin{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/storage/firstaid/toxin{
+/obj/item/storage/box/beakers{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/toxin{
-	pixel_x = -3;
-	pixel_y = -3
+/obj/item/storage/box/syringes,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
+/obj/machinery/door/window/southright{
+	dir = 8;
+	name = "Miscellaneous medical Supplies";
+	req_access_txt = "5"
+	},
 /obj/structure/table/glass,
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
-/obj/machinery/door/window/southleft{
-	dir = 8;
-	name = "First-Aid Supplies";
-	req_access_txt = "5"
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bFL" = (
 /obj/machinery/door/firedoor,
@@ -33535,9 +33536,27 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "bQj" = (
+/obj/item/storage/firstaid/o2{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/o2{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -41855,7 +41874,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "cux" = (
-/obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cuy" = (
@@ -41912,21 +41930,26 @@
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cuH" = (
-/obj/item/storage/box/beakers{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/syringes,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/door/window/southright{
-	dir = 8;
-	name = "Miscellaneous medical Supplies";
-	req_access_txt = "5"
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -3;
+	pixel_y = 2
 	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /obj/structure/table/glass,
+/obj/item/gun/syringe,
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -49833,6 +49856,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"gvS" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
 "gwd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -51345,12 +51374,11 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "hwm" = (
-/obj/machinery/vending/wardrobe/medi_wardrobe,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 4
+/obj/machinery/door/airlock/medical/glass{
+	name = "Surgery Observation"
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/storage)
+/area/medical/surgery)
 "hwv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -54962,30 +54990,9 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "klA" = (
-/obj/structure/window/reinforced,
-/obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/door/window/southleft{
-	dir = 8;
-	name = "Miscellaneous medical Supplies";
-	req_access_txt = "5"
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/clothing/neck/stethoscope,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/structure/table/glass,
-/obj/item/gun/syringe,
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
+/obj/machinery/rnd/production/techfab/department/medical,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "klY" = (
 /obj/structure/closet/emcloset,
@@ -55423,23 +55430,8 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/science/mixing)
 "kwV" = (
-/obj/effect/turf_decal/tile/blue/tile_full,
-/obj/machinery/door/window/southright{
-	name = "First-Aid Supplies";
-	req_access_txt = "5";
+/obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
-	},
-/obj/structure/table/glass,
-/obj/structure/window/reinforced,
-/obj/item/wrench/medical,
-/obj/item/wrench/medical,
-/obj/item/storage/toolbox/electrical{
-	pixel_y = -2;
-	pixel_x = -4
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -4;
-	pixel_y = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -57582,6 +57574,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
+	},
+/obj/structure/chair/comfy{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
@@ -65532,6 +65527,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 10
 	},
+/obj/item/radio/intercom{
+	pixel_y = -28
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "rAZ" = (
@@ -67087,31 +67085,30 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
 "szW" = (
-/obj/item/storage/firstaid/o2{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/storage/firstaid/o2{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 3;
 	pixel_y = 3
 	},
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/firstaid/o2{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = -3;
 	pixel_y = -3
 	},
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
-/obj/machinery/door/window/southright{
+/obj/machinery/door/window/southleft{
 	dir = 8;
 	name = "First-Aid Supplies";
 	req_access_txt = "5"
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
@@ -67156,6 +67153,9 @@
 /obj/machinery/airalarm/directional/south,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/structure/chair/comfy{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
@@ -69463,9 +69463,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
-/obj/structure/chair/comfy{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
@@ -71288,12 +71285,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "vKq" = (
-/obj/machinery/rnd/production/techfab/department/medical,
-/obj/effect/turf_decal/stripes/box,
-/obj/effect/turf_decal/tile/blue/tile_full,
-/turf/open/floor/plasteel/dark/side{
+/obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
 	},
+/obj/machinery/vending/wardrobe/medi_wardrobe,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "vKs" = (
 /obj/structure/cable/yellow{
@@ -72559,10 +72555,10 @@
 "wCc" = (
 /obj/structure/window/spawner/north,
 /obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
+	dir = 1
 	},
-/obj/item/radio/intercom{
-	pixel_x = -32
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
@@ -73054,6 +73050,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
+	},
+/obj/structure/chair/comfy{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/surgery)
@@ -75174,9 +75173,6 @@
 "yll" = (
 /obj/structure/window/spawner/north,
 /obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/structure/chair/comfy{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -111844,11 +111840,11 @@ bRv
 caQ
 edr
 bDD
-bpO
 oxT
 kdP
-kwV
+bpO
 huK
+gvS
 bzf
 cuG
 rAT
@@ -112362,9 +112358,9 @@ szW
 bFJ
 cuH
 klA
-hwm
 cud
 cud
+kwV
 pHe
 fKl
 tSQ
@@ -112621,7 +112617,7 @@ bDJ
 bDJ
 bBy
 bBy
-bDJ
+hwm
 bDJ
 bzs
 tbK
