@@ -10711,6 +10711,9 @@
 /obj/structure/chair/office/light{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
 "aBi" = (
@@ -17600,10 +17603,13 @@
 	id = "bridgewindows";
 	name = "Bridge View Blast door"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "aTY" = (
@@ -18398,7 +18404,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -18408,6 +18413,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "aWQ" = (
@@ -18430,12 +18439,12 @@
 	name = "Bridge View Blast door"
 	},
 /obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "aWT" = (
@@ -18455,7 +18464,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -18465,6 +18473,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "aWW" = (
@@ -18842,25 +18854,35 @@
 	id = "bridgewindows";
 	name = "Bridge View Blast door"
 	},
+/obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "aYu" = (
-/obj/structure/table/reinforced,
 /obj/item/taperecorder,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aYC" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/table/reinforced,
 /obj/item/skub,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aYD" = (
@@ -19172,6 +19194,9 @@
 /area/crew_quarters/locker)
 "aZC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/carpet/royalblue,
 /area/bridge/meeting_room)
 "aZE" = (
@@ -19627,6 +19652,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "bbj" = (
@@ -19882,6 +19910,12 @@
 	name = "privacy shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
 "bbX" = (
@@ -19924,6 +19958,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -20196,6 +20233,13 @@
 	id = "heads_meeting";
 	name = "privacy shutters"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
 "bcY" = (
@@ -20256,6 +20300,9 @@
 /obj/machinery/light_switch{
 	pixel_x = 22;
 	pixel_y = -6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -25482,12 +25529,15 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hop";
 	name = "Privacy Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "brW" = (
@@ -45366,6 +45416,20 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/exploration_prep)
+"drU" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "heads_meeting";
+	name = "privacy shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
 "dsf" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Incinerator Access";
@@ -45993,10 +46057,13 @@
 	id = "bridgewindows";
 	name = "Bridge View Blast door"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge)
 "dUO" = (
@@ -47151,6 +47218,9 @@
 /obj/structure/table,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
@@ -50692,6 +50762,12 @@
 	id = "heads_meeting";
 	name = "privacy shutters"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
 "gYu" = (
@@ -51162,6 +51238,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"hqI" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "bridgewindows";
+	name = "Bridge View Blast door"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/bridge)
 "hra" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -59484,6 +59580,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -66228,8 +66327,9 @@
 	id = "bridgewindows";
 	name = "Bridge View Blast door"
 	},
+/obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
-	icon_state = "0-8"
+	icon_state = "1-8"
 	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -68062,6 +68162,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
 "txx" = (
@@ -68807,6 +68910,23 @@
 /obj/effect/turf_decal/tile/red/tile_full,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"uev" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "heads_meeting";
+	name = "privacy shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/bridge/meeting_room)
 "uew" = (
 /obj/effect/turf_decal/bot,
 /obj/item/storage/box/firingpins,
@@ -100399,7 +100519,7 @@ aKd
 nNn
 aZM
 aZM
-bbW
+drU
 gYk
 bcX
 aZM
@@ -101939,7 +102059,7 @@ ceh
 aSD
 aWK
 aVl
-bbW
+uev
 aZC
 baK
 baK
@@ -104509,7 +104629,7 @@ aSD
 aVl
 aWS
 bft
-bnV
+aZS
 aRs
 aPR
 tVZ
@@ -104766,7 +104886,7 @@ lJf
 aVl
 aWS
 aNv
-bnV
+aZS
 nbO
 cjx
 yiX
@@ -105278,7 +105398,7 @@ aRq
 aSD
 lbb
 aVl
-aWS
+hqI
 aYC
 njH
 kdh
