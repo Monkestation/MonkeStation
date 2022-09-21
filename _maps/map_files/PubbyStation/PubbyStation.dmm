@@ -25868,29 +25868,7 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "bry" = (
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/assembly/prox_sensor{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/crowbar,
-/obj/structure/table,
+/obj/machinery/modular_fabricator/autolathe,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "brz" = (
@@ -26466,6 +26444,22 @@
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -59167,6 +59161,16 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
+"uBB" = (
+/obj/structure/rack,
+/obj/item/stock_parts/cell/high/plus{
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/crowbar,
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
 "uBH" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -98867,7 +98871,7 @@ bgE
 bju
 bhR
 bju
-bju
+uBB
 bkt
 blI
 bmO
