@@ -209,8 +209,18 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "aaA" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
 /obj/item/robot_suit,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "aaB" = (
@@ -154927,7 +154937,7 @@ dzH
 dAL
 aaz
 dDB
-aaz
+aaA
 dGa
 dHw
 dIN
@@ -155184,7 +155194,7 @@ dzI
 dAM
 aar
 hFF
-aaA
+aaw
 dGc
 dHx
 dIO

@@ -14430,6 +14430,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "cNb" = (
