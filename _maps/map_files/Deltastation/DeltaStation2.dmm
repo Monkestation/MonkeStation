@@ -83854,7 +83854,7 @@
 /area/medical/surgery)
 "dvF" = (
 /obj/machinery/computer/operating{
-	dir = 4
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -89274,7 +89274,6 @@
 	},
 /obj/item/surgical_drapes,
 /obj/effect/turf_decal/bot,
-/obj/item/clothing/gloves/color/latex/nitrile,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dHz" = (
@@ -89300,7 +89299,10 @@
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	layer = 3.1
+	},
+/obj/item/clothing/gloves/color/latex/nitrile,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dHC" = (
