@@ -24,7 +24,7 @@
 //monkestation edit begin
 	var/arrestsounds = "law"
 	var/chasesounds = list('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg')
-	var/emagsounds = list('sound/voice/beepsky/insult.ogg') //ready to accept additional sounds!
+	var/emagsounds = "sec_emag"
 	//monkestation edit end
 
 	var/noloot = FALSE
