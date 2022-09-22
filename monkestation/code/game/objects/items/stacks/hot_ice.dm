@@ -6,7 +6,6 @@
 	icon = 'icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/hot_ice=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/toxin/plasma = 200)
-	materials = list(/datum/material/hot_ice = MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/stack/sheet/hot_ice/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins licking \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")

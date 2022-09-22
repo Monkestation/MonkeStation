@@ -6,6 +6,7 @@ If you're wanting to add easy recolors for your sprite then this is the system f
 - Mixed greyscale and colored sprite layers; You can choose to only greyscale a part of the sprite or have premade filters applied to layers.
 - Blend modes; Instead of just putting layers of sprites on top of eachother you can use the more advanced blend modes.
 - Reusable configurations; You can reference greyscale sprites from within the configuration of another, allowing you to have a bunch of styles with minimal additional configuration.
+- Bitmasked icons can be generated from bitmasked source files. In order to do this, add "bitmask_config" key to your icon state metadata with an integer value equal to a bitfield of flags from `code/__DEFINES/greyscale.dm`. The common one that walls and windows use is 7 (first three flags). After this you need to set `"bitmask" = true` in your layer data to have that layer use a bitmasked variant. You can mix bitmasked layers and non-bitmasked layers.
 
 ## Other Documents
 
@@ -33,27 +34,31 @@ The json is made up of some metadata and a list of layers used while creating th
 
 ```json
 {
-	"icon_state_name": [
-		{
-			"type": "reference",
-			"reference_type": "/datum/greyscale_config/some_other_config",
-			"blend_mode": "overlay",
-			"color_ids": [ 1 ]
-		},
+	"icon_state_name":
+	{
+		"layers":
 		[
 			{
-				"type": "icon_state",
-				"icon_state": "highlights",
-				"blend_mode": "overlay",
-				"color_ids": [ 2 ]
-			},
-			{
 				"type": "reference",
-				"reference_type": "/datum/greyscale_config/sparkle_effect",
-				"blend_mode": "add"
-			}
+				"reference_type": "/datum/greyscale_config/some_other_config",
+				"blend_mode": "overlay",
+				"color_ids": [ 1 ]
+			},
+			[
+				{
+					"type": "icon_state",
+					"icon_state": "highlights",
+					"blend_mode": "overlay",
+					"color_ids": [ 2 ]
+				},
+				{
+					"type": "reference",
+					"reference_type": "/datum/greyscale_config/sparkle_effect",
+					"blend_mode": "add"
+				}
+			]
 		]
-	]
+	}
 }
 ```
 
@@ -91,6 +96,21 @@ And that's all you need to make it usable by other code:
 ```
 
 More configurations can be found in [code/datums/greyscale/greyscale_configs.dm](./greyscale_configs.dm)
+
+If you want your item to be colorable in a vending machine (or other places if there's ever any support added for that), you should do it like this:
+
+```c
+/obj/item/clothing/head/beret
+	...
+	flags_1 = IS_PLAYER_COLORABLE_1
+```
+However, **be extremely careful**, as this *requires* that you put *all* of the object's `flags_1` flags in that statement all over again. It's ugly, I know, but there's no
+better way to do this with BYOND just yet. You can put multiple flags like this (not real flags):
+```c
+/obj/item/clothing/head/beret
+	...
+	flags_1 = IS_PLAYER_COLORABLE_1 | THIS_IS_A_FAKE_FLAG | THIS_IS_ANOTHER_FAKE_FLAG
+```
 
 ## Debugging
 
