@@ -53,14 +53,14 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define ALLOW_DARK_PAINTS_1 (1<<14)
 /// Should this object be unpaintable?
 #define UNPAINTABLE_1 (1<<15)
+//! Should we use the initial icon for display? Mostly used by overlay only objects
+#define HTML_USE_INITAL_ICON_1		(1<<18)
 /// Is the thing currently spinning?
 #define IS_SPINNING_1 (1<<16)
 #define IS_ONTOP_1 (1<<17)
 #define SUPERMATTER_IGNORES_1 (1<<18)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
 #define CAN_BE_DIRTY_1 (1<<19)
-/// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 (1<<20)
 /// Can players recolor this in-game via vendors (and maybe more if support is added)?
 #define IS_PLAYER_COLORABLE_1 (1<<21)
 /// Whether or not this atom has contextual screentips when hovered OVER

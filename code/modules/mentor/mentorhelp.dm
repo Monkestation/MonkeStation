@@ -19,12 +19,18 @@
 	if(!mob)	return						//this doesn't happen
 
 	var/show_char = CONFIG_GET(flag/mentors_mobname_only)
-	var/mentor_msg = "<span class='mentornotice'><b><span class='mentorhelp'>MENTORHELP:</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b>: [msg]</span></span>"
+	var/mentor_msg = "<span class='mentornotice'><b><span class='mentorhelp'>MENTORHELP:</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b> : [msg]</span></span>"
+	//monkestation edit: add mentor imaginary friends
+	var/mentor_msg_observing = "<span class='mentornotice'><b><span class='mentorhelp'>MENTORHELP:</b> <b>[key_name_mentor(src, 1, 0, 1, show_char)]</b> (<a href='?_src_=mentor;[MentorHrefToken(TRUE)];mentor_friend=[REF(src.mob)]'>IF</a>) : [msg]</span></span>"
 	log_mentor("MENTORHELP: [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		X << 'sound/items/bikehorn.ogg'
-		to_chat(X, mentor_msg)
+		if(!isobserver(X.mob))
+			to_chat(X, mentor_msg)
+		else
+			to_chat(X, mentor_msg_observing)
+	//monkestation edit end
 
 	to_chat(src, "<span class='mentornotice'><span class='mentorhelp'>>PM to-<b>Mentors</b>: [msg]</span></span>")
 	if(GLOB.mentors.len)

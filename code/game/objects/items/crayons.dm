@@ -246,6 +246,7 @@
 			var/txt = stripped_input(usr,"Choose what to write.",
 				"Scribbles",default = text_buffer)
 			text_buffer = crayon_text_strip(txt)
+			log_game("[usr] ([usr.key]) inserted \"[text_buffer]\" as crayon input.")
 			. = TRUE
 			paint_mode = PAINT_NORMAL
 			drawtype = "a"
@@ -397,9 +398,10 @@
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
-	for(var/t in affected_turfs)
+	for(var/turf/t in affected_turfs)
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier, transfered_by = user)
+		t.add_hiddenprint(user)
 	check_empty(user)
 
 /obj/item/toy/crayon/attack(mob/M, mob/user)
@@ -569,6 +571,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	desc = "A metallic container containing tasty paint."
 
+	w_class = WEIGHT_CLASS_NORMAL
 	instant = TRUE
 	edible = FALSE
 	has_cap = TRUE
@@ -628,7 +631,7 @@
 		. += "It is empty."
 	. += "<span class='notice'>Alt-click [src] to [ is_capped ? "take the cap off" : "put the cap on"].</span>"
 
-/obj/item/toy/crayon/spraycan/pre_attack(atom/target, mob/user, proximity, params)
+/obj/item/toy/crayon/spraycan/afterattack(atom/target, mob/user, proximity, params)
 	if(!proximity)
 		return
 

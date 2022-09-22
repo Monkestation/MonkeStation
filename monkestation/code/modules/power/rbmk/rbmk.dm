@@ -526,7 +526,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Results: Engineering becomes unusable and your engine irreparable
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/meltdown()
 	set waitfor = FALSE
-	SSair.atmos_machinery -= src //Annd we're now just a useless brick.
+	SSair.stop_processing_machine(src) //Annd we're now just a useless brick.
 	slagged = TRUE
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
@@ -617,6 +617,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/start_up()
 	if(slagged)
 		return // No :)
+	SSair.start_processing_machine(src)
 	START_PROCESSING(SSmachines, src)
 	desired_k = 1
 	set_light(10)
@@ -627,6 +628,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Shuts off the fuel rods, ambience, etc. Keep in mind that your temperature may still go up!
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor/proc/shut_down()
 	STOP_PROCESSING(SSmachines, src)
+	SSair.stop_processing_machine(src)
 	stop_relay(CHANNEL_ENGINE_ALERT)
 
 	investigate_log("Reactor shutdown at [pressure] kPa and [temperature] C.", INVESTIGATE_ENGINES)

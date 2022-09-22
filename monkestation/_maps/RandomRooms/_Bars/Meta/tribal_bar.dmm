@@ -61,9 +61,9 @@
 /area/crew_quarters/bar)
 "k" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/toy/plush/lizardplushie,
-/obj/item/toy/plush/lizardplushie,
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard_plushie,
+/obj/item/toy/plush/lizard_plushie,
+/obj/item/toy/plush/lizard_plushie,
 /obj/item/stack/sheet/animalhide/lizard,
 /obj/item/stack/sheet/animalhide/lizard,
 /obj/item/stack/sheet/animalhide/lizard,
@@ -99,11 +99,8 @@
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
 "p" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
 /mob/living/carbon/monkey/punpun,
+/obj/machinery/light/small/dim/directional/west,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
 "r" = (
@@ -145,6 +142,13 @@
 /obj/machinery/disposal/bin,
 /obj/machinery/light_switch{
 	pixel_x = 25
+	},
+/turf/open/floor/grass/fakebasalt,
+/area/crew_quarters/bar)
+"x" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
@@ -293,6 +297,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
+"T" = (
+/obj/machinery/light/small/dim/directional/east,
+/turf/open/floor/grass/fakebasalt,
+/area/crew_quarters/bar)
 "U" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -328,6 +336,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/machinery/light/small/dim/directional/west,
 /turf/open/floor/grass/fakebasalt,
 /area/crew_quarters/bar)
 
@@ -345,7 +354,7 @@ A
 (2,1,1) = {"
 p
 M
-J
+x
 J
 M
 J
@@ -417,7 +426,7 @@ y
 M
 z
 f
-J
+T
 "}
 (9,1,1) = {"
 A

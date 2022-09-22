@@ -63,6 +63,7 @@
 	align_to_windows = TRUE
 	door_align_type = /obj/machinery/door/airlock
 
+	flags_1 = PREVENT_CLICK_UNDER_1 & HTML_USE_INITAL_ICON_1
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_MEDIUM_INSULATION
 
@@ -179,23 +180,13 @@
 	if(abandoned)
 		var/outcome = rand(1,100)
 		switch(outcome)
-			if(1 to 9)
-				var/turf/here = get_turf(src)
-				for(var/turf/closed/T in range(2, src))
-					here.PlaceOnTop(T.type)
-					qdel(src)
-					return
-				here.PlaceOnTop(/turf/closed/wall)
-				qdel(src)
-				return
-			if(9 to 11)
+			if(1 to 3)
 				lights = FALSE
+			if(4 to 7)
 				locked = TRUE
-			if(12 to 15)
-				locked = TRUE
-			if(16 to 23)
+			if(8 to 15)
 				welded = TRUE
-			if(24 to 30)
+			if(16 to 25)
 				panel_open = TRUE
 	if(cutAiWire)
 		wires.cut(WIRE_AI)

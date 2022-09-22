@@ -68,6 +68,8 @@
 	. = ..()
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
+	if(greyscale_config)
+		AddComponent(/datum/component/gags_recolorable)
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
@@ -128,6 +130,8 @@
 		qdel(src)
 
 /obj/item/clothing/attack(mob/M, mob/user, params)
+	if(clothing_flags & INEDIBLE_CLOTHING)
+		return ..()
 	if(user.a_intent != INTENT_HARM && ismoth(M) && !(clothing_flags & NOTCONSUMABLE) && !(resistance_flags & INDESTRUCTIBLE) && (armor.getRating("melee") == 0))
 		if(isnull(moth_snack))
 			moth_snack = new

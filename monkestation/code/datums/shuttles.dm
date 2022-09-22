@@ -39,3 +39,23 @@
 	can_be_bought = FALSE
 	admin_notes = "Currently an admin only shuttle. Has working cogscarab shells however they lack the power to start the ark \
 	and cannot teleport unless Reebe is loaded."
+
+/datum/map_template/shuttle/emergency/metabananium
+	prefix = "_maps/shuttles/"
+	suffix = "metabananium"
+	name = "Clownified Shuttle"
+	description = "Honk honk honk honk honk honk honk honk honk honk honk honk henk"
+	admin_notes = "Made out of solid bananium, filled with clown mobs. Very evil."
+	credit_cost = 7500
+	can_be_bought = FALSE
+	illegal_shuttle = TRUE
+
+/datum/map_template/shuttle/emergency/pods
+	prefix = "_maps/shuttles/"
+	suffix = "pods"
+	name = "Multiple Escape Pods"
+	description = "Well, you can't afford a shuttle but you need more than one or two pods. We got you covered."
+	admin_notes = "Multiple tiny pods loosely floating near each other. Painful to experience."
+	credit_cost = 1000
+	can_be_bought = FALSE
+	illegal_shuttle = TRUE
