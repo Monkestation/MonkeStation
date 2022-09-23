@@ -91,6 +91,7 @@
 	maxHealth = 15
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 
+	icon = 'monkestation/icons/mob/ranching/chickens.dmi'
 	icon_state = "chicken_white"
 	icon_living = "chicken_white"
 	icon_dead = "chicken_white_dead"
