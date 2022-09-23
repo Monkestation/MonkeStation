@@ -482,9 +482,9 @@
 		else
 			add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
 	else
-		if(HAS_TRAIT(src, FOOD_SLIDE))
+		if(HAS_TRAIT(src, FOOD_SLIDE) || has_movespeed_modifier("belly_slide"))
 			remove_movespeed_modifier("belly_slide", TRUE)
-		else
+		if(has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
 			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
 
 //Updates the mob's health from bodyparts and mob damage variables

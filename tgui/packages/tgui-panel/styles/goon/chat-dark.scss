@@ -466,6 +466,12 @@ em						{font-style: normal;	font-weight: bold;}
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
 
+.examine_block {
+  background: #1b1c1e;
+  border: 1px solid #a4bad6;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+}
 //Job Colours
 //Make sure you add to replacementNodes in renderer.js
 .unknown {color: #cec9c1}
@@ -543,3 +549,10 @@ em						{font-style: normal;	font-weight: bold;}
 .stat_infomation				{color: #e6a648;}
 
 .stat_br				        {color: #2ace53;}
+
+//Monkestation Edit
+
+.mimichivemind				{color: #8e8a99;}
+.mimichivemindtitle				{color: #594494;}
+
+//Monkestation Edit End
