@@ -269,8 +269,9 @@
 			else
 				temp_blood_DNA = drop.return_blood_DNA() //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
-		else
-			drop = new(T, get_static_viruses())
+		else if(iscarbon(src))
+			var/mob/living/carbon/infective = src
+			drop = new(T, infective.get_static_viruses())
 			drop.color = initial(blood_type.color) // poor mans gags this doesn't need its own config
 			drop.transfer_mob_blood_dna(src)
 			return
@@ -278,8 +279,9 @@
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
-	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(T, get_static_viruses())
+	if(!B && iscarbon(src))
+		var/mob/living/carbon/infective = src
+		B = new /obj/effect/decal/cleanable/blood/splatter(T, infective.get_static_viruses())
 	if(QDELETED(B)) //Give it up
 		return
 	if(B.count < 10 )

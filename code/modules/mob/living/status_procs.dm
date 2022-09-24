@@ -454,7 +454,7 @@
 		tod = null
 	update_stat()
 
-/mob/living/proc/fakedeath(source, silent = FALSE)
+/mob/living/carbon/proc/fakedeath(source, silent = FALSE)
 	if(stat == DEAD)
 		return
 	if(!silent)

@@ -24,6 +24,9 @@
 		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
 	..()
 
+/mob/living/carbon/spawn_gibs()
+	new /obj/effect/gibspawner/generic(drop_location(), src, get_static_viruses())
+
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)
 	var/atom/Tsec = drop_location()
 	if(!no_bodyparts)

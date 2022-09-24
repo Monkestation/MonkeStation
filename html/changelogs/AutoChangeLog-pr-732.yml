@@ -1,8 +1,0 @@
-author: nednaZ
-delete-after: true
-changes:
-  - rscadd: Being deaf now alerts you when you are deaf.
-  - tweak: Removes the original fullscreen white effect when flashed, replacing it
-      with a darker vision reduction.
-  - soundadd: The ear ringing sound effect is no longer incredibly painful
-  - soundadd: The flashbang sound effect is not as painful

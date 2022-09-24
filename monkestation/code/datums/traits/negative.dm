@@ -23,7 +23,7 @@
 
 /datum/quirk/stowaway
 	name = "Stowaway"
-	desc = "You're a station stowaway with no ID card that wakes up inside a random locker, who knows where you'll end up?"
+	desc = "You wake up up inside a random locker with no ID card.  You still have an employee contract on file, at least."
 	value = -2
 
 /datum/quirk/stowaway/on_spawn()

@@ -126,7 +126,7 @@
 				phrase = rand(12,18)	// user has broke the restrictor, it will now only play shitcurity phrases
 
 		if(!safety)
-			phrase_text = "FUCK YOUR CUNT YOU SHIT EATING COCKSTORM AND EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND POO AND SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT."
+			phrase_text = "%^!!&@#&*@#*%&%!@#!&*#&@(!*#&@#*%&!%!%#*(@&!*#%&!!"
 			phrase_sound = "emag"
 		else
 
@@ -187,6 +187,9 @@
 					phrase_sound = "dredd"
 
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
-		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
+		if(phrase_sound == "emag")
+			playsound(src.loc, "sec_emag", 100, 0, 4)
+		else
+			playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
 		cooldown = world.time
 		cooldown_special = world.time
