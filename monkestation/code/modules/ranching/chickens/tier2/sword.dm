@@ -1,4 +1,5 @@
 /mob/living/simple_animal/chicken/sword
+	icon_state = "chicken_sword"
 
 	maxHealth = 300
 	melee_damage = 4 //weak damage but strong health

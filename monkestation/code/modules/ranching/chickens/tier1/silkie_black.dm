@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/silkie_black
+	icon_state = "chicken_silkie_black"
+
 	breed_name = "Black Selkie"
 	egg_type = /obj/item/food/egg/silkie_black
 	mutation_list = list()

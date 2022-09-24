@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/void
+	icon_state = "chicken_void"
+
 	breed_name = "Void"
 	egg_type = /obj/item/food/egg/void
 	mutation_list = list()

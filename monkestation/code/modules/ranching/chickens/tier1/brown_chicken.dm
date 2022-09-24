@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/brown
+	icon_state = "chicken_brown"
+
 	breed_name = "Brown"
 	egg_type = /obj/item/food/egg/brown
 	chicken_path = /mob/living/simple_animal/chicken/brown

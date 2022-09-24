@@ -1,8 +1,18 @@
 /mob/living/simple_animal/chicken/phoenix
+	icon_state = "chicken_spicy"
+
 	breed_name = "Phoenix"
 	egg_type = /obj/item/food/egg/phoenix
 	chicken_path = /mob/living/simple_animal/chicken/phoenix
 	mutation_list = list()
+
+/mob/living/simple_animal/chicken/phoenix/Initialize(mapload)
+	. = ..()
+	add_emitter(/obj/emitter/sparks/fire/phoenix, "flame")
+
+/mob/living/simple_animal/chicken/phoenix/Destroy()
+	. = ..()
+	remove_emitter("flame")
 
 /mob/living/simple_animal/chicken/phoenix/death()
 	GLOB.total_chickens++

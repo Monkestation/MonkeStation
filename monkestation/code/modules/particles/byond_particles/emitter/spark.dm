@@ -7,6 +7,9 @@
 	alpha = 225
 	particles = new/particles/fire_sparks
 
+/obj/emitter/sparks/fire/phoenix
+	alpha = 225
+	particles = new/particles/fire_sparks/phoenix
 /obj/emitter/sparks/flare
 	particles = new/particles/flare_sparks
 

@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/ixworth
+	icon_state = "chicken_ixworth"
+
 	breed_name = "Ixworth"
 	egg_type = /obj/item/food/egg/ixworth
 	mutation_list = list()

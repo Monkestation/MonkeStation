@@ -29,6 +29,8 @@
     gradient = list(0, "yellow", 1, "red")
     color = "yellow"
 
+/particles/fire_sparks/phoenix
+	spawning = 5
 /particles/flare_sparks
 	width = 500
 	height = 500
