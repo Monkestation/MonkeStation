@@ -135,12 +135,19 @@
 	var/slip_out_message = pick("silently fades in", "leaps out of thin air","appears", "walks out of an invisible doorway",\
 		"slides out of a fold in spacetime")
 	to_chat(user, "<span class='notice'>You try to align with the bluespace stream...</span>")
-	if(do_after(user, 20, target = src))
-		new /obj/effect/temp_visual/bluespace_fissure(get_turf(src))
-		new /obj/effect/temp_visual/bluespace_fissure(get_turf(linked_to))
-		if(do_teleport(user, get_turf(linked_to), no_effects = TRUE))
-			user.visible_message("<span class='warning'>[user] [slip_in_message].</span>", null, null, null, user)
-			user.visible_message("<span class='warning'>[user] [slip_out_message].</span>", "<span class='notice'>...and find your way to the other side.</span>")
+	if(do_after(user, 2 SECONDS, target = src))
+		var/turf/source_turf = get_turf(src)
+		var/turf/destination_turf = get_turf(linked_to)
+
+		new /obj/effect/temp_visual/bluespace_fissure(source_turf)
+		new /obj/effect/temp_visual/bluespace_fissure(destination_turf)
+
+		user.visible_message(span_warning("[user] [slip_in_message]."), null, null, null, user)
+
+		if(!do_teleport(user, destination_turf, no_effects = TRUE))
+			user.visible_message(span_warning("[user] [slip_out_message], ending up exactly where they left."), null, null, null, user)
+			return
+		user.visible_message("<span class='warning'>[user] [slip_out_message].</span>", "<span class='notice'>...and find your way to the other side.</span>")
 
 /datum/brain_trauma/special/psychotic_brawling
 	name = "Violent Psychosis"

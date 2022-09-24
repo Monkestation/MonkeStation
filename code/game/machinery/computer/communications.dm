@@ -535,6 +535,133 @@
 	LAZYADD(messages, new_message)
 	ui_update()
 
+/// Defines for the various hack results.
+#define HACK_PIRATE "Pirates"
+#define HACK_FUGITIVES "Fugitives"
+#define HACK_SLEEPER "Sleeper Agents"
+#define HACK_THREAT "Threat Boost"
+#define HACK_FLORIDA_MAN "Florida Man"
+
+
+/// The minimum number of ghosts / observers to have the chance of spawning Florida Man
+#define MIN_GHOSTS_FOR_FLORIDA_MAN 2
+/// The minimum number of ghosts / observers to have the chance of spawning pirates.
+#define MIN_GHOSTS_FOR_PIRATES 4
+/// The minimum number of ghosts / observers to have the chance of spawning fugitives.
+#define MIN_GHOSTS_FOR_FUGITIVES 6
+/// The maximum percentage of the population to be ghosts before we no longer have the chance of spawning Sleeper Agents.
+#define MAX_PERCENT_GHOSTS_FOR_SLEEPER 0.2
+/// The amount of threat injected by a hack, if chosen.
+#define HACK_THREAT_INJECTION_AMOUNT 15
+
+/*
+ * The communications console hack,
+ * called by certain antagonist actions.
+ *
+ * Brings in additional threats to the round.
+ *
+ * hackerman - the mob that caused the hack
+ */
+/obj/machinery/computer/communications/proc/hack_console(mob/living/hackerman)
+	// All hack results we'll choose from.
+	var/list/hack_options = list(HACK_THREAT)
+
+	// If we have a certain amount of ghosts, we'll add some more !!fun!! options to the list
+	var/num_ghosts = length(SSticker.mode.current_players[CURRENT_DEAD_PLAYERS]) + length(SSticker.mode.current_players[CURRENT_OBSERVERS])
+
+	// Florida Man requires only one ghost, therefore it's an easy common option.
+	if(num_ghosts >= MIN_GHOSTS_FOR_FLORIDA_MAN)
+		hack_options += HACK_FLORIDA_MAN
+	// Pirates require empty space for the ship, and ghosts for the pirates obviously
+	if(SSmapping.empty_space && (num_ghosts >= MIN_GHOSTS_FOR_PIRATES))
+		hack_options += HACK_PIRATE
+	// Fugitives require empty space for the hunter's ship, and ghosts for both fugitives and hunters (Please no waldo)
+	if(SSmapping.empty_space && (num_ghosts >= MIN_GHOSTS_FOR_FUGITIVES))
+		hack_options += HACK_FUGITIVES
+	// If less than a certain percent of the population is ghosts, consider sleeper agents
+	if(num_ghosts < (length(GLOB.clients) * MAX_PERCENT_GHOSTS_FOR_SLEEPER))
+		hack_options += HACK_SLEEPER
+
+	var/picked_option = pick(hack_options)
+	message_admins("[ADMIN_LOOKUPFLW(hackerman)] hacked a [name] located at [ADMIN_VERBOSEJMP(src)], resulting in: [picked_option]!")
+	switch(picked_option)
+		//Triggers Florida Man. Impossible to contain. Impossible to stop. He will meth.
+		if(HACK_FLORIDA_MAN)
+			priority_announce("Attention crew, it appears that someone on your station has used our communication systems to disrupt Space Florida's connection to SPESSCAR broadcasting.","[command_name()] High-Priority Update")
+			var/datum/round_event_control/florida_man/florida_event = locate() in SSevents.control
+			if(!florida_event)
+				CRASH("hack_console() attempted to run Florida Man, but could not find an event controller!")
+			addtimer(CALLBACK(florida_event, /datum/round_event_control.proc/runEvent), rand(20 SECONDS, 1 MINUTES))
+
+		// Triggers pirates, which the crew may be able to pay off to prevent
+		if(HACK_PIRATE)
+			priority_announce(
+				"Attention crew, it appears that someone on your station has made unexpected communication with a Syndicate ship in nearby space.",
+				"[command_name()] High-Priority Update"
+				)
+
+			var/datum/round_event_control/pirates/pirate_event = locate() in SSevents.control
+			if(!pirate_event)
+				CRASH("hack_console() attempted to run pirates, but could not find an event controller!")
+			addtimer(CALLBACK(pirate_event, /datum/round_event_control.proc/runEvent), rand(20 SECONDS, 1 MINUTES))
+
+		// Triggers fugitives, which can cause confusion / chaos as the crew decides which side help
+		if(HACK_FUGITIVES)
+			priority_announce(
+				"Attention crew, it appears that someone on your station has established an unexpected orbit with an unmarked ship in nearby space.",
+				"[command_name()] High-Priority Update"
+				)
+
+			var/datum/round_event_control/fugitives/fugitive_event = locate() in SSevents.control
+			if(!fugitive_event)
+				CRASH("hack_console() attempted to run fugitives, but could not find an event controller!")
+			addtimer(CALLBACK(fugitive_event, /datum/round_event_control.proc/runEvent), rand(20 SECONDS, 1 MINUTES))
+
+		if(HACK_THREAT) // Adds a flat amount of threat to buy a (probably) more dangerous antag later
+			priority_announce(
+				"Attention crew, it appears that someone on your station has shifted your orbit into more dangerous territory.",
+				"[command_name()] High-Priority Update"
+				)
+
+			for(var/mob/crew_member as anything in GLOB.player_list)
+				if(!is_station_level(crew_member.z))
+					continue
+				shake_camera(crew_member, 15, 1)
+
+			var/datum/game_mode/dynamic/dynamic = SSticker.mode
+			if(!dynamic)
+				return
+			dynamic.create_threat(HACK_THREAT_INJECTION_AMOUNT)
+			dynamic.threat_log += "[worldtime2text()]: Communications console hack by [hackerman]. Added [HACK_THREAT_INJECTION_AMOUNT] threat."
+
+		if(HACK_SLEEPER) // Trigger one or multiple sleeper agents with the crew (or for latejoining crew)
+			var/datum/dynamic_ruleset/midround/sleeper_agent_type = /datum/dynamic_ruleset/midround/autotraitor
+			var/datum/game_mode/dynamic/dynamic = SSticker.mode
+			var/max_number_of_sleepers = clamp(round(length(SSticker.mode.current_players[CURRENT_LIVING_PLAYERS]) / 20), 1, 3)
+			var/num_agents_created = 0
+
+			if(!dynamic)
+				return
+
+			for(var/num_agents in 1 to rand(1, max_number_of_sleepers))
+				// Offset the trheat cost of the sleeper agent(s) we're about to run...
+				dynamic.create_threat(initial(sleeper_agent_type.cost))
+				// ...Then try to actually trigger a sleeper agent.
+				if(!dynamic.picking_specific_rule(sleeper_agent_type, TRUE))
+					break
+				num_agents_created++
+
+			if(num_agents_created <= 0)
+				// We failed to run any midround sleeper agents, so let's be patient and run latejoin traitor
+				dynamic.picking_specific_rule(/datum/dynamic_ruleset/latejoin/infiltrator, TRUE)
+
+			else
+				// We spawned some sleeper agents, nice - give them a report to kickstart the paranoia
+				priority_announce(
+					"Attention crew, it appears that someone on your station has hijacked your telecommunications and has broadcasted a Syndicate radio signal to your fellow employees.",
+					"[command_name()] High-Priority Update"
+					)
+
 /datum/comm_message
 	var/title
 	var/content
@@ -556,3 +683,13 @@
 #undef STATE_BUYING_SHUTTLE
 #undef STATE_CHANGING_STATUS
 #undef STATE_MESSAGES
+#undef HACK_PIRATE
+#undef HACK_FUGITIVES
+#undef HACK_SLEEPER
+#undef HACK_THREAT
+#undef HACK_FLORIDA_MAN
+#undef MIN_GHOSTS_FOR_FLORIDA_MAN
+#undef MIN_GHOSTS_FOR_PIRATES
+#undef MIN_GHOSTS_FOR_FUGITIVES
+#undef MAX_PERCENT_GHOSTS_FOR_SLEEPER
+#undef HACK_THREAT_INJECTION_AMOUNT

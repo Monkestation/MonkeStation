@@ -599,7 +599,7 @@
 	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
 	required_enemies = list(2,2,1,1,1,1,1,0,0,0)
 	required_candidates = 1
-	weight = 3
+	weight = 1
 	cost = 5
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
@@ -626,3 +626,44 @@
 	message_admins("[ADMIN_LOOKUPFLW(obsessed)] has been made Obsessed by the midround ruleset.")
 	log_game("[key_name(obsessed)] was made Obsessed by the midround ruleset.")
 	return ..()
+
+
+//////////////////////////////////////////////
+//                                          //
+//            SPACE NINJA (GHOST)           //
+//                                          //
+//////////////////////////////////////////////
+
+/datum/dynamic_ruleset/midround/from_ghosts/space_ninja
+	name = "Space Ninja"
+	antag_datum = /datum/antagonist/ninja
+	antag_flag = "Space Ninja"
+	antag_flag_override = ROLE_NINJA
+	enemy_roles = list("Security Officer", "Detective", "Head of Security", "Captain")
+	required_enemies = list(2,2,1,1,1,1,1,1,1,1)
+	required_candidates = 1
+	minimum_players = 25
+	weight = 2
+	cost = 20
+	requirements = list(101,101,101,80,60,50,30,20,10,10)
+	var/list/spawn_locs = list()
+
+/datum/dynamic_ruleset/midround/from_ghosts/space_ninja/execute()
+	for(var/obj/effect/landmark/carpspawn/carp_spawn in GLOB.landmarks_list)
+		if(!isturf(carp_spawn.loc))
+			stack_trace("Carp spawn found not on a turf: [carp_spawn.type] on [isnull(carp_spawn.loc) ? "null" : carp_spawn.loc.type]")
+			continue
+		spawn_locs += carp_spawn.loc
+	if(!spawn_locs.len)
+		message_admins("No valid spawn locations found, aborting...")
+		return MAP_ERROR
+	return ..()
+
+/datum/dynamic_ruleset/midround/from_ghosts/space_ninja/generate_ruleset_body(mob/applicant)
+	var/mob/living/carbon/human/ninja = create_space_ninja(pick(spawn_locs))
+	ninja.key = applicant.key
+	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
+
+	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a Space Ninja by the midround ruleset.")
+	log_game("DYNAMIC: [key_name(ninja)] was spawned as a Space Ninja by the midround ruleset.")
+	return ninja
