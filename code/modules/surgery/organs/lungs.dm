@@ -207,7 +207,8 @@
 	for(var/gas in breath.get_gases())
 		if(gas in breath_reagents)
 			var/datum/reagent/R = breath_reagents[gas]
-			reagents_holder.add_reagent(R, (breath.total_moles() * initial(R.molarity)))
+			H.reagents.add_reagent(R, (breath.total_moles() * initial(R.molarity)) * 2) // this is a bruh moment as vapor reacts from outside but we need to add to the inside
+			reagents_holder.add_reagent(R, (breath.total_moles() * initial(R.molarity)) * 2) //hate having to add a minimum but like at the same time breath code sucks
 			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath.get_moles(gas) : -breath.get_moles(gas)
 	reagents_holder.reaction(H, VAPOR, from_gas = 1)
 

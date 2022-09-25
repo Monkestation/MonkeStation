@@ -76,6 +76,9 @@
 
 /obj/item/food/grown/attackby(obj/item/O, mob/user, params)
 	..()
+	if(O.ignition_effect(src, user) && seed?.get_gene(/datum/plant_gene/trait/hotbox))
+		fire_act(O.return_temperature())
+
 	if (istype(O, /obj/item/plant_analyzer))
 		var/msg = "<span class='info'>This is \a <span class='name'>[src]</span>.\n"
 		if(seed)
@@ -114,6 +117,17 @@
 /obj/item/food/grown/attack_self(mob/user)
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		squash(user)
+	..()
+
+/obj/item/food/grown/burn()
+	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
+		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
+			var/turf/turf = get_turf(src.loc)
+			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) /contained_reagent.molarity];TEMP=[T20C]")
+
+	for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff on burn
+		if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
+			grown_food_item.fire_act(src.return_temperature())
 	..()
 
 /obj/item/food/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
