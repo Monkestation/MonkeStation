@@ -123,7 +123,7 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
 		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
 			var/turf/turf = get_turf(src.loc)
-			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) /contained_reagent.molarity];TEMP=[T20C]")
+			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume) /contained_reagent.molarity];TEMP=[T20C]")
 
 	for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff on burn
 		if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
