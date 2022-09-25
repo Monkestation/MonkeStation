@@ -481,6 +481,8 @@
 	is_dimorphic = TRUE
 	var/obj/item/cavity_item
 
+	dmg_overlay_type = "human"
+
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
 		return FALSE
@@ -501,6 +503,8 @@
 	icon_state = "default_monkey_chest"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
+
+	dmg_overlay_type = "monkey"
 
 /obj/item/bodypart/chest/monkey/teratoma
 	icon_state = "teratoma_chest"
@@ -545,6 +549,8 @@
 	px_x = -6
 	px_y = 0
 
+	dmg_overlay_type = "human"
+
 /obj/item/bodypart/l_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
 		return BODYPART_DISABLED_PARALYSIS
@@ -578,6 +584,8 @@
 	animal_origin = MONKEY_BODYPART
 	px_x = -5
 	px_y = -3
+
+	dmg_overlay_type = "monkey"
 
 /obj/item/bodypart/l_arm/monkey/teratoma
 	icon_state = "teratoma_l_arm"
@@ -614,6 +622,8 @@
 	px_y = 0
 	max_stamina_damage = 50
 
+	dmg_overlay_type = "human"
+
 /obj/item/bodypart/r_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
 		return BODYPART_DISABLED_PARALYSIS
@@ -648,6 +658,7 @@
 	px_x = 5
 	px_y = -3
 
+	dmg_overlay_type = "monkey"
 /obj/item/bodypart/r_arm/monkey/teratoma
 	icon_state = "teratoma_r_arm"
 	limb_id = "teratoma"
@@ -681,6 +692,8 @@
 	px_y = 12
 	max_stamina_damage = 50
 
+	dmg_overlay_type = "human"
+
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -706,6 +719,8 @@
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
+
+	dmg_overlay_type = "monkey"
 
 /obj/item/bodypart/l_leg/monkey/teratoma
 	icon_state = "teratoma_l_leg"
@@ -742,6 +757,8 @@
 	px_y = 12
 	max_stamina_damage = 50
 
+	dmg_overlay_type = "human"
+
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -767,6 +784,8 @@
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
 	px_y = 4
+
+	dmg_overlay_type = "monkey"
 
 /obj/item/bodypart/r_leg/monkey/teratoma
 	icon_state = "teratoma_r_leg"

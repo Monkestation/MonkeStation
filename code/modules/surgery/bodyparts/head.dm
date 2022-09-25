@@ -15,6 +15,8 @@
 	max_stamina_damage = 100
 	is_dimorphic = TRUE
 
+	dmg_overlay_type = "human"
+
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/obj/item/organ/brain/brain = null //The brain organ
 	var/obj/item/organ/eyes/eyes
@@ -254,6 +256,8 @@
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
 
+	dmg_overlay_type = "monkey"
+
 /obj/item/bodypart/head/monkey/teratoma
 	icon_state = "teratoma_head"
 	limb_id = "teratoma"
@@ -267,6 +271,8 @@
 	dismemberable = 0
 	max_damage = 500
 	animal_origin = ALIEN_BODYPART
+
+	dmg_overlay_type = "alien"
 
 /obj/item/bodypart/head/devil
 	dismemberable = 0
