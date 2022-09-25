@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	new_gas.color = color
 	new_gas.breath_reagent = src.type
 	new_gas.group = GAS_GROUP_CHEMICALS
-	new_gas.moles_visible = MOLES_GAS_VISIBLE
+	new_gas.moles_visible = MOLES_GAS_VISIBLE * (molarity * 2)
 	return new_gas
 
 /datum/reagent/proc/create_gas()
