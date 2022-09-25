@@ -125,7 +125,7 @@
 	ears = null
 	tongue = null
 
-/obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source, is_creating)
+/obj/item/bodypart/head/update_limb(dropping_limb, mob/living/carbon/source, is_creating, forcing_update = FALSE)
 	var/mob/living/carbon/C
 	if(source)
 		C = source

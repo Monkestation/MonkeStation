@@ -7,10 +7,11 @@
 	taste_description = "lime and the tropics"
 
 /datum/reagent/consumable/baja_blast/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+	var/forced = FALSE
 	if(ishuman(M))
 		if(method == PATCH || method == VAPOR)
 			var/mob/living/carbon/human/N = M
-			if(N.dna.species.id == "human") //Lighten skin
+			if(ishumanbasic(M)) //Lighten skin
 				switch(N.skin_tone)
 					if("african2")
 						N.skin_tone = "african1"
@@ -30,7 +31,12 @@
 						N.skin_tone = "caucasian1"
 					if("caucasian1")
 						N.skin_tone = "albino"
-			N.regenerate_icons()
+
+			if(MUTCOLORS in N.dna.species.species_traits)
+				N.dna.features["mcolor"] = random_short_color()
+				forced = TRUE
+
+			N.regenerate_icons(forced)
 	..()
 
 /datum/reagent/consumable/baja_blast/overdose_process(mob/living/M)
@@ -72,6 +78,7 @@
 
 /datum/reagent/consumable/baja_blast/overdose_start(mob/living/M)
 	. = ..()
+	var/forced = FALSE
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
@@ -85,7 +92,8 @@
 		H.skin_tone = "caucasian1"
 	else if(MUTCOLORS in H.dna.species.species_traits)
 		H.dna.features["mcolor"] = "fffbf5"
-	H.regenerate_icons()
+		forced = TRUE
+	H.regenerate_icons(forced)
 	H.grant_language(/datum/language/zoomercant, TRUE, TRUE, "spray")
 
 /datum/reagent/consumable/monkey_energy
@@ -93,6 +101,7 @@
 
 /datum/reagent/consumable/monkey_energy/overdose_start(mob/living/M)
 	. = ..()
+	var/forced = FALSE
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
@@ -106,5 +115,6 @@
 		H.skin_tone = "albino"
 	else if(MUTCOLORS in H.dna.species.species_traits)
 		H.dna.features["mcolor"] = "fff"
-	H.regenerate_icons()
+		forced = TRUE
+	H.regenerate_icons(forced)
 	H.grant_language(/datum/language/sippins, TRUE, TRUE, "spray")

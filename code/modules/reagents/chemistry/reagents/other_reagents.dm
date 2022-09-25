@@ -411,6 +411,7 @@
 	taste_description = "sour oranges"
 
 /datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+	var/forced = FALSE
 	if(ishuman(M))
 		if(method == PATCH || method == VAPOR)
 			var/mob/living/carbon/human/N = M
@@ -465,7 +466,8 @@
 							break
 				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
 					N.dna.features["mcolor"] = newcolor
-			N.regenerate_icons()
+					forced = TRUE
+			N.regenerate_icons(forced)
 
 
 
@@ -487,9 +489,10 @@
 			N.dna.species.species_traits += HAIR
 		if(SKINTONES in N.dna.species.species_traits)
 			N.skin_tone = "orange"
+			N.regenerate_icons()
 		else if(MUTCOLORS in N.dna.species.species_traits) //Aliens with custom colors simply get turned orange
 			N.dna.features["mcolor"] = "f80"
-		N.regenerate_icons()
+			N.regenerate_icons(TRUE)
 
 /datum/reagent/spraytan/overdose_process(mob/living/M)
 	metabolization_rate = 1 * REAGENTS_METABOLISM

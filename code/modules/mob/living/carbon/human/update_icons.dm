@@ -67,9 +67,10 @@ There are several things that need to be remembered:
 
 /* --------------------------------------- */
 //For legacy support.
-/mob/living/carbon/human/regenerate_icons()
-
+/mob/living/carbon/human/regenerate_icons(forcing_update = FALSE)
 	if(!..())
+		if(forcing_update)
+			update_body_parts(forced_update = forcing_update)
 		update_body()
 		update_hair()
 		update_inv_w_uniform()

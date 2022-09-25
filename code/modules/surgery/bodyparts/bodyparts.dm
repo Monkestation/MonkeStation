@@ -312,13 +312,13 @@
 
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 //set is_creating to true if you want to change the appearance of the limb outside of mutation changes or forced changes.
-/obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE)
+/obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE, forcing_update = FALSE)
 	var/mob/living/carbon/C
 	if(source)
 		C = source
 		if(!original_owner)
 			original_owner = WEAKREF(source)
-	else if(original_owner && !IS_WEAKREF_OF(owner, original_owner)) //Foreign limb
+	else if(original_owner && !IS_WEAKREF_OF(owner, original_owner) && !forcing_update) //Foreign limb
 		no_update = TRUE
 	else
 		C = owner
@@ -346,12 +346,11 @@
 	if(no_update)
 		return
 
-	if(!is_creating)
+	if(!is_creating && !forcing_update)
 		return
 
 	if(!animal_origin && ishuman(C))
 		var/mob/living/carbon/human/H = C
-
 		var/datum/species/S = H.dna.species
 		species_flags_list = H.dna.species.species_traits //Literally only exists for a single use of NOBLOOD, but, no reason to remove it i guess...?
 		limb_gender = (H.gender == MALE) ? "m" : "f"
@@ -365,7 +364,6 @@
 			if(S.dyncolor)//monkestation edit: add simians; make dyncolor more useful
 				S.fixed_mut_color = H.dna.features[S.dyncolor]//monkestation edit: add simians; make dyncolor more useful
 			if(S.fixed_mut_color)
-
 				species_color = S.fixed_mut_color
 			else
 				species_color = H.dna.features["mcolor"]
