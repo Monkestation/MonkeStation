@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const SmokeMachine = (props, context) => {
+export const AtmosMachine = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     TankContents,
@@ -36,7 +36,7 @@ export const SmokeMachine = (props, context) => {
           </ProgressBar>
           <Box mt={1}>
             <LabeledList>
-              <LabeledList.Item label="Range">
+              <LabeledList.Item label="Evaporation Amount">
                 {[1, 2, 3, 4, 5].map(amount => (
                   <Button
                     key={amount}

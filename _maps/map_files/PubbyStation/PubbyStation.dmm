@@ -29479,7 +29479,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bAi" = (
-/obj/machinery/smoke_machine,
+/obj/machinery/atmos_machine,
 /turf/open/floor/engine,
 /area/medical/chemistry)
 "bAl" = (

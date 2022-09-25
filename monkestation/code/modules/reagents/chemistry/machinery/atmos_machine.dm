@@ -104,6 +104,8 @@
 		var/obj/item/reagent_containers/RC = I
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transfered_by = user)
 		if(units)
+			if(on)
+				log_combat(usr, src, "has added [units] to the [src] at [AREACOORD(src)] while the machine is running.")
 			to_chat(user, "<span class='notice'>You transfer [units] units of the solution to [src].</span>")
 			return
 	if(default_unfasten_wrench(user, I, 40))
@@ -127,7 +129,7 @@
 /obj/machinery/atmos_machine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SmokeMachine")
+		ui = new(user, src, "AtmosMachine")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Tank contents, particularly plumbing
 
