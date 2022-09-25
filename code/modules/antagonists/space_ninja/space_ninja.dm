@@ -1,10 +1,11 @@
 /datum/antagonist/ninja
-	name = "Space Ninja"
+	name = "\improper Space Ninja"
 	antagpanel_category = "Space Ninja"
 	job_rank = ROLE_NINJA
 	var/antag_hud_type = ANTAG_HUD_NINJA
 	var/antag_hud_name = "space_ninja"
 	hijack_speed = 1
+	ui_name = "AntagInfoNinja"
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
@@ -16,6 +17,11 @@
 /datum/antagonist/ninja/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/ninja = mob_override || owner.current
 	add_antag_hud(antag_hud_type, antag_hud_name, ninja)
+
+	if(ishuman(ninja))
+		var/mob/living/carbon/human/martial_artist = ninja
+		var/datum/martial_art/karate/cyborg_ninjitsu/ninjitsu = new
+		ninjitsu.teach(martial_artist)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/ninja = mob_override || owner.current
@@ -103,10 +109,15 @@
 	survival.owner = owner
 	objectives += survival
 
+/datum/antagonist/ninja/ui_static_data(mob/user)
+	. = ..()
+
+	var/list/data = list()
+	data["objectives"] = get_objectives()
+	return data
+
 /datum/antagonist/ninja/greet()
 	SEND_SOUND(owner.current, sound('sound/effects/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger("I am an elite mercenary of the mighty Spider Clan!"))
-	to_chat(owner.current, span_warning("Surprise is my weapon. Shadows are my armor. Without them, I am nothing."))
 	to_chat(owner.current, span_notice("The station is located to your [dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]."))
 	owner.announce_objectives()
 
