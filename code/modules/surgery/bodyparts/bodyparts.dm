@@ -327,6 +327,8 @@
 	if(ishuman(limb_host))
 		var/mob/living/carbon/human/host = limb_host
 		var/datum/species/host_species = host.dna.species
+
+		/// this section will need to be repeated for unique types of bodys that use things other than mutcolor and color non accessories in the future if we ever add them
 		if((MUTCOLORS in host_species.species_traits) && should_draw_greyscale) //are we a mutcolor and do we color the limb?
 			if((draw_color == host.dna.features["mcolor"])) // does our current color match the mcolor?
 				no_update = FALSE
@@ -335,7 +337,7 @@
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		is_husked = TRUE
 	else
-		dmg_overlay_type = initial(dmg_overlay_type)
+		dmg_overlay_type = initial(dmg_overlay_type) //revert back to the limbs dmg_overlay
 		is_husked = FALSE
 
 	if(!dropping_limb && limb_host.dna?.check_mutation(HULK)) //Please remove hulk from the game. I beg you.
@@ -353,7 +355,7 @@
 	if(no_update)
 		return
 
-	if(!is_creating && no_update && !forcing_update)
+	if(!is_creating && no_update && !forcing_update) //is it creating? is there an update needed? is it being forced to update regardless?
 		return
 
 	if(!animal_origin && ishuman(limb_host))

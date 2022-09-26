@@ -411,7 +411,6 @@
 	taste_description = "sour oranges"
 
 /datum/reagent/spraytan/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	var/forced = FALSE
 	if(ishuman(M))
 		if(method == PATCH || method == VAPOR)
 			var/mob/living/carbon/human/N = M
@@ -466,8 +465,7 @@
 							break
 				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
 					N.dna.features["mcolor"] = newcolor
-					forced = TRUE
-			N.regenerate_icons(forced)
+			N.regenerate_icons()
 
 
 
