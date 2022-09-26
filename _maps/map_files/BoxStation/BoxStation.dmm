@@ -18601,7 +18601,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "aXm" = (
@@ -62842,7 +62841,9 @@
 	dir = 6
 	},
 /obj/machinery/door/window/westright{
-	dir = 1
+	dir = 1;
+	req_access_txt = "5";
+	name = "Medical Deliveries"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
