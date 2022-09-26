@@ -313,25 +313,32 @@
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 //set is_creating to true if you want to change the appearance of the limb outside of mutation changes or forced changes.
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE, forcing_update = FALSE)
-	var/mob/living/carbon/C
+	var/mob/living/carbon/limb_host
 	if(source)
-		C = source
+		limb_host = source
 		if(!original_owner)
 			original_owner = WEAKREF(source)
-	else if(original_owner && !IS_WEAKREF_OF(owner, original_owner) && !forcing_update) //Foreign limb
+	else if(original_owner && !IS_WEAKREF_OF(owner, original_owner)) //Foreign limb
 		no_update = TRUE
 	else
-		C = owner
+		limb_host = owner
 		no_update = FALSE
 
-	if(HAS_TRAIT(C, TRAIT_HUSK) && IS_ORGANIC_LIMB(src))
+	if(ishuman(limb_host))
+		var/mob/living/carbon/human/host = limb_host
+		var/datum/species/host_species = host.dna.species
+		if((MUTCOLORS in host_species.species_traits) && should_draw_greyscale) //are we a mutcolor and do we color the limb?
+			if((draw_color == host.dna.features["mcolor"])) // does our current color match the mcolor?
+				no_update = FALSE
+
+	if(HAS_TRAIT(limb_host, TRAIT_HUSK) && IS_ORGANIC_LIMB(src))
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		is_husked = TRUE
 	else
 		dmg_overlay_type = initial(dmg_overlay_type)
 		is_husked = FALSE
 
-	if(!dropping_limb && C.dna?.check_mutation(HULK)) //Please remove hulk from the game. I beg you.
+	if(!dropping_limb && limb_host.dna?.check_mutation(HULK)) //Please remove hulk from the game. I beg you.
 		mutation_color = "00aa00"
 	else
 		mutation_color = null
@@ -346,27 +353,28 @@
 	if(no_update)
 		return
 
-	if(!is_creating && !forcing_update)
+	if(!is_creating && no_update && !forcing_update)
 		return
 
-	if(!animal_origin && ishuman(C))
-		var/mob/living/carbon/human/H = C
-		var/datum/species/S = H.dna.species
-		species_flags_list = H.dna.species.species_traits //Literally only exists for a single use of NOBLOOD, but, no reason to remove it i guess...?
-		limb_gender = (H.gender == MALE) ? "m" : "f"
-		if(SKINTONES in S.species_traits)
-			skin_tone = GLOB.skin_tones[H.dna.species.skin_tone_list][H.skin_tone]
+	if(!animal_origin && ishuman(limb_host))
+
+		var/mob/living/carbon/human/host = limb_host
+		var/datum/species/host_species = host.dna.species
+		species_flags_list = host.dna.species.species_traits //Literally only exists for a single use of NOBLOOD, but, no reason to remove it i guess...?
+		limb_gender = (host.gender == MALE) ? "m" : "f"
+		if(SKINTONES in host_species.species_traits)
+			skin_tone = GLOB.skin_tones[host.dna.species.skin_tone_list][host.skin_tone]
 		else
 			skin_tone = ""
 
 
-		if(((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits)) && uses_mutcolor) //Ethereal code. Motherfuckers.
-			if(S.dyncolor)//monkestation edit: add simians; make dyncolor more useful
-				S.fixed_mut_color = H.dna.features[S.dyncolor]//monkestation edit: add simians; make dyncolor more useful
-			if(S.fixed_mut_color)
-				species_color = S.fixed_mut_color
+		if(((MUTCOLORS in host_species.species_traits) || (DYNCOLORS in host_species.species_traits)) && uses_mutcolor) //Ethereal code. Motherfuckers.
+			if(host_species.dyncolor)//monkestation edit: add simians; make dyncolor more useful
+				host_species.fixed_mut_color = host.dna.features[host_species.dyncolor]//monkestation edit: add simians; make dyncolor more useful
+			if(host_species.fixed_mut_color)
+				species_color = host_species.fixed_mut_color
 			else
-				species_color = H.dna.features["mcolor"]
+				species_color = host.dna.features["mcolor"]
 		else
 			species_color = null
 
