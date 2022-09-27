@@ -375,19 +375,25 @@
 //we inform the bodypart of the changes that happened to the owner, or give it the informations from a source mob.
 //set is_creating to true if you want to change the appearance of the limb outside of mutation changes or forced changes.
 /obj/item/bodypart/proc/update_limb(dropping_limb, mob/living/carbon/source, is_creating = FALSE, forcing_update = FALSE)
+	// The current host of the limb
 	var/mob/living/carbon/limb_host
-	if(source)
-		limb_host = source
-		if(!original_owner)
+
+	if(source) //do we have an attached source?
+		limb_host = source //if we do set that to the limb_host
+		if(!original_owner)// does the limb have an original owner usually happens with printed limbs or spawned in things
 			original_owner = WEAKREF(source)
+
 	else if(original_owner && !IS_WEAKREF_OF(owner, original_owner)) //Foreign limb
 		no_update = TRUE
+
 	else
 		limb_host = owner
 		no_update = FALSE
 
 	if(ishuman(limb_host))
+		//Since we checked if we are a human we need to create a new host to access the human specific variables
 		var/mob/living/carbon/human/host = limb_host
+		//quick access to the hosts species aswell to not have to call host.dna.species every time
 		var/datum/species/host_species = host.dna.species
 
 		/// this section will need to be repeated for unique types of bodys that use things other than mutcolor and color non accessories in the future if we ever add them
@@ -409,6 +415,7 @@
 
 	if(mutation_color) //I hate mutations
 		draw_color = mutation_color
+
 	else if(should_draw_greyscale)
 		draw_color = (species_color) || (skin_tone)
 	else
@@ -421,18 +428,21 @@
 		return
 
 	if(!animal_origin && ishuman(limb_host))
-
+		//defining human here again because byond moment. Allows access to human variables
 		var/mob/living/carbon/human/host = limb_host
+		//short hand access for host.dna.species
 		var/datum/species/host_species = host.dna.species
+
 		species_flags_list = host.dna.species.species_traits //Literally only exists for a single use of NOBLOOD, but, no reason to remove it i guess...?
-		limb_gender = (host.gender == MALE) ? "m" : "f"
-		if(SKINTONES in host_species.species_traits)
+		limb_gender = (host.gender == MALE) ? "m" : "f" //we grab the limbs gender for icon rendering from the hosts gender.
+
+		if(SKINTONES in host_species.species_traits) // are we a skintone type of species like human?
 			skin_tone = GLOB.skin_tones[host.dna.species.skin_tone_list][host.skin_tone]
 		else
-			skin_tone = ""
+			skin_tone = "" //we don't want non skintone creatures having them it looks weird with mutcolors
 
 
-		if(((MUTCOLORS in host_species.species_traits) || (DYNCOLORS in host_species.species_traits)) && uses_mutcolor) //Ethereal code. Motherfuckers.
+		if(((MUTCOLORS in host_species.species_traits) || (DYNCOLORS in host_species.species_traits)) && uses_mutcolor) //are we a mutcolor species, or etheral?
 			if(host_species.dyncolor)//monkestation edit: add simians; make dyncolor more useful
 				host_species.fixed_mut_color = host.dna.features[host_species.dyncolor]//monkestation edit: add simians; make dyncolor more useful
 			if(host_species.fixed_mut_color)
@@ -440,7 +450,7 @@
 			else
 				species_color = host.dna.features["mcolor"]
 		else
-			species_color = null
+			species_color = "" //same thing here we don't want rgb humans now do we
 
 		draw_color = mutation_color
 		if(should_draw_greyscale) //Should the limb be colored?
