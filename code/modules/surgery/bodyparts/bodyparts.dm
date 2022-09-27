@@ -151,24 +151,24 @@
 		owner = null
 	return ..()
 
-/obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
-			if(!H.get_bodypart(body_zone) && !animal_origin)
-				if(H == user)
-					H.visible_message("<span class='warning'>[H] jams [src] into [H.p_their()] empty socket!</span>",\
+/obj/item/bodypart/attack(mob/living/carbon/carbon_host, mob/user)
+	if(ishuman(carbon_host))
+		var/mob/living/carbon/human/human_host = carbon_host
+		if(HAS_TRAIT(carbon_host, TRAIT_LIMBATTACHMENT))
+			if(!human_host.get_bodypart(body_zone) && !animal_origin)
+				if(human_host == user)
+					human_host.visible_message("<span class='warning'>[human_host] jams [src] into [human_host.p_their()] empty socket!</span>",\
 					"<span class='notice'>You force [src] into your empty socket, and it locks into place!</span>")
 				else
-					H.visible_message("<span class='warning'>[user] jams [src] into [H]'s empty socket!</span>",\
+					human_host.visible_message("<span class='warning'>[user] jams [src] into [human_host]'s empty socket!</span>",\
 					"<span class='notice'>[user] forces [src] into your empty socket, and it locks into place!</span>")
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
-				attach_limb(C)
+				attach_limb(carbon_host)
 				return
 	..()
 
-/obj/item/bodypart/attackby(obj/item/W, mob/user, params)
-	if(W.is_sharp())
+/obj/item/bodypart/attackby(obj/item/attacking_item, mob/user, params)
+	if(attacking_item.is_sharp())
 		add_fingerprint(user)
 		if(!contents.len)
 			to_chat(user, "<span class='warning'>There is nothing left inside [src]!</span>")
