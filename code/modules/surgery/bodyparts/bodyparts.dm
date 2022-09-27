@@ -167,19 +167,19 @@
 		owner = null
 	return ..()
 
-/obj/item/bodypart/attack(mob/living/carbon/carbon_host, mob/user)
-	if(ishuman(carbon_host))
-		var/mob/living/carbon/human/human_host = carbon_host
-		if(HAS_TRAIT(carbon_host, TRAIT_LIMBATTACHMENT))
-			if(!human_host.get_bodypart(body_zone) && !animal_origin)
-				if(human_host == user)
-					human_host.visible_message("<span class='warning'>[human_host] jams [src] into [human_host.p_their()] empty socket!</span>",\
+/obj/item/bodypart/attack(mob/living/carbon/carbon_target, mob/user)
+	if(ishuman(carbon_target))
+		var/mob/living/carbon/human/human_target = carbon_target
+		if(HAS_TRAIT(carbon_target, TRAIT_LIMBATTACHMENT))
+			if(!human_target.get_bodypart(body_zone) && !animal_origin)
+				if(human_target == user)
+					human_target.visible_message("<span class='warning'>[human_target] jams [src] into [human_target.p_their()] empty socket!</span>",\
 					"<span class='notice'>You force [src] into your empty socket, and it locks into place!</span>")
 				else
-					human_host.visible_message("<span class='warning'>[user] jams [src] into [human_host]'s empty socket!</span>",\
+					human_target.visible_message("<span class='warning'>[user] jams [src] into [human_target]'s empty socket!</span>",\
 					"<span class='notice'>[user] forces [src] into your empty socket, and it locks into place!</span>")
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
-				attach_limb(carbon_host)
+				attach_limb(carbon_target)
 				return
 	..()
 
