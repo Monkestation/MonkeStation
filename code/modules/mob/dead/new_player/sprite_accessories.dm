@@ -1694,6 +1694,9 @@
 	name = "Smooth"
 	icon_state = "smooth"
 
+/datum/sprite_accessory/tails/lizard/curved
+	name = "Curved"
+	icon_state = "curved"
 /datum/sprite_accessory/tails/lizard/dtiger
 	name = "Dark Tiger"
 	icon_state = "dtiger"

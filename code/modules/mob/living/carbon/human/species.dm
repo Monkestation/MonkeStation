@@ -904,12 +904,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			standing += accessory_overlay
 
 			if((istype(accessory_type, /datum/sprite_accessory/tails_animated/lizard) || istype(accessory_type, /datum/sprite_accessory/tails/lizard))&& ("body_markings" in mutant_bodyparts)) //can't use inner as this needs to support infinite unique tail types and inner wouldn't allow that
-				message_admins("triggered the secondary overlay")
 				//quick access for the belly accessory
 				var/datum/sprite_accessory/belly_accessory = GLOB.body_markings_list[H.dna.features["body_markings"]]
 				//variable to store the icon_state for our tail body marking
 				var/tail_icon_state = "[belly_accessory.icon_state]_" + accessory_overlay.icon_state
-				message_admins("[tail_icon_state]")
 
 				var/mutable_appearance/tail_body_overlay = mutable_appearance(accessory_type.icon, layer = -layer)
 				tail_body_overlay.icon_state = tail_icon_state
