@@ -1652,7 +1652,7 @@
 /////////////////////////////
 
 /datum/sprite_accessory/body_markings
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/bodymarks.dmi'
 
 /datum/sprite_accessory/body_markings/none
 	name = "None"
@@ -1679,6 +1679,11 @@
 /datum/sprite_accessory/tails_animated
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 
+/datum/sprite_accessory/tails/lizard
+	icon = 'icons/mob/species/lizard/tails.dmi'
+
+/datum/sprite_accessory/tails_animated/lizard
+	icon = 'icons/mob/species/lizard/tails.dmi'
 /datum/sprite_accessory/tails/lizard/smooth
 	name = "Smooth"
 	icon_state = "smooth"
@@ -1742,7 +1747,7 @@
 	color_src = null
 
 /datum/sprite_accessory/snouts
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/snouts.dmi'
 
 /datum/sprite_accessory/snouts/sharp
 	name = "Sharp"
@@ -1761,7 +1766,7 @@
 	icon_state = "roundlight"
 
 /datum/sprite_accessory/horns
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/horns.dmi'
 
 /datum/sprite_accessory/horns/none
 	name = "None"
@@ -1875,7 +1880,7 @@
 	dimension_y = 34
 
 /datum/sprite_accessory/frills
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/frills.dmi'
 
 /datum/sprite_accessory/frills/none
 	name = "None"
@@ -1894,10 +1899,10 @@
 	icon_state = "aqua"
 
 /datum/sprite_accessory/spines
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/spines.dmi'
 
 /datum/sprite_accessory/spines_animated
-	icon = 'icons/mob/mutant_bodyparts.dmi'
+	icon = 'icons/mob/species/lizard/spines.dmi'
 
 /datum/sprite_accessory/spines/none
 	name = "None"
