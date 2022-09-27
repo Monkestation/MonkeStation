@@ -39,6 +39,11 @@
 
 	var/mouth = TRUE
 
+	var/lizard_colors = ""
+	var/horn = ""
+	var/frill = ""
+	var/snout = ""
+
 /obj/item/bodypart/head/Destroy()
 	QDEL_NULL(brainmob) //order is sensitive, see warning in handle_atom_del() below
 	QDEL_NULL(brain)
@@ -179,6 +184,16 @@
 			hair_style = "Bald"
 			hair_color = "000"
 			hair_alpha = initial(hair_alpha)
+		//grabbin mutcolor here
+		if(MUTCOLORS in S.species_traits)
+			lizard_colors = H.dna.features["mcolor"]
+
+		//lizard handler
+		if(islizard(H))
+			horn = H.dna.features["horns"]
+			frill = H.dna.features["frills"]
+			snout = H.dna.features["snout"]
+
 		// lipstick
 		if(H.lip_style && (LIPS in S.species_traits))
 			lip_style = H.lip_style
@@ -234,6 +249,25 @@
 					hair_overlay.alpha = hair_alpha
 					. += hair_overlay
 
+			if(horn)
+				var/datum/sprite_accessory/horn_accessory = GLOB.horns_list[horn]
+				if(horn_accessory)
+					var/image/horn_overlay = image(horn_accessory.icon, "[horn_accessory.head_icon]", -BODY_LAYER, SOUTH)
+					.+= horn_overlay
+
+			if(frill)
+				var/datum/sprite_accessory/frill_accessory = GLOB.frills_list[frill]
+				if(frill_accessory)
+					var/image/frill_overlay = image(frill_accessory.icon, "[frill_accessory.head_icon]", -BODY_LAYER, SOUTH)
+					frill_overlay.color = "#" + lizard_colors
+					.+= frill_overlay
+
+			if(snout)
+				var/datum/sprite_accessory/snout_accessory = GLOB.snouts_list[snout]
+				if(snout_accessory)
+					var/image/snout_overlay = image(snout_accessory.icon, "[snout_accessory.head_icon]", -BODY_LAYER, SOUTH)
+					snout_overlay.color = "#" + lizard_colors
+					.+= snout_overlay
 
 			// lipstick
 			if(lip_style)

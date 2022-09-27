@@ -63,6 +63,8 @@
 	var/center = FALSE	//Should we center the sprite?
 	var/limbs_id // The limbs id supplied for full-body replacing features.
 
+	var/head_icon = "" //the icon for the decapped head needed because yippee
+
 //////////////////////
 // Hair Definitions //
 //////////////////////
@@ -1752,18 +1754,22 @@
 /datum/sprite_accessory/snouts/sharp
 	name = "Sharp"
 	icon_state = "sharp"
+	head_icon = "m_snout_sharp_ADJ"
 
 /datum/sprite_accessory/snouts/round
 	name = "Round"
 	icon_state = "round"
+	head_icon = "m_snout_round_ADJ"
 
 /datum/sprite_accessory/snouts/sharplight
 	name = "Sharp + Light"
 	icon_state = "sharplight"
+	head_icon = "m_snout_sharplight_ADJ"
 
 /datum/sprite_accessory/snouts/roundlight
 	name = "Round + Light"
 	icon_state = "roundlight"
+	head_icon = "m_snout_roundlight_ADJ"
 
 /datum/sprite_accessory/horns
 	icon = 'icons/mob/species/lizard/horns.dmi'
@@ -1775,22 +1781,27 @@
 /datum/sprite_accessory/horns/simple
 	name = "Simple"
 	icon_state = "simple"
+	head_icon = "m_horns_simple_ADJ"
 
 /datum/sprite_accessory/horns/short
 	name = "Short"
 	icon_state = "short"
+	head_icon = "m_horns_short_ADJ"
 
 /datum/sprite_accessory/horns/curled
 	name = "Curled"
 	icon_state = "curled"
+	head_icon = "m_horns_curled_ADJ"
 
 /datum/sprite_accessory/horns/ram
 	name = "Ram"
 	icon_state = "ram"
+	head_icon = "m_horns_ram_ADJ"
 
 /datum/sprite_accessory/horns/angler
 	name = "Angeler"
 	icon_state = "angler"
+	head_icon = "m_horns_angler_ADJ"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
@@ -1889,14 +1900,17 @@
 /datum/sprite_accessory/frills/simple
 	name = "Simple"
 	icon_state = "simple"
+	head_icon = "m_frills_simple_ADJ"
 
 /datum/sprite_accessory/frills/short
 	name = "Short"
 	icon_state = "short"
+	head_icon = "m_frills_short_ADJ"
 
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+	head_icon = "m_frills_aqua_ADJ"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/species/lizard/spines.dmi'
