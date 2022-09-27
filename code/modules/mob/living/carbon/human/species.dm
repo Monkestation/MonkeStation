@@ -898,6 +898,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						//monkestation edit end
 				else
 					accessory_overlay.color = forced_colour
+			if(istype(S, /datum/sprite_accessory/body_markings))
+				accessory_overlay.color = "#" + H.dna.features["bellycolor"]
+
 			standing += accessory_overlay
 
 			if(S.hasinner)
