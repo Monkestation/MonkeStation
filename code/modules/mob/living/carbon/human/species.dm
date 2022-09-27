@@ -806,56 +806,56 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/layertext = mutant_bodyparts_layertext(layer)
 
 		for(var/bodypart in bodyparts_to_add)
-			var/datum/sprite_accessory/S
+			var/datum/sprite_accessory/accessory_type
 			switch(bodypart)
 				if("tail_lizard")
-					S = GLOB.tails_list_lizard[H.dna.features["tail_lizard"]]
+					accessory_type = GLOB.tails_list_lizard[H.dna.features["tail_lizard"]]
 				if("waggingtail_lizard")
-					S = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
+					accessory_type = GLOB.animated_tails_list_lizard[H.dna.features["tail_lizard"]]
 				if("tail_human")
-					S = GLOB.tails_list_human[H.dna.features["tail_human"]]
+					accessory_type = GLOB.tails_list_human[H.dna.features["tail_human"]]
 				if("waggingtail_human")
-					S = GLOB.animated_tails_list_human[H.dna.features["tail_human"]]
+					accessory_type = GLOB.animated_tails_list_human[H.dna.features["tail_human"]]
 				if("spines")
-					S = GLOB.spines_list[H.dna.features["spines"]]
+					accessory_type = GLOB.spines_list[H.dna.features["spines"]]
 				if("waggingspines")
-					S = GLOB.animated_spines_list[H.dna.features["spines"]]
+					accessory_type = GLOB.animated_spines_list[H.dna.features["spines"]]
 				if("snout")
-					S = GLOB.snouts_list[H.dna.features["snout"]]
+					accessory_type = GLOB.snouts_list[H.dna.features["snout"]]
 				if("frills")
-					S = GLOB.frills_list[H.dna.features["frills"]]
+					accessory_type = GLOB.frills_list[H.dna.features["frills"]]
 				if("horns")
-					S = GLOB.horns_list[H.dna.features["horns"]]
+					accessory_type = GLOB.horns_list[H.dna.features["horns"]]
 				if("ears")
-					S = GLOB.ears_list[H.dna.features["ears"]]
+					accessory_type = GLOB.ears_list[H.dna.features["ears"]]
 				if("body_markings")
-					S = GLOB.body_markings_list[H.dna.features["body_markings"]]
+					accessory_type = GLOB.body_markings_list[H.dna.features["body_markings"]]
 				if("wings")
-					S = GLOB.wings_list[H.dna.features["wings"]]
+					accessory_type = GLOB.wings_list[H.dna.features["wings"]]
 				if("wingsopen")
-					S = GLOB.wings_open_list[H.dna.features["wings"]]
+					accessory_type = GLOB.wings_open_list[H.dna.features["wings"]]
 				if("legs")
-					S = GLOB.legs_list[H.dna.features["legs"]]
+					accessory_type = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
-					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
+					accessory_type = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_wingsopen")
-					S = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
+					accessory_type = GLOB.moth_wingsopen_list[H.dna.features["moth_wings"]]
 				if("caps")
-					S = GLOB.caps_list[H.dna.features["caps"]]
+					accessory_type = GLOB.caps_list[H.dna.features["caps"]]
 				if("ipc_screen")
-					S = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
+					accessory_type = GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
 				if("ipc_antenna")
-					S = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
+					accessory_type = GLOB.ipc_antennas_list[H.dna.features["ipc_antenna"]]
 				if("ipc_chassis")
-					S = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
+					accessory_type = GLOB.ipc_chassis_list[H.dna.features["ipc_chassis"]]
 				if("insect_type")
-					S = GLOB.insect_type_list[H.dna.features["insect_type"]]
+					accessory_type = GLOB.insect_type_list[H.dna.features["insect_type"]]
 				if("tail_monkey")
-					S = GLOB.tails_list_monkey[H.dna.features["tail_monkey"]]
-			if(!S || S.icon_state == "none")
+					accessory_type = GLOB.tails_list_monkey[H.dna.features["tail_monkey"]]
+			if(!accessory_type || accessory_type.icon_state == "none")
 				continue
 
-			var/mutable_appearance/accessory_overlay = mutable_appearance(S.icon, layer = -layer)
+			var/mutable_appearance/accessory_overlay = mutable_appearance(accessory_type.icon, layer = -layer)
 
 			//A little rename so we don't have to use tail_lizard or tail_human when naming the sprites.
 			if(bodypart == "tail_lizard" || bodypart == "tail_human" || bodypart == "tail_monkey")
@@ -863,17 +863,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else if(bodypart == "waggingtail_lizard" || bodypart == "waggingtail_human")
 				bodypart = "waggingtail"
 
-			if(S.gender_specific)
-				accessory_overlay.icon_state = "[g]_[bodypart]_[S.icon_state]_[layertext]"
+			if(accessory_type.gender_specific)
+				accessory_overlay.icon_state = "[g]_[bodypart]_[accessory_type.icon_state]_[layertext]"
 			else
-				accessory_overlay.icon_state = "m_[bodypart]_[S.icon_state]_[layertext]"
+				accessory_overlay.icon_state = "m_[bodypart]_[accessory_type.icon_state]_[layertext]"
 
-			if(S.center)
-				accessory_overlay = center_image(accessory_overlay, S.dimension_x, S.dimension_y)
+			if(accessory_type.center)
+				accessory_overlay = center_image(accessory_overlay, accessory_type.dimension_x, accessory_type.dimension_y)
 
 			if(!(HAS_TRAIT(H, TRAIT_HUSK)))
 				if(!forced_colour)
-					switch(S.color_src)
+					switch(accessory_type.color_src)
 						if(SKINTONES)
 							accessory_overlay.color = "#[GLOB.skin_tones[H.dna.species.skin_tone_list][H.skin_tone]]"
 						if(MUTCOLORS)
@@ -898,20 +898,34 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						//monkestation edit end
 				else
 					accessory_overlay.color = forced_colour
-			if(istype(S, /datum/sprite_accessory/body_markings))
+			if(istype(accessory_type, /datum/sprite_accessory/body_markings))
 				accessory_overlay.color = "#" + H.dna.features["bellycolor"]
 
 			standing += accessory_overlay
 
-			if(S.hasinner)
-				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(S.icon, layer = -layer)
-				if(S.gender_specific)
-					inner_accessory_overlay.icon_state = "[g]_[bodypart]inner_[S.icon_state]_[layertext]"
-				else
-					inner_accessory_overlay.icon_state = "m_[bodypart]inner_[S.icon_state]_[layertext]"
+			if((istype(accessory_type, /datum/sprite_accessory/tails_animated/lizard) || istype(accessory_type, /datum/sprite_accessory/tails/lizard))&& ("body_markings" in mutant_bodyparts)) //can't use inner as this needs to support infinite unique tail types and inner wouldn't allow that
+				message_admins("triggered the secondary overlay")
+				//quick access for the belly accessory
+				var/datum/sprite_accessory/belly_accessory = GLOB.body_markings_list[H.dna.features["body_markings"]]
+				//variable to store the icon_state for our tail body marking
+				var/tail_icon_state = "[belly_accessory.icon_state]_" + accessory_overlay.icon_state
+				message_admins("[tail_icon_state]")
 
-				if(S.center)
-					inner_accessory_overlay = center_image(inner_accessory_overlay, S.dimension_x, S.dimension_y)
+				var/mutable_appearance/tail_body_overlay = mutable_appearance(accessory_type.icon, layer = -layer)
+				tail_body_overlay.icon_state = tail_icon_state
+				tail_body_overlay.color = "#" + H.dna.features["bellycolor"]
+
+				standing += tail_body_overlay
+
+			if(accessory_type.hasinner)
+				var/mutable_appearance/inner_accessory_overlay = mutable_appearance(accessory_type.icon, layer = -layer)
+				if(accessory_type.gender_specific)
+					inner_accessory_overlay.icon_state = "[g]_[bodypart]inner_[accessory_type.icon_state]_[layertext]"
+				else
+					inner_accessory_overlay.icon_state = "m_[bodypart]inner_[accessory_type.icon_state]_[layertext]"
+
+				if(accessory_type.center)
+					inner_accessory_overlay = center_image(inner_accessory_overlay, accessory_type.dimension_x, accessory_type.dimension_y)
 
 				standing += inner_accessory_overlay
 

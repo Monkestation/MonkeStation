@@ -39,6 +39,7 @@
 
 	var/mouth = TRUE
 
+	//lizard head parts
 	var/lizard_colors = ""
 	var/horn = ""
 	var/frill = ""
