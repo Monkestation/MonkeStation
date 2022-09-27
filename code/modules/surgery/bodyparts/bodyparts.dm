@@ -5,66 +5,112 @@
 	force = 3
 	throwforce = 3
 	icon = 'icons/mob/human_parts_greyscale.dmi'
-	var/husk_icon = 'icons/mob/human_parts.dmi'
-	var/husk_type = "humanoid"
-	var/static_icon = 'icons/mob/human_parts.dmi' //Uncolorable sprites
 	icon_state = ""
-	layer = BELOW_MOB_LAYER //so it isn't hidden behind objects when on the floor
+	//so it isn't hidden behind objects when on the floor
+	layer = BELOW_MOB_LAYER
+
+	/// the husked icon of the bodypart
+	var/husk_icon = 'icons/mob/human_parts.dmi'
+	/// what type of husk
+	var/husk_type = "humanoid"
+	//Uncolorable sprites
+	var/static_icon = 'icons/mob/human_parts.dmi'
+	//limb current owner
 	var/mob/living/carbon/owner = null
+	//limbs original owner
 	var/datum/weakref/original_owner = null
+	///does the limb need to be processing?
 	var/needs_processing = FALSE
 	///If you'd like to know if a bodypart is organic, please use is_organic_limb()
-	var/bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC //List of bodytypes flags, important for fitting clothing.
-	var/change_exempt_flags //Defines when a bodypart should not be changed. Example: BP_BLOCK_CHANGE_SPECIES prevents the limb from being overwritten on species gain
+	//List of bodytypes flags, important for fitting clothing.
+	var/bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC
+	//Defines when a bodypart should not be changed. Example: BP_BLOCK_CHANGE_SPECIES prevents the limb from being overwritten on species gain
+	var/change_exempt_flags
 
-	var/is_husked = FALSE //Duh
-	var/limb_id = SPECIES_HUMAN //This is effectively the icon_state for limbs.
-	var/limb_gender = "m" //Defines what sprite the limb should use if it is also sexually dimorphic.
-	var/uses_mutcolor = TRUE //Does this limb have a greyscale version?
-	var/is_dimorphic = FALSE //Is there a sprite difference between male and female?
-	var/draw_color //Greyscale draw color
+	///are we husked?
+	var/is_husked = FALSE
+	//This is effectively the icon_state for limbs.
+	var/limb_id = SPECIES_HUMAN
+	//Defines what sprite the limb should use if it is also sexually dimorphic.
+	var/limb_gender = "m"
+	//Does this limb have a greyscale version?
+	var/uses_mutcolor = TRUE
+	//Is there a sprite difference between male and female?
+	var/is_dimorphic = FALSE
+	//Greyscale draw color
+	var/draw_color
 
-	var/body_zone //BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
-	var/aux_zone // used for hands
+	//BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
+	var/body_zone
+	//used for hands
+	var/aux_zone
+	///layer for hands
 	var/aux_layer
-	var/body_part = null //bitflag used to check which clothes cover this bodypart
+	//bitflag used to check which clothes cover this bodypart
+	var/body_part = null
 
+	//list of all embedded objects
 	var/list/embedded_objects = list()
-	var/held_index = 0 //are we a hand? if so, which one!
-	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
+	//are we a hand? if so, which one!
+	var/held_index = 0
+	//For limbs that don't really exist, eg chainsaws
+	var/is_pseudopart = FALSE
 
-	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
-	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
-	var/stam_damage_coeff = 0.7 //Why is this the default???
+	//If disabled, limb is as good as missing
+	var/disabled = BODYPART_NOT_DISABLED
+	//Multiplier of the limb's damage that gets applied to the mob
+	var/body_damage_coeff = 1
+	//Multiplier of the limb's stamina damage, set lower so to not make stun locking easier.
+	var/stam_damage_coeff = 0.7
+	//the brute damage state of the limb
 	var/brutestate = 0
+	//the burn damage state of the limb
 	var/burnstate = 0
+	//the brute damage of the limb
 	var/brute_dam = 0
+	//the burn damage of the limb
 	var/burn_dam = 0
+	//the maximum amount of damage the limb can take stamina wise
 	var/max_stamina_damage = 0
+	//the maximum amount of damage the limb can take
 	var/max_damage = 0
 
+	//how much stamina damage we have taken
 	var/stamina_dam = 0
-	var/stamina_heal_rate = 1	//Stamina heal multiplier
+	//Stamina heal multiplier
+	var/stamina_heal_rate = 1
 
-	var/brute_reduction = 0 //Subtracted to brute damage taken
-	var/burn_reduction = 0	//Subtracted to burn damage taken
+	//Subtracted to brute damage taken
+	var/brute_reduction = 0
+	//Subtracted to burn damage taken
+	var/burn_reduction = 0
 
 	//Coloring and proper item icon update
 	var/skin_tone = ""
+	//list of skin tones
 	var/skin_tone_list = "" //monkestation edit - skin tone refactor
-	var/should_draw_greyscale = TRUE //Limbs need this information as a back-up incase they are generated outside of a carbon (limbgrower)
+	//Limbs need this information as a back-up incase they are generated outside of a carbon (limbgrower)
+	var/should_draw_greyscale = TRUE
+	//the color given by the species for limbs
 	var/species_color = ""
+	//the mutation color given by the mcolor dna strand
 	var/mutation_color = ""
-	var/no_update = 0
+	//is this limb in need of an update?
+	var/no_update = FALSE
 
-	var/animal_origin = null //for nonhuman bodypart (e.g. monkey)
-	var/dismemberable = 1 //whether it can be dismembered with a weapon.
-
+	//for nonhuman bodypart (e.g. monkey)
+	var/animal_origin = null
+	//whether it can be dismembered with a weapon.
+	var/dismemberable = TRUE
+	//x pixel of the limb
 	var/px_x = 0
+	//y pixel of the limb
 	var/px_y = 0
 
+	//list of flags based on the species of the limb
 	var/species_flags_list = list()
-	var/dmg_overlay_type //the type of damage overlay (if any) to use when this bodypart is bruised/burned.
+	//the type of damage overlay (if any) to use when this bodypart is bruised/burned.
+	var/dmg_overlay_type
 
 	//Damage messages used by help_shake_act()
 	var/light_brute_msg = "bruised"
