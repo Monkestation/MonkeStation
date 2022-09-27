@@ -370,3 +370,7 @@
 	icon_file = 'icons/obj/atmospherics/pipes/meter.dmi'
 	json_config = 'code/datums/greyscale/json_configs/meter.json'
 
+/datum/greyscale_config/ninja_outfits
+	name = "Ninja Outfits"
+	icon_file = 'monkestation/icons/mob/ninja.dmi'
+	json_config = 'code/datums/greyscale/json_configs/ninja_gear.json'

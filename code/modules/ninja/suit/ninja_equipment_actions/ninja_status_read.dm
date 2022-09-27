@@ -18,6 +18,7 @@
 	var/list/info_list = list()
 	info_list += "<span class='info'>SpiderOS Status: [suit_initialized ? "Initialized" : "Disabled"]</span>\n"
 	info_list += "<span class='info'>Current Time: [station_time_timestamp()]</span>\n"
+	info_list += "<span class='info'>Cell Charge: [cell.charge/100]%</span>\n"
 	//Ninja status
 	info_list += "<span class='info'>Fingerprints: [md5(ninja.dna.uni_identity)]</span>\n"
 	info_list += "<span class='info'>Unique Identity: [ninja.dna.unique_enzymes]</span>\n"
@@ -27,6 +28,7 @@
 	info_list += "<span class='info'>Toxin Levels: [ninja.getToxLoss()]</span>\n"
 	info_list += "<span class='info'>Burn Severity: [ninja.getFireLoss()]</span>\n"
 	info_list += "<span class='info'>Brute Trauma: [ninja.getBruteLoss()]</span>\n"
+	info_list += "<span class='info'>Cellular Damage: [ninja.cloneloss]</span>\n"
 	info_list += "<span class='info'>Radiation Levels: [ninja.radiation] rad</span>\n"
 	info_list += "<span class='info'>Body Temperature: [ninja.bodytemperature-T0C] degrees C ([ninja.bodytemperature*1.8-459.67] degrees F)</span>\n"
 

@@ -1,5 +1,5 @@
 /datum/action/item_action/ninjastar
-	name = "Create Throwing Stars (1E)"
+	name = "Create Throwing Stars (1%)"
 	desc = "Creates a throwing star in your hand, if possible."
 	button_icon_state = "throwingstar"
 	icon_icon = 'icons/obj/items_and_weapons.dmi'

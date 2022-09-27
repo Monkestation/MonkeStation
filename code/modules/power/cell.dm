@@ -251,6 +251,14 @@
 	name = "pulse pistol power cell"
 	maxcharge = 2000
 
+
+/obj/item/stock_parts/cell/ninja
+	name = "black power cell"
+	icon_state = "bscell"
+	maxcharge = 10000
+	materials = list(/datum/material/glass=40)
+	chargerate = 2000
+
 /obj/item/stock_parts/cell/high
 	name = "high-capacity power cell"
 	icon_state = "hcell"

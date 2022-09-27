@@ -26,6 +26,8 @@
 	armour_penetration = 40
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	pickup_sound = 'sound/items/unsheath.ogg'
+	drop_sound = 'sound/items/sheath.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "tore", "ripped", "diced", "cut")
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = IS_SHARP
@@ -50,7 +52,7 @@
 	. = ..()
 	if(dash_toggled && !Adjacent(target) && !target.density)
 		jaunt.teleport(user, target)
-	if(proximity_flag && (isobj(target) || issilicon(target)))
+	if(proximity_flag && (isobj(target)))
 		spark_system.start()
 		playsound(user, "sparks", 50, 1)
 		playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
@@ -60,7 +62,6 @@
 	..()
 	jaunt.Grant(user, src)
 	user.update_icons()
-	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /obj/item/energy_katana/dropped(mob/user)
 	..()

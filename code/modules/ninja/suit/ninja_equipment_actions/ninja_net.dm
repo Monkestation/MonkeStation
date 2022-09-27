@@ -1,5 +1,5 @@
 /datum/action/item_action/ninjanet
-	name = "Energy Net (40E)"
+	name = "Energy Net (20%)"
 	desc = "Captures a fallen opponent in a net of energy."
 	button_icon_state = "energynet"
 	icon_icon = 'icons/effects/effects.dmi'
@@ -24,7 +24,7 @@
 		if(between_turf.density)//Don't want them shooting nets through walls. It's kind of cheesy.
 			to_chat(ninja, "<span class='warning'>You may not use an energy net through solid obstacles!</span>")
 			return
-	if(!ninja_cost(400,N_STEALTH_CANCEL))
+	if(!ninja_cost(200,N_STEALTH_CANCEL))
 		ninja.Beam(net_target, "n_beam",time=15)
 		ninja.say("Get over here!", forced = "ninja net")
 		var/obj/structure/energy_net/net = new /obj/structure/energy_net(net_target.drop_location())

@@ -10,13 +10,15 @@
 /obj/item/clothing/shoes/space_ninja
 	name = "ninja shoes"
 	desc = "A pair of running shoes. Excellent for running and even better for smashing skulls."
-	icon_state = "s-ninja"
+	icon_state = "ninja_boots"
 	item_state = "secshoes"
+	greyscale_config_worn = /datum/greyscale_config/ninja_outfits
+	greyscale_colors = "#000000"
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	armor = list(MELEE = 40, BULLET = 30, LASER = 20,ENERGY = 15, BOMB = 30, BIO = 30, RAD = 30, FIRE = 100, ACID = 100)
-	strip_delay = 120
+	strip_delay = 12 SECONDS
 	cold_protection = FEET
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
 	heat_protection = FEET

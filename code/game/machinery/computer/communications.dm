@@ -629,7 +629,7 @@
 				shake_camera(crew_member, 15, 1)
 
 			var/datum/game_mode/dynamic/dynamic = SSticker.mode
-			if(!dynamic)
+			if(dynamic.name != "dynamic mode")
 				return
 			dynamic.create_threat(HACK_THREAT_INJECTION_AMOUNT)
 			dynamic.threat_log += "[worldtime2text()]: Communications console hack by [hackerman]. Added [HACK_THREAT_INJECTION_AMOUNT] threat."
@@ -640,7 +640,7 @@
 			var/max_number_of_sleepers = clamp(round(length(SSticker.mode.current_players[CURRENT_LIVING_PLAYERS]) / 20), 1, 3)
 			var/num_agents_created = 0
 
-			if(!dynamic)
+			if(dynamic.name != "dynamic mode")
 				return
 
 			for(var/num_agents in 1 to rand(1, max_number_of_sleepers))

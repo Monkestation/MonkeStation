@@ -1,0 +1,67 @@
+{
+	"ninja_suit":[
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_suit",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_suit_lights",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"ninja_armor":[
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_armor",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_armor_lights",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"ninja_helm":[
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_helm",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_helm_lights",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"ninja_gloves":[
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_gloves",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_gloves_l",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	],
+	"ninja_boots":[
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_boots",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "ninja_boots_lights",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

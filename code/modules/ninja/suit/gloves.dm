@@ -12,14 +12,17 @@
 /obj/item/clothing/gloves/space_ninja
 	desc = "These nano-enhanced gloves insulate from electricity and provide fire resistance."
 	name = "ninja gloves"
-	icon_state = "black"
+	icon_state = "ninja_gloves"
 	item_state = "s-ninjan"
+	worn_icon_state = "ninja_gloves"
+	greyscale_config_worn = /datum/greyscale_config/ninja_outfits
+	greyscale_colors = "#000000"
 	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
-	strip_delay = 120
+	strip_delay = 12 SECONDS
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	actions_types = list(/datum/action/item_action/toggle_glove)
 	///Whether or not we're currently draining something

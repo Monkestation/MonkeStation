@@ -1,7 +1,7 @@
 //Disables nearby tech equipment.
 
 /datum/action/item_action/ninjapulse
-	name = "EM Burst (50E)"
+	name = "EM Burst (25%)"
 	desc = "Disable any nearby technology with an electro-magnetic pulse."
 	button_icon_state = "emp"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
@@ -13,7 +13,7 @@
   * Also affects the ninja as well.
   */
 /obj/item/clothing/suit/space/space_ninja/proc/ninjapulse()
-	if(ninja_cost(500,N_STEALTH_CANCEL))
+	if(ninja_cost(250,N_STEALTH_CANCEL))
 		return
 	var/mob/living/carbon/human/H = affecting
 	playsound(H.loc, 'sound/effects/empulse.ogg', 60, 2)

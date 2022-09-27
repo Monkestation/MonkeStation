@@ -51,14 +51,14 @@
 				suit_currently_busy = FALSE
 				return
 		if (NINJA_COLOR_CHOICE)
-			choose_suit_color(ninja)//Check for icons.
-			ninja.regenerate_icons()
+			choose_suit_color(ninja)//Customize suit color
 		if (NINJA_COMPLETE_PHASE - 1)
 			message += "<B>[display_energy(cell.charge)]</B>."
 		if (NINJA_COMPLETE_PHASE)
 			message += "[ninja.real_name]."
 			suit_initialized = TRUE
 			suit_currently_busy = FALSE
+			START_PROCESSING(SSobj, src)
 
 	to_chat(ninja, "<span class='notice'>[message]</span>")
 	playsound(ninja, 'sound/effects/sparks1.ogg', 10, TRUE)
@@ -88,6 +88,9 @@
 			message = "Logging off, [ninja.real_name]. " + message
 		if(NINJA_DEINIT_STEALTH_PHASE)
 			cancel_stealth()
+			suit_color = "#000000"
+			update_suit_color()
+			ninja.regenerate_icons()
 	to_chat(ninja, "<span class='notice'>[message]</span>")
 	playsound(ninja, 'sound/items/deconstruct.ogg', 10, TRUE)
 
@@ -98,3 +101,4 @@
 		ninja.regenerate_icons()
 		suit_initialized = FALSE
 		suit_currently_busy = FALSE
+		STOP_PROCESSING(SSobj, src)
