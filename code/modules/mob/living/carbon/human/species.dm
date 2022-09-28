@@ -3,77 +3,163 @@
 GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species
-	var/id	// if the game needs to manually check your race to do something not included in a proc here, it will use this
-	var/name	// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
-	var/bodyflag = FLAG_HUMAN //Species flags currently used for species restriction on items
-	var/default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
-	var/bodytype = BODYTYPE_HUMANOID
-	var/sexes = 1		// whether or not the race has sexual characteristics. at the moment this is only 0 for skeletons and shadows
+	// if the game needs to manually check your race to do something not included in a proc here, it will use this
+	var/id
+	// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
+	var/name
 
-	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0), OFFSET_RIGHT_HAND = list(0,0), OFFSET_LEFT_HAND = list(0,0))
-	var/max_bodypart_count = 6 //The maximum number of bodyparts this species can have.
-	var/hair_color	// this allows races to have specific hair colors... if null, it uses the human_host's hair/facial hair colors. if "mutcolor", it uses the human_host's mutant_color
-	var/hair_alpha = 255	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
-	var/examine_limb_id //This is used for children, felinids and ashwalkers namely
-
-	var/digitigrade_customization = DIGITIGRADE_NEVER //Never, Optional, or Forced digi legs?
+//COSEMETIC-------------------------------------------------
+	// whether or not the race has sexual characteristics. at the moment this is only 0 for skeletons and shadows
+	var/sexes = 1
+	// if alien colors are disabled, this is the color that will be used by that race
+	var/default_color = "#FFF"
+	//The maximum number of bodyparts this species can have.
+	var/max_bodypart_count = 6
+	// this allows races to have specific hair colors... if null, it uses the human_host's hair/facial hair colors. if "mutcolor", it uses the human_host's mutant_color
+	var/hair_color
+	// the alpha used by the hair. 255 is completely solid, 0 is transparent.
+	var/hair_alpha = 255
+	// if you use Dyncolor and are not ethereal, use this
+	var/dyncolor = ""
+	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
+	var/exotic_blood = ""
+	//If your race uses a non standard bloodtype (A+, O-, AB-, etc)
+	var/exotic_bloodtype = ""
+	//the skin tone list to pull from
 	var/skin_tone_list = "human" //monkestation edit: add species specific skin tones - defaults to human
-	var/dyncolor = "" // if you use Dyncolor and are not ethereal, use this
-	var/exotic_blood = ""	// If your race wants to bleed something other than bog standard blood, change this to reagent id.
-	var/exotic_bloodtype = "" //If your race uses a non standard bloodtype (A+, O-, AB-, etc)
-	var/meat = /obj/item/food/meat/slab/human //What the species drops on gibbing
-	var/skinned_type
-	var/liked_food = NONE
-	var/disliked_food = GROSS
-	var/toxic_food = TOXIC
-	var/list/no_equip = list()	// slots the race can't equip stuff to
-	var/nojumpsuit = 0	// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
-	var/say_mod = "says"	// affects the speech message
-	var/species_language_holder = /datum/language_holder
-	var/alt_eye //alternate eye directory; monkestation edit: add simians
-	var/list/default_features = list("body_size" = "Normal") // Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
-	var/list/forced_features = list()	// A list of features forced on characters
-	var/list/mutant_bodyparts = list() 	// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.
-	var/list/mutant_organs = list()		//Internal organs that are unique to this race.
-	var/speedmod = 0	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
-	var/armor = 0		// overall defense for the race... or less defense, if it's negative.
-	var/brutemod = 1	// multiplier for brute damage
-	var/burnmod = 1		// multiplier for burn damage
-	var/coldmod = 1		// multiplier for cold damage
-	var/heatmod = 1		// multiplier for heat damage
-	var/stunmod = 1
-	var/oxymod = 1
-	var/clonemod = 1
-	var/toxmod = 1
-	var/staminamod = 1		// multiplier for stun duration
-	var/maxhealthmod = 1 //multiplier for overriding max health
-	var/attack_type = BRUTE //Type of damage attack does
-	var/punchdamage = 7      //highest possible punch damage
-	var/siemens_coeff = 1 //base electrocution coefficient
-	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
-	var/inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
-	var/deathsound //used to set the mobs deathsound on species change
-	var/list/special_step_sounds //Sounds to override barefeet walkng
-	var/grab_sound //Special sound for grabbing
-	var/blood_color //Blood color for decals
-	var/reagent_tag = PROCESS_ORGANIC //Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
-	var/species_gibs = GIB_TYPE_HUMAN //by default human gibs are used
-	var/allow_numbers_in_name // Can this species use numbers in its name?
-	var/datum/outfit/outfit_important_for_life /// A path to an outfit that is important for species life e.g. plasmaman outfit
-	var/datum/action/innate/flight/fly //the actual flying ability given to flying species
+	//alternate eye directory
+	var/alt_eye //monkestation edit: add simians
+	//to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
+	var/fixed_mut_color = ""
+	//Blood color for decals
+	var/blood_color // this may become un-needed we should be able to read the color of the reagent
+//----------------------------------------------------------
+
+//LISTS-----------------------------------------------------
+	// what are the offsets of where things should be placed
+	var/list/offset_features = list(
+		OFFSET_UNIFORM = list(0,0),
+		OFFSET_ID = list(0,0),
+		OFFSET_GLOVES = list(0,0),
+		OFFSET_GLASSES = list(0,0),
+		OFFSET_EARS = list(0,0),
+		OFFSET_SHOES = list(0,0),
+		OFFSET_S_STORE = list(0,0),
+		OFFSET_FACEMASK = list(0,0),
+		OFFSET_HEAD = list(0,0),
+		OFFSET_FACE = list(0,0),
+		OFFSET_BELT = list(0,0),
+		OFFSET_BACK = list(0,0),
+		OFFSET_SUIT = list(0,0),
+		OFFSET_NECK = list(0,0),
+		OFFSET_RIGHT_HAND = list(0,0),
+		OFFSET_LEFT_HAND = list(0,0))
+	// slots the race can't equip stuff to
+	var/list/no_equip = list()
+	// Default mutant bodyparts for this species. Don't forget to set one for every mutant bodypart you allow this species to have.
+	var/list/default_features = list("body_size" = "Normal")
+	// A list of features forced on characters
+	var/list/forced_features = list()
+	// Visible CURRENT bodyparts that are unique to a species. DO NOT USE THIS AS A LIST OF ALL POSSIBLE BODYPARTS AS IT WILL FUCK SHIT UP! Changes to this list for non-species specific bodyparts (ie cat ears and tails) should be assigned at organ level if possible. Layer hiding is handled by handle_mutant_bodyparts() below.
+	var/list/mutant_bodyparts = list()
+	//Internal organs that are unique to this race.
+	var/list/mutant_organs = list()
 	// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
 	// generic traits tied to having the species
 	var/list/inherent_traits = list()
+	// the biotypes tied to having the species
 	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	///List of factions the mob gain upon gaining this species.
 	var/list/inherent_factions
+//----------------------------------------------------------
 
-	var/attack_verb = "punch"	// punch-specific attack verb
+//COMBAT----------------------------------------------------
+	// this affects the race's speed. positive numbers make it move slower, negative numbers make it move faster
+	var/speedmod = 0
+	// overall defense for the race... or less defense, if it's negative.
+	var/armor = 0
+	// multiplier for brute damage
+	var/brutemod = 1
+	// multiplier for burn damage
+	var/burnmod = 1
+	// multiplier for cold damage
+	var/coldmod = 1
+	// multiplier for heat damage
+	var/heatmod = 1
+	// multiplier for stamina damage
+	var/stunmod = 1
+	// multiplier for oxyegen damage
+	var/oxymod = 1
+	// multiplier for celluar damage
+	var/clonemod = 1
+	// multiplier for toxin damage
+	var/toxmod = 1
+	// multiplier for stun duration
+	var/staminamod = 1
+	//multiplier for overriding max health
+	var/maxhealthmod = 1
+	//Type of damage attack does
+	var/attack_type = BRUTE
+	//highest possible punch damage
+	var/punchdamage = 7
+	//base electrocution coefficient
+	var/siemens_coeff = 1
+//----------------------------------------------------------
+
+//FLAGS-----------------------------------------------------
+	//Bitflag that controls what in game ways can select this species as a spawnable source
+	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
+	//in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
+	var/changesource_flags = NONE
+
+	//bitflags of what types of food you like
+	var/liked_food = NONE
+	//bitflags of what types of food you dislike
+	var/disliked_food = GROSS
+	//bitflags of what types of food is toxic to you
+	var/toxic_food = TOXIC
+	//Species flags currently used for species restriction on items
+	var/bodyflag = FLAG_HUMAN
+	// the body type of the species
+	var/bodytype = BODYTYPE_HUMANOID
+//----------------------------------------------------------
+
+//SOUND AND TEXT--------------------------------------------
+	//This is used for children, felinids and ashwalkers namely
+	var/examine_limb_id
+	// affects the speech message
+	var/say_mod = "says"
+	//the language holder of the host
+	var/species_language_holder = /datum/language_holder
+	//used to set the mobs deathsound on species change
+	var/deathsound
+	//Sounds to override barefeet walkng
+	var/list/special_step_sounds
+	//Special sound for grabbing
+	var/grab_sound
+
+	// the verb used when attacked
+	var/attack_verb = "punch"
+	// sound that follows a successful attack
 	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
+	// sound that follows an unsuccessful attack
 	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
+//----------------------------------------------------------
 
-	//Breathing!
+//SPECIAL SPECIES VARIABLES---------------------------------
+	//Never, Optional, or Forced digi legs?
+	var/digitigrade_customization = DIGITIGRADE_NEVER
+	// Can this species use numbers in its name?
+	var/allow_numbers_in_name
+	/// A path to an outfit that is important for species life e.g. plasmaman outfit
+	var/datum/outfit/outfit_important_for_life
+	//the actual flying ability given to flying species
+	var/datum/action/innate/flight/fly
+
+//----------------------------------------------------------
+
+//ORGAN and BODYPARTS---------------------------------------
 	var/obj/item/organ/lungs/mutantlungs = null
 	var/breathid = "o2"
 
@@ -92,14 +178,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	//MonkeStation Edit: Butt Organ
 	var/obj/item/organ/butt/mutant_butt = /obj/item/organ/butt
 
-	//Bitflag that controls what in game ways can select this species as a spawnable source
-	//Think magic mirror and pride mirror, slime extract, ERT etc, see defines
-	//in __DEFINES/mobs.dm, defaults to NONE, so people actually have to think about it
-	var/changesource_flags = NONE
-
-	//The component to add when swimming
-	var/swimming_component = /datum/component/swimming
-
 	//K-Limbs. If a species doesn't have their own limb types. Do not override this, use the K-Limbs overrides at the top of the species datum.
 	var/obj/item/bodypart/species_chest = /obj/item/bodypart/chest
 	var/obj/item/bodypart/species_head = /obj/item/bodypart/head
@@ -107,6 +185,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/obj/item/bodypart/species_r_arm = /obj/item/bodypart/r_arm
 	var/obj/item/bodypart/species_r_leg = /obj/item/bodypart/r_leg
 	var/obj/item/bodypart/species_l_leg = /obj/item/bodypart/l_leg
+//----------------------------------------------------------
+
+	//What the species drops on gibbing
+	var/meat = /obj/item/food/meat/slab/human
+	//what the skin type is when butchered
+	var/skinned_type
+	// this is sorta... weird. it basically lets you equip stuff that usually needs jumpsuits without one, like belts and pockets and ids
+	var/nojumpsuit = FALSE
+	//special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
+	var/inert_mutation 	= DWARFISM
+	//Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
+	var/reagent_tag = PROCESS_ORGANIC
+	//by default human gibs are used
+	var/species_gibs = GIB_TYPE_HUMAN
+	//The component to add when swimming
+	var/swimming_component = /datum/component/swimming
+
 
 ///////////
 // PROCS //
