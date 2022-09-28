@@ -1373,11 +1373,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 
 	//metabolism change
-	if(human_host.nutrition > NUTRITION_LEVEL_FAT)
+	if(human_host.nutrition > NUTRITION_LEVEL_FAT && !human_host.current_hungerlevel_flag == NUTRITION_LEVEL_FAT)
 		human_host.metabolism_efficiency = initial(human_host.metabolism_efficiency)
 		human_host.current_hungerlevel_flag = NUTRITION_LEVEL_FAT
 
-	else if(human_host.nutrition > NUTRITION_LEVEL_FED && human_host.satiety > 80 && !(human_host.current_hungerlevel_flag == NUTRITION_LEVEL_FED) && !HAS_TRAIT(human_host, TRAIT_NOHUNGER))
+	else if(human_host.nutrition < NUTRITION_LEVEL_FAT && human_host.nutrition > NUTRITION_LEVEL_FED && human_host.satiety > 80 && !(human_host.current_hungerlevel_flag == NUTRITION_LEVEL_FED) && !HAS_TRAIT(human_host, TRAIT_NOHUNGER))
 		to_chat(human_host, "<span class='notice'>You feel vigorous.</span>")
 		human_host.metabolism_efficiency += 0.25
 		human_host.current_hungerlevel_flag = NUTRITION_LEVEL_FED
@@ -1386,10 +1386,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		to_chat(human_host, "<span class='notice'>You feel sluggish.</span>")
 		human_host.metabolism_efficiency -= 0.2
 		human_host.current_hungerlevel_flag = NUTRITION_LEVEL_STARVING
-
-	else
-		if(human_host.current_hungerlevel_flag == NUTRITION_LEVEL_FED)
-			to_chat(human_host, "<span class='notice'>You no longer feel vigorous.</span>")
 
 	//Hunger slowdown for if mood isn't enabled
 	if(CONFIG_GET(flag/disable_human_mood))
