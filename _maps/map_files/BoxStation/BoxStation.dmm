@@ -25427,11 +25427,10 @@
 	pixel_x = -27
 	},
 /obj/machinery/light/dim,
-/obj/effect/turf_decal/trimline/purple/warning{
-	dir = 1
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/purple/warning,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/noslip/dark,
 /area/medical/genetics/cloning)
 "brb" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -41711,10 +41710,9 @@
 /obj/machinery/door/window/northright{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/purple/warning{
-	dir = 1
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
 	},
-/obj/effect/turf_decal/trimline/purple/warning,
 /turf/open/floor/noslip/dark,
 /area/medical/genetics/cloning)
 "ctr" = (
