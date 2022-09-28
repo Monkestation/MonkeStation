@@ -51556,7 +51556,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "hvw" = (
@@ -51574,7 +51573,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/obj/structure/table/glass,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "hwv" = (
