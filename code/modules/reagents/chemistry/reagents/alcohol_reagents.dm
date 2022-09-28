@@ -50,6 +50,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	new_gas.color = "#404030"
 	new_gas.breath_reagent = /datum/reagent/consumable/ethanol
 	new_gas.group = GAS_GROUP_CHEMICALS
+	new_gas.flags = GAS_FLAG_DANGEROUS
 	return new_gas
 
 /datum/reagent/consumable/ethanol/get_gas()
