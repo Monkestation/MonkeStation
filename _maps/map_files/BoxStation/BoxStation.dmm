@@ -42035,7 +42035,7 @@
 /area/medical/medbay/central)
 "cux" = (
 /obj/effect/turf_decal/loading_area,
-/turf/open/floor/plasteel/grid,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "cuy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -56589,7 +56589,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/turf/open/floor/plasteel/grid,
+/turf/open/floor/plasteel/white,
 /area/medical/storage)
 "lee" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
