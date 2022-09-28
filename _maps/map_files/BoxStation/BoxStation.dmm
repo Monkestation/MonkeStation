@@ -43695,11 +43695,11 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "cCp" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 6
-	},
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 6
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -53040,7 +53040,7 @@
 "iDq" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medbay Storage";
-	desc = "This door was specially designed to only open for people who smell really bad"
+	desc = "This door was specially designed to only open for people who smell really bad in hopes of helping them reach a shower faster."
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
@@ -58570,20 +58570,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/hallway)
-"mkN" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Medbay Storage";
-	req_access_txt = "5"
-	},
-/obj/machinery/door/firedoor,
-/obj/effect/turf_decal/stripes/closeup{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grid/steel,
-/area/medical/storage)
 "mls" = (
 /obj/structure/table/wood,
 /obj/item/storage/crayons,
@@ -62923,6 +62909,9 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "pGw" = (
@@ -65808,13 +65797,21 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "rAT" = (
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 10
-	},
 /obj/item/radio/intercom{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/white,
+/obj/machinery/shower{
+	name = "emergency shower";
+	pixel_y = 1;
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/structure/curtain{
+	layer = 4.5
+	},
+/turf/open/floor/noslip/blue,
 /area/medical/storage)
 "rAZ" = (
 /obj/structure/cable/yellow{
@@ -111955,7 +111952,7 @@ bRO
 bRO
 ohE
 bGR
-mkN
+bRO
 bzs
 tSQ
 bzs
