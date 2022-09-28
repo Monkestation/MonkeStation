@@ -53036,7 +53036,8 @@
 "iDq" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Medbay Storage";
-	desc = "This door was specially designed to only open for people who smell really bad in hopes of helping them reach a shower faster."
+	desc = "This door was specially designed to only open for people who smell really bad in hopes of helping them reach a shower faster.";
+	req_access_txt = "5"
 	},
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
@@ -71615,17 +71616,13 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/wrench/medical{
-	pixel_x = -6;
-	pixel_y = 5
+/obj/item/storage/firstaid/regular{
+	pixel_y = 6;
+	pixel_x = -3
 	},
-/obj/item/storage/fancy/cigarettes/cigpack_robust{
-	pixel_x = 12;
-	pixel_y = -5
-	},
-/obj/item/storage/box/matches{
-	pixel_y = 2;
-	pixel_x = -7
+/obj/item/healthanalyzer{
+	pixel_x = 5;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
