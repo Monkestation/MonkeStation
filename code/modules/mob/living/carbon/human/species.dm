@@ -781,6 +781,137 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	human_host.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(human_host)
 
+// this proc is cancer to look at but basically it reads through all the body parts in mutant_bodyparts and checks visibility if it can't see it removes from the list
+// this can probably be made nicer by making lists of things that share a check and run those at once
+/datum/species/proc/handle_mutant_bodylist(mob/living/carbon/human/human_host)
+	//create a copy of all mutant_bodyparts so we can remove useless ones
+	var/list/list_of_bodyparts = mutant_bodyparts.Copy()
+	// the head object from the host used to check if its covered later
+	var/obj/item/bodypart/head/HD = human_host.get_bodypart(BODY_ZONE_HEAD)
+
+	//TAILS - these need custom code for now can probably remove that later but uh -Borbop
+	if("tail_lizard" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "tail_lizard"
+
+	if("waggingtail_lizard" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "waggingtail_lizard"
+		else if ("tail_lizard" in mutant_bodyparts)
+			list_of_bodyparts -= "waggingtail_lizard"
+
+	if("tail_human" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "tail_human"
+
+	if("waggingtail_human" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "waggingtail_human"
+		else if ("tail_human" in mutant_bodyparts)
+			list_of_bodyparts -= "waggingtail_human"
+	if("spines" in mutant_bodyparts)
+		if(!human_host.dna.features["spines"] || human_host.dna.features["spines"] == "None" || human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "spines"
+
+	if("waggingspines" in mutant_bodyparts)
+		if(!human_host.dna.features["spines"] || human_host.dna.features["spines"] == "None" || human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "waggingspines"
+		else if ("tail" in mutant_bodyparts)
+			list_of_bodyparts -= "waggingspines"
+
+	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
+		if((human_host.wear_mask?.flags_inv & HIDEFACE) || (human_host.head?.flags_inv & HIDEFACE) || !HD)
+			list_of_bodyparts -= "snout"
+
+	if("frills" in mutant_bodyparts)
+		if(!human_host.dna.features["frills"] || human_host.dna.features["frills"] == "None" || (human_host.head?.flags_inv & HIDEEARS) || !HD)
+			list_of_bodyparts -= "frills"
+
+	if("horns" in mutant_bodyparts)
+		if(!human_host.dna.features["horns"] || human_host.dna.features["horns"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			list_of_bodyparts -= "horns"
+
+	if("ears" in mutant_bodyparts)
+		if(!human_host.dna.features["ears"] || human_host.dna.features["ears"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			list_of_bodyparts -= "ears"
+
+	if("wings" in mutant_bodyparts)
+		if(!human_host.dna.features["wings"] || human_host.dna.features["wings"] == "None" || (human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT) && (!human_host.wear_suit.species_exception || !is_type_in_list(src, human_host.wear_suit.species_exception))))
+			list_of_bodyparts -= "wings"
+
+	if("wings_open" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT) && (!human_host.wear_suit.species_exception || !is_type_in_list(src, human_host.wear_suit.species_exception)))
+			list_of_bodyparts -= "wings_open"
+		else if ("wings" in mutant_bodyparts)
+			list_of_bodyparts -= "wings_open"
+
+	if("ipc_screen" in mutant_bodyparts)
+		if(!human_host.dna.features["ipc_screen"] || human_host.dna.features["ipc_screen"] == "None" || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEEYES)) || !HD)
+			list_of_bodyparts -= "ipc_screen"
+
+	if("ipc_antenna" in mutant_bodyparts)
+		if(!human_host.dna.features["ipc_antenna"] || human_host.dna.features["ipc_antenna"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
+			list_of_bodyparts -= "ipc_antenna"
+
+	//monkestation edit: add simian species
+	if("tail_monkey" in mutant_bodyparts)
+		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
+			list_of_bodyparts -= "tail_monkey"
+
+	return list_of_bodyparts
+
+/datum/species/proc/grab_sprite_accessory(bodypart)
+	var/datum/sprite_accessory/accessory_type
+
+	switch(bodypart)
+		if("tail_lizard")
+			accessory_type = GLOB.tails_list_lizard[human_host.dna.features["tail_lizard"]]
+		if("waggingtail_lizard")
+			accessory_type = GLOB.animated_tails_list_lizard[human_host.dna.features["tail_lizard"]]
+		if("tail_human")
+			accessory_type = GLOB.tails_list_human[human_host.dna.features["tail_human"]]
+		if("waggingtail_human")
+			accessory_type = GLOB.animated_tails_list_human[human_host.dna.features["tail_human"]]
+		if("spines")
+			accessory_type = GLOB.spines_list[human_host.dna.features["spines"]]
+		if("waggingspines")
+			accessory_type = GLOB.animated_spines_list[human_host.dna.features["spines"]]
+		if("snout")
+			accessory_type = GLOB.snouts_list[human_host.dna.features["snout"]]
+		if("frills")
+			accessory_type = GLOB.frills_list[human_host.dna.features["frills"]]
+		if("horns")
+			accessory_type = GLOB.horns_list[human_host.dna.features["horns"]]
+		if("ears")
+			accessory_type = GLOB.ears_list[human_host.dna.features["ears"]]
+		if("body_markings")
+			accessory_type = GLOB.body_markings_list[human_host.dna.features["body_markings"]]
+		if("wings")
+			accessory_type = GLOB.wings_list[human_host.dna.features["wings"]]
+		if("wingsopen")
+			accessory_type = GLOB.wings_open_list[human_host.dna.features["wings"]]
+		if("legs")
+			accessory_type = GLOB.legs_list[human_host.dna.features["legs"]]
+		if("moth_wings")
+			accessory_type = GLOB.moth_wings_list[human_host.dna.features["moth_wings"]]
+		if("moth_wingsopen")
+			accessory_type = GLOB.moth_wingsopen_list[human_host.dna.features["moth_wings"]]
+		if("caps")
+			accessory_type = GLOB.caps_list[human_host.dna.features["caps"]]
+		if("ipc_screen")
+			accessory_type = GLOB.ipc_screens_list[human_host.dna.features["ipc_screen"]]
+		if("ipc_antenna")
+			accessory_type = GLOB.ipc_antennas_list[human_host.dna.features["ipc_antenna"]]
+		if("ipc_chassis")
+			accessory_type = GLOB.ipc_chassis_list[human_host.dna.features["ipc_chassis"]]
+		if("insect_type")
+			accessory_type = GLOB.insect_type_list[human_host.dna.features["insect_type"]]
+		if("tail_monkey")
+			accessory_type = GLOB.tails_list_monkey[human_host.dna.features["tail_monkey"]]
+
+	return accessory_type
+
+//monkestation edit end
 /datum/species/proc/handle_mutant_bodyparts(mob/living/carbon/human/human_host, forced_colour)
 	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
 	var/list/relevent_layers = list(BODY_BEHIND_LAYER, BODY_ADJ_LAYER, BODY_FRONT_LAYER)
@@ -793,78 +924,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!mutant_bodyparts)
 		return
 
-	var/obj/item/bodypart/head/HD = human_host.get_bodypart(BODY_ZONE_HEAD)
-
-	if("tail_lizard" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_lizard"
-
-	if("waggingtail_lizard" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingtail_lizard"
-		else if ("tail_lizard" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingtail_lizard"
-
-	if("tail_human" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_human"
-
-	if("waggingtail_human" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingtail_human"
-		else if ("tail_human" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingtail_human"
-
-
-	if("spines" in mutant_bodyparts)
-		if(!human_host.dna.features["spines"] || human_host.dna.features["spines"] == "None" || human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "spines"
-
-	if("waggingspines" in mutant_bodyparts)
-		if(!human_host.dna.features["spines"] || human_host.dna.features["spines"] == "None" || human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "waggingspines"
-		else if ("tail" in mutant_bodyparts)
-			bodyparts_to_add -= "waggingspines"
-
-	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((human_host.wear_mask?.flags_inv & HIDEFACE) || (human_host.head?.flags_inv & HIDEFACE) || !HD)
-			bodyparts_to_add -= "snout"
-
-	if("frills" in mutant_bodyparts)
-		if(!human_host.dna.features["frills"] || human_host.dna.features["frills"] == "None" || (human_host.head?.flags_inv & HIDEEARS) || !HD)
-			bodyparts_to_add -= "frills"
-
-	if("horns" in mutant_bodyparts)
-		if(!human_host.dna.features["horns"] || human_host.dna.features["horns"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
-			bodyparts_to_add -= "horns"
-
-	if("ears" in mutant_bodyparts)
-		if(!human_host.dna.features["ears"] || human_host.dna.features["ears"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
-			bodyparts_to_add -= "ears"
-
-	if("wings" in mutant_bodyparts)
-		if(!human_host.dna.features["wings"] || human_host.dna.features["wings"] == "None" || (human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT) && (!human_host.wear_suit.species_exception || !is_type_in_list(src, human_host.wear_suit.species_exception))))
-			bodyparts_to_add -= "wings"
-
-	if("wings_open" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT) && (!human_host.wear_suit.species_exception || !is_type_in_list(src, human_host.wear_suit.species_exception)))
-			bodyparts_to_add -= "wings_open"
-		else if ("wings" in mutant_bodyparts)
-			bodyparts_to_add -= "wings_open"
-
-	if("ipc_screen" in mutant_bodyparts)
-		if(!human_host.dna.features["ipc_screen"] || human_host.dna.features["ipc_screen"] == "None" || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEEYES)) || !HD)
-			bodyparts_to_add -= "ipc_screen"
-
-	if("ipc_antenna" in mutant_bodyparts)
-		if(!human_host.dna.features["ipc_antenna"] || human_host.dna.features["ipc_antenna"] == "None" || human_host.head && (human_host.head.flags_inv & HIDEHAIR) || (human_host.wear_mask && (human_host.wear_mask.flags_inv & HIDEHAIR)) || !HD)
-			bodyparts_to_add -= "ipc_antenna"
-
-//monkestation edit: add simian species
-	if("tail_monkey" in mutant_bodyparts)
-		if(human_host.wear_suit && (human_host.wear_suit.flags_inv & HIDEJUMPSUIT))
-			bodyparts_to_add -= "tail_monkey"
-//monkestation edit end
+	// off loading this to a secondary proc for easier reading of the code
+	bodyparts_to_add = handle_mutant_bodylist(human_host)
 
 	////PUT ALL YOUR WEIRD ASS REAL-LIMB HANDLING HERE
 	///Digi handling
@@ -902,51 +963,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		for(var/bodypart in bodyparts_to_add)
 			var/datum/sprite_accessory/accessory_type
-			switch(bodypart)
-				if("tail_lizard")
-					accessory_type = GLOB.tails_list_lizard[human_host.dna.features["tail_lizard"]]
-				if("waggingtail_lizard")
-					accessory_type = GLOB.animated_tails_list_lizard[human_host.dna.features["tail_lizard"]]
-				if("tail_human")
-					accessory_type = GLOB.tails_list_human[human_host.dna.features["tail_human"]]
-				if("waggingtail_human")
-					accessory_type = GLOB.animated_tails_list_human[human_host.dna.features["tail_human"]]
-				if("spines")
-					accessory_type = GLOB.spines_list[human_host.dna.features["spines"]]
-				if("waggingspines")
-					accessory_type = GLOB.animated_spines_list[human_host.dna.features["spines"]]
-				if("snout")
-					accessory_type = GLOB.snouts_list[human_host.dna.features["snout"]]
-				if("frills")
-					accessory_type = GLOB.frills_list[human_host.dna.features["frills"]]
-				if("horns")
-					accessory_type = GLOB.horns_list[human_host.dna.features["horns"]]
-				if("ears")
-					accessory_type = GLOB.ears_list[human_host.dna.features["ears"]]
-				if("body_markings")
-					accessory_type = GLOB.body_markings_list[human_host.dna.features["body_markings"]]
-				if("wings")
-					accessory_type = GLOB.wings_list[human_host.dna.features["wings"]]
-				if("wingsopen")
-					accessory_type = GLOB.wings_open_list[human_host.dna.features["wings"]]
-				if("legs")
-					accessory_type = GLOB.legs_list[human_host.dna.features["legs"]]
-				if("moth_wings")
-					accessory_type = GLOB.moth_wings_list[human_host.dna.features["moth_wings"]]
-				if("moth_wingsopen")
-					accessory_type = GLOB.moth_wingsopen_list[human_host.dna.features["moth_wings"]]
-				if("caps")
-					accessory_type = GLOB.caps_list[human_host.dna.features["caps"]]
-				if("ipc_screen")
-					accessory_type = GLOB.ipc_screens_list[human_host.dna.features["ipc_screen"]]
-				if("ipc_antenna")
-					accessory_type = GLOB.ipc_antennas_list[human_host.dna.features["ipc_antenna"]]
-				if("ipc_chassis")
-					accessory_type = GLOB.ipc_chassis_list[human_host.dna.features["ipc_chassis"]]
-				if("insect_type")
-					accessory_type = GLOB.insect_type_list[human_host.dna.features["insect_type"]]
-				if("tail_monkey")
-					accessory_type = GLOB.tails_list_monkey[human_host.dna.features["tail_monkey"]]
+			// another new proc again for code clarity
+			accessory_type = grab_sprite_accessory(bodypart)
+
 			if(!accessory_type || accessory_type.icon_state == "none")
 				continue
 
