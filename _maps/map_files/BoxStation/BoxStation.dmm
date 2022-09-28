@@ -45817,7 +45817,7 @@
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 6
+	pixel_y = 4
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27;
@@ -52182,7 +52182,7 @@
 /obj/effect/turf_decal/tile/blue/tile_full,
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 6
+	pixel_y = 4
 	},
 /obj/machinery/airalarm/directional/east,
 /obj/structure/window/reinforced,
