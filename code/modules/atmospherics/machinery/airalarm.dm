@@ -136,7 +136,7 @@
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
 	. = ..()
 	regenerate_TLV()
-	RegisterSignal(SSdcs,COMSIG_GLOB_NEW_GAS,.proc/regenerate_TLV)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_GAS, .proc/regenerate_TLV)
 	wires = new /datum/wires/airalarm(src)
 	if(ndir)
 		setDir(ndir)
@@ -327,7 +327,7 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("power", "toggle_filter", "widenet", "scrubbing", "direction")
+		if("power", "toggle_filter", "widenet", "scrubbing")
 			send_signal(device_id, list("[action]" = params["val"]), usr)
 			. = TRUE
 		if("excheck")
@@ -335,6 +335,9 @@
 			. = TRUE
 		if("incheck")
 			send_signal(device_id, list("checks" = text2num(params["val"])^2), usr)
+			. = TRUE
+		if("direction")
+			send_signal(device_id, list("direction" = text2num(params["val"])), usr)
 			. = TRUE
 		if("set_external_pressure", "set_internal_pressure")
 			var/target = params["value"]
