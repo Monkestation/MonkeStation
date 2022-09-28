@@ -1001,7 +1001,7 @@
 
 /datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
 	var/S = heat_capacity()
-	chem_temp = clamp(chem_temp + (J / S), min_temp, max_temp)
+	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
 
 /datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0)
 	if(!isnum_safe(amount) || !amount)
