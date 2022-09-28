@@ -860,7 +860,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	return list_of_bodyparts
 
-/datum/species/proc/grab_sprite_accessory(bodypart)
+/datum/species/proc/grab_sprite_accessory(bodypart, mob/living/carbon/human/human_host)
 	var/datum/sprite_accessory/accessory_type
 
 	switch(bodypart)
@@ -964,7 +964,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/bodypart in bodyparts_to_add)
 			var/datum/sprite_accessory/accessory_type
 			// another new proc again for code clarity
-			accessory_type = grab_sprite_accessory(bodypart)
+			accessory_type = grab_sprite_accessory(bodypart, human_host)
 
 			if(!accessory_type || accessory_type.icon_state == "none")
 				continue
