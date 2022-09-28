@@ -34,6 +34,9 @@
 	species_l_leg = /obj/item/bodypart/l_leg/lizard
 	species_r_leg = /obj/item/bodypart/r_leg/lizard
 
+	//used to handle the difference for adding and subtracting
+	var/metabolism_cache = 0
+
 
 /datum/species/lizard/random_name(gender, unique, lastname, attempts)
 	if(gender == MALE)
@@ -56,3 +59,15 @@
 	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH)
 	species_language_holder = /datum/language_holder/lizard/ash
 	digitigrade_customization = DIGITIGRADE_FORCED
+
+/datum/species/lizard/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/human_host)
+	. = ..()
+	//simple if statement checkers to determine what state the temperature of the body is compared to the outside
+	if(human_host.bodytemperature > BODYTEMP_NORMAL)
+		var/metabolism_variable =  min(0.5, 1 - (human_host.bodytemperature / T20C))
+		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache
+		metabolism_cache = metabolism_variable
+	else
+		var/metabolism_variable =  min(0.5, 1 - (T20C / human_host.bodytemperature))
+		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache
+		metabolism_cache = metabolism_variable

@@ -63,6 +63,9 @@
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and regulate body temperature..
 	var/has_limbs = 0 //does the mob have distinct limbs?(arms,legs, chest,head)
 
+	//this is run once everytime its changed so that it doesn't spam messages or adjust metabolisms
+	var/current_hungerlevel_flag = null
+
 	var/list/pipes_shown = list()
 	var/last_played_vent
 
