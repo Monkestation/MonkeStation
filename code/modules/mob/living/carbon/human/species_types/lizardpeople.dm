@@ -67,14 +67,14 @@
 	//simple if statement checkers to determine what state the temperature of the body is compared to the outside
 	if(human_host.bodytemperature > BODYTEMP_NORMAL)
 		if(metabolism_cache_cold)
-			metabolism_efficiency += metabolism_cache_cold
+			human_host.metabolism_efficiency += metabolism_cache_cold
 			metabolism_cache_cold = 0
 
-		var/metabolism_variable =  min(0.5, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL) * 2))
-		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache
+		var/metabolism_variable =  round(min(0.5, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL) * 2)), 0.1)
+		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache_hot
 		metabolism_cache_hot = metabolism_variable
 
-		var/speed_variable = min(0.2, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL)))
+		var/speed_variable = round(min(0.2, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL))), 0.01)
 		speedmod += speed_variable - speed_cache
 		speed_cache = speed_variable
 
@@ -84,9 +84,9 @@
 			speed_cache = 0
 
 		if(metabolism_cache_hot)
-			metabolism_efficiency -= metabolism_cache_hot
+			human_host.metabolism_efficiency -= metabolism_cache_hot
 			metabolism_cache_hot = 0
 
-		var/metabolism_variable =  min(0.5, 1 - (T20C / human_host.bodytemperature))
-		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache
+		var/metabolism_variable =  round(min(0.5, 1 - (T20C / human_host.bodytemperature)), 0.1)
+		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache_cold
 		metabolism_cache_cold = metabolism_variable
