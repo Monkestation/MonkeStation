@@ -504,7 +504,6 @@
 				), signal_source)
 			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
-					"is_pressurizing" = 1,
 					"power" = 1,
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE * 3
