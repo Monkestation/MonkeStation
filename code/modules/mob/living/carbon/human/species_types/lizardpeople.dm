@@ -259,3 +259,14 @@
 			vulnerable_human.physiology.stamina_mod -= 0.1
 			initial_stam -= 0.1
 
+/datum/status_effect/vulnerable/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/vulnerable_human = owner
+
+		if(initial_brute)
+			vulnerable_human.physiology.brute_mod -= initial_brute
+		if(initial_burn)
+			vulnerable_human.physiology.burn_mod -= initial_burn
+		if(initial_stam)
+			vulnerable_human.physiology.stamina_mod -= initial_stam
