@@ -162,6 +162,7 @@
 		else
 			to_chat(user, "You swing around sadly, hitting nothing.")
 
+		user.adjustStaminaLoss(30)
 		user.emote("spin")
 
 
@@ -184,6 +185,8 @@
 		var/list/list_of_items = list()
 		list_of_items |= user.get_equipped_items()
 		list_of_items |= user.held_items
+
+		user.apply_status_effect(/datum/status_effect/vulnerable)
 
 		var/mob/living/carbon/human/molt/shedded_you = new /mob/living/carbon/human/molt(human_caster.loc)
 
@@ -215,3 +218,23 @@
 	visible_message(span_notice("[src.name] crumbles to dust."))
 	unequip_everything()
 	qdel(src)
+
+
+/datum/status_effect/vulnerable
+	id = "vulnerable"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 2 MINUTES
+	examine_text = "<span class='warning'>You are exteremly vulnerable without your scales.</span>"
+	alert_type = /atom/movable/screen/alert/status_effect/trance
+
+/datum/status_effect/vulnerable/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/vulnerable_human = owner
+		vulnerable_human.physiology.brute_mod += 1.5
+
+/datum/status_effect/vulnerable/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/vulnerable_human = owner
+		vulnerable_human.physiology.brute_mod -= 1.5
