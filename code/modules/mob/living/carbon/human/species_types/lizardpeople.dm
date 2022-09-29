@@ -186,12 +186,16 @@
 		list_of_items |= user.get_equipped_items()
 		list_of_items |= user.held_items
 
+		user.adjustBruteLoss(-50)
+		user.adjustFireLoss(-50)
+
 		user.apply_status_effect(/datum/status_effect/vulnerable)
 
 		var/mob/living/carbon/human/molt/shedded_you = new /mob/living/carbon/human/molt(human_caster.loc)
 
 		shedded_you.hardset_dna(human_caster.dna.uni_identity, human_caster.dna.mutation_index, human_caster.name, null, human_caster.dna.species, human_caster.dna.features)
 
+		human_caster.unequip_everything()
 		for(var/obj/object in list_of_items)
 			object.forceMove(shedded_you.loc)
 			shedded_you.equip_to_appropriate_slot(object)
@@ -224,17 +228,28 @@
 	id = "vulnerable"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 2 MINUTES
-	examine_text = "<span class='warning'>You are exteremly vulnerable without your scales.</span>"
+	examine_text = "<span class='warning'>They are exteremly vulnerable without their scales.</span>"
 	alert_type = /atom/movable/screen/alert/status_effect/trance
+	var/initial_brute
+	var/initial_burn
+	var/initial_stam
 
 /datum/status_effect/vulnerable/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/vulnerable_human = owner
+		initial_brute = vulnerable_human.physiology.brute_mod
+		initial_burn = vulnerable_human.physiology.burn_mod
+		initial_stam = vulnerable_human.physiology.stamina_mod
+
 		vulnerable_human.physiology.brute_mod += 1.5
+		vulnerable_human.physiology.stamina_mod += 1.5
+		vulnerable_human.physiology.burn_mod += 1.5
 
 /datum/status_effect/vulnerable/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/vulnerable_human = owner
 		vulnerable_human.physiology.brute_mod -= 1.5
+		vulnerable_human.physiology.stamina_mod += 1.5
+		vulnerable_human.physiology.burn_mod += 1.5
