@@ -568,7 +568,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/tempr = usr
-		normal_bodytemp = tempr.dna.species.base_body_temperature
+		if(tempr?.dna)
+			normal_bodytemp = tempr.dna.species.base_body_temperature
 
 	var/body_temperature_difference = normal_bodytemp - bodytemperature
 	switch(bodytemperature)

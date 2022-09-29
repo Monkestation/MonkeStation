@@ -123,17 +123,15 @@
 		hunger_drain_modifier -= hunger_variable - hunger_drain_cache_cold
 		hunger_drain_cache_cold = hunger_variable
 
-/datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/human_host, client/preference_source)
-	. = ..()
-	human_host.AddSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
-
 /datum/species/lizard/on_species_gain(mob/living/carbon/human_host, datum/species/old_species, pref_load)
 	. = ..()
-	human_host.AddSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
-
+	human_host.AddSpell(new /obj/effect/proc_holder/spell/self/tail_sweep)
+	human_host.AddSpell(new /obj/effect/proc_holder/spell/self/molt)
 /datum/species/lizard/on_species_loss(mob/living/carbon/human/human_host, datum/species/new_species, pref_load)
 	. = ..()
 	human_host.RemoveSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
+	human_host.RemoveSpell(/obj/effect/proc_holder/spell/self/molt)
+
 /////ABILITIES
 
 /obj/effect/proc_holder/spell/self/tail_sweep
@@ -165,3 +163,55 @@
 			to_chat(user, "You swing around sadly, hitting nothing.")
 
 		user.emote("spin")
+
+
+/obj/effect/proc_holder/spell/self/molt
+	name = "Molt"
+	desc = "Shed your outter most layer of scales, leaving behind a hollow husk of you with all your clothing still attached"
+	charge_max = 5 MINUTES
+	clothes_req = FALSE
+	invocation_type = "none"
+
+	action_icon = 'icons/mob/actions/actions_hive.dmi'
+	action_background_icon_state = "bg_hive"
+	action_icon_state = "scan"
+	antimagic_allowed = TRUE
+
+/obj/effect/proc_holder/spell/self/molt/cast(mob/living/carbon/user)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_caster = user
+		var/list/list_of_items = list()
+		list_of_items |= user.get_equipped_items()
+		list_of_items |= user.held_items
+
+		var/mob/living/carbon/human/molt/shedded_you = new /mob/living/carbon/human/molt(human_caster.loc)
+
+		shedded_you.hardset_dna(human_caster.dna.uni_identity, human_caster.dna.mutation_index, human_caster.name, null, human_caster.dna.species, human_caster.dna.features)
+
+		for(var/obj/object in list_of_items)
+			object.forceMove(shedded_you.loc)
+			shedded_you.equip_to_appropriate_slot(object)
+
+		shedded_you.desc = "The husk of [human_caster.name]'s shedded scales"
+
+/mob/living/carbon/human/molt
+	maxHealth = 1
+
+/mob/living/carbon/human/molt/attack_hand(mob/user)
+	. = ..()
+	visible_message(span_notice("[src.name] crumbles to dust."))
+	unequip_everything()
+	qdel(src)
+
+/mob/living/carbon/human/molt/bullet_act(obj/item/projectile/P, def_zone, piercing_hit)
+	. = ..()
+	visible_message(span_notice("[src.name] crumbles to dust."))
+	unequip_everything()
+	qdel(src)
+
+/mob/living/carbon/human/molt/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	visible_message(span_notice("[src.name] crumbles to dust."))
+	unequip_everything()
+	qdel(src)

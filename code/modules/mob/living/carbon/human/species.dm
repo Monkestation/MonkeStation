@@ -1367,7 +1367,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(islizard(human_host))
 			var/datum/species/lizard/host_species
-			hunger_rate *= host_species.hunger_drain_modifier
+			if(host_species?.hunger_drain_modifier)
+				hunger_rate *= host_species.hunger_drain_modifier
 
 		human_host.adjust_nutrition(-hunger_rate)
 
