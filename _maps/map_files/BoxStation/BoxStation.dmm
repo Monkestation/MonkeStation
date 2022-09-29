@@ -60147,7 +60147,10 @@
 /turf/open/floor/plasteel/grid,
 /area/medical/chemistry/upper)
 "nws" = (
-/obj/item/clothing/mask/horsehead,
+/obj/item/clothing/mask/horsehead/cursed{
+	name = "Accursed Horse Mask";
+	desc = "Peter, the horse is here "
+	},
 /turf/open/space/basic,
 /area/space)
 "nwC" = (
