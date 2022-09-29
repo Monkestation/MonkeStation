@@ -502,7 +502,7 @@
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
-			for(var/device_id in my_area.air_scrub_info)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"is_pressurizing" = 1,
 					"power" = 1,
@@ -517,13 +517,13 @@
 			AALARM_MODE_REPLACEMENT)
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
-					"is_pressurizing" = 1,
-					"power" = 0
-				), signal_source)
-				send_signal(device_id, list(
-					"is_siphoning" = 1,
 					"power" = 1,
-					"checks" = 0
+					"widenet" = 1,
+					"scrubbing" = 0
+				), signal_source)
+			for(var/device_id in my_area.air_vent_info)
+				send_signal(device_id, list(
+					"power" = 0
 				), signal_source)
 		if(AALARM_MODE_SIPHON)
 			for(var/device_id in my_area.air_scrub_info)
