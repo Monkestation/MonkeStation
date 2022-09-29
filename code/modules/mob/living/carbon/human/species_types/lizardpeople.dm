@@ -247,7 +247,7 @@
 		vulnerable_human.physiology.stamina_mod += 1.5
 		vulnerable_human.physiology.burn_mod += 1.5
 
-/datum/status/effect/vulnerable/tick()
+/datum/status_effect/vulnerable/tick()
 	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/vulnerable_human = owner
