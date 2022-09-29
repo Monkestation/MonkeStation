@@ -508,10 +508,6 @@
 					"checks" = 1,
 					"set_external_pressure" = ONE_ATMOSPHERE * 3
 				), signal_source)
-				send_signal(device_id, list(
-					"is_siphoning" = 1,
-					"power" = 0,
-				), signal_source)
 		if(AALARM_MODE_PANIC,
 			AALARM_MODE_REPLACEMENT)
 			for(var/device_id in my_area.air_scrub_info)
@@ -533,13 +529,7 @@
 				), signal_source)
 			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
-					"is_pressurizing" = 1,
 					"power" = 0
-				), signal_source)
-				send_signal(device_id, list(
-					"is_siphoning" = 1,
-					"power" = 1,
-					"checks" = 0
 				), signal_source)
 		if(AALARM_MODE_OFF)
 			for(var/device_id in my_area.air_scrub_info)
@@ -558,12 +548,8 @@
 			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
 					"power" = 1,
-					"checks" = 0,
-					"is_pressurizing" = 1
-				), signal_source)
-				send_signal(device_id, list(
-					"power" = 0,
-					"is_siphoning" = 1
+					"checks" = 2,
+					"set_internal_pressure" = 0
 				), signal_source)
 
 /obj/machinery/airalarm/update_appearance(updates)
