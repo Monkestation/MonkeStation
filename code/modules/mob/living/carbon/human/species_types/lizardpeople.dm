@@ -81,7 +81,7 @@
 			human_host.metabolism_efficiency += metabolism_cache_cold
 			metabolism_cache_cold = 0
 
-		var/metabolism_variable =  round(min(0.5, 1 - ((BODYTEMP_NORMAL / human_host.bodytemperature ) * 2)), 0.1)
+		var/metabolism_variable =  round(min(0.5, (1 - ((BODYTEMP_NORMAL / human_host.bodytemperature )) * 2)), 0.1)
 		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache_hot
 		metabolism_cache_hot = metabolism_variable
 
