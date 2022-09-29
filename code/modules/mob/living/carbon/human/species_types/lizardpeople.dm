@@ -33,11 +33,20 @@
 	species_r_leg = /obj/item/bodypart/r_leg/lizard
 
 	speedmod = 0.9 //slightly slower by default than humans
+
+
+	//NOTE: the hot and cold caches are hear exclusively for lag reasons if we get a freeze and things update to fast you will offset your stuff forever this fixes that - Borbop
+
 	//used to handle the difference for adding and subtracting speed
 	var/metabolism_cache_cold = 0
 	var/metabolism_cache_hot = 0
 	//used to handle the difference for adding and subtracting speed
 	var/speed_cache = 0
+	//used to handle the hunger drain increase or decrease from temperature
+	var/hunger_drain_modifier = 1
+	var/hunger_drain_cache_hot = 0
+	var/hunger_drain_cache_hot = 0
+
 
 
 /datum/species/lizard/random_name(gender, unique, lastname, attempts)
@@ -62,6 +71,8 @@
 	species_language_holder = /datum/language_holder/lizard/ash
 	digitigrade_customization = DIGITIGRADE_FORCED
 
+
+///this updates the various things needed to have lizards dynamically adjust to their temperature includes: speed, metabolism, and hunger
 /datum/species/lizard/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/human_host)
 	. = ..()
 	//simple if statement checkers to determine what state the temperature of the body is compared to the outside
@@ -78,6 +89,14 @@
 		speedmod += speed_variable - speed_cache
 		speed_cache = speed_variable
 
+		if(hunger_drain_cache_cold)
+			hunger_drain_modifier += hunger_drain_cache_cold
+			hunger_drain_cache_cold = 0
+
+		var/hunger_variable = round(min(0.75, (human_host.bodytemperature / BODYTEMP_NORMAL) * 3), 0.01)
+		hunger_drain_modifier += hunger_variable - hunger_drain_cache_hot
+		hunger_drain_cache_hot = hunger_variable
+
 	else
 		if(speed_cache)
 			speedmod -= speed_cache
@@ -90,3 +109,11 @@
 		var/metabolism_variable =  round(min(0.5, 1 - (T20C / human_host.bodytemperature)), 0.1)
 		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache_cold
 		metabolism_cache_cold = metabolism_variable
+
+		if(hunger_drain_cache_hot)
+			hunger_drain_modifier -= hunger_drain_cache_hot
+			hunger_drain_cache_hot = 0
+
+		var/hunger_variable = round(min(0.75, (human_host.bodytemperature / BODYTEMP_NORMAL) * 3), 0.01)
+		hunger_drain_modifier -= hunger_variable - hunger_drain_cache_cold
+		hunger_drain_cache_cold = hunger_variable

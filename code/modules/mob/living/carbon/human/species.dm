@@ -1361,6 +1361,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				human_host.Jitter(5)
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= human_host.physiology.hunger_mod
+
+		if(islizard(human_host))
+			var/datum/species/lizard/host_species
+			hunger_rate *= host_species.hunger_drain_modifier
+
 		human_host.adjust_nutrition(-hunger_rate)
 
 
