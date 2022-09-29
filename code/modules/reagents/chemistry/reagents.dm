@@ -68,6 +68,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 			var/modifier = CLAMP((1 - touch_protection), 0, 1)
 			var/amount = round(reac_volume*modifier, 0.1)
 			if(amount >= 0.5)
+				//scales get in the way this should be changed in the future if we add limb based applications
+				if(islizard(M) && method=TOUCH)
+					amount *= 0.5
+
 				M.reagents.add_reagent(type, amount)
 	return 1
 
