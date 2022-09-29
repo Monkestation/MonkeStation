@@ -32,7 +32,7 @@
 	species_l_leg = /obj/item/bodypart/l_leg/lizard
 	species_r_leg = /obj/item/bodypart/r_leg/lizard
 
-	speedmod = 0.9 //slightly slower by default than humans
+	speedmod = 0.05 //slightly slower by default than humans
 
 
 	//NOTE: the hot and cold caches are hear exclusively for lag reasons if we get a freeze and things update to fast you will offset your stuff forever this fixes that - Borbop
@@ -45,7 +45,7 @@
 	//used to handle the hunger drain increase or decrease from temperature
 	var/hunger_drain_modifier = 1
 	var/hunger_drain_cache_hot = 0
-	var/hunger_drain_cache_hot = 0
+	var/hunger_drain_cache_cold = 0
 
 
 
@@ -81,13 +81,15 @@
 			human_host.metabolism_efficiency += metabolism_cache_cold
 			metabolism_cache_cold = 0
 
-		var/metabolism_variable =  round(min(0.5, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL) * 2)), 0.1)
+		var/metabolism_variable =  round(min(0.5, 1 - ((BODYTEMP_NORMAL / human_host.bodytemperature ) * 2)), 0.1)
 		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache_hot
 		metabolism_cache_hot = metabolism_variable
 
-		var/speed_variable = round(min(0.2, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL))), 0.01)
-		speedmod += speed_variable - speed_cache
-		speed_cache = speed_variable
+		var/speed_variable = round(min(0.15, 1 - ((BODYTEMP_NORMAL / human_host.bodytemperature))), 0.01) //this round can be changed if we want them to update less or more
+		if(speed_variable != speed_cache)
+			speedmod += speed_variable - speed_cache
+			speed_cache = speed_variable
+			update_species_speed_mod(human_host)
 
 		if(hunger_drain_cache_cold)
 			hunger_drain_modifier += hunger_drain_cache_cold
@@ -101,12 +103,13 @@
 		if(speed_cache)
 			speedmod -= speed_cache
 			speed_cache = 0
+			update_species_speed_mod(human_host)
 
 		if(metabolism_cache_hot)
 			human_host.metabolism_efficiency -= metabolism_cache_hot
 			metabolism_cache_hot = 0
 
-		var/metabolism_variable =  round(min(0.5, 1 - (T20C / human_host.bodytemperature)), 0.1)
+		var/metabolism_variable =  round(min(0.5, 1 - (BODYTEMP_NORMAL / human_host.bodytemperature)), 0.1)
 		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache_cold
 		metabolism_cache_cold = metabolism_variable
 
@@ -114,6 +117,6 @@
 			hunger_drain_modifier -= hunger_drain_cache_hot
 			hunger_drain_cache_hot = 0
 
-		var/hunger_variable = round(min(0.75, (human_host.bodytemperature / BODYTEMP_NORMAL) * 3), 0.01)
+		var/hunger_variable = round(min(0.75, (BODYTEMP_NORMAL / human_host.bodytemperature) * 2), 0.01)
 		hunger_drain_modifier -= hunger_variable - hunger_drain_cache_cold
 		hunger_drain_cache_cold = hunger_variable
