@@ -87,7 +87,7 @@
 
 		var/speed_variable = round(min(0.15, 1 - ((BODYTEMP_NORMAL / human_host.bodytemperature))), 0.01) //this round can be changed if we want them to update less or more
 		if(speed_variable != speed_cache)
-			speedmod += speed_variable - speed_cache
+			speedmod -= speed_variable - speed_cache
 			speed_cache = speed_variable
 			update_species_speed_mod(human_host)
 
@@ -101,7 +101,7 @@
 
 	else
 		if(speed_cache)
-			speedmod -= speed_cache
+			speedmod += speed_cache
 			speed_cache = 0
 			update_species_speed_mod(human_host)
 
