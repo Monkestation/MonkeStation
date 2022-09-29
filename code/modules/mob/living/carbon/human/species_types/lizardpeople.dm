@@ -231,17 +231,14 @@
 	examine_text = "<span class='warning'>They are exteremly vulnerable without their scales.</span>"
 	alert_type = /atom/movable/screen/alert/status_effect/trance
 	tick_interval = 8 SECONDS
-	var/initial_brute
-	var/initial_burn
-	var/initial_stam
+	var/initial_brute = 1.5
+	var/initial_burn = 1.5
+	var/initial_stam = 1.5
 
 /datum/status_effect/vulnerable/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/vulnerable_human = owner
-		initial_brute = vulnerable_human.physiology.brute_mod
-		initial_burn = vulnerable_human.physiology.burn_mod
-		initial_stam = vulnerable_human.physiology.stamina_mod
 
 		vulnerable_human.physiology.brute_mod += 1.5
 		vulnerable_human.physiology.stamina_mod += 1.5
@@ -251,7 +248,14 @@
 	.=..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/vulnerable_human = owner
-		vulnerable_human.physiology.brute_mod -= 0.1
-		vulnerable_human.physiology.stamina_mod -= 0.1
-		vulnerable_human.physiology.burn_mod -= 0.1
+
+		if(initial_brute)
+			vulnerable_human.physiology.brute_mod -= 0.1
+			initial_brute -= 0.1
+		if(initial_burn)
+			vulnerable_human.physiology.burn_mod -= 0.1
+			initial_burn -= 0.1
+		if(initial_stam)
+			vulnerable_human.physiology.stamina_mod -= 0.1
+			initial_stam -= 0.1
 
