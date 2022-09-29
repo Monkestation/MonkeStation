@@ -484,16 +484,15 @@
 		if(AALARM_MODE_VENTING)
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
-					"is_pressurizing" = 1,
 					"power" = 1,
-					"checks" = 1,
-					"set_external_pressure" = ONE_ATMOSPHERE*1.4
+					"widenet" = 0,
+					"scrubbing" = 0
 				), signal_source)
+			for(var/device_id in my_area.air_vent_info)
 				send_signal(device_id, list(
-					"is_siphoning" = 1,
 					"power" = 1,
 					"checks" = 1,
-					"set_external_pressure" = ONE_ATMOSPHERE/1.4
+					"set_external_pressure" = ONE_ATMOSPHERE*2
 				), signal_source)
 		if(AALARM_MODE_REFILL)
 			for(var/device_id in my_area.air_scrub_info)
