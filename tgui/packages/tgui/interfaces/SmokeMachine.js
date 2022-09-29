@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { AnimatedNumber, Box, Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
-export const AtmosMachine = (props, context) => {
+export const SmokeMachine = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     TankContents,

@@ -129,7 +129,7 @@
 /obj/machinery/atmos_machine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "AtmosMachine")
+		ui = new(user, src, "SmokeMachine")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Tank contents, particularly plumbing
 
