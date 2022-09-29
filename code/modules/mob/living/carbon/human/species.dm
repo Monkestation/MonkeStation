@@ -156,7 +156,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/datum/outfit/outfit_important_for_life
 	//the actual flying ability given to flying species
 	var/datum/action/innate/flight/fly
-
+	//the ambient body temperature of the species
+	var/base_body_temperature = BODYTEMP_NORMAL
 //----------------------------------------------------------
 
 //ORGAN and BODYPARTS---------------------------------------
@@ -1981,17 +1982,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/thermal_protection = 1
 		if(loc_temp < human_host.bodytemperature) //Place is colder than we are
 			thermal_protection -= human_host.get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-			if(human_host.bodytemperature < BODYTEMP_NORMAL) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
+			if(human_host.bodytemperature < human_host.dna.species.base_body_temperature) //we're cold, insulation helps us retain body heat and will reduce the heat we lose to the environment
 				human_host.adjust_bodytemperature((thermal_protection+1)*natural + max(thermal_protection * (loc_temp - human_host.bodytemperature) / BODYTEMP_COLD_DIVISOR, BODYTEMP_COOLING_MAX))
 			else //we're sweating, insulation hinders our ability to reduce heat - and it will reduce the amount of cooling you get from the environment
-				human_host.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + max((thermal_protection * (loc_temp - human_host.bodytemperature) + BODYTEMP_NORMAL - human_host.bodytemperature) / BODYTEMP_COLD_DIVISOR , BODYTEMP_COOLING_MAX)) //Extra calculation for hardsuits to bleed off heat
+				human_host.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + max((thermal_protection * (loc_temp - human_host.bodytemperature) + human_host.dna.species.base_body_temperature - human_host.bodytemperature) / BODYTEMP_COLD_DIVISOR , BODYTEMP_COOLING_MAX)) //Extra calculation for hardsuits to bleed off heat
 	if (loc_temp > human_host.bodytemperature) //Place is hotter than we are
 		var/natural = 0
 		if(human_host.stat != DEAD)
 			natural = human_host.natural_bodytemperature_stabilization()
 		var/thermal_protection = 1
 		thermal_protection -= human_host.get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
-		if(human_host.bodytemperature < BODYTEMP_NORMAL) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
+		if(human_host.bodytemperature < human_host.dna.species.base_body_temperature) //and we're cold, insulation enhances our ability to retain body heat but reduces the heat we get from the environment
 			human_host.adjust_bodytemperature((thermal_protection+1)*natural + min(thermal_protection * (loc_temp - human_host.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))
 		else //we're sweating, insulation hinders out ability to reduce heat - but will reduce the amount of heat we get from the environment
 			human_host.adjust_bodytemperature(natural*(1/(thermal_protection+1)) + min(thermal_protection * (loc_temp - human_host.bodytemperature) / BODYTEMP_HEAT_DIVISOR, BODYTEMP_HEATING_MAX))

@@ -34,6 +34,8 @@
 
 	speedmod = 0.1 //slightly slower by default than humans
 
+	base_body_temperature = BODYTEMP_NORMAL_LIZARD
+
 
 	//NOTE: the hot and cold caches are hear exclusively for lag reasons if we get a freeze and things update to fast you will offset your stuff forever this fixes that - Borbop
 
@@ -76,16 +78,16 @@
 /datum/species/lizard/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/human_host)
 	. = ..()
 	//simple if statement checkers to determine what state the temperature of the body is compared to the outside
-	if(human_host.bodytemperature > BODYTEMP_NORMAL)
+	if(human_host.bodytemperature > BODYTEMP_NORMAL_LIZARD)
 		if(metabolism_cache_cold)
 			human_host.metabolism_efficiency += metabolism_cache_cold
 			metabolism_cache_cold = 0
 
-		var/metabolism_variable =  round(min(0.5, (1 - (BODYTEMP_NORMAL / human_host.bodytemperature )) * 3), 0.1)
+		var/metabolism_variable =  round(min(0.5, (1 - (BODYTEMP_NORMAL_LIZARD / human_host.bodytemperature )) * 3), 0.1)
 		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache_hot
 		metabolism_cache_hot = metabolism_variable
 
-		var/speed_variable = round(min(0.15, (1 - (BODYTEMP_NORMAL / human_host.bodytemperature)) * 1.25 ), 0.01) //this round can be changed if we want them to update less or more
+		var/speed_variable = round(min(0.15, (1 - (BODYTEMP_NORMAL_LIZARD / human_host.bodytemperature)) * 1.25 ), 0.01) //this round can be changed if we want them to update less or more
 		if(speed_variable != speed_cache)
 			speedmod -= speed_variable - speed_cache
 			speed_cache = speed_variable
@@ -95,7 +97,7 @@
 			hunger_drain_modifier += hunger_drain_cache_cold
 			hunger_drain_cache_cold = 0
 
-		var/hunger_variable = round(min(0.75, (human_host.bodytemperature / BODYTEMP_NORMAL) * 3), 0.01)
+		var/hunger_variable = round(min(0.75, (human_host.bodytemperature / BODYTEMP_NORMAL_LIZARD) * 3), 0.01)
 		hunger_drain_modifier += hunger_variable - hunger_drain_cache_hot
 		hunger_drain_cache_hot = hunger_variable
 
@@ -109,7 +111,7 @@
 			human_host.metabolism_efficiency -= metabolism_cache_hot
 			metabolism_cache_hot = 0
 
-		var/metabolism_variable =  round(min(0.5, 1 - (BODYTEMP_NORMAL / human_host.bodytemperature)), 0.1)
+		var/metabolism_variable =  round(min(0.5, 1 - (BODYTEMP_NORMAL_LIZARD / human_host.bodytemperature)), 0.1)
 		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache_cold
 		metabolism_cache_cold = metabolism_variable
 
@@ -117,6 +119,49 @@
 			hunger_drain_modifier -= hunger_drain_cache_hot
 			hunger_drain_cache_hot = 0
 
-		var/hunger_variable = round(min(0.75, (BODYTEMP_NORMAL / human_host.bodytemperature) * 2), 0.01)
+		var/hunger_variable = round(min(0.75, (BODYTEMP_NORMAL_LIZARD / human_host.bodytemperature) * 2), 0.01)
 		hunger_drain_modifier -= hunger_variable - hunger_drain_cache_cold
 		hunger_drain_cache_cold = hunger_variable
+
+/datum/species/lizard/after_equip_job(datum/job/J, mob/living/carbon/human/human_host, client/preference_source)
+	. = ..()
+	human_host.AddSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
+
+/datum/species/lizard/on_species_gain(mob/living/carbon/human_host, datum/species/old_species, pref_load)
+	. = ..()
+	human_host.AddSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
+
+/datum/species/lizard/on_species_loss(mob/living/carbon/human/human_host, datum/species/new_species, pref_load)
+	. = ..()
+	human_host.RemoveSpell(/obj/effect/proc_holder/spell/self/tail_sweep)
+/////ABILITIES
+
+/obj/effect/proc_holder/spell/self/tail_sweep
+	name = "Tail Sweep"
+	desc = "Sweep nearby creatures back and potentially on their asses"
+	charge_max = 2 MINUTES
+	clothes_req = FALSE
+	invocation_type = "none"
+
+	action_icon = 'icons/mob/actions/actions_hive.dmi'
+	action_background_icon_state = "bg_hive"
+	action_icon_state = "scan"
+	antimagic_allowed = TRUE
+
+/obj/effect/proc_holder/spell/self/tail_sweep/cast(mob/living/carbon/human/user)
+	if(islizard(user))
+		if(user.getorgan(/obj/item/organ/tail/lizard))
+			visible_message(span_notice("[user.name] launches everyone around them back!"))
+			for(var/mob/living/target in range(1, user.loc))
+				var/throwing_range = 2
+
+				if(user.dna.check_mutation(HULK))
+					throwing_range = 5
+
+				var/throw_dir = get_dir(user,target)
+				var/turf/throw_at = get_ranged_target_turf(target, throw_dir, throwing_range)
+				target.throw_at(throw_at, throw_range, 3)
+		else
+			to_chat(user, "You swing around sadly, hitting nothing.")
+
+		user.emote("spin")

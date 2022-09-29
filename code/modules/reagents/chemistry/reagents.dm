@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 			var/amount = round(reac_volume*modifier, 0.1)
 			if(amount >= 0.5)
 				//scales get in the way this should be changed in the future if we add limb based applications
-				if(islizard(M) && method=TOUCH)
+				if(islizard(M) && method == TOUCH)
 					amount *= 0.5
 
 				M.reagents.add_reagent(type, amount)
