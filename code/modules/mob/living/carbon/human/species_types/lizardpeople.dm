@@ -10,8 +10,6 @@
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
 	mutanttail = /obj/item/organ/tail/lizard
-	coldmod = 1.5
-	heatmod = 0.67
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "body_size" = "Normal")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
@@ -34,8 +32,12 @@
 	species_l_leg = /obj/item/bodypart/l_leg/lizard
 	species_r_leg = /obj/item/bodypart/r_leg/lizard
 
-	//used to handle the difference for adding and subtracting
-	var/metabolism_cache = 0
+	speedmod = 0.9 //slightly slower by default than humans
+	//used to handle the difference for adding and subtracting speed
+	var/metabolism_cache_cold = 0
+	var/metabolism_cache_hot = 0
+	//used to handle the difference for adding and subtracting speed
+	var/speed_cache = 0
 
 
 /datum/species/lizard/random_name(gender, unique, lastname, attempts)
@@ -64,10 +66,27 @@
 	. = ..()
 	//simple if statement checkers to determine what state the temperature of the body is compared to the outside
 	if(human_host.bodytemperature > BODYTEMP_NORMAL)
-		var/metabolism_variable =  min(0.5, 1 - (human_host.bodytemperature / T20C))
+		if(metabolism_cache_cold)
+			metabolism_efficiency += metabolism_cache_cold
+			metabolism_cache_cold = 0
+
+		var/metabolism_variable =  min(0.5, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL) * 2))
 		human_host.metabolism_efficiency += metabolism_variable - metabolism_cache
-		metabolism_cache = metabolism_variable
+		metabolism_cache_hot = metabolism_variable
+
+		var/speed_variable = min(0.2, 1 - ((human_host.bodytemperature / BODYTEMP_NORMAL)))
+		speedmod += speed_variable - speed_cache
+		speed_cache = speed_variable
+
 	else
+		if(speed_cache)
+			speedmod -= speed_cache
+			speed_cache = 0
+
+		if(metabolism_cache_hot)
+			metabolism_efficiency -= metabolism_cache_hot
+			metabolism_cache_hot = 0
+
 		var/metabolism_variable =  min(0.5, 1 - (T20C / human_host.bodytemperature))
 		human_host.metabolism_efficiency -= metabolism_variable - metabolism_cache
-		metabolism_cache = metabolism_variable
+		metabolism_cache_cold = metabolism_variable
