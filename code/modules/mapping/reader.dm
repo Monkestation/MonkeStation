@@ -1,8 +1,6 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
-#define SPACE_KEY "space"
-
 /datum/grid_set
 	var/xcrd
 	var/ycrd
@@ -137,6 +135,17 @@
 		bounds = null
 	parsed_bounds = bounds
 
+/datum/parsed_map/proc/copy()
+	var/datum/parsed_map/copy = new()
+	copy.original_path = original_path
+	copy.key_len = key_len
+	copy.grid_models = grid_models
+	copy.gridSets = gridSets
+	copy.modelCache = modelCache
+	copy.parsed_bounds = parsed_bounds
+	copy.turf_blacklist = list()
+	return copy
+
 /// Load the parsed map into the world. See [/proc/load_map] for arguments.
 /datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop)
 	//How I wish for RAII
@@ -145,7 +154,7 @@
 	Master.StopLoadingMap()
 
 // Do not call except via load() above.
-/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE)
+/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, check_tick = TRUE)
 	var/list/areaCache = list()
 	var/list/modelCache = build_cache(no_changeturf)
 	var/space_key = modelCache[SPACE_KEY]
@@ -410,10 +419,10 @@
 		world.preloader_load(.)
 
 	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
-	if(TICK_CHECK)
-		SSatoms.map_loader_stop()
-		stoplag()
-		SSatoms.map_loader_begin()
+	//if(TICK_CHECK)
+	//	SSatoms.map_loader_stop()
+	//	stoplag()
+	//	SSatoms.map_loader_begin()
 
 /datum/parsed_map/proc/create_atom(path, crds)
 	set waitfor = FALSE

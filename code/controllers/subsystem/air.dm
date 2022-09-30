@@ -339,6 +339,9 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
+		// Prevents uninitalized atmos machinery from processing.
+		if (!(Machinery.flags_1 & INITIALIZED_1))
+			continue
 		if(!Machinery)
 			atmos_machinery -= Machinery
 		if(Machinery.process_atmos() == PROCESS_KILL)
@@ -355,6 +358,9 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
+		// Prevents uninitalized atmos machinery from processing.
+		if (!(Machinery.flags_1 & INITIALIZED_1))
+			continue
 		if(!Machinery)
 			atmos_air_machinery -= Machinery
 		if(Machinery.process_atmos(seconds) == PROCESS_KILL)
