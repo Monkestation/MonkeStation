@@ -160,8 +160,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = TRUE), \
 	new/datum/stack_recipe("bomb assembly", /obj/machinery/syndicatebomb/empty, 10, time = 50), \
-	new/datum/stack_recipe("dock tile", /obj/item/stack/tile/dock, 1, 4, 20), \
-	new/datum/stack_recipe("dry dock tile", /obj/item/stack/tile/drydock, 2, 4, 20), \
 	null, \
 	new /datum/stack_recipe_list("airlock assemblies", list( \
 		new/datum/stack_recipe("high security airlock assembly", /obj/structure/door_assembly/door_assembly_highsecurity, 4, time = 50, one_per_turf = 1, on_floor = 1), \
@@ -783,19 +781,3 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	amount = 20
 /obj/item/stack/sheet/paperframes/fifty
 	amount = 50
-
-/obj/item/stack/tile/dock
-	name = "dock tile"
-	singular_name = "dock tile"
-	desc = "A bulky chunk of flooring capable of holding the weight of a shuttle."
-	icon_state = "tile_dock"
-	materials = list(/datum/material/iron=500, /datum/material/plasma=500)
-	turf_type = /turf/open/floor/dock
-
-/obj/item/stack/tile/drydock
-	name = "dry dock tile"
-	singular_name = "dry dock tile"
-	desc = "An extra-bulky chunk of flooring capable of supporting shuttle construction."
-	icon_state = "tile_drydock"
-	materials = list(/datum/material/iron=1000, /datum/material/plasma=1000)
-	turf_type = /turf/open/floor/dock/drydock

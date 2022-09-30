@@ -303,6 +303,7 @@
 	height = 11
 	dir = EAST
 	port_direction = WEST
+	var/sound_played = 0 //If the launch sound has been sent to all players on the shuttle itself
 	var/hijack_status = NOT_BEGUN
 
 /obj/docking_port/mobile/emergency/canDock(obj/docking_port/stationary/S)
