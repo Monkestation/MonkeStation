@@ -473,7 +473,7 @@ SUBSYSTEM_DEF(air)
 		pause()
 
 /datum/controller/subsystem/air/proc/finish_turf_processing(resumed = 0)
-	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS) || thread_running())
+	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))
 		pause()
 
 /datum/controller/subsystem/air/proc/post_process_turfs(resumed = 0)
