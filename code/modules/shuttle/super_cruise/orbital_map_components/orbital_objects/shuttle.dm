@@ -50,6 +50,7 @@
 	stealth = TRUE
 
 /datum/orbital_object/shuttle/Destroy()
+	var/z_level = port?.z
 	port = null
 	can_dock_with = null
 	docking_target = null
@@ -57,6 +58,8 @@
 	shuttleTarget = null
 	. = ..()
 	SSorbits.assoc_shuttles.Remove(shuttle_port_id)
+	if(z_level)
+		SSorbits.assoc_z_levels.Remove("[z_level]")
 
 //Dont fly into the sun idiot.
 /datum/orbital_object/shuttle/explode()

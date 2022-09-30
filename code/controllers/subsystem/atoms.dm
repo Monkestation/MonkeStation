@@ -81,15 +81,17 @@ SUBSYSTEM_DEF(atoms)
 	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
-
+	#ifdef TESTING
+	var/late_loader_len = late_loaders.len
+	#endif
 	if(late_loaders.len)
-		for(var/I in late_loaders)
-			var/atom/A = I
+		for(var/atom/A as() in late_loaders)
 			//I hate that we need this
 			if(QDELETED(A))
 				continue
+			late_loaders -= A //We don't want to call LateInitialize twice in case of stoplag()
 			A.LateInitialize()
-		testing("Late initialized [late_loaders.len] atoms")
+		testing("Late initialized [late_loader_len] atoms")
 		late_loaders.Cut()
 
 	if (created_atoms)
