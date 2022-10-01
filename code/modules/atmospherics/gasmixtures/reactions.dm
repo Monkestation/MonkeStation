@@ -149,7 +149,7 @@ nobliumformation = 1001
 	if(!istype(condensed_reagent))
 		return
 	min_requirements = list(
-		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 200)
+		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 250)
 	)
 	min_requirements[condensed_reagent.get_gas()] = MOLES_GAS_VISIBLE
 	name = "[condensed_reagent.name] condensation"
