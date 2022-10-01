@@ -149,7 +149,7 @@ nobliumformation = 1001
 	if(!istype(condensed_reagent))
 		return
 	min_requirements = list(
-		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 40)
+		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 200)
 	)
 	min_requirements[condensed_reagent.get_gas()] = MOLES_GAS_VISIBLE
 	name = "[condensed_reagent.name] condensation"
@@ -165,7 +165,7 @@ nobliumformation = 1001
 	var/temperature = air.return_temperature()
 	var/G = condensing_reagent.get_gas()
 	var/amt = air.get_moles(G)
-	location.add_liquid(condensing_reagent, amt, FALSE, temperature)
+	location.add_liquid(condensing_reagent, min(amt, 1), FALSE, temperature)
 	air.adjust_moles(G, -min(initial(condensing_reagent.condensation_amount), amt))
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
