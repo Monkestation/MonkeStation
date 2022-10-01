@@ -1830,10 +1830,13 @@
 	color = "#A70FFF"
 	taste_description = "dryness"
 	random_unrestricted = FALSE
+	condensating_point = 1000
 
 /datum/reagent/drying_agent/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T))
 		T.MakeDry(ALL, TRUE, reac_volume * 5 SECONDS)		//50 deciseconds per unit
+	if(T.liquids)
+		T.liquids.liquid_simple_delete_flat(reac_volume)
 
 /datum/reagent/drying_agent/reaction_obj(obj/O, reac_volume)
 	if(O.type == /obj/item/clothing/shoes/galoshes)
