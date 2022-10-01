@@ -159,7 +159,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/condensation/react(datum/gas_mixture/air, datum/holder)
 	. = NO_REACTION
-	if(prob(80)) //these reactions fire way to fucking much
+	if(prob(80)) //these reactions fire way to fucking much future me make this not shit and give reagents reaction probs - Borbop
 		return
 
 	var/turf/open/location = holder
