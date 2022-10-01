@@ -196,7 +196,6 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 0.1 //should evaporate real slow
-	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
