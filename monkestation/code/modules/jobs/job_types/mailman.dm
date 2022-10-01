@@ -1,16 +1,15 @@
-/datum/job/gimmick/mailman
+/datum/job/mailman
 	title = "Mailman"
 	flag = MAILMAN
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
-	outfit = /datum/outfit/job/gimmick/mailman
+	outfit = /datum/outfit/job/mailman
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO)
 	total_positions = 1
-	supervisors = "the quartermaster and the head of personnel"
+	supervisors = "The Quartermaster and the Head of Personnel"
 	paycheck = PAYCHECK_EASY
-	gimmick = TRUE
 	chat_color = "#8ebee6"
 	departments = DEPARTMENT_CARGO
 	rpg_title = "Courier"
