@@ -17,7 +17,7 @@
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
-	boiling_point = 351.38
+	condensating_point = T20C - 5
 
 /*
 Boozepwr Chart

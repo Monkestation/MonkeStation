@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/list/addiction_types = null
 
 	var/gas = null //do we have an associated gas? (expects a string, not a datum typepath!)
-	var/boiling_point = 700 // point at which this gas boils; if null, will never boil (and thus not become a gas)
+	var/condensating_point = T0C // anything below this temperature in terms of K will start having the gases rapidly condense
 	var/condensation_amount = 1
 	var/molarity = 5 // How many units per mole of this reagent. Technically this is INVERSE molarity, but hey.
 
@@ -77,10 +77,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return 1
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)
-	if(O && volume && boiling_point)
-		var/temp = holder ? holder.chem_temp : T20C
-		if(temp > boiling_point)
-			O.atmos_spawn_air("[get_gas()]=[volume/molarity];TEMP=[temp]")
+	return
 
 /datum/reagent/proc/reaction_evaporation(turf/T, volume)
 	var/temp = holder ? holder.chem_temp : T20C
@@ -88,17 +85,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		T.atmos_spawn_air("[get_gas()]=[(volume/molarity) * 0.5];TEMP=[temp]") // each cycle produces half as much gas as the last
 
 /datum/reagent/proc/reaction_turf(turf/T, volume, show_message, from_gas)
-	if(!from_gas && boiling_point)
-		var/temp = holder?.chem_temp
-		if(!temp)
-			if(isopenturf(T))
-				var/turf/open/O = T
-				var/datum/gas_mixture/air = O.return_air()
-				temp = air.return_temperature()
-			else
-				temp = T20C
-		if(temp > boiling_point)
-			T.atmos_spawn_air("[get_gas()]=[volume/molarity];TEMP=[temp]")
+	return
 
 /datum/reagent/proc/reaction_liquid(obj/O, volume)
 	return
@@ -210,7 +197,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/datum/gas/new_gas = define_gas()
 	if(istype(new_gas)) // if this reagent should never be a gas, define_gas may return null
 		GLOB.gas_data.add_gas(new_gas)
-		var/datum/gas_reaction/condensation/condensation_reaction = new(src) // did you know? you can totally just add new reactions at runtime. it's allowed
+		var/datum/gas_reaction/condensation/condensation_reaction = new(src.type) // did you know? you can totally just add new reactions at runtime. it's allowed
 		SSair.add_reaction(condensation_reaction)
 	return new_gas
 

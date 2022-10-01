@@ -45,9 +45,7 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 2
-	/* no gaseous CLF3 until i can think of a good way to get it to burn that doesn't destroy matter in mysterious ways
-	boiling_point = 289.4
-	*/
+	condensating_point = 300 //fuck you this goes away instantly
 	condensation_amount = 2
 
 /datum/reagent/clf3/define_gas()
@@ -157,7 +155,7 @@
 	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 1.2
-	boiling_point = T20C-10
+	condensating_point = T20C-10
 
 /datum/reagent/phlogiston/define_gas()
 	var/datum/gas/new_gas = ..()

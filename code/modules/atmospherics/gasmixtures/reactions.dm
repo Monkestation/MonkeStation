@@ -149,24 +149,46 @@ nobliumformation = 1001
 	if(!istype(condensed_reagent))
 		return
 	min_requirements = list(
-		"MAX_TEMP" = min(initial(condensed_reagent.boiling_point), 250)
+		"MAX_TEMP" = initial(condensed_reagent.condensating_point)
 	)
 	min_requirements[condensed_reagent.get_gas()] = MOLES_GAS_VISIBLE
 	name = "[condensed_reagent.name] condensation"
 	id = "[condensed_reagent.type] condensation"
-	condensing_reagent = condensed_reagent
+	condensing_reagent = GLOB.chemical_reagents_list[condensed_reagent.type]
 	exclude = FALSE
 
 /datum/gas_reaction/condensation/react(datum/gas_mixture/air, datum/holder)
 	. = NO_REACTION
+
+	if(prob(90)) //these reactions fire way to fucking much
+		return
+
 	var/turf/open/location = holder
 	if(!istype(location))
 		return
 	var/temperature = air.return_temperature()
+	var/static/datum/reagents/reagents_holder = new
+
+	reagents_holder.clear_reagents()
+	reagents_holder.chem_temp = temperature
+
 	var/G = condensing_reagent.get_gas()
 	var/amt = air.get_moles(G)
-	location.add_liquid(condensing_reagent, min(initial(condensing_reagent.condensation_amount), 1), FALSE, temperature)
+
 	air.adjust_moles(G, -min(initial(condensing_reagent.condensation_amount), amt))
+	if(air.get_moles(G) < MOLES_GAS_VISIBLE)
+		amt += air.get_moles(G)
+		air.set_moles(G, 0.0)
+	reagents_holder.add_reagent(condensing_reagent.type, amt)
+
+	. = REACTING
+
+	for(var/atom/movable/AM in location)
+		if(location.intact && AM.level == 1)
+			continue
+		reagents_holder.reaction(AM, TOUCH)
+
+	reagents_holder.reaction(location, TOUCH)
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire

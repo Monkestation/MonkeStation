@@ -760,7 +760,7 @@
 	taste_mult = 0 // oderless and tasteless
 	random_unrestricted = FALSE
 	gas = GAS_O2
-	boiling_point = 90.188
+	condensating_point = 90.188
 	molarity = 2
 
 /datum/reagent/oxygen/reaction_evaporation(turf/open/exposed_turf, reac_volume)
@@ -793,7 +793,7 @@
 	taste_mult = 0
 	random_unrestricted = FALSE
 	gas = GAS_N2
-	boiling_point = 77.355
+	condensating_point = 77.355
 	molarity = 2
 
 /datum/reagent/hydrogen
@@ -857,7 +857,7 @@
 	color = "#c0c0a0" // rgb: 192, 192, 160
 	taste_description = "chlorine"
 	random_unrestricted = FALSE
-	boiling_point = 239.11
+	condensating_point = 239.11
 
 /datum/reagent/chlorine/on_mob_life(mob/living/carbon/M)
 	M.take_bodypart_damage(1*REM, 0, 0, 0)
@@ -1056,7 +1056,7 @@
 	addiction_types = list(/datum/addiction/alcohol = 4)
 	liquid_fire_power = 10 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
-	boiling_point = 400
+	condensating_point = T20C - 4
 
 /datum/reagent/fuel/define_gas()
 	var/datum/gas/new_gas = ..()
@@ -1084,7 +1084,7 @@
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
 	var/toxic = FALSE //turn to true if someone drinks this, so it won't poison people who are simply getting sprayed down
-	boiling_point = T0C+50
+	condensating_point = T0C+50
 
 /datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
 	if(toxic)//don't drink space cleaner, dumbass
@@ -1295,7 +1295,7 @@
 	color = "#604030" // rgb: 96, 64, 48
 	taste_description = "iron"
 	random_unrestricted = FALSE
-	boiling_point = 328
+	condensating_point = T20C -15
 
 /datum/reagent/diethylamine/define_gas()
 	var/datum/gas/new_gas = ..()
@@ -1312,7 +1312,7 @@
 	color = "#B0B0B0" // rgb : 192, 192, 192
 	taste_description = "something unknowable"
 	random_unrestricted = FALSE
-	boiling_point = 195.68 // technically sublimation, not boiling, but same deal
+	condensating_point = 195.68 // technically sublimation, not boiling, but same deal
 	molarity = 5
 	gas = GAS_CO2
 
@@ -1323,7 +1323,7 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	color = "#808080"
 	taste_description = "sweetness"
-	boiling_point = 184.67
+	condensating_point = 184.67
 	molarity = 5
 	gas = GAS_NITROUS
 
@@ -1350,7 +1350,7 @@
 	taste_description = "sourness"
 	addiction_types = list(/datum/addiction/stimulants = 14)
 	gas = GAS_STIMULUM
-	boiling_point = 150
+	condensating_point = 150
 
 /datum/reagent/stimulum/on_mob_metabolize(mob/living/L)
 	..()
@@ -1382,7 +1382,7 @@
 	color = "#90560B"
 	taste_description = "burning"
 	gas = GAS_NITRYL
-	boiling_point = 294.3
+	condensating_point = T20C - 1
 
 /datum/reagent/nitryl/on_mob_metabolize(mob/living/L)
 	..()
@@ -1693,7 +1693,7 @@
 	color = "#D35415"
 	taste_description = "chemicals"
 	random_unrestricted = FALSE
-	boiling_point = 332
+	condensating_point = T20C - 10
 
 /datum/reagent/bromine/on_mob_life(mob/living/carbon/C)
 	C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2, 99)
