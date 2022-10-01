@@ -10,7 +10,9 @@
 	total_positions = 1
 	supervisors = "The Quartermaster and the Head of Personnel"
 	paycheck = PAYCHECK_EASY
+	selection_color = "#8d81db"
 	chat_color = "#8ebee6"
+	display_order = JOB_DISPLAY_ORDER_MAILMAN
 	departments = DEPARTMENT_CARGO
 	rpg_title = "Courier"
 
@@ -18,9 +20,9 @@
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/mailman
 	)
 
-/datum/outfit/job/gimmick/mailman
+/datum/outfit/job/mailman
 	name = "Mailman"
-	jobtype = /datum/job/gimmick/mailman
+	jobtype = /datum/job/mailman
 
 	belt = /obj/item/storage/bag/mail
 	ears = /obj/item/radio/headset/headset_cargo
