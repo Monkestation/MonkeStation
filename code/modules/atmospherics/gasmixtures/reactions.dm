@@ -159,7 +159,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/condensation/react(datum/gas_mixture/air, datum/holder)
 	. = NO_REACTION
-	if(prob(80)) //these reactions fire way to fucking much future me make this not shit and give reagents reaction probs - Borbop
+	if(prob(95)) //these reactions fire way to fucking much future me make this not shit and give reagents reaction probs - Borbop
 		return
 
 	var/turf/open/location = holder
@@ -187,7 +187,7 @@ nobliumformation = 1001
 			continue
 		reagents_holder.reaction(AM, TOUCH)
 
-	reagents_holder.reaction(location, TOUCH)
+	reagents_holder.reaction(location, TOUCH, from_gas = TRUE)
 	location.add_liquid(condensing_reagent.type, min(initial(condensing_reagent.condensation_amount), amt) / 10, FALSE, temperature)
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic

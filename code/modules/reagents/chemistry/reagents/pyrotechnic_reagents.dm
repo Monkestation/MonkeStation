@@ -134,6 +134,23 @@
 	taste_description = "salt"
 	condensating_point = 1000 //fuck you this goes away instantly
 
+/datum/reagent/flash_powder/reaction_turf(turf/T, volume, show_message, from_gas)
+	. = ..()
+	if(!from_gas)
+		return
+	var/location = T
+	do_sparks(2, TRUE, location)
+	var/range = volume/3
+	if(isatom(holder.my_atom))
+		var/atom/A = holder.my_atom
+		A.flash_lighting_fx(_range = (range + 2))
+	for(var/mob/living/carbon/C in hearers(range, location))
+		if(C.flash_act())
+			if(get_dist(C, location) < 4)
+				C.Paralyze(60)
+			else
+				C.Stun(100)
+
 /datum/reagent/smoke_powder
 	name = "Smoke Powder"
 	description = "Makes a large cloud of smoke that can carry reagents."
