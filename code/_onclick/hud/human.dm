@@ -325,6 +325,14 @@
 	devilsouldisplay.hud = src
 	infodisplay += devilsouldisplay
 
+	//bloodsuckers
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter
+	infodisplay += blood_display
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter
+	infodisplay += vamprank_display
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter
+	infodisplay += sunlight_display
+
 	zone_select =  new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style
 	zone_select.update_icon()

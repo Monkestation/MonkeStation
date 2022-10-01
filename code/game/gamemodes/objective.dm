@@ -1049,6 +1049,16 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/destroy,
+		// DEFAULT OBJECTIVES //
+		/datum/objective/bloodsucker/lair,
+		/datum/objective/survive/bloodsucker,
+		/datum/objective/bloodsucker/protege,
+		/datum/objective/bloodsucker/heartthief,
+		/datum/objective/bloodsucker/gourmand,
+		// MISC OBJECTIVES //
+		/datum/objective/bloodsucker/monsterhunter,
+		/datum/objective/bloodsucker/vassalhim,
+		/datum/objective/bloodsucker/frenzy,
 		/datum/objective/hijack,
 		/datum/objective/gimmick,
 		/datum/objective/escape,

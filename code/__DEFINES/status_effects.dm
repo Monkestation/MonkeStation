@@ -45,6 +45,8 @@
 
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //! grants antimagic (and reapplies if lost) for the duration
 
+#define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
+
 //---------//
 // DEBUFFS //
 //---------//
@@ -140,6 +142,8 @@
 #define STATUS_EFFECT_HIVE_RADAR /datum/status_effect/agent_pinpointer/hivemind
 
 #define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //! rewards the person who added this to the target with refreshed spells and a fair heal
+
+#define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
 //---------//
 //  SLIME  //

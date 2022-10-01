@@ -66,6 +66,9 @@
 #define ANTAG_HUD_INCURSION 29
 #define ANTAG_HUD_HERETIC	30
 
+#define ANTAG_HUD_BLOODSUCKER   31
+#define ANTAG_HUD_MHUNTER       32
+
 // Notification action types
 #define NOTIFY_JUMP "jump"
 #define NOTIFY_ATTACK "attack"

@@ -393,7 +393,9 @@ GENE SCANNER
 					blood_type = R.name
 				else
 					blood_type = blood_id
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
+			if(HAS_TRAIT(M, TRAIT_MASQUERADE)) //bloodsuckers
+				combined_msg += span_info("Blood level 100%, 560 cl, type: [blood_type]")
+			else if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
 				combined_msg += "<span class='alert'>Blood level: LOW [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>"
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)
 				combined_msg += "<span class='alert'>Blood level: <b>CRITICAL [blood_percent] %</b>, [C.blood_volume] cl,</span> <span class='info'>type: [blood_type]</span>"

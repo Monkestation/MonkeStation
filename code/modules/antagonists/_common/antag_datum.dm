@@ -18,6 +18,7 @@ GLOBAL_LIST(admin_antag_list)
 	var/list/objectives = list()
 	var/delay_roundend = TRUE
 	var/antag_memory = ""//These will be removed with antag datum
+	var/task_memory = ""//Optional little objectives that are to be removed on a certain milestone
 	var/antag_moodlet //typepath of moodlet that the mob will gain with their status
 
 	var/can_elimination_hijack = ELIMINATION_NEUTRAL //If these antags are alone when a shuttle elimination happens.
@@ -258,6 +259,7 @@ GLOBAL_LIST(admin_antag_list)
 	if (isnull(new_memo))
 		return
 	antag_memory = new_memo
+	task_memory = new_memo
 
 /// Gets how fast we can hijack the shuttle, return 0 for can not hijack. Defaults to hijack_speed var, override for custom stuff like buffing hijack speed for hijack objectives or something.
 /datum/antagonist/proc/hijack_speed()

@@ -19,6 +19,12 @@
 
 	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
+	var/vampDesc = ReturnVampExamine(user)
+	var/vassDesc = ReturnVassalExamine(user)
+	if(vampDesc != "")
+		. += vampDesc
+	if(vassDesc != "")
+		. += vassDesc
 
 	var/apparent_species
 	if(dna?.species && !skipface)
@@ -244,6 +250,13 @@
 			msg += "[t_He] look[p_s()] really grossed out.\n"
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "[t_He] look[p_s()] extremely disgusted.\n"
+
+	var/apparent_blood_volume = blood_volume
+	if(skin_tone == "albino")
+		apparent_blood_volume -= 150 // enough to knock you down one tier
+	var/bloodDesc = ShowAsPaleExamine(user, apparent_blood_volume)
+	if(bloodDesc != BLOODSUCKER_HIDE_BLOOD)
+		msg += bloodDesc
 
 	if(blood_volume < BLOOD_VOLUME_SAFE)
 		msg += "[t_He] [t_has] pale skin.\n"

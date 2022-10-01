@@ -396,6 +396,7 @@
 	var/list/antag_objectives = get_all_antag_objectives()
 	for(var/datum/antagonist/A in antag_datums)
 		output += A.antag_memory
+		output += A.task_memory
 
 	if(antag_objectives.len)
 		output += "<br><B>Objectives:</B>"

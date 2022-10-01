@@ -30,6 +30,9 @@
 		bleed_rate = 0
 		return
 
+	if(HAS_TRAIT(src, TRAIT_NOPULSE))
+		return
+
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space

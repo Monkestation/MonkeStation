@@ -98,6 +98,7 @@
 #define CAT_SPAGHETTI	"Spaghettis"
 #define CAT_ICE	"Frozen"
 #define CAT_DRINK "Drinks"
+#define CAT_STRUCTURES "Structures"
 
 
 // these aren't even used as bitflags so who even knows why they are treated like them
