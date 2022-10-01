@@ -45,7 +45,7 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 2
-	condensating_point = 300 //fuck you this goes away instantly
+	condensating_point = 1000 //fuck you this goes away instantly
 	condensation_amount = 2
 
 /datum/reagent/clf3/define_gas()
