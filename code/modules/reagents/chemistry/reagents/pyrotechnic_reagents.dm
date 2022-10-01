@@ -25,6 +25,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
 	evaporation_rate = 2
+	condensating_point = 1000 //fuck you this goes away
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
@@ -95,6 +96,7 @@
 	reagent_state = LIQUID
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
@@ -102,6 +104,7 @@
 	reagent_state = LIQUID
 	color = "#210021"
 	taste_description = "compressed bitterness"
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/blackpowder
 	name = "Black Powder"
@@ -129,6 +132,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "salt"
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/smoke_powder
 	name = "Smoke Powder"
@@ -136,6 +140,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "smoke"
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/sonic_powder
 	name = "Sonic Powder"
@@ -143,6 +148,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "loud noises"
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
@@ -190,6 +196,7 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 0.1 //should evaporate real slow
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
@@ -209,6 +216,7 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	condensating_point = T0C - 100
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
@@ -254,6 +262,7 @@
 	var/shock_timer = 0
 	process_flags = ORGANIC | SYNTHETIC
 	evaporation_rate = 3 //unstable disapates quickly
+	condensating_point = 1000 //fuck you this goes away instantly
 
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
@@ -309,6 +318,8 @@
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
+	condensating_point = T0C
+
 
 /datum/reagent/firefighting_foam/define_gas()
 	return null

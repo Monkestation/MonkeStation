@@ -1086,6 +1086,7 @@
 	reagent_weight = 0.6 //so it sprays further
 	var/toxic = FALSE //turn to true if someone drinks this, so it won't poison people who are simply getting sprayed down
 	condensating_point = T0C+50
+	molarity = 10 //five times better as a gas than anything else
 
 /datum/reagent/space_cleaner/on_mob_life(mob/living/carbon/M)
 	if(toxic)//don't drink space cleaner, dumbass
