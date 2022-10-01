@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /datum/reagent/proc/reaction_evaporation(turf/T, volume)
 	var/temp = holder ? holder.chem_temp : T20C
 	if(get_gas())
-		T.atmos_spawn_air("[get_gas()]=[volume/molarity];TEMP=[temp]")
+		T.atmos_spawn_air("[get_gas()]=[(volume/molarity) * 0.5];TEMP=[temp]") // each cycle produces half as much gas as the last
 
 /datum/reagent/proc/reaction_turf(turf/T, volume, show_message, from_gas)
 	if(!from_gas && boiling_point)
