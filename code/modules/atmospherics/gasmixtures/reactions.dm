@@ -189,6 +189,7 @@ nobliumformation = 1001
 		reagents_holder.reaction(AM, TOUCH)
 
 	reagents_holder.reaction(location, TOUCH)
+	location.add_liquid(condensing_reagent.type, min(initial(condensing_reagent.condensation_amount), amt) / 10, FALSE, temperature)
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
