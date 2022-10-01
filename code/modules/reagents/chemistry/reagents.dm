@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/datum/gas/new_gas = define_gas()
 	if(istype(new_gas)) // if this reagent should never be a gas, define_gas may return null
 		GLOB.gas_data.add_gas(new_gas)
-		var/datum/gas_reaction/condensation/condensation_reaction = new(src.type) // did you know? you can totally just add new reactions at runtime. it's allowed
+		var/datum/gas_reaction/condensation/condensation_reaction = new(src) // did you know? you can totally just add new reactions at runtime. it's allowed
 		SSair.add_reaction(condensation_reaction)
 	return new_gas
 
