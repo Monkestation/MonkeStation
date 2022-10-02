@@ -40,13 +40,8 @@
 	owner = null
 
 /obj/structure/bloodsucker/wrench_act(mob/living/user, obj/item/I)
-	default_unfasten_wrench(user, I)
-	return TRUE
-
-/obj/structure/bloodsucker/attack_hand(mob/user, list/modifiers)
-//	. = ..() // Don't call parent, else they will handle unbuckling.
+	.=..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	/// Claiming the Rack instead of using it?
 	if(istype(bloodsuckerdatum) && !owner)
 		if(!bloodsuckerdatum.lair)
 			to_chat(user, span_danger("You don't have a lair. Claim a coffin to make that location your lair."))
@@ -55,14 +50,14 @@
 			to_chat(user, span_danger("You may only activate this structure in your lair: [bloodsuckerdatum.lair]."))
 			return FALSE
 
-		/// Menu for securing your Persuasion rack in place.
-		switch(input("Do you wish to secure [src] here?") in list("Yes", "No"))
-			if("Yes")
-				user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
-				bolt(user)
-				return FALSE
-		return FALSE
+	if(IS_BLOODSUCKER(user) && do_after(user, 2 SECONDS, target = source))
+		if(anchored)
+			bolt(user)
+		else
+			unbolt(user)
 	return TRUE
+
+
 
 
 ////////////////////////////////////////////////////
