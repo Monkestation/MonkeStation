@@ -1245,3 +1245,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/human/krokodil_addict
+
+/mob/living/carbon/human/species/szlachta
+	race = /datum/species/szlachta
