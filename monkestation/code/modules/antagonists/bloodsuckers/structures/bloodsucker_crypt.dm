@@ -1162,6 +1162,10 @@
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
 
+/obj/structure/bloodsucker/bloodthrone/wrench_act(mob/living/user, obj/item/I)
+	default_unfasten_wrench(user, I)
+	return TRUE
+
 /obj/structure/bloodsucker/bloodthrone/Destroy()
 	QDEL_NULL(armrest)
 	return ..()
