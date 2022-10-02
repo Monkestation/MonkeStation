@@ -39,13 +39,9 @@
 	to_chat(user, span_danger("You have unsecured [src]."))
 	owner = null
 
-/obj/structure/bloodsucker/attackby(obj/item/item, mob/living/user, params)
-	/// If a Bloodsucker tries to wrench it in place, yell at them.
-	if(item.tool_behaviour == TOOL_WRENCH && !anchored && IS_BLOODSUCKER(user))
-		user.playsound_local(null, 'sound/machines/buzz-sigh.ogg', 40, FALSE, pressure_affected = FALSE)
-		to_chat(user, span_announce("* Bloodsucker Tip: Examine the Persuasion Rack to understand how it functions!"))
-		return
-	. = ..()
+/obj/structure/bloodsucker/wrench_act(mob/living/user, obj/item/I)
+	default_unfasten_wrench(user, I)
+	return TRUE
 
 /obj/structure/bloodsucker/attack_hand(mob/user, list/modifiers)
 //	. = ..() // Don't call parent, else they will handle unbuckling.
@@ -68,12 +64,6 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/bloodsucker/AltClick(mob/user)
-	. = ..()
-	if(user == owner && user.Adjacent(src))
-		switch(input("Unbolt [src]?") in list("Yes", "No"))
-			if("Yes")
-				unbolt(user)
 
 ////////////////////////////////////////////////////
 
@@ -1161,10 +1151,6 @@
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
-
-/obj/structure/bloodsucker/bloodthrone/wrench_act(mob/living/user, obj/item/I)
-	default_unfasten_wrench(user, I)
-	return TRUE
 
 /obj/structure/bloodsucker/bloodthrone/Destroy()
 	QDEL_NULL(armrest)

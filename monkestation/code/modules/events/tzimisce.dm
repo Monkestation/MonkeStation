@@ -71,11 +71,10 @@
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
 	Mind.assigned_role = jobdatum.title //sets up the manifest properly
 	jobdatum.equip(tzimisce)
-	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	var/obj/item/card/id/id = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
 	id.assignment = jobdatum.title
-	id.originalassignment = jobdatum.title
 	id.update_label()
-	GLOB.data_core.manifest_inject(tzimisce, force = TRUE)
+	GLOB.data_core.manifest_inject(tzimisce)
 	tzimisce.update_move_intent_slowdown() //prevents you from going super duper fast
 	return SUCCESSFUL_SPAWN
 
