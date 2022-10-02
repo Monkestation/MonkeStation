@@ -33,8 +33,8 @@ GLOBAL_LIST_INIT(science_positions, list(
 GLOBAL_LIST_INIT(supply_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
-	"Shaft Miner"))
-
+	"Shaft Miner",
+    "Mailman"))
 
 GLOBAL_LIST_INIT(civilian_positions, list(
 	"Bartender",
@@ -54,8 +54,7 @@ GLOBAL_LIST_INIT(gimmick_positions, list(
 	"Stage Magician",
 	"Debtor",
 	"Psychiatrist",
-	"VIP",
-	"Mailman")) //MonkeStation Edit: Mailman Gimmick
+	"VIP"))
 
 GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
