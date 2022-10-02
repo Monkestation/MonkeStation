@@ -33,7 +33,7 @@
 	if(runbound)
 		if(was_running)
 			user.toggle_move_intent()
-	user.AddElement(/datum/element/digitalcamo)
+	user.AddElement(/datum/element/digital_camo)
 	to_chat(user, span_notice("You put your Cloak of Darkness on."))
 
 /datum/action/bloodsucker/cloak/UsePower(mob/living/user)
@@ -63,7 +63,7 @@
 	. = ..()
 	var/mob/living/user = owner
 	animate(user, alpha = 255, time = 1 SECONDS)
-	user.RemoveElement(/datum/element/digitalcamo)
+	user.RemoveElement(/datum/element/digital_camo)
 	if(runbound)
 		if(was_running && user.m_intent == MOVE_INTENT_WALK)
 			user.toggle_move_intent()
