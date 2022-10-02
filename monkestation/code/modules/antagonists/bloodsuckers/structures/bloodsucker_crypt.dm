@@ -33,11 +33,13 @@
 	to_chat(user, span_danger("You have secured [src] in place."))
 	to_chat(user, span_announce("* Bloodsucker Tip: Examine [src] to understand how it functions!"))
 	owner = user
+	anchored = 1
 
 /// This handles unbolting of the structure.
 /obj/structure/bloodsucker/proc/unbolt(mob/user)
 	to_chat(user, span_danger("You have unsecured [src]."))
 	owner = null
+	anchored = 0
 
 /obj/structure/bloodsucker/wrench_act(mob/living/user, obj/item/I)
 	.=..()
@@ -51,12 +53,15 @@
 			return FALSE
 
 	if(IS_BLOODSUCKER(user) && do_after(user, 2 SECONDS, target = src))
-		if(anchored)
+		if(!anchored)
 			bolt(user)
 		else
 			unbolt(user)
-	return TRUE
-
+		return TRUE
+	else
+		to_chat(user, span_danger("Dark energy surges from the [src.name]"))
+		user.Stun(2 SECONDS)
+		user.adjustBruteLoss(5)
 
 
 
