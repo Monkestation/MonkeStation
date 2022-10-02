@@ -170,7 +170,7 @@ There are several things that need to be remembered:
 					U.greyscale_config_worn = text2path("[initial(U.greyscale_config_worn)]"+"/"+"[lowertext(dna.species.name)]") //sprite sheets and GAGS will have to follow this naming convention.
 					U.update_greyscale()
 			else
-				if(U.worn_icon != initial(U.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(U.worn_icon != initial(U.worn_icon) && initial(U.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					U.worn_icon = initial(U.worn_icon)
 				if(U.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					U.greyscale_config_worn = initial(U.greyscale_config_worn)
@@ -261,7 +261,7 @@ There are several things that need to be remembered:
 					G.greyscale_config_worn = text2path("[initial(G.greyscale_config_worn)]"+"/"+"[lowertext(dna.species.name)]") //sprite sheets and GAGS will have to follow this naming convention.
 					G.update_greyscale()
 			else
-				if(G.worn_icon != initial(G.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(G.worn_icon != initial(G.worn_icon) && initial(G.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					G.worn_icon = initial(G.worn_icon)
 				if(G.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					G.greyscale_config_worn = initial(G.greyscale_config_worn)
@@ -393,7 +393,7 @@ There are several things that need to be remembered:
 					S.greyscale_config_worn = text2path("[initial(S.greyscale_config_worn)]"+"/"+"[lowertext(dna.species.name)]") //sprite sheets and GAGS will have to follow this naming convention.
 					S.update_greyscale()
 			else
-				if(S.worn_icon != initial(S.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(S.worn_icon != initial(S.worn_icon) && initial(S.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					S.worn_icon = initial(S.worn_icon)
 				if(S.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					S.greyscale_config_worn = initial(S.greyscale_config_worn)
@@ -464,7 +464,7 @@ There are several things that need to be remembered:
 					HE.worn_icon = icon_file
 				//monkestation edit: add more functionality to sprite sheets for modular and GAGS usage
 			else
-				if(HE.worn_icon != initial(HE.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(HE.worn_icon != initial(HE.worn_icon) && initial(HE.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					HE.worn_icon = initial(HE.worn_icon)
 				if(HE.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					HE.greyscale_config_worn = initial(HE.greyscale_config_worn)
@@ -496,7 +496,7 @@ There are several things that need to be remembered:
 					B.worn_icon = icon_file
 				//monkestation edit: add more functionality to sprite sheets for modular and GAGS usage
 			else
-				if(B.worn_icon != initial(B.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(B.worn_icon != initial(B.worn_icon) && initial(B.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					B.worn_icon = initial(B.worn_icon)
 				if(B.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					B.greyscale_config_worn = initial(B.greyscale_config_worn)
@@ -537,7 +537,7 @@ There are several things that need to be remembered:
 					S.greyscale_config_worn = text2path("[initial(S.greyscale_config_worn)]"+"/"+"[lowertext(dna.species.name)]") //sprite sheets and GAGS will have to follow this naming convention.
 					S.update_greyscale()
 			else
-				if(S.worn_icon != initial(S.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(S.worn_icon != initial(S.worn_icon) && initial(S.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					S.worn_icon = initial(S.worn_icon)
 				if(S.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					S.greyscale_config_worn = initial(S.greyscale_config_worn)
@@ -610,7 +610,7 @@ There are several things that need to be remembered:
 					M.worn_icon = icon_file
 				//monkestation edit: add more functionality to sprite sheets for modular and GAGS usage
 			else
-				if(M.worn_icon != initial(M.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(M.worn_icon != initial(M.worn_icon) && initial(M.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					M.worn_icon = initial(M.worn_icon)
 				if(M.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					M.greyscale_config_worn = initial(M.greyscale_config_worn)
@@ -644,7 +644,7 @@ There are several things that need to be remembered:
 					B.worn_icon = icon_file
 				//monkestation edit: add more functionality to sprite sheets for modular and GAGS usage
 			else
-				if(B.worn_icon != initial(B.worn_icon)) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
+				if(B.worn_icon != initial(B.worn_icon) && initial(B.worn_icon) != null) //for modular usage, if we DONT use sprite sheets, but the previous owner's species did, then we need to put it back to the original worn icon
 					B.worn_icon = initial(B.worn_icon)
 				if(B.greyscale_config_worn) //to put it back to initial if a sprite sheet species and a non sprite sheet species trade GAGS clothes
 					B.greyscale_config_worn = initial(B.greyscale_config_worn)
