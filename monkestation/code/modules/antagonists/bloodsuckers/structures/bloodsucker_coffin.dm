@@ -23,13 +23,18 @@
 	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the structure tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals and the <i>Blood Altar</i> which lets you gain two tasks per night to Rank Up."))
 	return TRUE
 
+/obj/structure/closet/crate/coffin/old/update_icon()
+	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
+
+	cut_overlays()
+
 /// From crate.dm
 /obj/structure/closet/crate
 	var/mob/living/resident /// This lets bloodsuckers claim any "crate" as a Coffin.
 	var/pryLidTimer = 25 SECONDS
 	breakout_time = 20 SECONDS
 
-/obj/structure/closet/crate/coffin/examine(mob/user)
+/obj/structure/closet/crate/coffin/old/examine(mob/user)
 	. = ..()
 	if(user == resident)
 		. += span_cult("This is your Claimed Coffin.")
@@ -37,7 +42,7 @@
 		. += span_cult("Alt Click while inside the Coffin to Lock/Unlock.")
 		. += span_cult("Alt Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
 
-/obj/structure/closet/crate/coffin/blackcoffin
+/obj/structure/closet/crate/coffin/old/blackcoffin
 	name = "black coffin"
 	desc = "For those departed who are not so dear."
 	icon_state = "coffin"
@@ -49,7 +54,7 @@
 	material_drop_amount = 2
 	armor = list("melee" = 50, "bullet" = 20, "laser" = 30, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
-/obj/structure/closet/crate/coffin/securecoffin
+/obj/structure/closet/crate/coffin/old/securecoffin
 	name = "secure coffin"
 	desc = "For those too scared of having their place of rest disturbed."
 	icon_state = "securecoffin"
@@ -63,7 +68,7 @@
 	material_drop_amount = 2
 	armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 100, "fire" = 100, "acid" = 100)
 
-/obj/structure/closet/crate/coffin/meatcoffin
+/obj/structure/closet/crate/coffin/old/meatcoffin
 	name = "meat coffin"
 	desc = "When you're ready to meat your maker, the steaks can never be too high."
 	icon_state = "meatcoffin"
@@ -77,7 +82,7 @@
 	material_drop_amount = 3
 	armor = list("melee" = 70, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 
-/obj/structure/closet/crate/coffin/metalcoffin
+/obj/structure/closet/crate/coffin/old/metalcoffin
 	name = "metal coffin"
 	desc = "A big metal sardine can inside of another big metal sardine can, in space."
 	icon_state = "metalcoffin"
@@ -93,7 +98,7 @@
 //////////////////////////////////////////////
 
 /// NOTE: This can be any coffin that you are resting AND inside of.
-/obj/structure/closet/crate/coffin/proc/ClaimCoffin(mob/living/claimant)
+/obj/structure/closet/crate/coffin/old/proc/ClaimCoffin(mob/living/claimant)
 	// Bloodsucker Claim
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = claimant.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(bloodsuckerdatum)
@@ -103,12 +108,12 @@
 			anchored = TRUE
 			START_PROCESSING(SSprocessing, src)
 
-/obj/structure/closet/crate/coffin/Destroy()
+/obj/structure/closet/crate/coffin/old/Destroy()
 	UnclaimCoffin()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/structure/closet/crate/coffin/process(mob/living/user)
+/obj/structure/closet/crate/coffin/old/process(mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -184,7 +189,7 @@
 	resident = null
 
 /// You cannot lock in/out a coffin's owner. SORRY.
-/obj/structure/closet/crate/coffin/can_open(mob/living/user)
+/obj/structure/closet/crate/coffin/old/can_open(mob/living/user)
 	if(!locked)
 		return ..()
 	if(user == resident)
@@ -196,7 +201,7 @@
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] is locked tight from the inside."))
 
-/obj/structure/closet/crate/coffin/close(mob/living/user)
+/obj/structure/closet/crate/coffin/old/close(mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -216,7 +221,7 @@
 	return TRUE
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.
-/obj/structure/closet/crate/coffin/attackby(obj/item/item, mob/user, params)
+/obj/structure/closet/crate/coffin/old/attackby(obj/item/item, mob/user, params)
 	if(resident)
 		if(user != resident)
 			if(istype(item, cutting_tool))
@@ -241,7 +246,7 @@
 	. = ..()
 
 /// Distance Check (Inside Of)
-/obj/structure/closet/crate/coffin/AltClick(mob/user)
+/obj/structure/closet/crate/coffin/old/AltClick(mob/user)
 	. = ..()
 	if(user in src)
 		LockMe(user, !locked)

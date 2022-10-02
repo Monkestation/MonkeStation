@@ -5,7 +5,7 @@
 /////////////////////////
 /datum/crafting_recipe/blackcoffin
 	name = "Black Coffin"
-	result = /obj/structure/closet/crate/coffin/blackcoffin
+	result = /obj/structure/closet/crate/coffin/old/blackcoffin
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
 		/obj/item/stack/sheet/cotton/cloth = 1,
@@ -17,7 +17,7 @@
 
 /datum/crafting_recipe/securecoffin
 	name = "Secure Coffin"
-	result = /obj/structure/closet/crate/coffin/securecoffin
+	result = /obj/structure/closet/crate/coffin/old/securecoffin
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
 		/obj/item/stack/rods = 1,
@@ -29,7 +29,7 @@
 
 /datum/crafting_recipe/meatcoffin
 	name = "Meat Coffin"
-	result = /obj/structure/closet/crate/coffin/meatcoffin
+	result = /obj/structure/closet/crate/coffin/old/meatcoffin
 	tools = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
 		/obj/item/food/meat/slab = 5,
@@ -41,7 +41,7 @@
 
 /datum/crafting_recipe/metalcoffin
 	name = "Metal Coffin"
-	result = /obj/structure/closet/crate/coffin/metalcoffin
+	result = /obj/structure/closet/crate/coffin/old/metalcoffin
 	reqs = list(
 		/obj/item/stack/sheet/iron = 6,
 		/obj/item/stack/rods = 2,

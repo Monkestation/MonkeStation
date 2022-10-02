@@ -15,6 +15,13 @@
 							TRAIT_MONKEYLIKE, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_HUSK)
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien
 
+	species_chest = /obj/item/bodypart/chest/szlachta
+	species_head = /obj/item/bodypart/head/szlachta
+	species_l_arm = /obj/item/bodypart/l_arm/szlachta
+	species_r_arm = /obj/item/bodypart/r_arm/szlachta
+	species_l_leg = /obj/item/bodypart/l_leg/szlachta
+	species_r_leg = /obj/item/bodypart/r_leg/szlachta
+
 /datum/species/szlachta/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.real_name = "towering monstrocity"
@@ -22,3 +29,5 @@
 	if(C.mind)
 		C.mind.name = C.real_name
 	C.dna.real_name = C.real_name
+
+
