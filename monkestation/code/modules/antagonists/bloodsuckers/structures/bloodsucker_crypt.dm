@@ -50,7 +50,7 @@
 			to_chat(user, span_danger("You may only activate this structure in your lair: [bloodsuckerdatum.lair]."))
 			return FALSE
 
-	if(IS_BLOODSUCKER(user) && do_after(user, 2 SECONDS, target = source))
+	if(IS_BLOODSUCKER(user) && do_after(user, 2 SECONDS, target = src))
 		if(anchored)
 			bolt(user)
 		else
