@@ -23,6 +23,11 @@
 		CLAN_GANGREL,
 		CLAN_LASOMBRA,
 		CLAN_TOREADOR,
+		CLAN_BRUJAH,
+		CLAN_NOSFERATU,
+		CLAN_TREMERE,
+		CLAN_VENTRUE,
+		CLAN_MALKAVIAN,
 	)
 	var/list/options = list()
 	options = clans
