@@ -66,7 +66,7 @@
 
 	// Remove Straightjackets
 	if(user.wear_suit?.breakouttime && !used)
-		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if(!istype(straightjacket))
 			return
 		user.visible_message(
@@ -121,7 +121,6 @@
 	// Target Type: Mob
 	if(isliving(target_atom))
 		var/mob/living/target = target_atom
-		var/mob/living/carbon/carbonuser = user
 		var/hitStrength = 8
 		// Knockdown!
 		var/powerlevel = min(5, 1 + level_current)

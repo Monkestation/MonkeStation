@@ -22,6 +22,8 @@
 
 	var/has_cooldown_timer = FALSE
 
+	var/atom/movable/screen/cooldown_overlay/cooldown_overlay
+
 /datum/action/New(Target)
 	link_to(Target)
 	button = new

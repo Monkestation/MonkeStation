@@ -325,6 +325,10 @@
 		no_update = FALSE
 
 	if(HAS_TRAIT(C, TRAIT_HUSK) && IS_ORGANIC_LIMB(src))
+		if(ishuman(C))
+			var/mob/living/carbon/human/S = C
+			if(isszlachta(S))
+				return
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		is_husked = TRUE
 	else

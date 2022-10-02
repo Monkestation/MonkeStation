@@ -33,7 +33,7 @@
 		Toreador - More human then other bloodsucker, easily disguise among crew, but bound with morals."))
 
 	var/answer = input("You have Ranked up far enough to remember your clan. Which clan are you part of?", "Your mind feels luxurious...") in options
-	if(!answer) 
+	if(!answer)
 		to_chat(owner, span_warning("You have willfully decided to stay ignorant."))
 		return
 	switch(answer)
@@ -71,7 +71,6 @@
 			nightmarish_heart.Stop()
 			for(var/obj/item/light_eater/blade in bloodsucker.held_items)
 				QDEL_NULL(blade)
-			GLOB.reality_smash_track.AddMind(owner)
 			var/datum/objective/bloodsucker/hierarchy/lasombra_objective = new
 			lasombra_objective.owner = owner
 			objectives += lasombra_objective

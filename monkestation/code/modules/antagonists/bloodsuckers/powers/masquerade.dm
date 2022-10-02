@@ -53,7 +53,7 @@
 				if(istype(glovesdrip, /obj/item/clothing/gloves/wolfclaws))
 					theqdeld += glovesdrip
 			if(bloodsuckerdatum.clanprogress >= 4)
-				var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(ITEM_SLOT_SHOES)
+				var/obj/item/clothing/shoes/shoesdrip = user.get_item_by_slot(ITEM_SLOT_FEET)
 				if(istype(shoesdrip , /obj/item/clothing/shoes/wolflegs))
 					theqdeld += shoesdrip
 			QDEL_LIST(theqdeld)

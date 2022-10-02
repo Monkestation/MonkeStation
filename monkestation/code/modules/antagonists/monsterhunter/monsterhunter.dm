@@ -10,7 +10,6 @@
 	job_rank = ROLE_MONSTERHUNTER
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
-	var/give_objectives = TRUE
 	var/datum/action/bloodsucker/trackvamp = new /datum/action/bloodsucker/trackvamp()
 	var/datum/action/bloodsucker/fortitude = new /datum/action/bloodsucker/fortitude/hunter()
 
@@ -69,7 +68,7 @@
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 
-	
+
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
 	var/datum/antagonist/monsterhunter/monsterhunterdatum = has_antag_datum(/datum/antagonist/monsterhunter)
@@ -137,7 +136,7 @@
 		var/datum/mind/brain = monster.owner
 		if(brain == owner || !brain)
 			continue
-		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || is_wizard(brain.current))
+		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current))
 			monsters += brain
 		if(brain.has_antag_datum(/datum/antagonist/changeling))
 			monsters += brain

@@ -132,9 +132,6 @@
 
 	to_chat(owner, span_danger("You lunge at [target]!"))
 	if(target.stat == DEAD)
-		var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
-		var/datum/wound/slash/moderate/crit_wound = new
-		crit_wound.apply_wound(chest)
 		owner.visible_message(
 			span_warning("[owner] tears into [target]'s chest!"),
 			span_warning("You tear into [target]'s chest!"))

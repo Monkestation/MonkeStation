@@ -33,8 +33,8 @@
 	if(runbound)
 		if(was_running)
 			user.toggle_move_intent()
-	user.digitalinvis = 1
-	user.digitalcamo = 1
+	//user.digitalinvis = 1
+	//user.digitalcamo = 1
 	to_chat(user, span_notice("You put your Cloak of Darkness on."))
 
 /datum/action/bloodsucker/cloak/UsePower(mob/living/user)
@@ -64,8 +64,8 @@
 	. = ..()
 	var/mob/living/user = owner
 	animate(user, alpha = 255, time = 1 SECONDS)
-	user.digitalinvis = 0
-	user.digitalcamo = 0
+	//user.digitalinvis = 0
+	//user.digitalcamo = 0
 	if(runbound)
 		if(was_running && user.m_intent == MOVE_INTENT_WALK)
 			user.toggle_move_intent()
@@ -88,7 +88,7 @@
 	name = "cloak of shadows"
 	desc = "Fancy stuff."
 	icon = 'icons/obj/vamp_obj.dmi'
-	mob_overlay_icon = 'icons/obj/vamp_obj.dmi'
+	//mob_overlay_icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "cloak"
 	item_state = "cloak"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100) //good if you haven nothing
@@ -111,11 +111,11 @@
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
 	if(light_amount <= 0.2)
-		if(!owner.get_item_by_slot(SLOT_NECK))
-			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), SLOT_NECK)
+		if(!owner.get_item_by_slot(ITEM_SLOT_NECK))
+			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), ITEM_SLOT_NECK)
 
 /datum/action/bloodsucker/cloak/shadow/DeactivatePower()
 	. = ..()
-	var/obj/item/I = owner.get_item_by_slot(SLOT_NECK)
+	var/obj/item/I = owner.get_item_by_slot(ITEM_SLOT_NECK)
 	if(istype(I, /obj/item/clothing/neck/yogs/sith_cloak/cloak))
 		qdel(I)

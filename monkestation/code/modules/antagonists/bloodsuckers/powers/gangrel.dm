@@ -1,6 +1,6 @@
 /datum/action/bloodsucker/gangrel
-	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state = "gangrel_power_off"
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
@@ -33,18 +33,8 @@
 	switch(bloodsuckerdatum.total_blood_drank)
 		if(0 to 500)
 			if(!minortransformdone)
-				if(iscatperson(user))
-					user.set_species(/datum/species/lizard)
-					playsound(user.loc, 'sound/voice/lizard/hiss.ogg', 50)
-				else
-					user.set_species(/datum/species/human/felinid)
-					playsound(user.loc, 'sound/voice/feline/meow1.ogg', 50)
-					if(DIGITIGRADE in user_species.species_traits)
-						user_species.species_traits -= DIGITIGRADE
+				user.set_species(/datum/species/lizard)
 				minortransformdone = TRUE
-				user.dna.species.punchdamagelow += 5.0
-				user.dna.species.punchdamagehigh += 5.0 //stronk
-				user.dna.species.punchstunthreshold += 5.0
 				user.dna.species.armor += 30
 				to_chat(user, span_notice("You aren't strong enough to morph into something stronger! But you do certainly feel more feral and stronger than before."))
 			else
@@ -52,14 +42,11 @@
 				bloodsuckerdatum.AddBloodVolume(75)
 		if(500 to 1000)
 			if(!mediumtransformdone)
-				user.set_species(/datum/species/gorilla)
+				//user.set_species(/datum/species/gorilla)
 				playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
-				if(DIGITIGRADE in user_species.species_traits)
-					user_species.species_traits -= DIGITIGRADE
+				if(BODYTYPE_DIGITIGRADE in user_species.species_traits)
+					user_species.species_traits -= BODYTYPE_DIGITIGRADE
 				mediumtransformdone = TRUE
-				user.dna.species.punchdamagelow += 7.5
-				user.dna.species.punchdamagehigh += 7.5 //very stronk
-				user.dna.species.punchstunthreshold += 7.5
 				user.dna.species.armor += 35
 				to_chat(owner, span_notice("You transform into a gorrila-ey beast, you feel stronger!"))
 			else
@@ -115,8 +102,8 @@
 /datum/action/bloodsucker/targeted/haste/batdash
 	name = "Flying Haste"
 	desc = "Propulse yourself into a position of advantage."
-	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_baste"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
@@ -143,8 +130,8 @@
 /datum/action/bloodsucker/targeted/bloodbolt
 	name = "Blood Bolt"
 	desc = "Shoot a blood bolt to damage your foes."
-	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	//icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_bolt"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
@@ -278,7 +265,7 @@
 	user.do_attack_animation(target, ATTACK_EFFECT_BITE)
 	var/affecting = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	playsound(get_turf(target), 'sound/weapons/bite.ogg', 60, 1, -1)
-	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = IS_SHARP)
+	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10))
 	target.visible_message(span_danger("[user] takes a large bite out of [target]!"), \
 					  span_userdanger("[user] takes a large bite out of you!"))
 	PowerActivatedSuccessfully()
@@ -307,7 +294,6 @@
 	A.maxHealth *= 1.2
 	A.health *= 1.2
 	A.set_varspeed(initial(A.speed) + 2) // slower
-	A.harm_intent_damage += 10
 	A.melee_damage_lower += 10
 	A.melee_damage_upper += 10
 
@@ -317,7 +303,6 @@
 	A.maxHealth /= 1.2
 	A.health /= 1.2
 	A.set_varspeed(initial(A.speed))
-	A.harm_intent_damage -= 10
 	A.melee_damage_lower -= 10
 	A.melee_damage_upper -= 10
 
@@ -500,7 +485,7 @@
 	if(iscarbon(target))
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 		playsound(get_turf(target), 'sound/weapons/slash.ogg', 60, TRUE, -1)
-		target.apply_damage(15, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10), sharpness = IS_SHARP)
+		target.apply_damage(15, BRUTE, affecting, target.run_armor_check(affecting, "melee", armour_penetration = 10))
 	mauled = target
 	Mawl(target)
 
@@ -542,7 +527,6 @@
 	icon_state = "collar"
 	item_state = "collar"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	body_parts_covered = NECK
 
@@ -552,7 +536,6 @@
 	icon_state = "ears"
 	item_state = "ears"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100)
 	flags_inv = HIDEHAIR|HIDEFACE
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
@@ -563,7 +546,6 @@
 	icon_state = "claws"
 	item_state = "claws"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	body_parts_covered = ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT
 	var/datum/action/bloodsucker/targeted/tear/tearaction = new
@@ -574,7 +556,6 @@
 	icon_state = "legs"
 	item_state = "legs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
 	body_parts_covered = GROIN|LEGS|FEET
 
@@ -584,9 +565,7 @@
 	icon_state = "digilegs"
 	item_state = "digilegs"
 	icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	slowdown = SHOES_SLOWDOWN - 0.5
-	xenoshoe = YES_DIGIT
 	body_parts_covered = GROIN|LEGS|FEET
 
 /obj/item/clothing/neck/wolfcollar/Initialize()
@@ -598,9 +577,6 @@
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	make_syndie()
 
-/obj/item/radio/headset/wolfears/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
 /obj/item/clothing/gloves/wolfclaws/Initialize()
 	. = ..()
@@ -620,7 +596,7 @@
 		return
 	if(!IS_BLOODSUCKER(user))
 		return
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
 		tearaction.Grant(H)
 
@@ -631,5 +607,5 @@
 	if(!IS_BLOODSUCKER(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
 		tearaction.Remove(H)

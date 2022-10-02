@@ -83,6 +83,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ishumanbasic(A) (is_species(A, /datum/species/human) && !is_species(A, /datum/species/human/krokodil_addict))
 #define isethereal(A) (is_species(A, /datum/species/ethereal))
 #define isvampire(A) (is_species(A,/datum/species/vampire))
+#define isszlachta(A) (is_species(A, /datum/species/szlachta))
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define isapid(A) (is_species(A, /datum/species/apid))
 #define issimian(A) (is_species(A, /datum/species/simian))//monkestation edit : add simian species

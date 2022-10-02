@@ -225,6 +225,7 @@
 	forensic_protected = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	invisibility = INVISIBILITY_OBSERVER
+	var/list/siphoners = list()
 
 /obj/effect/reality_smash/Initialize(mapload)
 	. = ..()

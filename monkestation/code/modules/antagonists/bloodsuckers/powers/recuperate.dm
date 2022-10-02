@@ -43,9 +43,10 @@
 		user.blood_volume -= bloodcost
 		user.adjustFireLoss(-1.5)
 	// Stop Bleeding
-	if(istype(user) && user.is_bleeding())
-		for(var/obj/item/bodypart/part in user.bodyparts)
-			part.generic_bleedstacks--
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user
+		if(istype(human_user) && human_user.bleed_rate)
+			human_user.suppress_bloodloss(0)
 
 /datum/action/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
 	if(user.stat >= DEAD)

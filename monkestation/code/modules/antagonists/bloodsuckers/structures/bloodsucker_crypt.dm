@@ -750,7 +750,7 @@
 		//torture_dmg_burn += I.
 		if(held_item.sharpness == IS_SHARP)
 			torture_time -= 2
-		else if(held_item.sharpness == SHARP_POINTY)
+		else if(held_item.sharpness == IS_SHARP_ACCURATE)
 			torture_time -= 3
 		/// This will hurt your eyes.
 		else if(held_item.tool_behaviour == TOOL_WELDER)

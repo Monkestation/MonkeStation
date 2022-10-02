@@ -91,7 +91,6 @@
 		TRAIT_COLDBLOODED,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
-		TRAIT_HARDLY_WOUNDED,
 	)
 
 /mob/living/proc/explain_powers()
@@ -167,36 +166,24 @@
 	for(var/datum/action/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
-	var/old_punchdamagelow
-	var/old_punchdamagehigh
-	var/old_punchstunthreshold
-	var/old_species_punchdamagelow
-	var/old_species_punchdamagehigh
-	var/old_species_punchstunthreshold
+	var/old_punchdamage
+	var/old_species_punchdamage
 	if(ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
 		var/datum/species/old_species = old_user.dna.species
 		old_species.species_traits -= DRINKSBLOOD
 		//Keep track of what they were
-		old_punchdamagelow = old_species.punchdamagelow
-		old_punchdamagehigh = old_species.punchdamagehigh
-		old_punchstunthreshold = old_species.punchstunthreshold
+		old_punchdamage = old_species.punchdamage
 		//Then reset them
-		old_species.punchdamagelow = initial(old_species.punchdamagelow)
-		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
-		old_species.punchstunthreshold = initial(old_species.punchstunthreshold)
+		old_species.punchdamage = initial(old_species.punchdamage)
 		//Then save the new, old, original species values so we can use them in the next part. This is starting to get convoluted.
-		old_species_punchdamagelow = old_species.punchdamagelow
-		old_species_punchdamagehigh = old_species.punchdamagehigh
-		old_species_punchstunthreshold = old_species.punchstunthreshold
+		old_species_punchdamage = old_species.punchdamage
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
 		var/datum/species/new_species = new_user.dna.species
 		new_species.species_traits += DRINKSBLOOD
 		//Adjust new species punch damage
-		new_species.punchdamagelow += (old_punchdamagelow - old_species_punchdamagelow)			//Takes whatever DIFFERENCE you had between your punch damage and that of the baseline species
-		new_species.punchdamagehigh += (old_punchdamagehigh - old_species_punchdamagehigh)		//and adds it to your new species, thus preserving whatever bonuses you got
-		new_species.punchstunthreshold += (old_punchstunthreshold - old_species_punchstunthreshold)
+		new_species.punchdamage += (old_punchdamage - old_species_punchdamage)			//Takes whatever DIFFERENCE you had between your punch damage and that of the baseline species
 
 	//Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)
@@ -217,7 +204,7 @@
 /datum/antagonist/bloodsucker/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
 	// Refill with Blood so they don't instantly die.
-	owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL(owner.current))
+	owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL)
 
 /datum/antagonist/bloodsucker/proc/add_objective(datum/objective/added_objective)
 	objectives += added_objective
@@ -297,10 +284,6 @@
 	if(objectives.len)
 		report += printobjectives(objectives)
 		for(var/datum/objective/objective in objectives)
-			if(objective.objective_name == "Optional Objective")
-				if(!objective.check_completion())
-					optional_objectives_complete = FALSE
-				continue
 			if(!objective.check_completion())
 				objectives_complete = FALSE
 				break
@@ -316,7 +299,7 @@
 	if(objectives.len == 0 || objectives_complete && optional_objectives_complete)
 		report += span_greentext(span_big("The [name] was successful!"))
 	else if(objectives_complete && !optional_objectives_complete)
-		report += span_marooned("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
+		report += span_grey("The [name] survived, but has not made a name for [owner.current.p_them()]self...")
 	else
 		report += span_redtext(span_big("The [name] has failed!"))
 	report += get_flavor(objectives_complete, optional_objectives_complete)
@@ -434,9 +417,7 @@
 		var/datum/species/user_species = user.dna.species
 		user_species.species_traits += DRINKSBLOOD
 		user.dna?.remove_all_mutations()
-		user_species.punchdamagelow += 1 //lowest possible punch damage - 0
-		user_species.punchdamagehigh += 1 //highest possible punch damage - 9
-		user_species.punchstunthreshold += 1	//To not change rng knockdowns
+		user_species.punchdamage += 1
 	/// Give Bloodsucker Traits
 	for(var/all_traits in bloodsucker_traits)
 		ADD_TRAIT(owner.current, all_traits, BLOODSUCKER_TRAIT)
@@ -567,10 +548,7 @@
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
 		var/datum/species/user_species = user.dna.species
-		user_species.punchdamagelow += 0.5
-		// This affects the hitting power of Brawn.
-		user_species.punchdamagehigh += 0.5
-		user_species.punchstunthreshold += 0.5
+		user_species.punchdamage += 0.5
 
 	// We're almost done - Spend your Rank now.
 	bloodsucker_level++
@@ -616,7 +594,6 @@
 
 	for(var/datum/objective/bloodsucker/objective in rolled_objectives)
 		objective.owner = owner
-		objective.objective_name = "Optional Objective"
 		objectives += objective
 
 /// Name shown on antag list
@@ -814,15 +791,15 @@
 		owner.current.hud_used.sunlight_display.update_counter(value_string, valuecolor)
 		owner.current.hud_used.sunlight_display.icon_state = sunlight_display_icon
 
-/obj/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/blood_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/rank_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[round(value,1)]</font></div>"
 
-/obj/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
+/atom/movable/screen/bloodsucker/sunlight_counter/update_counter(value, valuecolor)
 	..()
 	maptext = "<div align='center' valign='bottom' style='position:relative; top:0px; left:6px'><font color='[valuecolor]'>[value]</font></div>"
 

@@ -1,6 +1,5 @@
 /mob/living/simple_animal/hostile/bloodsucker
 	icon = 'icons/mob/bloodsucker_mobs.dmi'
-	harm_intent_damage = 20
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	see_in_dark = 10
@@ -25,11 +24,10 @@
 	speed = -1.5
 	maxHealth = 450
 	health = 450
-	harm_intent_damage = 25
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	attacktext = "violently mawls"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 5)
+	butcher_results = list(/obj/item/food/meat/slab = 5)
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	speak_emote = list("gnashes")
@@ -46,10 +44,10 @@
 	maxHealth = 350
 	health = 350
 	attacktext = "bites"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
+	butcher_results = list(/obj/item/food/meat/slab = 3)
 	attack_sound = 'sound/weapons/bite.ogg'
 	obj_damage = 35
-	pass_flags = PASSTABLE | PASSCOMPUTER
+	pass_flags = PASSTABLE
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	movement_type = FLYING
 	speak_emote = list("loudly squeaks")
@@ -76,7 +74,6 @@
 	icon_living = "posarmor_sword"
 	upgraded = TRUE
 	obj_damage = 55
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 
@@ -96,11 +93,10 @@
 	maxHealth = 175
 	health = 175
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-	harm_intent_damage = 25
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	obj_damage = 50
-	
+
 /mob/living/simple_animal/hostile/bloodsucker/tzimisce/calcium
 	name = "boney monstrosity"
 	desc = "Heretical being beyond comprehesion, now with bones free of charge!"
@@ -112,7 +108,6 @@
 	health = 110
 	mob_size = MOB_SIZE_SMALL
 	ventcrawler = VENTCRAWLER_ALWAYS
-	harm_intent_damage = 7
 	melee_damage_lower = 7
 	melee_damage_upper = 7
 	obj_damage = 20
@@ -129,7 +124,6 @@
 	mob_size = MOB_SIZE_TINY
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE
-	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -221,23 +215,20 @@
 				additionalmessage = "You have mutated a collar made out of fur!"
 				user_species.armor += 10
 				mutation = /obj/item/clothing/neck/wolfcollar
-				slot = SLOT_NECK
+				slot = ITEM_SLOT_NECK
 			if(2)
 				additionalmessage = "You have mutated werewolf ears!"
 				mutation = /obj/item/radio/headset/wolfears
-				slot = SLOT_EARS
+				slot = ITEM_SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
-				user.physiology.punchdamagehigh_bonus += 2.5
-				user.physiology.punchdamagelow_bonus += 2.5
-				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
-				slot = SLOT_GLOVES
+				slot = ITEM_SLOT_GLOVES
 			if(4)
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
-				slot = SLOT_SHOES
-				if(DIGITIGRADE in user.dna.species.species_traits)
+				slot = ITEM_SLOT_FEET
+				if(BODYTYPE_DIGITIGRADE in user.dna.species.species_traits)
 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)
 				to_chat(user, span_danger("The beast inside of you seems satisfied with your current form."))

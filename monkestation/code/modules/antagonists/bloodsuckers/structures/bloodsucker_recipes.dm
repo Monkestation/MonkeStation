@@ -8,7 +8,7 @@
 	result = /obj/structure/closet/crate/coffin/blackcoffin
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
-		/obj/item/stack/sheet/cloth = 1,
+		/obj/item/stack/sheet/cotton/cloth = 1,
 		/obj/item/stack/sheet/mineral/wood = 5,
 		/obj/item/stack/sheet/iron = 1,
 	)
@@ -32,7 +32,7 @@
 	result = /obj/structure/closet/crate/coffin/meatcoffin
 	tools = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/meat/slab = 5,
+		/obj/item/food/meat/slab = 5,
 		/obj/item/restraints/handcuffs/cable = 1,
 	)
 	time = 15 SECONDS
@@ -72,7 +72,7 @@
 	reqs = list(
 		/obj/item/stack/rods = 5,
 		/obj/item/stack/sheet/iron = 5,
-		/obj/item/stack/sheet/cloth = 2, //that's right it comes with bones FREE OF CHARGE
+		/obj/item/stack/sheet/cotton/cloth = 2, //that's right it comes with bones FREE OF CHARGE
 	)
 	time = 15 SECONDS
 	category = CAT_STRUCTURES
@@ -94,7 +94,7 @@
 /datum/crafting_recipe/staketrap
 	name = "Stake Trap"
 	result = /obj/item/restraints/legcuffs/beartrap/bloodsucker
-	tools = list(TOOL_SCREWDRIVER, TOOL_HATCHET)
+	tools = list(TOOL_SCREWDRIVER, TOOL_SAW)
 	reqs = list(
 		/obj/item/stake = 2,
 		/obj/item/stack/sheet/mineral/wood = 2,
@@ -123,7 +123,7 @@
 	result = /obj/structure/bloodsucker/bloodthrone
 	tools = list(TOOL_WRENCH)
 	reqs = list(
-		/obj/item/stack/sheet/cloth = 3,
+		/obj/item/stack/sheet/cotton/cloth = 3,
 		/obj/item/stack/sheet/iron = 5,
 		/obj/item/stack/sheet/mineral/wood = 1,
 	)
@@ -158,7 +158,7 @@
 /datum/crafting_recipe/woodenducky
 	name = "Wooden Ducky"
 	result = /obj/item/stake/ducky
-	tools = list(TOOL_HATCHET)
+	tools = list(TOOL_SAW)
 	reqs = list(
 		/obj/item/stake = 1,
 		/obj/item/bikehorn/rubberducky = 1,

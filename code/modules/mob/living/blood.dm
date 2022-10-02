@@ -30,6 +30,9 @@
 		bleed_rate = 0
 		return
 
+	if(mind && IS_BLOODSUCKER(src)) // Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
+		return
+
 	if(HAS_TRAIT(src, TRAIT_NOPULSE))
 		return
 

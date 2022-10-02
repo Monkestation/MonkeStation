@@ -10,9 +10,9 @@
 /// Deals with constant processes off of LifeTick()
 #define COMSIG_LIVING_BIOLOGICAL_LIFE "biological_life"
 /// Once blood is this low, will enter Frenzy
-#define FRENZY_THRESHOLD_ENTER 25
+#define FRENZY_THRESHOLD_ENTER 112
 /// Once blood is this high, will exit Frenzy
-#define FRENZY_THRESHOLD_EXIT 250
+#define FRENZY_THRESHOLD_EXIT 560
 /// You have special interactions with Bloodsuckers
 #define TRAIT_BLOODSUCKER_HUNTER "bloodsucker_hunter"
 
@@ -37,6 +37,13 @@
 #define CLAN_GANGREL "Gangrel Clan"
 #define CLAN_LASOMBRA "Lasombra Clan"
 #define CLAN_TZIMISCE "Tzimisce Clan"
+
+#define TRIPLECHEST_MONSTER "Triple Chest (300 Blood)"
+#define ARMMY_MONSTER "Armmy (100 Blood)"
+#define CALCIUM_MONSTER "Calcium (150 Blood)"
+#define HUSK_MONSTER "Husk"
+#define TOREADOR_MAX_HUMANITY_LOSS 10
+
 /**
  * Power defines
  */
@@ -53,12 +60,16 @@
 
 /// This Power can be purchased by Bloodsuckers
 #define BLOODSUCKER_CAN_BUY (1<<0)
-/// This Power can be purchased by Tremere Bloodsuckers
-#define TREMERE_CAN_BUY (1<<1)
+/// This Power can be purchased by Lasombra Bloodsuckers
+#define LASOMBRA_CAN_BUY (1<<1)
+/// This Power can be purchased by Gangrel Bloodsuckers
+#define GANGREL_CAN_BUY (1<<2)
 /// This Power can be purchased by Vassals
-#define VASSAL_CAN_BUY (1<<2)
+#define VASSAL_CAN_BUY (1<<3)
 /// This Power can be purchased by Monster Hunters
-#define HUNTER_CAN_BUY (1<<3)
+#define HUNTER_CAN_BUY (1<<4)
+/// This Power can be purchased by Tzimisce Bloodsuckers
+#define TZIMISCE_CAN_BUY (1<<5)
 
 /// This Power is a Toggled Power
 #define BP_AM_TOGGLE (1<<0)
@@ -68,3 +79,7 @@
 #define BP_AM_STATIC_COOLDOWN (1<<2)
 /// This Power doesn't cost bloot to run while unconscious
 #define BP_AM_COSTLESS_UNCONSCIOUS (1<<3)
+
+// Signals
+
+#define COMSIG_BLOODSUCKER_RANKS_SPENT
