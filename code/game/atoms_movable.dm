@@ -579,7 +579,7 @@
 
 ///default byond proc that is deprecated for us in lieu of signals. do not call
 /atom/movable/Crossed(atom/movable/AM, oldloc)
-	SHOULD_NOT_OVERRIDE(TRUE)
+	//SHOULD_NOT_OVERRIDE(TRUE)
 	CRASH("atom/movable/Crossed() was called!")
 
 /**

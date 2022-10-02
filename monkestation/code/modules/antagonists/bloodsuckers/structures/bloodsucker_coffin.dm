@@ -73,7 +73,7 @@
 	close_sound = 'sound/effects/footstep/slime1.ogg'
 	breakout_time = 25 SECONDS
 	pryLidTimer = 20 SECONDS
-	material_drop = /obj/item/reagent_containers/food/snacks/meat/slab
+	material_drop = /obj/item/food/meat/slab
 	material_drop_amount = 3
 	armor = list("melee" = 70, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 70, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 

@@ -5,7 +5,7 @@
 	charge_max = 450
 	human_req = TRUE
 	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
+	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "glare"
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
@@ -20,10 +20,6 @@
 			return
 		if(target.stat)
 			to_chat(user, span_warning("[target] must be conscious!"))
-			revert_cast()
-			return
-		if(is_shadow_or_thrall(target))
-			to_chat(user, span_warning("You cannot glare at allies!"))
 			revert_cast()
 			return
 		var/mob/living/carbon/human/M = target

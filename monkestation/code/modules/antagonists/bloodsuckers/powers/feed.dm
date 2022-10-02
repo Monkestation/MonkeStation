@@ -245,8 +245,6 @@
 				var/mob/living/carbon/carbon_target = feed_target
 				carbon_target.bleed(15)
 			playsound(get_turf(feed_target), 'sound/effects/splat.ogg', 40, 1)
-			if(ishuman(feed_target))
-				var/mob/living/carbon/human/target_user = feed_target
 			feed_target.add_splatter_floor(get_turf(feed_target))
 			user.add_mob_blood(feed_target) // Put target's blood on us. The donor goes in the ( )
 			feed_target.add_mob_blood(feed_target)

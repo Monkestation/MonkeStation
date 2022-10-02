@@ -401,7 +401,7 @@
 	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
 	if(!do_mob(A, A, 2.5 SECONDS, TRUE))
 		return
-	playsound(A.loc, 'yogstation/sound/creatures/darkspawn_howl.ogg', 50, TRUE)
+	playsound(A.loc, 'sound/creatures/darkspawn_howl.ogg', 50, TRUE)
 	A.visible_message(span_userdanger("[A] let's out a chilling howl!"), span_boldwarning("You howl, confusing and deafening nearby mortals."))
 	for(var/mob/target in range(3, A))
 		if(target == (A || A.bloodsucker))
