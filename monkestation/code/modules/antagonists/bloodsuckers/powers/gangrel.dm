@@ -1,6 +1,6 @@
 /datum/action/bloodsucker/gangrel
-	//button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	//icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
+	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state = "gangrel_power_off"
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
