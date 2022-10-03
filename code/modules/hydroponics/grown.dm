@@ -118,8 +118,9 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		squash(user)
 	..()
+
 /obj/item/food/grown/fire_tick_act(delta_time)
-	take_damage(20 * delta_time, BURN, "fire", 0) //this takes double damage so things burn faster
+	take_damage(rand(15, 30) * delta_time, BURN, "fire", 0) //this takes double damage so things burn faster
 	if(prob(10))
 		for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff randomly while burning
 			if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
