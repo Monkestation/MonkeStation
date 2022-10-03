@@ -6635,10 +6635,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
 "any" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
 	},
-/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/item/food/grown/banana,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "anz" = (
@@ -16803,7 +16806,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "aRj" = (
-/obj/structure/window/reinforced,
+/obj/machinery/computer/robotics,
 /obj/effect/turf_decal/tile/purple/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -17659,6 +17662,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
+/obj/item/melee/baton,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aTV" = (
@@ -18467,7 +18471,13 @@
 /area/crew_quarters/park)
 "aWO" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1;
+	name = "Scientific Seat";
+	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system for smoother science."
+	},
+/obj/effect/landmark/start/research_director,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aWP" = (
@@ -19606,6 +19616,16 @@
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/noslip,
 /area/quartermaster/warehouse)
+"baT" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/structure/flora/ausbushes/brflowers,
+/obj/item/toy/plush/beeplushie,
+/turf/open/floor/grass,
+/area/bridge)
 "baU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -19716,10 +19736,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bbh" = (
+/obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple/tile_full,
-/obj/machinery/computer/robotics{
-	dir = 8
-	},
+/obj/structure/table/glass,
+/obj/item/aicard,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bbi" = (
@@ -20422,7 +20442,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bdi" = (
-/obj/machinery/computer/arcade,
+/obj/machinery/computer/arcade{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bdj" = (
@@ -21290,13 +21312,13 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
 "bfw" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
+	dir = 1
 	},
-/obj/structure/filingcabinet/chestdrawer,
-/obj/effect/turf_decal/tile/purple/tile_full,
-/turf/open/floor/plasteel/dark,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
 /area/bridge)
 "bfy" = (
 /obj/structure/table/wood,
@@ -21744,15 +21766,11 @@
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "bgM" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_x = 7
+/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/structure/filingcabinet/chestdrawer,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/machinery/recharger{
-	pixel_x = -7
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/darkblue/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bgO" = (
@@ -22964,7 +22982,9 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "bjy" = (
-/obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
+/obj/structure/table/reinforced,
+/obj/item/bikehorn,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bjz" = (
@@ -24374,13 +24394,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bnU" = (
-/obj/structure/window/reinforced{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/effect/turf_decal/tile/purple/tile_full,
-/obj/structure/table/glass,
-/obj/item/aicard,
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bnV" = (
@@ -41764,12 +41778,9 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/maintenance/aft)
 "cto" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced,
+/obj/machinery/computer/rdconsole/core,
 /obj/effect/turf_decal/tile/purple/tile_full,
-/obj/machinery/computer/aifixer{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "ctp" = (
@@ -45624,14 +45635,9 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
 "dmj" = (
-/obj/structure/rack,
-/obj/item/storage/secure/briefcase,
-/obj/machinery/camera{
-	c_tag = "Bridge - Teleporter Access";
-	dir = 8;
-	name = "command camera"
-	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "dmK" = (
@@ -47106,6 +47112,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/port)
+"eoW" = (
+/obj/structure/window/reinforced{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/bridge)
 "epA" = (
 /obj/item/storage/firstaid/advanced,
 /obj/machinery/light{
@@ -47393,6 +47413,13 @@
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/red/tile_full,
+/obj/item/storage/box/handcuffs{
+	pixel_y = -5;
+	pixel_x = -6
+	},
+/obj/machinery/camera/autoname{
+	dir = 5
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "exU" = (
@@ -48709,7 +48736,11 @@
 /area/storage/primary)
 "fxL" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
+/obj/machinery/computer{
+	name = "Funny computer";
+	desc = "The captain has informed the clown that this console is of great importance (It isn't)."
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "fxW" = (
@@ -49595,14 +49626,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "gat" = (
-/obj/structure/window/reinforced,
+/obj/machinery/computer/aifixer,
+/obj/effect/turf_decal/tile/purple/tile_full,
 /obj/structure/window/reinforced{
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/discovery_scanner,
-/obj/effect/turf_decal/tile/purple/tile_full,
-/obj/structure/table/glass,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "gaw" = (
@@ -52879,6 +52908,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"iog" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall/r_wall,
+/area/hallway/primary/aft)
 "ioE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -54320,12 +54353,6 @@
 /obj/item/seeds/banana,
 /turf/open/floor/grass,
 /area/crew_quarters/park)
-"jtC" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple/tile_full,
-/obj/machinery/computer/rdconsole/core,
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "jtK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -54614,19 +54641,12 @@
 	},
 /area/quartermaster/office)
 "jGT" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/leafybush,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/item/pen,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/grass,
 /area/bridge)
 "jHt" = (
 /obj/structure/disposalpipe/segment{
@@ -57785,6 +57805,8 @@
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/table/glass,
 /obj/machinery/light,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "lII" = (
@@ -58406,7 +58428,9 @@
 /obj/effect/landmark/start/captain,
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/chair/comfy/shuttle{
-	dir = 1
+	dir = 1;
+	name = "Command Seat";
+	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system for smoother captaining."
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
@@ -60099,7 +60123,7 @@
 /obj/machinery/modular_computer/console/preset/command{
 	dir = 8;
 	name = "Captain's PC";
-	desc = "The Captain's perrsonal computer, the keys are sticky with spilled soda."
+	desc = "The Captain's personal computer, the keys are sticky with spilled soda."
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
@@ -60445,8 +60469,17 @@
 /area/quartermaster/exploration_prep)
 "nwI" = (
 /obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = 7
+	},
+/obj/machinery/recharger{
+	pixel_x = -7
+	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/item/radio/off,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "nwZ" = (
@@ -60464,6 +60497,14 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"nxS" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/bridge)
 "nyK" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
@@ -64829,6 +64870,10 @@
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/science/lab)
+"qBj" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall/r_wall,
+/area/bridge)
 "qBw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -64959,6 +65004,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/cyan,
 /area/quartermaster/qm)
+"qFu" = (
+/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/structure/table/glass,
+/obj/item/discovery_scanner,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "qFE" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line{
 	dir = 1
@@ -66880,10 +66931,12 @@
 /turf/open/floor/carpet/green,
 /area/chapel/main)
 "saV" = (
-/obj/effect/turf_decal/tile/purple/tile_full,
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
+/obj/structure/rack,
+/obj/item/storage/secure/briefcase,
+/obj/machinery/camera/autoname{
+	dir = 9
 	},
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "sbK" = (
@@ -72454,8 +72507,10 @@
 /turf/open/floor/plasteel,
 /area/vacant_room/commissary)
 "wbr" = (
-/obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/item/kirbyplants/random,
+/obj/machinery/modular_computer/console/preset/research{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple/tile_full,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "wbX" = (
@@ -73202,12 +73257,15 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
 "wyS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger,
+/obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/item/radio/intercom{
 	pixel_x = 28
 	},
-/obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/structure/table/reinforced,
+/obj/item/radio/off,
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "wzA" = (
@@ -73720,6 +73778,15 @@
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"wRC" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/bridge)
 "wRV" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -74849,12 +74916,12 @@
 /area/hallway/secondary/entry)
 "xDQ" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/purple/tile_full,
+/obj/effect/turf_decal/tile/hot_pink/tile_full,
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
-	name = "Scientific Seat"
+	name = "Funny Seat";
+	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system for smoother honking."
 	},
-/obj/effect/landmark/start/research_director,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "xEM" = (
@@ -103850,7 +103917,7 @@ bNJ
 rOJ
 gxK
 rOJ
-rOJ
+iog
 rOJ
 rOJ
 rOJ
@@ -105356,13 +105423,13 @@ aRs
 aPR
 tVZ
 uwl
-bfw
-boa
+any
 bnU
+uwl
 gat
-bjy
-bnV
-bnV
+boa
+eoW
+baT
 bnV
 bnV
 pNY
@@ -105613,13 +105680,13 @@ nbO
 cjx
 yiX
 bec
-jtC
-xDQ
 fxL
+xDQ
+bfw
 cto
 aWO
-aVe
-aVe
+bbh
+wRC
 aVe
 aVe
 aXe
@@ -105870,13 +105937,13 @@ bbn
 bcg
 aZU
 beg
-any
-saV
-bbh
-aRj
 bjy
-bnV
-bnV
+saV
+beg
+aRj
+boa
+qFu
+nxS
 bnV
 bnV
 hOj
@@ -106127,7 +106194,7 @@ kdh
 aPR
 aPR
 aPR
-aPR
+qBj
 aPR
 aPR
 aPR
