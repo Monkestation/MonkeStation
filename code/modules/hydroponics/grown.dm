@@ -131,6 +131,7 @@
 		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
 			var/turf/turf = get_turf(src.loc)
 			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) * contained_reagent.molarity];TEMP=[T20C]")
+	qdel(src)
 
 /obj/item/food/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?
