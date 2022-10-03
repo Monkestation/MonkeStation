@@ -11863,7 +11863,6 @@
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aDT" = (
-/obj/machinery/light/small,
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -11874,6 +11873,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aDU" = (
@@ -12808,7 +12808,8 @@
 	pixel_y = 8
 	},
 /obj/machinery/light/small{
-	dir = 8
+	dir = 8;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 9
@@ -12816,6 +12817,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
 	},
+/obj/machinery/button/door{
+	id = "Toilet1";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aGn" = (
@@ -12823,7 +12832,8 @@
 	pixel_y = 8
 	},
 /obj/machinery/light/small{
-	dir = 8
+	dir = 8;
+	pixel_y = 10
 	},
 /obj/effect/landmark/blobstart,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -12832,6 +12842,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 5
 	},
+/obj/machinery/button/door{
+	id = "Toilet2";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aGo" = (
@@ -12849,7 +12867,8 @@
 /area/ai_monitored/storage/eva)
 "aGp" = (
 /obj/machinery/light/small{
-	dir = 8
+	dir = 8;
+	pixel_y = 10
 	},
 /obj/machinery/recharge_station,
 /obj/effect/turf_decal/trimline/blue/filled/warning{
@@ -13525,33 +13544,34 @@
 /obj/structure/mirror{
 	pixel_x = -28
 	},
-/obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aHV" = (
-/obj/machinery/door/airlock{
-	name = "Unit 1"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Toilet1";
+	name = "Unit 1"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aHW" = (
-/obj/machinery/door/airlock{
-	name = "Unit 2"
-	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning{
 	dir = 8
+	},
+/obj/machinery/door/airlock{
+	id_tag = "Toilet2";
+	name = "Unit 2"
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
@@ -29340,8 +29360,8 @@
 "bCD" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /obj/machinery/door/airlock{
-	name = "Bathroom";
-	desc = "Gotta love when the doc takes a big greasy shit and then replaces my heart."
+	id_tag = "Toilet3";
+	name = "Unit 3"
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
@@ -56961,6 +56981,14 @@
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 10
+	},
+/obj/machinery/button/door{
+	id = "Toilet3";
+	name = "Lock Control";
+	normaldoorcontrol = 1;
+	pixel_x = -9;
+	specialfunctions = 4;
+	pixel_y = -23
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/break_room)
