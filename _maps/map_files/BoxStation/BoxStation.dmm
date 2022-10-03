@@ -60096,7 +60096,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/structure/table/reinforced,
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 8;
+	name = "Captain's PC";
+	desc = "The Captain's perrsonal computer, the keys are sticky with spilled soda."
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "njR" = (
@@ -60906,8 +60910,8 @@
 /turf/open/floor/carpet/black,
 /area/crew_quarters/theatre/backstage)
 "nPs" = (
-/obj/machinery/computer/station_alert,
 /obj/effect/turf_decal/tile/yellow/tile_full,
+/obj/machinery/modular_computer/console/preset/engineering,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "nPx" = (
