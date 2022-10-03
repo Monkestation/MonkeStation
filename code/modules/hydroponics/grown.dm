@@ -118,17 +118,18 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		squash(user)
 	..()
+/obj/item/food/grown/fire_tick_act(delta_time)
+	take_damage(20 * delta_time, BURN, "fire", 0) //this takes double damage so things burn faster
+	if(prob(10))
+		for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff randomly while burning
+			if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
+				grown_food_item.fire_act(src.return_temperature())
 
 /obj/item/food/grown/burn()
 	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
 		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
 			var/turf/turf = get_turf(src.loc)
 			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) * contained_reagent.molarity];TEMP=[T20C]")
-
-	for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff on burn
-		if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
-			grown_food_item.fire_act(src.return_temperature())
-	..()
 
 /obj/item/food/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?
