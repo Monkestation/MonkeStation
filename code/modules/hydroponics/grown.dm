@@ -138,10 +138,7 @@
 /obj/item/food/grown/process(delta_time)
 	if(prob(0.1)) //these bad boys are unstable as shit
 		if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
-			for(var/datum/reagent/contained_reagent in reagents.reagent_list)
-				var/turf/turf = get_turf(src.loc)
-				turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) * contained_reagent.molarity];TEMP=[T20C]")
-		qdel(src)
+			fire_act(500)
 
 /obj/item/food/grown/burn()
 	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
