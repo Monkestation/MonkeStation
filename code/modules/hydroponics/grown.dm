@@ -136,7 +136,7 @@
 				return // only once
 
 /obj/item/food/grown/process(delta_time)
-	if(prob(0.1)) //these bad boys are unstable as shit
+	if(prob(0.5)) //these bad boys are unstable as shit
 		if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
 			fire_act(500)
 
