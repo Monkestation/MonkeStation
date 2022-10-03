@@ -121,10 +121,11 @@
 
 /obj/item/food/grown/fire_tick_act(delta_time)
 	take_damage(rand(15, 30) * delta_time, BURN, "fire", 0) //this takes double damage so things burn faster
-	if(prob(10))
+	if(prob(15))
 		for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff randomly while burning
 			if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
 				grown_food_item.fire_act(src.return_temperature())
+				return // only once
 
 /obj/item/food/grown/burn()
 	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
