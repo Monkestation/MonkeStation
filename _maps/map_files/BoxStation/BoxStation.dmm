@@ -2280,6 +2280,9 @@
 /obj/effect/turf_decal/stripes/closeup{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "aeF" = (
@@ -18582,6 +18585,7 @@
 /obj/effect/turf_decal/tile/darkblue/tile_full,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/vending/coffee,
+/obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aWZ" = (
@@ -18607,10 +18611,10 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "aXe" = (
 /obj/effect/turf_decal/tile/darkblue/tile_full,
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "aXf" = (
@@ -18646,7 +18650,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "aXm" = (
@@ -25761,6 +25764,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/darkblue/tile_full,
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
 "bsl" = (
@@ -26218,11 +26225,17 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "btI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
@@ -26234,6 +26247,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
 "btK" = (
@@ -26243,6 +26259,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/teleporter)
@@ -59758,6 +59777,9 @@
 "mSn" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/grid/steel,
 /area/bridge)
@@ -106204,7 +106226,7 @@ jGT
 nwI
 wyS
 dmj
-aZS
+nbO
 bnV
 mNK
 aPR
