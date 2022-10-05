@@ -521,12 +521,21 @@
 			return
 		do_ritual(user, buckled_carbons)
 		return
-	if(istype(vassaldatum) && vassaldatum.master == bloodsuckerdatum)
+	if(istype(vassaldatum) && vassaldatum.master == bloodsuckerdatum)/// Are we part of Tremere? They can do bonus things with their Vassals, so don't unbuckle!
 		// Can we assign a Favorite Vassal?
 		if(istype(vassaldatum) && !bloodsuckerdatum.has_favorite_vassal)
 			offer_favorite_vassal(user, buckled_carbons)
+
 		else if(bloodsuckerdatum.my_clan == CLAN_TZIMISCE)
 			do_ritual(user, buckled_carbons)
+
+		else if(bloodsuckerdatum.my_clan == CLAN_TREMERE)
+			/// Limit it to only 1 time per Vassal.
+			if(istype(vassaldatum) && vassaldatum.mutilated)
+				to_chat(user, "<span class='notice'>You've already mutated [buckled_carbons] beyond repair!</span>")
+				return
+			tremere_perform_magic(user, buckled_carbons)
+
 		use_lock = FALSE
 		return
 
