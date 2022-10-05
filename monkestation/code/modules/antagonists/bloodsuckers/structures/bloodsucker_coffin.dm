@@ -168,25 +168,16 @@
 						break
 					area_turfs -= lair_turfs*/
 
-/obj/structure/closet/crate/proc/UnclaimCoffin(manual = FALSE)
-	// Unanchor it (If it hasn't been broken, anyway)
-	anchored = FALSE
-	if(!resident || !resident.mind)
-		return
-	// Unclaiming
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
-		bloodsuckerdatum.coffin = null
-		bloodsuckerdatum.lair = null
-	for(var/obj/structure/bloodsucker/bloodsucker_structure in get_area(src))
-		if(bloodsucker_structure.owner == resident)
-			bloodsucker_structure.unbolt()
-	if(manual)
-		to_chat(resident, span_cultitalic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
-	else
-		to_chat(resident, span_cultitalic("You sense that the link with your coffin and your sacred lair, has been broken! You will need to seek another."))
-	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
-	resident = null
+/obj/structure/closet/crate/proc/UnclaimCoffin()
+	if(resident)
+		// Unclaiming
+		if(resident.mind)
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = resident.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
+				bloodsuckerdatum.coffin = null
+				bloodsuckerdatum.lair = null
+			to_chat(resident, "<span class='cult'><span class='italics'>You sense that the link with your coffin, your sacred place of rest, has been broken! You will need to seek another.</span></span>")
+		resident = null // Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 
 /// You cannot lock in/out a coffin's owner. SORRY.
 /obj/structure/closet/crate/coffin/old/can_open(mob/living/user)
@@ -202,22 +193,22 @@
 	to_chat(user, span_notice("[src] is locked tight from the inside."))
 
 /obj/structure/closet/crate/coffin/old/close(mob/living/user)
-	. = ..()
-	if(!.)
+	if(!..())
 		return FALSE
 	// Only the User can put themself into Torpor. If already in it, you'll start to heal.
 	if(user in src)
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-		if(!bloodsuckerdatum)
-			return FALSE
-		if(!bloodsuckerdatum.coffin && !resident)
-			switch(input("Do you wish to claim this as your coffin? [get_area(src)] will be your lair, and you will learn to craft new structures.","Claim Lair") in list("Yes", "No"))
-				if("Yes")
-					ClaimCoffin(user)
+		if(bloodsuckerdatum)
 			LockMe(user)
-		bloodsuckerdatum.SpendRank()
-		/// You're in a Coffin, everything else is done, you're likely here to heal. Let's offer them the oppertunity to do so.
-		bloodsuckerdatum.Check_Begin_Torpor()
+			if(!bloodsuckerdatum.coffin && !resident)
+				switch(tgalert(user,"Do you wish to claim this as your coffin? [get_area(src)] will be your lair.","Claim Lair", "Yes", "No"))
+					if("Yes")
+						ClaimCoffin(user)
+			/// Level up? Auto-Fails if not appropriate
+			if(bloodsuckerdatum.my_clan == CLAN_VENTRUE)
+				return TRUE
+			bloodsuckerdatum.SpendRank()
+			bloodsuckerdatum.Check_Begin_Torpor()
 	return TRUE
 
 /// You cannot weld or deconstruct an owned coffin. Only the owner can destroy their own coffin.

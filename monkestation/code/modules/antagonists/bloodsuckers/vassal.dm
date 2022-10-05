@@ -19,6 +19,10 @@
 	var/favorite_vassal = FALSE
 	/// Bloodsucker levels, but for Vassals.
 	var/vassal_level
+	/// Am I protected from getting my antag removed if I get Mindshielded?
+	var/protected_from_mindshielding = FALSE
+	/// Tremere Vassals only - Have I been mutated?
+	var/mutilated = FALSE
 
 /datum/antagonist/vassal/antag_panel_data()
 	return "Master : [master.owner.name]"
@@ -31,7 +35,6 @@
 	var/mob/living/current_mob = mob_override || owner.current
 	current_mob.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 
-
 /datum/antagonist/vassal/on_gain()
 	/// Enslave them to their Master
 	if(master)
@@ -39,6 +42,9 @@
 		if(bloodsuckerdatum)
 			bloodsuckerdatum.vassals |= src
 		owner.enslave_mind_to_creator(master.owner.current)
+		/// Is my Master part of Tremere?
+		if(bloodsuckerdatum.my_clan == CLAN_TREMERE)
+			protected_from_mindshielding = TRUE
 	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
 	BuyPower(new /datum/action/bloodsucker/recuperate)
@@ -142,7 +148,7 @@
 		if(!istype(mesmerize_power))
 			continue
 		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
-	
+
 /// If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)
 /datum/antagonist/vassal/can_be_owned(datum/mind/new_owner)
 	if(!master)
@@ -222,3 +228,41 @@
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_BLOODSUCKER]
 	hud.leave_hud(vassal)
 	set_antag_hud(vassal, null)
+
+/*
+ *	# Vassal Feeding
+ *
+ *	Ventrue's Favorite Vassal can feed once they reach a certain level, this handles that.
+ *	This is a direct Copy & Paste from the Bloodsucker version.
+ */
+
+/datum/antagonist/vassal/proc/HandleFeeding(mob/living/carbon/target, mult=1)
+	var/blood_taken = min(15, target.blood_volume) * mult
+	target.blood_volume -= blood_taken
+	// Simple Animals lose a LOT of blood, and take damage. This is to keep cats, cows, and so forth from giving you insane amounts of blood.
+	if(!ishuman(target))
+		target.blood_volume -= (blood_taken / max(target.mob_size, 0.1)) * 3.5 // max() to prevent divide-by-zero
+		target.apply_damage_type(blood_taken / 3.5) // Don't do too much damage, or else they die and provide no blood nourishment.
+		if(target.blood_volume <= 0)
+			target.blood_volume = 0
+			target.death(0)
+	///////////
+	// Shift Body Temp (toward Target's temp, by volume taken)
+	owner.current.bodytemperature = ((owner.current.blood_volume * owner.current.bodytemperature) + (blood_taken * target.bodytemperature)) / (owner.current.blood_volume + blood_taken)
+	// our volume * temp, + their volume * temp, / total volume
+	///////////
+	// Reduce Value Quantity
+	if(target.stat == DEAD) // Penalty for Dead Blood
+		blood_taken /= 3
+	if(!ishuman(target)) // Penalty for Non-Human Blood
+		blood_taken /= 2
+	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
+	// Apply to Volume
+	AddBloodVolume(blood_taken)
+	// Reagents (NOT Blood!)
+	if(target.reagents && target.reagents.total_volume)
+		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
+	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
+
+/datum/antagonist/vassal/proc/AddBloodVolume(value)
+	owner.current.blood_volume = clamp(owner.current.blood_volume + value, 0, 560)

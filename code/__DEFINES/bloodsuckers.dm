@@ -44,6 +44,10 @@
 #define HUSK_MONSTER "Husk"
 #define TOREADOR_MAX_HUMANITY_LOSS 10
 
+#define TREMERE_SKELETON "Skeleton Pirate"
+#define TREMERE_ZOMBIE "Zombie - Revives"
+#define TREMERE_HUSK "Husk - Drinks all their Blood"
+#define TREMERE_BAT "Bat - Chance to give them Bat form"
 /**
  * Power defines
  */

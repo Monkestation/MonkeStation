@@ -23,6 +23,18 @@
 	INVOKE_ASYNC(src, .proc/HandleStarving)
 	INVOKE_ASYNC(src, .proc/HandleTorpor)
 
+	/// In a Frenzy? Take damage, to encourage them to Feed as soon as possible.
+	if(frenzied)
+		owner.current.adjustFireLoss(3)
+	/// Special check, Tremere Bloodsuckers burn while in the Chapel
+	if(my_clan == CLAN_TREMERE)
+		var/area/A = get_area(owner.current)
+		if(istype(A, /area/chapel))
+			to_chat(owner.current, "<span class='warning'>You don't belong in holy areas!</span>")
+			owner.current.adjustFireLoss(10)
+			owner.current.adjust_fire_stacks(2)
+			owner.current.IgniteMob()
+
 	if(my_clan == CLAN_TOREADOR && owner.current.stat != DEAD)
 		for(var/datum/antagonist/vassal/vassal in vassals)
 			if(vassal.master != src)
