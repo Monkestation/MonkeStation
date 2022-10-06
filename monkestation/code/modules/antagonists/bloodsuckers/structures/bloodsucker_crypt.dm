@@ -9,10 +9,10 @@
 	 *	This way we don't have to make a new /examine for each structure
 	 *	And it's easier to edit.
 	 */
-	var/Ghost_desc
-	var/Vamp_desc
-	var/Vassal_desc
-	var/Hunter_desc
+	var/ghost_desc
+	var/vamp_desc
+	var/vassal_desc
+	var/hunter_desc
 
 /obj/structure/bloodsucker/examine(mob/user)
 	. = ..()
@@ -80,8 +80,8 @@
 	if(user == owner && user.Adjacent(src))
 		balloon_alert(user, "unbolt [src]?")
 		var/list/unclaim_options = list(
-			"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no")
+			"Yes" = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_yes"),
+			"No" = image(icon = 'icons/mob/radial.dmi', icon_state = "cable_invalid")
 			)
 		var/unclaim_response = show_radial_menu(user, src, unclaim_options, radius = 36, require_near = TRUE)
 		switch(unclaim_response)
@@ -101,14 +101,14 @@
 	pass_flags = LETPASSTHROW
 	can_buckle = FALSE
 
-	Ghost_desc = "This is a Blood Altar, where bloodsuckers can get two tasks per night to get more ranks."
-	Vamp_desc = "This is a Blood Altar, which allows you to do two tasks per day to advance your ranks.\n\
+	ghost_desc = "This is a Blood Altar, where bloodsuckers can get two tasks per night to get more ranks."
+	vamp_desc = "This is a Blood Altar, which allows you to do two tasks per day to advance your ranks.\n\
 		Interact with the Altar by clicking on it after it's bolted to get a task.\n\
 		By checking your notes or the chat you can see what task needs to be done.\n\
 		Remember you only get two tasks per night."
-	Vassal_desc = "This is the blood altar, where your master does bounties to advanced their bloodsucking powers.\n\
+	vassal_desc = "This is the blood altar, where your master does bounties to advanced their bloodsucking powers.\n\
 		Aid your master by bringing them what they need for these bounties or help getting them."
-	Hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
+	hunter_desc = "This is a blood altar, where monsters usually practice a sort of bounty system to advanced their powers.\n\
 		They normally sacrifice hearts or blood in exchange for these ranks, forcing them to move out of their lair.\n\
 		It can only be used twice per night and it needs to be interacted it to be claimed, making bloodsuckers come back twice a night."
 
