@@ -1165,9 +1165,6 @@
 
 /// Mindshield breaking
 /obj/structure/bloodsucker/candelabrum/attack_hand(mob/living/user, list/modifiers)
-	. = ..()
-	if(!.)
-		return
 	if(!anchored)
 		return
 	// Checks: They're Buckled & Alive.
