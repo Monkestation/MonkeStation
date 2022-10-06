@@ -1089,7 +1089,52 @@
 
 /obj/structure/bloodsucker/candelabrum/examine(mob/user)
 	. = ..()
+	if(isobserver(user))
+		. += "<span class='cult'>This is a magical candle which drains at the sanity of non Bloodsuckers and Vassals</span>"
+		. += "<span class='cult'>Vassals can turn the candle on manually, while Bloodsuckers can do it from a distance.</span>"
+		return
+	if(IS_BLOODSUCKER(user))
+		. += "<span class='cult'>This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.</span>"
+		. += "<span class='cult'>You can alt click on it from any range to turn it on remotely, or simply be next to it and click on it to turn it on and off normally.</span>"
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(bloodsuckerdatum.my_clan == CLAN_VENTRUE)
+			. += {"<span class='cult'>As part of the Ventrue Clan, you can Rank Up your Favorite Vassal.</span>"}
+			. += {"<span class='cult'>Drag your Vassal's sprite onto the Candelabrum to secure them in place. From there, Clicking will Rank them up, while AltClick will unbuckle, as long as you are in reach.</span>"}
+			. += {"<span class='cult'>Ranking up a Vassal will rank up what powers you currently have, and will allow you to choose what Power your Favorite Vassal will recieve.</span>"}
+	if(IS_VASSAL(user))
+		. += "<span class='notice'>This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.</span>"
+		. += "<span class='notice'>You can turn it on and off by clicking on it while you are next to it.</span>"
 
+/obj/structure/bloodsucker/candelabrum/attackby(obj/item/P, mob/living/user, params)
+	/// Goal: Non Bloodsuckers can wrench this in place, but they cant unwrench it.
+	if(P.tool_behaviour == TOOL_WRENCH && !anchored)
+		to_chat(user, "<span class='notice'>You start wrenching the candelabrum into place...</span>")
+		if(P.use_tool(src, user, 20, volume=50))
+			to_chat(user, "<span class='notice'>You wrench the candelabrum into place.</span>")
+			set_anchored(TRUE)
+			density = TRUE
+		return
+	if(P.tool_behaviour == TOOL_WRENCH && anchored && IS_BLOODSUCKER(user))
+		to_chat(user, "<span class='notice'>You start unwrenching the candelabrum...</span>")
+		if(P.use_tool(src, user, 40, volume=50))
+			to_chat(user, "<span class='notice'>You unwrench the candelabrum.</span>")
+			set_anchored(FALSE)
+			density = FALSE
+			return
+	. = ..()
+
+/obj/structure/bloodsucker/candelabrum/AltClick(mob/user) // WILLARD TODO: Replace with RightClick when TGU happens.
+	/// Are we right next to it? Let's unbuckle the person in it, then.
+	if(user.Adjacent(src))
+		if(!has_buckled_mobs() || !isliving(user))
+			return
+		var/mob/living/carbon/C = pick(buckled_mobs)
+		if(C)
+			unbuckle_mob(C,user)
+	/// Bloodsuckers can turn their candles on from a distance.
+	else
+		if(IS_BLOODSUCKER(user))
+			toggle()
 
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
 	lit = !lit
@@ -1145,6 +1190,23 @@
 			else
 				to_chat(user, span_danger("You don't have enough Blood to deactivate [target]'s mindshield."))
 			return
+		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+		if(bloodsuckerdatum && bloodsuckerdatum.my_clan == CLAN_VENTRUE)
+			/// Is anyone on the Candelabrum?
+			if(!has_buckled_mobs())
+				toggle()
+				return
+			var/mob/living/carbon/C = pick(buckled_mobs)
+			/// Are they our Dead?
+			if(C.stat >= DEAD)
+				unbuckle_mob(C)
+				return
+			if(bloodsuckerdatum.bloodsucker_level_unspent <= 0)
+				to_chat(user, "<span class='danger'>You don't have any levels to upgrade [C] with.</span>")
+				return
+			/// Everything is good to go - Time to Buy our Favorite Vassal a new Power!
+			bloodsuckerdatum.SpendVassalRank(C)
+
 	if(IS_VASSAL(user) || IS_BLOODSUCKER(user))
 		toggle()
 
