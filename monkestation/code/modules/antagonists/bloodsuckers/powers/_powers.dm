@@ -70,7 +70,7 @@
 
 /datum/action/bloodsucker/process()
 	cooldown_overlay?.tick()
-	
+
 
 /datum/action/bloodsucker/IsAvailable()
 	return TRUE

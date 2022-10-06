@@ -21,7 +21,6 @@
 	var/organ_name = ""
 
 /obj/structure/bloodsucker/bloodaltar/attack_hand(mob/user, list/modifiers)
-	. = ..()
 	if(!.)
 		return FALSE
 	if(!IS_BLOODSUCKER(user))
@@ -470,8 +469,8 @@
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
-	if(!.)
-		return FALSE
+	if(use_lock)
+		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	/// Claiming the Rack instead of using it?
 	if(istype(bloodsuckerdatum) && !owner)

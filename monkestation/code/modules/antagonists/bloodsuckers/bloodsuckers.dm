@@ -33,6 +33,8 @@
 
 	///ALL Powers currently owned
 	var/list/datum/action/powers = list()
+	///ALL clan blacklisted Powers
+	var/list/datum/action/blacklisted_powers = list()
 	///Bloodsucker Clan - Used for dealing with Sol
 	var/datum/team/vampireclan/clan
 	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
@@ -511,7 +513,7 @@
 	// Purchase Power Prompt
 	var/list/options = list()
 	for(var/datum/action/bloodsucker/power as anything in all_bloodsucker_powers)
-		if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY && !(locate(power) in powers))
+		if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY && !(locate(power) in powers) && !(locate(power) in blacklisted_powers))
 			options[initial(power.name)] = power
 
 	if(options.len < 1)

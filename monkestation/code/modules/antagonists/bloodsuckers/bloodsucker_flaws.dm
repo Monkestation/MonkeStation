@@ -118,6 +118,9 @@
 				if(istype(power, /datum/action/bloodsucker/masquerade))
 					powers -= power
 					power.Remove(owner.current)
+
+			blacklisted_powers += /datum/action/bloodsucker/masquerade
+
 			if(!bloodsucker.has_quirk(/datum/quirk/badback))
 				bloodsucker.add_quirk(/datum/quirk/badback)
 
