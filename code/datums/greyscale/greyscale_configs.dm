@@ -370,7 +370,22 @@
 	icon_file = 'icons/obj/atmospherics/pipes/meter.dmi'
 	json_config = 'code/datums/greyscale/json_configs/meter.json'
 
+//Ninja Clothing
 /datum/greyscale_config/ninja_outfits
 	name = "Ninja Outfits"
 	icon_file = 'monkestation/icons/mob/ninja.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ninja_gear.json'
+
+//High Frequency Blade
+/datum/greyscale_config/high_frequency_blade
+	name = "High Frequency Blade"
+	icon_file = 'monkestation/icons/mob/ninja.dmi'
+	json_config = 'code/datums/greyscale/json_configs/high_frequency_blade.json'
+
+/datum/greyscale_config/high_frequency_blade/left_hand
+	name = "High Frequency Blade in-hand Left"
+	json_config = 'code/datums/greyscale/json_configs/high_frequency_blade_lefthand.json'
+
+/datum/greyscale_config/high_frequency_blade/right_hand
+	name = "High Frequency Blade in-hand Right"
+	json_config = 'code/datums/greyscale/json_configs/high_frequency_blade_righthand.json'

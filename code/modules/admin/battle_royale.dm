@@ -94,7 +94,6 @@ GLOBAL_LIST_INIT(battle_royale_good_loot, list(
 
 GLOBAL_LIST_INIT(battle_royale_insane_loot, list(
 		/obj/item/gun/ballistic/automatic/l6_saw/unrestricted,
-		/obj/item/energy_katana,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi,
 		/obj/item/his_grace,
 		/obj/mecha/combat/marauder/mauler/loaded,

@@ -9,8 +9,8 @@
 /obj/item/grenade/plastic/c4/ninja
 	name = "spider charge"
 	icon_state = "ninja-explosive0"
-	inhand_icon_state = "ninja-explosive"
-	desc = "A modified C-4 charge supplied to you by the Spider Clan.  Its explosive power has been juiced up, but only works in one specific area."
+	item_state = "ninja-explosive"
+	desc = "A modified C-4 charge supplied to you by the Spider Clan.  Its explosive power has been greatly increased, but only works in one specific area."
 	boom_sizes = list(4, 8, 12)
 	///Weakref to the mob that has planted the charge
 	var/datum/weakref/detonator
@@ -41,6 +41,9 @@
 /obj/item/grenade/plastic/c4/ninja/afterattack(atom/movable/AM, mob/ninja, flag)
 	if(!IS_SPACE_NINJA(ninja))
 		to_chat(ninja, span_notice("While it appears normal, you can't seem to detonate the charge."))
+		return
+	if(!isturf(AM))
+		to_chat(ninja, span_notice("You can only attach this to a solid surface!"))
 		return
 	if (!check_loc(ninja))
 		return

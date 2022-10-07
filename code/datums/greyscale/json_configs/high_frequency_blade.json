@@ -1,0 +1,15 @@
+{
+	"high_frequency_blade":[
+		{
+			"type": "icon_state",
+			"icon_state": "high_frequency_blade",
+			"blend_mode": "overlay"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hf_blade_obj_light",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

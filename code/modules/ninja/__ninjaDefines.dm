@@ -1,6 +1,6 @@
 //ninja_cost() specificCheck defines
 #define N_STEALTH_CANCEL	1
-#define N_ADRENALINE		2
+#define N_NANOPASTE		2
 
 //ninjaDrainAct() defines for non numerical returns
 #define INVALID_DRAIN			"INVALID" //This one is if the drain proc needs to cancel, eg missing variables, etc, it's important.
@@ -9,7 +9,9 @@
 #define DRAIN_MOB_SHOCK_FAILED	"MOBSHOCKFAIL"
 
 //Tells whether or not someone is a space ninja
-#define IS_SPACE_NINJA(ninja) (ninja.mind && ninja.mind.has_antag_datum(/datum/antagonist/ninja))
+//Fun fact for future coders: Using the word as the argument in the define makes all uses of the word a variable.
+//This meant that having the wrong variable name actually caused IS_SPACE_NINJA(user) to look for /datum/antagonist/user. Pretty funny honestly.
+#define IS_SPACE_NINJA(person) (person.mind && person.mind.has_antag_datum(/datum/antagonist/ninja))
 
 //Defines for the suit's unique abilities
 #define IS_NINJA_SUIT_INITIALIZATION(action) (istype(action, /datum/action/item_action/initialize_ninja_suit))

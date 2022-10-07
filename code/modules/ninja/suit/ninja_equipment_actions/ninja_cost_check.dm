@@ -21,8 +21,8 @@
 	switch(specificCheck)
 		if(N_STEALTH_CANCEL)
 			cancel_stealth()//Get rid of it.
-		if(N_ADRENALINE)
-			if(!adrenaline_available)
-				to_chat(ninja, "<span class='warning'>You do not have any more adrenaline boosters!</span>")
+		if(N_NANOPASTE)
+			if(!nanopaste_available)
+				to_chat(ninja, "<span class='warning'>You do not have any more repair nanopaste!</span>")
 				return TRUE
 	return (suit_cooldown)//Returns the value of the variable which counts down to zero.

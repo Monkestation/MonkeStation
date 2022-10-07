@@ -29,8 +29,8 @@
 	var/datum/effect_system/spark_spread/spark_system
 	///The suit's stored research.  Used for the research objective (see antagonist file)
 	var/datum/techweb/stored_research
-	///The katana registered with the suit, used for recalling and catching the katana.  Set when the ninja outfit is created.
-	var/obj/item/energy_katana/energyKatana
+	///The high frequency blade registered with the suit, used for recalling and catching the sword.  Set when the ninja outfit is created.
+	var/obj/item/high_frequency_blade/zandatsu
 	//Power cell for the ninja suit, since we're not taking the /tg/ spacesuit changes.
 	var/obj/item/stock_parts/cell/ninja/cell = new
 
@@ -57,16 +57,14 @@
 	var/suit_stealth_cost = 4
 	///How fast the suit is at certain actions, like draining power from things
 	var/suit_action_delay = 4 SECONDS
-	///Units of radium required to refill the adrenaline boost
-	var/suit_radium_refill = 20
-	///Units of radium given to the user with each use of adrenaline boost
+	///Units of radium given to the user with each use of repair nanopaste
 	var/suit_radium_injected = 6
 	///Whether or not the suit is currently in stealth mode.
 	var/stealth_enabled = FALSE//Stealth off.
 	///Whether or not the wearer is in the middle of an action, like hacking.
 	var/suit_currently_busy = FALSE
-	///Whether or not the adrenaline boost ability is available
-	var/adrenaline_available = TRUE
+	///Whether or not the repair nanopaste ability is available
+	var/nanopaste_available = TRUE
 
 /obj/item/clothing/suit/space/space_ninja/Destroy()
 	unlock_suit()
@@ -81,7 +79,7 @@
 		return
 	. += "All systems operational. Current energy capacity: <B>[display_energy(cell.charge)]</B>.\n"+\
 	"The CLOAK-tech device is <B>[stealth_enabled?"active":"inactive"]</B>.\n"+\
-	"[adrenaline_available?"An adrenaline boost is available to use.":"There is no adrenaline boost available.  Try refilling the suit with [suit_radium_refill] units of radium."]"
+	"[nanopaste_available?"Repair nanopaste is available to use.":"There is no repair nanopaste available. Use your HF Blade on enemies to restore it."]"
 
 /obj/item/clothing/suit/space/space_ninja/Initialize()
 	. = ..()
@@ -185,6 +183,10 @@
 
 	n_suit.greyscale_colors = suit_color
 	n_suit.update_greyscale()
+
+	zandatsu.greyscale_colors = suit_color
+	zandatsu.slash_color = suit_color
+	zandatsu.update_greyscale()
 
 	src.greyscale_colors = suit_color
 	src.update_greyscale()

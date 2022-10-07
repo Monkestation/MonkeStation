@@ -11,15 +11,19 @@
 	l_pocket = /obj/item/grenade/plastic/c4/ninja
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	internals_slot = ITEM_SLOT_RPOCKET
-	back = /obj/item/energy_katana
+	back = /obj/item/high_frequency_blade
 	implants = list(/obj/item/implant/explosive)
 
 
 /datum/outfit/ninja/post_equip(mob/living/carbon/human/human)
 	if(istype(human.wear_suit, suit))
 		var/obj/item/clothing/suit/space/space_ninja/ninja_suit = human.wear_suit
+		var/obj/item/high_frequency_blade/hf_blade = human.back
 		if(istype(human.back, back))
-			ninja_suit.energyKatana = human.back
+			ninja_suit.zandatsu = human.back
+			hf_blade.linked_suit = ninja_suit
+
+
 	if(istype(human.l_store, l_pocket))
 		var/obj/item/grenade/plastic/c4/ninja/charge = human.l_store
 		charge.set_detonation_area(human.mind?.has_antag_datum(/datum/antagonist/ninja))

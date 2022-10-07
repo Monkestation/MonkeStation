@@ -16,32 +16,32 @@
 	var/cost = 0
 	var/inview = TRUE
 
-	if(!energyKatana)
+	if(!zandatsu)
 		to_chat(ninja, "<span class='warning'>Could not locate Energy Katana!</span>")
 		return
 
-	if(energyKatana in ninja)
+	if(zandatsu in ninja)
 		return
 
-	var/distance = get_dist(ninja,energyKatana)
+	var/distance = get_dist(ninja,zandatsu)
 
-	if(!(energyKatana in view(ninja)))
+	if(!(zandatsu in view(ninja)))
 		cost = distance //Actual cost is cost x 10, so 5 turfs is 50 cost.
 		inview = FALSE
 
 	if(!ninja_cost(cost))
-		if(iscarbon(energyKatana.loc))
-			var/mob/living/carbon/sword_holder = energyKatana.loc
-			sword_holder.transferItemToLoc(energyKatana, get_turf(energyKatana), TRUE)
+		if(iscarbon(zandatsu.loc))
+			var/mob/living/carbon/sword_holder = zandatsu.loc
+			sword_holder.transferItemToLoc(zandatsu, get_turf(zandatsu), TRUE)
 
 		else
-			energyKatana.forceMove(get_turf(energyKatana))
+			zandatsu.forceMove(get_turf(zandatsu))
 
 		if(inview) //If we can see the katana, throw it towards ourselves, damaging people as we go.
-			energyKatana.spark_system.start()
+			zandatsu.spark_system.start()
 			playsound(ninja, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-			ninja.visible_message("<span class='danger'>\the [energyKatana] flies towards [ninja]!</span>","<span class='warning'>You hold out your hand and \the [energyKatana] flies towards you!</span>")
-			energyKatana.throw_at(ninja, distance+1, energyKatana.throw_speed, ninja)
+			ninja.visible_message("<span class='danger'>\the [zandatsu] flies towards [ninja]!</span>","<span class='warning'>You hold out your hand and \the [zandatsu] flies towards you!</span>")
+			zandatsu.throw_at(ninja, distance+1, zandatsu.throw_speed, ninja)
 
 		else //Else just TP it to us.
-			energyKatana.returnToOwner(ninja, 1)
+			zandatsu.returnToOwner(ninja, 1)
