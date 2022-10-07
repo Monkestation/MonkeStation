@@ -2908,7 +2908,6 @@
 #include "code\modules\ninja\suit\shoes.dm"
 #include "code\modules\ninja\suit\suit.dm"
 #include "code\modules\ninja\suit\suit_attackby.dm"
-#include "code\modules\ninja\suit\suit_process.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_adrenaline.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_cost_check.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_em_pulse.dm"

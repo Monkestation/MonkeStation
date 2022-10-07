@@ -542,6 +542,8 @@
 #define HACK_THREAT "Threat Boost"
 #define HACK_FLORIDA_MAN "Florida Man"
 
+//Numbers Station Sound Effects for the sleeper agent effect.
+#define NUMBERS_STATION_SOUNDS list('monkestation/sound/effects/numbers_announcement.ogg','monkestation/sound/effects/numbers_announcement_2.ogg')
 
 /// The minimum number of ghosts / observers to have the chance of spawning Florida Man
 #define MIN_GHOSTS_FOR_FLORIDA_MAN 2
@@ -561,6 +563,7 @@
  * Brings in additional threats to the round.
  *
  * hackerman - the mob that caused the hack
+ * Note for upstream if you port this: Monke runs only Dynamic, so you'll need to set up a methodology to handle different event types.
  */
 /obj/machinery/computer/communications/proc/hack_console(mob/living/hackerman)
 	// All hack results we'll choose from.
@@ -629,8 +632,6 @@
 				shake_camera(crew_member, 15, 1)
 
 			var/datum/game_mode/dynamic/dynamic = SSticker.mode
-			if(dynamic.name != "dynamic mode")
-				return
 			dynamic.create_threat(HACK_THREAT_INJECTION_AMOUNT)
 			dynamic.threat_log += "[worldtime2text()]: Communications console hack by [hackerman]. Added [HACK_THREAT_INJECTION_AMOUNT] threat."
 
@@ -639,9 +640,6 @@
 			var/datum/game_mode/dynamic/dynamic = SSticker.mode
 			var/max_number_of_sleepers = clamp(round(length(SSticker.mode.current_players[CURRENT_LIVING_PLAYERS]) / 20), 1, 3)
 			var/num_agents_created = 0
-
-			if(dynamic.name != "dynamic mode")
-				return
 
 			for(var/num_agents in 1 to rand(1, max_number_of_sleepers))
 				// Offset the trheat cost of the sleeper agent(s) we're about to run...
@@ -659,7 +657,7 @@
 				// We spawned some sleeper agents, nice - give them a report to kickstart the paranoia
 				priority_announce(
 					"Attention crew, it appears that someone on your station has hijacked your telecommunications and has broadcasted a Syndicate radio signal to your fellow employees.",
-					"[command_name()] High-Priority Update"
+					"[command_name()] High-Priority Update",pick(NUMBERS_STATION_SOUNDS)
 					)
 
 /datum/comm_message

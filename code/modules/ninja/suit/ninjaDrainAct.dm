@@ -97,7 +97,7 @@
 	var/drain_total = 0
 
 	if(charge)
-		if(ninja_gloves.candrain && do_after(ninja, 30, target = src))
+		if(ninja_gloves.candrain && do_after(ninja, 3 SECONDS, target = src))
 			drain_total = charge
 			if(ninja_suit.cell.charge + charge > ninja_suit.cell.maxcharge)
 				ninja_suit.cell.charge = ninja_suit.cell.maxcharge
@@ -147,16 +147,20 @@
 	if(!ninja_suit || !ninja || !ninja_gloves)
 		return INVALID_DRAIN
 	AI_notify_hack()
-	if(do_after(ninja, 200))
+	to_chat(ninja, "<span class='warning'>You begin to hack your way into their systems...</span>")
+	if(do_after(ninja, 20 SECONDS, target = src))
 		for(var/datum/data/record/rec in sortRecord(GLOB.data_core.general, sortBy, order))
 			for(var/datum/data/record/security_record in GLOB.data_core.security)
-				security_record.fields["criminal"] = "*Arrest*"
+				security_record.fields["criminal"] = "Arrest"
+			for(var/mob/living/carbon/human/arrestee in GLOB.carbon_list)
+				arrestee.sec_hud_set_security_status()
 		var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 		if(!ninja_antag)
 			return
 		var/datum/objective/security_scramble/objective = locate() in ninja_antag.objectives
 		if(objective)
 			objective.completed = TRUE
+		to_chat(ninja, "<span class='warning'>You've successfully hacked the console!</span>")
 
 //COMMUNICATIONS CONSOLE//
 /obj/machinery/computer/communications/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/ninja_suit, mob/living/carbon/human/ninja, obj/item/clothing/gloves/space_ninja/ninja_gloves)
@@ -167,17 +171,17 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	AI_notify_hack()
-	if(!do_after(ninja, 30 SECONDS, src))
-		return
-
-	hack_console(ninja)
-	ninja_gloves.communication_console_hack_success = TRUE
-	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
-	if(!ninja_antag)
-		return
-	var/datum/objective/terror_message/objective = locate() in ninja_antag.objectives
-	if(objective)
-		objective.completed = TRUE
+	to_chat(ninja, "<span class='warning'>You begin to hack your way into their systems...</span>")
+	if(do_after(ninja, 30 SECONDS, target = src))
+		hack_console(ninja)
+		ninja_gloves.communication_console_hack_success = TRUE
+		var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
+		if(!ninja_antag)
+			return
+		var/datum/objective/terror_message/objective = locate() in ninja_antag.objectives
+		if(objective)
+			objective.completed = TRUE
+		to_chat(ninja, "<span class='warning'>You've successfully hacked the console!</span>")
 
 //AIRLOCK//
 /obj/machinery/door/airlock/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/ninja_suit, mob/living/carbon/human/ninja, obj/item/clothing/gloves/space_ninja/ninja_gloves)
@@ -208,7 +212,7 @@
 	while(ninja_gloves.candrain && !maxcapacity && src)
 		drain = (round((rand(ninja_gloves.mindrain, ninja_gloves.maxdrain))/2))
 		var/drained = 0
-		if(wire_powernet && do_after(ninja ,10, target = src))
+		if(wire_powernet && do_after(ninja,1 SECONDS, target = src))
 			drained = min(drain, delayed_surplus())
 			add_delayedload(drained)
 			if(drained < drain)//if no power on net, drain apcs
@@ -250,7 +254,7 @@
 			if(ninja_suit.cell.charge + drain > ninja_suit.cell.maxcharge)
 				drain = ninja_suit.cell.maxcharge - ninja_suit.cell.charge
 				maxcapacity = TRUE
-			if (do_after(ninja, 10, target = src))
+			if (do_after(ninja, 1 SECONDS, target = src))
 				spark_system.start()
 				playsound(loc, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 				cell.use(drain)

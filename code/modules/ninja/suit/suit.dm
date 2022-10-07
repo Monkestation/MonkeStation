@@ -89,6 +89,8 @@
 	spark_system.attach(src)
 	//Research Init
 	stored_research = new()
+	//Begin processing the suit
+	START_PROCESSING(SSobj, src)
 
 // Space Suit power usage and suit recharge
 /obj/item/clothing/suit/space/space_ninja/process(delta_time)
@@ -100,8 +102,8 @@
 		if(!affecting)
 			terminate() // Kills the suit and attached objects.
 		else if(cell.charge > 0)
-			if(suit_cooldown > 0)
-				suit_cooldown -= max(suit_cooldown - delta_time, 0) // Checks for ability suit_cooldown first.
+			if(suit_cooldown)
+				suit_cooldown -= 1 // Checks for ability suit_cooldown first.
 			cell.charge -= suit_cost * delta_time // suit_cost is the default energy cost each process tick
 			if(stealth_enabled) // If stealth is active.
 				cell.charge -= suit_stealth_cost * delta_time

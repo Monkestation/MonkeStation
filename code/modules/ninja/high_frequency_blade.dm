@@ -163,14 +163,14 @@
 		to_chat(user,"<span class='notice'>You can't wield this!</span>")
 		return
 	if(wielded && proximity_flag)
+		if(isclosedturf(target) || ismachinery(target) || isstructure(target) || ismob(target))
+			slash(target, user, click_parameters)
 		if(ismachinery(target))
 			user.changeNext_move(1 SECONDS)
 			spark_system.start()
 			playsound(user, "sparks", 50, 1)
 			playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
 			target.emag_act(user)
-		if(isclosedturf(target) || ismachinery(target) || isstructure(target) || ismob(target))
-			slash(target, user, click_parameters)
 	if(!wielded && !proximity_flag && !target.density)
 		jaunt.teleport(user, target)
 		return

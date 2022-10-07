@@ -25,6 +25,7 @@
 	ninja.SetParalyzed(0)
 	ninja.adjustStaminaLoss(-200)
 	ninja.stuttering = 0
+	ninja.nutrition = NUTRITION_LEVEL_WELL_FED
 	ninja.reagents.add_reagent(/datum/reagent/medicine/stabilizing_nanites, 5)
 	ninja.reagents.add_reagent(/datum/reagent/medicine/pumpup, 7)
 	ninja.say(pick("A CORNERED FOX IS MORE DANGEROUS THAN A JACKAL!","HURT ME MOOORRREEE!","IMPRESSIVE!", "SHOW ME A GOOD TIME, JACK!", "HISTORY WILL DECIDE WHO'S RIGHT!", "LETS DANCE!", "NOW THIS IS A FIGHT!"), forced = "ninjaboost")
