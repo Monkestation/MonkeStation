@@ -1020,7 +1020,7 @@
 	var/mob/living/carbon/human/H = target
 
 	/// Due to the checks leding up to this, if they fail this, they're dead & Not our vassal.
-	if(!vassaldatum.master == bloodsuckerdatum)
+	if(!vassaldatum)
 		to_chat(user, "<span class='notice'>Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!</span>")
 		var/list/revive_options = list(
 			"Yes" = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_yes"),
@@ -1039,12 +1039,11 @@
 				C.blood_volume -= 150
 				target.revive(full_heal = TRUE, admin_revive = TRUE)
 				return
-			else
-				to_chat(user, "<span class='danger'>You decide not to revive [target].</span>")
-				/// Unbuckle them now.
-				unbuckle_mob(C)
-				use_lock = FALSE
-				return
+		to_chat(user, "<span class='danger'>You decide not to revive [target].</span>")
+		/// Unbuckle them now.
+		unbuckle_mob(C)
+		use_lock = FALSE
+		return
 
 	var/static/list/races = list(
 		TREMERE_SKELETON,
@@ -1110,9 +1109,8 @@
 				vassaldatum.mutilated = TRUE
 				return
 
-		else
-			to_chat(user, "<span class='notice'>You decide to leave your Vassal just the way they are.</span>")
-			return
+	to_chat(user, "<span class='notice'>You decide to leave your Vassal just the way they are.</span>")
+	return
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
