@@ -28761,7 +28761,7 @@
 	},
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
-	name = "Mix to Ports"
+	name = "Mix to Port Mix"
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
