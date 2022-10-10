@@ -45,7 +45,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	new_gas.enthalpy = -234800
 	new_gas.specific_heat = 38
 	new_gas.fire_products = list(GAS_CO2 = 1, GAS_H2O = 1.5)
-	new_gas.fire_burn_rate = 1 / 3
+	new_gas.fire_burn_rate = 0.3
 	new_gas.fire_temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	new_gas.color = "#404030"
 	new_gas.breath_reagent = /datum/reagent/consumable/ethanol
