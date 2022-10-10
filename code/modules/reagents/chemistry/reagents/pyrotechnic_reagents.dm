@@ -46,7 +46,7 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 2
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 	condensation_amount = 2
 
 /datum/reagent/clf3/define_gas()
@@ -96,7 +96,7 @@
 	reagent_state = LIQUID
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
@@ -104,7 +104,7 @@
 	reagent_state = LIQUID
 	color = "#210021"
 	taste_description = "compressed bitterness"
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/blackpowder
 	name = "Black Powder"
@@ -132,7 +132,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "salt"
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/flash_powder/reaction_turf(turf/T, volume, show_message, from_gas)
 	. = ..()
@@ -157,7 +157,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "smoke"
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/sonic_powder
 	name = "Sonic Powder"
@@ -165,7 +165,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "loud noises"
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
@@ -278,7 +278,7 @@
 	var/shock_timer = 0
 	process_flags = ORGANIC | SYNTHETIC
 	evaporation_rate = 3 //unstable disapates quickly
-	condensating_point = INSTANT_REACT instantly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
