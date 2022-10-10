@@ -34099,6 +34099,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "bRG" = (
