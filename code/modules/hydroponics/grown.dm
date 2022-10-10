@@ -145,6 +145,7 @@
 		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
 			var/turf/turf = get_turf(src.loc)
 			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) * contained_reagent.molarity];TEMP=[T20C]")
+			log_atmos("[contained_reagent.get_gas()] with a volume of [(contained_reagent.volume / 2) * contained_reagent.molarity] at [T20C] was spawned in [get_area(turf)] by [src.fingerprintslast]")
 	qdel(src)
 
 /obj/item/food/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

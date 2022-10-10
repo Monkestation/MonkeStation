@@ -221,11 +221,6 @@
 	// Squash the plant on slip.
 	G.squash(C)
 
-/datum/plant_gene/trait/hotbox
-	// Allows the plant to hotbox rooms and spawn gas when burned
-	name = "Hotbox"
-	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"
-
 /datum/plant_gene/trait/slip
 	// Makes plant slippery, unless it has a grown-type trash. Then the trash gets slippery.
 	// Applies other trait effects (teleporting, etc) to the target by on_slip.
@@ -545,3 +540,8 @@
 
 /datum/plant_gene/trait/plant_type/carnivory
 	name = "Obligate Carnivory"
+
+/datum/plant_gene/trait/hotbox
+	// Allows the plant to hotbox rooms and spawn gas when burned
+	name = "Hotbox"
+	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"

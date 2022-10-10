@@ -43,6 +43,8 @@
 
 /datum/config_entry/flag/log_access	// log login/logout
 
+/datum/config_entry/flag/log_atmos	// log atmos generation items
+
 /datum/config_entry/flag/log_say	// log client say
 
 /datum/config_entry/flag/log_admin	// log admin actions
