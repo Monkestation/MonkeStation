@@ -118,13 +118,7 @@
 			alpha_setting += max(R.opacity * R.volume, 0.0001)
 			alpha_divisor += max(1 * R.volume, 0.0001)
 
-		//Ew but this is needed for edge cases in the new evaporation as its "technically" possible for numbers to balance out to 0 and cause division issues
-		if(alpha_divisor == 0)
-			alpha_divisor = 1
-		if(alpha_setting == 0)
-			alpha_setting = 1
-
-		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
+		liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
 		liquids.temp = reagents.chem_temp
 		if(!liquids.total_reagents) //Our reaction exerted all of our reagents, remove self
 			qdel(reagents)
@@ -176,7 +170,7 @@
 			liquids.total_reagents += R.volume
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
-		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
+		liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
 		qdel(reagents)
 		//Expose turf
 		liquids.ExposeMyTurf()

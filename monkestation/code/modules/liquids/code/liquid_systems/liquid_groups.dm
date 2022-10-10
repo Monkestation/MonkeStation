@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(alpha_setting == 0)
 			alpha_setting = 1
 
-		T.liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
+		T.liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
 		qdel(T.reagents)
 		//Expose turf
 		T.liquids.ExposeMyTurf()
