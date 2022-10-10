@@ -16328,44 +16328,35 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "aLf" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
 "aLh" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
 "aLi" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "aLj" = (
 /obj/machinery/meter,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark/corner,
-/area/maintenance/disposal/incinerator)
-"aLk" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark/corner,
@@ -16383,7 +16374,7 @@
 "aLm" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
@@ -17074,11 +17065,11 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "aMA" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
 "aMB" = (
@@ -17763,8 +17754,8 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "aNX" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "aOb" = (
@@ -17821,10 +17812,10 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "aOd" = (
@@ -18602,20 +18593,17 @@
 	dir = 1;
 	id = "incineratorturbine"
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel/checker,
 /area/maintenance/disposal/incinerator)
 "aPB" = (
 /obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/item/clipboard,
 /obj/item/folder/yellow,
@@ -18625,13 +18613,13 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
 "aPC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
-	},
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
@@ -18639,6 +18627,9 @@
 /obj/item/pen,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/maintenance/disposal/incinerator)
@@ -18726,10 +18717,10 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},
@@ -19587,7 +19578,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aRw" = (
@@ -22680,8 +22671,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aWF" = (
@@ -25195,7 +25186,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bbE" = (
@@ -99634,6 +99625,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"fhC" = (
+/obj/structure/sign/warning/fire,
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/maintenance/disposal/incinerator)
 "fiz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -104470,7 +104468,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "kqA" = (
@@ -107427,7 +107425,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "neu" = (
@@ -110533,7 +110531,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "qCZ" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "qDk" = (
@@ -116120,7 +116118,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/machinery/atmospherics/pipe/simple/dark/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wKJ" = (
@@ -139037,7 +139035,7 @@ aJH
 aFr
 aMv
 aNU
-aPy
+fhC
 aFr
 aSQ
 aRF
@@ -141090,7 +141088,7 @@ aFr
 aGW
 aIw
 aJK
-aLk
+aLh
 aMB
 ajz
 aPG
