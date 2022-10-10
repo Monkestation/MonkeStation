@@ -22747,7 +22747,7 @@
 /area/tcommsat/computer)
 "aKD" = (
 /obj/structure/lattice,
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+/obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 1
 	},
 /turf/open/space/basic,
