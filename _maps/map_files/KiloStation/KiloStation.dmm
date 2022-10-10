@@ -22751,7 +22751,7 @@
 	dir = 1
 	},
 /turf/open/space/basic,
-/area/engine/atmos)
+/area/space/nearstation)
 "aKF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1

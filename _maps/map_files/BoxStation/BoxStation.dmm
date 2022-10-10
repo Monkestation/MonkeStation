@@ -7337,10 +7337,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"apI" = (
-/obj/structure/lattice/catwalk,
-/turf/open/space,
-/area/engine/atmos)
 "apJ" = (
 /turf/closed/wall,
 /area/construction/mining/aux_base)
@@ -72386,10 +72382,10 @@
 /turf/closed/wall,
 /area/medical/surgery)
 "wrX" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/components/unary/passive_vent{
 	dir = 1
 	},
+/obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
 "wsy" = (
@@ -108379,7 +108375,7 @@ bMZ
 apa
 pEw
 ufv
-apI
+aaf
 bOh
 bOh
 bOh
