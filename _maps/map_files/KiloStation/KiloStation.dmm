@@ -21516,6 +21516,12 @@
 /turf/closed/wall,
 /area/engine/atmos)
 "aIP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -21541,16 +21547,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "aIS" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4
+	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
@@ -79378,6 +79381,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "csa" = (
@@ -94019,6 +94023,14 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/engine_core)
+"dBJ" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/atmospherics/components/trinary/mixer/flipped{
+	dir = 1;
+	icon_state = "mixer_off_f"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "dCY" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -97359,6 +97371,16 @@
 /obj/machinery/door/poddoor/incinerator_atmos_main,
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
+"mlV" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "moq" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -97478,6 +97500,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
+"mwk" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "mwF" = (
 /obj/machinery/door/airlock/engineering,
 /obj/structure/barricade/wooden/crude,
@@ -98576,6 +98607,19 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engine_core)
+"puj" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "pwj" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8;
@@ -99644,6 +99688,16 @@
 	icon_state = "platingdmg3"
 	},
 /area/quartermaster/exploration_dock)
+"rkJ" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "rlC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner{
@@ -100570,6 +100624,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
+"tPX" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "tQp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner,
@@ -101176,6 +101237,22 @@
 	icon_state = "platingdmg1"
 	},
 /area/quartermaster/warehouse)
+"vuQ" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "vwu" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -130335,11 +130412,11 @@ coW
 cpT
 cqO
 crZ
-buV
-aMr
-aMr
-aMr
-buV
+dBJ
+mlV
+tPX
+tPX
+mwk
 aMr
 aGK
 aGp
@@ -130592,12 +130669,12 @@ bFx
 bFy
 aIl
 csb
-aIP
+puj
 aIP
 aIP
 aIS
-buV
-aMr
+rkJ
+vuQ
 bEd
 aGt
 aGy
