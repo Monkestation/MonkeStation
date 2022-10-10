@@ -10246,6 +10246,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
+/obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cwO" = (
@@ -40885,13 +40886,6 @@
 "jBt" = (
 /turf/open/floor/plasteel,
 /area/maintenance/starboard/aft)
-"jBw" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 4
-	},
-/obj/effect/landmark/start/atmospheric_technician,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "jBE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -46978,6 +46972,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/kitchen)
+"laE" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	dir = 4
+	},
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "laQ" = (
 /turf/closed/wall,
 /area/security/checkpoint/science)
@@ -55416,6 +55420,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"mYT" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 6
+	},
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "mYU" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -88532,6 +88543,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uUn" = (
+/obj/machinery/atmospherics/pipe/manifold4w/general/visible,
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "uUo" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -94849,10 +94865,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmospherics_engine)
-"wtO" = (
-/obj/effect/landmark/start/atmospheric_technician,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "wtS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -186370,7 +186382,7 @@ btW
 qAF
 rDr
 qAF
-jBw
+ezd
 qAF
 ezd
 duA
@@ -187398,7 +187410,7 @@ bhr
 wCs
 jsv
 bEw
-cZR
+uUn
 aRy
 qAF
 aru
@@ -187656,7 +187668,7 @@ jeK
 jsv
 cwJ
 hHJ
-mro
+mYT
 yiK
 imZ
 qEz
@@ -187912,7 +187924,7 @@ vLi
 jeK
 jsv
 eiv
-wqd
+laE
 gSD
 gio
 vvE
@@ -188425,7 +188437,7 @@ vRJ
 orK
 gzq
 gio
-wtO
+gio
 wqd
 gSD
 gio
