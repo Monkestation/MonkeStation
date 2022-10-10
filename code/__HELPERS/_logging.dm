@@ -104,10 +104,6 @@
 	if (CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
-/proc/log_atmos(text)
-	if (CONFIG_GET(flag/log_atmos))
-		WRITE_LOG(GLOB.world_game_log, "ATMOS: [text]")
-
 /proc/log_law(text)
 	if (CONFIG_GET(flag/log_law))
 		WRITE_LOG(GLOB.world_game_log, "LAW: [text]")

@@ -111,9 +111,6 @@ LOG_ADMINCHAT
 ## log client access (logon/logoff)
 LOG_ACCESS
 
-## log atmos generation (items)
-LOG_ATMOS
-
 ## log game actions (start of round, results, etc.)
 LOG_GAME
 
