@@ -1,6 +1,15 @@
 //traits with no real impact that can be taken freely
 //MAKE SURE THESE DO NOT MAJORLY IMPACT GAMEPLAY. those should be positive or negative traits.
 
+/datum/quirk/no_taste
+	name = "Ageusia"
+	desc = "With no sense of taste, no food can faze you! You can't enjoy good food either, though, and good luck telling if something's been poisoned."
+	value = 0
+	mob_trait = TRAIT_AGEUSIA
+	gain_text = "<span class='notice'>You can't taste anything!</span>"
+	lose_text = "<span class='notice'>You can taste again!</span>"
+	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
+
 /datum/quirk/vegetarian
 	name = "Vegetarian"
 	desc = "You find the idea of eating meat morally and physically repulsive."

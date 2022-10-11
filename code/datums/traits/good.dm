@@ -1,15 +1,6 @@
 //predominantly positive traits
 //this file is named weirdly so that positive traits are listed above negative ones
 
-/datum/quirk/no_taste
-	name = "Ageusia"
-	desc = "With no sense of taste, no food can faze you! You can't enjoy good food either, though, and good luck telling if something's been poisoned."
-	value = 1
-	mob_trait = TRAIT_AGEUSIA
-	gain_text = "<span class='notice'>You can't taste anything!</span>"
-	lose_text = "<span class='notice'>You can taste again!</span>"
-	medical_record_text = "Patient suffers from ageusia and is incapable of tasting food or reagents."
-
 /datum/quirk/alcohol_tolerance
 	name = "Alcohol Tolerance"
 	desc = "You become drunk more slowly and suffer fewer drawbacks from alcohol."
