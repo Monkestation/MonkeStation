@@ -9271,7 +9271,7 @@
 /area/engine/atmos)
 "awt" = (
 /obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
@@ -10546,7 +10546,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "N2 to Pure"
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "azw" = (
@@ -10749,10 +10752,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "azQ" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "O2 to Pure"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
@@ -10761,6 +10760,7 @@
 	dir = 1;
 	network = list("ss13","Atmospherics")
 	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "azR" = (
@@ -12388,10 +12388,10 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "aDy" = (
@@ -31987,10 +31987,10 @@
 /area/maintenance/solars/starboard/aft)
 "brX" = (
 /obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "brY" = (
@@ -34444,10 +34444,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "N2 to Pure"
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "bwy" = (
@@ -56621,6 +56618,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engine_room)
+"rwF" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "O2 to Pure"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/atmos)
 "rxl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -96722,7 +96729,7 @@ azq
 azq
 awf
 awp
-azv
+rwF
 azQ
 gzA
 acj

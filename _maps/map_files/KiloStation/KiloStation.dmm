@@ -21512,7 +21512,7 @@
 /turf/closed/wall,
 /area/maintenance/central)
 "aIO" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/closed/wall,
 /area/engine/atmos)
 "aIP" = (
@@ -22472,7 +22472,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aKm" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/closed/wall/rust,
 /area/engine/atmos)
 "aKn" = (
@@ -54727,10 +54727,10 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "bGb" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
-	},
 /obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 1
+	},
 /turf/open/space/basic,
 /area/space/nearstation)
 "bGc" = (
@@ -55987,10 +55987,6 @@
 /obj/structure/sign/warning/docking,
 /turf/closed/wall,
 /area/quartermaster/warehouse)
-"bIe" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/turf/closed/wall/rust,
-/area/engine/atmos)
 "bIf" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable/yellow{
@@ -64413,12 +64409,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
-"bUM" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/engine/atmos)
 "bUN" = (
 /turf/open/floor/plating/airless{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
@@ -83084,12 +83074,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"cxT" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/engine/atmos)
 "cxU" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -95534,6 +95518,13 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"hre" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 5
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "hsk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -95642,12 +95633,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
-"hJC" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 5
-	},
-/turf/closed/wall,
-/area/engine/atmos)
 "hLa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/line{
@@ -97160,6 +97145,13 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"lBo" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "lBI" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/turf_decal/tile/purple{
@@ -98173,6 +98165,13 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/medical/medbay/central)
+"ohQ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "oiX" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
@@ -100801,8 +100800,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "unp" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 5
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
 	},
 /turf/closed/wall/rust,
 /area/engine/atmos)
@@ -102353,8 +102352,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "ybF" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 5
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
 	},
 /turf/closed/wall,
 /area/engine/atmos)
@@ -129127,15 +129126,15 @@ aJk
 aJT
 aKD
 bGb
-acm
+hre
 brZ
 acm
 bGb
-acm
+hre
 bUL
 acm
-bUL
-acm
+ohQ
+lBo
 aDl
 bSt
 aDl
@@ -129383,15 +129382,15 @@ aBY
 bwv
 bGo
 aCw
-bUM
-hJC
+ybF
+ybF
 bUX
 aCw
-bUM
+ybF
 unp
 cxR
 aCw
-cxT
+ybF
 ybF
 aDl
 aks
@@ -134534,7 +134533,7 @@ aMS
 aJs
 aJw
 aJA
-bIe
+aKm
 clw
 cBC
 aHo

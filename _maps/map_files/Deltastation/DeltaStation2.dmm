@@ -22571,13 +22571,6 @@
 	},
 /turf/open/space,
 /area/engine/atmos)
-"aWy" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "aWz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -98798,11 +98791,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"elO" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "emu" = (
 /turf/closed/wall,
 /area/engine/gravity_generator)
@@ -99004,6 +98992,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"ezs" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
+	},
+/turf/open/space,
+/area/engine/atmos)
 "ezM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -103306,6 +103301,11 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"jjM" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible,
+/turf/open/space,
+/area/engine/atmos)
 "jka" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -104097,10 +104097,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "jVm" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "jXJ" = (
@@ -105107,11 +105107,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
-"kVx" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible,
-/turf/open/floor/plating,
-/area/engine/atmos)
 "kWZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral{
@@ -105219,7 +105214,9 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "lcx" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "ldf" = (
@@ -109565,8 +109562,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "pDK" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 10
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
@@ -116377,6 +116374,11 @@
 	icon_state = "wood-broken4"
 	},
 /area/crew_quarters/dorms)
+"wTZ" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/turf/open/space,
+/area/engine/atmos)
 "wVe" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -116855,6 +116857,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"xpm" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 10
+	},
+/turf/open/space,
+/area/engine/atmos)
 "xpz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -140067,15 +140076,15 @@ aMB
 aMG
 aMG
 aMG
-aWy
+jVm
 aMB
 aZS
 aMG
-aWy
+jVm
 aMB
 aZS
 aMG
-aWy
+jVm
 aMB
 qFJ
 aMG
@@ -145462,15 +145471,15 @@ aML
 aMG
 xPJ
 lcx
-elO
+jVm
 aMB
 aTg
 pDK
-kVx
+jVm
 aMB
 aZS
 pDK
-kVx
+jVm
 bnc
 aZS
 aMG
@@ -145718,16 +145727,16 @@ aLy
 alT
 aad
 aad
+ezs
+wTZ
 aRE
 aTh
-aRE
-aTh
-aRE
-aWx
+xpm
+jjM
 aRE
 aZR
-aRE
-aWx
+xpm
+jjM
 exh
 wKy
 bkZ

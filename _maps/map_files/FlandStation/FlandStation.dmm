@@ -21852,6 +21852,9 @@
 	name = "N2O to Pure"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -25592,6 +25595,9 @@
 	name = "Plasma to Pure"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -37685,10 +37691,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "N2 to Pure"
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plasteel/dark/side,
 /area/engine/atmos)
 "iCD" = (
@@ -48425,17 +48428,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"lge" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 1;
-	name = "O2 to Pure"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/engine/atmos)
 "lgf" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -56813,6 +56805,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"nht" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/turf/open/floor/plasteel/dark/side,
+/area/engine/atmos)
 "nhz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -63044,7 +63043,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "N2 to Pure"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "oIR" = (
@@ -66499,6 +66501,9 @@
 	name = "co2 to Pure"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
@@ -68752,6 +68757,14 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
+"qgy" = (
+/obj/machinery/meter,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/engine/atmos)
 "qgC" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
@@ -78167,6 +78180,16 @@
 	dir = 8
 	},
 /area/crew_quarters/fitness/recreation)
+"sos" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 1;
+	name = "O2 to Pure"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "sot" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -147887,8 +147910,8 @@ nxH
 uzm
 uzm
 anf
-oIM
-lge
+sos
+iCr
 gUQ
 cKm
 hwQ
@@ -148659,7 +148682,7 @@ pAG
 uzm
 lzn
 mIf
-lgU
+nht
 wke
 srF
 nxC
@@ -150710,15 +150733,15 @@ wzA
 wzA
 omF
 mQj
-vZL
+qgy
 hwQ
 qgC
 cKm
-vZL
+qgy
 hwQ
 sbK
 cKm
-vZL
+qgy
 ygO
 oGL
 cKm

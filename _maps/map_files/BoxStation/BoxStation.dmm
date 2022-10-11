@@ -48264,14 +48264,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/chapel/main)
-"fzk" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "fzC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -52733,10 +52725,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "iDR" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "iEJ" = (
@@ -53789,10 +53779,10 @@
 /area/bridge)
 "juX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "jvi" = (
@@ -57452,6 +57442,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"lMP" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 8
+	},
+/turf/open/space,
+/area/space/nearstation)
 "lNg" = (
 /obj/structure/lattice,
 /obj/structure/lattice/catwalk,
@@ -68998,13 +68995,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"ufv" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "ufK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -74543,6 +74533,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"xPX" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 9
+	},
+/turf/open/space,
+/area/space/nearstation)
 "xPY" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -108118,7 +108115,7 @@ bOd
 cfQ
 cgY
 iDR
-bVu
+lMP
 ckb
 ckW
 clU
@@ -108374,8 +108371,8 @@ bOd
 bMZ
 apa
 pEw
-ufv
-aaf
+iDR
+xPX
 bOh
 bOh
 bOh
@@ -109146,7 +109143,7 @@ bRy
 fZv
 chb
 iDR
-bVu
+lMP
 ckb
 ckZ
 clW
@@ -109402,8 +109399,8 @@ agb
 bTU
 apa
 uVB
-ufv
-aaf
+iDR
+xPX
 bOh
 bOh
 bOh
@@ -110411,7 +110408,7 @@ tSQ
 bnc
 bLK
 qXP
-fzk
+juX
 xNI
 lpu
 gxp

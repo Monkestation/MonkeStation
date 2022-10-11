@@ -24106,7 +24106,7 @@
 /area/engine/atmos)
 "bJa" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -30633,7 +30633,9 @@
 /area/space/nearstation)
 "cfv" = (
 /obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
+	dir = 8
+	},
 /turf/open/space,
 /area/space/nearstation)
 "cfy" = (
@@ -52096,9 +52098,7 @@
 /area/maintenance/port/fore)
 "gUY" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "gVq" = (
@@ -60038,13 +60038,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"lDw" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "lDA" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -62970,7 +62963,9 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "nhe" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
 /obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
@@ -65909,6 +65904,13 @@
 	dir = 10
 	},
 /area/science/research)
+"oJp" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
+/turf/open/space,
+/area/space/nearstation)
 "oJJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -66251,6 +66253,13 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/hallway/secondary/entry)
+"oTJ" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 9
+	},
+/turf/open/space,
+/area/space/nearstation)
 "oTX" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -68456,10 +68465,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "qql" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "qrs" = (
@@ -70694,6 +70701,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/captain/private)
+"rFc" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+	dir = 9
+	},
+/turf/open/space,
+/area/space/nearstation)
 "rFZ" = (
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen)
@@ -123732,8 +123746,8 @@ bCi
 bZH
 cbg
 oHG
-lDw
-aaf
+qql
+rFc
 bAR
 bAR
 bAR
@@ -124760,8 +124774,8 @@ bCi
 bZK
 cbk
 prm
-lDw
-aaf
+qql
+rFc
 bAR
 bAR
 bAR
@@ -125532,7 +125546,7 @@ bZL
 cbn
 ccT
 gUY
-cfy
+oJp
 cgC
 chV
 cjk
@@ -125789,7 +125803,7 @@ bZM
 cbo
 bKG
 nhe
-aaf
+oTJ
 bAR
 bAR
 bAR

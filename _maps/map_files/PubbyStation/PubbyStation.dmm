@@ -1067,13 +1067,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/AIsatextAP)
-"adj" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 9
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
 "adk" = (
 /obj/structure/table,
 /obj/machinery/power/apc{
@@ -28768,13 +28761,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"byS" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 10
-	},
-/turf/open/space,
-/area/space/nearstation)
 "byT" = (
 /obj/item/kirbyplants/photosynthetic{
 	pixel_y = 4
@@ -34008,10 +33994,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bKZ" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible{
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bLa" = (
@@ -34427,6 +34413,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"bML" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "bMM" = (
 /obj/structure/closet/l3closet,
 /obj/effect/turf_decal/tile/blue,
@@ -35285,12 +35279,6 @@
 	},
 /obj/machinery/light{
 	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
-"bPT" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Air to Port"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -37860,8 +37848,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bWc" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bWd" = (
@@ -47468,14 +47458,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"fiO" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
 "fjs" = (
 /obj/machinery/light{
 	dir = 8
@@ -47681,13 +47663,6 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
-"fyi" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
 "fyF" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 8
@@ -51204,6 +51179,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"kcA" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 10
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "kdK" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -52079,6 +52061,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"ljN" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 9
+	},
+/turf/open/space,
+/area/space/nearstation)
 "ljW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -52537,13 +52526,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"lPe" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 5
-	},
-/turf/open/space,
-/area/space/nearstation)
 "lPR" = (
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 1;
@@ -54167,6 +54149,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"nTk" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "nTE" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -54176,10 +54165,8 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "nUq" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "nVz" = (
@@ -56218,6 +56205,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"qxf" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/atmos)
 "qxq" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	name = "Air Out"
@@ -61443,6 +61438,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
+"xNQ" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 8
+	},
+/turf/open/space,
+/area/space/nearstation)
 "xOC" = (
 /obj/machinery/door/airlock/external{
 	name = "Construction Zone";
@@ -97443,7 +97445,7 @@ bMf
 bVX
 bXv
 nUq
-bZe
+xNQ
 bZL
 caB
 cbs
@@ -97699,8 +97701,8 @@ acV
 bVh
 bZd
 fBJ
-adj
-abI
+nUq
+ljN
 bJP
 bJP
 bJP
@@ -98214,7 +98216,7 @@ bMe
 sWB
 bXx
 bWc
-lPe
+abI
 bMi
 caD
 cbv
@@ -98470,8 +98472,8 @@ acV
 bKX
 bVY
 bXz
-nUq
-fiO
+qxf
+xNQ
 bZL
 caE
 cbu
@@ -98727,8 +98729,8 @@ kku
 bVi
 bZd
 ndP
-adj
-fyi
+qxf
+ljN
 bJP
 bJP
 bJP
@@ -98973,7 +98975,7 @@ cWM
 bOk
 bMf
 gbu
-bPT
+bMf
 bSf
 bRy
 bSf
@@ -98984,8 +98986,8 @@ bMf
 bKX
 bVZ
 uPu
-bWc
-fiO
+bML
+bZe
 bZM
 caF
 cbw
@@ -99241,8 +99243,8 @@ bMf
 bKX
 bMf
 bXB
-bLW
-fyi
+nTk
+abI
 bMi
 caG
 cbx
@@ -99498,8 +99500,8 @@ bWS
 ltl
 xak
 aID
-bLW
-byS
+kcA
+bZe
 bZN
 caH
 cby
