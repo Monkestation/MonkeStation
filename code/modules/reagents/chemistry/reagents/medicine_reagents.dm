@@ -947,7 +947,7 @@
 /datum/reagent/medicine/pumpup/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-80, FALSE)
 	M.adjustStaminaLoss(-80, 0)
-	M.Jitter(300)
+	M.Jitter(30)
 	..()
 	return TRUE
 

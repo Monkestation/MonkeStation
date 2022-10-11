@@ -98,7 +98,6 @@
 		jaunt.owner = user
 		user?.mind?.martial_art.deflection_chance = 100
 
-
 /obj/item/high_frequency_blade/dropped(mob/user, silent)
 	. = ..()
 	wielded = FALSE
@@ -109,7 +108,11 @@
 	. = ..()
 	wielded = FALSE
 	if(user && IS_SPACE_NINJA(user))
+		if(slot == ITEM_SLOT_HANDS)
+			user?.mind?.martial_art.deflection_chance = 100
+			return
 		user?.mind?.martial_art.deflection_chance = 0
+
 
 
 //Returns parent if the target isn't the ninja, otherwise the ninja catches the sword.
