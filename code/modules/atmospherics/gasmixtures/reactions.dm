@@ -138,7 +138,7 @@ nobliumformation = 1001
 	return NO_REACTION
 
 /datum/gas_reaction/condensation
-	priority = 0
+	priority = -100
 	name = "Condensation"
 	id = "condense"
 	exclude = TRUE
