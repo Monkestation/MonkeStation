@@ -21,11 +21,10 @@
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
 	var/chem_charges = 20
 	var/chem_storage = 75
-	var/chem_recharge_rate = 1
+	var/chem_recharge_rate = 0.25
 	var/chem_recharge_slowdown = 0
 	var/sting_range = 2
 	var/changelingID = "Changeling"
-	var/geneticdamage = 0
 	var/was_absorbed = FALSE //if they were absorbed by another ling already.
 	var/isabsorbing = 0
 	var/islinking = 0
@@ -82,6 +81,8 @@
 	if(give_objectives)
 		forge_objectives()
 	remove_clownmut()
+	START_PROCESSING(SSprocessing, src)
+	owner.current.hud_used.lingchemdisplay.invisibility = 0
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
 	. = ..()
 
@@ -94,6 +95,7 @@
 			B.organ_flags |= ORGAN_VITAL
 			B.decoy_override = FALSE
 	remove_changeling_powers()
+	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
 /datum/antagonist/changeling/proc/remove_clownmut()
@@ -124,6 +126,8 @@
 	if(owner.current.hud_used?.lingstingdisplay)
 		owner.current.hud_used.lingstingdisplay.icon_state = null
 		owner.current.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
+	if(owner.current.hud_used?.lingchemdisplay)
+		owner.current.hud_used.lingchemdisplay.invisibility = INVISIBILITY_ABSTRACT
 
 /datum/antagonist/changeling/proc/reset_powers()
 	if(purchasedpowers)
@@ -207,17 +211,13 @@
 		to_chat(owner.current, "<span class='danger'>You lack the power to readapt your evolutions!</span>")
 		return 0
 
-//Called in life()
-/datum/antagonist/changeling/proc/regenerate()//grants the HuD in life.dm
-	var/mob/living/carbon/the_ling = owner.current
-	if(istype(the_ling))
-		if(the_ling.stat == DEAD)
-			chem_charges = min(max(0, chem_charges + chem_recharge_rate - chem_recharge_slowdown), (chem_storage*0.5))
-			geneticdamage = max(LING_DEAD_GENETICDAMAGE_HEAL_CAP,geneticdamage-1)
-		else //not dead? no chem/geneticdamage caps.
-			chem_charges = min(max(0, chem_charges + chem_recharge_rate - chem_recharge_slowdown), chem_storage)
-			geneticdamage = max(0, geneticdamage-1)
-
+/datum/antagonist/changeling/process(delta_time)
+	//Updates the number of stored chemicals for changeling powers
+	var/mob/living/carbon/updating = owner.current
+	if(istype(updating))
+		chem_charges = min(max(0, (chem_charges + chem_recharge_rate - chem_recharge_slowdown) * delta_time), chem_storage)
+		updating.cloneloss = max(0, updating.cloneloss-1) //This wasn't working for years and was entirely unused
+		updating.hud_used.lingchemdisplay.maptext = MAPTEXT("<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(chem_charges)]</font></div>")
 
 /datum/antagonist/changeling/proc/get_dna(dna_owner)
 	for(var/datum/changelingprofile/prof in stored_profiles)

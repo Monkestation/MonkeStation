@@ -29,7 +29,7 @@
 /datum/symptom/radiation/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(1)
 			if(prob(10))
