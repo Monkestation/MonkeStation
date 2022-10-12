@@ -92,7 +92,7 @@ Burning extracts:
 
 /obj/item/slimecross/burning/yellow/do_effect(mob/user)
 	user.visible_message("<span class='danger'>[src] explodes into an electrical field!</span>")
-	playsound(get_turf(src), 'sound/weapons/zapbang.ogg', 50, 1)
+	playsound(src, 'sound/weapons/zapbang.ogg', 50, 1)
 	for(var/mob/living/M in ohearers(4,user))
 		var/mob/living/carbon/C = M
 		if(istype(C))
@@ -154,7 +154,7 @@ Burning extracts:
 		if(L != user)
 			do_teleport(L, get_turf(L), 6, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE) //Somewhere between the effectiveness of fake and real BS crystal
 			new /obj/effect/particle_effect/sparks(get_turf(L))
-			playsound(get_turf(L), "sparks", 50, 1)
+			playsound(L, "sparks", 50, 1)
 	..()
 
 /obj/item/slimecross/burning/sepia

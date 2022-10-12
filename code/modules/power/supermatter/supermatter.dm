@@ -724,7 +724,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/blob_act(obj/structure/blob/B)
 	if(B && !isspaceturf(loc)) //does nothing in space
-		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 		damage += B.obj_integrity * 0.5 //take damage equal to 50% of remaining blob health before it tried to eat us
 		if(B.obj_integrity > 100)
 			B.visible_message("<span class='danger'>\The [B] strikes at \the [src] and flinches away!</span>",\
@@ -785,7 +785,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		cause = "contact"
 	nom.visible_message(vis_msg, mob_msg, "<span class='hear'>You hear an unearthly noise as a wave of heat washes over you.</span>")
 	investigate_log("has been attacked ([cause]) by [key_name(nom)]", INVESTIGATE_ENGINES)
-	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	Consume(nom)
 
 /obj/machinery/power/supermatter_crystal/attackby(obj/item/used_item, mob/living/user, params)
@@ -840,7 +840,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			"<span class='hear'>Everything suddenly goes silent.</span>")
 		investigate_log("has been attacked ([used_item]) by [key_name(user)]", INVESTIGATE_ENGINES)
 		Consume(used_item)
-		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 
 		radiation_pulse(src, 150, 4)
 
@@ -866,7 +866,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	else
 		return
 
-	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, TRUE)
+	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	Consume(AM)
 
 /obj/machinery/power/supermatter_crystal/intercept_zImpact(atom/movable/AM, levels)

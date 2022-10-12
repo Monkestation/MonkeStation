@@ -11,7 +11,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The horn is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(owner),'sound/items/airhorn.ogg', 100, 1)
+		playsound(owner,'sound/items/airhorn.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] honks, converting the attack into a violent honk!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		owner.Paralyze(3 SECONDS)
@@ -26,7 +26,7 @@
 /obj/item/clothing/suit/armor/reactive/honk/emp_act()
 	if(active)
 		active = FALSE
-		playsound(get_turf(src),'sound/items/airhorn.ogg', 100, 1)
+		playsound(src,'sound/items/airhorn.ogg', 100, 1)
 		src.visible_message("<span class='danger'>[src] malfunctions, and honks extra hard!</span>")
 		for(var/mob/living/carbon/target_atom as mob in hearers(7, get_turf(src))) //Includes the person wearing it
 			target_atom.Paralyze(rand(5 SECONDS,20 SECONDS)) //Honk! :)
@@ -52,7 +52,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The armour is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(owner),'sound/effects/empulse.ogg', 100, 1)
+		playsound(owner,'sound/effects/empulse.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], sending out mutating waves of radiation!</span>")
 		var/turf/owner_turf = get_turf(owner)
 
@@ -79,7 +79,7 @@
 		active = FALSE
 		reactivearmor_cooldown = world.time + 100 SECONDS
 		src.visible_message("<span class='danger'>[src] malfunctions, and emits an extra strong wave!</span>")
-		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
+		playsound(src,'sound/effects/empulse.ogg', 100, 1)
 		for(var/mob/living/carbon/human/target_atom as mob in viewers(7, get_turf(src))) //Includes the wearer
 			if(!istype(target_atom))
 				continue
@@ -103,7 +103,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The Walter fabricator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(owner),'sound/magic/summonitems_generic.ogg', 100, 1)
+		playsound(owner,'sound/magic/summonitems_generic.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text] with a Walter appearing out of thin air!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		new /mob/living/simple_animal/pet/dog/bullterrier/walter(owner_turf) //Walter
@@ -139,7 +139,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The walter fabricator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
+		playsound(src,'sound/effects/empulse.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], sending out an icy blast!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		for(var/mob/living/carbon/target_atom as mob in oviewers(7, owner_turf))
@@ -183,7 +183,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The monkey generator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(src),'sound/creatures/monkey/monkey_screech_1.ogg', 100, 1)
+		playsound(src,'sound/creatures/monkey/monkey_screech_1.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], and screeches with the voices of a million monkeys!</span>")
 		return_to_monkey(owner)
 
@@ -240,7 +240,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The animal generator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
+		playsound(src,'sound/effects/empulse.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], and summons a herd of animals!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		become_animal(owner)
@@ -290,7 +290,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The liquid generator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(src),'sound/effects/empulse.ogg', 100, 1)
+		playsound(src,'sound/effects/empulse.ogg', 100, 1)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], and drips a ton of liquid!</span>")
 		var/turf/owner_turf = get_turf(owner)
 		owner_turf.add_liquid(get_random_reagent_id(), rand(50,100))

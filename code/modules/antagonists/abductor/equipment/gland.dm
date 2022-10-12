@@ -310,12 +310,12 @@
 /obj/item/organ/heart/gland/electric/activate()
 	owner.visible_message("<span class='danger'>[owner]'s skin starts emitting electric arcs!</span>",\
 	"<span class='warning'>You feel electric energy building up inside you!</span>")
-	playsound(get_turf(owner), "sparks", 100, 1, -1)
+	playsound(owner, "sparks", 100, 1, -1)
 	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
 
 /obj/item/organ/heart/gland/electric/proc/zap()
 	tesla_zap(owner, 4, 8000, ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_MOB_STUN)
-	playsound(get_turf(owner), 'sound/magic/lightningshock.ogg', 50, 1)
+	playsound(owner, 'sound/magic/lightningshock.ogg', 50, 1)
 
 /obj/item/organ/heart/gland/chem
 	true_name = "intrinsic pharma-provider"

@@ -854,4 +854,4 @@ GLOBAL_DATUM(warped_room, /datum/map_template/warped_room)
 		customer.forceMove(exit_turf)
 		tp_mob = TRUE
 	if(tp_mob)
-		playsound(get_turf(src), 'sound/effects/phasein.ogg', 20, TRUE)
+		playsound(src, 'sound/effects/phasein.ogg', 20, TRUE)

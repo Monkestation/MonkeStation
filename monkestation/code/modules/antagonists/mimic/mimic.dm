@@ -146,7 +146,7 @@
 	if(people_absorbed >= split_cost)
 		splitting = TRUE
 		to_chat(src,"<span class='warning'>You start splitting yourself in two!</span>")
-		playsound(get_turf(src), split_sound,100)
+		playsound(src, split_sound,100)
 		if(do_mob(src, src, 5 SECONDS))
 			splitting = FALSE
 			if(people_absorbed < split_cost)
@@ -389,7 +389,7 @@
 			if(do_mob(src, carbon_victim, 10 SECONDS))
 				if(HAS_TRAIT(carbon_victim, TRAIT_HUSK)) //Can't let em spam click em
 					return
-				playsound(get_turf(src), absorb_sound,100)
+				playsound(src, absorb_sound,100)
 				visible_message("<span class='warning'>[src] absorbs [carbon_victim]!</span>", \
 							"<span class='userdanger'>[carbon_victim]'s corpse decays as you absorb the nutrients from their body.</span>")
 				carbon_victim.become_husk("burn") //Needs to be "burn" so rezadone and such an fix it, don't want it being an RR due to too many bodies for medbay.

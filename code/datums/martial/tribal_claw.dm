@@ -48,7 +48,7 @@
 	D.confused += 5
 	D.blur_eyes(5)
 	A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
-	playsound(get_turf(D), 'sound/weapons/slash.ogg', 50, 1, -1)
+	playsound(D, 'sound/weapons/slash.ogg', 50, 1, -1)
 
 /*
 Jugular Cut, can only be done if the target is in crit, being held in a tier 3 grab by the user or if they are sleeping.
@@ -64,7 +64,7 @@ Deals 15 brute to head(reduced by armor) and causes a rapid bleeding effect simi
 		D.bleed_rate = CLAMP(D.bleed_rate + 20, 0, 30)
 		D.apply_status_effect(/datum/status_effect/neck_slice)
 		A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
-		playsound(get_turf(D), 'sound/weapons/slash.ogg', 50, 1, -1)
+		playsound(D, 'sound/weapons/slash.ogg', 50, 1, -1)
 	else
 		return basic_hit(A,D)
 

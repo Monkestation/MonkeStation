@@ -45,23 +45,23 @@
 		return
 	else
 		if(charges == 0)
-			playsound(get_turf(src), 'sound/machines/buzz-two.ogg', 50, 1)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>The bluespace compression kit is out of charges! Recharge it with bluespace crystals.</span>")
 			return
 	if(istype(target, /obj/item))
 		var/obj/item/O = target
 		if(O.w_class == 1)
-			playsound(get_turf(src), 'sound/machines/buzz-two.ogg', 50, 1)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>[target] cannot be compressed smaller!.</span>")
 			return
 		if(O.GetComponent(/datum/component/storage))
 			to_chat(user, "<span class='notice'>You can't make this item any smaller without compromising its storage functions!.</span>")
 			return
 		if(O.w_class > 1)
-			playsound(get_turf(src), 'sound/weapons/flash.ogg', 50, 1)
+			playsound(src, 'sound/weapons/flash.ogg', 50, 1)
 			user.visible_message("<span class='warning'>[user] is compressing [O] with their bluespace compression kit!</span>")
 			if(do_mob(user, O, 40) && charges > 0 && O.w_class > 1)
-				playsound(get_turf(src), 'sound/weapons/emitter2.ogg', 50, 1)
+				playsound(src, 'sound/weapons/emitter2.ogg', 50, 1)
 				sparks()
 				flash_lighting_fx(3, 3, LIGHT_COLOR_CYAN)
 				O.w_class -= 1

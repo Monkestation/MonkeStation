@@ -925,7 +925,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		s.start()
 		vapetime -= vapedelay
 		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
-			playsound(get_turf(src), 'sound/effects/pop_expl.ogg', 50, 0)
+			playsound(src, 'sound/effects/pop_expl.ogg', 50, 0)
 			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
 			M.Paralyze(300, 1, 0)
 			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread

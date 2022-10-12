@@ -329,7 +329,7 @@
 			if(M.get_ear_protection() == FALSE)
 				M.confused += 6
 		audible_message("<font color='red' size='7'>HUMAN HARM</font>")
-		playsound(get_turf(src), 'sound/ai/harmalarm.ogg', 70, 3)
+		playsound(src, 'sound/ai/harmalarm.ogg', 70, 3)
 		cooldown = world.time + 200
 		log_game("[key_name(user)] used a Cyborg Harm Alarm in [AREACOORD(user)]")
 		if(iscyborg(user))
@@ -352,7 +352,7 @@
 					C.confused += 10
 					C.stuttering += 15
 					C.Jitter(25)
-		playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 130, 3)
+		playsound(src, 'sound/machines/warning-buzzer.ogg', 130, 3)
 		cooldown = world.time + 600
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 

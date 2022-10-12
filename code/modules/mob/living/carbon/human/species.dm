@@ -1703,7 +1703,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(attackforce >= dismemberthreshold && I.force >= 10)
 		if(affecting.dismember(I.damtype))
 			I.add_mob_blood(H)
-			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
+			playsound(H, I.get_dismember_sound(), 80, 1)
 
 	var/bloody = 0
 	if((I.damtype == BRUTE) && (I.force >= max(10, armor_block) || I.is_sharp()))

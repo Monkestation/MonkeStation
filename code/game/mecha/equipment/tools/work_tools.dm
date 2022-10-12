@@ -533,5 +533,5 @@
 		N.name = M.name
 	M.wreckage = 0
 	qdel(M)
-	playsound(get_turf(N),'sound/items/ratchet.ogg',50,1)
+	playsound(N,'sound/items/ratchet.ogg',50,1)
 	return

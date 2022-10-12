@@ -30,7 +30,7 @@
 		target_apc.panel_open = FALSE
 		target_apc.update_appearance()
 		to_chat(user, "<span class='notice'>You insert \the [src] into \the [target_apc].</span>")
-		playsound(get_turf(user), 'sound/machines/clockcult/integration_cog_install.ogg', 20)
+		playsound(user, 'sound/machines/clockcult/integration_cog_install.ogg', 20)
 		if(!target_apc.clock_cog_rewarded)
 			GLOB.installed_integration_cogs ++
 			target_apc.clock_cog_rewarded = TRUE

@@ -77,7 +77,7 @@
 
 	if(doSpark)
 		spark_system.start()
-		playsound(get_turf(src), "sparks", 50, 1)
+		playsound(src, "sparks", 50, 1)
 
 	var/msg = ""
 

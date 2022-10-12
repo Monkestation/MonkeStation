@@ -138,7 +138,7 @@
 			for(var/obj/item/clothing/head/integrated_helmet in chosen_clothing.contents) //check if the clothing has a hood/helmet integrated and fireproof it if there is one.
 				apply_fireproof(integrated_helmet)
 		apply_fireproof(chosen_clothing)
-		playsound(get_turf(religious_tool), 'sound/magic/fireball.ogg', 50, TRUE)
+		playsound(religious_tool, 'sound/magic/fireball.ogg', 50, TRUE)
 		chosen_clothing = null //our lord and savior no longer cares about this apparel
 		return ..()
 	chosen_clothing = null
@@ -200,7 +200,7 @@
 	GLOB.religious_sect?.adjust_favor(favor_gained, user)
 	to_chat(user, "<span class='notice'>[GLOB.deity] absorbs the burning corpse and any trace of fire with it. [GLOB.deity] rewards you with [favor_gained] favor.</span>")
 	chosen_sacrifice.dust(force = TRUE)
-	playsound(get_turf(religious_tool), 'sound/effects/supermatter.ogg', 50, TRUE)
+	playsound(religious_tool, 'sound/effects/supermatter.ogg', 50, TRUE)
 	chosen_sacrifice = null
 	return ..()
 

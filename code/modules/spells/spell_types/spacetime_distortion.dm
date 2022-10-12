@@ -105,7 +105,7 @@
 	busy = TRUE
 	flick("purplesparkles", src)
 	AM.forceMove(get_turf(src))
-	playsound(get_turf(src),sound,70,0)
+	playsound(src,sound,70,0)
 	busy = FALSE
 
 /obj/effect/cross_action/spacetime_dist/proc/on_entered(datum/source, atom/movable/AM)

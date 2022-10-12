@@ -994,7 +994,7 @@ RLD
 			return
 		if(do_after(user, 20, target = P))
 			P.deconstruct() //Let's not substract matter
-			playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
+			playsound(src, 'sound/machines/click.ogg', 50, TRUE) //this is just such a great sound effect
 	else
 		create_machine(A, user)
 

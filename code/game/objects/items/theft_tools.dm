@@ -161,7 +161,7 @@
 			"<span class='userdanger'>You reach for [src] with your hands. That was dumb.</span>",\
 			"<span class='italics'>Everything suddenly goes silent.</span>")
 	radiation_pulse(user, 500, 2)
-	playsound(get_turf(user), 'sound/effects/supermatter.ogg', 50, 1)
+	playsound(user, 'sound/effects/supermatter.ogg', 50, 1)
 	ded.dust()
 
 /obj/item/nuke_core_container/supermatter

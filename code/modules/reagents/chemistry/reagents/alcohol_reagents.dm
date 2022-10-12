@@ -1145,7 +1145,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "a beach"
 	glass_icon_state = "driestmartiniglass"
 	glass_name = "Driest Martini"
-	glass_desc = "Only for the experienced. You think you see sand floating in the glass."
+	gplaysound(M, 'sound/effects/explosionfar.ogg', 100, 1)oating in the glass."
 
 /datum/reagent/consumable/ethanol/bananahonk
 	name = "Banana Honk"

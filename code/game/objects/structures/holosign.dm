@@ -151,7 +151,7 @@
 	icon_state = "holo_medical"
 	if(ishuman(AM) && !CheckHuman(AM))
 		if(buzzcd < world.time)
-			playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,TRUE,4)
+			playsound(src,'sound/machines/buzz-sigh.ogg',65,TRUE,4)
 			buzzcd = (world.time + 60)
 		icon_state = "holo_medical-deny"
 
@@ -159,7 +159,7 @@
 	var/threat = sickboi.check_virus()
 	if(get_disease_danger_value(threat) > get_disease_danger_value(DISEASE_MINOR))
 		if(buzzcd < world.time)
-			playsound(get_turf(src),'sound/machines/buzz-sigh.ogg',65,1,4)
+			playsound(src,'sound/machines/buzz-sigh.ogg',65,1,4)
 			buzzcd = (world.time + 60)
 		icon_state = "holo_medical-deny"
 		return FALSE

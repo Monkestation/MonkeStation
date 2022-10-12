@@ -129,7 +129,7 @@
 								 "<span class='notice'>You start unfastening [src]'s floor bolts...</span>")
 			if(!C.use_tool(src, user, 50))
 				return
-			playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] unfastens [src]'s bolts.</span>", \
 								 "<span class='notice'>You undo [src]'s floor bolts.</span>")
 			deconstruct(TRUE)
@@ -554,7 +554,7 @@
 					return
 				if(constructionStep != CONSTRUCTION_PANEL_OPEN)
 					return
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				user.visible_message("<span class='notice'>[user] pries out a metal plate from [src], exposing the wires.</span>", \
 									 "<span class='notice'>You remove the cover plate from [src], exposing the wires.</span>")
 				constructionStep = CONSTRUCTION_WIRES_EXPOSED
@@ -575,7 +575,7 @@
 					return
 				user.visible_message("<span class='notice'>[user] finishes the firelock.</span>", \
 									 "<span class='notice'>You finish the firelock.</span>")
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				var/obj/machinery/door/firedoor/F = new firelock_type(get_turf(src))
 				F.dir = src.dir
 				F.update_icon()
@@ -591,13 +591,13 @@
 					return
 				user.visible_message("<span class='notice'>[user] begins reinforcing [src]...</span>", \
 									 "<span class='notice'>You begin reinforcing [src]...</span>")
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				if(do_after(user, 60, target = src))
 					if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || P.get_amount() < 2 || !P)
 						return
 					user.visible_message("<span class='notice'>[user] reinforces [src].</span>", \
 										 "<span class='notice'>You reinforce [src].</span>")
-					playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+					playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 					P.use(2)
 					reinforced = TRUE
 					firelock_type = /obj/machinery/door/firedoor/heavy
@@ -626,7 +626,7 @@
 					return
 				if(constructionStep != CONSTRUCTION_WIRES_EXPOSED)
 					return
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				user.visible_message("<span class='notice'>[user] pries the metal plate into [src].</span>", \
 									 "<span class='notice'>You pry [src]'s cover plate into place, hiding the wires.</span>")
 				constructionStep = CONSTRUCTION_PANEL_OPEN
@@ -653,13 +653,13 @@
 					return
 				user.visible_message("<span class='notice'>[user] begins wiring [src]...</span>", \
 									 "<span class='notice'>You begin adding wires to [src]...</span>")
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				if(do_after(user, 60, target = src))
 					if(constructionStep != CONSTRUCTION_GUTTED || B.get_amount() < 5 || !B)
 						return
 					user.visible_message("<span class='notice'>[user] adds wires to [src].</span>", \
 										 "<span class='notice'>You wire [src].</span>")
-					playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+					playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 					B.use(5)
 					constructionStep = CONSTRUCTION_WIRES_EXPOSED
 					update_icon()
@@ -694,7 +694,7 @@
 			if(istype(C, /obj/item/electronics/firelock))
 				user.visible_message("<span class='notice'>[user] starts adding [C] to [src]...</span>", \
 									 "<span class='notice'>You begin adding a circuit board to [src]...</span>")
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				if(!do_after(user, 40, target = src))
 					return
 				if(constructionStep != CONSTRUCTION_NOCIRCUIT)
@@ -702,7 +702,7 @@
 				qdel(C)
 				user.visible_message("<span class='notice'>[user] adds a circuit to [src].</span>", \
 									 "<span class='notice'>You insert and secure [C].</span>")
-				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 				constructionStep = CONSTRUCTION_GUTTED
 				update_icon()
 				return

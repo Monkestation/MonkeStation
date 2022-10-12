@@ -445,7 +445,7 @@
 /datum/species/golem/bluespace/proc/reactive_teleport(mob/living/carbon/human/H)
 	H.visible_message("<span class='warning'>[H] teleports!</span>", "<span class='danger'>You destabilize and teleport!</span>")
 	new /obj/effect/particle_effect/sparks(get_turf(H))
-	playsound(get_turf(H), "sparks", 50, 1)
+	playsound(H, "sparks", 50, 1)
 	do_teleport(H, get_turf(H), 6, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 	last_teleport = world.time
 
@@ -503,7 +503,7 @@
 /datum/action/innate/unstable_teleport/Activate()
 	var/mob/living/carbon/human/H = owner
 	H.visible_message("<span class='warning'>[H] starts vibrating!</span>", "<span class='danger'>You start charging your bluespace core...</span>")
-	playsound(get_turf(H), 'sound/weapons/flash.ogg', 25, 1)
+	playsound(H, 'sound/weapons/flash.ogg', 25, 1)
 	addtimer(CALLBACK(src, .proc/teleport, H), 15)
 
 /datum/action/innate/unstable_teleport/proc/teleport(mob/living/carbon/human/H)
@@ -594,14 +594,14 @@
 	if(!active)
 		if(world.time > last_honk + honkooldown)
 			active = 1
-			playsound(get_turf(H), 'sound/items/bikehorn.ogg', 50, 1)
+			playsound(H, 'sound/items/bikehorn.ogg', 50, 1)
 			last_honk = world.time
 			honkooldown = rand(20, 80)
 			active = null
 	..()
 
 /datum/species/golem/bananium/spec_death(gibbed, mob/living/carbon/human/H)
-	playsound(get_turf(H), 'sound/misc/sadtrombone.ogg', 70, 0)
+	playsound(H, 'sound/misc/sadtrombone.ogg', 70, 0)
 
 /datum/species/golem/bananium/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
@@ -1085,7 +1085,7 @@
 	owner.visible_message("<span class='warning'>[owner] rattles [owner.p_their()] bones harrowingly.</span>", "<span class='notice'>You rattle your bones.</span>")
 	last_use = world.time
 	if(prob(snas_chance))
-		playsound(get_turf(owner),'sound/magic/RATTLEMEBONES2.ogg', 100)
+		playsound(owner,'sound/magic/RATTLEMEBONES2.ogg', 100)
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			var/mutable_appearance/badtime = mutable_appearance('icons/mob/human_parts.dmi', "b_golem_eyes", -FIRE_LAYER-0.5)
@@ -1094,7 +1094,7 @@
 			H.apply_overlay(FIRE_LAYER+0.5)
 			addtimer(CALLBACK(H, /mob/living/carbon/.proc/remove_overlay, FIRE_LAYER+0.5), 25)
 	else
-		playsound(get_turf(owner),'sound/magic/RATTLEMEBONES.ogg', 100)
+		playsound(owner,'sound/magic/RATTLEMEBONES.ogg', 100)
 	for(var/mob/living/L in orange(7, get_turf(owner)))
 		if((MOB_UNDEAD in L.mob_biotypes) || isgolem(L) || HAS_TRAIT(L, TRAIT_RESISTCOLD))
 			return //Do not affect our brothers

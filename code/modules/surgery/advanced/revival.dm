@@ -62,7 +62,7 @@
 	display_results(user, target, "<span class='notice'>You successfully shock [target]'s brain with [tool]...</span>",
 		"[user] send a powerful shock to [target]'s brain with [tool]...",
 		"[user] send a powerful shock to [target]'s brain with [tool]...")
-	playsound(get_turf(target), 'sound/magic/lightningbolt.ogg', 50, 1)
+	playsound(target, 'sound/magic/lightningbolt.ogg', 50, 1)
 	target.grab_ghost()
 	target.adjustOxyLoss(-50, 0)
 	target.updatehealth()
@@ -79,6 +79,6 @@
 	display_results(user, target, "<span class='notice'>You shock [target]'s brain with [tool], but [target.p_they()] doesn't react.</span>",
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.",
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.")
-	playsound(get_turf(target), 'sound/magic/lightningbolt.ogg', 50, 1)
+	playsound(target, 'sound/magic/lightningbolt.ogg', 50, 1)
 	target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15, 180)
 	return FALSE

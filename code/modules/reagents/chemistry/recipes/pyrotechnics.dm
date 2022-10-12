@@ -78,7 +78,7 @@
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/on_reaction(datum/reagents/holder, created_volume)
 	if(created_volume >= 150)
-		playsound(get_turf(holder.my_atom), 'sound/effects/pray.ogg', 80, 0, round(created_volume/48))
+		playsound(holder.my_atom, 'sound/effects/pray.ogg', 80, 0, round(created_volume/48))
 		strengthdiv = 8
 		for(var/mob/living/simple_animal/revenant/R in hearers(7,get_turf(holder.my_atom)))
 			var/deity = GLOB.deity || "Christ"

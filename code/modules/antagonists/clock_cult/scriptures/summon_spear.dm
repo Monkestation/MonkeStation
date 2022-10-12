@@ -71,7 +71,7 @@
 	if(!user.put_in_hands(item_to_retrieve))
 		item_to_retrieve.forceMove(user.drop_location())
 		item_to_retrieve.loc.visible_message("<span class='caution'>The [item_to_retrieve.name] suddenly appears!</span>")
-		playsound(get_turf(user), 'sound/magic/summonitems_generic.ogg', 50, 1)
+		playsound(user, 'sound/magic/summonitems_generic.ogg', 50, 1)
 	else
 		item_to_retrieve.loc.visible_message("<span class='caution'>The [item_to_retrieve.name] suddenly appears in [user]'s hand!</span>")
-		playsound(get_turf(user), 'sound/magic/summonitems_generic.ogg', 50, 1)
+		playsound(user, 'sound/magic/summonitems_generic.ogg', 50, 1)

@@ -82,5 +82,5 @@
 				GLOB.data_core.manifest_modify(id_card.registered_name, id_card.assignment)
 				card_slot.try_eject(TRUE, current_user)
 			else
-				playsound(get_turf(ui_host()) , 'sound/machines/buzz-sigh.ogg', 25, FALSE)
+				playsound(ui_host() , 'sound/machines/buzz-sigh.ogg', 25, FALSE)
 	return

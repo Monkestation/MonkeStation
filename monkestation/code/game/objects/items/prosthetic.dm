@@ -25,4 +25,4 @@
 /obj/item/choice_beacon/prosthetic/spawn_option(obj/choice, mob/living/carbon/human/nerd) //Overwrite to instantly apply the prosthetic. No middleman here.
 	var/obj/item/bodypart/new_item = new choice()
 	new_item.replace_limb(nerd, TRUE)
-	playsound(get_turf(nerd), 'sound/weapons/circsawhit.ogg', 50, 1)
+	playsound(nerd, 'sound/weapons/circsawhit.ogg', 50, 1)

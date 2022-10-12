@@ -77,7 +77,7 @@
 		APPLY_MOB_PROPERTY(src, PROP_CANTBUMPSLAM, src.type) //Bump() is called continuously so ratelimit the check to 20 seconds if it passes or 5 if it doesn't
 		if(prob(10))
 			playsound(get_turf(src), "punch", 25, 1, -1)
-			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [A]!</span>")
+			playsound(src, "punch", 25, 1, -1) [pick("ran", "slammed")] into \the [A]!</span>")
 			apply_damage(5, BRUTE)
 			Paralyze(40)
 			addtimer(CALLBACK(src, .proc/can_bumpslam), 200)

@@ -74,7 +74,7 @@ Consuming extracts:
 
 		if(!istype(H) || !HAS_TRAIT(H, TRAIT_AGEUSIA))
 			to_chat(M, "Tastes like [taste].")
-		playsound(get_turf(M), 'sound/items/eatfood.ogg', 20, 1)
+		playsound(M, 'sound/items/eatfood.ogg', 20, 1)
 		if(nutrition)
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment,nutrition)
 		do_effect(M, user)
@@ -247,7 +247,7 @@ Consuming extracts:
 	if(target)
 		do_teleport(M, target, 0, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 		new /obj/effect/particle_effect/sparks(get_turf(M))
-		playsound(get_turf(M), "sparks", 50, 1)
+		playsound(M, "sparks", 50, 1)
 
 /obj/item/slimecross/consuming/sepia
 	colour = "sepia"
@@ -336,7 +336,7 @@ Consuming extracts:
 
 /obj/item/slime_cookie/red/do_effect(mob/living/M, mob/user)
 	new /obj/effect/decal/cleanable/blood(get_turf(M))
-	playsound(get_turf(M), 'sound/effects/splat.ogg', 10, 1)
+	playsound(M, 'sound/effects/splat.ogg', 10, 1)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		C.blood_volume += 25 //Half a vampire drain.
@@ -388,7 +388,7 @@ Consuming extracts:
 	M.dropItemToGround(held)
 	var/newcoin = /obj/item/coin/gold
 	var/obj/item/coin/C = new newcoin(get_turf(M))
-	playsound(get_turf(C), 'sound/items/coinflip.ogg', 50, 1)
+	playsound(C, 'sound/items/coinflip.ogg', 50, 1)
 	M.put_in_hand(C)
 
 /obj/item/slimecross/consuming/oil

@@ -146,7 +146,7 @@
 			crosser.swap_hand()
 
 /obj/item/rupee/equipped(mob/user, slot)
-	playsound(get_turf(loc), 'sound/misc/server-ready.ogg', 50, 1, -1)
+	playsound(loc, 'sound/misc/server-ready.ogg', 50, 1, -1)
 	..()
 
 /obj/effect/landmark/error

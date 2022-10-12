@@ -473,7 +473,7 @@
 	new /datum/round_event/wizard/ghost()
 	active = TRUE
 	to_chat(user, "<span class='notice'>You have cast summon ghosts!</span>")
-	playsound(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
+	playsound(user, 'sound/effects/ghost2.ogg', 50, 1)
 	return TRUE
 
 /datum/spellbook_entry/summon/guns
@@ -493,7 +493,7 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	rightandwrong(SUMMON_GUNS, user, 10)
 	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
+	playsound(user, 'sound/magic/castsummon.ogg', 50, 1)
 	to_chat(user, "<span class='notice'>You have cast summon guns!</span>")
 	return TRUE
 
@@ -514,7 +514,7 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	rightandwrong(SUMMON_MAGIC, user, 10)
 	active = TRUE
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
+	playsound(user, 'sound/magic/castsummon.ogg', 50, 1)
 	to_chat(user, "<span class='notice'>You have cast summon magic!</span>")
 	return TRUE
 
@@ -536,7 +536,7 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	summonevents()
 	times++
-	playsound(get_turf(user), 'sound/magic/castsummon.ogg', 50, 1)
+	playsound(user, 'sound/magic/castsummon.ogg', 50, 1)
 	to_chat(user, "<span class='notice'>You have cast summon events.</span>")
 	return TRUE
 

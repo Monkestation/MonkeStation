@@ -260,7 +260,7 @@
 				additional_effects_silicon(target, user)
 
 				user.visible_message(desc["visible"], desc["local"])
-				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
+				playsound(src, on_stun_sound, 100, TRUE, -1)
 
 				if (stun_animation)
 					user.do_attack_animation(target)
@@ -289,7 +289,7 @@
 
 			if (stun_animation)
 				user.do_attack_animation(target)
-			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+			playsound(src, on_stun_sound, 75, 1, -1)
 			additional_effects_carbon(target, user)
 			if((user.zone_selected == BODY_ZONE_HEAD) || (user.zone_selected == BODY_ZONE_CHEST))
 				target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
@@ -521,7 +521,7 @@
 				additional_effects_silicon(target, user)
 
 				user.visible_message(desc["visible"], desc["local"])
-				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
+				playsound(src, on_stun_sound, 100, TRUE, -1)
 
 				if (stun_animation)
 					user.do_attack_animation(target)
@@ -551,7 +551,7 @@
 			if (stun_animation)
 				user.do_attack_animation(target)
 
-			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+			playsound(src, on_stun_sound, 75, 1, -1)
 //MonkeStation Edit Start: Contractor Baton Rework
 			if(is_target)
 				target.Knockdown(CONTRACTOR_KNOCKDOWN_TIME_CARBON)
@@ -900,7 +900,7 @@
 	add_fingerprint(user)
 
 	if(cooldown <= world.time)
-		playsound(get_turf(src), 'sound/effects/woodhit.ogg', 75, 1, -1)
+		playsound(src, 'sound/effects/woodhit.ogg', 75, 1, -1)
 		log_combat(user, target, "knockedbacked", src)
 		target.visible_message("<span class ='danger'>[user] has knocked back [target] with [src]!</span>", \
 			"<span class ='userdanger'>[user] has knocked you back [target] with [src]!</span>")

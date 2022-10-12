@@ -723,7 +723,7 @@
 					H.adjustFireLoss((overall_damage*ratio) * (H.getFireLoss() / overall_damage), 0)
 					H.adjustBruteLoss((overall_damage*ratio) * (H.getBruteLoss() / overall_damage), 0)
 					H.updatehealth()
-					playsound(get_turf(H), 'sound/magic/staff_healing.ogg', 25)
+					playsound(H, 'sound/magic/staff_healing.ogg', 25)
 					new /obj/effect/temp_visual/cult/sparks(get_turf(H))
 					user.Beam(H,icon_state="sendbeam",time=15)
 			else
@@ -737,7 +737,7 @@
 					H.blood_volume -= 100
 					uses += 50
 					user.Beam(H,icon_state="drainbeam",time=10)
-					playsound(get_turf(H), 'sound/magic/enter_blood.ogg', 50)
+					playsound(H, 'sound/magic/enter_blood.ogg', 50)
 					H.visible_message("<span class='danger'>[user] has drained some of [H]'s blood!</span>")
 					to_chat(user,"<span class='cultitalic'>Your blood rite gains 50 charges from draining [H]'s blood.</span>")
 					new /obj/effect/temp_visual/cult/sparks(get_turf(H))
@@ -756,7 +756,7 @@
 					M.adjustHealth(-uses)
 					M.visible_message("<span class='warning'>[M] is partially healed by [user]'s blood magic!</span>")
 					uses = 0
-				playsound(get_turf(M), 'sound/magic/staff_healing.ogg', 25)
+				playsound(M, 'sound/magic/staff_healing.ogg', 25)
 				user.Beam(M,icon_state="sendbeam",time=10)
 		if(istype(target, /obj/effect/decal/cleanable/blood))
 			blood_draw(target, user)

@@ -37,7 +37,7 @@
 		log_combat(A, D, "floor stomped (Karate)")
 		D.visible_message("<span class='warning'>[A] stomped [D] in the head!</span>", \
 							"<span class='userdanger'>[A] stomped you in the head!</span>", null, COMBAT_MESSAGE_RANGE)
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 75, 1, -1)
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(20, A.dna.species.attack_type, BODY_ZONE_HEAD, def_check)
 		D.apply_damage(10, STAMINA, BODY_ZONE_HEAD, def_check)
@@ -53,7 +53,7 @@
 		log_combat(A, D, "calf kicked (Karate)")
 		D.visible_message("<span class='warning'>[A] roundhouse kicked [D] in the calf!</span>", \
 							"<span class='userdanger'>[A] roundhouse kicked you in the calf!</span>", null, COMBAT_MESSAGE_RANGE)
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 75, 1, -1)
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(50, STAMINA, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), def_check)
 		return 1
@@ -68,7 +68,7 @@
 		log_combat(A, D, "jumped kneed (Karate)")
 		D.visible_message("<span class='warning'>[A] jumping kneed [D] in the stomach!</span>", \
 							"<span class='userdanger'>[A] jumping kneed you in the stomach!</span>", null, COMBAT_MESSAGE_RANGE)
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 75, 1, -1)
 		D.emote("gasp")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.apply_damage(30, STAMINA, BODY_ZONE_CHEST, def_check)
@@ -84,7 +84,7 @@
 		log_combat(A, D, "karate chopped (Karate)")
 		D.visible_message("<span class='warning'>[A] karate chopped [D] in the neck!</span>", \
 							"<span class='userdanger'>[A] karate chopped you in the neck!</span>", null, COMBAT_MESSAGE_RANGE)
-		playsound(get_turf(A), 'sound/weapons/thudswoosh.ogg', 75, 1, -1)
+		playsound(A, 'sound/weapons/thudswoosh.ogg', 75, 1, -1)
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.blur_eyes(10)
 		D.confused += 2

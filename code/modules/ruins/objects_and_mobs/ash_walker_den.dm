@@ -50,7 +50,7 @@
 	for(var/mob/living/H in hearers(1, src)) //Only for corpse right next to/on same tile
 		if(H.stat)
 			visible_message("<span class='warning'>Serrated tendrils eagerly pull [H] to [src], tearing the body apart as its blood seeps over the eggs.</span>")
-			playsound(get_turf(src),'sound/magic/demon_consume.ogg', 100, 1)
+			playsound(src,'sound/magic/demon_consume.ogg', 100, 1)
 			for(var/obj/item/W in H)
 				if(!H.dropItemToGround(W))
 					qdel(W)

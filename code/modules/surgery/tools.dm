@@ -370,7 +370,7 @@
 
 
 /obj/item/scalpel/advanced/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/machines/click.ogg', 50, TRUE)
+	playsound(user, 'sound/machines/click.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
 		to_chat(user, "<span class='notice'>You increase the power of [src], now it can cut bones.</span>")
@@ -396,7 +396,7 @@
 	toolspeed = 0.7
 
 /obj/item/retractor/advanced/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, TRUE)
+	playsound(user, 'sound/items/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_RETRACTOR)
 		tool_behaviour = TOOL_HEMOSTAT
 		to_chat(user, "<span class='notice'>You configure the gears of [src], they are now in hemostat mode.</span>")
@@ -423,7 +423,7 @@
 	light_range = 1
 
 /obj/item/surgicaldrill/advanced/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/weapons/tap.ogg', 50, TRUE)
+	playsound(user, 'sound/weapons/tap.ogg', 50, TRUE)
 	if(tool_behaviour == TOOL_DRILL)
 		tool_behaviour = TOOL_CAUTERY
 		to_chat(user, "<span class='notice'>You focus the lenses of [src], it is now in mending mode.</span>")

@@ -138,7 +138,7 @@
 /obj/item/bodypart/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	if(IS_ORGANIC_LIMB(src))
-		playsound(get_turf(src), 'sound/misc/splort.ogg', 50, 1, -1)
+		playsound(src, 'sound/misc/splort.ogg', 50, 1, -1)
 	pixel_x = rand(-3, 3)
 	pixel_y = rand(-3, 3)
 

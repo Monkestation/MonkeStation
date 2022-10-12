@@ -168,7 +168,7 @@
 /obj/item/clothing/mask/pig/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
-	playsound(get_turf(src), 'sound/magic/pighead_curse.ogg', 50, 1)
+	playsound(src, 'sound/magic/pighead_curse.ogg', 50, 1)
 
 ///frog mask - reeee!!
 /obj/item/clothing/mask/frog
@@ -223,7 +223,7 @@
 /obj/item/clothing/mask/cowmask/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
-	playsound(get_turf(src), 'sound/magic/cowhead_curse.ogg', 50, 1)
+	playsound(src, 'sound/magic/cowhead_curse.ogg', 50, 1)
 
 /obj/item/clothing/mask/horsehead
 	name = "horse head mask"
@@ -248,7 +248,7 @@
 /obj/item/clothing/mask/horsehead/cursed/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
-	playsound(get_turf(src), 'sound/magic/horsehead_curse.ogg', 50, 1)
+	playsound(src, 'sound/magic/horsehead_curse.ogg', 50, 1)
 
 /obj/item/clothing/mask/rat
 	name = "rat mask"

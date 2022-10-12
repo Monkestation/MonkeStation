@@ -111,7 +111,7 @@
 		if(I.force >= dismemberthreshold && I.force >= 10)
 			if(affecting.dismember(I.damtype))
 				I.add_mob_blood(src)
-				playsound(get_turf(src), I.get_dismember_sound(), 80, 1)
+				playsound(src, I.get_dismember_sound(), 80, 1)
 		return TRUE //successful attack
 
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)

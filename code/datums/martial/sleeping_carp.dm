@@ -43,13 +43,13 @@
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message("<span class='warning'>[A] grabs [D]'s wrist and wrenches it sideways!</span>", \
 						  "<span class='userdanger'>[A] grabs your wrist and violently wrenches it to the side!</span>")
-		playsound(get_turf(A), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(A, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		D.emote("scream")
 		D.dropItemToGround(D.get_active_held_item())
 		D.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		D.Stun(60)
 		return 1
-	
+
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -61,7 +61,7 @@
 								"<span class='userdanger'>[A] kicks you in the back, making you stumble and fall!</span>")
 			step_to(D,get_step(D,D.dir),1)
 			D.Paralyze(80)
-			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
+			playsound(D, 'sound/weapons/punch1.ogg', 50, 1, -1)
 			return 1
 		else
 			log_combat(A, D, "missed a back-kick (Sleeping Carp) on")
@@ -78,7 +78,7 @@
 		D.audible_message("<b>[D]</b> gags!")
 		D.losebreath += 3
 		D.Stun(40)
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
 	return basic_hit(A,D)
 
@@ -91,7 +91,7 @@
 						  "<span class='userdanger'>[A] kicks you in the jaw!</span>")
 		D.apply_damage(20, A.dna.species.attack_type, BODY_ZONE_HEAD, blocked = def_check)
 		D.drop_all_held_items()
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
 		return 1
 	return basic_hit(A,D)
@@ -106,7 +106,7 @@
 		if(D.stat)
 			D.death() //FINISH HIM!
 		D.apply_damage(50, A.dna.species.attack_type, BODY_ZONE_CHEST, blocked = def_check)
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
+		playsound(D, 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return 1
 	return basic_hit(A,D)
 
@@ -138,7 +138,7 @@
 	D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 					  "<span class='userdanger'>[A] [atk_verb] you!</span>")
 	D.apply_damage(15, BRUTE, blocked = def_check)
-	playsound(get_turf(D), 'sound/weapons/punch1.ogg', 25, 1, -1)
+	playsound(D, 'sound/weapons/punch1.ogg', 25, 1, -1)
 	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
 	return 1
 
@@ -220,7 +220,7 @@
 									  "[user] twirls and slams [H] with [src]!")
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
-		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
+		playsound(user, 'sound/effects/woodhit.ogg', 75, 1, -1)
 		H.adjustStaminaLoss(rand(13,20))
 		if(prob(10))
 			H.visible_message("<span class='warning'>[H] collapses!</span>", \

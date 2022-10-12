@@ -173,7 +173,7 @@
 		var/obj/structure/legionnaire_bonfire/newpile = new /obj/structure/legionnaire_bonfire(loc)
 		mypile = newpile
 		mypile.myowner = src
-		playsound(get_turf(src),'sound/items/fultext_deploy.ogg', 200, 1)
+		playsound(src,'sound/items/fultext_deploy.ogg', 200, 1)
 		visible_message("<span class='boldwarning'>[src] summons a bonfire on [get_turf(src)]!</span>")
 		return
 	else

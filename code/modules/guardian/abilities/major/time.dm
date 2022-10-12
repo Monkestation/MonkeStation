@@ -72,7 +72,7 @@
 /mob/living/simple_animal/hostile/illusion/doppelganger/proc/begin_fade_out()
 	if(QDELETED(src))
 		return
-	playsound(get_turf(src), 'sound/magic/timeparadox2.ogg', 20, TRUE, frequency = -1) //reverse!
+	playsound(src, 'sound/magic/timeparadox2.ogg', 20, TRUE, frequency = -1) //reverse!
 	animate(src, time=10, alpha=0)
 	addtimer(CALLBACK(src, .proc/end_fade_out), 10, TIMER_UNIQUE)
 

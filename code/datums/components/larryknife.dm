@@ -25,7 +25,7 @@
 			leg = BODY_ZONE_L_LEG
 		C.apply_damage(knife_damage, BRUTE, leg)
 		P.visible_message("<span class='warning'>[C.name] is stabbed by [P.name].</span>")
-		playsound(get_turf(P), 'sound/weapons/slice.ogg', 50, 1)
+		playsound(P, 'sound/weapons/slice.ogg', 50, 1)
 		TIMER_COOLDOWN_START(src, COOLDOWN_LARRYKNIFE, 2 SECONDS)
 
 /datum/component/knife_attached_to_movable/proc/knife_crossed(datum/source, atom/movable/M, atom/old_loc, list/atom/old_locs)

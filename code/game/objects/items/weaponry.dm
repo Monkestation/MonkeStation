@@ -689,7 +689,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		..()
 		return
 	to_chat(user, "<span class='warning'>You begin gathering strength...</span>")
-	playsound(get_turf(src), 'sound/magic/lightning_chargeup.ogg', 65, 1)
+	playsound(src, 'sound/magic/lightning_chargeup.ogg', 65, 1)
 	if(do_after(user, 90, target = src))
 		to_chat(user, "<span class='userdanger'>You gather power! Time for a home run!</span>")
 		homerun_ready = 1
@@ -702,7 +702,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		user.visible_message("<span class='userdanger'>It's a home run!</span>")
 		target.throw_at(throw_target, rand(8,10), 14, user)
 		SSexplosions.medturf += throw_target
-		playsound(get_turf(src), 'sound/weapons/homerun.ogg', 100, 1)
+		playsound(src, 'sound/weapons/homerun.ogg', 100, 1)
 		homerun_ready = 0
 		return
 	else if(!target.anchored)

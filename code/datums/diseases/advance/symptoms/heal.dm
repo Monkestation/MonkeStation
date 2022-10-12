@@ -521,7 +521,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 				to_chat(M, "<span class='userdanger'>You retch, and a splatter of gore escapes your gullet!</span>")
 				M.Immobilize(5)
 				M.add_splatter_floor()
-				playsound(get_turf(M), 'sound/effects/splat.ogg', 50, 1)
+				playsound(M, 'sound/effects/splat.ogg', 50, 1)
 				if(prob(60) && M.mind && ishuman(M) && max_organ_vomit > 0)
 					if(tetsuo && prob(15))
 						if(A.affected_mob.job == "Clown")

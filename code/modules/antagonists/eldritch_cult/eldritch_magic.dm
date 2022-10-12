@@ -384,7 +384,7 @@
 	INVOKE_ASYNC(src, .proc/fire_cascade, user,range)
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/proc/fire_cascade(atom/centre,max_range)
-	playsound(get_turf(centre), 'sound/items/welder.ogg', 75, TRUE)
+	playsound(centre, 'sound/items/welder.ogg', 75, TRUE)
 	var/_range = 1
 	for(var/i = 0, i <= max_range,i++)
 		for(var/turf/open/T in spiral_range_turfs(_range,centre))

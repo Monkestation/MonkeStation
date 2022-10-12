@@ -67,9 +67,9 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/proc/play_sound(type,mob/living/target)
 	switch(type)
 		if("enter")
-			playsound(get_turf(target), 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
+			playsound(target, 'sound/magic/ethereal_enter.ogg', 50, TRUE, -1)
 		if("exit")
-			playsound(get_turf(target), 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
+			playsound(target, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 
 /obj/effect/dummy/phased_mob/spell_jaunt
 	name = "water"

@@ -35,7 +35,7 @@
 	attached_spell.spell_used = TRUE
 	//Do effects
 	user.say(catchphrase, forced = "spell")
-	playsound(get_turf(user), on_use_sound,50,1)
+	playsound(user, on_use_sound,50,1)
 	charges--
 	if(charges <= 0)
 		attached_spell.use_charge(user)
@@ -124,7 +124,7 @@
 /obj/item/melee/touch_attack/megahonk/afterattack(atom/target, mob/living/carbon/user, proximity)
 	if(!proximity || !iscarbon(target) || !iscarbon(user) || user.handcuffed)
 		return
-	playsound(get_turf(target), on_use_sound,100,1)
+	playsound(target, on_use_sound,100,1)
 	for(var/mob/living/carbon/M in (hearers(1, target) - user)) //3x3 around the target, not affecting the user
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

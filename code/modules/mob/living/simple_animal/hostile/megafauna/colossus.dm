@@ -164,7 +164,7 @@ Difficulty: Very Hard
 		if(counter < 1)
 			counter = 16
 		shoot_projectile(start_turf, counter * 22.5)
-		playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, 1)
+		playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 20, 1)
 		sleep(1)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/shoot_projectile(turf/marker, set_angle)

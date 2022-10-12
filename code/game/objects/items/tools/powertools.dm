@@ -36,7 +36,7 @@
 	usesound = 'sound/items/drill_use.ogg'
 
 /obj/item/powertool/hand_drill/toggle_mode(mob/user)
-	playsound(get_turf(user), 'sound/items/change_drill.ogg', 50, 1)
+	playsound(user, 'sound/items/change_drill.ogg', 50, 1)
 	if(tool_behaviour == TOOL_SCREWDRIVER)
 		balloon_alert(user, "Bolt driver bit attached")
 		become_wrench()
@@ -101,7 +101,7 @@
 	ADD_TRAIT(src, TRAIT_DOOR_PRYER, TRAIT_JAWS_OF_LIFE)
 
 /obj/item/powertool/jaws_of_life/toggle_mode(mob/user)
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
+	playsound(user, 'sound/items/change_jaws.ogg', 50, 1)
 	if(tool_behaviour == TOOL_CROWBAR)
 		balloon_alert(user, "Cutting jaws attached")
 		become_wirecutters()

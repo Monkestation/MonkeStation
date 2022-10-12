@@ -163,7 +163,7 @@ Difficulty: Medium
 	SLEEP_CHECK_DEATH(0)
 	for(var/i = 1 to times)
 		SetRecoveryTime(50)
-		playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
+		playsound(src,'sound/magic/fireball.ogg', 200, 1)
 		var/increment = 360 / spiral_count
 		for(var/j = 1 to spiral_count)
 			var/list/turfs = line_target(j * increment + i * increment / 2, range, src)
@@ -231,7 +231,7 @@ Difficulty: Medium
 	light_range = initial(light_range)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/fire_cone(var/atom/at = target, var/meteors = TRUE)
-	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
+	playsound(src,'sound/magic/fireball.ogg', 200, 1)
 	SLEEP_CHECK_DEATH(0)
 	if(prob(50) && meteors)
 		INVOKE_ASYNC(src, .proc/fire_rain)
@@ -622,7 +622,7 @@ Difficulty: Medium
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon/proc/fire_stream(var/atom/at = target)
-	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
+	playsound(src,'sound/magic/fireball.ogg', 200, 1)
 	SLEEP_CHECK_DEATH(0)
 	var/range = 20
 	var/list/turfs = list()
