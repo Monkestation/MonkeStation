@@ -13,6 +13,7 @@
 
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
+	var/sound_played
 	var/damaged	//too damaged to undock?
 	var/list/areas	//areas in our shuttle
 	var/list/queued_announces	//people coming in that we have to announce
