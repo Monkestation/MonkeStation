@@ -435,7 +435,6 @@
 	if(stun)
 		Paralyze(15)
 		Knockdown(90)
-playsound(src, 'sound/effects/splat.ogg', 50, 1)
 	playsound(src, 'sound/effects/splat.ogg', 50, 1)
 	var/turf/T = get_turf(src)
 	if(!blood)
