@@ -169,11 +169,11 @@
 	if(wielded && proximity_flag)
 		if(isclosedturf(target) || ismachinery(target) || isstructure(target) || ismob(target))
 			slash(target, user, click_parameters)
-		if(ismachinery(target))
-			user.changeNext_move(0.2 SECONDS)
+		if(ismachinery(target) || isstructure(target))
+			user.changeNext_move(0.3 SECONDS)
 			spark_system.start()
-			playsound(user, "sparks", 50, 1)
-			playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(user, "sparks", 30, TRUE)
+			playsound(user, 'sound/weapons/blade1.ogg', 30, TRUE)
 			target.emag_act(user)
 	if(!wielded && !proximity_flag && !target.density)
 		jaunt.teleport(user, target)
@@ -215,20 +215,20 @@
 		//Between 1x and 2.46x (rounded to 2.5x) with a clamp to ensure that strangely shaped sprites won't break the system.
 		damage_mod = clamp(round((abs(x_mod) + abs(y_mod) / 13), 0.1), 1, 2.5)
 	//Final damage is the base damage multiplied by the distance modifier, with a reduction for damage already dealt from the attack itself.
-	var/final_damage = HF_BLADE_BASE_DAMAGE*damage_mod-force
+	var/final_damage = HF_BLADE_BASE_DAMAGE*damage_mod
 
 	previous_target = WEAKREF(target)
 	previous_x = x_slashed
 	previous_y = y_slashed
-	playsound(src, 'sound/weapons/bladeslice.ogg', 100, vary = TRUE)
-	playsound(src, 'sound/weapons/zapbang.ogg', 50, vary = TRUE)
+	playsound(src, 'sound/weapons/bladeslice.ogg', 75, vary = TRUE)
+	playsound(src, 'sound/weapons/zapbang.ogg', 30, vary = TRUE)
 	if(isliving(target))
 		var/mob/living/living_target = target
 		var/def_check = living_target.getarmor(type = "melee")
 
 
 		//Applies equal to 14 * the multiplier from pixel distance
-		living_target.apply_damage(damage = final_damage, damagetype = BRUTE, blocked = def_check, def_zone = user.zone_selected)
+		living_target.apply_damage(damage = final_damage-force, damagetype = BRUTE, blocked = def_check, def_zone = user.zone_selected)
 		log_combat(user, living_target, "slashed", src)
 
 		//Chance to gib a dead target with repeated strikes
@@ -243,7 +243,7 @@
 				if(recharge_check?.last_mind)
 					fuel_cell_percentage += 25
 					if(prob(25))
-						user.say(pick("BULLSEYE!", "DEAD ON!", "*laugh", "Playtime's over!"), forced = "ninjaboost")
+						user.say(pick("BULLSEYE!", "DEAD ON!", "*laugh", "Playtime's over!", "*flip"), forced = "ninjaboost")
 		//Recharge the fuel cell so long as the target is still fighting back
 		else if(living_target.mind && living_target.stat == CONSCIOUS)
 			//Between 7.5 and 18.75 a hit. Designed to take 2 kills to fully recharge a fuel cell.
@@ -299,5 +299,5 @@
 /datum/action/innate/dash/ninja
 	current_charges = 3
 	max_charges = 3
-	charge_rate = 200
+	charge_rate = 20 SECONDS
 	recharge_sound = null

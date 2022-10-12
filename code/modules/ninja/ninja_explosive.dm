@@ -58,7 +58,6 @@
 		target.cut_overlay(plastic_overlay, TRUE)
 		qdel(src)
 		return
-	. = ..()
 	//Since we already did the checks in afterattack, the denonator must be a ninja with the bomb objective.
 	if(!detonator)
 		return
@@ -68,6 +67,7 @@
 	var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 	var/datum/objective/plant_explosive/objective = locate() in ninja_antag.objectives
 	objective.completed = TRUE
+	. = ..()
 
 /**
  * check_loc
