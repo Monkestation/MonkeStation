@@ -1120,7 +1120,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_life(mob/living/carbon/M)
 	if(prob(5))
-		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
+		playsound(M, 'sound/effects/explosionfar.ogg', 100, 1)
 	return ..()
 
 /datum/reagent/consumable/ethanol/erikasurprise
