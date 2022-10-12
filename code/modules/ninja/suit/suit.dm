@@ -21,7 +21,8 @@
 	armor = list(MELEE = 40, BULLET = 30, LASER = 20,ENERGY = 30, BOMB = 30, BIO = 30, RAD = 30, FIRE = 100, ACID = 100)
 	strip_delay = 12 SECONDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	actions_types = list(/datum/action/item_action/initialize_ninja_suit, /datum/action/item_action/ninjastatus, /datum/action/item_action/ninjaboost, /datum/action/item_action/ninjapulse, /datum/action/item_action/ninjastar, /datum/action/item_action/ninjanet, /datum/action/item_action/ninja_sword_recall, /datum/action/item_action/ninja_stealth)
+	slowdown = -0.3
+	actions_types = list(/datum/action/item_action/initialize_ninja_suit, /datum/action/item_action/ninjastatus, /datum/action/item_action/ninjaboost, /datum/action/item_action/ninjapulse, /datum/action/item_action/ninjastar, /datum/action/item_action/ninja_sword_recall, /datum/action/item_action/ninja_stealth)
 
 	///The person wearing the suit
 	var/mob/living/carbon/human/affecting = null
@@ -58,7 +59,7 @@
 	///How fast the suit is at certain actions, like draining power from things
 	var/suit_action_delay = 4 SECONDS
 	///Units of radium given to the user with each use of repair nanopaste
-	var/suit_radium_injected = 6
+	var/suit_radium_injected = 3
 	///Whether or not the suit is currently in stealth mode.
 	var/stealth_enabled = FALSE//Stealth off.
 	///Whether or not the wearer is in the middle of an action, like hacking.
@@ -68,6 +69,7 @@
 
 /obj/item/clothing/suit/space/space_ninja/Destroy()
 	unlock_suit()
+	terminate()
 	. = ..()
 
 
@@ -134,9 +136,6 @@
 		return TRUE
 	if(IS_NINJA_SUIT_STAR_CREATION(action))
 		ninjastar()
-		return TRUE
-	if(IS_NINJA_SUIT_NET_CREATION(action))
-		ninjanet()
 		return TRUE
 	if(IS_NINJA_SUIT_SWORD_RECALL(action))
 		ninja_sword_recall()
@@ -264,8 +263,9 @@
   * Can be called to entire rid of the suit pieces and the suit itself.
   */
 /obj/item/clothing/suit/space/space_ninja/proc/terminate()
+	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(n_hood)
 	QDEL_NULL(n_gloves)
 	QDEL_NULL(n_shoes)
+	QDEL_NULL(zandatsu)
 	QDEL_NULL(src)
-	STOP_PROCESSING(SSobj, src)

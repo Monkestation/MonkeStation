@@ -27,9 +27,8 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	pickup_sound = 'sound/items/unsheath.ogg'
 	equip_sound = 'sound/items/sheath.ogg'
-	//Damage starts at 14, with the multiiplier going up to 2.5x.
-	//This means that an accurate player can do up to 35 damage a hit if they land their clicks perfectly.
-	//This is just above a dual e-sword
+	//Damage starts at 24, with the multiiplier going up to 2.5x.
+	//This means that an accurate player can do up to 45 damage a hit if they land their clicks perfectly.
 	//It's a Speed VS Accuracy challenge, should make ninjas fairly skill-based.
 	force = 0
 	throwforce = 15
@@ -77,7 +76,7 @@
 
 /obj/item/high_frequency_blade/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed,force_wielded = 0,force_unwielded = 0,block_power_unwielded = 25, unwield_on_swap = TRUE)
+	AddComponent(/datum/component/two_handed,force_wielded = 10,force_unwielded = 0,block_power_unwielded = 25, unwield_on_swap = TRUE)
 
 /obj/item/high_frequency_blade/Destroy()
 	QDEL_NULL(spark_system)
@@ -158,6 +157,8 @@
 	if(!IS_SPACE_NINJA(user))
 		to_chat(user,"<span class='notice'>You can't wield this!</span>")
 		return
+	if(linked_suit.stealth_enabled)
+		linked_suit.cancel_stealth()
 	. = ..()
 
 /obj/item/high_frequency_blade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -169,7 +170,7 @@
 		if(isclosedturf(target) || ismachinery(target) || isstructure(target) || ismob(target))
 			slash(target, user, click_parameters)
 		if(ismachinery(target))
-			user.changeNext_move(1 SECONDS)
+			user.changeNext_move(0.2 SECONDS)
 			spark_system.start()
 			playsound(user, "sparks", 50, 1)
 			playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
@@ -196,7 +197,7 @@
 
 /obj/item/high_frequency_blade/proc/slash(atom/target, mob/living/user, params)
 	var/list/modifiers = params2list(params)
-	user.changeNext_move(0.5 SECONDS)
+	user.changeNext_move(0.25 SECONDS)
 	user.do_attack_animation(target, "nothing")
 
 	//in case we arent called by a client
@@ -213,7 +214,8 @@
 		var/y_mod = (previous_y - y_slashed) / 2
 		//Between 1x and 2.46x (rounded to 2.5x) with a clamp to ensure that strangely shaped sprites won't break the system.
 		damage_mod = clamp(round((abs(x_mod) + abs(y_mod) / 13), 0.1), 1, 2.5)
-	var/final_damage = HF_BLADE_BASE_DAMAGE*damage_mod
+	//Final damage is the base damage multiplied by the distance modifier, with a reduction for damage already dealt from the attack itself.
+	var/final_damage = HF_BLADE_BASE_DAMAGE*damage_mod-force
 
 	previous_target = WEAKREF(target)
 	previous_x = x_slashed
@@ -225,12 +227,12 @@
 		var/def_check = living_target.getarmor(type = "melee")
 
 
-		//Applies equal to 15 * the multiplier from pixel distance
+		//Applies equal to 14 * the multiplier from pixel distance
 		living_target.apply_damage(damage = final_damage, damagetype = BRUTE, blocked = def_check, def_zone = user.zone_selected)
 		log_combat(user, living_target, "slashed", src)
 
 		//Chance to gib a dead target with repeated strikes
-		if(living_target.stat == DEAD && prob(final_damage*0.25))
+		if(living_target.stat == DEAD && prob(final_damage))
 			living_target.visible_message(span_danger("[living_target] explodes in a shower of gore!"), blind_message = span_hear("You hear organic matter ripping and tearing!"))
 			living_target.gib()
 			log_combat(user, living_target, "gibbed", src)

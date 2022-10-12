@@ -2912,7 +2912,6 @@
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_cost_check.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_em_pulse.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_glove_toggle.dm"
-#include "code\modules\ninja\suit\ninja_equipment_actions\ninja_net.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_stars.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_status_read.dm"
 #include "code\modules\ninja\suit\ninja_equipment_actions\ninja_stealth.dm"
