@@ -48,6 +48,7 @@
 	evaporation_rate = 2
 	condensating_point = INSTANT_REACT
 	condensation_amount = 2
+	condenses_liquid = FALSE
 
 /datum/reagent/clf3/define_gas()
 	var/datum/gas/new_gas = ..()
@@ -97,6 +98,7 @@
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
 	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
@@ -105,6 +107,7 @@
 	color = "#210021"
 	taste_description = "compressed bitterness"
 	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/blackpowder
 	name = "Black Powder"
@@ -113,6 +116,7 @@
 	color = "#000000"
 	metabolization_rate = 0.05
 	taste_description = "salt"
+	condenses_liquid = FALSE
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
@@ -133,6 +137,7 @@
 	color = "#C8C8C8"
 	taste_description = "salt"
 	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/flash_powder/reaction_turf(turf/T, volume, show_message, from_gas)
 	. = ..()
@@ -166,6 +171,7 @@
 	color = "#C8C8C8"
 	taste_description = "loud noises"
 	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
@@ -179,6 +185,7 @@
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 1.2
 	condensating_point = T20C-10
+	condenses_liquid = FALSE
 
 /datum/reagent/phlogiston/define_gas()
 	var/datum/gas/new_gas = ..()

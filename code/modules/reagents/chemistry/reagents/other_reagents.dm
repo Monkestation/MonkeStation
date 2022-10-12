@@ -380,6 +380,7 @@
 	var/lube_kind = TURF_WET_LUBE ///What kind of slipperiness gets added to turfs.
 	evaporation_rate = 2.5 //slightly slower than water
 	condensating_point = T20C + 10
+	condenses_liquid = FALSE
 
 /datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
 	var/turf/open/T = get_turf(O)
