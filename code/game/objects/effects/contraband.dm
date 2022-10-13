@@ -359,7 +359,7 @@
 
 /obj/structure/sign/poster/contraband/lizard
 	name = "Lizard"
-	desc = "This poster depicts a popular lizard rap artist"
+	desc = "This poster depicts a popular pants-wearing lizard rap artist"
 	icon_state = "poster34"
 
 /obj/structure/sign/poster/contraband/free_drone
