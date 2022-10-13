@@ -359,7 +359,7 @@
 
 /obj/structure/sign/poster/contraband/lizard
 	name = "Lizard"
-	desc = "This lewd poster depicts a lizard preparing to mate."
+	desc = "This poster depicts a popular lizard rap artist"
 	icon_state = "poster34"
 
 /obj/structure/sign/poster/contraband/free_drone
@@ -664,5 +664,10 @@
 	name = "Syndie Moth - Nuclear Operation"
 	desc = "A Syndicate-commissioned poster that uses Syndie Moth(TM?) to tell the viewer to keep the nuclear authentication disk unsecured. No, we aren't doing that. It's signed by 'AspEv'."
 	icon_state = "poster49"
+
+/obj/structure/sign/poster/official/ahelp
+	name = "Ahelp - It helps!"
+	desc = "A centcom commissioned poster from fourth wall art co. reminding everyone that reporting people and problems with ahelps helps everybody out... whatever that means."
+	icon_state = "poster50"
 
 #undef PLACE_SPEED
