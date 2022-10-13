@@ -30724,7 +30724,7 @@
 /area/medical/medbay/central)
 "bGD" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "45"
+	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -42416,7 +42416,7 @@
 /area/medical/genetics/cloning)
 "cvh" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "45"
+	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -67165,8 +67165,7 @@
 /obj/machinery/button/door{
 	id = "secondary_shop";
 	pixel_x = -7;
-	pixel_y = 60;
-	req_access_txt = "45"
+	pixel_y = 60
 	},
 /turf/open/floor/plasteel/dark,
 /area/vacant_room/commissary/commissary2)
