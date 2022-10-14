@@ -3,9 +3,9 @@
   *
   * The space ninja's weapon.
   *
-  * The blade that only the space ninja spawns with.  Comes with 14 base force and 15 throwforce, along with a signature special jaunting system.
+  * The blade that only the space ninja spawns with.  Comes with 24 base force and 15 throwforce, along with a signature special jaunting system.
   * Allows the user to dash to a location and deflect attacks so long as the user is holding it in one hand.
-  * The blade has 3 dashes stored at maximum, recharging one every 20 seconds.
+  * The blade has 3 dashes stored at maximum, recharging one every 15 seconds.
   * Striking a sapient target increases the "fuel cell charge" which, when full, allows the ninja to heal and regain some power cell charge
   * It also has a special feature where if it is tossed at a space ninja who owns it (determined by the ninja suit), the ninja will catch the katana instead of being hit by it.
   *
@@ -32,10 +32,10 @@
 	//It's a Speed VS Accuracy challenge, should make ninjas fairly skill-based.
 	force = 0
 	throwforce = 15
-	throw_speed = 3
+	throw_speed = 6
 	embedding = list("embed_chance" = 100)
-	block_level = 1
-	block_upgrade_walk = 1
+	block_level = 5
+	block_power = 50
 	block_flags = BLOCKING_NASTY | BLOCKING_PROJECTILE
 	sharpness = IS_SHARP_ACCURATE
 	w_class = WEIGHT_CLASS_BULKY
@@ -76,7 +76,7 @@
 
 /obj/item/high_frequency_blade/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed,force_wielded = 10,force_unwielded = 0,block_power_unwielded = 25, unwield_on_swap = TRUE)
+	AddComponent(/datum/component/two_handed,force_wielded = 10,force_unwielded = 0,block_power_unwielded = 100, block_power_wielded = 50, unwield_on_swap = TRUE)
 
 /obj/item/high_frequency_blade/Destroy()
 	QDEL_NULL(spark_system)
@@ -139,7 +139,7 @@
 
 	if(user.put_in_hands(src))
 		msg = "Your High Frequency Blade teleports into your hand!"
-	else if(user.equip_to_slot_if_possible(src, ITEM_SLOT_BELT, 0, 1, 1))
+	else if(user.equip_to_slot_if_possible(src, ITEM_SLOT_BACK, 0, 1, 1))
 		msg = "Your High Frequency Blade teleports back to you, sheathing itself as it does so!"
 	else
 		msg = "Your High Frequency Blade teleports to your location!"
@@ -172,8 +172,8 @@
 		if(ismachinery(target) || isstructure(target))
 			user.changeNext_move(0.3 SECONDS)
 			spark_system.start()
-			playsound(user, "sparks", 30, TRUE)
-			playsound(user, 'sound/weapons/blade1.ogg', 30, TRUE)
+			playsound(user, "sparks", 10, TRUE)
+			playsound(user, 'sound/weapons/blade1.ogg', 20, TRUE)
 			target.emag_act(user)
 	if(!wielded && !proximity_flag && !target.density)
 		jaunt.teleport(user, target)
@@ -220,34 +220,31 @@
 	previous_target = WEAKREF(target)
 	previous_x = x_slashed
 	previous_y = y_slashed
-	playsound(src, 'sound/weapons/bladeslice.ogg', 75, vary = TRUE)
-	playsound(src, 'sound/weapons/zapbang.ogg', 30, vary = TRUE)
+	playsound(src, 'sound/weapons/bladeslice.ogg', 60, vary = TRUE)
+	playsound(src, 'sound/weapons/zapbang.ogg', 20, vary = TRUE)
 	if(isliving(target))
 		var/mob/living/living_target = target
-		var/def_check = living_target.getarmor(type = "melee")
-
 
 		//Applies equal to 14 * the multiplier from pixel distance
-		living_target.apply_damage(damage = final_damage-force, damagetype = BRUTE, blocked = def_check, def_zone = user.zone_selected)
+		living_target.apply_damage(damage = final_damage, damagetype = BRUTE, def_zone = user.zone_selected)
 		log_combat(user, living_target, "slashed", src)
 
 		//Chance to gib a dead target with repeated strikes
 		if(living_target.stat == DEAD && prob(final_damage))
-			living_target.visible_message(span_danger("[living_target] explodes in a shower of gore!"), blind_message = span_hear("You hear organic matter ripping and tearing!"))
-			living_target.gib()
-			log_combat(user, living_target, "gibbed", src)
-
 			//Target must have been sentient to recharge the fuel cell.
 			if(ishuman(living_target))
 				var/mob/living/carbon/human/recharge_check
 				if(recharge_check?.last_mind)
 					fuel_cell_percentage += 25
-					if(prob(25))
+					if(prob(50))
 						user.say(pick("BULLSEYE!", "DEAD ON!", "*laugh", "Playtime's over!", "*flip"), forced = "ninjaboost")
+			log_combat(user, living_target, "gibbed", src)
+			living_target.visible_message(span_danger("[living_target] explodes in a shower of gore!"), blind_message = span_hear("You hear organic matter ripping and tearing!"))
+			living_target.gib()
 		//Recharge the fuel cell so long as the target is still fighting back
 		else if(living_target.mind && living_target.stat == CONSCIOUS)
-			//Between 7.5 and 18.75 a hit. Designed to take 2 kills to fully recharge a fuel cell.
-			fuel_cell_percentage += final_damage / 2
+			//Between 16 and 30 a hit. Designed to take 2 kills to fully recharge a fuel cell.
+			fuel_cell_percentage += final_damage / 1.5
 
 	else if(iswallturf(target) && prob(final_damage*0.5))
 		var/turf/closed/wall/wall_target = target
@@ -255,10 +252,9 @@
 	else if(ismineralturf(target) && prob(final_damage))
 		var/turf/closed/mineral/mineral_target = target
 		mineral_target.gets_drilled()
-	else if(ismachinery(target) && prob(final_damage*0.5))
-		var/obj/machinery/machinery_target = target
-		machinery_target.deconstruct()
-
+	if(isobj(target))
+		var/obj/obj_target = target
+		obj_target.take_damage(final_damage/2, BRUTE)
 
 	//Recharge the ninja's power cell and repair nanopaste ability
 	if(fuel_cell_percentage >= 100)
@@ -299,5 +295,7 @@
 /datum/action/innate/dash/ninja
 	current_charges = 3
 	max_charges = 3
-	charge_rate = 20 SECONDS
+	charge_rate = 15 SECONDS
 	recharge_sound = null
+
+#undef HF_BLADE_BASE_DAMAGE

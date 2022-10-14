@@ -240,6 +240,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// From anti-convulsant medication against seizures.
 #define TRAIT_ANTICONVULSANT "anticonvulsant"
 #define TRAIT_BLOODSHOT_EYES "bloodshot_eyes"
+//For immunity to bolas
+#define TRAIT_BOLA_IMMUNE "bola_immunity"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it

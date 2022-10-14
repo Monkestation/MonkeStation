@@ -332,6 +332,9 @@
 	playsound(loc,'sound/weapons/bolathrow.ogg', 75, 1)
 
 /obj/item/restraints/legcuffs/bola/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(HAS_TRAIT(hit_atom, TRAIT_BOLA_IMMUNE))
+		visible_message("<span class='danger'>[hit_atom] deflects the bola!</span>")
+		return
 	if(..() || !iscarbon(hit_atom))//if it gets caught or the target can't be cuffed,
 		return//abort
 	ensnare(hit_atom)

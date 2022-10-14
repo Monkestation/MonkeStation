@@ -22,6 +22,8 @@
 		var/mob/living/carbon/human/martial_artist = ninja
 		var/datum/martial_art/karate/cyborg_ninjitsu/ninjitsu = new
 		ninjitsu.teach(martial_artist)
+		ADD_TRAIT(martial_artist, TRAIT_IGNOREDAMAGESLOWDOWN, "Ninja Training")
+		ADD_TRAIT(martial_artist, TRAIT_BOLA_IMMUNE, "Ninja Training")
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/ninja = mob_override || owner.current
