@@ -667,7 +667,7 @@
 
 /obj/structure/sign/poster/official/ahelp
 	name = "Ahelp - It helps!"
-	desc = "A centcom commissioned poster from fourth wall art co. reminding everyone that reporting people and problems with ahelps helps everybody out... whatever that means."
+	desc = "A poster with a slogan reminding people about the Automatic Hazardous Environment Limitation Program, which processes reports of safety hazards before delivering them directly to Mr. Nanotrasen's fireplace to keep him warm."
 	icon_state = "poster50"
 
 #undef PLACE_SPEED
