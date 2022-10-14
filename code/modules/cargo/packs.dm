@@ -316,7 +316,7 @@
 
 /datum/supply_pack/emergency/weedcontrol_reverse
 	name = "Weed Out-of-Control Crate"
-	desc = "Dude, do you ever think that, like, we think that we order the crates, but what if the truth is, the crates order us?"
+	desc = "Supplies for when the botanists have smoked all the blunts and eaten all the food, contains rolling papers, snacks, and paraphernalia."
 	cost = 420
 	contraband = TRUE
 	contains = list(/obj/item/storage/fancy/rollingpapers,
@@ -342,7 +342,7 @@
 /datum/supply_pack/emergency/pest_control_reverse
 	name = "Pest Out-of-Control Crate"
 	desc = "Due to space-winter, a number of rodents have migrated into this crate."
-	cost = 800
+	cost = 1800
 	contraband = TRUE
 	contains = list(/mob/living/simple_animal/mouse,
 					/mob/living/simple_animal/mouse,
@@ -1126,9 +1126,8 @@
 
 /datum/supply_pack/engineering/cones
 	name = "Engineering Hat Crate"
-	desc = "Contains a complete set of headwear to fit the heads of an entire engineering crew."
+	desc = "A complete set of headwear to fit the heads of an entire engineering crew.  Includes 6 cones."
 	cost = 600
-	contraband = TRUE
 	contains = list(
 		/obj/item/clothing/head/cone,
 		/obj/item/clothing/head/cone,
@@ -1470,7 +1469,7 @@
 	crate_name = "BZ canister crate"
 	crate_type = /obj/structure/closet/crate/secure
 
-/datum/supply_pack/materials/carbon_dio
+/datum/supply_pack/materials/carbon_dioxide
 	name = "Carbon Dioxide Canister Crate"
 	desc = "Contains a canister of Carbon Dioxide. Requires Atmospherics access to open."
 	cost = 1200
@@ -1766,8 +1765,8 @@
 	dangerous = TRUE
 
 /datum/supply_pack/medical/maintpills
-	name = "Questionable Medicine Crate"
-	desc = "A shipment of unlabelled surplus pills.  It's... probably ok... probably."
+	name = "Experimental Medicine Crate"
+	desc = "A shipment of unlabelled, untested surplus pills.  It's... probably ok... probably."
 	cost = 10000
 	contraband = TRUE
 	contains = list(/obj/item/reagent_containers/pill/floorpill,
@@ -1775,7 +1774,7 @@
 					/obj/item/reagent_containers/pill/floorpill,
 					/obj/item/reagent_containers/pill/floorpill,
 					/obj/item/reagent_containers/pill/floorpill)
-	crate_name = "questionable medicine crate"
+	crate_name = "experimental medicine crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Science /////////////////////////////////////////
@@ -1958,7 +1957,7 @@
 					/obj/item/grenade/chem_grenade/cleaner)
 	crate_name = "janitorial supplies crate"
 
-/datum/supply_pack/service/janitor/janitorialcart
+/datum/supply_pack/service/janitor/janitorial_cart
 	name = "Janitorial Cart and Galoshes Crate"
 	desc = "The keystone to any successful janitor. As long as you have feet, this pair of galoshes will keep them firmly planted on the ground. Also contains a janitorial cart."
 	cost = 1000
@@ -1971,7 +1970,7 @@
 /datum/supply_pack/service/janitor/janicart
 	name = "Janicart Crate"
 	desc = "You'd better not have wrecked the last one joyriding."
-	cost = 20000
+	cost = 2000
 	access_budget = ACCESS_JANITOR
 	contains = list(/obj/vehicle/ridden/janicart,
 					/obj/item/key/janitor)
