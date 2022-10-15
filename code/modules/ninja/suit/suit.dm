@@ -66,6 +66,8 @@
 	var/suit_currently_busy = FALSE
 	///Whether or not the repair nanopaste ability is available
 	var/nanopaste_available = TRUE
+	///If a cyborg has already been hacked
+	var/cyborg_hacked = FALSE
 
 /obj/item/clothing/suit/space/space_ninja/Destroy()
 	unlock_suit()

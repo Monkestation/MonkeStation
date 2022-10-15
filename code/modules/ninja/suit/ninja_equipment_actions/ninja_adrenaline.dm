@@ -43,6 +43,6 @@
 /obj/item/clothing/suit/space/space_ninja/proc/ninjaboost_after()
 	var/mob/living/carbon/human/ninja = affecting
 	ninja.reagents.add_reagent(/datum/reagent/uranium/radium, suit_radium_injected)
-	ninja.adjustCloneLoss(4)
 	suit_radium_injected += 1 //Affects you more the longer you use it.
+	ninja.adjustCloneLoss(suit_radium_injected*2)
 	to_chat(ninja, "<span class='danger'>You are beginning to feel the after-effect of the nanopaste.</span>")

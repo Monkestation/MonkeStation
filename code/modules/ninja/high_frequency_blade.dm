@@ -11,7 +11,7 @@
   *
   */
 
- #define HF_BLADE_BASE_DAMAGE 14
+ #define HF_BLADE_BASE_DAMAGE 13
 
 /obj/item/high_frequency_blade
 	name = "high frequency blade"
@@ -27,15 +27,15 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	pickup_sound = 'sound/items/unsheath.ogg'
 	equip_sound = 'sound/items/sheath.ogg'
-	//Damage starts at 24, with the multiiplier going up to 2.5x.
+	//Damage starts at 23, with the multiiplier going up to 2.5x.
 	//This means that an accurate player can do up to 45 damage a hit if they land their clicks perfectly.
 	//It's a Speed VS Accuracy challenge, should make ninjas fairly skill-based.
 	force = 0
 	throwforce = 15
 	throw_speed = 6
 	embedding = list("embed_chance" = 100)
-	block_level = 5
-	block_power = 50
+	block_level = 2
+	block_power = 0
 	block_flags = BLOCKING_NASTY | BLOCKING_PROJECTILE
 	sharpness = IS_SHARP_ACCURATE
 	w_class = WEIGHT_CLASS_BULKY
@@ -76,7 +76,7 @@
 
 /obj/item/high_frequency_blade/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed,force_wielded = 10,force_unwielded = 0,block_power_unwielded = 100, block_power_wielded = 50, unwield_on_swap = TRUE)
+	AddComponent(/datum/component/two_handed,force_wielded = 10,force_unwielded = 0,block_power_unwielded = 50, block_power_wielded = 0, unwield_on_swap = TRUE)
 
 /obj/item/high_frequency_blade/Destroy()
 	QDEL_NULL(spark_system)
@@ -197,7 +197,7 @@
 
 /obj/item/high_frequency_blade/proc/slash(atom/target, mob/living/user, params)
 	var/list/modifiers = params2list(params)
-	user.changeNext_move(0.25 SECONDS)
+	user.changeNext_move(0.5 SECONDS)
 	user.do_attack_animation(target, "nothing")
 
 	//in case we arent called by a client
@@ -226,18 +226,14 @@
 		var/mob/living/living_target = target
 
 		//Applies equal to 14 * the multiplier from pixel distance
-		living_target.apply_damage(damage = final_damage, damagetype = BRUTE, def_zone = user.zone_selected)
+		living_target.apply_damage(damage = final_damage-force, damagetype = BRUTE, def_zone = user.zone_selected)
 		log_combat(user, living_target, "slashed", src)
 
 		//Chance to gib a dead target with repeated strikes
 		if(living_target.stat == DEAD && prob(final_damage))
-			//Target must have been sentient to recharge the fuel cell.
 			if(ishuman(living_target))
-				var/mob/living/carbon/human/recharge_check
-				if(recharge_check?.last_mind)
-					fuel_cell_percentage += 25
-					if(prob(50))
-						user.say(pick("BULLSEYE!", "DEAD ON!", "*laugh", "Playtime's over!", "*flip"), forced = "ninjaboost")
+				fuel_cell_percentage += 25
+				user.say(pick("BULLSEYE!", "DEAD ON!", "*laugh", "Playtime's over!", "*flip"), forced = "ninjaboost")
 			log_combat(user, living_target, "gibbed", src)
 			living_target.visible_message(span_danger("[living_target] explodes in a shower of gore!"), blind_message = span_hear("You hear organic matter ripping and tearing!"))
 			living_target.gib()
