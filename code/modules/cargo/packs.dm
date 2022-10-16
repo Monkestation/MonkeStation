@@ -331,7 +331,7 @@
 
 /datum/supply_pack/emergency/pest_control
 	name = "Pest Control Crate"
-	desc = "Additional supplies for handling rodents of both ordinary and unusual size."
+	desc = "Additional traps for handling rodents of both ordinary and unusual size."
 	cost = 1500
 	contains = list(/obj/item/storage/box/mousetraps,
 					/obj/item/storage/box/mousetraps,
