@@ -379,13 +379,16 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
 
+/mob/living/simple_animal/chicken/turkey/Initialize(mapload)
+	. = ..()
+	src.AddComponent(/datum/component/waddling)
+
 /obj/item/udder
 	name = "udder"
 
 /obj/item/udder/Initialize(mapload)
 	create_reagents(50)
 	reagents.add_reagent(/datum/reagent/consumable/milk, 20)
-	src.AddComponent(/datum/component/waddling)
 	. = ..()
 
 /obj/item/udder/proc/generateMilk()
