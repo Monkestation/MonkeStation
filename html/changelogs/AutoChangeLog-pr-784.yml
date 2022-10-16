@@ -1,4 +1,0 @@
-author: KoboldCommando
-delete-after: true
-changes:
-  - rscadd: Cargo now has several new crates, check them out for yourself!

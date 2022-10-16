@@ -1,9 +1,0 @@
-author: NanoCats
-delete-after: true
-changes:
-  - rscadd: Gives Coffee a home in science
-  - rscadd: puts bolt wire buttons in the bathrooms due to privacy complaints
-  - bugfix: Adds appropriate atmospherics equipment to medical, improves atmos network
-      generally
-  - bugfix: Gives cargo long enough to live that engineering can set up power
-  - tweak: Modifies the bridge a bit
