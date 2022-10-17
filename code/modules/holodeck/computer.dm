@@ -167,6 +167,7 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 			if(!valid)
 				return
 			//load the map_template that program_to_load represents
+			log_game("[key_name(usr)] switched the holodeck to [program_to_load]")
 			load_program(program_to_load)
 			. = TRUE
 		if("safety")
