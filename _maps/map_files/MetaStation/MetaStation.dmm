@@ -74304,6 +74304,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"ucH" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "udq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -117890,7 +117901,7 @@ iMR
 suL
 tzD
 rEp
-suL
+ucH
 kLp
 suL
 lIj
