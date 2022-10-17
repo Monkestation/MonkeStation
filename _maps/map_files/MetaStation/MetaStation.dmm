@@ -42089,13 +42089,16 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "cQn" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -42124,7 +42127,6 @@
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
-/obj/machinery/suit_storage_unit,
 /turf/open/floor/plasteel{
 	dir = 1
 	},
@@ -54079,6 +54081,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"hXP" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "hYi" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = -32
@@ -64250,6 +64259,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"nFG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "nGg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -74304,17 +74324,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"ucH" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "udq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -117403,7 +117412,7 @@ krD
 krD
 aCy
 czD
-czD
+hXP
 cQn
 cBH
 cCG
@@ -117901,7 +117910,7 @@ iMR
 suL
 tzD
 rEp
-ucH
+nFG
 kLp
 suL
 lIj
