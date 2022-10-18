@@ -14,6 +14,34 @@
 	display_name = "wooden sandals"
 	path = /obj/item/clothing/shoes/sandal
 
+/datum/gear/footwear/work_boots
+	display_name = "work boots"
+	path = /obj/item/clothing/shoes/workboots
+
+/datum/gear/footwear/laceup
+	display_name = "laceup shoes"
+	path = /obj/item/clothing/shoes/laceup
+
+/datum/gear/footwear/jackboots
+	display_name = "jackboots"
+	description = "The premier choice of oppressors for over 50 years!"
+	path = /obj/item/clothing/shoes/jackboots
+
+/datum/gear/footwear/blue_perfomer
+	display_name = "blue performer's boots"
+	description = "oo-ee-oo"
+	path = /obj/item/clothing/shoes/singerb
+
+/datum/gear/footwear/yellow_perfomer
+	display_name = "yellow performer's boots"
+	path = /obj/item/clothing/shoes/singery
+
+/datum/gear/footwear/clown_shoes
+	display_name = "clown shoes"
+	description = "Honk...."
+	path = /obj/item/clothing/shoes/clown_shoes
+	cost = 20000 //They are Sacred.
+
 /datum/gear/footwear/winterboots
 	display_name = "winter boots"
 	path = /obj/item/clothing/shoes/winterboots
@@ -22,7 +50,7 @@
 /datum/gear/footwear/swagshoes
 	display_name = "swag shoes"
 	path = /obj/item/clothing/shoes/swagshoes
-	cost = 31000 
+	cost = 31000
 
 //Standard shoes
 
