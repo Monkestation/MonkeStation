@@ -35541,6 +35541,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/machinery/suit_storage_unit/rd,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "ctW" = (
@@ -38496,11 +38497,11 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cCG" = (
+/obj/effect/turf_decal/loading_area,
 /obj/machinery/door/window/southleft{
 	name = "Mass Driver Door";
-	req_access_txt = "7"
+	req_access_txt = "8"
 	},
-/obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cCH" = (
@@ -42088,13 +42089,16 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "cQn" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -42120,7 +42124,6 @@
 	c_tag = "Toxins - Launch Area";
 	network = list("ss13","rd")
 	},
-/obj/machinery/suit_storage_unit/rd,
 /obj/effect/turf_decal/bot{
 	dir = 1
 	},
@@ -51983,10 +51986,6 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "gGf" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Experimentation Lab Maintenance";
-	req_one_access_txt = "8;49"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -51995,6 +51994,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/door/airlock/research{
+	name = "Experimentation Lab";
+	req_one_access_txt = "8;49"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
@@ -54078,6 +54081,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"hXP" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel,
+/area/science/mixing)
 "hYi" = (
 /obj/structure/sign/warning/vacuum{
 	pixel_x = -32
@@ -54921,8 +54931,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "49;47"
+/obj/machinery/door/airlock/research/glass{
+	name = "Research Testing Range";
+	req_one_access_txt = "47;49"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
@@ -63988,15 +63999,15 @@
 "nAh" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/research{
-	name = "Toxins Launch Room";
-	req_access_txt = "7"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/door/airlock/research{
+	name = "Toxins Launch Room Access";
+	req_access_txt = "8"
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -64248,6 +64259,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"nFG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "nGg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -117390,7 +117412,7 @@ krD
 krD
 aCy
 czD
-czD
+hXP
 cQn
 cBH
 cCG
@@ -117888,7 +117910,7 @@ iMR
 suL
 tzD
 rEp
-suL
+nFG
 kLp
 suL
 lIj
