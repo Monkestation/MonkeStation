@@ -147,7 +147,7 @@
 #define COMP_SOUND_SLOWCLAP "Slow Clap"
 
 // Security Arrest Console
-#define COMP_STATE_ARREST "*Arrest*"
+#define COMP_STATE_ARREST "Arrest"
 #define COMP_STATE_PRISONER "Incarcerated"
 #define COMP_STATE_PAROL "Paroled"
 #define COMP_STATE_DISCHARGED "Discharged"
