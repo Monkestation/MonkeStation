@@ -1415,6 +1415,8 @@
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because stimulum/nitryl/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	taste_description = "searingly cold"
+	gas = GAS_HYPERNOB
+
 /datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
 	. = ..()
 	if(isplasmaman(L))
