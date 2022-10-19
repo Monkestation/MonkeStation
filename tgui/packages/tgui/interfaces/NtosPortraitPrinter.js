@@ -64,7 +64,6 @@ export const NtosPortraitPrinter = (props, context) => {
                       <Button
                         icon="check"
                         content="Print Portrait"
-                        disabled={!is_category_empty}
                         onClick={() => act("select", {
                           selected: paintings[listIndex]["ref"],
                         })}
