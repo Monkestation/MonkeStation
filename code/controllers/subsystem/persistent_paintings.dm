@@ -1,5 +1,5 @@
 #define PAINTINGS_DATA_FORMAT_VERSION 1
-/*
+/* Example of stored painting data format version 1
 {
 	"version":1
 	"paintings":[
