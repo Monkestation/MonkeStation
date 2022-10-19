@@ -97,7 +97,7 @@
 		ui.open()
 
 /obj/item/canvas/attackby(obj/item/I, mob/living/user, params)
-	if(user.a_intent == INTENT_HELP)
+	if(user.a_intent != INTENT_HARM)
 		ui_interact(user)
 	else
 		return ..()
@@ -107,6 +107,7 @@
 	.["grid"] = grid
 	.["name"] = painting_metadata.title
 	.["author"] = painting_metadata.creator_name
+	.["patron"] = painting_metadata.patron_name
 	.["medium"] = painting_metadata.medium
 	.["date"] = painting_metadata.creation_date
 	.["finalized"] = finalized
@@ -148,6 +149,9 @@
 		if("finalize")
 			. = TRUE
 			finalize(user)
+		if("patronage")
+			. = TRUE
+			patron(user)
 
 /obj/item/canvas/proc/finalize(mob/user)
 	if(painting_metadata.loaded_from_json || finalized)
@@ -159,6 +163,35 @@
 	painting_metadata.creation_round_id = GLOB.round_id
 	generate_proper_overlay()
 	try_rename(user)
+
+/obj/item/canvas/proc/patron(mob/user)
+	if(!finalized || !painting_metadata.loaded_from_json || !isliving(user))
+		return
+	var/mob/living/living_user = user
+	var/obj/item/card/id/id_card = living_user.get_idcard(TRUE)
+	if(!id_card)
+		to_chat(user,span_notice("You don't even have a id and you want to be an art patron?"))
+		return
+	if(!id_card.registered_account || !id_card.registered_account.account_job)
+		to_chat(user,span_notice("No valid non-departamental account found."))
+		return
+	var/datum/bank_account/account = id_card.registered_account
+	if(account.account_balance < painting_metadata.credit_value)
+		to_chat(user,span_notice("You can't afford this."))
+		return
+	var/sniped_amount = painting_metadata.credit_value
+	var/offer_amount = tgui_input_number(user, "How much do you want to offer?", "Patronage Amount", (painting_metadata.credit_value + 1), account.account_balance, painting_metadata.credit_value)
+	if(isnull(offer_amount))
+		return
+	if(offer_amount <= 0 || sniped_amount != painting_metadata.credit_value || offer_amount < painting_metadata.credit_value+1 || !user.canUseTopic(src))
+		return
+	if(!account.adjust_money(-offer_amount))
+		to_chat(user,span_warning("Transaction failure. Please try again."))
+		return
+	painting_metadata.patron_ckey = user.ckey
+	painting_metadata.patron_name = user.real_name
+	painting_metadata.credit_value = offer_amount
+	to_chat(user,span_notice("Nanotrasen Trust Foundation thanks you for your contribution. You're now offical patron of this painting."))
 
 /obj/item/canvas/update_overlays()
 	. = ..()
@@ -239,10 +272,10 @@
 /obj/item/canvas/proc/try_rename(mob/user)
 	if(painting_metadata.loaded_from_json) // No renaming old paintings
 		return
-	var/new_name = stripped_input(user,"What do you want to name the painting?")
+	var/new_name = tgui_input_text(user, "What do you want to name the painting?", "Title Your Masterpiece")
 	if(new_name != painting_metadata.title && new_name && user.canUseTopic(src, BE_CLOSE))
 		painting_metadata.title = new_name
-	var/sign_choice = tgui_alert(user, "Do you want to sign the painting?", "Sign painting?", list("Yes", "No"))
+	var/sign_choice = tgui_alert(user, "Do you want to sign it or remain anonymous?", "Sign painting?", list("Yes", "No"))
 	if(sign_choice != "Yes")
 		painting_metadata.creator_name = "Anonymous"
 	SStgui.update_uis(src)

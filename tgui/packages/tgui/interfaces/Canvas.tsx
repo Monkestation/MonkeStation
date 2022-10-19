@@ -239,6 +239,10 @@ export const Canvas = (props, context) => {
                   {!!data.date && `- ${new Date(data.date).getFullYear()+540}`}
                 </Box>
                 <Box italic>{data.medium}</Box>
+                <Box italic>
+                  {!!data.patron && `Sponsored by ${data.patron} `}
+                  <Button icon="hand-holding-usd" color="transparent" iconColor="black" onClick={() => act("patronage")} />
+                </Box>
               </Flex.Item>
             )}
           </Flex>

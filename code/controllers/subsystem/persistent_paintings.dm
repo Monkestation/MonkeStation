@@ -11,6 +11,8 @@
 			"creation_round_id": 222,
 			"title": "example title",
 			"tags": ["library","library_private"],
+			"patron_ckey" : "example",
+			"patron_name" : "example",
 			"credit_value" : 999,
 			"width" : 24,
 			"height" : 24,
@@ -35,6 +37,12 @@
 	var/creation_round_id
 	/// List of this painting string tags if any
 	var/list/tags
+	/// Patron ckey
+	var/patron_ckey
+	/// Patron name
+	var/patron_name
+	/// Amount paid by last patron for this painting
+	var/credit_value = 0
 	/// painting width
 	var/width
 	/// painting height
@@ -52,6 +60,7 @@
 	creation_date = json_data["creation_date"]
 	creation_round_id = json_data["creation_round_id"]
 	tags = json_data["tags"]
+	patron_ckey = json_data["patron_ckey"]
 	width = json_data["width"]
 	height = json_data["height"]
 	medium = json_data["medium"]
@@ -66,6 +75,8 @@
 	new_data["creation_date"] = creation_date
 	new_data["creation_round_id"] = creation_round_id
 	new_data["tags"] = tags
+	new_data["patron_ckey"] = patron_ckey
+	new_data["patron_name"] = patron_name
 	new_data["width"] = width
 	new_data["height"] = height
 	new_data["medium"] = medium
@@ -158,6 +169,8 @@ SUBSYSTEM_DEF(persistent_paintings)
 					new_data["creation_date"] = time2text(world.realtime) // Could use creation/modified file helpers in rustg
 					new_data["creation_round_id"] = GLOB.round_id
 					new_data["tags"] = list(category,"Migrated from version 0")
+					new_data["patron_ckey"] = ""
+					new_data["patron_name"] = ""
 					new_data["credit_value"] = 0
 					new_data["width"] = width
 					new_data["height"] = height

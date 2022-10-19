@@ -73,6 +73,13 @@
 			chosen_painting.creator_name = new_name
 			log_admin("[key_name(user)] has renamed a persistent painting author made by [chosen_painting.creator_name] with id [chosen_painting.md5] from [old_name] to [chosen_painting.creator_name].")
 			return TRUE
+		if("dumpit")
+			//Modify the metadata
+			chosen_painting.patron_name = ""
+			chosen_painting.patron_ckey = ""
+			chosen_painting.credit_value = 0
+			log_admin("[key_name(user)] has reset patronage data on a persistent painting made by [chosen_painting.creator_ckey] with id [chosen_painting.md5].")
+			return TRUE
 		if("remove_tag")
 			if(chosen_painting.tags)
 				chosen_painting.tags -= params["tag"]
