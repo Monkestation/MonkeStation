@@ -290,13 +290,23 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
-/datum/design/buffer
+/datum/design/buffer_upgrade
 	name = "Floor Buffer Upgrade"
 	desc = "A floor buffer that can be attached to vehicular janicarts."
 	id = "buffer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
-	build_path = /obj/item/janiupgrade
+	build_path = /obj/item/janicart_upgrade/buffer
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/vacuum_upgrade
+	name = "Vacuum Upgrade"
+	desc = "A vacuum that can be attached to vehicular janicarts."
+	id = "vacuum"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
+	build_path = /obj/item/janicart_upgrade/vacuum
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
@@ -510,4 +520,32 @@
 	materials = list(/datum/material/iron = 1500, /datum/material/plastic = 1000)
 	build_path = /obj/item/stack/sticky_tape/pointy
 	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/super_pointy_tape
+	name = "Super Pointy Tape"
+	id = "super_pointy_tape"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 3000, /datum/material/plastic = 2000)
+	build_path = /obj/item/stack/sticky_tape/pointy/super
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/engi_plumbing_rcd
+	name = "Engineering Plumbing Constructor"
+	id = "engi_plumbing_rcd"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500, /datum/material/plastic = 1000)
+	build_path = /obj/item/construction/plumbing/engineering
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/oven_tray
+	name = "Oven Tray"
+	desc = "Gotta shove something in!"
+	id = "oven_tray"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/plate/oven_tray
+	category = list("initial","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE

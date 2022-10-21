@@ -16,7 +16,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	sexes = FALSE
 	damage_overlay_type = ""
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem
+	meat = /obj/item/food/meat/slab/human/mutant/golem
 	species_language_holder = /datum/language_holder/golem
 	// To prevent golem subtypes from overwhelming the odds when random species
 	// changes, only the Random Golem type can be chosen
@@ -71,7 +71,7 @@
 /datum/species/golem/adamantine
 	name = "Adamantine Golem"
 	id = "adamantine_golem"
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine
+	meat = /obj/item/food/meat/slab/human/mutant/golem/adamantine
 	mutant_organs = list(/obj/item/organ/adamantine_resonator, /obj/item/organ/vocal_cords/adamantine)
 	fixed_mut_color = "4ed"
 	info_text = "As an <span class='danger'>Adamantine Golem</span>, you possess special vocal cords allowing you to \"resonate\" messages to all golems. Your unique mineral makeup makes you immune to most types of magic."
@@ -1131,7 +1131,7 @@
 		H.dropItemToGround(W)
 	for(var/i=1, i <= rand(3,5), i++)
 		new /obj/item/stack/sheet/mineral/snow(get_turf(H))
-	new /obj/item/reagent_containers/food/snacks/grown/carrot(get_turf(H))
+	new /obj/item/food/grown/carrot(get_turf(H))
 	qdel(H)
 
 /datum/species/golem/snow/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -1161,3 +1161,21 @@
 	charge_max = 15
 	action_icon = 'icons/obj/toy.dmi'
 	action_icon_state = "snowball"
+
+
+/datum/species/golem/mhydrogen
+	name = "Metallic Hydrogen Golem"
+	id = "Metallic Hydrogen golem"
+	fixed_mut_color = "ddd"
+	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your unique mineral makeup makes you immune to most types of damages."
+	prefix = "Metallic Hydrogen"
+	special_names = null
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_NODISMEMBER)
+
+/datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	ADD_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+
+/datum/species/golem/mhydrogen/on_species_loss(mob/living/carbon/C)
+	REMOVE_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+	return ..()

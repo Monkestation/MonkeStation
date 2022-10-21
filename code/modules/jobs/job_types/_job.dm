@@ -35,7 +35,7 @@
 	//Supervisors, who this person answers to directly
 	var/supervisors = ""
 
-	//Sellection screen color
+	//Selection screen color
 	var/selection_color = "#ffffff"
 
 	//Overhead chat message colour
@@ -64,6 +64,8 @@
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+
+	var/bounty_types = CIV_JOB_BASIC //Monkestation edit
 
 	var/gimmick = FALSE //least hacky way i could think of for this
 
@@ -164,9 +166,6 @@
 
 			if(H.equip_to_appropriate_slot(item))
 				to_chat(M, "<span class='notice'>Placing [G.display_name] in your inventory!</span>")
-				continue
-			if(H.put_in_hands(item))
-				to_chat(M, "<span class='notice'>Placing [G.display_name] in your hands!</span>")
 				continue
 
 			var/obj/item/storage/B = (locate() in H)

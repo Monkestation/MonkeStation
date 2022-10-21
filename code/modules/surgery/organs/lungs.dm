@@ -257,6 +257,65 @@
 			H.reagents.add_reagent(/datum/reagent/nitryl,1)
 
 		breath.adjust_moles(GAS_NITRYL, -gas_breathed)
+	// Freon
+		var/freon_pp = PP(breath,GAS_FREON)
+		if (prob(freon_pp))
+			to_chat(H, span_alert("Your mouth feels like it's burning!"))
+		if (freon_pp >40)
+			H.emote("gasp")
+			H.adjustFireLoss(15)
+			if (prob(freon_pp/2))
+				to_chat(H, span_alert("Your throat closes up!"))
+				H.silent = max(H.silent, 3)
+		else
+			H.adjustFireLoss(freon_pp/4)
+		gas_breathed = breath.get_moles(GAS_FREON)
+		if (gas_breathed > gas_stimulation_min)
+			H.reagents.add_reagent(/datum/reagent/freon,1)
+
+		breath.adjust_moles(GAS_FREON, -gas_breathed)
+
+	// Healium
+		var/healium_pp = PP(breath,GAS_HEALIUM)
+		if(healium_pp > SA_sleep_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
+			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1- existing))
+			H.adjustFireLoss(-7)
+			H.adjustToxLoss(-5)
+			H.adjustBruteLoss(-5)
+		gas_breathed = breath.get_moles(GAS_HEALIUM)
+		breath.adjust_moles(GAS_HEALIUM, -gas_breathed)
+
+	// Pluonium
+		// Inert
+
+	// Zauker
+		var/zauker_pp = PP(breath,GAS_ZAUKER)
+		if(zauker_pp > safe_breath_max)
+			H.adjustBruteLoss(25)
+			H.adjustOxyLoss(5)
+			H.adjustFireLoss(8)
+			H.adjustToxLoss(8)
+		gas_breathed = breath.get_moles(GAS_ZAUKER)
+		breath.adjust_moles(GAS_ZAUKER, -gas_breathed)
+
+	// Halon
+		gas_breathed = breath.get_moles(GAS_HALON)
+		if(gas_breathed > gas_stimulation_min)
+			H.adjustOxyLoss(5)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/halon)
+			H.reagents.add_reagent(/datum/reagent/halon,max(0, 1 - existing))
+		gas_breathed = breath.get_moles(GAS_HALON)
+		breath.adjust_moles(GAS_HALON, -gas_breathed)
+
+	// Hexane
+		gas_breathed = breath.get_moles(GAS_HEXANE)
+		if(gas_breathed > gas_stimulation_min)
+			H.hallucination += 50
+			H.reagents.add_reagent(/datum/reagent/hexane,5)
+			if(prob(33))
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+		breath.adjust_moles(GAS_HEXANE, -gas_breathed)
 
 	// Stimulum
 		gas_breathed = PP(breath,GAS_STIMULUM)
@@ -310,6 +369,36 @@
 		// Clear out moods when no miasma at all
 		else
 			SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "smell")
+
+		//NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
+		if(breath.get_moles(GAS_NUCLEIUM))
+			var/nucleium_pp = PP(breath, GAS_NUCLEIUM)
+			switch(nucleium_pp)
+				if(0.1 to 5)
+					H.adjustFireLoss(1)
+					H.radiation += 5
+				if(5 to 15)
+					H.adjustFireLoss(2)
+					H.radiation += 10
+				if(15 to 30)
+					H.adjustFireLoss(3)
+					H.radiation += 20
+				if(30 to INFINITY)
+					H.adjustFireLoss(4)
+					H.radiation += 30
+
+			if(prob(nucleium_pp/4))
+				to_chat(owner, "<span class='warning'>Your lungs feel like they are disintergrating!</span>")
+			if(prob(nucleium_pp))
+				H.emote("gasp")
+			if(nucleium_pp > 15)
+				if(prob(2))
+					to_chat(owner, "<span class='userdanger'>Your lungs violently disintergrate!</span>")
+					src.Remove(H, 1)
+					QDEL_NULL(src)
+					return
+			breath.adjust_moles(GAS_NUCLEIUM, -gas_breathed)
+		// Monkestation Edit End
 
 		handle_breath_temperature(breath, H)
 	return TRUE
@@ -367,10 +456,6 @@
 		failed = FALSE
 	return
 
-/obj/item/organ/lungs/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
-	return S
 
 /obj/item/organ/lungs/plasmaman
 	name = "plasma filter"

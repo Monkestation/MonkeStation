@@ -3,7 +3,7 @@
 /obj/structure/disposalpipe
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
+	icon = 'monkestation/icons/obj/atmospherics/pipes/disposal.dmi'
 	anchored = TRUE
 	density = FALSE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
@@ -13,10 +13,11 @@
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30, "stamina" = 0)
 	layer = DISPOSAL_PIPE_LAYER			// slightly lower than wires and other pipes
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-	var/dpdir = NONE					// bitmask of pipe directions
-	var/initialize_dirs = NONE			// bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
-	var/flip_type						// If set, the pipe is flippable and becomes this type when flipped
 
+	var/dpdir = NONE // bitmask of pipe directions
+	var/initialize_dirs = NONE // bitflags of pipe directions added on init, see \code\_DEFINES\pipe_construction.dm
+	var/flip_type // If set, the pipe is flippable and becomes this type when flipped
+	var/low_volume = FALSE // Lower sound volumes for special traps
 
 /obj/structure/disposalpipe/Initialize(mapload, obj/structure/disposalconstruct/make_from)
 	. = ..()
@@ -107,7 +108,10 @@
 	else if(floorturf)
 		target = get_offset_target_turf(T, rand(5)-rand(5), rand(5)-rand(5))
 
-	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
+	if(low_volume == TRUE)
+		playsound(src, 'sound/machines/hiss.ogg', 15, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
+	else
+		playsound(src, 'sound/machines/hiss.ogg', 50, FALSE, FALSE)
 	pipe_eject(H, direction, TRUE, target, eject_range)
 	H.vent_gas(T)
 	qdel(H)

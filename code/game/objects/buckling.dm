@@ -5,6 +5,7 @@
 	var/list/mob/living/buckled_mobs = null //list()
 	var/max_buckled_mobs = 1
 	var/buckle_prevents_pull = FALSE
+	var/can_be_unanchored = FALSE //MONKESTATION ADDITION
 
 //Interaction
 /atom/movable/attack_hand(mob/living/user)
@@ -41,11 +42,13 @@
 		if(user_buckle_mob(M, user, check_loc = FALSE))
 			return TRUE
 
+/**
+ * Returns TRUE if there are mobs buckled to this atom and FALSE otherwise
+ */
 /atom/movable/proc/has_buckled_mobs()
-	if(!buckled_mobs)
-		return FALSE
-	if(buckled_mobs.len)
+	if(length(buckled_mobs))
 		return TRUE
+	return FALSE
 
 //procs that handle the actual buckling and unbuckling
 /atom/movable/proc/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
@@ -80,6 +83,7 @@
 	buckled_mobs |= M
 	M.update_mobility()
 	M.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
+	M.set_glide_size(glide_size)
 	post_buckle_mob(M)
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, M, force)
@@ -99,6 +103,7 @@
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_mobility()
 		buckled_mob.clear_alert("buckled")
+		buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.total_multiplicative_slowdown()))
 		buckled_mobs -= buckled_mob
 		SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 

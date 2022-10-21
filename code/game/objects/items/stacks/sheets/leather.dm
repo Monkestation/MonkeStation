@@ -32,6 +32,12 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	icon_state = "sheet-corgi"
 	item_state = "sheet-corgi"
 
+/obj/item/stack/sheet/animalhide/mothroach
+	name = "mothroach hide"
+	desc = "A thin layer of mothroach hide."
+	singular_name = "mothroach hide piece"
+	icon_state = "sheet-mothroach"
+	item_state = "sheet-mothroach"
 
 GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	new/datum/stack_recipe("gondola mask", /obj/item/clothing/mask/gondola, 1), \
@@ -139,6 +145,10 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	item_state = "sheet-wetleather"
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
+
+/obj/item/stack/sheet/wetleather/Initialize(mapload, new_amount, merge)
+	. = ..()
+	AddElement(/datum/element/dryable, /obj/item/stack/sheet/leather)
 
 /*
  * Leather SHeet

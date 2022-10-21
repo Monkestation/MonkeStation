@@ -10,7 +10,7 @@
 	emote_see = list("dozes off.", "looks around sleepily.")
 	speak_chance = 1
 	turns_per_move = 5
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 3)
+	butcher_results = list(/obj/item/food/meat/slab = 3)
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
@@ -20,7 +20,6 @@
 	health = 50
 	maxHealth = 50
 	speed = 10
-	glide_size = 2
 	chat_color = "#728AE6"
 	can_be_held = TRUE
 	held_state = "sloth"

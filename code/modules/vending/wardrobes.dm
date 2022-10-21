@@ -30,7 +30,7 @@
 					/obj/item/clothing/mask/gas/sechailer = 6,
 					/obj/item/clothing/under/rank/security/officer/skirt = 3,
 					/obj/item/clothing/under/rank/security/officer/white = 3,
-					/obj/item/clothing/under/pants/khaki = 3,
+					/obj/item/clothing/under/pants/slacks = 3,
 					/obj/item/clothing/under/rank/security/officer/blueshirt = 3,
 					/obj/item/clothing/under/rank/security/officer/mallcop = 3,
 					/obj/item/clothing/neck/tie/red = 6,
@@ -97,6 +97,7 @@
 					/obj/item/clothing/head/helmet/space/plasmaman/replacement/engineering = 3,
 					/obj/item/clothing/suit/hooded/wintercoat/engineering = 3,
 					/obj/item/clothing/under/rank/engineering/engineer = 3,
+					/obj/item/clothing/under/rank/engineering/engineer/skirt = 3, // MONKESTATION EDIT: Engineering skirts
 					/obj/item/clothing/under/rank/engineering/engineer/hazard = 3,
 					/obj/item/clothing/suit/hazardvest = 3,
 					/obj/item/clothing/shoes/workboots = 3,
@@ -124,6 +125,7 @@
 					/obj/item/clothing/head/helmet/space/plasmaman/replacement/engineering/atmospherics = 3,
 					/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos = 3,
 					/obj/item/clothing/under/rank/engineering/atmospheric_technician = 3,
+					/obj/item/clothing/under/rank/engineering/atmospheric_technician/skirt = 3, // MONKESTATION EDIT: Engineering skirts
 					/obj/item/clothing/shoes/sneakers/black = 3)
 	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/engineering/atmos/old = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/atmos_wardrobe
@@ -167,7 +169,8 @@
 	product_ads = "You turn me TRUE, use defines!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
 	vend_reply = "Thank you for using the RoboDrobe!"
 	light_color = LIGHT_COLOR_WHITE
-	products = list(/obj/item/clothing/glasses/hud/diagnostic = 2,
+	products = list(
+					/obj/item/clothing/glasses/hud/diagnostic = 2,
 					/obj/item/reagent_containers/medspray/sterilizine = 3,
 					/obj/item/clothing/under/rank/rnd/roboticist = 2,
 					/obj/item/clothing/under/rank/rnd/roboticist/skirt = 2,
@@ -179,16 +182,21 @@
 					/obj/item/clothing/gloves/fingerless = 2,
 					/obj/item/clothing/head/soft/black = 2,
 					/obj/item/clothing/mask/bandana/skull = 2,
-					/obj/item/clothing/head/beret/sci = 2)
+					/obj/item/clothing/head/beret/sci = 2,
+					)
 
-	contraband = list(/obj/item/clothing/suit/hooded/techpriest = 2,
+	contraband = list(
+					/obj/item/clothing/suit/hooded/techpriest = 2,
 					/obj/item/organ/tongue/robot = 2,
 					/obj/item/clothing/under/costume/mech_suit = 2,
 					/obj/item/clothing/under/costume/mech_suit/white = 2,
-					/obj/item/clothing/under/costume/mech_suit/blue = 2,)
+					/obj/item/clothing/under/costume/mech_suit/blue = 2,
+					)
+
 	refill_canister = /obj/item/vending_refill/wardrobe/robo_wardrobe
-	extra_price = 300
+	extra_price = 100
 	payment_department = ACCOUNT_SCI
+
 /obj/item/vending_refill/wardrobe/robo_wardrobe
 	machine_name = "RoboDrobe"
 
@@ -375,6 +383,7 @@
 					/obj/item/clothing/under/rank/civilian/lawyer/purpsuit/skirt = 1,
 					/obj/item/clothing/under/suit/black = 1,
 					/obj/item/clothing/under/suit/black/skirt = 1,
+					/obj/item/clothing/neck/tie = 3,
 					/obj/item/clothing/suit/toggle/lawyer/black = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/female = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/female/skirt = 1,
@@ -422,7 +431,7 @@
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
 					/obj/item/clothing/head/taqiyahred = 3,
-					/obj/item/clothing/head/beanie/rasta = 1)
+					/obj/item/clothing/head/rasta = 1)
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,

@@ -3,7 +3,7 @@
 #define SEND_PRESSURE (0.05*ONE_ATMOSPHERE)
 
 /obj/machinery/disposal
-	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
+	icon = 'monkestation/icons/obj/atmospherics/pipes/disposal.dmi'
 	density = TRUE
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30, "stamina" = 0)
 	max_integrity = 200
@@ -11,8 +11,6 @@
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
 	obj_flags = CAN_BE_HIT | USES_TGUI
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
-
-
 
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/full_pressure = FALSE
@@ -23,6 +21,7 @@
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
+	var/low_volume = FALSE //Lower volume sounds
 	// create a new disposal
 	// find the attached trunk (if present) and init gas resvr.
 
@@ -181,10 +180,15 @@
 	flushing = TRUE
 	flushAnimation()
 	sleep(10)
-	if(last_sound < world.time + 1)
+
+	if(last_sound < world.time + 1 && low_volume == TRUE)
+		playsound(src, 'sound/machines/disposalflush.ogg', 10, FALSE, FALSE, falloff_exponent = 3)
+		last_sound = world.time
+	else
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, FALSE, FALSE)
 		last_sound = world.time
 	sleep(5)
+
 	if(QDELETED(src))
 		return
 	var/obj/structure/disposalholder/H = new(src)
@@ -211,9 +215,10 @@
 // called when holder is expelled from a disposal
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
 	H.active = FALSE
-
-	playsound(src, 'sound/machines/hiss.ogg', 50, FALSE, FALSE)
-
+	if(low_volume == TRUE)
+		playsound(src, 'sound/machines/hiss.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE)
+	else
+		playsound(src, 'sound/machines/hiss.ogg', 50, FALSE, FALSE)
 	pipe_eject(H)
 
 	H.vent_gas(loc)

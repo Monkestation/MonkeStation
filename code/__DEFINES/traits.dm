@@ -152,6 +152,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
+#define TRAIT_TESLA_SHOCKIMMUNE "tesla_shock_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
 #define TRAIT_NOVOMIT			"no_vomit"
@@ -236,11 +237,25 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ALWAYS_STUBS      "always_stubs_toe" //you will always stub your toe on tables, even if you're wearing shoes
 #define TRAIT_NAIVE				"naive" //All dead people will appear as sleeping.
 #define TRAIT_DROPS_ITEMS_ON_DEATH "drops_items_on_death" //used for battle royale
+/// From anti-convulsant medication against seizures.
+#define TRAIT_ANTICONVULSANT "anticonvulsant"
+#define TRAIT_BLOODSHOT_EYES "bloodshot_eyes"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
 
+
+//important_recursive_contents traits
+/*
+ * Used for movables that need to be updated, via COMSIG_ENTER_AREA and COMSIG_EXIT_AREA, when transitioning areas.
+ * Use [/atom/movable/proc/become_area_sensitive(trait_source)] to properly enable it. How you remove it isn't as important.
+ */
+#define TRAIT_AREA_SENSITIVE "area-sensitive"
+///every hearing sensitive atom has this trait
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive"
+///every object that is currently the active storage of some client mob has this trait
+#define TRAIT_ACTIVE_STORAGE "active_storage"
+
 
 // item traits
 #define TRAIT_NODROP            "nodrop"
@@ -253,6 +268,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FISH_SAFE_STORAGE "fish_case" //Fish in this won't die
 #define TRAIT_FISH_CASE_COMPATIBILE "fish_case_compatibile" //Stuff that can go inside fish cases
 #define TRAIT_NEEDS_TWO_HANDS "needstwohands" // The items needs two hands to be carried
+#define TRAIT_FOOD_GRILLED "food_grilled"
 
 #define TRAIT_AI_BAGATTACK "bagattack" // This atom can ignore the "is on a turf" check for simple AI datum attacks, allowing them to attack from bags or lockers as long as any other conditions are met
 
@@ -264,6 +280,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_LIGHT_STEP		"light_step"
 #define TRAIT_SPIRITUAL			"spiritual"
 #define TRAIT_VORACIOUS			"voracious"
+#define TRAIT_GOURMAND			"gourmand"
 #define TRAIT_SELF_AWARE		"self_aware"
 #define TRAIT_FREERUNNING		"freerunning"
 #define TRAIT_SKITTISH			"skittish"
@@ -289,6 +306,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STABLE_ASS		"stable_ass"
 #define TRAIT_DUMMY_THICK		"dummy_thick"
 #define TRAIT_KLEPTOMANIAC 		"kleptomaniac"
+#define TRAIT_WATER_BREATHING "water_breathing"
+#define TRAIT_NUDIST            "nudist"
+
 //MonkeStation Edit End
 
 ///Trait applied to turfs when an atmos holosign is placed on them. It will stop firedoors from closing.
@@ -322,6 +342,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define CURSE_TRAIT "eldritch"
 #define STATION_TRAIT "station-trait"
 #define SKILLCHIP_TRAIT "skillchip"
+#define TRAIT_RUSTY "rust_trait"
+#define TURF_TRAIT "turf"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -379,6 +401,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // Monkestation Changes Start
 #define TRAIT_TRASH_EATER "trash_eater" //goat.dm symptom requirement
 #define TRAIT_VAULTING "vaulting" //simian trait
+///Turf trait for when a turf is transparent
+#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 // Monkestation Changes End
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
 //SKILLCHIP STUFF START
@@ -420,3 +444,23 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_SUIT_SENSORS "suit_sensors"
 ///Mob is tracked by nanites, and on glob suit sensors list
 #define TRAIT_NANITE_SENSORS "nanite_sensors"
+
+///Trait for dryable items
+#define TRAIT_DRYABLE "trait_dryable"
+///Trait for dried items
+#define TRAIT_DRIED "trait_dried"
+//Trait for customizable reagent holder
+#define TRAIT_CUSTOMIZABLE_REAGENT_HOLDER "customizable_reagent_holder"
+/// Trait applied by element
+#define ELEMENT_TRAIT "element_trait"
+
+
+///FOOD TRAITS
+///Trait for Fire Burps
+#define TRAIT_FOOD_FIRE_BURPS "food_buff_fire_burps"
+///Traut for fast sliding
+#define FOOD_SLIDE "food_slide_buff"
+///Trait for hand picked crops to be of a higher stats (ignores cap)
+#define FOOD_JOB_BOTANIST "food_job_botanist"
+///Trait for rocks to randomly drop ore
+#define FOOD_JOB_MINER "food_job_miner"

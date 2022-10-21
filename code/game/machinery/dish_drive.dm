@@ -11,7 +11,6 @@
 	circuit = /obj/item/circuitboard/machine/dish_drive
 	pass_flags = PASSTABLE
 	var/static/list/collectable_items = list(/obj/item/trash/waffles,
-		/obj/item/trash/plate,
 		/obj/item/trash/tray,
 		/obj/item/reagent_containers/glass/bowl,
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -19,7 +18,6 @@
 		/obj/item/shard,
 		/obj/item/broken_bottle)
 	var/static/list/disposable_items = list(/obj/item/trash/waffles,
-		/obj/item/trash/plate,
 		/obj/item/trash/tray,
 		/obj/item/shard,
 		/obj/item/broken_bottle)
@@ -63,18 +61,15 @@
 	..()
 
 /obj/machinery/dish_drive/RefreshParts()
-	idle_power_usage = initial(idle_power_usage)
-	active_power_usage = initial(active_power_usage)
-	use_power = initial(use_power)
+	. = ..()
 	var/total_rating = 0
 	for(var/obj/item/stock_parts/S in component_parts)
 		total_rating += S.rating
 	if(total_rating >= 9)
-		active_power_usage = 0
-		use_power = NO_POWER_USE
+		update_mode_power_usage(ACTIVE_POWER_USE, 0)
 	else
-		idle_power_usage = max(0, idle_power_usage - total_rating)
-		active_power_usage = max(0, active_power_usage - total_rating)
+		update_mode_power_usage(IDLE_POWER_USE, max(0, initial(idle_power_usage) - total_rating))
+		update_mode_power_usage(ACTIVE_POWER_USE, max(0, initial(active_power_usage) - total_rating))
 	var/obj/item/circuitboard/machine/dish_drive/board = locate() in component_parts
 	if(board)
 		suction_enabled = board.suction

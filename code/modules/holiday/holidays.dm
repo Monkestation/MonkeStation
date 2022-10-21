@@ -390,14 +390,6 @@
 /datum/holiday/vegan/getStationPrefix()
 	return pick("Tofu", "Tempeh", "Seitan", "Tofurkey")
 
-/datum/holiday/october_revolution
-	name = "October Revolution"
-	begin_day = 6
-	begin_month = NOVEMBER
-	end_day = 7
-
-/datum/holiday/october_revolution/getStationPrefix()
-	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
 
 /datum/holiday/kindness
 	name = "Kindness Day"
@@ -408,7 +400,7 @@
 	name = "Flowers Day"
 	begin_day = 19
 	begin_month = NOVEMBER
-	drone_hat = /obj/item/reagent_containers/food/snacks/grown/moonflower
+	drone_hat = /obj/item/food/grown/moonflower
 
 /datum/holiday/hello
 	name = "Saying-'Hello' Day"
@@ -602,7 +594,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/easter/celebrate()
 	GLOB.maintenance_loot += list(
-		/obj/item/reagent_containers/food/snacks/egg/loaded = 15,
+		/obj/item/food/egg/loaded = 15,
 		/obj/item/storage/bag/easterbasket = 15)
 
 /datum/holiday/easter/greet()

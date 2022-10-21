@@ -132,6 +132,7 @@
 
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * (((direct & 3) && (direct & 12)) ? 1.414214 : 1))) // set it now in case of pulled objects
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
 	else
@@ -153,6 +154,7 @@
 
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
 		add_delay *= 1.414214 // sqrt(2)
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
 	if(.) // If mob is null here, we deserve the runtime
 		if(mob.throwing)
@@ -206,9 +208,11 @@
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)
 		if(INCORPOREAL_MOVE_BASIC)
-			var/T = get_step(L,direct)
+			var/T = get_step_multiz(mobloc, direct)
 			if(T)
 				L.forceMove(T)
+			else
+				to_chat(L, "<span class='warning'>There's nothing in that direction!</span>")
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_SHADOW)
 			if(prob(50))
@@ -241,7 +245,7 @@
 				if(target)
 					L.forceMove(target)
 					var/limit = 2//For only two trailing shadows.
-					for(var/turf/T in getline(mobloc, L.loc))
+					for(var/turf/T in get_line(mobloc, L.loc))
 						new /obj/effect/temp_visual/dir_setting/ninja/shadow(T, L.dir)
 						limit--
 						if(limit<=0)
@@ -253,7 +257,7 @@
 					L.forceMove(T)
 			L.setDir(direct)
 		if(INCORPOREAL_MOVE_JAUNT) //Incorporeal move, but blocked by holy-watered tiles and salt piles.
-			var/turf/open/floor/stepTurf = get_step(L, direct)
+			var/turf/open/floor/stepTurf = get_step_multiz(mobloc, direct)
 			if(stepTurf)
 				for(var/obj/effect/decal/cleanable/food/salt/S in stepTurf)
 					to_chat(L, "<span class='warning'>[S] bars your passage!</span>")
@@ -269,10 +273,12 @@
 					to_chat(L, "<span class='warning'>Holy energies block your path!</span>")
 					return
 				L.forceMove(stepTurf)
+			else
+				to_chat(L, "<span class='warning'>There's nothing in that direction!</span>")
 			L.setDir(direct)
 
 		if(INCORPOREAL_MOVE_EMINENCE) //Incorporeal move for emincence. Blocks move like Jaunt but lets it pass through clockwalls
-			var/turf/open/floor/stepTurf = get_step(L, direct)
+			var/turf/open/floor/stepTurf = get_step_multiz(mobloc, direct)
 			var/turf/loccheck = get_turf(stepTurf)
 			if(stepTurf)
 				for(var/obj/effect/decal/cleanable/food/salt/S in stepTurf)
@@ -286,6 +292,8 @@
 					to_chat(L, "<span class='warning'>Holy energies block your path!</span>")
 					return
 				L.forceMove(stepTurf)
+			else
+				to_chat(L, "<span class='warning'>There's nothing in that direction!</span>")
 			L.setDir(direct)
 	return TRUE
 

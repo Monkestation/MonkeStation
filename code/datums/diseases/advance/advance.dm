@@ -73,7 +73,7 @@
 			S.End(src)
 	return ..()
 
-/datum/disease/advance/try_infect(mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/try_infect(mob/living/carbon/infectee, make_copy = TRUE)
 	//see if we are more transmittable than enough diseases to replace them
 	//diseases replaced in this way do not confer immunity
 	var/list/advance_diseases = list()
@@ -543,7 +543,7 @@
 		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.admin_details()]")
 		log_virus("[key_name(user)] has triggered a custom virus outbreak of [D.admin_details()]!")
 
-/datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/advance/infect(var/mob/living/carbon/infectee, make_copy = TRUE)
 	var/datum/disease/advance/A = make_copy ? Copy() : src
 	if(!initial && A.mutable && (spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS))
 		var/minimum = 1

@@ -30,7 +30,7 @@
 /datum/symptom/mind_restoration/Activate(var/datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 
 
 	if(A.stage >= 3)
@@ -80,7 +80,7 @@
 /datum/symptom/sensory_restoration/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
 	if (!eyes)
 		return

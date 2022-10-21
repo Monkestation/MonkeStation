@@ -207,7 +207,7 @@
 		H.dna.species.spec_attack_hand(H, src)
 
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)
-	if(check_shields(M, 0, "the M.name", UNARMED_ATTACK))
+	if(check_shields(M, 0, "the [M.name]", UNARMED_ATTACK))
 		visible_message("<span class='danger'>[M] attempts to touch [src]!</span>", \
 			"<span class='danger'>[M] attempts to touch you!</span>")
 		return 0
@@ -234,7 +234,7 @@
 		return 1
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
-	if(check_shields(M, 20, "the M.name", UNARMED_ATTACK))
+	if(check_shields(M, 20, "the [M.name]", UNARMED_ATTACK))
 		visible_message("<span class='danger'>[M] attempts to touch [src]!</span>", \
 			"<span class='danger'>[M] attempts to touch you!</span>")
 		return 0
@@ -441,43 +441,35 @@
 	apply_damage(5, BRUTE, affecting, run_armor_check(affecting, "melee"))
 
 
-//Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
-	if(tesla_shock)
-		var/total_coeff = 1
-		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			if(G.siemens_coefficient <= 0)
-				total_coeff -= 0.5
+///Calculates the siemens coeff based on clothing and species, can also restart hearts.
+/mob/living/carbon/human/electrocute_act(shock_damage, source, siemens_coeff = 1, flags = NONE)
+	//Calculates the siemens coeff based on clothing. Completely ignores the arguments
+	if(flags & SHOCK_TESLA) //I hate this entire block. This gets the siemens_coeff for tesla shocks
+		if(gloves && gloves.siemens_coefficient <= 0)
+			siemens_coeff -= 0.5
 		if(wear_suit)
-			var/obj/item/clothing/suit/S = wear_suit
-			if(S.siemens_coefficient <= 0)
-				total_coeff -= 0.95
-			else if(S.siemens_coefficient == (-1))
-				total_coeff -= 1
-		siemens_coeff = total_coeff
-		if(flags_1 & TESLA_IGNORE_1)
-			siemens_coeff = 0
-	else if(!safety)
-		var/gloves_siemens_coeff = 1
+			if(wear_suit.siemens_coefficient == -1)
+				siemens_coeff -= 1
+			else if(wear_suit.siemens_coefficient <= 0)
+				siemens_coeff -= 0.95
+		siemens_coeff = max(siemens_coeff, 0)
+	else if(!(flags & SHOCK_NOGLOVES)) //This gets the siemens_coeff for all non tesla shocks
 		if(gloves)
-			var/obj/item/clothing/gloves/G = gloves
-			gloves_siemens_coeff = G.siemens_coefficient
-		siemens_coeff = gloves_siemens_coeff
+			siemens_coeff *= gloves.siemens_coefficient
+	siemens_coeff *= physiology.siemens_coeff
+	siemens_coeff *= dna.species.siemens_coeff
+	. = ..()
+	//Don't go further if the shock was blocked/too weak.
+	if(!.)
+		return
 	//Note we both check that the user is in cardiac arrest and can actually heartattack
 	//If they can't, they're missing their heart and this would runtime
-	if(undergoing_cardiac_arrest() && can_heartattack() && !illusion)
+	if(undergoing_cardiac_arrest() && can_heartattack() && !(flags & SHOCK_ILLUSION))
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
 			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-			heart.beating = TRUE
-			if(stat == CONSCIOUS)
-				to_chat(src, "<span class='notice'>You feel your heart beating again!</span>")
-	siemens_coeff *= physiology.siemens_coeff
-
-	dna.species.spec_electrocute_act(src, shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
-	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
-	if(.)
-		electrocution_animation(40)
+			if(heart.Restart() && stat == CONSCIOUS)
+				to_chat(src, span_notice("You feel your heart beating again!"))
+	electrocution_animation(40)
 
 /mob/living/carbon/human/emag_act(mob/user)
 	.=..()
@@ -691,9 +683,11 @@
 /mob/living/carbon/human/check_self_for_injuries()
 	if(stat == DEAD || stat == UNCONSCIOUS)
 		return
+	var/list/combined_msg = list()
 
-	visible_message("[src] examines [p_them()]self.", \
-		"<span class='notice'>You check yourself for injuries.</span>")
+	visible_message(span_notice("[src] examines [p_them()]self."))
+
+	combined_msg += span_notice("<b>You check yourself for injuries.</b>")
 	var/list/harm_descriptors = dna?.species.get_harm_descriptors()
 	harm_descriptors ||= list("bleed" = "bleeding")
 	var/bleed_msg = harm_descriptors["bleed"]
@@ -740,54 +734,54 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
+		combined_msg += "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>"
 
 		for(var/obj/item/I in LB.embedded_objects)
 			if(I.isEmbedHarmless())
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>")
+				combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>"
 			else
-				to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
+				combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
 
 	for(var/t in missing)
-		to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
+		combined_msg += "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>"
 
 	if(bleed_rate)
-		to_chat(src, "<span class='danger'>You are [bleed_msg]!</span>")
+		combined_msg += "<span class='danger'>You are [bleed_msg]!</span>"
 	if(getStaminaLoss())
 		if(getStaminaLoss() > 30)
-			to_chat(src, "<span class='info'>You're completely exhausted.</span>")
+			combined_msg += "<span class='info'>You're completely exhausted.</span>"
 		else
-			to_chat(src, "<span class='info'>You feel fatigued.</span>")
+			combined_msg += "<span class='info'>You feel fatigued.</span>"
 	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 		if(toxloss)
 			if(toxloss > 10)
-				to_chat(src, "<span class='danger'>You feel sick.</span>")
+				combined_msg += "<span class='danger'>You feel sick.</span>"
 			else if(toxloss > 20)
-				to_chat(src, "<span class='danger'>You feel nauseated.</span>")
+				combined_msg += "<span class='danger'>You feel nauseated.</span>"
 			else if(toxloss > 40)
-				to_chat(src, "<span class='danger'>You feel very unwell!</span>")
+				combined_msg += "<span class='danger'>You feel very unwell!</span>"
 		if(oxyloss)
 			if(oxyloss > 10)
-				to_chat(src, "<span class='danger'>You feel lightheaded.</span>")
+				combined_msg += "<span class='danger'>You feel lightheaded.</span>"
 			else if(oxyloss > 20)
-				to_chat(src, "<span class='danger'>Your thinking is clouded and distant.</span>")
+				combined_msg += "<span class='danger'>Your thinking is clouded and distant.</span>"
 			else if(oxyloss > 30)
-				to_chat(src, "<span class='danger'>You're choking!</span>")
+				combined_msg += "<span class='danger'>You're choking!</span>"
 
 	if(!HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_POWERHUNGRY))
 		switch(nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
-				to_chat(src, "<span class='info'>You're completely stuffed!</span>")
+				combined_msg += "<span class='info'>You're completely stuffed!</span>"
 			if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
-				to_chat(src, "<span class='info'>You're well fed!</span>")
+				combined_msg += "<span class='info'>You're well fed!</span>"
 			if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
-				to_chat(src, "<span class='info'>You're not hungry.</span>")
+				combined_msg += "<span class='info'>You're not hungry.</span>"
 			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				to_chat(src, "<span class='info'>You could use a bite to eat.</span>")
+				combined_msg += "<span class='info'>You could use a bite to eat.</span>"
 			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				to_chat(src, "<span class='info'>You feel quite hungry.</span>")
+				combined_msg += "<span class='info'>You feel quite hungry.</span>"
 			if(0 to NUTRITION_LEVEL_STARVING)
-				to_chat(src, "<span class='danger'>You're starving!</span>")
+				combined_msg += "<span class='danger'>You're starving!</span>"
 
 	//Compiles then shows the list of damaged organs and broken organs
 	var/list/broken = list()
@@ -819,7 +813,7 @@
 		//Put the items in that list into a string of text
 		for(var/B in broken)
 			broken_message += B
-		to_chat(src, "<span class='warning'> Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>")
+		combined_msg += "<span class='warning'> Your [broken_message] [broken_plural ? "are" : "is"] non-functional!</span>"
 	if(damaged.len)
 		if(damaged.len > 1)
 			damaged.Insert(damaged.len, "and ")
@@ -830,10 +824,12 @@
 				damaged_plural = TRUE
 		for(var/D in damaged)
 			damaged_message += D
-		to_chat(src, "<span class='info'>Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.</span>")
+		combined_msg += "<span class='info'>Your [damaged_message] [damaged_plural ? "are" : "is"] hurt.</span>"
 
 	if(roundstart_quirks.len)
-		to_chat(src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>")
+		combined_msg += "<span class='notice'>You have these quirks: [get_trait_string()].</span>"
+
+	to_chat(src, examine_block(combined_msg.Join("\n")))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)

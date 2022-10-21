@@ -68,22 +68,22 @@
 
 
 /obj/item/weldingtool/process(delta_time)
-	switch(welding)
-		if(0)
-			force = 3
-			damtype = "brute"
-			update_icon()
-			if(!can_off_process)
-				STOP_PROCESSING(SSobj, src)
-			return
+	if(welding)
+		force = 15
+		damtype = BURN
+		burned_fuel_for += delta_time
+		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
+			use(TRUE)
+		update_icon()
+
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
-		if(1)
-			force = 15
-			damtype = "fire"
-			burned_fuel_for += delta_time
-			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
-				use(1)
-			update_icon()
+	else
+		force = 3
+		damtype = BRUTE
+		update_icon()
+		if(!can_off_process)
+			STOP_PROCESSING(SSobj, src)
+		return
 
 	//This is to start fires. process() is only called if the welder is on.
 	open_flame()
@@ -108,6 +108,15 @@
 	var/plasmaAmount = reagents.get_reagent_amount(/datum/reagent/toxin/plasma)
 	dyn_explosion(T, plasmaAmount/5)//20 plasma in a standard welder has a 4 power explosion. no breaches, but enough to kill/dismember holder
 	qdel(src)
+
+/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+	if(isturf(target))
+		target.add_overlay(GLOB.welding_sparks)
+		. = ..()
+		target.cut_overlays(GLOB.welding_sparks)
+	else
+		. = ..()
+
 
 /obj/item/weldingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H))

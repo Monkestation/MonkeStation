@@ -1968,7 +1968,17 @@
 	icon = 'icons/mob/moth_wings.dmi'
 	color_src = null
 
+/datum/sprite_accessory/moth_wingsopen
+	icon = 'icons/mob/moth_wingsopen.dmi'
+	color_src = null
+	dimension_x = 76
+	center = TRUE
+
 /datum/sprite_accessory/moth_wings/plain
+	name = "Plain"
+	icon_state = "plain"
+
+/datum/sprite_accessory/moth_wingsopen/plain
 	name = "Plain"
 	icon_state = "plain"
 
@@ -1976,7 +1986,15 @@
 	name = "Monarch"
 	icon_state = "monarch"
 
+/datum/sprite_accessory/moth_wingsopen/monarch
+	name = "Monarch"
+	icon_state = "monarch"
+
 /datum/sprite_accessory/moth_wings/luna
+	name = "Luna"
+	icon_state = "luna"
+
+/datum/sprite_accessory/moth_wingsopen/luna
 	name = "Luna"
 	icon_state = "luna"
 
@@ -1984,7 +2002,15 @@
 	name = "Atlas"
 	icon_state = "atlas"
 
+/datum/sprite_accessory/moth_wingsopen/atlas
+	name = "Atlas"
+	icon_state = "atlas"
+
 /datum/sprite_accessory/moth_wings/reddish
+	name = "Reddish"
+	icon_state = "redish"
+
+/datum/sprite_accessory/moth_wingsopen/reddish
 	name = "Reddish"
 	icon_state = "redish"
 
@@ -1992,7 +2018,15 @@
 	name = "Royal"
 	icon_state = "royal"
 
+/datum/sprite_accessory/moth_wingsopen/royal
+	name = "Royal"
+	icon_state = "royal"
+
 /datum/sprite_accessory/moth_wings/gothic
+	name = "Gothic"
+	icon_state = "gothic"
+
+/datum/sprite_accessory/moth_wingsopen/gothic
 	name = "Gothic"
 	icon_state = "gothic"
 
@@ -2000,7 +2034,15 @@
 	name = "Lovers"
 	icon_state = "lovers"
 
+/datum/sprite_accessory/moth_wingsopen/lovers
+	name = "Lovers"
+	icon_state = "lovers"
+
 /datum/sprite_accessory/moth_wings/whitefly
+	name = "White Fly"
+	icon_state = "whitefly"
+
+/datum/sprite_accessory/moth_wingsopen/whitefly
 	name = "White Fly"
 	icon_state = "whitefly"
 
@@ -2014,7 +2056,16 @@
 	icon_state = "punished"
 	locked = TRUE
 
+/datum/sprite_accessory/moth_wingsopen/punished
+	name = "Burnt Off"
+	icon_state = "punished"
+	locked = TRUE
+
 /datum/sprite_accessory/moth_wings/firewatch
+	name = "Firewatch"
+	icon_state = "firewatch"
+
+/datum/sprite_accessory/moth_wingsopen/firewatch
 	name = "Firewatch"
 	icon_state = "firewatch"
 
@@ -2022,7 +2073,15 @@
 	name = "Deathshead"
 	icon_state = "deathhead"
 
+/datum/sprite_accessory/moth_wingsopen/deathhead
+	name = "Deathshead"
+	icon_state = "deathhead"
+
 /datum/sprite_accessory/moth_wings/poison
+	name = "Poison"
+	icon_state = "poison"
+
+/datum/sprite_accessory/moth_wingsopen/poison
 	name = "Poison"
 	icon_state = "poison"
 
@@ -2030,7 +2089,15 @@
 	name = "Ragged"
 	icon_state = "ragged"
 
+/datum/sprite_accessory/moth_wingsopen/ragged
+	name = "Ragged"
+	icon_state = "ragged"
+
 /datum/sprite_accessory/moth_wings/moonfly
+	name = "Moon Fly"
+	icon_state = "moonfly"
+
+/datum/sprite_accessory/moth_wingsopen/moonfly
 	name = "Moon Fly"
 	icon_state = "moonfly"
 
@@ -2038,7 +2105,10 @@
 	name = "Snow"
 	icon_state = "snow"
 
-/* MonkeStation Edit: Commented out nonexistent moth wing
+/datum/sprite_accessory/moth_wingsopen/snow
+	name = "Snow"
+	icon_state = "snow"
+
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"
 	icon_state = "angel"
@@ -2047,7 +2117,6 @@
 	center = TRUE
 	dimension_y = 34
 	locked = TRUE
-*/
 
 // IPC accessories.
 
@@ -2255,38 +2324,44 @@
 	limbs_id = "mcgipc"
 	color_src = MUTCOLORS
 
-/datum/sprite_accessory/ipc_chassis/bishopcyberkinetics
+/datum/sprite_accessory/ipc_chassis/bishop_cyberkinetics
 	name = "Bishop Cyberkinetics"
 	limbs_id = "bshipc"
 
-/datum/sprite_accessory/ipc_chassis/bishopcyberkinetics2
+/datum/sprite_accessory/ipc_chassis/bishop_cyberkinetics_2
 	name = "Bishop Cyberkinetics 2.0"
 	limbs_id = "bs2ipc"
 
-/datum/sprite_accessory/ipc_chassis/hephaestussindustries
+/datum/sprite_accessory/ipc_chassis/hephaestuss_industries
 	name = "Hephaestus Industries"
 	limbs_id = "hsiipc"
 
-/datum/sprite_accessory/ipc_chassis/hephaestussindustries2
+/datum/sprite_accessory/ipc_chassis/hephaestuss_industries_2
 	name = "Hephaestus Industries 2.0"
 	limbs_id = "hi2ipc"
 
-/datum/sprite_accessory/ipc_chassis/shellguardmunitions
+/datum/sprite_accessory/ipc_chassis/shellguard_munitions
 	name = "Shellguard Munitions Standard Series"
 	limbs_id = "sgmipc"
 
-/datum/sprite_accessory/ipc_chassis/wardtakahashimanufacturing
+/datum/sprite_accessory/ipc_chassis/ward_takahashi_manufacturing
 	name = "Ward-Takahashi Manufacturing"
 	limbs_id = "wtmipc"
 
-/datum/sprite_accessory/ipc_chassis/xionmanufacturinggroup
+/datum/sprite_accessory/ipc_chassis/xion_manufacturing_group
 	name = "Xion Manufacturing Group"
 	limbs_id = "xmgipc"
 
-/datum/sprite_accessory/ipc_chassis/xionmanufacturinggroup2
+/datum/sprite_accessory/ipc_chassis/xion_manufacturing_group_2
 	name = "Xion Manufacturing Group 2.0"
 	limbs_id = "xm2ipc"
 
-/datum/sprite_accessory/ipc_chassis/zenghupharmaceuticals
+/datum/sprite_accessory/ipc_chassis/zeng_hu_pharmaceuticals
 	name = "Zeng-Hu Pharmaceuticals"
 	limbs_id = "zhpipc"
+
+// MONKESTATION CHANGE: Adds staripc chassis by MilkForever
+/datum/sprite_accessory/ipc_chassis/star_industrial
+	name = "Star Industrial"
+	limbs_id = "staripc"
+// MONKESTATION CHANGE END

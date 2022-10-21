@@ -1,6 +1,9 @@
 GLOBAL_LIST_EMPTY(station_turfs)
+
+/// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
+	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE// Important for interaction with and visualization of openspace.
 	level = 1
 
 	/// If this is TRUE, that means this floor is on top of plating so pipes and wires and stuff will appear under it... or something like that it's not entirely clear.
@@ -19,9 +22,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// How hot the turf is, in kelvin
 	var/initial_temperature = T20C
 
-	/// Used for fire, if a melting temperature was reached, it will be destroyed
+	///Used for fire, if a melting temperature was reached, it will be destroyed
 	var/to_be_destroyed = 0
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
+	///The max temperature of the fire which it was subjected to
+	var/max_fire_temperature_sustained = 0
 
 	//If true, turf will allow users to float up and down in 0 grav.
 	var/allow_z_travel = FALSE
@@ -52,10 +56,10 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Should we used the smooth tiled dirt decal or not
 	var/tiled_dirt = FALSE
 
-	vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_ID	//when this be added to vis_contents of something it inherit something.plane and be associated with something on clicking, important for visualisation of turf in openspace and interraction with openspace that show you turf.
-
 	///the holodeck can load onto this turf if TRUE
 	var/holodeck_compatible = FALSE
+
+	var/list/fixed_underlay = null //MONKESTATION ADDITION
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
@@ -74,8 +78,20 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	assemble_baseturfs()
 
 	levelupdate()
-	if(smooth)
-		queue_smooth(src)
+	//if(smooth) //MONKESTATION REMOVAL
+		//queue_smooth(src) //MONKESTATION REMOVAL
+//MONKESTATION ADDITION START
+	if(length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		sortTim(canSmoothWith)
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src) //MONKESTATION CHANGE
+//MONKESTATION ADDITION START END
 	visibilityChanged()
 
 	for(var/atom/movable/content as anything in src)
@@ -97,11 +113,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/turf/T = SSmapping.get_turf_above(src)
 	if(T)
 		T.multiz_turf_new(src, DOWN)
-		SEND_SIGNAL(T, COMSIG_TURF_MULTIZ_NEW, src, DOWN)
 	T = SSmapping.get_turf_below(src)
 	if(T)
 		T.multiz_turf_new(src, UP)
-		SEND_SIGNAL(T, COMSIG_TURF_MULTIZ_NEW, src, UP)
 
 	if (opacity)
 		has_opaque_atom = TRUE
@@ -162,11 +176,11 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 /turf/attack_hand(mob/user)
 	//Must have no gravity.
-	if(allow_z_travel && get_turf(user) == src)
+	if(get_turf(user) == src)
 		if(!user.has_gravity(src) || (user.movement_type & FLYING))
 			check_z_travel(user)
 			return
-		else
+		else if(allow_z_travel)
 			to_chat(user, "<span class='warning'>You can't float up and down when there is gravity!</span>")
 	. = ..()
 	if(SEND_SIGNAL(user, COMSIG_MOB_ATTACK_HAND_TURF, src) & COMPONENT_NO_ATTACK_HAND)
@@ -174,6 +188,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	user.Move_Pulled(src)
+
+/turf/eminence_act(mob/living/simple_animal/eminence/eminence)
+	if(get_turf(eminence) == src)
+		check_z_travel(eminence)
+		return
+	return ..()
 
 /turf/proc/check_z_travel(mob/user)
 	if(get_turf(user) != src)
@@ -201,17 +221,27 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			travel_z(user, below, FALSE)
 
 /turf/proc/travel_z(mob/user, turf/target, upwards = TRUE)
-	user.visible_message("<span class='notice'>[user] begins floating upwards!</span>", "<span class='notice'>You begin floating upwards.</span>")
+	if(!target)
+		to_chat(user, "<span class='warning'>There is nothing in that direction!</span>")
+		return
+	//Check if we can travel in that direction
+	var/mob/living/L = user
+	var/jaunting = isliving(user) && L.incorporeal_move
+
+	if(!jaunting && ((upwards && !target.allow_z_travel) || (!upwards && !allow_z_travel)))
+		to_chat(user, "<span class='warning'>Something is blocking you!</span>")
+		return
+	user.visible_message("<span class='notice'>[user] begins floating [upwards ? "upwards" : "downwards"]!</span>", "<span class='notice'>You begin floating [upwards ? "upwards" : "downwards"].")
 	var/matrix/M = user.transform
 	//Animation is inverted due to immediately resetting user vars.
-	animate(user, 30, pixel_y = upwards ? -64 : 64, transform = matrix() * (upwards ? 0.7 : 1.3))
+	animate(user, 30, pixel_y = upwards ? 32 : -32, transform = matrix() * (upwards ? 1.3 : 0.7))
 	user.pixel_y = 0
 	user.transform = M
 	if(!do_after(user, 30, FALSE, get_turf(user)))
 		animate(user, 0, flags = ANIMATION_END_NOW)
 		return
-	if(!istype(target, /turf/open/space) && !istype(target, /turf/open/openspace))
-		to_chat(user, "<span class='warning'>Something is blocking you!</span>")
+	if(jaunting) // Allow most jaunting
+		user.client?.Process_Incorpmove(upwards ? UP : DOWN)
 		return
 	var/atom/movable/AM
 	if(user.pulling)
@@ -222,27 +252,53 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		user.start_pulling(AM)
 
 /turf/proc/multiz_turf_del(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
 
 /turf/proc/multiz_turf_new(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
-/// Returns TRUE if the turf cannot be moved onto
-/proc/is_blocked_turf(turf/T, exclude_mobs)
-	if(T.density)
-		return 1
-	for(var/i in T)
-		var/atom/A = i
-		if(A.density && (!exclude_mobs || !ismob(A)))
-			return 1
-	return 0
+/**
+ * Check whether the specified turf is blocked by something dense inside it with respect to a specific atom.
+ *
+ * Returns truthy value TURF_BLOCKED_TURF_DENSE if the turf is blocked because the turf itself is dense.
+ * Returns truthy value TURF_BLOCKED_CONTENT_DENSE if one of the turf's contents is dense and would block
+ * a source atom's movement.
+ * Returns falsey value TURF_NOT_BLOCKED if the turf is not blocked.
+ *
+ * Arguments:
+ * * exclude_mobs - If TRUE, ignores dense mobs on the turf.
+ * * source_atom - If this is not null, will check whether any contents on the turf can block this atom specifically. Also ignores itself on the turf.
+ * * ignore_atoms - Check will ignore any atoms in this list. Useful to prevent an atom from blocking itself on the turf.
+ */
+/turf/proc/is_blocked_turf(exclude_mobs = FALSE, source_atom = null, list/ignore_atoms)
+	if(density)
+		return TRUE
 
-/proc/is_anchored_dense_turf(turf/T) //like the older version of the above, fails only if also anchored
-	if(T.density)
-		return 1
-	for(var/i in T)
-		var/atom/movable/A = i
-		if(A.density && A.anchored)
-			return 1
-	return 0
+	for(var/atom/movable/movable_content as anything in contents)
+		// We don't want to block ourselves or consider any ignored atoms.
+		if((movable_content == source_atom) || (movable_content in ignore_atoms))
+			continue
+		// If the thing is dense AND we're including mobs or the thing isn't a mob AND if there's a source atom and
+		// it cannot pass through the thing on the turf,  we consider the turf blocked.
+		if(movable_content.density && (!exclude_mobs || !ismob(movable_content)))
+			if(source_atom && movable_content.CanPass(source_atom, get_dir(src, source_atom)))
+				continue
+			return TRUE
+	return FALSE
+
+/**
+ * Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait
+ *
+ * Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks
+ */
+/turf/proc/is_blocked_turf_ignore_climbable()
+	if(density)
+		return TRUE
+
+	for(var/atom/movable/atom_content as anything in contents)
+		if(atom_content.density && !(atom_content.flags_1 & ON_BORDER_1))
+			return TRUE
+	return FALSE
 
 //zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air
@@ -261,72 +317,72 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/zAirOut(direction, turf/source)
 	return FALSE
 
-/turf/proc/zImpact(atom/movable/A, levels = 1, turf/prev_turf)
+///Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.
+/turf/proc/zImpact(atom/movable/falling_atom, levels = 1, turf/prev_turf)
 	var/flags = NONE
-	var/mov_name = A.name
+	var/mov_name = falling_atom.name
 	for(var/i in contents)
 		var/atom/thing = i
-		flags |= thing.intercept_zImpact(A, levels)
+		flags |= thing.intercept_zImpact(falling_atom, levels)
 		if(flags & FALL_STOP_INTERCEPTING)
 			break
 	if(prev_turf && !(flags & FALL_NO_MESSAGE))
 		prev_turf.visible_message("<span class='danger'>[mov_name] falls through [prev_turf]!</span>")
 	if(flags & FALL_INTERCEPTED)
 		return
-	if(zFall(A, ++levels))
+	if(zFall(falling_atom, ++levels))
 		return FALSE
-	A.visible_message("<span class='danger'>[A] crashes into [src]!</span>")
-	A.onZImpact(src, levels)
+	falling_atom.visible_message("<span class='danger'>[falling_atom] crashes into [src]!</span>")
+	falling_atom.onZImpact(src, levels)
 	return TRUE
 
-/turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
-	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
+/turf/proc/can_zFall(atom/movable/falling_atom, levels = 1, turf/target)
+	return zPassOut(falling_atom, DOWN, target) && target.zPassIn(falling_atom, DOWN, src)
 
-/turf/proc/zFall(atom/movable/A, levels = 1, force = FALSE)
+/// Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()
+/turf/proc/zFall(atom/movable/falling_atom, levels = 1, force = FALSE, old_loc = null)
 	var/turf/target = get_step_multiz(src, DOWN)
-	if(!target || (!isobj(A) && !ismob(A)))
+	if(!target || (!isobj(falling_atom) && !ismob(falling_atom)))
 		return FALSE
-	if(!force && (!can_zFall(A, levels, target) || !A.can_zFall(src, levels, target, DOWN)))
+	if(!force && (!can_zFall(falling_atom, levels, target) || !falling_atom.can_zFall(src, levels, target, DOWN)))
 		return FALSE
-	A.zfalling = TRUE
-	var/atom/movable/pulling = A.pulling
-	A.forceMove(target)
-	A.zfalling = FALSE
-	if(pulling)
-		//Things you are pulling fall with you
-		pulling.zfalling = TRUE
-		pulling.forceMove(target)
-		A.start_pulling(pulling)
-		pulling.zfalling = FALSE
-		target.zImpact(pulling, levels, src)
-	target.zImpact(A, levels, src)
-	return TRUE
+	. = TRUE
+	if(!falling_atom.zfalling)
+		falling_atom.zfalling = TRUE
+		if(falling_atom.pulling && old_loc) // Moves whatever we're pulling to where we were before so we're still adjacent
+			falling_atom.pulling.moving_from_pull = falling_atom
+			falling_atom.pulling.Move(old_loc)
+			falling_atom.pulling.moving_from_pull = null
+		if(!falling_atom.Move(target))
+			falling_atom.doMove(target)
+		. = target.zImpact(falling_atom, levels, src)
+		falling_atom.zfalling = FALSE
 
-/turf/proc/handleRCL(obj/item/rcl/C, mob/user)
-	if(C.loaded)
+/turf/proc/handleRCL(obj/item/rcl/rcl_tool, mob/user)
+	if(rcl_tool.loaded)
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
-				LC.handlecable(C, user)
+				LC.handlecable(rcl_tool, user)
 				return
-		C.loaded.place_turf(src, user)
-		if(C.wiring_gui_menu)
-			C.wiringGuiUpdate(user)
-		C.is_empty(user)
+		rcl_tool.loaded.place_turf(src, user)
+		if(rcl_tool.wiring_gui_menu)
+			rcl_tool.wiringGuiUpdate(user)
+		rcl_tool.is_empty(user)
 
-/turf/attackby(obj/item/C, mob/user, params)
+/turf/attackby(obj/item/cable_item, mob/user, params)
 	if(..())
 		return TRUE
-	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = C
+	if(can_lay_cable() && istype(cable_item, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = cable_item
 		for(var/obj/structure/cable/LC in src)
 			if(!LC.d1 || !LC.d2)
-				LC.attackby(C,user)
+				LC.attackby(cable_item,user)
 				return
 		coil.place_turf(src, user)
 		return TRUE
 
-	else if(istype(C, /obj/item/rcl))
-		handleRCL(C, user)
+	else if(istype(cable_item, /obj/item/rcl))
+		handleRCL(cable_item, user)
 
 	return FALSE
 
@@ -378,7 +434,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(O.obj_flags & FROZEN)
 			O.make_unfrozen()
 	if(!arrived.zfalling)
-		zFall(arrived)
+		zFall(arrived, old_loc = old_loc)
 
 /turf/proc/is_plasteel_floor()
 	return FALSE
@@ -466,7 +522,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	if(length(src_object.contents()))
-		balloon_alert(usr, "You dump out the contents")
+		balloon_alert(usr, "You dump out the contents.")
 		if(!do_after(usr,20,target=src_object.parent))
 			return FALSE
 
@@ -610,6 +666,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/acid_melt()
 	return
 
+/turf/rust_heretic_act()
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		return
+
+	AddElement(/datum/element/rust)
+
 /turf/handle_fall(mob/faller, forced)
 	if(!forced)
 		return
@@ -633,24 +695,27 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/AllowDrop()
 	return TRUE
 
-/turf/proc/add_vomit_floor(mob/living/M, toxvomit = NONE)
+/turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = NONE)
 
-	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
+	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src)
 
 	//if the vomit combined, apply toxicity and reagents to the old vomit
 	if (QDELETED(V))
 		V = locate() in src
 	if(!V)
 		return
-	// Make toxins and blazaam vomit look different
-	if(toxvomit == VOMIT_PURPLE)
-		V.icon_state = "vomitpurp_[pick(1,4)]"
-	else if (toxvomit == VOMIT_TOXIC)
-		V.icon_state = "vomittox_[pick(1,4)]"
 	if (iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.reagents)
 			clear_reagents_to_vomit_pool(C,V)
+	// Make toxins and blazaam vomit look different
+	switch(toxvomit)
+		if(NONE)
+			return
+		if(VOMIT_PURPLE)
+			V.icon_state = "vomitpurp_[pick(1,4)]"
+		if (VOMIT_TOXIC)
+			V.icon_state = "vomittox_[pick(1,4)]"
 
 /proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V)
 	M.reagents.trans_to(V, M.reagents.total_volume / 10, transfered_by = M)

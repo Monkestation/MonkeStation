@@ -38,7 +38,7 @@
 	if(light_system != STATIC_LIGHT)
 		CRASH("update_light() for [src] with following light_system value: [light_system]")
 
-	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
+	if (!light_power || !light_range || !light_on) // We won't emit light anyways, destroy the light source.
 		QDEL_NULL(light)
 	else
 		if (!ismovableatom(loc)) // We choose what atom should be the top atom of the light here.
@@ -82,7 +82,7 @@
 			T.reconsider_lights()
 
 
-/atom/movable/Moved(atom/OldLoc, Dir)
+/atom/movable/lighting/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	. = ..()
 	var/datum/light_source/L
 	var/thing

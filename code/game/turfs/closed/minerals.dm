@@ -5,8 +5,8 @@
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
-	smooth = SMOOTH_MORE|SMOOTH_BORDER
-	canSmoothWith = null
+	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
+	//canSmoothWith = null //MONKESTATION REMOVAL
 	baseturfs = /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = AIRLESS_ATMOS
 	opacity = 1
@@ -22,8 +22,10 @@
 	var/defer_change = 0
 
 /turf/closed/mineral/Initialize(mapload)
+	/* //MONKESTATION REMOVAL
 	if (!canSmoothWith)
 		canSmoothWith = list(/turf/closed/mineral, /turf/closed/indestructible)
+	*/ //MONKESTATION REMOVAL END
 	var/matrix/M = new
 	M.Translate(-4, -4)
 	transform = M
@@ -79,7 +81,33 @@
 	else
 		return attack_hand(user)
 
-/turf/closed/mineral/proc/gets_drilled()
+/turf/closed/mineral/proc/gets_drilled(mob/user)
+	if(user)
+		if(ishuman(user))
+			var/mob/living/carbon/human/checking = user
+			if(HAS_TRAIT(checking, FOOD_JOB_MINER))
+				var/obj/item/stack/ore/picked_ore
+				if(prob(20))
+					switch(rand(122))
+						if(0 to 50)
+							picked_ore = /obj/item/stack/ore/iron
+						if(51 to 70)
+							picked_ore = /obj/item/stack/ore/copper
+						if(71 to 85)
+							picked_ore = /obj/item/stack/ore/plasma
+						if(86 to 105)
+							picked_ore = /obj/item/stack/ore/silver
+						if(106 to 120)
+							picked_ore = /obj/item/stack/ore/gold
+						if(121)
+							picked_ore = /obj/item/stack/ore/diamond
+						if(122)
+							picked_ore = /obj/item/stack/ore/bluespace_crystal
+
+				if(picked_ore)
+					new picked_ore(src, 1)
+					SSblackbox.record_feedback("tally", "ore_mined", 1, picked_ore)
+
 	if (mineralType && (mineralAmt > 0))
 		new mineralType(src, mineralAmt)
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
@@ -139,7 +167,7 @@
 /turf/closed/mineral/random
 	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/uranium = 5, /obj/item/stack/ore/diamond = 1, /obj/item/stack/ore/gold = 10,
 		/obj/item/stack/ore/silver = 12, /obj/item/stack/ore/plasma = 20, /obj/item/stack/ore/iron = 40, /obj/item/stack/ore/titanium = 11,
-		/turf/closed/mineral/gibtonite = 4, /obj/item/stack/ore/bluespace_crystal = 1,
+		/turf/closed/mineral/gibtonite = 4, /obj/item/stack/ore/bluespace_crystal = 1, /obj/item/stack/ore/dilithium_crystal = 2,
 		/obj/item/stack/ore/copper = 15)
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 13
@@ -380,8 +408,9 @@
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
 	icon_state = "rock2"
-	smooth = SMOOTH_MORE|SMOOTH_BORDER
-	canSmoothWith = list (/turf/closed)
+	base_icon_state = "rock_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock
 	initial_gas_mix = OPENTURF_LOW_PRESSURE
 	environment_type = "waste"
@@ -393,8 +422,9 @@
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
 	icon_state = "mountainrock"
-	smooth = SMOOTH_MORE|SMOOTH_BORDER
-	canSmoothWith = list (/turf/closed)
+	base_icon_state = "mountain_wall"
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	initial_gas_mix = FROZEN_ATMOS
 	environment_type = "snow"
@@ -406,8 +436,8 @@
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock"
-	smooth = SMOOTH_MORE|SMOOTH_BORDER
-	canSmoothWith = list (/turf/closed)
+	//smooth = SMOOTH_MORE|SMOOTH_BORDER //MONKESTATION REMOVAL
+	//canSmoothWith = list (/turf/closed) //MONKESTATION REMOVAL
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	environment_type = "snow_cavern"
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice

@@ -381,7 +381,6 @@
 	},
 /area/crew_quarters/bar)
 "pq" = (
-/obj/structure/closet/crate/wooden/toy,
 /obj/item/lipstick/random,
 /obj/item/clothing/gloves/color/rainbow,
 /obj/effect/turf_decal/tile/neutral{
@@ -394,6 +393,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/closet/crate/secure/clown/toy,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/theatre)
 "pr" = (
@@ -571,7 +571,7 @@
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spaghetti/beefnoodle,
+/obj/item/food/spaghetti/beefnoodle,
 /obj/structure/railing{
 	dir = 1
 	},
@@ -1244,7 +1244,7 @@
 /area/crew_quarters/bar)
 "QG" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/donut,
+/obj/item/food/donut,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -1342,7 +1342,7 @@
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/spaghetti/chowmein,
+/obj/item/food/spaghetti/chowmein,
 /obj/machinery/light/small,
 /obj/structure/railing{
 	dir = 1

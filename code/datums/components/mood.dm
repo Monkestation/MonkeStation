@@ -38,7 +38,7 @@
 	return ..()
 
 /datum/component/mood/proc/print_mood(mob/user)
-	var/msg = "<span class='info'>*---------*\n<EM>Your current mood</EM>\n"
+	var/msg = "[span_info("<EM>Your Current Mood:</EM>")]\n"
 	msg += "<span class='notice'>My mental status: </span>" //Long term
 	switch(sanity)
 		if(SANITY_GREAT to INFINITY)
@@ -82,7 +82,7 @@
 			msg += event.description
 	else
 		msg += "<span class='nicegreen'>I don't have much of a reaction to anything right now.<span>\n"
-	to_chat(user || parent, msg)
+	to_chat(user || parent, examine_block(msg))
 
 /datum/component/mood/proc/update_mood() //Called whenever a mood event is added or removed
 	mood = 0
@@ -399,3 +399,16 @@
 	SIGNAL_HANDLER
 
 	setSanity(sanity + amount)
+
+/datum/component/mood/proc/HandleAddictions()
+	if(!iscarbon(parent))
+		return
+
+	var/mob/living/carbon/affected_carbon = parent
+
+	if(sanity < SANITY_GREAT) ///Sanity is low, stay addicted.
+		return
+
+	for(var/addiction_type in affected_carbon.mind.addiction_points)
+		var/datum/addiction/addiction_to_remove = SSaddiction.all_addictions[type]
+		affected_carbon.mind.remove_addiction_points(type, addiction_to_remove.high_sanity_addiction_loss) //If true was returned, we lost the addiction!

@@ -63,8 +63,9 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	uniform = /obj/item/clothing/under/rank/cargo/exploration
 	backpack_contents = list(
-		/obj/item/kitchen/knife/combat/survival=1,\
-		/obj/item/stack/marker_beacon/thirty=1)
+		/obj/item/kitchen/knife/combat/survival=1,
+		/obj/item/stack/marker_beacon/thirty=1,
+		/obj/item/sbeacondrop/exploration=1)			//MonkeStation edit: adds a bluespace beacon for latejoiners
 	l_pocket = /obj/item/gps/mining/exploration
 	r_pocket = /obj/item/gun/energy/e_gun/mini/exploration
 

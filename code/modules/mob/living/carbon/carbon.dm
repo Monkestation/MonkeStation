@@ -15,6 +15,7 @@
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(bodyparts)
 	QDEL_LIST(implants)
+	QDEL_LIST(diseases)
 	remove_from_all_data_huds()
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
@@ -262,6 +263,7 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+	SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_RESISTED)
 	if(!cuff_break)
 		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
 		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")
@@ -327,6 +329,9 @@
 
 	else
 		if(I == handcuffed)
+			//MONKESTATION EDIT
+			SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_REMOVED)
+			//MONKESTATION EDIT END
 			handcuffed.forceMove(drop_location())
 			handcuffed = null
 			I.dropped(src)
@@ -449,7 +454,7 @@
 			if(T)
 				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
 		T = get_step(T, dir)
-		if (is_blocked_turf(T))
+		if (T.is_blocked_turf())
 			break
 	return 1
 
@@ -473,9 +478,15 @@
 /mob/living/carbon/update_mobility()
 	. = ..()
 	if(!(mobility_flags & MOBILITY_STAND))
-		add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
+		if(HAS_TRAIT(src, FOOD_SLIDE))
+			add_movespeed_modifier("belly_slide", update=TRUE, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+		else
+			add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
 	else
-		remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
+		if(HAS_TRAIT(src, FOOD_SLIDE) || has_movespeed_modifier("belly_slide"))
+			remove_movespeed_modifier("belly_slide", TRUE)
+		if(has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
+			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
 
 //Updates the mob's health from bodyparts and mob damage variables
 /mob/living/carbon/updatehealth()
@@ -503,7 +514,7 @@
 
 /mob/living/carbon/update_stamina(extend_stam_crit = FALSE)
 	var/stam = getStaminaLoss()
-	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat && !HAS_TRAIT(src, TRAIT_NOSTAMCRIT))
+	if(stam >= DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat && !HAS_TRAIT(src, TRAIT_NOSTAMCRIT))
 		if(extend_stam_crit || !stam_paralyzed)
 			enter_stamcrit()
 	else if(stam_paralyzed)
@@ -759,6 +770,9 @@
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	if(reagents)
 		reagents.clear_reagents()
+	if(mind)
+		for(var/addiction_type in subtypesof(/datum/addiction))
+			mind.remove_addiction_points(addiction_type, MAX_ADDICTION_POINTS) //Remove the addiction!
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
@@ -777,8 +791,6 @@
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory
 			qdel(R)
 		update_handcuffed()
-		if(reagents)
-			reagents.addiction_list = list()
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	..()
 	// heal ears after healing traits, since ears check TRAIT_DEAF trait

@@ -61,8 +61,9 @@ SUBSYSTEM_DEF(air)
 	var/share_max_steps = 3
 	// Excited group processing will try to equalize groups with total pressure difference less than this amount.
 	var/excited_group_pressure_goal = 1
+	//Paused z-levels will not add turfs to active
+	var/list/paused_z_levels = list()
 
-	var/list/paused_z_levels	//Paused z-levels will not add turfs to active
 
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "C:{"
@@ -258,6 +259,33 @@ SUBSYSTEM_DEF(air)
 	*/
 	currentpart = SSAIR_REBUILD_PIPENETS
 
+/datum/controller/subsystem/air/Recover()
+	thread_wait_ticks = SSair.thread_wait_ticks
+	cur_thread_wait_ticks = SSair.cur_thread_wait_ticks
+	low_pressure_turfs = SSair.low_pressure_turfs
+	high_pressure_turfs = SSair.high_pressure_turfs
+	num_group_turfs_processed = SSair.num_group_turfs_processed
+	num_equalize_processed = SSair.num_equalize_processed
+	hotspots = SSair.hotspots
+	pipenets_needing_rebuilt = SSair.pipenets_needing_rebuilt
+	deferred_airs = SSair.deferred_airs
+	max_deferred_airs = SSair.max_deferred_airs
+	atmos_machinery = SSair.atmos_machinery
+	atmos_air_machinery = SSair.atmos_air_machinery
+	pipe_init_dirs_cache = SSair.pipe_init_dirs_cache
+	gas_reactions = SSair.gas_reactions
+	high_pressure_delta = SSair.high_pressure_delta
+	currentrun = SSair.currentrun
+	currentpart = SSair.currentpart
+	map_loading = SSair.map_loading
+	log_explosive_decompression = SSair.log_explosive_decompression
+	equalize_turf_limit = SSair.equalize_turf_limit
+	equalize_hard_turf_limit = SSair.equalize_hard_turf_limit
+	equalize_enabled = SSair.equalize_enabled
+	heat_enabled = SSair.heat_enabled
+	share_max_steps = SSair.share_max_steps
+	excited_group_pressure_goal = SSair.excited_group_pressure_goal
+	paused_z_levels = SSair.paused_z_levels
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = FALSE)
 	if (!resumed)
@@ -309,12 +337,12 @@ SUBSYSTEM_DEF(air)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
+		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
-		if(M == null)
-			atmos_machinery.Remove(M)
-		if(!M || (M.process_atmos() == PROCESS_KILL))
-			atmos_machinery.Remove(M)
+		if(!Machinery)
+			atmos_machinery -= Machinery
+		if(Machinery.process_atmos() == PROCESS_KILL)
+			stop_processing_machine(Machinery)
 		if(MC_TICK_CHECK)
 			return
 
@@ -325,12 +353,53 @@ SUBSYSTEM_DEF(air)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
+		var/obj/machinery/Machinery = currentrun[currentrun.len]
 		currentrun.len--
-		if(!M || (M.process_atmos(seconds) == PROCESS_KILL))
-			atmos_air_machinery.Remove(M)
+		if(!Machinery)
+			atmos_air_machinery -= Machinery
+		if(Machinery.process_atmos(seconds) == PROCESS_KILL)
+			stop_processing_machine(Machinery)
 		if(MC_TICK_CHECK)
 			return
+
+/**
+ * Adds a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
+ *
+ * Arguments:
+ * * machine - The machine to start processing. Can be any /obj/machinery.
+ */
+/datum/controller/subsystem/air/proc/start_processing_machine(obj/machinery/machine)
+	if(machine.atmos_processing)
+		return
+	machine.atmos_processing = TRUE
+	if(machine.interacts_with_air)
+		atmos_air_machinery += machine
+	else
+		atmos_machinery += machine
+
+/**
+ * Removes a given machine to the processing system for SSAIR_ATMOSMACHINERY processing.
+ *
+ * Arguments:
+ * * machine - The machine to stop processing.
+ */
+/datum/controller/subsystem/air/proc/stop_processing_machine(obj/machinery/machine)
+	if(!machine.atmos_processing)
+		return
+	machine.atmos_processing = FALSE
+	if(machine.interacts_with_air)
+		atmos_air_machinery -= machine
+	else
+		atmos_machinery -= machine
+
+	// If we're currently processing atmos machines, there's a chance this machine is in
+	// the currentrun list, which is a cache of atmos_machinery. Remove it from that list
+	// as well to prevent processing qdeleted objects in the cache.
+	if(currentpart == SSAIR_ATMOSMACHINERY)
+		currentrun -= machine
+	if(machine.interacts_with_air && currentpart == SSAIR_ATMOSMACHINERY_AIR)
+		currentrun -= machine
+
 
 /datum/controller/subsystem/air/proc/process_turf_heat()
 
@@ -404,7 +473,7 @@ SUBSYSTEM_DEF(air)
 		pause()
 
 /datum/controller/subsystem/air/proc/finish_turf_processing(resumed = 0)
-	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS))
+	if(finish_turf_processing_auxtools(MC_TICK_REMAINING_MS) || thread_running())
 		pause()
 
 /datum/controller/subsystem/air/proc/post_process_turfs(resumed = 0)
@@ -428,7 +497,7 @@ SUBSYSTEM_DEF(air)
 	map_loading = FALSE
 
 /datum/controller/subsystem/air/proc/pause_z(z_level)
-	LAZYADD(paused_z_levels, z_level)
+	paused_z_levels["[z_level]"] = TRUE
 	var/list/turfs_to_disable = block(locate(1, 1, z_level), locate(world.maxx, world.maxy, z_level))
 	for(var/turf/T as anything in turfs_to_disable)
 		T.ImmediateDisableAdjacency(FALSE)
@@ -439,7 +508,7 @@ SUBSYSTEM_DEF(air)
 	for(var/turf/T as anything in turfs_to_reinit)
 		T.Initalize_Atmos()
 		CHECK_TICK
-	LAZYREMOVE(paused_z_levels, z_level)
+	paused_z_levels["[z_level]"] = FALSE
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
 	var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
@@ -491,6 +560,7 @@ SUBSYSTEM_DEF(air)
 		qdel(temp)
 
 	return pipe_init_dirs_cache[type]["[dir]"]
+
 
 #undef SSAIR_PIPENETS
 #undef SSAIR_ATMOSMACHINERY

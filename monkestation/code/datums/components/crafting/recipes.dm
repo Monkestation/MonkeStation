@@ -7,14 +7,26 @@
 	time = 15
 	category = CAT_MISC
 
+/datum/crafting_recipe/elder_atmosian_statue
+	name = "Elder Atmosian Statue"
+	result = /obj/structure/statue/elder_atmosian
+	time = 6 SECONDS
+	reqs = list(/obj/item/stack/sheet/mineral/metal_hydrogen = 10,
+				/obj/item/stack/sheet/mineral/zaukerite = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1,
+				/obj/item/grenade/gas_crystal/pluonium_crystal = 1,
+				/obj/item/grenade/gas_crystal/healium_crystal = 1
+				)
+	category = CAT_MISC
+
 /datum/crafting_recipe/yes_slip
 	name = "Yes-Slip Shoes"
 	result = /obj/item/clothing/shoes/yes_slip
 	time = 20
-	reqs = list(	/obj/item/reagent_containers/food/snacks/grown/banana = 2,
+	reqs = list(	/obj/item/food/grown/banana = 2,
 					/datum/reagent/lube = 100,
 					/obj/item/stack/cable_coil = 1)
-	tools = list(/obj/item/reagent_containers/food/snacks/grown/banana)
+	tools = list(/obj/item/food/grown/banana)
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/paper_mask

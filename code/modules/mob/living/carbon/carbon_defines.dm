@@ -11,6 +11,10 @@
 	var/dreaming = 0 //How many dream images we have left to send
 	var/obj/item/handcuffed = null //Whether or not the mob is handcuffed
 	var/obj/item/legcuffed = null  //Same as handcuffs but for legs. Bear traps use this.
+	//List of active diseases
+	var/list/diseases = list()
+	// list of all diseases in a mob
+	var/list/disease_resistances = list()
 
 	var/disgust = 0
 
@@ -33,7 +37,7 @@
 
 	var/co2overloadtime = null
 	var/temperature_resistance = T0C+75
-	var/obj/item/reagent_containers/food/snacks/meat/slab/type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab
+	var/obj/item/food/meat/slab/type_of_meat = /obj/item/food/meat/slab
 
 	var/gib_type = /obj/effect/decal/cleanable/blood/gibs
 
@@ -78,3 +82,7 @@
 	///SKILL CHIPS
 	/// Simple modifier for whether this mob can handle greater or lesser skillchip complexity. See /datum/mutation/human/biotechcompat/ for example.
 	var/skillchip_complexity_modifier = 0
+	/// How many food buffs we have at once
+	var/applied_food_buffs = 0
+	//Max amount of food buffs
+	var/max_food_buffs = 2

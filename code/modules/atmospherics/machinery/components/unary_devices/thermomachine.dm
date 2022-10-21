@@ -31,6 +31,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/Initialize(mapload)
 	. = ..()
 	initialize_directions = dir
+	SSair.start_processing_machine(src) //initialize thermomachines to SSairs list of tickable machines
 	RefreshParts()
 	update_icon()
 
@@ -55,6 +56,7 @@
 	return ..(dir, piping_layer)
 
 /obj/machinery/atmospherics/components/unary/thermomachine/RefreshParts()
+	. = ..()
 	var/calculated_bin_rating
 	for(var/obj/item/stock_parts/matter_bin/bin in component_parts)
 		calculated_bin_rating += bin.rating
@@ -77,7 +79,7 @@
 
 	if(panel_open)
 		icon_state = icon_state_open
-	else if(on && is_operational())
+	else if(on && is_operational)
 		icon_state = icon_state_on
 	else
 		icon_state = icon_state_off
@@ -109,7 +111,7 @@
 
 /obj/machinery/atmospherics/components/unary/thermomachine/process_atmos()
 	..()
-	if(!is_operational() || !on || !nodes[1])  //if it has no power or its switched off, dont process atmos
+	if(!is_operational || !on || !nodes[1])  //if it has no power or its switched off, dont process atmos
 		return
 	var/datum/gas_mixture/air_contents = airs[1]
 
@@ -202,7 +204,7 @@
 	switch(action)
 		if("power")
 			on = !on
-			use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+			update_use_power(on ? ACTIVE_POWER_USE : IDLE_POWER_USE)
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("cooling")

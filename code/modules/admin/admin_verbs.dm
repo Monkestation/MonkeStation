@@ -19,7 +19,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/cmd_admin_pm_panel,		/*admin-pm list*/
 	/client/proc/stop_sounds,
 	/client/proc/mark_datum_mapview,
-	/client/proc/requests
+	/client/proc/requests,
+	/client/proc/remove_liquid //MONKESTATION ADDITION
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -113,6 +114,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/admin_away,
 	/client/proc/healall,
 	/client/proc/spawn_floor_cluwne,
+	/client/proc/spawn_liquid, //MONKESTATION ADDITION
 	/client/proc/spawnhuman
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -169,6 +171,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/outfit_manager,
 	/client/proc/modify_goals,
 	/client/proc/debug_huds,
+	/client/proc/toggle_liquid_debug, //MONKESTATION EDIT ADDITION
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
 	/client/proc/jump_to_ruin,
@@ -185,7 +188,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/datum/admins/proc/create_or_modify_area,
 	/datum/admins/proc/fixcorruption,
 	#ifdef TESTING
-	/client/proc/export_dynamic_json,
 	/client/proc/run_dynamic_simulations,
 	#endif
 	#ifdef SENDMAPS_PROFILE
@@ -266,7 +268,8 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/toggle_nuke,
 	/client/proc/cmd_display_del_log,
 	/client/proc/toggle_combo_hud,
-	/client/proc/debug_huds
+	/client/proc/debug_huds,
+	/client/proc/spawn_liquid //MONKESTATION ADDITION
 	))
 GLOBAL_PROTECT(admin_verbs_hideable)
 
@@ -276,6 +279,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 		var/rights = holder.rank.rights
 		add_verb(GLOB.admin_verbs_default)
+		add_verb(GLOB.mentor_verbs)
 		if(rights & R_BUILD)
 			add_verb(/client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)
@@ -325,7 +329,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.admin_verbs_debug_mapping,
 		/client/proc/disable_debug_verbs,
 		/client/proc/readmin,
-		/client/proc/fix_say
+		/client/proc/fix_say,
+		GLOB.mentor_verbs
 		)
 	remove_verb(verb_list)
 	reset_badges()
@@ -646,15 +651,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed the spell [S] from [key_name_admin(T)].</span>")
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
+/client/proc/give_disease(mob/living/carbon/T in GLOB.mob_living_list)
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
-		to_chat(src, "<span class='notice'>You can only give a disease to a mob of type /mob/living.</span>")
+		to_chat(src, "<span class='notice'>You can only give a disease to a mob of type /mob/living/carbon.</span>")
 		return
 	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in sortList(SSdisease.diseases, /proc/cmp_typepaths_asc)
-	if(!D)
+	if(!D || !iscarbon(T))
 		return
 	T.ForceContractDisease(new D, FALSE, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Disease") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

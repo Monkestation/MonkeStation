@@ -123,14 +123,14 @@
 			else
 				to_chat(user, "<span class='notice'>You firmly wrench the bomb to the floor.</span>")
 				I.play_tool_sound(src)
-				setAnchored(TRUE)
+				set_anchored(TRUE)
 				if(active)
 					to_chat(user, "<span class='notice'>The bolts lock in place.</span>")
 		else
 			if(!active)
 				to_chat(user, "<span class='notice'>You wrench the bomb from the floor.</span>")
 				I.play_tool_sound(src)
-				setAnchored(FALSE)
+				set_anchored(FALSE)
 			else
 				to_chat(user, "<span class='warning'>The bolts are locked down!</span>")
 
@@ -341,7 +341,7 @@
 	qdel(src)
 
 /obj/item/bombcore/badmin/summon
-	var/summon_path = /obj/item/reagent_containers/food/snacks/cookie
+	var/summon_path = /obj/item/food/cookie
 	var/amt_summon = 1
 
 /obj/item/bombcore/badmin/summon/detonate()

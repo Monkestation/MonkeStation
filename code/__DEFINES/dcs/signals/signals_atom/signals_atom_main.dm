@@ -3,10 +3,10 @@
 // All signals send the source datum of the signal as the first argument
 
 // /atom signals
-//	from SSatoms InitAtom - Only if the atom was not deleted or failed initialization
+///from base of atom/proc/Initialize(): sent any time a new atom is created in this atom
+#define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"
+//from SSatoms InitAtom - Only if the  atom was not deleted or failed initialization
 #define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"
-///from base of atom/proc/Initialize(mapload): sent any time a new atom is created
-#define COMSIG_ATOM_CREATED "atom_created"
 
 /// from base of atom/examine(): (/mob, list/examine_text)
 #define COMSIG_PARENT_EXAMINE "atom_examine"
@@ -31,21 +31,37 @@
 #define COMSIG_ATOM_UPDATE_NAME "atom_update_name"
 ///	from base of [/atom/proc/update_desc]: (updates)
 #define COMSIG_ATOM_UPDATE_DESC "atom_update_desc"
-///	from base of atom/update_icon(): ()
+///from base of [/atom/update_icon]: ()
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"
+	/// If returned from [COMSIG_ATOM_UPDATE_ICON] it prevents the atom from updating its icon state.
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE UPDATE_ICON_STATE
+	/// If returned from [COMSIG_ATOM_UPDATE_ICON] it prevents the atom from updating its overlays.
 	#define COMSIG_ATOM_NO_UPDATE_OVERLAYS UPDATE_OVERLAYS
 	#define COMSIG_ATOM_NO_UPDATE_GREYSCALE UPDATE_GREAYSCALE
-//	from base of atom/update_overlays(): (list/new_overlays)
+///from base of [atom/update_icon_state]: ()
+#define COMSIG_ATOM_UPDATE_ICON_STATE "atom_update_icon_state"
+//from base of atom/update_overlays(): (list/new_overlays)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"
+///from base of [/atom/update_icon]: (signalOut, did_anything)
+#define COMSIG_ATOM_UPDATED_ICON "atom_updated_icon"
+///from base of [/atom/proc/smooth_icon]: ()
+#define COMSIG_ATOM_SMOOTHED_ICON "atom_smoothed_icon"
 
 /// from base of atom/Entered(): (atom/movable/entering, /atom)
 #define COMSIG_ATOM_ENTERED "atom_entered"
+///from base of atom/movable/Moved(): (atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+#define COMSIG_ATOM_ABSTRACT_ENTERED "atom_abstract_entered"
+/// Sent from the atom that just Entered src. From base of atom/Entered(): (/atom/destination, atom/old_loc, list/atom/old_locs)
+#define COMSIG_ATOM_ENTERING "atom_entering"
+
 /// from base of atom/Exit(): (/atom/movable/exiting, /atom/newloc)
 #define COMSIG_ATOM_EXIT "atom_exit"
 	#define COMPONENT_ATOM_BLOCK_EXIT (1<<0)
 /// from base of atom/Exited(): (atom/movable/exiting, atom/newloc)
 #define COMSIG_ATOM_EXITED "atom_exited"
+///from base of atom/movable/Moved(): (atom/movable/gone, direction)
+#define COMSIG_ATOM_ABSTRACT_EXITED "atom_abstract_exited"
+
 ///	from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_BUMPED "atom_bumped"
 

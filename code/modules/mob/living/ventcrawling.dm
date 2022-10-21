@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		return
 	var/list/totalMembers = list()
 
-	for(var/datum/pipeline/P in starting_machine.returnPipenets())
+	for(var/datum/pipeline/P in starting_machine.return_pipenets())
 		totalMembers += P.members
 		totalMembers += P.other_atmosmch
 
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
 			if(in_view_range(client.mob, A))
 				if(!A.pipe_vision_img)
-					A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
+					A.pipe_vision_img = image(A, A.loc, dir = A.dir)
 					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
 				client.images += A.pipe_vision_img
 				pipes_shown += A.pipe_vision_img

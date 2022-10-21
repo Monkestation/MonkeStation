@@ -610,10 +610,12 @@
 	var/move_result = 0
 	var/oldloc = loc
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
 		move_result = mechsteprand()
 	else if(dir != direction && (!strafe || occupant.client.keys_held["Alt"]))
 		move_result = mechturn(direction)
 	else
+		set_glide_size(DELAY_TO_GLIDE_SIZE(step_in))
 		move_result = mechstep(direction)
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
@@ -1170,10 +1172,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	take_damage(500,  BRUTE)
 
 /obj/mecha/lighteater_act(obj/item/light_eater/light_eater)
+	..()
 	if(!lights_power)
 		return
 	lights = FALSE
 	lights_power = 0
-	set_light(0)
+	set_light_on(FALSE)
 	visible_message(src, "<span class='danger'>The lights on [src] short out!</span>")
 	playsound(src, 'sound/items/welder.ogg', 50, 1)

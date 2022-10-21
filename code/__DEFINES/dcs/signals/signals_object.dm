@@ -8,7 +8,7 @@
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"
 /// from base of code/game/machinery
 #define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"
-/// called in /obj/structure/setAnchored(): (value)
+/// called in /obj/structure/set_anchored(): (value)
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"
 
 
@@ -18,11 +18,46 @@
 /// Sent from /obj/machinery/close_machine(): (atom/movable/target)
 #define COMSIG_MACHINE_CLOSE "machine_close"
 
+///from /obj/machinery/atom_break(damage_flag): (damage_flag)
+#define COMSIG_MACHINERY_BROKEN "machinery_broken"
+///from base power_change() when power is lost
+#define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
+
+///from base power_change() when power is restored
+#define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
+///from /obj/machinery/set_occupant(atom/movable/O): (new_occupant)
+#define COMSIG_MACHINERY_SET_OCCUPANT "machinery_set_occupant"
+///from /obj/machinery/destructive_scanner/proc/open(aggressive): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
+
+// /obj/machinery/atmospherics/components/unary/cryo_cell signals
+/// from /obj/machinery/atmospherics/components/unary/cryo_cell/set_on(bool): (on)
+#define COMSIG_CRYO_SET_ON "cryo_set_on"
+
+#define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
+///from /obj/machinery/computer/arcade/prizevend(mob/user, prizes = 1)
+#define COMSIG_ARCADE_PRIZEVEND "arcade_prizevend"
+///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
+#define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
+///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()
+#define COMSIG_MACHINERY_STOP_PROCESSING_AIR "stop_processing_air"
+
+///from /obj/machinery/can_interact(mob/user): Called on user when attempting to interact with a machine (obj/machinery/machine)
+#define COMSIG_TRY_USE_MACHINE "try_use_machine"
+	/// Can't interact with the machine
+	#define COMPONENT_CANT_USE_MACHINE_INTERACT (1<<0)
+	/// Can't use tools on the machine
+	#define COMPONENT_CANT_USE_MACHINE_TOOLS (1<<1)
+
 
 // /obj/machinery/atmospherics/components/binary/valve signals
 /// from /obj/machinery/atmospherics/components/binary/valve/toggle(): (on)
 #define COMSIG_VALVE_SET_OPEN "valve_toggled"
 
+/// from /obj/machinery/atmospherics/set_on(active): (on)
+#define COMSIG_ATMOS_MACHINE_SET_ON "atmos_machine_set_on"
+
+/// from /obj/machinery/light_switch/set_lights(), sent to every switch in the area: (status)
+#define COMSIG_LIGHT_SWITCH_SET "light_switch_set"
 
 // /obj/machinery/door/airlock signals
 //from /obj/machinery/door/airlock/open(): (forced)
@@ -41,6 +76,14 @@
 #define COMSIG_ITEM_EQUIPPED "item_equip"
 /// from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_DROPPED "item_drop"
+///Called when an item is dried by a drying rack:
+#define COMSIG_ITEM_DRIED "item_dried"
+///from base of obj/item/on_grind(): ())
+#define COMSIG_ITEM_ON_GRIND "on_grind"
+///from base of obj/item/on_juice(): ()
+#define COMSIG_ITEM_ON_JUICE "on_juice"
+///from /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params) when an object is used as compost: (mob/user)
+#define COMSIG_ITEM_ON_COMPOSTED "on_composted"
 /// from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
 /// from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
@@ -80,6 +123,31 @@
 /// used to check if the item is wielded for special effects
 #define COMSIG_ITEM_CHECK_WIELDED "item_check_wielded"
   #define COMPONENT_IS_WIELDED 1
+
+// /obj signals for economy
+///called when the payment component tries to charge an account.
+#define COMSIG_OBJ_ATTEMPT_CHARGE "obj_attempt_simple_charge"
+	#define COMPONENT_OBJ_CANCEL_CHARGE  (1<<0)
+///Called when a payment component changes value
+#define COMSIG_OBJ_ATTEMPT_CHARGE_CHANGE "obj_attempt_simple_charge_change"
+
+// /obj/item signals for economy
+///called before an item is sold by the exports system.
+#define COMSIG_ITEM_PRE_EXPORT "item_pre_sold"
+	/// Stops the export from calling sell_object() on the item, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT (1<<0)
+///called when an item is sold by the exports subsystem
+#define COMSIG_ITEM_EXPORTED "item_sold"
+	/// Stops the export from adding the export information to the report, so you can handle it manually.
+	#define COMPONENT_STOP_EXPORT_REPORT (1<<0)
+///called when a wrapped up structure is opened by hand
+#define COMSIG_STRUCTURE_UNWRAPPED "structure_unwrapped"
+///called when a wrapped up item is opened by hand
+#define COMSIG_ITEM_UNWRAPPED "item_unwrapped"
+///called when getting the item's exact ratio for cargo's profit.
+#define COMSIG_ITEM_SPLIT_PROFIT "item_split_profits"
+///called when getting the item's exact ratio for cargo's profit, without selling the item.
+#define COMSIG_ITEM_SPLIT_PROFIT_DRY "item_split_profits_dry"
 
 
 // /obj/item/clothing signals

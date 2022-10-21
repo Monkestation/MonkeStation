@@ -9,6 +9,11 @@
 	return
 
 /turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
+	//MONKESTATION EDIT ADDITION
+	if(liquids && !liquids.fire_state && liquids.check_fire(TRUE))
+		SSliquids.processing_fire[src] = TRUE
+	//MONKESTATION EDIT END
+
 	if(!air)
 		return
 
@@ -161,7 +166,7 @@
 	if((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
 		qdel(src)
 		return
-	if(!location.air || location.air.get_oxidation_power() < 0.5 || (INSUFFICIENT(GAS_PLASMA) && INSUFFICIENT(GAS_TRITIUM) && location.air.get_fuel_amount() < 0.5))
+	if(!location.air || location.air.get_oxidation_power() < 0.5 || (INSUFFICIENT(GAS_PLASMA) && INSUFFICIENT(GAS_TRITIUM && INSUFFICIENT(GAS_H2)) && location.air.get_fuel_amount() < 0.5))
 		qdel(src)
 		return
 

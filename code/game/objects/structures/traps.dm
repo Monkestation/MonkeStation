@@ -54,7 +54,7 @@
 	// Makes the trap visible, and starts the cooldown until it's
 	// able to be triggered again.
 	visible_message(flare_message)
-	if(sparks && Master.current_runlevel)
+	if(sparks && MC_RUNNING())
 		spark_system.start()
 	alpha = 200
 	last_trigger = world.time
@@ -96,7 +96,7 @@
 	var/stun_time = 100
 
 /obj/structure/trap/stun/trap_effect(mob/living/L)
-	L.electrocute_act(30, src, safety=1) // electrocute act does a message.
+	L.electrocute_act(30, src, flags = SHOCK_NOGLOVES) // electrocute act does a message.
 	L.Paralyze(stun_time)
 
 /obj/structure/trap/stun/hunter

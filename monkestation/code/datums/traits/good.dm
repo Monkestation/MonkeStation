@@ -38,8 +38,4 @@
 /datum/quirk/controlled_prosthetic/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/choice_beacon/prosthetic/B = new(get_turf(H))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
-	)
-	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, B, H, TRUE, TRUE) //insert the item, even if the backpack's full

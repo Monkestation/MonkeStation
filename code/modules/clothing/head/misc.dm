@@ -112,7 +112,10 @@
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
 	desc = "A working man's cap."
-	icon_state = "flat_cap"
+	icon_state = "beret"
+	greyscale_config = /datum/greyscale_config/beret
+	greyscale_config_worn = /datum/greyscale_config/beret/worn
+	greyscale_colors = "#972A2A"
 	item_state = "detective"
 
 /obj/item/clothing/head/pirate
@@ -203,6 +206,15 @@
 	desc = "A really cool hat if you're a mobster. A really lame hat if you're not."
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
+/obj/item/clothing/head/fedora/anime
+	name = "Ancient Forged Fedora"
+	desc = "Forged 1000 years ago in a magic forge and cooled in gods blood, or you just bought a cheap replica off of NTbay."
+	throw_speed = 7
+	throw_range = 10
+	throwforce = 30
+	sharpness = IS_SHARP
+	attack_verb = list("slashed, sliced")
+
 /obj/item/clothing/head/fedora/suicide_act(mob/user)
 	if(user.gender == FEMALE)
 		return 0
@@ -240,12 +252,6 @@
 /obj/item/clothing/head/sombrero/shamebrero/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SHAMEBRERO_TRAIT)
-
-/obj/item/clothing/head/flatcap
-	name = "flat cap"
-	desc = "A working man's cap."
-	icon_state = "flat_cap"
-	item_state = "detective"
 
 /obj/item/clothing/head/hunter
 	name = "bounty hunting hat"

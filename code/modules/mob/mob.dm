@@ -242,7 +242,7 @@
   * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
   */
 /atom/proc/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/audible_message_flags)
-	var/list/hearers = get_hearers_in_view(hearing_distance, src, SEE_INVISIBLE_OBSERVER)
+	var/list/hearers = get_hearers_in_view(hearing_distance, src)
 	if(self_message)
 		hearers -= src
 
@@ -486,7 +486,11 @@
 
 	face_atom(A)
 	var/list/result = A.examine(src)
-	to_chat(src, result.Join("\n"))
+	if(result.len)
+		for(var/i in 1 to (length(result) - 1))
+			result[i] += "\n"
+
+	to_chat(src, examine_block("<span class='infoplain'>[result.Join()]</span>"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 /mob/proc/blind_examine_check(atom/examined_thing)
@@ -1070,7 +1074,7 @@
 
 ///update the ID name of this mob
 /mob/proc/replace_identification_name(oldname,newname)
-	var/list/searching = GetAllContents()
+	var/list/searching = get_all_contents_type()
 	var/search_id = 1
 	var/search_pda = 1
 

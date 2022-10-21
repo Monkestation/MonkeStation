@@ -38,11 +38,11 @@
 /obj/item/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
-		var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>\n"
+		var/msg = "<span class='info'>This is \a <span class='name'>[src]</span>\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		msg += "</span>"
-		to_chat(usr, msg)
+		to_chat(usr, examine_block(msg))
 		return
 
 /obj/item/grown/proc/add_juice()
@@ -60,5 +60,6 @@
 	return
 
 /obj/item/grown/on_grind()
+	. = ..()
 	for(var/i in 1 to grind_results.len)
 		grind_results[grind_results[i]] = round(seed.potency)

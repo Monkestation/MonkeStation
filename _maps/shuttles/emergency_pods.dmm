@@ -1,0 +1,540 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/open/space/basic,
+/area/template_noop)
+"ac" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/escape)
+"ad" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/escape)
+"aq" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"ar" = (
+/obj/machinery/door/airlock/command{
+	name = "Command Pod";
+	req_access_txt = "19"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"au" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"av" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/escape)
+"az" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"aB" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"aL" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"aN" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"aP" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"aQ" = (
+/obj/machinery/stasis,
+/obj/machinery/vending/wallmed{
+	name = "Emergency NanoMed";
+	use_power = 0;
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"be" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
+"bh" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"fr" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"LY" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"PE" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig";
+	req_access_txt = "2"
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+"Rl" = (
+/obj/docking_port/mobile/emergency{
+	dir = 2;
+	dwidth = 5;
+	height = 14;
+	name = "pods emergency shuttle";
+	width = 25
+	},
+/turf/open/space/basic,
+/area/template_noop)
+"Vs" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
+
+(1,1,1) = {"
+aa
+aa
+aa
+au
+aa
+aa
+aa
+au
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+ad
+av
+ad
+aa
+ad
+av
+ad
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aq
+az
+aq
+aa
+fr
+LY
+fr
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+ad
+aB
+ad
+aa
+ac
+aP
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+ac
+ac
+ac
+aa
+ad
+aQ
+ad
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+aa
+aa
+au
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+au
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+av
+ad
+aa
+"}
+(8,1,1) = {"
+aa
+ad
+av
+ad
+aa
+aa
+au
+aa
+aa
+aa
+aq
+az
+aq
+aa
+"}
+(9,1,1) = {"
+aa
+aq
+az
+aq
+aa
+ad
+av
+ad
+aa
+aa
+ac
+aB
+ac
+aa
+"}
+(10,1,1) = {"
+aa
+ad
+aB
+ad
+aa
+fr
+LY
+fr
+aa
+aa
+ad
+aB
+ad
+aa
+"}
+(11,1,1) = {"
+aa
+ac
+ac
+ac
+aa
+ad
+aQ
+ad
+aa
+aa
+ac
+ac
+ac
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+au
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+ad
+av
+ad
+aa
+aa
+aa
+aa
+au
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aq
+az
+aq
+aa
+aa
+aa
+ad
+av
+ad
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+ac
+aB
+ac
+aa
+aa
+aa
+PE
+Vs
+PE
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+ad
+aB
+ad
+aa
+aa
+aa
+ad
+bh
+ad
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+ac
+ac
+ac
+aa
+aa
+aa
+ac
+ac
+ac
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+au
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+Rl
+aa
+au
+aa
+aa
+ad
+av
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+ad
+av
+ad
+aa
+ar
+aL
+ar
+aa
+aa
+au
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aq
+az
+aq
+aa
+ac
+aN
+ac
+aa
+ad
+av
+ad
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+ad
+aB
+ad
+aa
+ad
+be
+ad
+aa
+aq
+az
+aq
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+ac
+ac
+ac
+aa
+ac
+ac
+ac
+aa
+ad
+aB
+ad
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+aa
+aa
+"}

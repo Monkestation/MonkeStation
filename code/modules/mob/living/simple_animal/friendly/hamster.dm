@@ -25,7 +25,7 @@
 	icon_living = "hamster"
 	held_state = "hamster"
 	icon_dead = "hamster_dead"
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/hamster = 1)
+	butcher_results = list(/obj/item/food/meat/slab/hamster = 1)
 	childtype = /mob/living/simple_animal/pet/hamster
 	animal_species = /mob/living/simple_animal/pet/hamster
 	gold_core_spawnable = FRIENDLY_SPAWN
@@ -66,7 +66,7 @@
 /mob/living/simple_animal/pet/hamster/vector/proc/on_entered(datum/source, M as mob)
 	SIGNAL_HANDLER
 
-	if(isliving(M) && !isnull(vector_disease) && prob(20))
-		var/mob/living/L = M
+	if(iscarbon(M) && !isnull(vector_disease) && prob(20))
+		var/mob/living/carbon/L = M
 		if(!L.HasDisease(vector_disease)) //I'm not actually sure if this check is needed, but better to be safe than sorry
 			L.ContactContractDisease(vector_disease)

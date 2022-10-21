@@ -113,6 +113,12 @@
 /mob/proc/is_holding(obj/item/I)
 	return get_held_index_of_item(I)
 
+///Find number of held items, multihand compatible
+/mob/proc/get_num_held_items()
+	. = 0
+	for(var/i in 1 to held_items.len)
+		if(held_items[i])
+			.++
 
 //Checks if we're holding an item of type: typepath
 /mob/proc/is_holding_item_of_type(typepath)
@@ -182,7 +188,6 @@
 			I.pickup(src)
 		I.forceMove(src)
 		held_items[hand_index] = I
-		I.layer = ABOVE_HUD_LAYER
 		I.plane = ABOVE_HUD_PLANE
 		I.equipped(src, ITEM_SLOT_HANDS)
 		if(I.pulledby)
@@ -502,7 +507,7 @@
 //GetAllContenst that is reasonable and not stupid
 /mob/living/carbon/proc/get_all_gear()
 	var/list/processing_list = get_equipped_items(include_pockets = TRUE) + held_items
-	listclearnulls(processing_list) // handles empty hands
+	list_clear_nulls(processing_list) // handles empty hands
 	var/i = 0
 	while(i < length(processing_list) )
 		var/atom/A = processing_list[++i]

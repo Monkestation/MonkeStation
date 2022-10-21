@@ -13,6 +13,57 @@
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
+//MONKESTATION EDIT ADDITION
+//Consider making all of these behaviours a smart component/element? Something that's only applied wherever it needs to be
+//Could probably have the variables on the turf level, and the behaviours being activated/deactived on the component level as the vars are updated
+/turf/open/CanPass(atom/movable/A, turf/T)
+	if(isliving(A))
+		var/turf/AT = get_turf(A)
+		if(AT && AT.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
+			return FALSE
+	return ..()
+
+/turf/open/Exit(atom/movable/mover, atom/newloc)
+	. = ..()
+	if(. && isliving(mover) && mover.has_gravity() && isturf(newloc))
+		var/mob/living/L = mover
+		var/turf/T = get_turf(newloc)
+		if(T && T.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
+			L.onZImpact(T, 1)
+
+
+/turf/open/MouseDrop_T(mob/living/M, mob/living/user)
+	if(!isliving(M) || !isliving(user) || !M.has_gravity() || !Adjacent(user) || !M.Adjacent(user) || !(user.stat == CONSCIOUS) || !MOBILITY_STAND)
+		return
+	if(!M.has_gravity())
+		return
+	var/turf/T = get_turf(M)
+	if(!T)
+		return
+	if(T.turf_height - turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
+		//Climb up
+		if(user == M)
+			M.visible_message("<span class='notice'>[user] is climbing onto [src]", \
+								"<span class='notice'>You start climbing onto [src].</span>")
+		else
+			M.visible_message("<span class='notice'>[user] is pulling [M] onto [src]", \
+								"<span class='notice'>You start pulling [M] onto [src].</span>")
+		if(do_mob(user, M, 2 SECONDS))
+			M.forceMove(src)
+		return
+	if(turf_height - T.turf_height <= -TURF_HEIGHT_BLOCK_THRESHOLD)
+		//Climb down
+		if(user == M)
+			M.visible_message("<span class='notice'>[user] is descending down to [src]", \
+								"<span class='notice'>You start lowering yourself to [src].</span>")
+		else
+			M.visible_message("<span class='notice'>[user] is lowering [M] down to [src]", \
+								"<span class='notice'>You start lowering [M] down to [src].</span>")
+		if(do_mob(user, M, 2 SECONDS))
+			M.forceMove(src)
+		return
+//MONKESTATION EDIT END
+
 
 /turf/open/ComponentInitialize()
 	. = ..()
@@ -114,7 +165,7 @@
 	icon = 'icons/turf/floors/hierophant_floor.dmi'
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/indestructible/hierophant
-	smooth = SMOOTH_TRUE
+	//smooth = SMOOTH_TRUE //MONKESTATION REMOVAL
 	tiled_dirt = FALSE
 
 /turf/open/indestructible/hierophant/two
@@ -255,6 +306,10 @@
 	. = ..()
 	if (air.get_moles(GAS_CO2) && air.get_moles(GAS_O2))
 		pulse_strength = min(pulse_strength,air.get_moles(GAS_CO2)*1000,air.get_moles(GAS_O2)*2000) //Ensures matter is conserved properly
-		air.set_moles(GAS_CO2, max(air.get_moles(GAS_CO2)-(pulse_strength/1000),0))
-		air.set_moles(GAS_O2, max(air.get_moles(GAS_O2)-(pulse_strength/2000),0))
-		air.adjust_moles(GAS_PLUOXIUM, pulse_strength/4000)
+		air.set_moles(GAS_CO2, max(air.get_moles(GAS_CO2)-(pulse_strength * 0.001),0))
+		air.set_moles(GAS_O2, max(air.get_moles(GAS_O2)-(pulse_strength * 0.002),0))
+		air.adjust_moles(GAS_PLUOXIUM, pulse_strength * 0.004)
+	if (air.get_moles(GAS_H2))
+		pulse_strength = min(pulse_strength, air.get_moles(GAS_H2) * 1000)
+		air.set_moles(GAS_H2, max(air.get_moles(GAS_H2) - (pulse_strength * 0.001), 0))
+		air.adjust_moles(GAS_TRITIUM, pulse_strength * 0.001)

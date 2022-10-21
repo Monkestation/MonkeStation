@@ -26,16 +26,25 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	name = "generic"
 	///Typepath of the product that is created when this record "sells"
 	var/product_path = null
+
 	///How many of this product we currently have
 	var/amount = 0
+
 	///How many we can store at maximum
 	var/max_amount = 0
+
 	///Does the item have a custom price override
 	var/custom_price
+
 	///Does the item have a custom premium price override
 	var/custom_premium_price
 
+	///Whether the product can be recolored by the GAGS system
 	var/colorable //MONKESTATION ADDITION
+
+	/// The category the product was in, if any.
+	/// Sourced directly from product_categories.
+	var/category
 
 /**
   * # vending machines
@@ -54,7 +63,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	verb_exclaim = "beeps"
 	max_integrity = 300
 	integrity_failure = 100
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70, "stamina" = 0)
+	armor = list(MELEE = 20, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, STAMINA = 0)
 	circuit = /obj/item/circuitboard/machine/vendor
 	payment_department = ACCOUNT_SRV
 
@@ -82,6 +91,18 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	  *	form should be list(/type/path = amount, /type/path2 = amount2)
 	  */
 	var/list/products	= list()
+
+	/**
+	 * List of products this machine sells, categorized.
+	 * Can only be used as an alternative to `products`, not alongside it.
+	 *
+	 * Form should be list(
+	 * 	"name" = "Category Name",
+	 * 	"icon" = "UI Icon (Font Awesome or tgfont)",
+	 * 	"products" = list(/type/path = amount, ...),
+	 * )
+	 */
+	var/list/product_categories = null
 
 	/**
 	  * List of products this machine sells when you hack it
@@ -187,9 +208,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	. = ..()
 	wires = new /datum/wires/vending(src)
 	if(build_inv) //non-constructable vending machine
-		build_inventory(products, product_records)
-		build_inventory(contraband, hidden_records)
-		build_inventory(premium, coin_records)
+		build_inventories()
 
 	slogan_list = splittext(product_slogans, ";")
 	// So not all machines speak at the exact same time.
@@ -218,16 +237,20 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 /obj/machinery/vending/can_speak()
 	return !shut_up
 
-/obj/machinery/vending/RefreshParts()         //Better would be to make constructable child
+//Better would be to make constructable child
+/obj/machinery/vending/RefreshParts()
+	SHOULD_CALL_PARENT(FALSE)
 	if(!component_parts)
 		return
+
+	build_products_from_categories()
 
 	product_records = list()
 	hidden_records = list()
 	coin_records = list()
-	build_inventory(products, product_records, start_empty = TRUE)
-	build_inventory(contraband, hidden_records, start_empty = TRUE)
-	build_inventory(premium, coin_records, start_empty = TRUE)
+
+	build_inventories(start_empty = TRUE)
+
 	for(var/obj/item/vending_refill/VR in component_parts)
 		restock(VR)
 
@@ -241,7 +264,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 /obj/machinery/vending/obj_break(damage_flag)
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		machine_stat |= BROKEN
+		set_machine_stat(machine_stat | BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 		set_light(0)
 		var/dump_amount = 0
@@ -277,7 +300,14 @@ GLOBAL_LIST_EMPTY(vending_products)
   * * recordlist - the list containing /datum/data/vending_product datums
   * * startempty - should we set vending_product record amount from the product list (so it's prefilled at roundstart)
   */
-/obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
+/obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, list/categories, start_empty = FALSE)
+
+	var/list/product_to_category = list()
+	for (var/list/category as anything in categories)
+		var/list/products = category["products"]
+		for (var/product_key in products)
+			product_to_category[product_key] = category
+
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		if(isnull(amount))
@@ -294,7 +324,32 @@ GLOBAL_LIST_EMPTY(vending_products)
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
 		R.colorable = !!(initial(temp.greyscale_config) && initial(temp.greyscale_colors)) //MONKESTATION ADDITION
+		R.category = product_to_category[typepath]
 		recordlist += R
+
+/obj/machinery/vending/proc/build_inventories(start_empty)
+	build_inventory(products, product_records, product_categories, start_empty)
+	build_inventory(contraband, hidden_records, create_categories_from(contraband, "mask", "Contraband"), start_empty)
+	build_inventory(premium, coin_records, create_categories_from(premium, "coins", "Premium"), start_empty)
+
+/obj/machinery/vending/proc/create_categories_from(products, icon, name)
+	return list(list(
+		"name" = name,
+		"icon" = icon,
+		"products" = products,
+	))
+
+/obj/machinery/vending/proc/build_products_from_categories()
+	if (isnull(product_categories))
+		return
+
+	products = list()
+
+	for (var/list/category in product_categories)
+		var/list/category_products = category["products"]
+		for (var/product_key in category_products)
+			products[product_key] += category_products[product_key]
+
 /**
   * Refill a vending machine from a refill canister
   *
@@ -311,9 +366,24 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if (!canister.premium)
 		canister.premium = premium.Copy()
 	. = 0
-	. += refill_inventory(canister.products, product_records)
+	if (isnull(canister.product_categories) && !isnull(product_categories))
+		canister.product_categories = product_categories.Copy()
+
+	if (!isnull(canister.product_categories))
+		var/list/products_unwrapped = list()
+		for (var/list/category as anything in canister.product_categories)
+			var/list/products = category["products"]
+			for (var/product_key in products)
+				products_unwrapped[product_key] += products[product_key]
+
+		. += refill_inventory(products_unwrapped, product_records)
+	else
+		. += refill_inventory(canister.products, product_records)
+
 	. += refill_inventory(canister.contraband, hidden_records)
 	. += refill_inventory(canister.premium, coin_records)
+
+	return .
 /**
   * Refill our inventory from the passed in product list into the record list
   *
@@ -343,7 +413,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if (!R)
 		CRASH("Constructible vending machine did not have a refill canister")
 
-	R.products = unbuild_inventory(product_records)
+	unbuild_inventory_into(product_records, R.products, R.product_categories)
 	R.contraband = unbuild_inventory(hidden_records)
 	R.premium = unbuild_inventory(coin_records)
 
@@ -355,6 +425,50 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for(var/R in recordlist)
 		var/datum/data/vending_product/record = R
 		.[record.product_path] += record.amount
+
+/// Put stuff in product_categories if the products have a category, otherwise put them in products
+/obj/machinery/vending/proc/unbuild_inventory_into(list/product_records, list/products, list/product_categories)
+	products?.Cut()
+	product_categories?.Cut()
+
+	var/others_have_category = null
+
+	var/list/categories_to_index = list()
+
+	for (var/datum/data/vending_product/record as anything in product_records)
+		var/list/category = record.category
+		var/has_category = !isnull(category)
+
+		if (isnull(others_have_category))
+			others_have_category = has_category
+		else if (others_have_category != has_category)
+			if (has_category)
+				WARNING("[record.product_path] in [type] has a category, but other products don't")
+			else
+				WARNING("[record.product_path] in [type] does not have a category, but other products do")
+
+			continue
+
+		if (has_category)
+			var/index = categories_to_index.Find(category)
+
+			if (index)
+				var/list/category_in_list = product_categories[index]
+				var/list/products_in_category = category_in_list["products"]
+				products_in_category[record.product_path] += record.amount
+			else
+				categories_to_index += list(category)
+				index = categories_to_index.len
+
+				var/list/category_clone = category.Copy()
+
+				var/list/initial_product_list = list()
+				initial_product_list[record.product_path] = record.amount
+				category_clone["products"] = initial_product_list
+
+				product_categories += list(category_clone)
+		else
+			products[record.product_path] = record.amount
 
 /obj/machinery/vending/crowbar_act(mob/living/user, obj/item/I)
 	if(!component_parts)
@@ -462,6 +576,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			break
 
 /obj/machinery/vending/proc/tilt(mob/fatty, crit=FALSE)
+	if(QDELETED(src))
+		return
 	visible_message("<span class='danger'>[src] tips over!</span>")
 	tilted = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -661,41 +777,53 @@ GLOBAL_LIST_EMPTY(vending_products)
 		ui.open()
 
 /obj/machinery/vending/ui_static_data(mob/user)
-	. = list()
-	.["onstation"] = onstation
-	.["department"] = payment_department
-	.["product_records"] = list()
-	for (var/datum/data/vending_product/R in product_records)
-		var/list/data = list(
-			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
-			name = R.name,
-			price = R.custom_price || default_price,
-			max_amount = R.max_amount,
-			ref = REF(R)
+	var/list/data = list()
+	data["onstation"] = onstation
+	data["department"] = payment_department
+	data["product_records"] = list()
+
+	var/list/categories = list()
+
+	data["product_records"] = collect_records_for_static_data(product_records, categories)
+	data["coin_records"] = collect_records_for_static_data(coin_records, categories, premium = TRUE)
+	data["hidden_records"] = collect_records_for_static_data(hidden_records, categories, premium = TRUE)
+
+	data["categories"] = categories
+
+	return data
+
+/obj/machinery/vending/proc/collect_records_for_static_data(list/records, list/categories, premium)
+	var/static/list/default_category = list(
+		"name" = "Products",
+		"icon" = "cart-shopping",
+	)
+
+	var/list/out_records = list()
+
+	for (var/datum/data/vending_product/record as anything in records)
+		var/list/static_record = list(
+			path = replacetext(replacetext("[record.product_path]", "/obj/item/", ""), "/", "-"),
+			name = record.name,
+			price = premium ? (record.custom_premium_price || extra_price) : (record.custom_price || default_price),
+			max_amount = record.max_amount,
+			ref = REF(record),
 		)
-		.["product_records"] += list(data)
-	.["coin_records"] = list()
-	for (var/datum/data/vending_product/R in coin_records)
-		var/list/data = list(
-			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
-			name = R.name,
-			price = R.custom_premium_price || extra_price,
-			max_amount = R.max_amount,
-			ref = REF(R),
-			premium = TRUE
-		)
-		.["coin_records"] += list(data)
-	.["hidden_records"] = list()
-	for (var/datum/data/vending_product/R in hidden_records)
-		var/list/data = list(
-			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
-			name = R.name,
-			price = R.custom_price || default_price,
-			max_amount = R.max_amount,
-			ref = REF(R),
-			premium = TRUE
-		)
-		.["hidden_records"] += list(data)
+
+		var/list/category = record.category || default_category
+		if (!isnull(category))
+			if (!(category["name"] in categories))
+				categories[category["name"]] = list(
+					"icon" = category["icon"],
+				)
+
+			static_record["category"] = category["name"]
+
+		if (premium)
+			static_record["premium"] = TRUE
+
+		out_records += list(static_record)
+
+	return out_records
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
@@ -716,15 +844,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["job"] = "No Job"
 				.["user"]["department"] = "No Department"
 	.["stock"] = list()
-	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
-	//MONKESTATION ADDITION START
+	for (var/datum/data/vending_product/product_record in product_records + coin_records + hidden_records)
 		var/list/product_data = list(
-			name = R.name,
-			amount = R.amount,
-			colorable = R.colorable,
+			name = product_record.name,
+			amount = product_record.amount,
+			colorable = product_record.colorable,
 		)
-		.["stock"][R.name] = product_data
-	//MONKESTATION ADDITION END
+
+		.["stock"][product_record.name] = product_data
 	.["extended_inventory"] = extended_inventory
 
 /obj/machinery/vending/ui_act(action, params)
@@ -901,17 +1028,18 @@ GLOBAL_LIST_EMPTY(vending_products)
 	say(message)
 
 /obj/machinery/vending/power_change()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else
 		if(powered())
 			icon_state = initial(icon_state)
-			machine_stat &= ~NOPOWER
+			set_machine_stat(machine_stat & ~NOPOWER)
 			START_PROCESSING(SSmachines, src)
 			set_light(2)
 		else
 			icon_state = "[initial(icon_state)]-off"
-			machine_stat |= NOPOWER
+			set_machine_stat(machine_stat | NOPOWER)
 			set_light(0)
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
@@ -1036,8 +1164,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(vending_machine_input[O] > 0)
 			var/base64
 			var/price = 0
-			for(var/obj/T in contents)
-				if(T.name == O)
+			for(var/obj/item/T in contents)
+				if(format_text(T.name) == O)
 					price = T.custom_price
 					if(!base64)
 						if(base64_cache[T.type])
@@ -1049,8 +1177,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/list/data = list(
 				name = O,
 				price = price,
-				img = base64
+				img = base64,
+				amount = vending_machine_input[O],
+				colorable = FALSE
 			)
+			.["stock"][O] = data
 			.["vending_machine_input"] += list(data)
 
 /obj/machinery/vending/custom/ui_act(action, params)

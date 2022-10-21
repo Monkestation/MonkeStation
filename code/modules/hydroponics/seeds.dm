@@ -161,7 +161,7 @@
 	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
 	var/product_name
 	while(t_amount < getYield())
-		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new product(output_loc, src)
+		var/obj/item/food/grown/t_prod = new product(output_loc, src)
 		if(parent.myseed.plantname != initial(parent.myseed.plantname))
 			t_prod.name = parent.myseed.plantname
 		if(parent.myseed.plantdesc)
@@ -194,62 +194,91 @@
 			data = list("blood_type" = "O-")
 		if(rid == /datum/reagent/consumable/nutriment || rid == /datum/reagent/consumable/nutriment/vitamin)
 			// apple tastes of apple.
-			if(istype(T, /obj/item/reagent_containers/food/snacks/grown))
-				var/obj/item/reagent_containers/food/snacks/grown/grown_edible = T
+			if(istype(T, /obj/item/food/grown))
+				var/obj/item/food/grown/grown_edible = T
 				data = grown_edible.tastes
 
 		T.reagents.add_reagent(rid, amount, data)
 
 
 /// Setters procs ///
-/obj/item/seeds/proc/adjust_yield(adjustamt)
+/obj/item/seeds/proc/adjust_yield(adjustamt, clamped = TRUE)
 	if(yield != -1) // Unharvestable shouldn't suddenly turn harvestable
-		yield = CLAMP(yield + adjustamt, 0, 10)
-
+		if(clamped)
+			if(yield == 10)
+				return
+			yield = CLAMP(yield + adjustamt, 0, 10)
+		else
+			yield = yield + adjustamt
 		if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 			yield = 1 // Mushrooms always have a minimum yield of 1.
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
 		if(C)
 			C.value = yield
 
-/obj/item/seeds/proc/adjust_lifespan(adjustamt)
-	lifespan = CLAMP(lifespan + adjustamt, 10, 100)
+/obj/item/seeds/proc/adjust_lifespan(adjustamt, clamped = TRUE)
+	if(clamped)
+		if(lifespan == 100)
+			return
+		lifespan = CLAMP(lifespan + adjustamt, 10, 100)
+	else
+		lifespan = lifespan + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/lifespan)
 	if(C)
 		C.value = lifespan
 
-/obj/item/seeds/proc/adjust_endurance(adjustamt)
-	endurance = CLAMP(endurance + adjustamt, 10, 100)
+/obj/item/seeds/proc/adjust_endurance(adjustamt, clamped = TRUE)
+	if(clamped)
+		if(endurance == 100)
+			return
+		endurance = CLAMP(endurance + adjustamt, 10, 100)
+	else
+		endurance = endurance + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/endurance)
 	if(C)
 		C.value = endurance
 
-/obj/item/seeds/proc/adjust_production(adjustamt)
+/obj/item/seeds/proc/adjust_production(adjustamt, clamped = TRUE)
 	if(yield != -1)
-		production = CLAMP(production + adjustamt, 1, 10)
+		if(clamped)
+			production = CLAMP(production + adjustamt, 1, 10)
+	else
+		production = production + adjustamt
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 		if(C)
 			C.value = production
 
-/obj/item/seeds/proc/adjust_potency(adjustamt)
+/obj/item/seeds/proc/adjust_potency(adjustamt, clamped = TRUE)
 	if(potency != -1)
-		potency = CLAMP(potency + adjustamt, 0, 100)
+		if(clamped)
+			if(potency == 100)
+				return
+			potency = CLAMP(potency + adjustamt, 0, 100)
+		else
+			potency = potency + adjustamt
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
 		if(C)
 			C.value = potency
 
-/obj/item/seeds/proc/adjust_weed_rate(adjustamt)
-	weed_rate = CLAMP(weed_rate + adjustamt, 0, 10)
+/obj/item/seeds/proc/adjust_weed_rate(adjustamt, clamped = TRUE)
+	if(clamped)
+		if(weed_rate == 10)
+			return
+		weed_rate = CLAMP(weed_rate + adjustamt, 0, 10)
+	else
+		weed_rate = weed_rate + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_rate)
 	if(C)
 		C.value = weed_rate
 
-/obj/item/seeds/proc/adjust_weed_chance(adjustamt)
-	weed_chance = CLAMP(weed_chance + adjustamt, 0, 67)
+/obj/item/seeds/proc/adjust_weed_chance(adjustamt, clamped = TRUE)
+	if(clamped)
+		if(weed_chance == 67)
+			return
+		weed_chance = CLAMP(weed_chance + adjustamt, 0, 67)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_chance)
 	if(C)
 		C.value = weed_chance
-
 //Directly setting stats
 
 /obj/item/seeds/proc/set_yield(adjustamt)

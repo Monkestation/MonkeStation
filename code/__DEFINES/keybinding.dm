@@ -77,3 +77,4 @@
 //MonkeStation Edit: Hotkey Emotes
 
 #define COMSIG_KB_EMOTE_QUICK_EMOTE		"keybinding_emote"
+

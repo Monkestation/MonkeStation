@@ -10,6 +10,7 @@
  */
 GLOBAL_LIST_INIT(glass_recipes, list ( \
 	new/datum/stack_recipe("glass shard", /obj/item/shard, time = 0, on_floor = FALSE), \
+	new/datum/stack_recipe("glass tile", /obj/item/stack/tile/glass, 1, 4, 20), \
 	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("fulltile window", /obj/structure/window/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
 ))
@@ -27,6 +28,7 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	grind_results = list(/datum/reagent/silicon = 20)
 	point_value = 1
 	tableVariant = /obj/structure/table/glass
+	matter_amount = 4
 
 /obj/item/stack/sheet/glass/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins to slice [user.p_their()] neck with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -77,7 +79,8 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 
 GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	new/datum/stack_recipe("directional window", /obj/structure/window/plasma/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("fulltile window", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
+	new/datum/stack_recipe("fulltile window", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("plasma glass tile", /obj/item/stack/tile/glass/plasma, 1, 4, 20) \
 ))
 
 /obj/item/stack/sheet/plasmaglass
@@ -129,7 +132,8 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("window firelock frame", /obj/structure/firelock_frame/window, 2, time = 50, one_per_turf = TRUE, on_floor = TRUE, window_checks = FALSE) \
+	new/datum/stack_recipe("window firelock frame", /obj/structure/firelock_frame/window, 2, time = 50, one_per_turf = TRUE, on_floor = TRUE, window_checks = FALSE), \
+	new/datum/stack_recipe("reinforced glass tile", /obj/item/stack/tile/rglass, 1, 4, 20) \
 ))
 
 
@@ -145,6 +149,7 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/rglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
 	point_value = 4
+	matter_amount = 6
 
 /obj/item/stack/sheet/rglass/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -173,7 +178,8 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 
 GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/plasma/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
-	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/plasma/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
+	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/plasma/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("reinforced plasma glass tile", /obj/item/stack/tile/rglass/plasma, 1, 4, 20) \
 ))
 
 /obj/item/stack/sheet/plasmarglass
@@ -188,6 +194,7 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/plasmarglass
 	grind_results = list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
 	point_value = 23
+	matter_amount = 8
 
 /obj/item/stack/sheet/plasmarglass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.prglass_recipes
@@ -260,7 +267,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 
 /obj/item/shard/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/caltrop, force)
+	AddComponent(/datum/component/caltrop, min_damage = force)
 	AddComponent(/datum/component/butchering, 150, 65)
 	icon_state = pick("large", "medium", "small")
 	switch(icon_state)

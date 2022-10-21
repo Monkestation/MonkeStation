@@ -129,7 +129,7 @@
 		return
 
 	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
-	if (smooth & SMOOTH_DIAGONAL)
+	if (smoothing_flags & SMOOTH_DIAGONAL_CORNERS) //MONKESTATION EDIT
 		for (var/O in overlays)
 			var/image/I = O
 			if(copytext(I.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
@@ -359,7 +359,7 @@
 
 /obj/structure/sign/poster/contraband/lizard
 	name = "Lizard"
-	desc = "This lewd poster depicts a lizard preparing to mate."
+	desc = "This poster depicts a popular pants-wearing lizard rap artist"
 	icon_state = "poster34"
 
 /obj/structure/sign/poster/contraband/free_drone
@@ -664,5 +664,10 @@
 	name = "Syndie Moth - Nuclear Operation"
 	desc = "A Syndicate-commissioned poster that uses Syndie Moth(TM?) to tell the viewer to keep the nuclear authentication disk unsecured. No, we aren't doing that. It's signed by 'AspEv'."
 	icon_state = "poster49"
+
+/obj/structure/sign/poster/official/ahelp
+	name = "Ahelp - It helps!"
+	desc = "A poster with a slogan reminding people about the Automatic Hazardous Environment Limitation Program, which processes reports of safety hazards before delivering them directly to Mr. Nanotrasen's fireplace to keep him warm."
+	icon_state = "poster50"
 
 #undef PLACE_SPEED

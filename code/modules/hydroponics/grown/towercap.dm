@@ -43,10 +43,10 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	var/plank_type = /obj/item/stack/sheet/mineral/wood
 	var/plank_name = "wooden planks"
-	var/static/list/accepted = typecacheof(list(/obj/item/reagent_containers/food/snacks/grown/tobacco,
-	/obj/item/reagent_containers/food/snacks/grown/tea,
-	/obj/item/reagent_containers/food/snacks/grown/ambrosia,
-	/obj/item/reagent_containers/food/snacks/grown/wheat))
+	var/static/list/accepted = typecacheof(list(/obj/item/food/grown/tobacco,
+	/obj/item/food/grown/tea,
+	/obj/item/food/grown/ambrosia,
+	/obj/item/food/grown/wheat))
 
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
@@ -64,8 +64,8 @@
 		qdel(src)
 
 	if(CheckAccepted(W))
-		var/obj/item/reagent_containers/food/snacks/grown/leaf = W
-		if(leaf.dry)
+		var/obj/item/food/grown/leaf = W
+		if(HAS_TRAIT(leaf, TRAIT_DRIED))
 			user.show_message("<span class='notice'>You wrap \the [W] around the log, turning it into a torch!</span>")
 			var/obj/item/flashlight/flare/torch/T = new /obj/item/flashlight/flare/torch(user.loc)
 			usr.dropItemToGround(W)
@@ -138,7 +138,7 @@
 
 /obj/structure/punji_sticks/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/caltrop, 20, 30, 100, CALTROP_BYPASS_SHOES)
+	AddComponent(/datum/component/caltrop, min_damage = 20, max_damage = 30, flags = CALTROP_BYPASS_SHOES)
 
 /////////BONFIRES//////////
 
@@ -249,6 +249,9 @@
 
 /obj/structure/bonfire/proc/StartBurning()
 	if(!burning && (!needs_oxygen || CheckOxygen()))
+		add_emitter(/obj/emitter/fire, "fire")
+		add_emitter(/obj/emitter/sparks/fire, "fire_spark")
+		add_emitter(/obj/emitter/fire_smoke, "smoke", 9)
 		icon_state = burn_icon
 		burning = TRUE
 		set_light(6)
@@ -287,9 +290,9 @@
 			var/mob/living/L = A
 			L.adjust_fire_stacks(fire_stack_strength * 0.5 * delta_time)
 			L.IgniteMob()
-		else if(istype(A, /obj/item) && DT_PROB(10, delta_time))
-			var/obj/item/O = A
-			O.microwave_act()
+		else if(istype(A, /obj/item))
+			var/obj/item/grilled_item = A
+			SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, delta_time) //Not a big fan, maybe make this use fire_act() in the future.
 
 /obj/structure/bonfire/process(delta_time)
 	if(needs_oxygen && !CheckOxygen())
@@ -302,6 +305,9 @@
 
 /obj/structure/bonfire/extinguish()
 	if(burning)
+		remove_emitter("fire")
+		remove_emitter("fire_spark")
+		remove_emitter("smoke")
 		icon_state = "bonfire"
 		burning = 0
 		set_light(0)

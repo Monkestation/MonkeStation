@@ -177,6 +177,7 @@
 		my_port.dheight = shuttle_port.dheight
 		my_port.dwidth = shuttle_port.dwidth
 		my_port.hidden = shuttle_port.hidden
+		my_port.delete_after = TRUE
 	my_port.setDir(the_eye.dir)
 	my_port.forceMove(locate(eyeobj.x, eyeobj.y, eyeobj.z))
 
@@ -311,6 +312,9 @@
 /mob/camera/ai_eye/remote/shuttle_docker/Initialize(mapload, obj/machinery/computer/camera_advanced/origin)
 	src.origin = origin
 	return ..()
+
+/mob/camera/ai_eye/remote/shuttle_docker/canZMove(direction, turf/target)
+	return TRUE
 
 /mob/camera/ai_eye/remote/shuttle_docker/setLoc(destination)
 	. = ..()

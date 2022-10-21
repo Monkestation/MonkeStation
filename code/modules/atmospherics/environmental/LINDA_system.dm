@@ -40,6 +40,8 @@
 	return FALSE
 
 /turf/proc/ImmediateCalculateAdjacentTurfs()
+	if(SSair.paused_z_levels["[z]"])
+		return
 	if(SSair.thread_running())
 		CALCULATE_ADJACENT_TURFS(src)
 		return
@@ -132,6 +134,7 @@
 /turf/air_update_turf(command = 0)
 	if(command)
 		ImmediateCalculateAdjacentTurfs()
+	liquid_update_turf() //MONKESTATION EDIT ADDITION
 
 /atom/movable/proc/move_update_air(turf/T)
     if(isturf(T))

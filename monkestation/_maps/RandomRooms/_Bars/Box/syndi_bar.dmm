@@ -418,6 +418,11 @@
 	req_access_txt = "25";
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/crew_quarters/bar)
 "wI" = (
@@ -561,6 +566,11 @@
 	id = "barShutters";
 	name = "privacy shutters"
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/crew_quarters/bar)
 "DW" = (
@@ -572,6 +582,14 @@
 /obj/effect/turf_decal/monke/syndicateemblem/middle/left,
 /obj/effect/turf_decal/monke/siding/thinplating/dark{
 	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "barsec";
+	name = "Bar Security Shutters";
+	pixel_x = -24;
+	pixel_y = 6;
+	req_access_txt = "25";
+	desc = "Stay off my FUCKING counter."
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/crew_quarters/bar)
@@ -727,6 +745,11 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "barShutters";
 	name = "privacy shutters"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)

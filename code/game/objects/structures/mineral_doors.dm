@@ -126,7 +126,7 @@
 	else
 		return ..()
 
-/obj/structure/mineral_door/setAnchored(anchorvalue) //called in default_unfasten_wrench() chain
+/obj/structure/mineral_door/set_anchored(anchorvalue) //called in default_unfasten_wrench() chain
 	. = ..()
 	set_opacity(anchored ? !door_opened : FALSE)
 	air_update_turf(TRUE)
@@ -312,7 +312,7 @@
 
 /obj/structure/mineral_door/paperframe/Initialize(mapload)
 	. = ..()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 
 /obj/structure/mineral_door/paperframe/examine(mob/user)
 	. = ..()
@@ -347,5 +347,5 @@
 	return
 
 /obj/structure/mineral_door/paperframe/Destroy()
-	queue_smooth_neighbors(src)
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
 	return ..()

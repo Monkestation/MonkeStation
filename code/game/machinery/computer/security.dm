@@ -24,10 +24,8 @@
 
 /obj/machinery/computer/secure_data/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/arrest_console_data,
-		/obj/item/circuit_component/arrest_console_arrest,
-	))
+	AddComponent(/datum/component/shell,list(new /obj/item/circuit_component/arrest_console_data,
+					new /obj/item/circuit_component/arrest_console_arrest), SHELL_CAPACITY_MEDIUM)
 
 /obj/item/circuit_component/arrest_console_data
 	display_name = "Security Records Data"
@@ -40,8 +38,6 @@
 	/// Sends a signal on failure
 	var/datum/port/output/on_fail
 
-	var/obj/machinery/computer/secure_data/attached_console
-
 /obj/item/circuit_component/arrest_console_data/Initialize(mapload)
 	. = ..()
 	records = add_output_port("Security Records", PORT_TYPE_TABLE)
@@ -50,16 +46,6 @@
 /obj/item/circuit_component/arrest_console_data/Destroy()
 	records = null
 	on_fail = null
-	return ..()
-
-
-/obj/item/circuit_component/arrest_console_data/register_usb_parent(atom/movable/parent)
-	. = ..()
-	if(istype(parent, /obj/machinery/computer/secure_data))
-		attached_console = parent
-
-/obj/item/circuit_component/arrest_console_data/unregister_usb_parent(atom/movable/parent)
-	attached_console = null
 	return ..()
 
 /obj/item/circuit_component/arrest_console_data/get_ui_notices()
@@ -75,13 +61,17 @@
 		"fingerprint",
 	))
 
-
 /obj/item/circuit_component/arrest_console_data/input_received(datum/port/input/port)
 	. = ..()
 	if(.)
 		return
 
-	if(!attached_console || !attached_console.authenticated)
+	var/obj/machinery/computer/secure_data/shell = parent.shell
+	if(!istype(shell))
+		on_fail.set_output(COMPONENT_SIGNAL)
+		return
+
+	if(!shell.authenticated)
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
@@ -125,17 +115,6 @@
 	/// Sends a signal on failure
 	var/datum/port/output/on_fail
 
-	var/obj/machinery/computer/secure_data/attached_console
-
-/obj/item/circuit_component/arrest_console_arrest/register_usb_parent(atom/movable/parent)
-	. = ..()
-	if(istype(parent, /obj/machinery/computer/secure_data))
-		attached_console = parent
-
-/obj/item/circuit_component/arrest_console_arrest/unregister_usb_parent(atom/movable/parent)
-	attached_console = null
-	return ..()
-
 /obj/item/circuit_component/arrest_console_arrest/populate_options()
 	var/static/list/component_options = list(
 		COMP_STATE_ARREST,
@@ -165,7 +144,12 @@
 	if(.)
 		return
 
-	if(!attached_console || !attached_console.authenticated)
+	var/obj/machinery/computer/secure_data/shell = parent.shell
+	if(!istype(shell))
+		on_fail.set_output(COMPONENT_SIGNAL)
+		return
+
+	if(!shell.authenticated)
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
@@ -194,7 +178,7 @@
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
 			message_admins("[successful_set] security entries have been set to [status_to_set] by [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
-		for(var/mob/living/carbon/human/human as anything in GLOB.carbon_list)
+		for(var/mob/living/carbon/human/human in GLOB.carbon_list)
 			human.sec_hud_set_security_status()
 
 /obj/machinery/computer/secure_data/examine(mob/user)
@@ -360,12 +344,14 @@
 				if(3)
 					dat += "<font size='4'><b>Security Record</b></font><br>"
 					if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
-						if(istype(active1.fields["photo_front"], /obj/item/photo))
-							var/obj/item/photo/P1 = active1.fields["photo_front"]
-							user << browse_rsc(P1.picture.picture_image, "photo_front")
-						if(istype(active1.fields["photo_side"], /obj/item/photo))
-							var/obj/item/photo/P2 = active1.fields["photo_side"]
-							user << browse_rsc(P2.picture.picture_image, "photo_side")
+						var/front_photo = active1.get_front_photo()
+						if(istype(front_photo, /obj/item/photo))
+							var/obj/item/photo/photo_front = front_photo
+							user << browse_rsc(photo_front.picture.picture_image, "photo_front")
+						var/side_photo = active1.get_side_photo()
+						if(istype(side_photo, /obj/item/photo))
+							var/obj/item/photo/photo_side = side_photo
+							user << browse_rsc(photo_side.picture.picture_image, "photo_side")
 						dat += {"<table><tr><td><table>
 						<tr><td>Name:</td><td><A href='?src=[REF(src)];choice=Edit Field;field=name'>&nbsp;[active1.fields["name"]]&nbsp;</A></td></tr>
 						<tr><td>ID:</td><td><A href='?src=[REF(src)];choice=Edit Field;field=id'>&nbsp;[active1.fields["id"]]&nbsp;</A></td></tr>
@@ -377,10 +363,10 @@
 						<tr><td>Physical Status:</td><td>&nbsp;[active1.fields["p_stat"]]&nbsp;</td></tr>
 						<tr><td>Mental Status:</td><td>&nbsp;[active1.fields["m_stat"]]&nbsp;</td></tr>
 						</table></td>
-						<td><table><td align = center><a href='?src=[REF(src)];choice=Edit Field;field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a><br>
+						<td><table><td align = center><a href='?src=[REF(src)];choice=Edit Field;field=show_photo_front'><img src=photo_front height=96 width=96 border=4 style="-ms-interpolation-mode:nearest-neighbor"></a><br>
 						<a href='?src=[REF(src)];choice=Edit Field;field=print_photo_front'>Print photo</a><br>
 						<a href='?src=[REF(src)];choice=Edit Field;field=upd_photo_front'>Update front photo</a></td>
-						<td align = center><a href='?src=[REF(src)];choice=Edit Field;field=show_photo_side'><img src=photo_side height=80 width=80 border=4></a><br>
+						<td align = center><a href='?src=[REF(src)];choice=Edit Field;field=show_photo_side'><img src=photo_side height=96 width=96 border=4 style="-ms-interpolation-mode:nearest-neighbor"></a><br>
 						<a href='?src=[REF(src)];choice=Edit Field;field=print_photo_side'>Print photo</a><br>
 						<a href='?src=[REF(src)];choice=Edit Field;field=upd_photo_side'>Update side photo</a></td></table>
 						</td></tr></table></td></tr></table>"}
@@ -629,7 +615,7 @@ What a mess.*/
 
 								sleep(30)
 								if((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))//make sure the record still exists.
-									var/obj/item/photo/photo = active1.fields["photo_front"]
+									var/obj/item/photo/photo = active1.get_front_photo()
 									new /obj/item/poster/wanted(loc, photo.picture.picture_image, wanted_name, info, headerText)
 							printing = 0
 			if("Print Missing")
@@ -647,7 +633,7 @@ What a mess.*/
 								playsound(loc, 'sound/items/poster_being_created.ogg', 100, 1)
 								sleep(30)
 								if((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))//make sure the record still exists.
-									var/obj/item/photo/photo = active1.fields["photo_front"]
+									var/obj/item/photo/photo = active1.get_front_photo()
 									new /obj/item/poster/wanted/missing(loc, photo.picture.picture_image, missing_name, info, headerText)
 							printing = 0
 
@@ -802,10 +788,11 @@ What a mess.*/
 								return
 							active1.fields["species"] = t1
 					if("show_photo_front")
-						if(active1.fields["photo_front"])
-							if(istype(active1.fields["photo_front"], /obj/item/photo))
-								var/obj/item/photo/P = active1.fields["photo_front"]
-								P.show(usr)
+						if(active1)
+							var/front_photo = active1.get_front_photo()
+							if(istype(front_photo, /obj/item/photo))
+								var/obj/item/photo/photo = front_photo
+								photo.show(usr)
 					if("upd_photo_front")
 						var/obj/item/photo/photo = get_photo(usr)
 						if(photo)
@@ -819,15 +806,17 @@ What a mess.*/
 							I.Crop(dw/2, dh/2, w - dw/2, h - dh/2)
 							active1.fields["photo_front"] = photo
 					if("print_photo_front")
-						if(active1.fields["photo_front"])
-							if(istype(active1.fields["photo_front"], /obj/item/photo))
-								var/obj/item/photo/P = active1.fields["photo_front"]
-								print_photo(P.picture.picture_image, active1.fields["name"])
+						if(active1)
+							var/front_photo = active1.get_front_photo()
+							if(istype(front_photo, /obj/item/photo))
+								var/obj/item/photo/photo_front = front_photo
+								print_photo(photo_front.picture.picture_image, active1.fields["name"])
 					if("show_photo_side")
-						if(active1.fields["photo_side"])
-							if(istype(active1.fields["photo_side"], /obj/item/photo))
-								var/obj/item/photo/P = active1.fields["photo_side"]
-								P.show(usr)
+						if(active1)
+							var/side_photo = active1.get_side_photo()
+							if(istype(side_photo, /obj/item/photo))
+								var/obj/item/photo/photo = side_photo
+								photo.show(usr)
 					if("upd_photo_side")
 						var/obj/item/photo/photo = get_photo(usr)
 						if(photo)
@@ -841,10 +830,11 @@ What a mess.*/
 							I.Crop(dw/2, dh/2, w - dw/2, h - dh/2)
 							active1.fields["photo_side"] = photo
 					if("print_photo_side")
-						if(active1.fields["photo_side"])
-							if(istype(active1.fields["photo_side"], /obj/item/photo))
-								var/obj/item/photo/P = active1.fields["photo_side"]
-								print_photo(P.picture.picture_image, active1.fields["name"])
+						if(active1)
+							var/side_photo = active1.get_side_photo()
+							if(istype(side_photo, /obj/item/photo))
+								var/obj/item/photo/photo_side = side_photo
+								print_photo(photo_side.picture.picture_image, active1.fields["name"])
 					if("crim_add")
 						if(istype(active1, /datum/data/record))
 							var/t1 = stripped_input(usr, "Please input crime name:", "Secure. records", "", null)

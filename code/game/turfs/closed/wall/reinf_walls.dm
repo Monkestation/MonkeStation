@@ -5,7 +5,6 @@
 	icon_state = "r_wall"
 	opacity = 1
 	density = TRUE
-
 	var/d_state = INTACT
 	hardness = 10
 	sheet_type = /obj/item/stack/sheet/plasteel
@@ -196,21 +195,33 @@
 				return TRUE
 	return FALSE
 
-/turf/closed/wall/r_wall/update_icon()
+/turf/closed/wall/r_wall/update_icon(updates=ALL) //MONKESTATION CHANGE
 	. = ..()
 	if(d_state != INTACT)
+		/* //MONKESTATION REMOVAL
 		smooth = SMOOTH_FALSE
 		clear_smooth_overlays()
 	else
 		smooth = SMOOTH_TRUE
 		queue_smooth_neighbors(src)
 		queue_smooth(src)
+		*/ //MONKESTATION REMOVAL END
+		icon_state = "r_wall-[d_state]" //MONKESTATION CHANGE
+		smoothing_flags = NONE //MONKESTATION CHANGE
+		return //MONKESTATION CHANGE
+	if (!(updates & UPDATE_SMOOTHING)) //MONKESTATION CHANGE
+		return //MONKESTATION CHANGE
+	smoothing_flags = SMOOTH_BITMASK //MONKESTATION CHANGE
+	icon_state = "[base_icon_state]-[smoothing_junction]" //MONKESTATION CHANGE
+	QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
+	QUEUE_SMOOTH(src) //MONKESTATION CHANGE
 
 /turf/closed/wall/r_wall/update_icon_state()
 	if(d_state != INTACT)
 		icon_state = "r_wall-[d_state]"
 	else
 		icon_state = "r_wall"
+	return ..()
 
 /turf/closed/wall/r_wall/wall_singularity_pull(current_size)
 	if(current_size >= STAGE_FIVE)
@@ -229,9 +240,10 @@
 /turf/closed/wall/r_wall/rust_heretic_act()
 	if(prob(50))
 		return
-	if(prob(70))
-		new /obj/effect/temp_visual/glowing_rune(src)
-	ChangeTurf(/turf/closed/wall/r_wall/rust)
+	if(HAS_TRAIT(src, TRAIT_RUSTY))
+		ScrapeAway()
+		return
+	return ..()
 
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"
@@ -240,20 +252,20 @@
 	icon_state = "map-shuttle"
 	explosion_block = 20
 	sheet_type = /obj/item/stack/sheet/mineral/plastitanium
-	smooth = SMOOTH_MORE|SMOOTH_DIAGONAL
-	canSmoothWith = list(/turf/closed/wall/r_wall/syndicate, /turf/closed/wall/mineral/plastitanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/plastitanium, /obj/structure/shuttle/engine, /obj/structure/falsewall/plastitanium)
+	//smooth = SMOOTH_MORE|SMOOTH_DIAGONAL //MONKESTATION EDIT
 
+	//canSmoothWith = list(/turf/closed/wall/r_wall/syndicate, /turf/closed/wall/mineral/plastitanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/plastitanium, /obj/structure/shuttle/engine, /obj/structure/falsewall/plastitanium) //MONKESTAITON CHANGE
 /turf/closed/wall/r_wall/syndicate/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal
-	smooth = SMOOTH_MORE
+	smoothing_flags = SMOOTH_BITMASK //MONKESTATION CHANGE
 	icon_state = "map-shuttle_nd"
 
 /turf/closed/wall/r_wall/syndicate/nosmooth
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "wall"
-	smooth = SMOOTH_FALSE
+	smoothing_flags = NONE //MONKESTATION CHANGE
 
 /turf/closed/wall/r_wall/syndicate/overspace
 	icon_state = "map-overspace"

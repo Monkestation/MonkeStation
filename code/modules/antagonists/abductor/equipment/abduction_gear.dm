@@ -283,7 +283,7 @@
 		radio_off_mob(M)
 
 /obj/item/abductor/silencer/proc/radio_off_mob(mob/living/carbon/human/M)
-	var/list/all_items = M.GetAllContents()
+	var/list/all_items = M.get_all_contents_type()
 
 	for(var/obj/I in all_items)
 		if(istype(I, /obj/item/radio/))
@@ -810,6 +810,8 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	framestack = /obj/item/stack/sheet/mineral/abductor
 	buildstackamount = 1
 	framestackamount = 1
+	smoothing_flags = NONE
+	smoothing_groups = null
 	canSmoothWith = null
 	frame = /obj/structure/table_frame/abductor
 

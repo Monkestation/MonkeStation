@@ -1,6 +1,6 @@
-#define CAMERA_UPGRADE_XRAY 1
-#define CAMERA_UPGRADE_EMP_PROOF 2
-#define CAMERA_UPGRADE_MOTION 4
+#define CAMERA_UPGRADE_XRAY (1<<0)
+#define CAMERA_UPGRADE_EMP_PROOF (1<<1)
+#define CAMERA_UPGRADE_MOTION (1<<2)
 
 /obj/machinery/camera
 	name = "security camera"
@@ -46,6 +46,10 @@
 
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
+	///Represents a signel source of camera alarms about movement or camera tampering
+	var/datum/alarm_handler/alarm_manager
+
+
 /obj/machinery/camera/preset/toxins //Bomb test site in space
 	name = "Hardened Bomb-Test Camera"
 	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site. An external light is attached to the top."
@@ -56,14 +60,15 @@
 	light_range = 10
 	start_active = TRUE
 
-/obj/machinery/camera/Initialize(mapload, obj/structure/camera_assembly/CA)
+/obj/machinery/camera/Initialize(mapload, obj/structure/camera_assembly/old_assembly)
 	. = ..()
 	for(var/i in network)
 		network -= i
 		network += lowertext(i)
 	var/obj/structure/camera_assembly/assembly
-	if(CA)
-		assembly = CA
+	if(old_assembly) //check to see if the camera assembly was upgraded at all.
+		assembly = old_assembly
+		assembly_ref = WEAKREF(assembly) //important to do this now since upgrades call back to the assembly_ref
 		if(assembly.xray_module)
 			upgradeXRay()
 		else if(assembly.malf_xray_firmware_present) //if it was secretly upgraded via the MALF AI Upgrade Camera Network ability
@@ -79,7 +84,7 @@
 	else
 		assembly = new(src)
 		assembly.state = 4 //STATE_FINISHED
-	assembly_ref = WEAKREF(assembly)
+		assembly_ref = WEAKREF(assembly)
 	GLOB.cameranet.cameras += src
 	GLOB.cameranet.addCamera(src)
 	if (isturf(loc))
@@ -92,6 +97,8 @@
 	else //this is handled by toggle_camera, so no need to update it twice.
 		update_icon()
 
+	alarm_manager = new(src)
+
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
@@ -99,9 +106,9 @@
 	GLOB.cameranet.cameras -= src
 	cancelCameraAlarm()
 	if(isarea(myarea))
-		myarea.clear_camera(src)
+		LAZYREMOVE(myarea.cameras, src)
+	QDEL_NULL(alarm_manager)
 	QDEL_NULL(assembly_ref)
-	QDEL_NULL(emp_component)
 	if(bug)
 		bug.bugged_cameras -= c_tag
 		if(bug.current == src)
@@ -143,7 +150,7 @@
 			var/list/previous_network = network
 			network = list()
 			GLOB.cameranet.removeCamera(src)
-			machine_stat |= EMPED
+			set_machine_stat(machine_stat | EMPED)
 			set_light(0)
 			emped = emped+1  //Increase the number of consecutive EMP's
 			update_icon()
@@ -153,7 +160,7 @@
 					triggerCameraAlarm() //camera alarm triggers even if multiple EMPs are in effect.
 					if(emped == thisemp) //Only fix it if the camera hasn't been EMP'd again
 						network = previous_network
-						machine_stat &= ~EMPED
+						set_machine_stat(machine_stat & ~EMPED)
 						update_icon()
 						if(can_use())
 							GLOB.cameranet.addCamera(src)
@@ -161,7 +168,7 @@
 						addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 			for(var/i in GLOB.player_list)
 				var/mob/M = i
-				if (M.client.eye == src)
+				if (M.client?.eye == src)
 					M.unset_machine()
 					M.reset_perspective(null)
 					to_chat(M, "The screen bursts into static.")
@@ -292,7 +299,7 @@
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
-			else if (O.client && O.client.eye == src)
+			else if (O.client && O.client?.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
 				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
@@ -389,20 +396,18 @@
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
 	//I guess that doesn't matter since they can't use it anyway?
 	for(var/mob/O in GLOB.player_list)
-		if (O.client && O.client.eye == src)
+		if (O.client?.eye == src)
 			O.unset_machine()
 			O.reset_perspective(null)
-			to_chat(O, "The screen bursts into static.")
+			to_chat(O, span_warning("The screen bursts into static!"))
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
-	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
-		S.triggerAlarm("Camera", get_area(src), list(src), src)
+	alarm_manager.send_alarm(ALARM_CAMERA, src, src)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	alarm_on = FALSE
-	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
-		S.cancelAlarm("Camera", get_area(src), src)
+	alarm_manager.clear_alarm(ALARM_CAMERA)
 
 /obj/machinery/camera/proc/can_use()
 	if(!status)

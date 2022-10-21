@@ -167,6 +167,7 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 			if(!valid)
 				return
 			//load the map_template that program_to_load represents
+			log_game("[key_name(usr)] switched the holodeck to [program_to_load]")
 			load_program(program_to_load)
 			. = TRUE
 		if("safety")
@@ -189,7 +190,7 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 	if (program == map_id)
 		return
 
-	if (!is_operational())//load_program is called once with a timer (in toggle_power) we dont want this to load anything if its off
+	if (!is_operational)//load_program is called once with a timer (in toggle_power) we dont want this to load anything if its off
 		map_id = offline_program
 		force = TRUE
 
@@ -207,7 +208,7 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 
 	spawning_simulation = TRUE
 	active = (map_id != offline_program)
-	use_power = active + IDLE_POWER_USE
+	update_use_power(active + IDLE_POWER_USE)
 	program = map_id
 
 	//clear the items from the previous program
@@ -327,7 +328,7 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 				derez(item)
 	for(var/obj/effect/holodeck_effect/holo_effect as anything in effects)
 		holo_effect.tick()
-	active_power_usage = 50 + spawned.len * 3 + effects.len * 5
+	update_mode_power_usage(ACTIVE_POWER_USE, 50 + spawned.len * 3 + effects.len * 5)
 
 /obj/machinery/computer/holodeck/proc/toggle_power(toggleOn = FALSE)
 	if(active == toggleOn)

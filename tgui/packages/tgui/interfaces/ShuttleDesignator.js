@@ -62,7 +62,7 @@ export const ShuttleDesignator = (props, context) => {
               <Button
                 content="Designate Area"
                 textAlign="center"
-                onClick={() => act('designate')} />
+                onClick={() => act("designate")} />
             </>
           ))
         }

@@ -209,6 +209,14 @@
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
 
+//Health doll screws for human mobs
+#define SCREWYDOLL_HEAD /obj/item/bodypart/head
+#define SCREWYDOLL_CHEST /obj/item/bodypart/chest
+#define SCREWYDOLL_L_ARM /obj/item/bodypart/l_arm
+#define SCREWYDOLL_R_ARM /obj/item/bodypart/r_arm
+#define SCREWYDOLL_L_LEG /obj/item/bodypart/l_leg
+#define SCREWYDOLL_R_LEG /obj/item/bodypart/r_leg
+
 //Moods levels for humans
 #define MOOD_LEVEL_HAPPY4 15
 #define MOOD_LEVEL_HAPPY3 10
@@ -550,7 +558,6 @@
 //Dummy mob reserve slots
 #define DUMMY_HUMAN_SLOT_PREFERENCES "dummy_preference_preview"
 #define DUMMY_HUMAN_SLOT_ADMIN "admintools"
-#define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 
 /// Get the client from the var
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))

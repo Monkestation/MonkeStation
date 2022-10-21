@@ -61,7 +61,7 @@
 	name = "high-capacity water tank"
 	desc = "A highly pressurized water tank made to hold gargantuan amounts of water."
 	icon_state = "water_high" //I was gonna clean my room...
-	tank_volume = 100000
+	tank_volume = 3000 //MONKESTATION EDIT CHANGE yeah yeah no more station flooding the soul is gone
 	can_buckle = 1 //Monkestation edit start
 	buckle_lying = 0
 
@@ -128,9 +128,10 @@
 /obj/structure/reagent_dispensers/fueltank/fire_act(exposed_temperature, exposed_volume)
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act()
-	..() //extend the zap
-	boom()
+/obj/structure/reagent_dispensers/fueltank/zap_act(power, zap_flags)
+	. = ..() //extend the zap
+	if(ZAP_OBJ_DAMAGE & zap_flags)
+		boom()
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/P)
 	. = ..()
@@ -172,6 +173,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
+	tank_volume = 100
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
 /obj/structure/reagent_dispensers/peppertank/Initialize(mapload)

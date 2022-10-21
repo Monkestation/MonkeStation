@@ -42,6 +42,9 @@
 	var/door_anim_angle = 136
 	var/door_hinge = -6.5
 	var/door_anim_time = 2.0 // set to 0 to make the door not animate at all
+	//Monkestation edit
+	// true whenever someone with the strong pull component is dragging this, preventing opening
+	var/strong_grab = FALSE
 /obj/structure/closet/Initialize(mapload)
 	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
 		addtimer(CALLBACK(src, .proc/take_contents), 0)
@@ -145,11 +148,14 @@
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		return FALSE
+	if(strong_grab) //Monkestation edit begin
+		to_chat(user, "<span class='danger'>[pulledby] has an incredibly strong grip on [src], preventing it from opening.</span>")
+		return FALSE //Monkestation edit end
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
-				to_chat(user, "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>" )
+				to_chat(user, "<span class='danger'>There's something large on top of [src], preventing it from opening.</span>")
 			return FALSE
 	return TRUE
 
@@ -165,7 +171,7 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/closet/proc/dump_contents()
+/obj/structure/closet/dump_contents()
 	var/atom/L = drop_location()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(L)
@@ -312,7 +318,7 @@
 	else if(W.tool_behaviour == TOOL_WRENCH && anchorable)
 		if(isinspace() && !anchored)
 			return
-		setAnchored(!anchored)
+		set_anchored(!anchored)
 		W.play_tool_sound(src, 75)
 		user.visible_message("<span class='notice'>[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
 						"<span class='notice'>You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \

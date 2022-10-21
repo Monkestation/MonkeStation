@@ -3,10 +3,10 @@
 	name = "chasm"
 	desc = "Watch your step."
 	baseturfs = /turf/open/chasm
-	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
+	//smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE //MONKETATION REMOVAL
 	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "smooth"
-	canSmoothWith = list(/turf/open/floor/fakepit, /turf/open/chasm)
+	//canSmoothWith = list(/turf/open/floor/fakepit, /turf/open/chasm) //MONKESTATION REMOVAL
 	density = TRUE //This will prevent hostile mobs from pathing into chasms, while the canpass override will still let it function like an open turf
 	bullet_bounce_sound = null //abandon all hope ye who enter
 
@@ -27,6 +27,9 @@
 
 /turf/open/chasm/MakeDry()
 	return
+
+/turf/open/chasm/rust_heretic_act()
+	return FALSE
 
 /turf/open/chasm/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)

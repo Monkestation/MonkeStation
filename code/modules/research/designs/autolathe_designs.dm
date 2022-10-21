@@ -272,6 +272,15 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/airlock_painter/decal/tile
+	name = "Tile Sprayer"
+	id = "tile_sprayer"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 50, /datum/material/glass = 50)
+	build_path = /obj/item/airlock_painter/decal/tile
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/emergency_oxygen
 	name = "Emergency Oxygen Tank"
 	id = "emergency_oxygen"
@@ -1071,3 +1080,29 @@
 	materials = list(/datum/material/iron = 50)
 	build_path = /obj/item/clothing/suit/caution
 	category = list("initial","Misc")
+
+/datum/design/control
+	name = "Blast Door Controller"
+	id = "blast"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
+	build_path = /obj/item/assembly/control
+	category = list("initial","Misc")
+
+/datum/design/toner
+	name = "Toner Cartridge"
+	id = "toner"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 10, /datum/material/glass = 10)
+	build_path = /obj/item/toner
+	category = list("initial", "Misc", "Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/toner/large
+	name = "Large Toner Cartridge"
+	id = "toner_large"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 35, /datum/material/glass = 35)
+	build_path = /obj/item/toner/large
+	category = list("initial", "Misc", "Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE

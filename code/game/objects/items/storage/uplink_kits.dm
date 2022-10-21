@@ -54,6 +54,7 @@
 			new /obj/item/storage/secure/briefcase/syndie(src) //1 tc
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) // 0 tc
 			new /obj/item/clothing/under/suit/black_really(src) // 0 tc
+			new /obj/item/clothing/neck/tie/red/hitman(src) // 0 tc
 
 		if("screwed") // 35 tc
 			new /obj/item/sbeacondrop/bomb(src) // 12 tc
@@ -126,7 +127,7 @@
 			new /obj/item/card/emag(src) // 6 tc
 
 /obj/item/storage/box/syndie_kit/bundle_B/PopulateContents()
-	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2)))
+	switch (pickweight(list( "bond" = 2, "ninja" = 1, "darklord" = 1, "white_whale_holy_grail" = 2, "mad_scientist" = 2, "bee" = 2, "mr_freeze" = 2, "anime" = 2)))
 		if("bond") // ~30 tc
 			new /obj/item/gun/ballistic/automatic/pistol(src) // 7 tc
 			new /obj/item/suppressor(src) // 2 tc
@@ -163,7 +164,7 @@
 			new /obj/item/clothing/suit/space/hardsuit/carp(src)
 			new /obj/item/clothing/mask/gas/carp(src)
 			new /obj/item/grenade/spawnergrenade/spesscarp(src)
-			new /obj/item/toy/plush/carpplushie/dehy_carp(src)
+			new /obj/item/toy/plush/carpplushie/dehy_carp(src)// (in the uplink for 1 tc)
 			new /obj/item/slimepotion/slime/sentience(src)
 
 		if("mad_scientist") //at least 29 tc, the clusters are random, and the guns are really tough to price
@@ -196,7 +197,7 @@
 			new /obj/item/clothing/gloves/color/black(src) // 0 tc
 			new /obj/item/clothing/mask/chameleon(src) // <1 tc
 			new /obj/item/clothing/suit/hooded/wintercoat(src) // 0 tc
-			new /obj/item/clothing/shoes/winterboots/noslip(src) // 0 tc
+			new /obj/item/clothing/shoes/winterboots/noslip(src) // 3 tc
 			new /obj/item/grenade/gluon(src) // part of grenadier's belt, ~1 tc each?
 			new /obj/item/grenade/gluon(src)
 			new /obj/item/grenade/gluon(src)
@@ -205,6 +206,21 @@
 			new /obj/item/dnainjector/cryokinesis(src)
 			new /obj/item/gun/energy/temperature/pin(src)
 			new /obj/item/melee/transforming/energy/sword/saber/blue(src) // 8 tc //see see it fits the theme bc its blue and ice is blue
+
+		if("anime") //I think around 33-37
+			new /obj/item/clothing/suit/jacket/leather/overcoat(src) // 0 tc
+			new /obj/item/clothing/head/fedora/anime(src) // ~1-3 tc? has the 30 throw damage of the null rod version and a very high throw speed
+			new /obj/item/clothing/shoes/sandal(src) // 0 tc
+			new /obj/item/choice_beacon/anime/hacked(src) // unique item however it has almost 0 non joke uses
+			new /obj/item/choice_beacon/anime/hacked(src)
+			new /obj/item/choice_beacon/anime/hacked(src)
+			new /obj/item/choice_beacon/anime/hacked(src)
+			new /obj/item/clothing/neck/tie/horrible(src) // 0 tc
+			new /obj/item/guardiancreator/rare(src) // 18-20 tc
+			new /obj/item/book/granter/spell/blinkdagger(src) //~16 tc, hard to tell
+
+
+
 //monkestation end
 
 /obj/item/storage/box/syndie_kit/contract_kit

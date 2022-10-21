@@ -385,8 +385,8 @@
 				if(M.mind in SSticker.mode.apprentices)
 					return 2
 			if("monkey")
-				if(isliving(M))
-					var/mob/living/L = M
+				if(iscarbon(M))
+					var/mob/living/carbon/L = M
 					if(L.diseases && (locate(/datum/disease/transformation/jungle_fever) in L.diseases))
 						return 2
 		return TRUE

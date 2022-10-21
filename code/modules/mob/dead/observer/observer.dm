@@ -35,6 +35,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 	var/ghost_hud_enabled = 1 //did this ghost disable the on-screen HUD?
 	var/data_huds_on = 0 //Are data HUDs currently enabled?
+	var/ai_hud_on = FALSE //Is the AI Viewrange HUD currently enabled?
 	var/health_scan = FALSE //Are health scans currently enabled?
 	var/gas_scan = FALSE //Are gas scans currently enabled?
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
@@ -132,7 +133,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		remove_verb(/mob/dead/observer/verb/boo)
 		remove_verb(/mob/dead/observer/verb/possess)
 
-	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(src, pixel_y = 2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
+	animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 
 	add_to_dead_mob_list()
 
@@ -163,6 +165,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/Destroy()
 	if(data_huds_on)
 		remove_data_huds()
+	if(ai_hud_on)
+		remove_ai_hud()
 
 	GLOB.ghost_images_default -= ghostimage_default
 	QDEL_NULL(ghostimage_default)
@@ -316,9 +320,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	ghostize(FALSE,SENTIENCE_RETAIN)
 
-/mob/dead/observer/Move(NewLoc, direct)
+/mob/dead/observer/Move(NewLoc, direct, glide_size_override = 32)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
+
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	if(NewLoc)
 		abstract_move(NewLoc)
@@ -475,6 +482,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//restart our floating animation after orbit is done.
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -587,8 +595,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	..()
 
 /proc/updateallghostimages()
-	listclearnulls(GLOB.ghost_images_default)
-	listclearnulls(GLOB.ghost_images_simple)
+	list_clear_nulls(GLOB.ghost_images_default)
+	list_clear_nulls(GLOB.ghost_images_simple)
 
 	for (var/mob/dead/observer/O in GLOB.player_list)
 		O.updateghostimages()
@@ -704,6 +712,28 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 //But we will still carry a mind.
 /mob/dead/observer/mind_initialize()
 	return
+
+/mob/dead/observer/proc/show_ai_hud()
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_AI_DETECT]
+	H.add_hud_to(src)
+
+/mob/dead/observer/proc/remove_ai_hud()
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_AI_DETECT]
+	H.remove_hud_from(src)
+
+/mob/dead/observer/verb/toggle_ai_hud()
+	set name = "Toggle AI HUD"
+	set desc = "Toggles whether you see the AI's view range"
+	set category = "Ghost"
+
+	if(ai_hud_on) //remove old huds
+		remove_ai_hud()
+		to_chat(src, "<span class='notice'>AI HUD disabled.</span>")
+		ai_hud_on = FALSE
+	else
+		show_ai_hud()
+		to_chat(src, "<span class='notice'>AI HUD enabled.</span>")
+		ai_hud_on = TRUE
 
 /mob/dead/observer/proc/show_data_huds()
 	for(var/hudtype in datahuds)
