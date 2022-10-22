@@ -1783,6 +1783,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/glasses/thermal/syndi
 	cost = 3
 
+/datum/uplink_item/device_tools/whetstone
+	name = "Whetstone"
+	desc = "Salvaged a good sharp weapon?  Wish it were a bit sharper? \
+			Our deep-kitchen chefs have smuggled out some quality whetstones. \
+			Good for making a bad blade good, or a good blade better!"
+	item = /obj/item/sharpener
+	cost = 2
+
 // Implants
 /datum/uplink_item/implants
 	category = "Implants"

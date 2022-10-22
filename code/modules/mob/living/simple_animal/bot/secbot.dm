@@ -24,6 +24,7 @@
 //monkestation edit begin
 	var/arrestsounds = "law"
 	var/chasesounds = list('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg')
+	var/emagsounds = "sec_emag"
 	//monkestation edit end
 
 	var/noloot = FALSE
@@ -251,7 +252,10 @@ Auto Patrol: []"},
 	if(!C.handcuffed)
 		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
 		C.update_handcuffed()
-		playsound(src, arrestsounds, 50, 0)//monkestation edit for custom arrest sounds
+		if(EMAGGED && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
+			playsound(src, emagsounds, 50, 0)
+		else
+			playsound(src, arrestsounds, 50, 0)//monkestation edit for custom arrest sounds
 		back_to_idle()
 
 /mob/living/simple_animal/bot/secbot/proc/stun_attack(mob/living/carbon/C)
@@ -453,4 +457,4 @@ Auto Patrol: []"},
 		return
 
 /obj/machinery/bot_core/secbot
-	req_access = list(ACCESS_SECURITY)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_ROBOTICS)

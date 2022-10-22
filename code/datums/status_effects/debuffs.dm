@@ -1032,3 +1032,34 @@
 	name = "Electro-Magnetic Pulse"
 	desc = "You've been hit with an EMP! You're malfunctioning!"
 	icon_state = "hypnosis"
+
+/datum/status_effect/flashed
+	id = "flashed"
+	duration = 3 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/flashed
+	examine_text = "<span class='warning'>They're squinting their eyes!</span>"
+	status_type = STATUS_EFFECT_UNIQUE
+
+/datum/status_effect/flashed/on_apply()
+	. = ..()
+	to_chat(owner, "<span class='notice'>You close your eyes from the flash!</span>")
+	owner.overlay_fullscreen("flashed", /atom/movable/screen/fullscreen/impaired, 2)
+
+/datum/status_effect/flashed/on_remove()
+	. = ..()
+	owner.clear_fullscreen("flashed")
+
+/atom/movable/screen/alert/status_effect/flashed
+	name = "Flashed"
+	desc = "You've been flashed by a bright light and can't see!"
+	icon_state = "stun"
+
+/datum/status_effect/deafened
+	id = "deafened"
+	alert_type = /atom/movable/screen/alert/status_effect/deafened
+	status_type = STATUS_EFFECT_UNIQUE
+
+/atom/movable/screen/alert/status_effect/deafened
+	name = "Deafened"
+	desc = "You're deaf and can't hear!"
+	icon_state = "deafened"

@@ -335,19 +335,21 @@
 	if(.) // we've been flashed
 		if(visual)
 			return
+		switch(damage)
+			if(1)
+				to_chat(src, "<span class='warning'>Your eyes sting a little.</span>")
+				if(prob(40))
+					eyes.applyOrganDamage(1)
 
-		if (damage == 1)
-			to_chat(src, "<span class='warning'>Your eyes sting a little.</span>")
-			if(prob(40))
-				eyes.applyOrganDamage(1)
+			if (2)
+				to_chat(src, "<span class='warning'>Your eyes burn.</span>")
+				apply_status_effect(/datum/status_effect/flashed)
+				eyes.applyOrganDamage(rand(2, 4))
 
-		else if (damage == 2)
-			to_chat(src, "<span class='warning'>Your eyes burn.</span>")
-			eyes.applyOrganDamage(rand(2, 4))
-
-		else if( damage >= 3)
-			to_chat(src, "<span class='warning'>Your eyes itch and burn severely!</span>")
-			eyes.applyOrganDamage(rand(12, 16))
+			if(3 to INFINITY)
+				to_chat(src, "<span class='warning'>Your eyes itch and burn severely!</span>")
+				apply_status_effect(/datum/status_effect/flashed)
+				eyes.applyOrganDamage(rand(12, 16))
 
 		if(eyes.damage > 10)
 			blind_eyes(damage)
@@ -426,3 +428,13 @@
 	var/obj/item/organ/ears/ears = getorganslot(ORGAN_SLOT_EARS)
 	if(istype(ears) && !ears.deaf)
 		. = TRUE
+
+/mob/living/carbon/extrapolator_act(mob/user, var/obj/item/extrapolator/E, scan = TRUE)
+	if(istype(E) && diseases.len)
+		if(scan)
+			E.scan(src, diseases, user)
+		else
+			E.extrapolate(src, diseases, user)
+		return TRUE
+	else
+		return FALSE

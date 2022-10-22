@@ -34,7 +34,7 @@ BONUS
 /datum/symptom/beard/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/index = min(max(beard_order.Find(H.facial_hair_style)+1, A.stage-1), beard_order.len)

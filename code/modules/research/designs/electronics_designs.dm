@@ -32,6 +32,16 @@
 	build_path = /obj/item/surveillance_upgrade
 	category = list("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+/datum/design/monkey_translator
+	name = "MonkeTech AutoTranslator"
+	desc = "A small device that will translate speech."
+	id = "monkey_translator"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
+	construction_time = 75
+	build_path = /obj/item/clothing/mask/translator
+	category = list("Electronics")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 ///////////////////////////////////
 //////////Nanite Devices///////////

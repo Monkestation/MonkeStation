@@ -10,7 +10,7 @@
 	W.hair_style = H.hair_style
 	log_world(H.hair_color)
 	log_world(H.hair_style)
-	H.equip_to_slot_if_possible(W, ITEM_SLOT_BACKPACK)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, W, H, TRUE, TRUE) //insert the item, even if the backpack's full
 	W.update_icon()
 	H.dna.species.go_bald(H)
 
@@ -23,11 +23,7 @@
 /datum/quirk/anime/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/choice_beacon/anime/B = new(get_turf(H))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
-	)
-	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, B, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/gigantism
 	name = "Gigantism"
@@ -51,8 +47,4 @@
 /datum/quirk/nudist/on_spawn()
 	var/mob/living/carbon/human/person = quirk_holder
 	var/obj/item/clothing/under/invisible/clothing = new(get_turf(person))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
-	)
-	person.equip_in_one_of_slots(clothing , slots , qdel_on_fail = TRUE)
+	SEND_SIGNAL(person.back, COMSIG_TRY_STORAGE_INSERT, clothing, person, TRUE, TRUE) //insert the item, even if the backpack's full

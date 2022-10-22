@@ -36,7 +36,7 @@
 /datum/symptom/macrophage/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(1-3)
 			to_chat(M, "<span class='notice'>Your skin crawls.</span>")
@@ -52,7 +52,7 @@
 				phagecounter += 5
 				Burst(A, M)
 
-/datum/symptom/macrophage/proc/Burst(datum/disease/advance/A, var/mob/living/M, var/gigagerms = FALSE)
+/datum/symptom/macrophage/proc/Burst(datum/disease/advance/A, var/mob/living/carbon/M, var/gigagerms = FALSE)
 	var/mob/living/simple_animal/hostile/macrophage/phage
 	if(gigagerms)
 		phage = new /mob/living/simple_animal/hostile/macrophage/aggro(M.loc)
