@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/pigeon
+	icon_suffix = "pigeon"
+
 	breed_name_male = "Pigeon"
 	breed_name_female = "Pigeon"
 	egg_type = /obj/item/food/egg/pigeon

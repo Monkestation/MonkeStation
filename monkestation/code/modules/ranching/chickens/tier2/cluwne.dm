@@ -1,5 +1,5 @@
 /mob/living/simple_animal/chicken/clown_sad
-	icon_state = "chicken_sad_clown"
+	icon_suffix = "sad_clown"
 
 	breed_name_male = "huOnkHoNkHoeNK"
 	breed_name_female = "huOnkHoNkHoeNK"

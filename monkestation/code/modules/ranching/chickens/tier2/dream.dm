@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/dream
+	icon_suffix = "dreaming"
+
 	breed_name = "Dream"
 	egg_type = /obj/item/food/egg/dream
 	chicken_type = /mob/living/simple_animal/chicken/dream
@@ -14,19 +16,24 @@
 /datum/status_effect/ranching/dream_state
 	id = "dream_state"
 	duration = 60 SECONDS
+	var/is_sleeping = FALSE
 
 /datum/status_effect/ranching/dream_state/on_apply()
-	owner.visible_message("<span class='notice'>[owner] goes into a deep sleep!</span>")
-	owner.fakedeath("dream_state") //play dead
-	owner.update_stat()
-	owner.update_mobility()
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.visible_message("<span class='notice'>[owner] goes into a deep sleep!</span>")
+		carbon_owner.fakedeath("dream_state") //play dead
+		carbon_owner.update_stat()
+		carbon_owner.update_mobility()
+		is_sleeping = TRUE
 	return ..()
 
 /datum/status_effect/ranching/dream_state/on_remove()
-	owner.visible_message("<span class='notice'>[owner] awakes from their deep sleep!</span>")
-	owner.cure_fakedeath("dream_state")
-	owner.adjustBruteLoss(-100)
-	owner.adjustFireLoss(-100)
-	owner.adjustToxLoss(-100)
-	owner.adjustCloneLoss(-100)
-	owner.regenerate_organs()
+	if(is_sleeping)
+		owner.visible_message("<span class='notice'>[owner] awakes from their deep sleep!</span>")
+		owner.cure_fakedeath("dream_state")
+		owner.adjustBruteLoss(-100)
+		owner.adjustFireLoss(-100)
+		owner.adjustToxLoss(-100)
+		owner.adjustCloneLoss(-100)
+		owner.regenerate_organs()

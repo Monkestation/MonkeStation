@@ -1,5 +1,7 @@
 #define MINIMUM_BREAK_FORCE 10
 /mob/living/simple_animal/chicken/stone
+	icon_suffix = "stone"
+
 	breed_name = "Stone"
 	egg_type = /obj/item/food/egg/stone
 	chicken_type = /mob/living/simple_animal/chicken/stone

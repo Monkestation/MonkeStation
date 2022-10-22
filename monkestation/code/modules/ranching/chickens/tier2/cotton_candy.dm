@@ -1,5 +1,5 @@
 /mob/living/simple_animal/chicken/cotton_candy
-	icon_state = "chicken_cotton_candy"
+	icon_suffix = "cotton_candy"
 
 	breed_name = "Cotton Candy"
 	egg_type = /obj/item/food/egg/cotton_candy

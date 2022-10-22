@@ -48,6 +48,17 @@
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
+	assign_chick_icon()
+
+/mob/living/simple_animal/chick/proc/assign_chick_icon()
+	if(!grown_type) // do we have a grown type?
+		return
+
+	var/mob/living/simple_animal/chicken/adult_form = grown_type
+	icon_state = "chick_[adult_form.icon_suffix]"
+	held_state = "chick_[adult_form.icon_suffix]"
+	icon_living = "chick_[adult_form.icon_suffix]"
+	icon_dead = "chick_[adult_form.icon_suffix]" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chick/Life()
 	. =..()
@@ -130,6 +141,7 @@
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
 	chicken_type = src
+	assign_chicken_icon()
 
 	if(prob(40))
 		gender = MALE
@@ -144,6 +156,15 @@
 			name = " [breed_name_female]"
 		else
 			name = "[breed_name] Hen"
+
+/mob/living/simple_animal/chicken/proc/assign_chicken_icon()
+	if(!icon_suffix) // should never be the case but if so default to the first set of icons
+		return
+
+	icon_state = "chicken_[icon_suffix]"
+	held_state = "chicken_[icon_suffix]"
+	icon_living = "chicken_[icon_suffix]"
+	icon_dead = "chicken_[icon_suffix]" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chicken/death(gibbed)
 	Friends = null

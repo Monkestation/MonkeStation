@@ -85,6 +85,8 @@
 	var/list/Friends = list()
 	/// Last phrase said near it and person who said it
 	var/list/speech_buffer = list()
+	/// the icon suffix
+	var/icon_suffix = ""
 
 #undef DEFAULT_CHICKEN_ABILITY_COOLDOWN
 

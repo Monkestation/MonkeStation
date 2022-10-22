@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/raptor
+	icon_suffix = "raptor"
+
 	breed_name = "Raptor"
 	breed_name_male = "Tiercel"
 	egg_type = /obj/item/food/egg/raptor

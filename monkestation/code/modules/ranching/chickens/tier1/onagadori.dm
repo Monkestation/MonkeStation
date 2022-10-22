@@ -1,6 +1,6 @@
 
 /mob/living/simple_animal/chicken/onagadori
-	icon_state = "chicken_onagadori"
+	icon_suffix = "onagadori"
 
 	breed_name = "Onagadori"
 	egg_type = /obj/item/food/egg/onagadori

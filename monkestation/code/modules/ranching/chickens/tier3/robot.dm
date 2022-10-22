@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/robot
+	icon_suffix = "robot"
+
 	breed_name = "Robotic"
 
 	maxHealth = 100 //Weaker because emp good

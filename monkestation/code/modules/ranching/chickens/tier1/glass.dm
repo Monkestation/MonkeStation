@@ -1,5 +1,5 @@
 /mob/living/simple_animal/chicken/glass
-	icon_state = "chicken_glass"
+	icon_suffix = "glass"
 
 	breed_name = "Glass"
 	egg_type = /obj/item/food/egg/glass

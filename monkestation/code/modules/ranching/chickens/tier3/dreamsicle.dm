@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/dreamsicle
+	icon_suffix = "dreamsicle"
+
 	breed_name = "Dreamsicle"
 	egg_type = /obj/item/food/egg/dreamsicle
 	chicken_path = /mob/living/simple_animal/chicken/dreamsicle

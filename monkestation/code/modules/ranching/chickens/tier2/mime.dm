@@ -1,5 +1,5 @@
 /mob/living/simple_animal/chicken/mime
-	icon_state = "chicken_mime"
+	icon_suffix = "mime"
 
 	breed_name = "Mime"
 	egg_type = /obj/item/food/egg/mime

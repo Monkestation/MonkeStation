@@ -1,5 +1,5 @@
 /mob/living/simple_animal/chicken/spicy
-	icon_state = "chicken_spicy"
+	icon_suffix = "spicy"
 
 	breed_name = "Spicy"
 	egg_type = /obj/item/food/egg/spicy

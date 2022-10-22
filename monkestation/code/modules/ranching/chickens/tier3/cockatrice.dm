@@ -1,4 +1,6 @@
 /mob/living/simple_animal/chicken/cockatrice
+	icon_suffix = "cockatrice"
+
 	breed_name_male = "Cockatrice"
 	breed_name_female = "Cockatrice"
 
