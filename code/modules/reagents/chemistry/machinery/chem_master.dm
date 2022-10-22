@@ -269,6 +269,8 @@
 				vol_each_max = min(40, vol_each_max)
 			else if (item_type == "bottle" && !condi)
 				vol_each_max = min(30, vol_each_max)
+			else if (item_type == "bag" && !condi)
+				vol_each_max = min(200, vol_each_max)
 			else if (item_type == "condimentPack" && condi)
 				vol_each_max = min(10, vol_each_max)
 			else if (item_type == "condimentBottle" && condi)
@@ -339,6 +341,15 @@
 					for(var/i = 0; i < amount; i++)
 						P = new/obj/item/reagent_containers/glass/bottle(drop_location())
 						P.name = trim("[name] bottle")
+						adjust_item_drop_location(P)
+						reagents.trans_to(P, vol_each, transfered_by = usr)
+					. = TRUE
+				if("bag")
+					var/obj/item/reagent_containers/chem_bag/P
+					for(var/i = 0; i < amount; i++)
+						P = new/obj/item/reagent_containers/chem_bag/(drop_location())
+						P.name = trim("[name] chemical bag")
+						P.label_name = trim(name) // supporting a custom name in certain situations
 						adjust_item_drop_location(P)
 						reagents.trans_to(P, vol_each, transfered_by = usr)
 					. = TRUE

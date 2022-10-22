@@ -13,7 +13,9 @@
 	var/obj/item/reagent_containers/beaker
 	var/static/list/drip_containers = typecacheof(list(/obj/item/reagent_containers/blood,
 									/obj/item/reagent_containers/food,
-									/obj/item/reagent_containers/glass))
+									/obj/item/food, //I will inject a slice of pizza into my arm and you cannot stop me
+									/obj/item/reagent_containers/glass,
+									/obj/item/reagent_containers/chem_bag,))
 	var/can_convert = TRUE // If it can be made into an anesthetic machine or not
 
 /obj/machinery/iv_drip/Initialize(mapload)
