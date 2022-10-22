@@ -342,16 +342,12 @@
 		if(SOUTH)
 			animate(M, pixel_x = 0, pixel_y = -offset, 3)
 		if(EAST)
-			if(M.lying == 270) //update the dragged dude's direction if we've turned
-				M.lying = 90
-				M.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
-				M.lying_prev = M.lying
+			if(M.lying_angle == 270) //update the dragged dude's direction if we've turned
+				M.set_lying_angle(90)
 			animate(M, pixel_x = offset, pixel_y = 0, 3)
 		if(WEST)
-			if(M.lying == 90)
-				M.lying = 270
-				M.update_transform()
-				M.lying_prev = M.lying
+			if(M.lying_angle == 90)
+				M.set_lying_angle(270)
 			animate(M, pixel_x = -offset, pixel_y = 0, 3)
 
 /mob/living/proc/reset_pull_offsets(mob/living/M, override)
@@ -613,13 +609,8 @@
 	return
 
 /mob/living/Move(atom/newloc, direct, glide_size_override)
-	if(lying)
-		if(direct & EAST)
-			lying = 90
-		if(direct & WEST)
-			lying = 270
-		update_transform()
-		lying_prev = lying
+	if(lying_angle != 0)
+		lying_angle_on_movement(direct)
 	if(buckled && buckled.loc != newloc) //not updating position
 		if(!buckled.anchored)
 			return buckled.Move(newloc, direct, glide_size)
@@ -646,6 +637,16 @@
 
 	if(!(mobility_flags & MOBILITY_STAND) && !buckled && prob(getBruteLoss()*200/maxHealth))
 		makeTrail(newloc, T, old_direction)
+
+///Called by mob Move() when the lying_angle is different than zero, to better visually simulate crawling.
+/mob/living/proc/lying_angle_on_movement(direct)
+	if(direct & EAST)
+		set_lying_angle(90)
+	else if(direct & WEST)
+		set_lying_angle(270)
+
+/mob/living/carbon/alien/humanoid/lying_angle_on_movement(direct)
+	return
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction, spec_color)
 	if(!has_gravity() || (movement_type & THROWN))
@@ -819,7 +820,7 @@
 		animate(pixel_y = -2, time = 10, loop = -1, flags = ANIMATION_RELATIVE)
 		setMovetype(movement_type | FLOATING)
 	else if(((!on || fixed) && (movement_type & FLOATING)))
-		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 10)
+		animate(src, pixel_y = get_standard_pixel_y_offset(lying_angle), time = 10)
 		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
@@ -885,8 +886,8 @@
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
+	var/final_pixel_x = get_standard_pixel_x_offset(lying_angle)
+	var/final_pixel_y = get_standard_pixel_y_offset(lying_angle)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
@@ -903,10 +904,10 @@
 		loc_temp = heat_turf.return_temperature()
 	return loc_temp
 
-/mob/living/proc/get_standard_pixel_x_offset(lying = 0)
+/mob/living/proc/get_standard_pixel_x_offset(lying_angle = 0)
 	return initial(pixel_x)
 
-/mob/living/proc/get_standard_pixel_y_offset(lying = 0)
+/mob/living/proc/get_standard_pixel_y_offset(lying_angle = 0)
 	return initial(pixel_y)
 
 
@@ -1132,23 +1133,23 @@
 	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
 	var/canstand = canstand_involuntary && !resting
 
-	var/should_be_lying = !canstand
-	if(buckled)
-		if(buckled.buckle_lying != -1)
-			should_be_lying = buckled.buckle_lying
-
-	if(should_be_lying)
+	if(buckled && buckled.buckle_lying != -1)
+		if(buckled.buckle_lying != 0)
+			mobility_flags &= ~MOBILITY_STAND
+		else
+			mobility_flags |= MOBILITY_STAND
+		set_lying_angle(buckled.buckle_lying)
+	else if(!canstand)
 		mobility_flags &= ~MOBILITY_STAND
-		if(buckled)
-			if(buckled.buckle_lying != -1)
-				lying = buckled.buckle_lying
-		if(!lying) //force them on the ground
-			lying = pick(90, 270)
+		if(lying_angle == 0) //force them on the ground
+			set_lying_angle(pick(90, 270))
+			if(!canstand_involuntary)
+				on_fall()
 	else
 		mobility_flags |= MOBILITY_STAND
-		lying = 0
+		set_lying_angle(0)
 
-	if(should_be_lying || restrained || incapacitated())
+	if(lying_angle != 0 || restrained || incapacitated())
 		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
@@ -1168,22 +1169,6 @@
 			stop_pulling()
 	if(!(mobility_flags & MOBILITY_UI))
 		unset_machine()
-	density = !lying
-	var/changed = lying == lying_prev
-	if(lying)
-		if(!lying_prev)
-			fall(!canstand_involuntary)
-		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-	update_transform()
-	if(changed)
-		if(client)
-			client.move_delay = world.time + movement_delay()
-	lying_prev = lying
-
 	// Movespeed mods based on arms/legs quantity
 	if(!get_leg_ignore())
 		var/limbless_slowdown = 0
@@ -1197,7 +1182,9 @@
 		else
 			remove_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, update=TRUE)
 
-/mob/living/proc/fall(forced)
+///Called when mob changes from a standing position into a prone while lacking the ability to stand up at the moment, through update_mobility()
+/mob/living/proc/on_fall()
+	return
 
 /mob/living/proc/AddAbility(obj/effect/proc_holder/A)
 	abilities.Add(A)
@@ -1363,3 +1350,30 @@
 	if(is_servant_of_ratvar(src) && !iseminence(src))
 		eminence.selected_mob = src
 		to_chat(eminence, "<span class='brass'>You select [src].</span>")
+
+/**
+  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
+  *
+  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
+  * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
+  * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
+  * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
+  */
+/mob/living/proc/set_lying_angle(new_lying)
+	if(new_lying == lying_angle)
+		return
+	. = lying_angle
+	lying_angle = new_lying
+	if(lying_angle != lying_prev)
+		update_transform()
+		lying_prev = lying_angle
+	if(lying_angle != 0) //We are not standing up.
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+		if(. != 0) //We became prone and were not before. We lose density and stop bumping passable dense things.
+			density = FALSE
+	else //We are prone.
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+		if(.) //We weren't pone before, so we become dense and things can bump into us again.
+			density = initial(density)
