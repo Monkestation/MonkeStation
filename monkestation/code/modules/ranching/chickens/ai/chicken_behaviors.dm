@@ -221,12 +221,14 @@
 	if(floor_foods.len)
 		var/obj/item/food/chosen_one = pick(floor_foods)
 
-		step_to(living_pawn, chosen_one, 1)
+		SSmove_manager.jps_move(living_pawn, chosen_one, 2, 2 SECONDS)
 
 		if(living_pawn.CanReach(chosen_one))
 			living_pawn.feed_food(chosen_one)
+			SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
 			finish_action(controller, TRUE)
 		if(!chosen_one)
+			SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
 			finish_action(controller, TRUE)
 	else
 		finish_action(controller, TRUE)
