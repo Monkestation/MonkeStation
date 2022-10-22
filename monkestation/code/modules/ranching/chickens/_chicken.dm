@@ -58,7 +58,7 @@
 	icon_state = "chick_[adult_form.icon_suffix]"
 	held_state = "chick_[adult_form.icon_suffix]"
 	icon_living = "chick_[adult_form.icon_suffix]"
-	icon_dead = "chick_[adult_form.icon_suffix]" //TODO: add dead sprites for each chick / chicken
+	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chick/Life()
 	. =..()
@@ -164,7 +164,7 @@
 	icon_state = "chicken_[icon_suffix]"
 	held_state = "chicken_[icon_suffix]"
 	icon_living = "chicken_[icon_suffix]"
-	icon_dead = "chicken_[icon_suffix]" //TODO: add dead sprites for each chick / chicken
+	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chicken/death(gibbed)
 	Friends = null
