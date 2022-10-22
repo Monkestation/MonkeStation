@@ -540,7 +540,6 @@
 		add_to_alive_mob_list()
 		set_suicide(FALSE)
 		set_stat(UNCONSCIOUS) //the mob starts unconscious,
-		blind_eyes(1)
 		updatehealth() //then we check if the mob should wake up.
 		update_mobility()
 		update_sight()
@@ -1387,7 +1386,7 @@
 		return
 	switch(.) //Previous stat.
 		if(UNCONSCIOUS)
-			adjust_blindness(-1)
+			cure_blind(UNCONSCIOUS_BLIND)
 	switch(stat) //Current stat.
 		if(UNCONSCIOUS)
-			blind_eyes(1)
+			become_blind(UNCONSCIOUS_BLIND)
