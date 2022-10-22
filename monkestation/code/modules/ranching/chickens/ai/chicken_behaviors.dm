@@ -209,7 +209,7 @@
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 10 SECONDS
+	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 15 SECONDS
 	if(living_pawn.current_feed_amount > 3) // so no vomit
 		finish_action(controller, TRUE)
 
@@ -221,7 +221,7 @@
 	if(floor_foods.len)
 		var/obj/item/food/chosen_one = pick(floor_foods)
 
-		SSmove_manager.jps_move(living_pawn, chosen_one, 2, 2 SECONDS)
+		SSmove_manager.jps_move(living_pawn, chosen_one, 4, 2 SECONDS)
 
 		if(living_pawn.CanReach(chosen_one))
 			living_pawn.feed_food(chosen_one)
