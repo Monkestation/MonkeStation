@@ -128,6 +128,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 //mob traits
 #define TRAIT_KNOCKEDOUT 		"knockedout" //Forces the user to stay unconscious.
+#define TRAIT_IMMOBILIZED 		"immobilized" //Prevents voluntary movement.
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_MUTE				"mute"
@@ -348,6 +349,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STATION_TRAIT "station-trait"
 #define TRAIT_RUSTY "rust_trait"
 #define TURF_TRAIT "turf"
+#define BUCKLED_TRAIT "buckled" //trait associated to being buckled
+#define CHOKEHOLD_TRAIT "chokehold" //trait associated to being held in a chokehold
+#define RESTING_TRAIT "resting" //trait associated to resting
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -407,6 +411,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VAULTING "vaulting" //simian trait
 ///Turf trait for when a turf is transparent
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
+#define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
+#define LOCKED_BORG_TRAIT "locked-borg"
 // Monkestation Changes End
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
 

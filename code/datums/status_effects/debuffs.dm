@@ -17,14 +17,7 @@
 			if(needs_update_stat || issilicon(owner))
 				owner.update_stat()
 
-/datum/status_effect/incapacitating/on_apply()
-	. = ..()
-	if(!.)
-		return
-	ADD_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
-
 /datum/status_effect/incapacitating/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	owner.update_mobility()
 	if(needs_update_stat || issilicon(owner)) //silicons need stat updates in addition to normal canmove updates
 		owner.update_stat()
@@ -34,6 +27,18 @@
 /datum/status_effect/incapacitating/stun
 	id = "stun"
 
+/datum/status_effect/incapacitating/stun/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/stun/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
 //KNOCKDOWN
 /datum/status_effect/incapacitating/knockdown
 	id = "knockdown"
@@ -42,13 +47,45 @@
 /datum/status_effect/incapacitating/immobilized
 	id = "immobilized"
 
+/datum/status_effect/incapacitating/immobilized/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/immobilized/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+	return ..()
+
 /datum/status_effect/incapacitating/paralyzed
 	id = "paralyzed"
+
+/datum/status_effect/incapacitating/paralyzed/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/paralyzed/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+	return ..()
 
 //UNCONSCIOUS
 /datum/status_effect/incapacitating/unconscious
 	id = "unconscious"
 	needs_update_stat = TRUE
+
+/datum/status_effect/incapacitating/unconscious/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+
+/datum/status_effect/incapacitating/unconscious/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
+	return ..()
 
 /datum/status_effect/incapacitating/unconscious/tick()
 	if(owner.getStaminaLoss())
@@ -119,6 +156,13 @@
         alert_type = /atom/movable/screen/alert/status_effect/stasis
         var/last_dead_time
 
+/datum/status_effect/grouped/stasis/on_apply()
+	. = ..()
+	if(!.)
+		return
+	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+	owner.update_mobility()
+
 /datum/status_effect/incapacitating/stasis/proc/update_time_of_death()
         if(last_dead_time)
                 var/delta = world.time - last_dead_time
@@ -138,8 +182,9 @@
         update_time_of_death()
 
 /datum/status_effect/incapacitating/stasis/on_remove()
-        update_time_of_death()
-        return ..()
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
+	update_time_of_death()
+	return ..()
 
 /datum/status_effect/incapacitating/stasis/be_replaced()
         update_time_of_death()

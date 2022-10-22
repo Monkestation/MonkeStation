@@ -41,3 +41,5 @@
 #define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"
 	//For all of them
 	#define COMPONENT_NO_STUN 1
+///from base of mob/living/set_buckled(): (new_buckled)
+#define COMSIG_LIVING_SET_BUCKLED "living_set_buckled"
