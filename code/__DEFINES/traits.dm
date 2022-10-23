@@ -246,7 +246,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOODSHOT_EYES "bloodshot_eyes"
 
 //non-mob traits
-#define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
+/// Used for limb-based paralysis, where replacing the limb will fix it.
+#define TRAIT_PARALYSIS				"paralysis"
 
 
 //important_recursive_contents traits
