@@ -858,6 +858,7 @@
 
 ///Proc to hook behavior on bodypart additions.
 /mob/living/carbon/proc/add_bodypart(obj/item/bodypart/new_bodypart)
+	new_bodypart.set_owner(src)
 	bodyparts += new_bodypart
 
 	switch(new_bodypart.body_part)
