@@ -50,14 +50,6 @@
 	seed.prepare_result(src)
 	transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5 //Makes the resulting produce's sprite larger or smaller based on potency!
 
-	if(seed.get_gene(/datum/plant_gene/trait/hotbox))
-		START_PROCESSING(SSobj, src)
-
-/obj/item/food/grown/Destroy()
-	. = ..()
-	if(seed.get_gene(/datum/plant_gene/trait/hotbox))
-		STOP_PROCESSING(SSobj, src)
-
 /obj/item/food/grown/MakeEdible()
 	AddComponent(/datum/component/edible,\
 				initial_reagents = food_reagents,\
@@ -134,11 +126,6 @@
 			if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
 				grown_food_item.fire_act(src.return_temperature())
 				return // only once
-
-/obj/item/food/grown/process(delta_time)
-	if(DT_PROB(0.5, delta_time)) //these bad boys are unstable as shit
-		if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
-			fire_act(500)
 
 /obj/item/food/grown/burn()
 	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))

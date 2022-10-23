@@ -225,7 +225,7 @@
 	// Allows the plant to hotbox rooms and spawn gas when burned
 	name = "Hotbox"
 	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"
-
+	trait_id = "harvest"
 /datum/plant_gene/trait/slip
 	// Makes plant slippery, unless it has a grown-type trash. Then the trash gets slippery.
 	// Applies other trait effects (teleporting, etc) to the target by on_slip.
@@ -409,6 +409,7 @@
 
 /datum/plant_gene/trait/repeated_harvest
 	name = "Perennial Growth"
+	trait_id = "harvest"
 
 /datum/plant_gene/trait/repeated_harvest/can_add(obj/item/seeds/S)
 	if(!..())

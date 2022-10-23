@@ -160,7 +160,10 @@
 	var/list/result = list()
 	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
 	var/product_name
-	while(t_amount < getYield())
+	var/yield_amount = getYield()
+	if(get_gene(/datum/plant_gene/trait/hotbox))
+		yield_amount = 3 //this is now hard set to only produce 3 items
+	while(t_amount < yield_amount)
 		var/obj/item/food/grown/t_prod = new product(output_loc, src)
 		if(parent.myseed.plantname != initial(parent.myseed.plantname))
 			t_prod.name = parent.myseed.plantname
