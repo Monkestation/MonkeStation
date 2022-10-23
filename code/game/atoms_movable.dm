@@ -1,5 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/move_stacks = 0 //how many times a this movable had movement procs called on it since Moved() was last called
 	var/last_move = null
 	var/last_move_time = 0
@@ -32,11 +34,10 @@
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	///Holds information about any movement loops currently running/waiting to run on the movable. Lazy, will be null if nothing's going on
 	var/datum/movement_packet/move_packet
-	var/list/acted_explosions	//for explosion dodging
-	glide_size = 8
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	var/list/acted_explosions	//for explosion dodgings
 	var/datum/forced_movement/force_moving = null	//handled soley by forced_movement.dm
-	var/movement_type = GROUND		//Incase you have multiple types, you automatically use the most useful one. IE: Skating on ice, flippers on water, flying over chasm/space, etc.
+	///In case you have multiple types, you automatically use the most useful one. IE: Skating on ice, flippers on water, flying over chasm/space, etc. Should only be changed through setMovetype()
+	var/movement_type = GROUND
 	var/atom/movable/pulling
 	var/grab_state = 0
 	var/throwforce = 0
@@ -698,7 +699,11 @@
 		var/atom/movable/AM = item
 		AM.onTransitZ(old_z,new_z)
 
+///Proc to modify the movement_type and hook behavior associated with it changing.
 /atom/movable/proc/setMovetype(newval)
+	if(movement_type == newval)
+		return
+	. = movement_type
 	movement_type = newval
 
 /**

@@ -127,6 +127,8 @@ GLOBAL_LIST_INIT(strippable_monkey_items, create_strippable_list(list(
 	return FALSE
 
 /mob/living/carbon/monkey/canBeHandcuffed()
+	if(num_hands < 2)
+		return FALSE
 	return TRUE
 
 /mob/living/carbon/monkey/assess_threat(judgment_criteria, lasercolor = "", datum/callback/weaponcheck=null)
