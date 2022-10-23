@@ -43,6 +43,9 @@
 	for(var/datum/plant_gene/trait/T in seed.genes)
 		T.on_new(src, loc)
 
+	for(var/datum/plant_gene/new_gene in seed.genes)
+		new_gene.on_add(src.seed)
+
 	..() //Only call it here because we want all the genes and shit to be applied before we add edibility. God this code is a mess.
 
 	if(discovery_points)
