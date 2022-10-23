@@ -668,6 +668,6 @@
 /obj/structure/sign/poster/official/ahelp
 	name = "Ahelp - It helps!"
 	desc = "A poster with a slogan reminding people about the Automatic Hazardous Environment Limitation Program, which processes reports of safety hazards before delivering them directly to Mr. Nanotrasen's fireplace to keep him warm."
-	icon_state = "poster50"
+	icon_state = "poster45_legit"
 
 #undef PLACE_SPEED
