@@ -78,7 +78,7 @@
 /datum/quirk/brainproblems/on_spawn()
 	var/mob/living/carbon/human/holder = quirk_holder
 	var/obj/item/storage/pill_bottle/mannitol/braintumor/pill_bottle = new(get_turf(holder))
-	SEND_SIGNAL(holder.back, COMSIG_TRY_STORAGE_INSERT, pill_bottle, H, TRUE, TRUE) //insert the item, even if the backpack's full
+	SEND_SIGNAL(holder.back, COMSIG_TRY_STORAGE_INSERT, pill_bottle, holder, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/brainproblems/post_add()
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol in your backpack. You're going to need it.</span>")
