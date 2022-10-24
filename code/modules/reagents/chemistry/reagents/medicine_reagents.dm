@@ -857,11 +857,9 @@
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2*REM)
 	..()
 
-/datum/reagent/medicine/mannitol/overdose_process(mob/living/carbon/C)
-	if(HAS_TRAIT(C, TRAIT_BRAIN_TUMOR))
-		if(prob(10))
-			C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -0.1*REM)
-	..()
+/datum/reagent/medicine/mannitol/overdose_process(mob/living/carbon/C) //should only apply to those with the brain tumor quirk
+	if(prob(10))
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -0.1*REM)
 	..()
 
 /datum/reagent/medicine/neurine

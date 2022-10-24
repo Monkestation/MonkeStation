@@ -66,19 +66,19 @@
 	if(!quirk_holder.reagents.has_reagent(/datum/reagent/medicine/mannitol))
 		if(prob(80))
 			quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1 * delta_time)
-	var/obj/item/organ/brain/B = quirk_holder.getorgan(/obj/item/organ/brain)
-	if(B)
-		if(B.damage>BRAIN_DAMAGE_MILD-1 && !notified)
+	var/obj/item/organ/brain/affected_brain = quirk_holder.getorgan(/obj/item/organ/brain)
+	if(affected_brain)
+		if(affected_brain.damage>BRAIN_DAMAGE_MILD-1 && !notified)
 			to_chat(quirk_holder, "<span class='danger'>You sense your brain is getting beyond your control...</span>")
 			notified = TRUE
-		if(B.damage<1 && notified)
+		if(affected_brain.damage<1 && notified)
 			to_chat(quirk_holder, "<span class='notice'>You feel your brain is quite well.</span>")
 			notified = FALSE
 
 /datum/quirk/brainproblems/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/storage/pill_bottle/mannitol/braintumor/P = new(get_turf(H))
-	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, P, H, TRUE, TRUE) //insert the item, even if the backpack's full
+	var/mob/living/carbon/human/holder = quirk_holder
+	var/obj/item/storage/pill_bottle/mannitol/braintumor/pill_bottle = new(get_turf(holder))
+	SEND_SIGNAL(holder.back, COMSIG_TRY_STORAGE_INSERT, pill_bottle, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/brainproblems/post_add()
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol in your backpack. You're going to need it.</span>")
