@@ -381,7 +381,6 @@
 
 /mob/living/simple_animal/chicken/turkey/Initialize(mapload)
 	. = ..()
-	src.AddComponent(/datum/component/waddling)
 
 /obj/item/udder
 	name = "udder"
