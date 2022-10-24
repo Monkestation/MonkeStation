@@ -15,7 +15,6 @@
 		return
 	to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
 	stam_regen_start_time = world.time + STAMINA_CRIT_TIME
-	stam_paralyzed = TRUE
 	ADD_TRAIT(src, TRAIT_INCAPACITATED, STAMINA)
 	ADD_TRAIT(src, TRAIT_IMMOBILIZED, STAMINA)
 	ADD_TRAIT(src, TRAIT_FLOORED, STAMINA)
