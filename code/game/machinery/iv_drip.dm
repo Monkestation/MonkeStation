@@ -15,7 +15,7 @@
 									/obj/item/reagent_containers/food,
 									/obj/item/food, //I will inject a slice of pizza into my arm and you cannot stop me
 									/obj/item/reagent_containers/glass,
-									/obj/item/reagent_containers/chem_bag,))
+									/obj/item/reagent_containers/chem_bag))
 	var/can_convert = TRUE // If it can be made into an anesthetic machine or not
 
 /obj/machinery/iv_drip/Initialize(mapload)
@@ -46,6 +46,8 @@
 			add_overlay("beakeractive")
 		else
 			add_overlay("beakeridle")
+		if(istype(beaker, /obj/item/food))
+			return
 		if(beaker.reagents.total_volume)
 			var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/iv_drip.dmi', "reagent")
 
@@ -131,7 +133,7 @@
 	if(beaker)
 		// Give blood
 		if(mode)
-			if(beaker.reagents.total_volume)
+			if(beaker.reagents && beaker.reagents.total_volume)
 				var/transfer_amount = 5
 				if(istype(beaker, /obj/item/reagent_containers/blood))
 					// speed up transfer on blood packs
@@ -139,6 +141,8 @@
 				var/fraction = min(transfer_amount*delta_time/beaker.reagents.total_volume, 1) //the fraction that is transfered of the total volume
 				beaker.reagents.reaction(attached, INJECT, fraction, FALSE) //make reagents reacts, but don't spam messages
 				beaker.reagents.trans_to(attached, transfer_amount)
+				if(istype(beaker, /obj/item/food) && !beaker.reagents.total_volume) //empty food item disappears
+					qdel(beaker)
 				update_icon()
 
 		// Take blood
