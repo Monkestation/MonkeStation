@@ -473,18 +473,21 @@
 	if(dna)
 		dna.real_name = real_name
 
-/mob/living/carbon/update_mobility()
+/mob/living/carbon/set_lying_angle(new_lying)
 	. = ..()
-	if(!(mobility_flags & MOBILITY_STAND))
-		if(HAS_TRAIT(src, FOOD_SLIDE))
-			add_movespeed_modifier("belly_slide", update=TRUE, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+	if(isnull(.))
+		return
+	switch(lying_angle)
+		if(90, 270)
+			if(HAS_TRAIT(src, FOOD_SLIDE))
+				add_movespeed_modifier("belly_slide", update=TRUE, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+			else
+				add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
 		else
-			add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
-	else
-		if(HAS_TRAIT(src, FOOD_SLIDE) || has_movespeed_modifier("belly_slide"))
-			remove_movespeed_modifier("belly_slide", TRUE)
-		if(has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
-			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
+			if(HAS_TRAIT(src, FOOD_SLIDE) || has_movespeed_modifier("belly_slide"))
+				remove_movespeed_modifier("belly_slide", TRUE)
+			if(has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
+				remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
 
 //Updates the mob's health from bodyparts and mob damage variables
 /mob/living/carbon/updatehealth()
@@ -1040,7 +1043,5 @@
 	if(.)
 		if(!handcuffed)
 			REMOVE_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
-			REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, HANDCUFFED_TRAIT)
 	else if(handcuffed)
 		ADD_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
-		ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, HANDCUFFED_TRAIT)

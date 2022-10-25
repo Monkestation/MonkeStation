@@ -37,7 +37,7 @@
 	///Alarm listener datum, handes caring about alarm events and such
 	var/datum/alarm_listener/listener
 
-	var/aiRestorePowerRoutine = 0
+	var/aiRestorePowerRoutine = POWER_RESTORATION_OFF
 	var/requires_power = POWER_REQ_ALL
 	var/can_be_carded = TRUE
 	var/viewalerts = 0
@@ -170,6 +170,8 @@
 
 	builtInCamera = new (src)
 	builtInCamera.network = list("ss13")
+
+	ADD_TRAIT(src, TRAIT_PULL_BLOCKED, ROUNDSTART_TRAIT)
 
 	listener = new(list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER, ALARM_CAMERA, ALARM_BURGLAR, ALARM_MOTION), list(z))
 	RegisterSignal(listener, COMSIG_ALARM_TRIGGERED, .proc/alarm_triggered)
@@ -869,11 +871,6 @@
 /mob/living/silicon/ai/can_buckle()
 	return 0
 
-/mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, ignore_stasis = FALSE)
-	if(aiRestorePowerRoutine)
-		return TRUE
-	return ..()
-
 /mob/living/silicon/ai/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	if(control_disabled || incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
@@ -1085,3 +1082,15 @@
 
 /mob/living/silicon/ai/zMove(dir, feedback = FALSE)
 	. = eyeobj.zMove(dir, feedback)
+
+/// Proc to hook behavior to the changes of the value of [aiRestorePowerRoutine].
+/mob/living/silicon/ai/proc/setAiRestorePowerRoutine(new_value)
+	if(new_value == aiRestorePowerRoutine)
+		return
+	. = aiRestorePowerRoutine
+	aiRestorePowerRoutine = new_value
+	if(aiRestorePowerRoutine)
+		if(!.)
+			ADD_TRAIT(src, TRAIT_INCAPACITATED, POWER_LACK_TRAIT)
+	else if(.)
+		REMOVE_TRAIT(src, TRAIT_INCAPACITATED, POWER_LACK_TRAIT)

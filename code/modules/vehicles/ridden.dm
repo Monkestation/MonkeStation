@@ -2,7 +2,7 @@
 	name = "ridden vehicle"
 	can_buckle = TRUE
 	max_buckled_mobs = 1
-	buckle_lying = FALSE
+	buckle_lying = 0
 	default_driver_move = FALSE
 	pass_flags_self = PASSTABLE
 	var/legs_required = 2

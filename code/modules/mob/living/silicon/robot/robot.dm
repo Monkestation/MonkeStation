@@ -95,7 +95,7 @@
 	)
 
 	can_buckle = TRUE
-	buckle_lying = FALSE
+	buckle_lying = 0
 	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 
 /mob/living/silicon/robot/get_cell()
