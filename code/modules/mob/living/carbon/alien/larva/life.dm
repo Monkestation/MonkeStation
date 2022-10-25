@@ -24,6 +24,5 @@
 			if(stat == UNCONSCIOUS)
 				adjust_blindness(-1)
 				set_stat(CONSCIOUS)
-	update_mobility()
 	update_damage_hud()
 	update_health_hud()
