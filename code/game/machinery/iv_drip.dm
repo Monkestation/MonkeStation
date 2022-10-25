@@ -27,6 +27,11 @@
 	QDEL_NULL(beaker)
 	return ..()
 
+/obj/machinery/iv_drip/Moved()
+	. = ..()
+	if(has_gravity())
+		playsound(src, 'sound/effects/roll.ogg', 100, 1)
+
 /obj/machinery/iv_drip/update_icon()
 	if(attached)
 		if(mode)
