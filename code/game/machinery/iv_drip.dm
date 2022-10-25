@@ -133,7 +133,7 @@
 	if(beaker)
 		// Give blood
 		if(mode)
-			if(beaker.reagents && beaker.reagents.total_volume)
+			if(beaker.reagents?.total_volume)
 				var/transfer_amount = 5
 				if(istype(beaker, /obj/item/reagent_containers/blood))
 					// speed up transfer on blood packs
