@@ -347,9 +347,6 @@
 	SIGNAL_HANDLER
 	queueAlarm("--- [alarm_type] alarm in [source_area.name] has been cleared.", alarm_type, FALSE)
 
-/mob/living/silicon/robot/restrained(ignore_grab)
-	. = 0
-
 /mob/living/silicon/robot/can_interact_with(atom/A)
 	if (low_power_mode)
 		return FALSE

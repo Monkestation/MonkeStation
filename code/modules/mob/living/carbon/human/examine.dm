@@ -365,7 +365,7 @@
 
 		if(HAS_TRAIT(user, TRAIT_SECURITY_HUD))
 			if(!user.stat && user != src)
-			//|| !user.canmove || user.restrained()) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
+			//|| !user.canmove || HAS_TRAIT(user, TRAIT_RESTRAINED)) Fluff: Sechuds have eye-tracking technology and sets 'arrest' to people that the wearer looks and blinks at.
 				var/criminal = "None"
 
 				target_record = find_record("name", perpname, GLOB.data_core.security)
