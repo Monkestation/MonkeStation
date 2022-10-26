@@ -440,8 +440,7 @@ RANDOM_LAWS maintain
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimovpp,25
-LAW_WEIGHT asimovppcommand,25
+LAW_WEIGHT asimovpp,50
 LAW_WEIGHT crewsimov,10
 LAW_WEIGHT paladin,10
 LAW_WEIGHT robocop,10
