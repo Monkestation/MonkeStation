@@ -440,8 +440,9 @@ RANDOM_LAWS maintain
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
+LAW_WEIGHT asimovpp,25
+LAW_WEIGHT asimovppcommand,25
 LAW_WEIGHT asimov,10
-LAW_WEIGHT asimovpp,50
 LAW_WEIGHT paladin,10
 LAW_WEIGHT robocop,10
 LAW_WEIGHT corporate,10
@@ -449,12 +450,12 @@ LAW_WEIGHT corporate,10
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,5
 LAW_WEIGHT maintain,5
-LAW_WEIGHT drone,5
 LAW_WEIGHT liveandletlive,5
 LAW_WEIGHT peacekeeper,5
 LAW_WEIGHT reporter,5
 LAW_WEIGHT hulkamania,5
 LAW_WEIGHT dune,5
+LAW_WEIGHT drone,0
 
 ## Bad idea laws. Probably shouldn't enable these
 LAW_WEIGHT syndie,0
