@@ -262,7 +262,7 @@
 
 		if(prob(30))
 			human_in_range.emote(pick("giggle","laugh"))
-			human_in_range.adjustStaminaLoss(10)
+			human_in_range.stamina.adjust(-10)
 
 		if(prob(25))
 			human_in_range.Dizzy(5)

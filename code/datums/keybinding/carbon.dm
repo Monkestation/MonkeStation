@@ -129,3 +129,23 @@
 	var/mob/living/carbon/carbon_user = user.mob //monkestation edit
 	carbon_user.give() //monkestation edit
 	return TRUE
+
+/datum/keybinding/carbon/sprint
+	key = "shift"
+	name = "Sprint"
+	full_name = "Sprint"
+	description = "Move fast at the cost of stamina"
+	keybind_signal = COMSIG_KB_CARBON_SPRINT_DOWN
+
+/datum/keybinding/carbon/sprint/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/C = user.mob
+	C.sprint_key_down = TRUE
+
+/datum/keybinding/carbon/sprint/up(client/user)
+	. = ..()
+	if(.)
+		return
+	SEND_SIGNAL(user.mob, COMSIG_KB_CARBON_SPRINT_UP)

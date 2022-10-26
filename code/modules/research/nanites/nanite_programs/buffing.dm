@@ -29,7 +29,7 @@
 /datum/nanite_program/adrenaline/on_trigger()
 	to_chat(host_mob, "<span class='notice'>You feel a sudden surge of energy!</span>")
 	host_mob.SetAllImmobility(0)
-	host_mob.adjustStaminaLoss(-75)
+	host_mob.stamina.adjust(75)
 	host_mob.set_resting(FALSE)
 
 /datum/nanite_program/hardening

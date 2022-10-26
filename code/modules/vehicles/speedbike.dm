@@ -77,7 +77,7 @@
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			H.Paralyze(100)
-			H.adjustStaminaLoss(30)
+			H.stamina.adjust(-30)
 			H.apply_damage(rand(20,35), BRUTE)
 			if(!crash_all)
 				H.throw_at(throw_target, 4, 3)

@@ -151,7 +151,7 @@
 		if(bubblegum.Adjacent(target) && !charged)
 			charged = TRUE
 			target.Paralyze(80)
-			target.adjustStaminaLoss(40)
+			target.stamina.adjust(-40)
 			step_away(target, bubblegum)
 			shake_camera(target, 4, 3)
 			target.visible_message(span_warning("[target] jumps backwards, falling on the ground!"),span_userdanger("[bubblegum] slams into you!"))

@@ -89,7 +89,7 @@
 	log_combat(A, D, "pressured (CQC)")
 	D.visible_message("<span class='danger'>[A] punches [D]'s neck!</span>", \
 					"<span class='userdanger'>[A] punches your neck!</span>", null, COMBAT_MESSAGE_RANGE)
-	D.adjustStaminaLoss(60)
+	D.stamina.adjust(-60)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	return TRUE
 
@@ -102,7 +102,7 @@
 		log_combat(A, D, "restrained (CQC)")
 		D.visible_message("<span class='warning'>[A] locks [D] into a restraining position!</span>", \
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
-		D.adjustStaminaLoss(20)
+		D.stamina.adjust(-20)
 		D.Stun(100)
 		restraining = TRUE
 		addtimer(CALLBACK(src, .proc/drop_restraining), 50, TIMER_UNIQUE)
@@ -120,7 +120,7 @@
 		var/obj/item/I = D.get_active_held_item()
 		if(I && D.temporarilyRemoveItemFromInventory(I))
 			A.put_in_hands(I)
-		D.adjustStaminaLoss(50)
+		D.stamina.adjust(-50)
 		D.apply_damage(25, A.dna.species.attack_type, blocked = def_check)
 	return TRUE
 

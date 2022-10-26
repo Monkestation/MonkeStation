@@ -17,7 +17,7 @@
 		target.client.images |= electrocution_skeleton_anim
 	addtimer(CALLBACK(src, .proc/reset_shock_animation), 40)
 	target.playsound_local(get_turf(src), "sparks", 100, 1)
-	target.staminaloss += 50
+	target.stamina.loss += 50
 	target.Stun(40)
 	target.jitteriness += 1000
 	target.do_jitter_animation(target.jitteriness)

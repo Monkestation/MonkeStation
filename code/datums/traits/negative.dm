@@ -316,9 +316,9 @@
 		return //we're tied with the dark, so we don't get scared of it; don't cleanse outright to avoid cheese
 	var/turf/T = get_turf(quirk_holder)
 	if(T.get_lumcount() <= 0.2)
-		if(quirk_holder.m_intent == MOVE_INTENT_RUN)
+		if(quirk_holder.m_intent != MOVE_INTENT_WALK)
 			to_chat(quirk_holder, "<span class='warning'>Easy, easy, take it slow... you're in the dark...</span>")
-			quirk_holder.toggle_move_intent()
+			quirk_holder.set_move_intent(MOVE_INTENT_WALK)
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "nyctophobia", /datum/mood_event/nyctophobia)
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "nyctophobia")

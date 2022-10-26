@@ -49,7 +49,7 @@
 				if(prob(3))
 					to_chat(H, "<span class='danger'>You feel very weak and dizzy...</span>")
 					H.confused += 8
-					H.adjustStaminaLoss(40)
+					H.stamina.adjust(-40)
 					H.emote("cough")
 			if(5)
 				H.stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -57,7 +57,7 @@
 				if(H.stat == CONSCIOUS)
 					H.visible_message("<span class='danger'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart is stopping!</span>", \
 						"<span class='userdanger'>You feel a terrible pain in your chest, as if your heart has stopped!</span>")
-				H.adjustStaminaLoss(60)
+				H.stamina.adjust(-60)
 				H.set_heartattack(TRUE)
 				H.reagents.add_reagent(/datum/reagent/medicine/corazone, 3) // To give the victim a final chance to shock their heart before losing consciousness
 				cure()

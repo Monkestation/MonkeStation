@@ -133,6 +133,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_IMMOBILIZED		"immobilized"
 // Prevents voluntary standing or staying up on its own.
 #define TRAIT_FLOORED			"floored"
+///Slows the user, with additional effects based on the source.
+#define TRAIT_DISORIENTED 		"disoriented"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED		"handsblocked"
 /// Inability to access UI hud elements. Turned into a trait from [MOBILITY_UI] to be able to track sources.
@@ -142,6 +144,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Abstract condition that prevents movement if being pulled and might be resisted against. Handcuffs and straight jackets, basically.
 #define TRAIT_RESTRAINED		"restrained"
 #define TRAIT_INCAPACITATED 	"incapacitated"
+///User's stamina is over the STAMINA_EXHAUSTION_THRESHOLD
+#define TRAIT_EXHAUSTED 		"exhausted"
+///User is sprinting, full speed ahead
+#define TRAIT_SPRINTING 		"sprinting"
+///User cannot sprint
+#define TRAIT_NO_SPRINT 		"no_sprint"
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
@@ -365,6 +373,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define BUCKLED_TRAIT "buckled" //trait associated to being buckled
 #define CHOKEHOLD_TRAIT "chokehold" //trait associated to being held in a chokehold
 #define RESTING_TRAIT "resting" //trait associated to resting
+/// trait associated to a stat value or range of
+#define STAT_TRAIT "stat"
 /// Trait associated to wearing a suit
 #define SUIT_TRAIT "suit"
 /// Trait associated to lying down (having a [lying_angle] of a different value than zero).

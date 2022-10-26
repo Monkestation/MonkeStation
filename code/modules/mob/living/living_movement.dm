@@ -14,7 +14,7 @@
 		return TRUE
 	return . || !mover.density || body_position == LYING_DOWN
 
-/mob/living/toggle_move_intent()
+/mob/living/set_move_intent(new_state)
 	. = ..()
 	update_move_intent_slowdown()
 
@@ -26,8 +26,11 @@
 	var/mod = 0
 	if(m_intent == MOVE_INTENT_WALK)
 		mod = CONFIG_GET(number/movedelay/walk_delay)
-	else
+	else if(m_intent == MOVE_INTENT_RUN)
 		mod = CONFIG_GET(number/movedelay/run_delay)
+	else
+		mod = CONFIG_GET(number/movedelay/sprint_delay)
+
 	if(!isnum_safe(mod))
 		mod = 1
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)

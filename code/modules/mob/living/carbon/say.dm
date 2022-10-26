@@ -12,6 +12,8 @@
 /mob/living/carbon/can_speak_vocal(message)
 	if(silent)
 		return 0
+	if(HAS_TRAIT(src, TRAIT_EXHAUSTED))
+		return FALSE
 	return ..()
 
 /mob/living/carbon/could_speak_language(datum/language/dt)

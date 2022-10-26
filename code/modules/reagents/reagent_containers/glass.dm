@@ -441,12 +441,12 @@
 	..()
 	if(istype(I,/obj/item/pestle))
 		if(grinded)
-			if(user.getStaminaLoss() > 50)
+			if(user.stamina.loss > 50)
 				to_chat(user, "<span class='danger'>You are too tired to work!</span>")
 				return
 			to_chat(user, "You start grinding...")
 			if((do_after(user, 25, target = src)) && grinded)
-				user.adjustStaminaLoss(40)
+				user.stamina.adjust(-40)
 				if(grinded.reagents) //food and pills
 					grinded.reagents.trans_to(src, grinded.reagents.total_volume, transfered_by = user)
 				if(grinded.juice_results) //prioritize juicing

@@ -197,7 +197,7 @@
 		owner.toxloss *= 10
 		owner.oxyloss *= 10
 		owner.cloneloss *= 10
-		owner.staminaloss *= 10
+		owner.stamina.loss *= 10
 		owner.updatehealth()
 		last_health = owner.health
 		last_bruteloss = owner.getBruteLoss()
@@ -205,7 +205,7 @@
 		last_toxloss = owner.getToxLoss()
 		last_oxyloss = owner.getOxyLoss()
 		last_cloneloss = owner.getCloneLoss()
-		last_staminaloss = owner.getStaminaLoss()
+		last_staminaloss = owner.stamina.loss
 		owner.log_message("gained blood-drunk stun immunity", LOG_ATTACK)
 		owner.add_stun_absorption("blooddrunk", INFINITY, 4)
 		owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, 1, use_reverb = FALSE)
@@ -253,11 +253,11 @@
 			needs_health_update = TRUE
 		last_cloneloss = new_cloneloss
 
-		var/new_staminaloss = owner.getStaminaLoss()
+		var/new_staminaloss = owner.stamina.loss
 		if(new_staminaloss < last_staminaloss)
 			var/heal_amount = (new_staminaloss - last_staminaloss) * 10
-			owner.adjustStaminaLoss(heal_amount, updating_health = FALSE)
-			new_staminaloss = owner.getStaminaLoss()
+			owner.stamina.adjust(-heal_amount)
+			new_staminaloss = owner.stamina.loss
 			needs_health_update = TRUE
 		last_staminaloss = new_staminaloss
 
@@ -281,7 +281,7 @@
 	owner.toxloss *= 0.1
 	owner.oxyloss *= 0.1
 	owner.cloneloss *= 0.1
-	owner.staminaloss *= 0.1
+	owner.stamina.loss *= 0.1
 	owner.updatehealth()
 	owner.log_message("lost blood-drunk stun immunity", LOG_ATTACK)
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, "blooddrunk");
@@ -506,13 +506,13 @@
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
-			itemUser.adjustBruteLoss(-1.5)
-			itemUser.adjustFireLoss(-1.5)
-			itemUser.adjustToxLoss(-1.5, forced = TRUE) //Because Slime People are people too
-			itemUser.adjustOxyLoss(-1.5)
-			itemUser.adjustStaminaLoss(-1.5)
+			itemUser.adjustBruteLoss(-1.5, FALSE)
+			itemUser.adjustFireLoss(-1.5, FALSE)
+			itemUser.adjustToxLoss(-1.5, FALSE, forced = TRUE) //Because Slime People are people too
+			itemUser.adjustOxyLoss(-1.5, FALSE)
+			itemUser.stamina.adjust(1.5)
 			itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
-			itemUser.adjustCloneLoss(-0.5) //Becasue apparently clone damage is the bastion of all health
+			itemUser.adjustCloneLoss(-0.5, FALSE) //Becasue apparently clone damage is the bastion of all health
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in hearers(7, owner))
 			if(L.health < L.maxHealth)
@@ -522,7 +522,7 @@
 				L.adjustFireLoss(-3.5)
 				L.adjustToxLoss(-3.5, FALSE, TRUE) //Because Slime People are people too
 				L.adjustOxyLoss(-3.5)
-				L.adjustStaminaLoss(-3.5)
+				L.stamina.adjust(3.5)
 				L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5)
 				L.adjustCloneLoss(-1) //Becasue apparently clone damage is the bastion of all health
 			else if(issilicon(L))

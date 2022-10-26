@@ -159,10 +159,10 @@ GENE SCANNER
 		combined_msg += "\t<span class='info'><span class='alert'>[oxy_loss > 50 ? "Severe" : "Minor"] oxygen deprivation detected.</span>"
 	if(tox_loss > 10)
 		combined_msg += "\t<span class='alert'>[tox_loss > 50 ? "Severe" : "Minor"] amount of toxin damage detected.</span>"
-	if(M.getStaminaLoss())
+	if(M.stamina.loss)
 		combined_msg += "\t<span class='alert'>Subject appears to be suffering from fatigue.</span>"
 		if(advanced)
-			combined_msg += "\t<span class='info'>Fatigue Level: [M.getStaminaLoss()]%.</span>"
+			combined_msg += "\t<span class='info'>Fatigue Level: [M.stamina.loss]%.</span>"
 	if(M.getCloneLoss())
 		combined_msg += "\t<span class='alert'>Subject appears to have [M.getCloneLoss() > 30 ? "Severe" : "Minor"] cellular damage.</span>"
 		if(advanced)

@@ -24,7 +24,7 @@
 		if(target.fire_stacks <= 0)
 			clear_fire()
 			return
-		target.adjustStaminaLoss(15)
+		target.stamina.adjust(-15)
 		sleep(20)
 	clear_fire()
 

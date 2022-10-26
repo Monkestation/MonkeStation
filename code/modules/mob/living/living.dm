@@ -1,5 +1,7 @@
 /mob/living/Initialize(mapload)
 	. = ..()
+	stamina = new(src)
+
 	register_init_signals()
 	if(unique_name)
 		name = "[name] ([rand(1, 1000)])"
@@ -26,6 +28,7 @@
 	med_hud_set_status()
 
 /mob/living/Destroy()
+	qdel(stamina)
 	if(LAZYLEN(status_effects))
 		for(var/s in status_effects)
 			var/datum/status_effect/S = s
@@ -579,7 +582,6 @@
 	if(status_flags & GODMODE)
 		return
 	set_health(maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss())
-	staminaloss = getStaminaLoss()
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
@@ -632,7 +634,9 @@
 	cure_blind()
 	cure_husk()
 	hallucination = 0
-	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
+	heal_overall_damage(INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
+	stamina.adjust(INFINITY)
+	exit_stamina_stun()
 	ExtinguishMob()
 	fire_stacks = 0
 	confused = 0
@@ -814,7 +818,7 @@
 			altered_grab_state++
 
 		var/resist_chance = BASE_GRAB_RESIST_CHANCE // see defines/combat.dm
-		resist_chance = max(resist_chance/altered_grab_state-sqrt((getStaminaLoss()+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
+		resist_chance = max(resist_chance/altered_grab_state-sqrt((stamina.loss+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
 		if(prob(resist_chance))
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 			log_combat(pulledby, src, "broke grab")
@@ -1005,10 +1009,11 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/update_stamina()
+///Called by [update()][/datum/stamina_container/proc/update]
+/mob/living/proc/on_stamina_update()
 	return
 
-/mob/living/carbon/alien/update_stamina()
+/mob/living/carbon/alien/on_stamina_update()
 	return
 
 /mob/living/proc/owns_soul()
@@ -1316,7 +1321,7 @@
 			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
 			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
 			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
-			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[stamina.current]</a>
 		</font>
 	"}
 
@@ -1349,15 +1354,16 @@
 	switch(.) //Previous stat.
 		if(CONSCIOUS)
 			if(stat >= UNCONSCIOUS)
-				ADD_TRAIT(src, TRAIT_INCAPACITATED, TRAIT_KNOCKEDOUT)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
-				ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_KNOCKEDOUT)
-			ADD_TRAIT(src, TRAIT_FLOORED, UNCONSCIOUS_TRAIT)
+				ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, STAT_TRAIT)
+				ADD_TRAIT(src, TRAIT_INCAPACITATED, STAT_TRAIT)
+				ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 		if(SOFT_CRIT)
 			if(stat >= UNCONSCIOUS)
-				ADD_TRAIT(src, TRAIT_INCAPACITATED, TRAIT_KNOCKEDOUT)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT) //adding trait sources should come before removing to avoid unnecessary updates
-				ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_KNOCKEDOUT)
+				ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, STAT_TRAIT)
+				ADD_TRAIT(src, TRAIT_INCAPACITATED, STAT_TRAIT)
+				ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 			if(pulledby)
 				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
 		if(UNCONSCIOUS)
@@ -1373,9 +1379,10 @@
 			if(pulledby)
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT) //adding trait sources should come before removing to avoid unnecessary updates
 			if(. >= UNCONSCIOUS)
-				REMOVE_TRAIT(src, TRAIT_INCAPACITATED, TRAIT_KNOCKEDOUT)
 				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
-				REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_KNOCKEDOUT)
+				REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, STAT_TRAIT)
+				REMOVE_TRAIT(src, TRAIT_INCAPACITATED, STAT_TRAIT)
+				REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 		if(UNCONSCIOUS)
 			become_blind(UNCONSCIOUS_TRAIT)
 
@@ -1520,3 +1527,7 @@
 /mob/living/proc/on_handsblocked_end()
 	REMOVE_TRAIT(src, TRAIT_UI_BLOCKED, TRAIT_HANDS_BLOCKED)
 	REMOVE_TRAIT(src, TRAIT_PULL_BLOCKED, TRAIT_HANDS_BLOCKED)
+
+///Called by the stamina holder, passing the change in stamina to modify.
+/mob/living/proc/pre_stamina_change(diff as num, forced)
+	return diff

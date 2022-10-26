@@ -73,7 +73,7 @@
 		C.adjustBruteLoss(10)
 		C.silent = 3 SECONDS
 		C.AdjustKnockdown(5 SECONDS)
-		C.adjustStaminaLoss(80)
+		C.stamina.adjust(-80)
 	var/list/knowledge = cultie.get_all_knowledge()
 
 	for(var/X in knowledge)
@@ -498,7 +498,7 @@
 		human_user.ExtinguishMob()
 		human_user.adjustBruteLoss(-10, FALSE)
 		human_user.adjustFireLoss(-10, FALSE)
-		human_user.adjustStaminaLoss(-10, FALSE)
+		human_user.stamina.adjust(10, FALSE)
 		human_user.adjustToxLoss(-10, FALSE, TRUE)
 		human_user.adjustOxyLoss(-10)
 

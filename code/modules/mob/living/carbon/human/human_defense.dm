@@ -747,8 +747,8 @@
 
 	if(bleed_rate)
 		combined_msg += "<span class='danger'>You are [bleed_msg]!</span>"
-	if(getStaminaLoss())
-		if(getStaminaLoss() > 30)
+	if(stamina.loss)
+		if(HAS_TRAIT(src, TRAIT_EXHAUSTED))
 			combined_msg += "<span class='info'>You're completely exhausted.</span>"
 		else
 			combined_msg += "<span class='info'>You feel fatigued.</span>"

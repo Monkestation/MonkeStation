@@ -39,4 +39,4 @@
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.adjustStaminaLoss(8)
+		H.stamina.adjust(-8)

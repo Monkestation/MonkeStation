@@ -295,6 +295,9 @@
 /datum/config_entry/number/movedelay/walk_delay
 	integer = FALSE
 
+/datum/config_entry/number/movedelay/sprint_delay
+	integer = FALSE
+
 /////////////////////////////////////////////////Outdated move delay
 /datum/config_entry/number/outdated_movedelay
 	deprecated_by = /datum/config_entry/keyed_list/multiplicative_movespeed
