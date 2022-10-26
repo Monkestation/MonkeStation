@@ -206,7 +206,6 @@
 
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
-		var/stamina_was = picked.stamina_dam
 
 
 		update |= picked.receive_damage(brute_per_part, burn_per_part, 0, FALSE, required_status) // disabling wounds from these for now cuz your entire body snapping cause your heart stopped would suck
