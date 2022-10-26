@@ -11,7 +11,7 @@
 
 
 	var/list/stored_items = list()
-	var/obj/machinery/gulag_teleporter/linked_teleporter = null
+	var/obj/machinery/gulag_teleporter/linked_teleporter
 
 /obj/machinery/gulag_item_reclaimer/Destroy()
 	for(var/i in contents)
@@ -47,8 +47,8 @@
 
 	var/obj/item/card/id/I = user.get_idcard(TRUE)
 	if(istype(I, /obj/item/card/id/prisoner))
-		var/obj/item/card/id/prisoner/P = I
-		if(P.points >= P.goal)
+		var/obj/item/card/id/prisoner/prisonerID = I
+		if(prisonerID.points >= prisonerID.goal && !prisonerID.permanent)
 			can_reclaim = TRUE
 
 	var/list/mobs = list()

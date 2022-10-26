@@ -574,15 +574,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/laborcamp)
-"cz" = (
-/obj/machinery/mineral/unloading_machine{
-	dir = 1;
-	icon_state = "unloader-corner";
-	input_dir = 1;
-	output_dir = 2
-	},
-/turf/open/floor/plating,
-/area/mine/laborcamp)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
@@ -783,14 +774,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"dp" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/closed/wall,
-/area/mine/laborcamp)
 "dq" = (
-/obj/machinery/mineral/processing_unit/laborcamp{
-	dir = 1
-	},
+/obj/machinery/mineral/processing_unit,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "dr" = (
@@ -1087,7 +1072,6 @@
 	height = 6;
 	id = "laborcamp_away";
 	name = "labor camp";
-	roundstart_template = null;
 	width = 12
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
@@ -3230,7 +3214,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/reagent_containers/food/drinks/beer{
 	desc = "Whatever it is, it reeks of foul, putrid froth.";
-	list_reagents = list(/datum/reagent/consumable/ethanol/bacchus_blessing = 15);
+	list_reagents = list(/datum/reagent/consumable/ethanol/bacchus_blessing=15);
 	name = "Delta-Down";
 	pixel_x = 5;
 	pixel_y = 5
@@ -3515,10 +3499,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"rK" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/closed/wall,
-/area/mine/production)
 "rL" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -4700,14 +4680,11 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "GJ" = (
-/obj/machinery/mineral/unloading_machine{
-	dir = 1;
-	icon_state = "unloader-corner";
-	input_dir = 1;
-	output_dir = 2
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+	},
+/obj/machinery/conveyor{
+	id = "mining_internal"
 	},
 /turf/open/floor/plating,
 /area/mine/production)
@@ -13037,7 +13014,7 @@ bW
 cg
 ba
 Vi
-dp
+ba
 ba
 dI
 ee
@@ -13292,7 +13269,7 @@ bw
 bB
 bX
 ch
-cz
+dx
 cQ
 dq
 dx
@@ -23845,7 +23822,7 @@ UE
 vY
 OZ
 bn
-rK
+OZ
 bn
 bn
 CJ
