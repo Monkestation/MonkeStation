@@ -170,7 +170,6 @@
 		if(!deductcharge(hitcost))
 			return FALSE
 	target.Disorient(6 SECONDS, stunforce, paralyze = 10 SECONDS, stack_status = FALSE)
-	target.stamina.adjust(-stunforce)
 
 	target.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
