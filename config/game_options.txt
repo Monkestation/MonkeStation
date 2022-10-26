@@ -405,7 +405,7 @@ DEFAULT_LAWS 3
 ## See datums\ai_laws.dm for the full law lists
 
 ## standard-ish laws. These are fairly ok to run
-RANDOM_LAWS asimov
+RANDOM_LAWS crewsimov
 RANDOM_LAWS asimovpp
 RANDOM_LAWS crewsimov
 RANDOM_LAWS corporate
@@ -440,7 +440,7 @@ RANDOM_LAWS maintain
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,10
+LAW_WEIGHT crewsimov,10
 LAW_WEIGHT asimovpp,50
 LAW_WEIGHT paladin,10
 LAW_WEIGHT robocop,10
