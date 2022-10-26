@@ -525,6 +525,29 @@
 	if(is_exhausted && (stam > max * STAMINA_EXHAUSTION_THRESHOLD_MODIFIER))
 		REMOVE_TRAIT(src, TRAIT_EXHAUSTED, STAMINA)
 		REMOVE_TRAIT(src, TRAIT_NO_SPRINT, STAMINA)
+	update_stamina_hud()
+
+/mob/living/carbon/update_stamina_hud(shown_stamina_amount)
+	if(stat == DEAD)
+		hud_used.stamina.icon_state = "stamina6"
+	else
+		var/max = stamina.maximum
+		if(shown_stamina_amount == null)
+			shown_stamina_amount = stamina.current
+		if(shown_stamina_amount == max)
+			hud_used.stamina.icon_state = "stamina0"
+		else if(shown_stamina_amount > max*0.8)
+			hud_used.stamina.icon_state = "stamina1"
+		else if(shown_stamina_amount > max*0.6)
+			hud_used.stamina.icon_state = "stamina2"
+		else if(shown_stamina_amount > max*0.4)
+			hud_used.stamina.icon_state = "stamina3"
+		else if(shown_stamina_amount > max*0.2)
+			hud_used.stamina.icon_state = "stamina4"
+		else if(shown_stamina_amount > 1)
+			hud_used.stamina.icon_state = "stamina5"
+		else
+			hud_used.stamina.icon_state = "stamina6"
 
 /mob/living/carbon/update_sight()
 	if(!client)
@@ -759,6 +782,7 @@
 				set_stat(CONSCIOUS)
 	update_damage_hud()
 	update_health_hud()
+	update_stamina_hud()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed

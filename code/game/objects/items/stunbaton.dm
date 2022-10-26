@@ -169,11 +169,9 @@
 	else
 		if(!deductcharge(hitcost))
 			return FALSE
+	target.Disorient(6 SECONDS, stunforce, paralyze = 10 SECONDS, stack_status = FALSE)
+	target.stamina.adjust(-stunforce)
 
-	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/armor_block = target.run_armor_check(affecting, "stamina")
-	// L.stamina.adjust(-stunforce)
-	target.apply_damage(stunforce, STAMINA, affecting, armor_block)
 	target.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
 	if(user)

@@ -60,6 +60,7 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	var/action_buttons_hidden = FALSE
 
 	var/atom/movable/screen/healths
+	var/atom/movable/screen/stamina
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/internals
 
@@ -113,6 +114,7 @@ GLOBAL_LIST_INIT(available_ui_styles, sortList(list(
 	QDEL_LIST(infodisplay)
 
 	healths = null
+	stamina = null
 	healthdoll = null
 	internals = null
 	lingchemdisplay = null
