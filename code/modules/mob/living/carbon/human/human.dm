@@ -675,7 +675,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - stamina.loss)
+			var/health_amount = health
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -689,7 +689,7 @@
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
 				for(var/obj/item/bodypart/BP as() in bodyparts)
-					var/damage = BP.burn_dam + BP.brute_dam + (hallucination ? BP.stamina_dam : 0)
+					var/damage = BP.burn_dam + BP.brute_dam
 					var/comparison = (BP.max_damage/5)
 					var/icon_num = 0
 					if(damage)
@@ -706,12 +706,6 @@
 						icon_num = 0
 					if(icon_num)
 						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
-					//Stamina Outline (Communicate that we have stamina damage)
-					//Hallucinations will appear as regular damage
-					if(BP.stamina_dam && !hallucination)
-						var/mutable_appearance/MA = mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone]stam")
-						MA.alpha = (BP.stamina_dam / BP.max_stamina_damage) * 70 + 30
-						hud_used.healthdoll.add_overlay(MA)
 				for(var/t in get_missing_limbs()) //Missing limbs
 					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
 				for(var/t in get_disabled_limbs()) //Disabled limbs

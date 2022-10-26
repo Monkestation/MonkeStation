@@ -213,7 +213,6 @@
 
 		brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
 		burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
-		stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
 
 		parts -= picked
 	if(updating_health)
