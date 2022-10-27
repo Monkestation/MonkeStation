@@ -24620,24 +24620,6 @@
 "bKr" = (
 /turf/closed/wall/r_wall,
 /area/storage/tcom)
-"bKv" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/machinery/requests_console{
-	department = "Atmospherics";
-	departmentType = 3;
-	name = "Atmos RC";
-	pixel_x = -30
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark/corner{
-	dir = 1
-	},
-/area/engine/atmos)
 "bKw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -25108,6 +25090,12 @@
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/obj/machinery/requests_console{
+	department = "Atmospherics";
+	departmentType = 3;
+	name = "Atmos RC";
+	pixel_x = -30
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/engine/atmos)
@@ -123218,7 +123206,7 @@ xCK
 bFL
 bHt
 gSl
-bKv
+gSl
 bMb
 bNP
 bPp
