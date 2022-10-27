@@ -857,3 +857,31 @@ update_label("John Doe", "Clowny")
 		to_chat(user, "You upgrade your [idcard] with the [name].")
 		log_id("[key_name(user)] added access to '[idcard]' using [src] at [AREACOORD(user)].")
 		qdel(src)
+/obj/item/card/id/fake_card //not a proper ID but still shares a lot of functions
+	name = "\"ID Card\""
+	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It looks frail!"
+	icon = 'icons/obj/card.dmi'
+	icon_state = "counterfeit"
+	item_state = "card-id"
+	worn_icon_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	slot_flags = ITEM_SLOT_ID
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "stamina" = 0)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	registered_name = "Nohbdy"
+	access = list(ACCESS_MAINT_TUNNELS)
+	var/uses = 2
+
+/obj/item/card/id/fake_card/proc/register_name(new_name)
+	registered_name = new_name
+	name = "[new_name]'s \"ID Card\""
+
+/obj/item/card/id/fake_card/proc/used()
+	uses -= 1
+	if(uses == 1)
+		icon_state = "counterfeit_torn"
+		desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's falling apart!'"
+	if(uses < 1)
+		icon_state = "counterfeit_torn2"
+	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's too shredded to fit in a scanner!"
