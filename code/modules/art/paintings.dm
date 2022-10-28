@@ -192,7 +192,6 @@
 	painting_metadata.patron_name = user.real_name
 	painting_metadata.credit_value = offer_amount
 	to_chat(user,span_notice("Nanotrasen Trust Foundation thanks you for your contribution. You're now the official patron of this painting."))
-```.
 
 /obj/item/canvas/update_overlays()
 	. = ..()
