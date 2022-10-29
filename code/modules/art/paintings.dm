@@ -275,6 +275,7 @@
 	var/new_name = tgui_input_text(user, "What do you want to name the painting?", "Title Your Masterpiece")
 	if(new_name != painting_metadata.title && new_name && user.canUseTopic(src, BE_CLOSE))
 		painting_metadata.title = new_name
+		name = "painting - [new_name]" //give the canvas its new name immediately
 	var/sign_choice = tgui_alert(user, "Do you want to sign it or remain anonymous?", "Sign painting?", list("Yes", "No"))
 	if(sign_choice != "Yes")
 		painting_metadata.creator_name = "Anonymous"
