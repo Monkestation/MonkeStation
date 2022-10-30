@@ -181,7 +181,8 @@
 		var/list/pick_me = list()
 		for(var/mob/living/carbon/human/target in view(living_pawn, CHICKEN_ENEMY_VISION))
 			pick_me |= target
-		controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(pick_me)
+		if(pick_me.len)
+			controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(pick_me)
 	finish_action(controller, TRUE)
 
 /datum/ai_behavior/revolution

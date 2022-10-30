@@ -2,7 +2,7 @@
 	///The typepath of the chicken
 	var/mob/living/simple_animal/chicken/chicken_type
 	///Egg type for egg so me don't gotta create new chicken
-	var/egg_type
+	var/obj/item/food/egg/egg_type
 
 	///Required Happiness
 	var/happiness
@@ -28,7 +28,7 @@
 	var/list/required_atmos = list()
 	///Needed job from nearby players
 	var/player_job
-	///required_liquid_depth
+	///required liquid depth
 	var/liquid_depth
 	///Needed species
 	var/needed_species
