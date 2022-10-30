@@ -213,7 +213,7 @@
 	if(living_pawn.current_feed_amount > 3) // so no vomit
 		finish_action(controller, TRUE)
 
-	var/list/blacklised_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
+	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
 	var/list/floor_foods = list()
 	for(var/obj/item/food/food_item in view(CHICKEN_ENEMY_VISION, living_pawn.loc))
 		if(!(food_item in blacklisted_foods))
