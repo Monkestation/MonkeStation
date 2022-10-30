@@ -1,8 +1,8 @@
 /obj/item/clothing/gloves/color/yellow/catgloves
 	desc = "A pair of heavy rubber cosplay gloves, doing basically anything in these would probably be obscenely difficult, including taking them off. At least they might help against shocks, but is it ultimately worth how much people are going to make fun of you?"
 	name = "cat gloves"
-	icon = 'monkestation/icons/obj/clothing/catgloves.dmi'
-	worn_icon = 'monkestation/icons/mob/catgloves.dmi'
+	icon = 'monkestation/icons/obj/clothing/gloves.dmi'
+	worn_icon = 'monkestation/icons/mob/gloves.dmi'
 	icon_state = "catgloves"
 	item_state = "catgloves"
 	greyscale_colors =  "#ffffff#FFC0CB"

@@ -34,8 +34,8 @@
 	if(!.)
 		return FALSE
 	var/alreadyinfected = FALSE
-	if(isliving(the_target))
-		var/mob/living/M = the_target
+	if(iscarbon(the_target))
+		var/mob/living/carbon/M = the_target
 		for(var/datum/disease/D in M.diseases)
 			if(D.GetDiseaseID() == basedisease.GetDiseaseID())
 				if(aggressive)
@@ -58,8 +58,8 @@
 
 /mob/living/simple_animal/hostile/macrophage/AttackingTarget()
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/M = target
+	if(. && iscarbon(target))
+		var/mob/living/carbon/M = target
 		if(M.can_inject(src))
 			for(var/datum/disease/D in infections)
 				if(M.ForceContractDisease(D)) //we already check spread type in the macrophage creation proc

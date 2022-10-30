@@ -22,7 +22,7 @@
 		gib(no_brain = TRUE, no_organs = TRUE, no_bodyparts = TRUE)
 
 /mob/living/circuit_drone/spawn_gibs()
-	new /obj/effect/gibspawner/robot(drop_location(), src, get_static_viruses())
+	new /obj/effect/gibspawner/robot(drop_location(), src)
 
 /obj/item/circuit_component/bot_circuit
 	display_name = "Drone"

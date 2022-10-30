@@ -89,8 +89,9 @@
 		M.gender = mob_gender
 	if(faction)
 		M.faction = list(faction)
-	if(disease)
-		M.ForceContractDisease(new disease)
+	if(disease && iscarbon(M))
+		var/mob/living/carbon/infective = M
+		infective.ForceContractDisease(new disease)
 	if(death)
 		M.death(1) //Kills the new mob
 

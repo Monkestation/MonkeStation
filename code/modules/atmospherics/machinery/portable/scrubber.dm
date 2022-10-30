@@ -13,7 +13,10 @@
 	//NUCLEIUM added. Waste Gas from RBMK Nuclear Reactor	//Monkestation Edit
 	var/list/scrubbing = list(	GAS_PLASMA, GAS_CO2, GAS_NITROUS,
 								GAS_BZ, GAS_NITRYL, GAS_TRITIUM,
-								GAS_HYPERNOB, GAS_H2O, GAS_NUCLEIUM)
+								GAS_HYPERNOB, GAS_H2O, GAS_NUCLEIUM,
+								GAS_H2, GAS_FREON, GAS_HEALIUM,
+								GAS_PLUONIUM, GAS_HALON, GAS_ZAUKER,
+								GAS_HEXANE, GAS_DILITHIUM)
 
 /obj/machinery/portable_atmospherics/scrubber/Destroy()
 	var/turf/T = get_turf(src)

@@ -32,7 +32,7 @@
 /datum/symptom/goat/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 
 	if(A.stage >= 2)
 		if(prob(10)) //Works as both a virus 'warning' and hints at effects of the virus itself.
@@ -62,7 +62,7 @@
 
 /datum/symptom/goat/End(datum/disease/advance/A)
 	. = ..()
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	M.remove_movespeed_modifier(type)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = A.affected_mob

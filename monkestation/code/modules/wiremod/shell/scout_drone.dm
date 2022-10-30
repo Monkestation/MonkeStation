@@ -22,7 +22,7 @@
 		gib(no_brain = TRUE, no_organs = TRUE, no_bodyparts = TRUE)
 
 /mob/living/circuit_scout/spawn_gibs()
-	new /obj/effect/gibspawner/robot(drop_location(), src, get_static_viruses())
+	new /obj/effect/gibspawner/robot(drop_location(), src)
 
 /obj/item/circuit_component/scout_circuit
 	display_name = "Scout"

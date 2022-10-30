@@ -56,7 +56,7 @@ BONUS
 /datum/symptom/headache/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(power < 2)
 		if(prob(base_message_chance) || A.stage >=4)
 			to_chat(M, "<span class='warning'>[pick("Your head hurts.", "Your head pounds.")]</span>")

@@ -118,6 +118,14 @@
 		GAS_NITRYL = new/datum/tlv/dangerous,
 		GAS_PLUOXIUM = new/datum/tlv(-1, -1, 5, 6), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 		GAS_NUCLEIUM = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor //Monkestation Edit
+		GAS_H2 = new/datum/tlv/dangerous,
+		GAS_FREON = new/datum/tlv/dangerous,
+		GAS_HEALIUM			= new/datum/tlv/dangerous,
+		GAS_PLUONIUM	= new/datum/tlv/dangerous,
+		GAS_ZAUKER			= new/datum/tlv/dangerous,
+		GAS_HALON			= new/datum/tlv/dangerous,
+		GAS_HEXANE			= new/datum/tlv/dangerous,
+		GAS_DILITHIUM		= new/datum/tlv/dangerous
 	)
 
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
@@ -464,7 +472,15 @@
 						GAS_BZ,
 						GAS_STIMULUM,
 						GAS_PLUOXIUM,
-						GAS_NUCLEIUM	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
+						GAS_NUCLEIUM,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
+						GAS_H2,
+						GAS_FREON,
+						GAS_HEALIUM,
+						GAS_PLUONIUM,
+						GAS_ZAUKER,
+						GAS_HALON,
+						GAS_HEXANE,
+						GAS_DILITHIUM
 					),
 					"scrubbing" = 1,
 					"widenet" = 1
@@ -858,6 +874,8 @@
 		GAS_NITRYL = new/datum/tlv/no_checks,
 		GAS_PLUOXIUM = new/datum/tlv/no_checks,
 		GAS_NUCLEIUM = new/datum/tlv/no_checks,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
+		GAS_H2 = new/datum/tlv/no_checks,
+		GAS_FREON = new/datum/tlv/no_checks,
 	)
 
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -20°C or 253.15°K.
@@ -878,6 +896,14 @@
 		GAS_NITRYL = new/datum/tlv/dangerous,
 		GAS_PLUOXIUM = new/datum/tlv(-1, -1, 1000, 1000), // Unlike oxygen, pluoxium does not fuel plasma/tritium fires
 		GAS_NUCLEIUM = new/datum/tlv/dangerous, //Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
+		GAS_H2 = new/datum/tlv/dangerous,
+		GAS_FREON = new/datum/tlv/dangerous,
+		GAS_HEALIUM			= new/datum/tlv/dangerous,
+		GAS_PLUONIUM	= new/datum/tlv/dangerous,
+		GAS_ZAUKER			= new/datum/tlv/dangerous,
+		GAS_HALON			= new/datum/tlv/dangerous,
+		GAS_HEXANE			= new/datum/tlv/dangerous,
+		GAS_DILITHIUM		= new/datum/tlv/dangerous
 	)
 
 

@@ -30,6 +30,10 @@
 	var/icon_vomit = "vomit"
 	var/icon_vomit_end = "vomit_end"
 
+/mob/living/simple_animal/hostile/retaliate/goose/Initialize(mapload)
+	. = ..()
+	src.AddComponent(/datum/component/waddling)
+
 /mob/living/simple_animal/hostile/retaliate/goose/handle_automated_movement()
 	. = ..()
 	if (stat == DEAD)

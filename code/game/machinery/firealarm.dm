@@ -64,7 +64,7 @@
 	update_icon()
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
-	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/firealarm()), SHELL_CAPACITY_LARGE)
+	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/firealarm()), SHELL_CAPACITY_MEDIUM)
 
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src)
@@ -388,12 +388,10 @@ Ported from /tg/station: PR #64985
 	is_on.set_output(1)
 	output_set.set_output(COMPONENT_SIGNAL)
 
-
 /obj/item/circuit_component/firealarm/proc/on_firealarm_reset(atom/source)
 	SIGNAL_HANDLER
 	is_on.set_output(0)
 	output_reset.set_output(COMPONENT_SIGNAL)
-
 
 /obj/item/circuit_component/firealarm/input_received(datum/port/input/port)
 	. = ..()

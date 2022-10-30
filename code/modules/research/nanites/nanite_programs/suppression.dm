@@ -105,7 +105,9 @@
 /datum/nanite_program/fake_death/enable_passive_effect()
 	. = ..()
 	host_mob.emote("deathgasp")
-	host_mob.fakedeath("nanites")
+	if(iscarbon(host_mob))
+		var/mob/living/carbon/faker = host_mob
+		faker.fakedeath("nanites")
 
 /datum/nanite_program/fake_death/disable_passive_effect()
 	. = ..()
