@@ -2024,8 +2024,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		SEND_SIGNAL(human_host, COMSIG_CLEAR_MOOD_EVENT, "hot")
 		SEND_SIGNAL(human_host, COMSIG_ADD_MOOD_EVENT, "cold", /datum/mood_event/cold)
 		//Sorry for the nasty oneline but I don't want to assign a variable on something run pretty frequently
-    
-		if(!H.has_status_effect(SNOWY_EGG))
+
+		if(!human_host.has_status_effect(SNOWY_EGG))
 			human_host.add_movespeed_modifier(MOVESPEED_ID_COLD, override = TRUE, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - human_host.bodytemperature) / COLD_SLOWDOWN_FACTOR), blacklisted_movetypes = FLOATING)
 		switch(H.bodytemperature)
 
