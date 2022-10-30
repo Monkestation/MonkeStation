@@ -2027,7 +2027,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(!human_host.has_status_effect(SNOWY_EGG))
 			human_host.add_movespeed_modifier(MOVESPEED_ID_COLD, override = TRUE, multiplicative_slowdown = ((BODYTEMP_COLD_DAMAGE_LIMIT - human_host.bodytemperature) / COLD_SLOWDOWN_FACTOR), blacklisted_movetypes = FLOATING)
-		switch(H.bodytemperature)
+		switch(human_host.bodytemperature)
 
 			if(200 to BODYTEMP_COLD_DAMAGE_LIMIT)
 				human_host.throw_alert("temp", /atom/movable/screen/alert/cold, 1)
