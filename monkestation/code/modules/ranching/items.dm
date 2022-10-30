@@ -101,3 +101,13 @@
 			combined_msg += "\t<span class='info'>Requires liquid that is atleast [depth_name]</span>"
 
 		to_chat(user, examine_block(combined_msg.Join("\n")))
+
+
+/datum/design/chicken_scanner
+	name = "Chicken Scanner"
+	id = "chicken_scanner"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 1000)
+	build_path = /obj/item/chicken_scanner
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
