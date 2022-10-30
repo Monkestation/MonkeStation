@@ -881,10 +881,10 @@ update_label("John Doe", "Clowny")
 	uses -= 1
 	if(uses == 1)
 		icon_state = "counterfeit_torn"
-		desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's falling apart!'"
+		desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's falling apart!"
 	if(uses < 1)
 		icon_state = "counterfeit_torn2"
-	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's too shredded to fit in a scanner!"'
+	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. It's too shredded to fit in a scanner!"
 
 /obj/item/card/id/fake_card/AltClick(mob/living/user)
 	return //no accounts on fake cards
