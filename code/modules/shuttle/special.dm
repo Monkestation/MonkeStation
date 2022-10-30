@@ -53,7 +53,7 @@
 	return
 
 /obj/machinery/power/emitter/energycannon/magical/RefreshParts()//monkestation edit, makes it correctly not require power
-	return
+	return ..()
 
 /obj/structure/table/abductor/wabbajack
 	name = "wabbajack altar"

@@ -484,7 +484,8 @@
 	if(!SSticker.mode) // In case spellbook is placed on map
 		return FALSE
 	if(istype(SSticker.mode, /datum/game_mode/dynamic)) // Disable events on dynamic
-		if(get_active_player_count() < MINIMUM_POP_FOR_RITUALS)
+		var/player_count = get_active_player_count()
+		if(player_count < MINIMUM_POP_FOR_RITUALS)
 			return FALSE
 	return !CONFIG_GET(flag/no_summon_guns)
 
@@ -504,7 +505,8 @@
 	if(!SSticker.mode) // In case spellbook is placed on map
 		return FALSE
 	if(istype(SSticker.mode, /datum/game_mode/dynamic)) // Disable events on dynamic
-		if(get_active_player_count() < MINIMUM_POP_FOR_RITUALS)
+		var/player_count = get_active_player_count()
+		if(player_count < MINIMUM_POP_FOR_RITUALS)
 			return FALSE
 	return !CONFIG_GET(flag/no_summon_magic)
 
@@ -525,7 +527,8 @@
 	if(!SSticker.mode) // In case spellbook is placed on map
 		return FALSE
 	if(istype(SSticker.mode, /datum/game_mode/dynamic)) // Disable events on dynamic
-		if(get_active_player_count() < MINIMUM_POP_FOR_RITUALS)
+		var/player_count = get_active_player_count()
+		if(player_count < MINIMUM_POP_FOR_RITUALS)
 			return FALSE
 	return !CONFIG_GET(flag/no_summon_events)
 
