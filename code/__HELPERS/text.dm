@@ -818,9 +818,6 @@ GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l",
 
 	return corrupted_text
 
-#define is_alpha(X) ((text2ascii(X) <= 122) && (text2ascii(X) >= 97))
-#define is_digit(X) ((length(X) == 1) && (length(text2num(X)) == 1))
-
 /// Slightly expensive proc to scramble a message using equal probabilities of character replacement from a list. DOES NOT SUPPORT HTML!
 /proc/scramble_message_replace_chars(original, replaceprob = 25, list/replacementchars = list("$", "@", "!", "#", "%", "^", "&", "*"), replace_letters_only = FALSE, replace_whitespace = FALSE)
 	var/list/out = list()

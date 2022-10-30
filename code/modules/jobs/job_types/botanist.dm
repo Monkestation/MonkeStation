@@ -17,6 +17,7 @@
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_SRV
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
+	bounty_types = CIV_JOB_GROW
 	departments = DEPARTMENT_SERVICE
 	rpg_title = "Gardener"
 

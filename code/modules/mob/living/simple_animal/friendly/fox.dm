@@ -25,6 +25,10 @@
 	do_footstep = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 
+/mob/living/simple_animal/pet/fox/Initialize(mapload)
+	. = ..()
+	src.AddComponent(/datum/component/waddling)
+
 //Captain fox
 /mob/living/simple_animal/pet/fox/Renault
 	name = "Renault"

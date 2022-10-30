@@ -34,6 +34,8 @@
 	if(admin)
 		can_rotate = FALSE
 
+	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/reflector()), SHELL_CAPACITY_MEDIUM)
+
 /obj/structure/reflector/examine(mob/user)
 	. = ..()
 	if(finished)
@@ -266,3 +268,33 @@
 		return
 	else
 		return ..()
+
+/*
+Ported from /tg/station: PR #64037
+*/
+/obj/item/circuit_component/reflector
+	display_name = "Reflector"
+	desc = "Allows you to adjust the angle of a reflector."
+	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
+
+	///angle the reflector will be set to at trigger unless locked
+	var/datum/port/input/angle
+
+/obj/item/circuit_component/reflector/Initialize(mapload)
+	. = ..()
+	angle = add_input_port("Angle", PORT_TYPE_NUMBER)
+
+/obj/item/circuit_component/reflector/Destroy()
+	angle = null
+	return ..()
+
+/obj/item/circuit_component/reflector/input_received(datum/port/input/port)
+	. = ..()
+	if(.)
+		return
+
+
+	var/obj/structure/reflector/shell = parent.shell
+	if(!istype(shell))
+		return
+	shell.setAngle(angle.input_value)

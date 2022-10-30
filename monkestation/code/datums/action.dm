@@ -10,7 +10,7 @@
 /datum/action/item_action/use_circuit_goggles/Trigger()
 	if(IsAvailable())
 		owner.click_intercept = src
-		to_chat(owner, "<span class='notice'>[target] circuit goggles activates. Click on a target!</span>")
+		to_chat(owner, "<span class='notice'>[target] circuit goggles activate. Click on a target!</span>")
 		return TRUE
 
 /datum/action/item_action/use_circuit_goggles/proc/InterceptClickOn(mob/living/carbon/caller, params, atom/target)
