@@ -1834,7 +1834,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(attackforce >= dismemberthreshold && I.force >= 10)
 		if(affecting.dismember(I.damtype))
 
-			I.add_mob_blood(H)
+			I.add_mob_blood(human_host)
 			playsound(human_host, I.get_dismember_sound(), 80, 1)
 
 	var/bloody = 0
