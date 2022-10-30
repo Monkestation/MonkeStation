@@ -30,6 +30,10 @@
 	chat_color = "#CAA25B"
 	mobchatspan = "blob"
 
+/mob/living/simple_animal/hostile/breadloaf/Initialize()
+	. = ..()
+	src.AddComponent(/datum/component/waddling)
+
 /mob/living/simple_animal/hostile/breadloaf/teleport_act()
 	if(mutations == 0)
 		mutationcap = rand(1,mutability)

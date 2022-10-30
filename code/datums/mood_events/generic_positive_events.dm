@@ -223,3 +223,12 @@
 	description = "<span class='nicegreen'>This taste seems oddly nostalgic...</span>\n"
 	mood_change = 3
 	timeout = 5 MINUTES
+
+/datum/mood_event/brain_tumor_mannitol
+	description = "<span class='nicegreen'>Mannitol makes my brain calm down.</span>\n"
+	mood_change = 0
+	timeout = 30 SECONDS
+
+/datum/mood_event/brain_tumor_mannitol/New(mob/M, param)
+	timeout = rand(30,60) SECONDS // makes the timing unreliable on your mood
+	..()

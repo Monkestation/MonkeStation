@@ -196,7 +196,8 @@ GLOBAL_LIST_INIT(barefootmob, typecacheof(list(
 
 GLOBAL_LIST_INIT(heavyfootmob, typecacheof(list(
 	/mob/living/simple_animal/hostile/megafauna,
-	/mob/living/simple_animal/hostile/jungle/leaper
+	/mob/living/simple_animal/hostile/jungle/leaper,
+	/mob/living/simple_animal/hostile/mimic
 	)))
 
 //Misc mobs

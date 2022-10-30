@@ -784,8 +784,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	human_host.apply_overlay(BODY_LAYER)
 	handle_mutant_bodyparts(human_host)
 
-// this proc is cancer to look at but basically it reads through all the body parts in mutant_bodyparts and checks visibility if it can't see it removes from the list
-// this can probably be made nicer by making lists of things that share a check and run those at once
+/*This proc seems wildly ineffecient and can be done way nicer in the future but basically
+* it runs through all the mutant parts possible and starts to remove ones you don't have
+* this leaves you with a list of all mutant bodyparts we possess and should be worried about.
+*/
 /datum/species/proc/handle_mutant_bodylist(mob/living/carbon/human/human_host)
 	//create a copy of all mutant_bodyparts so we can remove useless ones
 	var/list/list_of_bodyparts = mutant_bodyparts.Copy()

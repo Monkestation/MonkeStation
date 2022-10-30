@@ -489,7 +489,6 @@
 
 	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
 	var/image/aux
-	. += limb
 
 
 	if(animal_origin) //Cringe ass animal-specific code.
@@ -502,11 +501,13 @@
 		else
 			limb.icon = 'icons/mob/augmentation/augments.dmi'
 			limb.icon_state = "[animal_origin]_[body_zone]"
+		. += limb
 		return
 
 	if(is_husked)
 		limb.icon = husk_icon
 		limb.icon_state = "[husk_type]_husk_[body_zone]"
+		. += limb
 		if(aux_zone) //Hand shit
 			aux = image(limb.icon, "[husk_type]_husk_[aux_zone]", -aux_layer, image_dir)
 			. += aux
@@ -523,6 +524,16 @@
 
 	if(!icon_exists(limb.icon, limb.icon_state))
 		stack_trace("Limb generated with nonexistant icon. File: [limb.icon] | State: [limb.icon_state]")
+
+	if(body_zone == BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/r_leg/leg = src
+		var/limb_overlays = limb.overlays
+		var/image/new_limb = leg.generate_masked_right_leg(limb.icon, limb.icon_state, image_dir)
+		if(new_limb)
+			limb = new_limb
+			limb.overlays = limb_overlays
+
+	. += limb
 
 	if(aux_zone) //Hand shit
 		aux = image(limb.icon, "[limb_id]_[aux_zone]", -aux_layer, image_dir)
@@ -832,6 +843,14 @@
 	max_stamina_damage = 50
 
 	dmg_overlay_type = "human"
+
+	/// We store this here to generate our icon key more easily.
+	var/left_leg_mask_key
+	/// The associated list of all the left leg mask keys associated to their cached left leg masks.
+	/// It's static, so it's shared between all the left legs there is. Be careful.
+	/// Why? Both legs share the same layer for rendering, and since we don't want to do redraws on
+	/// each dir changes, we're doing it with a mask instead, which we cache for efficiency reasons.
+	var/static/list/left_leg_mask_cache = list()
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))

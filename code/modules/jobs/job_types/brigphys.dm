@@ -21,6 +21,7 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_BRIG_PHYS
+	bounty_types = CIV_JOB_MED
 	departments = DEPARTMENT_MEDICAL | DEPARTMENT_SECURITY
 	rpg_title = "Battle Cleric"
 
