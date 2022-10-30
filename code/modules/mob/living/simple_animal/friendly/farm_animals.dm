@@ -36,6 +36,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	udder = new()
 	. = ..()
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
 	qdel(udder)

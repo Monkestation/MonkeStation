@@ -1035,14 +1035,14 @@
 
 /datum/status_effect/flashed
 	id = "flashed"
-	duration = 3 SECONDS
+	duration = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/flashed
 	examine_text = "<span class='warning'>They're squinting their eyes!</span>"
 	status_type = STATUS_EFFECT_UNIQUE
 
 /datum/status_effect/flashed/on_apply()
 	. = ..()
-	to_chat(owner, "<span class='notice'>You close your eyes from the flash!</span>")
+	to_chat(owner, "<span class='notice'>You squint your eyes from the brightness!</span>")
 	owner.overlay_fullscreen("flashed", /atom/movable/screen/fullscreen/impaired, 2)
 
 /datum/status_effect/flashed/on_remove()

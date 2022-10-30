@@ -257,7 +257,7 @@
 		registered_account.bank_card_talk("<span class='warning'>ERROR: UNABLE TO LOGIN DUE TO SCHEDULED MAINTENANCE. MAINTENANCE IS SCHEDULED TO COMPLETE IN [(registered_account.withdrawDelay - world.time)/10] SECONDS.</span>", TRUE)
 		return
 
-	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdraw? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
+	var/amount_to_remove =  FLOOR(input(user, "How much do you want to withdrawexam? Current Balance: [registered_account.account_balance]", "Withdraw Funds", 5) as num, 1)
 
 	if(!amount_to_remove || amount_to_remove < 0)
 		to_chat(user, "<span class='warning'>You're pretty sure that's not how money works.</span>")
@@ -599,12 +599,22 @@ update_label("John Doe", "Clowny")
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"
-	registered_name = "Scum"
-	var/goal = 0 //How far from freedom?
+	registered_name = "Prisoner"
+	//Goal score for mining
+	var/goal = 0
+	//Current points stored
 	var/points = 0
+	//Is it a permanent sentence?
+	var/permanent = FALSE
 
-/obj/item/card/id/prisoner/attack_self(mob/user)
-	to_chat(usr, "<span class='notice'>You have accumulated [points] out of the [goal] points you need for freedom.</span>")
+/obj/item/card/id/prisoner/examine(mob/user)
+	. = ..()
+
+	if(!permanent)
+		. += "<span class='notice'>A little display on the card reads: You have accumulated [points] out of the [goal] points you need for freedom.</span>"
+
+	else
+		. += "<span class='notice'>The mark on the ID indicates the sentence is permanent.</span>"
 
 /obj/item/card/id/prisoner/one
 	name = "Prisoner #13-001"
