@@ -22,6 +22,7 @@
 	paycheck_department = ACCOUNT_MED
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
+	bounty_types = CIV_JOB_MED
 	departments = DEPARTMENT_MEDICAL
 	rpg_title = "Corpse Runner"
 

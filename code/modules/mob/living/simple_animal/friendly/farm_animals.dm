@@ -36,6 +36,7 @@
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	udder = new()
 	. = ..()
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
 	qdel(udder)
@@ -225,6 +226,7 @@
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
+	src.AddComponent(/datum/component/waddling)
 	GLOB.total_chickens++
 
 /mob/living/simple_animal/chick/Life()
@@ -304,6 +306,7 @@
 	head_icon = 'icons/mob/pets_held_large.dmi'
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
+	src.AddComponent(/datum/component/waddling)
 	GLOB.total_chickens++
 
 /mob/living/simple_animal/chicken/death(gibbed)
@@ -375,6 +378,9 @@
 	validColors = list("plain")
 	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
+
+/mob/living/simple_animal/chicken/turkey/Initialize(mapload)
+	. = ..()
 
 /obj/item/udder
 	name = "udder"
