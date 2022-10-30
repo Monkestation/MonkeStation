@@ -24,6 +24,8 @@
 	var/dismemberable = TRUE
 	///does the limb need to be processing?
 	var/needs_processing = FALSE
+	///is the bodypart disabled
+	var/bodypart_disabled = FALSE
 ///--------------------------------------------
 
 ///ICONS AND ICON PATH VARIABLES---------------
@@ -69,8 +71,10 @@
 	var/change_exempt_flags
 	//This is effectively the icon_state for limbs.
 	var/limb_id = SPECIES_HUMAN
-	//If disabled, limb is as good as missing
-	var/disabled = BODYPART_NOT_DISABLED
+	///If disabled, limb is as good as missing.
+	var/bodypart_disabled = FALSE
+	///Multiplied by max_damage it returns the threshold which defines a limb being disabled or not. From 0 to 1.
+	var/disable_threshold = 1
 
 	//BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/body_zone
@@ -1066,6 +1070,14 @@
 	max_stamina_damage = 50
 	can_be_disabled = TRUE
 	dmg_overlay_type = "human"
+
+	/// We store this here to generate our icon key more easily.
+	var/left_leg_mask_key
+	/// The associated list of all the left leg mask keys associated to their cached left leg masks.
+	/// It's static, so it's shared between all the left legs there is. Be careful.
+	/// Why? Both legs share the same layer for rendering, and since we don't want to do redraws on
+	/// each dir changes, we're doing it with a mask instead, which we cache for efficiency reasons.
+	var/static/list/left_leg_mask_cache = list()
 
 /obj/item/bodypart/r_leg/set_owner(new_owner)
 	. = ..()

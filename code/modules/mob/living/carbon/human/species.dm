@@ -770,7 +770,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				else
 					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 
-		if(human_host.socks && human_host.get_num_legs(FALSE) >= 2 && !(human_host.dna.species.bodytype & BODYTYPE_DIGITIGRADE) && !(NOSOCKS in species_traits))
+		if(human_host.socks && human_host.num_legs >= 2 && !(human_host.dna.species.bodytype & BODYTYPE_DIGITIGRADE) && !(NOSOCKS in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[human_host.socks]
 			if(socks)
 				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
@@ -1126,7 +1126,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
-			if(H.num_hands < 2)
+			if(human_host.num_hands < 2)
 				return FALSE
 			return equip_delay_self_check(I, human_host, bypass_equip_delay_self)
 		if(ITEM_SLOT_FEET)
@@ -1134,7 +1134,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
-			if(H.num_legs < 2)
+			if(human_host.num_legs < 2)
 				return FALSE
 			if((bodytype & BODYTYPE_DIGITIGRADE) && !(I.supports_variations & DIGITIGRADE_VARIATION))
 				if(!disable_warning)
@@ -1253,7 +1253,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
-			if(H.num_hands < 2)
+			if(human_host.num_hands < 2)
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_LEGCUFFED)
@@ -1261,7 +1261,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
-			if(H.num_legs < 2)
+			if(human_host.num_legs < 2)
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_BACKPACK)
