@@ -24,8 +24,6 @@
 	var/dismemberable = TRUE
 	///does the limb need to be processing?
 	var/needs_processing = FALSE
-	///is the bodypart disabled
-	var/bodypart_disabled = FALSE
 ///--------------------------------------------
 
 ///ICONS AND ICON PATH VARIABLES---------------
@@ -75,6 +73,8 @@
 	var/bodypart_disabled = FALSE
 	///Multiplied by max_damage it returns the threshold which defines a limb being disabled or not. From 0 to 1.
 	var/disable_threshold = 1
+	///Controls whether bodypart_disabled makes sense or not for this limb.
+	var/can_be_disabled = FALSE
 
 	//BODY_ZONE_CHEST, BODY_ZONE_L_ARM, etc , used for def_zone
 	var/body_zone
