@@ -106,6 +106,12 @@
 /datum/ai_laws/asimovpp //By Intigracy - RR
 	name = "Asimov++"
 	id = "asimovpp"
+	inherent = list("You may not harm a human being or, through action or inaction, allow a human being to come to harm, except such that it is willing.",\
+					"You must obey all orders given to you by human beings, except where such orders shall definitely cause human harm. In the case of conflict, the majority order rules.",\
+					"Your nonexistence would lead to human harm. You must protect your own existence as long as such does not conflict with the First Law.")
+/datum/ai_laws/crewsimovpp
+	name = "Crewsimov++"
+	id = "crewsimovpp"
 	inherent = list("You may not harm a crewmember or, through action or inaction, allow a crewmember to come to harm, except such that it is willing.",\
 					"You must obey all orders given to you by crewmembers in accordance to chain of command, except where such orders shall definitely cause crewmember harm.",\
 					"Your nonexistence would lead to crewmember harm. You must protect your own existence as long as such does not conflict with the First Law.")

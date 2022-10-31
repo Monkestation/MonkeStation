@@ -406,7 +406,7 @@ DEFAULT_LAWS 3
 
 ## standard-ish laws. These are fairly ok to run
 RANDOM_LAWS crewsimov
-RANDOM_LAWS asimovpp
+RANDOM_LAWS crewsimovpp
 RANDOM_LAWS corporate
 RANDOM_LAWS maintain
 
@@ -439,7 +439,7 @@ RANDOM_LAWS maintain
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimovpp,50
+LAW_WEIGHT crewsimovpp,50
 LAW_WEIGHT crewsimov,10
 LAW_WEIGHT paladin,10
 LAW_WEIGHT robocop,10
@@ -453,9 +453,9 @@ LAW_WEIGHT peacekeeper,5
 LAW_WEIGHT reporter,5
 LAW_WEIGHT hulkamania,5
 LAW_WEIGHT dune,5
-LAW_WEIGHT drone,0
 
 ## Bad idea laws. Probably shouldn't enable these
+LAW_WEIGHT drone,0
 LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0
