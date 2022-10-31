@@ -10523,6 +10523,7 @@
 /area/teleporter)
 "azs" = (
 /obj/structure/window/reinforced,
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "azt" = (
@@ -22026,6 +22027,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aYz" = (

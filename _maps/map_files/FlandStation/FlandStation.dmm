@@ -69908,7 +69908,8 @@
 /turf/open/floor/wood,
 /area/quartermaster/qm)
 "qtA" = (
-/obj/effect/turf_decal/delivery,
+/obj/structure/liquid_pump,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "qtJ" = (
@@ -71940,6 +71941,8 @@
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
+/obj/structure/liquid_pump,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "qRM" = (

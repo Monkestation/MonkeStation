@@ -33991,6 +33991,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bKZ" = (
@@ -43225,6 +43226,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 28
 	},
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cqH" = (

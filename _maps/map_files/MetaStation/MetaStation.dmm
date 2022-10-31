@@ -21879,8 +21879,14 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
-/obj/effect/landmark/start/atmospheric_technician,
+/obj/structure/table,
+/obj/item/stack/rods/fifty,
+/obj/item/stack/rods/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},
@@ -24044,17 +24050,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bIN" = (
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/rods/fifty,
-/obj/item/stack/rods/fifty,
-/obj/effect/turf_decal/bot{
-	dir = 1
-	},
-/turf/open/floor/plasteel{
-	dir = 1
-	},
+/obj/structure/liquid_pump,
+/turf/open/floor/plasteel,
 /area/engine/atmos)
 "bIO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -25100,11 +25097,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/engine/atmos)
 "bMb" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
@@ -25649,10 +25646,10 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bNP" = (
-/obj/effect/turf_decal/tile/blue{
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/visible,
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/visible,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
@@ -26174,15 +26171,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos)
-"bPp" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/turf/open/floor/plasteel/white/corner{
-	dir = 1
-	},
 /area/engine/atmos)
 "bPq" = (
 /obj/structure/cable/yellow{
@@ -30017,6 +30005,8 @@
 	},
 /area/hydroponics)
 "ccQ" = (
+/obj/item/kirbyplants/random,
+/obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "ccR" = (
@@ -52031,14 +52021,14 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "gSl" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark/corner{
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
 /area/engine/atmos)
@@ -122952,7 +122942,7 @@ tmM
 bMa
 eZd
 bPo
-bxc
+bIN
 bIN
 bxc
 bTi
@@ -123209,8 +123199,8 @@ gSl
 gSl
 bMb
 bNP
-bPp
-bPp
+gdX
+gdX
 bSg
 ckd
 ckd

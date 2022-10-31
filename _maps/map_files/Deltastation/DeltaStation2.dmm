@@ -30515,7 +30515,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -30552,6 +30551,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
 	},
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "bnc" = (
@@ -34586,6 +34586,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bvj" = (
@@ -34603,7 +34604,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bvk" = (
-/obj/item/kirbyplants/random,
 /obj/machinery/light/small,
 /obj/machinery/light_switch{
 	pixel_x = 26;
@@ -34615,6 +34615,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bvl" = (

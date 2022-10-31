@@ -23796,6 +23796,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "aMx" = (
@@ -80202,6 +80203,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/blue,
+/obj/structure/liquid_pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ctq" = (
