@@ -859,7 +859,7 @@ update_label("John Doe", "Clowny")
 		qdel(src)
 /obj/item/card/id/fake_card //not a proper ID but still shares a lot of functions
 	name = "\"ID Card\""
-	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. You'd have to stuff this in a card reader by hand for it to work. It looks frail!"
+	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. You'd have to stuff this in a card reader by hand for it to work."
 	icon = 'icons/obj/card.dmi'
 	icon_state = "counterfeit"
 	item_state = "card-id"
@@ -879,12 +879,22 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/fake_card/proc/used()
 	uses -= 1
-	if(uses == 1)
-		icon_state = "counterfeit_torn"
-		desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. You'd have to stuff this in a card reader by hand for it to work. It's falling apart!"
-	if(uses < 1)
-		icon_state = "counterfeit_torn2"
-	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. You'd have to stuff this in a card reader by hand for it to work. It's too shredded to fit in a scanner!"
+	switch(uses)
+		if(1)
+			icon_state = "counterfeit_torn"
+		if(0)
+			icon_state = "counterfeit_torn2"
 
 /obj/item/card/id/fake_card/AltClick(mob/living/user)
 	return //no accounts on fake cards
+
+/obj/item/card/id/fake_card/examine(mob/user)
+	..()
+	. = ..()
+	switch(uses)
+		if(0)
+			. += "It's too shredded to fit in a scanner!"
+		if(1)
+			. += "It's falling apart!"
+		else
+			. += "It looks frail!"
