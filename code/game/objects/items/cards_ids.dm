@@ -274,7 +274,6 @@
 		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
-	..()
 	if(mining_points)
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 	. = ..()
@@ -869,6 +868,8 @@ update_label("John Doe", "Clowny")
 	slot_flags = ITEM_SLOT_ID
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "stamina" = 0)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	mining_points = null
+	registered_account = null
 	registered_name = "Nohbdy"
 	access = list(ACCESS_MAINT_TUNNELS)
 	var/uses = 2
@@ -889,8 +890,8 @@ update_label("John Doe", "Clowny")
 	return //no accounts on fake cards
 
 /obj/item/card/id/fake_card/examine(mob/user)
-	..()
 	. = ..()
+	. += "Actually, this is probably too crude to manage an account..."
 	switch(uses)
 		if(0)
 			. += "It's too shredded to fit in a scanner!"
