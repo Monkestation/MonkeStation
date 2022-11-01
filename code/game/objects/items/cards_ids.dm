@@ -119,6 +119,7 @@
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
 	var/access_txt // mapping aid
+	var/accepts_accounts = TRUE
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
 
@@ -292,7 +293,8 @@
 		if(registered_account.account_holder == user.real_name)
 			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
 	else
-		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
+		if(accepts_accounts)
+			. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -870,6 +872,7 @@ update_label("John Doe", "Clowny")
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	mining_points = null
 	registered_account = null
+	accepts_accounts = FALSE
 	registered_name = "Nohbdy"
 	access = list(ACCESS_MAINT_TUNNELS)
 	var/uses = 2
@@ -886,14 +889,13 @@ update_label("John Doe", "Clowny")
 		if(1)
 			icon_state = "counterfeit_torn"
 		else
-			icon_state = "counterfeit" //in case you somehow repair it to 3+ uses
+			icon_state = "counterfeit" //in case you somehow repair it to 3+
 
 /obj/item/card/id/fake_card/AltClick(mob/living/user)
 	return //no accounts on fake cards
 
 /obj/item/card/id/fake_card/examine(mob/user)
 	. = ..()
-	. += "Actually, this is probably too crude to manage an account..."
 	switch(uses)
 		if(0)
 			. += "It's too shredded to fit in a scanner!"
