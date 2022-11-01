@@ -59,3 +59,13 @@
 	credit_cost = 1000
 	can_be_bought = FALSE
 	illegal_shuttle = TRUE
+
+	/datum/map_template/shuttle/emergency/mime
+	prefix = "_maps/shuttles/"
+	suffix = "mime"
+	name = "..."
+	description = "Agent, we have spotted an invisible shuttle held together by reality anchors. We have negotiated a contract with mime planet to purchase it for 10% of its real value. in exchange for it being used for only 10 minutes max"
+	admin_notes = "(mostly) Invisible shuttle, Incredibly painfull to exist in."
+	credit_cost = 50000
+	can_be_bought = FALSE
+	illegal_shuttle = TRUE
