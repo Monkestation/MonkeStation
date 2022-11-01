@@ -42,12 +42,12 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	active = TRUE
 	var/message = stripped_input(user, "Tell the station whats on your mind.", "Tell them All")
+	if(!message)
+		return FALSE
 	if(CHAT_FILTER_CHECK(message))
 		if(user)
 			to_chat(user, "<span class='warning'>You message contains forbidden words, please review the server rules and do not attempt to bypass this filter.</span>")
-			return
-	if(!message)
-		return FALSE
+			return FALSE
 	for(var/mob/living/carbon/human/messaged in GLOB.player_list)
 		if(messaged.stat == DEAD)
 			continue
