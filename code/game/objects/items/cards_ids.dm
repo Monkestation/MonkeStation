@@ -881,10 +881,12 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/fake_card/proc/used()
 	uses -= 1
 	switch(uses)
-		if(1)
-			icon_state = "counterfeit_torn"
 		if(0)
 			icon_state = "counterfeit_torn2"
+		if(1)
+			icon_state = "counterfeit_torn"
+		else
+			icon_state = "counterfeit" //in case you somehow repair it to 3+ uses
 
 /obj/item/card/id/fake_card/AltClick(mob/living/user)
 	return //no accounts on fake cards
