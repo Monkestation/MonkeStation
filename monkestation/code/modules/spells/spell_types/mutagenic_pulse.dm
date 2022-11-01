@@ -15,8 +15,7 @@
 		for(var/mob/living/carbon/TG in turfs)
 			mutated += TG
 
-	for(var/TAR in mutated)
-		var/mob/living/carbon/target = TAR
+	for(var/mob/living/carbon/target in mutated)
 		playsound(get_turf(target), 'sound/weapons/emitter2.ogg', 50,1)
 		if(target == user || !target.dna)
 			continue

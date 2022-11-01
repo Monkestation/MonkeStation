@@ -555,6 +555,10 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	active = TRUE
 	var/message = stripped_input(user, "Whisper a secret truth to drive your victims to madness.", "Whispers of Madness")
+	if(CHAT_FILTER_CHECK(message))
+		if(user)
+			to_chat(user, "<span class='warning'>You message contains forbidden words, please review the server rules and do not attempt to bypass this filter.</span>")
+			return
 	if(!message)
 		return FALSE
 	curse_of_madness(user, message)

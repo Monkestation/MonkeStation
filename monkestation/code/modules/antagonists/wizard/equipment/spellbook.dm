@@ -7,6 +7,7 @@
 	name = "Lesser Summon Apes"
 	spell_type = /obj/effect/proc_holder/spell/aoe_turf/conjure/lesser_summonapes
 	category = "Defensive"
+	cost = 3
 
 /datum/spellbook_entry/mutagenic_pulse
 	name = "Mutagenic Pulse"
@@ -21,7 +22,7 @@
 
 /datum/spellbook_entry/item/magicspray
 	name = "Magical Chem Sprayer"
-	desc = "A magic chem sprayer that will fill itself with unlimted random chemicals."
+	desc = "A magic chemical sprayer that will fill itself with unlimited random chemicals."
 	item_path = /obj/item/reagent_containers/spray/chemsprayer/magical
 	category = "Assistance"
 	cost = 1
@@ -41,6 +42,10 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	active = TRUE
 	var/message = stripped_input(user, "Tell the station whats on your mind.", "Tell them All")
+	if(CHAT_FILTER_CHECK(message))
+		if(user)
+			to_chat(user, "<span class='warning'>You message contains forbidden words, please review the server rules and do not attempt to bypass this filter.</span>")
+			return
 	if(!message)
 		return FALSE
 	for(var/mob/living/carbon/human/messaged in GLOB.player_list)
