@@ -11,7 +11,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/mutagenic_pulse/cast(list/targets, mob/user)
 	var/list/mutated = list()
-	for(var/turf/turfs in targets)//based off of repulse spell code
+	for(var/turf/turfs in targets)
 		for(var/mob/living/carbon/TG in turfs)
 			mutated += TG
 

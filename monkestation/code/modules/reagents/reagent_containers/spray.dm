@@ -16,12 +16,12 @@
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/spray/chemsprayer/magical/attack_self(mob/user)
-	cycle_chems(1000)
+	cycle_chems()
 	to_chat(user, "<span class='notice'>You change the reagent to [english_list(reagents.reagent_list)].</span>")
 	return
 
-/obj/item/reagent_containers/spray/chemsprayer/magical/proc/cycle_chems(cycle_amount)
+/obj/item/reagent_containers/spray/chemsprayer/magical/proc/cycle_chems()
 	reagents.clear_reagents()
-	list_reagents = list(get_unrestricted_random_reagent_id() = cycle_amount)
+	list_reagents = list(get_unrestricted_random_reagent_id() = volume)
 	reagents.add_reagent_list(list_reagents)
 	return
