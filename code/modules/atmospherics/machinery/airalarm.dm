@@ -128,8 +128,15 @@
 		GAS_DILITHIUM		= new/datum/tlv/dangerous
 	)
 
+/obj/machinery/airalarm/proc/regenerate_TLV()
+	var/list/TLV_list = GLOB.gas_data.TLV_list
+	for(var/g in TLV_list)
+		TLV[g] = TLV_list[g]
+
 /obj/machinery/airalarm/Initialize(mapload, ndir, nbuild)
 	. = ..()
+	regenerate_TLV()
+	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_GAS, .proc/regenerate_TLV)
 	wires = new /datum/wires/airalarm(src)
 	if(ndir)
 		setDir(ndir)
@@ -320,7 +327,7 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("power", "toggle_filter", "widenet", "scrubbing", "direction")
+		if("power", "toggle_filter", "widenet", "scrubbing")
 			send_signal(device_id, list("[action]" = params["val"]), usr)
 			. = TRUE
 		if("excheck")
@@ -328,6 +335,9 @@
 			. = TRUE
 		if("incheck")
 			send_signal(device_id, list("checks" = text2num(params["val"])^2), usr)
+			. = TRUE
+		if("direction")
+			send_signal(device_id, list("direction" = text2num(params["val"])), usr)
 			. = TRUE
 		if("set_external_pressure", "set_internal_pressure")
 			var/target = params["value"]
@@ -457,31 +467,11 @@
 					"set_external_pressure" = ONE_ATMOSPHERE
 				), signal_source)
 		if(AALARM_MODE_CONTAMINATED)
+			var/list/all_gases = GLOB.gas_data.get_by_flag(GAS_FLAG_DANGEROUS)
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(
-						GAS_CO2,
-						GAS_MIASMA,
-						GAS_PLASMA,
-						GAS_H2O,
-						GAS_HYPERNOB,
-						GAS_NITROUS,
-						GAS_NITRYL,
-						GAS_TRITIUM,
-						GAS_BZ,
-						GAS_STIMULUM,
-						GAS_PLUOXIUM,
-						GAS_NUCLEIUM,	//Waste Gas from NSV Nuclear Reactor	//Monkestation Edit
-						GAS_H2,
-						GAS_FREON,
-						GAS_HEALIUM,
-						GAS_PLUONIUM,
-						GAS_ZAUKER,
-						GAS_HALON,
-						GAS_HEXANE,
-						GAS_DILITHIUM
-					),
+					"set_filters" = all_gases,
 					"scrubbing" = 1,
 					"widenet" = 1
 				), signal_source)
@@ -508,7 +498,7 @@
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
 					"power" = 1,
-					"set_filters" = list(GAS_CO2, GAS_BZ),
+					"set_filters" = list(GAS_CO2, GAS_BZ, GAS_GROUP_CHEMICALS),
 					"scrubbing" = 1,
 					"widenet" = 0
 				), signal_source)
@@ -541,7 +531,6 @@
 				send_signal(device_id, list(
 					"power" = 0
 				), signal_source)
-
 		if(AALARM_MODE_OFF)
 			for(var/device_id in my_area.air_scrub_info)
 				send_signal(device_id, list(
@@ -878,6 +867,10 @@
 		GAS_FREON = new/datum/tlv/no_checks,
 	)
 
+/obj/machinery/airalarm/server/regenerate_TLV()
+	var/list/TLV_list = GLOB.gas_data.TLV_list
+	for(var/g in TLV_list)
+		TLV[g] = new/datum/tlv/no_checks
 /obj/machinery/airalarm/kitchen_cold_room // Kitchen cold rooms start off at -20°C or 253.15°K.
 	TLV = list(
 		"pressure" = new/datum/tlv(ONE_ATMOSPHERE * 0.8, ONE_ATMOSPHERE*  0.9, ONE_ATMOSPHERE * 1.1, ONE_ATMOSPHERE * 1.2), // kPa

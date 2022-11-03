@@ -6327,7 +6327,7 @@
 /obj/item/circuitboard/machine/gibber,
 /obj/item/circuitboard/machine/deep_fryer,
 /obj/item/circuitboard/machine/cell_charger,
-/obj/item/circuitboard/machine/smoke_machine,
+/obj/item/circuitboard/machine/atmos_machine,
 /obj/item/storage/part_replacer/cargo,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/syndicate_lava_base/cargo)

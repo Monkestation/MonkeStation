@@ -115,3 +115,6 @@
 
 ///Used for overheat_temp - This sets the overheat so high it effectively has no overheat temperature.
 #define NO_OVERHEAT 99999
+
+///Used for reagents we want the chemical gases of to instantly react
+#define INSTANT_REACT 10000
