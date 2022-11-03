@@ -1207,7 +1207,7 @@
 	var/obj/item/card/id/fake_card/fake = card
 	if(fake.uses)
 		if(check_access_list(fake.access))
-			visible_message("<span class='warning'>[user] starts fumbling at [src] with a piece of paper!</span>")
+			user.visible_message("<span class='warning'>[user] starts fumbling at \the [src] with a piece of paper!</span>", "<span class='userwarning'>You start swiping \the [fake] in \the [src]!</span>")
 			playsound(src, 'sound/items/handling/paper_pickup.ogg', 100, TRUE)
 			if(do_after(user, 50, TRUE, src))
 				if(open()) //only take a use away if the door actually opens
