@@ -36,7 +36,7 @@ export const SmokeMachine = (props, context) => {
           </ProgressBar>
           <Box mt={1}>
             <LabeledList>
-              <LabeledList.Item label="Range">
+              <LabeledList.Item label="Evaporation Amount">
                 {[1, 2, 3, 4, 5].map(amount => (
                   <Button
                     key={amount}

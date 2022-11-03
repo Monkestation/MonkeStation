@@ -2697,9 +2697,8 @@
 	num_contained = 7
 	contains = list(/obj/item/poster/random_contraband,
 					/obj/item/poster/random_contraband,
-					/obj/item/food/grown/cannabis,
-					/obj/item/food/grown/cannabis/rainbow,
-					/obj/item/food/grown/cannabis/white,
+					/obj/item/clothing/mask/cigarette/rollie/cannabis,
+					/obj/item/clothing/mask/cigarette/rollie/mindbreaker,
 					/obj/item/storage/pill_bottle/zoom,
 					/obj/item/storage/pill_bottle/happy,
 					/obj/item/storage/pill_bottle/lsd,

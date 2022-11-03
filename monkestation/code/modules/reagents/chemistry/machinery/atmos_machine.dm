@@ -1,12 +1,14 @@
 #define REAGENTS_BASE_VOLUME 100 // actual volume is REAGENTS_BASE_VOLUME plus REAGENTS_BASE_VOLUME * rating for each matterbin
 
-/obj/machinery/smoke_machine
-	name = "smoke machine"
-	desc = "A machine with a centrifuge installed into it. It produces smoke with any reagents you put into the machine."
+///dont tell anyone this but this is literally just smoke machine code but with names replaced and smoke replaced with gas -Borbop
+
+/obj/machinery/atmos_machine
+	name = "evaporation machine"
+	desc = "A machine with a centrifuge installed into it. It produces gas with any reagents you put into the machine."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "smoke0"
 	density = TRUE
-	circuit = /obj/item/circuitboard/machine/smoke_machine
+	circuit = /obj/item/circuitboard/machine/atmos_machine
 
 
 
@@ -17,20 +19,10 @@
 	var/setting = 1 // displayed range is 3 * setting
 	var/max_range = 3 // displayed max range is 3 * max range
 
-/datum/effect_system/smoke_spread/chem/smoke_machine/set_up(datum/reagents/carry, setting=1, efficiency=10, loc, silent=FALSE)
-	amount = setting
-	carry.copy_to(chemholder, 20)
-	carry.remove_any(amount * 16 / efficiency)
-	location = loc
+	var/multiplier = 1
 
-/datum/effect_system/smoke_spread/chem/smoke_machine
-	effect_type = /obj/effect/particle_effect/smoke/chem/smoke_machine
 
-/obj/effect/particle_effect/smoke/chem/smoke_machine
-	opaque = FALSE
-	alpha = 100
-
-/obj/machinery/smoke_machine/Initialize(mapload)
+/obj/machinery/atmos_machine/Initialize(mapload)
 	. = ..()
 	create_reagents(REAGENTS_BASE_VOLUME)
 	AddComponent(/datum/component/plumbing/simple_demand)
@@ -40,10 +32,10 @@
 		begin_processing()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
 
-/obj/machinery/smoke_machine/proc/can_be_rotated(mob/user,rotation_type)
+/obj/machinery/atmos_machine/proc/can_be_rotated(mob/user,rotation_type)
 	return !anchored
 
-/obj/machinery/smoke_machine/update_icon()
+/obj/machinery/atmos_machine/update_icon()
 	if((!is_operational) || (!on) || (reagents.total_volume == 0))
 		if (panel_open)
 			icon_state = "smoke0-o"
@@ -53,11 +45,11 @@
 		icon_state = "smoke1"
 	return ..()
 
-/obj/machinery/smoke_machine/RefreshParts()
+/obj/machinery/atmos_machine/RefreshParts()
 	. = ..()
 	var/new_volume = REAGENTS_BASE_VOLUME
-	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
-		new_volume += REAGENTS_BASE_VOLUME * B.rating
+	for(var/obj/item/stock_parts/matter_bin/installed_bin in component_parts)
+		new_volume += REAGENTS_BASE_VOLUME * installed_bin.rating
 	if(!reagents)
 		create_reagents(new_volume)
 	reagents.maximum_volume = new_volume
@@ -65,39 +57,47 @@
 		reagents.reaction(loc, TOUCH) // if someone manages to downgrade it without deconstructing
 		reagents.clear_reagents()
 	efficiency = 9
-	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		efficiency += C.rating
+	for(var/obj/item/stock_parts/capacitor/installed_cap in component_parts)
+		efficiency += installed_cap.rating
 	max_range = 1
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		max_range += M.rating
+	for(var/obj/item/stock_parts/manipulator/installed_manip in component_parts)
+		max_range += installed_manip.rating
 	max_range = max(3, max_range)
+	multiplier = 0
+	for(var/obj/item/stock_parts/capacitor/installed_cap in component_parts)
+		multiplier += installed_cap.rating
 
-/obj/machinery/smoke_machine/on_set_is_operational(old_value)
+/obj/machinery/atmos_machine/on_set_is_operational(old_value)
 	if(old_value) //Turned off
 		end_processing()
 	else //Turned on
 		begin_processing()
 
-/obj/machinery/smoke_machine/process()
+/obj/machinery/atmos_machine/process()
 	..()
 	if(reagents.total_volume == 0)
 		on = FALSE
 		update_icon()
 		return
-	var/turf/T = get_turf(src)
-	var/smoke_test = locate(/obj/effect/particle_effect/smoke) in T
-	if(on && !smoke_test)
+	if(on)
 		update_icon()
-		var/datum/effect_system/smoke_spread/chem/smoke_machine/smoke = new()
-		smoke.set_up(reagents, setting*3, efficiency, T)
-		smoke.start()
+		var/datum/reagents/chemholder = new(1000)
+		reagents.trans_to(chemholder, ((setting * 3) * 16) / efficiency)
 
-/obj/machinery/smoke_machine/attackby(obj/item/I, mob/user, params)
+		for(var/datum/reagent/contained_reagent in chemholder.reagent_list)
+			var/turf/turf = get_turf(src.loc)
+			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume * multiplier) /contained_reagent.molarity];TEMP=[T20C]") //yes yes i know this is more chemicals than was inputed but like this would be slow as fuck otherwise
+			reagents.reagent_list -= contained_reagent
+		qdel(chemholder)
+
+/obj/machinery/atmos_machine/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
 	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		var/obj/item/reagent_containers/RC = I
 		var/units = RC.reagents.trans_to(src, RC.amount_per_transfer_from_this, transfered_by = user)
 		if(units)
+			if(on)
+				log_combat(usr, src, "has added [units] to the [src] at [AREACOORD(src)] while the machine is running.")
 			to_chat(user, "<span class='notice'>You transfer [units] units of the solution to [src].</span>")
 			return
 	if(default_unfasten_wrench(user, I, 40))
@@ -109,23 +109,23 @@
 		return
 	return ..()
 
-/obj/machinery/smoke_machine/deconstruct()
+/obj/machinery/atmos_machine/deconstruct()
 	reagents.reaction(loc, TOUCH)
 	reagents.clear_reagents()
 	return ..()
 
 
-/obj/machinery/smoke_machine/ui_state(mob/user)
+/obj/machinery/atmos_machine/ui_state(mob/user)
 	return GLOB.default_state
 
-/obj/machinery/smoke_machine/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmos_machine/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SmokeMachine")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Tank contents, particularly plumbing
 
-/obj/machinery/smoke_machine/ui_data(mob/user)
+/obj/machinery/atmos_machine/ui_data(mob/user)
 	var/data = list()
 	var/TankContents[0]
 	var/TankCurrentVolume = 0
@@ -141,7 +141,7 @@
 	data["maxSetting"] = max_range
 	return data
 
-/obj/machinery/smoke_machine/ui_act(action, params)
+/obj/machinery/atmos_machine/ui_act(action, params)
 	if(..() || !anchored)
 		return
 	switch(action)
@@ -159,8 +159,8 @@
 			update_icon()
 			. = TRUE
 			if(on)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [ADMIN_VERBOSEJMP(src)].")
-				log_game("[key_name(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] activated an evaporation machine that contains [english_list(reagents.reagent_list)] at [ADMIN_VERBOSEJMP(src)].")
+				log_game("[key_name(usr)] activated an evaporation machine that contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")
 				log_combat(usr, src, "has activated [src] which contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")
 
 #undef REAGENTS_BASE_VOLUME
