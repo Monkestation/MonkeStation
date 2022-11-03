@@ -59,8 +59,7 @@
 	credit_cost = 1000
 	can_be_bought = FALSE
 	illegal_shuttle = TRUE
-
-	/datum/map_template/shuttle/emergency/mime
+/datum/map_template/shuttle/emergency/mime
 	prefix = "_maps/shuttles/"
 	suffix = "mime"
 	name = "..."
