@@ -16435,10 +16435,6 @@
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"aMy" = (
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/grass,
-/area/hydroponics/garden)
 "aMz" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -16479,7 +16475,7 @@
 /turf/open/floor/plating,
 /area/hydroponics/garden)
 "aMD" = (
-/obj/machinery/biogenerator,
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aME" = (
@@ -16509,11 +16505,18 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "aMG" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aMH" = (
-/obj/machinery/seed_extractor,
+/obj/structure/railing{
+	dir = 5
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "aMI" = (
@@ -22334,7 +22337,6 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "aZj" = (
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -32904,12 +32906,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"btu" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/grass,
-/area/hydroponics/garden)
 "btv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -32921,11 +32917,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/grass,
-/area/hydroponics/garden)
-"btx" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/structure/railing{
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -32956,8 +32948,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "btD" = (
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "btE" = (
@@ -32975,6 +32968,9 @@
 /area/security/detectives_office)
 "btF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/railing{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -37544,11 +37540,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bCK" = (
-/obj/structure/table,
-/obj/item/plant_analyzer,
-/obj/item/hatchet,
-/obj/item/crowbar,
-/obj/item/reagent_containers/glass/bucket,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/nestbox,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "bCL" = (
@@ -37613,16 +37608,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bCR" = (
-/obj/structure/table,
-/obj/item/reagent_containers/spray/pestspray{
-	pixel_x = 3;
-	pixel_y = 4
+/obj/structure/railing{
+	dir = 1
 	},
-/obj/item/reagent_containers/glass/bottle/nutrient/rh{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/spray/plantbgone,
+/obj/structure/nestbox,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "bCS" = (
@@ -54205,16 +54194,12 @@
 /area/medical/virology)
 "lzi" = (
 /obj/structure/rack,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer{
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -23
 	},
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "lzq" = (
@@ -99230,7 +99215,7 @@ bPM
 aMq
 aMt
 aMA
-aMG
+aMD
 aMD
 aME
 aMv
@@ -99486,9 +99471,9 @@ aMq
 aMq
 aMq
 aMx
-aMu
+aMH
 btw
-aMu
+btD
 bCK
 aME
 aMv
@@ -99744,7 +99729,7 @@ lzi
 bOs
 aMu
 aMu
-btx
+bty
 aMu
 aMu
 bCR
@@ -100004,8 +99989,8 @@ aMu
 bty
 aMu
 aMu
-aMu
-aMH
+aMG
+aMD
 aMI
 aaa
 aaa
@@ -100256,13 +100241,13 @@ bsR
 agn
 bsu
 bsu
-btu
+bsu
 bsu
 aZj
 btB
-btD
+btB
 btF
-aMG
+aMD
 aMI
 aaa
 aaa
@@ -100518,7 +100503,7 @@ aMu
 aMu
 aMu
 aMu
-aMu
+aMH
 aMz
 aMJ
 aaa
@@ -100772,7 +100757,7 @@ aMw
 aMv
 aMu
 aMu
-aMy
+aMu
 aMu
 aMu
 bCS

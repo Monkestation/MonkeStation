@@ -13220,6 +13220,8 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics/garden)
 "aHB" = (
@@ -29221,13 +29223,10 @@
 /turf/open/floor/engine,
 /area/science/storage)
 "bEa" = (
-/obj/structure/sink{
-	pixel_y = 30
+/obj/structure/railing{
+	dir = 4
 	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/grass,
 /area/hydroponics/garden)
 "bEb" = (
 /obj/structure/cable/yellow{
@@ -44447,6 +44446,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"dQv" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "dQH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -51261,6 +51266,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"iox" = (
+/obj/structure/nestbox,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "ioE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -51872,9 +51881,6 @@
 /obj/machinery/hydroponics/soil,
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/structure/railing/corner{
-	dir = 8
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
@@ -67107,6 +67113,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"sBa" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "sBA" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/research{
@@ -68350,6 +68363,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"tEy" = (
+/obj/structure/railing,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "tGp" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -71459,10 +71476,10 @@
 /turf/open/floor/plasteel/dark,
 /area/vacant_room/commissary/commissary2)
 "vIU" = (
-/obj/machinery/hydroponics/soil,
 /obj/machinery/light{
 	dir = 8
 	},
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "vIX" = (
@@ -90750,9 +90767,9 @@ alU
 alU
 alU
 alU
-aAP
+iox
 vIU
-aAP
+tEy
 aEF
 aFN
 azF
@@ -91008,8 +91025,8 @@ avq
 ayi
 alU
 bEa
-brs
-brs
+sBa
+dQv
 brs
 hbH
 azF

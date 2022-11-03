@@ -12507,6 +12507,8 @@
 /area/hydroponics/garden)
 "aSn" = (
 /obj/structure/table/wood,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aSo" = (

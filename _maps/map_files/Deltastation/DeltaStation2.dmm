@@ -4571,40 +4571,46 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alj" = (
-/obj/structure/table/wood,
-/obj/item/folder,
-/obj/item/pen,
-/turf/open/floor/plasteel/grimy,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "alk" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/grimy,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/nestbox,
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "all" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/photocopier,
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "alm" = (
-/obj/structure/table/wood,
-/obj/item/stack/packageWrap,
-/obj/item/hand_labeler,
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/grimy,
+/obj/structure/railing{
+	dir = 4
+	},
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "aln" = (
-/obj/structure/table/wood,
-/obj/item/storage/briefcase,
-/turf/open/floor/plasteel/grimy,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "alo" = (
 /obj/item/kirbyplants/random,
@@ -4946,9 +4952,6 @@
 	},
 /area/maintenance/port/fore)
 "alZ" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_x = -32
 	},
@@ -4959,12 +4962,6 @@
 /area/vacant_room/office)
 "amf" = (
 /obj/structure/table/wood,
-/obj/item/folder/blue{
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/folder/yellow,
-/obj/item/pen,
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "amg" = (
@@ -5353,16 +5350,20 @@
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "ana" = (
-/obj/structure/chair/office{
-	dir = 4
+/mob/living/simple_animal/chicken,
+/obj/structure/railing{
+	dir = 1
 	},
-/turf/open/floor/carpet/purple,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "anb" = (
-/obj/structure/table/wood,
-/obj/item/folder,
-/obj/item/pen,
-/turf/open/floor/carpet/purple,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "anc" = (
 /turf/open/floor/wood,
@@ -5373,7 +5374,9 @@
 /area/vacant_room/office)
 "ane" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "anf" = (
@@ -5765,9 +5768,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "aoa" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/carpet/purple,
+/obj/structure/railing,
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "aob" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6159,13 +6162,11 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aoZ" = (
-/obj/structure/chair/office,
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
 "apa" = (
-/mob/living/simple_animal/cockroach,
-/turf/open/floor/plasteel/grimy,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "apb" = (
 /obj/structure/cable/yellow{
@@ -6461,19 +6462,12 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "aqb" = (
-/obj/structure/table/wood,
-/obj/item/phone{
-	desc = "Supposedly a direct line to Nanotrasen Central Command. It's not even plugged in.";
-	pixel_x = -3;
-	pixel_y = 3
-	},
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "aqc" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/light/small,
 /obj/structure/sign/poster/official/work_for_a_future{
 	pixel_y = -32
@@ -6481,17 +6475,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/vacant_room/office)
 "aqd" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/grimy,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "aqe" = (
-/obj/structure/table/wood,
-/obj/item/clipboard,
 /obj/machinery/camera{
 	c_tag = "Vacant Office";
 	dir = 1
@@ -105145,10 +105131,10 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "kXs" = (
-/obj/structure/chair/office{
-	dir = 8
+/obj/structure/railing{
+	dir = 6
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "kZf" = (
 /obj/structure/cable/yellow{
@@ -109599,7 +109585,11 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "pFh" = (
-/turf/open/floor/carpet/purple,
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/nestbox,
+/turf/open/floor/grass,
 /area/vacant_room/office)
 "pFv" = (
 /obj/structure/table/wood,
@@ -151355,12 +151345,12 @@ aaO
 hQK
 ajX
 aky
-alj
+ama
 alZ
 amZ
 anZ
-aoZ
-alj
+ama
+ama
 aky
 alg
 oqU
@@ -151613,7 +151603,7 @@ jjL
 xSF
 aky
 alk
-ama
+apa
 ana
 pFh
 ama
@@ -151870,10 +151860,10 @@ hQK
 ajY
 hNI
 all
-ama
+aqd
 anb
 aoa
-apa
+ama
 aqc
 aky
 oqU
@@ -152127,11 +152117,11 @@ jSa
 wLe
 aky
 alm
-ama
+aln
+alj
 kXs
-kXs
 ama
-aqd
+aqb
 aky
 arE
 aKj
@@ -152383,11 +152373,11 @@ ajf
 lSo
 jpG
 aky
-aln
 ama
 ama
 ama
-aoZ
+ama
+ama
 aqe
 aky
 arE
