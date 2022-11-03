@@ -16,7 +16,7 @@
 	desc = "Glass forged by melting sand."
 	color = "#dae6f0"
 	greyscale_colors = "#dae6f0"
-	alpha = 210
+	alpha = 150
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	integrity_modifier = 0.1
 	sheet_type = /obj/item/stack/sheet/glass
@@ -52,6 +52,7 @@
 	desc = "Highly pressurized carbon"
 	color = "#22c2d4"
 	greyscale_colors = "#22c2d4"
+	alpha = 150
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	coin_type = /obj/item/coin/diamond

@@ -7,7 +7,7 @@
 	max_integrity = 100
 	armor = list("melee" = 20, "bullet" = 15, "laser" = 10, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60, "stamina" = 0)
 	key_type = /obj/item/key/security
-	integrity_failure = 50
+	integrity_failure = 0.25
 
 /obj/vehicle/ridden/secway/Initialize(mapload)
 	. = ..()
@@ -21,7 +21,7 @@
 	return ..()
 
 /obj/vehicle/ridden/secway/process(delta_time)
-	if(obj_integrity >= integrity_failure)
+	if(obj_integrity >= integrity_failure * max_integrity)
 		return PROCESS_KILL
 	if(DT_PROB(10, delta_time))
 		return

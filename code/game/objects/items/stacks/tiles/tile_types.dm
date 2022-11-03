@@ -483,7 +483,7 @@
 	icon_state = "tile"
 	item_state = "tile"
 	force = 6
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
@@ -494,7 +494,7 @@
 
 /obj/item/stack/tile/plasteel/cyborg
 	desc = "The ground you walk on." //Not the usual floor tile desc as that refers to throwing, Cyborgs can't do that - RR
-	materials = list() // All other Borg versions of items have no Iron or Glass - RR
+	custom_materials = list() // All other Borg versions of items have no Iron or Glass - RR
 	is_cyborg = 1
 	cost = 125
 
@@ -505,7 +505,7 @@
 	singular_name = "steel mono tile"
 	desc = "A really big steel tile compared to the standard station tiles."
 	icon_state = "tile"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile
 
 /obj/item/stack/tile/mono/dark
@@ -513,7 +513,7 @@
 	singular_name = "dark mono tile"
 	desc = "A really big (dark) steel tile compared to the standard station tiles."
 	icon_state = "tile"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile/dark
 
 /obj/item/stack/tile/mono/light
@@ -521,7 +521,7 @@
 	singular_name = "light mono tile"
 	desc = "A really big (shiny) steel tile compared to the standard station tiles."
 	icon_state = "tile"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/monotile/light
 
 //Bay grids
@@ -530,7 +530,7 @@
 	singular_name = "grey grid tile"
 	desc = "A gridded version of the standard station tiles."
 	icon_state = "tile_grid"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/grid
 
 /obj/item/stack/tile/ridge
@@ -538,7 +538,7 @@
 	singular_name = "grey ridge tile"
 	desc = "A ridged version of the standard station tiles."
 	icon_state = "tile_ridged"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/ridged
 
 //Techtiles
@@ -547,7 +547,7 @@
 	singular_name = "grey techfloor tile"
 	desc = "A fancy tile usually found in secure areas and engineering bays."
 	icon_state = "tile_tech_grey"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech
 
 /obj/item/stack/tile/techgrid
@@ -555,7 +555,7 @@
 	singular_name = "grid techfloor tile"
 	desc = "A fancy tile usually found in secure areas and engineering bays, this one has a grid pattern."
 	icon_state = "tile_tech_grid"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/tech/grid
 
 /obj/item/stack/tile/techmaint
@@ -563,7 +563,7 @@
 	singular_name = "dark techfloor tile"
 	desc = "A fancy tile usually found in secure areas and engineering bays, this one is dark."
 	icon_state = "tile_tech_maint"
-	materials = list(/datum/material/iron=500)
+	custom_materials = list(/datum/material/iron=500)
 	turf_type = /turf/open/floor/plasteel/techmaint
 
 /obj/item/stack/tile/glass
@@ -573,7 +573,7 @@
 	icon_state = "tile_glass"
 	turf_type = /turf/open/floor/glass
 	merge_type = /obj/item/stack/tile/glass
-	materials = list(/datum/material/glass=500) // 4 tiles per sheet
+	custom_materials = list(/datum/material/glass=500) // 4 tiles per sheet
 
 /obj/item/stack/tile/glass/sixty
 	amount = 60
@@ -585,7 +585,7 @@
 	icon_state = "tile_rglass"
 	turf_type = /turf/open/floor/glass/reinforced
 	merge_type = /obj/item/stack/tile/rglass
-	materials = list(/datum/material/iron=250, /datum/material/glass=250) // 4 tiles per sheet
+	custom_materials = list(/datum/material/iron=250, /datum/material/glass=250) // 4 tiles per sheet
 
 /obj/item/stack/tile/rglass/sixty
 	amount = 60
@@ -598,7 +598,7 @@
 	icon_state = "tile_pglass"
 	turf_type = /turf/open/floor/glass/plasma
 	merge_type = /obj/item/stack/tile/glass/plasma
-	materials = list(/datum/material/plasma =500)
+	custom_materials = list(/datum/material/plasma =500)
 
 /obj/item/stack/tile/rglass/plasma
 	name = "reinforced plasma glass floor"
@@ -607,4 +607,4 @@
 	icon_state = "tile_rpglass"
 	turf_type = /turf/open/floor/glass/reinforced/plasma
 	merge_type = /obj/item/stack/tile/rglass/plasma
-	materials = list(/datum/material/iron = 250, /datum/material/plasma = 250)
+	custom_materials = list(/datum/material/iron = 250, /datum/material/plasma = 250)

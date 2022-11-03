@@ -169,7 +169,7 @@
 	. = ..()
 	adjust_hacked(TRUE)
 
-/obj/machinery/modular_fabricator/autolathe/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
+/obj/machinery/modular_fabricator/autolathe/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	. = ..()
 	switch(id_inserted)
 		if (/datum/material/iron)

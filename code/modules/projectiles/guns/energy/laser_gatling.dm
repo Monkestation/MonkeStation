@@ -117,7 +117,7 @@
 	slowdown = 1
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
-	materials = list()
+	custom_materials = list()
 	automatic = 1
 	fire_rate = 10
 	weapon_weight = WEAPON_HEAVY

@@ -72,13 +72,13 @@
 	if(!material_amount)
 		qdel(O) //no materials, incinerate it
 
-	else if(!mat_container.has_space(material_amount * sheet_per_ore * O.amount)) //if there is no space, eject it
+	else if(!mat_container.has_space(material_amount * O.amount)) //if there is no space, eject it
 		unload_mineral(O)
 
 	else
 		if(O?.refined_type)
 			points += O.points * point_upgrade * O.amount
-		var/mats = O.materials & mat_container.materials
+		var/mats = O.custom_materials & mat_container.materials
 		var/amount = O.amount
 		mat_container.insert_item(O, sheet_per_ore) //insert it
 		materials.silo_log(src, "smelted", amount, "someone", mats)

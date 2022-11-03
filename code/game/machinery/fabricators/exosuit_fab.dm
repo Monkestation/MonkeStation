@@ -52,7 +52,7 @@
 		return FALSE
 	return default_deconstruction_crowbar(I)
 
-/obj/machinery/modular_fabricator/exosuit_fab/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
+/obj/machinery/modular_fabricator/exosuit_fab/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	. = ..()
 	var/datum/material/M = id_inserted
 	add_overlay("fab-load-[M.name]")

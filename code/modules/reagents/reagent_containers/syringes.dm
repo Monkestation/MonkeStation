@@ -17,7 +17,7 @@
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
 	var/shootable = TRUE //can it be used as ammo in syringe guns? //monkestation edit
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	var/list/syringediseases = list()
 	var/units_per_tick = 1.5

@@ -14,7 +14,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	max_integrity = 250
-	integrity_failure = 50
+	integrity_failure = 0.25
 
 	var/id = 0
 	var/obj/machinery/power/solar_control/control

@@ -327,7 +327,7 @@
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
 	icon = 'icons/obj/decals.dmi'
-	materials = list(/obj/item/stack/sheet/mineral/wood = 2000)
+	custom_materials = list(/obj/item/stack/sheet/mineral/wood = 2000)
 	flags_1 = NONE
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting

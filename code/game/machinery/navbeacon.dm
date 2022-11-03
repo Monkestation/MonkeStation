@@ -7,7 +7,7 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	custom_price = 15
-	materials = list(/datum/material/iron=100, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=100, /datum/material/glass=50)
 	usesound = 'sound/items/deconstruct.ogg'  //Monkstation edit end
 
 /obj/machinery/navbeacon

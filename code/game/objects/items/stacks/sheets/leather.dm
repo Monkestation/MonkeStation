@@ -15,9 +15,9 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	new/datum/stack_recipe("bloated human costume", /obj/item/clothing/suit/hooded/bloated_human, 5), \
 	))
 
-/obj/item/stack/sheet/animalhide/human/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.human_recipes
-	return ..()
+/obj/item/stack/sheet/animalhide/human/get_main_recipes()
+	. = ..()
+	. += GLOB.human_recipes
 
 /obj/item/stack/sheet/animalhide/generic
 	name = "skin"
@@ -51,17 +51,17 @@ GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	icon_state = "sheet-gondola"
 	item_state = "sheet-gondola"
 
-/obj/item/stack/sheet/animalhide/gondola/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.gondola_recipes
-	return ..()
+/obj/item/stack/sheet/animalhide/gondola/get_main_recipes()
+	. = ..()
+	. += GLOB.gondola_recipes
 
 GLOBAL_LIST_INIT(corgi_recipes, list ( \
 	new/datum/stack_recipe("corgi costume", /obj/item/clothing/suit/hooded/ian_costume, 3), \
 	))
 
-/obj/item/stack/sheet/animalhide/corgi/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.corgi_recipes
-	return ..()
+/obj/item/stack/sheet/animalhide/corgi/get_main_recipes()
+	. = ..()
+	. += GLOB.corgi_recipes
 
 /obj/item/stack/sheet/animalhide/cat
 	name = "cat hide"
@@ -82,9 +82,9 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/monkeysuit, 2), \
 	))
 
-/obj/item/stack/sheet/animalhide/monkey/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.monkey_recipes
-	return ..()
+/obj/item/stack/sheet/animalhide/monkey/get_main_recipes()
+	. = ..()
+	. += GLOB.monkey_recipes
 
 /obj/item/stack/sheet/animalhide/lizard
 	name = "lizard skin"
@@ -105,9 +105,9 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/xenos, 2), \
 	))
 
-/obj/item/stack/sheet/animalhide/xeno/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.xeno_recipes
-	return ..()
+/obj/item/stack/sheet/animalhide/xeno/get_main_recipes()
+	. = ..()
+	. += GLOB.xeno_recipes
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/sheet/xenochitin
@@ -173,9 +173,9 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("dice cup", /obj/item/storage/pill_bottle/dice_cup, 2), \
 ))
 
-/obj/item/stack/sheet/leather/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.leather_recipes
-	return ..()
+/obj/item/stack/sheet/leather/Initialize/get_main_recipes()
+	. = ..()
+	. += GLOB.leather_recipes
 
 /*
  * Sinew
@@ -193,9 +193,9 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 	new/datum/stack_recipe("sinew restraints", /obj/item/restraints/handcuffs/cable/sinew, 1), \
 ))
 
-/obj/item/stack/sheet/sinew/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.sinew_recipes
-	return ..()
+/obj/item/stack/sheet/sinew/get_main_recipes()
+	. = ..()
+	. += GLOB.sinew_recipes
 
 		/*
  * Plates
