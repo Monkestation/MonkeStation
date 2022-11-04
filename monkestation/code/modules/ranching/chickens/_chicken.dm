@@ -380,6 +380,8 @@
 		else
 			desc = "Huh it seems like nothing is coming out of this one, maybe it needed something else?"
 			failed_mutations = TRUE
+			animate(src, transform = matrix()) //stop animation
+
 	hatch(final_mutations, failed_mutations)
 
 /obj/item/food/egg/proc/hatch(list/possible_mutations, failed_mutations)
