@@ -338,6 +338,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	flags_1 = CONDUCT_1
 	force = 1
 	throwforce = 2
+	custom_materials = list(/datum/material/iron = 400)
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/list/sideslist = list("heads","tails")

@@ -259,7 +259,7 @@
 	return FALSE
 
 /obj/structure/table/greyscale
-	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
 /*
  * Glass tables

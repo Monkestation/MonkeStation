@@ -12,5 +12,6 @@
 #define MATERIAL_COLOR (1<<0)
 #define MATERIAL_ADD_PREFIX (1<<1)
 #define MATERIAL_NO_EFFECTS (1<<2)
+#define MATERIAL_AFFECT_STATISTICS (1<<3)
 /// Applies the material greyscale color to the atom's greyscale color.
-#define MATERIAL_GREYSCALE (1<<1)
+#define MATERIAL_GREYSCALE (1<<4)
