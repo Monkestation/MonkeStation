@@ -88,6 +88,8 @@
 	fire_delay = firedelay
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
+	if(!active_power_usage && !idle_power_usage && !use_power)
+		power_usage = 0
 	update_mode_power_usage(ACTIVE_POWER_USE, power_usage)
 
 /obj/machinery/power/emitter/examine(mob/user)

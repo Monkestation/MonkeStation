@@ -52,9 +52,6 @@
 /obj/machinery/power/emitter/energycannon/magical/emag_act(mob/user)
 	return
 
-/obj/machinery/power/emitter/energycannon/magical/RefreshParts()//monkestation edit, makes it correctly not require power
-	return ..()
-
 /obj/structure/table/abductor/wabbajack
 	name = "wabbajack altar"
 	desc = "Whether you're sleeping or waking, it's going to be quite chaotic."
