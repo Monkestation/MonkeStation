@@ -98,7 +98,7 @@
 	name = "\improper chicken"
 	desc = "Hopefully the eggs are good this season."
 	gender = FEMALE
-	health = 15
+
 	maxHealth = 15
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 
