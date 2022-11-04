@@ -434,3 +434,7 @@
 	chat_color = "#FFDC9B"
 	breed_name_male = "Turkey"
 	breed_name_female = "Turkey"
+
+/mob/living/simple_animal/chicken/hen/Initialize(mapload)
+	.=..()
+	gender = FEMALE

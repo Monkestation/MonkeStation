@@ -4417,7 +4417,7 @@
 /area/maintenance/port)
 "aky" = (
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/ranch)
 "akD" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Maintenance Hatch";
@@ -4570,84 +4570,64 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"alj" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/vacant_room/office)
 "alk" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/nestbox,
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "all" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "alm" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/structure/railing{
-	dir = 4
-	},
-/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "aln" = (
-/obj/structure/railing{
-	dir = 4
-	},
+/obj/structure/nestbox,
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "alo" = (
-/obj/item/kirbyplants/random,
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/open/floor/wood,
-/area/vacant_room/office)
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "alp" = (
 /obj/machinery/light_switch{
 	pixel_x = 26;
 	pixel_y = 26
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "alq" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/turf/open/floor/wood,
+/area/ranch)
 "alr" = (
-/obj/structure/table/wood,
-/obj/item/taperecorder,
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/carpet,
-/area/vacant_room/office)
-"als" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
+/turf/open/floor/wood,
+/area/ranch)
+"als" = (
 /obj/structure/sign/poster/official/report_crimes{
 	pixel_y = 32
 	},
-/turf/open/floor/carpet,
-/area/vacant_room/office)
+/obj/machinery/smartfridge,
+/turf/open/floor/wood,
+/area/ranch)
 "alt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -4955,28 +4935,35 @@
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_x = -32
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/mob/living/simple_animal/chicken/hen,
+/turf/open/floor/grass,
+/area/ranch)
 "ama" = (
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/obj/machinery/door/window/northleft{
+	dir = 4;
+	name = "Chicken Pen";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "amf" = (
 /obj/structure/table/wood,
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/turf/open/floor/wood,
+/area/ranch)
 "amg" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/vacant_room/office)
+/mob/living/simple_animal/chicken/hen,
+/turf/open/floor/grass,
+/area/ranch)
 "amh" = (
 /obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
-/obj/structure/frame/computer,
-/turf/open/floor/carpet,
-/area/vacant_room/office)
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/wood,
+/area/ranch)
 "amj" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -5347,48 +5334,52 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
-"ana" = (
-/mob/living/simple_animal/chicken,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
+/obj/structure/window/reinforced{
+	layer = 2.9
 	},
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "anb" = (
-/obj/structure/railing{
-	dir = 1
+/obj/structure/window/reinforced{
+	layer = 2.9
 	},
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "anc" = (
-/turf/open/floor/wood,
-/area/vacant_room/office)
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	layer = 2.9
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "and" = (
-/mob/living/simple_animal/cockroach,
-/turf/open/floor/wood,
-/area/vacant_room/office)
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "ane" = (
 /obj/structure/table/wood,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/obj/item/chicken_scanner,
+/turf/open/floor/wood,
+/area/ranch)
 "anf" = (
-/turf/open/floor/carpet,
-/area/vacant_room/office)
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/wood,
+/area/ranch)
 "ang" = (
 /obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
-/obj/structure/frame/computer,
-/turf/open/floor/carpet,
-/area/vacant_room/office)
+/turf/open/floor/wood,
+/area/ranch)
 "anh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -5765,17 +5756,12 @@
 	dir = 4;
 	pixel_x = -23
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/turf/open/floor/grass,
+/area/ranch)
 "aoa" = (
-/obj/structure/railing,
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
-/area/vacant_room/office)
-"aob" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aoc" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -5787,7 +5773,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aod" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5799,13 +5785,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aoe" = (
 /obj/machinery/light_switch{
 	pixel_x = 26;
 	pixel_y = -26
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -5816,13 +5801,12 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aof" = (
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "Office Maintenance";
-	req_access_txt = "32"
+	name = "Ranch Maintenance";
+	req_access_txt = "36"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5840,7 +5824,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/vacant_room/office)
+/area/ranch)
 "aog" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6163,26 +6147,20 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "apa" = (
-/obj/structure/railing{
-	dir = 8
+/obj/machinery/newscaster{
+	pixel_y = -32
 	},
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "apb" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "apc" = (
-/obj/structure/table/wood,
-/obj/item/camera_film{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/camera_film,
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "apd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -6465,52 +6443,52 @@
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "aqc" = (
 /obj/machinery/light/small,
 /obj/structure/sign/poster/official/work_for_a_future{
 	pixel_y = -32
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
-"aqd" = (
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
+"aqd" = (
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Chicken Pen";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "aqe" = (
 /obj/machinery/camera{
 	c_tag = "Vacant Office";
 	dir = 1
 	},
-/turf/open/floor/plasteel/grimy,
-/area/vacant_room/office)
-"aqf" = (
-/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aqg" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/white,
 /obj/machinery/power/apc/auto_name/south,
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aqh" = (
-/obj/structure/table/wood,
-/obj/item/camera,
 /obj/machinery/light/small,
 /obj/structure/sign/nanotrasen{
 	pixel_y = -32
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aqi" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "aqj" = (
 /obj/structure/closet/secure_closet/contraband/heads,
 /obj/machinery/airalarm{
@@ -60393,12 +60371,11 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ctR" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "ctU" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -101908,7 +101885,7 @@
 "hNI" = (
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/ranch)
 "hNS" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -105131,11 +105108,13 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "kXs" = (
-/obj/structure/railing{
-	dir = 6
+/obj/structure/window/reinforced{
+	dir = 4;
+	layer = 2.9
 	},
+/obj/structure/nestbox,
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "kZf" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -109585,12 +109564,8 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "pFh" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/nestbox,
 /turf/open/floor/grass,
-/area/vacant_room/office)
+/area/ranch)
 "pFv" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/cigarette/cigar/cohiba{
@@ -114192,7 +114167,7 @@
 "uKo" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/ranch)
 "uME" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -114639,17 +114614,15 @@
 /area/ai_monitored/turret_protected/ai)
 "vql" = (
 /obj/machinery/door/airlock{
-	name = "Auxiliary Office";
-	req_access_txt = "32"
+	name = "Ranch";
+	req_access_txt = "36"
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
-/area/vacant_room/office)
+/area/ranch)
 "vqo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -151345,12 +151318,12 @@ aaO
 hQK
 ajX
 aky
-ama
+aln
 alZ
 amZ
 anZ
-ama
-ama
+pFh
+pFh
 aky
 alg
 oqU
@@ -151603,11 +151576,11 @@ jjL
 xSF
 aky
 alk
-apa
-ana
 pFh
-ama
-aqb
+anb
+pFh
+pFh
+apa
 aky
 neh
 asR
@@ -151860,10 +151833,10 @@ hQK
 ajY
 hNI
 all
-aqd
+pFh
 anb
 aoa
-ama
+amg
 aqc
 aky
 oqU
@@ -152117,8 +152090,8 @@ jSa
 wLe
 aky
 alm
-aln
-alj
+pFh
+anb
 kXs
 ama
 aqb
@@ -152373,11 +152346,11 @@ ajf
 lSo
 jpG
 aky
-ama
-ama
-ama
-ama
-ama
+pFh
+pFh
+aqd
+apc
+anf
 aqe
 aky
 arE
@@ -152631,11 +152604,11 @@ hQK
 dsQ
 aky
 alo
-anc
+and
 anc
 ctR
-anc
-aqf
+apc
+apc
 aky
 oqU
 ary
@@ -152888,8 +152861,8 @@ hQK
 xSF
 vql
 alp
-anc
-and
+apc
+apc
 aoc
 apb
 aqg
@@ -153148,8 +153121,8 @@ alq
 amf
 ane
 aod
-aob
-aqf
+apc
+apc
 aky
 oqU
 arz
@@ -153402,10 +153375,10 @@ hQK
 xSF
 uKo
 alr
-amg
-anf
+apc
+apc
 aod
-anc
+apc
 aqh
 aky
 oqU

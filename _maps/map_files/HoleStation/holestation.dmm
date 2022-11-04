@@ -1994,10 +1994,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "aif" = (
-/obj/structure/closet/wardrobe/mixed,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/ranch)
 "aig" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance,
@@ -5467,6 +5466,9 @@
 "auP" = (
 /obj/structure/table,
 /obj/item/paper_bin,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/service)
 "auQ" = (
@@ -6141,15 +6143,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "axs" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/obj/machinery/smartfridge,
+/turf/open/floor/wood,
+/area/ranch)
 "axu" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/turf_decal/bot,
@@ -6344,15 +6343,12 @@
 /turf/open/openspace,
 /area/engine/engine_room)
 "ayi" = (
-/obj/structure/closet/firecloset/full,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/obj/structure/table/wood,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/turf/open/floor/wood,
+/area/ranch)
 "ayk" = (
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -7792,12 +7788,16 @@
 /turf/open/floor/wood,
 /area/chapel/main)
 "aEi" = (
-/obj/machinery/power/apc/auto_name/north,
+/obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable/yellow{
-	icon_state = "0-2"
+	icon_state = "0-8"
 	},
-/turf/open/floor/plasteel/techmaint,
-/area/hallway/secondary/service)
+/obj/structure/table/wood,
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/turf/open/floor/wood,
+/area/ranch)
 "aEj" = (
 /obj/machinery/firealarm/directional/south,
 /obj/structure/ladder,
@@ -8023,10 +8023,8 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai)
 "aFe" = (
-/obj/structure/closet/wardrobe/grey,
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/turf/open/floor/grass,
+/area/ranch)
 "aFf" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -13426,12 +13424,8 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/storage)
 "aYJ" = (
-/obj/machinery/firealarm/directional/north,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/hallway/secondary/service)
+/turf/closed/wall,
+/area/ranch)
 "aYL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/directional/south,
@@ -13976,11 +13970,12 @@
 /turf/open/floor/plasteel/ameridiner,
 /area/medical/sleeper)
 "buq" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/service)
@@ -14280,6 +14275,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/entry)
+"cnR" = (
+/obj/machinery/hydroponics/constructable,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/cable/yellow{
+	icon_state = "2-9"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "coC" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/turf_decal/stripes/line{
@@ -15624,11 +15627,11 @@
 /turf/open/floor/plating,
 /area/security/main)
 "fMn" = (
-/obj/effect/turf_decal/tile/neutral/tile_marquee,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/wood,
+/area/ranch)
 "fMq" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -15752,6 +15755,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"gbv" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/mob/living/simple_animal/chicken/hen,
+/turf/open/floor/grass,
+/area/ranch)
 "gcM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -15907,6 +15917,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gCB" = (
@@ -16312,6 +16323,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/plasteel/techmaint,
 /area/hallway/secondary/service)
 "hZz" = (
@@ -16709,6 +16721,12 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall,
 /area/engine/engine_room)
+"iYB" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "jcI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -17265,17 +17283,10 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/lounge)
 "knZ" = (
-/obj/effect/turf_decal/monke/siding/thinplating{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock{
-	name = "Service Hall";
-	req_one_access_txt = "22;25;26;28;35;37;38;46"
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/hallway/secondary/service)
+/turf/open/floor/wood,
+/area/ranch)
 "kre" = (
 /obj/machinery/firealarm/directional/east,
 /obj/structure/railing/corner{
@@ -17374,6 +17385,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kKZ" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-10"
+	},
+/turf/closed/wall,
+/area/ranch)
 "kLf" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/neutral{
@@ -17774,10 +17791,8 @@
 /turf/closed/wall,
 /area/quartermaster/exploration_dock)
 "lYE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/turf/open/floor/wood,
+/area/ranch)
 "mbN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -17985,6 +18000,9 @@
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-5"
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -19026,9 +19044,9 @@
 /obj/effect/turf_decal/tile/neutral/tile_marquee,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/item/beacon,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ranch)
 "pUO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -19323,6 +19341,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/closet/emcloset/anchored,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "rao" = (
@@ -20032,6 +20051,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/openspace,
 /area/maintenance/central/secondary)
+"sSS" = (
+/obj/machinery/airalarm/directional/east,
+/obj/structure/nestbox,
+/turf/open/floor/grass,
+/area/ranch)
 "sTg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -20057,6 +20081,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable/yellow{
+	icon_state = "6-8"
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "sWQ" = (
@@ -20561,6 +20588,12 @@
 /obj/machinery/advanced_airlock_controller/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
+"uaw" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/closed/wall,
+/area/ranch)
 "ucL" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -20568,6 +20601,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"ucU" = (
+/obj/effect/landmark/start/rancher,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ranch)
 "ueb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -20899,6 +20939,10 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/central)
+"vbO" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/ranch)
 "vcv" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L13"
@@ -21129,6 +21173,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"vJI" = (
+/obj/machinery/door/window/southleft{
+	dir = 8;
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "vMI" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -21570,8 +21621,12 @@
 "wWu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock{
+	name = "Service Hall";
+	req_access_txt = "36"
+	},
 /turf/open/floor/plasteel/techmaint,
-/area/hallway/secondary/service)
+/area/ranch)
 "wXs" = (
 /obj/machinery/atmospherics/pipe/multiz{
 	dir = 1
@@ -22144,6 +22199,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/item/beacon,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ykn" = (
@@ -52864,7 +52920,7 @@ arc
 fdI
 auy
 aQL
-ayx
+cnR
 mXp
 acX
 aoU
@@ -53117,11 +53173,11 @@ aSd
 jwy
 anY
 aoU
-aoU
-aoU
-aoU
-aoU
-aoU
+aYJ
+aYJ
+aYJ
+uaw
+kKZ
 aBA
 aYr
 aoU
@@ -53374,11 +53430,11 @@ abD
 oPB
 aPu
 utc
-axb
+vbO
 axs
 ayi
-aoU
-aoU
+aEi
+aYJ
 aBM
 aoU
 aoU
@@ -53631,10 +53687,10 @@ alZ
 vQV
 agk
 qSM
-aCj
-aCj
-aCj
-ark
+vbO
+lYE
+lYE
+ucU
 aYJ
 hXM
 auP
@@ -53890,7 +53946,7 @@ dew
 yjt
 pQy
 fMn
-lYE
+knZ
 knZ
 wWu
 rAU
@@ -54145,11 +54201,11 @@ alZ
 kPo
 aRi
 gyn
-aCj
-aCj
-aCj
-ark
-aEi
+vbO
+vJI
+iYB
+gbv
+aYJ
 buq
 ayF
 aFa
@@ -54402,11 +54458,11 @@ abD
 bcu
 aBS
 wEa
-axb
+vbO
 aFe
 aif
-apy
-apy
+sSS
+aYJ
 aDq
 apy
 apy
@@ -54659,11 +54715,11 @@ abD
 vcv
 aBa
 apy
-apy
-apy
-apy
-apy
-apy
+aYJ
+aYJ
+aYJ
+aYJ
+aYJ
 aDr
 aBo
 apy
