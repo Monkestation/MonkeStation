@@ -247,6 +247,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/wood
 	novariants = TRUE
 	grind_results = list(/datum/reagent/carbon = 20)
+	walltype = /turf/closed/wall/mineral/wood
 
 /obj/item/stack/sheet/mineral/wood/get_main_recipes()
 	. = ..()
@@ -412,7 +413,6 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	icon_state = "sheet-bamboo"
 	item_state = "sheet-bamboo"
 	icon = 'icons/obj/stack_objects.dmi'
-	sheettype = "bamboo"
 	force = 10
 	throwforce = 10
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
@@ -778,3 +778,14 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	amount = 20
 /obj/item/stack/sheet/paperframes/fifty
 	amount = 50
+
+/obj/item/stack/sheet/meat
+	name = "meat sheet"
+	desc = "Something's bloody meat compressed into a nice solid sheet"
+	singular_name = "meat sheet"
+	icon_state = "sheet-meat"
+	material_flags = MATERIAL_COLOR
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT)
+	merge_type = /obj/item/stack/sheet/meat
+	material_type = /datum/material/meat
+	material_modifier = 1 //None of that wussy stuff

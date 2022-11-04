@@ -534,6 +534,7 @@
 /obj/item/food/meat
 	var/subjectname = ""
 	var/subjectjob = null
+	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT * 4)
 
 /obj/item/food/meat/slab
 	name = "meat"

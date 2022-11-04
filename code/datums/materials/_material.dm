@@ -21,12 +21,26 @@ Simple datum which is instanced once per type and is used for every object of sa
 	var/list/categories = list()
 	///The type of sheet this material creates. This should be replaced as soon as possible by greyscale sheets.
 	var/sheet_type
-	///The type of coin this material spawns. This should be replaced as soon as possible by greyscale coins.
-	var/coin_type
+	///This is the amount of value per 1 unit of the material
+	var/value_per_unit = 0
 	///This is a modifier for force, and resembles the strength of the material
 	var/strength_modifier = 1
 	///This is a modifier for integrity, and resembles the strength of the material
 	var/integrity_modifier = 1
+	///Can be used to override the sound items make, lets add some SLOSHing.
+	var/item_sound_override
+	///Can be used to override the stepsound a turf makes. MORE SLOOOSH
+	var/turf_sound_override
+	///what texture icon state to overlay
+	var/texture_layer_icon_state
+	///a cached filter for the texture icon
+	var/cached_texture_filter
+
+/datum/material/New()
+	. = ..()
+	if(texture_layer_icon_state)
+		var/texture_icon = icon('icons/materials/composite.dmi', texture_layer_icon_state)
+		cached_texture_filter = filter(type="layer", icon=texture_icon, blend_mode = BLEND_INSET_OVERLAY)
 
 ///This proc is called when the material is added to an object.
 /datum/material/proc/on_applied(atom/source, amount, material_flags)
@@ -35,6 +49,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 			source.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		if(alpha)
 			source.alpha = alpha
+		if(texture_layer_icon_state)
+			ADD_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
+			source.filters += cached_texture_filter
 
 	if(alpha < 255)
 		source.opacity = FALSE
@@ -45,6 +62,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 
 	if(istype(source, /obj)) //objs
 		on_applied_obj(source, amount, material_flags)
+
+	if(istype(source, /turf)) //turfs
+		on_applied_turf(source, amount, material_flags)
 
 	if(istype(source, /turf)) //turfs
 		on_applied_turf(source, amount, material_flags)
@@ -71,10 +91,26 @@ Simple datum which is instanced once per type and is used for every object of sa
 			new_inhand_left = lefthand_path,
 			new_inhand_right = righthand_path
 		)
+	if(!item_sound_override)
+		return
+	item.hitsound = item_sound_override
+	item.usesound = item_sound_override
+	item.mob_throw_hit_sound = item_sound_override
+	item.equip_sound = item_sound_override
+	item.pickup_sound = item_sound_override
+	item.drop_sound = item_sound_override
 
 /datum/material/proc/on_applied_turf(turf/T, amount, material_flags)
 	if(alpha < 255)
 		T.AddElement(/datum/element/turf_z_transparency, TRUE)
+	if(isopenturf(T))
+		if(!turf_sound_override)
+			return
+		var/turf/open/O = T
+		O.footstep = turf_sound_override
+		O.barefootstep = turf_sound_override
+		O.clawfootstep = turf_sound_override
+		O.heavyfootstep = turf_sound_override
 	return
 
 
@@ -87,6 +123,9 @@ Simple datum which is instanced once per type and is used for every object of sa
 	if(material_flags & MATERIAL_COLOR) //Prevent changing things with pre-set colors, to keep colored toolboxes their looks for example
 		if(color)
 			source.remove_atom_colour(FIXED_COLOUR_PRIORITY, color)
+		if(texture_layer_icon_state)
+			source.filters -= cached_texture_filter
+			REMOVE_KEEP_TOGETHER(source, MATERIAL_SOURCE(src))
 		source.alpha = initial(source.alpha)
 
 	if(material_flags & MATERIAL_GREYSCALE)
@@ -98,8 +137,11 @@ Simple datum which is instanced once per type and is used for every object of sa
 	if(istype(source, /turf)) //turfs
 		on_removed_turf(source, material_flags)
 
+	if(istype(source, /turf)) //turfs
+		on_removed_turf(source, material_flags)
+
 ///This proc is called when the material is removed from an object specifically.
-/datum/material/proc/on_removed_obj(var/obj/o, amount, material_flags)
+/datum/material/proc/on_removed_obj(obj/o, amount, material_flags)
 	if(material_flags & MATERIAL_AFFECT_STATISTICS)
 		var/new_max_integrity = initial(o.max_integrity)
 		o.modify_max_integrity(new_max_integrity)

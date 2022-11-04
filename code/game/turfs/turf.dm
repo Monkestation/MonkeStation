@@ -120,6 +120,15 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if (opacity)
 		has_opaque_atom = TRUE
 
+	if(custom_materials)
+
+		var/temp_list = list()
+		for(var/i in custom_materials)
+			temp_list[SSmaterials.GetMaterialRef(i)] = custom_materials[i] //Get the proper instanced version
+
+		custom_materials = null //Null the list to prepare for applying the materials properly
+		set_custom_materials(temp_list)
+
 	ComponentInitialize()
 	if(isopenturf(src))
 		var/turf/open/O = src

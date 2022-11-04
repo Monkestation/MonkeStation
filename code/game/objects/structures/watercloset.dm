@@ -9,7 +9,7 @@
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
-	var/buildstacktype = /obj/item/stack/sheet/metal //they're metal now, shut up
+	var/buildstacktype = /obj/item/stack/sheet/iron //they're metal now, shut up
 	var/buildstackamount = 1
 
 /obj/structure/toilet/Initialize(mapload)
@@ -72,6 +72,7 @@
 
 
 /obj/structure/toilet/update_icon_state()
+	.=..()
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/deconstruct()
@@ -234,7 +235,7 @@
 	anchored = TRUE
 	var/busy = FALSE 	//Something's being washed at the moment
 	var/dispensedreagent = /datum/reagent/water // for whenever plumbing happens
-	var/buildstacktype = /obj/item/stack/sheet/metal
+	var/buildstacktype = /obj/item/stack/sheet/iron
 	var/buildstackamount = 1
 
 /obj/structure/sinkframe
