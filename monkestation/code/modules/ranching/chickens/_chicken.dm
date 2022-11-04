@@ -3,7 +3,7 @@
 	desc = "Adorable! They make such a racket though."
 	icon_state = "chick"
 	icon_living = "chick"
-	icon_dead = "chick_dead"
+	icon_dead = "dead_state"
 	icon_gib = "chick_gib"
 	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -105,7 +105,7 @@
 	icon = 'monkestation/icons/mob/ranching/chickens.dmi'
 	icon_state = "chicken_white"
 	icon_living = "chicken_white"
-	icon_dead = "chicken_white_dead"
+	icon_dead = "dead_state"
 	head_icon = 'icons/mob/pets_held_large.dmi'
 	held_state = "chicken_white"
 
