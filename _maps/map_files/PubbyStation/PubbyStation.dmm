@@ -14499,14 +14499,12 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aKJ" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/door/window/westright{
+	dir = 4;
+	name = "Chicken Pen";
+	req_access_txt = "36"
 	},
 /turf/open/floor/grass,
-/area/ranch)
-"aKK" = (
-/obj/machinery/light,
-/turf/open/floor/wood,
 /area/ranch)
 "aKL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -14536,17 +14534,12 @@
 /turf/open/floor/plasteel,
 /area/ranch)
 "aKP" = (
-/obj/structure/table/wood,
-/obj/item/clothing/head/chicken_head_retro,
-/obj/item/clothing/head/chicken_head_retro,
-/obj/item/clothing/head/chicken_head_retro,
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/ranch)
 "aKQ" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/grass,
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/wood,
 /area/ranch)
 "aKR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -14718,13 +14711,21 @@
 /turf/open/floor/grass,
 /area/ranch)
 "aLz" = (
-/obj/machinery/door/window/westright{
-	dir = 4;
-	name = "Chicken Pen";
-	req_access_txt = "36"
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/item/trash/cheesie,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "aLA" = (
 /obj/machinery/smartfridge,
 /turf/open/floor/wood,
@@ -15258,6 +15259,38 @@
 /turf/open/floor/grass,
 /area/ranch)
 "aMX" = (
+/turf/open/floor/grass,
+/area/ranch)
+"aMY" = (
+/turf/open/floor/wood,
+/area/ranch)
+"aMZ" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/obj/item/clothing/head/chicken_head_retro,
+/turf/open/floor/wood,
+/area/ranch)
+"aNa" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/wood,
+/area/ranch)
+"aNb" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ranch)
+"aNc" = (
+/obj/machinery/door/window/westright{
+	name = "Chicken Pen";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
+"aNd" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -15272,29 +15305,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
-"aMY" = (
-/turf/open/floor/wood,
-/area/ranch)
-"aMZ" = (
-/obj/effect/landmark/start/rancher,
-/turf/open/floor/wood,
-/area/ranch)
-"aNa" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/wood,
-/area/ranch)
-"aNc" = (
-/obj/machinery/door/window/westright{
-	name = "Chicken Pen";
-	req_access_txt = "36"
-	},
-/turf/open/floor/grass,
-/area/ranch)
-"aNd" = (
-/turf/open/floor/grass,
-/area/ranch)
 "aNf" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating{
@@ -15685,14 +15695,6 @@
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/ranch)
-"aOv" = (
-/obj/machinery/power/apc{
-	name = "Cafeteria APC";
-	pixel_y = -24
-	},
-/obj/structure/cable/yellow,
-/turf/open/floor/wood,
-/area/ranch)
 "aOw" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating{
@@ -16082,11 +16084,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "aPx" = (
-/obj/structure/table/wood,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/turf/open/floor/wood,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/grass,
 /area/ranch)
 "aPy" = (
 /turf/closed/wall,
@@ -16097,8 +16098,11 @@
 	},
 /area/maintenance/department/crew_quarters/bar)
 "aPA" = (
-/obj/item/trash/cheesie,
-/turf/closed/wall,
+/obj/structure/table/wood,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/turf/open/floor/wood,
 /area/ranch)
 "aPB" = (
 /obj/structure/girder,
@@ -16526,6 +16530,14 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/department/crew_quarters/bar)
+"aQK" = (
+/obj/machinery/power/apc{
+	name = "Cafeteria APC";
+	pixel_y = -24
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/wood,
+/area/ranch)
 "aQL" = (
 /obj/structure/grille/broken,
 /obj/structure/cable/yellow{
@@ -86902,9 +86914,9 @@ bdo
 aIO
 wzo
 aKM
-aNd
-aNd
-aNd
+aMX
+aMX
+aMX
 aPy
 aRJ
 aRK
@@ -87159,9 +87171,9 @@ aHJ
 nfk
 ljW
 aPy
+aPx
 aKJ
-aLz
-aKJ
+aPx
 aPy
 coW
 aRL
@@ -87420,7 +87432,7 @@ aLA
 aMY
 aMY
 aNm
-aMX
+aNd
 aRL
 aUS
 aTQ
@@ -87674,8 +87686,8 @@ aIO
 wzo
 aKM
 aLB
-aMZ
-aKK
+aKQ
+aKP
 aPy
 aQH
 aRM
@@ -87932,7 +87944,7 @@ tfj
 aKO
 aLC
 aNa
-aOv
+aQK
 aPy
 aQI
 aRL
@@ -88189,7 +88201,7 @@ mYX
 aPy
 aLD
 aMY
-aKP
+aMZ
 aPy
 aQJ
 aRL
@@ -88445,8 +88457,8 @@ aIO
 wzo
 aPy
 aMY
-aMZ
-aPx
+aKQ
+aPA
 aPy
 aQN
 aRL
@@ -88703,7 +88715,7 @@ aJM
 aPy
 aLE
 aNc
-aKQ
+aNb
 aPy
 aQL
 aRL
@@ -88959,7 +88971,7 @@ riM
 sng
 aKR
 aLF
-aNd
+aMX
 wBg
 aPy
 aQM
@@ -89218,8 +89230,8 @@ aPy
 aLG
 aMV
 aOt
-aPA
-aQN
+aPy
+aLz
 aRN
 aRN
 aRN
