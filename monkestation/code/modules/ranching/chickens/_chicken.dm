@@ -48,7 +48,6 @@
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
-	assign_chick_icon()
 
 /mob/living/simple_animal/chick/proc/assign_chick_icon()
 	if(!grown_type) // do we have a grown type?
@@ -360,8 +359,10 @@
 				layed_egg.production_type = production_type
 
 			if(eggs_fertile)
-				if(prob(25) || layed_egg.possible_mutations.len) //25
+				if(prob(40) || layed_egg.possible_mutations.len) //25
 					START_PROCESSING(SSobj, layed_egg)
+					flop_animation(layed_egg)
+					layed_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
 			ready_to_lay = FALSE
 			stop_automated_movement = 0
 
@@ -402,6 +403,7 @@
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/stone)
 		birthed.production_type = src.production_type
 
+	birthed.assign_chick_icon()
 	visible_message("[src] hatches with a quiet cracking sound.")
 	qdel(src)
 
