@@ -15,7 +15,7 @@
 	else if(ishuman(accessor))
 		var/mob/living/carbon/human/H = accessor
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_held_item()) || src.check_access(H.wear_id))
+		if(check_access(H.get_active_held_item()) && !istype(H.get_active_held_item(), /obj/item/card/id/fake_card) || src.check_access(H.wear_id) && !istype(H.wear_id, /obj/item/card/id/fake_card))
 			return TRUE
 	else if(ismonkey(accessor) || isalienadult(accessor))
 		var/mob/living/carbon/george = accessor
