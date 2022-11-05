@@ -5,7 +5,7 @@
 	desc = "Common iron ore often found in sedimentary and igneous layers of the crust."
 	color = "#878687"
 	greyscale_colors = "#878687"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/iron
 	value_per_unit = 0.0025
 
@@ -21,7 +21,7 @@
 	color = "#dae6f0"
 	greyscale_colors = "#dae6f0"
 	alpha = 150
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	integrity_modifier = 0.1
 	sheet_type = /obj/item/stack/sheet/glass
 	value_per_unit = 0.0025
@@ -37,7 +37,7 @@
 	desc = "Silver"
 	color = "#bdbebf"
 	greyscale_colors = "#bdbebf"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	value_per_unit = 0.025
 
@@ -53,7 +53,7 @@
 	color = "#f0972b"
 	greyscale_colors = "#f0972b"
 	strength_modifier = 1.2
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	value_per_unit = 0.0625
 
@@ -69,7 +69,7 @@
 	color = "#22c2d4"
 	greyscale_colors = "#22c2d4"
 	alpha = 150
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	value_per_unit = 0.25
 
@@ -84,7 +84,7 @@
 	desc = "Uranium"
 	color = "#1fb83b"
 	greyscale_colors = "#1fb83b"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	value_per_unit = 0.05
 
@@ -97,7 +97,7 @@
 	. = ..()
 	source.AddComponent(/datum/component/radioactive, amount / 10, source, 0) //half-life of 0 because we keep on going.
 
-/datum/material/uranium/on_removed(atom/source, material_flags)
+/datum/material/uranium/on_removed(atom/source, amount,material_flags)
 	. = ..()
 	qdel(source.GetComponent(/datum/component/radioactive))
 
@@ -109,7 +109,7 @@
 	desc = "Isn't plasma a state of matter? Oh whatever."
 	color = "#c716b8"
 	greyscale_colors = "#c716b8"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	value_per_unit = 0.1
 
@@ -124,7 +124,7 @@
 		source.AddElement(/datum/element/firestacker, amount=1)
 		source.AddComponent(/datum/component/explodable, 0, 0, amount / 1000, amount / 500)
 
-/datum/material/plasma/on_removed(atom/source, material_flags)
+/datum/material/plasma/on_removed(atom/source, amount, material_flags)
 	. = ..()
 	source.RemoveElement(/datum/element/firestacker, amount=1)
 	qdel(source.GetComponent(/datum/component/explodable))
@@ -152,7 +152,7 @@
 	desc = "Material with hilarious properties"
 	color = "#fff263"
 	greyscale_colors = "#fff263"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
 	value_per_unit = 0.0125
 
@@ -180,7 +180,7 @@
 	color = "#b3c0c7"
 	greyscale_colors = "#b3c0c7"
 	strength_modifier = 1.3
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	value_per_unit = 0.0625
 
@@ -195,6 +195,7 @@
 	desc = "plastic"
 	color = "#caccd9"
 	greyscale_colors = "#caccd9"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	strength_modifier = 0.85
 	sheet_type = /obj/item/stack/sheet/plastic
 	value_per_unit = 0.0125
@@ -218,7 +219,7 @@
 	desc = "Copper is a soft, malleable, and ductile metal with very high thermal and electrical conductivity."
 	color = "#d95802"
 	greyscale_colors = "#d95802"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/copper
 	value_per_unit = 0.025
 
@@ -229,7 +230,7 @@
 	desc = "A powerful material made out of magic, I mean science!"
 	color = "#6d7e8e"
 	strength_modifier = 1.5
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/adamantine
 	value_per_unit = 0.25
 
@@ -324,7 +325,7 @@
 		paper.resistance_flags |= FLAMMABLE
 		paper.obj_flags |= UNIQUE_RENAME
 
-/datum/material/paper/on_removed_obj(obj/source, material_flags)
+/datum/material/paper/on_removed_obj(obj/source, amount, material_flags)
 	if(material_flags & MATERIAL_AFFECT_STATISTICS)
 		var/obj/paper = source
 		paper.resistance_flags &= ~FLAMMABLE
@@ -346,7 +347,7 @@
 		cardboard.resistance_flags |= FLAMMABLE
 		cardboard.obj_flags |= UNIQUE_RENAME
 
-/datum/material/cardboard/on_removed_obj(obj/source, material_flags)
+/datum/material/cardboard/on_removed_obj(obj/source, amount, material_flags)
 	if(material_flags & MATERIAL_AFFECT_STATISTICS)
 		var/obj/cardboard = source
 		cardboard.resistance_flags &= ~FLAMMABLE

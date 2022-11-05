@@ -508,7 +508,9 @@ GLOBAL_LIST_INIT(adamantine_recipes, list(
 	item_state = "sheet-abductor"
 	singular_name = "alien alloy sheet"
 	sheettype = "abductor"
+	custom_materials = list(/datum/material/alloy/alien=MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/mineral/abductor
+	material_type = /datum/material/alloy/alien
 
 GLOBAL_LIST_INIT(abductor_recipes, list ( \
 	new/datum/stack_recipe("alien bed", /obj/structure/bed/abductor, 2, one_per_turf = 1, on_floor = 1), \

@@ -90,7 +90,8 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-pglass"
 	item_state = "sheet-pglass"
-	custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/alloy/plasmaglass
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/plasmaglass
@@ -190,7 +191,7 @@ GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-prglass"
 	item_state = "sheet-prglass"
-	custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5,)
+	custom_materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT * 0.5)
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	material_flags = MATERIAL_NO_EFFECTS
@@ -213,7 +214,8 @@ GLOBAL_LIST_INIT(titaniumglass_recipes, list(
 	singular_name = "titanium glass sheet"
 	icon_state = "sheet-titaniumglass"
 	item_state = "sheet-titaniumglass"
-	custom_materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/alloy/titaniumglass=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/alloy/titaniumglass
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	resistance_flags = ACID_PROOF
 	merge_type = /obj/item/stack/sheet/titaniumglass
@@ -232,7 +234,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	singular_name = "plastitanium glass sheet"
 	icon_state = "sheet-plastitaniumglass"
 	item_state = "sheet-plastitaniumglass"
-	custom_materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/alloy/plastitaniumglass=MINERAL_MATERIAL_AMOUNT)
+	material_type = /datum/material/alloy/plastitaniumglass
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100, "stamina" = 0)
 	material_flags = MATERIAL_NO_EFFECTS
 	resistance_flags = ACID_PROOF
@@ -347,5 +350,5 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	force = 6
 	throwforce = 11
 	icon_state = "plasmalarge"
-	custom_materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT * 0.5, /datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"

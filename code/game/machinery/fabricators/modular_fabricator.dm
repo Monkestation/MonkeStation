@@ -67,9 +67,9 @@
 
 /obj/machinery/modular_fabricator/Initialize(mapload)
 	if(remote_materials)
-		AddComponent(/datum/component/remote_materials, "modfab", mapload, TRUE, auto_link)
+		AddComponent(/datum/component/remote_materials, "modfab", mapload, TRUE, auto_link, breakdown_flags=BREAKDOWN_FLAGS_LATHE)
 	else
-		AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 0, TRUE, null, null, CALLBACK(src, .proc/AfterMaterialInsert))
+		AddComponent(/datum/component/material_container, list(/datum/material/iron, /datum/material/glass, /datum/material/copper, /datum/material/gold, /datum/material/gold, /datum/material/silver, /datum/material/diamond, /datum/material/uranium, /datum/material/plasma, /datum/material/bluespace, /datum/material/bananium, /datum/material/titanium), 0, TRUE, null, null, _after_insert = CALLBACK(src, .proc/AfterMaterialInsert), _breakdown_flags=BREAKDOWN_FLAGS_LATHE)
 	. = ..()
 	stored_research = new stored_research_type
 
@@ -364,7 +364,7 @@
 	materials.retrieve_all()
 
 /obj/machinery/modular_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
-	if(ispath(item_inserted, /obj/item/stack/ore/bluespace_crystal))
+	if(istype(item_inserted, /obj/item/stack/ore/bluespace_crystal))
 		use_power(MINERAL_MATERIAL_AMOUNT / 10)
 	else
 		use_power(min(1000, amount_inserted / 100))
