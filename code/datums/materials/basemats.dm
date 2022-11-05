@@ -229,6 +229,7 @@
 	id = "adamantine"
 	desc = "A powerful material made out of magic, I mean science!"
 	color = "#6d7e8e"
+	greyscale_colors = "#6d7e8e"
 	strength_modifier = 1.5
 	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/adamantine
@@ -244,7 +245,8 @@
 	id = "sand"
 	desc = "You know, it's amazing just how structurally sound sand can be."
 	color = "#EDC9AF"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#EDC9AF"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/sandblock
 	value_per_unit = 0.001
 	strength_modifier = 0.5
@@ -262,7 +264,8 @@
 	id = "sandstone"
 	desc = "Bialtaakid 'ant taerif ma hdha."
 	color = "#B77D31"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#B77D31"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/sandstone
 	value_per_unit = 0.0025
 	turf_sound_override = FOOTSTEP_WOOD
@@ -273,7 +276,8 @@
 	id = "snow"
 	desc = "There's no business like snow business."
 	color = "#FFFFFF"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#FFFFFF"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/snow
 	value_per_unit = 0.0025
 	turf_sound_override = FOOTSTEP_SAND
@@ -288,7 +292,8 @@
 	id = "runed metal"
 	desc = "Mir'ntrath barhah Nar'sie."
 	color = "#3C3434"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#3C3434"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/runed_metal
 	value_per_unit = 0.75
 	texture_layer_icon_state = "runed"
@@ -303,7 +308,8 @@
 	id = "bronze"
 	desc = "Clock Cult? Never heard of it."
 	color = "#92661A"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#92661A"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/tile/bronze
 	value_per_unit = 0.025
 
@@ -312,7 +318,8 @@
 	id = "paper"
 	desc = "Ten thousand folds of pure starchy power."
 	color = "#E5DCD5"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#E5DCD5"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/paperframes
 	value_per_unit = 0.0025
 	turf_sound_override = FOOTSTEP_SAND
@@ -336,7 +343,8 @@
 	id = "cardboard"
 	desc = "They say cardboard is used by hobos to make incredible things."
 	color = "#5F625C"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#5F625C"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/cardboard
 	value_per_unit = 0.003
 
@@ -358,7 +366,8 @@
 	id = "bone"
 	desc = "Man, building with this will make you the coolest caveman on the block."
 	color = "#e3dac9"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#e3dac9"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/bone
 	value_per_unit = 0.05
 
@@ -367,7 +376,8 @@
 	id = "bamboo"
 	desc = "If it's good enough for pandas, it's good enough for you."
 	color = "#339933"
-	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	greyscale_colors = "#339933"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bamboo
 	value_per_unit = 0.0025
 	turf_sound_override = FOOTSTEP_WOOD
