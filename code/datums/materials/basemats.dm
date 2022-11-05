@@ -185,3 +185,125 @@
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/adamantine
 	value_per_unit = 0.25
+
+//I don't like sand. It's coarse, and rough, and irritating, and it gets everywhere.
+/datum/material/sand
+	name = "sand"
+	id = "sand"
+	desc = "You know, it's amazing just how structurally sound sand can be."
+	color = "#EDC9AF"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/sandblock
+	value_per_unit = 0.001
+	strength_modifier = 0.5
+	integrity_modifier = 0.1
+	turf_sound_override = FOOTSTEP_SAND
+	texture_layer_icon_state = "sand"
+
+//And now for our lavaland dwelling friends, sand, but in stone form! Truly revolutionary.
+/datum/material/sandstone
+	name = "sandstone"
+	id = "sandstone"
+	desc = "Bialtaakid 'ant taerif ma hdha."
+	color = "#B77D31"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/sandstone
+	value_per_unit = 0.0025
+	turf_sound_override = FOOTSTEP_WOOD
+	texture_layer_icon_state = "brick"
+
+/datum/material/snow
+	name = "snow"
+	id = "snow"
+	desc = "There's no business like snow business."
+	color = "#FFFFFF"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/snow
+	value_per_unit = 0.0025
+	turf_sound_override = FOOTSTEP_SAND
+	texture_layer_icon_state = "sand"
+
+/datum/material/runedmetal
+	name = "runed metal"
+	id = "runed metal"
+	desc = "Mir'ntrath barhah Nar'sie."
+	color = "#3C3434"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/runed_metal
+	value_per_unit = 0.75
+	texture_layer_icon_state = "runed"
+
+/datum/material/bronze
+	name = "bronze"
+	id = "bronze"
+	desc = "Clock Cult? Never heard of it."
+	color = "#92661A"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/tile/bronze
+	value_per_unit = 0.025
+
+/datum/material/paper
+	name = "paper"
+	id = "paper"
+	desc = "Ten thousand folds of pure starchy power."
+	color = "#E5DCD5"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/paperframes
+	value_per_unit = 0.0025
+	turf_sound_override = FOOTSTEP_SAND
+	texture_layer_icon_state = "paper"
+
+/datum/material/paper/on_applied_obj(obj/source, amount, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/paper = source
+		paper.resistance_flags |= FLAMMABLE
+		paper.obj_flags |= UNIQUE_RENAME
+
+/datum/material/paper/on_removed_obj(obj/source, material_flags)
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/paper = source
+		paper.resistance_flags &= ~FLAMMABLE
+	return ..()
+
+/datum/material/cardboard
+	name = "cardboard"
+	id = "cardboard"
+	desc = "They say cardboard is used by hobos to make incredible things."
+	color = "#5F625C"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/cardboard
+	value_per_unit = 0.003
+
+/datum/material/cardboard/on_applied_obj(obj/source, amount, material_flags)
+	. = ..()
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/cardboard = source
+		cardboard.resistance_flags |= FLAMMABLE
+		cardboard.obj_flags |= UNIQUE_RENAME
+
+/datum/material/cardboard/on_removed_obj(obj/source, material_flags)
+	if(material_flags & MATERIAL_AFFECT_STATISTICS)
+		var/obj/cardboard = source
+		cardboard.resistance_flags &= ~FLAMMABLE
+	return ..()
+
+/datum/material/bone
+	name = "bone"
+	id = "bone"
+	desc = "Man, building with this will make you the coolest caveman on the block."
+	color = "#e3dac9"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/bone
+	value_per_unit = 0.05
+
+/datum/material/bamboo
+	name = "bamboo"
+	id = "bamboo"
+	desc = "If it's good enough for pandas, it's good enough for you."
+	color = "#339933"
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/bamboo
+	value_per_unit = 0.0025
+	turf_sound_override = FOOTSTEP_WOOD
+	texture_layer_icon_state = "bamboo"

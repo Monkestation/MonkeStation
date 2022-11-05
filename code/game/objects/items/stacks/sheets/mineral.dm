@@ -44,10 +44,11 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	item_state = "sheet-sandstone"
 	throw_speed = 3
 	throw_range = 5
-	custom_materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/sandstone=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "sandstone"
 	merge_type = /obj/item/stack/sheet/mineral/sandstone
 	walltype = /turf/closed/wall/mineral/sandstone
+	material_type = /datum/material/sandstone
 
 /obj/item/stack/sheet/mineral/sandstone/get_main_recipes()
 	. = ..()
@@ -445,11 +446,13 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	icon_state = "sheet-snow"
 	item_state = "sheet-snow"
 	singular_name = "snow block"
+	custom_materials = list(/datum/material/snow = MINERAL_MATERIAL_AMOUNT)
 	force = 1
 	throwforce = 2
 	grind_results = list(/datum/reagent/consumable/ice = 20)
 	merge_type = /obj/item/stack/sheet/mineral/snow
 	walltype = /turf/closed/wall/mineral/snow
+	material_type = /datum/material/snow
 
 GLOBAL_LIST_INIT(snow_recipes, list ( \
 	new/datum/stack_recipe("Snow wall", /turf/closed/wall/mineral/snow, 5, one_per_turf = 1, on_floor = 1), \
