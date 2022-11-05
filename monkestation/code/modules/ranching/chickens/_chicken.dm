@@ -49,11 +49,11 @@
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
 
-/mob/living/simple_animal/chick/proc/assign_chick_icon()
-	if(!grown_type) // do we have a grown type?
+/mob/living/simple_animal/chick/proc/assign_chick_icon(mob/living/simple_animal/chicken/chicken_type)
+	if(!chicken_type) // do we have a grown type?
 		return
 
-	var/mob/living/simple_animal/chicken/adult_form = grown_type
+	var/mob/living/simple_animal/chicken/adult_form = chicken_type.type
 	icon_state = "chick_[adult_form.icon_suffix]"
 	held_state = "chick_[adult_form.icon_suffix]"
 	icon_living = "chick_[adult_form.icon_suffix]"
@@ -405,7 +405,7 @@
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/stone)
 		birthed.production_type = src.production_type
 
-	birthed.assign_chick_icon()
+		birthed.assign_chick_icon(layer_hen_type.chicken_path)
 	visible_message("[src] hatches with a quiet cracking sound.")
 	qdel(src)
 

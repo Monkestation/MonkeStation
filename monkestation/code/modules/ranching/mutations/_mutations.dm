@@ -109,9 +109,9 @@
 /obj/item/food/egg/proc/check_turfs(datum/mutation/ranching/chicken/supplier)
 	if(supplier.needed_turfs.len)
 		for(var/turf/in_range_turf in view(2, src))
-			if(in_range_turf in supplier.needed_turfs)
-				supplier.needed_turfs -= in_range_turf
-		if(supplier.needed_turfs)
+			if(in_range_turf.type in supplier.needed_turfs)
+				supplier.needed_turfs -= in_range_turf.type
+		if(supplier.needed_turfs.len)
 			return FALSE
 	return TRUE
 
