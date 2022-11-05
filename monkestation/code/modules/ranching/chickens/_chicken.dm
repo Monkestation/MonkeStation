@@ -405,7 +405,7 @@
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/stone)
 		birthed.production_type = src.production_type
 
-		birthed.assign_chick_icon(layer_hen_type.chicken_path)
+	birthed.assign_chick_icon(layer_hen_type.chicken_path)
 	visible_message("[src] hatches with a quiet cracking sound.")
 	qdel(src)
 
