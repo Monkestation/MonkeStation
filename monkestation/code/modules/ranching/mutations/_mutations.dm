@@ -141,7 +141,7 @@
 
 /obj/item/food/egg/proc/check_breathable_atmos(datum/mutation/ranching/chicken/supplier)
 	var/passed_check = FALSE
-	if(supplier.required_atmos)
+	if(supplier.required_atmos.len)
 		var/turf/open/egg_source_turf  = get_turf(src)
 		for(var/gas in supplier.required_atmos)
 			if(egg_source_turf.air.get_moles(gas) >= supplier.required_atmos[gas])
