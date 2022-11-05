@@ -47,6 +47,18 @@
 	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
 	desc = "[initial(desc)][BB ? "" : " This one is spent."]"
 
+/*
+ * On accidental consumption, 'spend' the ammo, and add in some gunpowder
+ */
+/obj/item/ammo_casing/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
+	if(BB)
+		BB = null
+		update_appearance()
+		victim.reagents?.add_reagent(/datum/reagent/blackpowder, 3)
+		source_item?.reagents?.add_reagent(/datum/reagent/blackpowder, source_item.reagents.total_volume*(2/3))
+
+	return ..()
+
 //proc to magically refill a casing with a new projectile
 /obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).
 	if(!BB)

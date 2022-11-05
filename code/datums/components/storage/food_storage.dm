@@ -153,7 +153,6 @@
 	if(QDELETED(stored_item)) //if the stored item was deleted/null...
 		if(!update_stored_item()) //check if there's a replacement item
 			return
-/* we need more than the scope of this pr for this
 	/// Chance of biting the held item = amount of bites / (intitial reagents / reagents per bite) * 100
 	bad_chance_of_discovery = (bitecount / (initial_volume / bitesize))*100
 	/// Chance of finding the held item = bad chance - 50
@@ -167,7 +166,7 @@
 		user.log_message("[key_name(user)] just fed [key_name(target)] a/an [stored_item] which was hidden in [parent] at [AREACOORD(target)]", LOG_ATTACK)
 		discovered = stored_item.on_accidental_consumption(target, user, parent)
 		update_stored_item() //make sure if the item was changed, the reference changes as well
-*/
+
 	if(!QDELETED(stored_item) && discovered)
 		INVOKE_ASYNC(src, .proc/remove_item, user)
 

@@ -9,6 +9,10 @@
 	sheet_type = /obj/item/stack/sheet/iron
 	value_per_unit = 0.0025
 
+/datum/material/iron/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
+
 ///Breaks extremely easily but is transparent.
 /datum/material/glass
 	name = "glass"
@@ -22,6 +26,9 @@
 	sheet_type = /obj/item/stack/sheet/glass
 	value_per_unit = 0.0025
 
+/datum/material/glass/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(10, BRUTE, BODY_ZONE_HEAD) //cronch
+	return TRUE
 
 ///Has no special properties. Could be good against vampires in the future perhaps.
 /datum/material/silver
@@ -33,6 +40,10 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/silver
 	value_per_unit = 0.025
+
+/datum/material/silver/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
 
 ///Slight force increase
 /datum/material/gold
@@ -46,6 +57,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/gold
 	value_per_unit = 0.0625
 
+/datum/material/gold/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
+
 ///Has no special properties
 /datum/material/diamond
 	name = "diamond"
@@ -58,6 +73,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/diamond
 	value_per_unit = 0.25
 
+/datum/material/diamond/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
+
 ///Is slightly radioactive
 /datum/material/uranium
 	name = "uranium"
@@ -68,6 +87,11 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/uranium
 	value_per_unit = 0.05
+
+/datum/material/uranium/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/uranium, rand(4, 6))
+	S?.reagents?.add_reagent(/datum/reagent/uranium, S.reagents.total_volume*(2/5))
+	return TRUE
 
 /datum/material/uranium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -88,6 +112,11 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/plasma
 	value_per_unit = 0.1
+
+/datum/material/plasma/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(6, 8))
+	S?.reagents?.add_reagent(/datum/reagent/toxin/plasma, S.reagents.total_volume*(2/5))
+	return TRUE
 
 /datum/material/plasma/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -111,6 +140,11 @@
 	sheet_type = /obj/item/stack/sheet/bluespace_crystal
 	value_per_unit = 0.15
 
+/datum/material/bluespace/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/bluespace, rand(5, 8))
+	S?.reagents?.add_reagent(/datum/reagent/bluespace, S.reagents.total_volume*(2/5))
+	return TRUE
+
 ///Honks and slips
 /datum/material/bananium
 	name = "bananium"
@@ -121,6 +155,11 @@
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/bananium
 	value_per_unit = 0.0125
+
+/datum/material/bananium/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/consumable/banana, rand(8, 12))
+	S?.reagents?.add_reagent(/datum/reagent/consumable/banana, S.reagents.total_volume*(2/5))
+	return TRUE
 
 /datum/material/bananium/on_applied(atom/source, amount, material_flags)
 	. = ..()
@@ -145,6 +184,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/titanium
 	value_per_unit = 0.0625
 
+/datum/material/titanium/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(15, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
+
 ///Force decrease
 /datum/material/plastic
 	name = "plastic"
@@ -155,6 +198,10 @@
 	strength_modifier = 0.85
 	sheet_type = /obj/item/stack/sheet/plastic
 	value_per_unit = 0.0125
+
+/datum/material/plastic/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.adjust_disgust(17)
+	return TRUE
 
 ///Force decrease and mushy sound effect. (Not yet implemented)
 /datum/material/biomass
@@ -186,6 +233,10 @@
 	sheet_type = /obj/item/stack/sheet/mineral/adamantine
 	value_per_unit = 0.25
 
+/datum/material/adamantine/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
+
 //I don't like sand. It's coarse, and rough, and irritating, and it gets everywhere.
 /datum/material/sand
 	name = "sand"
@@ -199,6 +250,10 @@
 	integrity_modifier = 0.1
 	turf_sound_override = FOOTSTEP_SAND
 	texture_layer_icon_state = "sand"
+
+/datum/material/sand/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.adjust_disgust(17)
+	return TRUE
 
 //And now for our lavaland dwelling friends, sand, but in stone form! Truly revolutionary.
 /datum/material/sandstone
@@ -223,6 +278,10 @@
 	turf_sound_override = FOOTSTEP_SAND
 	texture_layer_icon_state = "sand"
 
+/datum/material/snow/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/water, rand(5, 10))
+	return TRUE
+
 /datum/material/runedmetal
 	name = "runed metal"
 	id = "runed metal"
@@ -232,6 +291,11 @@
 	sheet_type = /obj/item/stack/sheet/runed_metal
 	value_per_unit = 0.75
 	texture_layer_icon_state = "runed"
+
+/datum/material/runedmetal/on_accidental_mat_consumption(mob/living/carbon/M, obj/item/S)
+	M.reagents.add_reagent(/datum/reagent/fuel/unholywater, rand(8, 12))
+	M.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
 
 /datum/material/bronze
 	name = "bronze"
