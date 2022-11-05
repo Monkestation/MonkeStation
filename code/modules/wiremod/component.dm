@@ -189,11 +189,17 @@
 	if(!parent?.on)
 		return TRUE
 
-	var/obj/item/stock_parts/cell/cell = parent.get_cell()
-	if(!cell?.use(power_usage_per_input))
+	if((circuit_flags & CIRCUIT_FLAG_INPUT_SIGNAL) && !COMPONENT_TRIGGERED_BY(trigger_input, port))
 		return TRUE
 
-	if((circuit_flags & CIRCUIT_FLAG_INPUT_SIGNAL) && !COMPONENT_TRIGGERED_BY(trigger_input, port))
+	if(parent.shell?.anchored)
+		var/area/location = get_area(parent)
+		if(location.powered(AREA_USAGE_EQUIP))
+			location.use_power(power_usage_per_input, AREA_USAGE_EQUIP)
+			return FALSE
+
+	var/obj/item/stock_parts/cell/cell = parent.get_cell()
+	if(!cell?.use(power_usage_per_input))
 		return TRUE
 
 /// Called when this component is about to be added to an integrated_circuit.

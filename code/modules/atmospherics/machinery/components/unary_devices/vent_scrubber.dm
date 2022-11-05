@@ -18,7 +18,8 @@
 	interacts_with_air = TRUE
 
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
-	var/filter_types = list(GAS_CO2, GAS_BZ)
+	var/filter_types = list(GAS_CO2, GAS_BZ, GAS_GROUP_CHEMICALS)
+	var/list/clean_filter_types = null
 	var/volume_rate = 200
 	var/widenet = FALSE //is this scrubber acting on the 3x3 area around it.
 	var/list/turf/adjacent_turfs = list()
@@ -34,6 +35,17 @@
 	..()
 	if(!id_tag)
 		id_tag = assign_uid_vents()
+	generate_clean_filter_types()
+	RegisterSignal(SSdcs, COMSIG_GLOB_NEW_GAS, .proc/generate_clean_filter_types)
+
+/obj/machinery/atmospherics/components/unary/vent_scrubber/proc/generate_clean_filter_types()
+	clean_filter_types = list()
+	for(var/id in filter_types)
+		if(id in GLOB.gas_data.groups)
+			clean_filter_types |= GLOB.gas_data.groups[id]
+		else
+			clean_filter_types += id
+	broadcast_status()
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/Destroy()
 	var/area/scrub_area = get_area(src)
@@ -142,11 +154,11 @@
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = airs[1]
 
-	if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE || !islist(filter_types))
+	if(air_contents.return_pressure() >= 50*ONE_ATMOSPHERE || !islist(clean_filter_types))
 		return FALSE
 
 	if(scrubbing & SCRUBBING)
-		environment.scrub_into(air_contents, volume_rate/environment.return_volume(), filter_types)
+		environment.scrub_into(air_contents, volume_rate/environment.return_volume(), clean_filter_types)
 		tile.air_update_turf()
 
 	else //Just siphoning all air
@@ -199,11 +211,13 @@
 
 	if("toggle_filter" in signal.data)
 		filter_types ^= signal.data["toggle_filter"]
+		generate_clean_filter_types()
 
 	if("set_filters" in signal.data)
 		filter_types = list()
 		for(var/gas in signal.data["set_filters"])
 			filter_types += gas
+		generate_clean_filter_types()
 
 	if("init" in signal.data)
 		name = signal.data["init"]

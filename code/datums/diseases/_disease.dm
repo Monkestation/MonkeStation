@@ -42,13 +42,13 @@
 	SSdisease.active_diseases.Remove(src)
 
 //add this disease if the host does not already have too many
-/datum/disease/proc/try_infect(var/mob/living/infectee, make_copy = TRUE)
+/datum/disease/proc/try_infect(var/mob/living/carbon/infectee, make_copy = TRUE)
 	infect(infectee, make_copy)
 	return TRUE
 
 //add the disease with no checks
-/datum/disease/proc/infect(var/mob/living/infectee, make_copy = TRUE)
-	var/datum/disease/D = make_copy ? Copy() : src	
+/datum/disease/proc/infect(var/mob/living/carbon/infectee, make_copy = TRUE)
+	var/datum/disease/D = make_copy ? Copy() : src
 	infectee.diseases += D
 	D.affected_mob = infectee
 	SSdisease.active_diseases += D //Add it to the active diseases list, now that it's actually in a mob and being processed.
@@ -66,8 +66,7 @@
 /datum/disease/proc/stage_act()
 	var/cure = has_cure()
 
-	var/mob/living/L = affected_mob
-	if(L.IsInStasis())
+	if(affected_mob.IsInStasis())
 		return
 
 	if(carrier && !cure)

@@ -35,3 +35,32 @@
 			adjust_nutrition(-(HUNGER_FACTOR/10))
 			if(m_intent == MOVE_INTENT_RUN)
 				adjust_nutrition(-(HUNGER_FACTOR/10))
+/mob/living/carbon/MobBump(mob/M)
+	. = ..()
+	if(iscarbon(M))
+		var/mob/living/carbon/affected = M
+		//spread diseases
+		for(var/thing in diseases)
+			var/datum/disease/D = thing
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				affected.ContactContractDisease(D)
+
+		for(var/thing in affected.diseases)
+			var/datum/disease/D = thing
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				ContactContractDisease(D)
+
+/mob/living/carbon/start_pulling(atom/movable/AM, state, force, supress_message)
+	. = ..()
+	//Share diseases that are spread by touch
+	if(iscarbon(AM))
+		var/mob/living/carbon/affected = AM
+		for(var/thing in diseases)
+			var/datum/disease/D = thing
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				affected.ContactContractDisease(D)
+
+		for(var/thing in affected.diseases)
+			var/datum/disease/D = thing
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+				ContactContractDisease(D)

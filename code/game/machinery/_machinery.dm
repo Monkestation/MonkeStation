@@ -156,6 +156,9 @@
 
 	///Is this machine currently in the atmos machinery queue?
 	var/atmos_processing = FALSE
+	///Is this machine currently in the atmos machinery queue, but also interacting with turf air?
+	var/interacts_with_air = FALSE
+
 	/// world.time of last use by [/mob/living]
 	var/last_used_time = 0
 	/// Mobtype of last user. Typecast to [/mob/living] for initial() usage
@@ -169,7 +172,7 @@
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
-		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, STAMINA = 0)
 	. = ..()
 	GLOB.machines += src
 
@@ -771,7 +774,7 @@
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		update_icon()
+		update_appearance()
 		return TRUE
 
 /obj/machinery/contents_explosion(severity, target)

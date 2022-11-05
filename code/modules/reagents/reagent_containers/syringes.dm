@@ -65,14 +65,16 @@
 	return TRUE
 
 /obj/item/reagent_containers/syringe/proc/transfer_diseases(mob/living/L)
-	for(var/datum/disease/D in syringediseases)
-		if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
-			continue
-		L.ForceContractDisease(D)
-	for(var/datum/disease/D in L.diseases)
-		if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
-			continue
-		syringediseases += D
+	if(iscarbon(L))
+		var/mob/living/carbon/infected = L
+		for(var/datum/disease/D in syringediseases)
+			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			infected.ForceContractDisease(D)
+		for(var/datum/disease/D in infected.diseases)
+			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
+				continue
+			syringediseases += D
 
 /obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
 	. = ..()

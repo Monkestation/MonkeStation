@@ -172,6 +172,7 @@
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "mouse_gray_dead"
 	bite_consumption = 3
+	preserved_food = TRUE
 	eatverbs = list("devour")
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GROSS | MEAT | RAW

@@ -167,9 +167,6 @@
 			if(H.equip_to_appropriate_slot(item))
 				to_chat(M, "<span class='notice'>Placing [G.display_name] in your inventory!</span>")
 				continue
-			if(H.put_in_hands(item))
-				to_chat(M, "<span class='notice'>Placing [G.display_name] in your hands!</span>")
-				continue
 
 			var/obj/item/storage/B = (locate() in H)
 			if(B)

@@ -20,6 +20,7 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
+	bounty_types = CIV_JOB_ENG
 	departments = DEPARTMENT_ENGINEERING
 	rpg_title = "Aeromancer"
 

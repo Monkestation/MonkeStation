@@ -23,7 +23,9 @@
 		to_chat(user, "<span class='notice'>We have revived ourselves.</span>")
 	else
 		to_chat(user, "<span class='notice'>We begin our stasis, preparing energy to arise once more.</span>")
-		user.fakedeath("changeling") //play dead
+		if(iscarbon(user))
+			var/mob/living/carbon/affected = user
+			affected.fakedeath("changeling") //play dead
 		user.update_stat()
 		user.update_mobility()
 		addtimer(CALLBACK(src, .proc/ready_to_regenerate, user), LING_FAKEDEATH_TIME, TIMER_UNIQUE)

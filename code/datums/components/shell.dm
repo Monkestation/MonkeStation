@@ -60,6 +60,10 @@
 
 /datum/component/shell/proc/on_object_deconstruct()
 	SIGNAL_HANDLER
+	if(!attached_circuit)
+		return
+	if(shell_flags & SHELL_FLAG_CIRCUIT_FIXED)
+		return
 	remove_circuit()
 
 /datum/component/shell/proc/on_attack_ghost(datum/source, mob/dead/observer/ghost)
@@ -78,8 +82,11 @@
 	var/obj/item/stock_parts/cell/cell = attached_circuit.cell
 	examine_text += "<span class='notice'>The charge meter reads [cell ? round(cell.percent(), 1) : 0]%.</span>"
 
-	if (shell_flags & SHELL_FLAG_USB_PORT)
+	if(shell_flags & SHELL_FLAG_USB_PORT)
 		examine_text += "<span class='notice'>There is a <b>USB port</b> on the front.</span>"
+
+	if(shell_flags & SHELL_FLAG_REQUIRE_ANCHOR)
+		examine_text += span_notice("The shell does not require a battery to function and will draw from the area's APC while anchored.")
 
 
 /**
@@ -101,14 +108,25 @@
 		source.balloon_alert(attacker, "Can't pull cell in directly!")
 		return
 
-	if(attached_circuit?.owner_id && item == attached_circuit.owner_id.resolve())
-		locked = !locked
-		source.balloon_alert(attacker, "[locked? "Locked" : "Unlocked"] [source]")
+	if(istype(item, /obj/item/inducer))
+		var/obj/item/inducer/inducer = item
+		INVOKE_ASYNC(inducer, /obj/item.proc/attack_obj, attached_circuit, attacker, list())
 		return COMPONENT_NO_AFTERATTACK
 
-	if(attached_circuit && istype(item, /obj/item/circuit_component))
-		attached_circuit.add_component(item, attacker)
-		return
+	if(attached_circuit)
+		if(attached_circuit.owner_id && item == attached_circuit.owner_id.resolve())
+			locked = !locked
+			source.balloon_alert(attacker, "[locked? "Locked" : "Unlocked"] [source]")
+			return COMPONENT_NO_AFTERATTACK
+
+		if(!attached_circuit.owner_id && istype(item, /obj/item/card/id))
+			source.balloon_alert(attacker, "owner id set for [item]")
+			attached_circuit.owner_id = WEAKREF(item)
+			return COMPONENT_NO_AFTERATTACK
+
+		if(istype(item, /obj/item/circuit_component))
+			attached_circuit.add_component(item, attacker)
+			return
 
 	if(!istype(item, /obj/item/integrated_circuit))
 		return

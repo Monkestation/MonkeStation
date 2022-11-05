@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 // :fearful:
 
 // Made by powerfulbacon
@@ -171,30 +172,31 @@ export const OrbitalMap = (props, context) => {
                       Not linked to a shuttle.
                     </NoticeBox>
                   ))}
-            </Section>
-            {
-              !!designatorInserted
+              {
+                !!designatorInserted
               && (designatorId ? !shuttleId : shuttleId) && (
-                <>
-                  <Divider />
-                  <Section title="Designator Linking" >
-                    {
-                      designatorId
-                        ? (
-                          <Button
-                            content="Download shuttle link from designator"
-                            onClick={() => act('updateLinkedId')} />
-                        )
-                        : (
-                          <Button
-                            content="Upload shuttle link to designator"
-                            onClick={() => act('updateDesignatorId')} />
-                        )
-                    }
-                  </Section>
-                </>
-              )
-            }
+                  <>
+                    <Divider />
+                    <Section title="Designator Linking" >
+                      {
+                        designatorId
+                          ? (
+                            <Button
+                              content="Download shuttle link from designator"
+                              onClick={() => act('updateLinkedId')} />
+                          )
+                          : (
+                            <Button
+                              content="Upload shuttle link to designator"
+                              onClick={() => act('updateDesignatorId')} />
+                          )
+                      }
+                    </Section>
+                  </>
+                )
+              }
+
+            </Section>
           </ScrollableBox>
         </div>
       </Window.Content>

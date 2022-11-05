@@ -950,7 +950,7 @@
 			can_process = TRUE
 	return can_process
 
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, liquid = FALSE)
+/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, liquid = FALSE, from_gas = 0)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -979,7 +979,7 @@
 					touch_protection = L.get_permeability_protection()
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
 			if("TURF")
-				R.reaction_turf(A, R.volume * volume_modifier, show_message)
+				R.reaction_turf(A, R.volume * volume_modifier, show_message, from_gas)
 			if("OBJ")
 				R.reaction_obj(A, R.volume * volume_modifier, show_message)
 			if("LIQUID")
@@ -991,7 +991,7 @@
 	return FALSE
 
 //Returns the average specific heat for all reagents currently in this holder.
-/datum/reagents/proc/specific_heat()
+/datum/reagents/proc/heat_capacity()
 	. = 0
 	var/cached_amount = total_volume		//cache amount
 	var/list/cached_reagents = reagent_list		//cache reagents
@@ -1000,7 +1000,7 @@
 		. += R.specific_heat * (R.volume / cached_amount)
 
 /datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
-	var/S = specific_heat()
+	var/S = heat_capacity()
 	chem_temp = CLAMP(chem_temp + (J / (S * total_volume)), 2.7, 1000)
 
 /datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0)

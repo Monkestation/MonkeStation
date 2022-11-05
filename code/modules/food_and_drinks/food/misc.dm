@@ -578,6 +578,7 @@
 	name = "chocolate"
 	desc = "A tiny and sweet chocolate."
 	icon_state = "tiny_chocolate"
+	w_class = WEIGHT_CLASS_TINY
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/cocoa = 1)
 	tastes = list("chocolate" = 1)
 	foodtypes = JUNKFOOD | SUGAR

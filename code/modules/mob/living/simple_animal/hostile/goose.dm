@@ -9,7 +9,7 @@
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	speak_chance = 0
 	turns_per_move = 5
-	butcher_results = list(/obj/item/food/meat = 2)
+	butcher_results = list(/obj/item/food/meat/slab = 2)
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
@@ -29,6 +29,10 @@
 	var/icon_vomit_start = "vomit_start"
 	var/icon_vomit = "vomit"
 	var/icon_vomit_end = "vomit_end"
+
+/mob/living/simple_animal/hostile/retaliate/goose/Initialize(mapload)
+	. = ..()
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/hostile/retaliate/goose/handle_automated_movement()
 	. = ..()

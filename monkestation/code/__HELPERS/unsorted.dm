@@ -3,7 +3,7 @@
 	var/list/picked_lockers = list()
 	var/turf/object_location
 	for(var/obj/structure/closet/find_closet in world)
-		if(!istype(find_closet,/obj/structure/closet/secure_closet))
+		if(!find_closet.locked)
 			object_location = get_turf(find_closet)
 			if(object_location) //If it can't read a Z on the next step, it will error out. Needs a separate check.
 				if(is_station_level(object_location.z) && !find_closet.opened) //On the station and closed.
@@ -42,6 +42,7 @@
 		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, SPECIES_TRAIT)
 	if(((M in equipped) && (S in equipped)))
 		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, CLOTHING_TRAIT)
+
 // Takes an input direction and then outputs the opposite direction.
 /proc/getOppositeDir(var/direction, var/always_return_cardinal = 0) // always_return_cardinal is for conveyors and anything else that uses their style of turning.
 	switch(direction)

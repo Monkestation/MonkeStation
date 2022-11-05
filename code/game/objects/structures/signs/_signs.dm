@@ -10,6 +10,7 @@
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	//MonkeStation Edit: Sign Scaling
 	var/size = 1
+	var/active_tap = FALSE
 
 /obj/structure/sign/basic
 	name = "blank sign"
@@ -19,23 +20,29 @@
 //MonkeStation Edit Start
 //Scaling Signs
 /obj/structure/sign/attack_hand(mob/user)
-	if(user.a_intent == INTENT_HELP)
+	if(user.a_intent == INTENT_HELP && !active_tap)
+		active_tap = TRUE
 		add_fingerprint(user)
 		visible_message("<span class='warning'>[pick("[user] taps the sign.", "[user] stares intently as they tap that sign.", "Don't make [user] tap that sign again.")]</span>")
-		var/matrix/M = new
-		M.Scale(size*0.25+1)
-		animate(src, transform = M, time = 5)
+		var/matrix/sign_rescale = new
+		var/scaling = size*0.25+1
+		sign_rescale.Scale(scaling)
+		animate(src, transform = sign_rescale, time = 0.5 SECONDS)
 		playsound(src, 'sound/effects/Glassknock.ogg', 50, 1)
 		user.changeNext_move(CLICK_CD_MELEE)
-		spawn(1 SECONDS)
-			if(size)
-				var/scaled = 100/(100+((size*0.25)*100))
-				M.Scale(scaled)
-				animate(src, transform = M, time = 5)
-				size = min(size+1, 10)
-				spawn(2 MINUTES) //Slowly resets the size back to normal
-					size = max(size-1, 1)
-//MonkeStation Edit End
+		addtimer(CALLBACK(src,.proc/untransform, scaling), 1 SECONDS)
+
+
+/obj/structure/sign/proc/untransform(scaled_amount)
+	var/matrix/sign_rescale = new
+	sign_rescale.Scale(scaled_amount) //This has to be done so that the scale of the transform is where it should be
+	var/scale_down = 100/(100+((size*0.25)*100))
+
+	sign_rescale.Scale(scale_down)
+	animate(src, transform = sign_rescale, time = 0.5 SECONDS)
+	size = min(size+1, 10)
+	active_tap = FALSE
+
 
 /obj/structure/sign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)

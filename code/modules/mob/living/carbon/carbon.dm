@@ -15,6 +15,7 @@
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(bodyparts)
 	QDEL_LIST(implants)
+	QDEL_LIST(diseases)
 	remove_from_all_data_huds()
 	QDEL_NULL(dna)
 	GLOB.carbon_list -= src
@@ -262,6 +263,7 @@
 		return
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.breakouttime
+	SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_RESISTED)
 	if(!cuff_break)
 		visible_message("<span class='warning'>[src] attempts to remove [I]!</span>")
 		to_chat(src, "<span class='notice'>You attempt to remove [I]... (This will take around [DisplayTimeText(breakouttime)] and you need to stand still.)</span>")
@@ -327,6 +329,9 @@
 
 	else
 		if(I == handcuffed)
+			//MONKESTATION EDIT
+			SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_REMOVED)
+			//MONKESTATION EDIT END
 			handcuffed.forceMove(drop_location())
 			handcuffed = null
 			I.dropped(src)
@@ -478,9 +483,9 @@
 		else
 			add_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE, multiplicative_slowdown = CRAWLING_ADD_SLOWDOWN)
 	else
-		if(HAS_TRAIT(src, FOOD_SLIDE))
+		if(HAS_TRAIT(src, FOOD_SLIDE) || has_movespeed_modifier("belly_slide"))
 			remove_movespeed_modifier("belly_slide", TRUE)
-		else
+		if(has_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING))
 			remove_movespeed_modifier(MOVESPEED_ID_CARBON_CRAWLING, TRUE)
 
 //Updates the mob's health from bodyparts and mob damage variables

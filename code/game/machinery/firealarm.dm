@@ -64,7 +64,7 @@
 	update_icon()
 	myarea = get_area(src)
 	LAZYADD(myarea.firealarms, src)
-	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/firealarm()), SHELL_CAPACITY_LARGE)
+	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/firealarm()), SHELL_CAPACITY_MEDIUM)
 
 /obj/machinery/firealarm/Destroy()
 	myarea.firereset(src)
@@ -341,39 +341,6 @@
 		set_light(l_power = 0)
 
 /*
- * Return of Party button
- */
-
-/area
-	var/party = FALSE
-
-/obj/machinery/firealarm/partyalarm
-	name = "\improper PARTY BUTTON"
-	desc = "Cuban Pete is in the house!"
-	var/static/party_overlay
-
-/obj/machinery/firealarm/partyalarm/reset()
-	if (machine_stat & (NOPOWER|BROKEN))
-		return
-	var/area/A = get_area(src)
-	if (!A || !A.party)
-		return
-	A.party = FALSE
-	A.cut_overlay(party_overlay)
-
-/obj/machinery/firealarm/partyalarm/alarm()
-	if (machine_stat & (NOPOWER|BROKEN))
-		return
-	var/area/A = get_area(src)
-	if (!A || A.party || A.name == "Space")
-		return
-	A.party = TRUE
-	if (!party_overlay)
-		party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party")
-	A.add_overlay(party_overlay)
-
-
-/*
 Monkestation: Added circuit component
 Ported from /tg/station: PR #64985
 */
@@ -421,12 +388,10 @@ Ported from /tg/station: PR #64985
 	is_on.set_output(1)
 	output_set.set_output(COMPONENT_SIGNAL)
 
-
 /obj/item/circuit_component/firealarm/proc/on_firealarm_reset(atom/source)
 	SIGNAL_HANDLER
 	is_on.set_output(0)
 	output_reset.set_output(COMPONENT_SIGNAL)
-
 
 /obj/item/circuit_component/firealarm/input_received(datum/port/input/port)
 	. = ..()

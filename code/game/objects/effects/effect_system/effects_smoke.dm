@@ -328,3 +328,17 @@
 	smoke.effect_type = smoke_type
 	smoke.set_up(range, location)
 	smoke.start()
+
+
+/datum/effect_system/smoke_spread/chem/smoke_machine/set_up(datum/reagents/carry, setting=1, efficiency=10, loc, silent=FALSE)
+	amount = setting
+	carry.copy_to(chemholder, 20)
+	carry.remove_any(amount * 16 / efficiency)
+	location = loc
+
+/datum/effect_system/smoke_spread/chem/smoke_machine
+	effect_type = /obj/effect/particle_effect/smoke/chem/smoke_machine
+
+/obj/effect/particle_effect/smoke/chem/smoke_machine
+	opaque = FALSE
+	alpha = 100

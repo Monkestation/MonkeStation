@@ -676,9 +676,7 @@
 	},
 /area/crew_quarters/heads/chief)
 "acJ" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/south,
 /turf/open/floor/plasteel/dark/side{
 	dir = 10
@@ -1176,9 +1174,7 @@
 /area/engine/engine_room)
 "aeO" = (
 /obj/effect/landmark/start/shaft_miner,
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningdock)
@@ -1194,8 +1190,7 @@
 "aeV" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Chief Engineer";
-	req_access_txt = "56";
-	security_level = 6
+	req_access_txt = "56"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
@@ -2451,9 +2446,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ajH" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/south,
 /obj/machinery/computer/chef_order{
 	dir = 1
@@ -2549,7 +2542,7 @@
 "ajZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed/roller,
-/obj/item/toy/plush/lizardplushie,
+/obj/item/toy/plush/lizard_plushie/green,
 /turf/open/floor/grass/fakebasalt,
 /area/maintenance/starboard/aft)
 "aka" = (
@@ -2972,8 +2965,7 @@
 /area/ai_monitored/turret_protected/ai)
 "aly" = (
 /obj/machinery/atmospherics/components/binary/circulator{
-	dir = 4;
-	icon_state = "circ-off-0"
+	dir = 4
 	},
 /turf/open/floor/engine/light,
 /area/engine/engine_core)
@@ -3660,9 +3652,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/structure/table,
 /obj/item/storage/box/handcuffs{
 	pixel_x = 6;
@@ -4314,9 +4304,7 @@
 	},
 /obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/tile/bar/tile_marquee,
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/south,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar/atrium)
@@ -4601,9 +4589,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/prison)
 "arw" = (
@@ -4677,9 +4663,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "arJ" = (
@@ -5597,9 +5581,7 @@
 /area/crew_quarters/dorms)
 "avo" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "avp" = (
@@ -5951,9 +5933,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "awH" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/warehouse)
@@ -7629,9 +7609,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aDw" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/west,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -8652,9 +8630,7 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "aHi" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/south,
 /turf/open/floor/plasteel,
 /area/engine/storage)
@@ -8946,8 +8922,7 @@
 "aIh" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Head of Security";
-	req_access_txt = "58";
-	security_level = 6
+	req_access_txt = "58"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -9713,9 +9688,7 @@
 /area/ai_monitored/turret_protected/ai_upload_foyer)
 "aLc" = (
 /obj/machinery/power/port_gen/pacman,
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/engine/storage)
 "aLd" = (
@@ -10753,8 +10726,7 @@
 /obj/effect/turf_decal/tile/blue/tile_side,
 /obj/machinery/door/airlock/command/glass{
 	name = "Chief Medical Officer";
-	req_access_txt = "40";
-	security_level = 6
+	req_access_txt = "40"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -11139,8 +11111,7 @@
 /area/science/lab)
 "aQt" = (
 /obj/machinery/atmospherics/components/binary/circulator/cold{
-	dir = 8;
-	icon_state = "circ-off-0"
+	dir = 8
 	},
 /turf/open/floor/engine/light,
 /area/engine/engine_core)
@@ -11548,9 +11519,7 @@
 /turf/open/floor/plasteel/techmaint,
 /area/ai_monitored/turret_protected/ai)
 "aRI" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/machinery/power/rad_collector/anchored,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -13270,9 +13239,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
@@ -13390,9 +13357,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/power/apc/auto_name/south,
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -14112,9 +14077,7 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/engine/engine_room)
 "bJx" = (
@@ -14122,7 +14085,6 @@
 /obj/effect/turf_decal/monke/siding/blue{
 	dir = 1
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/machinery/defibrillator_mount/loaded{
 	pixel_y = -28
 	},
@@ -14468,6 +14430,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/mineral/plastitanium,
 /area/science/research)
 "cNb" = (
@@ -16370,6 +16333,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/ameridiner,
 /area/medical/sleeper)
 "icY" = (
@@ -18983,9 +18947,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
@@ -19029,9 +18991,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-1"
-	},
+/obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,

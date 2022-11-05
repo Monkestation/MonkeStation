@@ -51,16 +51,16 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		if(T.intact)
-			to_chat(user, "<span class='warning'>You must first expose the power terminal!</span>")
+			balloon_alert(user, "must expose the cable terminal!")
 			return
 
 	if(master && !master.can_terminal_dismantle())
 		return
 
-	user.visible_message("[user.name] dismantles the power terminal from [master].",
-		"<span class='notice'>You begin to cut the cables...</span>")
+	user.visible_message(span_notice("[user.name] dismantles the cable terminal from [master]."))
+	balloon_alert(user, "cutting the cables...")
 
-	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if(I.use_tool(src, user, 50))
 		if(master && !master.can_terminal_dismantle())
 			return
@@ -70,9 +70,10 @@
 			return
 
 		new /obj/item/stack/cable_coil(drop_location(), 10)
-		to_chat(user, "<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
+		balloon_alert(user, "cable terminal dismantled")
 		qdel(src)
 
 /obj/machinery/power/terminal/wirecutter_act(mob/living/user, obj/item/I)
+	..()
 	dismantle(user, I)
 	return TRUE

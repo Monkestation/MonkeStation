@@ -154,12 +154,12 @@
 
 /datum/gear/hat/beanie/waldo
 	display_name = "beanie, red striped with bobble"
-	path = /obj/item/clothing/head/beanie/waldo
+	path = /obj/item/clothing/head/waldo
 	cost = 7500
 
 /datum/gear/hat/beanie/rasta
 	display_name = "beanie, rastafarian stripes"
-	path = /obj/item/clothing/head/beanie/rasta
+	path = /obj/item/clothing/head/rasta
 	cost = 7500
 
 //MEME HATS
@@ -197,3 +197,52 @@
 	path = /obj/item/clothing/head/bishopmitre/black
 	cost = 5000
 	allowed_roles = list("Chaplain")
+
+//JOB BERETS
+
+
+/datum/gear/hat/job_beret
+	subtype_path = /datum/gear/hat/job_beret
+	cost = 2500
+
+/datum/gear/hat/job_beret/eng
+	display_name = "engineering beret"
+	path = /obj/item/clothing/head/beret/eng
+	allowed_roles = list("Chief Engineer", "Station Engineer", "Atmospheric Technician")
+
+/datum/gear/hat/job_beret/atmos
+	display_name = "atmospherics beret"
+	path = /obj/item/clothing/head/beret/atmos
+	allowed_roles = list("Chief Engineer", "Station Engineer", "Atmospheric Technician")
+
+/datum/gear/hat/job_beret/supply
+	display_name = "supply beret"
+	path = /obj/item/clothing/head/beret/supply
+	allowed_roles = list("Quartermaster", "Cargo Technician", "Shaft Miner")
+
+/datum/gear/hat/job_beret/science
+	display_name = "fancy science beret"
+	path = /obj/item/clothing/head/beret/science/fancy
+	allowed_roles = list("Scientist", "Roboticist", "Research Director")
+	cost = 3000
+
+//SECURITY BERETS
+
+/datum/gear/hat/sec_beret
+	display_name = "security beret"
+	path = /obj/item/clothing/head/beret/sec
+	cost = 4000
+	allowed_roles = list("Security Officer","Warden","Head of Security")
+
+/datum/gear/hat/warden_beret
+	display_name = "warden beret"
+	path = /obj/item/clothing/head/beret/sec/navywarden
+	cost = 4000
+	allowed_roles = list("Warden","Head of Security")
+
+/datum/gear/hat/hos_beret
+	display_name = "head of security beret"
+	path = /obj/item/clothing/head/hos/beret/navyhos
+	cost = 4000
+	allowed_roles = list("Head of Security")
+

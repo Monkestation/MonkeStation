@@ -39,7 +39,6 @@
 
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
-	QDEL_LIST(diseases)
 	return ..()
 
 /mob/living/onZImpact(turf/T, levels)
@@ -115,16 +114,6 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		they_can_move = L.mobility_flags & MOBILITY_MOVE
-		//Also spread diseases
-		for(var/thing in diseases)
-			var/datum/disease/D = thing
-			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-				L.ContactContractDisease(D)
-
-		for(var/thing in L.diseases)
-			var/datum/disease/D = thing
-			if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-				ContactContractDisease(D)
 
 		//Should stop you pushing a restrained person out of the way
 		if(L.pulledby && L.pulledby != src && L.restrained())
@@ -256,8 +245,8 @@
 	var/current_dir
 	if(isliving(AM))
 		current_dir = AM.dir
-	if(step(AM, t))
-		step(src, t)
+	if(AM.Move(get_step(AM.loc, t), t, glide_size))
+		Move(get_step(loc, t), t)
 	if(current_dir)
 		AM.setDir(current_dir)
 	now_pushing = FALSE
@@ -323,16 +312,6 @@
 			M.LAssailant = WEAKREF(usr)
 		if(isliving(M))
 			var/mob/living/L = M
-			//Share diseases that are spread by touch
-			for(var/thing in diseases)
-				var/datum/disease/D = thing
-				if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-					L.ContactContractDisease(D)
-
-			for(var/thing in L.diseases)
-				var/datum/disease/D = thing
-				if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-					ContactContractDisease(D)
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
@@ -633,7 +612,7 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direct, glide_size_override)
 	if(lying)
 		if(direct & EAST)
 			lying = 90
@@ -641,9 +620,9 @@
 			lying = 270
 		update_transform()
 		lying_prev = lying
-	if (buckled && buckled.loc != newloc) //not updating position
-		if (!buckled.anchored)
-			return buckled.Move(newloc, direct)
+	if(buckled && buckled.loc != newloc) //not updating position
+		if(!buckled.anchored)
+			return buckled.Move(newloc, direct, glide_size)
 		else
 			return 0
 
@@ -691,7 +670,7 @@
 				if((newdir in GLOB.cardinals) && (prob(50)))
 					newdir = turn(get_dir(target_turf, start), 180)
 				if(!blood_exists)
-					new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+					new /obj/effect/decal/cleanable/trail_holder(start)
 
 				for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
 					if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
@@ -1313,7 +1292,7 @@
 	mob_pickup(user)
 	return TRUE
 
-/mob/living/proc/get_static_viruses() //used when creating blood and other infective objects
+/mob/living/carbon/proc/get_static_viruses() //used when creating blood and other infective objects
 	if(!LAZYLEN(diseases))
 		return
 	var/list/datum/disease/result = list()

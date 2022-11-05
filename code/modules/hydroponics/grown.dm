@@ -43,6 +43,9 @@
 	for(var/datum/plant_gene/trait/T in seed.genes)
 		T.on_new(src, loc)
 
+	for(var/datum/plant_gene/new_gene in seed.genes)
+		new_gene.on_add(src.seed)
+
 	..() //Only call it here because we want all the genes and shit to be applied before we add edibility. God this code is a mess.
 
 	if(discovery_points)
@@ -76,8 +79,11 @@
 
 /obj/item/food/grown/attackby(obj/item/O, mob/user, params)
 	..()
+	if(O.ignition_effect(src, user) && seed?.get_gene(/datum/plant_gene/trait/hotbox))
+		fire_act(O.return_temperature())
+
 	if (istype(O, /obj/item/plant_analyzer))
-		var/msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.\n"
+		var/msg = "<span class='info'>This is \a <span class='name'>[src]</span>.\n"
 		if(seed)
 			msg += seed.get_analyzer_text()
 		var/reag_txt = ""
@@ -89,8 +95,8 @@
 
 		if(reag_txt)
 			msg += reag_txt
-			msg += "<br><span class='info'>*---------*</span>"
-		to_chat(user, msg)
+			msg += "<br><span class='info'></span>"
+		to_chat(user, examine_block(msg))
 	else
 		if(seed)
 			for(var/datum/plant_gene/trait/T in seed.genes)
@@ -115,6 +121,22 @@
 	if(seed && seed.get_gene(/datum/plant_gene/trait/squash))
 		squash(user)
 	..()
+
+/obj/item/food/grown/fire_tick_act(delta_time)
+	take_damage(rand(15, 30) * delta_time, BURN, "fire", 0) //this takes double damage so things burn faster
+	if(prob(15))
+		for(var/obj/item/food/grown/grown_food_item in src.loc) //hotbox stuff will ignite other hotbox stuff randomly while burning
+			if(grown_food_item.seed && grown_food_item.seed.get_gene(/datum/plant_gene/trait/hotbox))
+				grown_food_item.fire_act(src.return_temperature())
+				return // only once
+
+/obj/item/food/grown/burn()
+	if(seed && seed.get_gene(/datum/plant_gene/trait/hotbox))
+		for(var/datum/reagent/contained_reagent in reagents.reagent_list)
+			var/turf/turf = get_turf(src.loc)
+			turf.atmos_spawn_air("[contained_reagent.get_gas()]=[(contained_reagent.volume / 2) * contained_reagent.molarity];TEMP=[T20C]")
+			investigate_log("[contained_reagent.get_gas()] with a volume of [(contained_reagent.volume / 2) * contained_reagent.molarity] at [T20C] was spawned in [get_area(turf)] by [src.fingerprintslast]",INVESTIGATE_ATMOS)
+	qdel(src)
 
 /obj/item/food/grown/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) //was it caught by a mob?

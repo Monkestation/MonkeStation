@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
+	var/login_music_name					//Title of music played, for credits
 	var/round_end_sound						//music/jingle played when the world reboots
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
@@ -122,7 +123,11 @@ SUBSYSTEM_DEF(ticker)
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
 		login_music = pick(music)
 	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
+		var/selected_song = pick(music)
+		login_music = "[global.config.directory]/title_music/sounds/[selected_song]"
+		var/list/L = splittext(selected_song,".")
+		if(L.len >= 2)
+			login_music_name = L[1]
 
 
 	if(!GLOB.syndicate_code_phrase)
@@ -493,7 +498,7 @@ SUBSYSTEM_DEF(ticker)
 			m = pick(memetips)
 
 	if(m)
-		to_chat(world, "<span class='purple'><b>Tip of the round: </b>[html_encode(m)]</span>")
+		to_chat(world, examine_block("<span class='purple'><b>Tip of the round: </b>[html_encode(m)]</span>"))
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)

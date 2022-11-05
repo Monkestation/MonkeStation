@@ -210,6 +210,7 @@
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics
 	name = "atmospherics envirosuit helmet"
@@ -414,6 +415,7 @@
 	item_state = "engineer_envirohelm"
 	icon_state = "engineer_envirohelm"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0)
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //MONKESTATION CHANGE
 
 /obj/item/clothing/head/helmet/space/plasmaman/replacement/engineering/atmospherics
 	name = "atmospherics replacement envirosuit helmet"

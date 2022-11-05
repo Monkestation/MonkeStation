@@ -156,11 +156,10 @@
 /datum/asset/simple/namespaced/fontawesome
 	legacy = TRUE
 	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
+		"fa-regular-400.ttf" = 'html/font-awesome/webfonts/fa-regular-400.ttf',
+		"fa-solid-900.ttf" = 'html/font-awesome/webfonts/fa-solid-900.ttf',
+		"fa-v4compatibility.ttf" = 'html/font-awesome/webfonts/fa-v4compatibility.ttf',
+		"v4shim.css" = 'html/font-awesome/css/v4-shims.min.css',
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
 
@@ -176,7 +175,7 @@
 /datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/register()
+/datum/asset/spritesheet/chat/create_spritesheets()
 	InsertAll("emoji", 'icons/emoji.dmi')
 	InsertAll("badge", 'icons/badges.dmi')
 	// pre-loading all lanugage icons also helps to avoid meta
@@ -188,7 +187,6 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-	..()
 
 /datum/asset/simple/lobby
 	assets = list(
@@ -246,10 +244,9 @@
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
-/datum/asset/spritesheet/pipes/register()
+/datum/asset/spritesheet/pipes/create_spritesheets()
 	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'monkestation/icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
 		InsertAll("", each, GLOB.alldirs)
-	..()
 
 /datum/asset/simple/genetics
 	assets = list(
@@ -261,7 +258,7 @@
 /datum/asset/spritesheet/supplypods
 	name = "supplypods"
 
-/datum/asset/spritesheet/supplypods/register()
+/datum/asset/spritesheet/supplypods/create_spritesheets()
 	for (var/style in 1 to length(GLOB.podstyles))
 		var/icon_file = 'icons/obj/supplypods.dmi'
 		var/states = icon_states(icon_file)
@@ -290,13 +287,12 @@
 				if(glow in states)
 					podIcon.Blend(icon(icon_file, glow, SOUTH), ICON_OVERLAY)
 		Insert("pod_asset[style]", podIcon)
-	return ..()
 
 // Representative icons for each research design
 /datum/asset/spritesheet/research_designs
 	name = "design"
 
-/datum/asset/spritesheet/research_designs/register()
+/datum/asset/spritesheet/research_designs/create_spritesheets()
 	for (var/path in subtypesof(/datum/design))
 		var/datum/design/D = path
 
@@ -356,12 +352,11 @@
 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
-	return ..()
 
 /datum/asset/spritesheet/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/register()
+/datum/asset/spritesheet/vending/create_spritesheets()
 	for (var/k in GLOB.vending_products)
 		var/atom/item = k
 		if (!ispath(item, /atom))
@@ -394,7 +389,7 @@
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
-	return ..()
+
 /datum/asset/simple/bee_antags
 	assets = list(
 		"traitor.png" = 'html/img/traitor.png',
@@ -430,7 +425,8 @@
 		"mech.png" = 'html/img/mech.png',
 		"scitool.png" = 'html/img/scitool.png',
 		"alienorgan.png"= 'html/img/alienorgan.png',
-		"abaton.png"= 'html/img/abaton.png'
+		"abaton.png"= 'html/img/abaton.png',
+		"mimic.png"= 'html/img/mimic.png' //Monkestation Edit
 	)
 
 /datum/asset/simple/orbit
@@ -446,12 +442,11 @@
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/register()
+/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stack_objects.dmi')
 
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
-	..()
 
 /datum/asset/simple/pAI
 	assets = list(
@@ -462,14 +457,25 @@
 	var/tab = "use subtypes of this please"
 	assets = list()
 
+/datum/asset/simple/portraits/library
+	tab = "library"
+
+/datum/asset/simple/portraits/library_secure
+	tab = "library_secure"
+
+/datum/asset/simple/portraits/library_private
+	tab = "library_private"
+
+/datum/asset/simple/portraits
+	assets = list()
+
 /datum/asset/simple/portraits/New()
-	if(!SSpersistence.paintings || !SSpersistence.paintings[tab] || !length(SSpersistence.paintings[tab]))
+	if(!length(SSpersistent_paintings.paintings))
 		return
-	for(var/p in SSpersistence.paintings[tab])
-		var/list/portrait = p
-		var/png = "data/paintings/[tab]/[portrait["md5"]].png"
+	for(var/datum/painting/portrait as anything in SSpersistent_paintings.paintings)
+		var/png = "data/paintings/images/[portrait.md5].png"
 		if(fexists(png))
-			var/asset_name = "[tab]_[portrait["md5"]]"
+			var/asset_name = "paintings_[portrait.md5]"
 			assets[asset_name] = png
 	..() //this is where it registers all these assets we added to the list
 
@@ -482,10 +488,11 @@
 /datum/asset/simple/portraits/library_private
 	tab = "library_private"
 
+
 /datum/asset/spritesheet/fish
 	name = "fish"
 
-/datum/asset/spritesheet/fish/register()
+/datum/asset/spritesheet/fish/create_spritesheets()
 	for (var/path in subtypesof(/datum/aquarium_behaviour/fish))
 		var/datum/aquarium_behaviour/fish/fish_type = path
 		var/fish_icon = initial(fish_type.icon)
@@ -494,7 +501,6 @@
 		if(sprites[id]) //no dupes
 			continue
 		Insert(id, fish_icon, fish_icon_state)
-	..()
 
 /datum/asset/simple/inventory
 	assets = list(

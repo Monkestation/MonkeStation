@@ -32,7 +32,7 @@ BONUS
 	if(!..())
 		return
 
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	if(prob(base_message_chance))
 		to_chat(M, "<span class='warning'>[pick("Your scalp itches.", "Your skin feels flaky.")]</span>")
 	if(ishuman(M))

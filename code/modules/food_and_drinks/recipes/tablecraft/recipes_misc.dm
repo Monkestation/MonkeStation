@@ -355,3 +355,4 @@
 	)
 	result = /obj/item/food/ant_candy
 	subcategory = CAT_MISCFOOD
+
