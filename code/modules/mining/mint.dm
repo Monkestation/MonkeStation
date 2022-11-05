@@ -30,7 +30,7 @@
 		/datum/material/plastic,
 		/datum/material/adamantine,
 	), MINERAL_MATERIAL_AMOUNT * 75, FALSE, /obj/item/stack)
-	chosen = SSmaterials.GetMaterialRef(chosen)
+	chosen = GET_MATERIAL_REF(chosen)
 
 
 /obj/machinery/mineral/mint/pickup_item(datum/source, atom/movable/target, atom/oldLoc)

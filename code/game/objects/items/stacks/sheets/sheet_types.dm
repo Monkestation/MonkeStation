@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	singular_name = "iron sheet"
 	icon_state = "sheet-metal"
 	item_state = "sheet-metal"
-	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	amount = 5
 
 /obj/item/stack/sheet/iron/cyborg
-	custom_materials = list()
+	mats_per_unit = list()
 	is_cyborg = 1
 	cost = 500
 
@@ -172,7 +172,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	custom_materials = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
 	material_type = /datum/material/alloy/plasteel
 	throwforce = 10
 	flags_1 = CONDUCT_1
@@ -414,7 +414,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	icon_state = "sheet-bamboo"
 	item_state = "sheet-bamboo"
 	icon = 'icons/obj/stack_objects.dmi'
-	custom_materials = list(/datum/material/bamboo = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/bamboo = MINERAL_MATERIAL_AMOUNT)
 	force = 10
 	throwforce = 10
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
@@ -500,7 +500,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
 	item_state = "sheet-card"
-	custom_materials = list(/datum/material/cardboard = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/cardboard = MINERAL_MATERIAL_AMOUNT)
 	resistance_flags = FLAMMABLE
 	force = 0
 	throwforce = 0
@@ -547,7 +547,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	icon_state = "sheet-runed"
 	item_state = "sheet-runed"
 	icon = 'icons/obj/stack_objects.dmi'
-	custom_materials = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
 	sheettype = "runed"
 	merge_type = /obj/item/stack/sheet/runed_metal
 	novariants = TRUE
@@ -624,7 +624,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	novariants = FALSE
 	grind_results = list(/datum/reagent/iron = 5, /datum/reagent/teslium = 15)
 	merge_type = /obj/item/stack/tile/brass
-	custom_materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
+	mats_per_unit = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT*0.5, /datum/material/iron=MINERAL_MATERIAL_AMOUNT*0.5)
 
 /obj/item/stack/tile/brass/narsie_act()
 	new /obj/item/stack/sheet/runed_metal(loc, amount)
@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/tile/brass/cyborg
-	custom_materials = list()
+	mats_per_unit = list()
 	is_cyborg = 1
 	cost = 500
 
@@ -673,7 +673,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	icon_state = "sheet-brass"
 	item_state = "sheet-brass"
 	icon = 'icons/obj/stack_objects.dmi'
-	custom_materials = list(/datum/material/bronze = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/bronze = MINERAL_MATERIAL_AMOUNT)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	throwforce = 10
 	max_amount = 50
@@ -725,7 +725,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 /obj/item/stack/sheet/bone
 	name = "bones"
 	icon = 'icons/obj/mining.dmi'
-	custom_materials = list(/datum/material/bone = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/bone = MINERAL_MATERIAL_AMOUNT)
 	icon_state = "bone"
 	item_state = "sheet-bone"
 	singular_name = "bone"
@@ -751,7 +751,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
 	item_state = "sheet-plastic"
-	custom_materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	merge_type = /obj/item/stack/sheet/plastic
 
@@ -775,7 +775,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	singular_name = "paper frame"
 	icon_state = "sheet-paper"
 	item_state = "sheet-paper"
-	custom_materials = list(/datum/material/paper = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/paper = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/paperframes
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/paperframes
@@ -798,7 +798,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	singular_name = "meat sheet"
 	icon_state = "sheet-meat"
 	material_flags = MATERIAL_COLOR
-	custom_materials = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/meat = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/meat
 	material_type = /datum/material/meat
 	material_modifier = 1 //None of that wussy stuff
@@ -815,7 +815,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	desc = "It's a delicious pepperoni sheetzza!"
 	singular_name = "pepperoni sheetzza"
 	icon_state = "sheet-pizza"
-	custom_materials = list(/datum/material/pizza = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/pizza = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/pizza
 	material_type = /datum/material/pizza
 	material_modifier = 1
@@ -832,7 +832,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	desc = "You're too old to be playing with sandcastles. Now you build... sandstations."
 	singular_name = "block of sand"
 	icon_state = "sheet-sandstone"
-	custom_materials = list(/datum/material/sand = MINERAL_MATERIAL_AMOUNT)
+	mats_per_unit = list(/datum/material/sand = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/sandblock
 	material_type = /datum/material/sand
 	material_modifier = 1

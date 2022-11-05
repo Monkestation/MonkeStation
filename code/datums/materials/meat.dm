@@ -1,7 +1,7 @@
 ///It's gross, gets the name of it's owner, and is all kinds of fucked up
 /datum/material/meat
 	name = "meat"
-	id = "meat"
+	id = /datum/material/meat // So the bespoke versions are categorized under this
 	desc = "Meat"
 	color = rgb(214, 67, 67)
 	categories = list(MAT_CATEGORY_RIGID = TRUE)
@@ -17,7 +17,6 @@
 
 /datum/material/meat/on_applied_obj(obj/O, amount, material_flags)
 	. = ..()
-	O.obj_flags |= UNIQUE_RENAME //So you can name it after the person its made from, a depressing comprimise.
 	make_edible(O, amount, material_flags)
 
 /datum/material/meat/on_applied_turf(turf/T, amount, material_flags)
@@ -28,3 +27,23 @@
 	var/nutriment_count = 3 * (amount / MINERAL_MATERIAL_AMOUNT)
 	var/oil_count = 2 * (amount / MINERAL_MATERIAL_AMOUNT)
 	source.AddComponent(/datum/component/edible, list(/datum/reagent/consumable/nutriment = nutriment_count, /datum/reagent/consumable/cooking_oil = oil_count), null, RAW | MEAT | GROSS, null, 30, list("Fleshy"))
+
+/datum/material/meat/mob_meat
+	init_flags = MATERIAL_INIT_BESPOKE
+
+/datum/material/meat/mob_meat/Initialize(_id, mob/living/source)
+	if(!istype(source))
+		return FALSE
+
+	name = "[source?.name ? "[source.name]'s" : "mystery"] [initial(name)]"
+	return ..()
+
+/datum/material/meat/species_meat
+	init_flags = MATERIAL_INIT_BESPOKE
+
+/datum/material/meat/species_meat/Initialize(_id, datum/species/source)
+	if(!istype(source))
+		return FALSE
+
+	name = "[source?.name || "mystery"] [initial(name)]"
+	return ..()
