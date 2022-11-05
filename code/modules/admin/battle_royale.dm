@@ -135,6 +135,32 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	GLOB.battle_royale = new()
 	GLOB.battle_royale.start()
 
+/client/proc/toolbox_royale() //just a battle royale with all toolboxes, for ease
+	set name = "Toolbox Royale"
+	set category = "Adminbus"
+	if(!(check_rights(R_FUN) || (check_rights(R_ADMIN) && SSticker.current_state == GAME_STATE_FINISHED)))
+		to_chat(src, "<span class='warning'>You do not have permission to do that! (If you don't have +FUN, wait until the round is over then you can trigger it.)</span>")
+		return
+	if(GLOB.battle_royale)
+		to_chat(src, "<span class='warning'>A game is already in progress!</span>")
+		return
+	if(alert(src, "ARE YOU SURE YOU ARE SURE YOU WANT TO START TOOLBOX ROYALE?",,"Yes","No") != "Yes")
+		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>")
+		return
+	log_admin("[key_name(usr)] HAS TRIGGERED TOOLBOX ROYALE")
+	message_admins("[key_name(usr)] HAS TRIGGERED TOOLBOX ROYALE")
+
+	for(var/client/admin in GLOB.admins)
+		if(check_rights(R_ADMIN) && !GLOB.battle_royale && admin.tgui_panel)
+			admin.tgui_panel.clear_br_popup()
+
+	GLOB.battle_royale_basic_loot = list(/obj/item/storage/toolbox/mechanical) //all toolboxes
+	GLOB.battle_royale_good_loot = list(/obj/item/storage/toolbox/syndicate) //higher damage
+	GLOB.battle_royale_insane_loot = list(/obj/item/his_grace) //THE LEGEND
+
+	GLOB.battle_royale = new()
+	GLOB.battle_royale.start()
+
 /client/proc/battle_royale_speed()
 	set name = "Battle Royale - Change wall speed"
 	set category = "Event"
