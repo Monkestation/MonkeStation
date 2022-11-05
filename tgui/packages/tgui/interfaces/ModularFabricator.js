@@ -531,7 +531,7 @@ export const SidePanel = (props, context) => {
     <Section
       overflowY="scroll"
       width="100%"
-      height="75%">
+      height="85%">
       <MaterialData />
       <Divider />
       <Flex align="center">
