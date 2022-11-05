@@ -5,7 +5,7 @@
 #define AI_STATUS_OFF 2
 
 ///For JPS pathing, the maximum length of a path we'll try to generate. Should be modularized depending on what we're doing later on
-#define AI_MAX_PATH_LENGTH 30 // 30 is possibly overkill since by default we lose interest after 14 tiles of distance, but this gives wiggle room for weaving around obstacles
+#define AI_MAX_PATH_LENGTH 16
 
 ///Cooldown on planning if planning failed last time
 
@@ -74,8 +74,6 @@
 #define HAUNTED_ITEM_ATTACK_HAUNT_CHANCE 10
 ///Chance for haunted item to try to get itself let go.
 #define HAUNTED_ITEM_ESCAPE_GRASP_CHANCE 20
-///Chance for haunted item to warp somewhere new
-#define HAUNTED_ITEM_TELEPORT_CHANCE 4
 ///Amount of aggro you get when picking up a haunted item
 #define HAUNTED_ITEM_AGGRO_ADDITION 2
 
@@ -85,6 +83,9 @@
 #define BB_HAUNT_TARGET "BB_haunt_target"
 ///Amount of successful hits in a row this item has had
 #define BB_HAUNTED_THROW_ATTEMPT_COUNT "BB_haunted_throw_attempt_count"
+///If true, tolerates the equipper holding/equipping the hauntium
+#define BB_LIKES_EQUIPPER "BB_likes_equipper"
+
 
 ///Cursed item controller defines
 
