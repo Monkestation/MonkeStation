@@ -18,3 +18,15 @@
 		/obj/item/stack/sheet/mineral/silver = 1)
 
 	needs_anchored = FALSE
+
+/obj/item/circuitboard/machine/atmos_machine
+	name = "evaporation machine (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmos_machine
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stock_parts/cell = 1)
+	needs_anchored = FALSE

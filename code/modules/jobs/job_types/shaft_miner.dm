@@ -20,6 +20,7 @@
 	paycheck_department = ACCOUNT_CAR
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
+	bounty_types = CIV_JOB_MINE
 	departments = DEPARTMENT_CARGO
 	rpg_title = "Adventurer"
 

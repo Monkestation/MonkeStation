@@ -14,6 +14,14 @@
 	formatted_name += name
 	return formatted_name
 
+///This proc handles everything related to a plant when its added on to it
+/datum/plant_gene/proc/on_add(obj/item/seeds/host_seed)
+	return
+
+///This proc handles everything related to a plant when its removed from it
+/datum/plant_gene/proc/on_remove(obj/item/seeds/host_seed)
+	return
+
 /datum/plant_gene/proc/can_add(obj/item/seeds/S)
 	return !istype(S, /obj/item/seeds/sample) // Samples can't accept new genes
 
@@ -221,6 +229,17 @@
 	// Squash the plant on slip.
 	G.squash(C)
 
+/datum/plant_gene/trait/hotbox
+	// Allows the plant to hotbox rooms and spawn gas when burned
+	name = "Hotbox"
+	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"
+	trait_id = "harvest"
+
+/datum/plant_gene/trait/hotbox/on_add(obj/item/seeds/host_seed)
+	host_seed.max_yield = 3
+
+/datum/plant_gene/trait/hotbox/on_remove(obj/item/seeds/host_seed)
+	host_seed.max_yield = initial(host_seed.max_yield)
 /datum/plant_gene/trait/slip
 	// Makes plant slippery, unless it has a grown-type trash. Then the trash gets slippery.
 	// Applies other trait effects (teleporting, etc) to the target by on_slip.
@@ -404,6 +423,7 @@
 
 /datum/plant_gene/trait/repeated_harvest
 	name = "Perennial Growth"
+	trait_id = "harvest"
 
 /datum/plant_gene/trait/repeated_harvest/can_add(obj/item/seeds/S)
 	if(!..())

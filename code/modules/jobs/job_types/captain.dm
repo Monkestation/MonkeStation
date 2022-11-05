@@ -26,6 +26,7 @@
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	bounty_types = CIV_JOB_RANDOM
 	departments = DEPARTMENT_COMMAND
 	rpg_title = "Star Duke"
 
