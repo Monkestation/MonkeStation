@@ -7,6 +7,7 @@
 	var/datum/parsed_map/cached_map
 	var/maps_loading = 0
 	var/keep_cached_map = FALSE
+	var/station_id = null // used to override the root id when generating
 
 	///if true, turfs loaded from this template are placed on top of the turfs already there, defaults to TRUE
 	var/should_place_on_top = TRUE
@@ -76,6 +77,8 @@
 	// first or not.  Its defined In Initialize yet its run first in templates
 	// BEFORE so... hummm
 	SSmapping.reg_in_areas_in_z(areas)
+
+	// If the world is starting up stop here and the world will do the rest
 	if(!SSatoms.initialized)
 		return
 
@@ -178,15 +181,15 @@
 	if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
 		repopulate_sorted_areas()
 
-	maps_loading --
-	if (!maps_loading)
-		cached_map = keep_cached_map ? parsed : null
 	//If this is a superfunction call, we don't want to initialize atoms here, let the subfunction handle that
 	if(finalize)
+		maps_loading --
+		if (!maps_loading)
+			cached_map = keep_cached_map ? parsed : null
 		//initialize things that are normally initialized after map load
 		initTemplateBounds(bounds, init_atmos)
-
 		log_game("[name] loaded at [T.x],[T.y],[T.z]")
+
 	return bounds
 
 /datum/map_template/proc/update_blacklist(turf/T, list/input_blacklist)
