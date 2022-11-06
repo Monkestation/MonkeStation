@@ -326,8 +326,8 @@
 
 /obj/machinery/atmospherics/components/tank/air/Initialize()
 	. = ..()
-	FillToPressure(/datum/gas/oxygen, safety_margin=0.1)
-	FillToPressure(/datum/gas/nitrogen, safety_margin=0.5)
+	FillToPressure(GAS_O2, safety_margin=0.1)
+	FillToPressure(GAS_N2, safety_margin=0.5)
 
 /obj/machinery/atmospherics/components/tank/carbon_dioxide
 	gas_type = GAS_CO2
