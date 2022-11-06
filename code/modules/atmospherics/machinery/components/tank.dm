@@ -342,7 +342,7 @@
 	gas_type = GAS_O2
 
 /obj/machinery/atmospherics/components/tank/nitrous
-	gas_type = GAS_N2O
+	gas_type = GAS_NITROUS
 
 /obj/machinery/atmospherics/components/tank/bz
 	gas_type = GAS_BZ
@@ -369,7 +369,7 @@
 	gas_type = GAS_NITRYL
 
 /obj/machinery/atmospherics/components/tank/pluoxium
-	gas_type = GAS_PLOXIUM
+	gas_type = GAS_PLUOXIUM
 
 /obj/machinery/atmospherics/components/tank/stimulum
 	gas_type = GAS_STIMULUM
