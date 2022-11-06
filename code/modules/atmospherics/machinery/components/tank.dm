@@ -357,7 +357,7 @@
 	gas_type = GAS_HEALIUM
 
 /obj/machinery/atmospherics/components/tank/hydrogen
-	gas_type = /GAS_H2
+	gas_type = GAS_H2
 
 /obj/machinery/atmospherics/components/tank/hypernoblium
 	gas_type = GAS_HYPERNOB
