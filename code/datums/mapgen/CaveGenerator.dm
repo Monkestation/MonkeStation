@@ -86,7 +86,8 @@
 
 		new_turf.flags_1 |= stored_flags
 
-		if(!closed)//Open turfs have some special behavior related to spawning flora and mobs.
+
+		if(!closed && !(new_turf.flags_1 & NO_RUINS_1))//Open turfs have some special behavior related to spawning flora and mobs.
 
 			var/turf/open/new_open_turf = new_turf
 
