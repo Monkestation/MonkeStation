@@ -11,7 +11,7 @@
 
 	var/datum/armor/armor
 	/// The integrity the object starts at. Defaults to max_integrity.
-	var/obj_integrity
+	VAR_PRIVATE/obj_integrity
 	/// The maximum integrity the object can have.
 	var/max_integrity = 500
 	///0 if we have no special broken behavior, otherwise is a percentage of at what point the obj breaks. 0.5 being 50%
@@ -67,8 +67,7 @@
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
-	if(obj_integrity == null)
-		obj_integrity = max_integrity
+	obj_integrity = max_integrity
 	. = ..() //Do this after, else mat datums is mad.
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")

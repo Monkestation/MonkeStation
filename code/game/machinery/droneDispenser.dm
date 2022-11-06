@@ -237,6 +237,7 @@
 		return ..()
 
 /obj/machinery/droneDispenser/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
 			if(break_message)

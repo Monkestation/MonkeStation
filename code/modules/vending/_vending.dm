@@ -263,6 +263,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		..()
 
 /obj/machinery/vending/obj_break(damage_flag)
+	.=..()
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		icon_state = "[initial(icon_state)]-broken"

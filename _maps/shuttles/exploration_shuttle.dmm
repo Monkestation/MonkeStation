@@ -170,7 +170,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)
 "y" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 4;
 	initialize_directions = 4
 	},

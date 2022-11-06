@@ -1421,6 +1421,7 @@
 
 
 /obj/machinery/door/airlock/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		if(!panel_open)
@@ -1479,8 +1480,7 @@
 		A.update_icon()
 
 		if(!disassembled)
-			if(A)
-				A.obj_integrity = A.max_integrity * 0.5
+			A?.update_integrity(A.max_integrity * 0.5)
 		else if(obj_flags & EMAGGED)
 			if(user)
 				to_chat(user, "<span class='warning'>You discard the damaged electronics.</span>")

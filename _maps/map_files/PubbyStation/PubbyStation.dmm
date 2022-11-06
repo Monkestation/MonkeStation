@@ -4569,7 +4569,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
 "alV" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -32020,7 +32020,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "bFF" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -33302,7 +33302,7 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/dock)
 "bIX" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -34105,7 +34105,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "bLC" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bLF" = (
@@ -41820,7 +41820,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/chapel/monastery)
 "ckP" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -41997,7 +41997,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "clN" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "clP" = (

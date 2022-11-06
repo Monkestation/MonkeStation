@@ -53855,7 +53855,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},
@@ -69707,7 +69707,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -77995,7 +77995,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "cpQ" = (
@@ -83618,7 +83618,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cza" = (

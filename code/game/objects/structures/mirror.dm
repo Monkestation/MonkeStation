@@ -54,6 +54,7 @@
 	return ..()
 
 /obj/structure/mirror/obj_break(damage_flag, mapload)
+	.=..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		icon_state = "mirror_broke"
 		if(!mapload)

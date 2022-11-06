@@ -163,6 +163,7 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/machinery/power/solar_control/obj_break(damage_flag)
+	.=..()
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
 		set_machine_stat(machine_stat | BROKEN)

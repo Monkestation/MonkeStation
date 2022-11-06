@@ -414,6 +414,7 @@
 	return TRUE //yes we do have power
 
 /obj/machinery/door/airlock/clockwork/obj_break(damage_flag)
+	.=..()
 	return
 
 /obj/machinery/door/airlock/clockwork/deconstruct(disassembled = TRUE)
@@ -519,7 +520,6 @@
 /obj/structure/grille/ratvar/broken
 	icon_state = "brokenratvargrille"
 	density = FALSE
-	obj_integrity = 20
 	broken = TRUE
 	rods_type = /obj/item/stack/tile/brass
 	rods_amount = 1

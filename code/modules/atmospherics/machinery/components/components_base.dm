@@ -8,6 +8,8 @@
 
 	var/list/datum/pipeline/parents
 	var/list/datum/gas_mixture/airs
+	///Handles whether the custom reconcilation handling should be used
+	var/custom_reconcilation = FALSE
 
 /obj/machinery/atmospherics/components/New()
 	parents = new(device_type)
@@ -16,6 +18,8 @@
 	..()
 
 	for(var/i in 1 to device_type)
+		if(airs[i])
+			continue
 		var/datum/gas_mixture/A = new(200)
 		airs[i] = A
 
@@ -154,6 +158,8 @@
 // Helpers
 
 /obj/machinery/atmospherics/components/proc/update_parents()
+	if(!SSair.initialized)
+		return
 	for(var/i in 1 to device_type)
 		var/datum/pipeline/parent = parents[i]
 		if(!parent)
@@ -167,6 +173,16 @@
 	. = list()
 	for(var/i in 1 to device_type)
 		. += return_pipenet(nodes[i])
+
+/// When this machine is in a pipenet that is reconciling airs, this proc can add pipelines to the calculation.
+/// Can be either a list of pipenets or a single pipenet.
+/obj/machinery/atmospherics/components/proc/returnPipenetsForReconcilation(datum/pipeline/requester)
+	return list()
+
+/// When this machine is in a pipenet that is reconciling airs, this proc can add airs to the calculation.
+/// Can be either a list of airs or a single air mix.
+/obj/machinery/atmospherics/components/proc/returnAirsForReconcilation(datum/pipeline/requester)
+	return list()
 
 // UI Stuff
 

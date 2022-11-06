@@ -108,6 +108,7 @@
 	..()
 
 /obj/machinery/power/floodlight/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
 		var/obj/structure/floodlight_frame/F = new(loc)

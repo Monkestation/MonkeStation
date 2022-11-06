@@ -363,6 +363,7 @@
 	qdel(src)
 
 /obj/machinery/porta_turret/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1) && !(machine_stat & BROKEN))
 		set_machine_stat(machine_stat | BROKEN)	//enables the BROKEN bit
 		power_change()

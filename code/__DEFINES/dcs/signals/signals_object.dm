@@ -8,6 +8,12 @@
 #define COMSIG_OBJ_TAKE_DAMAGE	"obj_take_damage"
 	/// Return bitflags for the above signal which prevents the object taking any damage.
 	#define COMPONENT_NO_TAKE_DAMAGE	(1<<0)
+///from base of [/obj/proc/update_integrity]: ()
+#define COMSIG_OBJ_INTEGRITY_CHANGED "obj_integrity_changed"
+/// from base of [/obj/proc/obj_fix]: ()
+#define COMSIG_OBJ_FIX "obj_fix"
+/// from /obj/proc/obj_break: ()
+#define COMSIG_OBJ_BREAK "obj_break"
 /// from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"
 /// from base of code/game/machinery
@@ -27,6 +33,11 @@
 ///from base power_change() when power is lost
 #define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
 
+///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
+#define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
+///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()
+#define COMSIG_MACHINERY_STOP_PROCESSING_AIR "stop_processing_air"
+
 ///from base power_change() when power is restored
 #define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 ///from /obj/machinery/set_occupant(atom/movable/O): (new_occupant)
@@ -40,10 +51,6 @@
 #define COMSIG_MACHINERY_DESTRUCTIVE_SCAN "machinery_destructive_scan"
 ///from /obj/machinery/computer/arcade/prizevend(mob/user, prizes = 1)
 #define COMSIG_ARCADE_PRIZEVEND "arcade_prizevend"
-///from /datum/controller/subsystem/air/proc/start_processing_machine: ()
-#define COMSIG_MACHINERY_START_PROCESSING_AIR "start_processing_air"
-///from /datum/controller/subsystem/air/proc/stop_processing_machine: ()
-#define COMSIG_MACHINERY_STOP_PROCESSING_AIR "stop_processing_air"
 
 ///from /obj/machinery/can_interact(mob/user): Called on user when attempting to interact with a machine (obj/machinery/machine)
 #define COMSIG_TRY_USE_MACHINE "try_use_machine"

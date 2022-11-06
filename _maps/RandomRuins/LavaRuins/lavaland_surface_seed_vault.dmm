@@ -364,7 +364,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "yk" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /obj/machinery/light/small{
 	dir = 1
 	},

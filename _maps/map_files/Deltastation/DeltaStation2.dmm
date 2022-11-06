@@ -4565,7 +4565,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ali" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -4938,7 +4938,7 @@
 	},
 /area/maintenance/port/fore)
 "alY" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 8
 	},
 /turf/open/floor/plating{
@@ -106365,7 +106365,7 @@
 /area/library)
 "mjr" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "mjJ" = (

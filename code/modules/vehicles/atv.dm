@@ -76,6 +76,7 @@
 	return ..()
 
 /obj/vehicle/ridden/secway/obj_break()
+	.=..()
 	START_PROCESSING(SSobj, src)
 	return ..()
 

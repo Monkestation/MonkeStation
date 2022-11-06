@@ -773,6 +773,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	qdel(src)
 
 /obj/machinery/newscaster/obj_break()
+	.=..()
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)

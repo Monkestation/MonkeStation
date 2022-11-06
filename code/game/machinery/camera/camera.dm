@@ -331,6 +331,7 @@
 	. = ..()
 
 /obj/machinery/camera/obj_break(damage_flag)
+	.=..()
 	if(status && !(flags_1 & NODECONSTRUCT_1))
 		triggerCameraAlarm()
 		toggle_cam(null, 0)
@@ -347,7 +348,7 @@
 			assembly_ref = null
 		else
 			var/obj/item/I = new /obj/item/wallframe/camera (loc)
-			I.obj_integrity = I.max_integrity * 0.5
+			I.update_integrity(I.max_integrity * 0.5)
 			new /obj/item/stack/cable_coil(loc, 2)
 	qdel(src)
 

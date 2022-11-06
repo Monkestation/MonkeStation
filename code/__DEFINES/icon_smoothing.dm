@@ -118,7 +118,9 @@ DEFINE_BITFIELD(smoothing_flags, list(
 //LIQUIDS
 
 #define SMOOTH_GROUP_WATER S_OBJ(73) ///obj/effect/abstract/liquid_turf
-
-#define MAX_S_OBJ SMOOTH_GROUP_WATER //Always match this value with the one above it.
 #define SMOOTH_GROUP_ELEVATED_PLASTEEL S_TURF(31)
 #define SMOOTH_GROUP_LOWERED_PLASTEEL S_TURF(32)
+
+#define SMOOTH_GROUP_GAS_TANK S_OBJ(71)
+
+#define MAX_S_OBJ SMOOTH_GROUP_GAS_TANK //Always match this value with the one above it.

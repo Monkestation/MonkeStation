@@ -145,6 +145,7 @@
 			power_change()
 
 /obj/machinery/flasher/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
 			set_machine_stat(machine_stat | BROKEN)

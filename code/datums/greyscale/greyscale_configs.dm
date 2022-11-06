@@ -118,6 +118,11 @@
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_marisa.json'
 
+/datum/greyscale_config/stationary_canister
+	name = "Stationary Canister"
+	icon_file = 'icons/obj/atmospherics/stationary_canisters.dmi'
+	json_config = 'code/datums/greyscale/json_configs/smooth_canister_stationary.json'
+
 /datum/greyscale_config/carp
 	name = "Space Carp"
 	icon_file = 'icons/mob/carp.dmi'
