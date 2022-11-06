@@ -239,6 +239,19 @@
 	M.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
 	return TRUE
 
+/datum/material/mythril
+	name = "mythril"
+	desc = "How this even exists is byond me"
+	color = "#f2d5d7"
+	greyscale_colors = "#f2d5d7"
+	categories = list(MAT_CATEGORY_RIGID = TRUE, MAT_CATEGORY_BASE_RECIPES = TRUE, MAT_CATEGORY_ITEM_MATERIAL=TRUE)
+	sheet_type = /obj/item/stack/sheet/mineral/mythril
+	value_per_unit = 0.75
+	strength_modifier = 1.2
+
+/datum/material/mythril/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
+	victim.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
+	return TRUE
 //I don't like sand. It's coarse, and rough, and irritating, and it gets everywhere.
 /datum/material/sand
 	name = "sand"

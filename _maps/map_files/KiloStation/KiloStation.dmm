@@ -82487,7 +82487,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/atmospherics/components/unary/tank/toxins,
+/obj/machinery/atmospherics/components/tank/toxins,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
 "cwY" = (

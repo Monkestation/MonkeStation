@@ -48907,7 +48907,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "gYA" = (
-/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/obj/machinery/atmospherics/components/tank/oxygen,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
 "gZq" = (
@@ -50222,7 +50222,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "iEp" = (
-/obj/machinery/atmospherics/components/unary/tank/nitrogen,
+/obj/machinery/atmospherics/components/tank/nitrogen,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
 "iEQ" = (

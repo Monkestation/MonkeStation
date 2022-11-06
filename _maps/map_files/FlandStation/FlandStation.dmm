@@ -1218,7 +1218,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "aqG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/tank/toxins{
 	dir = 4
 	},
 /obj/effect/turf_decal/delivery,
@@ -74981,7 +74981,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "rAT" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/tank/toxins{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
