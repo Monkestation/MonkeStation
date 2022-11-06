@@ -33,6 +33,9 @@
 				return
 			while(t_amount < t_max)
 				var/obj/item/seeds/t_prod = F.seed.Copy()
+				for(var/datum/plant_gene/new_gene in t_prod.genes)
+					new_gene.on_add(t_prod)
+
 				seeds.Add(t_prod)
 				t_prod.forceMove(seedloc)
 				t_amount++

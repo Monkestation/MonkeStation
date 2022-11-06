@@ -31,3 +31,11 @@
 	build_path = /obj/item/circuitboard/machine/crystallizer
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/atmos_machine
+	name = "Machine Design (Evaporation Machine)"
+	desc = "The circuit board for a evaporation machine."
+	id = "evaporation_machine"
+	build_path = /obj/item/circuitboard/machine/atmos_machine
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING

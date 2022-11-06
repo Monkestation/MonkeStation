@@ -22,6 +22,7 @@
 	var/maturation = 6				// Used to determine which sprite to switch to when growing.
 	var/production = 6				// Changes the amount of time needed for a plant to become harvestable.
 	var/yield = 3					// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
+	var/max_yield = 100				// The absolute maximum yield a plant can have.
 	var/potency = 10				// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
 	var/growthstages = 6			// Amount of growth sprites the plant has.
 	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
@@ -65,6 +66,9 @@
 			if(ispath(p))
 				genes -= p
 				genes += new p
+
+		for(var/datum/plant_gene/held_gene in genes)
+			held_gene.on_add(src)
 
 		for(var/reag_id in reagents_add)
 			genes += new /datum/plant_gene/reagent(reag_id, reagents_add[reag_id])
@@ -142,7 +146,7 @@
 
 // Harvest procs
 /obj/item/seeds/proc/getYield()
-	var/return_yield = yield
+	var/return_yield = min(yield, max_yield)
 
 	var/obj/machinery/hydroponics/parent = loc
 	if(istype(loc, /obj/machinery/hydroponics))
@@ -160,7 +164,8 @@
 	var/list/result = list()
 	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
 	var/product_name
-	while(t_amount < getYield())
+	var/yield_amount = getYield()
+	while(t_amount < yield_amount)
 		var/obj/item/food/grown/t_prod = new product(output_loc, src)
 		if(parent.myseed.plantname != initial(parent.myseed.plantname))
 			t_prod.name = parent.myseed.plantname
@@ -343,7 +348,7 @@
 	if(potency != -1)
 		text += "- Potency: [potency]\n"
 	if(yield != -1)
-		text += "- Yield: [yield]\n"
+		text += "- Yield: [min(yield, max_yield)]\n"
 	text += "- Maturation speed: [maturation]\n"
 	if(yield != -1)
 		text += "- Production speed: [production]\n"

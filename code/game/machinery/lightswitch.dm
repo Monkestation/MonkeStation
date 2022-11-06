@@ -15,11 +15,9 @@
 
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
-/*
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/light_switch,
-	))
-*/
+
+	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/light_switch()), SHELL_CAPACITY_SMALL)
+
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/Initialize(mapload)
@@ -94,7 +92,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	if(do_after(eminence, 20, target=get_turf(eminence)))
 		interact(eminence)
 
-/* WIREMOD
+//Monkestation Edit - Readds the commented out lightswitch circuit
+//Circuit Component
 /obj/item/circuit_component/light_switch
 	display_name = "Light Switch"
 	desc = "Allows to control the lights of an area."
@@ -104,28 +103,40 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	var/datum/port/input/on_setting
 	///Whether the lights are turned on
 	var/datum/port/output/is_on
+	///Triggers whenever the switch is toggled
+	var/datum/port/output/toggled
 
-	var/obj/machinery/light_switch/attached_switch
-
-/obj/item/circuit_component/light_switch/populate_ports()
+/obj/item/circuit_component/light_switch/Initialize(mapload)
+	. = ..()
 	on_setting = add_input_port("On", PORT_TYPE_NUMBER)
 	is_on = add_output_port("Is On", PORT_TYPE_NUMBER)
+	toggled = add_output_port("Toggled", PORT_TYPE_SIGNAL)
 
-/obj/item/circuit_component/light_switch/register_usb_parent(atom/movable/parent)
-	. = ..()
-	if(istype(parent, /obj/machinery/light_switch))
-		attached_switch = parent
-		RegisterSignal(parent, COMSIG_LIGHT_SWITCH_SET, .proc/on_light_switch_set)
+/obj/item/circuit_component/light_switch/register_shell(atom/movable/shell)
+	RegisterSignal(shell, COMSIG_LIGHT_SWITCH_SET, .proc/on_light_switch_set)
 
-/obj/item/circuit_component/light_switch/unregister_usb_parent(atom/movable/parent)
-	attached_switch = null
-	UnregisterSignal(parent, COMSIG_LIGHT_SWITCH_SET)
-	return ..()
+/obj/item/circuit_component/light_switch/unregister_shell(atom/movable/shell)
+	UnregisterSignal(shell, COMSIG_LIGHT_SWITCH_SET)
 
 /obj/item/circuit_component/light_switch/proc/on_light_switch_set(datum/source, status)
 	SIGNAL_HANDLER
 	is_on.set_output(status)
+	toggled.set_output(COMPONENT_SIGNAL)
+
+/obj/item/circuit_component/light_switch/Destroy()
+	on_setting = null
+	is_on = null
+	toggled = null
+	return ..()
 
 /obj/item/circuit_component/light_switch/input_received(datum/port/input/port)
-	attached_switch?.set_lights(on_setting.value ? TRUE : FALSE)
-*/
+	. = ..()
+	if(.)
+		return
+
+
+	var/obj/machinery/light_switch/shell = parent.shell
+	if(!istype(shell))
+		return
+	shell.set_lights(on_setting.input_value ? TRUE : FALSE)
+

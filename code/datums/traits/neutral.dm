@@ -3,7 +3,7 @@
 
 /datum/quirk/no_taste
 	name = "Ageusia"
-	desc = "You can't taste anything! Toxic food will still poison you."
+	desc = "With no sense of taste, no food can faze you! You can't enjoy good food either, though, and good luck telling if something's been poisoned."
 	value = 0
 	mob_trait = TRAIT_AGEUSIA
 	gain_text = "<span class='notice'>You can't taste anything!</span>"

@@ -209,6 +209,9 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	deconstruct(FALSE)
 
 //// FIRE
+///outsourcing the proc from the ss so i can change the behavior for things
+/obj/proc/fire_tick_act(delta_time)
+	take_damage(10 * delta_time, BURN, "fire", 0)
 
 /obj/fire_act(exposed_temperature, exposed_volume)
 	if(isturf(loc))

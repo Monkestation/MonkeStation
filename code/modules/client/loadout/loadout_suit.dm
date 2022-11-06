@@ -173,3 +173,10 @@
 	display_name = "black bishop's robes"
 	path = /obj/item/clothing/suit/chaplainsuit/bishoprobe/black
 	allowed_roles = list("Chaplain")
+
+//MISC
+
+/datum/gear/suit/suspenders
+	display_name = "suspenders"
+	description = "..."
+	path = /obj/item/clothing/suit/suspenders

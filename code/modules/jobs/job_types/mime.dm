@@ -18,6 +18,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	display_order = JOB_DISPLAY_ORDER_MIME
+	bounty_types = CIV_JOB_RANDOM
 	departments = DEPARTMENT_SERVICE
 	rpg_title = "Fool"
 
