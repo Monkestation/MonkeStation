@@ -83,6 +83,7 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+	user.client.view_size.supress()
 	if(!QDELETED(user) && user.client)
 		var/mob/camera/ai_eye/remote/shuttle_docker/the_eye = eyeobj
 		var/list/to_add = list()
@@ -108,6 +109,7 @@
 		user.reset_perspective(null)
 		if(eyeobj.visible_icon && user.client)
 			user.client.images -= eyeobj.user_image
+		user.client.view_size.unsupress()
 
 	eyeobj.eye_user = null
 	user.remote_control = null
