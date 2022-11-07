@@ -52,10 +52,10 @@
 		shuttle_port = null
 		return
 
-	eyeobj = new /mob/camera/ai_eye/remote/shuttle_docker(null, src)
+	var/turf/origin = locate(shuttle_port.x, shuttle_port.y, shuttle_port.z)
+	eyeobj = new /mob/camera/ai_eye/remote/shuttle_docker(origin, src)
 	var/mob/camera/ai_eye/remote/shuttle_docker/the_eye = eyeobj
 	the_eye.setDir(shuttle_port.dir)
-	var/turf/origin = locate(shuttle_port.x, shuttle_port.y, shuttle_port.z)
 	for(var/obj/docking_port/mobile/M in shuttle_port.get_all_towed_shuttles())
 		for(var/area/A in M.shuttle_areas)
 			for(var/turf/T in A)
@@ -83,7 +83,6 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
-	user.client.view_size.supress()
 	if(!QDELETED(user) && user.client)
 		var/mob/camera/ai_eye/remote/shuttle_docker/the_eye = eyeobj
 		var/list/to_add = list()
@@ -109,8 +108,6 @@
 		user.reset_perspective(null)
 		if(eyeobj.visible_icon && user.client)
 			user.client.images -= eyeobj.user_image
-
-		user.client.view_size.unsupress()
 
 	eyeobj.eye_user = null
 	user.remote_control = null
@@ -169,6 +166,7 @@
 		my_port = null
 
 	if(!my_port)
+		var/list/bounds = shuttle_port.return_union_bounds(shuttle_port.get_all_towed_shuttles())
 		my_port = new()
 		my_port.name = shuttlePortName
 		my_port.id = shuttlePortId
@@ -277,6 +275,7 @@
 		var/turf_type = hidden_turf_info ? hidden_turf_info[2] : T.type
 		if(!is_type_in_typecache(turf_type, whitelist_turfs))
 			return SHUTTLE_DOCKER_BLOCKED
+
 	for(var/obj/machinery/M in T.contents) //An inprecise check to prevent theft of important machines such the SM or the communication console.
 		return SHUTTLE_DOCKER_BLOCKED
 
