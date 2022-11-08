@@ -127,7 +127,6 @@
 	worn_slot_flags = ITEM_SLOT_HEAD
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
-	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
 	mobchatspan = "stationengineer"
 
@@ -145,7 +144,7 @@
 	if(prob(40))
 		gender = MALE
 
-	if(gender == MALE)
+	if(gender == MALE && breed_name)
 		if(breed_name_male)
 			name = " [breed_name_male]"
 		else
@@ -155,6 +154,8 @@
 			name = " [breed_name_female]"
 		else
 			name = "[breed_name] Hen"
+
+	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/simple_animal/chicken/proc/assign_chicken_icon()
 	if(!icon_suffix) // should never be the case but if so default to the first set of icons
@@ -420,6 +421,8 @@
 /mob/living/simple_animal/chicken/turkey
 	name = "\improper turkey"
 	desc = "it's that time again."
+	icon = 'icons/mob/animal.dmi'
+	breed_name = null
 	icon_state = "turkey_plain"
 	icon_living = "turkey_plain"
 	icon_dead = "turkey_plain_dead"
@@ -439,6 +442,15 @@
 	breed_name_male = "Turkey"
 	breed_name_female = "Turkey"
 
-/mob/living/simple_animal/chicken/hen/Initialize(mapload)
+	mutation_list = list()
+
+
+/mob/living/simple_animal/chicken/turkey/LateInitialize() //reset this as regular chickens override
+	. = ..()
+	icon_state = "turkey_plain"
+	icon_living = "turkey_plain"
+	icon_dead = "turkey_plain_dead"
+
+/mob/living/simple_animal/chicken/hen/LateInitialize()
 	.=..()
 	gender = FEMALE
