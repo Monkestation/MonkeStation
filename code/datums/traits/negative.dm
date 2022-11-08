@@ -46,38 +46,42 @@
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/blindfold/white/B = new(get_turf(H))
-	if(!H.equip_to_slot_if_possible(B, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
-		H.put_in_hands(B)
+	if(!H.equip_to_slot_if_possible(B, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their backpack
+		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, B, H, TRUE, TRUE) //insert the item, even if the backpack's full
 	H.regenerate_icons()
 
 /datum/quirk/brainproblems
 	name = "Brain Tumor"
 	desc = "You have a little friend in your brain that is slowly destroying it. Thankfully, you start with a bottle of mannitol pills."
+	mob_trait = TRAIT_BRAIN_TUMOR
 	value = -3
 	gain_text = "<span class='danger'>You feel smooth.</span>"
 	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
 	process = TRUE
 	var/where = "at your feet"
+	var/notified = FALSE
 
 /datum/quirk/brainproblems/on_process(delta_time)
-	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
+	if(!quirk_holder.reagents.has_reagent(/datum/reagent/medicine/mannitol))
+		if(prob(80))
+			quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1 * delta_time)
+	var/obj/item/organ/brain/affected_brain = quirk_holder.getorgan(/obj/item/organ/brain)
+	if(affected_brain)
+		if(affected_brain.damage>BRAIN_DAMAGE_MILD-1 && !notified)
+			to_chat(quirk_holder, "<span class='danger'>You sense your brain is getting beyond your control...</span>")
+			notified = TRUE
+		if(affected_brain.damage<1 && notified)
+			to_chat(quirk_holder, "<span class='notice'>You feel your brain is quite well.</span>")
+			notified = FALSE
 
 /datum/quirk/brainproblems/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/storage/pill_bottle/mannitol/braintumor/P = new(get_turf(H))
-
-	var/slot = H.equip_in_one_of_slots(P, list(ITEM_SLOT_LPOCKET, ITEM_SLOT_RPOCKET, ITEM_SLOT_BACKPACK), FALSE)
-	if(slot)
-		var/list/slots = list(
-		ITEM_SLOT_LPOCKET = "in your left pocket",
-		ITEM_SLOT_RPOCKET = "in your right pocket",
-		ITEM_SLOT_BACKPACK = "in your backpack"
-		)
-		where = slots[slot]
+	var/mob/living/carbon/human/holder = quirk_holder
+	var/obj/item/storage/pill_bottle/mannitol/braintumor/pill_bottle = new(get_turf(holder))
+	SEND_SIGNAL(holder.back, COMSIG_TRY_STORAGE_INSERT, pill_bottle, holder, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/brainproblems/post_add()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol [where]. You're going to need it.</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol in your backpack. You're going to need it.</span>")
 
 /datum/quirk/deafness
 	name = "Deaf"
@@ -199,19 +203,13 @@
 		/obj/item/lighter,
 		/obj/item/dice/d20)
 	heirloom = new heirloom_type(get_turf(quirk_holder))
-	var/list/slots = list(
-		"in your left pocket" = ITEM_SLOT_LPOCKET,
-		"in your right pocket" = ITEM_SLOT_RPOCKET,
-		"in your backpack" = ITEM_SLOT_BACKPACK
-	)
-	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, heirloom, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/family_heirloom/post_add()
-	if(where == "in your backpack")
-		var/mob/living/carbon/human/H = quirk_holder
-		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
+	var/mob/living/carbon/human/H = quirk_holder
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] in your backpack, passed down from generation to generation. Keep it safe!</span>")
 
 	var/list/names = splittext(quirk_holder.real_name, " ")
 	var/family_name = names[names.len]
@@ -257,7 +255,8 @@
 	if(issimian(H)) // not liking that i have to do it here but quirks seem to apply after jobs so here goes!
 		qdel(H.wear_neck)
 		var/obj/item/clothing/mask/translator/T = new /obj/item/clothing/mask/translator
-		H.equip_to_slot(T, ITEM_SLOT_NECK)
+		if(!H.equip_to_slot_if_possible(T, ITEM_SLOT_NECK, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's neck, put it in their backpack
+			SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, T, H, TRUE, TRUE) //insert the item, even if the backpack's full
 		T.current_language = /datum/language/uncommon
 
 /datum/quirk/foreigner/remove()
@@ -314,9 +313,8 @@
 /datum/quirk/nearsighted/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
-	H.put_in_hands(glasses)
-	H.equip_to_slot(glasses, ITEM_SLOT_EYES)
-	H.regenerate_icons() //this is to remove the inhand icon, which persists even if it's not in their hands
+	if(!H.equip_to_slot_if_possible(glasses, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their backpack
+		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, glasses, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/nyctophobia
 	name = "Nyctophobia"
@@ -527,23 +525,15 @@
 	var/obj/item/accessory_instance
 	if (accessory_type)
 		accessory_instance = new accessory_type(current_turf)
-	var/list/slots = list(
-		"in your left pocket" = ITEM_SLOT_LPOCKET,
-		"in your right pocket" = ITEM_SLOT_RPOCKET,
-		"in your backpack" = ITEM_SLOT_BACKPACK
-	)
-	where_drug = H.equip_in_one_of_slots(drug_instance, slots, FALSE) || "at your feet"
+
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, accessory_instance, H, TRUE, TRUE) //insert the item, even if the backpack's full
 	if (accessory_instance)
-		where_accessory = H.equip_in_one_of_slots(accessory_instance, slots, FALSE) || "at your feet"
-	announce_drugs()
+		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, drug_instance, H, TRUE, TRUE)
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] of [initial(reagent_type.name)] in your backpack. Better hope you don't run out...</span>")
 
 /datum/quirk/junkie/post_add()
-	if(where_drug == "in your backpack" || where_accessory == "in your backpack")
-		var/mob/living/carbon/human/H = quirk_holder
-		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
-
-/datum/quirk/junkie/proc/announce_drugs()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] of [initial(reagent_type.name)] [where_drug]. Better hope you don't run out...</span>")
+	var/mob/living/carbon/human/H = quirk_holder
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
 /datum/quirk/junkie/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -581,8 +571,7 @@
 		/obj/item/storage/fancy/cigarettes/cigpack_carp)
 	. = ..()
 
-/datum/quirk/junkie/smoker/announce_drugs()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] [where_drug], and a lighter [where_accessory]. Make sure you get your favorite brand when you run out.</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] and a lighter in your backpack. Make sure you get your favorite brand when you run out.</span>")
 
 
 /datum/quirk/junkie/smoker/on_process()
@@ -619,12 +608,11 @@
 /datum/quirk/alcoholic/on_spawn()
 	drink_instance = pick(drink_types)
 	drink_instance = new drink_instance()
-	var/list/slots = list("in your backpack" = ITEM_SLOT_BACKPACK)
 	var/mob/living/carbon/human/H = quirk_holder
-	where_drink = H.equip_in_one_of_slots(drink_instance, slots, FALSE) || "at your feet"
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, drink_instance, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/alcoholic/post_add()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a small bottle of [drink_instance] [where_drink]. You only have a single bottle, might have to find some more...</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a small bottle of [drink_instance] in your backpack. You only have a single bottle, might have to find some more...</span>")
 
 /datum/quirk/alcoholic/on_process()
 	if(tick_number >= 6) // how many ticks should pass between a check

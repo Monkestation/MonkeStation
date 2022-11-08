@@ -115,9 +115,10 @@
 			var/datum/reagent/R = r
 			liquids.reagent_list[R.type] = R.volume
 			liquids.total_reagents += R.volume
-			alpha_setting += R.opacity * R.volume
-			alpha_divisor += 1 * R.volume
-		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
+			alpha_setting += max(R.opacity * R.volume, 0.0001)
+			alpha_divisor += max(1 * R.volume, 0.0001)
+
+		liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
 		liquids.temp = reagents.chem_temp
 		if(!liquids.total_reagents) //Our reaction exerted all of our reagents, remove self
 			qdel(reagents)
@@ -169,7 +170,7 @@
 			liquids.total_reagents += R.volume
 			alpha_setting += R.opacity * R.volume
 			alpha_divisor += 1 * R.volume
-		liquids.alpha = min(round(alpha_setting / alpha_divisor), 255)
+		liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
 		qdel(reagents)
 		//Expose turf
 		liquids.ExposeMyTurf()

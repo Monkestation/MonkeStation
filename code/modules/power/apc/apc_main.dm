@@ -214,6 +214,8 @@
 		area.power_change()
 		area.apc = null
 	QDEL_NULL(alarm_manager)
+	if(integration_cog)
+		QDEL_NULL(integration_cog)
 	if(occupier)
 		malfvacate(TRUE)
 	if(wires)

@@ -396,8 +396,8 @@ NEAR_DEATH_EXPERIENCE
 ## Set to 0/commented out for "off", silicons will just start with Asimov.
 ## Set to 1 for "custom", silicons will start with the custom laws defined in silicon_laws.txt. (If silicon_laws.txt is empty, the AI will spawn with asimov and Custom boards will auto-delete.)
 ## Set to 2 for "random", silicons will start with a random lawset picked from random laws specified below.
-## Set to 3 for "weighted random", using values in "silicon_weights.txt", a law will be selected, with weights specifed in that file.
-DEFAULT_LAWS 2
+## Set to 3 for "weighted random", using weights specified below, a law will be selected randomly.
+DEFAULT_LAWS 3
 
 ## RANDOM LAWS ##
 ## ------------------------------------------------------------------------------------------
@@ -405,9 +405,8 @@ DEFAULT_LAWS 2
 ## See datums\ai_laws.dm for the full law lists
 
 ## standard-ish laws. These are fairly ok to run
-RANDOM_LAWS asimov
-RANDOM_LAWS asimovpp
 RANDOM_LAWS crewsimov
+RANDOM_LAWS crewsimovpp
 RANDOM_LAWS corporate
 RANDOM_LAWS maintain
 
@@ -440,22 +439,23 @@ RANDOM_LAWS maintain
 LAW_WEIGHT custom,0
 
 ## standard-ish laws. These are fairly ok to run
-LAW_WEIGHT asimov,32
-LAW_WEIGHT asimovpp,12
-LAW_WEIGHT paladin,12
-LAW_WEIGHT robocop,12
-LAW_WEIGHT corporate,12
+LAW_WEIGHT crewsimovpp,50
+LAW_WEIGHT crewsimov,10
+LAW_WEIGHT paladin,10
+LAW_WEIGHT robocop,10
+LAW_WEIGHT corporate,10
 
 ## Quirky laws. Shouldn't cause too much harm
-LAW_WEIGHT hippocratic,3
-LAW_WEIGHT maintain,4
-LAW_WEIGHT drone,3
-LAW_WEIGHT liveandletlive,3
-LAW_WEIGHT peacekeeper,3
-LAW_WEIGHT reporter,4
-LAW_WEIGHT hulkamania,4
+LAW_WEIGHT hippocratic,5
+LAW_WEIGHT maintain,5
+LAW_WEIGHT liveandletlive,5
+LAW_WEIGHT peacekeeper,5
+LAW_WEIGHT reporter,5
+LAW_WEIGHT hulkamania,5
+LAW_WEIGHT dune,5
 
 ## Bad idea laws. Probably shouldn't enable these
+LAW_WEIGHT drone,0
 LAW_WEIGHT syndie,0
 LAW_WEIGHT ninja,0
 LAW_WEIGHT antimov,0

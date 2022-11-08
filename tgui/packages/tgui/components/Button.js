@@ -21,6 +21,7 @@ export const Button = props => {
     icon,
     iconRotation,
     iconSpin,
+    iconColor,
     iconPosition,
     color,
     disabled,
@@ -91,6 +92,7 @@ export const Button = props => {
       {(icon && iconPosition !== 'right') && (
         <Icon
           name={icon}
+          color={iconColor}
           rotation={iconRotation}
           spin={iconSpin} />
       )}

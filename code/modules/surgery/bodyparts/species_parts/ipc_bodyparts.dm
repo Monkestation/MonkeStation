@@ -17,6 +17,7 @@
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
 
+	dmg_overlay_type = "synth"
 /obj/item/bodypart/chest/ipc
 	static_icon = 'icons/mob/species/ipc/bodyparts.dmi'
 	icon = 'icons/mob/species/ipc/bodyparts.dmi'
@@ -36,6 +37,7 @@
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
 
+	dmg_overlay_type = "synth"
 /obj/item/bodypart/l_arm/ipc
 	static_icon = 'icons/mob/species/ipc/bodyparts.dmi'
 	icon = 'icons/mob/species/ipc/bodyparts.dmi'
@@ -54,6 +56,7 @@
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
 
+	dmg_overlay_type = "synth"
 /obj/item/bodypart/r_arm/ipc
 	static_icon = 'icons/mob/species/ipc/bodyparts.dmi'
 	icon = 'icons/mob/species/ipc/bodyparts.dmi'
@@ -71,6 +74,8 @@
 	light_burn_msg = "burned"
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
+
+	dmg_overlay_type = "synth"
 
 /obj/item/bodypart/l_leg/ipc
 	static_icon = 'icons/mob/species/ipc/bodyparts.dmi'
@@ -90,6 +95,7 @@
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
 
+	dmg_overlay_type = "synth"
 /obj/item/bodypart/r_leg/ipc
 	static_icon = 'icons/mob/species/ipc/bodyparts.dmi'
 	icon = 'icons/mob/species/ipc/bodyparts.dmi'
@@ -107,3 +113,5 @@
 	light_burn_msg = "burned"
 	medium_burn_msg = "scorched"
 	heavy_burn_msg = "seared"
+
+	dmg_overlay_type = "synth"

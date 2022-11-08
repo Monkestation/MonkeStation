@@ -85,7 +85,7 @@
 	display_name = "Advanced Biotechnology"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
-	design_ids = list("piercesyringe", "crewpinpointer", "smoke_machine", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "detective_scanner", "defibrillator_compact")
+	design_ids = list("piercesyringe", "crewpinpointer", "plasmarefiller", "limbgrower", "meta_beaker", "healthanalyzer_advanced", "harvester", "holobarrier_med", "detective_scanner", "defibrillator_compact")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -148,7 +148,7 @@
 	display_name = "Data Theory"
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
-	design_ids = list("bounty_pad", "bounty_pad_control") //Monkestation edit
+	design_ids = list("bounty_pad", "bounty_pad_control", "monkey_translator") //Monkestation edit
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -162,7 +162,7 @@
 	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "scanner_gate",
 	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "machine_igniter", "mass_driver", "tesla_coil", "grounding_rod",
 	"apc_control", "cell_charger", "power control", "airlock_board", "firelock_board", "aac_electronics", "airalarm_electronics", "firealarm_electronics", "cell_charger", "stack_console", "stack_machine",
-	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "plasmaman_tank", "antivirus2", "liquid_output_pump")//MONKESTATION CHANGE
+	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "crystallizer", "plasmaman_tank_belt", "electrolyzer", "plasmaman_tank", "antivirus2", "liquid_output_pump")//MONKESTATION CHANGE
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 5000
 
@@ -803,7 +803,7 @@
 	tech_tier = 3
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
-	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "wirebrush_adv", "diagnostic_hud_weld")  // MONKE EDIT - DIAGHUD
+	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool", "wirebrush_adv", "diagnostic_hud_weld", "evaporation_machine")  // MONKE EDIT - DIAGHUD
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
@@ -1346,7 +1346,7 @@
 	display_name = "Illegal Technology"
 	description = "Dangerous research used to create dangerous objects."
 	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
-	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "largecrossbow", "donksofttoyvendor", "donksoft_refill", "advanced_camera" , "arcade_amputation")
+	design_ids = list("decloner", "borg_syndicate_module", "ai_cam_upgrade", "suppressor", "super_pointy_tape", "largecrossbow", "donksofttoyvendor", "donksoft_refill", "advanced_camera" , "arcade_amputation")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
 	hidden = TRUE

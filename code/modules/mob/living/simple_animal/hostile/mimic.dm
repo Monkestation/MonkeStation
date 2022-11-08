@@ -29,6 +29,7 @@
 	gold_core_spawnable = NO_SPAWN
 	del_on_death = TRUE
 	hardattacks = TRUE
+	do_footstep = TRUE
 
 	discovery_points = 4000
 
@@ -48,6 +49,7 @@
 		for(var/obj/item/I in loc)
 			I.forceMove(src)
 	add_overlay("[icon_state]_door")
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/hostile/mimic/crate/DestroyPathToTarget()
 	..()
@@ -99,6 +101,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple_animal/hostile/mimic/copy
 	health = 100
 	maxHealth = 100
+	do_footstep = TRUE
 	var/mob/living/creator = null // the creator
 	var/destroy_objects = 0
 	var/knockdown_people = 0
@@ -112,6 +115,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 	if (no_googlies)
 		overlay_googly_eyes = FALSE
 	CopyObject(copy, creator, destroy_original)
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/hostile/mimic/copy/Life()
 	..()

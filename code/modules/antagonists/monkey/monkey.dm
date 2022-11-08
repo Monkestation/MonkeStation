@@ -24,10 +24,12 @@
 	owner.special_role = "Infected Monkey"
 
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever/monkeymode
-	if(!owner.current.HasDisease(D))
-		owner.current.ForceContractDisease(D)
-	else
-		QDEL_NULL(D)
+	if(iscarbon(owner.current))
+		var/mob/living/carbon/returned = owner.current
+		if(!returned.HasDisease(D))
+			returned.ForceContractDisease(D)
+		else
+			QDEL_NULL(D)
 
 /datum/antagonist/monkey/greet()
 	to_chat(owner, "<b>You are a monkey now!</b>")
@@ -42,10 +44,11 @@
 /datum/antagonist/monkey/on_removal()
 	owner.special_role = null
 	SSticker.mode.ape_infectees -= owner
-
-	var/datum/disease/transformation/jungle_fever/D =  locate() in owner.current.diseases
-	if(D)
-		qdel(D)
+	if(iscarbon(owner.current))
+		var/mob/living/carbon/removal = owner.current
+		var/datum/disease/transformation/jungle_fever/D =  locate() in removal.diseases
+		if(D)
+			qdel(D)
 
 	. = ..()
 

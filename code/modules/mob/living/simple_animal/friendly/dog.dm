@@ -17,8 +17,12 @@
 	can_be_held = TRUE
 	chat_color = "#ECDA88"
 	mobchatspan = "corgi"
-
+	var/datum/component/waddle
 	do_footstep = TRUE
+
+/mob/living/simple_animal/pet/dog/Initialize(mapload)
+	. = ..()
+	waddle = src.AddComponent(/datum/component/waddling)
 
 //Corgis and pugs are now under one dog subtype
 
@@ -393,6 +397,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 		desc = "At a ripe old age of [record_age], Ian's not as spry as he used to be, but he'll always be the HoP's beloved corgi." //RIP
 		turns_per_move = 20
 		held_state = "old_corgi"
+		QDEL_NULL(waddle)//Poor fella's too old to waddle
 
 /mob/living/simple_animal/pet/dog/corgi/Ian/Life()
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)

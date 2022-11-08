@@ -47,7 +47,7 @@ Bonus
 /datum/symptom/flesh_eating/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(2,3)
 			if(prob(base_message_chance))
@@ -139,7 +139,7 @@ Bonus
 /datum/symptom/flesh_death/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(2,3)
 			if(MOB_UNDEAD in M.mob_biotypes)//i dont wanna do it like this but i gotta

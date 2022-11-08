@@ -26,6 +26,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	bounty_types = CIV_JOB_SEC
 	departments = DEPARTMENT_SECURITY
 	rpg_title = "Guard"
 

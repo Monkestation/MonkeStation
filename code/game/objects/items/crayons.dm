@@ -35,9 +35,9 @@
 	var/drawtype
 	var/text_buffer = ""
 
-	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","Omni", "Newton", "Clandestine", "Prima", "Zero-G", "Osiron", "Psyke", "Diablo", "Blasto", "North", "Donk", "Sleeping Carp", "Gene", "Cyber", "Tunnel", "Sirius", "Waffle", "Max", "Gib", "H", "Rigatoni family", "Weed","prolizard","antilizard")
+	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","Omni", "Newton", "Clandestine", "Prima", "Zero-G", "Osiron", "Psyke", "Diablo", "Blasto", "North", "Donk", "Sleeping Carp", "Gene", "Cyber", "Tunnel", "Sirius", "Waffle", "Max", "Gib", "Big H", "Rigatoni family", "Weed","prolizard","antilizard")
 	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit")
-	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun")
+	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun", "rouny", "shit", "mule", "ook", "atmos", "thonk")
 	var/static/list/oriented = list("arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint") // These turn to face the same way as the drawer
 	var/static/list/runes = list("rune1","rune2","rune3","rune4","rune5","rune6")
 	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED,
@@ -281,6 +281,7 @@
 	if(!isValidSurface(target))
 		return
 
+	//if random category is picked, grab a random drawing from that category
 	var/drawing = drawtype
 	switch(drawtype)
 		if(RANDOM_LETTER)
@@ -302,20 +303,23 @@
 		if(RANDOM_ANY)
 			drawing = pick(all_drawables)
 
-
-	var/temp = "rune"
-	if(is_alpha(drawing))
-		temp = "letter"
-	else if(is_digit(drawing))
-		temp = "number"
+	//generate a description of what we're drawing
+	var/ascii = text2ascii(drawing) //so we only have to call this once
+	var/temp = "a symbol" //default that can cover anything
+	if((65 <= ascii && ascii <= 90) || (97 <= ascii && ascii <= 122) && (length(drawing) == 1)) //single character, a-z or A-Z
+		temp = "a letter"
+	else if((48 <= ascii) && (ascii <= 57) && (length(drawing) == 1)) //single character, 0-9
+		temp = "a number"
 	else if(drawing in punctuation)
-		temp = "punctuation mark"
+		temp = "a punctuation mark"
 	else if(drawing in symbols)
-		temp = "symbol"
+		temp = "a symbol"
 	else if(drawing in drawings)
-		temp = "drawing"
+		temp = "a drawing"
+	else if(drawing in runes)
+		temp = "a rune"
 	else if(drawing in graffiti|oriented)
-		temp = "graffiti"
+		temp = "some graffiti"
 
 	var/graf_rot
 	if(drawing in oriented)
@@ -346,7 +350,7 @@
 		wait_time *= 3
 
 	if(!instant || paint_mode == PAINT_LARGE_HORIZONTAL)
-		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>") // hippie -- removed a weird tab that had no reason to be here
+		to_chat(user, "<span class='notice'>You start drawing [temp] on the [target.name]...</span>") // hippie -- removed a weird tab that had no reason to be here
 		if(!do_after(user, wait_time, target = target))
 			return
 
@@ -378,9 +382,9 @@
 					return
 
 	if(!instant)
-		to_chat(user, "<span class='notice'>You finish drawing \the [temp].</span>")
+		to_chat(user, "<span class='notice'>You finish drawing [temp].</span>")
 	else
-		to_chat(user, "<span class='notice'>You spray a [temp] on \the [target.name]</span>")
+		to_chat(user, "<span class='notice'>You spray [temp] on \the [target.name]</span>")
 
 	if(length(text_buffer) > 1)
 		text_buffer = copytext(text_buffer, length(text_buffer[1]) + 1)
@@ -399,8 +403,6 @@
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
 	for(var/turf/t in affected_turfs)
-		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
-		reagents.trans_to(t, ., volume_multiplier, transfered_by = user)
 		t.add_hiddenprint(user)
 	check_empty(user)
 
@@ -571,6 +573,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	desc = "A metallic container containing tasty paint."
 
+	w_class = WEIGHT_CLASS_NORMAL
 	instant = TRUE
 	edible = FALSE
 	has_cap = TRUE
@@ -630,7 +633,7 @@
 		. += "It is empty."
 	. += "<span class='notice'>Alt-click [src] to [ is_capped ? "take the cap off" : "put the cap on"].</span>"
 
-/obj/item/toy/crayon/spraycan/pre_attack(atom/target, mob/user, proximity, params)
+/obj/item/toy/crayon/spraycan/afterattack(atom/target, mob/user, proximity, params)
 	if(!proximity)
 		return
 

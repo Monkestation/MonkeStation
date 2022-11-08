@@ -82,7 +82,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/stabilize_atmos,
 	/client/proc/openTicketManager,
 	/client/proc/battle_royale,
-	/client/proc/delete_book
+	/client/proc/delete_book,
+	/datum/admins/proc/paintings_manager
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -279,6 +280,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 		var/rights = holder.rank.rights
 		add_verb(GLOB.admin_verbs_default)
+		add_verb(GLOB.mentor_verbs)
 		if(rights & R_BUILD)
 			add_verb(/client/proc/togglebuildmodeself)
 		if(rights & R_ADMIN)
@@ -328,7 +330,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.admin_verbs_debug_mapping,
 		/client/proc/disable_debug_verbs,
 		/client/proc/readmin,
-		/client/proc/fix_say
+		/client/proc/fix_say,
+		GLOB.mentor_verbs
 		)
 	remove_verb(verb_list)
 	reset_badges()
@@ -649,15 +652,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed the spell [S] from [key_name_admin(T)].</span>")
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/give_disease(mob/living/T in GLOB.mob_living_list)
+/client/proc/give_disease(mob/living/carbon/T in GLOB.mob_living_list)
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 	if(!istype(T))
-		to_chat(src, "<span class='notice'>You can only give a disease to a mob of type /mob/living.</span>")
+		to_chat(src, "<span class='notice'>You can only give a disease to a mob of type /mob/living/carbon.</span>")
 		return
 	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in sortList(SSdisease.diseases, /proc/cmp_typepaths_asc)
-	if(!D)
+	if(!D || !iscarbon(T))
 		return
 	T.ForceContractDisease(new D, FALSE, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Disease") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

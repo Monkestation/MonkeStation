@@ -22,6 +22,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_DEPUTY  //see code/__DEFINES/jobs.dm
+	bounty_types = CIV_JOB_SEC
 	departments = DEPARTMENT_SECURITY
 
 /datum/outfit/job/deputy

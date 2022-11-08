@@ -17,6 +17,7 @@
 	circuit = /obj/item/circuitboard/machine/space_heater
 	//We don't use area power, we always use the cell
 	use_power = NO_POWER_USE
+	interacts_with_air = TRUE
 
 	///The cell we spawn with
 	var/obj/item/stock_parts/cell/cell = /obj/item/stock_parts/cell
@@ -49,9 +50,10 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	update_appearance()
+	SSair.start_processing_machine(src)
 
 /obj/machinery/space_heater/Destroy()
-	SSair.atmos_air_machinery -= src
+	SSair.stop_processing_machine(src)
 	return..()
 
 /obj/machinery/space_heater/on_deconstruction()
@@ -196,9 +198,9 @@
 	usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 	update_appearance()
 	if(on)
-		SSair.atmos_air_machinery += src
+		SSair.start_processing_machine(src)
 	else
-		SSair.atmos_air_machinery -= src
+		SSair.stop_processing_machine(src)
 
 /obj/machinery/space_heater/ui_state(mob/user)
 	return GLOB.physical_state

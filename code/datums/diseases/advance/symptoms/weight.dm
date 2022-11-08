@@ -38,7 +38,7 @@ Bonus
 	. = ..()
 	if(A.stealth >= 2) //warn less often
 		severity -= 3
-	
+
 
 /datum/symptom/weight_loss/Start(datum/disease/advance/A)
 	if(!..())
@@ -50,7 +50,7 @@ Bonus
 /datum/symptom/weight_loss/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/M = A.affected_mob
+	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance))

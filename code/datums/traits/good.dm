@@ -90,11 +90,7 @@
 /datum/quirk/musician/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/choice_beacon/music/B = new(get_turf(H))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS,
-	)
-	H.equip_in_one_of_slots(B, slots , qdel_on_fail = TRUE)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, B, H, TRUE, TRUE) //insert the item, even if the backpack's full
 
 /datum/quirk/multilingual
 	name = "Multilingual"
@@ -167,14 +163,7 @@
 /datum/quirk/photographer/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/camera/camera = new(get_turf(H))
-	var/list/camera_slots = list (
-		"neck" = ITEM_SLOT_NECK,
-		"left pocket" = ITEM_SLOT_LPOCKET,
-		"right pocket" = ITEM_SLOT_RPOCKET,
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS
-	)
-	H.equip_in_one_of_slots(camera, camera_slots , qdel_on_fail = TRUE)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, camera, H, TRUE, TRUE) //insert the item, even if the backpack's full
 	H.regenerate_icons()
 
 /datum/quirk/selfaware
@@ -200,8 +189,10 @@
 
 /datum/quirk/spiritual/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
+	var/obj/item/storage/fancy/candle_box/candles = new(get_turf(H))
+	var/obj/item/storage/box/matches/matches = new(get_turf(H))
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, candles, H, TRUE, TRUE) //insert the item, even if the backpack's full
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, matches, H, TRUE, TRUE)
 
 /datum/quirk/spiritual/on_process()
 	var/comforted = FALSE
@@ -225,8 +216,7 @@
 /datum/quirk/tagger/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/toy/crayon/spraycan/spraycan = new(get_turf(H))
-	H.put_in_hands(spraycan)
-	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
+	SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_INSERT, spraycan, H, TRUE, TRUE) //insert the item, even if the backpack's full
 	H.regenerate_icons()
 
 /datum/quirk/voracious

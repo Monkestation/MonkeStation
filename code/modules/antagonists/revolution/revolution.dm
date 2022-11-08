@@ -2,7 +2,6 @@
 #define DECONVERTER_REVS_WIN "gamemode_revs_win"
 //How often to check for promotion possibility
 #define HEAD_UPDATE_PERIOD 30 SECONDS
-#define REV_ANNOUNCE_PERCENTAGE 0.3 //30% pop converted will trigger an announcement.
 
 /datum/antagonist/rev
 	name = "Revolutionary"
@@ -198,8 +197,6 @@
 		rev_mind.current.Stun(10 SECONDS)
 	rev_mind.add_antag_datum(/datum/antagonist/rev,rev_team)
 	rev_mind.special_role = ROLE_REV
-	if(!rev_team.announced_revolution)
-		check_for_announcement()
 	return TRUE
 
 /datum/antagonist/rev/head/proc/demote()
@@ -258,25 +255,6 @@
 		C.Unconscious(100)
 	owner.remove_antag_datum(type)
 
-/datum/antagonist/rev/proc/check_for_announcement()
-
-	if(rev_team.announced_revolution)
-		return
-
-	var/alive = 0
-	var/revolutionaries = 0
-
-	for(var/mob/player in GLOB.player_list)
-		if(player.stat != DEAD)
-			if(is_revolutionary(player) || is_head_revolutionary(player))
-				++revolutionaries
-			else
-				++alive
-	var/ratio = revolutionaries/alive
-	if(ratio > REV_ANNOUNCE_PERCENTAGE)
-		priority_announce("Behavior unacceptable to the Corporation has been detected on your station.\nAll crew are required to quell any and all unionization attempts by any means necessary.\nGlory to Nanotrasen.", null, SSstation.announcer.get_rand_report_sound(), null, "Central Command Loyalty Monitoring Division")
-		rev_team.announced_revolution = TRUE
-
 /datum/antagonist/rev/head/remove_revolutionary(borged,deconverter)
 	if(borged || deconverter == DECONVERTER_STATION_WIN || deconverter == DECONVERTER_REVS_WIN)
 		. = ..()
@@ -327,9 +305,18 @@
 	name = "Revolution"
 	var/max_headrevs = 3
 	var/announced_revolution = FALSE
-	var/highest_head_count
 	var/list/ex_headrevs = list() // Dynamic removes revs on loss, used to keep a list for the roundend report.
 	var/list/ex_revs = list()
+
+/datum/team/revolution/New(starting_members)
+	. = ..()
+	addtimer(CALLBACK(src, .proc/announce_revolution), 25 MINUTES)
+
+/datum/team/revolution/proc/announce_revolution()
+	if(announced_revolution)
+		return
+	announced_revolution = TRUE
+	priority_announce("Behavior unacceptable to the Corporation has been detected on your station.\nAll crew are required to quell any and all unionization attempts by any means necessary.\nGlory to Nanotrasen.", null, SSstation.announcer.get_rand_report_sound(), null, "Central Command Loyalty Monitoring Division")
 
 /datum/team/revolution/proc/update_objectives(initial = FALSE)
 	var/untracked_heads = SSjob.get_all_heads()
@@ -358,15 +345,7 @@
 /datum/team/revolution/proc/update_heads()
 	if(SSticker.HasRoundStarted())
 
-		var/list/living_heads = SSjob.get_living_heads()
 		var/list/datum/mind/heads = SSjob.get_all_heads()
-		if(!highest_head_count || heads.len > highest_head_count)
-			highest_head_count = heads.len
-		if(!announced_revolution)
-			if(living_heads.len  >= highest_head_count - 2)
-				priority_announce("Behavior unacceptable to the Corporation has been detected on your station.\nAll crew are required to quell any and all unionization attempts by any means necessary.\nGlory to Nanotrasen.", null, SSstation.announcer.get_rand_report_sound(), null, "Central Command Loyalty Monitoring Division")
-				announced_revolution = TRUE
-
 		var/list/datum/mind/head_revolutionaries = head_revolutionaries()
 		var/list/sec = SSjob.get_all_sec()
 
@@ -585,4 +564,3 @@
 
 #undef DECONVERTER_STATION_WIN
 #undef DECONVERTER_REVS_WIN
-#undef REV_ANNOUNCE_PERCENTAGE

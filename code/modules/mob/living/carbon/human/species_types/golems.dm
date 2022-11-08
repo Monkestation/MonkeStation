@@ -15,7 +15,6 @@
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	sexes = FALSE
-	damage_overlay_type = ""
 	meat = /obj/item/food/meat/slab/human/mutant/golem
 	species_language_holder = /datum/language_holder/golem
 	// To prevent golem subtypes from overwhelming the odds when random species
@@ -685,7 +684,6 @@
 	sexes = FALSE
 	speedmod = 0
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
-	damage_overlay_type = "synth"
 	prefix = "Clockwork"
 	special_names = list("Remnant", "Relic", "Scrap", "Vestige") //RIP Ratvar
 	inherent_factions = list("ratvar")
@@ -1161,3 +1159,21 @@
 	charge_max = 15
 	action_icon = 'icons/obj/toy.dmi'
 	action_icon_state = "snowball"
+
+
+/datum/species/golem/mhydrogen
+	name = "Metallic Hydrogen Golem"
+	id = "Metallic Hydrogen golem"
+	fixed_mut_color = "ddd"
+	info_text = "As a <span class='danger'>Metallic Hydrogen Golem</span>, you were forged in the highest pressures and the highest heats. Your unique mineral makeup makes you immune to most types of damages."
+	prefix = "Metallic Hydrogen"
+	special_names = null
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_NODISMEMBER)
+
+/datum/species/golem/mhydrogen/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+	. = ..()
+	ADD_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+
+/datum/species/golem/mhydrogen/on_species_loss(mob/living/carbon/C)
+	REMOVE_TRAIT(C, TRAIT_ANTIMAGIC, SPECIES_TRAIT)
+	return ..()

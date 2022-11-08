@@ -13,6 +13,14 @@
 	display_name = "scarf, red"
 	path = /obj/item/clothing/neck/scarf/red
 
+/datum/gear/accessory/scarf/pink
+	display_name = "scarf, pink"
+	path = /obj/item/clothing/neck/scarf/pink
+
+/datum/gear/accessory/scarf/cyan
+	display_name = "scarf, cyan"
+	path = /obj/item/clothing/neck/scarf/cyan
+
 /datum/gear/accessory/scarf/green
 	display_name = "scarf, green"
 	path = /obj/item/clothing/neck/scarf/green
@@ -28,12 +36,12 @@
 
 /datum/gear/accessory/scarf/stripedred
 	display_name = "scarf, striped red"
-	path = /obj/item/clothing/neck/stripedredscarf
+	path = /obj/item/clothing/neck/large_scarf/red
 	cost = 1200
 
 /datum/gear/accessory/scarf/stripedblue
 	display_name = "scarf, striped blue"
-	path = /obj/item/clothing/neck/stripedbluescarf
+	path = /obj/item/clothing/neck/large_scarf/blue
 	cost = 1200
 
 //armbands
@@ -184,3 +192,24 @@
 	display_name = "black bishop's cloak"
 	path = /obj/item/clothing/neck/cloak/chap/bishop/black
 	allowed_roles = list("Chaplain")
+
+//Masks
+
+/datum/gear/accessory/mask
+	subtype_path = /datum/gear/accessory/mask
+	cost = 1500
+
+/datum/gear/accessory/mask/clown
+	display_name = "clown mask"
+	description = "Dress up just like your hero! The... clown...?"
+	path = /obj/item/clothing/mask/gas/clown_hat
+
+/datum/gear/accessory/mask/mime
+	display_name = "mime mask"
+	description = "..."
+	path = /obj/item/clothing/mask/gas/mime
+
+
+/datum/gear/accessory/mask/russian_balaclava
+	display_name = "russian balaclava"
+	path = /obj/item/clothing/mask/russian_balaclava

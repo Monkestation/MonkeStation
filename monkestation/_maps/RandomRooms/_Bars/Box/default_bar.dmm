@@ -103,6 +103,11 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "jP" = (
@@ -112,6 +117,11 @@
 	dir = 1
 	},
 /obj/structure/displaycase/forsale/kitchen,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "kN" = (
@@ -279,6 +289,11 @@
 	dir = 1
 	},
 /obj/item/lighter,
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "CV" = (
@@ -291,6 +306,11 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -355,6 +375,11 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -454,6 +479,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"Qr" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "barsec";
+	name = "Bar Security Shutters";
+	pixel_x = -24;
+	pixel_y = 21;
+	req_access_txt = "25";
+	desc = "Stay off my FUCKING counter."
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
 "Qy" = (
 /obj/machinery/door/window/southright{
 	name = "Bar Door";
@@ -462,6 +502,11 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	name = "Bar Security Shutters";
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
@@ -718,7 +763,7 @@ MB
 "}
 (13,1,1) = {"
 iT
-Rm
+Qr
 Rm
 DW
 Rm

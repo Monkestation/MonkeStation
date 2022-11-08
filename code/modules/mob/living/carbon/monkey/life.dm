@@ -1,5 +1,11 @@
 /mob/living/carbon/monkey
 
+
+/mob/living/carbon/monkey/Life(delta_time, times_fired)
+	. = ..()
+	if (DT_PROB(1, delta_time))
+		emote("scratch")
+
 /mob/living/carbon/monkey/handle_mutations_and_radiation()
 	if(radiation)
 		if(radiation > RAD_MOB_KNOCKDOWN && prob(RAD_MOB_KNOCKDOWN_PROB))
@@ -122,10 +128,6 @@
 		if (CH.clothing_flags & STOPSPRESSUREDAMAGE)
 			return ONE_ATMOSPHERE
 	return pressure
-
-/mob/living/carbon/monkey/handle_random_events()
-	if (prob(1) && prob(2))
-		emote("scratch")
 
 /mob/living/carbon/monkey/has_smoke_protection()
 	if(wear_mask)
