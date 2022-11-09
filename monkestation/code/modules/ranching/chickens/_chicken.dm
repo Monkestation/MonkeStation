@@ -1,6 +1,7 @@
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
+	icon = 'monkestation/icons/mob/ranching/chickens.dmi'
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "dead_state"
