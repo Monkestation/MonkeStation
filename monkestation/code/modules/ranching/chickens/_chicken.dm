@@ -293,7 +293,7 @@
 		happiness --
 
 	if(current_feed_amount == 0)
-		happiness -= 0.1 ///lose happiness really slowly
+		happiness -= 0.01 ///lose happiness really slowly
 
 	if(happiness < minimum_living_happiness)
 		src.death()
