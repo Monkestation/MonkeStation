@@ -6,7 +6,6 @@
 	icon_living = "chick"
 	icon_dead = "dead_state"
 	icon_gib = "chick_gib"
-	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 	held_state = "chick"
 	gender = FEMALE
@@ -124,7 +123,6 @@
 	turns_per_move = 3
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2)
 	ventcrawler = VENTCRAWLER_ALWAYS
-	can_be_held = TRUE
 	worn_slot_flags = ITEM_SLOT_HEAD
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL

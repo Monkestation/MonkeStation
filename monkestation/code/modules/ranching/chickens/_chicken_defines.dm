@@ -9,7 +9,7 @@
 	///can it still lay eggs?
 	var/eggs_fertile = TRUE
 	///Message you get when it is fed
-	var/list/feedMessages = list("It clucks happily.","It clucks happily.")
+	var/list/feedMessages = list("It clucks happily.","It gobbles up the food voraciously.","It noms happily.")
 	///Message that is sent when an egg is laid
 	var/list/layMessage = EGG_LAYING_MESSAGES
 	//Global amount of chickens
