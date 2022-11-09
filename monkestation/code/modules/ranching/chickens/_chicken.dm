@@ -53,7 +53,7 @@
 	if(!chicken_type) // do we have a grown type?
 		return
 
-	var/mob/living/simple_animal/chicken/adult_form = chicken_type.type
+	var/mob/living/simple_animal/chicken/adult_form = initial(chicken_type.type)
 	icon_state = "chick_[adult_form.icon_suffix]"
 	held_state = "chick_[adult_form.icon_suffix]"
 	icon_living = "chick_[adult_form.icon_suffix]"
