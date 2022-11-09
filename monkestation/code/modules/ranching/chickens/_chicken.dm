@@ -28,7 +28,6 @@
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE | PASSGRILLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
 
 	do_footstep = TRUE
@@ -439,7 +438,6 @@
 	attack_sound = 'sound/creatures/turkey.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
 	feedMessages = list("It gobbles up the food voraciously.","It clucks happily.")
-	gold_core_spawnable = FRIENDLY_SPAWN
 	chat_color = "#FFDC9B"
 	breed_name_male = "Turkey"
 	breed_name_female = "Turkey"

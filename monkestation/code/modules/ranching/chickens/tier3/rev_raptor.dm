@@ -12,8 +12,6 @@
 	melee_damage = 6
 	obj_damage = 10
 
-	gold_core_spawnable = FALSE
-
 
 /obj/item/food/egg/rev_raptor
 	name = "Revolutionary Egg"
