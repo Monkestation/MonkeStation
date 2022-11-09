@@ -52,11 +52,9 @@
 /mob/living/simple_animal/chick/proc/assign_chick_icon(mob/living/simple_animal/chicken/chicken_type)
 	if(!chicken_type) // do we have a grown type?
 		return
-
-	var/mob/living/simple_animal/chicken/adult_form = initial(chicken_type.type)
-	icon_state = "chick_[adult_form.icon_suffix]"
-	held_state = "chick_[adult_form.icon_suffix]"
-	icon_living = "chick_[adult_form.icon_suffix]"
+	icon_state = "chick_[initial(chicken_type.icon_suffix)]"
+	held_state = "chick_[initial(chicken_type.icon_suffix)]"
+	icon_living = "chick_[initial(chicken_type.icon_suffix)]"
 	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chick/Life()
