@@ -58,7 +58,7 @@
 	. = ..()
 	if(. & AI_CONTROLLER_INCOMPATIBLE)
 		return
-	blackboard[BB_CHICKEN_AGGRESSIVE] = TRUE //Right pissed cunt
+	blackboard[BB_CHICKEN_AGGRESSIVE] = TRUE
 
 /datum/ai_controller/chicken/hostile/rev
 
@@ -75,7 +75,7 @@
 	. = ..()
 	if(. & AI_CONTROLLER_INCOMPATIBLE)
 		return
-	blackboard[BB_CHICKEN_RETALIATE] = TRUE //Less pissed off cunt
+	blackboard[BB_CHICKEN_RETALIATE] = TRUE
 
 
 //CLOWN AIS
@@ -121,7 +121,7 @@
 
 /datum/ai_controller/chicken/proc/on_attack_hand(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-	if(user.a_intent == INTENT_HARM && prob(CHICKEN_RETALIATE_HARM_PROB))
+	if(user.a_intent == INTENT_HARM && prob(CHICKEN_RETALIATE_PROB))
 		retaliate(user)
 
 /datum/ai_controller/chicken/proc/on_attack_paw(datum/source, mob/living/user)

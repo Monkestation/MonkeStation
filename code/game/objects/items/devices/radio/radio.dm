@@ -19,7 +19,7 @@
 	var/on = TRUE
 	var/frequency = FREQ_COMMON
 	var/canhear_range = 3  // The range around the radio in which mobs can hear what it receives.
-	///Rnage that they can listen from different than canhear_range
+	///Range that they can listen from different than canhear_range
 	var/listening_range
 	var/emped = 0  // Tracks the number of EMPs currently stacked.
 	var/headset = FALSE
@@ -314,9 +314,8 @@
 	if(!listening_range &&  get_dist(src, speaker) > canhear_range)
 		return
 
-	if(listening_range)
-		if(get_dist(src, speaker) > listening_range)
-			return
+	if(listening_range && get_dist(src, speaker) > listening_range)
+		return
 
 	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)
 		// try to avoid being heard double

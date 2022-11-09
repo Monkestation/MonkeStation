@@ -106,9 +106,9 @@
 	var/mob/living/target = null
 
 	// flee from anyone who attacked us and we didn't beat down
-	for(var/mob/living/L in view(living_pawn, CHICKEN_FLEE_VISION))
-		if(controller.blackboard[BB_CHICKEN_SHITLIST][L] && L.stat == CONSCIOUS)
-			target = L
+	for(var/mob/living/viewed_living in view(living_pawn, CHICKEN_FLEE_VISION))
+		if(controller.blackboard[BB_CHICKEN_SHITLIST][viewed_living] && viewed_living.stat == CONSCIOUS)
+			target = viewed_living
 			break
 
 	if(target)

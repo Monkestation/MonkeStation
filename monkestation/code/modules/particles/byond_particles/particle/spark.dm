@@ -33,6 +33,7 @@
 	spawning = 2
 	position = generator("circle", -6, 6, NORMAL_RAND)
 	lifespan = 15
+
 /particles/flare_sparks
 	width = 500
 	height = 500

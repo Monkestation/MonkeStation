@@ -10,13 +10,13 @@
 	var/eggs_fertile = TRUE
 	///Message you get when it is fed
 	var/list/feedMessages = list("It clucks happily.","It clucks happily.")
-	///Message that is sent when an egg is layed
+	///Message that is sent when an egg is laid
 	var/list/layMessage = EGG_LAYING_MESSAGES
 	//Global amount of chickens
 	var/static/chicken_count = 0
-	///Type of egg that is layed
+	///Type of egg that is laid
 	var/egg_type = /obj/item/food/egg
-	///How hpapy the chicken is, used on egg hatch to determine if it should branch into a new chicken
+	///How happy the chicken is, used on egg hatch to determine if it should branch into a new chicken
 	var/happiness = 0
 	///The type of chicken it is
 	var/mob/living/simple_animal/chicken/chicken_type
@@ -93,7 +93,7 @@
 /obj/item/food/egg
 	///the amount the chicken is grown
 	var/amount_grown = 0
-	///the type of chicken that layed this egg
+	///the type of chicken that laid this egg
 	var/mob/living/simple_animal/chicken/layer_hen_type
 	///happiness of the chicken
 	var/happiness = 0

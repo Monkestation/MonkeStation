@@ -11,6 +11,7 @@
 	layer = BELOW_MOB_LAYER
 	alpha = 225
 	particles = new/particles/fire_sparks/phoenix
+
 /obj/emitter/sparks/flare
 	particles = new/particles/flare_sparks
 
