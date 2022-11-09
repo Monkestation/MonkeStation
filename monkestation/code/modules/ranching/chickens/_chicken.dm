@@ -52,10 +52,13 @@
 /mob/living/simple_animal/chick/proc/assign_chick_icon(mob/living/simple_animal/chicken/chicken_type)
 	if(!chicken_type) // do we have a grown type?
 		return
-	icon_state = "chick_[initial(chicken_type.icon_suffix)]"
-	held_state = "chick_[initial(chicken_type.icon_suffix)]"
-	icon_living = "chick_[initial(chicken_type.icon_suffix)]"
+
+	var/mob/living/simple_animal/chicken/hatched_type = new chicken_type
+	icon_state = "chick_[hatched_type.icon_suffix]"
+	held_state = "chick_[hatched_type.icon_suffix]"
+	icon_living = "chick_[hatched_type.icon_suffix]"
 	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
+	qdel(hatched_type)
 
 /mob/living/simple_animal/chick/Life()
 	. =..()
@@ -404,7 +407,7 @@
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/stone)
 		birthed.production_type = src.production_type
 
-	birthed.assign_chick_icon(layer_hen_type.chicken_path)
+	birthed.assign_chick_icon(birthed.grown_type)
 	visible_message("[src] hatches with a quiet cracking sound.")
 	qdel(src)
 
