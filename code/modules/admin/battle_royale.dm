@@ -6,16 +6,13 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/kitchen/knife/poison,
 		/obj/item/throwing_star,
 		/obj/item/syndie_glue,
-		/obj/item/book_of_babel,
 		/obj/item/card/emag,
 		/obj/item/storage/box/emps,
 		/obj/item/storage/box/lethalshot,
-		/obj/item/storage/box/gorillacubes,
 		/obj/item/storage/box/teargas,
 		/obj/item/storage/box/security/radio,
 		/obj/item/storage/box/medsprays,
 		/obj/item/storage/toolbox/syndicate,
-		/obj/item/storage/box/syndie_kit/bee_grenades,
 		/obj/item/storage/box/syndie_kit/centcom_costume,
 		/obj/item/storage/box/syndie_kit/chameleon,
 		/obj/item/storage/box/syndie_kit/chemical,
@@ -28,13 +25,10 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/storage/box/syndie_kit/imp_uplink,
 		/obj/item/storage/box/syndie_kit/origami_bundle,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
-		/obj/item/storage/box/syndie_kit/bundle_A,
-		/obj/item/storage/box/syndie_kit/bundle_B,
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/gun/energy/disabler,
 		/obj/item/construction/rcd,
 		/obj/item/clothing/glasses/chameleon/flashproof,
-		/obj/item/book/granter/spell/knock,
 		/obj/item/clothing/glasses/sunglasses/advanced,
 		/obj/item/clothing/glasses/thermal/eyepatch,
 		/obj/item/clothing/glasses/thermal/syndi,
@@ -62,7 +56,6 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 		/obj/item/melee/baton/loaded,
 		/obj/item/melee/chainofcommand/tailwhip/kitty,
 		/obj/item/melee/classic_baton,
-		/obj/item/melee/ghost_sword,
 		/obj/item/melee/powerfist,
 		/obj/item/storage/firstaid/advanced,
 		/obj/item/storage/firstaid/brute,
@@ -75,7 +68,6 @@ GLOBAL_LIST_INIT(battle_royale_basic_loot, list(
 
 GLOBAL_LIST_INIT(battle_royale_good_loot, list(
 		/obj/item/hand_tele,
-		/obj/item/gun/ballistic/bow/clockbolt,
 		/obj/item/gun/ballistic/rifle/boltaction,
 		/obj/item/gun/ballistic/shotgun/doublebarrel,
 		/obj/item/gun/energy/laser/captain,
@@ -87,8 +79,8 @@ GLOBAL_LIST_INIT(battle_royale_good_loot, list(
 		/obj/item/melee/transforming/energy/sword,
 		/obj/item/dualsaber,
 		/obj/item/fireaxe,
-		/obj/item/stack/telecrystal/five,
-		/obj/item/stack/telecrystal/twenty,
+		/obj/item/storage/box/syndie_kit/bundle_A,
+		/obj/item/storage/box/syndie_kit/bundle_B,
 		/obj/item/clothing/suit/space/hardsuit/syndi
 	))
 
@@ -97,7 +89,6 @@ GLOBAL_LIST_INIT(battle_royale_insane_loot, list(
 		/obj/item/energy_katana,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi,
 		/obj/item/his_grace,
-		/obj/mecha/combat/marauder/mauler/loaded,
 		/obj/item/guardiancreator/tech,
 		/obj/item/mjollnir,
 		/obj/item/pneumatic_cannon/pie/selfcharge,
@@ -115,7 +106,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 
 /client/proc/battle_royale()
 	set name = "Battle Royale"
-	set category = "Adminbus"
+	set category = "Fun"
 	if(!(check_rights(R_FUN) || (check_rights(R_ADMIN) && SSticker.current_state == GAME_STATE_FINISHED)))
 		to_chat(src, "<span class='warning'>You do not have permission to do that! (If you don't have +FUN, wait until the round is over then you can trigger it.)</span>")
 		return
@@ -131,6 +122,35 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	for(var/client/admin in GLOB.admins)
 		if(check_rights(R_ADMIN) && !GLOB.battle_royale && admin.tgui_panel)
 			admin.tgui_panel.clear_br_popup()
+
+	GLOB.battle_royale = new()
+	GLOB.battle_royale.start()
+
+/client/proc/toolbox_royale() //just a battle royale with all toolboxes, for ease
+	set name = "Toolbox Royale"
+	set category = "Fun"
+	if(!(check_rights(R_FUN) || (check_rights(R_ADMIN) && SSticker.current_state == GAME_STATE_FINISHED)))
+		to_chat(src, "<span class='warning'>You do not have permission to do that! (If you don't have +FUN, wait until the round is over then you can trigger it.)</span>")
+		return
+	if(GLOB.battle_royale)
+		to_chat(src, "<span class='warning'>A game is already in progress!</span>")
+		return
+	if(alert(src, "ARE YOU SURE YOU ARE SURE YOU WANT TO START TOOLBOX ROYALE?",,"Yes","No") != "Yes")
+		to_chat(src, "<span class='notice'>oh.. ok then.. I see how it is.. :(</span>")
+		return
+	log_admin("[key_name(usr)] HAS TRIGGERED TOOLBOX ROYALE")
+	message_admins("[key_name(usr)] HAS TRIGGERED TOOLBOX ROYALE")
+
+	for(var/client/admin in GLOB.admins)
+		if(check_rights(R_ADMIN) && !GLOB.battle_royale && admin.tgui_panel)
+			admin.tgui_panel.clear_br_popup()
+
+	GLOB.battle_royale_basic_loot = list(/obj/item/storage/toolbox/mechanical,
+										 /obj/item/storage/firstaid/regular)
+	GLOB.battle_royale_good_loot = list(/obj/item/storage/toolbox/syndicate,
+										/obj/item/storage/firstaid/brute)
+	GLOB.battle_royale_insane_loot = list(/obj/item/his_grace,
+										  /obj/item/storage/firstaid/advanced)
 
 	GLOB.battle_royale = new()
 	GLOB.battle_royale.start()

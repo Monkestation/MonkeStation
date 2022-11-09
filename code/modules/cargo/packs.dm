@@ -1642,6 +1642,25 @@
 					/obj/machinery/iv_drip)
 	crate_name = "iv drip crate"
 
+/datum/supply_pack/medical/chem_bags
+	name = "IV bag crate"
+	desc = "Contains basic medicines prepped for delivery via IV"
+	cost = 1300
+	contains = list(/obj/item/reagent_containers/chem_bag/epinephrine,
+					/obj/item/reagent_containers/chem_bag/bicaridine,
+					/obj/item/reagent_containers/chem_bag/kelotane,
+					/obj/item/reagent_containers/chem_bag/antitoxin,
+					/obj/item/reagent_containers/chem_bag/morphine,
+					/obj/item/reagent_containers/chem_bag/perfluorodecalin)
+	crate_name = "IV bag crate"
+
+/datum/supply_pack/medical/salglucanister
+	name = "Heavy-Duty Saline Canister"
+	desc = "Contains a bulk supply of saline-glucose condensed into a single canister that should last several days, with a large pump to fill containers with. Direct injection of saline should be left to medical professionals as the pump is capable of overdosing patients. Requires medbay access to open."
+	cost = 1200
+	access = ACCESS_MEDICAL
+	contains = list(/obj/machinery/iv_drip/saline)
+
 /datum/supply_pack/medical/supplies
 	name = "Medical Supplies Crate"
 	desc = "Contains a little bit of everything needed to stock a medbay or to form your own."
@@ -1673,7 +1692,6 @@
 	for(var/i in 1 to 10)
 		var/item = pick(contains)
 		new item(C)
-
 /datum/supply_pack/medical/surgery
 	name = "Surgical Supplies Crate"
 	desc = "Do you want to perform surgery, but don't have one of those fancy shmancy degrees? Just get started with this crate containing a medical duffelbag, Sterilizine spray and collapsible roller bed."
@@ -1682,13 +1700,6 @@
 					/obj/item/reagent_containers/medspray/sterilizine,
 					/obj/item/roller)
 	crate_name = "surgical supplies crate"
-
-/datum/supply_pack/medical/salglucanister
-	name = "Heavy-Duty Saline Canister"
-	desc = "Contains a bulk supply of saline-glucose condensed into a single canister that should last several days, with a large pump to fill containers with. Direct injection of saline should be left to medical professionals as the pump is capable of overdosing patients. Requires medbay access to open."
-	cost = 1200
-	access = ACCESS_MEDICAL
-	contains = list(/obj/machinery/iv_drip/saline)
 
 /datum/supply_pack/medical/randomvirus
 	name = "Virus Sample Crate"
@@ -2686,9 +2697,8 @@
 	num_contained = 7
 	contains = list(/obj/item/poster/random_contraband,
 					/obj/item/poster/random_contraband,
-					/obj/item/food/grown/cannabis,
-					/obj/item/food/grown/cannabis/rainbow,
-					/obj/item/food/grown/cannabis/white,
+					/obj/item/clothing/mask/cigarette/rollie/cannabis,
+					/obj/item/clothing/mask/cigarette/rollie/mindbreaker,
 					/obj/item/storage/pill_bottle/zoom,
 					/obj/item/storage/pill_bottle/happy,
 					/obj/item/storage/pill_bottle/lsd,

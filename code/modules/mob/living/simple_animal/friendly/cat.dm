@@ -40,6 +40,7 @@
 /mob/living/simple_animal/pet/cat/Initialize(mapload)
 	. = ..()
 	add_verb(/mob/living/proc/lay_down)
+	src.AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/pet/cat/space
 	name = "space cat"

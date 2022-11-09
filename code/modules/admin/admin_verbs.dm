@@ -81,8 +81,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/fix_say,
 	/client/proc/stabilize_atmos,
 	/client/proc/openTicketManager,
-	/client/proc/battle_royale,
-	/client/proc/delete_book
+	/client/proc/delete_book,
+	/datum/admins/proc/paintings_manager
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -115,6 +115,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/healall,
 	/client/proc/spawn_floor_cluwne,
 	/client/proc/spawn_liquid, //MONKESTATION ADDITION
+	/client/proc/battle_royale,
+	/client/proc/toolbox_royale,
 	/client/proc/spawnhuman
 	))
 GLOBAL_PROTECT(admin_verbs_fun)

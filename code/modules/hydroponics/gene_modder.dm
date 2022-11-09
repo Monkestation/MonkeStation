@@ -304,6 +304,7 @@
 			if(G)
 				if(!istype(G, /datum/plant_gene/core))
 					seed.genes -= G
+					G.on_remove(seed)
 					if(istype(G, /datum/plant_gene/reagent))
 						seed.reagents_from_genes()
 				repaint_seed()
@@ -343,6 +344,7 @@
 
 		if(operation == "insert" && !istype(disk.gene, /datum/plant_gene/core) && disk.gene.can_add(seed))
 			seed.genes += disk.gene.Copy()
+			disk.gene.on_add(seed)
 			if(istype(disk.gene, /datum/plant_gene/reagent))
 				seed.reagents_from_genes()
 			repaint_seed()

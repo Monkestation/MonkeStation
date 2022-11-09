@@ -269,6 +269,8 @@
 				vol_each_max = min(40, vol_each_max)
 			else if (item_type == "bottle" && !condi)
 				vol_each_max = min(30, vol_each_max)
+			else if (item_type == "bag" && !condi)
+				vol_each_max = min(200, vol_each_max)
 			else if (item_type == "condimentPack" && condi)
 				vol_each_max = min(10, vol_each_max)
 			else if (item_type == "condimentBottle" && condi)
@@ -302,7 +304,7 @@
 			// Start filling
 			switch(item_type)
 				if("pill")
-					var/obj/item/reagent_containers/pill/P
+					var/obj/item/reagent_containers/pill/pill
 					var/target_loc = drop_location()
 					var/drop_threshold = INFINITY
 					if(bottle)
@@ -313,51 +315,60 @@
 							target_loc = bottle
 					for(var/i = 0; i < amount; i++)
 						if(i < drop_threshold)
-							P = new/obj/item/reagent_containers/pill(target_loc)
+							pill = new/obj/item/reagent_containers/pill(target_loc)
 						else
-							P = new/obj/item/reagent_containers/pill(drop_location())
-						P.name = trim("[name] pill")
+							pill = new/obj/item/reagent_containers/pill(drop_location())
+						pill.name = trim("[name] pill")
 						if(chosenPillStyle == RANDOM_PILL_STYLE)
-							P.icon_state ="pill[rand(1,21)]"
+							pill.icon_state ="pill[rand(1,21)]"
 						else
-							P.icon_state = "pill[chosenPillStyle]"
-						if(P.icon_state == "pill4")
-							P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
-						adjust_item_drop_location(P)
-						reagents.trans_to(P, vol_each, transfered_by = usr)
+							pill.icon_state = "pill[chosenPillStyle]"
+						if(pill.icon_state == "pill4")
+							pill.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
+						adjust_item_drop_location(pill)
+						reagents.trans_to(pill, vol_each, transfered_by = usr)
 					. = TRUE
 				if("patch")
-					var/obj/item/reagent_containers/pill/patch/P
+					var/obj/item/reagent_containers/pill/patch/patch
 					for(var/i = 0; i < amount; i++)
-						P = new/obj/item/reagent_containers/pill/patch(drop_location())
-						P.name = trim("[name] patch")
-						adjust_item_drop_location(P)
-						reagents.trans_to(P, vol_each, transfered_by = usr)
+						patch = new/obj/item/reagent_containers/pill/patch(drop_location())
+						patch.name = trim("[name] patch")
+						adjust_item_drop_location(patch)
+						reagents.trans_to(patch, vol_each, transfered_by = usr)
 					. = TRUE
 				if("bottle")
-					var/obj/item/reagent_containers/glass/bottle/P
+					var/obj/item/reagent_containers/glass/bottle/bottle
 					for(var/i = 0; i < amount; i++)
-						P = new/obj/item/reagent_containers/glass/bottle(drop_location())
-						P.name = trim("[name] bottle")
-						adjust_item_drop_location(P)
-						reagents.trans_to(P, vol_each, transfered_by = usr)
+						bottle = new/obj/item/reagent_containers/glass/bottle(drop_location())
+						bottle.name = trim("[name] bottle")
+						adjust_item_drop_location(bottle)
+						reagents.trans_to(bottle, vol_each, transfered_by = usr)
+					. = TRUE
+				if("bag")
+					var/obj/item/reagent_containers/chem_bag/bag
+					for(var/i = 0; i < amount; i++)
+						bag = new/obj/item/reagent_containers/chem_bag/(drop_location())
+						bag.name = trim("[name] chemical bag")
+						bag.label_name = trim(name) // supporting a custom name in certain situations
+						adjust_item_drop_location(bag)
+						reagents.trans_to(bag, vol_each, transfered_by = usr)
 					. = TRUE
 				if("condimentPack")
-					var/obj/item/reagent_containers/food/condiment/pack/P
+					var/obj/item/reagent_containers/food/condiment/pack/pack
 					for(var/i = 0; i < amount; i++)
-						P = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
-						P.originalname = name
-						P.name = trim("[name] pack")
-						P.desc = "A small condiment pack. The label says it contains [name]."
-						reagents.trans_to(P, vol_each, transfered_by = usr)
+						pack = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
+						pack.originalname = name
+						pack.name = trim("[name] pack")
+						pack.desc = "A small condiment pack. The label says it contains [name]."
+						reagents.trans_to(pack, vol_each, transfered_by = usr)
 					. = TRUE
 				if("condimentBottle")
-					var/obj/item/reagent_containers/food/condiment/P
+					var/obj/item/reagent_containers/food/condiment/bottle
 					for(var/i = 0; i < amount; i++)
-						P = new/obj/item/reagent_containers/food/condiment(drop_location())
-						P.originalname = name
-						P.name = trim("[name] bottle")
-						reagents.trans_to(P, vol_each, transfered_by = usr)
+						bottle = new/obj/item/reagent_containers/food/condiment(drop_location())
+						bottle.originalname = name
+						bottle.name = trim("[name] bottle")
+						reagents.trans_to(bottle, vol_each, transfered_by = usr)
 					. = TRUE
 		if("analyze")
 			var/datum/reagent/R = GLOB.name2reagent[params["id"]]
