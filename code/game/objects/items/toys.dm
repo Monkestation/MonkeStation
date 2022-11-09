@@ -1685,15 +1685,8 @@
 /obj/item/toy/whoopee/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, farts)
-	RegisterSignal(get_turf(src), COMSIG_ATOM_ENTERED, .proc/on_entered)
 
-/obj/item/toy/whoopee/proc/on_entered(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	SIGNAL_HANDLER
-	if(istype(arrived, /mob/living/carbon))
-		var/mob/living/carbon/farter = arrived
-		farter.audible_message("[pick(world.file2list("strings/farts.txt"))]", audible_message_flags = list(CHATMESSAGE_EMOTE = TRUE))
-
-/obj/item/toy/whoopee/sord
+/obj/item/toy/whoopee/sord //do not let players acquire this outside of admin shenanigans, for the love of god!
 	desc = "Something seems slightly off about this one..."
 	icon_state = "whoopee_sord"
 	farts = list('monkestation/sound/effects/sordfart14.ogg', 'monkestation/sound/effects/sordfart17.ogg', 'monkestation/sound/effects/sordfart18.ogg', 'monkestation/sound/effects/sordfart20.ogg')
