@@ -49,12 +49,6 @@
 	var/disguised = FALSE
 	var/atom/movable/form = null
 	var/disguise_time = 0
-	var/static/people_absorbed = 0
-
-	//The number of current mimics
-	var/static/mimic_count = 0
-	//The name used in the hivemind chat
-	var/hivemind_name
 
 	//If this is currently reproducing
 	var/splitting = FALSE
@@ -62,6 +56,8 @@
 	var/atom/movable/ai_disg_target = null
 	//attempts to reach a disguise target
 	var/ai_disg_reach_attempts = 0
+
+	var/datum/team/mimic/mimic_team
 
 	var/fleeing = FALSE
 	mobchatspan = "blob"
@@ -73,7 +69,7 @@
 		. += "<span class='warning'>It jitters a little bit...</span>"
 
 /mob/living/simple_animal/hostile/alien_mimic/Destroy()
-	mimic_count--
+	mimic_team?.mimics -= src
 	ai_disg_target = null
 	. = ..()
 
@@ -141,20 +137,24 @@
 	if(splitting) //prevent stacking a bunch
 		return
 
-	var/split_cost = REPLICATION_COST(mimic_count)
+	var/split_cost = REPLICATION_COST(mimic_team.mimics.len)
 
-	if(people_absorbed >= split_cost)
+	if(mimic_team.people_absorbed >= split_cost)
 		splitting = TRUE
 		to_chat(src,"<span class='warning'>You start splitting yourself in two!</span>")
 		playsound(get_turf(src), split_sound,100)
 		if(do_mob(src, src, 5 SECONDS))
 			splitting = FALSE
-			if(people_absorbed < split_cost)
+			if(mimic_team.people_absorbed < split_cost)
 				return
 			to_chat(src,"<span class='warning'>You make another mimic!</span>")
 			var/mob/living/simple_animal/hostile/alien_mimic/split_mimic = new(loc)
+
+			split_mimic.mimic_team = mimic_team
+			mimic_team.mimics |= split_mimic
+
 			split_mimic.ping_ghosts()
-			people_absorbed -= split_cost
+			mimic_team.people_absorbed -= split_cost
 			return
 		splitting = FALSE
 		to_chat(src,"<span class='warning'>You fail to split!</span>")
@@ -190,7 +190,14 @@
 
 	ckey = candidate.ckey
 	mind.assigned_role = "Mimic"
-	mind.add_antag_datum(/datum/antagonist/mimic)
+	var/datum/antagonist/mimic/mimic_datum = mind.add_antag_datum(/datum/antagonist/mimic,mimic_team)
+
+	//Fixes when the datum has the team but not the mimic
+	if(!mimic_team && mimic_datum.mimic_team)
+		mimic_team = mimic_datum.mimic_team
+
+	mimic_team.mimics |= src
+
 	to_chat(src, playstyle_string)
 
 	remove_from_spawner_menu()
@@ -267,11 +274,9 @@
 	med_hud_set_status() //we are not an object
 
 /mob/living/simple_animal/hostile/alien_mimic/Initialize(mapload)
-	if(!hivemind_name)
-		//1% chance for some silly names
-		hivemind_name = prob(99) ? "Mimic [rand(1,999)]" : pick("John","Not-A-Mimic","Goop Spider","Syndicate Infiltrator","Mimic Hater","Nar'sie Enthusiast")
+	//1% chance for some silly names
+	real_name = prob(99) ? "Mimic [rand(1,999)]" : pick("John Mimic","Not-A-Mimic","Goop Spider","Syndicate Infiltrator","Mimic Hater","Nar'sie Enthusiast")
 
-	mimic_count++
 	var/datum/action/innate/mimic_reproduce/replicate = new
 	var/datum/action/innate/mimic_hivemind/hivemind = new
 	replicate.Grant(src)
@@ -308,7 +313,7 @@
 		..()
 
 /mob/living/simple_animal/hostile/alien_mimic/death(gibbed)
-	mimic_count--
+	mimic_team?.mimics -= src
 	if(buckled)
 		buckled.unbuckle_mob(src,TRUE)
 	if(disguised)
@@ -393,7 +398,8 @@
 				visible_message("<span class='warning'>[src] absorbs [carbon_victim]!</span>", \
 							"<span class='userdanger'>[carbon_victim]'s corpse decays as you absorb the nutrients from their body.</span>")
 				carbon_victim.become_husk("burn") //Needs to be "burn" so rezadone and such an fix it, don't want it being an RR due to too many bodies for medbay.
-				people_absorbed++
+				mimic_team?.people_absorbed++
+				mimic_team?.total_people_absorbed++
 				adjustHealth(-40)
 			return
 		if(disguised) //Insta latch if youre disguised
@@ -444,8 +450,8 @@
 
 /mob/living/simple_animal/hostile/alien_mimic/get_stat_tab_status()
 	var/list/tab_data = ..()
-	tab_data["Replication Cost"] = GENERATE_STAT_TEXT("[REPLICATION_COST(mimic_count)]")
-	tab_data["People Absorbed"] = GENERATE_STAT_TEXT("[people_absorbed]")
+	tab_data["Replication Cost"] = GENERATE_STAT_TEXT("[REPLICATION_COST(mimic_team.mimics.len)]")
+	tab_data["People Absorbed"] = GENERATE_STAT_TEXT("[mimic_team.people_absorbed]")
 	return tab_data
 
 /mob/living/simple_animal/hostile/alien_mimic/handle_automated_action()
@@ -558,7 +564,7 @@
 
 	var/name_to_use
 	var/mob/living/simple_animal/hostile/alien_mimic/mimic_user = user
-	name_to_use = mimic_user.hivemind_name
+	name_to_use = mimic_user.real_name
 
 	my_message = "<span class='mimichivemindtitle'><b>Mimic Hivemind</b></span> <span class='mimichivemind'><b>[name_to_use]:</b> [message]</span>"
 	for(var/player in GLOB.player_list)
