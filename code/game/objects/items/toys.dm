@@ -1685,8 +1685,3 @@
 /obj/item/toy/whoopee/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, farts)
-
-/obj/item/toy/whoopee/sord //do not let players acquire this outside of admin shenanigans, for the love of god!
-	desc = "Something seems slightly off about this one..."
-	icon_state = "whoopee_sord"
-	farts = list('monkestation/sound/effects/sordfart14.ogg', 'monkestation/sound/effects/sordfart17.ogg', 'monkestation/sound/effects/sordfart18.ogg', 'monkestation/sound/effects/sordfart20.ogg')
