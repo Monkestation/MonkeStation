@@ -13,11 +13,14 @@
 	var/list/allowed_instrument_ids
 	/// How far away our song datum can be heard.
 	var/instrument_range = 15
+	/// The mixing channel this will play on needs to be set like this because DONGLE
+	var/mixing_channel = CHANNEL_INSTRUMENTS
 
 /obj/item/instrument/Initialize(mapload)
 	. = ..()
 	song = new(src, allowed_instrument_ids, instrument_range)
-	allowed_instrument_ids = null			//We don't need this clogging memory after it's used.
+	allowed_instrument_ids = null
+	song.mixing_channel = src.mixing_channel		//We don't need this clogging memory after it's used.
 
 /obj/item/instrument/Destroy()
 	QDEL_NULL(song)
@@ -67,6 +70,9 @@
 	icon_state = "synth"
 	item_state = "synth"
 	allowed_instrument_ids = "piano"
+
+/obj/item/instrument/piano_synth/robot
+	mixing_channel = CHANNEL_INSTRUMENTS_ROBOT
 
 /obj/item/instrument/piano_synth/Initialize(mapload)
 	. = ..()
@@ -134,7 +140,7 @@
 	AddComponent(/datum/component/spooky)
 
 /obj/item/instrument/trumpet/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (loc, 'sound/instruments/trombone/En4.mid', 100,1,-1)
+	playsound (loc, 'sound/instruments/trombone/En4.mid', 100,1,-1, mixer_channel = CHANNEL_INSTRUMENTS)
 	..()
 
 /obj/item/instrument/saxophone
@@ -158,7 +164,7 @@
 	AddComponent(/datum/component/spooky)
 
 /obj/item/instrument/saxophone/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (loc, 'sound/instruments/saxophone/En4.mid', 100,1,-1)
+	playsound (loc, 'sound/instruments/saxophone/En4.mid', 100,1,-1, mixer_channel = CHANNEL_INSTRUMENTS)
 	..()
 
 /obj/item/instrument/trombone
@@ -181,7 +187,7 @@
 	AddComponent(/datum/component/spooky)
 
 /obj/item/instrument/trombone/spectral/attack(mob/living/carbon/C, mob/user)
-	playsound (loc, 'sound/instruments/trombone/Cn4.mid', 100,1,-1)
+	playsound (loc, 'sound/instruments/trombone/Cn4.mid', 100,1,-1, mixer_channel = CHANNEL_INSTRUMENTS)
 	..()
 
 /obj/item/instrument/recorder

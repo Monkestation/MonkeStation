@@ -52,12 +52,19 @@ GLOBAL_LIST_INIT(used_sound_channels, list(
 	CHANNEL_ENGINE_ALERT,
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
-
+	CHANNEL_WEATHER,
+	CHANNEL_MACHINERY,
+	CHANNEL_INSTRUMENTS,
+	CHANNEL_INSTRUMENTS_ROBOT,
 ))
 
 GLOBAL_LIST_INIT(proxy_sound_channels, list(
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
+	CHANNEL_WEATHER,
+	CHANNEL_MACHINERY,
+	CHANNEL_INSTRUMENTS,
+	CHANNEL_INSTRUMENTS_ROBOT,
 ))
 
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
@@ -445,5 +452,11 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			return "Sound Effects"
 		if(CHANNEL_SOUND_FOOTSTEPS)
 			return "Footsteps"
+		if(CHANNEL_WEATHER)
+			return "Weather"
 		if(CHANNEL_MACHINERY)
 			return "Machinery"
+		if(CHANNEL_INSTRUMENTS)
+			return "Player Instruments"
+		if(CHANNEL_INSTRUMENTS_ROBOT)
+			return "Robot Instruments" //you caused this DONGLE
