@@ -169,7 +169,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.volume *= pressure_factor
 			//End Atmosphere affecting sound
 
-		if((channel in GLOB.used_sound_channels) || (mixer_channel in used_sound_channels))
+		if((channel in GLOB.used_sound_channels) || (mixer_channel in GLOB.used_sound_channels))
 			var/used_channel = 0
 			if(channel in GLOB.used_sound_channels)
 				used_channel = channel
