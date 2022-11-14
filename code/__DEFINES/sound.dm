@@ -7,8 +7,9 @@
 #define CHANNEL_HEARTBEAT 1019 //sound channel for heartbeats
 #define CHANNEL_AMBIENT_EFFECTS 1018
 #define CHANNEL_AMBIENT_MUSIC 1017
-#define CHANNEL_BUZZ 1017
+#define CHANNEL_BUZZ 1016
 #define CHANNEL_ENGINE_ALERT 1015 //Monkestation Edit -- RBMK Reactor Sounds
+#define CHANNEL_SOUND_EFFECTS 1014
 
 ///Default range of a sound.
 #define SOUND_RANGE 17

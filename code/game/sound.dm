@@ -40,8 +40,20 @@ ignore_walls - Whether or not the sound can pass through walls.
 falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
 
 */
+var/global/list/used_sound_channels = list(
+	CHANNEL_LOBBYMUSIC,
+	CHANNEL_ADMIN,
+	CHANNEL_VOX,
+	CHANNEL_JUKEBOX,
+	CHANNEL_HEARTBEAT,
+	CHANNEL_AMBIENT_EFFECTS,
+	CHANNEL_AMBIENT_MUSIC,
+	CHANNEL_BUZZ,
+	CHANNEL_ENGINE_ALERT,
+	CHANNEL_SOUND_EFFECTS,
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE)
+)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel = 0)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -93,7 +105,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 */
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, mixer_channel = 0)
 	if(!client || !can_hear())
 		return
 
@@ -149,6 +161,17 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 			S.volume *= pressure_factor
 			//End Atmosphere affecting sound
+
+		if((channel in used_sound_channels) || (mixer_channel in used_sound_channels))
+			var/used_channel = 0
+			if(channel in used_sound_channels)
+				used_channel = channel
+			else
+				used_channel = mixer_channel
+			if(client.prefs.channel_volume["[used_channel]"])
+				vol *= (client.prefs.channel_volume["[used_channel]"] * 0.01)
+			else
+				vol = 0
 
 		if(S.volume <= 0)
 			return //No sound
@@ -226,7 +249,10 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 /client/proc/playtitlemusic(vol = 85)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
-
+	if(prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"])
+		vol *= (prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"] * 0.01)
+	else
+		return
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
 		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
@@ -322,3 +348,84 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		return FALSE
 
 	return TRUE
+
+///sound volume handling here
+
+/client/verb/open_volume_mixer()
+	set category = "Preferences"
+	set name = "Volume Mixer"
+	set desc = "Opens the volume mixer UI"
+
+	if(!prefs.pref_mixer)
+		prefs.pref_mixer = new
+	prefs.pref_mixer.open_ui(src.mob)
+
+/datum/ui_module/volume_mixer/proc/open_ui(mob/user)
+	ui_interact(user)
+
+/datum/ui_module/volume_mixer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "VolumeMixer", "Volume Mixer")
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/datum/ui_module/volume_mixer/ui_data(mob/user)
+	var/list/data = list()
+
+	var/list/channels = list()
+	for(var/channel in used_sound_channels)
+		if(!user.client.prefs.channel_volume["[channel]"])
+			user.client.prefs.channel_volume["[channel]"] = 100
+			user.client.prefs.save_preferences()
+		channels += list(list(
+			"num" = channel,
+			"name" = get_channel_name(channel),
+			"volume" = user.client.prefs.channel_volume["[channel]"]
+		))
+	data["channels"] = channels
+
+	return data
+
+
+/datum/ui_module/volume_mixer/ui_act(action, list/params)
+	if(..())
+		return
+
+	. = TRUE
+	switch(action)
+		if("volume")
+			var/channel = text2num(params["channel"])
+			var/volume = text2num(params["volume"])
+			if(isnull(channel) || isnull(volume))
+				return FALSE
+			usr.client.prefs.channel_volume["[channel]"] = volume
+			usr.client.prefs.save_preferences()
+		else
+			return FALSE
+
+/datum/ui_module/volume_mixer/ui_state()
+	return GLOB.always_state
+
+/proc/get_channel_name(channel)
+	switch(channel)
+		if(CHANNEL_LOBBYMUSIC)
+			return "Lobby Music"
+		if(CHANNEL_ADMIN)
+			return "Admin MIDIs"
+		if(CHANNEL_VOX)
+			return "AI Announcements"
+		if(CHANNEL_JUKEBOX)
+			return "Dance Machines"
+		if(CHANNEL_HEARTBEAT)
+			return "Heartbeat"
+		if(CHANNEL_BUZZ)
+			return "White Noise"
+		if(CHANNEL_AMBIENT_EFFECTS)
+			return "Ambient Effects"
+		if(CHANNEL_AMBIENT_MUSIC)
+			return "Ambient Music"
+		if(CHANNEL_ENGINE_ALERT)
+			return "Engine Alerts"
+		if(CHANNEL_SOUND_EFFECTS)
+			return "Sound Effects"

@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	38 //monkestation edit
+#define SAVEFILE_VERSION_MAX	39 //monkestation edit
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -82,6 +82,17 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["key_bindings"], key_bindings)
 	if(current_version < 38)
 		clientfps = 60
+	if(current_version < 39)
+		channel_volume = list(
+							CHANNEL_LOBBYMUSIC = 100,
+							CHANNEL_ADMIN = 100,
+							CHANNEL_VOX = 100,
+							CHANNEL_JUKEBOX = 100,
+							CHANNEL_HEARTBEAT = 100,
+							CHANNEL_AMBIENT_EFFECTS = 100,
+							CHANNEL_AMBIENT_MUSIC = 100,
+							CHANNEL_BUZZ = 100,
+							CHANNEL_ENGINE_ALERT = 100,)
 	 //monkestation edit end
 	return
 
@@ -228,6 +239,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["purchased_gear"], purchased_gear)
 	READ_FILE(S["equipped_gear"], equipped_gear)
+	READ_FILE(S["channel_volume"], channel_volume)
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -274,7 +286,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		purchased_gear = list()
 	if(!equipped_gear)
 		equipped_gear = list()
-
+	if(!channel_volume)
+		channel_volume = list("[CHANNEL_LOBBYMUSIC]" = 100,
+								  "[CHANNEL_ADMIN]" = 100,
+								   "[CHANNEL_VOX]" = 100,
+								   "[CHANNEL_JUKEBOX]" = 100,
+								   "[CHANNEL_HEARTBEAT]" = 100,
+								   "[CHANNEL_AMBIENT_EFFECTS]" = 100,
+								   "[CHANNEL_AMBIENT_MUSIC]" = 100,
+								   "[CHANNEL_BUZZ]" = 100,
+								   "[CHANNEL_ENGINE_ALERT]" = 100,)
 	return TRUE
 
 /datum/preferences/proc/save_preferences()
@@ -333,6 +354,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["show_credits"], show_credits)
 	WRITE_FILE(S["purchased_gear"], purchased_gear)
 	WRITE_FILE(S["equipped_gear"], equipped_gear)
+	WRITE_FILE(S["channel_volume"], channel_volume)
 
 	if (!key_bindings)
 		key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
