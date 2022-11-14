@@ -59,7 +59,7 @@ var/global/list/proxy_sound_channels = list(
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
 )
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel = 0)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -175,9 +175,9 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			else
 				used_channel = mixer_channel
 			if(client.prefs.channel_volume["[used_channel]"])
-				vol *= (client.prefs.channel_volume["[used_channel]"] * 0.01)
+				S.volume *= (client.prefs.channel_volume["[used_channel]"] * 0.01)
 			else
-				vol = 0
+				S.volume = 0
 
 		if(S.volume <= 0)
 			return //No sound
