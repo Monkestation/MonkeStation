@@ -175,7 +175,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			else
 				used_channel = mixer_channel
 			if(client.prefs.channel_volume["[used_channel]"])
-				S.volume *= (client.prefs.channel_volume["[used_channel]"] * 0.01)
+				S.volume *= max(round((client.prefs.channel_volume["[used_channel]"] * 0.01), 1),1)
 			else
 				S.volume = 0
 
