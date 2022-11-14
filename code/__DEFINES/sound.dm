@@ -11,6 +11,7 @@
 #define CHANNEL_ENGINE_ALERT 1015 //Monkestation Edit -- RBMK Reactor Sounds
 #define CHANNEL_SOUND_EFFECTS 1014
 #define CHANNEL_SOUND_FOOTSTEPS 1013
+#define CHANNEL_WEATHER 1012
 
 ///Default range of a sound.
 #define SOUND_RANGE 17
@@ -26,7 +27,7 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1012 //Monkestation Edi
+#define CHANNEL_HIGHEST_AVAILABLE 1011 //Monkestation Edi
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 

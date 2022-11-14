@@ -428,7 +428,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		if(CHANNEL_ADMIN)
 			return "Admin MIDIs"
 		if(CHANNEL_VOX)
-			return "AI Announcements"
+			return "Announcements / AI Noise"
 		if(CHANNEL_JUKEBOX)
 			return "Dance Machines"
 		if(CHANNEL_HEARTBEAT)
