@@ -352,7 +352,8 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
-	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+	for(var/mob/M as anything in GLOB.player_list)
+		SEND_SOUND(M, sound(SSstation.announcer.get_rand_welcome_sound(), volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -724,6 +725,6 @@ SUBSYSTEM_DEF(ticker)
 		var/list/tracks = flist("sound/roundend/")
 		if(tracks.len)
 			round_end_sound = "sound/roundend/[pick(tracks)]"
-
-	SEND_SOUND(world, sound(round_end_sound))
+	for(var/mob/M as anything in GLOB.player_list)
+		SEND_SOUND(M, sound(round_end_sound, volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 	rustg_file_append(login_music, "data/last_round_lobby_music.txt")

@@ -415,8 +415,16 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				return FALSE
 			usr.client.prefs.channel_volume["[channel]"] = volume
 			usr.client.prefs.save_preferences()
+			var/list/instrument_channels = list(
+				CHANNEL_INSTRUMENTS,
+				CHANNEL_INSTRUMENTS_ROBOT,)
 			if(!(channel in GLOB.proxy_sound_channels)) //if its a proxy we are just wasting time
 				set_channel_volume(channel, volume, usr)
+
+			else if((channel in instrument_channels))
+				var/datum/song/holder_song = new
+				for(var/used_channel in holder_song.channels_playing)
+					set_channel_volume(used_channel, volume, usr)
 		else
 			return FALSE
 
