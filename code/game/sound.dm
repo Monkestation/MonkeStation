@@ -51,7 +51,13 @@ var/global/list/used_sound_channels = list(
 	CHANNEL_BUZZ,
 	CHANNEL_ENGINE_ALERT,
 	CHANNEL_SOUND_EFFECTS,
+	CHANNEL_SOUND_FOOTSTEPS,
 
+)
+
+var/global/list/proxy_sound_channels = list(
+	CHANNEL_SOUND_EFFECTS,
+	CHANNEL_SOUND_FOOTSTEPS,
 )
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel = 0)
 	if(isarea(source))
@@ -401,7 +407,8 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				return FALSE
 			usr.client.prefs.channel_volume["[channel]"] = volume
 			usr.client.prefs.save_preferences()
-			set_channel_volume(channel, volume, usr)
+			if(!(channel in proxy_sound_channels)) //if its a proxy we are just wasting time
+				set_channel_volume(channel, volume, usr)
 		else
 			return FALSE
 
@@ -435,3 +442,5 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			return "Engine Alerts"
 		if(CHANNEL_SOUND_EFFECTS)
 			return "Sound Effects"
+		if(CHANNEL_SOUND_FOOTSTEPS)
+			return "Footsteps"

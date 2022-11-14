@@ -10,6 +10,7 @@
 #define CHANNEL_BUZZ 1016
 #define CHANNEL_ENGINE_ALERT 1015 //Monkestation Edit -- RBMK Reactor Sounds
 #define CHANNEL_SOUND_EFFECTS 1014
+#define CHANNEL_SOUND_FOOTSTEPS 1013
 
 ///Default range of a sound.
 #define SOUND_RANGE 17

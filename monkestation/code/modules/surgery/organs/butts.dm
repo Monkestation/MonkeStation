@@ -227,7 +227,7 @@
 
 
 	//SOUND HANDLING
-	playsound(user, pick(sound_effect), volume , use_reverb = TRUE, pressure_affected = FALSE)
+	playsound(user, pick(sound_effect), volume , use_reverb = TRUE, pressure_affected = FALSE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 
 	//GAS CREATION, ASS DETACHMENT & COOLDOWNS
 	if(!cooling_down)
