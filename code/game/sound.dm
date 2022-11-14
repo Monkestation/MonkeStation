@@ -40,7 +40,7 @@ ignore_walls - Whether or not the sound can pass through walls.
 falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
 
 */
-var/global/list/used_sound_channels = list(
+GLOBAL_LIST_INIT(used_sound_channels = list(
 	CHANNEL_LOBBYMUSIC,
 	CHANNEL_ADMIN,
 	CHANNEL_VOX,
@@ -53,12 +53,13 @@ var/global/list/used_sound_channels = list(
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
 
-)
+))
 
-var/global/list/proxy_sound_channels = list(
+GLOBAL_LIST_INIT(proxy_sound_channels = list(
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
-)
+))
+
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
@@ -168,9 +169,9 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.volume *= pressure_factor
 			//End Atmosphere affecting sound
 
-		if((channel in used_sound_channels) || (mixer_channel in used_sound_channels))
+		if((channel in GLOB.used_sound_channels) || (mixer_channel in used_sound_channels))
 			var/used_channel = 0
-			if(channel in used_sound_channels)
+			if(channel in GLOB.used_sound_channels)
 				used_channel = channel
 			else
 				used_channel = mixer_channel
@@ -380,7 +381,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 	var/list/data = list()
 
 	var/list/channels = list()
-	for(var/channel in used_sound_channels)
+	for(var/channel in GLOB.used_sound_channels)
 		if(!user.client.prefs.channel_volume["[channel]"])
 			user.client.prefs.channel_volume["[channel]"] = 100
 			user.client.prefs.save_preferences()
@@ -407,7 +408,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				return FALSE
 			usr.client.prefs.channel_volume["[channel]"] = volume
 			usr.client.prefs.save_preferences()
-			if(!(channel in proxy_sound_channels)) //if its a proxy we are just wasting time
+			if(!(channel in GLOB.proxy_sound_channels)) //if its a proxy we are just wasting time
 				set_channel_volume(channel, volume, usr)
 		else
 			return FALSE
