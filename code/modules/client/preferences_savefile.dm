@@ -286,16 +286,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		purchased_gear = list()
 	if(!equipped_gear)
 		equipped_gear = list()
-	if(!channel_volume)
-		channel_volume = list("[CHANNEL_LOBBYMUSIC]" = 100,
-								  "[CHANNEL_ADMIN]" = 100,
-								   "[CHANNEL_VOX]" = 100,
-								   "[CHANNEL_JUKEBOX]" = 100,
-								   "[CHANNEL_HEARTBEAT]" = 100,
-								   "[CHANNEL_AMBIENT_EFFECTS]" = 100,
-								   "[CHANNEL_AMBIENT_MUSIC]" = 100,
-								   "[CHANNEL_BUZZ]" = 100,
-								   "[CHANNEL_ENGINE_ALERT]" = 100,)
 	return TRUE
 
 /datum/preferences/proc/save_preferences()
