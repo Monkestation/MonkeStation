@@ -445,3 +445,5 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			return "Sound Effects"
 		if(CHANNEL_SOUND_FOOTSTEPS)
 			return "Footsteps"
+		if(CHANNEL_MACHINERY)
+			return "Machinery"
