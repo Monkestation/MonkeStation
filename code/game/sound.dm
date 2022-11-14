@@ -81,10 +81,10 @@ var/global/list/used_sound_channels = list(
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/mob/M as() in listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, mixer_channel)
 	for(var/mob/M as() in dead_listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, mixer_channel)
 
 /*! playsound
 
@@ -246,11 +246,11 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 	S.status = SOUND_UPDATE
 	SEND_SOUND(src, S)
 
-/client/proc/playtitlemusic(vol = 85)
+/client/proc/playtitlemusic(vol = 100)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
 	if(prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"])
-		vol *= (prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"] * 0.01)
+		vol = prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"]
 	else
 		return
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
@@ -401,11 +401,17 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				return FALSE
 			usr.client.prefs.channel_volume["[channel]"] = volume
 			usr.client.prefs.save_preferences()
+			set_channel_volume(channel, volume, usr)
 		else
 			return FALSE
 
 /datum/ui_module/volume_mixer/ui_state()
 	return GLOB.always_state
+
+/datum/ui_module/volume_mixer/proc/set_channel_volume(channel, vol, mob/user)
+	var/sound/S = sound(null, channel = channel, volume = vol)
+	S.status = SOUND_UPDATE
+	SEND_SOUND(usr, S)
 
 /proc/get_channel_name(channel)
 	switch(channel)
