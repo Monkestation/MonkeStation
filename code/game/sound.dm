@@ -40,7 +40,7 @@ ignore_walls - Whether or not the sound can pass through walls.
 falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
 
 */
-GLOBAL_LIST_INIT(used_sound_channels = list(
+GLOBAL_LIST_INIT(used_sound_channels, list(
 	CHANNEL_LOBBYMUSIC,
 	CHANNEL_ADMIN,
 	CHANNEL_VOX,
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(used_sound_channels = list(
 
 ))
 
-GLOBAL_LIST_INIT(proxy_sound_channels = list(
+GLOBAL_LIST_INIT(proxy_sound_channels, list(
 	CHANNEL_SOUND_EFFECTS,
 	CHANNEL_SOUND_FOOTSTEPS,
 ))
