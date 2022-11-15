@@ -69,6 +69,16 @@ GLOBAL_LIST_INIT(proxy_sound_channels, list(
 	CHANNEL_MOB_SOUNDS,
 ))
 
+/proc/guess_mixer_channel(soundin)
+	var/sound_text_string = "[soundin]"
+	if(findtext(sound_text_string, "effects/"))
+		return CHANNEL_SOUND_EFFECTS
+	if(findtext(sound_text_string, "machines/"))
+		return CHANNEL_MACHINERY
+	if(findtext(sound_text_string, "creatures/"))
+		return CHANNEL_MOB_SOUNDS
+
+	return FALSE
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
@@ -77,6 +87,9 @@ GLOBAL_LIST_INIT(proxy_sound_channels, list(
 
 	if (!turf_source)
 		return
+
+	if(!mixer_channel)
+		mixer_channel = guess_mixer_channel(soundin)
 
 	var/maxdistance = (SOUND_RANGE + extrarange)
 	var/max_z_range = maxdistance / (MULTI_Z_DISTANCE + 1)
@@ -120,7 +133,6 @@ falloff_distance - Distance at which falloff begins, if this is a 3D sound
 distance_multiplier - Can be used to multiply the distance at which the sound is heard
 
 */
-
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, mixer_channel = 0)
 	if(!client || !can_hear())
 		return
