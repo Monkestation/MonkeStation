@@ -68,7 +68,7 @@
 
 	var/tmp_sound = get_sound(user)
 	if(tmp_sound && (!only_forced_audio || !intentional))
-		playsound(user, tmp_sound, 50, vary)
+		playsound(user, tmp_sound, 50, vary, mixer_channel = CHANNEL_MOB_SOUNDS)
 
 	for(var/mob/M in GLOB.dead_mob_list)
 		if(!M.client || isnewplayer(M))

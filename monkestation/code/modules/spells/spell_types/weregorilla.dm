@@ -16,10 +16,10 @@
 	for(var/mob/living/M in targets)
 		var/obj/shapeshift_holder/S = locate() in M
 		if(S)
-			playsound(M, 'sound/creatures/gorilla.ogg', 50)
+			playsound(M, 'sound/creatures/gorilla.ogg', 50, mixer_channel = CHANNEL_MOB_SOUNDS)
 			Restore(M)
 		else
-			playsound(M, 'sound/creatures/gorilla.ogg', 50)
+			playsound(M, 'sound/creatures/gorilla.ogg', 50, mixer_channel = CHANNEL_MOB_SOUNDS)
 			Shapeshift(M)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/weregorilla/Shapeshift(mob/living/caster)

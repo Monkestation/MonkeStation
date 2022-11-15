@@ -14,7 +14,7 @@
 		add_fingerprint(user)
 		if(msg)
 			to_chat(user, "<span class='warning'>You shake the barrel, angering the monkeys inside!</span>")
-	playsound(src, 'sound/creatures/monkey/monkey_screech_7.ogg', volume, 1)
+	playsound(src, 'sound/creatures/monkey/monkey_screech_7.ogg', volume, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 	active = TRUE
 	SEND_SIGNAL(src, COMSIG_GRENADE_ARMED, det_time, delayoverride)
 	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)

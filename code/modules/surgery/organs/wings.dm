@@ -213,7 +213,7 @@
 	if(hoppingtable)
 		crashcallback = CALLBACK(src, .proc/crash_into_table, get_step(checkjump, L.dir))
 	if(L.throw_at(target, jumpdistancemoved, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = crashcallback, force = MOVE_FORCE_WEAK))
-		playsound(L, 'sound/creatures/bee.ogg', 50, 1, 1)
+		playsound(L, 'sound/creatures/bee.ogg', 50, 1, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 		L.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
 		recharging_time = world.time + recharging_rate
 	else
