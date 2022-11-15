@@ -77,7 +77,14 @@ GLOBAL_LIST_INIT(proxy_sound_channels, list(
 		return CHANNEL_MACHINERY
 	if(findtext(sound_text_string, "creatures/"))
 		return CHANNEL_MOB_SOUNDS
-
+	if(findtext(sound_text_string, "/ai/"))
+		return CHANNEL_VOX
+	if(findtext(sound_text_string, "chatter/"))
+		return CHANNEL_MOB_SOUNDS
+	if(findtext(sound_text_string, "items/"))
+		return CHANNEL_SOUND_EFFECTS
+	if(findtext(sound_text_string, "weapons/"))
+		return CHANNEL_SOUND_EFFECTS
 	return FALSE
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
 	if(isarea(source))
