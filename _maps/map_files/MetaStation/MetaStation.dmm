@@ -5711,6 +5711,10 @@
 /area/security/brig)
 "aqZ" = (
 /obj/machinery/computer/shuttle_flight/labor,
+/obj/machinery/light_switch{
+	pixel_y = 23;
+	pixel_x = -10
+	},
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "ara" = (
@@ -17561,6 +17565,9 @@
 	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -38130,6 +38137,9 @@
 	dir = 4;
 	network = list("ss13","medbay")
 	},
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
 /turf/open/floor/plasteel/white/side{
 	dir = 5
 	},
@@ -48139,6 +48149,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	pixel_y = -25
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "eIU" = (
@@ -50677,6 +50690,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"gdr" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "gds" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -51258,6 +51286,21 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"gtX" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -76197,6 +76240,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -23
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
@@ -108525,7 +108571,7 @@ apM
 kNg
 mGI
 adY
-mtE
+gtX
 awd
 axm
 aiq
@@ -112189,7 +112235,7 @@ tQE
 ckg
 clH
 bZn
-eQK
+gdr
 jTv
 fEz
 htB
@@ -112894,7 +112940,7 @@ apY
 arr
 asJ
 ajD
-mtE
+gtX
 aws
 axu
 ayG
