@@ -11,6 +11,8 @@
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	// Run speed delay is multiplied with this for vehicle move delay.
 	var/delay_multiplier = 3 //MonkeStation Edit: Better Speed
+	has_engine = FALSE
+	waddles = FALSE
 
 /obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
