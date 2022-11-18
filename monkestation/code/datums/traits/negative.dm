@@ -52,6 +52,7 @@
 	var/mob/living/carbon/human/stowaway = quirk_holder
 	var/perpname = stowaway.name
 	var/datum/data/record/record_deletion = find_record("name", perpname, GLOB.data_core.general)
+	SSjob.FreeRole(quirk_holder.mind.assigned_role)  //open their job slot back up
 	qdel(record_deletion)
 
 /datum/quirk/unstable_ass
