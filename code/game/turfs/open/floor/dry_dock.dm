@@ -1,7 +1,7 @@
 /turf/open/floor/dock
 	name = "dock floor"
 	desc = "Strong enough to hold a shuttle."
-	icon_state = "dock"
+	icon_state = "engine_light"
 	floor_tile = /obj/item/stack/tile/dock
 	footstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
@@ -16,7 +16,7 @@
 /turf/open/floor/dock/drydock
 	name = "dry dock floor"
 	desc = "Heavy duty plating designed to support shuttle construction and maintenance."
-	icon_state = "drydock"
+	icon_state = "engine"
 	floor_tile = /obj/item/stack/tile/drydock
 
 /turf/open/floor/dock/drydock/crowbar_act(mob/living/user, obj/item/I)
