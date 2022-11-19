@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	///if this reagent should condense down into a liquid
 	var/condenses_liquid = TRUE
 	///does this reagent convert into a gas
-	var/aerolizes = FALSE
+	var/converts_to_gas = FALSE
 	//MONKESTATION EDIT END
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 /datum/reagent/proc/reaction_evaporation(turf/T, volume)
-	if(aerolizes)
+	if(converts_to_gas)
 		var/temp = holder ? holder.chem_temp : T20C
 		if(get_gas())
 			T.atmos_spawn_air("[get_gas()]=[(volume/molarity) * 0.5];TEMP=[temp]") // each cycle produces half as much gas as the last
