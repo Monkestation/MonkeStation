@@ -204,8 +204,8 @@
 	wine_power = 80
 	discovery_points = 300
 
-#define FUSE_TIME 40 //in deciseconds
-#define FUSE_VARIANCE 10
+#define FUSE_TIME 4 SECONDS
+#define FUSE_VARIANCE 1 SECONDS
 
 /obj/item/food/grown/cherry_bomb/attack_self(mob/living/user)
 	user.visible_message("<span class='warning'>[user] plucks the stem from [src]!</span>", "<span class='userdanger'>You pluck the stem from [src], which begins to hiss loudly!</span>")
