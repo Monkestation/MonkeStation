@@ -2856,7 +2856,6 @@
 					/obj/item/clothing/mask/gas/clown_hat,
 					/obj/item/clothing/under/rank/civilian/clown,
 					/obj/item/bikehorn,
-					/obj/item/toy/whoopee,
 					/obj/item/clothing/under/rank/civilian/mime,
 					/obj/item/clothing/shoes/sneakers/black,
 					/obj/item/clothing/gloves/color/white,
