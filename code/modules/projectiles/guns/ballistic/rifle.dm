@@ -66,6 +66,7 @@
 /obj/item/gun/ballistic/rifle/boltaction/rack(mob/user = null)
 	if(prob(33)) //33% chance of being seized up
 		to_chat(user, "<span class='warning'>Try as you might, the bolt refuses to move! Give it another yank.</span>")
+		user.balloon_alert(user, "Jammed!")
 		playsound(src, bolt_stuck_sound, rack_sound_volume, rack_sound_vary) //it's still involved in racking so inherit those properties for ease
 		return
 	else
