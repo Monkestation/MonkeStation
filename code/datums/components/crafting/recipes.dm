@@ -1042,7 +1042,6 @@
 /datum/crafting_recipe/primal_lasso
 	name= "Primal Lasso"
 	result = /obj/item/mob_lasso/primal
-	always_available = FALSE
 	time = 20
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	category = CAT_PRIMAL
