@@ -203,8 +203,9 @@
 	max_integrity = 40
 	wine_power = 80
 	discovery_points = 300
-	var/fusetime = 40 //in deciseconds
-	var/fusevariance = 10
+
+#define FUSE_TIME 40 //in deciseconds
+#define FUSE_VARIANCE 10
 
 /obj/item/food/grown/cherry_bomb/attack_self(mob/living/user)
 	user.visible_message("<span class='warning'>[user] plucks the stem from [src]!</span>", "<span class='userdanger'>You pluck the stem from [src], which begins to hiss loudly!</span>")
@@ -223,9 +224,12 @@
 /obj/item/food/grown/cherry_bomb/proc/prime(mob/living/lanced_by)
 	icon_state = "cherry_bomb_lit"
 	playsound(src, 'sound/effects/fuse.ogg', seed.potency, 0)
-	addtimer(CALLBACK(src,.proc/heatup),rand(fusetime-fusevariance, fusetime+fusevariance)) //heat it up after a delay with variance, there will be a double delay from the powder itself
+	addtimer(CALLBACK(src,.proc/heatup),rand(FUSE_TIME-FUSE_VARIANCE, FUSE_TIME+FUSE_VARIANCE)) //heat it up after a delay with variance, there will be a double delay from the powder itself
 
 /obj/item/food/grown/cherry_bomb/proc/heatup(mob/living/lanced_by)
 	reagents.chem_temp = 1000 //Sets off the black powder
 	reagents.handle_reactions()
 	qdel(src)
+
+#undef FUSE_TIME
+#undef FUSE_VARIANCE
