@@ -41,11 +41,11 @@
 		if(!istype(boom.holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
 			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(boom.turf)][inside_msg]. Last Fingerprint: [touch_msg].")
 		log_game("Reagent explosion reaction occurred at [AREACOORD(boom.turf)]. Last Fingerprint: [boom.lastkey ? boom.lastkey : "N/A"]." )
+		boom.turf.remove_emitter("explosion_spark")
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(boom.power , boom.turf, 0, 0)
 		e.start()
 		holder.clear_reagents()
-		boom.turf.remove_emitter("explosion_spark")
 
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin
