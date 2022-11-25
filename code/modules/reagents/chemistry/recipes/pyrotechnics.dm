@@ -17,7 +17,9 @@
 /datum/chemical_reaction/reagent_explosion/in_progress_explosion/proc/move_explosion()
 	SIGNAL_HANDLER
 	if(src.holder.my_atom)
+		src.turf.remove_emitter("explosion_spark")
 		src.turf = get_turf(src.holder.my_atom)
+		src.turf.add_emitter(/obj/emitter/sparks, "explosion_spark")
 
 /datum/chemical_reaction/reagent_explosion/proc/explode(datum/reagents/holder, created_volume, delay = 0)
 	var/datum/chemical_reaction/reagent_explosion/in_progress_explosion/boom = new()
@@ -26,6 +28,7 @@
 	boom.turf = get_turf(holder.my_atom)
 	boom.lastkey = holder.my_atom?.fingerprintslast
 	if(boom.power > 0)
+		boom.turf.add_emitter(/obj/emitter/sparks, "explosion_spark")
 		RegisterSignal(boom, COMSIG_MOVABLE_MOVED, .in_progress_explosion/proc/move_explosion)
 		sleep(delay)
 		var/inside_msg
@@ -42,6 +45,7 @@
 		e.set_up(boom.power , boom.turf, 0, 0)
 		e.start()
 		holder.clear_reagents()
+		boom.turf.remove_emitter("explosion_spark")
 
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin
