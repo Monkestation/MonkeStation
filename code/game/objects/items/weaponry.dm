@@ -730,6 +730,14 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		playsound(turf, 'sound/weapons/effects/batreflect2.ogg', 50, 1)
 	return 1
 
+/obj/item/twohanded/required/baseball_bat/metal_bat/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(user.zone_selected == BODY_ZONE_HEAD && get_location_accessible(target, BODY_ZONE_HEAD))
+		if(prob(30))
+			target.Paralyze(40)
+		else
+			return TRUE
+
 /obj/item/melee/flyswatter
 	name = "flyswatter"
 	desc = "Useful for killing insects of all sizes."
