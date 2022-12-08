@@ -39,7 +39,7 @@ Difficulty: Medium
 	ranged = TRUE
 	ranged_cooldown_time = 16
 	pixel_x = -16
-	crusher_loot = list(/obj/structure/closet/crate/necropolis/bdm, /obj/item/disk/design_disk/modkit_disc/resonator_blast, /obj/item/disk/design_disk/modkit_disc/rapid_repeater, /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe, /obj/item/disk/design_disk/modkit_disc/bounty /obj/item/crusher_trophy/miner_eye)
+	crusher_loot = list(/obj/structure/closet/crate/necropolis/bdm, /obj/item/disk/design_disk/modkit_disc/resonator_blast, /obj/item/disk/design_disk/modkit_disc/rapid_repeater, /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe, /obj/item/disk/design_disk/modkit_disc/bounty, /obj/item/crusher_trophy/miner_eye)
 	loot = list(/obj/structure/closet/crate/necropolis/bdm, /obj/item/disk/design_disk/modkit_disc/resonator_blast, /obj/item/disk/design_disk/modkit_disc/rapid_repeater, /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe, /obj/item/disk/design_disk/modkit_disc/bounty)
 	wander = FALSE
 	del_on_death = TRUE
