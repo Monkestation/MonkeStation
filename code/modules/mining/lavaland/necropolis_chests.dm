@@ -26,7 +26,7 @@
 
 	if(!istype(item, /obj/item/skeleton_key) || spawned_loot)
 		return FALSE
-	var/loot = rand(1,25)
+	var/loot = rand(1,17)
 	switch(loot)
 		if(1)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
