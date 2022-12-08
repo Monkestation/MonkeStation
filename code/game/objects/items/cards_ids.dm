@@ -119,20 +119,27 @@
 		if(!proximity && prox_check) //left in for badmins
 			return
 		emagging = TRUE
-		if(do_after(user, rand(5, 10) SECONDS, target = target, progress = 1))
+		if(do_after(user, rand(4, 7) SECONDS, target = target, progress = 1))
 			charges--
-			if (prob(40))
+			if (prob(50)) //50% chance that it does nothing
 				to_chat(user, "<span class='notice'>[src] emits a puff of smoke, but nothing happens.")
 				emagging = FALSE
 				return
-			if (prob(20))
+			if (prob(20))//10% overall chance it catches you on fire
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
 				M.IgniteMob()
 				to_chat(user, "<span class='danger'>The card shorts out and catches fire in your hands!")
 				user.emote("scream")
+				emagging = FALSE
+				return
+			if (prob(12.5))//5% overall chance it explodes (natural 1!)
+				to_chat(user, "<span class='danger'>The card sizzles and causes all the electronics to explode!")
+				explosion(target.loc, -1, 1, 3, 4) //same strength as a PDA bomb
+				emagging = FALSE
+				return
 			log_combat(user, target, "attempted to emag")
-			target.emag_act(user)
+			target.emag_act(user)//35% overall chance we actually reach this point
 		emagging = FALSE
 	else
 		to_chat(user, "<span class='notice'>[src] is out of charges!")
