@@ -620,6 +620,7 @@
 			remove_reagent(T.type, transfer_amount)
 			transfer_log[T.type] = transfer_amount
 
+
 	if(transfered_by && target_atom)
 		target_atom.add_hiddenprint(transfered_by) //log prints so admins can figure out who touched it last.
 		log_combat(transfered_by, target_atom, "transferred reagents ([log_list(transfer_log)]) from [my_atom] to")

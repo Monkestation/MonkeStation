@@ -100,7 +100,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
 	return
 
-/datum/reagent/proc/on_transfer(atom/A, method=TOUCH, trans_volume) //Called after a reagent is transfered
+/datum/reagent/proc/on_transfer(atom/A, trans_amount, method) //Called after a reagent is transfered
+	if(iscarbon(A))
+	SEND_SIGNAL(A, COMSIG_CARBON_REAGENT_ADD, src, trans_amount, method)
 	return
 
 /datum/reagents/proc/react_single(datum/reagent/R, atom/A, method = TOUCH, volume_modifier = 1, show_message = TRUE)

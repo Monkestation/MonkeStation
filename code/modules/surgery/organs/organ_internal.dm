@@ -52,6 +52,8 @@
 
 	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src)
 
+	SEND_SIGNAL(src, COMSIG_ORGAN_INSERTED, M)
+
 	owner = M
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
