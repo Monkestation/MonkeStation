@@ -74,7 +74,7 @@
 			injected_input.node_purity = min(purity + purity_modifer, 100)
 			injected_input.tier = tier + tier_modifer
 			injected_input.attached_organ = parent
-			injected_inputed.hosted_carbon = organ_owner
+			injected_input.hosted_carbon = organ_owner
 			handle_input_injection(injected_input)
 
 		if(OUTPUT_NODE)
