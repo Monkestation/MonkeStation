@@ -46,8 +46,12 @@
 	SIGNAL_HANDLER
 
 	organ_owner = organ_reciever
+	for(var/datum/abberant_organs/output/listed_output as anything in outputs)
+		listed_output.hosted_carbon = organ_owner
 
 	for(var/datum/abberant_organs/input/listed_input as anything in inputs)
+		listed_input.hosted_carbon = organ_owner
+
 		switch(listed_input.input_type)
 			if(INPUT_TYPE_REAGENT)
 				RegisterSignal(organ_owner, COMSIG_CARBON_REAGENT_ADD, .proc/input_reagent_trigger)
@@ -74,7 +78,6 @@
 			injected_input.node_purity = min(purity + purity_modifer, 100)
 			injected_input.tier = tier + tier_modifer
 			injected_input.attached_organ = parent
-			injected_input.hosted_carbon = organ_owner
 			handle_input_injection(injected_input)
 
 		if(OUTPUT_NODE)
@@ -86,7 +89,6 @@
 			injected_output.node_purity = min(purity + purity_modifer, 100)
 			injected_output.tier = tier + tier_modifer
 			injected_output.attached_organ = parent
-			injected_output.hosted_carbon = organ_owner
 			handle_output_injection(injected_output)
 
 /datum/component/abberant_organ/proc/trigger_failure(failed_type, special_failure = TRUE)
