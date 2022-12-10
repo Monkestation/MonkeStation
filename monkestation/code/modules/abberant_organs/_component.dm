@@ -5,6 +5,9 @@
 	var/list/special_nodes = list()
 
 
+	var/list/attachment_less_special_inputs = list()
+	var/list/attachment_less_special_outputs = list()
+
 	var/list/partnerless_inputs = list()
 	var/list/partnerless_outputs = list()
 
@@ -30,6 +33,10 @@
 	src.stability_modifer = stability_modifer
 	src.maximum_tier_difference = maximum_tier_difference
 
+	if(special_nodes.len)
+		for(var/datum/abberant_organs/special/held_special as anything in special_nodes)
+			var/datum/abberant_organs/special/new_special = new held_special
+			handle_special_injection(new_special)
 	if(inputs.len)
 		for(var/datum/abberant_organs/input/held_input as anything in inputs)
 			var/datum/abberant_organs/input/new_input = new held_input
@@ -103,6 +110,11 @@
 			stability -= injected_output.stability_cost
 			handle_output_injection(injected_output)
 
+		if(SPECIAL_NODE)
+			var/datum/abberant_organs/special/injected_special = injected_node
+			injected_special.setup()
+			handle_special_injection(injected_special)
+
 /datum/component/abberant_organ/proc/trigger_failure(failed_type, special_failure = TRUE)
 	return
 
@@ -128,6 +140,12 @@
 		partnerless_outputs -= picked_output
 		outputs += picked_output
 
+	if(attachment_less_special_inputs.len)
+		var/datum/abberant_organs/special/listed_special = pick(attachment_less_special_inputs)
+		listed_special.attached_input = injected_input
+		attachment_less_special_inputs -= listed_special
+
+
 /datum/component/abberant_organ/proc/handle_output_injection(datum/abberant_organs/output/injected_output)
 	if(!partnerless_inputs.len)
 		partnerless_outputs += injected_output
@@ -149,3 +167,34 @@
 		outputs += injected_output
 		partnerless_inputs -= picked_inputs
 		inputs += picked_inputs
+
+	if(attachment_less_special_outputs.len)
+		var/datum/abberant_organs/special/listed_special = pick(attachment_less_special_outputs)
+		listed_special.attached_output = injected_output
+		attachment_less_special_outputs -= listed_special
+
+/datum/component/abberant_organ/proc/handle_special_injection(datum/abberant_organs/special/injected_special)
+	if(!injected_special.needs_attachment)
+		injected_special.trigger_special(modifier = src)
+		special_nodes += injected_special
+		return
+
+	switch(injected_special.attachement_type)
+		if(INPUT_NODE)
+			var/list/combined_list = list()
+			combined_list += partnerless_inputs
+			combined_list += inputs
+			if(!combined_list.len)
+				attachment_less_special_inputs += injected_special
+				return
+			var/datum/abberant_organs/input/picked_input = pick(combined_list)
+			injected_special.attached_input = picked_input
+		if(OUTPUT_NODE)
+			var/list/combined_list = list()
+			combined_list += partnerless_outputs
+			combined_list += outputs
+			if(!combined_list.len)
+				attachment_less_special_outputs += injected_special
+				return
+			var/datum/abberant_organs/output/picked_output = pick(combined_list)
+			injected_special.attached_output = picked_output

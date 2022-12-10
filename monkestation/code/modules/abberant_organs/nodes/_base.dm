@@ -9,6 +9,9 @@
 	var/mob/living/carbon/hosted_carbon
 	var/obj/item/organ/attached_organ
 
+	///a special node that interacts with either the input or output
+	var/datum/abberant_organs/special/attached_special
+
 	var/ui_icon = "soap"
 	var/stability_cost = 10 //this is a placeholder until i get some math for purity/tier increasing
 
