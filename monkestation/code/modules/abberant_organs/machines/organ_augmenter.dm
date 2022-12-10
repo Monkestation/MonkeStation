@@ -4,6 +4,7 @@
 	icon_state = "organ_augmenter"
 	icon = 'monkestation/icons/obj/abberant_organ.dmi'
 
+	density = TRUE
 	idle_power_usage =  100
 	active_power_usage = 100
 
@@ -105,12 +106,16 @@
 	switch(action)
 		if("eject_organ")
 			eject_organ()
+			return TRUE
 
 		if("eject_node")
 			eject_node_holder()
+			return TRUE
+
 		if("splice")
 			if(!held_organ)
-				return
+				return TRUE
 			var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
 			organs_component.handle_node_injection(inserted_node.held_node.tier, inserted_node.held_node.node_purity, inserted_node.held_node.slot, inserted_node.held_node)
 			inserted_node.handle_removal()
+			return TRUE
