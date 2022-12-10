@@ -4,6 +4,7 @@
 	var/node_purity = 100
 	var/tier = 1
 	var/is_special = FALSE
+	var/slot = INPUT_NODE
 
 	var/mob/living/carbon/hosted_carbon
 	var/obj/item/organ/attached_organ

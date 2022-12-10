@@ -13,6 +13,7 @@
 
 	///the stability of an organ in percentage form, affects adding more nodes to the organ
 	var/stability = 100
+	var/stabilty_max = 100
 	///stability modifers given by special nodes
 	var/stability_modifer = 1
 	///the maximum tier difference between inputs and outputs
@@ -38,7 +39,6 @@
 			var/datum/abberant_organs/output/new_output = new held_output
 			handle_output_injection(new_output)
 
-	RegisterSignal(parent, COMSIG_ORGAN_SPLICE, .proc/handle_node_injection)
 	RegisterSignal(parent, COMSIG_ORGAN_INSERTED, .proc/on_inserted)
 
 
@@ -73,12 +73,12 @@
 	for(var/datum/abberant_organs/input/listed_input as anything in inputs)
 		listed_input.check_trigger_damage(damage_type, damage_amount)
 
-/datum/component/abberant_organ/proc/handle_node_injection(datum/source, tier, purity, slot, datum/abberant_organs/injected_node)
+/datum/component/abberant_organ/proc/handle_node_injection(tier, purity, slot, datum/abberant_organs/injected_node)
 	SIGNAL_HANDLER
 
 	switch(slot)
 		if(INPUT_NODE)
-			var/datum/abberant_organs/input/injected_input = new injected_node
+			var/datum/abberant_organs/input/injected_input = injected_node
 			if(injected_input.is_special)
 				if((injected_input in inputs) || (injected_input in partnerless_inputs))
 					trigger_failure(failed_type = injected_input, special_failure = TRUE)
@@ -87,10 +87,11 @@
 			injected_input.tier = tier + tier_modifer
 			injected_input.attached_organ = parent
 			injected_input.setup()
+			stability -= injected_input.stability_cost
 			handle_input_injection(injected_input)
 
 		if(OUTPUT_NODE)
-			var/datum/abberant_organs/output/injected_output = new injected_node
+			var/datum/abberant_organs/output/injected_output = injected_node
 			if(injected_output.is_special)
 				if((injected_output in outputs) || (injected_output in partnerless_outputs))
 					trigger_failure(failed_type = injected_output, special_failure = TRUE)
@@ -99,6 +100,7 @@
 			injected_output.tier = tier + tier_modifer
 			injected_output.attached_organ = parent
 			injected_output.setup()
+			stability -= injected_output.stability_cost
 			handle_output_injection(injected_output)
 
 /datum/component/abberant_organ/proc/trigger_failure(failed_type, special_failure = TRUE)

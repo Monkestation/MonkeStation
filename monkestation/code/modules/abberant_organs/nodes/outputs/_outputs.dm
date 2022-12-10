@@ -1,6 +1,7 @@
 /datum/abberant_organs/output
 	name = "Generic Output"
 	desc = "This is a generic output you shouldn't be seeing this"
+	slot = OUTPUT_NODE
 
 	///the input we have latched onto, this is only ever done when its added to an organ
 	var/datum/abberant_organs/input/attached_input

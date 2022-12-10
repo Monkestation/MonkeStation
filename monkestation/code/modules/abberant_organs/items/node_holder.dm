@@ -6,6 +6,11 @@
 	icon_state = "node_empty"
 	var/datum/abberant_organs/held_node
 
+/obj/item/node_holder/proc/handle_removal()
+	if(held_node)
+		held_node = null
+	icon_state = "node_empty"
+
 /obj/item/node_holder/debug/Initialize(mapload)
 	. = ..()
 	icon_state = "node_full"

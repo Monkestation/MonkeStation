@@ -67,8 +67,8 @@
 	var/stability_multi = 1
 	if(held_organ)
 		var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
-		data["stability_max"] = organs_component.stability
-		data["stability_used"] = 100 - organs_component.stability
+		data["stability_max"] = organs_component.stabilty_max
+		data["stability_used"] = organs_component.stability
 		data["organ_name"] = held_organ.name
 		stability_multi *= organs_component.stability_modifer
 		var/list/mega_list = list()
@@ -83,12 +83,13 @@
 		data["current"] = current_nodes
 
 	if(inserted_node)
-		var/datum/abberant_organs/held_node_datum = inserted_node.held_node
-		data["node_name"] = held_node_datum.name
-		data["node_desc"] = held_node_datum.desc
-		data["node_icon"] = held_node_datum.ui_icon
-		data["stability_usage"] = held_node_datum.stability_cost * stability_multi
-		data["held_organ_node"] = inserted_node
+		if(inserted_node.held_node)
+			var/datum/abberant_organs/held_node_datum = inserted_node.held_node
+			data["node_name"] = held_node_datum.name
+			data["node_desc"] = held_node_datum.desc
+			data["node_icon"] = held_node_datum.ui_icon
+			data["stability_usage"] = held_node_datum.stability_cost * stability_multi
+			data["held_organ_node"] = inserted_node
 
 	data["working"] = currently_running
 
@@ -98,5 +99,18 @@
 
 /obj/machinery/organ_augmenter/ui_act(action, params)
 	. = ..()
+	if(.)
+		return
 
+	switch(action)
+		if("eject_organ")
+			eject_organ()
 
+		if("eject_node")
+			eject_node_holder()
+		if("splice")
+			if(!held_organ)
+				return
+			var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
+			organs_component.handle_node_injection(inserted_node.held_node.tier, inserted_node.held_node.node_purity, inserted_node.held_node.slot, inserted_node.held_node)
+			inserted_node.handle_removal()

@@ -85,6 +85,7 @@ export const ImplantedOrganNodes = (props, context) => {
     stability_used,
     stability_max,
     working,
+    organ_name,
   } = data;
 
   const current = data.current || [];
