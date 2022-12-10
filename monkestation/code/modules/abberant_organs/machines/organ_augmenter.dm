@@ -116,6 +116,13 @@
 			if(!held_organ)
 				return TRUE
 			var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
-			organs_component.handle_node_injection(inserted_node.held_node.tier, inserted_node.held_node.node_purity, inserted_node.held_node.slot, inserted_node.held_node)
-			inserted_node.handle_removal()
+			currently_running = TRUE
+			work_timer = addtimer(CALLBACK(src,.proc/inject),5 SECONDS,TIMER_STOPPABLE)
 			return TRUE
+
+/obj/machinery/organ_augmenter/proc/inject()
+	currently_running = FALSE
+	work_timer = null
+	var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
+	organs_component.handle_node_injection(inserted_node.held_node.tier, inserted_node.held_node.node_purity, inserted_node.held_node.slot, inserted_node.held_node)
+	inserted_node.handle_removal()
