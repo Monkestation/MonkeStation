@@ -4,7 +4,6 @@
 	tier = 4
 	node_purity = 100
 
-
 /datum/abberant_organs/output/alcoholic/special/trigger_effect(is_good = TRUE, multiplier)
 	if(is_good)
 		to_chat(hosted_carbon, span_notice("You feel your body produce some anti-toxin to help with the alcohol!"))

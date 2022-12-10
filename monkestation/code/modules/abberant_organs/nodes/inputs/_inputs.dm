@@ -11,6 +11,9 @@
 /datum/abberant_organs/input/proc/check_trigger_reagent(datum/reagent/consumed_reagent, consumed_amount, method)
 	return
 
+/datum/abberant_organs/input/proc/check_trigger_damage(type, amount)
+	return
+
 /datum/abberant_organs/input/proc/trigger_output(is_good = TRUE, multiplier = 1)
 	if(node_purity < 100)
 		if(COOLDOWN_FINISHED(src, trigger_cooldown))

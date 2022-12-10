@@ -150,6 +150,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	bruteloss = CLAMP((bruteloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, BRUTE)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -161,6 +162,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	oxyloss = CLAMP((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, OXY)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -180,6 +182,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	toxloss = CLAMP((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, TOX)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -199,6 +202,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	fireloss = CLAMP((fireloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, BURN)
 	if(updating_health)
 		updatehealth()
 	return amount
@@ -210,6 +214,7 @@
 	if(!forced && ((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NOCLONELOSS)))
 		return FALSE
 	cloneloss = CLAMP((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, CLONE)
 	if(updating_health)
 		updatehealth()
 	return amount

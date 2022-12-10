@@ -7,3 +7,17 @@
 
 	var/mob/living/carbon/hosted_carbon
 	var/obj/item/organ/attached_organ
+
+	var/ui_icon = "soap"
+	var/stability_cost = 10 //this is a placeholder until i get some math for purity/tier increasing
+
+/datum/abberant_organs/proc/setup()
+	return
+
+/datum/abberant_organs/proc/get_chip_data()
+	return list(
+		"name" = name,
+		"icon" = ui_icon,
+		"desc" = desc,
+		"stability" = stability_cost,
+		"ref" = REF(src))

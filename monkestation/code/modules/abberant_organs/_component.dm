@@ -55,6 +55,8 @@
 		switch(listed_input.input_type)
 			if(INPUT_TYPE_REAGENT)
 				RegisterSignal(organ_owner, COMSIG_CARBON_REAGENT_ADD, .proc/input_reagent_trigger)
+			if(INPUT_TYPE_DAMAGE)
+				RegisterSignal(organ_owner, COMSIG_LIVING_ADJUSTED, .proc/input_damage_trigger)
 			else
 
 //INPUT HANDLING
@@ -64,6 +66,12 @@
 
 	for(var/datum/abberant_organs/input/listed_input as anything in inputs)
 		listed_input.check_trigger_reagent(consumed_reagent, consumed_amount)
+
+/datum/component/abberant_organ/proc/input_damage_trigger(datum/source, damage_type, damage_amount)
+	SIGNAL_HANDLER
+
+	for(var/datum/abberant_organs/input/listed_input as anything in inputs)
+		listed_input.check_trigger_damage(damage_type, damage_amount)
 
 /datum/component/abberant_organ/proc/handle_node_injection(datum/source, tier, purity, slot, datum/abberant_organs/injected_node)
 	SIGNAL_HANDLER
@@ -78,6 +86,7 @@
 			injected_input.node_purity = min(purity + purity_modifer, 100)
 			injected_input.tier = tier + tier_modifer
 			injected_input.attached_organ = parent
+			injected_input.setup()
 			handle_input_injection(injected_input)
 
 		if(OUTPUT_NODE)
@@ -89,6 +98,7 @@
 			injected_output.node_purity = min(purity + purity_modifer, 100)
 			injected_output.tier = tier + tier_modifer
 			injected_output.attached_organ = parent
+			injected_output.setup()
 			handle_output_injection(injected_output)
 
 /datum/component/abberant_organ/proc/trigger_failure(failed_type, special_failure = TRUE)

@@ -41,3 +41,5 @@
 #define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"
 	//For all of them
 	#define COMPONENT_NO_STUN 1
+
+#define COMSIG_LIVING_ADJUSTED "living_adjusted"

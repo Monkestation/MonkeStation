@@ -2,7 +2,7 @@
 	name = "Alcohol Distillery"
 	desc = "Will trigger from any drunk alcohol"
 	is_special = TRUE
-	node_purity = 90 // 1 Second Delay between gulps
+	node_purity = 100 // No delay
 	tier = 4
 	reagent_amount = 0
 
@@ -11,4 +11,5 @@
 	if(istype(consumed_reagent, /datum/reagent/consumable/ethanol))
 		trigger_output(TRUE, consumed_amount)
 	else if(istype(consumed_reagent, /datum/reagent/consumable))
+		hosted_carbon.reagents.remove_reagent(consumed_reagent.type, consumed_amount) // you don't get to enjoy non alcoholic drinks anymore
 		trigger_output(FALSE)

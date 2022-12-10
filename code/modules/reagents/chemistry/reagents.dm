@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /datum/reagent/proc/on_transfer(atom/A, trans_amount, method) //Called after a reagent is transfered
 	if(iscarbon(A))
-	SEND_SIGNAL(A, COMSIG_CARBON_REAGENT_ADD, src, trans_amount, method)
+		SEND_SIGNAL(A, COMSIG_CARBON_REAGENT_ADD, src, trans_amount, method)
 	return
 
 /datum/reagents/proc/react_single(datum/reagent/R, atom/A, method = TOUCH, volume_modifier = 1, show_message = TRUE)
