@@ -14,10 +14,14 @@
 /datum/abberant_organs/proc/setup()
 	return
 
-/datum/abberant_organs/proc/get_chip_data()
+/datum/abberant_organs/proc/get_node_data()
 	return list(
 		"name" = name,
 		"icon" = ui_icon,
 		"desc" = desc,
 		"stability" = stability_cost,
-		"ref" = REF(src))
+		"ref" = REF(src),
+		"active" = check_active())
+
+/datum/abberant_organs/proc/check_active()
+	return

@@ -69,7 +69,19 @@
 		var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
 		data["stability_max"] = organs_component.stability
 		data["stability_used"] = 100 - organs_component.stability
+		data["organ_name"] = held_organ.name
 		stability_multi *= organs_component.stability_modifer
+		var/list/mega_list = list()
+		mega_list += organs_component.inputs
+		mega_list += organs_component.outputs
+		mega_list += organs_component.special_nodes
+		mega_list += organs_component.partnerless_inputs
+		mega_list += organs_component.partnerless_outputs
+		var/list/current_nodes = list()
+		for(var/datum/abberant_organs/listed_node as anything  in mega_list)
+			current_nodes += list(listed_node.get_node_data())
+		data["current"] = current_nodes
+
 	if(inserted_node)
 		var/datum/abberant_organs/held_node_datum = inserted_node.held_node
 		data["node_name"] = held_node_datum.name

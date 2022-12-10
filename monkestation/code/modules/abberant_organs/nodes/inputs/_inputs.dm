@@ -8,6 +8,11 @@
 	var/input_type = INPUT_TYPE_GENERIC
 	COOLDOWN_DECLARE(trigger_cooldown)
 
+/datum/abberant_organs/input/check_active()
+	if(attached_output)
+		return TRUE
+	return FALSE
+
 /datum/abberant_organs/input/proc/check_trigger_reagent(datum/reagent/consumed_reagent, consumed_amount, method)
 	return
 

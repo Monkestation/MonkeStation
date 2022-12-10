@@ -1,5 +1,5 @@
 /datum/abberant_organs/input/reagent/alcohol/special
-	name = "Alcohol Distillery"
+	name = "Alcohol Processor"
 	desc = "Will trigger from any drunk alcohol"
 	is_special = TRUE
 	node_purity = 100 // No delay

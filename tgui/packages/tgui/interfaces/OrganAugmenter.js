@@ -40,7 +40,7 @@ export const InsertedOrganNode = (props, context) => {
           <Button
             icon="eject"
             disabled={!!working}
-            onClick={() => act("eject")}
+            onClick={() => act("eject_node")}
             content="Eject Node" />
         </>
       }>
@@ -91,14 +91,21 @@ export const ImplantedOrganNodes = (props, context) => {
 
   return (
     <Section
-      title="Implanted Organ Nodes">
+      title="Implanted Organ Nodes"
+      buttons={
+        <Button
+          icon="eject"
+          disabled={!!working}
+          onClick={() => act("eject_organ")}
+          content="Eject Organ" />
+      }>
       {!current.length && "No nodes detected."}
       {!!current.length && (
         <Table>
           <Table.Row
             header>
             <Table.Cell>
-              Chip
+              Node
             </Table.Cell>
             <Table.Cell
               textAlign="center">
@@ -114,7 +121,7 @@ export const ImplantedOrganNodes = (props, context) => {
               <Button
                 color="transparent"
                 icon="check"
-                tooltip="Is Connected"
+                tooltip="Has Partner"
                 tooltipPosition="top" />
             </Table.Cell>
           </Table.Row>
@@ -122,11 +129,14 @@ export const ImplantedOrganNodes = (props, context) => {
             <Table.Row
               key={node.ref}>
               <Table.Cell>
-                <Icon
+                <Button
                   textAlign="center"
                   width="18px"
                   mr={1}
-                  name={node.icon} />
+                  color="transparent"
+                  icon={node.icon}
+                  tooltip={node.desc}
+                  tooltipPosition="top" />
                 {node.name}
               </Table.Cell>
               <Table.Cell
@@ -134,6 +144,12 @@ export const ImplantedOrganNodes = (props, context) => {
                 color={("good")}
                 textAlign="center">
                 {node.stability}
+              </Table.Cell>
+              <Table.Cell
+                textAlign="center">
+                <Icon
+                  name={node.active ? "check" : "times"}
+                  color={node.active ? "good" : "bad"} />
               </Table.Cell>
             </Table.Row>))}
         </Table>
