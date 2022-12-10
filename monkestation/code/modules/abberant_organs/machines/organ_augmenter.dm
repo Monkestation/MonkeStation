@@ -61,6 +61,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OrganAugmenter", name)
+		ui.set_autoupdate(TRUE)
 		ui.open()
 
 /obj/machinery/organ_augmenter/ui_data(mob/user)
@@ -115,7 +116,6 @@
 		if("splice")
 			if(!held_organ)
 				return TRUE
-			var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
 			currently_running = TRUE
 			work_timer = addtimer(CALLBACK(src,.proc/inject),5 SECONDS,TIMER_STOPPABLE)
 			return TRUE
