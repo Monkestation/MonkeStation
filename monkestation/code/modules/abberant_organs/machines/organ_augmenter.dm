@@ -92,6 +92,8 @@
 			data["node_icon"] = held_node_datum.ui_icon
 			data["stability_usage"] = held_node_datum.stability_cost * stability_multi
 			data["held_organ_node"] = inserted_node
+			data["node_tier"] = held_node_datum.tier
+			data["node_purity"] = held_node_datum.node_purity
 
 	data["working"] = currently_running
 

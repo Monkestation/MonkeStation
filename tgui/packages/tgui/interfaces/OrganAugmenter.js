@@ -13,6 +13,8 @@ export const InsertedOrganNode = (props, context) => {
     node_icon,
     working,
     held_organ_node,
+    node_tier,
+    node_purity,
   } = data;
 
   if (!held_organ_node) {
@@ -66,10 +68,22 @@ export const InsertedOrganNode = (props, context) => {
             <LabeledList.Item
               label="Stabilty Usage">
               <Icon
-                name="brain"
+                name={stability_usage}
                 width="15px"
                 textAlign="center"
-              /> {stability_usage}
+              />
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Node Purity">
+              <Box
+                bold>{node_purity}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Node Tier">
+              <Box
+                bold>{node_tier}
+              </Box>
             </LabeledList.Item>
           </LabeledList>
         </Stack.Item>

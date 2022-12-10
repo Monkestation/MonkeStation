@@ -21,6 +21,8 @@
 		"icon" = ui_icon,
 		"desc" = desc,
 		"stability" = stability_cost,
+		"purity" = node_purity,
+		"tier" = tier,
 		"ref" = REF(src),
 		"active" = check_active())
 
