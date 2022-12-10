@@ -89,6 +89,16 @@ export const ImplantedOrganNodes = (props, context) => {
 
   const current = data.current || [];
 
+  if (!organ_name) {
+    return (
+      (!working && (
+        <NoticeBox
+          info>
+          Please insert an organ.
+        </NoticeBox>
+      ))
+    );
+  }
   return (
     <Section
       title="Implanted Organ Nodes"
