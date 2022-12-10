@@ -216,6 +216,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_CONTENTS)
 		return
+	SEND_SIGNAL(src, COMSIG_CARBON_EMP, severity)
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
 		O.emp_act(severity)

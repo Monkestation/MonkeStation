@@ -1,11 +1,20 @@
 /datum/abberant_organs
 	var/name = ""
 	var/desc = ""
+	///the purity of the node
 	var/node_purity = 100
+	///the tier of the node
 	var/tier = 1
+	///is it a special node?
 	var/is_special = FALSE
+	///the slot this takes up
 	var/slot = INPUT_NODE
 
+	///the pull weight for when scramble or randomly selecting the base nodes happens
+	var/pull_weight = 15
+
+
+	///the attached objects related to a carbon
 	var/mob/living/carbon/hosted_carbon
 	var/obj/item/organ/attached_organ
 
@@ -31,3 +40,7 @@
 
 /datum/abberant_organs/proc/check_active()
 	return
+
+/datum/abberant_organs/proc/set_values(node_purity, tier)
+	src.node_purity = node_purity
+	src.tier = tier
