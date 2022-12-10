@@ -9,4 +9,5 @@
 /obj/item/node_holder/debug/Initialize(mapload)
 	. = ..()
 	icon_state = "node_full"
-	held_node = new(/datum/abberant_organs/input/damage)
+	var/datum/abberant_organs/input/damage/debug = new()
+	held_node = debug

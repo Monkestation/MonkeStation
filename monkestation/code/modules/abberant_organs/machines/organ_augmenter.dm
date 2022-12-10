@@ -63,21 +63,26 @@
 		ui.open()
 
 /obj/machinery/organ_augmenter/ui_data(mob/user)
-	. = ..()
-	var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
-	.["stability_max"] = organs_component.stability
-	.["stability_used"] = 100 - organs_component.stability
+	var/list/data = list()
+	var/stability_multi = 1
+	if(held_organ)
+		var/datum/component/abberant_organ/organs_component = held_organ.GetComponent(/datum/component/abberant_organ)
+		data["stability_max"] = organs_component.stability
+		data["stability_used"] = 100 - organs_component.stability
+		stability_multi *= organs_component.stability_modifer
+	if(inserted_node)
+		var/datum/abberant_organs/held_node_datum = inserted_node.held_node
+		data["node_name"] = held_node_datum.name
+		data["node_desc"] = held_node_datum.desc
+		data["node_icon"] = held_node_datum.ui_icon
+		data["stability_usage"] = held_node_datum.stability_cost * stability_multi
+		data["held_organ_node"] = inserted_node
 
-	var/datum/abberant_organs/held_node_datum = inserted_node.held_node
-	.["node_name"] = held_node_datum.name
-	.["node_desc"] = held_node_datum.desc
-	.["node_icon"] = held_node_datum.ui_icon
-	.["stability_usage"] = held_node_datum.stability_cost * organs_component.stability_modifer
+	data["working"] = currently_running
 
-	.["working"] = currently_running
-	.["held_organ_node"] = inserted_node
+	data["timeleft"] = work_timer ? timeleft(work_timer) : null
 
-	.["timeleft"] = work_timer ? timeleft(work_timer) : null
+	return data
 
 /obj/machinery/organ_augmenter/ui_act(action, params)
 	. = ..()

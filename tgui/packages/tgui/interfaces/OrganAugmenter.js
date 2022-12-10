@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { Box, Button, Flex, Icon, LabeledList, NoticeBox, Section, Stack, Table } from '../components';
 import { Window } from '../layouts';
 
-export const InsertedSkillchip = (props, context) => {
+export const InsertedOrganNode = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
@@ -51,7 +51,7 @@ export const InsertedSkillchip = (props, context) => {
         <Stack.Item grow basis={0}>
           <LabeledList>
             <LabeledList.Item
-              label="Skillchip">
+              label="Organ Node">
               <Box
                 bold>{node_name}
               </Box>
@@ -78,7 +78,7 @@ export const InsertedSkillchip = (props, context) => {
   );
 };
 
-export const ImplantedSkillchips = (props, context) => {
+export const ImplantedOrganNodes = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
@@ -91,8 +91,8 @@ export const ImplantedSkillchips = (props, context) => {
 
   return (
     <Section
-      title="Implanted Skillchips">
-      {!current.length && "No skillchips detected."}
+      title="Implanted Organ Nodes">
+      {!current.length && "No nodes detected."}
       {!!current.length && (
         <Table>
           <Table.Row
@@ -185,8 +185,8 @@ export const OrganAugmenter = (props, context) => {
             </Flex>
           </NoticeBox>
         )}
-        <InsertedSkillchip />
-        <ImplantedSkillchips />
+        <InsertedOrganNode />
+        <ImplantedOrganNodes />
       </Window.Content>
     </Window>
   );
