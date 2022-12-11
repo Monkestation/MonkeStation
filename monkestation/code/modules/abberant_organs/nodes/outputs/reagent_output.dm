@@ -21,9 +21,9 @@
 
 	var/list/pickers
 	if(reagent_type == /datum/reagent/consumable)
-		pickers = list(typesof(reagent_type) - typesof(/datum/reagent/consumable/ethanol))
+		pickers = typesof(reagent_type) - typesof(/datum/reagent/consumable/ethanol)
 	else
-		pickers = list(typesof(reagent_type))
+		pickers = typesof(reagent_type)
 
 	while(!finished_picking) ///this whole while feels bad but i can't think of a better way to do it currently
 		var/datum/reagent/picked_reagent = pick(pickers)
