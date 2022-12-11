@@ -180,7 +180,7 @@
 	if(old_format)
 		bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
 	else
-		bar.transform = matrix(1, 0, -14 * (1 - complete), 0, 1, 0)
+		bar.transform = matrix(complete, 0, -13 * (1 - complete), 0, 1, 0)
 
 /obj/effect/world_progressbar/proc/end_progress()
 	if(last_progress != goal)
