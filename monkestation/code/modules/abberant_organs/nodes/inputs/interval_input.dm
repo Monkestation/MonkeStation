@@ -5,6 +5,10 @@
 	var/interval_time = 10 SECONDS
 	COOLDOWN_DECLARE(should_process)
 
+/datum/abberant_organs/input/interval/set_values(node_purity, tier)
+	. = ..()
+	interval_time *= (100 / node_purity) * (2 / tier)
+
 /datum/abberant_organs/input/interval/setup()
 	START_PROCESSING(SSabberant_organ, src)
 

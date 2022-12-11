@@ -6,6 +6,8 @@
 	tier = 4
 	reagent_amount = 0
 
+/datum/abberant_organs/input/reagent/set_values(node_purity, tier)
+	return
 
 /datum/abberant_organs/input/reagent/check_trigger_reagent(datum/reagent/consumed_reagent, consumed_amount, method)
 	if(istype(consumed_reagent, /datum/reagent/consumable/ethanol))

@@ -4,6 +4,9 @@
 	tier = 4
 	node_purity = 100
 
+/datum/abberant_organs/output/alcoholic/special/set_values(node_purity, tier)
+	return
+
 /datum/abberant_organs/output/alcoholic/special/trigger_effect(is_good = TRUE, multiplier)
 	. = ..()
 	if(is_good)

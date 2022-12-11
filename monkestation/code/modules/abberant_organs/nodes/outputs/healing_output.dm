@@ -5,6 +5,11 @@
 	var/healing_type = BRUTE
 	var/amount_healed = 5
 
+/datum/abberant_organs/output/healing/set_values(node_purity, tier)
+	. = ..()
+	healing_type = pick(BRUTE, OXY, TOX, BURN, CLONE)
+	amount_healed *= (node_purity * 0.02) * (tier * 0.5)
+
 /datum/abberant_organs/output/healing/trigger_effect(is_good = TRUE, multiplier)
 	. = ..()
 	if(istype(attached_input, /datum/abberant_organs/input/damage))

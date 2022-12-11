@@ -3,8 +3,12 @@
 	desc = "Triggers when a specific body state is triggered, for instance Paralyzed."
 
 	var/checked_effect = EFFECT_PARALYZE
-	var/min_duration = 1 SECONDS
+	var/min_duration = 4 SECONDS
 
+/datum/abberant_organs/input/status_effect/set_values(node_purity, tier)
+	. = ..()
+	checked_effect = pick(EFFECT_PARALYZE, EFFECT_IMMOBILIZE, EFFECT_KNOCKDOWN, EFFECT_STUN, EFFECT_UNCONSCIOUS, EFFECT_SLEEP)
+	min_duration *= (100 / node_purity) * (2 / tier)
 
 /datum/abberant_organs/input/status_effect/setup()
 	. = ..()

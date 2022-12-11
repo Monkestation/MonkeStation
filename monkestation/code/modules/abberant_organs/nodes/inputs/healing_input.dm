@@ -6,7 +6,7 @@
 
 	minimum_damage = -5
 
-	max_safe_damage = 15
+	max_safe_damage = -15
 
 	damage_type = BRUTE
 

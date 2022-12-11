@@ -103,3 +103,9 @@
 		var/datum/abberant_organs/created_node = new listed_node
 		configure_node(created_node)
 
+/datum/component/organ_gene/proc/add_nodes(amount)
+	var/list/new_nodes = pull_from_tiers_weighted(amount)
+	for(var/increment in amount)
+		var/datum/abberant_organs/created_node = pick(new_nodes)
+		new_nodes -= created_node
+		configure_node(created_node)
