@@ -21,6 +21,9 @@
 	///the base extraction chance everything gets
 	var/base_extraction_chance
 
+	///temporary value of gained goop
+	var/gained_goop = 0
+
 /datum/component/organ_gene/Initialize(list/held_nodes,
 									   max_purity = 60,
 									   min_purity = 30,
@@ -29,15 +32,16 @@
 									   scramble_cooldown = 60 SECONDS,
 									   base_extraction_chance = 20)
 	. = ..()
-	for(var/datum/abberant_organs/listed_node as anything in held_nodes)
-		var/datum/abberant_organs/created_node = new listed_node
-		configure_node(created_node)
 
 	src.max_purity = max_purity
 	src.min_purity = min_purity
 	src.max_tier = max_tier
 	src.min_tier = min_tier
 	src.scramble_cooldown = scramble_cooldown
+
+	for(var/datum/abberant_organs/listed_node as anything in held_nodes)
+		var/datum/abberant_organs/created_node = new listed_node
+		configure_node(created_node)
 
 /datum/component/organ_gene/proc/configure_node(datum/abberant_organs/node)
 	var/node_purity = rand(min_purity, max_purity)
@@ -59,17 +63,15 @@
 			unsucessfully_extracted  += listed_node
 			held_nodes -= listed_node
 
-	var/list/structured_data_list = list()
-	structured_data_list[1] = successfully_extracted
-	structured_data_list[2] = process_fail(unsucessfully_extracted)
-	return structured_data_list
+	process_fail(unsucessfully_extracted)
+	return successfully_extracted
 
 /datum/component/organ_gene/proc/process_fail(list/given_list)
 	var/total_goop
 	for(var/datum/abberant_organs/listed_node as anything in given_list)
 		total_goop += round(listed_node.node_purity * 0.25)
 		total_goop *= listed_node.tier
-	return total_goop
+	gained_goop = total_goop
 
 /datum/component/organ_gene/proc/scramble()
 	if(!COOLDOWN_FINISHED(src, scramble))

@@ -22,3 +22,23 @@ GLOBAL_LIST_EMPTY(special_nodes)
 		outputed_list += picked_node
 
 	return outputed_list
+
+
+/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, bar_look = "prog_bar", old_format = FALSE, image/add_image)
+	var/atom/target_loc = source
+
+	var/datum/progressbar/progbar
+	if(progress)
+		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, bar_look, old_format, add_image)
+
+	var/endtime = world.time + delay
+	var/starttime = world.time
+	. = TRUE
+
+	while (world.time < endtime)
+		stoplag(1)
+		if(!QDELETED(progbar))
+			progbar.update(world.time - starttime)
+
+	if(!QDELETED(progbar))
+		progbar.end_progress()

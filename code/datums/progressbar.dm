@@ -78,5 +78,105 @@
 		client.images -= bar
 		client = null
 
+///Called on progress end, be it successful or a failure. Wraps up things to delete the datum and bar.
+/datum/progressbar/proc/end_progress()
+	if(last_progress != goal)
+		bar.icon_state = "[bar.icon_state]_fail"
+	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
+
+////TODO: make prog_bars not really really bad just convert to a single image being transformed across a matrix
+
+/obj/effect/world_progressbar
+	///The progress bar visual element.
+	icon = 'monkestation/icons/effects/progessbar.dmi'
+	icon_state = "border"
+	plane = ABOVE_LIGHTING_PLANE
+	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	base_pixel_y = 32
+	pixel_y = 32
+	var/obj/effect/bar/bar
+	///The target where this progress bar is applied and where it is shown.
+	var/atom/movable/bar_loc
+	///The atom who "created" the bar
+	var/atom/owner
+	///Effectively the number of steps the progress bar will need to do before reaching completion.
+	var/goal = 1
+	///Control check to see if the progress was interrupted before reaching its goal.
+	var/last_progress = 0
+	///Variable to ensure smooth visual stacking on multiple progress bars.
+	var/listindex = 0
+	///the look of the bar inside the progress bar
+	var/bar_look
+	///does this use the old format of icons(useful for totally unqiue progress bars)
+	var/old_format = FALSE
+
+/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, bar_look = "prog_bar", old_format = FALSE, mutable_appearance/additional_image)
+	. = ..()
+	if(!owner || !target || !goal)
+		return INITIALIZE_HINT_QDEL
+
+	src.bar_look = bar_look
+	src.old_format = old_format
+	src.owner = owner
+	src.goal = goal
+	src.bar_loc = target
+	if(additional_image)
+		src.add_overlay(additional_image)
+
+	src.bar_loc:vis_contents += src
+
+	src.bar = new (icon = icon, icon_state = bar_look, layer = src.layer + 0.1, plane = ABOVE_LIGHTING_PLANE)
+	src.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
+
+	RegisterSignal(bar_loc, COMSIG_PARENT_QDELETING, .proc/bar_loc_delete)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/owner_delete)
+	src.bar_loc.vis_contents += src.bar
+
+/obj/effect/world_progressbar/Destroy()
+	owner = null
+	bar_loc?:vis_contents -= src
+	cut_overlays()
+	return ..()
+
+/obj/effect/world_progressbar/proc/bar_loc_delete()
+	qdel(src)
+
+/obj/effect/world_progressbar/proc/owner_delete()
+	qdel(src)
+
+///Updates the progress bar image visually.
+/obj/effect/world_progressbar/proc/update(progress)
+	var/complete = clamp(progress / goal, 0, 1)
+	progress = clamp(progress, 0, goal)
+	if(progress == last_progress)
+		return
+	last_progress = progress
+	bar.transform = matrix(complete, 0, -15 * (1 - complete), 0, 1, 0)
+	//bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
+
+/obj/effect/world_progressbar/proc/end_progress()
+	if(last_progress != goal)
+		bar.icon_state = "[bar_look]_fail"
+
+	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+
+	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
+
 #undef PROGRESSBAR_ANIMATION_TIME
 #undef PROGRESSBAR_HEIGHT
+
+/obj/effect/bar
+	plane = ABOVE_LIGHTING_PLANE
+	base_pixel_y = 32
+	pixel_y = 32
+	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/bar/Initialize(mapload, icon, icon_state, layer, plane)
+	. = ..()
+	src.icon = icon
+	src.icon_state = icon_state
+	src.layer = layer
+	src.plane = plane
