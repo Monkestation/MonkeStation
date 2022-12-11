@@ -68,10 +68,10 @@ export const InsertedOrganNode = (props, context) => {
             <LabeledList.Item
               label="Stabilty Usage">
               <Icon
-                name={stability_usage}
+                name="brain"
                 width="15px"
                 textAlign="center"
-              />
+              /> {stability_usage}
             </LabeledList.Item>
             <LabeledList.Item
               label="Node Purity">
