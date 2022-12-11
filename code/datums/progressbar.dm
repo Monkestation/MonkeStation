@@ -97,6 +97,7 @@
 	base_pixel_y = 32
 	pixel_y = 32
 	var/obj/effect/bar/bar
+	var/obj/effect/additional_image/additional_image
 	///The target where this progress bar is applied and where it is shown.
 	var/atom/movable/bar_loc
 	///The atom who "created" the bar
@@ -112,7 +113,12 @@
 	///does this use the old format of icons(useful for totally unqiue progress bars)
 	var/old_format = FALSE
 
-/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, bar_look = "prog_bar", old_format = FALSE, mutable_appearance/additional_image)
+	///the color of the bar for new style bars
+	var/finish_color
+	var/active_color
+	var/fail_color
+
+/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
 	. = ..()
 	if(!owner || !target || !goal)
 		return INITIALIZE_HINT_QDEL
@@ -123,16 +129,32 @@
 	src.goal = goal
 	src.bar_loc = target
 	if(additional_image)
-		src.add_overlay(additional_image)
+		src.additional_image = new /obj/effect/additional_image
+		src.additional_image.icon = additional_image.icon
+		src.additional_image.icon_state = additional_image.icon_state
+		src.additional_image.plane = src.plane
+		src.additional_image.layer = src.layer + 0.1
+		src.additional_image.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
+		src.bar_loc.vis_contents += src.additional_image
 
 	src.bar_loc:vis_contents += src
 
-	src.bar = new (icon = icon, icon_state = bar_look, layer = src.layer + 0.1, plane = ABOVE_LIGHTING_PLANE)
+	src.bar = new /obj/effect/bar
+	src.bar.icon = icon
+	src.bar.icon_state = bar_look
+	src.bar.layer = src.layer +0.1
+	src.bar.plane = src.plane
+	src.bar_loc.vis_contents += src.bar
+	src.bar.alpha = 0
+
+	src.finish_color = finish_color
+	src.active_color = active_color
+	src.fail_color = fail_color
+
 	src.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 
 	RegisterSignal(bar_loc, COMSIG_PARENT_QDELETING, .proc/bar_loc_delete)
 	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/owner_delete)
-	src.bar_loc.vis_contents += src.bar
 
 /obj/effect/world_progressbar/Destroy()
 	owner = null
@@ -148,21 +170,31 @@
 
 ///Updates the progress bar image visually.
 /obj/effect/world_progressbar/proc/update(progress)
+	bar.alpha = 255
+	bar.color = active_color
 	var/complete = clamp(progress / goal, 0, 1)
 	progress = clamp(progress, 0, goal)
 	if(progress == last_progress)
 		return
 	last_progress = progress
-	bar.transform = matrix(complete, 0, -15 * (1 - complete), 0, 1, 0)
-	//bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
+	if(old_format)
+		bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
+	else
+		bar.transform = matrix(1, 0, -14 * (1 - complete), 0, 1, 0)
 
 /obj/effect/world_progressbar/proc/end_progress()
 	if(last_progress != goal)
 		bar.icon_state = "[bar_look]_fail"
-
+		bar.color = fail_color
+	bar.color = finish_color
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	animate(src.bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	animate(src.additional_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+
 
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
+	QDEL_IN(src.bar, PROGRESSBAR_ANIMATION_TIME)
+	QDEL_IN(src.additional_image, PROGRESSBAR_ANIMATION_TIME)
 
 #undef PROGRESSBAR_ANIMATION_TIME
 #undef PROGRESSBAR_HEIGHT
@@ -174,9 +206,9 @@
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/bar/Initialize(mapload, icon, icon_state, layer, plane)
-	. = ..()
-	src.icon = icon
-	src.icon_state = icon_state
-	src.layer = layer
-	src.plane = plane
+/obj/effect/additional_image
+	plane = ABOVE_LIGHTING_PLANE
+	base_pixel_y = 32
+	pixel_y = 32
+	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

@@ -24,12 +24,12 @@ GLOBAL_LIST_EMPTY(special_nodes)
 	return outputed_list
 
 
-/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, bar_look = "prog_bar", old_format = FALSE, image/add_image)
+/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image)
 	var/atom/target_loc = source
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, bar_look, old_format, add_image)
+		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, bar_look, old_format, active_color, finish_color, fail_color, add_image)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
