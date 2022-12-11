@@ -105,7 +105,7 @@
 	if(!linked_tank.update_goop(-growth_cost))
 		visible_message(span_notice("The [src] makes a whirring sound, seems it lacks bio-matter"))
 		return
-	var/image/used_image = image('monkestation/icons/obj/abberant_organ.dmi', icon_state = "growth_organ")
+	var/image/used_image = image('monkestation/icons/obj/abberant_organ.dmi', icon_state = "growth")
 
 	working = TRUE
 	if(machine_do_after_visable(src, organ_growing_time, add_image = used_image))
@@ -118,7 +118,7 @@
 	if(!linked_tank.update_goop(-growth_cost))
 		visible_message(span_notice("The [src] makes a whirring sound, seems it lacks bio-matter"))
 		return
-	var/image/used_image = image('monkestation/icons/obj/abberant_organ.dmi', icon_state = "growth_limb")
+	var/image/used_image = image('monkestation/icons/obj/abberant_organ.dmi', icon_state = "growth")
 
 	working = TRUE
 	update_appearance()
