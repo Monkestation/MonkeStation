@@ -24,6 +24,8 @@
 	var/dismemberable = TRUE
 	///does the limb need to be processing?
 	var/needs_processing = FALSE
+	///can the limb be grown?
+	var/can_synth = TRUE
 ///--------------------------------------------
 
 ///ICONS AND ICON PATH VARIABLES---------------
@@ -88,6 +90,8 @@
 	var/px_x = 0
 	//y pixel of the limb
 	var/px_y = 0
+	///the tier of the bodypart
+	var/tier = 1
 ///--------------------------------------------
 
 ///LISTS---------------------------------------
@@ -567,6 +571,7 @@
 	var/obj/item/cavity_item
 
 	dmg_overlay_type = "human"
+	tier = 4
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(!((owner.stat == DEAD) || owner.InFullCritical()))
@@ -590,11 +595,13 @@
 	animal_origin = MONKEY_BODYPART
 
 	dmg_overlay_type = "monkey"
+	tier = 5
 
 /obj/item/bodypart/chest/monkey/teratoma
 	icon_state = "teratoma_chest"
 	limb_id = "teratoma"
 	animal_origin = TERATOMA_BODYPART
+	tier = 7
 
 /obj/item/bodypart/chest/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -602,11 +609,13 @@
 	dismemberable = 0
 	max_damage = 500
 	animal_origin = ALIEN_BODYPART
+	tier = 8
 
 /obj/item/bodypart/chest/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE
 
 /obj/item/bodypart/chest/larva
 	icon = 'icons/mob/animal_parts.dmi'
@@ -614,6 +623,7 @@
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
+	tier = 8
 
 /obj/item/bodypart/l_arm
 	name = "left arm"
@@ -635,6 +645,7 @@
 	px_y = 0
 
 	dmg_overlay_type = "human"
+	tier = 3
 
 /obj/item/bodypart/l_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
@@ -671,10 +682,12 @@
 	px_y = -3
 
 	dmg_overlay_type = "monkey"
+	tier = 5
 
 /obj/item/bodypart/l_arm/monkey/teratoma
 	icon_state = "teratoma_l_arm"
 	animal_origin = TERATOMA_BODYPART
+	tier = 6
 
 /obj/item/bodypart/l_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -684,11 +697,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	tier = 7
 
 /obj/item/bodypart/l_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE
 
 /obj/item/bodypart/r_arm
 	name = "right arm"
@@ -708,6 +723,7 @@
 	max_stamina_damage = 50
 
 	dmg_overlay_type = "human"
+	tier = 4
 
 /obj/item/bodypart/r_arm/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
@@ -744,10 +760,12 @@
 	px_y = -3
 
 	dmg_overlay_type = "monkey"
+	tier = 5
 /obj/item/bodypart/r_arm/monkey/teratoma
 	icon_state = "teratoma_r_arm"
 	limb_id = "teratoma"
 	animal_origin = TERATOMA_BODYPART
+	tier = 6
 
 /obj/item/bodypart/r_arm/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -757,11 +775,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	tier = 7
 
 /obj/item/bodypart/r_arm/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE
 
 /obj/item/bodypart/l_leg
 	name = "left leg"
@@ -778,6 +798,7 @@
 	max_stamina_damage = 50
 
 	dmg_overlay_type = "human"
+	tier = 3
 
 /obj/item/bodypart/l_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
@@ -806,11 +827,13 @@
 	px_y = 4
 
 	dmg_overlay_type = "monkey"
+	tier = 4
 
 /obj/item/bodypart/l_leg/monkey/teratoma
 	icon_state = "teratoma_l_leg"
 	limb_id = "teratoma"
 	animal_origin = TERATOMA_BODYPART
+	tier = 5
 
 /obj/item/bodypart/l_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -820,11 +843,13 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	tier = 6
 
 /obj/item/bodypart/l_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE
 
 /obj/item/bodypart/r_leg
 	name = "right leg"
@@ -851,6 +876,7 @@
 	/// Why? Both legs share the same layer for rendering, and since we don't want to do redraws on
 	/// each dir changes, we're doing it with a mask instead, which we cache for efficiency reasons.
 	var/static/list/left_leg_mask_cache = list()
+	tier = 3
 
 /obj/item/bodypart/r_leg/is_disabled()
 	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
@@ -879,11 +905,12 @@
 	px_y = 4
 
 	dmg_overlay_type = "monkey"
-
+	tier = 5
 /obj/item/bodypart/r_leg/monkey/teratoma
 	icon_state = "teratoma_r_leg"
 	limb_id = "teratoma"
 	animal_origin = TERATOMA_BODYPART
+	tier = 5
 
 /obj/item/bodypart/r_leg/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -893,8 +920,10 @@
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
+	tier = 6
 
 /obj/item/bodypart/r_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE

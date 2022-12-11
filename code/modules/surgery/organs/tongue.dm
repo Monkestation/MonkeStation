@@ -31,6 +31,8 @@
 		/datum/language/zoomercant,
 		/datum/language/sippins)) //MonkeStation Edit, adds Zoomercant and Sippins
 
+	tier = 3
+
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
 	languages_possible = languages_possible_base

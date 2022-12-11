@@ -91,7 +91,7 @@
 	///The progress bar visual element.
 	icon = 'monkestation/icons/effects/progessbar.dmi'
 	icon_state = "border"
-	plane = ABOVE_LIGHTING_PLANE
+	plane = RUNECHAT_PLANE
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	base_pixel_y = 32
@@ -180,7 +180,7 @@
 	if(old_format)
 		bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
 	else
-		bar.transform = matrix(complete, 0, -13 * (1 - complete), 0, 1, 0)
+		bar.transform = matrix(complete, 0, -10 * (1 - complete), 0, 1, 0)
 
 /obj/effect/world_progressbar/proc/end_progress()
 	if(last_progress != goal)
@@ -200,14 +200,14 @@
 #undef PROGRESSBAR_HEIGHT
 
 /obj/effect/bar
-	plane = ABOVE_LIGHTING_PLANE
+	plane = RUNECHAT_PLANE
 	base_pixel_y = 32
 	pixel_y = 32
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/additional_image
-	plane = ABOVE_LIGHTING_PLANE
+	plane = RUNECHAT_PLANE
 	base_pixel_y = 32
 	pixel_y = 32
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND

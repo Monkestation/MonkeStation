@@ -10,6 +10,7 @@
 	var/canopen = TRUE
 	var/wingsound = null
 	var/datum/action/innate/flight/fly
+	tier = 8
 
 /obj/item/organ/wings/Initialize(mapload)
 	. = ..()

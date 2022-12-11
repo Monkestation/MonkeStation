@@ -42,13 +42,15 @@
 		goop = max_goop
 		return TRUE
 	goop += amount
+	update_appearance()
 	return TRUE
 
 /obj/machinery/biomatter_tank/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, I))
 			return
 		var/obj/item/multitool/M = I
 		M.buffer = src
 		to_chat(user, "<span class='notice'>You save the data in [I]'s buffer. It can now be used to link bio-matter capable machines.</span>")
+		return TRUE
+	return ..()

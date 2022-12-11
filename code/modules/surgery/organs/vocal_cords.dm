@@ -13,6 +13,8 @@
 	healing_factor = 0
 	var/list/spans = null
 
+	tier = 5
+
 /obj/item/organ/vocal_cords/proc/can_speak_with() //if there is any limitation to speaking with these cords
 	return TRUE
 
@@ -28,12 +30,14 @@
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ADAMANTINE_RESONATOR
 	icon_state = "adamantine_resonator"
+	can_synth = FALSE
 
 /obj/item/organ/vocal_cords/adamantine
 	name = "adamantine vocal cords"
 	desc = "When adamantine resonates, it causes all nearby pieces of adamantine to resonate as well. Adamantine golems use this to broadcast messages to nearby golems."
 	actions_types = list(/datum/action/item_action/organ_action/use/adamantine_vocal_cords)
 	icon_state = "adamantine_cords"
+	can_synth = FALSE
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger()
 	if(!IsAvailable())
@@ -64,6 +68,7 @@
 	var/cooldown_mod = 1
 	var/base_multiplier = 1
 	spans = list("colossus","yell")
+	can_synth = FALSE
 
 /datum/action/item_action/organ_action/colossus
 	name = "Voice of God"

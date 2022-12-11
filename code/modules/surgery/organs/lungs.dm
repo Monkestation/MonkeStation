@@ -467,6 +467,7 @@
 	icon_state = "lungs-plasma"
 
 	breathing_class = BREATH_PLASMA
+	tier = 2
 
 /obj/item/organ/lungs/plasmaman/populate_gas_info()
 	..()

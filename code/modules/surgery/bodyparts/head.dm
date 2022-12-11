@@ -45,6 +45,8 @@
 	var/frill = ""
 	var/snout = ""
 
+	tier = 5
+
 /obj/item/bodypart/head/Destroy()
 	QDEL_NULL(brainmob) //order is sensitive, see warning in handle_atom_del() below
 	QDEL_NULL(brain)
@@ -292,11 +294,13 @@
 	animal_origin = MONKEY_BODYPART
 
 	dmg_overlay_type = "monkey"
+	tier = 5
 
 /obj/item/bodypart/head/monkey/teratoma
 	icon_state = "teratoma_head"
 	limb_id = "teratoma"
 	animal_origin = TERATOMA_BODYPART
+	tier = 7
 
 /obj/item/bodypart/head/alien
 	icon = 'icons/mob/animal_parts.dmi'
@@ -308,11 +312,13 @@
 	animal_origin = ALIEN_BODYPART
 
 	dmg_overlay_type = "alien"
+	tier = 8
 
 /obj/item/bodypart/head/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+	can_synth = FALSE
 
 /obj/item/bodypart/head/larva
 	icon = 'icons/mob/animal_parts.dmi'
@@ -322,3 +328,4 @@
 	dismemberable = 0
 	max_damage = 50
 	animal_origin = LARVA_BODYPART
+	can_synth = FALSE

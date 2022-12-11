@@ -13,6 +13,7 @@
 	var/list/wagging_mutant_name //The WAGGING state for the organ that goes under H.dna.species.mutant_bodyparts
 	//All new tails need to be added to the switch in handle_mutant_bodyparts() under species.dm
 //MonkeStation Edit End
+	tier = 3
 
 /obj/item/organ/tail/cat
 	name = "cat tail"

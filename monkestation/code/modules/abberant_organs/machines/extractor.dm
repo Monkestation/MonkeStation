@@ -15,9 +15,7 @@
 	var/list/stored_nodes = list()
 
 
-/obj/machinery/extractor/attacked_by(obj/item/I, mob/living/user)
-	. = ..()
-
+/obj/machinery/extractor/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, I))
 			return
@@ -25,7 +23,7 @@
 		if(istype(M.buffer, /obj/machinery/biomatter_tank))
 			linked_tank = M.buffer
 			to_chat(user, "<span class='notice'>You link the [src.name] to the [M.buffer].</span>")
-
+			return TRUE
 	if(istype(I, /obj/item/node_holder))
 		var/obj/item/node_holder/attacking_holder = I
 		if(!stored_nodes.len)
@@ -33,7 +31,7 @@
 			return
 		var/datum/abberant_organs/node_to_extract = input(user, "Select an organ node", "Node Extractor")  as null|anything in stored_nodes
 		if(!node_to_extract)
-			return
+			return TRUE
 
 		attacking_holder.held_node = node_to_extract
 		stored_nodes -= node_to_extract
@@ -46,7 +44,7 @@
 			held_organ = I
 
 			process_organ(I)
-
+	return ..()
 
 /obj/machinery/extractor/proc/process_organ(obj/item/organ/processing_organ)
 	var/image/used_image = image('monkestation/icons/obj/abberant_organ.dmi', icon_state = "extract")

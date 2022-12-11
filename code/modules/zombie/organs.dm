@@ -12,6 +12,7 @@
 	var/revive_time_min = 450
 	var/revive_time_max = 700
 	var/timer_id
+	can_synth = FALSE
 
 /obj/item/organ/zombie_infection/Initialize(mapload)
 	. = ..()

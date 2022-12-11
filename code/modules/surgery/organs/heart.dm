@@ -21,6 +21,8 @@
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
 
+	tier = 5
+
 /obj/item/organ/heart/update_icon()
 	if(beating)
 		icon_state = "[icon_base]-on"
@@ -106,6 +108,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	var/heal_oxy = 0
+	tier = 15
 
 
 /obj/item/organ/heart/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
