@@ -26,6 +26,7 @@
 	atmos_gas = "tritium=5;TEMP=600"
 	icon_state = "atomicass"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	can_synth = FALSE
 
 /obj/item/organ/butt/atomic/On_Fart(mob/user)
 	var/mob/living/carbon/human/Person = user
@@ -75,6 +76,7 @@
 	atmos_gas = "n2o=0.25;TEMP=310.15"
 	icon_state = "clownass"
 	sound_effect = list('sound/items/party_horn.ogg', 'sound/items/bikehorn.ogg')
+	tier = 5
 
 /obj/item/organ/butt/clown/ComponentInitialize()
 	. = ..()

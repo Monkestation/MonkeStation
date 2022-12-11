@@ -31,6 +31,7 @@
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/inert = 0
 	var/preserved = 0
+	can_synth = FALSE
 
 /obj/item/organ/regenerative_core/Initialize(mapload)
 	. = ..()

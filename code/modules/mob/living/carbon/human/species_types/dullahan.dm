@@ -68,6 +68,7 @@
 /obj/item/organ/tongue/dullahan
 	zone = "abstract"
 	modifies_speech = TRUE
+	can_synth = FALSE
 
 /obj/item/organ/tongue/dullahan/handle_speech(datum/source, list/speech_args)
 	if(ishuman(owner))

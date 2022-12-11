@@ -1,6 +1,7 @@
 /obj/item/organ/liver/alcoholic
 	name = "Ol Reliable"
 	desc = "A perfect companion for any drinker"
+	can_synth = FALSE
 
 /obj/item/organ/liver/alcoholic/Initialize(mapload)
 	. =..()
@@ -10,6 +11,7 @@
 /obj/item/organ/liver/plague_liver
 	name = "Plague Liver"
 	desc = "Filled to the brim with nodes to extract. Debug Item!"
+	can_synth = FALSE
 
 /obj/item/organ/liver/plague_liver/Initialize(mapload)
 	. = ..()

@@ -148,6 +148,7 @@
 	name = "pair of feathered wings"
 	desc = "A pair of feathered wings. They seem robust enough for flight"
 	flight_level = WINGS_FLYING
+	tier =7
 
 /obj/item/organ/wings/dragon
 	name = "pair of dragon wings"
@@ -155,6 +156,7 @@
 	icon_state = "dragonwings"
 	flight_level = WINGS_FLYING
 	wing_type = "Dragon"
+	tier = 7
 
 /obj/item/organ/wings/dragon/fake
 	desc = "A pair of fake dragon wings. They're useless"
@@ -168,6 +170,7 @@
 	actions_types = list(/datum/action/item_action/organ_action/use/bee_dash)
 	wing_type = "Bee"
 	var/jumpdist = 3
+	tier = 5
 
 /obj/item/organ/wings/bee/Remove(mob/living/carbon/human/H, special)
 	jumpdist = initial(jumpdist)

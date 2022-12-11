@@ -8,6 +8,8 @@
 	icon = 'monkestation/icons/obj/abberant_organ.dmi'
 	icon_state = "grower_idle"
 
+	density = TRUE
+
 	var/obj/machinery/biomatter_tank/linked_tank
 
 	var/obj/item/organ/stored_organ
@@ -27,13 +29,13 @@
 		for(var/obj/item/organ/listed_organ as anything in typesof(/obj/item/organ))
 			if(initial(listed_organ.status) == ORGAN_ORGANIC)
 				if(initial(listed_organ.can_synth))
-					viable_organs[listed_organ.type] = initial(listed_organ.tier) * ORGAN_COST_DEFAULT
+					viable_organs[listed_organ] = initial(listed_organ.tier) * ORGAN_COST_DEFAULT
 
 	if(!viable_bodyparts.len)
 		for(var/obj/item/bodypart/listed_bodypart as anything in typesof(/obj/item/bodypart))
 			if(initial(listed_bodypart.bodytype) & BODYTYPE_ORGANIC)
 				if(initial(listed_bodypart.can_synth))
-					viable_bodyparts[listed_bodypart.type] = initial(listed_bodypart.tier) * BODYPART_COST_DEFAULT
+					viable_bodyparts[listed_bodypart] = initial(listed_bodypart.tier) * BODYPART_COST_DEFAULT
 
 /obj/machinery/growth_vat/update_icon(updates)
 	. = ..()
