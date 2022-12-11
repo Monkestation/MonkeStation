@@ -3779,6 +3779,7 @@
 #include "monkestation\code\modules\abberant_organs\items\node_holder.dm"
 #include "monkestation\code\modules\abberant_organs\machines\biomatter_tank.dm"
 #include "monkestation\code\modules\abberant_organs\machines\extractor.dm"
+#include "monkestation\code\modules\abberant_organs\machines\grower.dm"
 #include "monkestation\code\modules\abberant_organs\machines\organ_augmenter.dm"
 #include "monkestation\code\modules\abberant_organs\nodes\_base.dm"
 #include "monkestation\code\modules\abberant_organs\nodes\inputs\_inputs.dm"
