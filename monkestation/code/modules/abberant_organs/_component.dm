@@ -26,7 +26,7 @@
 	///how much purity should be modified when a new node is added
 	var/purity_modifer = 0
 
-/datum/component/abberant_organ/Initialize(stability = 100, stability_modifer = 1, maximum_tier_difference = 1, list/inputs, list/outputs, list/special_nodes)
+/datum/component/abberant_organ/Initialize(stability = 100, stability_modifer = 1, maximum_tier_difference = 1, list/inputs = list(), list/outputs = list(), list/special_nodes = list())
 	. = ..()
 
 	src.stability = stability
