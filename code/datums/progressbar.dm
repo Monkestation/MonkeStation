@@ -9,16 +9,41 @@
 	var/mob/user
 	var/client/client
 	var/listindex
+	var/image/border
+	var/image/shown_image
+	var/active_color
+	var/fail_color
+	var/finish_color
+	var/old_format
+	var/bar_look
 
-/datum/progressbar/New(mob/User, goal_number, atom/target)
+/datum/progressbar/New(mob/User, goal_number, atom/target, border_look = "border", bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
 	. = ..()
 	if (!istype(target))
 		EXCEPTION("Invalid target given")
 	if (goal_number)
 		goal = goal_number
-	bar = image('icons/effects/progessbar.dmi', target, "prog_bar_0", HUD_LAYER)
+
+	src.old_format = old_format
+	src.active_color = active_color
+	src.fail_color = fail_color
+	src.finish_color = finish_color
+
+	src.bar_look = bar_look
+	if(additional_image)
+		shown_image = image(additional_image.icon, target, additional_image.icon_state, (HUD_LAYER - 0.1))
+		shown_image.plane = ABOVE_HUD_PLANE
+		shown_image.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	border = image('monkestation/icons/effects/progessbar.dmi', target, "[border_look]", HUD_LAYER)
+	border.plane = ABOVE_HUD_PLANE
+	border.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	bar = image('monkestation/icons/effects/progessbar.dmi', target, "[bar_look]", HUD_LAYER + 0.1)
 	bar.plane = ABOVE_HUD_PLANE
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	bar.color = active_color
+
 	user = User
 	if(user)
 		client = user.client
@@ -28,9 +53,18 @@
 	var/list/bars = user.progressbars[bar.loc]
 	bars.Add(src)
 	listindex = bars.len
+
 	bar.pixel_y = 0
 	bar.alpha = 0
 	animate(bar, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+
+	border.pixel_y = 0
+	border.alpha = 0
+	animate(border, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	if(shown_image)
+		shown_image.pixel_y = 0
+		shown_image.alpha = 0
+		animate(shown_image, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if (!user || !user.client)
@@ -39,25 +73,47 @@
 	if (user.client != client)
 		if (client)
 			client.images -= bar
+			client.images -= border
+			if(shown_image)
+				client.images -= shown_image
+
 		if (user.client)
 			user.client.images += bar
+			user.client.images += border
+			if(shown_image)
+				user.client.images += shown_image
 
 	progress = CLAMP(progress, 0, goal)
 	last_progress = progress
-	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
+	var/complete = clamp(progress / goal, 0, 1)
+	if(old_format)
+		bar.icon_state = "[bar_look]_[round(((progress / goal) * 100), 5)]"
+	else
+		bar.transform = matrix(complete, 0, -10 * (1 - complete), 0, 1, 0)
 	if (!shown)
 		user.client.images += bar
+		user.client.images += border
+		if(shown_image)
+			user.client.images += shown_image
 		shown = TRUE
 
 /datum/progressbar/proc/shiftDown()
 	--listindex
 	bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+	border.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
 	var/dist_to_travel = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)) - PROGRESSBAR_HEIGHT
 	animate(bar, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(border, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	if(shown_image)
+		shown_image.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+		animate(shown_image, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(last_progress != goal)
-		bar.icon_state = "[bar.icon_state]_fail"
+		if(old_format)
+			bar.icon_state = "[bar.icon_state]_fail"
+		else
+			bar.color = fail_color
 	for(var/I in user?.progressbars[bar.loc])
 		var/datum/progressbar/P = I
 		if(P != src && P.listindex > listindex)
@@ -69,20 +125,39 @@
 		LAZYREMOVE(user.progressbars, bar.loc)
 
 	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	animate(border, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+
 	addtimer(CALLBACK(src, .proc/remove_from_client), PROGRESSBAR_ANIMATION_TIME, TIMER_CLIENT_TIME)
+
 	QDEL_IN(bar, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
+	QDEL_IN(border, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
+	if(shown_image)
+		animate(shown_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+		QDEL_IN(shown_image, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
 	. = ..()
 
 /datum/progressbar/proc/remove_from_client()
 	if(client)
 		client.images -= bar
+		client.images -= border
+		if(shown_image)
+			client.images -= shown_image
 		client = null
 
 ///Called on progress end, be it successful or a failure. Wraps up things to delete the datum and bar.
 /datum/progressbar/proc/end_progress()
 	if(last_progress != goal)
-		bar.icon_state = "[bar.icon_state]_fail"
+		if(old_format)
+			bar.icon_state = "[bar.icon_state]_fail"
+		else
+			bar.color = fail_color
+	else
+		bar.color = finish_color
+
 	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	animate(border, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	if(shown_image)
+		animate(shown_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
 
 ////TODO: make prog_bars not really really bad just convert to a single image being transformed across a matrix
@@ -118,11 +193,12 @@
 	var/active_color
 	var/fail_color
 
-/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
+/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, border_look = "border", bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
 	. = ..()
 	if(!owner || !target || !goal)
 		return INITIALIZE_HINT_QDEL
 
+	src.icon_state = border_look
 	src.bar_look = bar_look
 	src.old_format = old_format
 	src.owner = owner
