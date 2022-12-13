@@ -25,6 +25,8 @@
 	var/choices = 3
 	///amount of time in seconds between pulses
 	var/pulse_time = 30 SECONDS
+	//the y offset mutltiplier that gets sent to the progress bar to make it move up when the tree grows
+	var/y_offset = 1
 
 /datum/component/botany_tree/Initialize(...)
 	. = ..()
@@ -96,7 +98,7 @@
 
 /datum/component/botany_tree/proc/init_pulse()
 	var/image/used_image = image('monkestation/icons/effects/effects.dmi', icon_state = "pulse")
-	if(machine_do_after_visable(parent, pulse_time, border_look = "border_plants", border_look_accessory = "border_plants_overlay", add_image = used_image, has_outline = FALSE))
+	if(machine_do_after_visable(parent, pulse_time, border_look = "border_plants", border_look_accessory = "border_plants_overlay", add_image = used_image, has_outline = FALSE, y_multiplier = y_offset))
 		pulse()
 
 /datum/component/botany_tree/proc/pulse()

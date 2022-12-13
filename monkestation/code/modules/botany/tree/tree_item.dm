@@ -36,21 +36,20 @@
 	trunk.color = sapling_color
 	leaves.color = leaf_color
 
+	src.vis_contents += trunk
+	src.vis_contents += leaves
 	AddComponent(/datum/component/botany_tree)
 	attached_component = src.GetComponent(/datum/component/botany_tree)
 
-	update_overlays()
 
 /obj/machinery/mother_tree/update_overlays()
 	. = ..()
-	if(attached_component.current_level >= 5)
+	if(attached_component.current_level + 1 >= 5)
 		trunk.icon_state = "trunk_[current_trunk_style]"
 		leaves.icon_state = "leaf_[current_trunk_style]_[current_leaf_stage]"
-
+		attached_component.y_offset = 2
 		trunk.color = trunk_color
 		leaves.color = leaf_color
-	. += trunk
-	. += leaves
 
 	if(fruits)
 		. += fruits

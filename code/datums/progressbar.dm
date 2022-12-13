@@ -220,7 +220,7 @@
 	var/active_color
 	var/fail_color
 
-/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, border_look = "border", border_accessory, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image, has_outline = TRUE)
+/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, border_look = "border", border_accessory, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image, has_outline = TRUE, y_multiplier)
 	. = ..()
 	if(!owner || !target || !goal)
 		return INITIALIZE_HINT_QDEL
@@ -231,12 +231,16 @@
 	src.owner = owner
 	src.goal = goal
 	src.bar_loc = target
+	src.base_pixel_y *= y_mutliplier
+	src.pixel_y *= y_mutliplier
 	if(additional_image)
 		src.additional_image = new /obj/effect/additional_image
 		src.additional_image.icon = additional_image.icon
 		src.additional_image.icon_state = additional_image.icon_state
 		src.additional_image.plane = src.plane
 		src.additional_image.layer = src.layer - 0.1
+		src.additional_image.pixel_y *= y_multiplier
+		src.additional_image.base_pixel_y *= y_multiplier
 		if(has_outline)
 			src.additional_image.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 		src.bar_loc.vis_contents += src.additional_image
@@ -250,6 +254,8 @@
 	src.bar.plane = src.plane
 	src.bar_loc.vis_contents += src.bar
 	src.bar.alpha = 0
+	src.bar.pixel_y *= y_multiplier
+	src.bar.base_pixel_y *= y_multiplier
 
 	if(border_accessory)
 		src.border_accessory = new /obj/effect/border_accessory
@@ -257,6 +263,8 @@
 		src.border_accessory.icon_state = border_accessory
 		src.border_accessory.layer = src.layer + 0.2
 		src.border_accessory.plane = src.plane
+		src.border_accessory.pixel_y *= y_multiplier
+		src.border_accessory.base_pixel_y *= y_multiplier
 		if(has_outline)
 			src.border_accessory.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 		src.bar_loc.vis_contents += src.border_accessory
@@ -339,12 +347,12 @@
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, border_look = "border", border_look_accessory, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image, has_outline = TRUE)
+/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, border_look = "border", border_look_accessory, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image, has_outline = TRUE, y_multiplier = 1)
 	var/atom/target_loc = source
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source,  border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline)
+		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source,  border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
