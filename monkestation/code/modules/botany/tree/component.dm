@@ -31,7 +31,7 @@
 	get_level_requirements()
 
 /datum/component/botany_tree/proc/get_level_requirements()
-	var/next_level = current_level++
+	var/next_level = current_level + 1
 	var/list/major_levels = list(5,10,15,20)
 	var/count = 0
 	if(next_level in major_levels)
@@ -49,7 +49,7 @@
 		listed_tree_node.final_growth(grown_location)
 
 /datum/component/botany_tree/proc/trigger_level()
-	var/next_level = current_level++
+	var/next_level = current_level + 1
 	var/list/major_levels = list(5,10,15,20)
 	var/list/picked_nodes = list()
 	if(next_level in major_levels)
