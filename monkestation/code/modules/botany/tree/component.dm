@@ -53,14 +53,14 @@
 	var/list/major_levels = list(5,10,15,20)
 	var/list/picked_nodes = list()
 	if(next_level in major_levels)
-		var/list/major_nodes = list(typesof(/datum/tree_node/major) - /datum/tree_node/major)
+		var/list/major_nodes = (typesof(/datum/tree_node/major) - /datum/tree_node/major)
 		for(var/number = 1, number <= choices, number++)
 			var/datum/tree_node/major/picked_node = pick(major_nodes)
 			major_nodes -= picked_node
 			picked_nodes += new picked_node
 			picked_node.on_choice_generation()
 	else
-		var/list/minor_nodes = list(typesof(/datum/tree_node/minor) - /datum/tree_node/minor)
+		var/list/minor_nodes = (typesof(/datum/tree_node/minor) - /datum/tree_node/minor)
 		for(var/number = 1, number <= choices, number++)
 			var/datum/tree_node/minor/picked_node = pick(minor_nodes)
 			minor_nodes -= picked_node
