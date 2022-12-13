@@ -193,6 +193,7 @@
 	icon = 'monkestation/icons/effects/progessbar.dmi'
 	icon_state = "border"
 	plane = RUNECHAT_PLANE
+	layer = FLY_LAYER
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	base_pixel_y = 20
@@ -231,8 +232,8 @@
 	src.owner = owner
 	src.goal = goal
 	src.bar_loc = target
-	src.base_pixel_y *= y_mutliplier
-	src.pixel_y *= y_mutliplier
+	src.base_pixel_y *= y_multiplier
+	src.pixel_y *= y_multiplier
 	if(additional_image)
 		src.additional_image = new /obj/effect/additional_image
 		src.additional_image.icon = additional_image.icon
