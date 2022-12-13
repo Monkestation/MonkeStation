@@ -35,10 +35,12 @@
 	var/list/major_levels = list(5,10,15,20)
 	if(next_level in major_levels)
 		for(var/increment = 1, increment <= MAJOR_AMOUNT, increment++)
-			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			unfufilled_requirements += picked_seed.type
 	else
 		for(var/increment = 1, increment <= MINOR_AMOUNT, increment++)
-			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			unfufilled_requirements += picked_seed.type
 
 /datum/component/botany_tree/proc/on_plant_final_growth(datum/source, obj/machinery/hydroponics/grown_location)
 	if(grown_location.myseed.type in unfufilled_requirements)
@@ -78,7 +80,7 @@
 
 	added_node.on_tree_add()
 
-/datum/component/botany/proc/handle_levelup()
+/datum/component/botany_tree/proc/handle_levelup()
 	for(var/datum/tree_node/listed_node as anything in levelup_nodes)
 		listed_node.on_levelup()
 	current_level++

@@ -12,10 +12,16 @@
 	var/on_final_growth = FALSE
 	var/on_levelup = FALSE
 
+	var/visual_change
+	var/visual_numerical_change
+
+	var/color_change_leaf
+	var/color_change_trunk
+
 /datum/tree_node/proc/on_choice_generation()
 	return
 
-/datum/tree_node/proc/on_add()
+/datum/tree_node/proc/on_tree_add()
 	return
 
 /datum/tree_node/proc/on_pulse(list/affected_plants)
