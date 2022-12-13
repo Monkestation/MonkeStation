@@ -44,9 +44,9 @@
 
 /obj/machinery/mother_tree/update_overlays()
 	. = ..()
-
-	trunk.icon_state = "trunk_[current_trunk_style]"
-	leaves.icon_state = "leaf_[current_trunk_style]_[current_leaf_stage]"
+	if(attached_component.current_level >= 5)
+		trunk.icon_state = "trunk_[current_trunk_style]"
+		leaves.icon_state = "leaf_[current_trunk_style]_[current_leaf_stage]"
 
 	trunk.color = trunk_color
 	leaves.color = leaf_color
