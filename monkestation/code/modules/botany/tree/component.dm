@@ -96,7 +96,7 @@
 
 /datum/component/botany_tree/proc/init_pulse()
 	var/image/used_image = image('monkestation/icons/effects/effects.dmi', icon_state = "pulse")
-	if(machine_do_after_visable(parent, pulse_time, add_image = used_image))
+	if(machine_do_after_visable(parent, pulse_time, border_look = "border_plants", border_look_accessory = "border_plants_overlay", add_image = used_image))
 		pulse()
 
 /datum/component/botany_tree/proc/pulse()
