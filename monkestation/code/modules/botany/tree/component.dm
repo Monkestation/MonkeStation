@@ -34,10 +34,10 @@
 	var/next_level = current_level++
 	var/list/major_levels = list(5,10,15,20)
 	if(next_level in major_levels)
-		for(var/increment = 1, increment =< MAJOR_AMOUNT, increment++)
+		for(var/increment = 1, increment <= MAJOR_AMOUNT, increment++)
 			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
 	else
-		for(var/increment = 1, increment =< MINOR_AMOUNT, increment++)
+		for(var/increment = 1, increment <= MINOR_AMOUNT, increment++)
 			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
 
 /datum/component/botany_tree/proc/on_plant_final_growth(datum/source, obj/machinery/hydroponics/grown_location)
