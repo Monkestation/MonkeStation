@@ -2,7 +2,7 @@
 
 #define MINOR_AMOUNT 3
 /datum/component/botany_tree
-
+	///level variables of the tree
 	var/current_level = 1
 	var/max_level = 20
 	///list of all held nodes
@@ -23,12 +23,16 @@
 	var/pulse_range = 5
 	///how many choices you have per level
 	var/choices = 3
+	///amount of time in seconds between pulses
+	var/pulse_time = 30 SECONDS
 
 /datum/component/botany_tree/Initialize(...)
 	. = ..()
 	RegisterSignal(parent, COMSIG_BOTANY_FINAL_GROWTH, .proc/on_plant_final_growth)
 
 	get_level_requirements()
+
+	INVOKE_ASYNC(src, /datum/component/botany_tree.proc/init_pulse)
 
 /datum/component/botany_tree/proc/get_level_requirements()
 	var/next_level = current_level + 1
@@ -88,3 +92,14 @@
 		listed_node.on_levelup()
 	current_level++
 	get_level_requirements()
+
+
+/datum/component/botany_tree/proc/init_pulse()
+	var/image/used_image = image('monkestation/icons/effects/effects.dmi', icon_state = "pulse")
+	if(machine_do_after_visable(parent, pulse_time, add_image = used_image))
+		pulse()
+
+/datum/component/botany_tree/proc/pulse()
+	for(var/datum/tree_node/listed_node as anything in pulse_nodes)
+		listed_node.on_pulse()
+	INVOKE_ASYNC(src, /datum/component/botany_tree.proc/init_pulse)
