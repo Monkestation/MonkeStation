@@ -56,16 +56,17 @@
 		var/list/major_nodes = (typesof(/datum/tree_node/major) - /datum/tree_node/major)
 		for(var/number = 1, number <= choices, number++)
 			var/datum/tree_node/major/picked_node = pick(major_nodes)
-			major_nodes -= picked_node
-			picked_nodes += new picked_node
-			picked_node.on_choice_generation()
+			var/datum/tree_node/major/created_node = new picked_node
+			picked_nodes += new created_node
+			created_node.on_choice_generation()
 	else
 		var/list/minor_nodes = (typesof(/datum/tree_node/minor) - /datum/tree_node/minor)
 		for(var/number = 1, number <= choices, number++)
 			var/datum/tree_node/minor/picked_node = pick(minor_nodes)
 			minor_nodes -= picked_node
-			picked_nodes += new picked_node
-			picked_node.on_choice_generation()
+			var/datum/tree_node/minor/created_node = new picked_node
+			picked_nodes += created_node
+			created_node.on_choice_generation()
 
 	return picked_nodes
 
