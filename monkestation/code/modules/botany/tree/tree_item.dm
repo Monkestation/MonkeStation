@@ -36,11 +36,10 @@
 	trunk.color = sapling_color
 	leaves.color = leaf_color
 
-	add_overlay(trunk)
-	add_overlay(leaves)
-
 	AddComponent(/datum/component/botany_tree)
 	attached_component = src.GetComponent(/datum/component/botany_tree)
+
+	update_overlays()
 
 /obj/machinery/mother_tree/update_overlays()
 	. = ..()
