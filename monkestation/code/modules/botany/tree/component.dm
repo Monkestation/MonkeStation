@@ -33,17 +33,14 @@
 /datum/component/botany_tree/proc/get_level_requirements()
 	var/next_level = current_level++
 	var/list/major_levels = list(5,10,15,20)
+	var/count = 0
 	if(next_level in major_levels)
-		for(var/increment = 1, increment <= MAJOR_AMOUNT, increment++)
-			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
-			picked_seed  = new()
-			unfufilled_requirements += picked_seed.type
-			qdel(picked_seed)
+		count = MAJOR_AMOUNT
 	else
-		for(var/increment = 1, increment <= MINOR_AMOUNT, increment++)
-			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
-			unfufilled_requirements += picked_seed.type
-			qdel(picked_seed)
+		count = MINOR_AMOUNT
+	for(var/increment = 1, increment <= count, increment++)
+		var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random - typesof(/obj/item/seeds/lavaland))
+		unfufilled_requirements += picked_seed
 
 /datum/component/botany_tree/proc/on_plant_final_growth(datum/source, obj/machinery/hydroponics/grown_location)
 	if(grown_location.myseed.type in unfufilled_requirements)
