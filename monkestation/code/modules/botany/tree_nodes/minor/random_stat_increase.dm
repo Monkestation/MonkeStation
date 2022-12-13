@@ -3,6 +3,7 @@
 	desc = "Improves nearby plants on pulse."
 
 	min_level = 3
+	on_pulse = TRUE
 
 	var/stat_to_increase
 

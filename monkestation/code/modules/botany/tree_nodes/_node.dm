@@ -8,6 +8,10 @@
 	///what level does the tree need to be to appear.
 	var/min_level = 1
 
+	var/on_pulse = FALSE
+	var/on_final_growth = FALSE
+	var/on_levelup = FALSE
+
 /datum/tree_node/proc/on_choice_generation()
 	return
 
@@ -18,6 +22,9 @@
 	return
 
 /datum/tree_node/proc/final_growth(obj/machinery/hydroponics/grown_location)
+	return
+
+/datum/tree_node/proc/on_levelup()
 	return
 
 /datum/tree_node/proc/get_ui_data()

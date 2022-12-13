@@ -11,6 +11,8 @@
 	var/list/pulse_nodes
 	///list of final growth nodes
 	var/list/final_growth_nodes
+	///list of nodes that trigger on levelup
+	var/list/levelup_nodes
 	///the list of nearby trays that are affected by the pulse
 	var/list/nearby_trays
 	///list of all treelings spawned
@@ -32,10 +34,10 @@
 	var/next_level = current_level++
 	var/list/major_levels = list(5,10,15,20)
 	if(next_level in major_levels)
-		for(var/increment = 1 to MAJOR_AMOUNT)
+		for(var/increment = 1, increment =< MAJOR_AMOUNT, increment++)
 			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
 	else
-		for(var/increment = 1 to MINOR_AMOUNT)
+		for(var/increment = 1, increment =< MINOR_AMOUNT, increment++)
 			unfufilled_requirements +=	pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
 
 /datum/component/botany_tree/proc/on_plant_final_growth(datum/source, obj/machinery/hydroponics/grown_location)
@@ -54,12 +56,30 @@
 			var/datum/tree_node/major/picked_node = pick(major_nodes)
 			major_nodes -= picked_node
 			picked_nodes += new picked_node
+			picked_node.on_choice_generation()
 	else
 		var/list/minor_nodes = list(typesof(/datum/tree_node/minor) - /datum/tree_node/minor)
 		for(var/number in choices)
 			var/datum/tree_node/minor/picked_node = pick(minor_nodes)
 			minor_nodes -= picked_node
 			picked_nodes += new picked_node
+			picked_node.on_choice_generation()
 
 	return picked_nodes
 
+/datum/component/botany_tree/proc/handle_added_node(datum/tree_node/added_node)
+	held_level_nodes += added_node
+	if(added_node.on_pulse)
+		pulse_nodes += added_node
+	if(added_node.on_final_growth)
+		final_growth_nodes += added_node
+	if(added_node.on_levelup)
+		levelup_nodes += added_node
+
+	added_node.on_tree_add()
+
+/datum/component/botany/proc/handle_levelup()
+	for(var/datum/tree_node/listed_node as anything in levelup_nodes)
+		listed_node.on_levelup()
+	current_level++
+	get_level_requirements()
