@@ -47,7 +47,14 @@
 	if(attached_component.current_level + 1 >= 5)
 		trunk.icon_state = "trunk_[current_trunk_style]"
 		leaves.icon_state = "leaf_[current_trunk_style]_[current_leaf_stage]"
-		attached_component.y_offset = 2
+
+		if(current_trunk_style == 2)
+			trunk.pixel_x = -20
+			leaves.pixel_x = -20
+			attached_component.y_offset = 2.1
+		else
+			attached_component.y_offset = 2
+
 		trunk.color = trunk_color
 		leaves.color = leaf_color
 
@@ -106,7 +113,9 @@
 	icon = 'monkestation/icons/obj/mother_tree.dmi'
 	layer = ABOVE_ALL_MOB_LAYER
 	pixel_x = -16
-	pixel_y = 12
+	pixel_y = 10
+	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///offsets for where the sprite should be placed goes x,y
 	var/list/offsets_for_sprites
 
