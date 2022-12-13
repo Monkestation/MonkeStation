@@ -11,13 +11,14 @@
 	var/listindex
 	var/image/border
 	var/image/shown_image
+	var/image/border_look_accessory
 	var/active_color
 	var/fail_color
 	var/finish_color
 	var/old_format
 	var/bar_look
 
-/datum/progressbar/New(mob/User, goal_number, atom/target, border_look = "border", bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
+/datum/progressbar/New(mob/User, goal_number, atom/target, border_look = "border", border_look_accessory, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
 	. = ..()
 	if (!istype(target))
 		EXCEPTION("Invalid target given")
@@ -44,6 +45,11 @@
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.color = active_color
 
+	if(border_look_accessory)
+		src.border_look_accessory = shown_image = image('monkestation/icons/effects/progessbar.dmi', target, border_look_accessory, (HUD_LAYER + 0.2))
+		src.border_look_accessory.plane = ABOVE_HUD_PLANE
+		src.border_look_accessory.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
 	user = User
 	if(user)
 		client = user.client
@@ -65,6 +71,10 @@
 		shown_image.pixel_y = 0
 		shown_image.alpha = 0
 		animate(shown_image, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	if(border_look_accessory)
+		src.border_look_accessory.pixel_y = 0
+		src.border_look_accessory.alpha = 0
+		animate(src.border_look_accessory, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if (!user || !user.client)
@@ -76,12 +86,16 @@
 			client.images -= border
 			if(shown_image)
 				client.images -= shown_image
+			if(border_look_accessory)
+				client.images -= border_look_accessory
 
 		if (user.client)
 			user.client.images += bar
 			user.client.images += border
 			if(shown_image)
 				user.client.images += shown_image
+			if(border_look_accessory)
+				user.client.images += border_look_accessory
 
 	progress = CLAMP(progress, 0, goal)
 	last_progress = progress
@@ -95,6 +109,8 @@
 		user.client.images += border
 		if(shown_image)
 			user.client.images += shown_image
+		if(border_look_accessory)
+			user.client.images += border_look_accessory
 		shown = TRUE
 
 /datum/progressbar/proc/shiftDown()
@@ -107,6 +123,9 @@
 	if(shown_image)
 		shown_image.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
 		animate(shown_image, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	if(border_look_accessory)
+		border_look_accessory.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1))
+		animate(border_look_accessory, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(last_progress != goal)
@@ -134,6 +153,9 @@
 	if(shown_image)
 		animate(shown_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 		QDEL_IN(shown_image, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
+	if(border_look_accessory)
+		animate(border_look_accessory, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+		QDEL_IN(border_look_accessory, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
 	. = ..()
 
 /datum/progressbar/proc/remove_from_client()
@@ -142,6 +164,8 @@
 		client.images -= border
 		if(shown_image)
 			client.images -= shown_image
+		if(border_look_accessory)
+			client.images -= border_look_accessory
 		client = null
 
 ///Called on progress end, be it successful or a failure. Wraps up things to delete the datum and bar.
@@ -158,6 +182,8 @@
 	animate(border, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	if(shown_image)
 		animate(shown_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	if(border_look_accessory)
+		animate(border_look_accessory, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
 
 ////TODO: make prog_bars not really really bad just convert to a single image being transformed across a matrix
@@ -167,12 +193,14 @@
 	icon = 'monkestation/icons/effects/progessbar.dmi'
 	icon_state = "border"
 	plane = RUNECHAT_PLANE
+	layer = FLY_LAYER
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	base_pixel_y = 32
-	pixel_y = 32
+	base_pixel_y = 20
+	pixel_y = 20
 	var/obj/effect/bar/bar
 	var/obj/effect/additional_image/additional_image
+	var/obj/effect/border_accessory/border_accessory
 	///The target where this progress bar is applied and where it is shown.
 	var/atom/movable/bar_loc
 	///The atom who "created" the bar
@@ -193,7 +221,7 @@
 	var/active_color
 	var/fail_color
 
-/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, border_look = "border", bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image)
+/obj/effect/world_progressbar/Initialize(mapload, atom/owner, goal, atom/target, border_look = "border", border_accessory, bar_look = "prog_bar", old_format = FALSE, active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033" , mutable_appearance/additional_image, has_outline = TRUE, y_multiplier)
 	. = ..()
 	if(!owner || !target || !goal)
 		return INITIALIZE_HINT_QDEL
@@ -204,13 +232,18 @@
 	src.owner = owner
 	src.goal = goal
 	src.bar_loc = target
+	src.base_pixel_y *= y_multiplier
+	src.pixel_y *= y_multiplier
 	if(additional_image)
 		src.additional_image = new /obj/effect/additional_image
 		src.additional_image.icon = additional_image.icon
 		src.additional_image.icon_state = additional_image.icon_state
 		src.additional_image.plane = src.plane
-		src.additional_image.layer = src.layer + 0.1
-		src.additional_image.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
+		src.additional_image.layer = src.layer - 0.1
+		src.additional_image.pixel_y *= y_multiplier
+		src.additional_image.base_pixel_y *= y_multiplier
+		if(has_outline)
+			src.additional_image.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 		src.bar_loc.vis_contents += src.additional_image
 
 	src.bar_loc:vis_contents += src
@@ -218,16 +251,30 @@
 	src.bar = new /obj/effect/bar
 	src.bar.icon = icon
 	src.bar.icon_state = bar_look
-	src.bar.layer = src.layer +0.1
+	src.bar.layer = src.layer + 0.1
 	src.bar.plane = src.plane
 	src.bar_loc.vis_contents += src.bar
 	src.bar.alpha = 0
+	src.bar.pixel_y *= y_multiplier
+	src.bar.base_pixel_y *= y_multiplier
+
+	if(border_accessory)
+		src.border_accessory = new /obj/effect/border_accessory
+		src.border_accessory.icon = icon
+		src.border_accessory.icon_state = border_accessory
+		src.border_accessory.layer = src.layer + 0.2
+		src.border_accessory.plane = src.plane
+		src.border_accessory.pixel_y *= y_multiplier
+		src.border_accessory.base_pixel_y *= y_multiplier
+		if(has_outline)
+			src.border_accessory.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
+		src.bar_loc.vis_contents += src.border_accessory
 
 	src.finish_color = finish_color
 	src.active_color = active_color
 	src.fail_color = fail_color
-
-	src.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
+	if(has_outline)
+		src.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 
 	RegisterSignal(bar_loc, COMSIG_PARENT_QDELETING, .proc/bar_loc_delete)
 	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/owner_delete)
@@ -265,36 +312,48 @@
 	bar.color = finish_color
 	animate(src, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	animate(src.bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
-	animate(src.additional_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 
 
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
 	QDEL_IN(src.bar, PROGRESSBAR_ANIMATION_TIME)
-	QDEL_IN(src.additional_image, PROGRESSBAR_ANIMATION_TIME)
+
+	if(additional_image)
+		animate(src.additional_image, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+		QDEL_IN(src.additional_image, PROGRESSBAR_ANIMATION_TIME)
+	if(border_accessory)
+		animate(src.border_accessory, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+		QDEL_IN(src.border_accessory, PROGRESSBAR_ANIMATION_TIME)
 
 #undef PROGRESSBAR_ANIMATION_TIME
 #undef PROGRESSBAR_HEIGHT
 
 /obj/effect/bar
 	plane = RUNECHAT_PLANE
-	base_pixel_y = 32
-	pixel_y = 32
+	base_pixel_y = 20
+	pixel_y = 20
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/additional_image
 	plane = RUNECHAT_PLANE
-	base_pixel_y = 32
-	pixel_y = 32
+	base_pixel_y = 20
+	pixel_y = 20
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image)
+/obj/effect/border_accessory
+	plane = RUNECHAT_PLANE
+	base_pixel_y = 20
+	pixel_y = 20
+	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/proc/machine_do_after_visable(atom/source, delay, progress = TRUE, border_look = "border", border_look_accessory, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image, has_outline = TRUE, y_multiplier = 1)
 	var/atom/target_loc = source
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, bar_look, old_format, active_color, finish_color, fail_color, add_image)
+		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
