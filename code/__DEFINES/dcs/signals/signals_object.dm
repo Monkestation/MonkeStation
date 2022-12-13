@@ -232,3 +232,4 @@
 ///from base of /obj/item/mmi/set_brainmob(): (mob/living/brain/new_brainmob)
 #define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
 
+#define COMSIG_BOTANY_FINAL_GROWTH "hydroponics_final_stage"

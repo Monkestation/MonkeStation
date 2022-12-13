@@ -32,7 +32,13 @@
 	var/self_sufficiency_progress = 0
 	var/self_sustaining = FALSE //If the tray generates nutrients and water on its own
 
+	var/obj/machinery/mother_tree/connected_tree
 
+/obj/machinery/hydroponics/Initialize(mapload)
+	. = ..()
+	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
+		connected_tree = located_tree
+		return
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
@@ -219,6 +225,8 @@
 			if(age > myseed.production && (age - lastproduce) > myseed.production && (!harvest && !dead))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
+					if(connected_tree)
+						SEND_SIGNAL(connected_tree, COMSIG_BOTANY_FINAL_GROWTH, src)
 					harvest = 1
 				else
 					lastproduce = age
@@ -824,6 +832,10 @@
 			SEND_SIGNAL(O, COMSIG_TRY_STORAGE_INSERT, G, user, TRUE)
 
 	else if(default_unfasten_wrench(user, O))
+		if(!anchored)
+			connected_tree = null
+		else
+			connected_tree = locate() in range(5)
 		return
 
 	else if((O.tool_behaviour == TOOL_WIRECUTTER) && unwrenchable)
