@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
+/proc/do_mob(mob/user, mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(show_to_world)
 			progbar = new /obj/effect/world_progressbar(null, user, time, target, border_look, bar_look, old_format, active_color, finish_color, fail_color, add_image)
 		else
-			progbar = new(user, time, target, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier))
+			progbar = new(user, time, target, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
