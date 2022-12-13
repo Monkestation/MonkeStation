@@ -60,14 +60,14 @@
 	. = ..()
 	if(!attached_component.unfufilled_requirements.len || debug)
 		level_choices = attached_component.trigger_level()
-		run_choice()
+		run_choice(user)
 		return
 	if(level_choices.len)
-		run_choice()
+		run_choice(user)
 		return
 
-/obj/machinery/mother_tree/proc/run_choice()
-	var/datum/tree_node/choice = input("Select a trait for the tree", "Strange Tree") as null|anything in level_choices
+/obj/machinery/mother_tree/proc/run_choice(mob/user)
+	var/datum/tree_node/choice = input(user, "Select a trait for the tree", "Strange Tree") as null|anything in level_choices
 	if(!choice)
 		return
 	if(choice.visual_change)
