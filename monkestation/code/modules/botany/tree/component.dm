@@ -58,7 +58,7 @@
 			if(major_nodes.len)
 				var/datum/tree_node/major/picked_node = pick(major_nodes)
 				var/datum/tree_node/major/created_node = new picked_node
-				picked_nodes += new created_node
+				picked_nodes += created_node
 				created_node.on_choice_generation()
 	else
 		var/list/minor_nodes = (typesof(/datum/tree_node/minor) - /datum/tree_node/minor)
