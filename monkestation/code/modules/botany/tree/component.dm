@@ -35,12 +35,14 @@
 	var/list/major_levels = list(5,10,15,20)
 	if(next_level in major_levels)
 		for(var/increment = 1, increment <= MAJOR_AMOUNT, increment++)
-			var/obj/item/seeds/picked_seed = new pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			picked_seed  = new()
 			unfufilled_requirements += picked_seed.type
 			qdel(picked_seed)
 	else
 		for(var/increment = 1, increment <= MINOR_AMOUNT, increment++)
-			var/obj/item/seeds/picked_seed = new pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
+			picked_seed  = new()
 			unfufilled_requirements += picked_seed.type
 			qdel(picked_seed)
 

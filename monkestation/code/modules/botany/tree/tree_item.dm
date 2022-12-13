@@ -48,8 +48,8 @@
 		trunk.icon_state = "trunk_[current_trunk_style]"
 		leaves.icon_state = "leaf_[current_trunk_style]_[current_leaf_stage]"
 
-	trunk.color = trunk_color
-	leaves.color = leaf_color
+		trunk.color = trunk_color
+		leaves.color = leaf_color
 	. += trunk
 	. += leaves
 
