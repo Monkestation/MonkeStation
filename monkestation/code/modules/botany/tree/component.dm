@@ -6,19 +6,19 @@
 	var/current_level = 1
 	var/max_level = 20
 	///list of all held nodes
-	var/list/held_level_nodes
+	var/list/held_level_nodes = list()
 	///list of nodes that need to be triggered on pulse
-	var/list/pulse_nodes
+	var/list/pulse_nodes = list()
 	///list of final growth nodes
-	var/list/final_growth_nodes
+	var/list/final_growth_nodes = list()
 	///list of nodes that trigger on levelup
-	var/list/levelup_nodes
+	var/list/levelup_nodes = list()
 	///the list of nearby trays that are affected by the pulse
-	var/list/nearby_trays
+	var/list/nearby_trays = list()
 	///list of all treelings spawned
-	var/list/spawned_treelings
+	var/list/spawned_treelings = list()
 	///list of unfufilled level requirements
-	var/list/unfufilled_requirements
+	var/list/unfufilled_requirements = list()
 	///how far out the pulse goes from the tree
 	var/pulse_range = 5
 	///how many choices you have per level
@@ -42,7 +42,6 @@
 	else
 		for(var/increment = 1, increment <= MINOR_AMOUNT, increment++)
 			var/obj/item/seeds/picked_seed = pick(typesof(/obj/item/seeds) - /obj/item/seeds - /obj/item/seeds/gatfruit - /obj/item/seeds/random)
-			picked_seed  = new()
 			unfufilled_requirements += picked_seed.type
 			qdel(picked_seed)
 
