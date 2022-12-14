@@ -21,10 +21,13 @@
 	ticks ++
 	return TRUE
 
+/datum/map_generator/proc/get_name()
+	return "Map generator"
+
 /datum/map_generator/proc/complete()
 	completed = TRUE
 	var/list/arguments = list(src)
 	if (callback_args)
 		arguments += callback_args
 	for (var/datum/callback/on_completion as() in completion_callbacks)
-		on_completion?.Invoke(arglist(arguments))
+		on_completion.Invoke(arglist(arguments))
