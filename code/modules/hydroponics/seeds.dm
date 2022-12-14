@@ -37,6 +37,8 @@
 	var/weed_rate = 1 //If the chance below passes, then this many weeds sprout during growth
 	var/weed_chance = 5 //Percentage chance per tray update to grow weeds
 	var/blooming_stage = 0
+	///the age at which the plant should be harvested at
+	var/harvest_age = 6
 
 /obj/item/seeds/Initialize(mapload, nogenes = 0)
 	. = ..()
@@ -209,7 +211,8 @@
 
 /// Setters procs ///
 /obj/item/seeds/proc/adjust_yield(adjustamt)
-	yield = yield + adjustamt
+	var/curved_amount = 0.1 + (adjustamt/10)
+	yield = yield + curved_amount
 	if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 		yield = 1 // Mushrooms always have a minimum yield of 1.
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
@@ -217,25 +220,29 @@
 		C.value = yield
 
 /obj/item/seeds/proc/adjust_lifespan(adjustamt)
-	lifespan = lifespan + adjustamt
+	var/curved_amount = 1 + (adjustamt/10)
+	lifespan = lifespan + curved_amount
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/lifespan)
 	if(C)
 		C.value = lifespan
 
 /obj/item/seeds/proc/adjust_endurance(adjustamt)
-	endurance = endurance + adjustamt
+	var/curved_amount = 1 + (adjustamt/10)
+	endurance = endurance + curved_amount
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/endurance)
 	if(C)
 		C.value = endurance
 
 /obj/item/seeds/proc/adjust_production(adjustamt)
-	production = max(1, production + adjustamt)
+	var/curved_amount = 1 + (adjustamt/10)
+	production = max(1, production + curved_amount)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 	if(C)
 		C.value = production
 
 /obj/item/seeds/proc/adjust_potency(adjustamt)
-	potency = potency + adjustamt
+	var/curved_amount = 1 + (adjustamt/10)
+	potency = potency + curved_amount
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
 	if(C)
 		C.value = potency
