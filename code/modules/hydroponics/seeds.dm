@@ -172,20 +172,25 @@
 	var/product_name
 	var/yield_amount = getYield()
 	while(t_amount < yield_amount)
-		var/obj/item/food/grown/t_prod = new product(output_loc, src)
-		if(parent.myseed.plantname != initial(parent.myseed.plantname))
-			t_prod.name = parent.myseed.plantname
-		if(parent.myseed.plantdesc)
-			t_prod.desc = parent.myseed.plantdesc
-		t_prod.seed.name = parent.myseed.name
-		t_prod.seed.desc = parent.myseed.desc
-		t_prod.seed.plantname = parent.myseed.plantname
-		t_prod.seed.plantdesc = parent.myseed.plantdesc
-		result.Add(t_prod) // User gets a consumable
-		if(!t_prod)
-			return
-		t_amount++
-		product_name = t_prod.seed.plantname
+		if(prob(30))
+			var/obj/item/seeds/seed_prod = src.Copy()
+			result.Add(seed_prod) // User gets a consumable
+			t_amount++
+		else
+			var/obj/item/food/grown/t_prod = new product(output_loc, src)
+			if(parent.myseed.plantname != initial(parent.myseed.plantname))
+				t_prod.name = parent.myseed.plantname
+			if(parent.myseed.plantdesc)
+				t_prod.desc = parent.myseed.plantdesc
+			t_prod.seed.name = parent.myseed.name
+			t_prod.seed.desc = parent.myseed.desc
+			t_prod.seed.plantname = parent.myseed.plantname
+			t_prod.seed.plantdesc = parent.myseed.plantdesc
+			result.Add(t_prod) // User gets a consumable
+			if(!t_prod)
+				return
+			t_amount++
+			product_name = t_prod.seed.plantname
 	if(getYield() >= 1)
 		SSblackbox.record_feedback("tally", "food_harvested", getYield(), product_name)
 	parent.update_tray(user)
@@ -280,33 +285,33 @@
 		C.value = lifespan
 
 /obj/item/seeds/proc/set_endurance(adjustamt)
-	endurance = CLAMP(adjustamt, 10, 100)
+	endurance = adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/endurance)
 	if(C)
 		C.value = endurance
 
 /obj/item/seeds/proc/set_production(adjustamt)
 	if(yield != -1)
-		production = CLAMP(adjustamt, 1, 10)
+		production = adjustamt
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 		if(C)
 			C.value = production
 
 /obj/item/seeds/proc/set_potency(adjustamt)
 	if(potency != -1)
-		potency = CLAMP(adjustamt, 0, 100)
+		potency = adjustamt
 		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
 		if(C)
 			C.value = potency
 
 /obj/item/seeds/proc/set_weed_rate(adjustamt)
-	weed_rate = CLAMP(adjustamt, 0, 10)
+	weed_rate = adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_rate)
 	if(C)
 		C.value = weed_rate
 
 /obj/item/seeds/proc/set_weed_chance(adjustamt)
-	weed_chance = CLAMP(adjustamt, 0, 67)
+	weed_chance = adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_chance)
 	if(C)
 		C.value = weed_chance
@@ -456,7 +461,7 @@
 			qdel(P)
 
 /obj/item/seeds/proc/return_all_data()
-	var/obj/item/food/grown_food = product
+	var/obj/grown_food = product
 	var/base64 = icon2base64(icon(initial(grown_food.icon), initial(grown_food.icon_state)))
 	return list(
 		"image" = base64,
@@ -472,3 +477,63 @@
 		"endurance" = endurance,
 		"lifespan" = lifespan,
 	)
+
+/obj/item/seeds/spliced
+	name = "Spliced Seeds"
+	desc = "A hybrid seed consisting of multiple plants."
+
+	icon_state = "seed-x"
+
+	///list of all produce types, when harvest will randomly cycle these
+	var/list/produce_list = list()
+	///list of all mutant seeds that could drop when harvesting
+	var/list/viable_mutant_seeds = list()
+
+/obj/item/seeds/spliced/harvest(mob/user)
+	var/obj/machinery/hydroponics/parent = loc //for ease of access
+	var/t_amount = 0
+	var/list/result = list()
+	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
+	var/product_name
+	var/yield_amount = getYield()
+	while(t_amount < yield_amount)
+		var/picked_object = pick(produce_list)
+		if(prob(30))
+			var/obj/item/seeds/seed_prod = src.Copy_drop(output_loc)
+			result.Add(seed_prod) // User gets a consumable
+			t_amount++
+		else
+			var/obj/item/food/grown/t_prod = new picked_object(output_loc, src)
+			result.Add(t_prod) // User gets a consumable
+			if(!t_prod)
+				return
+			t_amount++
+			product_name = t_prod.seed.plantname
+	if(getYield() >= 1)
+		SSblackbox.record_feedback("tally", "food_harvested", getYield(), product_name)
+	parent.update_tray(user)
+
+	return result
+
+/obj/item/seeds/proc/Copy_drop()
+	var/obj/item/seeds/S = new type(output_loc, 1)
+	// Copy all the stats
+	S.lifespan = lifespan
+	S.endurance = endurance
+	S.maturation = maturation
+	S.production = production
+	S.yield = yield
+	S.potency = potency
+	S.weed_rate = weed_rate
+	S.weed_chance = weed_chance
+	S.name = name
+	S.plantname = plantname
+	S.desc = desc
+	S.plantdesc = plantdesc
+	S.genes = list()
+	for(var/g in genes)
+		var/datum/plant_gene/G = g
+		S.genes += G.Copy()
+	S.reagents_add = reagents_add.Copy() // Faster than grabbing the list from genes.
+
+	S.harvest_age = harvest_age

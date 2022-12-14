@@ -224,7 +224,7 @@ export const InsertedSeedTwo = (props, context) => {
 };
 
 export const SpliceButton = (props, context) => {
-  const { data } = useBackend(context);
+  const { act, data } = useBackend(context);
   const {
     working,
     seedone,

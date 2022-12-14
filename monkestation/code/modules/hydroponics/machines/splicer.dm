@@ -70,7 +70,7 @@
 			seed_2 = null
 			return TRUE
 		if("splice")
-			seed_1.splice(seed_2)
+			splice(seed_1, seed_2)
 			return TRUE
 
 /obj/machinery/splicer/proc/eject_seed(obj/item/seeds/ejected_seed)
@@ -82,3 +82,60 @@
 			ejected_seed.forceMove(drop_location())
 		ui_update()
 		. = TRUE
+
+/obj/machinery/splicer/proc/splice(obj/item/seeds/first_seed, obj/item/seeds/second_seed)
+
+	var/obj/item/seeds/spliced/new_seed = new
+	new_seed.set_potency((first_seed.potency + second_seed.potency) * 0.5)
+	new_seed.set_yield((first_seed.yield + second_seed.yield) * 0.5)
+	new_seed.set_production((first_seed.production + second_seed.production) * 0.5)
+	new_seed.maturation = ((first_seed.maturation + second_seed.maturation) * 0.5)
+	new_seed.set_lifespan((first_seed.lifespan + second_seed.lifespan) * 0.5)
+	new_seed.set_endurance((first_seed.endurance + second_seed.endurance) * 0.5)
+	new_seed.set_weed_chance((first_seed.weed_chance + second_seed.weed_chance) * 0.5)
+	new_seed.set_weed_rate((first_seed.weed_rate + second_seed.weed_rate) * 0.5)
+	new_seed.species = first_seed.species
+
+	new_seed.reagents_add = first_seed.reagents_add.Copy() + second_seed.reagents_add.Copy()
+
+	if(!istype(first_seed, /obj/item/seeds/spliced))
+		var/obj/first_produced = first_seed.product
+		new_seed.produce_list += first_produced
+	else
+		var/obj/item/seeds/spliced/spliced_seed = first_seed
+		new_seed.produce_list |= spliced_seed.produce_list
+
+	if(!istype(second_seed, /obj/item/seeds/spliced))
+		var/obj/second_produced = second_seed.product
+		new_seed.produce_list += second_produced
+	else
+		var/obj/item/seeds/spliced/spliced_seed = first_seed
+		new_seed.produce_list |= spliced_seed.produce_list
+
+	var/part1 = copytext(first_seed.name, 1, round(length(first_seed.name) * 0.65 + 1.5))
+	var/part2 = copytext(second_seed.name, round(length(second_seed.name) * 0.45 + 1), 0)
+
+	new_seed.name = "[part1][part2]"
+	for(var/datum/plant_gene/trait/traits in first_seed.genes)
+		if(istype(traits, /datum/plant_gene/trait))
+			var/datum/plant_gene/trait/new_trait = new traits.type
+			if(new_trait.can_add(new_seed))
+				new_seed.genes += new_trait
+			else
+				qdel(new_trait)
+
+
+	for(var/reag_id in new_seed.reagents_add)
+		new_seed.genes += new /datum/plant_gene/reagent(reag_id, new_seed.reagents_add[reag_id])
+
+	if(Adjacent(usr) && !issiliconoradminghost(usr))
+		if (!usr.put_in_hands(new_seed))
+			new_seed.forceMove(drop_location())
+	else
+		new_seed.forceMove(drop_location())
+
+	seed_1 = null
+	seed_2 = null
+
+	qdel(first_seed)
+	qdel(second_seed)

@@ -42,9 +42,9 @@
 	var/obj/machinery/mother_tree/connected_tree
 
 /obj/machinery/hydroponics/Initialize(mapload)
-	. = ..()
 	create_reagents(maxnutri)
 	reagents.add_reagent(/datum/reagent/plantnutriment/eznutriment, 10) //Half filled nutrient trays for dirt trays to have more to grow with in prison/lavaland.
+	. = ..()
 
 	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
 		connected_tree = located_tree
@@ -106,14 +106,11 @@
 	if(myseed && (myseed.loc != src))
 		myseed.forceMove(src)
 
-	if(world.time > (lastcycle + cycledelay))
+	if(world.time > (lastcycle + cycledelay) && waterlevel > 10 && reagents.total_volume > 2 && pestlevel < 10 && weedlevel < 10)
 		lastcycle = world.time
 		if(myseed && !dead)
 			// Advance age
 			age++
-			if(age < myseed.maturation)
-				lastproduce = age
-
 			needs_update = 1
 
 
@@ -122,11 +119,6 @@
 			// Nutrients deplete slowly
 			adjust_plant_nutriments(reagents.total_volume * (nutriment_drain_precent * 0.1))
 
-			/*
-			// Lack of nutrients hurts non-weeds
-			if(nutrilevel <= 0 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
-				adjust_plant_health(-rand(1,3))
-			*/
 //Photosynthesis/////////////////////////////////////////////////////////
 			// Lack of light hurts non-mushrooms
 			if(isturf(loc))
@@ -209,12 +201,13 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(myseed.harvest_age > age * (1 + (myseed.production * 0.44) && (myseed.harvest_age) > (age - lastproduce) * (myseed.production * 0.44) && (!harvest && !dead)))
+			if(myseed.harvest_age > age * (1 + (myseed.production * 0.44) && (myseed.harvest_age) > (age + lastproduce) * (myseed.production * 0.44) && (!harvest && !dead)))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
 					if(connected_tree)
 						SEND_SIGNAL(connected_tree, COMSIG_BOTANY_FINAL_GROWTH, src)
 					harvest = 1
+					lastproduce = age
 				else
 					lastproduce = age
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
