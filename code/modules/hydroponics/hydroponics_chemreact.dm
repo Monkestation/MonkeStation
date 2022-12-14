@@ -17,10 +17,6 @@
 			adjust_plant_health(-10)
 			visible_message(span_warning("\The [myseed.plantname] starts to wilt and burn!"))
 			return
-		if(41 to 90)
-			if(myseed && !self_sustaining) //Stability
-				myseed.adjust_instability(5)
-				return
 		if(21 to 40)
 			visible_message(span_notice("\The [myseed.plantname] appears unusually reactive..."))
 			return
@@ -101,14 +97,14 @@
 
 /// Tray Setters - The following procs adjust the tray or plants variables, and make sure that the stat doesn't go out of bounds.///
 /obj/machinery/hydroponics/proc/adjust_plant_nutriments(adjustamt)
-	reagents.remove_any(nutridrain)
+	reagents.remove_any(adjustamt)
 
-/obj/machinery/hydroponics/proc/adjust_plant_waterlevel(adjust_amount)
+/obj/machinery/hydroponics/proc/adjust_waterlevel(adjust_amount)
 	if(self_sustaining)
 		return
 	waterlevel = CLAMP(waterlevel + adjust_amount, 0, maxwater)
 	if(adjust_amount>0)
-		adjust_plant_toxic(-round(adjust_amount/4))//Toxicity dilutation code. The more water you put in, the lesser the toxin concentration.
+		adjust_toxic(-round(adjust_amount/4))//Toxicity dilutation code. The more water you put in, the lesser the toxin concentration.
 
 /obj/machinery/hydroponics/proc/adjust_plant_health(adjust_amount)
 	if(self_sustaining)
@@ -116,17 +112,17 @@
 	if(myseed && !dead)
 		plant_health = CLAMP(plant_health + adjust_amount, 0, myseed.endurance)
 
-/obj/machinery/hydroponics/proc/adjust_plant_toxic(adjust_amount)
+/obj/machinery/hydroponics/proc/adjust_toxic(adjust_amount)
 	if(self_sustaining)
 		return
 	toxic = CLAMP(toxic + adjust_amount, 0, 100)
 
-/obj/machinery/hydroponics/proc/adjust_plant_pests(adjust_amount)
+/obj/machinery/hydroponics/proc/adjust_pestlevel(adjust_amount)
 	if(self_sustaining)
 		return
 	pestlevel = CLAMP(pestlevel + adjust_amount, 0, 10)
 
-/obj/machinery/hydroponics/proc/adjust_plant_weeds(adjust_amount)
+/obj/machinery/hydroponics/proc/adjust_weedlevel(adjust_amount)
 	if(self_sustaining)
 		return
 	weedlevel = CLAMP(weedlevel + adjust_amount, 0, 10)

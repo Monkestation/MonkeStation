@@ -221,6 +221,15 @@
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 0.1 //should evaporate real slow
 
+	// why, just why
+/datum/reagent/napalm/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	if(chems.has_reagent(type, 1))
+		if(!(myseed.resistance_flags & FIRE_PROOF))
+			mytray.adjust_plant_health(-round(chems.get_reagent_amount(type) * 6))
+			mytray.adjust_toxic(round(chems.get_reagent_amount(type) * 7))
+		mytray.adjust_weedlevel(-rand(5,9)) //At least give them a small reward if they bother.
+
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
 	..()

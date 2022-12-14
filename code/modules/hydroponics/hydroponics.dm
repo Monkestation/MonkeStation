@@ -1,3 +1,4 @@
+#define STATIC_NUTRIENT_CAPACITY 10
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
@@ -9,9 +10,8 @@
 	use_power = NO_POWER_USE
 	var/waterlevel = 100	//The amount of water in the tray (max 100)
 	var/maxwater = 100		//The maximum amount of water in the tray
-
-	var/nutrilevel = 10		//The amount of nutrient in the tray (max 10)
-	var/maxnutri = 10		//The maximum nutrient of water in the tray
+	///The maximum nutrient reagent container size of the tray.
+	var/maxnutri = 20
 
 	var/pestlevel = 0		//The amount of pests in the tray (max 10)
 	var/weedlevel = 0		//The amount of weeds in the tray (max 10)
@@ -33,6 +33,8 @@
 	var/unwrenchable = 1
 
 	var/recent_bee_visit = FALSE //Have we been visited by a bee recently, so bees dont overpollinate one plant
+	///The last user to add a reagent to the tray, mostly for logging purposes.
+	var/datum/weakref/lastuser
 	///precent of nutriment drained per process defaults to 10%
 	var/nutriment_drain_precent = 10
 	var/self_sustaining = FALSE //If the tray generates nutrients and water on its own
@@ -41,9 +43,12 @@
 
 /obj/machinery/hydroponics/Initialize(mapload)
 	. = ..()
+	create_reagents(maxnutri)
+	reagents.add_reagent(/datum/reagent/plantnutriment/eznutriment, 10) //Half filled nutrient trays for dirt trays to have more to grow with in prison/lavaland.
+
 	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
 		connected_tree = located_tree
-		connected_tree.attached_component.connected_trays
+		connected_tree.attached_component.connected_trays += src
 		return
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
@@ -58,7 +63,8 @@
 	for (var/obj/item/stock_parts/manipulator/M in component_parts)
 		rating = M.rating
 	maxwater = tmp_capacity * 50 // Up to 300
-	maxnutri = tmp_capacity * 5 // Up to 30
+	maxnutri = tmp_capacity * 5 + STATIC_NUTRIENT_CAPACITY // Up to 30
+	reagents.maximum_volume = maxnutri
 	nutriment_drain_precent = 10/rating
 
 /obj/machinery/hydroponics/constructable/examine(mob/user)
@@ -114,12 +120,13 @@
 //Nutrients//////////////////////////////////////////////////////////////
 			apply_chemicals(lastuser?.resolve())
 			// Nutrients deplete slowly
-			adjust_plant_nutriments(reagents.total_volume / nutriment_drain_precent)
+			adjust_plant_nutriments((reagents.total_volume / nutriment_drain_precent))
 
+			/*
 			// Lack of nutrients hurts non-weeds
 			if(nutrilevel <= 0 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
 				adjust_plant_health(-rand(1,3))
-
+			*/
 //Photosynthesis/////////////////////////////////////////////////////////
 			// Lack of light hurts non-mushrooms
 			if(isturf(loc))
@@ -134,7 +141,7 @@
 
 //Water//////////////////////////////////////////////////////////////////
 			// Drink random amount of water
-			adjust_plant_waterlevel(-rand(1,6) / rating)
+			adjust_waterlevel(-rand(1,6) / rating)
 
 			// If the plant is dry, it loses health pretty fast, unless mushroom
 			if(waterlevel <= 10 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
@@ -143,22 +150,22 @@
 					adjust_plant_health(-rand(0,2) / rating)
 
 			// Sufficient water level and nutrient level = plant healthy but also spawns weeds
-			else if(waterlevel > 10 && nutrilevel > 0)
+			else if(waterlevel > 10 && reagents.total_volume > 0)
 				adjust_plant_health(rand(1,2) / rating)
 				if(myseed && prob(myseed.weed_chance))
-					adjust_plant_weeds(myseed.weed_rate)
+					adjust_weedlevel(myseed.weed_rate)
 				else if(prob(5))  //5 percent chance the weed population will increase
-					adjust_plant_weeds(1 / rating)
+					adjust_weedlevel(1 / rating)
 
 //Toxins/////////////////////////////////////////////////////////////////
 
 			// Too much toxins cause harm, but when the plant drinks the contaiminated water, the toxins disappear slowly
 			if(toxic >= 40 && toxic < 80)
 				adjust_plant_health(-1 / rating)
-				adjust_plant_toxic(-rand(1,10) / rating)
+				adjust_toxic(-rand(1,10) / rating)
 			else if(toxic >= 80) // I don't think it ever gets here tbh unless above is commented out
 				adjust_plant_health(-3)
-				adjust_plant_toxic(-rand(1,10) / rating)
+				adjust_toxic(-rand(1,10) / rating)
 
 //Pests & Weeds//////////////////////////////////////////////////////////
 
@@ -168,7 +175,7 @@
 
 				else
 					adjust_plant_health(2 / rating)
-					adjust_plant_pests(-1 / rating)
+					adjust_pestlevel(-1 / rating)
 
 			else if(pestlevel >= 4)
 				if(!myseed.get_gene(/datum/plant_gene/trait/plant_type/carnivory))
@@ -177,23 +184,25 @@
 				else
 					adjust_plant_health(1 / rating)
 					if(prob(50))
-						adjust_plant_pests(-1 / rating)
+						adjust_pestlevel(-1 / rating)
 
 			else if(pestlevel < 4 && myseed.get_gene(/datum/plant_gene/trait/plant_type/carnivory))
 				adjust_plant_health(-2 / rating)
 				if(prob(5))
-					adjust_plant_pests(-1 / rating)
+					adjust_pestlevel(-1 / rating)
 
 			// If it's a weed, it doesn't stunt the growth
 			if(weedlevel >= 5 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
 				adjust_plant_health(-1 / rating)
 
+//This is the part with pollination
+			pollinate()
 //Health & Age///////////////////////////////////////////////////////////
 
 			// Plant dies if plant_health <= 0
 			if(plant_health <= 0)
 				plantdies()
-				adjust_plant_weeds(1 / rating) // Weeds flourish
+				adjust_weedlevel(1 / rating) // Weeds flourish
 
 			// If the plant is too old, lose health fast
 			if(age > myseed.lifespan)
@@ -209,10 +218,10 @@
 				else
 					lastproduce = age
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
-				adjust_plant_pests(1 / rating)
+				adjust_pestlevel(1 / rating)
 		else
-			if(waterlevel > 10 && nutrilevel > 0 && prob(10))  // If there's no plant, the percentage chance is 10%
-				adjust_plant_weeds(1 / rating)
+			if(waterlevel > 10 && reagents.total_volume > 0 && prob(10))  // If there's no plant, the percentage chance is 10%
+				adjust_weedlevel(1 / rating)
 
 		// Weeeeeeeeeeeeeeedddssss
 		if(weedlevel >= 10 && prob(50)) // At this point the plant is kind of fucked. Weeds can overtake the plant spot.
@@ -258,8 +267,6 @@
 			add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "gaia_blessing"))
 		set_light(3)
 
-	update_icon_hoses()
-
 	if(myseed)
 		update_icon_plant()
 		update_icon_lights()
@@ -290,7 +297,7 @@
 /obj/machinery/hydroponics/proc/update_icon_lights()
 	if(waterlevel <= 10)
 		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lowwater3"))
-	if(nutrilevel <= 2)
+	if(reagents.total_volume <= 2)
 		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lownutri3"))
 	if(plant_health <= (myseed.endurance / 2))
 		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lowhealth3"))
@@ -315,7 +322,7 @@
 
 	if(!self_sustaining)
 		. += "<span class='info'>Water: [waterlevel]/[maxwater].</span>\n"+\
-		"<span class='info'>Nutrient: [nutrilevel]/[maxnutri].</span>"
+		"<span class='info'>Nutrient: [reagents.total_volume]/[maxnutri].</span>"
 	else
 		. += "<span class='info'>It doesn't require any water or nutrients.</span>"
 
@@ -365,6 +372,32 @@
 		update_icon()
 		dead = 1
 
+/**
+ * Plant Cross-Pollination.
+ * Checks all plants in the tray's oview range, then averages out the seed's potency, instability, and yield values.
+ * If the seed's instability is >= 20, the seed donates one of it's reagents to that nearby plant.
+ * * Range - The Oview range of trays to which to look for plants to donate reagents.
+ */
+/obj/machinery/hydroponics/proc/pollinate(range = 1)
+	for(var/obj/machinery/hydroponics/T in oview(src, range))
+		//Here is where we check for window blocking.
+		if(!Adjacent(T) && range <= 1)
+			continue
+		if(T.myseed && !T.dead)
+			T.myseed.blooming_stage++
+			T.myseed.set_potency(round((T.myseed.potency+(1/10)*(myseed.potency-T.myseed.potency))))
+			T.myseed.set_yield(round((T.myseed.yield+(1/2)*(myseed.yield-T.myseed.yield))))
+			if(myseed.blooming_stage >= 5 && prob(70) && length(T.myseed.reagents_add))
+				var/list/datum/plant_gene/reagent/possible_reagents = list()
+				for(var/datum/plant_gene/reagent/reag in T.myseed.genes)
+					possible_reagents += reag
+				var/datum/plant_gene/reagent/reagent_gene = pick(possible_reagents) //Let this serve as a lession to delete your WIP comments before merge.
+				if(reagent_gene.can_add(myseed))
+					if(!reagent_gene.try_upgrade_gene(myseed))
+						myseed.genes += reagent_gene.Copy()
+					myseed.reagents_from_genes()
+					myseed.blooming_stage = 0
+					continue
 
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
@@ -400,8 +433,6 @@
 
 		if(visi_msg)
 			visible_message("<span class='notice'>[visi_msg].</span>")
-
-		var/split = round(transfer_amount/trays.len)
 
 		for(var/obj/machinery/hydroponics/H in trays)
 		//cause I don't want to feel like im juggling 15 tamagotchis and I can get to my real work of ripping flooring apart in hopes of validating my life choices of becoming a space-gardener
@@ -458,7 +489,7 @@
 		combined_msg += "- Pest level: <span class='notice'>[pestlevel] / 10</span>"
 		combined_msg += "- Toxicity level: <span class='notice'>[toxic] / 100</span>"
 		combined_msg += "- Water level: <span class='notice'>[waterlevel] / [maxwater]</span>"
-		combined_msg += "- Nutrition level: <span class='notice'>[nutrilevel] / [maxnutri]</span>"
+		combined_msg += "- Nutrition level: <span class='notice'>[reagents.total_volume] / [maxnutri]</span>"
 		combined_msg += ""
 
 		to_chat(user, examine_block(combined_msg.Join("\n")))
@@ -522,13 +553,13 @@
 		if(HAS_TRAIT(user, FOOD_JOB_BOTANIST))
 			var/random_increase = rand(1, 20) * 0.01
 			if(prob(50))
-				myseed.adjust_potency(round(myseed.potency *random_increase, 1), FALSE)
+				myseed.adjust_potency(round(myseed.potency *random_increase, 1))
 			if(prob(20))
-				myseed.adjust_yield(round(myseed.yield * random_increase, 1), FALSE)
+				myseed.adjust_yield(round(myseed.yield * random_increase, 1))
 			if(prob(35))
-				myseed.adjust_lifespan(round(myseed.lifespan * random_increase, 1), FALSE)
+				myseed.adjust_lifespan(round(myseed.lifespan * random_increase, 1))
 			if(prob(40))
-				myseed.adjust_endurance(round(myseed.endurance * random_increase, 1), FALSE)
+				myseed.adjust_endurance(round(myseed.endurance * random_increase, 1))
 
 		return myseed.harvest(user)
 
@@ -590,9 +621,6 @@
 	use_power = NO_POWER_USE
 	flags_1 = NODECONSTRUCT_1
 	unwrenchable = FALSE
-
-/obj/machinery/hydroponics/soil/update_icon_hoses()
-	return // Has no hoses
 
 /obj/machinery/hydroponics/soil/update_icon_lights()
 	return // Has no lights
