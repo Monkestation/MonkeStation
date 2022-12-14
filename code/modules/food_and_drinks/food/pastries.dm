@@ -796,7 +796,7 @@
 		pancake = item
 		pancake.contents.Cut()
 	return
-	else if(contents.len)
+	if(contents.len)
 		var/obj/O = contents[contents.len]
 		return O.attackby(item, user, params)
 	..()
