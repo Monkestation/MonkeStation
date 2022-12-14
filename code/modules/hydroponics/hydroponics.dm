@@ -38,6 +38,7 @@
 	. = ..()
 	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
 		connected_tree = located_tree
+		connected_tree.attached_component.connected_trays += src
 		return
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
@@ -116,7 +117,6 @@
 		myseed.forceMove(src)
 
 	if(self_sustaining)
-		adjustNutri(0.5 * delta_time)
 		adjustWater(rand(1,2) * delta_time * 0.5)
 		adjustWeeds(-1 * delta_time)
 		adjustPests(-1 * delta_time)
@@ -534,14 +534,6 @@
 		yieldmod = 1.3
 		mutmod = 0
 		adjustNutri(round(S.get_reagent_amount(/datum/reagent/plantnutriment/robustharvestnutriment) *1 ))
-
-	// Ambrosia Gaia produces earthsblood.
-	if(S.has_reagent(/datum/reagent/medicine/earthsblood))
-		self_sufficiency_progress += S.get_reagent_amount(/datum/reagent/medicine/earthsblood)
-		if(self_sufficiency_progress >= self_sufficiency_req)
-			become_self_sufficient()
-		else if(!self_sustaining)
-			to_chat(user, "<span class='notice'>[src] warms as it might on a spring day under a genuine Sun.</span>")
 
 	// Antitoxin binds shit pretty well. So the tox goes significantly down
 	if(S.has_reagent(/datum/reagent/medicine/charcoal, 1))

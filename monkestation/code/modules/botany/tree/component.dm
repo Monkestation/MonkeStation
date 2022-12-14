@@ -27,6 +27,8 @@
 	var/pulse_time = 30 SECONDS
 	//the y offset mutltiplier that gets sent to the progress bar to make it move up when the tree grows
 	var/y_offset = 1
+	//connected_trays
+	var/list/connected_trays = list()
 
 /datum/component/botany_tree/Initialize(...)
 	. = ..()
@@ -102,6 +104,10 @@
 		pulse()
 
 /datum/component/botany_tree/proc/pulse()
+	var/list/affected_plants = list()
+	for(var/obj/machinery/hydroponics/listed_tray in connected_trays)
+		if(listed_tray.myseed)
+			affected_plants += listed_tray.myseed
 	for(var/datum/tree_node/listed_node as anything in pulse_nodes)
-		listed_node.on_pulse()
+		listed_node.on_pulse(affected_plants)
 	INVOKE_ASYNC(src, /datum/component/botany_tree.proc/init_pulse)
