@@ -126,10 +126,10 @@
 				var/lightAmt = currentTurf.get_lumcount()
 				if(myseed.get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 					if(lightAmt < 0.2)
-						adjust_plant_health(-1 / rating)
+						adjust_plant_health(-0.4 / rating)
 				else // Non-mushroom
 					if(lightAmt < 0.4)
-						adjust_plant_health(-2 / rating)
+						adjust_plant_health(-0.8 / rating)
 
 //Water//////////////////////////////////////////////////////////////////
 			// Drink random amount of water
@@ -137,9 +137,9 @@
 
 			// If the plant is dry, it loses health pretty fast, unless mushroom
 			if(waterlevel <= 10 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
-				adjust_plant_health(-rand(0,1) / rating)
+				adjust_plant_health(-rand(0, 0.4) / rating)
 				if(waterlevel <= 0)
-					adjust_plant_health(-rand(0,2) / rating)
+					adjust_plant_health(-rand(0, 0.8) / rating)
 
 			// Sufficient water level and nutrient level = plant healthy but also spawns weeds
 			else if(waterlevel > 10 && reagents.total_volume > 0)
@@ -163,7 +163,7 @@
 
 			if(pestlevel >= 8)
 				if(!myseed.get_gene(/datum/plant_gene/trait/plant_type/carnivory))
-					adjust_plant_health(-2 / rating)
+					adjust_plant_health(-0.8 / rating)
 
 				else
 					adjust_plant_health(2 / rating)
@@ -171,7 +171,7 @@
 
 			else if(pestlevel >= 4)
 				if(!myseed.get_gene(/datum/plant_gene/trait/plant_type/carnivory))
-					adjust_plant_health(-1 / rating)
+					adjust_plant_health(-0.4 / rating)
 
 				else
 					adjust_plant_health(1 / rating)
@@ -179,13 +179,13 @@
 						adjust_pestlevel(-1 / rating)
 
 			else if(pestlevel < 4 && myseed.get_gene(/datum/plant_gene/trait/plant_type/carnivory))
-				adjust_plant_health(-2 / rating)
+				adjust_plant_health(-0.8 / rating)
 				if(prob(5))
 					adjust_pestlevel(-1 / rating)
 
 			// If it's a weed, it doesn't stunt the growth
 			if(weedlevel >= 5 && !myseed.get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
-				adjust_plant_health(-1 / rating)
+				adjust_plant_health(-0.4 / rating)
 
 //This is the part with pollination
 			pollinate()
