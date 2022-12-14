@@ -63,7 +63,7 @@
 				++xcrd
 			--ycrd
 
-/datum/map_template/shuttle/load(turf/T, centered, init_atmos = TRUE, finalize = TRUE, register=TRUE)
+/datum/map_template/shuttle/load(turf/T, centered, init_atmos, finalize = TRUE, register = TRUE)
 	if(centered)
 		T = locate(T.x - round(width/2) , T.y - round(height/2) , T.z)
 		centered = FALSE
@@ -79,7 +79,9 @@
 	. = ..(map_gen, T, TRUE, parsed, FALSE)
 	keep_cached_map = initial(keep_cached_map)
 	if(!.)
+		log_runtime("Failed to load shuttle [map_gen.get_name()].")
 		return
+
 	var/obj/docking_port/mobile/my_port
 	for(var/turf/place in turfs)
 		if(place.loc == turfs[place] || !istype(place.loc, /area/shuttle)) //If not part of the shuttle, ignore it

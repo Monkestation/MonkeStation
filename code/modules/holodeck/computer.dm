@@ -234,7 +234,6 @@ and clear when youre done! if you dont i will use :newspaper2: on you
 
 ///finalizes objects in the spawned list
 /obj/machinery/computer/holodeck/proc/finish_spawn()
-
 	spawned = template.created_atoms //populate the spawned list with the atoms belonging to the holodeck
 
 	if(istype(template, /datum/map_template/holodeck/thunderdome1218) && !SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM])

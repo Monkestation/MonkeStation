@@ -882,7 +882,6 @@ SUBSYSTEM_DEF(shuttle)
 				var/datum/map_generator/shuttle_loader = load_template(S, loaded_shuttle_reference)
 				shuttle_loader.on_completion(CALLBACK(src, .proc/jump_to_preview, user, loaded_shuttle_reference))
 				preview_template = S
-
 		if("load")
 			if(existing_shuttle == backup_shuttle)
 				// TODO make the load button disabled
@@ -909,7 +908,3 @@ SUBSYSTEM_DEF(shuttle)
 	preview_shuttle = loaded_shuttle_reference.value
 	if(loaded_shuttle)
 		user.forceMove(get_turf(loaded_shuttle))
-
-/// Allows the creation of an async reference, which won't be set until some action is completed.
-/datum/variable_ref
-	var/value = null

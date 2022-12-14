@@ -35,6 +35,7 @@
 
 		var/datum/map_generator/map_placer = load(central_turf,centered = TRUE)
 		map_placer.on_completion(CALLBACK(src, .proc/after_ruin_generation, central_turf))
+
 		return map_placer
 
 /datum/map_template/ruin/proc/after_ruin_generation(turf/central_turf)
