@@ -515,7 +515,7 @@
 
 	return result
 
-/obj/item/seeds/proc/Copy_drop()
+/obj/item/seeds/proc/Copy_drop(output_loc)
 	var/obj/item/seeds/S = new type(output_loc, 1)
 	// Copy all the stats
 	S.lifespan = lifespan
