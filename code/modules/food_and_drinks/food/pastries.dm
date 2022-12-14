@@ -711,8 +711,6 @@
 	foodtypes = GRAIN | SUGAR
 	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
-#define PANCAKE_MAX_STACK 10
-
 /obj/item/food/pancakes
 	name = "pancake"
 	desc = "A fluffy pancake. The softer, superior relative of the waffle."
@@ -772,7 +770,7 @@
 			desc = "A fat stack of fluffy pancakes!"
 		if(7 to 9)
 			desc = "A grand tower of fluffy, delicious pancakes!"
-		if(PANCAKE_MAX_STACK to INFINITY)
+		if(10 to INFINITY)
 			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
 	. = ..()
 	if (pancakeCount)
@@ -783,24 +781,21 @@
 /obj/item/food/pancakes/attackby(obj/item/item, mob/living/user, params)
 	if(istype(item, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = item
-		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
-		else
-			if(!user.transferItemToLoc(pancake, src))
-				return
-			to_chat(user, span_notice("You add the [pancake] to the [src]."))
-			pancake.name = initial(pancake.name)
-			contents += pancake
-			update_snack_overlays(pancake)
-			if (pancake.contents.len)
-				for(var/pancake_content in pancake.contents)
-					pancake = pancake_content
-					pancake.name = initial(pancake.name)
-					contents += pancake
-					update_snack_overlays(pancake)
-			pancake = item
-			pancake.contents.Cut()
-		return
+		if(!user.transferItemToLoc(pancake, src))
+			return
+		to_chat(user, span_notice("You add the [pancake] to the [src]."))
+		pancake.name = initial(pancake.name)
+		contents += pancake
+		update_snack_overlays(pancake)
+		if (pancake.contents.len)
+			for(var/pancake_content in pancake.contents)
+				pancake = pancake_content
+				pancake.name = initial(pancake.name)
+				contents += pancake
+				update_snack_overlays(pancake)
+		pancake = item
+		pancake.contents.Cut()
+	return
 	else if(contents.len)
 		var/obj/O = contents[contents.len]
 		return O.attackby(item, user, params)
@@ -821,7 +816,6 @@
 	. = item.attack(target, user, params, FALSE)
 	update_appearance()
 
-#undef PANCAKE_MAX_STACK
 /obj/item/food/cannoli
 	name = "cannoli"
 	desc = "A sicilian treat that makes you into a wise guy."
