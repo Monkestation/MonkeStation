@@ -10,7 +10,7 @@
 	color_change_trunk = "#00FFFF"
 
 
-/datum/tree_node/major/strange/on_pulse(list/affected_plants)
+/datum/tree_node/major/strange/on_pulse(list/affected_plants, pulse_range)
 	for(var/obj/item/seeds/listed_seed as anything in affected_plants)
 		if(prob(50))
 			listed_seed.add_random_reagents(1,1)

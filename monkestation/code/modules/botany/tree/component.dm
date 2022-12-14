@@ -109,5 +109,5 @@
 		if(listed_tray.myseed)
 			affected_plants += listed_tray.myseed
 	for(var/datum/tree_node/listed_node as anything in pulse_nodes)
-		listed_node.on_pulse(affected_plants)
+		listed_node.on_pulse(affected_plants, pulse_range)
 	INVOKE_ASYNC(src, /datum/component/botany_tree.proc/init_pulse)

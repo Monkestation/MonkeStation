@@ -99,6 +99,9 @@
 /obj/item/seeds/proc/get_gene(typepath)
 	return (locate(typepath) in genes)
 
+/obj/item/seeds/proc/on_chem_reaction(datum/reagents/reagents)
+	return
+
 /obj/item/seeds/proc/reagents_from_genes()
 	reagents_add = list()
 	for(var/datum/plant_gene/reagent/R in genes)

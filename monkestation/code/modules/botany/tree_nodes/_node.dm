@@ -24,7 +24,7 @@
 /datum/tree_node/proc/on_tree_add()
 	return
 
-/datum/tree_node/proc/on_pulse(list/affected_plants)
+/datum/tree_node/proc/on_pulse(list/affected_plants, pulse_range)
 	return
 
 /datum/tree_node/proc/final_growth(obj/machinery/hydroponics/grown_location)
