@@ -208,7 +208,7 @@
 
 
 /// Setters procs ///
-/obj/item/seeds/proc/adjust_yield(adjustamt, clamped = TRUE)
+/obj/item/seeds/proc/adjust_yield(adjustamt)
 	yield = yield + adjustamt
 	if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 		yield = 1 // Mushrooms always have a minimum yield of 1.
@@ -229,7 +229,7 @@
 		C.value = endurance
 
 /obj/item/seeds/proc/adjust_production(adjustamt)
-	production = production + adjustamt
+	production = max(1, production + adjustamt)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 	if(C)
 		C.value = production
@@ -241,12 +241,13 @@
 		C.value = potency
 
 /obj/item/seeds/proc/adjust_weed_rate(adjustamt)
-	weed_rate = weed_rate + adjustamt
+	weed_rate = min(10, weed_rate + adjustamt)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_rate)
 	if(C)
 		C.value = weed_rate
 
 /obj/item/seeds/proc/adjust_weed_chance(adjustamt)
+	weed_chance = min(100, weed_chance + adjustamt)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/weed_chance)
 	if(C)
 		C.value = weed_chance

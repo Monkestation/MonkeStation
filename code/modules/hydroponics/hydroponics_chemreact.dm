@@ -17,6 +17,8 @@
 			adjust_plant_health(-10)
 			visible_message(span_warning("\The [myseed.plantname] starts to wilt and burn!"))
 			return
+		if(41 to 90)
+			mutate()
 		if(21 to 40)
 			visible_message(span_notice("\The [myseed.plantname] appears unusually reactive..."))
 			return
