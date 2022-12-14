@@ -8,6 +8,7 @@
 	product = /obj/item/food/grown/carrot
 	maturation = 10
 	production = 1
+	harvest_age = 1
 	yield = 5
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'

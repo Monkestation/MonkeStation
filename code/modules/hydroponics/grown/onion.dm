@@ -8,6 +8,7 @@
 	lifespan = 20
 	maturation = 3
 	production = 4
+	harvest_age = 4
 	yield = 6
 	endurance = 25
 	growthstages = 3

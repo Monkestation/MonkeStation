@@ -43,7 +43,7 @@
 	if(mutate_stats) //baby mushrooms have different stats :3
 		myseed.adjust_potency(rand(-3,6))
 		myseed.adjust_yield(rand(-1,2))
-		myseed.adjust_production(rand(-3,6))
+		myseed.adjust_production(rand(-6,3))
 		myseed.adjust_endurance(rand(-3,6))
 	obj_integrity = myseed.endurance
 	max_integrity = myseed.endurance

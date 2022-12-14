@@ -8,6 +8,7 @@
 	product = /obj/item/food/grown/soybeans
 	maturation = 4
 	production = 4
+	harvest_age = 4
 	potency = 15
 	growthstages = 4
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'

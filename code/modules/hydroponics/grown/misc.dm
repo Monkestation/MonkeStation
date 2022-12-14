@@ -9,6 +9,7 @@
 	endurance = 50 // damm pesky weeds
 	maturation = 5
 	production = 1
+	harvest_age = 1
 	yield = 2
 	potency = 10
 	growthstages = 3
@@ -36,6 +37,7 @@
 	species = "corpse-flower"
 	plantname = "Corpse flower"
 	production = 2
+	harvest_age = 2
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list()
 	mutatelist = list()
@@ -69,6 +71,7 @@
 	endurance = 40
 	maturation = 3
 	production = 2
+	harvest_age = 2
 	yield = 2
 	potency = 25
 	growthstages = 3
@@ -105,6 +108,7 @@
 	endurance = 25
 	maturation = 3
 	production = 5
+	harvest_age = 5
 	yield = 4
 	growthstages = 1
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
@@ -162,6 +166,7 @@
 	endurance = 20
 	maturation = 40
 	production = 10
+	harvest_age = 10
 	yield = 2
 	potency = 60
 	growthstages = 2

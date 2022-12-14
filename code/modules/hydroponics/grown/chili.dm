@@ -9,6 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
+	harvest_age = 5
 	yield = 4
 	potency = 20
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
@@ -38,6 +39,7 @@
 	lifespan = 25
 	maturation = 4
 	production = 4
+	harvest_age = 4
 	rarity = 20
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/frostoil = 0.25, /datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/nutriment = 0.02)
@@ -63,6 +65,7 @@
 	endurance = 10
 	maturation = 10
 	production = 10
+	harvest_age = 10
 	yield = 3
 	rarity = 20
 	mutatelist = list()

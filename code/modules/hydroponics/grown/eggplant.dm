@@ -35,6 +35,7 @@
 	product = /obj/item/food/grown/shell/eggy
 	lifespan = 75
 	production = 12
+	harvest_age = 12
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 

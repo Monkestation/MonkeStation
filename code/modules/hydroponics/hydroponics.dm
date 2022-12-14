@@ -120,7 +120,7 @@
 //Nutrients//////////////////////////////////////////////////////////////
 			apply_chemicals(lastuser?.resolve())
 			// Nutrients deplete slowly
-			adjust_plant_nutriments((reagents.total_volume / nutriment_drain_precent))
+			adjust_plant_nutriments(reagents.total_volume * (nutriment_drain_precent * 0.1))
 
 			/*
 			// Lack of nutrients hurts non-weeds
@@ -209,7 +209,7 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(age > myseed.production && (age - lastproduce) > myseed.production && (!harvest && !dead))
+			if(myseed.harvest_age > age * (1 + (myseed.production * 0.44) && (myseed.harvest_age) > (age - lastproduce) * (myseed.production * 0.44) && (!harvest && !dead)))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
 					if(connected_tree)

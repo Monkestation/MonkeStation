@@ -10,6 +10,7 @@
 	endurance = 40
 	maturation = 2
 	production = 5
+	harvest_age = 5
 	yield = 5
 	growthstages = 2
 	icon_grow = "grass-grow"

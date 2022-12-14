@@ -58,6 +58,7 @@
 	product = /obj/item/food/grown/trumpet
 	lifespan = 80
 	production = 5
+	harvest_age = 5
 	endurance = 10
 	maturation = 12
 	yield = 4
@@ -145,6 +146,7 @@
 	endurance = 20
 	maturation = 7
 	production = 1
+	harvest_age = 1
 	yield = 2
 	potency = 30
 	growthstages = 4
@@ -172,6 +174,7 @@
 	product = /obj/item/grown/sunflower
 	endurance = 20
 	production = 2
+	harvest_age = 2
 	yield = 2
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'

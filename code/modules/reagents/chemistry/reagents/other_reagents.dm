@@ -1925,8 +1925,8 @@
 		var/salt = chems.get_reagent_amount(src.type)
 		mytray.adjust_plant_health(round(salt * 0.18))
 		if(myseed)
-			myseed.adjust_production(-round(salt/10)-prob(salt%10))
-			myseed.adjust_potency(round(salt*1))
+			myseed.adjust_production(round(salt * 0.1) + prob(salt%10))
+			myseed.adjust_potency(round(salt * 1))
 
 /datum/reagent/lye
 	name = "Lye"

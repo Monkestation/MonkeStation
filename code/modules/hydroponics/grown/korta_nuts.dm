@@ -38,6 +38,7 @@
 	product = /obj/item/food/grown/korta_nut/sweet
 	maturation = 10
 	production = 10
+	harvest_age = 10
 	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/korta_nectar = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20

@@ -9,6 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
+	harvest_age = 5
 	yield = 10
 	growthstages = 3
 	icon_dead = "tobacco-dead"
