@@ -54,3 +54,31 @@
 		ui = new(user, src, "BotanySplicer", name)
 		ui.set_autoupdate(TRUE)
 		ui.open()
+
+/obj/machinery/splicer/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("eject_seed_one")
+			eject_seed(seed_1)
+			seed_1 = null
+			return TRUE
+		if("eject_seed_two")
+			eject_seed(seed_2)
+			seed_2 = null
+			return TRUE
+		if("splice")
+			seed_1.splice(seed_2)
+			return TRUE
+
+/obj/machinery/splicer/proc/eject_seed(obj/item/seeds/ejected_seed)
+	if (ejected_seed)
+		if(Adjacent(usr) && !issiliconoradminghost(usr))
+			if (!usr.put_in_hands(ejected_seed))
+				ejected_seed.forceMove(drop_location())
+		else
+			ejected_seed.forceMove(drop_location())
+		ui_update()
+		. = TRUE
