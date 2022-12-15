@@ -184,26 +184,33 @@
 	reagent_id = /datum/reagent/consumable/liquidelectricity
 	rate = 0.1
 
-// Various traits affecting the product.
+// Traits that affect the grown product.
 /datum/plant_gene/trait
+	/// The rate at which this trait affects something. This can be anything really - why? I dunno.
 	var/rate = 0.05
+	/// Bonus lines displayed on examine.
 	var/examine_line = ""
-	var/trait_id // must be set and equal for any two traits of the same type
+	/// Flag - Traits that share an ID cannot be placed on the same plant.
+	var/trait_ids
+	/// Flag - Modifications made to the final product.
+	var/trait_flags
 
 /datum/plant_gene/trait/Copy()
 	var/datum/plant_gene/trait/G = ..()
 	G.rate = rate
 	return G
 
-/datum/plant_gene/trait/can_add(obj/item/seeds/S)
-	if(!..())
+/datum/plant_gene/trait/can_add(obj/item/seeds/source_seed)
+	. = ..()
+	if(!.)
 		return FALSE
 
-	for(var/datum/plant_gene/trait/R in S.genes)
-		if(trait_id && R.trait_id == trait_id)
+	for(var/datum/plant_gene/trait/trait in source_seed.genes)
+		if(trait_ids & trait.trait_ids)
 			return FALSE
-		if(type == R.type)
+		if(type == trait.type)
 			return FALSE
+
 	return TRUE
 
 /datum/plant_gene/trait/proc/on_new(obj/item/food/grown/G, newloc)
@@ -236,6 +243,7 @@
 	// Also splashes everything in target turf with reagents and applies other trait effects (teleporting, etc) to the target by on_squash.
 	// For code, see grown.dm
 	name = "Liquid Contents"
+	trait_ids = THROW_IMPACT_ID | REAGENT_TRANSFER_ID | ATTACK_SELF_ID
 	examine_line = "<span class='info'>It has a lot of liquid contents inside.</span>"
 
 /datum/plant_gene/trait/squash/on_slip(obj/item/food/grown/G, mob/living/carbon/C)
@@ -246,7 +254,7 @@
 	// Allows the plant to hotbox rooms and spawn gas when burned
 	name = "Hotbox"
 	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"
-	trait_id = "harvest"
+	trait_ids = "harvest"
 
 /datum/plant_gene/trait/hotbox/on_add(obj/item/seeds/host_seed)
 	host_seed.max_yield = 3
@@ -326,7 +334,7 @@
 	name = "Bioluminescence"
 	rate = 0.03
 	examine_line = "<span class='info'>It emits a soft glow.</span>"
-	trait_id = "glow"
+	trait_ids = GLOW_ID
 	var/glow_color = "#C3E381"
 
 /datum/plant_gene/trait/glow/proc/glow_range(obj/item/seeds/S)
@@ -436,7 +444,7 @@
 
 /datum/plant_gene/trait/repeated_harvest
 	name = "Perennial Growth"
-	trait_id = "harvest"
+	trait_ids = "harvest"
 
 /datum/plant_gene/trait/repeated_harvest/can_add(obj/item/seeds/S)
 	if(!..())
@@ -475,6 +483,7 @@
 
 /datum/plant_gene/trait/stinging
 	name = "Hypodermic Prickles"
+	trait_ids = REAGENT_TRANSFER_ID
 
 /datum/plant_gene/trait/stinging/on_slip(obj/item/food/grown/G, atom/target)
 	if(!isliving(target) || !G.reagents || !G.reagents.total_volume)
@@ -560,7 +569,7 @@
 
 /datum/plant_gene/trait/plant_type // Parent type
 	name = "you shouldn't see this"
-	trait_id = "plant_type"
+	trait_ids = "plant_type"
 
 /datum/plant_gene/trait/plant_type/weed_hardy
 	name = "Weed Adaptation"

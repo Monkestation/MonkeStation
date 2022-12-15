@@ -233,3 +233,12 @@
 #define COMSIG_MMI_SET_BRAINMOB "mmi_set_brainmob"
 
 #define COMSIG_BOTANY_FINAL_GROWTH "hydroponics_final_stage"
+
+//Plants / Plant Traits
+
+///called when a plant with slippery skin is slipped on (mob/victim)
+#define COMSIG_PLANT_ON_SLIP "plant_on_slip"
+///called when a plant with liquid contents is squashed on (atom/target)
+#define COMSIG_PLANT_ON_SQUASH "plant_on_squash"
+///called when a plant backfires via the backfire element (mob/victim)
+#define COMSIG_PLANT_ON_BACKFIRE "plant_on_backfire"

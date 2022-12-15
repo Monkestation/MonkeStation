@@ -19,6 +19,9 @@
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning
 	condensating_point = T20C - 5
 
+/datum/reagent/consumable/ethanol/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	myseed.process_trait_gain(/datum/plant_gene/trait/brewing, ((chems.get_reagent_amount(src.type) * 0.25) + (boozepwr * 0.25)))
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)

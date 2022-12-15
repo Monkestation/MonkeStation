@@ -39,7 +39,6 @@
 	var/yield_amount = getYield()
 	if(yield_amount >= 10)
 		yield_amount = 10 + log(1.4) * (getYield() - 1)
-	var/obj/item/seeds/generated_seed new Copy_drop(output_loc) /// we want atleast 1 seed
 	while(t_amount < yield_amount)
 		var/picked_object = pick(produce_list)
 		if(prob(30))
@@ -107,3 +106,18 @@
 
 /obj/item/seeds/proc/on_planted()
 	return
+
+
+/obj/item/seeds/proc/process_trait_gain(datum/plant_gene/trait/trait_to_check, amount)
+	if(trait_to_check in traits_in_progress)
+		traits_in_progress[trait_to_check] += amount
+	else
+		traits_in_progress[trait_to_check] = amount
+
+	if(traits_in_progress[trait_to_check] >= 100)
+		var/datum/plant_gene/trait/created_trait = new trait_to_check
+		if(!created_trait.can_add(src))
+			qdel(created_trait)
+			return
+		genes += created_trait
+		traits_in_progress[trait_to_check] = null
