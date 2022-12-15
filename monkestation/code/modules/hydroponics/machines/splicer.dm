@@ -99,6 +99,7 @@
 	new_seed.icon_harvest = first_seed.icon_harvest
 	new_seed.icon_dead = first_seed.icon_dead
 	new_seed.growthstages = first_seed.growthstages
+	new_seed.growing_icon = first_seed.growing_icon
 
 	new_seed.reagents_add = first_seed.reagents_add.Copy() + second_seed.reagents_add.Copy()
 

@@ -104,9 +104,11 @@
 /obj/machinery/hydroponics/proc/adjust_waterlevel(adjust_amount)
 	if(self_sustaining)
 		return
+	var/initial_waterlevel = waterlevel
 	waterlevel = CLAMP(waterlevel + adjust_amount, 0, maxwater)
 	if(adjust_amount>0)
 		adjust_toxic(-round(adjust_amount/4))//Toxicity dilutation code. The more water you put in, the lesser the toxin concentration.
+	return waterlevel-initial_waterlevel
 
 /obj/machinery/hydroponics/proc/adjust_plant_health(adjust_amount)
 	if(self_sustaining)

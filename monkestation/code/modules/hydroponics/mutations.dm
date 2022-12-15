@@ -64,12 +64,14 @@
 /obj/item/seeds/spliced/proc/return_viable_mutations()
 	var/list/returned_list = list()
 	for(var/datum/hydroponics/plant_mutation/spliced_mutation/listed_mutation as anything in (typesof(/datum/hydroponics/plant_mutation/spliced_mutation) - /datum/hydroponics/plant_mutation/spliced_mutation))
-		listed_mutation = new listed_mutation.type
-		if(listed_mutation.check_viable())
-			for(var/item in listed_mutation.required_types)
+		var/datum/hydroponics/plant_mutation/spliced_mutation/created_list_item = new listed_mutation
+		if(created_list_item.check_viable())
+			for(var/item in created_list_item.required_types)
 				if(item in produce_list)
-					listed_mutation.required_types -= item
-			if(!listed_mutation.required_types.len)
-				returned_list += listed_mutation
+					created_list_item.required_types -= item
+			if(!created_list_item.required_types.len)
+				returned_list += created_list_item
+		else
+			qdel(created_list_item)
 	return returned_list
 

@@ -1376,10 +1376,10 @@
 /datum/reagent/diethylamine/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 1))
+		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 0.1))
 		mytray.adjust_pestlevel(-rand(1,2))
 		if(myseed)
-			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 1))
+			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.05))
 
 /datum/reagent/diethylamine/define_gas()
 	var/datum/gas/new_gas = ..()

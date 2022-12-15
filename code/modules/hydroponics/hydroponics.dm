@@ -305,16 +305,17 @@
 			water_state = 1
 	add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_water_[water_state]"))
 
-	var/mutable_appearance/health_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_health")
-	if(plant_health < (myseed.endurance * 0.3))
-		health_overlay.color = "#FF3300"
-	else if(plant_health < (myseed.endurance * 0.5))
-		health_overlay.color = "#FFFF00"
-	else if(plant_health < (myseed.endurance * 0.7))
-		health_overlay.color = "#99FF66"
-	else
-		health_overlay.color = "#66FFFA"
-	add_overlay(health_overlay)
+	if(myseed)
+		var/mutable_appearance/health_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_health")
+		if(plant_health < (myseed.endurance * 0.3))
+			health_overlay.color = "#FF3300"
+		else if(plant_health < (myseed.endurance * 0.5))
+			health_overlay.color = "#FFFF00"
+		else if(plant_health < (myseed.endurance * 0.7))
+			health_overlay.color = "#99FF66"
+		else
+			health_overlay.color = "#66FFFA"
+		add_overlay(health_overlay)
 
 	if(reagents.total_volume <= 2)
 		add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_nutriment"))

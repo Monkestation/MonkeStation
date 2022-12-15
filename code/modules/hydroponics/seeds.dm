@@ -522,8 +522,8 @@
 			var/obj/item/seeds/seed_prod
 			if(prob(10) && special_mutations.len)
 				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
-				seed_prod = picked_mutation.created_seed
-				seed_prod = new(output_loc)
+				var/obj/item/seeds/created_seed = picked_mutation.created_seed
+				seed_prod = new created_seed(output_loc)
 			else
 				seed_prod = src.Copy_drop(output_loc)
 			result.Add(seed_prod) // User gets a consumable
@@ -532,8 +532,8 @@
 			var/obj/item/food/grown/t_prod
 			if(prob(10) && special_mutations.len)
 				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
-				t_prod = picked_mutation.created_product
-				t_prod = new(output_loc)
+				var/obj/item/produced_item = picked_mutation.created_product
+				t_prod = new produced_item(output_loc)
 			else
 				t_prod = new picked_object(output_loc, src)
 			result.Add(t_prod) // User gets a consumable
@@ -569,6 +569,9 @@
 	S.reagents_add = reagents_add.Copy() // Faster than grabbing the list from genes.
 
 	S.harvest_age = harvest_age
-
+	S.species = species
+	if(istype(src, /obj/item/seeds/spliced))
+		var/obj/item/seeds/spliced/spliced_seed = src
+		S.produce_list = spliced_seed.produce_list
 /obj/item/seeds/proc/on_planted()
 	return
