@@ -487,7 +487,6 @@
 	var/list/produce_list = list()
 	///list of all mutant seeds that could drop when harvesting
 	var/list/viable_mutant_seeds = list()
-
 /obj/item/seeds/spliced/harvest(mob/user)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
@@ -498,7 +497,11 @@
 	while(t_amount < yield_amount)
 		var/picked_object = pick(produce_list)
 		if(prob(30))
-			var/obj/item/seeds/seed_prod = src.Copy_drop(output_loc)
+			var/obj/item/seeds/seed_prod
+			if(prob(50) && has_valid_special_mutations())
+				var/obj/item/seeds/seed_prod = grab_valid_special_mutation(TRUE)
+			else
+				seed_prod = src.Copy_drop(output_loc)
 			result.Add(seed_prod) // User gets a consumable
 			t_amount++
 		else

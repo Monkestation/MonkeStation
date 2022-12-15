@@ -116,8 +116,8 @@
 		var/obj/item/seeds/spliced/spliced_seed = second_seed
 		new_seed.produce_list |= spliced_seed.produce_list
 
-	var/part1 = copytext(first_seed.name, 1, round(length(first_seed.name) * 0.65 + 1.5))
-	var/part2 = copytext(second_seed.name, round(length(second_seed.name) * 0.45 + 1), 0)
+	var/part1 = copytext(first_seed.name, 1, round(length(first_seed.name) * 0.70 + 2))
+	var/part2 = copytext(second_seed.name, round(length(second_seed.name) * 0.40 + 1), 0)
 
 	new_seed.name = "[part1][part2]"
 	new_seed.plantname = "[part1][part2]"
