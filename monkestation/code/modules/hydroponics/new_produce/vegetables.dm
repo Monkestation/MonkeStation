@@ -6,4 +6,4 @@
 /obj/item/food/grown/baked_potato
 	name = "baked potato"
 	desc = "Perfect with sour cream."
-	icon_state = "popcorn"
+	seed = /obj/item/seeds/potato/baked

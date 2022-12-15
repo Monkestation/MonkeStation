@@ -570,9 +570,16 @@
 
 	S.harvest_age = harvest_age
 	S.species = species
+	S.icon_grow = icon_grow
+	S.icon_harvest = icon_harvest
+	S.icon_dead = icon_dead
+	S.growthstages = growthstages
+	S.growing_icon = growing_icon
+
 	if(istype(src, /obj/item/seeds/spliced))
 		var/obj/item/seeds/spliced/spliced_seed = src
 		var/obj/item/seeds/spliced/new_spliced_seed = S
 		new_spliced_seed.produce_list = spliced_seed.produce_list
+
 /obj/item/seeds/proc/on_planted()
 	return
