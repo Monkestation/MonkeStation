@@ -39,9 +39,9 @@
 	var/nutriment_drain_precent = 10
 	var/self_sustaining = FALSE //If the tray generates nutrients and water on its own
 
-	///how much life we have lost
-	var/repeated_harvest = 0
 	var/obj/machinery/mother_tree/connected_tree
+	///how much lifespan is lost to repeated harvest
+	var/repeated_harvest = 0
 
 /obj/machinery/hydroponics/Initialize(mapload)
 	create_reagents(maxnutri)
@@ -571,7 +571,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	lastproduce = age * 0.5 //we want crops to take half as long
+	lastproduce = age * 0.5
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)

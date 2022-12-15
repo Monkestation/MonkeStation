@@ -9,7 +9,7 @@
 		if(listed_mutation.check_viable(src))
 			passed_vibe_check += listed_mutation
 
-	var/datum/hydroponics/plant_mutation/picked_mutation = pick(listed_mutation)
+	var/datum/hydroponics/plant_mutation/picked_mutation = pick(passed_vibe_check)
 	var/obj/item/created_item
 	if(!is_seed && picked_mutation.created_product)
 		created_item = new picked_mutation.created_product(output_loc)
@@ -28,7 +28,7 @@
 	var/list/required_endurance = list()
 	var/list/required_lifespan = list()
 
-/datum/hydroponics/plant_mutation/proc/check_viable(obj/item/seeds/checked_seeds)
+/datum/hydroponics/plant_mutation/proc/check_viable(obj/item/seeds/checked_seed)
 	if(required_potency.len)
 		if(!(required_potency[1] <= checked_seed.potency <= required_potency[2]))
 			return FALSE

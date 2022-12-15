@@ -22,6 +22,7 @@
 	var/maturation = 6				// Used to determine which sprite to switch to when growing.
 	var/production = 6				// Changes the amount of time needed for a plant to become harvestable.
 	var/yield = 3					// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
+	var/max_yield = INFINITY		// The absolute maximum yield a plant can have.
 	var/potency = 10				// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
 	var/growthstages = 6			// Amount of growth sprites the plant has.
 	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
@@ -57,7 +58,7 @@
 		icon_harvest = "[species]-harvest"
 
 	var/list/generated_mutations
-	for(var/listed_item in possible_mutations)
+	for(var/datum/hydroponics/plant_mutation/listed_item as anything in possible_mutations)
 		listed_item = new
 		generated_mutations += listed_item
 	possible_mutations = generated_mutations
@@ -160,7 +161,7 @@
 
 // Harvest procs
 /obj/item/seeds/proc/getYield()
-	var/return_yield = yield
+	var/return_yield = min(yield, max_yield)
 
 	var/obj/machinery/hydroponics/parent = loc
 	if(istype(loc, /obj/machinery/hydroponics))
@@ -346,7 +347,7 @@
 	if(potency != -1)
 		text += "- Potency: [potency]\n"
 	if(yield != -1)
-		text += "- Yield: [yield]\n"
+		text += "- Yield: [min(yield, max_yield)]\n"
 	text += "- Maturation speed: [maturation]\n"
 	if(yield != -1)
 		text += "- Production speed: [production]\n"
@@ -528,8 +529,8 @@
 			t_amount++
 		else
 			var/obj/item/food/grown/t_prod
-			if(prob(50) && has_valid_special_mutations())
-				seed_prod = grab_valid_special_mutation(output_loc, FALSE)
+			if(prob(50) && special_mutations.len)
+				t_prod = grab_valid_special_mutation(output_loc, FALSE)
 			else
 				t_prod = new picked_object(output_loc, src)
 			result.Add(t_prod) // User gets a consumable
