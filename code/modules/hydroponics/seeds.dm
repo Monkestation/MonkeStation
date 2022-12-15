@@ -521,7 +521,8 @@
 		if(prob(30))
 			var/obj/item/seeds/seed_prod
 			if(prob(50) && special_mutations.len)
-				seed_prod = pick(special_mutations)
+				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
+				seed_prod = picked_mutation.created_seed
 				seed_prod = new(output_loc)
 			else
 				seed_prod = src.Copy_drop(output_loc)
@@ -530,7 +531,9 @@
 		else
 			var/obj/item/food/grown/t_prod
 			if(prob(50) && special_mutations.len)
-				t_prod = grab_valid_special_mutation(output_loc, FALSE)
+				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
+				t_prod = picked_mutation.created_item
+				t_prod = new(output_loc)
 			else
 				t_prod = new picked_object(output_loc, src)
 			result.Add(t_prod) // User gets a consumable

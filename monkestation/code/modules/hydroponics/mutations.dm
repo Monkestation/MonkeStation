@@ -15,6 +15,7 @@
 		created_item = new picked_mutation.created_product(output_loc)
 	else
 		created_item = new picked_mutation.created_seed(output_loc)
+	return created_item
 
 /datum/hydroponics/plant_mutation
 	///items that are created if chosen
