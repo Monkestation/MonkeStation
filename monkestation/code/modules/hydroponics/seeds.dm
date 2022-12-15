@@ -98,6 +98,7 @@
 	S.icon_dead = icon_dead
 	S.growthstages = growthstages
 	S.growing_icon = growing_icon
+	S.traits_in_progress = traits_in_progress
 
 	if(istype(src, /obj/item/seeds/spliced))
 		var/obj/item/seeds/spliced/spliced_seed = src
@@ -108,12 +109,14 @@
 	return
 
 
-/obj/item/seeds/proc/process_trait_gain(datum/plant_gene/trait/trait_to_check, amount)
+/obj/item/seeds/proc/process_trait_gain(datum/plant_gene/trait/trait_to_check, increment)
+	if(traits_in_progress[trait_to_check] == 100)
+		return
 	if(trait_to_check in traits_in_progress)
 		var/old_value = traits_in_progress[trait_to_check]
-		traits_in_progress[trait_to_check] += amount + old_value
+		traits_in_progress[trait_to_check] = min(increment + old_value, 100)
 	else
-		traits_in_progress[trait_to_check] += amount
+		traits_in_progress[trait_to_check] = min(increment, 100)
 
 	if(traits_in_progress[trait_to_check] >= 100)
 		var/datum/plant_gene/trait/created_trait = new trait_to_check
