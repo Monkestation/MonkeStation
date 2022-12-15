@@ -755,7 +755,16 @@
 /obj/structure/closet/crate/necropolis/bdm/PopulateContents()
 	new /obj/item/melee/transforming/cleaving_saw(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
-
+	var/loot = rand(1,4)
+	switch(loot)
+		if(1)
+			/obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
+		if(2)
+			/obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
+		if(3)
+			/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
+		if(4)
+			/obj/item/disk/design_disk/modkit_disc/bounty(src)
 /obj/item/melee/transforming/cleaving_saw
 	name = "cleaving saw"
 	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
