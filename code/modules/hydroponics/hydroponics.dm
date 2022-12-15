@@ -289,10 +289,22 @@
 	add_overlay(plant_overlay)
 
 /obj/machinery/hydroponics/proc/update_icon_lights()
-	var/filled = clamp(waterlevel / maxwater, 0, 1)
-	var/mutable_appearance/water_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_water")
-	water_overlay.transform = matrix(-1 * (1 - filled), 0, filled, 0, 1, 0)
-	add_overlay(water_overlay)
+
+	var/filled = clamp(waterlevel / maxwater, 0, 1) * 100
+	var/water_state
+	switch(filled)
+		if(0 to 20)
+			water_state = 5
+		if(21 to 40)
+			water_state = 4
+		if(40 to 60)
+			water_state = 3
+		if(61 to 80)
+			water_state = 2
+		if(81 to 100)
+			water_state = 1
+	add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_water_[water_state]"))
+
 	var/mutable_appearance/health_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_health")
 	if(plant_health < (myseed.endurance * 0.3))
 		health_overlay.color = "#FF3300"
