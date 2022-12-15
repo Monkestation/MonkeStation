@@ -95,6 +95,9 @@
 	new_seed.set_weed_chance((first_seed.weed_chance + second_seed.weed_chance) * 0.5)
 	new_seed.set_weed_rate((first_seed.weed_rate + second_seed.weed_rate) * 0.5)
 	new_seed.species = first_seed.species
+	new_seed.icon_grow = first_seed.icon_grow
+	new_seed.icon_harvest = first_seed.icon_harvest
+	new_seed.icon_dead = first_seed.icon_dead
 
 	new_seed.reagents_add = first_seed.reagents_add.Copy() + second_seed.reagents_add.Copy()
 

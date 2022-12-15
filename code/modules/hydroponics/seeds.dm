@@ -173,7 +173,7 @@
 	var/yield_amount = getYield()
 	while(t_amount < yield_amount)
 		if(prob(30))
-			var/obj/item/seeds/seed_prod = src.Copy()
+			var/obj/item/seeds/seed_prod = src.Copy_drop(output_loc)
 			result.Add(seed_prod) // User gets a consumable
 			t_amount++
 		else
