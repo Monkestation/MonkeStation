@@ -758,13 +758,13 @@
 	var/loot = rand(1,4)
 	switch(loot)
 		if(1)
-			/obj/item/disk/design_disk/modkit_disc/resonator_blast(src)
+			/obj/item/disk/design_disk/modkit_disc/resonator_blast
 		if(2)
-			/obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
+			/obj/item/disk/design_disk/modkit_disc/rapid_repeater
 		if(3)
-			/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
+			/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
 		if(4)
-			/obj/item/disk/design_disk/modkit_disc/bounty(src)
+			/obj/item/disk/design_disk/modkit_disc/bounty
 /obj/item/melee/transforming/cleaving_saw
 	name = "cleaving saw"
 	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
