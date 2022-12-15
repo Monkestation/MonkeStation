@@ -22,7 +22,6 @@
 	var/maturation = 6				// Used to determine which sprite to switch to when growing.
 	var/production = 6				// Changes the amount of time needed for a plant to become harvestable.
 	var/yield = 3					// Amount of growns created per harvest. If is -1, the plant/shroom/weed is never meant to be harvested.
-	var/max_yield = 100				// The absolute maximum yield a plant can have.
 	var/potency = 10				// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
 	var/growthstages = 6			// Amount of growth sprites the plant has.
 	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
@@ -152,7 +151,7 @@
 
 // Harvest procs
 /obj/item/seeds/proc/getYield()
-	var/return_yield = min(yield, max_yield)
+	var/return_yield = yield
 
 	var/obj/machinery/hydroponics/parent = loc
 	if(istype(loc, /obj/machinery/hydroponics))
@@ -330,7 +329,7 @@
 	if(potency != -1)
 		text += "- Potency: [potency]\n"
 	if(yield != -1)
-		text += "- Yield: [min(yield, max_yield)]\n"
+		text += "- Yield: [yield]\n"
 	text += "- Maturation speed: [maturation]\n"
 	if(yield != -1)
 		text += "- Production speed: [production]\n"

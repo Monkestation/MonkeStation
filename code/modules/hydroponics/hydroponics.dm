@@ -39,6 +39,8 @@
 	var/nutriment_drain_precent = 10
 	var/self_sustaining = FALSE //If the tray generates nutrients and water on its own
 
+	///how much life we have lost
+	var/repeated_harvest = 0
 	var/obj/machinery/mother_tree/connected_tree
 
 /obj/machinery/hydroponics/Initialize(mapload)
@@ -197,7 +199,7 @@
 				adjust_weedlevel(1 / rating) // Weeds flourish
 
 			// If the plant is too old, lose health fast
-			if(age > myseed.lifespan)
+			if(age > (myseed.lifespan - harvest_loss))
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
@@ -207,7 +209,7 @@
 					if(connected_tree)
 						SEND_SIGNAL(connected_tree, COMSIG_BOTANY_FINAL_GROWTH, src)
 					harvest = 1
-					lastproduce = age
+					lastproduce = age * 0.5
 				else
 					lastproduce = age
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
@@ -568,7 +570,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	lastproduce = age
+	lastproduce = age * 0.5 //we want crops to take half as long
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)
@@ -581,6 +583,8 @@
 		dead = 0
 		age = 0
 		lastproduce = 0
+		repeated_harvest = 0
+	repeated_harvest = repeated_harvest + (myseed.lifespan * 0.1)
 	update_icon()
 
 /obj/machinery/hydroponics/proc/spawnplant() // why would you put strange reagent in a hydro tray you monster I bet you also feed them blood
