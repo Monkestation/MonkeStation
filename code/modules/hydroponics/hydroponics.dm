@@ -201,7 +201,7 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(myseed.harvest_age > age * (1 + (myseed.production * 0.044) && (myseed.harvest_age) > (age + lastproduce) * (myseed.production * 0.44) && (!harvest && !dead)))
+			if(myseed.harvest_age > age * (1 + myseed.production * 0.044) && (myseed.harvest_age) > (age + lastproduce) * (1 + myseed.production * 0.044) && (!harvest && !dead))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
 					if(connected_tree)
