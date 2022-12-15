@@ -57,10 +57,10 @@
 	if(!icon_harvest && !get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism) && yield != -1)
 		icon_harvest = "[species]-harvest"
 
-	var/list/generated_mutations
+	var/list/generated_mutations = list()
 	for(var/datum/hydroponics/plant_mutation/listed_item as anything in possible_mutations)
-		listed_item = new
-		generated_mutations += listed_item
+		var/datum/hydroponics/plant_mutation/created_list_item = new listed_item
+		generated_mutations += created_list_item
 	possible_mutations = generated_mutations
 
 	if(!nogenes) // not used on Copy()
@@ -532,7 +532,7 @@
 			var/obj/item/food/grown/t_prod
 			if(prob(50) && special_mutations.len)
 				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
-				t_prod = picked_mutation.created_item
+				t_prod = picked_mutation.created_product
 				t_prod = new(output_loc)
 			else
 				t_prod = new picked_object(output_loc, src)

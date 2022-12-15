@@ -31,19 +31,19 @@
 
 /datum/hydroponics/plant_mutation/proc/check_viable(obj/item/seeds/checked_seed)
 	if(required_potency.len)
-		if(!(required_potency[1] <= checked_seed.potency <= required_potency[2]))
+		if(!(required_potency[1] <= checked_seed.potency ||  checked_seed.potency <= required_potency[2]))
 			return FALSE
 	if(required_yield.len)
-		if(!(required_yield[1] <= checked_seed.yield <= required_yield[2]))
+		if(!(required_yield[1] <= checked_seed.yield || checked_seed.yield <= required_yield[2]))
 			return FALSE
 	if(required_production.len)
-		if(!(required_production[1] <= checked_seed.production <= required_production[2]))
+		if(!(required_production[1] <= checked_seed.production || checked_seed.production <= required_production[2]))
 			return FALSE
 	if(required_endurance.len)
-		if(!(required_endurance[1] <= checked_seed.endurance <= required_endurance[2]))
+		if(!(required_endurance[1] <= checked_seed.endurance || checked_seed.endurance <= required_endurance[2]))
 			return FALSE
 	if(required_lifespan.len)
-		if(!(required_lifespan[1] <= checked_seed.lifespan <= required_lifespan[2]))
+		if(!(required_lifespan[1] <= checked_seed.lifespan || checked_seed.lifespan <= required_lifespan[2]))
 			return FALSE
 	return TRUE
 
@@ -54,7 +54,7 @@
 /obj/item/seeds/spliced/proc/return_viable_mutations()
 	var/list/returned_list = list()
 	for(var/datum/hydroponics/plant_mutation/spliced_mutation/listed_mutation as anything in (typesof(/datum/hydroponics/plant_mutation/spliced_mutation) - /datum/hydroponics/plant_mutation/spliced_mutation))
-		listed_mutation = new
+		listed_mutation = new listed_mutation.type
 		if(listed_mutation.check_viable())
 			for(var/item in listed_mutation.required_types)
 				if(item in produce_list)

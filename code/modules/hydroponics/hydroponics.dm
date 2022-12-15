@@ -585,7 +585,8 @@
 		age = 0
 		lastproduce = 0
 		repeated_harvest = 0
-	repeated_harvest = repeated_harvest + (myseed.lifespan * 0.1)
+	else
+		repeated_harvest = repeated_harvest + (myseed.lifespan * 0.1)
 	update_icon()
 
 /obj/machinery/hydroponics/proc/spawnplant() // why would you put strange reagent in a hydro tray you monster I bet you also feed them blood
