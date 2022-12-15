@@ -110,9 +110,10 @@
 
 /obj/item/seeds/proc/process_trait_gain(datum/plant_gene/trait/trait_to_check, amount)
 	if(trait_to_check in traits_in_progress)
-		traits_in_progress[trait_to_check] += amount
+		var/old_value = traits_in_progress[trait_to_check]
+		traits_in_progress[trait_to_check] += amount + old_value
 	else
-		traits_in_progress[trait_to_check] = amount
+		traits_in_progress[trait_to_check] += amount
 
 	if(traits_in_progress[trait_to_check] >= 100)
 		var/datum/plant_gene/trait/created_trait = new trait_to_check
