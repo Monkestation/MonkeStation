@@ -28,6 +28,7 @@
 	plantname = "Rainbow Weed"
 	product = /obj/item/food/grown/cannabis/rainbow
 	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.15, /datum/reagent/toxin/lipolicide = 0.35)
 	rarity = 40
 
@@ -39,6 +40,7 @@
 	plantname = "Deathweed"
 	product = /obj/item/food/grown/cannabis/death
 	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/cyanide = 0.35, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.15)
 	rarity = 40
 
@@ -50,6 +52,7 @@
 	plantname = "Lifeweed"
 	product = /obj/item/food/grown/cannabis/white
 	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/medicine/omnizine = 0.35, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.15)
 	rarity = 40
 
@@ -63,6 +66,7 @@
 	product = /obj/item/food/grown/cannabis/ultimate
 	genes = list(/datum/plant_gene/trait/glow/green)
 	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.3,
 						/datum/reagent/toxin/mindbreaker = 0.3,
 						/datum/reagent/mercury = 0.15,

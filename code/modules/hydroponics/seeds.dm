@@ -183,7 +183,7 @@
 	while(t_amount < yield_amount)
 		if(prob(30))
 			var/obj/item/seeds/seed_prod
-			if(prob(50) && has_viable_mutations())
+			if(prob(10) && has_viable_mutations())
 				seed_prod = create_valid_mutation(output_loc, TRUE)
 			else
 				seed_prod = src.Copy_drop(output_loc)
@@ -191,7 +191,7 @@
 			t_amount++
 		else
 			var/obj/item/food/grown/t_prod
-			if(prob(50) && has_viable_mutations())
+			if(prob(10) && has_viable_mutations())
 				t_prod = create_valid_mutation(output_loc)
 			else
 				t_prod = new product(output_loc, src)
@@ -520,7 +520,7 @@
 		var/picked_object = pick(produce_list)
 		if(prob(30))
 			var/obj/item/seeds/seed_prod
-			if(prob(50) && special_mutations.len)
+			if(prob(10) && special_mutations.len)
 				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
 				seed_prod = picked_mutation.created_seed
 				seed_prod = new(output_loc)
@@ -530,7 +530,7 @@
 			t_amount++
 		else
 			var/obj/item/food/grown/t_prod
-			if(prob(50) && special_mutations.len)
+			if(prob(10) && special_mutations.len)
 				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
 				t_prod = picked_mutation.created_product
 				t_prod = new(output_loc)
