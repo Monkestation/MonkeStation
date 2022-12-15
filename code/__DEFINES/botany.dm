@@ -16,6 +16,8 @@
 #define REAGENT_TRANSFER_ID (1<<5)
 /// Plants that have a unique effect on attack_self.
 #define ATTACK_SELF_ID (1<<6)
+/// Plants that override harvest
+#define HARVEST_OVERRIDE (1<<7)
 
 /// -- Flags for traits. --
 /// When acclimed halves the yield of the plant

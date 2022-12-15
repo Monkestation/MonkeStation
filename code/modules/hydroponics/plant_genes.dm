@@ -254,7 +254,7 @@
 	// Allows the plant to hotbox rooms and spawn gas when burned
 	name = "Hotbox"
 	examine_line = "<span class='info'>It looks like gas would escape this if burned.</span>"
-	trait_ids = "harvest"
+	trait_ids = HARVEST_OVERRIDE
 
 /datum/plant_gene/trait/hotbox/on_add(obj/item/seeds/host_seed)
 	host_seed.max_yield = 3
@@ -444,7 +444,7 @@
 
 /datum/plant_gene/trait/repeated_harvest
 	name = "Perennial Growth"
-	trait_ids = "harvest"
+	trait_ids = HARVEST_OVERRIDE
 
 /datum/plant_gene/trait/repeated_harvest/can_add(obj/item/seeds/S)
 	if(!..())
@@ -569,7 +569,7 @@
 
 /datum/plant_gene/trait/plant_type // Parent type
 	name = "you shouldn't see this"
-	trait_ids = "plant_type"
+	trait_ids = PLANT_TYPE_ID
 
 /datum/plant_gene/trait/plant_type/weed_hardy
 	name = "Weed Adaptation"
