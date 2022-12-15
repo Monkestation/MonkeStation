@@ -199,7 +199,7 @@
 				adjust_weedlevel(1 / rating) // Weeds flourish
 
 			// If the plant is too old, lose health fast
-			if(age > (myseed.lifespan - harvest_loss))
+			if(age > (myseed.lifespan - repeated_harvest))
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
@@ -467,6 +467,7 @@
 			plant_health = myseed.endurance
 			lastcycle = world.time
 			update_icon()
+			myseed.on_planted()
 		else
 			to_chat(user, "<span class='warning'>[src] already has seeds in it!</span>")
 

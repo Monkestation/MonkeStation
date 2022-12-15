@@ -25,10 +25,12 @@
 	var/potency = 10				// The 'power' of a plant. Generally effects the amount of reagent in a plant, also used in other ways.
 	var/growthstages = 6			// Amount of growth sprites the plant has.
 	var/rarity = 0					// How rare the plant is. Used for giving points to cargo when shipping off to CentCom.
-	var/list/mutatelist = list()	// The type of plants that this plant can mutate into.
-	var/list/genes = list()			// Plant genes are stored here, see plant_genes.dm for more info.
+	// The type of plants that this plant can mutate into. LEGACY CONTENT - NEW OBJECTS SHOULD USE POSSIBLE_MUTATIONS see modular hydroponics folder mutations file for examples.
+	var/list/mutatelist = list()
+	// Plant genes are stored here, see plant_genes.dm for more info.
+	var/list/genes = list()
+	/// A list of reagents to add to product.
 	var/list/reagents_add = list()
-	// A list of reagents to add to product.
 	// Format: "reagent_id" = potency multiplier
 	// Stronger reagents must always come first to avoid being displaced by weaker ones.
 	// Total amount of any reagent in plant is calculated by formula: 1 + round(potency * multiplier)
@@ -38,7 +40,8 @@
 	var/blooming_stage = 0
 	///the age at which the plant should be harvested at
 	var/harvest_age = 6
-
+	///list of all mutations that are generated via stats
+	var/list/possible_mutations = list()
 /obj/item/seeds/Initialize(mapload, nogenes = 0)
 	. = ..()
 	pixel_x = rand(-8, 8)
@@ -52,6 +55,12 @@
 
 	if(!icon_harvest && !get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism) && yield != -1)
 		icon_harvest = "[species]-harvest"
+
+	var/list/generated_mutations
+	for(var/listed_item in possible_mutations)
+		listed_item = new
+		generated_mutations += listed_item
+	possible_mutations = generated_mutations
 
 	if(!nogenes) // not used on Copy()
 		genes += new /datum/plant_gene/core/lifespan(lifespan)
@@ -172,11 +181,19 @@
 	var/yield_amount = getYield()
 	while(t_amount < yield_amount)
 		if(prob(30))
-			var/obj/item/seeds/seed_prod = src.Copy_drop(output_loc)
+			var/obj/item/seeds/seed_prod
+			if(prob(50) && has_viable_mutations())
+				seed_prod = create_valid_mutation(output_loc, TRUE)
+			else
+				seed_prod = src.Copy_drop(output_loc)
 			result.Add(seed_prod) // User gets a consumable
 			t_amount++
 		else
-			var/obj/item/food/grown/t_prod = new product(output_loc, src)
+			var/obj/item/food/grown/t_prod
+			if(prob(50) && has_viable_mutations())
+				t_prod = create_valid_mutation(output_loc)
+			else
+				t_prod = new product(output_loc, src)
 			if(parent.myseed.plantname != initial(parent.myseed.plantname))
 				t_prod.name = parent.myseed.plantname
 			if(parent.myseed.plantdesc)
@@ -485,8 +502,12 @@
 
 	///list of all produce types, when harvest will randomly cycle these
 	var/list/produce_list = list()
-	///list of all mutant seeds that could drop when harvesting
-	var/list/viable_mutant_seeds = list()
+	///list of all viable special mutations
+	var/list/special_mutations = list()
+
+/obj/item/seeds/spliced/on_planted()
+	special_mutations = return_viable_mutations()
+
 /obj/item/seeds/spliced/harvest(mob/user)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
@@ -498,14 +519,19 @@
 		var/picked_object = pick(produce_list)
 		if(prob(30))
 			var/obj/item/seeds/seed_prod
-			if(prob(50) && has_valid_special_mutations())
-				var/obj/item/seeds/seed_prod = grab_valid_special_mutation(TRUE)
+			if(prob(50) && special_mutations.len)
+				seed_prod = pick(special_mutations)
+				seed_prod = new(output_loc)
 			else
 				seed_prod = src.Copy_drop(output_loc)
 			result.Add(seed_prod) // User gets a consumable
 			t_amount++
 		else
-			var/obj/item/food/grown/t_prod = new picked_object(output_loc, src)
+			var/obj/item/food/grown/t_prod
+			if(prob(50) && has_valid_special_mutations())
+				seed_prod = grab_valid_special_mutation(output_loc, FALSE)
+			else
+				t_prod = new picked_object(output_loc, src)
 			result.Add(t_prod) // User gets a consumable
 			if(!t_prod)
 				return
@@ -539,3 +565,6 @@
 	S.reagents_add = reagents_add.Copy() // Faster than grabbing the list from genes.
 
 	S.harvest_age = harvest_age
+
+/obj/item/seeds/proc/on_planted()
+	return
