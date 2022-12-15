@@ -31,19 +31,29 @@
 
 /datum/hydroponics/plant_mutation/proc/check_viable(obj/item/seeds/checked_seed)
 	if(required_potency.len)
-		if(!(required_potency[1] <= checked_seed.potency ||  checked_seed.potency <= required_potency[2]))
+		var/low_end = required_potency[1]
+		var/high_end = required_potency[2]
+		if(!(low_end <= checked_seed.potency &&  checked_seed.potency <= high_end))
 			return FALSE
 	if(required_yield.len)
-		if(!(required_yield[1] <= checked_seed.yield || checked_seed.yield <= required_yield[2]))
+		var/low_end = required_yield[1]
+		var/high_end = required_yield[2]
+		if(!(low_end <= checked_seed.yield && checked_seed.yield <= high_end))
 			return FALSE
 	if(required_production.len)
-		if(!(required_production[1] <= checked_seed.production || checked_seed.production <= required_production[2]))
+		var/low_end = required_production[1]
+		var/high_end = required_production[2]
+		if(!(low_end <= checked_seed.production && checked_seed.production <= high_end))
 			return FALSE
 	if(required_endurance.len)
-		if(!(required_endurance[1] <= checked_seed.endurance || checked_seed.endurance <= required_endurance[2]))
+		var/low_end = required_endurance[1]
+		var/high_end = required_endurance[2]
+		if(!(low_end <= checked_seed.endurance && checked_seed.endurance <= high_end))
 			return FALSE
 	if(required_lifespan.len)
-		if(!(required_lifespan[1] <= checked_seed.lifespan || checked_seed.lifespan <= required_lifespan[2]))
+		var/low_end = required_lifespan[1]
+		var/high_end = required_lifespan[2]
+		if(!(low_end <= checked_seed.lifespan && checked_seed.lifespan <= high_end))
 			return FALSE
 	return TRUE
 
