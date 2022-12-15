@@ -98,6 +98,7 @@
 	new_seed.icon_grow = first_seed.icon_grow
 	new_seed.icon_harvest = first_seed.icon_harvest
 	new_seed.icon_dead = first_seed.icon_dead
+	new_seed.growthstages = growthstages
 
 	new_seed.reagents_add = first_seed.reagents_add.Copy() + second_seed.reagents_add.Copy()
 
@@ -112,13 +113,15 @@
 		var/obj/second_produced = second_seed.product
 		new_seed.produce_list += second_produced
 	else
-		var/obj/item/seeds/spliced/spliced_seed = first_seed
+		var/obj/item/seeds/spliced/spliced_seed = second_seed
 		new_seed.produce_list |= spliced_seed.produce_list
 
 	var/part1 = copytext(first_seed.name, 1, round(length(first_seed.name) * 0.65 + 1.5))
 	var/part2 = copytext(second_seed.name, round(length(second_seed.name) * 0.45 + 1), 0)
 
 	new_seed.name = "[part1][part2]"
+	new_seed.plantname = "[part1][part2]"
+
 	for(var/datum/plant_gene/trait/traits in first_seed.genes)
 		if(istype(traits, /datum/plant_gene/trait))
 			var/datum/plant_gene/trait/new_trait = new traits.type
