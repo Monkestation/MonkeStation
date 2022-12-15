@@ -1,14 +1,25 @@
+/datum/plant_gene/proc/process_stats(obj/item/seeds/parent_seed)
+	if(trait_flags & TRAIT_HALVES_YIELD)
+		parent_seed.adjust_yield(parent_seed.yield * 0.5)
+	if(trait_flags & TRAIT_HALVES_PRODUCTION)
+		parent_seed.adjust_production(parent_seed.production * 0.5)
+	if(trait_flags & TRAIT_HALVES_POTENCY)
+		parent_seed.adjust_potency(parent_seed.potency * 0.5)
+	if(trait_flags & TRAIT_HALVES_ENDURANCE)
+		parent_seed.adjust_endurance(parent_seed.endurance * 0.5)
+	if(trait_flags & TRAIT_HALVES_LIFESPAN)
+		parent_seed.adjust_lifespan(parent_seed.lifespan * 0.5)
 /datum/plant_gene/trait/noreact
 	// Makes plant reagents not react until squashed.
 	name = "Separated Chemicals"
 
-/datum/plant_gene/trait/noreact/on_new(obj/item/food/grown/G, newloc)
+/datum/plant_gene/trait/noreact/on_new(obj/item/food/grown/grown_food, newloc)
 	..()
-	ENABLE_BITFIELD(G.reagents.flags, NO_REACT)
+	ENABLE_BITFIELD(grown_food.reagents.flags, NO_REACT)
 
-/datum/plant_gene/trait/noreact/on_squashreact(obj/item/food/grown/G, atom/target)
-	DISABLE_BITFIELD(G.reagents.flags, NO_REACT)
-	G.reagents.handle_reactions()
+/datum/plant_gene/trait/noreact/on_squashreact(obj/item/food/grown/grown_food, atom/target)
+	DISABLE_BITFIELD(grown_food.reagents.flags, NO_REACT)
+	grown_food.reagents.handle_reactions()
 
 
 /**

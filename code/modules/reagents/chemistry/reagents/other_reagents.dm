@@ -404,6 +404,12 @@
 	condensating_point = T20C + 10
 	condenses_liquid = FALSE
 
+/datum/reagent/lube/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	myseed.process_trait_gain(/datum/plant_gene/trait/slip, chems.get_reagent_amount(src.type) * 0.25)
+	myseed.adjust_endurance(chems.get_reagent_amount(src.type) * 0.08)
+	myseed.adjust_toxic(chems.get_reagent_amount(src.type) * 0.1)
+
 /datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
 	var/turf/open/T = get_turf(O)
 	if (!istype(T))

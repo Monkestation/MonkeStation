@@ -156,6 +156,13 @@
 	taste_description = "laughter"
 	random_unrestricted = TRUE
 
+/datum/reagent/consumable/laughter/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
+	. = ..()
+	if(chems.has_reagent(src, 1))
+		myseed.process_trait_gain(/datum/plant_gene/trait/plant_laughter, ((chems.get_reagent_amount(src.type) * 0.25)))
+		mytray.adjust_production(chems.get_reagent_amount(src.type) * 0.05)
+		mytray.adjust_yield(-chems.get_reagent_amount(src.type) * 0.02)
+
 /datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
 	//MonkeStation Edit: Laughter lasts longer in the body.
 	if(prob(25))

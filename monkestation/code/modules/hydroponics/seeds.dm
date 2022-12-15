@@ -124,4 +124,5 @@
 			qdel(created_trait)
 			return
 		genes += created_trait
+		created_trait.process_stats(src)
 		traits_in_progress[trait_to_check] = null

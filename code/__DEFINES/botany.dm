@@ -22,3 +22,7 @@
 /// -- Flags for traits. --
 /// When acclimed halves the yield of the plant
 #define TRAIT_HALVES_YIELD (1<<0)
+#define TRAIT_HALVES_PRODUCTION (1<<1)
+#define TRAIT_HALVES_POTENCY (1<<2)
+#define TRAIT_HALVES_ENDURANCE (1<<3)
+#define TRAIT_HALVES_LIFESPAN (1<<4)
