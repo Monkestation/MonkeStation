@@ -9,7 +9,7 @@
 	endurance = 50
 	maturation = 15
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 5
 	potency = 50
 	growthstages = 3

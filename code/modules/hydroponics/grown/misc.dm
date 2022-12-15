@@ -9,7 +9,7 @@
 	endurance = 50 // damm pesky weeds
 	maturation = 5
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 2
 	potency = 10
 	growthstages = 3

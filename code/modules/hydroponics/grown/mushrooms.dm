@@ -98,7 +98,7 @@
 	product = /obj/item/food/grown/mushroom/libertycap
 	maturation = 7
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 5
 	potency = 15
 	growthstages = 3
@@ -124,7 +124,7 @@
 	product = /obj/item/food/grown/mushroom/plumphelmet
 	maturation = 8
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 4
 	potency = 15
 	growthstages = 3
@@ -191,7 +191,7 @@
 	endurance = 20
 	maturation = 7
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 5
 	potency = 15
 	growthstages = 3
@@ -251,7 +251,7 @@
 	endurance = 30
 	maturation = 15
 	production = 1
-	harvest_age = 1
+	harvest_age = 5
 	yield = 3 //-> spread
 	potency = 30 //-> brightness
 	growthstages = 4

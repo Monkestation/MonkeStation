@@ -1,7 +1,7 @@
 #define STATIC_NUTRIENT_CAPACITY 10
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
-	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon = 'monkestation/icons/obj/machinery/hydroponics.dmi'
 	icon_state = "hydrotray"
 	density = TRUE
 	pixel_z = 8
@@ -47,15 +47,14 @@
 	create_reagents(maxnutri)
 	reagents.add_reagent(/datum/reagent/plantnutriment/eznutriment, 10) //Half filled nutrient trays for dirt trays to have more to grow with in prison/lavaland.
 	. = ..()
-
+	update_icon_lights()
 	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
 		connected_tree = located_tree
 		connected_tree.attached_component.connected_trays += src
 		return
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
-	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "hydrotray3"
+	icon_state = "hydrotray"
 
 /obj/machinery/hydroponics/constructable/RefreshParts()
 	. = ..()
@@ -203,13 +202,13 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(myseed.harvest_age < age * (1 + myseed.production * 0.044) && (myseed.harvest_age) < (age - lastproduce) * (1 + myseed.production * 0.044) && (!harvest && !dead))
+			if(myseed.harvest_age < age * max(myseed.production * 0.044, 0.5) && (myseed.harvest_age) < (age - lastproduce) * max(myseed.production * 0.044, 0.5) && (!harvest && !dead))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
 					if(connected_tree)
 						SEND_SIGNAL(connected_tree, COMSIG_BOTANY_FINAL_GROWTH, src)
 					harvest = 1
-					lastproduce = age * 0.5
+					lastproduce = age
 				else
 					lastproduce = age
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
@@ -259,7 +258,7 @@
 		if(istype(src, /obj/machinery/hydroponics/soil))
 			add_atom_colour(rgb(255, 175, 0), FIXED_COLOUR_PRIORITY)
 		else
-			add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "gaia_blessing"))
+			add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_gaia"))
 		set_light(3)
 
 	if(myseed)
@@ -290,16 +289,27 @@
 	add_overlay(plant_overlay)
 
 /obj/machinery/hydroponics/proc/update_icon_lights()
-	if(waterlevel <= 10)
-		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lowwater3"))
+	var/filled = clamp(waterlevel / maxwater, 0, 1)
+	var/mutable_appearance/water_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_water")
+	water_overlay.transform = matrix(-1 * (1 - filled), 0, filled, 0, 1, 0)
+	add_overlay(water_overlay)
+	var/mutable_appearance/health_overlay = mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_health")
+	if(plant_health < (myseed.endurance * 0.3))
+		health_overlay.color = "#FF3300"
+	else if(plant_health < (myseed.endurance * 0.5))
+		health_overlay.color = "#FFFF00"
+	else if(plant_health < (myseed.endurance * 0.7))
+		health_overlay.color = "#99FF66"
+	else
+		health_overlay.color = "#66FFFA"
+	add_overlay(health_overlay)
+
 	if(reagents.total_volume <= 2)
-		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lownutri3"))
-	if(plant_health <= (myseed.endurance / 2))
-		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_lowhealth3"))
+		add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_nutriment"))
 	if(weedlevel >= 5 || pestlevel >= 5 || toxic >= 40)
-		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_alert3"))
+		add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_pests"))
 	if(harvest)
-		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_harvest3"))
+		add_overlay(mutable_appearance('monkestation/icons/obj/machinery/hydroponics.dmi', "hydrotray_harvest"))
 
 
 /obj/machinery/hydroponics/examine(user)
@@ -571,7 +581,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	lastproduce = age * 0.5
+	lastproduce = age
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)
