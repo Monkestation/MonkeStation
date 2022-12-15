@@ -572,6 +572,7 @@
 	S.species = species
 	if(istype(src, /obj/item/seeds/spliced))
 		var/obj/item/seeds/spliced/spliced_seed = src
-		S.produce_list = spliced_seed.produce_list
+		var/obj/itrm/seeds/spliced/new_spliced_seed = S
+		new_spliced_seed.produce_list = spliced_seed.produce_list
 /obj/item/seeds/proc/on_planted()
 	return
