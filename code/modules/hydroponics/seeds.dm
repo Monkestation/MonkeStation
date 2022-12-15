@@ -180,6 +180,8 @@
 	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
 	var/product_name
 	var/yield_amount = getYield()
+	if(yield_amount >= 10)
+		yield_amount = 10 + log(1.4) * (getYield() - 1)
 	while(t_amount < yield_amount)
 		if(prob(30))
 			var/obj/item/seeds/seed_prod
@@ -516,6 +518,8 @@
 	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
 	var/product_name
 	var/yield_amount = getYield()
+	if(yield_amount >= 10)
+		yield_amount = 10 + log(1.4) * (getYield() - 1)
 	while(t_amount < yield_amount)
 		var/picked_object = pick(produce_list)
 		if(prob(30))
