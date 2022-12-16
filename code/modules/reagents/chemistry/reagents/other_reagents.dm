@@ -1387,7 +1387,7 @@
 		var/amount = chems.get_reagent_amount(src.type)
 		generated_values["damage"] = (amount * rand(13, 27) * 0.1)
 		generated_values["maturation_change"] = (amount * rand(5, 10) * 0.1)
-		generated_vlaues["production_change"] = (amount * rand(2, 5) * 0.1)
+		generated_values["production_change"] = (amount * rand(2, 5) * 0.1)
 		return generated_values
 
 /datum/reagent/ammonia/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)

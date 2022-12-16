@@ -362,6 +362,13 @@
 		if(C)
 			C.value = production
 
+/obj/item/seeds/proc/set_maturation(adjustamt)
+	if(yield != -1)
+		maturation = adjustamt
+		var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/maturation)
+		if(C)
+			C.value = maturation
+
 /obj/item/seeds/proc/set_potency(adjustamt)
 	if(potency != -1)
 		potency = adjustamt

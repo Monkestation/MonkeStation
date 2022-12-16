@@ -134,10 +134,6 @@
 	created_seed = /obj/item/seeds/cotton/durathread
 	required_endurance = list(80, INFINITY)
 
-/datum/hydroponics/plant_mutation/eggy_plant
-	created_product = /obj/item/food/grown/shell/eggy
-	created_seed = /obj/item/seeds/eggplant/eggy
-	required_lifespan = list(60, INFINITY)
 
 /datum/hydroponics/plant_mutation/lily
 	created_product = /obj/item/food/grown/poppy/lily
