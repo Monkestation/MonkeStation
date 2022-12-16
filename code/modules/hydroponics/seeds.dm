@@ -45,6 +45,8 @@
 	var/list/possible_mutations = list()
 	///list of all traits currently being trained
 	var/list/traits_in_progress = list()
+	///infusion damage
+	var/infusion_damage = 0
 
 /obj/item/seeds/Initialize(mapload, nogenes = 0)
 	. = ..()

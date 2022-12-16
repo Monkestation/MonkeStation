@@ -1933,6 +1933,15 @@
 			myseed.adjust_production(round(salt * 0.1) + prob(salt%10))
 			myseed.adjust_potency(round(salt * 1))
 
+/datum/reagent/saltpetre/generate_infusion_values(datum/reagents/chems)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/salt = chems.get_reagent_amount(src.type)
+		generated_values["potency_change"] = (salt * (rand(1, 4) * 0.1))
+		generated_values["damage"] = (salt * (rand(3, 7) * 0.1))
+		generated_values["lifespan_change"] = (salt * -(rand(1,2) * 0.1))
+		return generated_values
 /datum/reagent/lye
 	name = "Lye"
 	description = "Also known as sodium hydroxide. As a profession, making this is somewhat underwhelming."
