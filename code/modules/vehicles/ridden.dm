@@ -13,13 +13,19 @@
 	var/waddles = TRUE //bad shocks
 	var/engine_sound = 'sound/vehicles/carrev.ogg'
 	var/last_enginesound_time
-	var/engine_sound_length = 20 //Set this to the length of the engine sound
+	var/engine_sound_length = 2 SECONDS //Set this to the length of the engine sound
 
 /obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/riding)
 	if(waddles)
 		AddComponent(/datum/component/waddling)
+
+/obj/vehicle/ridden/Destroy(force=FALSE)
+	var/datum/component/waddling/waddles = src.GetComponent(/datum/component/waddling)
+	if(waddles)
+		waddles.RemoveComponent()
+	. = ..()
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()
