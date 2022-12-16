@@ -12,7 +12,7 @@
 	icon_grow = "eggplant-grow"
 	icon_dead = "eggplant-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	possible_mutations = list(/datum/hydroponics/plant_mutation/eggy_plant)
+	infusion_mutations = list(/datum/hydroponics/plant_mutation/infusion/eggy_plant)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/eggplant
@@ -36,7 +36,7 @@
 	lifespan = 75
 	production = 12
 	harvest_age = 240
-	possible_mutations = list()
+	infusion_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/shell/eggy

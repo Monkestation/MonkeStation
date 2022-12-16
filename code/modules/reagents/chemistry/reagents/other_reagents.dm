@@ -1030,6 +1030,19 @@
 	var/irradiation_level = 1
 	process_flags = ORGANIC | SYNTHETIC
 
+/datum/reagent/uranium/generate_infusion_values(datum/reagents/chems)
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["damage"] = amount * rand(8, 22) * 0.1
+		generated_values["maturation_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["production_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["potency_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["yield_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["lifespan_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["endurance_change"] = amount * rand(-10, 10) * 0.1
+		return generated_values
+
 //Mutagenic chem side-effects.
 /datum/reagent/uranium/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
@@ -1060,6 +1073,19 @@
 	irradiation_level = 2*REM
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+
+/datum/reagent/uranium/radium/generate_infusion_values(datum/reagents/chems)
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["damage"] = amount * rand(8, 22) * 0.1
+		generated_values["maturation_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["production_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["potency_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["yield_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["lifespan_change"] = amount * rand(-10, 10) * 0.1
+		generated_values["endurance_change"] = amount * rand(-10, 10) * 0.1
+		return generated_values
 
 /datum/reagent/uranium/radium/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
@@ -1353,6 +1379,16 @@
 	color = "#404030" // rgb: 64, 64, 48
 	taste_description = "mordant"
 	random_unrestricted = FALSE
+
+/datum/reagent/ammonia/generate_infusion_values(datum/reagents/chems)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["damage"] = (amount * rand(13, 27) * 0.1)
+		generated_values["maturation_change"] = (amount * rand(5, 10) * 0.1)
+		generated_vlaues["production_change"] = (amount * rand(2, 5) * 0.1)
+		return generated_values
 
 /datum/reagent/ammonia/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
@@ -1729,6 +1765,16 @@
 	color = "#9D9D00" // RBG: 157, 157, 0
 	tox_prob = 15
 
+/datum/reagent/plantnutriment/robustharvestnutriment/generate_infusion_values(datum/reagents/chems)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["yield_change"] = (amount * (rand(1, 4) * 0.1))
+		generated_values["damage"] = (amount * (rand(3, 7) * 0.1))
+		generated_values["lifespan_change"] = (amount * (rand(--2,0) * 0.1))
+		return generated_values
+
 /datum/reagent/plantnutriment/robustharvestnutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
 	. = ..()
 	if(myseed && chems.has_reagent(src.type, 1))
@@ -1937,10 +1983,10 @@
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
 		var/list/generated_values = list()
-		var/salt = chems.get_reagent_amount(src.type)
-		generated_values["potency_change"] = (salt * (rand(1, 4) * 0.1))
-		generated_values["damage"] = (salt * (rand(3, 7) * 0.1))
-		generated_values["lifespan_change"] = (salt * -(rand(1,2) * 0.1))
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["potency_change"] = (amount * (rand(2, 8) * 0.1))
+		generated_values["damage"] = (amount * (rand(3, 7) * 0.1))
+		generated_values["yield_change"] = (amount * (rand(0,2) * 0.1))
 		return generated_values
 /datum/reagent/lye
 	name = "Lye"

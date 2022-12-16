@@ -72,6 +72,7 @@
 		"weed_chance_change" = 0,
 		"weed_rate_change" = 0,
 		"production_change" = 0,
+		"maturation_change" = 0,
 		"damage" = 0,
 	)
 	for(var/reagent in held_beaker.reagents.reagent_list)
@@ -133,6 +134,7 @@
 	seed.adjust_production(stats["production_change"])
 	seed.adjust_weed_chance(stats["weed_chance_change"])
 	seed.adjust_weed_rate(stats["weed_rate_change"])
+	seed.adjust_maturation(stat["maturation_change"])
 
 	seed.check_infusions(held_beaker.reagents.reagent_list)
 	held_beaker.reagents.remove_any(held_beaker.reagents.total_volume)

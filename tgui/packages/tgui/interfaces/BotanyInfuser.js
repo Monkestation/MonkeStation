@@ -95,7 +95,7 @@ export const CurrentPlantStats = (props, context) => {
               <LabeledList.Item
                 label="Maturation Speed">
                 <Box
-                  bold>{node.maturation_speed}
+                  bold>{node.maturation_speed} | {node.maturation_change}
                 </Box>
               </LabeledList.Item>
               <LabeledList.Item

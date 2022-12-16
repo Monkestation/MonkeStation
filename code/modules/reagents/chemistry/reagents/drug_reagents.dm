@@ -16,6 +16,14 @@
 	overdose_threshold = 30
 	addiction_types = list(/datum/addiction/hallucinogens = 10) //4 per 2 seconds
 
+/datum/reagent/drug/space_drugs/generate_infusion_values(datum/reagents/chems)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		var/list/generated_values = list()
+		var/amount = chems.get_reagent_amount(src.type)
+		generated_values["endurance_change"] = (amount * (rand(1, 3) * 0.1))
+		generated_values["damage"] = (amount * (rand(3, 7) * 0.1))
+
 /datum/reagent/drug/space_drugs/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(15)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
