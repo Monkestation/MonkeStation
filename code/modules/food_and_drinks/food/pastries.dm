@@ -795,7 +795,7 @@
 				update_snack_overlays(pancake)
 		pancake = item
 		pancake.contents.Cut()
-	return
+		return
 	if(contents.len)
 		var/obj/O = contents[contents.len]
 		return O.attackby(item, user, params)
