@@ -16,7 +16,7 @@
 	icon_grow = "chili-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "chili-dead" // Same for the dead icon
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/chili/ice, /obj/item/seeds/chili/ghost)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/ghost_chili, /datum/hydroponics/plant_mutation/ice_chili)
 	reagents_add = list(/datum/reagent/consumable/capsaicin = 0.25, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.04)
 
 /obj/item/food/grown/chili
@@ -41,7 +41,7 @@
 	production = 4
 	harvest_age = 4
 	rarity = 20
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/frostoil = 0.25, /datum/reagent/consumable/nutriment/vitamin = 0.02, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/food/grown/icepepper
@@ -68,7 +68,7 @@
 	harvest_age = 10
 	yield = 3
 	rarity = 20
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/condensedcapsaicin = 0.3, /datum/reagent/consumable/capsaicin = 0.55, /datum/reagent/consumable/nutriment = 0.04)
 
 /obj/item/food/grown/ghost_chili

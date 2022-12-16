@@ -13,10 +13,10 @@
 	icon_grow = "cannabis-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "cannabis-dead" // Same for the dead icon
 	genes = list(/datum/plant_gene/trait/hotbox)
-	mutatelist = list(/obj/item/seeds/cannabis/rainbow)
 	possible_mutations = list(/datum/hydroponics/plant_mutation/death_weed,
 							  /datum/hydroponics/plant_mutation/life_weed,
-							  /datum/hydroponics/plant_mutation/omega_weed)
+							  /datum/hydroponics/plant_mutation/omega_weed,
+							  /datum/hydroponics/plant_mutation/rainbow_weed)
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.35) // gives u the munchies
 
 
@@ -27,7 +27,6 @@
 	species = "megacannabis"
 	plantname = "Rainbow Weed"
 	product = /obj/item/food/grown/cannabis/rainbow
-	mutatelist = list()
 	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/mindbreaker = 0.15, /datum/reagent/toxin/lipolicide = 0.35)
 	rarity = 40
@@ -39,7 +38,6 @@
 	species = "blackcannabis"
 	plantname = "Deathweed"
 	product = /obj/item/food/grown/cannabis/death
-	mutatelist = list()
 	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/cyanide = 0.35, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.15)
 	rarity = 40
@@ -51,7 +49,6 @@
 	species = "whitecannabis"
 	plantname = "Lifeweed"
 	product = /obj/item/food/grown/cannabis/white
-	mutatelist = list()
 	possible_mutations = list()
 	reagents_add = list(/datum/reagent/medicine/omnizine = 0.35, /datum/reagent/drug/space_drugs = 0.15, /datum/reagent/toxin/lipolicide = 0.15)
 	rarity = 40
@@ -65,7 +62,6 @@
 	plantname = "Omega Weed"
 	product = /obj/item/food/grown/cannabis/ultimate
 	genes = list(/datum/plant_gene/trait/glow/green)
-	mutatelist = list()
 	possible_mutations = list()
 	reagents_add = list(/datum/reagent/drug/space_drugs = 0.3,
 						/datum/reagent/toxin/mindbreaker = 0.3,

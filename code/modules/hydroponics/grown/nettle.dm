@@ -10,7 +10,7 @@
 	yield = 4
 	growthstages = 5
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy)
-	mutatelist = list(/obj/item/seeds/nettle/death)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/death_nettle)
 	reagents_add = list(/datum/reagent/toxin/acid = 0.25)
 
 /obj/item/seeds/nettle/death
@@ -24,7 +24,7 @@
 	maturation = 8
 	yield = 2
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging)
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.25)
 	rarity = 20
 

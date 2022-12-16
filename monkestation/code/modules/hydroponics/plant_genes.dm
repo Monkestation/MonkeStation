@@ -1,4 +1,4 @@
-/datum/plant_gene/proc/process_stats(obj/item/seeds/parent_seed)
+/datum/plant_gene/trait/proc/process_stats(obj/item/seeds/parent_seed)
 	if(trait_flags & TRAIT_HALVES_YIELD)
 		parent_seed.adjust_yield(parent_seed.yield * 0.5)
 	if(trait_flags & TRAIT_HALVES_PRODUCTION)

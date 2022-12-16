@@ -15,7 +15,7 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
-	mutatelist = list(/obj/item/seeds/starthistle/corpse_flower, /obj/item/seeds/galaxythistle)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/galaxy_thistle, /datum/hydroponics/plant_mutation/corpse_flower)
 
 /obj/item/seeds/starthistle/harvest(mob/user)
 	var/obj/machinery/hydroponics/parent = loc
@@ -40,7 +40,7 @@
 	harvest_age = 2
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list()
-	mutatelist = list()
+	possible_mutations = list()
 
 /obj/item/seeds/starthistle/corpse_flower/pre_attack(obj/machinery/hydroponics/I)
 	if(istype(I, /obj/machinery/hydroponics))
@@ -77,7 +77,7 @@
 	growthstages = 3
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/invasive)
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/silibinin = 0.1)
 
 /obj/item/seeds/galaxythistle/Initialize(mapload,nogenes)
@@ -113,7 +113,7 @@
 	growthstages = 1
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/replicapod)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/replica_pod)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/cabbage
@@ -141,7 +141,7 @@
 	yield = 4
 	growthstages = 3
 	reagents_add = list(/datum/reagent/consumable/sugar = 0.25)
-	mutatelist = list(/obj/item/seeds/bamboo)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/bamboo)
 
 /obj/item/food/grown/sugarcane
 	seed = /obj/item/seeds/sugarcane
@@ -193,7 +193,7 @@
 	species = "cherry_bomb"
 	plantname = "Cherry Bomb Tree"
 	product = /obj/item/food/grown/cherry_bomb
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/blackpowder = 0.7)
 	rarity = 60 //See above
 

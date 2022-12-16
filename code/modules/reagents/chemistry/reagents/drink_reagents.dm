@@ -160,8 +160,8 @@
 	. = ..()
 	if(chems.has_reagent(src, 1))
 		myseed.process_trait_gain(/datum/plant_gene/trait/plant_laughter, ((chems.get_reagent_amount(src.type) * 0.25)))
-		mytray.adjust_production(chems.get_reagent_amount(src.type) * 0.05)
-		mytray.adjust_yield(-chems.get_reagent_amount(src.type) * 0.02)
+		myseed.adjust_production(chems.get_reagent_amount(src.type) * 0.05)
+		myseed.adjust_yield(-chems.get_reagent_amount(src.type) * 0.02)
 
 /datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
 	//MonkeStation Edit: Laughter lasts longer in the body.

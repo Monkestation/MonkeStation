@@ -13,7 +13,7 @@
 	icon_grow = "kortanut-grow"
 	icon_dead = "kortanut-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/korta_nut/sweet)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/korta_nut_sweet)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/korta_nut
@@ -39,7 +39,7 @@
 	maturation = 10
 	production = 10
 	harvest_age = 10
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/korta_nectar = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
 

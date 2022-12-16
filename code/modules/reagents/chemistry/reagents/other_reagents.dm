@@ -408,7 +408,6 @@
 	. = ..()
 	myseed.process_trait_gain(/datum/plant_gene/trait/slip, chems.get_reagent_amount(src.type) * 0.25)
 	myseed.adjust_endurance(chems.get_reagent_amount(src.type) * 0.08)
-	myseed.adjust_toxic(chems.get_reagent_amount(src.type) * 0.1)
 
 /datum/reagent/lube/reaction_liquid(obj/O, reac_volume)
 	var/turf/open/T = get_turf(O)

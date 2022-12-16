@@ -15,7 +15,7 @@
 	icon_grow = "soybean-grow"
 	icon_dead = "soybean-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/soya/koi)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/koi_beans)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/consumable/cooking_oil = 0.03, /datum/reagent/flatulynt = 0.04) //Vegetable oil and Flatulynt!
 
 /obj/item/food/grown/soybeans
@@ -39,7 +39,7 @@
 	plantname = "Koibean Plants"
 	product = /obj/item/food/grown/koibeans
 	potency = 10
-	mutatelist = list()
+	possible_mutations = list()
 	reagents_add = list(/datum/reagent/toxin/carpotoxin = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.05)
 	rarity = 20
 

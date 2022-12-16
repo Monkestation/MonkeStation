@@ -11,7 +11,7 @@
 	yield = 4
 	potency = 15
 	icon_dead = "wheat-dead"
-	mutatelist = list(/obj/item/seeds/wheat/oat, /obj/item/seeds/wheat/meat)
+	possible_mutations = list(/datum/hydroponics/plant_mutation/oat_wheat, /datum/hydroponics/plant_mutation/meat_wheat)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.04)
 
 /obj/item/food/grown/wheat
@@ -34,7 +34,7 @@
 	species = "oat"
 	plantname = "Oat Stalks"
 	product = /obj/item/food/grown/oat
-	mutatelist = list()
+	possible_mutations = list()
 
 /obj/item/food/grown/oat
 	seed = /obj/item/seeds/wheat/oat
@@ -57,7 +57,7 @@
 	species = "rice"
 	plantname = "Rice Stalks"
 	product = /obj/item/food/grown/rice
-	mutatelist = list()
+	possible_mutations = list()
 	growthstages = 3
 
 /obj/item/food/grown/rice
@@ -80,7 +80,7 @@
 	species = "meatwheat"
 	plantname = "Meatwheat"
 	product = /obj/item/food/grown/meatwheat
-	mutatelist = list()
+	possible_mutations = list()
 
 /obj/item/food/grown/meatwheat
 	name = "meatwheat"
