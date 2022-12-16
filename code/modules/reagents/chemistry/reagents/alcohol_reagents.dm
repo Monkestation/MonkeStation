@@ -21,7 +21,7 @@
 
 /datum/reagent/consumable/ethanol/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
-	myseed.process_trait_gain(/datum/plant_gene/trait/brewing, ((chems.get_reagent_amount(src.type) * 0.25) + (boozepwr * 0.25)))
+	myseed.process_trait_gain(/datum/plant_gene/trait/brewing, ((chems.get_reagent_amount(src.type) * 0.25) + (boozepwr * 0.1)))
 /*
 Boozepwr Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -127,7 +127,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = ..()
 	if(chems.has_reagent(src, 1))
 		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 0.05))
-		mytray.adjust_waterlevel(round(chems.get_reagent_amount(src.type) * 0.7))
+		mytray.adjust_waterlevel(round(chems.get_reagent_amount(src.type) * 0.09))
 
 /datum/reagent/consumable/ethanol/ftliver
 	name = "Faster-Than-Liver"

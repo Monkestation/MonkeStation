@@ -894,7 +894,7 @@
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
 		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 1))
-		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 1.5))
+		mytray.adjust_toxic(round(chems.get_reagent_amount(src.type) * 0.5))
 		mytray.adjust_waterlevel(-round(chems.get_reagent_amount(src.type) * 0.5))
 		mytray.adjust_weedlevel(-rand(1,3))
 		// White Phosphorous + water -> phosphoric acid. That's not a good thing really.
@@ -947,7 +947,7 @@
 /datum/reagent/phosphorus/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 0.75))
+		mytray.adjust_plant_health(-round(chems.get_reagent_amount(src.type) * 0.1))
 		mytray.adjust_waterlevel(-round(chems.get_reagent_amount(src.type) * 0.5))
 		mytray.adjust_weedlevel(-rand(1,2))
 
@@ -1395,8 +1395,9 @@
 	// Ammonia is bad ass.
 	if(chems.has_reagent(src.type, 1))
 		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 0.12))
+		mytray.growth += round(chems.get_reagent_amount(src.type) * 0.3)
 		if(myseed && prob(10))
-			myseed.adjust_yield(1)
+			myseed.adjust_yield(0.5)
 
 /datum/reagent/ammonia/reaction_mob(mob/living/M, method=TOUCH, reac_volume, touch_protection)
 	if(method == VAPOR)
@@ -1418,6 +1419,7 @@
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
 		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 0.1))
+		mytray.growth += round(chems.get_reagent_amount(src.type) * 0.15)
 		mytray.adjust_pestlevel(-rand(1,2))
 		if(myseed)
 			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.05))
@@ -1868,7 +1870,7 @@
 /datum/reagent/ash/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
 	if(chems.has_reagent(src.type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 1))
+		mytray.adjust_plant_health(round(chems.get_reagent_amount(src.type) * 0.1))
 		mytray.adjust_weedlevel(-1)
 
 /datum/reagent/acetone
@@ -1975,9 +1977,10 @@
 	if(chems.has_reagent(src.type, 1))
 		var/salt = chems.get_reagent_amount(src.type)
 		mytray.adjust_plant_health(round(salt * 0.18))
+		mytray.growth += round(chems.get_reagent_amount(src.type) * 0.2)
 		if(myseed)
-			myseed.adjust_production(round(salt * 0.1) + prob(salt%10))
-			myseed.adjust_potency(round(salt * 1))
+			myseed.adjust_production(round(salt * 0.15))
+			myseed.adjust_potency(round(salt * 0.3))
 
 /datum/reagent/saltpetre/generate_infusion_values(datum/reagents/chems)
 	. = ..()
