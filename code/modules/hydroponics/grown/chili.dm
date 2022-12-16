@@ -9,7 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	potency = 20
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
@@ -40,7 +40,7 @@
 	lifespan = 25
 	maturation = 4
 	production = 4
-	harvest_age = 4
+	harvest_age = 80
 	rarity = 20
 	possible_mutations = list()
 	infusion_mutations = list()
@@ -67,7 +67,7 @@
 	endurance = 10
 	maturation = 10
 	production = 10
-	harvest_age = 10
+	harvest_age = 100
 	yield = 3
 	rarity = 20
 	possible_mutations = list()

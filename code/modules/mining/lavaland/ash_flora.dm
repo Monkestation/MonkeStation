@@ -222,7 +222,7 @@
 	endurance = 25
 	maturation = 7
 	production = 4
-	harvest_age = 4
+	harvest_age = 80
 	yield = 4
 	potency = 15
 	growthstages = 3

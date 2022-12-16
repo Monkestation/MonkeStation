@@ -9,6 +9,7 @@
 	lifespan = 55
 	endurance = 35
 	yield = 5
+	harvest_age = 200
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "apple-grow"
 	icon_dead = "apple-dead"
@@ -37,7 +38,7 @@
 	product = /obj/item/food/grown/apple/gold
 	maturation = 10
 	production = 10
-	harvest_age = 10
+	harvest_age = 400
 	reagents_add = list(/datum/reagent/gold = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 40 // Alchemy!
 	possible_mutations = list()

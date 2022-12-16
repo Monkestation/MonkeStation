@@ -40,7 +40,7 @@
 	var/weed_chance = 5 //Percentage chance per tray update to grow weeds
 	var/blooming_stage = 0
 	///the age at which the plant should be harvested at
-	var/harvest_age = 6
+	var/harvest_age = 120
 	///list of all mutations that are generated via stats
 	var/list/possible_mutations = list()
 	///list of all traits currently being trained
@@ -84,6 +84,7 @@
 		if(yield != -1)
 			genes += new /datum/plant_gene/core/yield(yield)
 			genes += new /datum/plant_gene/core/production(production)
+			genes += new /datum/plant_gene/core/maturation(maturation)
 		if(potency != -1)
 			genes += new /datum/plant_gene/core/potency(potency)
 
@@ -302,10 +303,16 @@
 		C.value = endurance
 
 /obj/item/seeds/proc/adjust_production(adjustamt)
-	production = max(1, production + adjustamt)
+	production = production + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 	if(C)
 		C.value = production
+
+/obj/item/seeds/proc/adjust_maturation(adjustamt)
+	maturation = maturation + adjustamt
+	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/maturation)
+	if(C)
+		C.value = maturation
 
 /obj/item/seeds/proc/adjust_potency(adjustamt)
 	potency = potency + adjustamt

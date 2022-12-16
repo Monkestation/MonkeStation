@@ -9,7 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 2
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "berry-grow" // Uses one growth icons set for all the subtypes
@@ -117,7 +117,7 @@
 	endurance = 35
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	growthstages = 5
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_grow = "cherry-grow"
@@ -200,7 +200,7 @@
 	endurance = 25
 	maturation = 3
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	growthstages = 2
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'

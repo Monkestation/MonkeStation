@@ -11,7 +11,7 @@
 	endurance = 8
 	maturation = 8
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 1 //seeds if there isn't a dna inside
 	potency = 30
 	var/volume = 5

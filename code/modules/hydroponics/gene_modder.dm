@@ -406,6 +406,7 @@
 			/datum/plant_gene/core/potency,
 			/datum/plant_gene/core/yield,
 			/datum/plant_gene/core/production,
+			/datum/plant_gene/core/maturation,
 			/datum/plant_gene/core/endurance,
 			/datum/plant_gene/core/lifespan,
 			/datum/plant_gene/core/weed_rate,

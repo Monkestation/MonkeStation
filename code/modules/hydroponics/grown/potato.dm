@@ -9,7 +9,7 @@
 	lifespan = 30
 	maturation = 10
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	growthstages = 4
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'

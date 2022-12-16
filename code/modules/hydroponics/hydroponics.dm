@@ -22,7 +22,6 @@
 	var/dead = 0			//Is it dead?
 	var/plant_health		//Its health
 
-	var/lastproduce = 0		//Last time it was harvested
 	var/lastcycle = 0		//Used for timing of cycles.
 	var/cycledelay = 200	//About 10 seconds / cycle
 	var/harvest = 0			//Ready to harvest?
@@ -42,6 +41,8 @@
 	var/obj/machinery/mother_tree/connected_tree
 	///how much lifespan is lost to repeated harvest
 	var/repeated_harvest = 0
+	//growth after converted to age
+	var/growth = 0
 
 /obj/machinery/hydroponics/Initialize(mapload)
 	create_reagents(maxnutri)
@@ -113,6 +114,7 @@
 			// Advance age
 			age++
 			needs_update = 1
+			growth = age * 2
 
 
 //Nutrients//////////////////////////////////////////////////////////////
@@ -202,15 +204,13 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(myseed.harvest_age < age * max(myseed.production * 0.044, 0.5) && (myseed.harvest_age) < (age - lastproduce) * max(myseed.production * 0.044, 0.5) && (!harvest && !dead))
+			if(growth >= myseed.harvest_age - myseed.maturation)
+			//if(myseed.harvest_age < age * max(myseed.production * 0.044, 0.5) && (myseed.harvest_age) < (age - lastproduce) * max(myseed.production * 0.044, 0.5) && (!harvest && !dead))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
 					if(connected_tree)
 						SEND_SIGNAL(connected_tree, COMSIG_BOTANY_FINAL_GROWTH, src)
 					harvest = 1
-					lastproduce = age
-				else
-					lastproduce = age
 			if(prob(5))  // On each tick, there's a 5 percent chance the pest population will increase
 				adjust_pestlevel(1 / rating)
 		else
@@ -284,7 +284,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = clamp(round((min(age - lastproduce, 1) / myseed.harvest_age) * myseed.growthstages), 1, myseed.growthstages)
+		var/t_growthstate = max(round(((growth / myseed.harvest_age) * 10) * myseed.growthstages, 1),1)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
@@ -371,7 +371,6 @@
 		else
 			myseed = new /obj/item/seeds/starthistle(src)
 	age = 1
-	lastproduce = 1
 	plant_health = myseed.endurance
 	lastcycle = world.time
 	harvest = 0
@@ -385,7 +384,7 @@
 	plant_health = 0
 	harvest = 0
 	pestlevel = 0 // Pests die
-	lastproduce = 0
+	growth = 0
 	if(!dead)
 		update_icon()
 		dead = 1
@@ -486,7 +485,7 @@
 			dead = 0
 			myseed = O
 			age = 1
-			lastproduce = 1
+			growth = age * 2
 			plant_health = myseed.endurance
 			lastcycle = world.time
 			update_icon()
@@ -543,7 +542,7 @@
 			if(myseed) //Could be that they're just using it as a de-weeder
 				age = 0
 				plant_health = 0
-				lastproduce = 0
+				growth = 0
 				if(harvest)
 					harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
 				qdel(myseed)
@@ -594,7 +593,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	lastproduce = age
+	growth -= max(growth - myseed.production, 0)
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)
@@ -606,7 +605,7 @@
 		myseed = null
 		dead = 0
 		age = 0
-		lastproduce = 0
+		growth = 0
 		repeated_harvest = 0
 	else
 		repeated_harvest = repeated_harvest + (myseed.lifespan * 0.1)

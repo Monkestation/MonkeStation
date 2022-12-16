@@ -9,7 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 5
 	growthstages = 5
 	icon_dead = "tea-dead"
@@ -60,7 +60,7 @@
 	endurance = 20
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 5
 	growthstages = 5
 	icon_dead = "coffee-dead"

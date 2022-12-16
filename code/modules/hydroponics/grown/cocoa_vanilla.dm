@@ -9,7 +9,7 @@
 	lifespan = 20
 	maturation = 5
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 2
 	growthstages = 5
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
@@ -64,7 +64,7 @@
 	maturation = 4
 	yield = 3
 	production = 7
-	harvest_age = 7
+	harvest_age = 140
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	possible_mutations = list()
 	reagents_add = list(/datum/reagent/consumable/enzyme = 0.1, /datum/reagent/consumable/nutriment = 0.1)

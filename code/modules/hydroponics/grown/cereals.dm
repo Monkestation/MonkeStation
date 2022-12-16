@@ -7,7 +7,7 @@
 	plantname = "Wheat Stalks"
 	product = /obj/item/food/grown/wheat
 	production = 1
-	harvest_age = 5
+	harvest_age = 100
 	yield = 4
 	potency = 15
 	icon_dead = "wheat-dead"

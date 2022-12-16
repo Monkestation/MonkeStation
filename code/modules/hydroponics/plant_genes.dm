@@ -81,6 +81,13 @@
 /datum/plant_gene/core/production/apply_stat(obj/item/seeds/S)
 	S.production = value
 
+/datum/plant_gene/core/maturation
+	name = "Maturation Speed"
+	value = 6
+
+/datum/plant_gene/core/maturation/apply_stat(obj/item/seeds/S)
+	S.maturation = value
+
 
 /datum/plant_gene/core/yield
 	name = "Yield"

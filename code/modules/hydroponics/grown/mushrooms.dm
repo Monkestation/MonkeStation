@@ -16,7 +16,7 @@
 	endurance = 35
 	maturation = 10
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	potency = 15
 	growthstages = 4
@@ -43,7 +43,7 @@
 	endurance = 35
 	maturation = 10
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
@@ -70,7 +70,7 @@
 	endurance = 35
 	maturation = 12
 	production = 5
-	harvest_age = 5
+	harvest_age =100
 	yield = 2
 	potency = 35
 	growthstages = 3
@@ -98,7 +98,7 @@
 	product = /obj/item/food/grown/mushroom/libertycap
 	maturation = 7
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 5
 	potency = 15
 	growthstages = 3
@@ -124,7 +124,7 @@
 	product = /obj/item/food/grown/mushroom/plumphelmet
 	maturation = 8
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 4
 	potency = 15
 	growthstages = 3
@@ -191,7 +191,7 @@
 	endurance = 20
 	maturation = 7
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 5
 	potency = 15
 	growthstages = 3
@@ -217,7 +217,7 @@
 	product = /obj/item/food/grown/mushroom/jupitercup
 	lifespan = 40
 	production = 4
-	harvest_age = 4
+	harvest_age = 80
 	endurance = 8
 	yield = 4
 	growthstages = 2
@@ -251,7 +251,7 @@
 	endurance = 30
 	maturation = 15
 	production = 1
-	harvest_age = 5
+	harvest_age =100
 	yield = 3 //-> spread
 	potency = 30 //-> brightness
 	growthstages = 4
