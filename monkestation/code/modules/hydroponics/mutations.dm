@@ -17,6 +17,11 @@
 		created_item = new picked_mutation.created_seed(output_loc)
 	return created_item
 
+/*
+*
+* MUTATIONS
+*
+*/
 /datum/hydroponics/plant_mutation
 	///items that are created if chosen
 	var/obj/item/created_product
@@ -58,7 +63,13 @@
 	return TRUE
 
 
+/*
+*
+* SPLICED MUTATIONS
+*
+*/
 /datum/hydroponics/plant_mutation/spliced_mutation
+	///all required types of plants needed to trigger this mutation
 	var/list/required_types = list()
 
 /obj/item/seeds/spliced/proc/return_viable_mutations()
@@ -75,3 +86,18 @@
 			qdel(created_list_item)
 	return returned_list
 
+/*
+*
+* INFUSED MUTATIONS
+*
+*/
+/datum/hydroponics/plant_mutation/infusion
+	///list of all reagents that can trigger this, only one from the list is needed
+	var/list/reagent_requirement = list()
+
+/obj/item/seeds/proc/check_infusions(reagent_list)
+	for(var/datum/hydroponics/plant_mutation/infusion/listed_infusion as anything in infusion_mutations)
+		for(var/datum/reagent/listed_reagent as anything in reagent_list)
+			if(listed_reagent.type in listed_infusion.reagent_requirement)
+				possible_mutations |= listed_infusion
+				infusion_mutations -= listed_infusion

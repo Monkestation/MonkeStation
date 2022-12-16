@@ -45,6 +45,8 @@
 	var/list/possible_mutations = list()
 	///list of all traits currently being trained
 	var/list/traits_in_progress = list()
+	///list of infusion_mutations checked on infusion for requirements and moved to possible_mutations
+	var/list/infusion_mutations = list()
 	///infusion damage
 	var/infusion_damage = 0
 
@@ -65,6 +67,12 @@
 	var/list/generated_mutations = list()
 	for(var/datum/hydroponics/plant_mutation/listed_item as anything in possible_mutations)
 		var/datum/hydroponics/plant_mutation/created_list_item = new listed_item
+		generated_mutations += created_list_item
+	possible_mutations = generated_mutations
+
+	var/list/generated_infusions = list()
+	for(var/datum/hydroponics/plant_mutation/infusion/listed_item as anything in infusion_mutations)
+		var/datum/hydroponics/plant_mutation/infusion/created_list_item = new listed_item
 		generated_mutations += created_list_item
 	possible_mutations = generated_mutations
 

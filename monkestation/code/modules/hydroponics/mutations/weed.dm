@@ -96,11 +96,6 @@
 	created_seed = /obj/item/seeds/chili/ghost
 	required_potency = list(75, INFINITY)
 
-/datum/hydroponics/plant_mutation/ice_chili
-	created_product = /obj/item/food/grown/icepepper
-	created_seed = /obj/item/seeds/chili/ice
-	required_endurance = list(75, INFINITY)
-
 /datum/hydroponics/plant_mutation/orange
 	created_product = /obj/item/food/grown/citrus/orange
 	created_seed = /obj/item/seeds/orange

@@ -57,6 +57,9 @@
 			eject_seed()
 			ui_update()
 			return TRUE
+		if("infuse")
+			infuse()
+			return TRUE
 
 /obj/machinery/infuser/proc/calculate_stats_for_infusion()
 	if(!held_beaker)
@@ -113,3 +116,23 @@
 				return
 			held_beaker = I
 			return
+
+/obj/machinery/infuser/proc/infuse()
+	if(!held_beaker)
+		return
+	seed.infusion_damage += potential_damage
+	if(seed.infusion_damage >= 100)
+		qdel(seed)
+		seed = null
+		return
+
+	seed.adjust_potency(stats["potency_change"])
+	seed.adjust_yield(stats["yield_change"])
+	seed.adjust_endurance(stats["endurance_change"])
+	seed.adjust_lifespan(stats["lifespan_change"])
+	seed.adjust_production(stats["production_change"])
+	seed.adjust_weed_chance(stats["weed_chance_change"])
+	seed.adjust_weed_rate(stats["weed_rate_change"])
+
+	seed.check_infusions(held_beaker.reagents.reagent_list)
+	held_beaker.reagents.remove_any(held_beaker.reagents.total_volume)
