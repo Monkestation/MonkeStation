@@ -112,7 +112,7 @@
 	var/emagging //are we currently emagging something
 
 /obj/item/card/emag/improvised/afterattack(atom/target, mob/user, proximity)
-	if(charges > 0)
+	if(charges)
 		if(emagging)
 			to_chat(user, "<span class='notice'>You're already emagging something!")
 			return

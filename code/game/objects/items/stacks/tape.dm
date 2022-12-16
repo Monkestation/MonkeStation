@@ -20,7 +20,7 @@
 		if(!do_after(user, 20, target = M))
 			return
 		if(!M.equip_to_slot_or_del(tape_muzzle, ITEM_SLOT_MASK, user))
-			to_chat(user, span_warning("You fail tape [M]'s mouth shut!"))
+			to_chat(user, span_warning("You fail to tape [M]'s mouth shut!"))
 			return
 		amount -= 1
 

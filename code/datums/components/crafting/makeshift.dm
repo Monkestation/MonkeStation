@@ -2,9 +2,9 @@
 // GUNS //
 //////////
 
-/datum/crafting_recipe/makeshiftlasrifle
+/datum/crafting_recipe/makeshift_lasrifle
 	name = "Makeshift Laser Rifle"
-	result = /obj/item/gun/energy/laser/makeshiftlasrifle
+	result = /obj/item/gun/energy/laser/makeshift_lasrifle
 	reqs = list(/obj/item/stack/cable_coil = 15,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/pipe = 1,
@@ -15,7 +15,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/makeshiftpistol
+/datum/crafting_recipe/makeshift_pistol
 	name = "Makeshift Pistol"
 	result = /obj/item/gun/ballistic/automatic/pistol/makeshift
 	reqs = list(/obj/item/weaponcrafting/receiver = 1,
@@ -36,7 +36,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/makeshiftsuppressor
+/datum/crafting_recipe/makeshift_suppressor
 	name = "Makeshift Suppressor"
 	result = /obj/item/suppressor/makeshift
 	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
@@ -52,21 +52,21 @@
 // TOOLS //
 ///////////
 
-/datum/crafting_recipe/makeshiftcrowbar
+/datum/crafting_recipe/makeshift_crowbar
 	name = "Makeshift Crowbar"
 	reqs = list(/obj/item/stack/rods = 3) //just bang them together
 	result = /obj/item/crowbar/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftwrench
+/datum/crafting_recipe/makeshift_wrench
 	name = "Makeshift Wrench"
 	reqs = list(/obj/item/stack/sheet/iron = 2)
 	result = /obj/item/wrench/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftwirecutters
+/datum/crafting_recipe/makeshift_wirecutters
 	name = "Makeshift Wirecutters"
 	reqs = list(/obj/item/stack/sheet/iron = 2,
 				/obj/item/stack/rods = 2)
@@ -74,7 +74,7 @@
 	time = 15 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftweldingtool
+/datum/crafting_recipe/makeshift_weldingtool
 	name = "Makeshift Welding Tool"
 	reqs = list(/obj/item/tank/internals/emergency_oxygen = 1,
 				/obj/item/assembly/igniter = 1)
@@ -83,7 +83,7 @@
 	time = 16 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftmultitool
+/datum/crafting_recipe/makeshift_multitool
 	name = "Makeshift Multitool"
 	reqs = list(/obj/item/assembly/igniter = 1,
 				/obj/item/assembly/signaler = 1,
@@ -94,14 +94,14 @@
 	time = 16 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftscrewdriver
+/datum/crafting_recipe/makeshift_screwdriver
 	name = "Makeshift Screwdriver"
 	reqs = list(/obj/item/stack/rods = 3)
 	result = /obj/item/screwdriver/makeshift
 	time = 12 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftknife
+/datum/crafting_recipe/makeshift_knife
 	name = "Makeshift Knife"
 	reqs = list(/obj/item/stack/rods = 3,
 				/obj/item/stack/sheet/iron = 1,
@@ -110,7 +110,7 @@
 	time = 12 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftpickaxe
+/datum/crafting_recipe/makeshift_pickaxe
 	name = "Makeshift Pickaxe"
 	reqs = list(
            /obj/item/crowbar = 1,
@@ -119,7 +119,7 @@
 	result = /obj/item/pickaxe/makeshift
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftradio
+/datum/crafting_recipe/makeshift_radio
 	name = "Makeshift Radio"
 	reqs = list(/obj/item/assembly/signaler = 1,
         		/obj/item/radio/headset = 1,
@@ -129,7 +129,7 @@
 	time = 12 SECONDS
 	category = CAT_TOOLS
 
-/datum/crafting_recipe/makeshiftemag
+/datum/crafting_recipe/makeshift_emag
 	name = "Improvised Emag"
 	reqs = list(/obj/item/stock_parts/subspace/amplifier = 1,
         			/obj/item/card/id = 1,

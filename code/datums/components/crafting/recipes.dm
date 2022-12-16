@@ -1032,7 +1032,7 @@
 	category = CAT_MISC
 	tools = list(TOOL_WIRECUTTER)
 
-/datum/crafting_recipe/metal_baseball_bat
+/datum/crafting_recipe/titanium_baseball_bat
 	name = "Titanium Baseball Bat"
 	result = /obj/item/melee/baseball_bat/ablative
 	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
@@ -1041,7 +1041,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/knifeboxing
+/datum/crafting_recipe/knife_boxing
 	name = "Knife-boxing Gloves"
 	result = /obj/item/clothing/gloves/knifeboxing
 	reqs = list(/obj/item/clothing/gloves/boxing = 1,

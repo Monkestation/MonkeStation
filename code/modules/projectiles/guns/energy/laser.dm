@@ -142,7 +142,7 @@
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
 
-/obj/item/gun/energy/laser/makeshiftlasrifle
+/obj/item/gun/energy/laser/makeshift_lasrifle
 	name = "makeshift laser rifle"
 	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
 	icon_state = "lasrifle"

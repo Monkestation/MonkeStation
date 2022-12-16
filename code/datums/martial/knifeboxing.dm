@@ -32,7 +32,7 @@
 			span_userdanger("[A] has [atk_verb]ed [D]!"), null, COMBAT_MESSAGE_RANGE)
 
 	D.apply_damage(damage, BRUTE, affecting, armor_block)
-	log_combat(A, D, "punched (knifeboxing")
+	log_combat(A, D, "punched (knifeboxing)")
 	return TRUE
 
 /obj/item/clothing/gloves/knifeboxing
