@@ -78,8 +78,8 @@
 	for(var/reagent in held_beaker.reagents.reagent_list)
 		var/datum/reagent/listed_reagent = reagent
 		total_stats += listed_reagent.generate_infusion_values(held_beaker.reagents)
-	potential_damage = total_stats["damage"]
 	stats = total_stats
+	potential_damage = stats["damage"]
 
 /obj/machinery/infuser/proc/eject_seed()
 	if (seed)
@@ -99,8 +99,8 @@
 		else
 			held_beaker.forceMove(drop_location())
 		held_beaker = null
-		stats = null
-		potential_damage = null
+		stats = list()
+		potential_damage = 0
 		. = TRUE
 
 /obj/machinery/infuser/attacked_by(obj/item/I, mob/living/user)
@@ -138,4 +138,5 @@
 
 	seed.check_infusions(held_beaker.reagents.reagent_list)
 	held_beaker.reagents.remove_any(held_beaker.reagents.total_volume)
-	stats = null
+	stats = list()
+	potential_damage = 0
