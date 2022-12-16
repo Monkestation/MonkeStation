@@ -1774,7 +1774,7 @@
 		var/amount = chems.get_reagent_amount(src.type)
 		generated_values["yield_change"] = (amount * (rand(1, 4) * 0.1))
 		generated_values["damage"] = (amount * (rand(3, 7) * 0.1))
-		generated_values["lifespan_change"] = (amount * (rand(--2,0) * 0.1))
+		generated_values["lifespan_change"] = (amount * (rand(-2, 0) * 0.1))
 		return generated_values
 
 /datum/reagent/plantnutriment/robustharvestnutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
