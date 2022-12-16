@@ -178,7 +178,8 @@ export const PlantVisuals = (props, context) => {
             align="center">
             {node.name}
           </Flex.Item>
-          <Flex.Item grow={0}>
+          <Flex.Item grow={0}
+            align="center">
             {node.desc}
           </Flex.Item>
         </Flex>
