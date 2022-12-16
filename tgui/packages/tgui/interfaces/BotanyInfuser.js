@@ -25,15 +25,15 @@ export const BotanyInfuser = (props, context) => {
     <Window
       title="Plant Infuser"
       width={500}
-      height={250}>
+      height={330}>
       <Window.Content>
         <Flex direction="row">
-          <Flex.Item grow={1}>
+          <Flex.Item grow={0}>
             <Flex direction="column">
-              <Flex.Item grow={1}>
+              <Flex.Item grow={0}>
                 <PlantVisuals />
               </Flex.Item>
-              <Flex.Item grow={1}>
+              <Flex.Item grow={0}>
                 <UsableButtons />
               </Flex.Item>
             </Flex>
@@ -158,8 +158,10 @@ export const PlantVisuals = (props, context) => {
     <Section>
       {seed_1.map(node => (
         <Flex direction="column"
+          width="250px"
+          height="250px"
           key={node.ref}>
-          <Flex.Item grow={1}
+          <Flex.Item grow={0}
             align="center">
             <img
               src={`data:image/jpeg;base64,${node.image}`}
@@ -176,9 +178,7 @@ export const PlantVisuals = (props, context) => {
             align="center">
             {node.name}
           </Flex.Item>
-          <Flex.Item grow={1}
-            align="center"
-            height="24px">
+          <Flex.Item grow={0}>
             {node.desc}
           </Flex.Item>
         </Flex>

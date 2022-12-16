@@ -74,7 +74,7 @@
 	for(var/datum/hydroponics/plant_mutation/infusion/listed_item as anything in infusion_mutations)
 		var/datum/hydroponics/plant_mutation/infusion/created_list_item = new listed_item
 		generated_mutations += created_list_item
-	possible_mutations = generated_mutations
+	infusion_mutations = generated_infusions
 
 	if(!nogenes) // not used on Copy()
 		genes += new /datum/plant_gene/core/lifespan(lifespan)
@@ -282,8 +282,7 @@
 
 /// Setters procs ///
 /obj/item/seeds/proc/adjust_yield(adjustamt)
-	var/curved_amount = 0.1 + (adjustamt/10)
-	yield = yield + curved_amount
+	yield = yield + adjustamt
 	if(yield <= 0 && get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
 		yield = 1 // Mushrooms always have a minimum yield of 1.
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/yield)
@@ -291,29 +290,25 @@
 		C.value = yield
 
 /obj/item/seeds/proc/adjust_lifespan(adjustamt)
-	var/curved_amount = 1 + (adjustamt/10)
-	lifespan = lifespan + curved_amount
+	lifespan = lifespan + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/lifespan)
 	if(C)
 		C.value = lifespan
 
 /obj/item/seeds/proc/adjust_endurance(adjustamt)
-	var/curved_amount = 1 + (adjustamt/10)
-	endurance = endurance + curved_amount
+	endurance = endurance + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/endurance)
 	if(C)
 		C.value = endurance
 
 /obj/item/seeds/proc/adjust_production(adjustamt)
-	var/curved_amount = 1 + (adjustamt/10)
-	production = max(1, production + curved_amount)
+	production = max(1, production + adjustamt)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/production)
 	if(C)
 		C.value = production
 
 /obj/item/seeds/proc/adjust_potency(adjustamt)
-	var/curved_amount = 1 + (adjustamt/10)
-	potency = potency + curved_amount
+	potency = potency + adjustamt
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
 	if(C)
 		C.value = potency
