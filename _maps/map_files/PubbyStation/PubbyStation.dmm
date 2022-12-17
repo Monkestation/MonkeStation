@@ -19156,10 +19156,8 @@
 /turf/open/floor/grass,
 /area/hydroponics)
 "aXW" = (
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /obj/structure/table/wood,
+/obj/machinery/splicer,
 /turf/open/floor/grass,
 /area/hydroponics)
 "aXX" = (
@@ -19791,7 +19789,7 @@
 /turf/open/floor/grass,
 /area/hydroponics)
 "aZU" = (
-/obj/machinery/vending/hydronutrients,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aZV" = (
@@ -20141,9 +20139,7 @@
 /turf/open/floor/grass,
 /area/hydroponics)
 "bbb" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
+/obj/machinery/mother_tree,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bbd" = (
@@ -21465,13 +21461,14 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "bfm" = (
-/obj/item/reagent_containers/glass/bucket,
 /obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/grass,
 /area/hydroponics)
 "bfn" = (
-/obj/structure/reagent_dispensers/watertank/high,
-/obj/effect/turf_decal/tile/green,
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
+	},
 /turf/open/floor/grass,
 /area/hydroponics)
 "bfo" = (
@@ -51359,6 +51356,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
+"kqF" = (
+/obj/machinery/smartfridge,
+/turf/closed/wall,
+/area/hydroponics)
 "kqZ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -51570,10 +51571,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "kEW" = (
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
 /obj/structure/table/wood,
+/obj/machinery/infuser,
 /turf/open/floor/grass,
 /area/hydroponics)
 "kFm" = (
@@ -88398,12 +88397,12 @@ aQJ
 aRL
 aSD
 odI
-aXS
+aZU
 aRL
 aWR
 aXT
 ucI
-aZU
+aXS
 bbb
 bbZ
 bdk
@@ -89177,7 +89176,7 @@ aXV
 pRg
 bbd
 aRL
-bdm
+kqF
 bek
 bdm
 aRL

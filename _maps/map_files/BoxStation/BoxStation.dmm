@@ -15349,12 +15349,10 @@
 /area/chapel/main)
 "aMN" = (
 /obj/structure/table,
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 6
 	},
+/obj/machinery/infuser,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aMO" = (
@@ -17014,8 +17012,8 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aSS" = (
-/obj/machinery/seed_extractor,
 /obj/effect/turf_decal/tile/green/tile_full,
+/obj/machinery/mother_tree,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aST" = (
@@ -17461,8 +17459,8 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aUj" = (
-/obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/tile/green/tile_full,
+/obj/machinery/seed_extractor,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aUk" = (
@@ -45699,6 +45697,10 @@
 	},
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"eDK" = (
+/obj/effect/turf_decal/trimline/green/filled/line,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "eEq" = (
 /obj/machinery/cryopod,
 /obj/effect/turf_decal/stripes/line{
@@ -60204,12 +60206,10 @@
 /area/hallway/primary/fore)
 "oee" = (
 /obj/structure/table,
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
 	},
+/obj/machinery/splicer,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "oeC" = (
@@ -63648,6 +63648,10 @@
 "qpY" = (
 /turf/open/floor/plasteel/yellowsiding,
 /area/vacant_room/commissary/commissary1)
+"qqt" = (
+/obj/machinery/smartfridge,
+/turf/closed/wall,
+/area/hydroponics)
 "qqN" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -64748,6 +64752,11 @@
 /obj/effect/turf_decal/tile/dark_purple/tile_side,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"rdX" = (
+/obj/effect/turf_decal/tile/green/tile_full,
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "rdZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -116207,7 +116216,7 @@ aOX
 aQm
 sJm
 aJN
-bvE
+rdX
 aVK
 aRJ
 xlS
@@ -116724,8 +116733,8 @@ aST
 aUk
 aRJ
 aRJ
-bJQ
-bam
+eDK
+qqt
 cjZ
 ihc
 ndY

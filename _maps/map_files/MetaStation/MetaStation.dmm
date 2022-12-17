@@ -27544,32 +27544,18 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bUd" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 8
-	},
-/obj/item/pen,
-/obj/effect/turf_decal/tile/green{
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
+/obj/machinery/light,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
-/area/hallway/primary/central)
+/area/hydroponics)
 "bUe" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/hydroponics)
 "bUf" = (
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
 /obj/structure/noticeboard{
 	desc = "A board for pinning important notices upon. Probably helpful for keeping track of requests.";
 	name = "requests board";
@@ -28531,6 +28517,7 @@
 "bYg" = (
 /obj/effect/landmark/start/botanist,
 /obj/machinery/holopad,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bYj" = (
@@ -28959,11 +28946,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bZt" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -28972,6 +28954,9 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
+	},
+/obj/machinery/vending/hydroseeds{
+	slogan_delay = 700
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -29963,10 +29948,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
 /obj/structure/table,
+/obj/machinery/splicer,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "ccA" = (
@@ -43573,13 +43556,11 @@
 /turf/open/floor/circuit/telecomms,
 /area/science/xenobiology)
 "dbE" = (
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /obj/structure/table,
+/obj/machinery/infuser,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "dbF" = (
@@ -57934,6 +57915,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kvl" = (
@@ -64841,6 +64823,14 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"ocH" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "ocM" = (
 /obj/machinery/holopad,
 /obj/structure/cable/yellow{
@@ -73129,6 +73119,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"ttD" = (
+/obj/machinery/mother_tree,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "tui" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -81454,6 +81448,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "ydI" = (
@@ -114487,7 +114482,7 @@ bOP
 bOP
 bKe
 bSS
-bUd
+bVq
 bVq
 bVq
 mkI
@@ -114744,7 +114739,7 @@ bOQ
 bQA
 bRP
 bST
-bUe
+bSW
 bVr
 bWK
 bST
@@ -115778,7 +115773,7 @@ bWT
 bYg
 bWT
 flS
-tYS
+bUd
 bST
 qFO
 cgq
@@ -116031,9 +116026,9 @@ bRT
 bST
 bUj
 bVu
-bWT
 bYj
-bWT
+bYj
+bYj
 mGM
 ccw
 bST
@@ -116288,7 +116283,7 @@ grA
 bSV
 bUh
 bVt
-bWQ
+ocH
 kuY
 ycY
 jHR
@@ -116803,7 +116798,7 @@ bST
 kwI
 bVu
 bWT
-bYj
+bWT
 bWT
 flS
 tYS
@@ -117060,7 +117055,7 @@ bST
 bUm
 bVu
 bWT
-bYj
+ttD
 bWT
 flS
 ccy

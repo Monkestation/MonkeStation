@@ -6799,16 +6799,7 @@
 /area/security/main)
 "aAa" = (
 /obj/structure/table/glass,
-/obj/item/storage/box/beakers{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/storage/box/syringes{
-	pixel_y = 2
-	},
-/obj/machinery/plantgenes{
-	pixel_y = 6
-	},
+/obj/machinery/infuser,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aAb" = (
@@ -6817,9 +6808,7 @@
 /area/maintenance/central/secondary)
 "aAc" = (
 /obj/structure/table/glass,
-/obj/machinery/smartfridge/disks{
-	pixel_y = 2
-	},
+/obj/machinery/splicer,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aAd" = (
@@ -13867,6 +13856,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hop)
+"bfc" = (
+/obj/machinery/mother_tree,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "bgV" = (
 /obj/effect/turf_decal/tile/blue/tile_marquee{
 	dir = 1
@@ -52091,7 +52084,7 @@ ahK
 apb
 arf
 hKL
-auy
+bfc
 anx
 ayx
 aAa

@@ -31631,11 +31631,8 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/machinery/plantgenes{
-	pixel_x = 1;
-	pixel_y = 7
-	},
 /obj/structure/cable/yellow,
+/obj/machinery/infuser,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "hpg" = (
@@ -45940,11 +45937,10 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/machinery/smartfridge/disks,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
-/obj/item/storage/box/disks_plantgene,
+/obj/machinery/splicer,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "kKC" = (
@@ -85643,6 +85639,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
+"ukP" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/mother_tree,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "ulB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -206805,7 +206806,7 @@ prq
 opQ
 omC
 rmM
-nSn
+ukP
 nSn
 lGw
 kil
