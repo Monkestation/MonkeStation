@@ -1045,7 +1045,8 @@
 	name = "Knife-boxing Gloves"
 	result = /obj/item/clothing/gloves/knifeboxing
 	reqs = list(/obj/item/clothing/gloves/boxing = 1,
-				/obj/item/kitchen/knife = 2)
+				/obj/item/kitchen/knife = 2,
+				/obj/item/stack/tape = 2)
 	time = 10 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

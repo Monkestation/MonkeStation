@@ -195,6 +195,6 @@
 		return
 	else if(prob(5))
 		user.rad_act(20)
-		to_chat(user, span_userdanger("[src] breaks down and emits dangerous rays!"))
-		src.tool_behaviour = 0
+		to_chat(user, span_userdanger("[src] breaks into pieces and emits dangerous rays!"))
+		qdel(src)
 		return

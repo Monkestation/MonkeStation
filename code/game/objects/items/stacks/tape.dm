@@ -17,7 +17,7 @@
 			to_chat(user, span_warning("You can't tape [M]'s mouth shut!"))
 			return
 		playsound(user, 'sound/effects/tape.ogg', 25)
-		if(!do_after(user, 20, target = M))
+		if(!do_after(user, 2 SECONDS, target = M))
 			return
 		if(!M.equip_to_slot_or_del(tape_muzzle, ITEM_SLOT_MASK, user))
 			to_chat(user, span_warning("You fail to tape [M]'s mouth shut!"))

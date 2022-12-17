@@ -10,7 +10,7 @@
 				/obj/item/pipe = 1,
 				/obj/item/light/bulb = 1,
 				/obj/item/stock_parts/cell = 1)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WIRECUTTER)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -22,7 +22,7 @@
 				/obj/item/stack/sheet/iron = 4,
 				/obj/item/stack/rods = 2,
            		/obj/item/stack/tape = 3)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 12 SECONDS
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

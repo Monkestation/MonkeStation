@@ -120,6 +120,7 @@
 			return
 		emagging = TRUE
 		if(do_after(user, rand(4, 7) SECONDS, target = target, progress = 1))
+			log_combat(user, target, "attempted to emag")
 			charges--
 			if (prob(50)) //50% chance that it does nothing
 				to_chat(user, "<span class='notice'>[src] emits a puff of smoke, but nothing happens.")
@@ -138,7 +139,6 @@
 				explosion(target.loc, -1, 1, 3, 4) //same strength as a PDA bomb
 				emagging = FALSE
 				return
-			log_combat(user, target, "attempted to emag")
 			target.emag_act(user)//35% overall chance we actually reach this point
 		emagging = FALSE
 	else

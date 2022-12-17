@@ -93,7 +93,7 @@
 /obj/item/grenade/pipebomb/on_found(mob/finder)
 	if(armed)
 		if(finder)
-			to_chat(finder, span_userdanger("Oh fuck-"))
+			to_chat(finder, span_userdanger("Oh no-"))
 			preprime(finder, TRUE, FALSE)
 			return TRUE	//end the search!
 		else
