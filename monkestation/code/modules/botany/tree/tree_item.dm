@@ -95,24 +95,8 @@
 			trunk_color = choice.color_change_trunk
 		if(choice.color_change_leaf)
 			leaf_color = choice.color_change_leaf
-		switch(choice.visual_change)
-			if("Trunk")
-				current_trunk_style = choice.visual_numerical_change
-			if("Fruit")
-				if(attached_component.current_level >= 5)
-					if(!fruits)
-						fruits = new()
-
-					var/random_number = rand(fruits.offsets_for_sprites[current_trunk_style][1].len)
-					var/picked_pixel_x = fruits.offsets_for_sprites[current_trunk_style][1][random_number]
-					var/picked_pixel_y = fruits.offsets_for_sprites[current_trunk_style][2][random_number]
-
-					fruits.offsets_for_sprites[current_trunk_style][2][random_number].Remove()
-					fruits.offsets_for_sprites[current_trunk_style][1][random_number].Remove()
-
-					var/image/new_image = image(fruits.icon, fruits, "fruit_[choice.visual_numerical_change]", fruits.layer, pixel_x = picked_pixel_x, pixel_y = picked_pixel_y)
-					fruits.stored_images += new_image
-					fruits.vis_contents += new_image
+		if(choice.visual_change == "Trunk")
+			current_trunk_style = choice.visual_numerical_change
 		update_overlays()
 
 	attached_component.handle_added_node(choice)
@@ -122,7 +106,7 @@
 
 /obj/machinery/mother_tree/proc/handle_levelup()
 	var/current_level = attached_component.current_level
-
+	current_leaf_stage = 1 + round(current_level / 5)
 
 /obj/effect/tree
 	icon = 'monkestation/icons/obj/mother_tree.dmi'

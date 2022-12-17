@@ -72,8 +72,8 @@
 
 	else if(next_level == fruit_level)
 		var/list/fruit_nodes = (typesof(/datum/tree_node/major/fruit) - /datum/tree_node/major/fruit)
-			for(var/number = 1, number <= choices, number++)
-			if(major_nodes.len)
+		for(var/number = 1, number <= choices, number++)
+			if(fruit_nodes.len)
 				var/datum/tree_node/major/fruit/picked_node = pick(fruit_nodes)
 				var/datum/tree_node/major/fruit/created_node = new picked_node
 				picked_nodes += created_node
