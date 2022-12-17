@@ -224,7 +224,7 @@
 		if (needs_update)
 			update_icon()
 
-		if(myseed && prob(5 * (11-myseed.production)))
+		if(myseed && prob(5 * (min(myseed.production, 100)))
 			for(var/g in myseed.genes)
 				if(istype(g, /datum/plant_gene/trait))
 					var/datum/plant_gene/trait/selectedtrait = g
@@ -598,7 +598,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	growth -= max(growth - myseed.production, 0)
+	growth -= max((growth * 2) - myseed.production, 0)
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)
