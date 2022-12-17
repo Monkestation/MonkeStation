@@ -224,7 +224,7 @@
 		if (needs_update)
 			update_icon()
 
-		if(myseed && prob(5 * (min(myseed.production, 100)))
+		if(myseed && prob(5 * (min(myseed.production, 100))))
 			for(var/g in myseed.genes)
 				if(istype(g, /datum/plant_gene/trait))
 					var/datum/plant_gene/trait/selectedtrait = g
