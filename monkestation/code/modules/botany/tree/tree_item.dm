@@ -66,7 +66,7 @@
 	if(fruits)
 		. += fruits
 /obj/machinery/mother_tree/examine(mob/user)
-	. = list()
+	. = ..()
 	.+= "Unfufilled Level Requirements:"
 	for(var/item in attached_component.unfufilled_requirements)
 		var/obj/item/seeds/listed_seed = item
