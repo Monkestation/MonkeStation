@@ -549,7 +549,12 @@
 				myseed = null
 			weedlevel = 0 //Has a side effect of cleaning up those nasty weeds
 			update_icon()
-
+	else if(istype(O, /obj/item/fruit))
+		var/obj/item/fruit/attacked_fruit = O
+		user.visible_message("<span class='notice'>[user] drops the [attacked_fruit] into the [src].</span>",
+			"<span class='notice'>You drop the [attacked_fruit] into the [src].</span>")
+		attacked_fruit.on_hydrotray_add(myseed)
+		qdel(attacked_fruit)
 	else
 		return ..()
 

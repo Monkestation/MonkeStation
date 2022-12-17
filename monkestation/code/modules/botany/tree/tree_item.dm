@@ -26,6 +26,8 @@
 
 	var/debug = FALSE
 
+	var/list/stored_fruits = list()
+
 /obj/machinery/mother_tree/Initialize(mapload)
 	. = ..()
 	trunk = new()
@@ -60,6 +62,19 @@
 
 	if(fruits)
 		. += fruits
+
+/obj/machinery/mother_tree/attack_hand(mob/living/user)
+	. = ..()
+	if(user.a_intent == INTENT_HARM)
+		return
+	if(stored_fruits.len)
+		var/obj/item/picked_fruit = pick(stored_fruits)
+		if(Adjacent(user) && !issiliconoradminghost(user))
+			if (!user.put_in_hands(picked_fruit))
+				picked_fruit.forceMove(drop_location())
+		else
+			picked_fruit.forceMove(drop_location())
+		stored_fruits -= picked_fruit
 
 /obj/machinery/mother_tree/AltClick(mob/user)
 	. = ..()

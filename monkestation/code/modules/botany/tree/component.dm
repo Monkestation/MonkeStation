@@ -4,7 +4,7 @@
 /datum/component/botany_tree
 	///level variables of the tree
 	var/current_level = 1
-	var/max_level = 20
+	var/max_level = 15
 	///list of all held nodes
 	var/list/held_level_nodes = list()
 	///list of nodes that need to be triggered on pulse
@@ -40,7 +40,7 @@
 
 /datum/component/botany_tree/proc/get_level_requirements()
 	var/next_level = current_level + 1
-	var/list/major_levels = list(5,10,15,20)
+	var/list/major_levels = list(5,10,15)
 	var/count = 0
 	if(next_level in major_levels)
 		count = MAJOR_AMOUNT
@@ -58,14 +58,24 @@
 
 /datum/component/botany_tree/proc/trigger_level()
 	var/next_level = current_level + 1
-	var/list/major_levels = list(5,10,15,20)
+	var/list/major_levels = list(5,15,20)
+	var/fruit_level = 10
 	var/list/picked_nodes = list()
 	if(next_level in major_levels)
-		var/list/major_nodes = (typesof(/datum/tree_node/major) - /datum/tree_node/major)
+		var/list/major_nodes = (typesof(/datum/tree_node/major) - /datum/tree_node/major - typesof(/datum/tree_node/major/fruit))
 		for(var/number = 1, number <= choices, number++)
 			if(major_nodes.len)
 				var/datum/tree_node/major/picked_node = pick(major_nodes)
 				var/datum/tree_node/major/created_node = new picked_node
+				picked_nodes += created_node
+				created_node.on_choice_generation()
+
+	else if(next_level == fruit_level)
+		var/list/fruit_nodes = (typesof(/datum/tree_node/major/fruit) - /datum/tree_node/major/fruit)
+			for(var/number = 1, number <= choices, number++)
+			if(major_nodes.len)
+				var/datum/tree_node/major/fruit/picked_node = pick(fruit_nodes)
+				var/datum/tree_node/major/fruit/created_node = new picked_node
 				picked_nodes += created_node
 				created_node.on_choice_generation()
 	else
@@ -89,7 +99,7 @@
 	if(added_node.on_levelup)
 		levelup_nodes += added_node
 
-	added_node.on_tree_add()
+	added_node.on_tree_add(parent)
 
 /datum/component/botany_tree/proc/handle_levelup()
 	for(var/datum/tree_node/listed_node as anything in levelup_nodes)

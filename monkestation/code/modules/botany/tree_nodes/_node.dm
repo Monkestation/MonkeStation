@@ -18,11 +18,13 @@
 	var/color_change_leaf
 	var/color_change_trunk
 
+	var/obj/machinery/mother_tree/connected_tree
+
 /datum/tree_node/proc/on_choice_generation()
 	return
 
-/datum/tree_node/proc/on_tree_add()
-	return
+/datum/tree_node/proc/on_tree_add(obj/machinery/mother_tree/added_tree)
+	connected_tree = added_tree
 
 /datum/tree_node/proc/on_pulse(list/affected_plants, pulse_range)
 	return
@@ -49,3 +51,26 @@
 /datum/tree_node/major
 	name = "Major Node"
 	desc = "Holder major node you shouldn't be seeing this!"
+
+/datum/tree_node/major/fruit
+	var/pulses_per_fruit = 3
+	var/pulses = 0
+	var/obj/item/created_fruit
+	var/generated_fruits
+	on_pulse = TRUE
+
+/datum/tree_node/major/fruit/on_pulse(list/affected_plants, pulse_range)
+	. = ..()
+	if(pulses >= pulses_per_fruit)
+		if(connected_tree.stored_fruits.len <= 4)
+			connected_tree.stored_fruits += new created_fruit
+		pulses = 0
+	else
+		pulses++
+
+/obj/item/fruit
+	icon = 'monkestation/icons/obj/mother_tree.dmi'
+
+
+/obj/item/fruit/proc/on_hydrotray_add(obj/item/seeds/stored_seed)
+	return
