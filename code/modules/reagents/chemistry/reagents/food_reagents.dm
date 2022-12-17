@@ -52,9 +52,8 @@
 
 /datum/reagent/consumable/nutriment/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
 	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 0.2))
-		mytray.growth += round(chems.get_reagent_amount(type) * 0.5)
+	mytray.adjust_plant_health(round(chems.get_reagent_amount(type) * 0.2))
+	mytray.growth += round(chems.get_reagent_amount(type) * 0.5)
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M)
 	if(prob(50))

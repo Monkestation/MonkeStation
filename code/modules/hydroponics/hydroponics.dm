@@ -114,7 +114,7 @@
 			// Advance age
 			age++
 			needs_update = 1
-			growth = age * 2
+			growth += age * 3
 
 
 //Nutrients//////////////////////////////////////////////////////////////
@@ -284,7 +284,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = max(round(((growth / myseed.harvest_age) * 10) * myseed.growthstages, 1),1)
+		var/t_growthstate = clamp(round(((growth / myseed.harvest_age) * 10) * myseed.growthstages, 1),1, myseed.growthstages)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
@@ -485,7 +485,7 @@
 			dead = 0
 			myseed = O
 			age = 1
-			growth = age * 2
+			growth += age * 3
 			plant_health = myseed.endurance
 			lastcycle = world.time
 			update_icon()
