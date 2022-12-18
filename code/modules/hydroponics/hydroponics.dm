@@ -204,7 +204,7 @@
 				adjust_plant_health(-rand(1,5) / rating)
 
 			// Harvest code
-			if(growth >= myseed.harvest_age - myseed.maturation)
+			if(growth >= myseed.harvest_age * -1.01 ^ - myseed.maturation)
 			//if(myseed.harvest_age < age * max(myseed.production * 0.044, 0.5) && (myseed.harvest_age) < (age - lastproduce) * max(myseed.production * 0.044, 0.5) && (!harvest && !dead))
 				nutrimentMutation()
 				if(myseed && myseed.yield != -1) // Unharvestable shouldn't be harvested
@@ -284,7 +284,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = clamp(round(((growth / myseed.harvest_age) * 10) * myseed.growthstages, 1),1, myseed.growthstages)
+		var/t_growthstate = clamp(round(((growth / myseed.harvest_age * -1.01 ^ - myseed.maturation)) * 10) * myseed.growthstages, 1),1, myseed.growthstages)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
@@ -598,7 +598,7 @@
 
 /obj/machinery/hydroponics/proc/update_tray(mob/user)
 	harvest = 0
-	growth -= max((growth * 2) - myseed.production, 0)
+	growth -= max((growth * 2) * (-1.01 ^ - myseed.production), 0)
 	if(istype(myseed, /obj/item/seeds/replicapod))
 		to_chat(user, "<span class='notice'>You harvest from the [myseed.plantname].</span>")
 	else if(myseed.getYield() <= 0)
