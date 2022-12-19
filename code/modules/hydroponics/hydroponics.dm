@@ -49,10 +49,6 @@
 	reagents.add_reagent(/datum/reagent/plantnutriment/eznutriment, 10) //Half filled nutrient trays for dirt trays to have more to grow with in prison/lavaland.
 	. = ..()
 	update_icon_lights()
-	for(var/obj/machinery/mother_tree/located_tree in range(5, src))
-		connected_tree = located_tree
-		connected_tree.attached_component.connected_trays += src
-		return
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
 	icon_state = "hydrotray"
