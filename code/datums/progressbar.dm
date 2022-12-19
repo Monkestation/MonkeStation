@@ -286,9 +286,11 @@
 	return ..()
 
 /obj/effect/world_progressbar/proc/bar_loc_delete()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /obj/effect/world_progressbar/proc/owner_delete()
+	SIGNAL_HANDLER
 	qdel(src)
 
 ///Updates the progress bar image visually.
