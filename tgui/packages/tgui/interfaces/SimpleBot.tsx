@@ -146,7 +146,7 @@ const SettingsDisplay = (_, context) => {
           />
         </Tooltip>
       </LabeledControls.Item>
-      <LabeledControls.Item label="Airplane Mode">
+      <LabeledControls.Item label="Remote Control Mode">
         <Tooltip
           content={`${
             !airplane_mode ? 'Disables' : 'Enables'
