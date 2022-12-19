@@ -284,7 +284,7 @@
 		else
 			plant_overlay.icon_state = myseed.icon_harvest
 	else
-		var/t_growthstate = clamp(round(((growth / myseed.harvest_age * -1.01 ^ - myseed.maturation)) * 10) * myseed.growthstages, 1),1, myseed.growthstages)
+		var/t_growthstate = clamp(round(((growth / (myseed.harvest_age * -1.01 ^ - myseed.maturation)) * 10) * myseed.growthstages, 1),1, myseed.growthstages)
 		plant_overlay.icon_state = "[myseed.icon_grow][t_growthstate]"
 	add_overlay(plant_overlay)
 
