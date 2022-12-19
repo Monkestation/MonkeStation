@@ -276,8 +276,8 @@
 	if(has_outline)
 		src.add_filter("outline", 1, list(type = "outline", size = 1,  color = "#FFFFFF"))
 
-	RegisterSignal(bar_loc, COMSIG_PARENT_QDELETING, .proc/bar_loc_delete)
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/owner_delete)
+	RegisterSignal(bar_loc, COMSIG_PARENT_QDELETING, .proc/bar_loc_delete, override = TRUE)
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, .proc/owner_delete, override = TRUE)
 
 /obj/effect/world_progressbar/Destroy()
 	owner = null
