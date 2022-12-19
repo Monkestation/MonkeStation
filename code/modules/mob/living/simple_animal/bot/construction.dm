@@ -88,130 +88,84 @@
 			if(istype(W, /obj/item/bodypart/l_leg/robot) || istype(W, /obj/item/bodypart/r_leg/robot))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
-				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
+				to_chat(user, span_notice("You add [W] to [src]."))
 				qdel(W)
 				name = "legs/frame assembly"
 				if(build_step == ASSEMBLY_FIRST_STEP)
-					item_state = "ed209_leg"
 					icon_state = "ed209_leg"
 				else
-					item_state = "ed209_legs"
 					icon_state = "ed209_legs"
 				build_step++
 
 		if(ASSEMBLY_THIRD_STEP)
-			var/newcolor = ""
-			if(istype(W, /obj/item/clothing/suit/redtag))
-				newcolor = "r"
-			else if(istype(W, /obj/item/clothing/suit/bluetag))
-				newcolor = "b"
-			if(newcolor || istype(W, /obj/item/clothing/suit/armor/vest))
+			if(istype(W, /obj/item/clothing/suit/armor/vest))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
-				lasercolor = newcolor
-				vest_type = W.type
-				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
+				to_chat(user, span_notice("You add [W] to [src]."))
 				qdel(W)
 				name = "vest/legs/frame assembly"
-				item_state = "[lasercolor]ed209_shell"
-				icon_state = "[lasercolor]ed209_shell"
+				icon_state = "ed209_shell"
 				build_step++
 
 		if(ASSEMBLY_FOURTH_STEP)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(W.use_tool(src, user, 0, volume=40))
 					name = "shielded frame assembly"
-					to_chat(user, "<span class='notice'>You weld the vest to [src].</span>")
+					to_chat(user, span_notice("You weld the vest to [src]."))
 					build_step++
 
 		if(ASSEMBLY_FIFTH_STEP)
-			switch(lasercolor)
-				if("b")
-					if(!istype(W, /obj/item/clothing/head/helmet/bluetaghelm))
-						return
+			if(istype(W, /obj/item/clothing/head/helmet))
+				if(!user.temporarilyRemoveItemFromInventory(W))
+					return
+				to_chat(user, span_notice("You add [W] to [src]."))
+				qdel(W)
+				name = "covered and shielded frame assembly"
+				icon_state = "ed209_hat"
+				build_step++
 
-				if("r")
-					if(!istype(W, /obj/item/clothing/head/helmet/redtaghelm))
-						return
-
-				if("")
-					if(!istype(W, /obj/item/clothing/head/helmet))
-						return
-
-			if(!user.temporarilyRemoveItemFromInventory(W))
-				return
-			to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
-			qdel(W)
-			name = "covered and shielded frame assembly"
-			item_state = "[lasercolor]ed209_hat"
-			icon_state = "[lasercolor]ed209_hat"
-			build_step++
-
-		if(5)
+		if(ASSEMBLY_SIXTH_STEP)
 			if(isprox(W))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
 				build_step++
-				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
+				to_chat(user, span_notice("You add [W] to [src]."))
 				qdel(W)
 				name = "covered, shielded and sensored frame assembly"
-				item_state = "[lasercolor]ed209_prox"
-				icon_state = "[lasercolor]ed209_prox"
+				icon_state = "ed209_prox"
 
-		if(6)
+		if(ASSEMBLY_SEVENTH_STEP)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/coil = W
 				if(coil.get_amount() < 1)
-					to_chat(user, "<span class='warning'>You need one length of cable to wire the ED-209!</span>")
+					to_chat(user, span_warning("You need one length of cable to wire the ED-209!"))
 					return
-				to_chat(user, "<span class='notice'>You start to wire [src]...</span>")
+				to_chat(user, span_notice("You start to wire [src]..."))
 				if(do_after(user, 40, target = src))
-					if(coil.get_amount() >= 1 && build_step == 6)
+					if(coil.get_amount() >= 1 && build_step == ASSEMBLY_SEVENTH_STEP)
 						coil.use(1)
-						to_chat(user, "<span class='notice'>You wire [src].</span>")
+						to_chat(user, span_notice("You wire [src]."))
 						name = "wired ED-209 assembly"
 						build_step++
 
-		if(7)
-			switch(lasercolor)
-				if("b")
-					if(!istype(W, /obj/item/gun/energy/laser/bluetag))
-						return
-				if("r")
-					if(!istype(W, /obj/item/gun/energy/laser/redtag))
-						return
-				if("")
-					if(!istype(W, /obj/item/gun/energy/disabler))
-						return
-				else
+		if(ASSEMBLY_EIGHTH_STEP)
+			if(istype(W, /obj/item/gun/energy/disabler))
+				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
-			if(!user.temporarilyRemoveItemFromInventory(W))
-				return
-			name = "[W.name] ED-209 assembly"
-			to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
-			item_state = "[lasercolor]ed209_taser"
-			icon_state = "[lasercolor]ed209_taser"
-			qdel(W)
-			build_step++
-
-		if(8)
-			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				to_chat(user, "<span class='notice'>You start attaching the gun to the frame...</span>")
-				if(W.use_tool(src, user, 40, volume=100))
-					name = "armed [name]"
-					to_chat(user, "<span class='notice'>The gun is now securely fastened to the frame.</span>")
-					build_step++
-
-		if(9)
-			if(istype(W, /obj/item/stock_parts/cell))
-				if(!can_finish_build(W, user))
-					return
-				var/mob/living/simple_animal/bot/ed209/B = new(drop_location(),created_name,lasercolor)
-				to_chat(user, "<span class='notice'>You complete the ED-209.</span>")
-				B.cell_type = W.type
+				name = "[W.name] ED-209 assembly"
+				to_chat(user, span_notice("You add [W] to [src]."))
+				icon_state = "ed209_taser"
 				qdel(W)
-				B.vest_type = vest_type
-				qdel(src)
+				build_step++
+
+		if(ASSEMBLY_NINTH_STEP)
+			if(W.tool_behaviour == TOOL_SCREWDRIVER)
+				to_chat(user, span_notice("You start attaching the gun to the frame..."))
+				if(W.use_tool(src, user, 40, volume=100))
+					var/mob/living/simple_animal/bot/secbot/ed209/B = new(drop_location())
+					B.name = created_name
+					to_chat(user, span_notice("You complete the ED-209."))
+					qdel(src)
 
 
 //Floorbot assemblies
@@ -417,7 +371,7 @@
 					to_chat(user, "<span class='notice'>You complete the... Shitcuritron? Are you sure you did that right?</span>")
 					S = new /mob/living/simple_animal/bot/secbot/pizzky(Tsec)
 				S.name = created_name
-				S.weapon = I.type
+				S.baton_type = I.type
 				S.robot_arm = robot_arm
 				//monkestation edit end
 				qdel(I)
@@ -513,35 +467,5 @@
 				to_chat(user, "<span class='notice'>You add the [I] to [src]! Beep Boop!</span>")
 				var/mob/living/simple_animal/bot/firebot/F = new(drop_location())
 				F.name = created_name
-				qdel(I)
-				qdel(src)
-
-//Atmosbot Assembly
-/obj/item/bot_assembly/atmosbot
-	name = "incomplete atmosbot assembly"
-	desc = "An incomplete atmosbot with an analyser attached to it"
-	icon_state = "atmosbot_assembly"
-	created_name = "Atmosbot"
-
-/obj/item/bot_assembly/atmosbot/attackby(obj/item/I, mob/user, params)
-	..()
-	switch(build_step)
-		if(ASSEMBLY_FIRST_STEP)
-			if(istype(I, /obj/item/tank/internals))
-				if(!user.temporarilyRemoveItemFromInventory(I))
-					return
-				to_chat(user,"<span class='notice'>You add the [I] to [src]!</span>")
-				icon_state = "atmosbot_assembly_tank"
-				desc = "An incomplete atmosbot assembly with a tank strapped to it."
-				qdel(I)
-				build_step++
-
-		if(ASSEMBLY_SECOND_STEP)
-			if(isprox(I))
-				if(!can_finish_build(I, user))
-					return
-				to_chat(user, "<span class='notice'>You add the [I] to [src]! Beep Boop!</span>")
-				var/mob/living/simple_animal/bot/atmosbot/A = new(drop_location())
-				A.name = created_name
 				qdel(I)
 				qdel(src)

@@ -10,19 +10,19 @@
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 
+	bot_core = /obj/machinery/bot_core/secbot
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
 	radio_channel = RADIO_CHANNEL_SECURITY //Security channel
 	bot_type = SEC_BOT
-	model = "Securitron"
-	bot_core_type = /obj/machinery/bot_core/secbot
-	window_id = "autosec"
-	window_name = "Automatic Security Unit v1.6"
-	allow_pai = FALSE
+	bot_mode_flags = ~BOT_MODE_PAI_CONTROLLABLE
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
+	hackables = "target identification systems"
 	path_image_color = "#FF0000"
 
-	///The tool this Secbot will use to make arrests
-	var/obj/item/weapon = /obj/item/melee/baton
+	///The type of baton this Secbot will use
+	var/baton_type = /obj/item/melee/baton
+	///The weapon (from baton_type) that will be used to make arrests.
+	var/obj/item/weapon
 	///Their current target
 	var/mob/living/carbon/target
 	///Name of their last target to prevent spamming
@@ -56,12 +56,17 @@
 /mob/living/simple_animal/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
-	auto_patrol = TRUE
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED
+
+/mob/living/simple_animal/bot/secbot/beepsky/officer
+	name = "Officer Beepsky"
+	desc = "It's Officer Beepsky! Powered by a potato and a shot of whiskey, and with a sturdier reinforced chassis, too."
+	health = 45
 
 /mob/living/simple_animal/bot/secbot/beepsky/armsky
 	name = "Sergeant-At-Armsky"
 	health = 45
-	auto_patrol = FALSE
+	bot_mode_flags = ~BOT_MODE_AUTOPATROL
 	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
@@ -73,6 +78,13 @@
 	resize = 0.8
 	update_transform()
 
+/mob/living/simple_animal/bot/secbot/genesky
+	name = "Officer Genesky"
+	desc = "A beefy variant of the standard securitron model."
+	health = 50
+	faction = list("nanotrasenprivate")
+	bot_mode_flags = BOT_MODE_ON
+	bot_cover_flags = BOT_COVER_LOCKED | BOT_COVER_EMAGGED
 
 /mob/living/simple_animal/bot/secbot/pingsky
 	name = "Officer Pingsky"
@@ -94,7 +106,7 @@
 
 /mob/living/simple_animal/bot/secbot/Initialize(mapload)
 	. = ..()
-	weapon = new weapon()
+	weapon = new baton_type()
 	update_appearance(UPDATE_ICON)
 
 	var/datum/job/detective/J = new/datum/job/detective
@@ -127,60 +139,34 @@
 	SSmove_manager.stop_looping(src)
 	last_found = world.time
 
-/mob/living/simple_animal/bot/secbot/set_custom_texts()
+// Variables sent to TGUI
+/mob/living/simple_animal/bot/secbot/ui_data(mob/user)
+	var/list/data = ..()
+	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || IsAdminGhost(user))
+		data["custom_controls"]["check_id"] = security_mode_flags & SECBOT_CHECK_IDS
+		data["custom_controls"]["check_weapons"] = security_mode_flags & SECBOT_CHECK_WEAPONS
+		data["custom_controls"]["check_warrants"] = security_mode_flags & SECBOT_CHECK_RECORDS
+		data["custom_controls"]["handcuff_targets"] = security_mode_flags & SECBOT_HANDCUFF_TARGET
+		data["custom_controls"]["arrest_alert"] = security_mode_flags & SECBOT_DECLARE_ARRESTS
+	return data
 
-	text_hack = "You overload [name]'s target identification system."
-	text_dehack = "You reboot [name] and restore the target identification."
-	text_dehack_fail = "[name] refuses to accept your authority!"
-
-/mob/living/simple_animal/bot/secbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-<TT><B>Securitron v1.6 controls</B></TT><BR><BR>
-Status: []<BR>
-Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
-Maintenance panel panel is [open ? "opened" : "closed"]"},
-
-"<A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
-
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += text({"<BR>
-		Arrest Unidentifiable Persons: []<BR>
-		Arrest for Unauthorized Weapons: []<BR>
-		Arrest for Warrant: []<BR>
-		Operating Mode: []<BR>
-		Report Arrests[]<BR>
-		Auto Patrol: []"},
-
-		"<A href='?src=[REF(src)];operation=idcheck'>[security_mode_flags & SECBOT_CHECK_IDS ? "Yes" : "No"]</A>",
-		"<A href='?src=[REF(src)];operation=weaponscheck'>[security_mode_flags & SECBOT_CHECK_WEAPONS ? "Yes" : "No"]</A>",
-		"<A href='?src=[REF(src)];operation=ignorerec'>[security_mode_flags & SECBOT_CHECK_RECORDS ? "Yes" : "No"]</A>",
-		"<A href='?src=[REF(src)];operation=switchmode'>[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arrest" : "Detain"]</A>",
-		"<A href='?src=[REF(src)];operation=declarearrests'>[security_mode_flags & SECBOT_DECLARE_ARRESTS ? "Yes" : "No"]</A>",
-		"<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>")
-
-	return	dat
-
-/mob/living/simple_animal/bot/secbot/Topic(href, href_list)
-	if(..())
-		return TRUE
-	if(!issilicon(usr) && !IsAdminGhost(usr) && !(bot_core.allowed(usr) || !locked))
-		return TRUE
-	switch(href_list["operation"])
-		if("idcheck")
+// Actions received from TGUI
+/mob/living/simple_animal/bot/secbot/ui_act(action, params)
+	. = ..()
+	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
+		return
+	switch(action)
+		if("check_id")
 			security_mode_flags ^= SECBOT_CHECK_IDS
-		if("weaponscheck")
+		if("check_weapons")
 			security_mode_flags ^= SECBOT_CHECK_WEAPONS
-		if("ignorerec")
+		if("check_warrants")
 			security_mode_flags ^= SECBOT_CHECK_RECORDS
-		if("switchmode")
+		if("handcuff_targets")
 			security_mode_flags ^= SECBOT_HANDCUFF_TARGET
-		if("declarearrests")
+		if("arrest_alert")
 			security_mode_flags ^= SECBOT_DECLARE_ARRESTS
-
-	update_controls()
+	return
 
 /mob/living/simple_animal/bot/secbot/proc/retaliate(mob/living/carbon/human/H)
 	var/judgment_criteria = judgment_criteria()
@@ -192,7 +178,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 /mob/living/simple_animal/bot/secbot/proc/judgment_criteria()
 	var/final = FALSE
-	if(emagged)
+	if(bot_cover_flags & BOT_COVER_EMAGGED)
 		final |= JUDGE_EMAGGED
 	if(bot_type == ADVANCED_SEC_BOT)
 		final |= JUDGE_IGNOREMONKEYS
@@ -217,6 +203,8 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 /mob/living/simple_animal/bot/secbot/attackby(obj/item/W, mob/user, params)
 	..()
+	if(!(bot_mode_flags & BOT_MODE_ON)) // Bots won't remember if you hit them while they're off.
+		return
 	if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM) // Any intent but harm will heal, so we shouldn't get angry.
 		return
 	if(W.tool_behaviour != TOOL_SCREWDRIVER && (W.force) && (!target) && (W.damtype != STAMINA) ) // Added check for welding tool to fix #2432. Welding tool behavior is handled in superclass.
@@ -226,7 +214,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 /mob/living/simple_animal/bot/secbot/emag_act(mob/user)
 	..()
-	if(!emagged)
+	if(!(bot_cover_flags & BOT_COVER_EMAGGED))
 		return
 	if(user)
 		to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
@@ -243,7 +231,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	return ..()
 
 /mob/living/simple_animal/bot/secbot/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
-	if(!on)
+	if(!(bot_mode_flags & BOT_MODE_ON))
 		return
 	if(!iscarbon(attack_target))
 		return ..()
@@ -273,7 +261,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	addtimer(CALLBACK(src, .proc/handcuff_target, C), 60)
 
 /mob/living/simple_animal/bot/secbot/proc/handcuff_target(mob/living/carbon/C)
-	if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
+	if(!(bot_mode_flags & BOT_MODE_ON) || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 		return
 	if(!C.handcuffed)
 		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
@@ -322,7 +310,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 			SSmove_manager.stop_looping(src)
 			look_for_perp()	// see if any criminals are in range
-			if(!mode && auto_patrol)	// still idle, and set to patrol
+			if(!mode && bot_mode_flags & BOT_MODE_AUTOPATROL)	// still idle, and set to patrol
 				mode = BOT_START_PATROL	// switch to patrol mode
 
 		if(BOT_HUNT)		// hunting for perp
@@ -455,11 +443,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(Tsec)
-	if(!noloot)
-		drop_part(weapon, Tsec)
-
-	if(prob(50))
-		drop_part(robot_arm, Tsec)
+	drop_part(baton_type, Tsec)
 
 	do_sparks(3, TRUE, src)
 

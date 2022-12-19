@@ -4,18 +4,17 @@
 	desc = "A little cleaning robot, he looks so excited!"
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "cleanbot0"
+	pass_flags = PASSMOB | PASSFLAPS
 	density = FALSE
 	anchored = FALSE
 	health = 25
 	maxHealth = 25
+
+	bot_core = /obj/machinery/bot_core/cleanbot
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE //Service
 	bot_type = CLEAN_BOT
-	model = "Cleanbot"
-	bot_core_type = /obj/machinery/bot_core/cleanbot
-	window_id = "autoclean"
-	window_name = "Automatic Station Cleaner v1.2"
-	pass_flags = PASSMOB
+	hackables = "cleaning software"
 	path_image_color = "#993299"
 
 	var/blood = 1
@@ -33,10 +32,18 @@
 	var/next_dest
 	var/next_dest_loc
 
+/mob/living/simple_animal/bot/cleanbot/autopatrol
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED | BOT_MODE_PAI_CONTROLLABLE
+
+/mob/living/simple_animal/bot/cleanbot/medbay
+	name = "Scrubs, MD"
+	bot_core = /obj/machinery/bot_core/cleanbot/medbay
+	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
+
 /mob/living/simple_animal/bot/cleanbot/Initialize(mapload)
 	. = ..()
 	get_targets()
-	icon_state = "cleanbot[on]"
+	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
 
 	var/datum/job/janitor/J = new/datum/job/janitor
 	access_card.access += J.get_access()
@@ -44,12 +51,12 @@
 
 /mob/living/simple_animal/bot/cleanbot/turn_on()
 	..()
-	icon_state = "cleanbot[on]"
+	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
 	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/turn_off()
 	..()
-	icon_state = "cleanbot[on]"
+	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
 	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/bot_reset()
@@ -58,20 +65,15 @@
 	target = null
 	oldloc = null
 
-/mob/living/simple_animal/bot/cleanbot/set_custom_texts()
-	text_hack = "You corrupt [name]'s cleaning software."
-	text_dehack = "[name]'s software has been reset!"
-	text_dehack_fail = "[name] does not seem to respond to your repair code!"
-
 /mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
-		if(bot_core.allowed(user) && !open && !emagged)
-			locked = !locked
-			to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
+		if(bot_core.allowed(user) && !(bot_cover_flags & BOT_COVER_OPEN) && !(bot_cover_flags & BOT_COVER_EMAGGED))
+			bot_cover_flags ^= BOT_COVER_LOCKED
+			to_chat(user, span_notice("You [bot_cover_flags & BOT_COVER_LOCKED ? "lock" : "unlock"] \the [src] behaviour controls."))
 		else
-			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
-			if(open)
+			if(bot_cover_flags & BOT_COVER_EMAGGED)
+				to_chat(user, span_warning("ERROR"))
+			if(bot_cover_flags & BOT_COVER_OPEN)
 				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 			else
 				to_chat(user, "<span class='notice'>\The [src] doesn't seem to respect your authority.</span>")
@@ -80,7 +82,7 @@
 
 /mob/living/simple_animal/bot/cleanbot/emag_act(mob/user)
 	..()
-	if(!emagged)
+	if(!(bot_cover_flags & BOT_COVER_EMAGGED))
 		return
 	if(user)
 		to_chat(user, "<span class='danger'>[src] buzzes and beeps.</span>")
@@ -100,7 +102,7 @@
 	if(mode == BOT_CLEANING)
 		return
 
-	if(emagged) //Emag functions
+	if(bot_cover_flags & BOT_COVER_EMAGGED) //Emag functions
 		if(isopenturf(loc))
 
 			for(var/mob/living/carbon/victim in loc)
@@ -119,7 +121,7 @@
 		if(!process_scan(target))
 			target = null
 
-	if(!target && emagged) // When emagged, target humans who slipped on the water and melt their faces off
+	if(!target && bot_cover_flags & BOT_COVER_EMAGGED) // When emagged, target humans who slipped on the water and melt their faces off
 		target = scan(/mob/living/carbon)
 
 	if(!target && pests) //Search for pests to exterminate first.
@@ -134,7 +136,7 @@
 	if(!target && trash) //Then for trash.
 		target = scan(/obj/item/trash)
 
-	if(!target && auto_patrol) //Search for cleanables it can see.
+	if(!target && bot_mode_flags & BOT_MODE_AUTOPATROL) //Search for cleanables it can see.
 		if(mode == BOT_IDLE || mode == BOT_START_PATROL)
 			start_patrol()
 
@@ -223,7 +225,7 @@
 			M.death()
 		target = null
 
-	else if(emagged) //Emag functions
+	else if(bot_cover_flags & BOT_COVER_EMAGGED) //Emag functions
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/victim = A
 			if(victim.stat == DEAD)//cleanbots always finish the job
@@ -251,8 +253,8 @@
 
 /mob/living/simple_animal/bot/cleanbot/proc/clean(atom/A)
 	mode = BOT_IDLE
-	icon_state = "cleanbot[on]"
-	if(!on)
+	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
+	if(!(bot_mode_flags & BOT_MODE_ON))
 		return
 	if(A && isturf(A.loc))
 		var/atom/movable/AM = A
@@ -263,16 +265,13 @@
 	target = null
 
 /mob/living/simple_animal/bot/cleanbot/explode()
-	on = FALSE
+	bot_mode_flags &= ~BOT_MODE_ON
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
 	var/atom/Tsec = drop_location()
 
 	new /obj/item/reagent_containers/glass/bucket(Tsec)
 
 	new /obj/item/assembly/prox_sensor(Tsec)
-
-	if(prob(50))
-		drop_part(robot_arm, Tsec)
 
 	do_sparks(3, TRUE, src)
 	..()
@@ -294,8 +293,8 @@
 
 /mob/living/simple_animal/bot/cleanbot/medbay
 	name = "Scrubs, MD"
-	bot_core_type = /obj/machinery/bot_core/cleanbot/medbay
-	on = FALSE
+	bot_core = /obj/machinery/bot_core/cleanbot
+	bot_mode_flags = ~BOT_MODE_ON
 
 //Crossed Wanted Larry Sprites to be Separate
 /mob/living/simple_animal/bot/cleanbot/larry
@@ -308,7 +307,7 @@
 /mob/living/simple_animal/bot/cleanbot/larry/Initialize(mapload)
 	. = ..()
 	get_targets()
-	icon_state = "larry[on]"
+	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
 
 	var/datum/job/janitor/J = new/datum/job/janitor
 	access_card.access += J.get_access()
@@ -316,12 +315,12 @@
 
 /mob/living/simple_animal/bot/cleanbot/larry/turn_on()
 	..()
-	icon_state = "larry[on]"
+	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
 	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/larry/turn_off()
 	..()
-	icon_state = "larry[on]"
+	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
 	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/larry/UnarmedAttack(atom/A)
@@ -342,7 +341,7 @@
 			M.death()
 		target = null
 
-	else if(emagged) //Emag functions
+	else if(bot_cover_flags & BOT_COVER_EMAGGED) //Emag functions
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/victim = A
 			if(victim.stat == DEAD)//cleanbots always finish the job
@@ -370,8 +369,8 @@
 
 /mob/living/simple_animal/bot/cleanbot/larry/clean(atom/A)
 	mode = BOT_IDLE
-	icon_state = "larry[on]"
-	if(!on)
+	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
+	if(!(bot_mode_flags & BOT_MODE_ON))
 		return
 	if(A && isturf(A.loc))
 		var/atom/movable/AM = A
@@ -402,15 +401,13 @@
 		add_overlay(knife_overlay)
 
 /mob/living/simple_animal/bot/cleanbot/larry/explode()
-	on = FALSE
+	bot_mode_flags &= ~BOT_MODE_ON
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
 	var/atom/Tsec = drop_location()
 
 	new /obj/item/larryframe(Tsec)
 	new /obj/item/assembly/prox_sensor(Tsec)
 
-	if(prob(50))
-		drop_part(robot_arm, Tsec)
 	//MonkeStation Edit Start: Larry Fixes
 	if(knife)
 		qdel(larry_knife)
@@ -428,37 +425,33 @@
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
 
 
-/mob/living/simple_animal/bot/cleanbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-Status: <A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>
-Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
-Maintenance panel panel is [open ? "opened" : "closed"]"})
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
-		dat += "<BR>Clean Blood: <A href='?src=[REF(src)];operation=blood'>[blood ? "Yes" : "No"]</A>"
-		dat += "<BR>Clean Trash: <A href='?src=[REF(src)];operation=trash'>[trash ? "Yes" : "No"]</A>"
-		dat += "<BR>Clean Graffiti: <A href='?src=[REF(src)];operation=drawn'>[drawn ? "Yes" : "No"]</A>"
-		dat += "<BR>Exterminate Pests: <A href='?src=[REF(src)];operation=pests'>[pests ? "Yes" : "No"]</A>"
-		dat += "<BR><BR>Patrol Station: <A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "Yes" : "No"]</A>"
-	return dat
+// Variables sent to TGUI
+/mob/living/simple_animal/bot/cleanbot/ui_data(mob/user)
+	var/list/data = ..()
 
-/mob/living/simple_animal/bot/cleanbot/Topic(href, href_list)
-	if(..())
-		return 1
-	if(href_list["operation"])
-		switch(href_list["operation"])
-			if("blood")
-				blood = !blood
-			if("pests")
-				pests = !pests
-			if("trash")
-				trash = !trash
-			if("drawn")
-				drawn = !drawn
-		get_targets()
-		update_controls()
+	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user)|| IsAdminGhost(user))
+		data["custom_controls"]["clean_blood"] = blood
+		data["custom_controls"]["clean_trash"] = trash
+		data["custom_controls"]["clean_graffiti"] = drawn
+		data["custom_controls"]["pest_control"] = pests
+	return data
+
+// Actions received from TGUI
+/mob/living/simple_animal/bot/cleanbot/ui_act(action, params)
+	. = ..()
+	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
+		return
+	switch(action)
+		if("clean_blood")
+			blood = !blood
+		if("pest_control")
+			pests = !pests
+		if("clean_trash")
+			trash = !trash
+		if("clean_graffiti")
+			drawn = !drawn
+	get_targets()
+	return
 
 /obj/machinery/bot_core/cleanbot/medbay
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)

@@ -5,7 +5,7 @@
 	icon_state = "secbot"
 	chasesounds = list('monkestation/sound/voice/pizzky/criminal.ogg','monkestation/sound/voice/pizzky/freeze.ogg','monkestation/sound/voice/pizzky/justice.ogg')
 	arrestsounds = "pizzky"
-	auto_patrol = TRUE
+	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED
 	verb_whisper = "grumbles"
 	var/last_grumble_speak = 0
 

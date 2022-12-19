@@ -10,13 +10,11 @@
 	maxHealth = 25
 	spacewalk = TRUE
 
+	bot_core = /obj/machinery/bot_core/floorbot
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 	bot_type = FLOOR_BOT
-	model = "Floorbot"
-	bot_core = /obj/machinery/bot_core/floorbot
-	window_id = "autofloor"
-	window_name = "Automatic Station Floor Repairer v1.1"
+	hackables = "floor construction protocols"
 	path_image_color = "#FFA500"
 
 	var/process_type //Determines what to do when process_scan() receives a target. See process_scan() for details.
@@ -69,41 +67,6 @@
 	anchored = FALSE
 	update_icon()
 
-/mob/living/simple_animal/bot/floorbot/set_custom_texts()
-	text_hack = "You corrupt [name]'s construction protocols."
-	text_dehack = "You detect errors in [name] and reset his programming."
-	text_dehack_fail = "[name] is not responding to reset commands!"
-
-/mob/living/simple_animal/bot/floorbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<TT><B>Floor Repairer Controls v1.1</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<BR>"
-	dat += "Special tiles: "
-	if(specialtiles)
-		dat += "<A href='?src=[REF(src)];operation=eject'>Loaded \[[specialtiles]/[maxtiles]\]</a><BR>"
-	else
-		dat += "None Loaded<BR>"
-
-	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "Add tiles to new hull plating: <A href='?src=[REF(src)];operation=autotile'>[autotile ? "Yes" : "No"]</A><BR>"
-		dat += "Place floor tiles: <A href='?src=[REF(src)];operation=place'>[placetiles ? "Yes" : "No"]</A><BR>"
-		dat += "Replace existing floor tiles with custom tiles: <A href='?src=[REF(src)];operation=replace'>[replacetiles ? "Yes" : "No"]</A><BR>"
-		dat += "Repair damaged tiles and platings: <A href='?src=[REF(src)];operation=fix'>[fixfloors ? "Yes" : "No"]</A><BR>"
-		dat += "Traction Magnets: <A href='?src=[REF(src)];operation=anchor'>[anchored ? "Engaged" : "Disengaged"]</A><BR>"
-		dat += "Patrol Station: <A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "Yes" : "No"]</A><BR>"
-		var/bmode
-		if(targetdirection)
-			bmode = dir2text(targetdirection)
-		else
-			bmode = "disabled"
-		dat += "Line Mode : <A href='?src=[REF(src)];operation=linemode'>[bmode]</A><BR>"
-
-	return dat
-
 /mob/living/simple_animal/bot/floorbot/attackby(obj/item/W , mob/user, params)
 	if(istype(W, /obj/item/stack/tile/plasteel))
 		to_chat(user, "<span class='notice'>The floorbot can produce normal tiles itself.</span>")
@@ -130,31 +93,45 @@
 
 /mob/living/simple_animal/bot/floorbot/emag_act(mob/user)
 	..()
-	if(!emagged)
+	if(!(bot_cover_flags & BOT_COVER_EMAGGED))
 		return
 	if(user)
 		to_chat(user, span_danger("[src] buzzes and beeps."))
 
-/mob/living/simple_animal/bot/floorbot/Topic(href, href_list)
-	if(..())
-		return TRUE
+// Variables sent to TGUI
+/mob/living/simple_animal/bot/floorbot/ui_data(mob/user)
+	var/list/data = ..()
+	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || IsAdminGhost(user))
+		data["custom_controls"]["tile_hull"] = autotile
+		data["custom_controls"]["place_tiles"] =  placetiles
+		data["custom_controls"]["place_custom"] = replacetiles
+		data["custom_controls"]["repair_damage"] = fixfloors
+		data["custom_controls"]["tile_stack"] = 0
+		data["custom_controls"]["line_mode"] = FALSE
+		if(specialtiles)
+			data["custom_controls"]["tile_stack"] = specialtiles
+		if(targetdirection)
+			data["custom_controls"]["line_mode"] = dir2text(targetdirection)
+	return data
 
-	switch(href_list["operation"])
-		if("replace")
+// Actions received from TGUI
+/mob/living/simple_animal/bot/floorbot/ui_act(action, params)
+	. = ..()
+	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
+		return
+	switch(action)
+		if("place_custom")
 			replacetiles = !replacetiles
-		if("place")
+		if("place_tiles")
 			placetiles = !placetiles
-		if("fix")
+		if("repair_damage")
 			fixfloors = !fixfloors
-		if("autotile")
+		if("tile_hull")
 			autotile = !autotile
-		if("anchor")
-			anchored = !anchored
-		if("eject")
-			if(specialtiles && tiletype != null)
+		if("eject_tiles")
+			if(specialtiles)
 				empty_tiles()
-
-		if("linemode")
+		if("line_mode")
 			var/setdir = input("Select construction direction:") as null|anything in list("north","east","south","west","disable")
 			switch(setdir)
 				if("north")
@@ -167,7 +144,7 @@
 					targetdirection = 8
 				if("disable")
 					targetdirection = null
-	update_controls()
+	return
 
 /mob/living/simple_animal/bot/floorbot/proc/empty_tiles()
 	new tiletype(drop_location(), specialtiles)
@@ -185,7 +162,7 @@
 		audible_message("[src] makes an excited booping beeping sound!")
 
 	//Normal scanning procedure. We have tiles loaded, are not emagged.
-	if(!target && emagged)
+	if(!target && !(bot_cover_flags & BOT_COVER_EMAGGED))
 		if(targetdirection != null) //The bot is in line mode.
 			var/turf/T = get_step(src, targetdirection)
 			if(isspaceturf(T)) //Check for space
@@ -210,14 +187,14 @@
 			process_type = REPLACE_TILE //The target must be a tile. The floor must already have a floortile.
 			target = scan(/turf/open/floor)
 
-	if(!target && emagged) //We are emagged! Time to rip up the floors!
+	if(!target && bot_cover_flags & BOT_COVER_EMAGGED) //We are emagged! Time to rip up the floors!
 		process_type = TILE_EMAG
 		target = scan(/turf/open/floor)
 
 
 	if(!target)
 
-		if(auto_patrol)
+		if(bot_mode_flags & BOT_MODE_AUTOPATROL)
 			if(mode == BOT_IDLE || mode == BOT_START_PATROL)
 				start_patrol()
 
@@ -232,9 +209,9 @@
 					target = null
 					path = list()
 					return
-			if(isturf(target) && !emagged)
+			if(isturf(target) && !(bot_cover_flags & BOT_COVER_EMAGGED))
 				repair(target)
-			else if(emagged && isfloorturf(target))
+			else if(bot_cover_flags & BOT_COVER_EMAGGED && isfloorturf(target))
 				var/turf/open/floor/F = target
 				anchored = TRUE
 				mode = BOT_REPAIRING
@@ -366,11 +343,11 @@
 	target = null
 
 /mob/living/simple_animal/bot/floorbot/update_icon()
-	icon_state = "[toolbox_color]floorbot[on]"
+	icon_state = "[toolbox_color]floorbot[get_bot_flag(BOT_MODE_ON)]"
 
 
 /mob/living/simple_animal/bot/floorbot/explode()
-	on = FALSE
+	bot_mode_flags &= ~BOT_MODE_ON
 	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
 	var/atom/Tsec = drop_location()
 
@@ -380,9 +357,6 @@
 
 	if(specialtiles && tiletype != null)
 		empty_tiles()
-
-	if(prob(50))
-		drop_part(robot_arm, Tsec)
 
 	new /obj/item/stack/tile/plasteel(Tsec, 1)
 

@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				dat += "<h4>Utilities</h4>"
 				dat += "<ul>"
 				if (cartridge)
-					if(cartridge.bot_access_flags)
+					if(!isnull(cartridge.bot_access))
 						dat += "<li><a href='byond://?src=[REF(src)];choice=54'>[PDAIMG(medbot)]Bots Access</a></li>"
 					if(cartridge.access & CART_MIME)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=55'>[PDAIMG(emoji)]Emoji Guidebook</a></li>"
