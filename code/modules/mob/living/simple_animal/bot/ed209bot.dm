@@ -14,7 +14,7 @@
 
 	radio_key = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
-	bot_type = SEC_BOT
+	bot_type = ADVANCED_SEC_BOT
 	model = "ED-209"
 	bot_core_type = /obj/machinery/bot_core/secbot
 	window_id = "autoed209"
@@ -164,7 +164,7 @@ Auto Patrol[]"},
 		final = final|JUDGE_RECORDCHECK
 	if(weaponscheck)
 		final = final|JUDGE_WEAPONCHECK
-	if(emagged == 2)
+	if(emagged)
 		final = final|JUDGE_EMAGGED
 	//ED209's ignore monkeys
 	final = final|JUDGE_IGNOREMONKEYS
@@ -191,11 +191,11 @@ Auto Patrol[]"},
 		if(W.force && W.damtype != STAMINA)//If force is non-zero and damage type isn't stamina.
 			retaliate(user)
 			if(lasercolor)//To make up for the fact that lasertag bots don't hunt
-				shootAt(user)
+				shoot_at(user)
 
 /mob/living/simple_animal/bot/ed209/emag_act(mob/user)
 	..()
-	if(emagged == 2)
+	if(emagged)
 		if(user)
 			to_chat(user, "<span class='warning'>You short out [src]'s target assessment circuits.</span>")
 			oldtarget_name = user.name
@@ -237,7 +237,7 @@ Auto Patrol[]"},
 	if(targets.len>0)
 		var/mob/living/carbon/t = pick(targets)
 		if(t.stat != DEAD && (t.mobility_flags & MOBILITY_STAND) && !t.handcuffed) //we don't shoot people who are dead, cuffed or lying down.
-			shootAt(t)
+			shoot_at(t)
 	switch(mode)
 
 		if(BOT_IDLE)		// idle
@@ -419,7 +419,7 @@ Auto Patrol[]"},
 
 /mob/living/simple_animal/bot/ed209/proc/set_weapon()  //used to update the projectile type and firing sound
 	shoot_sound = 'sound/weapons/laser.ogg'
-	if(emagged == 2)
+	if(emagged)
 		if(lasercolor)
 			projectile = /obj/item/projectile/beam/lasertag
 		else
@@ -433,7 +433,7 @@ Auto Patrol[]"},
 		else if(lasercolor == "r")
 			projectile = /obj/item/projectile/beam/lasertag/redtag
 
-/mob/living/simple_animal/bot/ed209/proc/shootAt(mob/target)
+/mob/living/simple_animal/bot/ed209/proc/shoot_at(mob/target)
 	if(world.time <= lastfired + shot_delay)
 		return
 	lastfired = world.time
@@ -465,32 +465,34 @@ Auto Patrol[]"},
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	if (severity >= 2)
-		new /obj/effect/temp_visual/emp(loc)
-		var/list/mob/living/carbon/targets = new
-		for(var/mob/living/carbon/C in view(12,src))
-			if(C.stat==DEAD)
-				continue
-			targets += C
+	if(severity <= 1)
+		return
+	new /obj/effect/temp_visual/emp(loc)
+	var/list/mob/living/carbon/targets = list()
+	for(var/mob/living/carbon/nearby_carbons in view(12,src))
+		if(nearby_carbons.stat == DEAD)
+			continue
+		targets += nearby_carbons
+	if(!targets.len)
+		return
+	if(prob(50))
+		var/mob/toshoot = pick(targets)
+		if(toshoot)
+			targets -= toshoot
+			if(prob(50) && !emagged) // Temporarily emags it
+				emagged = TRUE
+				set_weapon()
+				shoot_at(toshoot)
+				emagged = FALSE
+				set_weapon()
+			else
+				shoot_at(toshoot)
+	else if(prob(50))
 		if(targets.len)
-			if(prob(50))
-				var/mob/toshoot = pick(targets)
-				if(toshoot)
-					targets-=toshoot
-					if(prob(50) && emagged < 2)
-						emagged = 2
-						set_weapon()
-						shootAt(toshoot)
-						emagged = FALSE
-						set_weapon()
-					else
-						shootAt(toshoot)
-			else if(prob(50))
-				if(targets.len)
-					var/mob/toarrest = pick(targets)
-					if(toarrest)
-						target = toarrest
-						mode = BOT_HUNT
+			var/mob/to_arrest = pick(targets)
+			if(to_arrest)
+				target = to_arrest
+				mode = BOT_HUNT
 
 
 /mob/living/simple_animal/bot/ed209/bullet_act(obj/item/projectile/Proj)
@@ -546,7 +548,7 @@ Auto Patrol[]"},
 /mob/living/simple_animal/bot/ed209/RangedAttack(atom/A)
 	if(!on)
 		return
-	shootAt(A)
+	shoot_at(A)
 
 /mob/living/simple_animal/bot/ed209/proc/stun_attack(mob/living/carbon/C)
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)

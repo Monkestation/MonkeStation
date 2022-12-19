@@ -5,9 +5,9 @@
 	icon_state = "grievous"
 	health = 150
 	maxHealth = 150
-	baton_type = /obj/item/melee/transforming/energy/sword/saber
+	weapon = /obj/item/melee/transforming/energy/sword/saber
 	base_speed = 4 //he's a fast fucker
-	var/obj/item/weapon
+	var/obj/item/other_weapon
 	var/block_chance = 50
 	noloot = FALSE
 
@@ -17,7 +17,7 @@
 	desc = "An adorable looking secbot with four toy swords taped to its arms"
 	health = 50
 	maxHealth = 50
-	baton_type = /obj/item/toy/sword
+	weapon = /obj/item/toy/sword
 
 /mob/living/simple_animal/bot/secbot/grievous/nullcrate
 	name = "General Griefsky"
@@ -44,8 +44,8 @@
 
 /mob/living/simple_animal/bot/secbot/grievous/Initialize(mapload)
 	. = ..()
-	weapon = new baton_type(src)
-	weapon.attack_self(src)
+	other_weapon = new weapon(src)
+	other_weapon.attack_self(src)
 
 /mob/living/simple_animal/bot/secbot/grievous/Destroy()
 	QDEL_NULL(weapon)
@@ -60,7 +60,7 @@
 		return TRUE
 
 /mob/living/simple_animal/bot/secbot/grievous/stun_attack(mob/living/carbon/C) //Criminals don't deserve to live
-	weapon.attack(C, src)
+	other_weapon.attack(C, src)
 	playsound(src, 'sound/weapons/blade1.ogg', 50, TRUE, -1)
 	if(C.stat == DEAD)
 		addtimer(CALLBACK(src, /atom/.proc/update_icon), 2)
@@ -157,6 +157,6 @@
 	do_sparks(3, TRUE, src)
 	if(!noloot)
 		for(var/IS = 0 to 4)
-			drop_part(baton_type, Tsec)
+			drop_part(weapon, Tsec)
 	new /obj/effect/decal/cleanable/oil(Tsec)
 	qdel(src)

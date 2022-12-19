@@ -21,31 +21,48 @@
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
 	path_image_color = "#FF0000"
 
-//monkestation edit begin
+	///The tool this Secbot will use to make arrests
+	var/obj/item/weapon = /obj/item/melee/baton
+	///Their current target
+	var/mob/living/carbon/target
+	///Name of their last target to prevent spamming
+	var/oldtarget_name
+	///The threat level of the BOT, will arrest anyone at threatlevel 4 or above
+	var/threatlevel = 0
+	///The last location their target was seen at
+	var/target_lastloc
+	///Time since last seeing their perpetrator
+	var/last_found
+	///Flags SecBOTs use on what to check on targets when arresting, and whether they should announce it to security/handcuff their target
+	var/security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_RECORDS | SECBOT_HANDCUFF_TARGET
+
+	///On arrest, charges the violator this much. If they don't have that much in their account, they will get beaten instead
+	var/fair_market_price_arrest = 25
+	///Charged each time the violator is stunned on detain
+	var/fair_market_price_detain = 5
+	/// Force of the harmbaton used on them
+	var/weapon_force = 20
+	///The department the secbot will deposit collected money into
+	var/payment_department = ACCOUNT_SEC
+
+	//	Selections: SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_WEAPONS | SECBOT_CHECK_RECORDS | SECBOT_HANDCUFF_TARGET
+	//monkestation edit begin
 	var/arrestsounds = "law"
 	var/chasesounds = list('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg')
 	var/emagsounds = "sec_emag"
 	//monkestation edit end
 
 	var/noloot = FALSE
-	var/baton_type = /obj/item/melee/baton
-	var/mob/living/carbon/target
-	var/oldtarget_name
-	var/threatlevel = FALSE
-	var/target_lastloc //Loc of target when arrested.
-	var/last_found //There's a delay
-	var/declare_arrests = TRUE //When making an arrest, should it notify everyone on the security channel?
-	var/idcheck = FALSE //If true, arrest people with no IDs
-	var/weaponscheck = FALSE //If true, arrest people for weapons if they lack access
-	var/check_records = TRUE //Does it check security records?
-	var/arrest_type = FALSE //If true, don't handcuff
-
 /mob/living/simple_animal/bot/secbot/beepsky
 	name = "Officer Beep O'sky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
-	idcheck = FALSE
-	weaponscheck = FALSE
 	auto_patrol = TRUE
+
+/mob/living/simple_animal/bot/secbot/beepsky/armsky
+	name = "Sergeant-At-Armsky"
+	health = 45
+	auto_patrol = FALSE
+	security_mode_flags = SECBOT_DECLARE_ARRESTS | SECBOT_CHECK_IDS | SECBOT_CHECK_RECORDS
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
 	name = "Officer Pipsqueak"
@@ -57,12 +74,17 @@
 	update_transform()
 
 
+/mob/living/simple_animal/bot/secbot/pingsky
+	name = "Officer Pingsky"
+	desc = "It's Officer Pingsky! Delegated to satellite guard duty for harbouring anti-human sentiment."
+	radio_channel = RADIO_CHANNEL_AI_PRIVATE
+
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
 	var/atom/Tsec = drop_location()
 	new /obj/item/stock_parts/cell/potato(Tsec)
-	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/S = new(Tsec)
-	S.reagents.add_reagent(/datum/reagent/consumable/ethanol/whiskey, 15)
-	S.on_reagent_change(ADD_REAGENT)
+	var/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/drinking_oil = new(Tsec)
+	drinking_oil.reagents.add_reagent(/datum/reagent/consumable/ethanol/whiskey, 15)
+	drinking_oil.on_reagent_change(ADD_REAGENT)
 	..()
 
 /mob/living/simple_animal/bot/secbot/pingsky
@@ -72,7 +94,9 @@
 
 /mob/living/simple_animal/bot/secbot/Initialize(mapload)
 	. = ..()
-	update_icon()
+	weapon = new weapon()
+	update_appearance(UPDATE_ICON)
+
 	var/datum/job/detective/J = new/datum/job/detective
 	access_card.access += J.get_access()
 	prev_access = access_card.access
@@ -123,19 +147,19 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 	if(!locked || issilicon(user) || IsAdminGhost(user))
 		dat += text({"<BR>
-Arrest Unidentifiable Persons: []<BR>
-Arrest for Unauthorized Weapons: []<BR>
-Arrest for Warrant: []<BR>
-Operating Mode: []<BR>
-Report Arrests[]<BR>
-Auto Patrol: []"},
+		Arrest Unidentifiable Persons: []<BR>
+		Arrest for Unauthorized Weapons: []<BR>
+		Arrest for Warrant: []<BR>
+		Operating Mode: []<BR>
+		Report Arrests[]<BR>
+		Auto Patrol: []"},
 
-"<A href='?src=[REF(src)];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
-"<A href='?src=[REF(src)];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
+		"<A href='?src=[REF(src)];operation=idcheck'>[security_mode_flags & SECBOT_CHECK_IDS ? "Yes" : "No"]</A>",
+		"<A href='?src=[REF(src)];operation=weaponscheck'>[security_mode_flags & SECBOT_CHECK_WEAPONS ? "Yes" : "No"]</A>",
+		"<A href='?src=[REF(src)];operation=ignorerec'>[security_mode_flags & SECBOT_CHECK_RECORDS ? "Yes" : "No"]</A>",
+		"<A href='?src=[REF(src)];operation=switchmode'>[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arrest" : "Detain"]</A>",
+		"<A href='?src=[REF(src)];operation=declarearrests'>[security_mode_flags & SECBOT_DECLARE_ARRESTS ? "Yes" : "No"]</A>",
+		"<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>")
 
 	return	dat
 
@@ -146,20 +170,17 @@ Auto Patrol: []"},
 		return TRUE
 	switch(href_list["operation"])
 		if("idcheck")
-			idcheck = !idcheck
-			update_controls()
+			security_mode_flags ^= SECBOT_CHECK_IDS
 		if("weaponscheck")
-			weaponscheck = !weaponscheck
-			update_controls()
+			security_mode_flags ^= SECBOT_CHECK_WEAPONS
 		if("ignorerec")
-			check_records = !check_records
-			update_controls()
+			security_mode_flags ^= SECBOT_CHECK_RECORDS
 		if("switchmode")
-			arrest_type = !arrest_type
-			update_controls()
+			security_mode_flags ^= SECBOT_HANDCUFF_TARGET
 		if("declarearrests")
-			declare_arrests = !declare_arrests
-			update_controls()
+			security_mode_flags ^= SECBOT_DECLARE_ARRESTS
+
+	update_controls()
 
 /mob/living/simple_animal/bot/secbot/proc/retaliate(mob/living/carbon/human/H)
 	var/judgment_criteria = judgment_criteria()
@@ -170,16 +191,18 @@ Auto Patrol: []"},
 		mode = BOT_HUNT
 
 /mob/living/simple_animal/bot/secbot/proc/judgment_criteria()
-    var/final = FALSE
-    if(idcheck)
-        final = final|JUDGE_IDCHECK
-    if(check_records)
-        final = final|JUDGE_RECORDCHECK
-    if(weaponscheck)
-        final = final|JUDGE_WEAPONCHECK
-    if(emagged == 2)
-        final = final|JUDGE_EMAGGED
-    return final
+	var/final = FALSE
+	if(emagged)
+		final |= JUDGE_EMAGGED
+	if(bot_type == ADVANCED_SEC_BOT)
+		final |= JUDGE_IGNOREMONKEYS
+	if(security_mode_flags & SECBOT_CHECK_IDS)
+		final |= JUDGE_IDCHECK
+	if(security_mode_flags & SECBOT_CHECK_RECORDS)
+		final |= JUDGE_RECORDCHECK
+	if(security_mode_flags & SECBOT_CHECK_WEAPONS)
+		final |= JUDGE_WEAPONCHECK
+	return final
 
 /mob/living/simple_animal/bot/secbot/proc/special_retaliate_after_attack(mob/user) //allows special actions to take place after being attacked.
 	return
@@ -203,13 +226,14 @@ Auto Patrol: []"},
 
 /mob/living/simple_animal/bot/secbot/emag_act(mob/user)
 	..()
-	if(emagged == 2)
-		if(user)
-			to_chat(user, "<span class='danger'>You short out [src]'s target assessment circuits.</span>")
-			oldtarget_name = user.name
-		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
-		declare_arrests = FALSE
-		update_icon()
+	if(!emagged)
+		return
+	if(user)
+		to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
+		oldtarget_name = user.name
+	audible_message(span_danger("[src] buzzes oddly!"))
+	security_mode_flags &= ~SECBOT_DECLARE_ARRESTS
+	update_appearance()
 
 /mob/living/simple_animal/bot/secbot/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj , /obj/item/projectile/beam)||istype(Proj, /obj/item/projectile/bullet))
@@ -218,35 +242,37 @@ Auto Patrol: []"},
 				retaliate(Proj.firer)
 	return ..()
 
-/mob/living/simple_animal/bot/secbot/UnarmedAttack(atom/A)
+/mob/living/simple_animal/bot/secbot/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
 	if(!on)
 		return
-	if(iscarbon(A))
-		var/mob/living/carbon/C = A
-		if(!C.IsParalyzed() || arrest_type)
-			stun_attack(A)
-		else if(C.canBeHandcuffed() && !C.handcuffed)
-			cuff(A)
-	else
-		..()
+	if(!iscarbon(attack_target))
+		return ..()
+	var/mob/living/carbon/carbon_target = attack_target
+	if(!carbon_target.IsParalyzed() || !(security_mode_flags & SECBOT_HANDCUFF_TARGET))
+		if(!check_nap_violations())
+			stun_attack(attack_target, TRUE)
+		else
+			stun_attack(attack_target)
+	else if(carbon_target.canBeHandcuffed() && !carbon_target.handcuffed)
+		start_handcuffing(attack_target)
 
-/mob/living/simple_animal/bot/secbot/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
-	if(istype(AM, /obj/item))
-		var/obj/item/I = AM
-		var/mob/thrown_by = I.thrownby?.resolve()
-		if(I.throwforce < src.health && thrown_by && ishuman(thrown_by))
-			var/mob/living/carbon/human/H = thrown_by
-			retaliate(H)
+/mob/living/simple_animal/bot/secbot/hitby(atom/movable/hitting_atom, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
+	if(istype(hitting_atom, /obj/item))
+		var/obj/item/item_hitby = hitting_atom
+		var/mob/thrown_by = item_hitby.thrownby?.resolve()
+		if(item_hitby.throwforce < src.health && thrown_by && ishuman(thrown_by))
+			var/mob/living/carbon/human/human_throwee = thrown_by
+			retaliate(human_throwee)
 	..()
 
-/mob/living/simple_animal/bot/secbot/proc/cuff(mob/living/carbon/C)
+/mob/living/simple_animal/bot/secbot/proc/start_handcuffing(mob/living/carbon/C)
 	mode = BOT_ARREST
 	playsound(src, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
 	C.visible_message("<span class='danger'>[src] is trying to put zipties on [C]!</span>",\
 						"<span class='userdanger'>[src] is trying to put zipties on you!</span>")
-	addtimer(CALLBACK(src, .proc/attempt_handcuff, C), 60)
+	addtimer(CALLBACK(src, .proc/handcuff_target, C), 60)
 
-/mob/living/simple_animal/bot/secbot/proc/attempt_handcuff(mob/living/carbon/C)
+/mob/living/simple_animal/bot/secbot/proc/handcuff_target(mob/living/carbon/C)
 	if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 		return
 	if(!C.handcuffed)
@@ -279,14 +305,15 @@ Auto Patrol: []"},
 		threat = C.assess_threat(judgment_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
 
 	log_combat(src,C,"stunned")
-	if(declare_arrests)
+	if(security_mode_flags & SECBOT_DECLARE_ARRESTS)
 		var/area/location = get_area(src)
-		speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
+		speak("[security_mode_flags & SECBOT_HANDCUFF_TARGET ? "Arresting" : "Detaining"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
 	C.visible_message("<span class='danger'>[src] has stunned [C]!</span>",\
 							"<span class='userdanger'>[src] has stunned you!</span>")
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 
 	switch(mode)
@@ -306,24 +333,27 @@ Auto Patrol: []"},
 				back_to_idle()
 				return
 
-			if(target)		// make sure target exists
-				if(Adjacent(target) && isturf(target.loc))	// if right next to perp
+			if(!target) // make sure target exists
+				back_to_idle()
+				return
+			if(Adjacent(target) && isturf(target.loc)) // if right next to perp
+				if(!check_nap_violations())
+					stun_attack(target, TRUE)
+				else
 					stun_attack(target)
 
-					mode = BOT_PREP_ARREST
-					anchored = TRUE
-					target_lastloc = target.loc
-					return
+				mode = BOT_PREP_ARREST
+				anchored = TRUE
+				target_lastloc = target.loc
+				return
 
-				else								// not next to perp
-					var/turf/olddist = get_dist(src, target)
-					SSmove_manager.move_to(src, target, 1, 4)
-					if((get_dist(src, target)) >= (olddist))
-						frustration++
-					else
-						frustration = 0
+			// not next to perp
+			var/turf/olddist = get_dist(src, target)
+			walk_to(src, target,1,4)
+			if((get_dist(src, target)) >= (olddist))
+				frustration++
 			else
-				back_to_idle()
+				frustration = 0
 
 		if(BOT_PREP_ARREST)		// preparing to arrest target
 
@@ -332,16 +362,15 @@ Auto Patrol: []"},
 				back_to_hunt()
 				return
 
-			if(iscarbon(target) && target.canBeHandcuffed())
-				if(!arrest_type)
-					if(!target.handcuffed)  //he's not cuffed? Try to cuff him!
-						cuff(target)
-					else
-						back_to_idle()
-						return
-			else
+			if(!iscarbon(target) || !target.canBeHandcuffed())
 				back_to_idle()
 				return
+			if(security_mode_flags & SECBOT_HANDCUFF_TARGET)
+				if(!target.handcuffed) //he's not cuffed? Try to cuff him!
+					start_handcuffing(target)
+				else
+					back_to_idle()
+					return
 
 		if(BOT_ARREST)
 			if(!target)
@@ -369,9 +398,6 @@ Auto Patrol: []"},
 		if(BOT_PATROL)
 			look_for_perp()
 			bot_patrol()
-
-
-	return
 
 /mob/living/simple_animal/bot/secbot/proc/back_to_idle()
 	anchored = FALSE
@@ -425,12 +451,12 @@ Auto Patrol: []"},
 	var/atom/Tsec = drop_location()
 
 	var/obj/item/bot_assembly/secbot/Sa = new (Tsec)
-	Sa.build_step = 1
+	Sa.build_step = ASSEMBLY_FIRST_STEP
 	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(Tsec)
 	if(!noloot)
-		drop_part(baton_type, Tsec)
+		drop_part(weapon, Tsec)
 
 	if(prob(50))
 		drop_part(robot_arm, Tsec)
@@ -458,3 +484,36 @@ Auto Patrol: []"},
 
 /obj/machinery/bot_core/secbot
 	req_one_access = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
+
+/mob/living/simple_animal/bot/secbot/proc/check_nap_violations()
+	if(!SSeconomy.full_ancap)
+		return TRUE
+	if(!target)
+		return TRUE
+	if(!ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/human_target = target
+	var/obj/item/card/id/target_id = human_target.get_idcard()
+	if(!target_id)
+		say("Suspect NAP Violation: No ID card found.")
+		nap_violation(target)
+		return FALSE
+	var/datum/bank_account/insurance = target_id.registered_account
+	if(!insurance)
+		say("Suspect NAP Violation: No bank account found.")
+		nap_violation(target)
+		return FALSE
+	var/fair_market_price = (security_mode_flags & SECBOT_HANDCUFF_TARGET ? fair_market_price_detain : fair_market_price_arrest)
+	if(!insurance.adjust_money(-fair_market_price))
+		say("Suspect NAP Violation: Unable to pay.")
+		nap_violation(target)
+		return FALSE
+	var/datum/bank_account/beepsky_department_account = SSeconomy.get_dep_account(payment_department)
+	say("Thank you for your compliance. Your account been charged [fair_market_price] credits.")
+	if(beepsky_department_account)
+		beepsky_department_account.adjust_money(fair_market_price)
+		return TRUE
+
+/// Does nothing
+/mob/living/simple_animal/bot/secbot/proc/nap_violation(mob/violator)
+	return

@@ -417,7 +417,7 @@
 					to_chat(user, "<span class='notice'>You complete the... Shitcuritron? Are you sure you did that right?</span>")
 					S = new /mob/living/simple_animal/bot/secbot/pizzky(Tsec)
 				S.name = created_name
-				S.baton_type = I.type
+				S.weapon = I.type
 				S.robot_arm = robot_arm
 				//monkestation edit end
 				qdel(I)

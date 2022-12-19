@@ -14,5 +14,5 @@
 	summon_lifespan = 180 SECONDS
 	summon_amt = 4
 
-	newVars = list(name = "Angry Ape")
+	new_vars = list(name = "Angry Ape")
 	cast_sound = 'sound/creatures/monkey/monkey_screech_1.ogg'

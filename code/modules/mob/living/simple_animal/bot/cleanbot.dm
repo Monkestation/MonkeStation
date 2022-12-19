@@ -80,9 +80,10 @@
 
 /mob/living/simple_animal/bot/cleanbot/emag_act(mob/user)
 	..()
-	if(emagged == 2)
-		if(user)
-			to_chat(user, "<span class='danger'>[src] buzzes and beeps.</span>")
+	if(!emagged)
+		return
+	if(user)
+		to_chat(user, "<span class='danger'>[src] buzzes and beeps.</span>")
 
 /mob/living/simple_animal/bot/cleanbot/process_scan(atom/A)
 	if(iscarbon(A))
@@ -99,7 +100,7 @@
 	if(mode == BOT_CLEANING)
 		return
 
-	if(emagged == 2) //Emag functions
+	if(emagged) //Emag functions
 		if(isopenturf(loc))
 
 			for(var/mob/living/carbon/victim in loc)
@@ -118,7 +119,7 @@
 		if(!process_scan(target))
 			target = null
 
-	if(!target && emagged == 2) // When emagged, target humans who slipped on the water and melt their faces off
+	if(!target && emagged) // When emagged, target humans who slipped on the water and melt their faces off
 		target = scan(/mob/living/carbon)
 
 	if(!target && pests) //Search for pests to exterminate first.
@@ -222,7 +223,7 @@
 			M.death()
 		target = null
 
-	else if(emagged == 2) //Emag functions
+	else if(emagged) //Emag functions
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/victim = A
 			if(victim.stat == DEAD)//cleanbots always finish the job
@@ -341,7 +342,7 @@
 			M.death()
 		target = null
 
-	else if(emagged == 2) //Emag functions
+	else if(emagged) //Emag functions
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/victim = A
 			if(victim.stat == DEAD)//cleanbots always finish the job

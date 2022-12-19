@@ -88,13 +88,13 @@
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-sec"
 	access = CART_SECURITY | CART_MANIFEST
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT | ADVANCED_SEC_BOT
 
 /obj/item/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-det"
 	access = CART_SECURITY | CART_MEDICAL | CART_MANIFEST
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT | ADVANCED_SEC_BOT
 
 /obj/item/cartridge/janitor
 	name = "\improper CustodiPRO cartridge"
@@ -159,7 +159,7 @@
 	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	access = CART_MANIFEST | CART_STATUS_DISPLAY | CART_SECURITY
-	bot_access_flags = SEC_BOT
+	bot_access_flags = SEC_BOT | ADVANCED_SEC_BOT
 
 /obj/item/cartridge/ce
 	name = "\improper Power-On DELUXE cartridge"

@@ -104,21 +104,25 @@
 
 //Bot types
 /// Secutritrons (Beepsky)
-#define SEC_BOT "Securitron"
+#define SEC_BOT (1<<0)
 /// ED-209s
-#define ADVANCED_SEC_BOT "ED-209"
+#define ADVANCED_SEC_BOT (1<<1)
 /// MULEbots
-#define MULE_BOT "MULEbot"
+#define MULE_BOT (1<<2)
 /// Floorbots
-#define FLOOR_BOT "Floorbot"
+#define FLOOR_BOT (1<<3)
 /// Cleanbots
-#define CLEAN_BOT "Cleanbot"
+#define CLEAN_BOT (1<<4)
 /// Medibots
-#define MED_BOT "Medibot"
+#define MED_BOT (1<<5)
 /// Honkbots & ED-Honks
-#define HONK_BOT "Honkbot"
+#define HONK_BOT (1<<6)
 /// Firebots
-#define FIRE_BOT "Firebot"
+#define FIRE_BOT (1<<7)
+/// Hygienebots
+#define HYGIENE_BOT (1<<8)
+/// Vibe bots
+#define VIBE_BOT (1<<9)
 
 ///Monkestation Edit
 

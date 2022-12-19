@@ -81,7 +81,7 @@
 
 	var/beacon_freq = FREQ_NAV_BEACON
 	var/model = "" //The type of bot it is.
-	var/bot_type = 0 //The type of bot it is, for radio control.
+	var/bot_type = NONE //The type of bot it is, for radio control.
 	var/data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC //The type of data HUD the bot uses. Diagnostic by default.
 	//This holds text for what the bot is mode doing, reported on the remote bot control interface.
 	var/list/mode_name = list("In Pursuit","Preparing to Arrest", "Arresting", \
@@ -204,12 +204,11 @@
 /mob/living/simple_animal/bot/emag_act(mob/user)
 	if(locked) //First emag application unlocks the bot's interface. Apply a screwdriver to use the emag again.
 		locked = FALSE
-		emagged = 1
 		to_chat(user, "<span class='notice'>You bypass [src]'s controls.</span>")
 		return
 	if(!locked && open) //Bot panel is unlocked by ID or emag, and the panel is screwed open. Ready for emagging.
-		emagged = 2
-		remote_disabled = 1 //Manually emagging the bot locks out the AI built in panel.
+		emagged = TRUE
+		remote_disabled = TRUE //Manually emagging the bot locks out the AI built in panel.
 		locked = TRUE //Access denied forever!
 		bot_reset()
 		turn_on() //The bot automatically turns on when emagged, unless recently hit with EMP.
@@ -257,15 +256,15 @@
 		ignorelistcleanuptimer++
 
 	if(!on || client)
-		return
+		return FALSE
 
 	switch(mode) //High-priority overrides are processed first. Bots can do nothing else while under direct command.
 		if(BOT_RESPONDING)	//Called by the AI.
 			call_mode()
-			return
+			return FALSE
 		if(BOT_SUMMON)		//Called by PDA
 			summon_step()
-			return
+			return FALSE
 	return TRUE //Successful completion. Used to prevent child process() continuing if this one is ended early.
 
 
@@ -712,7 +711,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 //PDA control. Some bots, especially MULEs, may have more parameters.
 /mob/living/simple_animal/bot/proc/bot_control(command, mob/user, list/user_access = list())
-	if(!on || emagged == 2 || remote_disabled) //Emagged bots do not respect anyone's authority! Bots with their remote controls off cannot get commands.
+	if(!on || emagged || remote_disabled) //Emagged bots do not respect anyone's authority! Bots with their remote controls off cannot get commands.
 		return TRUE //ACCESS DENIED
 	if(client)
 		bot_control_message(command, user)
@@ -850,8 +849,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 		if("hack")
 			if(!issilicon(usr) && !IsAdminGhost(usr))
 				return TRUE
-			if(emagged != 2)
-				emagged = 2
+			if(!emagged)
+				emagged = TRUE
 				hacked = TRUE
 				locked = TRUE
 				to_chat(usr, "<span class='warning'>[text_hack]</span>")
@@ -893,7 +892,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return TRUE
 	// 0 for access, 1 for denied.
-	if(emagged == 2) //An emagged bot cannot be controlled by humans, silicons can if one hacked it.
+	if(emagged) //An emagged bot cannot be controlled by humans, silicons can if one hacked it.
 		if(!hacked) //Manually emagged by a human - access denied to all.
 			return TRUE
 		else if(!issilicon(user) && !IsAdminGhost(user)) //Bot is hacked, so only silicons and admins are allowed access.
@@ -903,7 +902,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 /mob/living/simple_animal/bot/proc/hack(mob/user)
 	var/hack
 	if(issilicon(user) || IsAdminGhost(user)) //Allows silicons or admins to toggle the emag status of a bot.
-		hack += "[emagged == 2 ? "Software compromised! Unit may exhibit dangerous or erratic behavior." : "Unit operating normally. Release safety lock?"]<BR>"
+		hack += "[emagged ? "Software compromised! Unit may exhibit dangerous or erratic behavior." : "Unit operating normally. Release safety lock?"]<BR>"
 		hack += "Harm Prevention Safety System: <A href='?src=[REF(src)];operation=hack'>[emagged ? "<span class='bad'>DANGER</span>" : "Engaged"]</A><BR>"
 	else if(!locked) //Humans with access can use this option to hide a bot from the AI's remote control panel and PDA control.
 		hack += "Remote network control radio: <A href='?src=[REF(src)];operation=remote'>[remote_disabled ? "Disconnected" : "Connected"]</A><BR>"
