@@ -35694,12 +35694,9 @@
 	icon_state = "1-2"
 	},
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	health = 45;
 	icon_state = "secbot1";
-	idcheck = 1;
 	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
