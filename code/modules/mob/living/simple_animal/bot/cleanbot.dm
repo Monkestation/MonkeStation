@@ -10,7 +10,7 @@
 	health = 25
 	maxHealth = 25
 
-	bot_core = /obj/machinery/bot_core/cleanbot
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_JANITOR)
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE //Service
 	bot_type = CLEAN_BOT
@@ -37,7 +37,7 @@
 
 /mob/living/simple_animal/bot/cleanbot/medbay
 	name = "Scrubs, MD"
-	bot_core = /obj/machinery/bot_core/cleanbot/medbay
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~(BOT_MODE_ON | BOT_MODE_REMOTE_ENABLED)
 
 /mob/living/simple_animal/bot/cleanbot/Initialize(mapload)
@@ -52,12 +52,10 @@
 /mob/living/simple_animal/bot/cleanbot/turn_on()
 	..()
 	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
-	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/turn_off()
 	..()
 	icon_state = "cleanbot[get_bot_flag(BOT_MODE_ON)]"
-	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/bot_reset()
 	..()
@@ -67,7 +65,7 @@
 
 /mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
-		if(bot_core.allowed(user) && !(bot_cover_flags & BOT_COVER_OPEN) && !(bot_cover_flags & BOT_COVER_EMAGGED))
+		if(check_access(user) && !(bot_cover_flags & BOT_COVER_OPEN) && !(bot_cover_flags & BOT_COVER_EMAGGED))
 			bot_cover_flags ^= BOT_COVER_LOCKED
 			to_chat(user, span_notice("You [bot_cover_flags & BOT_COVER_LOCKED ? "lock" : "unlock"] \the [src] behaviour controls."))
 		else
@@ -293,7 +291,7 @@
 
 /mob/living/simple_animal/bot/cleanbot/medbay
 	name = "Scrubs, MD"
-	bot_core = /obj/machinery/bot_core/cleanbot
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_JANITOR, ACCESS_MEDICAL)
 	bot_mode_flags = ~BOT_MODE_ON
 
 //Crossed Wanted Larry Sprites to be Separate
@@ -316,12 +314,10 @@
 /mob/living/simple_animal/bot/cleanbot/larry/turn_on()
 	..()
 	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
-	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/larry/turn_off()
 	..()
 	icon_state = "larry[get_bot_flag(BOT_MODE_ON)]"
-	bot_core.updateUsrDialog()
 
 /mob/living/simple_animal/bot/cleanbot/larry/UnarmedAttack(atom/A)
 	if(istype(A, /obj/effect/decal/cleanable))
@@ -421,10 +417,6 @@
 	if(knife)
 		QDEL_NULL(knife)
 
-/obj/machinery/bot_core/cleanbot
-	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
-
-
 // Variables sent to TGUI
 /mob/living/simple_animal/bot/cleanbot/ui_data(mob/user)
 	var/list/data = ..()
@@ -452,6 +444,3 @@
 			drawn = !drawn
 	get_targets()
 	return
-
-/obj/machinery/bot_core/cleanbot/medbay
-	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)

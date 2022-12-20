@@ -10,7 +10,7 @@
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 
-	bot_core = /obj/machinery/bot_core/secbot
+	maints_access_required = list(ACCESS_SECURITY)
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
 	radio_channel = RADIO_CHANNEL_SECURITY //Security channel
 	bot_type = SEC_BOT
@@ -465,9 +465,6 @@
 			return
 		knockOver(C)
 		return
-
-/obj/machinery/bot_core/secbot
-	req_one_access = list(ACCESS_SECURITY, ACCESS_ROBOTICS)
 
 /mob/living/simple_animal/bot/secbot/proc/check_nap_violations()
 	if(!SSeconomy.full_ancap)

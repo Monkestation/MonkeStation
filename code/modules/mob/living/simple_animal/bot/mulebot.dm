@@ -24,7 +24,7 @@
 	buckle_prevents_pull = TRUE // No pulling loaded shit
 	mob_size = MOB_SIZE_LARGE
 
-	bot_core = /obj/machinery/bot_core/mulebot
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_CARGO)
 	radio_key = /obj/item/encryptionkey/headset_cargo
 	radio_channel = RADIO_CHANNEL_SUPPLY
 	bot_type = MULE_BOT
@@ -765,6 +765,3 @@
 #undef ANNOYED
 #undef DELIGHT
 #undef CHIME
-
-/obj/machinery/bot_core/mulebot
-	req_access = list(ACCESS_CARGO)
