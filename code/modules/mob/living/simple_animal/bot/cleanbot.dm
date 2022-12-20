@@ -156,8 +156,6 @@
 					target = null
 					mode = BOT_IDLE
 					return
-			else
-				shuffle = TRUE	//Shuffle the list the next time we scan so we dont both go the same way.
 			path = list()
 
 		if(!path || path.len == 0) //No path, need a new one
