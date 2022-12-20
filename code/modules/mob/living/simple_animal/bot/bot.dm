@@ -566,7 +566,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
 		set_path(null)
 		return FALSE
-	var/step_count = move_speed ? move_speed : base_speed //If a value is passed into move_speed, use that instead of the default speed var.
+	var/step_count = path.len ? path.len : base_speed //If a value is passed into move_speed, use that instead of the default speed var.
 
 	if(step_count >= 1 && tries < BOT_STEP_MAX_RETRIES)
 		for(var/step_number in 1 to step_count)
@@ -586,11 +586,6 @@ Pass a positive integer as an argument to override a bot's default speed.
 	increment_path()
 	tries = 0
 	SEND_SIGNAL(src, COMSIG_MOB_BOT_STEP)
-	if(loc == patrol_target)
-		if(!get_next_patrol_target())
-			find_patrol_target() //If it fails, look for the nearest one instead.
-		calc_path()
-		bot_patrol()
 	return TRUE
 
 
