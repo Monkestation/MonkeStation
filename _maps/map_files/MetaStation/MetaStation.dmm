@@ -65744,12 +65744,9 @@
 	dir = 8
 	},
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	health = 45;
 	icon_state = "secbot1";
-	idcheck = 1;
 	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
