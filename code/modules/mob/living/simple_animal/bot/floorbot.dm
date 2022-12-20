@@ -28,7 +28,6 @@
 	var/autotile = FALSE
 	var/max_targets = 50
 	var/turf/target
-	var/oldloc = null
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = ""
 
@@ -62,7 +61,6 @@
 /mob/living/simple_animal/bot/floorbot/bot_reset()
 	..()
 	target = null
-	oldloc = null
 	ignore_list = list()
 	anchored = FALSE
 	update_icon()
@@ -161,6 +159,7 @@
 	if(prob(5))
 		audible_message("[src] makes an excited booping beeping sound!")
 
+	var/list/tiles_scanned = list()
 	//Normal scanning procedure. We have tiles loaded, are not emagged.
 	if(!target && !(bot_cover_flags & BOT_COVER_EMAGGED))
 		if(targetdirection != null) //The bot is in line mode.
@@ -173,24 +172,33 @@
 
 		if(!target)
 			process_type = HULL_BREACH //Ensures the floorbot does not try to "fix" space areas or shuttle docking zones.
-			target = scan(/turf/open/space)
+
+			tiles_scanned += list(/turf/open/space)
 
 		if(!target && placetiles) //Finds a floor without a tile and gives it one.
 			process_type = PLACE_TILE //The target must be the floor and not a tile. The floor must not already have a floortile.
-			target = scan(/turf/open/floor)
+			tiles_scanned += list(/turf/open/floor)
 
 		if(!target && fixfloors) //Repairs damaged floors and tiles.
 			process_type = FIX_TILE
-			target = scan(/turf/open/floor)
+			tiles_scanned += list(/turf/open/floor)
 
-		if(!target && replacetiles && specialtiles > 0) //Replace a floor tile with custom tile
+		if(!target && replacetiles && specialtiles) //Replace a floor tile with custom tile
 			process_type = REPLACE_TILE //The target must be a tile. The floor must already have a floortile.
-			target = scan(/turf/open/floor)
+			tiles_scanned += list(/turf/open/floor)
 
 	if(!target && bot_cover_flags & BOT_COVER_EMAGGED) //We are emagged! Time to rip up the floors!
 		process_type = TILE_EMAG
-		target = scan(/turf/open/floor)
+		tiles_scanned += list(/turf/open/floor)
 
+	target = scan(tiles_scanned)
+
+	if(!target && bot_mode_flags & BOT_MODE_AUTOPATROL)
+		switch(mode)
+			if(BOT_IDLE, BOT_START_PATROL)
+				start_patrol()
+			if(BOT_PATROL)
+				bot_patrol()
 
 	if(!target)
 
@@ -239,10 +247,6 @@
 			target = null
 			mode = BOT_IDLE
 			return
-
-
-
-	oldloc = loc
 
 /mob/living/simple_animal/bot/floorbot/proc/is_hull_breach(turf/t) //Ignore space tiles not considered part of a structure, also ignores shuttle docking areas.
 	var/area/t_area = get_area(t)

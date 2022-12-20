@@ -38,7 +38,6 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	var/skin = null //based off medkit_X skins in aibots.dmi for your selection; X goes here IE medskin_tox means skin var should be "tox"
 	var/mob/living/carbon/patient = null
 	var/mob/living/carbon/oldpatient = null
-	var/oldloc = null
 	var/last_found = 0
 	var/last_newpatient_speak = 0 //Don't spam the "HEY I'M COMING" messages
 	var/heal_amount = 2.5 //How much healing do we do at a time?
@@ -126,7 +125,6 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	..()
 	set_patient(null)
 	oldpatient = null
-	oldloc = null
 	last_found = world.time
 	declare_cooldown = 0
 	update_icon()
@@ -335,7 +333,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
 		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
-		set_patient(scan(/mob/living/carbon/human, oldpatient, scan_range))
+		set_patient(scan(list(/mob/living/carbon/human), oldpatient, scan_range))
 
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
 		if(mode != BOT_HEALING)
