@@ -52,7 +52,7 @@
 		. += span_info("<b>Click</b> with a mop to wet it.")
 		. += span_info("<b>Crowbar</b> it to empty it onto [get_turf(src)].")
 	if(!mymop)
-		. += span_info("<b>Click</b> with a dry mop to store it in [src]")
+		. += span_info("<b>Click</b> with a mop to store it in [src]")
 	if(mybag)
 		. += span_info("<b>Click</b> with an object to put it in [mybag].")
 
