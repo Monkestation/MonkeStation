@@ -18,7 +18,7 @@
 	var/mopping = 0
 	var/mopcount = 0
 	var/mopcap = 100 //MONKESTATION EDIT CHANGE
-	var/mopspeed = 15
+	var/mopspeed = 8
 	var/insertable = TRUE
 
 /obj/item/mop/Initialize(mapload)
@@ -85,7 +85,7 @@
 
 	var/turf/T = get_turf(A)
 
-	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart))
+	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart) || istype(A, /obj/structure/mopbucket))
 		return
 
 	if(T)
@@ -126,7 +126,7 @@
 	force = 12
 	throwforce = 14
 	throw_range = 4
-	mopspeed = 8
+	mopspeed = 4
 	var/refill_enabled = TRUE //Self-refill toggle for when a janitor decides to mop with something other than water.
 	/// Amount of reagent to refill per second
 	var/refill_rate = 0.5

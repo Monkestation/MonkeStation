@@ -626,7 +626,7 @@
 		if(!stop_messages)
 			host.balloon_alert(M, "It doesn't fit")
 		return FALSE
-	if(I.w_class > max_w_class)
+	if((I.w_class > max_w_class) && !is_type_in_typecache(I, exception_hold))
 		if(!stop_messages)
 			host.balloon_alert(M, "[I] is too big")
 		return FALSE
