@@ -50,7 +50,7 @@
 
 /obj/vehicle/ridden/post_buckle_mob(mob/living/M)
 	add_occupant(M)
-	if(has_engine)
+	if(waddles)
 		M.AddComponent(/datum/component/waddling)
 	return ..()
 
