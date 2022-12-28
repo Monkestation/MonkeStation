@@ -653,6 +653,15 @@
 	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
 	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
 
+/datum/quirk/nonswimmer
+	name = "Non-Swimmer"
+	desc = "Your parents never taught you how to swim. Good thing there arn't any pools onboard... right?"
+	value = -1
+	mob_trait = TRAIT_NONSWIMMER
+	gain_text = "<span class='danger'>Wait, how do I swim again?</span>"
+	lose_text = "<span class='notice'>Maybe swimming wasn't that hard afterall.</span>"
+	medical_record_text = "Patient is incapable of swimming."
+	process = TRUE
 /datum/quirk/phobia
 	name = "Phobia"
 	desc = "Because of a traumatic event in your past you have developed a strong phobia."
