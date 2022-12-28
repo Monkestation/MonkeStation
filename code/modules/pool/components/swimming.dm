@@ -106,7 +106,7 @@
 		if(bob_tick)
 			animate(L, time=5, pixel_y = 0)
 			bob_tick = 0
-	if(!floating && is_drowning(L) || HAS_TRAIT(L, TRAIT_NONSWIMMER))
+	if(!floating && is_drowning(L) || HAS_TRAIT(L, TRAIT_NONSWIMMER) && !floating)
 		if(!drowning)
 			start_drowning(L)
 			drowning = TRUE
