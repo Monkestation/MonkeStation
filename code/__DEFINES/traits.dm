@@ -219,7 +219,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
-#define TRAIT_NONSWIMMER		"nonswimmer"
 #define TRAIT_XENO_IMMUNE		"xeno_immune" //prevents facehuggers implanting races that wouldn't be able to host an egg
 #define TRAIT_NECROPOLIS_INFECTED "necropolis-infection"
 #define TRAIT_BEEFRIEND 		"beefriend"
@@ -308,8 +307,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_STABLE_ASS		"stable_ass"
 #define TRAIT_DUMMY_THICK		"dummy_thick"
 #define TRAIT_KLEPTOMANIAC 		"kleptomaniac"
-#define TRAIT_WATER_BREATHING "water_breathing"
+#define TRAIT_WATER_BREATHING   "water_breathing"
 #define TRAIT_NUDIST            "nudist"
+#define TRAIT_NONSWIMMER		"nonswimmer"
 
 //MonkeStation Edit End
 
