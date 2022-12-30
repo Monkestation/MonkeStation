@@ -396,7 +396,7 @@
 							var/mob/living/carbon/C = AM
 							if(!(C.shoes && C.shoes.clothing_flags & NOSLIP))
 								step(C, dir)
-								if(prob(60) && MOBILITY_STAND)
+								if(prob(60) && MOBILITY_STAND || HAS_TRAIT(C, TRAIT_NONSWIMMER))
 									to_chat(C, span_userdanger("The current knocks you down!"))
 									C.Paralyze(60)
 						else
@@ -424,7 +424,7 @@
 			C.apply_status_effect(/datum/status_effect/water_affected)
 	else if (isliving(AM))
 		var/mob/living/L = AM
-		if(prob(7) && !(L.movement_type & FLYING))
+		if(prob(7) && !(L.movement_type & FLYING) || HAS_TRAIT(L, TRAIT_NONSWIMMER))
 			L.slip(30, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
 	if(fire_state)
 		AM.fire_act((T20C+50) + (50*fire_state), 125)

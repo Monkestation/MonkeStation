@@ -124,7 +124,10 @@
 
 /datum/component/swimming/proc/drown(mob/living/victim)
 	if(victim.losebreath < 1)
-		victim.losebreath += 1
+		if(HAS_TRAIT(victim, TRAIT_NONSWIMMER))
+			victim.losebreath += 3
+		else
+			victim.losebreath += 1
 	ticks_drowned ++
 	if(prob(20))
 		victim.emote("cough")
