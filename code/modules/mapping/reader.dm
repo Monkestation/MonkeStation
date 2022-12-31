@@ -1,6 +1,7 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
+
 /datum/grid_set
 	var/xcrd
 	var/ycrd
@@ -30,9 +31,9 @@
 	var/static/regex/trimQuotesRegex = new(@'^[\s\n]+"?|"?[\s\n]+$|^"|"$', "g")
 	var/static/regex/trimRegex = new(@'^[\s\n]+|[\s\n]+$', "g")
 
-	#ifdef TESTING
+#ifdef TESTING
 	var/turfsSkipped = 0
-	#endif
+#endif
 
 /// Shortcut function to parse a map and apply it to the world.
 ///
@@ -212,10 +213,10 @@
 							bounds[MAP_MAXX] = max(bounds[MAP_MAXX], xcrd)
 							bounds[MAP_MAXY] = max(bounds[MAP_MAXY], ycrd)
 							bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], zcrd)
-						#ifdef TESTING
+#ifdef TESTING
 						else
 							++turfsSkipped
-						#endif
+#endif
 						CHECK_TICK
 					++xcrd
 			--ycrd
@@ -228,10 +229,10 @@
 			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
 
-	#ifdef TESTING
+#ifdef TESTING
 	if(turfsSkipped)
 		testing("Skipped loading [turfsSkipped] default turfs")
-	#endif
+#endif
 
 	if(did_expand)
 		world.refresh_atmos_grid()
@@ -318,6 +319,7 @@
 		.[model_key] = list(members, members_attributes)
 
 /datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num)
+	SHOULD_NOT_SLEEP(TRUE)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
@@ -358,6 +360,8 @@
 	var/first_turf_index = 1
 	while(!ispath(members[first_turf_index], /turf)) //find first /turf object in members
 		first_turf_index++
+		if(first_turf_index > length(members))
+			CRASH("No turf found on x [crds.x] y [crds.y] z [crds.z] at [areaCache[1]]")
 
 	//turn off base new Initialization until the whole thing is loaded
 	SSatoms.map_loader_begin()
