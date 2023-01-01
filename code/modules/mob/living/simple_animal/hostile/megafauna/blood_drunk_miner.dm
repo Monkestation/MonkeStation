@@ -40,7 +40,7 @@ Difficulty: Medium
 	ranged_cooldown_time = 16
 	pixel_x = -16
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/bdm, /obj/item/crusher_trophy/miner_eye)
-	loot = list(/obj/structure/closet/crate/necropolis/bdm,)
+	loot = list(/obj/structure/closet/crate/necropolis/bdm)
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
