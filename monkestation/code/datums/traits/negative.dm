@@ -108,10 +108,10 @@
 
 /datum/quirk/nugget/on_spawn()
 	var/mob/living/carbon/human/nuggeted = quirk_holder
-	for(var/obj/item/bodypart/BP in nuggeted.bodyparts)
-		if(BP.body_part != HEAD && BP.body_part != CHEST)
-			if(BP.dismemberable)
-				BP.dismember()
+	for(var/obj/item/bodypart/bodypart in nuggeted.bodyparts)
+		if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(bodypart.dismemberable)
+				bodypart.dismember()
 	if(nuggeted.buckled)
 		nuggeted.buckled.unbuckle_mob(nuggeted)
 	nuggeted.suppress_bloodloss(1800) //stop them from bleeding out
