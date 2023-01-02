@@ -1408,6 +1408,7 @@
 				REMOVE_TRAIT(src, TRAIT_FLOORED, BUCKLED_TRAIT)
 			if(0) // Forcing to a standing position.
 				REMOVE_TRAIT(src, TRAIT_FLOORED, BUCKLED_TRAIT)
+				set_body_position(STANDING_UP)
 				set_lying_angle(0)
 			else // Forcing to a lying position.
 				ADD_TRAIT(src, TRAIT_FLOORED, BUCKLED_TRAIT)
