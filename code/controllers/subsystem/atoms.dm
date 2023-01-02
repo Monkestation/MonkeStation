@@ -10,6 +10,9 @@ SUBSYSTEM_DEF(atoms)
 
 	var/old_initialized
 
+	/// Is initialized currently changed if yes then this is TRUE otherwise false here so we can prevent old_initialize being overriden by some other value, breaking init code
+	var/initialized_changed = 0
+
 	var/list/late_loaders = list()
 
 	var/list/BadInitializeCalls = list()
@@ -47,12 +50,39 @@ SUBSYSTEM_DEF(atoms)
 #define PROFILE_INIT_ATOM_END(...)
 #endif
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return = null)
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	set_tracked_initalized(INITIALIZATION_INNEW_MAPLOAD)
 
+	// This may look a bit odd, but if the actual atom creation runtimes for some reason, we absolutely need to set initialized BACK
+	CreateAtoms(atoms, atoms_to_return)
+	clear_tracked_initalize()
+
+	#ifdef TESTING
+	var/late_loader_len = late_loaders.len
+	#endif
+	if(late_loaders.len)
+		for(var/atom/A as() in late_loaders)
+			//I hate that we need this
+			if(QDELETED(A))
+				continue
+			late_loaders -= A //We don't want to call LateInitialize twice in case of stoplag()
+			A.LateInitialize()
+		testing("Late initialized [late_loader_len] atoms")
+		late_loaders.Cut()
+
+	if(created_atoms)
+		atoms_to_return += created_atoms
+		created_atoms = null
+
+#ifdef PROFILE_MAPLOAD_INIT_ATOM
+	rustg_file_write(json_encode(mapload_init_times), "[GLOB.log_directory]/init_times.json")
+#endif
+
+/// Actually creates the list of atoms. Exists soley so a runtime in the creation logic doesn't cause initalized to totally break
+/datum/controller/subsystem/atoms/proc/CreateAtoms(list/atoms, list/atoms_to_return = null)
 	if (atoms_to_return)
 		LAZYINITLIST(created_atoms)
 
@@ -60,8 +90,8 @@ SUBSYSTEM_DEF(atoms)
 	var/list/mapload_arg = list(TRUE)
 	if(atoms)
 		count = atoms.len
-		for(var/I in atoms)
-			var/atom/A = I
+		for(var/I in 1 to count)
+			var/atom/A = atoms[I]
 			if(!(A.flags_1 & INITIALIZED_1))
 				CHECK_TICK
 				PROFILE_INIT_ATOM_BEGIN()
@@ -79,30 +109,6 @@ SUBSYSTEM_DEF(atoms)
 
 	testing("Initialized [count] atoms")
 	pass(count)
-
-	initialized = INITIALIZATION_INNEW_REGULAR
-
-	#ifdef TESTING
-	var/late_loader_len = late_loaders.len
-	#endif
-
-	if(late_loaders.len)
-		for(var/atom/A as() in late_loaders)
-			//I hate that we need this
-			if(QDELETED(A))
-				continue
-			late_loaders -= A //We don't want to call LateInitialize twice in case of stoplag()
-			A.LateInitialize()
-		testing("Late initialized [late_loader_len] atoms")
-		late_loaders.Cut()
-
-	if (created_atoms)
-		atoms_to_return += created_atoms
-		created_atoms = null
-
-	#ifdef PROFILE_MAPLOAD_INIT_ATOM
-	rustg_file_write(json_encode(mapload_init_times), "[GLOB.log_directory]/init_times.json")
-	#endif
 
 /// Init this specific atom
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, from_template = FALSE, list/arguments)
@@ -148,10 +154,22 @@ SUBSYSTEM_DEF(atoms)
 	return qdeleted || QDELING(A)
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
-	old_initialized = initialized
-	initialized = INITIALIZATION_INSSATOMS
+	set_tracked_initalized(INITIALIZATION_INSSATOMS)
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
+	clear_tracked_initalize()
+
+/// Use this to set initialized to prevent error states where old_initialized is overriden. It keeps happening and it's cheesing me off
+/datum/controller/subsystem/atoms/proc/set_tracked_initalized(value)
+	if(!initialized_changed)
+		old_initialized = initialized
+		initialized = value
+		initialized_changed = TRUE // who cares how often this gets called important is only that we don't overwrite old_initialize
+	else
+		stack_trace("We started maploading while we were already maploading. You doing something odd?")
+
+/datum/controller/subsystem/atoms/proc/clear_tracked_initalize()
+	initialized_changed = FALSE
 	initialized = old_initialized
 
 /datum/controller/subsystem/atoms/Recover()
