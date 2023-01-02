@@ -68,8 +68,6 @@
 	var/turf/T = locate(x,y,z)
 	if(!T)
 		CRASH("Pirate event found no turf to load in")
-	var/datum/map_generator/template_placer = ship.load(T)
-	template_placer.on_completion(CALLBACK(GLOBAL_PROC, /proc/after_pirate_spawn, ship, candidates))
 
 	var/datum/map_generator/template_placer = ship.load(T)
 	template_placer.on_completion(CALLBACK(GLOBAL_PROC, /proc/after_pirate_spawn, ship, candidates))
