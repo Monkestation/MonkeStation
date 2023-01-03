@@ -17,6 +17,10 @@
 		update_parallax_contents()
 
 /mob/dead/observer/ClickOn(var/atom/A, var/params)
+	if(admin_interact_held)
+		client.admin_interact(A, params)
+		return
+
 	if(check_click_intercept(params,A))
 		return
 
