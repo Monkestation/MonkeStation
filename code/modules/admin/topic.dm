@@ -2125,6 +2125,9 @@
 		var/datum/poll_question/poll = locate(href_list["submitoptionpoll"]) in GLOB.polls
 		poll_option_parse_href(href_list, poll, option)
 
+	else if(href_list["vv_panel_link"])
+		owner.debug_variables2(locate(href_list["vv_panel_link"]))
+
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
 		return

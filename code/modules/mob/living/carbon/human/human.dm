@@ -831,6 +831,78 @@
 			set_species(newtype)
 
 
+/mob/living/carbon/human/vv_get_dropdown2()
+	. = ..()
+	VV_DROPDOWN_OPTION2("", "/mob/living/carbon/human options:")
+	VV_DROPDOWN_OPTION2(VV_HK_COPY_OUTFIT, "Copy Outfit")
+	VV_DROPDOWN_OPTION2(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
+	VV_DROPDOWN_OPTION2(VV_HK_MAKE_MONKEY, "Make Monkey")
+	VV_DROPDOWN_OPTION2(VV_HK_MAKE_CYBORG, "Make Cyborg")
+	VV_DROPDOWN_OPTION2(VV_HK_MAKE_SLIME, "Make Slime")
+	VV_DROPDOWN_OPTION2(VV_HK_MAKE_ALIEN, "Make Alien")
+	VV_DROPDOWN_OPTION2(VV_HK_SET_SPECIES, "Set Species")
+
+/mob/living/carbon/human/vv_do_topic2(action, params)
+	. = ..()
+	switch(action)
+		if(VV_HK_COPY_OUTFIT)
+			if(!check_rights(R_SPAWN))
+				return
+			copy_outfit()
+		if(VV_HK_MOD_QUIRKS)
+			if(!check_rights(R_SPAWN))
+				return
+
+			var/list/options = list("Clear"="Clear")
+			for(var/x in subtypesof(/datum/quirk))
+				var/datum/quirk/T = x
+				var/qname = initial(T.name)
+				options[has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+
+			var/result = input(usr, "Choose quirk to add/remove","Quirk Mod") as null|anything in options
+			if(result)
+				if(result == "Clear")
+					for(var/datum/quirk/q in roundstart_quirks)
+						remove_quirk(q.type)
+				else
+					var/T = options[result]
+					if(has_quirk(T))
+						remove_quirk(T)
+					else
+						add_quirk(T,TRUE)
+		if(VV_HK_MAKE_MONKEY)
+			if(!check_rights(R_SPAWN))
+				return
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			usr.client.holder.Topic("vv_override", VV_PARAMS_2_TOPIC("monkeyone"=params[VV_HK_TARGET]))
+		if(VV_HK_MAKE_CYBORG)
+			if(!check_rights(R_SPAWN))
+				return
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			usr.client.holder.Topic("vv_override", VV_PARAMS_2_TOPIC("makerobot"=params[VV_HK_TARGET]))
+		if(VV_HK_MAKE_ALIEN)
+			if(!check_rights(R_SPAWN))
+				return
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			usr.client.holder.Topic("vv_override", VV_PARAMS_2_TOPIC("makealien"=params[VV_HK_TARGET]))
+		if(VV_HK_MAKE_SLIME)
+			if(!check_rights(R_SPAWN))
+				return
+			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+				return
+			usr.client.holder.Topic("vv_override", VV_PARAMS_2_TOPIC("makeslime"=params[VV_HK_TARGET]))
+		if(VV_HK_SET_SPECIES)
+			if(!check_rights(R_SPAWN))
+				return
+			var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+			if(result)
+				var/newtype = GLOB.species_list[result]
+				admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
+				set_species(newtype)
+
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if(pulling != target || grab_state < GRAB_AGGRESSIVE || stat != CONSCIOUS || a_intent != INTENT_GRAB)
 		return ..()
