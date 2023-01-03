@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 			log_admin("[key_name(usr)] spawned liquid at [targeted_turf.loc] ([chosen_id] - [liquid_amount]).")
 
 		if("View Variables")
-			debug_variables(interacted_atom)
+			debug_variables2(interacted_atom)
 
 		if("Modify Transform")
 			if(!check_rights(R_VAREDIT))

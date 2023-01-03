@@ -127,3 +127,40 @@
 		if(istype(DAT, /datum) || istype(DAT, /client))
 			debug_variables(DAT)
 
+
+/datum/vv_panel/proc/view_var_Topic2(action, list/params, client/C)
+	if( (usr.client != C) || !C.holder )
+		return
+
+	params["admin_token"]=RawHrefToken() // Think there have already been enough permission and sanity checks to safely do this
+	var/target = GET_VV_TARGET2
+	if(!target)
+		target = D
+	if(C.vv_do_basic2(target, action, params))
+		if(action in list(VV_HK_BASIC_EDIT, VV_HK_BASIC_CHANGE, VV_HK_BASIC_MASSEDIT))
+			update_var(GET_VV_VAR_TARGET2, C)
+		return TRUE
+
+	switch(action)
+		if("refresh")
+			refresh_vars(C)
+			return TRUE
+
+		if("view")
+			C.debug_variables2(target)
+			return TRUE
+
+		if("to_asay")
+			message_admins("[key_name_admin(usr)] has shared a VV window: [ADMIN_VV_LINK(D)]")
+			return TRUE
+
+	// This goes only one of two ways, partner:
+	// Ya either gave me some type of datum,
+	// in which case we take advantage of
+	// Object Oriented Programming...
+	// Or ya gave me a list, which ain't a datum.
+	if(istype(target, /datum))
+		var/datum/D = target
+		. = D.vv_do_topic2(action, params)
+	else if(islist(target))
+		. = C.vv_do_list2(target, action, params)
