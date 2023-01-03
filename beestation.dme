@@ -3848,6 +3848,8 @@
 #include "monkestation\code\modules\liquids\code\liquid_systems\liquid_turf.dm"
 #include "monkestation\code\modules\mapping\random_bars.dm"
 #include "monkestation\code\modules\mapping\random_engines.dm"
+#include "monkestation\code\modules\maptext\update_types\_main.dm"
+#include "monkestation\code\modules\maptext\update_types\damage.dm"
 #include "monkestation\code\modules\mentor\mentorfriend.dm"
 #include "monkestation\code\modules\mob\inventory.dm"
 #include "monkestation\code\modules\mob\mob_defines.dm"

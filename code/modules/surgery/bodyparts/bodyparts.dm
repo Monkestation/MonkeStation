@@ -245,6 +245,8 @@
 	brute = max(0, brute - brute_reduction)
 	burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
+	if(owner.shows_damage_number)
+		new /obj/maptext/damage_popup(get_turf(owner), changed_value = (brute + burn))
 
 	if(!brute && !burn && !stamina)
 		return FALSE

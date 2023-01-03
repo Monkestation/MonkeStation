@@ -62,6 +62,8 @@
 /mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if(shows_damage_number)
+		new /obj/maptext/damage_popup(get_turf(src), changed_value = amount)
 	if(amount > 0)
 		take_overall_damage(amount, 0, 0, updating_health, required_status)
 	else
@@ -73,6 +75,8 @@
 /mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	if(shows_damage_number)
+		new /obj/maptext/damage_popup(get_turf(src), changed_value = amount)
 	if(amount > 0)
 		take_overall_damage(0, amount, 0, updating_health, required_status)
 	else
@@ -90,6 +94,8 @@
 			blood_volume -= amount
 	if(HAS_TRAIT(src, TRAIT_TOXIMMUNE)) //Prevents toxin damage, but not healing
 		amount = min(amount, 0)
+	if(shows_damage_number)
+		new /obj/maptext/damage_popup(get_turf(src), changed_value = amount)
 	return ..()
 
 /mob/living/carbon/getStaminaLoss()
