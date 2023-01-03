@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 			if(!check_rights(NONE))
 				return
 			var/list/hallucinations = subtypesof(/datum/hallucination)
-			var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in hallucinations
+			var/result = tgui_input_list(usr, "Choose the hallucination to apply","Send Hallucination", hallucinations)
 			if(!usr)
 				return
 			if(QDELETED(targeted_mob))
