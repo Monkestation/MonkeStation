@@ -41,23 +41,13 @@
 #define VV_HREF_TARGETREF_1V(targetref, href_key, text, varname) "<a href='[VV_HREF_TARGETREF_INTERNAL(targetref, href_key)];[VV_HK_VARNAME]=[varname]'>[text]</a>"
 
 #define GET_VV_TARGET locate(href_list[VV_HK_TARGET])
-#define GET_VV_TARGET2 locate(params[VV_HK_TARGET])
 #define GET_VV_VAR_TARGET href_list[VV_HK_VARNAME]
-#define GET_VV_VAR_TARGET2 params[VV_HK_VARNAME]
-
-#define ADMIN_VV_LINK(D) "<a href='?_src_=holder;[HrefToken(TRUE)];vv_panel_link=[REF(D)]'>[D]</a>"
 
 //Helper for getting something to vv_do_topic in general
 #define VV_TOPIC_LINK(datum, href_key, text) "<a href='?_src_=vars;[HrefToken()];[href_key]=TRUE;target=[REF(datum)]'>text</a>"
 
-// For ease when we want to call a proc under admin/topic or something
-// Getting the admin token is already handled in view_var_Topic2()
-// And.. I don't THINK it's exploitable?
-#define VV_PARAMS_2_TOPIC(href_key) params + list(href_key)
-
 //Helpers for vv_get_dropdown()
 #define VV_DROPDOWN_OPTION(href_key, name) . += "<option value='?_src_=vars;[HrefToken()];[href_key]=TRUE;target=[REF(src)]'>[name]</option>"
-#define VV_DROPDOWN_OPTION2(href_key, name) . += list(list(href_key, name))
 
 // VV HREF KEYS
 #define VV_HK_TARGET "target"
@@ -99,10 +89,6 @@
 #define VV_HK_REMOVE_EMITTER "remove_emitter"
 #define VV_HK_ADD_AI "add_ai"
 
-// /atom/movable
-#define VV_HK_GET "get"
-#define VV_HK_FOLLOW "follow"
-
 // /datum/gas_mixture
 #define VV_HK_SET_MOLES "set_moles"
 #define VV_HK_EMPTY "empty"
@@ -128,10 +114,6 @@
 #define VV_HK_DIRECT_CONTROL "direct_control"
 #define VV_HK_GIVE_DIRECT_CONTROL "give_direct_control"
 #define VV_HK_OFFER_GHOSTS "offer_ghosts"
-
-// /mob/living
-#define VV_HK_AHEAL "aheal"
-#define VV_HK_SMITE "smite"
 
 // /mob/living/carbon
 #define VV_HK_MAKE_AI "aiify"

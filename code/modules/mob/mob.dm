@@ -1224,69 +1224,6 @@
 			return
 		offer_control(src)
 
-/mob/vv_get_dropdown2()
-	. = ..()
-	VV_DROPDOWN_OPTION2("", "/mob options:")
-	VV_DROPDOWN_OPTION2(VV_HK_GIB, "Gib")
-	VV_DROPDOWN_OPTION2(VV_HK_GIVE_SPELL, "Give Spell")
-	VV_DROPDOWN_OPTION2(VV_HK_REMOVE_SPELL, "Remove Spell")
-	VV_DROPDOWN_OPTION2(VV_HK_GIVE_DISEASE, "Give Disease")
-	VV_DROPDOWN_OPTION2(VV_HK_GODMODE, "Toggle Godmode")
-	VV_DROPDOWN_OPTION2(VV_HK_DROP_ALL, "Drop Everything")
-	VV_DROPDOWN_OPTION2(VV_HK_REGEN_ICONS, "Regenerate Icons")
-	VV_DROPDOWN_OPTION2(VV_HK_PLAYER_PANEL, "Show player panel")
-	VV_DROPDOWN_OPTION2(VV_HK_BUILDMODE, "Toggle Buildmode")
-	VV_DROPDOWN_OPTION2(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
-	VV_DROPDOWN_OPTION2(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
-
-/mob/vv_do_topic2(action, params)
-	. = ..()
-	switch(action)
-		if(VV_HK_REGEN_ICONS)
-			if(!check_rights(NONE))
-				return
-			regenerate_icons()
-		if(VV_HK_PLAYER_PANEL)
-			if(!check_rights(NONE))
-				return
-			usr.client.holder.show_player_panel(src)
-		if(VV_HK_GODMODE)
-			if(!check_rights(R_ADMIN))
-				return
-			usr.client.cmd_admin_godmode(src)
-		if(VV_HK_GIVE_SPELL)
-			if(!check_rights(NONE))
-				return
-			usr.client.give_spell(src)
-		if(VV_HK_REMOVE_SPELL)
-			if(!check_rights(NONE))
-				return
-			usr.client.remove_spell(src)
-		if(VV_HK_GIVE_DISEASE)
-			if(!check_rights(NONE))
-				return
-			usr.client.give_disease(src)
-		if(VV_HK_GIB)
-			if(!check_rights(R_FUN))
-				return
-			usr.client.cmd_admin_gib(src)
-		if(VV_HK_BUILDMODE)
-			if(!check_rights(R_BUILD))
-				return
-			togglebuildmode(src)
-		if(VV_HK_DROP_ALL)
-			if(!check_rights(NONE))
-				return
-			usr.client.cmd_admin_drop_everything(src)
-		if(VV_HK_DIRECT_CONTROL)
-			if(!check_rights(NONE))
-				return
-			usr.client.cmd_assume_direct_control(src)
-		if(VV_HK_OFFER_GHOSTS)
-			if(!check_rights(NONE))
-				return
-			offer_control(src)
-
 /**
   * extra var handling for the logging var
   */
@@ -1299,15 +1236,6 @@
 /mob/vv_auto_rename(new_name)
 	//Do not do parent's actions, as we *usually* do this differently.
 	fully_replace_character_name(real_name, new_name)
-
-/mob/vv_rename(silent=FALSE)
-	var/new_name = stripped_input(usr, "What would you like to name this mob?", "Input a name", real_name, MAX_NAME_LEN)
-	if(!new_name || !src)
-		return
-	if(!silent)
-		message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_VV_LINK(src)] to [new_name].")
-	fully_replace_character_name(real_name,new_name)
-	return TRUE
 
 ///Show the language menu for this mob
 /mob/verb/open_language_menu()
