@@ -1208,99 +1208,6 @@
 		var/client/C = usr.client
 		C?.open_filter_editor(src)
 
-/atom/vv_get_dropdown2()
-	. = ..()
-	VV_DROPDOWN_OPTION2("", "/atom options:")
-	VV_DROPDOWN_OPTION2(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
-	VV_DROPDOWN_OPTION2(VV_HK_ADD_REAGENT, "Add Reagent")
-	VV_DROPDOWN_OPTION2(VV_HK_TRIGGER_EMP, "EMP Pulse")
-	VV_DROPDOWN_OPTION2(VV_HK_TRIGGER_EXPLOSION, "Explosion")
-
-/atom/vv_get_snowflake()
-	. = ..()
-	.["direction"] += list(dir2text(dir) || dir)
-	var/icon/sprite = getFlatIcon(src, no_anim = TRUE)
-	if(sprite)
-		.["sprite_base64"] = icon2base64(sprite)
-
-/atom/vv_do_topic2(action, list/params)
-	. = ..()
-	if(check_rights(R_VAREDIT))
-		switch(action)
-			if("vv_rename")
-				return vv_rename()
-
-			if("rotate")
-				switch(params["dir"])
-					if("right")
-						setDir(turn(dir, -90))
-					if("left")
-						setDir(turn(dir, 90))
-				return TRUE
-
-			if(VV_HK_ADD_REAGENT)
-				if(!reagents)
-					var/amount = input(usr, "Specify the reagent size of [src]", "Set Reagent Size", 50) as num
-					if(amount)
-						create_reagents(amount)
-
-				if(reagents)
-					var/chosen_id
-					switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
-						if("Search")
-							var/valid_id
-							while(!valid_id)
-								chosen_id = input(usr, "Enter the ID of the reagent you want to add.", "Search reagents") as null|text
-								if(isnull(chosen_id)) //Get me out of here!
-									break
-								if (!ispath(text2path(chosen_id)))
-									chosen_id = pick_closest_path(chosen_id, make_types_fancy(subtypesof(/datum/reagent)))
-									if (ispath(chosen_id))
-										valid_id = TRUE
-								else
-									valid_id = TRUE
-								if(!valid_id)
-									to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
-						if("Choose from a list")
-							chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in subtypesof(/datum/reagent)
-						if("I'm feeling lucky")
-							chosen_id = pick(subtypesof(/datum/reagent))
-					if(chosen_id)
-						var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", reagents.maximum_volume) as num
-						if(amount)
-							reagents.add_reagent(chosen_id, amount)
-							log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src]")
-							message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to [src]</span>")
-
-			if(VV_HK_MODIFY_TRANSFORM)
-				var/result = input(usr, "Choose the transformation to apply","Transform Mod") as null|anything in list("Scale","Translate","Rotate")
-				var/matrix/M = transform
-				switch(result)
-					if("Scale")
-						var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-						var/y = input(usr, "Choose y mod","Transform Mod") as null|num
-						if(!isnull(x) && !isnull(y))
-							transform = M.Scale(x,y)
-							return TRUE
-					if("Translate")
-						var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-						var/y = input(usr, "Choose y mod","Transform Mod") as null|num
-						if(!isnull(x) && !isnull(y))
-							transform = M.Translate(x,y)
-							return TRUE
-					if("Rotate")
-						var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
-						if(!isnull(angle))
-							transform = M.Turn(angle)
-							return TRUE
-
-	if(check_rights(R_FUN))
-		switch(action)
-			if(VV_HK_TRIGGER_EXPLOSION)
-				usr.client.cmd_admin_explosion(src)
-			if(VV_HK_TRIGGER_EMP)
-				usr.client.cmd_admin_emp(src)
-
 /atom/vv_get_header()
 	. = ..()
 	var/refid = REF(src)
@@ -1316,16 +1223,6 @@
 
 /atom/proc/vv_auto_rename(newname)
 	name = newname
-
-
-/atom/proc/vv_rename(silent=FALSE)
-	var/new_name = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
-	if(!new_name || !src)
-		return
-	if(!silent)
-		message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_VV_LINK(src)] to [new_name].")
-	name = new_name
-	return TRUE
 
 /**
  * An atom has entered this atom's contents

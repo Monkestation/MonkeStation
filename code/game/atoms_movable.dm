@@ -1047,19 +1047,6 @@
 			return
 		remove_emitter(removee)
 
-/atom/movable/vv_get_dropdown2()
-	. = ..()
-	VV_DROPDOWN_OPTION2(VV_HK_FOLLOW, "Follow")
-	VV_DROPDOWN_OPTION2(VV_HK_GET, "Get")
-
-/atom/movable/vv_do_topic2(action, list/params)
-	. = ..()
-	switch(action)
-		if(VV_HK_FOLLOW)
-			usr.client.holder.Topic(VV_PARAMS_2_TOPIC("adminplayerobservefollow"=params[VV_HK_TARGET]))
-		if(VV_HK_GET)
-			usr.client.holder.Topic(VV_PARAMS_2_TOPIC("admingetmovable"=params[VV_HK_TARGET]))
-
 /atom/movable/proc/ex_check(ex_id)
 	if(!ex_id)
 		return TRUE
