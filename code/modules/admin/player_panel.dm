@@ -50,8 +50,8 @@
 					var/obj/item/card/id/I = tracked_human.wear_id?.GetID()
 					if (I)
 						data_entry["job"] = I.assignment ? I.assignment : player.job
-						if(GLOB.crewmonitor.jobs[I.hud_state] != null)
-							data_entry["ijob"] = GLOB.crewmonitor.jobs[I.hud_state]
+						if(GLOB.crewmonitor.jobs[I.assignment] != null)
+							data_entry["ijob"] = GLOB.crewmonitor.jobs[I.assignment]
 				else
 					data_entry["job"] = initial(player.name) // get the name of their mob type
 			else if(issilicon(player))
@@ -308,6 +308,7 @@
 	name = "antag-hud"
 
 /datum/asset/spritesheet/antag_hud/register()
+	. = ..()
 	var/icon/I = icon('icons/mob/hud.dmi')
 	// Get the antag hud part
 	I.Crop(24, 24, 32, 32)

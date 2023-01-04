@@ -72,6 +72,9 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 	if(ismob(interacted_atom))
 		targeted_mob = interacted_atom
 		var/list/extras = list()
+		if(targeted_mob.client)
+			extras += list(\
+			"Player Panel",)
 		if(ishuman(targeted_mob))
 			extras += list(\
 			"Set Species",\
@@ -404,5 +407,12 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 				MA.teach(interacted_atom)
 				log_admin("[key_name(usr)] has taught [MA] to [key_name(interacted_atom)].")
 				message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(interacted_atom)].</span>")
+
+		if("Player Panel")
+			if(!check_rights(NONE))
+				return
+			holder.player_panel.selected_ckey = targeted_mob.client
+			holder.open_player_panel()
+
 		else
 			return

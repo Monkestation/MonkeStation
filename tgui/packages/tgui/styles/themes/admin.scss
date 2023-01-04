@@ -1,7 +1,7 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-$generic: #4c4958;
+$nanotrasen: #6d697a;
 
 @use '../colors.scss' with (
   $fg-map-keys: (),
@@ -17,34 +17,22 @@ $generic: #4c4958;
 
 .theme-admin {
   // Components
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: (
-      'color-default': color.scale($generic, $lightness: -30%),
-      'color-transparent-text': rgba(227, 240, 255, 0.75)
-    )
-  );
-  @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: (
-      'color-default-fill': $generic,
-      'background-color': rgba(0, 0, 0, 0.5)
-    )
-  );
+  @include meta.load-css('../components/Button.scss', $with: (
+    'color-default': $nanotrasen,
+    'color-transparent-text': rgba(227, 240, 255, 0.75),
+  ));
+  @include meta.load-css('../components/ProgressBar.scss', $with: (
+    'color-default-fill': $nanotrasen,
+    'background-color': rgba(0, 0, 0, 0.5),
+  ));
   @include meta.load-css('../components/Section.scss');
 
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: (
-      'background-color': color.scale($generic, $lightness: -50%),
-      'shadow-color': #ffff0021,
-      'shadow-color-core': #ffbf00,
-      'shadow-core-height': 3px
-    )
-  );
+  @include meta.load-css('../layouts/TitleBar.scss', $with: (
+    'background-color': color.scale($nanotrasen, $lightness: -25%),
+  ));
 
   .Layout__content {
     background-image: url('../../assets/bg-beestation.svg');
