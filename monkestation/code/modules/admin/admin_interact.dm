@@ -411,8 +411,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 		if("Player Panel")
 			if(!check_rights(NONE))
 				return
-			holder.player_panel.selected_ckey = targeted_mob.client
 			holder.open_player_panel()
-
+			holder.player_panel.selected_ckey = targeted_mob.client.ckey
 		else
 			return
