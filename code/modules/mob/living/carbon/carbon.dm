@@ -316,36 +316,33 @@
 
 /mob/living/carbon/proc/clear_cuffs(obj/item/I, cuff_break)
 	if(!I.loc || buckled)
-		return
-	visible_message("<span class='danger'>[src] manages to [cuff_break ? "break" : "remove"] [I]!</span>")
-	to_chat(src, "<span class='notice'>You successfully [cuff_break ? "break" : "remove"] [I].</span>")
+		return FALSE
+	if(I != handcuffed && I != legcuffed)
+		return FALSE
+	visible_message(span_danger("[src] manages to [cuff_break ? "break" : "remove"] [I]!"))
+	to_chat(src, span_notice("You successfully [cuff_break ? "break" : "remove"] [I]."))
 
 	if(cuff_break)
 		. = !((I == handcuffed) || (I == legcuffed))
 		qdel(I)
-		return
+		return TRUE
 
 	else
 		if(I == handcuffed)
-			//MONKESTATION EDIT
 			SEND_SIGNAL(I, COMSIG_CIRCUIT_CUFFS_REMOVED)
-			//MONKESTATION EDIT END
 			handcuffed.forceMove(drop_location())
 			set_handcuffed(null)
 			I.dropped(src)
-			if(buckled && buckled.buckle_requires_restraints)
+			if(buckled?.buckle_requires_restraints)
 				buckled.unbuckle_mob(src)
 			update_handcuffed()
-			return
+			return TRUE
 		if(I == legcuffed)
 			legcuffed.forceMove(drop_location())
 			legcuffed = null
 			I.dropped(src)
 			update_inv_legcuffed()
-			return
-		else
-			dropItemToGround(I)
-			return
+			return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying_angle = 0)
 	if(lying_angle)
@@ -1030,7 +1027,7 @@
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
 
-// Modifies the handcuffed value if a different value is passed, returning FALSE otherwise. The variable should only be changed through this proc.
+/// Modifies the handcuffed value if a different value is passed, returning FALSE otherwise. The variable should only be changed through this proc.
 /mob/living/carbon/proc/set_handcuffed(new_value)
 	if(handcuffed == new_value)
 		return FALSE
