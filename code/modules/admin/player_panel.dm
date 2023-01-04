@@ -308,7 +308,6 @@
 	name = "antag-hud"
 
 /datum/asset/spritesheet/antag_hud/register()
-	. = ..()
 	var/icon/I = icon('icons/mob/hud.dmi')
 	// Get the antag hud part
 	I.Crop(24, 24, 32, 32)
