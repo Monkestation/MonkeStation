@@ -42,12 +42,12 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 
 	var/static/list/admin_interact_verbs = list()
 	var/static/list/admin_interact_verbs_universal = list(\
-	"View Variables",\
-	"Edit Filters",\
-	"Edit Particles",\
-	"Modify Transform",\
-	"Add Reagent",\
-	"Explosion",)
+	"View Variables" = 1000,\
+	"Edit Filters" = 599,\
+	"Edit Particles" = 600,\
+	"Modify Transform" = 598,\
+	"Add Reagent" = 200,\
+	"Explosion" = 100,)
 
 	var/mob/targeted_mob
 	var/turf/targeted_turf
@@ -56,14 +56,14 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 	if(!admin_interact_verbs.len)
 		///all turf verbs go here ie drop pod, spawn mob, etc
 		admin_interact_verbs["turf"] = list(\
-		"Create Object",\
-		"Create Mob",\
-		"Spawn Liquid",)
+		"Create Object" = 999,\
+		"Create Mob" = 998,\
+		"Spawn Liquid" = 997,)
 		///all verbs that affect mobs go here ie smite, heal, etc
 		admin_interact_verbs["mob"] = list(\
-		"Heal",\
-		"Smite",\
-		"Hallucinate",\
+		"Heal" = 950,\
+		"Smite" = 949,\
+		"Hallucinate" = 701,\
 		)
 		///all verbs that affect objects go here
 		//admin_interact_verbs["obj"] = list()
@@ -74,23 +74,23 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 		var/list/extras = list()
 		if(targeted_mob.client)
 			extras += list(\
-			"Player Panel",)
+			"Player Panel" = 2000,)
 		if(ishuman(targeted_mob))
 			extras += list(\
-			"Set Species",\
-			"Give Martial Arts",\
-			"Make Mob",\
-			"Add / Remove Quirk",)
+			"Set Species" = 948,\
+			"Give Martial Arts" = 698,\
+			"Make Mob" = 947,\
+			"Add / Remove Quirk" = 702,)
 		if(iscarbon(targeted_mob))
 			extras += list(\
-			"Modify Bodyparts",\
-			"Modify Organs",\
-			"Cure Brain Trauma",\
-			"Give Brain Trauma",)
-		choice = tgui_input_list(usr, "Choose an action.", "Admin Interaction", (admin_interact_verbs["mob"] + admin_interact_verbs_universal + extras))
+			"Modify Bodyparts" = 947,\
+			"Modify Organs" = 946,\
+			"Cure Brain Trauma" = 700,\
+			"Give Brain Trauma" = 699,)
+		choice = tgui_input_list(usr, "Choose an action.", "Admin Interaction", sortTim((admin_interact_verbs["mob"] + admin_interact_verbs_universal + extras), cmp = /proc/cmp_numeric_dsc, associative = TRUE))
 	else if(isturf(interacted_atom))
 		targeted_turf = interacted_atom
-		choice = tgui_input_list(usr, "Choose an action.", "Admin Interaction", (admin_interact_verbs["turf"] + admin_interact_verbs_universal))
+		choice = tgui_input_list(usr, "Choose an action.", "Admin Interaction", sortTim((admin_interact_verbs["turf"] + admin_interact_verbs_universal), cmp = /proc/cmp_numeric_dsc, associative = TRUE))
 	else
 		targeted_obj = interacted_atom
 	if(!choice)
