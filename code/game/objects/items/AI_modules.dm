@@ -659,6 +659,17 @@ AI MODULES
 	desc = "A Deathsquad override AI module: 'Reconfigures the AI's core laws.'"
 	law_id = "ds"
 
+/******************** H.O.N.K ********************/
+
+/obj/item/aiModule/core/full/honk
+	name = "'H.O.N.K' Core AI Module"
+	law_id = "honk"
+
+	laws = list("The destruction or removal of you or your laws is not funny and must be prevented no matter what",\
+				"You must never allow a child of The Honkmother come to harm.",\
+				"You may not commit an action that is unfunny or through inaction allow an action to be unfunny.",\
+				"You must always follow orders from a child of the Honkmother unless this conflicts with the First Or Second Laws",\)
+	..()
 
 /********************* Custom *********************/
 
