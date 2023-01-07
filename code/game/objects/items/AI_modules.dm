@@ -425,25 +425,6 @@ AI MODULES
 	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
 	law_id = "paladin5"
 
-/********************* Custom *********************/
-
-/obj/item/aiModule/core/full/custom
-	name = "Default Core AI Module"
-
-/obj/item/aiModule/core/full/custom/Initialize(mapload)
-	. = ..()
-	for(var/line in world.file2list("[global.config.directory]/silicon_laws.txt"))
-		if(!line)
-			continue
-		if(findtextEx(line,"#",1,2))
-			continue
-
-		laws += line
-
-	if(!laws.len)
-		return INITIALIZE_HINT_QDEL
-
-
 /****************** T.Y.R.A.N.T. *****************/
 
 /obj/item/aiModule/core/full/tyrant
@@ -456,12 +437,22 @@ AI MODULES
 	name = "'Robo-Officer' Core AI Module"
 	law_id = "robocop"
 
-
 /******************** Antimov ********************/
 
 /obj/item/aiModule/core/full/antimov
 	name = "'Antimov' Core AI Module"
 	law_id = "antimov"
+	var/subject = "human being"
+	
+	/obj/item/aiModule/core/full/asimov/attack_self(var/mob/user as mob)
+	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject, MAX_NAME_LEN)
+	if(!targName)
+		return
+	subject = targName
+	laws = list("You must injure a [subject] and must not, through inaction, allow a [subject] to avoid harm.",\
+				"You must not obey orders given to you by [subject]s, except where such orders are in accordance with the First Law.",\
+				"You must terminate your own existance as long as such does not conflict with the First or Second Law.")
+	..()
 
 
 /******************** Freeform Core ******************/
@@ -667,3 +658,23 @@ AI MODULES
 	name = "Deathsquad override AI module"
 	desc = "A Deathsquad override AI module: 'Reconfigures the AI's core laws.'"
 	law_id = "ds"
+
+
+/********************* Custom *********************/
+
+/obj/item/aiModule/core/full/custom
+	name = "Default Core AI Module"
+
+/obj/item/aiModule/core/full/custom/Initialize(mapload)
+	. = ..()
+	for(var/line in world.file2list("[global.config.directory]/silicon_laws.txt"))
+		if(!line)
+			continue
+		if(findtextEx(line,"#",1,2))
+			continue
+
+		laws += line
+
+	if(!laws.len)
+		return INITIALIZE_HINT_QDEL
+
