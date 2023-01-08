@@ -119,6 +119,10 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "Rl" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
 /obj/docking_port/mobile/emergency{
 	dir = 2;
 	dwidth = 5;
@@ -126,8 +130,8 @@
 	name = "pods emergency shuttle";
 	width = 25
 	},
-/turf/open/space/basic,
-/area/template_noop)
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "Vs" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -141,12 +145,12 @@
 (1,1,1) = {"
 aa
 aa
-aa
 au
 aa
 aa
 aa
 au
+aa
 aa
 aa
 aa
@@ -156,7 +160,6 @@ aa
 "}
 (2,1,1) = {"
 aa
-aa
 ad
 av
 ad
@@ -164,6 +167,7 @@ aa
 ad
 av
 ad
+aa
 aa
 aa
 aa
@@ -171,7 +175,6 @@ aa
 aa
 "}
 (3,1,1) = {"
-aa
 aa
 aq
 az
@@ -185,9 +188,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (4,1,1) = {"
-aa
 aa
 ad
 aB
@@ -201,9 +204,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (5,1,1) = {"
-aa
 aa
 ac
 ac
@@ -217,9 +220,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (6,1,1) = {"
-aa
 aa
 aa
 aa
@@ -233,9 +236,9 @@ aa
 au
 aa
 aa
+aa
 "}
 (7,1,1) = {"
-aa
 aa
 au
 aa
@@ -249,9 +252,9 @@ ad
 av
 ad
 aa
+aa
 "}
 (8,1,1) = {"
-aa
 ad
 av
 ad
@@ -265,9 +268,9 @@ aq
 az
 aq
 aa
+aa
 "}
 (9,1,1) = {"
-aa
 aq
 az
 aq
@@ -281,9 +284,9 @@ ac
 aB
 ac
 aa
+aa
 "}
 (10,1,1) = {"
-aa
 ad
 aB
 ad
@@ -297,9 +300,9 @@ ad
 aB
 ad
 aa
+aa
 "}
 (11,1,1) = {"
-aa
 ac
 ac
 ac
@@ -313,16 +316,17 @@ ac
 ac
 ac
 aa
+aa
 "}
 (12,1,1) = {"
 aa
 aa
 aa
 aa
+ac
+ac
+ac
 aa
-ac
-ac
-ac
 aa
 aa
 aa
@@ -333,8 +337,8 @@ aa
 (13,1,1) = {"
 aa
 aa
-aa
 au
+aa
 aa
 aa
 aa
@@ -348,7 +352,6 @@ aa
 "}
 (14,1,1) = {"
 aa
-aa
 ad
 av
 ad
@@ -361,9 +364,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (15,1,1) = {"
-aa
 aa
 aq
 az
@@ -377,9 +380,9 @@ ad
 aa
 aa
 aa
+aa
 "}
 (16,1,1) = {"
-aa
 aa
 ac
 aB
@@ -393,9 +396,9 @@ PE
 aa
 aa
 aa
+aa
 "}
 (17,1,1) = {"
-aa
 aa
 ad
 aB
@@ -409,10 +412,10 @@ ad
 aa
 aa
 aa
+aa
 "}
 (18,1,1) = {"
 aa
-aa
 ac
 ac
 ac
@@ -422,12 +425,12 @@ aa
 ac
 ac
 ac
+aa
 aa
 aa
 aa
 "}
 (19,1,1) = {"
-aa
 aa
 aa
 aa
@@ -441,9 +444,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (20,1,1) = {"
-Rl
 aa
 au
 aa
@@ -457,9 +460,9 @@ aa
 aa
 aa
 aa
+aa
 "}
 (21,1,1) = {"
-aa
 ad
 av
 ad
@@ -473,10 +476,10 @@ au
 aa
 aa
 aa
+aa
 "}
 (22,1,1) = {"
-aa
-aq
+Rl
 az
 aq
 aa
@@ -489,9 +492,9 @@ av
 ad
 aa
 aa
+aa
 "}
 (23,1,1) = {"
-aa
 ad
 aB
 ad
@@ -505,9 +508,9 @@ az
 aq
 aa
 aa
+aa
 "}
 (24,1,1) = {"
-aa
 ac
 ac
 ac
@@ -521,6 +524,7 @@ aB
 ad
 aa
 aa
+aa
 "}
 (25,1,1) = {"
 aa
@@ -531,10 +535,10 @@ aa
 aa
 aa
 aa
+ac
+ac
+ac
 aa
-ac
-ac
-ac
 aa
 aa
 "}

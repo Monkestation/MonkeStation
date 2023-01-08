@@ -23275,8 +23275,8 @@
 /area/engine/atmos)
 "bFU" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Pure to Mix";
-	dir = 4
+	dir = 4;
+	name = "Pure to Mix"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -44941,8 +44941,8 @@
 /area/crew_quarters/theatre)
 "dim" = (
 /obj/structure/sign/poster/contraband/clown{
-	pixel_x = 32;
-	layer = 3.4
+	layer = 3.4;
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
@@ -53428,8 +53428,8 @@
 /area/security/warden)
 "hOf" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Port Mix to Waste";
-	dir = 8
+	dir = 8;
+	name = "Port Mix to Waste"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -53692,9 +53692,9 @@
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
 	dir = 8;
+	frequency = 1449;
 	id = "toxmix_airlock_pump";
-	name = "incinerator_toxmix";
-	frequency = 1449
+	name = "incinerator_toxmix"
 	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
@@ -54637,12 +54637,12 @@
 /area/maintenance/starboard/secondary)
 "iuU" = (
 /obj/item/folder/yellow{
-	pixel_y = -8;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -8
 	},
 /obj/item/pen{
-	pixel_y = -8;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -8
 	},
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/firedoor,
@@ -55335,9 +55335,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/layer2{
+	frequency = 1449;
 	id = "atmos_incinerator_airlock_pump";
-	name = "incinerator_atmos";
-	frequency = 1449
+	name = "incinerator_atmos"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/engine,
@@ -68776,8 +68776,8 @@
 /area/science/research)
 "qyJ" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Ports to Port Mix";
-	dir = 1
+	dir = 1;
+	name = "Ports to Port Mix"
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -72605,6 +72605,13 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard/fore)
+"sYn" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet,
+/area/crew_quarters/theatre)
 "sYy" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -76685,18 +76692,18 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/table/reinforced,
 /obj/item/folder{
-	pixel_y = -2;
-	pixel_x = 7
+	pixel_x = 7;
+	pixel_y = -2
 	},
 /obj/machinery/button/door{
 	id = "engiserv";
 	name = "Engineering Service Shutter";
-	pixel_y = -24;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = -24
 	},
 /obj/item/reagent_containers/food/drinks/mug/cocoa{
-	pixel_y = 9;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/dark/corner{
 	dir = 8
@@ -118588,7 +118595,7 @@ byN
 nRS
 bBZ
 bBZ
-bBZ
+sYn
 okx
 bHg
 dii
