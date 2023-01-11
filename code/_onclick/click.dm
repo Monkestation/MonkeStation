@@ -29,6 +29,14 @@
 		adj += S.nextmove_adjust()
 	next_move = world.time + ((num + adj)*mod)
 
+/mob/living/carbon/human/changeNext_move(num)
+	var/mod = next_move_modifier
+	var/adj = next_move_adjust
+	for(var/i in status_effects)
+		var/datum/status_effect/S = i
+		mod *= S.nextmove_modifier()
+		adj += S.nextmove_adjust()
+	next_move = world.time + ((num + adj)*mod * (InCritical()? 3 : 1))
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
 	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
