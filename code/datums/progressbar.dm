@@ -338,8 +338,8 @@
 
 /obj/effect/additional_image
 	plane = RUNECHAT_PLANE
-	base_pixel_y = 20
-	pixel_y = 20
+	base_pixel_y = 36
+	pixel_y = 36
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -355,7 +355,7 @@
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source,  border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
+		progbar = new /obj/effect/world_progressbar(null, source, delay, target_loc || source, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
