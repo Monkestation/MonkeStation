@@ -263,7 +263,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	reagents.reaction(smoker, INGEST, to_smoke)
 	var/obj/item/organ/lungs/lungs = smoker.getorganslot(ORGAN_SLOT_LUNGS)
-	if(lungs && !(lungs.organ_flags & ORGAN_SYNTHETIC))
 	if(!reagents.trans_to(smoker, to_smoke, method = INGEST))
 		reagents.remove_any(to_smoke)
 
