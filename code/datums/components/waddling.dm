@@ -13,9 +13,10 @@
 /datum/component/waddling/proc/LivingWaddle()
 	SIGNAL_HANDLER
 
-	var/mob/living/L = parent
-	if(L.incapacitated() || L.body_position == LYING_DOWN)
-		return
+	if(isliving(parent))
+		var/mob/living/L = parent
+		if(L.incapacitated() || L.body_position == LYING_DOWN)
+			return
 	Waddle()
 
 /datum/component/waddling/proc/Waddle()
