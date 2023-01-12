@@ -265,7 +265,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/obj/item/organ/lungs/lungs = smoker.getorganslot(ORGAN_SLOT_LUNGS)
 	if(lungs && !(lungs.organ_flags & ORGAN_SYNTHETIC))
 		smoker.adjustOrganLoss(ORGAN_SLOT_LUNGS, 1) //smoking kills y'all
-	if(!reagents.trans_to(smoker, to_smoke, method = INGEST, ignore_stomach = TRUE))
+	if(!reagents.trans_to(smoker, to_smoke, method = INGEST))
 		reagents.remove_any(to_smoke)
 
 /obj/item/clothing/mask/cigarette/process(delta_time)
