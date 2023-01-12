@@ -568,7 +568,6 @@
 
 /datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
-	var/mob/living/carbon/human/H = owner
 	if(!ishuman(owner))
 		return
 
