@@ -152,26 +152,37 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
+/obj/item/clothing/mask/cigarette/suicide_act(mob/living/user)
+	user.visible_message(span_suicide("[user] is huffing [src] as quickly as [user.p_they()] can! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer."))
+	return (TOXLOSS|OXYLOSS)
+
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
-	if(!lit && smoketime > 0)
-		var/lighting_text = W.ignition_effect(src, user)
-		if(lighting_text)
-			light(lighting_text)
-	else
+	if(lit)
 		return ..()
+
+	var/lighting_text = W.ignition_effect(src, user)
+	if(!lighting_text)
+		return ..()
+
+	if(smoketime > 0)
+		light(lighting_text)
+	else
+		to_chat(user, span_warning("There is nothing to smoke!"))
 
 /obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user, proximity)
 	. = ..()
 	if(!proximity || lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
 		return
-	if(istype(glass))	//you can dip cigarettes into beakers
-		if(glass.reagents.trans_to(src, chem_volume, transfered_by = user))	//if reagents were transfered, show the message
-			to_chat(user, "<span class='notice'>You dip \the [src] into \the [glass].</span>")
-		else			//if not, either the beaker was empty, or the cigarette was full
-			if(!glass.reagents.total_volume)
-				to_chat(user, "<span class='notice'>[glass] is empty.</span>")
-			else
-				to_chat(user, "<span class='notice'>[src] is full.</span>")
+	if(!istype(glass)) //you can dip cigarettes into beakers
+		return
+
+	if(glass.reagents.trans_to(src, chem_volume, transfered_by = user)) //if reagents were transfered, show the message
+		to_chat(user, span_notice("You dip \the [src] into \the [glass]."))
+	//if not, either the beaker was empty, or the cigarette was full
+	else if(!glass.reagents.total_volume)
+		to_chat(user, span_warning("[glass] is empty!"))
+	else
+		to_chat(user, span_warning("[src] is full!"))
 
 
 /obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
@@ -752,23 +763,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cig_paper"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/rollingpaper/afterattack(atom/target, mob/user, proximity)
+/obj/item/rollingpaper/Initialize(mapload)
 	. = ..()
-	if(!proximity)
-		return
-	if(istype(target, /obj/item/food/grown))
-		var/obj/item/food/grown/O = target
-		if(HAS_TRAIT(O, TRAIT_DRIED))
-			var/obj/item/clothing/mask/cigarette/rollie/R = new /obj/item/clothing/mask/cigarette/rollie(user.loc)
-			R.chem_volume = target.reagents.total_volume
-			target.reagents.trans_to(R, R.chem_volume, transfered_by = user)
-			qdel(target)
-			qdel(src)
-			user.put_in_active_hand(R)
-			to_chat(user, "<span class='notice'>You roll the [target.name] into a rolling paper.</span>")
-			R.desc = "Dried [target.name] rolled up in a thin piece of paper."
-		else
-			to_chat(user, "<span class='warning'>You need to dry this first!</span>")
+	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/clothing/mask/cigarette/rollie, CUSTOM_INGREDIENT_ICON_NOCHANGE, ingredient_type=CUSTOM_INGREDIENT_TYPE_DRYABLE, max_ingredients=2)
 
 ///////////////
 //VAPE NATION//
