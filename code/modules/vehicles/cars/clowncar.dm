@@ -97,8 +97,8 @@
 /obj/vehicle/sealed/car/clowncar/proc/restraintarget(mob/living/carbon/C)
 	if(istype(C))
 		if(!C.handcuffed)
-			if(C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore())
-				C.handcuffed = new /obj/item/restraints/handcuffs/energy/used(C)
+			if(C.canBeHandcuffed())
+				C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(C))
 				C.update_handcuffed()
 				to_chat(C, "<span class = 'danger'> Your hands are restrained by the sheer volume of occupants in the car!</span>")
 
@@ -113,7 +113,6 @@
 	to_chat(user, "<span class='danger'>You scramble the clowncar child safety lock and a panel with 6 colorful buttons appears!</span>")
 	initialize_controller_action_type(/datum/action/vehicle/sealed/RollTheDice, VEHICLE_CONTROL_DRIVE)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/Cannon, VEHICLE_CONTROL_DRIVE)
-	AddComponent(/datum/component/waddling)
 
 /obj/vehicle/sealed/car/clowncar/Destroy()
   playsound(src, 'sound/vehicles/clowncar_fart.ogg', 100)

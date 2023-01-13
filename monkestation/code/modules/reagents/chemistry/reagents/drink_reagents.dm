@@ -61,7 +61,7 @@
 	M.Jitter(20)
 	M.dizziness = min(5,M.dizziness+1)
 	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 

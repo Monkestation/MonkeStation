@@ -6,6 +6,7 @@
 	max_integrity = 150
 	integrity_failure = 0.5
 	var/fried = FALSE
+	has_engine = FALSE
 
 /obj/vehicle/ridden/bicycle/Initialize(mapload)
 	. = ..()

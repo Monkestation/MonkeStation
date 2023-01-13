@@ -1,0 +1,5 @@
+author: dwasint
+delete-after: true
+changes:
+  - rscadd: blind sense added to blind people you can see footsteps and chat now.
+      It needs ears to function though

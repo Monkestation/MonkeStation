@@ -27,7 +27,8 @@
 					/obj/item/rcl = 2,
 					/obj/item/airlock_painter = 1,
 					/obj/item/clothing/shoes/wheelys= 3,
-					/obj/item/melee/skateboard/hoverboard = 1)
+					/obj/item/melee/skateboard/hoverboard = 1,
+					/obj/item/toy/whoopee = 1)
 	refill_canister = /obj/item/vending_refill/games
 	default_price = 10
 	extra_price = 25

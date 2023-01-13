@@ -75,6 +75,11 @@
 	..()
 	return TRUE
 
+/obj/structure/railing/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller)
+	if(!(to_dir & dir))
+		return TRUE
+	return ..()
+
 /obj/structure/railing/proc/init_connect_loc_element()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_EXIT = .proc/on_exit,
