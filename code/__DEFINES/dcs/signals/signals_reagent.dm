@@ -53,3 +53,6 @@
 #define COMSIG_REAGENTS_EXPOSE_TURF "reagents_expose_turf"
 ///from base of [/datum/component/personal_crafting/proc/del_reqs]: ()
 #define COMSIG_REAGENTS_CRAFTING_PING "reagents_crafting_ping"
+
+///from base of [/datum/reagent/proc/on_transfer]: (/reagent/consumed_reagent, consumed_volume, method)
+#define COMSIG_CARBON_REAGENT_ADD "reagents_carbon_add"

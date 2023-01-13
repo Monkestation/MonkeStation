@@ -1,6 +1,7 @@
 /obj/item/organ/alien
 	icon_state = "xgibmid2"
 	var/list/alien_powers = list()
+	can_synth = FALSE
 
 /obj/item/organ/alien/Initialize(mapload)
 	. = ..()

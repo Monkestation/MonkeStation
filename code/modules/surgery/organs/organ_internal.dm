@@ -29,6 +29,9 @@
 	var/low_threshold_cleared
 	var/list/food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 
+	var/can_synth = TRUE
+	var/tier = 1
+
 /obj/item/organ/Initialize()
 	. = ..()
 	if(organ_flags & ORGAN_EDIBLE)
@@ -51,6 +54,8 @@
 			qdel(replaced)
 
 	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src)
+
+	SEND_SIGNAL(src, COMSIG_ORGAN_INSERTED, M)
 
 	owner = M
 	M.internal_organs |= src

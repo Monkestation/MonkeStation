@@ -428,6 +428,7 @@
 	heal_brute = 25
 	heal_burn = 25
 	heal_oxy = 25
+	can_synth = FALSE
 
 //Warp Whistle: Provides uncontrolled long distance teleportation.
 

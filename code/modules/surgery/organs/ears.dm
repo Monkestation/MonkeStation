@@ -69,6 +69,7 @@
 
 /obj/item/organ/ears/invincible
 	damage_multiplier = 0
+	can_synth = FALSE
 
 
 /mob/proc/restoreEars()
@@ -100,6 +101,7 @@
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "kitty"
 	bang_protect = -2
+	tier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
 	..()
@@ -119,6 +121,7 @@
 	name = "penguin ears"
 	desc = "The source of a penguin's happy feet."
 	var/datum/component/waddle
+	tier = 2
 
 /obj/item/organ/ears/penguin/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
 	. = ..()
@@ -137,6 +140,7 @@
 	desc = "The robust ears of a bronze golem. "
 	damage_multiplier = 0.1 //STRONK
 	bang_protect = 1 //Fear me weaklings.
+	tier = 3
 
 /obj/item/organ/ears/robot
 	name = "auditory sensors"

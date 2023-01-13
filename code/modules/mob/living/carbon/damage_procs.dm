@@ -100,6 +100,7 @@
 /mob/living/carbon/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_LIVING_ADJUSTED, amount, STAMINA)
 	if(amount > 0)
 		take_overall_damage(0, 0, amount, updating_health)
 	else

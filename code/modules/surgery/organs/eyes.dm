@@ -104,6 +104,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/night_vision = TRUE
+	tier = 10
 
 /obj/item/organ/eyes/night_vision/ui_action_click()
 	sight_flags = initial(sight_flags)
@@ -123,20 +124,22 @@
 	name = "alien eyes"
 	desc = "It turned out they had them after all!"
 	sight_flags = SEE_MOBS
+	tier = 20
 
 /obj/item/organ/eyes/night_vision/zombie
 	name = "undead eyes"
 	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	tier = 10
 
 /obj/item/organ/eyes/night_vision/nightmare
 	name = "burning red eyes"
 	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
 	icon_state = "burning_eyes"
-
+	tier = 10
 /obj/item/organ/eyes/night_vision/mushroom
 	name = "fung-eye"
 	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
-
+	tier = 10
 ///Robotic
 
 /obj/item/organ/eyes/robotic
@@ -411,6 +414,7 @@
 	name = "moth eyes"
 	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
 	flash_protect = -1
+	tier = 2
 
 /obj/item/organ/eyes/snail
 	name = "snail eyes"
@@ -422,3 +426,4 @@
 	name = "apid eyes"
 	desc = "Designed for navigating dark hives, these eyes have improvement to low light vision."
 	see_in_dark = 8
+	tier = 5
