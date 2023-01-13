@@ -119,6 +119,7 @@
 	var/registered_name = null // The name registered_name on the card
 	var/assignment = null
 	var/access_txt // mapping aid
+	var/accepts_accounts = TRUE
 	var/datum/bank_account/registered_account
 	var/obj/machinery/paystand/my_store
 
@@ -274,7 +275,6 @@
 		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
-	..()
 	if(mining_points)
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 	. = ..()
@@ -293,7 +293,8 @@
 		if(registered_account.account_holder == user.real_name)
 			. += "<span class='boldnotice'>If you lose this ID card, you can reclaim your account by Alt-Clicking a blank ID card while holding it and entering your account ID number.</span>"
 	else
-		. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
+		if(accepts_accounts)
+			. += "<span class='info'>There is no registered account linked to this card. Alt-Click to add one.</span>"
 
 /obj/item/card/id/GetAccess()
 	return access
@@ -867,3 +868,49 @@ update_label("John Doe", "Clowny")
 		to_chat(user, "You upgrade your [idcard] with the [name].")
 		log_id("[key_name(user)] added access to '[idcard]' using [src] at [AREACOORD(user)].")
 		qdel(src)
+
+/obj/item/card/id/fake_card //not a proper ID but still shares a lot of functions
+	name = "\"ID Card\""
+	desc = "Definitely a legitimate ID card and not a piece of notebook paper with a magnetic strip drawn on it. You'd have to stuff this in a card reader by hand for it to work."
+	icon = 'icons/obj/card.dmi'
+	icon_state = "counterfeit"
+	item_state = "card-id"
+	worn_icon_state = "card-id"
+	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+	slot_flags = ITEM_SLOT_ID
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "stamina" = 0)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	mining_points = null
+	registered_account = null
+	accepts_accounts = FALSE
+	registered_name = "Nohbdy"
+	access = list(ACCESS_MAINT_TUNNELS)
+	var/uses = 2
+
+/obj/item/card/id/fake_card/proc/register_name(new_name)
+	registered_name = new_name
+	name = "[new_name]'s \"ID Card\""
+
+/obj/item/card/id/fake_card/proc/used()
+	uses -= 1
+	switch(uses)
+		if(0)
+			icon_state = "counterfeit_torn2"
+		if(1)
+			icon_state = "counterfeit_torn"
+		else
+			icon_state = "counterfeit" //in case you somehow repair it to 3+
+
+/obj/item/card/id/fake_card/AltClick(mob/living/user)
+	return //no accounts on fake cards
+
+/obj/item/card/id/fake_card/examine(mob/user)
+	. = ..()
+	switch(uses)
+		if(0)
+			. += "It's too shredded to fit in a scanner!"
+		if(1)
+			. += "It's falling apart!"
+		else
+			. += "It looks frail!"

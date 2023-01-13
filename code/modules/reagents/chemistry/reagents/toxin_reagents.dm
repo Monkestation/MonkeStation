@@ -55,6 +55,7 @@
 	description = "Plasma in its liquid form."
 	taste_description = "a burning, tingling sensation"
 	specific_heat = SPECIFIC_HEAT_PLASMA
+	gas = GAS_PLASMA
 	taste_mult = 1.5
 	color = "#8228A0"
 	toxpwr = 3

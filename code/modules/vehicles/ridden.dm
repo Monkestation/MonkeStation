@@ -9,10 +9,23 @@
 	var/arms_required = 1	//why not?
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown
+	var/has_engine = TRUE
+	var/waddles = TRUE //bad shocks
+	var/engine_sound = 'sound/vehicles/carrev.ogg'
+	var/last_enginesound_time
+	var/engine_sound_length = 2 SECONDS //Set this to the length of the engine sound
 
 /obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/riding)
+	if(waddles)
+		AddComponent(/datum/component/waddling)
+
+/obj/vehicle/ridden/Destroy(force=FALSE)
+	var/datum/component/waddling/waddles = src.GetComponent(/datum/component/waddling)
+	if(waddles)
+		waddles.RemoveComponent()
+	. = ..()
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()
@@ -30,10 +43,15 @@
 
 /obj/vehicle/ridden/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
+	var/datum/component/waddling/is_waddling = M.GetComponent(/datum/component/waddling/)
+	if(is_waddling)
+		is_waddling.RemoveComponent()
 	return ..()
 
 /obj/vehicle/ridden/post_buckle_mob(mob/living/M)
 	add_occupant(M)
+	if(waddles)
+		M.AddComponent(/datum/component/waddling)
 	return ..()
 
 /obj/vehicle/ridden/attackby(obj/item/I, mob/user, params)
@@ -84,6 +102,11 @@
 			return FALSE
 	var/datum/component/riding/R = GetComponent(/datum/component/riding)
 	R.handle_ride(user, direction)
+	if(has_engine)
+		if(world.time < last_enginesound_time + engine_sound_length)
+			return
+		last_enginesound_time = world.time
+		playsound(src, engine_sound, 100, TRUE)
 	return ..()
 
 /obj/vehicle/ridden/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)

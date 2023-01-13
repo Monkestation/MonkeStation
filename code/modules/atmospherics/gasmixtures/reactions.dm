@@ -37,6 +37,9 @@ nobliumformation = 1001
 		. += reaction
 	sortTim(., /proc/cmp_gas_reactions)
 
+/proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
+	return b.priority - a.priority
+
 /proc/cmp_gas_reactions(list/datum/gas_reaction/a, list/datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
 	if (!length(a) || !length(b))
 		return length(b) - length(a)
@@ -89,8 +92,9 @@ nobliumformation = 1001
 	min_requirements = list(GAS_H2O = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/water_vapor/react(datum/gas_mixture/air, datum/holder)
-	var/turf/open/location = isturf(holder) ? holder : null
-	. = NO_REACTION
+	var/turf/open/location = holder
+	if(!istype(location))
+		return NO_REACTION
 	if (air.return_temperature() <= WATER_VAPOR_FREEZE)
 		if(location && location.freon_gas_act())
 			. = REACTING
@@ -132,6 +136,60 @@ nobliumformation = 1001
 			air.set_temperature((temperature*old_heat_capacity + energy_released)/new_heat_capacity)
 		return REACTING
 	return NO_REACTION
+
+/datum/gas_reaction/condensation
+	priority = -100
+	name = "Condensation"
+	id = "condense"
+	exclude = TRUE
+	var/datum/reagent/condensing_reagent
+
+/datum/gas_reaction/condensation/New(datum/reagent/condensed_reagent)
+	. = ..()
+	if(!istype(condensed_reagent))
+		return
+	min_requirements = list(
+		"MAX_TEMP" = initial(condensed_reagent.condensating_point)
+	)
+	min_requirements[condensed_reagent.get_gas()] = MOLES_GAS_VISIBLE
+	name = "[condensed_reagent.name] condensation"
+	id = "[condensed_reagent.type] condensation"
+	condensing_reagent = GLOB.chemical_reagents_list[condensed_reagent.type]
+	exclude = FALSE
+
+/datum/gas_reaction/condensation/react(datum/gas_mixture/air, datum/holder)
+	. = NO_REACTION
+	if(prob(95)) //these reactions fire way to fucking much future me make this not shit and give reagents reaction probs - Borbop
+		return
+
+	var/turf/open/location = holder
+	if(!istype(location))
+		return
+	var/temperature = air.return_temperature()
+	var/static/datum/reagents/reagents_holder = new
+
+	reagents_holder.clear_reagents()
+	reagents_holder.chem_temp = temperature
+
+	var/condensed_gas = condensing_reagent.get_gas()
+	var/amount_of_gas = air.get_moles(condensed_gas)
+
+	air.adjust_moles(condensed_gas, -min(initial(condensing_reagent.condensation_amount), amount_of_gas))
+	if(air.get_moles(condensed_gas) < MOLES_GAS_VISIBLE)
+		amount_of_gas += air.get_moles(condensed_gas)
+		air.set_moles(condensed_gas, 0.0)
+	reagents_holder.add_reagent(condensing_reagent.type, amount_of_gas)
+
+	. = REACTING
+
+	for(var/atom/movable/AM in location)
+		if(location.intact && AM.level == 1)
+			continue
+		reagents_holder.reaction(AM, TOUCH)
+
+	reagents_holder.reaction(location, TOUCH, from_gas = TRUE)
+	if(condensing_reagent.condenses_liquid)
+		location.add_liquid(condensing_reagent.type, min(initial(condensing_reagent.condensation_amount), amount_of_gas) / 10, FALSE, temperature)
 
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire

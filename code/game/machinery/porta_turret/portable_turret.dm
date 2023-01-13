@@ -71,8 +71,6 @@
 
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
-	var/obj/machinery/turretid/cp = null
-
 	var/wall_turret_direction //The turret will try to shoot from a turf in that direction when in a wall
 
 	var/manual_control = FALSE //
@@ -180,9 +178,6 @@
 	//deletes its own cover with it
 	QDEL_NULL(cover)
 	base = null
-	if(cp)
-		cp.turrets -= src
-		cp = null
 	QDEL_NULL(stored_gun)
 	QDEL_NULL(spark_system)
 	remove_control()
@@ -837,7 +832,7 @@
 	var/ailock = FALSE
 	/// Variable dictating if linked turrets will shoot cyborgs
 	var/shoot_cyborgs = FALSE
-	/// List of all linked turrets
+	/// List of weakrefs to all turrets
 	var/list/turrets = list()
 
 /obj/machinery/turretid/Initialize(mapload, ndir = 0, built = 0)
@@ -867,8 +862,7 @@
 		control_area = get_area(src)
 
 	for(var/obj/machinery/porta_turret/T in control_area)
-		turrets |= T
-		T.cp = src
+		turrets |= WEAKREF(T)
 
 /obj/machinery/turretid/examine(mob/user)
 	. += ..()
@@ -885,7 +879,7 @@
 			return
 		var/obj/item/multitool/M = I
 		if(M.buffer && istype(M.buffer, /obj/machinery/porta_turret))
-			turrets |= M.buffer
+			turrets |= WEAKREF(M.buffer)
 			to_chat(user, "You link \the [M.buffer] with \the [src]")
 			return
 
@@ -990,8 +984,12 @@
 	ui_update()
 
 /obj/machinery/turretid/proc/updateTurrets()
-	for (var/obj/machinery/porta_turret/aTurret in turrets)
-		aTurret.setState(enabled, lethal, shoot_cyborgs)
+	for (var/datum/weakref/turret_ref in turrets)
+		var/obj/machinery/porta_turret/turret = turret_ref.resolve()
+		if(!turret)
+			turrets -= turret_ref
+			continue
+		turret.setState(enabled, lethal, shoot_cyborgs)
 	update_icon()
 
 /obj/machinery/turretid/power_change()

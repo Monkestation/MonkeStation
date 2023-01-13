@@ -27,7 +27,7 @@
 		var/datum/status_effect/S = i
 		mod *= S.nextmove_modifier()
 		adj += S.nextmove_adjust()
-	next_move = world.time + ((num + adj)*mod)
+	next_move = world.time + ((num + adj)*mod * (InCritical()? 3 : 1))
 
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to

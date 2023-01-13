@@ -4,6 +4,8 @@
 	icon_state = "scooter"
 	are_legs_exposed = TRUE
 	fall_off_if_missing_arms = TRUE
+	has_engine = FALSE
+	waddles = FALSE
 
 /obj/vehicle/ridden/scooter/Initialize(mapload)
 	. = ..()

@@ -25,6 +25,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "oil"
 	evaporation_rate = 2
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/stabilizing_agent
 	name = "Stabilizing Agent"
@@ -45,6 +46,15 @@
 	liquid_fire_power = 30 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 2
+	condensating_point = INSTANT_REACT
+	condensation_amount = 2
+	condenses_liquid = FALSE
+
+/datum/reagent/clf3/define_gas()
+	var/datum/gas/new_gas = ..()
+	new_gas.enthalpy = -163200
+	new_gas.oxidation_temperature = T0C - 50
+	return new_gas
 
 /datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
@@ -87,6 +97,8 @@
 	reagent_state = LIQUID
 	color = "#5A64C8"
 	taste_description = "air and bitterness"
+	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/liquid_dark_matter
 	name = "Liquid Dark Matter"
@@ -94,6 +106,8 @@
 	reagent_state = LIQUID
 	color = "#210021"
 	taste_description = "compressed bitterness"
+	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/blackpowder
 	name = "Black Powder"
@@ -102,6 +116,7 @@
 	color = "#000000"
 	metabolization_rate = 0.05
 	taste_description = "salt"
+	condenses_liquid = FALSE
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
@@ -121,6 +136,25 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "salt"
+	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
+
+/datum/reagent/flash_powder/reaction_turf(turf/T, volume, show_message, from_gas)
+	. = ..()
+	if(!from_gas)
+		return
+	var/location = T
+	do_sparks(2, TRUE, location)
+	var/range = volume/3
+	if(isatom(holder.my_atom))
+		var/atom/A = holder.my_atom
+		A.flash_lighting_fx(_range = (range + 2))
+	for(var/mob/living/carbon/C in hearers(range, location))
+		if(C.flash_act())
+			if(get_dist(C, location) < 4)
+				C.Paralyze(60)
+			else
+				C.Stun(100)
 
 /datum/reagent/smoke_powder
 	name = "Smoke Powder"
@@ -128,6 +162,7 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "smoke"
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/sonic_powder
 	name = "Sonic Powder"
@@ -135,6 +170,8 @@
 	reagent_state = LIQUID
 	color = "#C8C8C8"
 	taste_description = "loud noises"
+	condensating_point = INSTANT_REACT
+	condenses_liquid = FALSE
 
 /datum/reagent/phlogiston
 	name = "Phlogiston"
@@ -147,6 +184,16 @@
 	liquid_fire_power = 20 //MONKESTATION EDIT ADDITION
 	liquid_fire_burnrate = 1 //MONKESTATION EDIT ADDITION
 	evaporation_rate = 1.2
+	condensating_point = T20C-10
+	condenses_liquid = FALSE
+
+/datum/reagent/phlogiston/define_gas()
+	var/datum/gas/new_gas = ..()
+	new_gas.enthalpy = FIRE_PLASMA_ENERGY_RELEASED / 100
+	new_gas.fire_products = list(GAS_O2 = 0.25, GAS_METHANE = 0.75) // meanwhile this is just magic
+	new_gas.fire_burn_rate = 1
+	new_gas.fire_temperature = T20C+1
+	return new_gas
 
 /datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
@@ -192,6 +239,7 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 	random_unrestricted = FALSE
+	condensating_point = T0C - 100
 
 /datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
@@ -237,6 +285,7 @@
 	var/shock_timer = 0
 	process_flags = ORGANIC | SYNTHETIC
 	evaporation_rate = 3 //unstable disapates quickly
+	condensating_point = INSTANT_REACT
 
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
@@ -292,6 +341,11 @@
 	reagent_state = LIQUID
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
+	condensating_point = T0C
+
+
+/datum/reagent/firefighting_foam/define_gas()
+	return null
 
 /datum/reagent/firefighting_foam/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))

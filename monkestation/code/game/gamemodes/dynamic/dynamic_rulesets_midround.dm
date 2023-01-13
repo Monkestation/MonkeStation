@@ -36,13 +36,17 @@
 	player_mind.special_role = "Mimic"
 	player_mind.active = TRUE
 	player_mind.transfer_to(spawned_mimic)
-	player_mind.add_antag_datum(/datum/antagonist/mimic)
+	var/datum/antagonist/mimic/mimic_datum = player_mind.add_antag_datum(/datum/antagonist/mimic)
+
+	mimic_datum.mimic_team.mimics |= spawned_mimic
+	mimic_datum.mimic_team.original_members |= player_mind
+	spawned_mimic.mimic_team = mimic_datum.mimic_team
 
 	//Give them a special name in the hivemind for being the first one
-	if(spawned_mimic.mimic_count <= 1)
-		spawned_mimic.hivemind_name = pick("Mimic Leader","Mimic [pick("King","Queen","Monarch")]","The Broodmother","The Original","Mimic Prime")
+	if(mimic_datum.mimic_team.mimics.len <= 1)
+		spawned_mimic.real_name = pick("Mimic Leader","Mimic [pick("King","Queen","Monarch")]","The Broodmother","The Original","Mimic Prime")
 	else
-		spawned_mimic.hivemind_name = pick("Mimic Commander","Mimic Centurion","Mimic General","Mimic Lord","Mimic Legionnaire","Mimic Elder") + " [spawned_mimic.mimic_count - 1]" //Unless multiple spawned, then any others get their own names
+		spawned_mimic.real_name = pick("Mimic Commander","Mimic Centurion","Mimic General","Mimic Lord","Mimic Legionnaire","Mimic Elder") + " [mimic_datum.mimic_team.mimics.len - 1]" //Unless multiple spawned, then any others get their own names
 
 	message_admins("[ADMIN_LOOKUPFLW(spawned_mimic)] has been made into a Mimic by the midround ruleset.")
 	log_game("DYNAMIC: [key_name(spawned_mimic)] was spawned as a Mimic by the midround ruleset.")

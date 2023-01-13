@@ -568,9 +568,16 @@
 
 /datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
-	var/mob/living/carbon/human/H = owner
-	var/datum/species/jelly/luminescent/species = H.dna.species
-	if(species && species.current_extract)
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/gazer = owner
+	var/datum/species/jelly/luminescent/species = gazer?.dna?.species
+
+	if(!istype(species, /datum/species/jelly/luminescent))
+		return
+
+	if(species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
 
 /datum/action/innate/use_extract/Activate()

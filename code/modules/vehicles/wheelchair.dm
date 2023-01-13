@@ -11,6 +11,8 @@
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	// Run speed delay is multiplied with this for vehicle move delay.
 	var/delay_multiplier = 3 //MonkeStation Edit: Better Speed
+	has_engine = FALSE
+	waddles = FALSE
 
 /obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
@@ -20,6 +22,7 @@
 	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
+	ADD_TRAIT(src, TRAIT_NO_IMMOBILIZE, INNATE_TRAIT)
 
 /obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
 	. = ..()
@@ -50,7 +53,7 @@
 	var/datum/component/riding/D = GetComponent(/datum/component/riding)
 	//1.5 (movespeed as of this change) multiplied by 6.7 gets ABOUT 10 (rounded), the old constant for the wheelchair that gets divided by how many arms they have
 	//if that made no sense this simply makes the wheelchair speed change along with movement speed delay
-	D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * delay_multiplier) / clamp(user.usable_hands, 1, 2)
+	D.vehicle_move_delay = (round(CONFIG_GET(number/movedelay/run_delay) * delay_multiplier) / clamp(user.usable_hands, 1, 2)) * (user.InCritical()? 3 : 1)
 
 /obj/vehicle/ridden/wheelchair/Moved()
 	. = ..()
@@ -115,5 +118,5 @@
 /obj/vehicle/ridden/wheelchair/the_whip/driver_move(mob/living/user, direction)
 	if(istype(user))
 		var/datum/component/riding/D = GetComponent(/datum/component/riding)
-		D.vehicle_move_delay = round(CONFIG_GET(number/movedelay/run_delay) * 3) / max(user.usable_hands, 1) //MonkeStation Edit: Better Speeds
+		D.vehicle_move_delay = (round(CONFIG_GET(number/movedelay/run_delay) * 3) / max(user.usable_hands, 1)) * (user.InCritical()? 3 : 1) //MonkeStation Edit: Better Speeds
 	return ..()

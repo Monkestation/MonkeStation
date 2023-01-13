@@ -711,12 +711,11 @@
 	foodtypes = GRAIN | SUGAR
 	food_buffs = STATUS_EFFECT_FOOD_HEALTH_MEDIUM
 
-#define PANCAKE_MAX_STACK 10
-
 /obj/item/food/pancakes
 	name = "pancake"
 	desc = "A fluffy pancake. The softer, superior relative of the waffle."
 	icon_state = "pancakes_1"
+	var/stack_state = "pancakes"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("pancakes" = 1)
 	foodtypes = GRAIN | SUGAR | BREAKFAST
@@ -726,6 +725,7 @@
 	name = "blueberry pancake"
 	desc = "A fluffy and delicious blueberry pancake."
 	icon_state = "bbpancakes_1"
+	stack_state = "bbpancakes"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
 	food_buffs = STATUS_EFFECT_FOOD_JOB_BOTANIST
@@ -734,21 +734,29 @@
 	name = "chocolate chip pancake"
 	desc = "A fluffy and delicious chocolate chip pancake."
 	icon_state = "ccpancakes_1"
+	stack_state = "ccpancakes"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "chocolate" = 1)
 	food_buffs = STATUS_EFFECT_FOOD_JOB_SECURITY
 
 /obj/item/food/pancakes/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance()
 
-/obj/item/food/pancakes/update_icon()
-	if(contents.len)
-		name = "stack of pancakes"
-	else
-		name = initial(name)
+/obj/item/food/pancakes/update_name()
+	name = contents.len ? "stack of pancakes" : initial(name)
+	return ..()
+
+/obj/item/food/pancakes/update_icon(updates = ALL)
+	if(!(updates & UPDATE_OVERLAYS))
+		return ..()
+
+	updates &= ~UPDATE_OVERLAYS
+	. = ..() // Don't update overlays. We're doing that here
+
 	if(contents.len < LAZYLEN(overlays))
-		overlays-=overlays[overlays.len]
+		overlays -= overlays[overlays.len]
+	. |= UPDATE_OVERLAYS
 
 /obj/item/food/pancakes/examine(mob/user)
 	var/ingredients_listed = ""
@@ -762,7 +770,7 @@
 			desc = "A fat stack of fluffy pancakes!"
 		if(7 to 9)
 			desc = "A grand tower of fluffy, delicious pancakes!"
-		if(PANCAKE_MAX_STACK to INFINITY)
+		if(10 to INFINITY)
 			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
 	. = ..()
 	if (pancakeCount)
@@ -773,44 +781,40 @@
 /obj/item/food/pancakes/attackby(obj/item/item, mob/living/user, params)
 	if(istype(item, /obj/item/food/pancakes))
 		var/obj/item/food/pancakes/pancake = item
-		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
-			to_chat(user, "<span class='warning'>You can't add that many pancakes to [src]!</span>")
-		else
-			if(!user.transferItemToLoc(pancake, src))
-				return
-			to_chat(user, "<span class='notice'>You add the [pancake] to the [src].</span>")
-			pancake.name = initial(pancake.name)
-			contents += pancake
-			update_snack_overlays(pancake)
-			if (pancake.contents.len)
-				for(var/pancake_content in pancake.contents)
-					pancake = pancake_content
-					pancake.name = initial(pancake.name)
-					contents += pancake
-					update_snack_overlays(pancake)
-			pancake = item
-			pancake.contents.Cut()
+		if(!user.transferItemToLoc(pancake, src))
+			return
+		to_chat(user, span_notice("You add the [pancake] to the [src]."))
+		pancake.name = initial(pancake.name)
+		contents += pancake
+		update_snack_overlays(pancake)
+		if (pancake.contents.len)
+			for(var/pancake_content in pancake.contents)
+				pancake = pancake_content
+				pancake.name = initial(pancake.name)
+				contents += pancake
+				update_snack_overlays(pancake)
+		pancake = item
+		pancake.contents.Cut()
 		return
-	else if(contents.len)
+	if(contents.len)
 		var/obj/O = contents[contents.len]
 		return O.attackby(item, user, params)
 	..()
 
-/obj/item/food/pancakes/proc/update_snack_overlays(obj/item/food/P)
-	var/mutable_appearance/pancake = mutable_appearance(icon, "[P.item_state]_[rand(1,3)]")
-	pancake.pixel_x = rand(-1,1)
-	pancake.pixel_y = 3 * contents.len - 1
-	add_overlay(pancake)
-	update_icon()
+/obj/item/food/pancakes/proc/update_snack_overlays(obj/item/pancake)
+	var/obj/item/food/pancakes/updatee = pancake
+	var/mutable_appearance/pancake_visual = mutable_appearance(icon, "[updatee.stack_state]_[rand(1, 3)]")
+	pancake_visual.pixel_x = rand(-1, 1)
+	pancake_visual.pixel_y = 3 * contents.len - 1
+	add_overlay(pancake_visual)
+	update_appearance()
 
-/obj/item/food/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
+/obj/item/food/pancakes/attack(mob/target, mob/living/user, params, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
 		return ..()
-	var/obj/item/O = contents[contents.len]
-	. = O.attack(M, user, def_zone, FALSE)
-	update_icon()
-
-#undef PANCAKE_MAX_STACK
+	var/obj/item/item = contents[contents.len]
+	. = item.attack(target, user, params, FALSE)
+	update_appearance()
 
 /obj/item/food/cannoli
 	name = "cannoli"

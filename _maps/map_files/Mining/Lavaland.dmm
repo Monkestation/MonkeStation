@@ -2071,7 +2071,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "jy" = (
-/obj/item/circuitboard/machine/smoke_machine{
+/obj/item/circuitboard/machine/atmos_machine{
 	pixel_x = 12;
 	pixel_y = -7
 	},

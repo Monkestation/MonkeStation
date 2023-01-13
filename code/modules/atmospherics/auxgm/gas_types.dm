@@ -7,6 +7,9 @@
 	heat_penalty = 1
 	transmit_modifier = 1.5
 
+/datum/gas/oxygen/generate_TLV()
+	return new/datum/tlv(16, 19, 40, 50)
+
 /datum/gas/nitrogen
 	id = GAS_N2
 	specific_heat = 20
@@ -44,6 +47,9 @@
 	)
 	fusion_power = 3
 	enthalpy = -393500
+
+/datum/gas/carbon_dioxide/generate_TLV()
+	return new/datum/tlv(TLV_DONT_CHECK, TLV_DONT_CHECK, 5, 10)
 
 /datum/gas/plasma
 	id = GAS_PLASMA
@@ -153,7 +159,10 @@
 	transmit_modifier = -5
 	heat_resistance = 3
 	enthalpy = -50000 // but it reduces the heat output a bit
-  
+
+/datum/gas/pluoxium/generate_TLV()
+	return new/datum/tlv(TLV_DONT_CHECK, TLV_DONT_CHECK, 5, 6)
+
 /datum/gas/miasma
 	id = GAS_MIASMA
 	specific_heat = 20
