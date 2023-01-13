@@ -68,7 +68,7 @@
 ///The amount of stamina required to sprint
 #define STAMINA_MIN2SPRINT_MODIFER 0.4 //Same as exhaustion threshold
 ///How much stamina is taken per tile while sprinting
-#define STAMINA_SPRINT_COST 6
+#define STAMINA_SPRINT_COST 3
 
 ////
 /// GRAPPLING
