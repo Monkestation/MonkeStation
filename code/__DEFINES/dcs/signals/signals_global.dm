@@ -25,6 +25,8 @@
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 /// global living say plug - use sparingly: (mob/speaker , message)
 #define COMSIG_GLOB_LIVING_SAY_SPECIAL "!say_special"
+///! a sound was played : (sound_player, sound_file)
+#define COMSIG_GLOB_SOUND_PLAYED "!sound_played"
 /// called by datum/cinematic/play() : (datum/cinematic/new_cinematic)
 #define COMSIG_GLOB_PLAY_CINEMATIC "!play_cinematic"
 	#define COMPONENT_GLOB_BLOCK_CINEMATIC (1<<0)

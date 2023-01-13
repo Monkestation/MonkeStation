@@ -412,11 +412,15 @@
 	REMOVE_TRAIT(src, TRAIT_BLIND, source)
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		update_blindness()
+		var/datum/component/blind_sense/B = GetComponent(/datum/component/blind_sense)
+		B?.RemoveComponent()
 
 /mob/living/proc/become_blind(source)
 	if(!HAS_TRAIT(src, TRAIT_BLIND)) // not blind already, add trait then overlay
 		ADD_TRAIT(src, TRAIT_BLIND, source)
 		update_blindness()
+		if(!QDELING(src) && !QDELETED(src))
+			AddComponent(/datum/component/blind_sense)
 	else
 		ADD_TRAIT(src, TRAIT_BLIND, source)
 
