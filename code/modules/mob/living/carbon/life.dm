@@ -327,7 +327,7 @@
 	var/stam_regen = FALSE
 	if(stam_regen_start_time <= world.time)
 		stam_regen = TRUE
-		if(stam_paralyzed)
+		if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 			. |= BODYPART_LIFE_UPDATE_HEALTH //make sure we remove the stamcrit
 	var/bodyparts_with_stam = 0
 	var/stam_heal_multiplier = 1
@@ -360,20 +360,13 @@
 
 /mob/living/carbon/proc/handle_traits()
 	//Eyes
-	if(eye_blind)			//blindness, heals slowly over time
-		if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
-			eye_blind = max(eye_blind-1,0)
-			if(client && !eye_blind)
-				clear_alert("blind")
-				clear_fullscreen("blind")
-			//Prevents healing blurryness while blind from normal means
-			return
-		else
-			eye_blind = max(eye_blind-1,1)
-	if(eye_blurry)			//blurry eyes heal slowly
-		eye_blurry = max(eye_blurry-1, 0)
-		if(client)
-			update_eye_blur()
+	if(eye_blind)	//blindness, heals slowly over time
+		if(HAS_TRAIT_FROM(src, TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
+			adjust_blindness(-3)
+		else if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
+			adjust_blindness(-1)
+	else if(eye_blurry)			//blurry eyes heal slowly
+		adjust_blurriness(-1)
 
 /mob/living/carbon/proc/handle_mutations_and_radiation()
 	if(dna && dna.temporary_mutations.len)

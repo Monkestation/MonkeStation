@@ -13,6 +13,7 @@
 
 /datum/quirk/jailbird/proc/apply_arrest(crime_name)
 	var/mob/living/carbon/human/jailbird = quirk_holder
+	jailbird.mind.store_memory("You have the law on your back because of your crime of: [crime_name]!")
 	var/crime = GLOB.data_core.createCrimeEntry(crime_name, "Galactic Crime Broadcast", "[pick(world.file2list("monkestation/strings/random_police.txt"))]", "[(rand(9)+1)] [pick("days", "weeks", "months", "years")] ago", 0)
 	var/perpname = jailbird.name
 	var/datum/data/record/jailbird_record = find_record("name", perpname, GLOB.data_core.security)
@@ -23,7 +24,7 @@
 
 /datum/quirk/stowaway
 	name = "Stowaway"
-	desc = "You wake up up inside a random locker with only a crude fake for an ID card.  You still have an employee contract on file, at least."
+	desc = "You wake up up inside a random locker with only a crude fake for an ID card."
 	value = -2
 
 /datum/quirk/stowaway/on_spawn()

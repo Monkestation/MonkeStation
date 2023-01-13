@@ -23017,6 +23017,11 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/door/window/eastright{
+	name = "Atmospherics Delivery";
+	req_access_txt = "24";
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},

@@ -191,7 +191,7 @@
 	density = TRUE
 
 	can_buckle = TRUE
-	buckle_lying = FALSE
+	buckle_lying = 0
 	buckle_requires_restraints = TRUE
 
 /obj/machinery/power/energy_accumulator/grounding_rod/anchored
