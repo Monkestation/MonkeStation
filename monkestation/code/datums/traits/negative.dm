@@ -13,6 +13,7 @@
 
 /datum/quirk/jailbird/proc/apply_arrest(crime_name)
 	var/mob/living/carbon/human/jailbird = quirk_holder
+	jailbird.mind.store_memory("You have the law on your back because of your crime of: [crime_name]!")
 	var/crime = GLOB.data_core.createCrimeEntry(crime_name, "Galactic Crime Broadcast", "[pick(world.file2list("monkestation/strings/random_police.txt"))]", "[(rand(9)+1)] [pick("days", "weeks", "months", "years")] ago", 0)
 	var/perpname = jailbird.name
 	var/datum/data/record/jailbird_record = find_record("name", perpname, GLOB.data_core.security)
@@ -23,7 +24,7 @@
 
 /datum/quirk/stowaway
 	name = "Stowaway"
-	desc = "You wake up up inside a random locker with no ID card.  You still have an employee contract on file, at least."
+	desc = "You wake up up inside a random locker with only a crude fake for an ID card."
 	value = -2
 
 /datum/quirk/stowaway/on_spawn()
@@ -32,22 +33,27 @@
 	stowaway.Sleeping(5 SECONDS, TRUE, TRUE) //This is both flavorful and gives time for the rest of the code to work.
 	var/obj/item/card/id/trashed = stowaway.get_item_by_slot(ITEM_SLOT_ID) //No ID
 	qdel(trashed)
+
+	var/obj/item/card/id/fake_card/card = new(get_turf(quirk_holder)) //a fake ID with two uses for maint doors
+	quirk_holder.equip_to_slot_if_possible(card, ITEM_SLOT_ID)
+	card.register_name(quirk_holder.real_name)
+
 	if(prob(20))
 		stowaway.drunkenness = 50 //What did I DO last night?
 	var/obj/structure/closet/selected_closet = get_unlocked_closed_locker() //Find your new home
 	if(selected_closet)
 		stowaway.forceMove(selected_closet) //Move in
 
-
 /datum/quirk/stowaway/post_add()
 	. = ..()
-	to_chat(quirk_holder, "<span class='boldnotice'>You've awoken to find yourself inside [GLOB.station_name] without identification!</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>You've awoken to find yourself inside [GLOB.station_name] without real identification!</span>")
 	addtimer(CALLBACK(src, .proc/datacore_deletion), 5 SECONDS)
 
 /datum/quirk/stowaway/proc/datacore_deletion()
 	var/mob/living/carbon/human/stowaway = quirk_holder
 	var/perpname = stowaway.name
 	var/datum/data/record/record_deletion = find_record("name", perpname, GLOB.data_core.general)
+	SSjob.FreeRole(quirk_holder.mind.assigned_role)  //open their job slot back up
 	qdel(record_deletion)
 
 /datum/quirk/unstable_ass

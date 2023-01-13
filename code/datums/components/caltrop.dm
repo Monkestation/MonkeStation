@@ -81,7 +81,7 @@
 	if(Human.buckled) //if they're buckled to something, that something should be checked instead.
 		return
 
-	if(!(Human.mobility_flags & MOBILITY_STAND)) //if were not standing we cant step on the caltrop
+	if(Human.body_position == LYING_DOWN) //if were not standing we cant step on the caltrop
 		return
 
 	var/picked_def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)

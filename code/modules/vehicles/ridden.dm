@@ -2,17 +2,30 @@
 	name = "ridden vehicle"
 	can_buckle = TRUE
 	max_buckled_mobs = 1
-	buckle_lying = FALSE
+	buckle_lying = 0
 	default_driver_move = FALSE
 	pass_flags_self = PASSTABLE
 	var/legs_required = 2
 	var/arms_required = 1	//why not?
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown
+	var/has_engine = TRUE
+	var/waddles = TRUE //bad shocks
+	var/engine_sound = 'sound/vehicles/carrev.ogg'
+	var/last_enginesound_time
+	var/engine_sound_length = 2 SECONDS //Set this to the length of the engine sound
 
 /obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/riding)
+	if(waddles)
+		AddComponent(/datum/component/waddling)
+
+/obj/vehicle/ridden/Destroy(force=FALSE)
+	var/datum/component/waddling/waddles = src.GetComponent(/datum/component/waddling)
+	if(waddles)
+		waddles.RemoveComponent()
+	. = ..()
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()
@@ -30,10 +43,15 @@
 
 /obj/vehicle/ridden/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
+	var/datum/component/waddling/is_waddling = M.GetComponent(/datum/component/waddling/)
+	if(is_waddling)
+		is_waddling.RemoveComponent()
 	return ..()
 
 /obj/vehicle/ridden/post_buckle_mob(mob/living/M)
 	add_occupant(M)
+	if(waddles)
+		M.AddComponent(/datum/component/waddling)
 	return ..()
 
 /obj/vehicle/ridden/attackby(obj/item/I, mob/user, params)
@@ -59,20 +77,18 @@
 		inserted_key = null
 	return
 
-/obj/vehicle/ridden/driver_move(mob/user, direction)
+/obj/vehicle/ridden/driver_move(mob/living/user, direction)
 	if(key_type && !is_key(inserted_key))
 		if(message_cooldown < world.time)
 			to_chat(user, "<span class='warning'>[src] has no key inserted!</span>")
 			message_cooldown = world.time + 5 SECONDS
 		return FALSE
 	if(legs_required)
-		var/how_many_legs = user.get_num_legs()
-		if(how_many_legs < legs_required)
-			to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_legs ? " your leg[how_many_legs > 1 ? "s" : null]" : "out legs"]...</span>")
+		if(user.usable_legs < legs_required)
+			to_chat(user, "<span class='warning'>You can't seem to manage that with[user.usable_legs ? " your leg[user.usable_legs > 1 ? "s" : null]" : "out legs"]...</span>")
 			return FALSE
 	if(arms_required)
-		var/how_many_arms = user.get_num_arms()
-		if(how_many_arms < arms_required)
+		if(user.usable_hands < arms_required)
 			if(fall_off_if_missing_arms)
 				unbuckle_mob(user, TRUE)
 				user.visible_message("<span class='danger'>[user] falls off of \the [src].",\
@@ -82,10 +98,15 @@
 					L.Stun(30)
 				return FALSE
 
-			to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_arms ? " your arm[how_many_arms > 1 ? "s" : null]" : "out arms"]...</span>")
+			to_chat(user, "<span class='warning'>You can't seem to manage that with[user.usable_hands ? " your arm[user.usable_hands > 1 ? "s" : null]" : "out arms"]...</span>")
 			return FALSE
 	var/datum/component/riding/R = GetComponent(/datum/component/riding)
 	R.handle_ride(user, direction)
+	if(has_engine)
+		if(world.time < last_enginesound_time + engine_sound_length)
+			return
+		last_enginesound_time = world.time
+		playsound(src, engine_sound, 100, TRUE)
 	return ..()
 
 /obj/vehicle/ridden/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)

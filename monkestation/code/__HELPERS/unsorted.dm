@@ -3,7 +3,7 @@
 	var/list/picked_lockers = list()
 	var/turf/object_location
 	for(var/obj/structure/closet/find_closet in world)
-		if(!istype(find_closet,/obj/structure/closet/secure_closet))
+		if(!find_closet.locked)
 			object_location = get_turf(find_closet)
 			if(object_location) //If it can't read a Z on the next step, it will error out. Needs a separate check.
 				if(is_station_level(object_location.z) && !find_closet.opened) //On the station and closed.

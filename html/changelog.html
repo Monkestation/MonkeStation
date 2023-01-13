@@ -57,371 +57,109 @@
 		-->
 		<div class="commit sansserif">
 
-			<h2 class="date">02 November 2022</h2>
-			<h3 class="author">Supermichael777 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">after almost 5 years of CDC studies, the medical augments have been approved for use.</li>
-				<li class="bugfix">We kicked the augment manipulator very hard and it started working again</li>
-			</ul>
-
-			<h2 class="date">01 November 2022</h2>
+			<h2 class="date">12 January 2023</h2>
 			<h3 class="author">Gboster-0 updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Added liquid pumps to every map that didnt have em.</li>
-				<li class="rscadd">Added a new atmos setup to every map.</li>
-				<li class="rscdel">Removed excessive layer 2/3/4 pipes in atmos</li>
-				<li class="tweak">Changed atmos waste injectors to space with passive vents.</li>
-				<li class="bugfix">Fixed Box turbine SMES not being correctly connected to the power grid</li>
+				<li class="rscadd">Added a windoor to metastation atmospheric flaps</li>
+			</ul>
+			<h3 class="author">KoboldCommando updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Jailbird crimes now get added to your memories, so you know what you're on the run for!</li>
 			</ul>
 
-			<h2 class="date">31 October 2022</h2>
+			<h2 class="date">08 January 2023</h2>
 			<h3 class="author">dwasint updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">chem gases, breathing these in will work like ingesting chemicals</li>
-				<li class="rscadd">evaporator: this creates gas versions of reagent when fed works like smoke machine so it will hook into plumbing</li>
+				<li class="bugfix">separated chemicals is now fixed, botanists rejoice</li>
+				<li class="rscadd">Nested shuttles. shuttles can now land on top of each other and be towed around.</li>
+				<li class="rscadd">Dock turfs. Shuttles can always land on these, regardless of whether the dock is in space, on the station, or on another shuttle. Tiles are craftable with 1 plasteel per 4 tiles.</li>
+				<li class="rscadd">Dry docks. Works like docks, but you can build on these as if you were in space and designate what you build onto a shuttle. Tiles are craftable with 2 plasteel per 4 tiles.</li>
+				<li class="tweak">Arrival shuttles and Emergency shuttles cannot be towed by other shuttles.</li>
+				<li class="refactor">Lots of changes to shuttle code, especially relating to docking.</li>
+				<li class="balance">Machinery now blocks custom docking to prevent theft of important equipment.</li>
 			</ul>
 
-			<h2 class="date">30 October 2022</h2>
-			<h3 class="author">AnturK (ported by KoboldCommando) updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Painting now supports strokes!  No more pixel by pixel clicking.</li>
-				<li class="rscadd">The library vendor has new items, including a painting palette to help with paintings!</li>
-				<li class="rscadd">You can now sign your paintings, and they will also display the time painted and medium used</li>
-				<li class="rscadd">You can now donate money to become a patron of a painting!  Or outbid the previous patron!</li>
-				<li class="code_imp">Ported some tgui elements</li>
-				<li class="admin">There is now an admin button to manage paintings</li>
-			</ul>
-
-			<h2 class="date">26 October 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Getting flashed by any bright light should now properly apply the screen overlay</li>
-			</ul>
-
-			<h2 class="date">25 October 2022</h2>
-			<h3 class="author">EvilDragonfiend (ported by KoboldCommando) updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Brain Tumor will deal 0.1 brain damage at 80% chance. (equals 0.08 damage) previously it was 0.2 damage.</li>
-				<li class="balance">Brain Tumor will not deal brain damage when the quirker has mannitol in their bloodstream.</li>
-				<li class="balance">Mannitol is less effective for Brain Tumor quirker. It only heals 0.5 brain damage and special overdose thresholds(35u). on overdose, it will heal only 0.1 brain damage at 10% chance. (equals 0.01 damage) Don't overdose them.</li>
-				<li class="balance">Brain Tumor quirker now starts with 5 pills of 30u mannitol. Each pill keeps you for 150 seconds, in total 750 seconds.</li>
-				<li class="rscadd">Brain Tumor will warn you when you're about to be at a mild trauma threshold. It will notice you when your brain damage is at near zero.</li>
-				<li class="rscadd">Brain Tumor quirker will have a +0 mood event when they eat mannitol. the message will persist for 30~60 seconds longer even if mannitol doesn't exist in your bloodstream.</li>
-			</ul>
-			<h3 class="author">EvilDragonfiend and KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Adds IV bags to the chemmaster as an option</li>
-				<li class="rscadd">You can now grind up IV bags</li>
-				<li class="rscadd">Bags of basic medicines can be ordered by Cargo.</li>
-				<li class="rscadd">Food can be used in an IV. Inject that apple right into your arm.</li>
-				<li class="rscadd">IV drips can now be heard being wheeled down the hall</li>
-			</ul>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Six new graffiti drawings, collect them all!</li>
-				<li class="rscdel">Drawing graffiti no longer colors the tile you draw on.  Spraypainting objects and windows should still work.</li>
-				<li class="bugfix">Fixed the grammar of messages you receive while drawing with crayons</li>
-			</ul>
-
-			<h2 class="date">24 October 2022</h2>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">civilian bounties will now offer two department related bounties and one general bounty</li>
-				<li class="balance">the cooldown for repicking bounties is now 60 seconds (down from 5 minutes)</li>
-				<li class="rscadd">Animated objects and several types of animals now look a bit more lively when moving around!</li>
-			</ul>
-			<h3 class="author">Nova-Hero updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Digitigrade legs are now also shown while also wearing the maid costume, rather than just the Janitor's variant of the maid outfit.</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">The Labor Camp is now fully functional again.</li>
-			</ul>
-			<h3 class="author">unit0016 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Two mapper-safe jungle generator areas have been added. Surely, that won't go wrong.</li>
-			</ul>
-
-			<h2 class="date">23 October 2022</h2>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">the ahelp poster should now show up correctly</li>
-			</ul>
-
-			<h2 class="date">19 October 2022</h2>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Ageusia no longer penalizes you for eating toxic foods, true freedom from taste preference!</li>
-			</ul>
-
-			<h2 class="date">18 October 2022</h2>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">fixed Metastation door access</li>
-			</ul>
-
-			<h2 class="date">17 October 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="admin">Holodeck changes are now tracked</li>
-			</ul>
-
-			<h2 class="date">16 October 2022</h2>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Roboticists now have access to configure securitrons.</li>
-				<li class="rscadd">Cargo now has several new crates, check them out for yourself!</li>
-				<li class="rscadd">added a new poster encouraging ahelps, they really do help!</li>
-				<li class="bugfix">1984's the lewd lizard poster, he got a music career!</li>
-			</ul>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Gives Coffee a home in science</li>
-				<li class="rscadd">puts bolt wire buttons in the bathrooms due to privacy complaints</li>
-				<li class="bugfix">Adds appropriate atmospherics equipment to medical, improves atmos network generally</li>
-				<li class="bugfix">Gives cargo long enough to live that engineering can set up power</li>
-				<li class="tweak">Modifies the bridge a bit</li>
-			</ul>
-
-			<h2 class="date">14 October 2022</h2>
-			<h3 class="author">KoboldCommando updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">MonkeTech AutoTranslators can now be built in science and medbay after some basic research!  Rejoice, death-prone simians!</li>
-			</ul>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Made Light Switches, Sec Computers, Digital Valves, and Reflectors into shells</li>
-				<li class="rscadd">Inducers and IDs can be used on the shell rather than the circuit directly</li>
-			</ul>
-			<h3 class="author">Sord213 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="soundadd">added a new cat laugh, sourced locally and ethically</li>
-			</ul>
+			<h2 class="date">31 December 2022</h2>
 			<h3 class="author">dwasint updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="bugfix">Security Records should no longer have to apply prefs to a random dummy to generate pictures for every character that joins the round.</li>
-				<li class="bugfix">sechud/medhud buttons in examines now time out after 1 minute. This means that a single examine will no longer allow you to track someone's identity and/or health for the rest of the round.</li>
-				<li class="refactor">Refactored the manifest code to not rely on generating two photo of each character at roundstart. This means that the start of the game should be significantly faster.</li>
-				<li class="bugfix">The images shown in the manifest no longer look crummy, and will instead look exactly like you'd expect them to!</li>
+				<li class="rscadd">multiple of the same message now increases its size for all types except OOC.</li>
 			</ul>
 
-			<h2 class="date">11 October 2022</h2>
-			<h3 class="author">Oricana-16 updated:</h3>
+			<h2 class="date">30 December 2022</h2>
+			<h3 class="author">KoboldCommando updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Adds a bunch of items to the monkecoin shop</li>
-			</ul>
-			<h3 class="author">SeeBeeSee updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added a single bluespace beacon to default exploration crew outfit</li>
-			</ul>
-
-			<h2 class="date">10 October 2022</h2>
-			<h3 class="author">dwasint updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Vending machines properly dispense free items</li>
-			</ul>
-
-			<h2 class="date">03 October 2022</h2>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">You can see animals on your head again.</li>
-			</ul>
-
-			<h2 class="date">02 October 2022</h2>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">adds curse to horse mask</li>
-			</ul>
-
-			<h2 class="date">29 September 2022</h2>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Things from a PR that was accidentally atomized</li>
-				<li class="bugfix">missing disposal pipes, door embedded in wall</li>
-			</ul>
-
-			<h2 class="date">24 September 2022</h2>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">added the missing disposals pipes in the detective's area</li>
-				<li class="bugfix">applied some miscellaneous missing decals that have been missing up until this point</li>
-				<li class="bugfix">removes an errant door embedded in a wall near the courtroom</li>
-			</ul>
-			<h3 class="author">dwasint updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">tabs to vending machines</li>
+				<li class="bugfix">cars should waddle more consistently</li>
+				<li class="rscadd">you can now find whoopee cushions in the library and theatre vendors, prank your friends!</li>
+				<li class="code_imp">it's now super easy to add more messages for when people fart!</li>
 			</ul>
 			<h3 class="author">lmenvs updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Simians now have clothing sprites for every wearable item in the game.</li>
+				<li class="rscadd">Adds new Shrine Priestess outfit</li>
 			</ul>
-			<h3 class="author">nednaZ updated:</h3>
+			<h3 class="author">wraith-54321 updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="bugfix">Changeling clone damage heals passively as originally intended</li>
-				<li class="refactor">Cleaned up some life loop code</li>
+				<li class="bugfix">Adds a Christmas tree spawner to meta</li>
 			</ul>
 
-			<h2 class="date">22 September 2022</h2>
-			<h3 class="author">Diamond-74 updated:</h3>
+			<h2 class="date">22 December 2022</h2>
+			<h3 class="author">KoboldCommando updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Adds white jumpskirt to cloth crafting menu</li>
+				<li class="rscadd">Vehicles are a bit more noisy and lively!</li>
+			</ul>
+
+			<h2 class="date">18 December 2022</h2>
+			<h3 class="author">Oricana-16 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a link to the mimics wiki page in the mimic antagtips</li>
+			</ul>
+
+			<h2 class="date">16 December 2022</h2>
+			<h3 class="author">KoboldCommando updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Black powder now means it when it says that it's throwing sparks!</li>
+			</ul>
+			<h3 class="author">Oricana-16 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">The brain traumas abductors give are now removable via brain surgery instead of solely lobotomy</li>
+			</ul>
+
+			<h2 class="date">14 December 2022</h2>
+			<h3 class="author">Gboster-0 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="config">changed the wiki button to monke wiki instead of bee one.</li>
 			</ul>
 			<h3 class="author">KoboldCommando updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="bugfix">1984's the Beepsky copypasta</li>
-				<li class="rscdel">Removes Beepsky's ability to break the server rules</li>
+				<li class="balance">Those mosin-nagants could really use some oil!  They now have a chance to seize up when cycling.</li>
+				<li class="bugfix">cherry bombs should now work as expected</li>
 			</ul>
-			<h3 class="author">MilkForever updated:</h3>
+			<h3 class="author">dwasint updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="bugfix">The security belt no longer looks like an utility belt on characters.</li>
-			</ul>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Replaced surgery tool piles with surgery toolbags</li>
-				<li class="rscadd">Adds a Brig Physician access requirement on the brig infirmaries of Meta and Delta</li>
-				<li class="tweak">Shuffles some equipment around in the surgical areas of a few maps</li>
-				<li class="tweak">Moves ecto scanners to tables</li>
+				<li class="bugfix">Bots should get stuck on railing less often</li>
+				<li class="bugfix">Sliced foods may be eaten properly</li>
 			</ul>
 
-			<h2 class="date">21 September 2022</h2>
+			<h2 class="date">25 November 2022</h2>
 			<h3 class="author">KoboldCommando updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="rscadd">Whetstones can now be purchased through traitor uplinks!</li>
-				<li class="rscadd">There's now a door between box surgery and medbay storage</li>
-				<li class="tweak">Medbay storage has been rearranged to help with traffic jams</li>
-				<li class="bugfix">fixed issues with roundstart items from quirks and the coin shop sometimes being dropped or lost</li>
-			</ul>
-			<h3 class="author">Nova-Hero updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Black & executive suitskirt, maid skirt, schoolgirl uniform, curator skirt, and draculass coat are all digitigrade compatible now. Additionally, colored jumpsuits will no longer show digitigrade legs due to the legs clipping through the pants.</li>
-			</ul>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Rezadone and Synthflesh now work on mimic husking.</li>
-			</ul>
-
-			<h2 class="date">20 September 2022</h2>
-			<h3 class="author">NanoCats updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Brand New engineering lobby on Boxstation</li>
-				<li class="rscadd">Firelock window shutters added to select windows on Boxstation</li>
-				<li class="rscadd">Quartermaster's office expansion</li>
-				<li class="rscadd">Departures VIP lounge WOOOO</li>
-				<li class="rscadd">Literally thousands of decals, when I close my eyes I CAN ONLY SEE TRIMLINES HELP</li>
-				<li class="rscadd">Complete armoury replacement</li>
-				<li class="rscadd">Complete robotics replacmeent</li>
-				<li class="rscadd">Vital equipment for Cargo Techs and Virologists added to their respective departments</li>
-				<li class="rscadd">Completely redesigned bridge and public park</li>
-				<li class="tweak">more decals in ~~cargo~~, everywhere but largely unchanged</li>
-				<li class="tweak">AI upload and gravity generator redesigned and relocated</li>
-				<li class="bugfix">Places plating to get rid of a mysterious hole at x199 y137 (evac)</li>
-				<li class="bugfix">Adds a cargo console to cargo in the standard spot, how did these guys survive without one</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Being deaf now alerts you when you are deaf.</li>
-				<li class="tweak">Removes the original fullscreen white effect when flashed, replacing it with a darker vision reduction.</li>
-				<li class="soundadd">The ear ringing sound effect is no longer incredibly painful</li>
-				<li class="soundadd">The flashbang sound effect is not as painful</li>
-			</ul>
-
-			<h2 class="date">17 September 2022</h2>
-			<h3 class="author">Sord213 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added two new illegal emergency shuttles. Collect them all!</li>
+				<li class="bugfix">1984s some lewd posters</li>
+				<li class="tweak">Stowaways no longer take up a job slot</li>
+				<li class="rscadd">you can now find whoopee cushions in the library and theatre vendors, prank your friends!</li>
+				<li class="code_imp">it's now super easy to add more messages for when people fart!</li>
 			</ul>
 			<h3 class="author">dwasint updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="tweak">Custom foods will expand their reagent cap as more ingredients are added</li>
-				<li class="rscadd">freon, hydrogen, healium, dilithium, pluonium, halon, zauker, hexane as new gases</li>
-				<li class="rscadd">crystalizer you can now solidify gases into cool objects</li>
-				<li class="rscadd">metalic hydrogen, go forth atmosians and make an army armed with fireaxes</li>
-				<li class="rscadd">electrolyzer, used to make new gases check the tg wiki for a better idea</li>
-				<li class="rscadd">cold fusion</li>
-				<li class="tweak">heat generation of some gases</li>
-				<li class="rscadd">gave water sm properties (12 heat modifier, -2 transmit modifier)</li>
-				<li class="rscadd">added fusion interactions for both co2 and h2 when its active</li>
+				<li class="rscdel">Only drug type reagents will evaporate now</li>
+			</ul>
+			<h3 class="author">wraith-54321 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscdel">Removed New Space Law event</li>
 			</ul>
 
-			<h2 class="date">15 September 2022</h2>
-			<h3 class="author">AnturK, dwasint updated:</h3>
+			<h2 class="date">23 November 2022</h2>
+			<h3 class="author">wraith-54321 updated:</h3>
 			<ul class="changes bgimages16">
-				<li class="bugfix">bots are now less dumb</li>
-			</ul>
-
-			<h2 class="date">13 September 2022</h2>
-			<h3 class="author">MilkForever updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">The engineering plasmaman helmets now have maximum heat protection.</li>
-			</ul>
-			<h3 class="author">Sord213 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">The Pirate Ship got a small expansion to be slightly less crowded inside</li>
-			</ul>
-
-			<h2 class="date">12 September 2022</h2>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">mimics can see mobs through walls.</li>
-			</ul>
-
-			<h2 class="date">10 September 2022</h2>
-			<h3 class="author">Dejaku51, Kylerace, LemonInTheDark updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="refactor">Optimized icon2html code</li>
-			</ul>
-
-			<h2 class="date">09 September 2022</h2>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Revolutions should ACTUALLY stop instantly announcing.</li>
-			</ul>
-
-			<h2 class="date">08 September 2022</h2>
-			<h3 class="author">The-Black-Screen updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">The turf_decal tile icons now work again.</li>
-				<li class="imageadd">The original tile_corner, tile_marquee, tile_side and tile_full from BeeStation.</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="server">Fixed atmos performance problems on linux servers</li>
-				<li class="tweak">The revolution announcement will no longer be televised immediately.</li>
-			</ul>
-
-			<h2 class="date">06 September 2022</h2>
-			<h3 class="author">DoctorSquishy updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">Improved thin firedoor icons</li>
-			</ul>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">morgue trays update their sprites correctly again.</li>
-			</ul>
-
-			<h2 class="date">05 September 2022</h2>
-			<h3 class="author">Nova-Hero updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">For lizards with digitigrade legs, the digi legs are now shown rather than the standard straight legs when using the Captain's jumpskirt. Also affects the gladiator uniform.</li>
-			</ul>
-			<h3 class="author">dwasint updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">goose butcher resulting in invisible meat</li>
-			</ul>
-			<h3 class="author">nednaZ updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Removes abandoned airlocks creating walls</li>
-				<li class="refactor">Fixes old sign tapping code</li>
-				<li class="refactor">Jailbird and Stowaway should be more reliable under high server load.</li>
-			</ul>
-
-			<h2 class="date">02 September 2022</h2>
-			<h3 class="author">Oricana-16 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Mimics now deal 7 brute and 7 clone damage instead of just 10 brute.</li>
-				<li class="tweak">Mimics can now vent crawl, along with breaking down doors like normal.</li>
-				<li class="tweak">Mimics now spawn together when they are initially triggered</li>
+				<li class="bugfix">Emitters that should not require power no longer incorrectly require power</li>
 			</ul>
 		</div>
 

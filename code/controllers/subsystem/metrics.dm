@@ -39,6 +39,11 @@ SUBSYSTEM_DEF(metrics)
 	out["elapsed_processed"] = world.time
 	out["elapsed_real"] = (REALTIMEOFDAY - world_init_time)
 	out["client_count"] = length(GLOB.clients)
+	out["time_dilation_current"] = SStime_track.time_dilation_current
+	out["time_dilation_1m"] = SStime_track.time_dilation_avg
+	out["time_dilation_5m"] = SStime_track.time_dilation_avg_slow
+	out["time_dilation_15m"] = SStime_track.time_dilation_avg_fast
+	out["harddel_count"] = length(GLOB.world_qdel_log)
 	out["round_id"] = text2num(GLOB.round_id) // This is so we can filter the metrics by a single round ID
 
 	var/server_name = CONFIG_GET(string/serversqlname)
@@ -48,7 +53,7 @@ SUBSYSTEM_DEF(metrics)
 	// Funnel in all SS metrics
 	var/list/ss_data = list()
 	for(var/datum/controller/subsystem/SS in Master.subsystems)
-		ss_data[SS.name] = SS.get_metrics()
+		ss_data[SS.ss_id] = SS.get_metrics()
 
 	out["subsystems"] = ss_data
 	// And send it all
