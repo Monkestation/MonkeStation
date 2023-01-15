@@ -31,9 +31,8 @@
 	id = /obj/item/card/id/job/serv
 	belt = /obj/item/pda/service
 	ears = /obj/item/radio/headset/headset_srv
-	uniform = /obj/item/clothing/under/rank/civilian/hydroponics
-	suit = /obj/item/clothing/suit/apron
-	suit_store = /obj/item/chicken_scanner
+	uniform = /obj/item/clothing/under/rank/civilian/rancher
+	l_pocket = /obj/item/chicken_scanner
 
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
