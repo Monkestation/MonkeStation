@@ -1,31 +1,36 @@
 #define DEFAULT_CHICKEN_ABILITY_COOLDOWN 30 SECONDS
-/mob/living/simple_animal/chicken
 
-	faction = list("chicken")
-	ai_controller = /datum/ai_controller/chicken
-
+/mob/living/simple_animal
+	///the child type of the parent, basically spawns in the baby version instead of the adult version. Used if mutations fail
+	var/child_type
+	///if they lay eggs the egg type
+	var/egg_type
+	///ALL possible mutations this simple animal has
+	var/list/mutation_list = list()
 	///How many eggs can the chicken still lay?
 	var/eggs_left = 0
 	///can it still lay eggs?
 	var/eggs_fertile = TRUE
+
+	///How happy the animal is, used on mutation to see if it can branch
+	var/happiness = 0
+	///Consumed food
+	var/list/consumed_food = list()
+	///All Consumed reagents
+	var/list/datum/reagent/consumed_reagents = new/list()
+
+/mob/living/simple_animal/chicken
+
+	faction = list("chicken")
+	ai_controller = /datum/ai_controller/chicken
 	///Message you get when it is fed
 	var/list/feedMessages = list("It clucks happily.","It gobbles up the food voraciously.","It noms happily.")
 	///Message that is sent when an egg is laid
 	var/list/layMessage = EGG_LAYING_MESSAGES
 	//Global amount of chickens
 	var/static/chicken_count = 0
-	///Type of egg that is laid
-	var/egg_type = /obj/item/food/egg
-	///How happy the chicken is, used on egg hatch to determine if it should branch into a new chicken
-	var/happiness = 0
 	///The type of chicken it is
 	var/mob/living/simple_animal/chicken/chicken_type
-	///Consumed food
-	var/list/consumed_food = list()
-	///All Consumed reagents
-	var/list/datum/reagent/consumed_reagents = new/list()
-	///ALL possible mutations this chicken can lay
-	var/list/mutation_list = list(/datum/mutation/ranching/chicken/spicy, /datum/mutation/ranching/chicken/brown)
 	///Needed cause i can't iterate a new spawn with the ref to a mob
 	var/chicken_path = /mob/living/simple_animal/chicken
 	///Breed of the chicken needed for naming

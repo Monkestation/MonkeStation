@@ -3935,6 +3935,7 @@
 #include "monkestation\code\modules\ranching\chickens\tier3\rev_raptor.dm"
 #include "monkestation\code\modules\ranching\chickens\tier3\robot.dm"
 #include "monkestation\code\modules\ranching\components\afterimage.dm"
+#include "monkestation\code\modules\ranching\components\mutation.dm"
 #include "monkestation\code\modules\ranching\mutations\_mutations.dm"
 #include "monkestation\code\modules\ranching\mutations\tier1.dm"
 #include "monkestation\code\modules\ranching\mutations\tier2.dm"

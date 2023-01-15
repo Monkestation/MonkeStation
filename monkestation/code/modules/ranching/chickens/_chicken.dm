@@ -1,3 +1,5 @@
+/mob/living/simple_animal/proc/pass_stats(atom/child)
+	return
 /mob/living/simple_animal/chick
 	name = "\improper chick"
 	desc = "Adorable! They make such a racket though."
@@ -131,6 +133,8 @@
 
 	do_footstep = TRUE
 
+	egg_type = /obj/item/food/egg
+	mutation_list = list(/datum/mutation/ranching/chicken/spicy, /datum/mutation/ranching/chicken/brown)
 
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
@@ -139,7 +143,7 @@
 	GLOB.total_chickens++
 	chicken_type = src
 	assign_chicken_icon()
-
+	AddComponent(/datum/component/mutation, mutation_list, TRUE)
 	if(prob(40))
 		gender = MALE
 
@@ -164,6 +168,30 @@
 	held_state = "chicken_[icon_suffix]"
 	icon_living = "chicken_[icon_suffix]"
 	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
+
+/mob/living/simple_animal/chicken/pass_stats(atom/child)
+	var/obj/item/food/egg/layed_egg = child
+
+	layed_egg.Friends = src.Friends
+	layed_egg.layer_hen_type = src.chicken_type
+	layed_egg.happiness = src.happiness
+	layed_egg.consumed_food = src.consumed_food
+	layed_egg.consumed_reagents = src.consumed_reagents
+	layed_egg.pixel_x = rand(-6,6)
+	layed_egg.pixel_y = rand(-6,6)
+
+	if(glass_egg_reagents)
+		layed_egg.food_reagents = glass_egg_reagents
+
+	if(production_type)
+		layed_egg.production_type = production_type
+
+	if(eggs_fertile)
+		if(prob(40) || layed_egg.possible_mutations.len) //25
+			START_PROCESSING(SSobj, layed_egg)
+			flop_animation(layed_egg)
+			layed_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
+	ready_to_lay = FALSE
 
 /mob/living/simple_animal/chicken/death(gibbed)
 	Friends = null
@@ -326,44 +354,11 @@
 		if(src.loc == movement_target.loc)
 
 			visible_message("[src] [pick(layMessage)]")
-
-			eggs_left--
-			var/obj/item/food/egg/layed_egg
-			//Need to have eaten 5 times in order to have a chance at getting mutations
+			var/passes_minimum_checks = FALSE
 			if(src.total_times_eaten > 4 && prob(25))
-				var/list/real_mutation = list()
-				for(var/raw_list_item in src.mutation_list)
-					var/datum/mutation/ranching/chicken/mutation = new raw_list_item
-					real_mutation |= mutation
-				if(real_mutation.len)
-					var/datum/mutation/ranching/chicken/picked_mutation = pick(real_mutation)
-					layed_egg = new picked_mutation.egg_type(get_turf(src))
-					layed_egg.possible_mutations |= picked_mutation
-				else
-					layed_egg = new egg_type(get_turf(src))
-			else
-				layed_egg = new egg_type(get_turf(src))
-
-			layed_egg.Friends = src.Friends
-			layed_egg.layer_hen_type = src.chicken_type
-			layed_egg.happiness = src.happiness
-			layed_egg.consumed_food = src.consumed_food
-			layed_egg.consumed_reagents = src.consumed_reagents
-			layed_egg.pixel_x = rand(-6,6)
-			layed_egg.pixel_y = rand(-6,6)
-
-			if(glass_egg_reagents)
-				layed_egg.food_reagents = glass_egg_reagents
-
-			if(production_type)
-				layed_egg.production_type = production_type
-
-			if(eggs_fertile)
-				if(prob(40) || layed_egg.possible_mutations.len) //25
-					START_PROCESSING(SSobj, layed_egg)
-					flop_animation(layed_egg)
-					layed_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
-			ready_to_lay = FALSE
+				passes_minimum_checks = TRUE
+			SEND_SIGNAL(src, COMSIG_MUTATION_TRIGGER, get_turf(src), passes_minimum_checks)
+			eggs_left--
 			stop_automated_movement = 0
 
 /obj/item/food/egg/process(delta_time)

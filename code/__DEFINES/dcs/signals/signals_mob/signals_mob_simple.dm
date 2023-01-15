@@ -6,3 +6,5 @@
 #define COMSIG_HOSTILE_POST_ATTACKINGTARGET "hostile_post_attackingtarget"
 
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
+
+#define COMSIG_MUTATION_TRIGGER "mutation_trigger"
