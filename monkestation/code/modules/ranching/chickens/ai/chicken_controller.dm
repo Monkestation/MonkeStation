@@ -170,21 +170,30 @@
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
+
+	if((!blackboard[BB_CHICKEN_READY_LAY]&& DT_PROB(10) && living_pawn.eggs_left > 0) && living_pawn.egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && living_pawn.gender == FEMALE)
+		blackboard[BB_CHICKEN_READY_LAY] = TRUE
+
 	if(blackboard[BB_CHICKEN_READY_LAY])
 		queue_behavior(/datum/ai_behavior/find_and_lay)
+
 	if(DT_PROB(10, delta_time) && blackboard[BB_CHICKEN_FOOD_COOLDOWN] < world.time)
 		if(locate(/obj/item/food) in view(5, pawn))
 			queue_behavior(/datum/ai_behavior/eat_ground_food)
+
 	if(blackboard[BB_CHICKEN_SPECALITY_ABILITY] && DT_PROB(5, delta_time) && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
 		// this will be expanded in the future its just easier to leave it like this now
 		switch(blackboard[BB_CHICKEN_SPECALITY_ABILITY])
 			if(CHICKEN_REV)
 				queue_behavior(/datum/ai_behavior/revolution)
+
 	if(blackboard[BB_CHICKEN_ABILITY] && DT_PROB(living_pawn.ability_prob, delta_time) && !blackboard[BB_CHICKEN_COMBAT_ABILITY] && blackboard[BB_CHICKEN_ABILITY_COOLDOWN] < world.time)
 		queue_behavior(/datum/ai_behavior/chicken_ability)
+
 	if(DT_PROB(25, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
 		var/move_dir = pick(GLOB.alldirs)
 		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+
 	if(blackboard[BB_CHICKEN_SHITLIST] && DT_PROB(50, delta_time))
 		var/list/enemies = blackboard[BB_CHICKEN_SHITLIST]
 		if(enemies.len)

@@ -335,10 +335,6 @@
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
-	///TODO: CONVERT BELOW TO MOB SYSTEM
-	if((!stat && prob(10) && eggs_left > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
-		ai_controller.blackboard[BB_CHICKEN_READY_LAY] = TRUE
-
 /obj/item/food/egg/process(delta_time)
 	amount_grown += rand(3,6) * delta_time
 	if(amount_grown >= 100)
