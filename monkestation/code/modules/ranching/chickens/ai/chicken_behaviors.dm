@@ -126,13 +126,14 @@
 
 	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
 	var/list/floor_foods = list()
-	for(var/obj/item/food/food_item in view(CHICKEN_ENEMY_VISION, living_pawn.loc))
+	for(var/obj/item/food/food_item in view(3, living_pawn.loc))
 		if(!(food_item.type in blacklisted_foods))
 			floor_foods |= food_item
 	if(floor_foods.len)
 		var/obj/item/food/chosen_one = pick(floor_foods)
 
-		SSmove_manager.jps_move(living_pawn, chosen_one, 4, 2 SECONDS)
+		if(!SSmove_manager.jps_move(living_pawn, chosen_one, 4, timeout = 5 SECONDS))
+			finish_action(controller, TRUE)
 
 		if(living_pawn.CanReach(chosen_one))
 			living_pawn.feed_food(chosen_one)
@@ -169,9 +170,11 @@
 		break
 
 	if(!target)
+		controller.blackboard[BB_CHICKEN_READY_LAY] = FALSE
 		finish_action(controller, TRUE)
 
-	SSmove_manager.jps_move(living_pawn, target, 4, 2 SECONDS)
+	if(!SSmove_manager.jps_move(living_pawn, target, 4, timeout = 5 SECONDS))
+		finish_action(controller, TRUE)
 	if(target.loc == living_pawn.loc)
 		SSmove_manager.stop_looping(living_pawn)
 
