@@ -84,6 +84,7 @@
 #define BB_CHICKEN_SPECALITY_ABILITY "BB_chicken_special_ability"
 #define BB_CHICKEN_CURRENT_LEADER "BB_chicken_leader"
 #define BB_CHICKEN_FOOD_COOLDOWN "BB_chicken_food_cooldown"
+#define BB_CHICKEN_READY_LAY "BB_chicken_ready_lay"
 ///Haunted item controller defines
 
 ///Chance for haunted item to haunt someone

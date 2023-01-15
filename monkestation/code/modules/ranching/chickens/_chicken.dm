@@ -169,7 +169,7 @@
 	icon_state = "[starting_prefix]_[icon_suffix]"
 	held_state = "[starting_prefix]_[icon_suffix]"
 	icon_living = "[starting_prefix]_[icon_suffix]"
-	icon_dead = "dead_[icon_suffix]" //TODO: add dead sprites for each chick / chicken
+	icon_dead = "dead_[icon_suffix]"
 
 /mob/living/simple_animal/chicken/pass_stats(atom/child)
 	var/obj/item/food/egg/layed_egg = child
@@ -328,7 +328,6 @@
 
 	if(happiness < minimum_living_happiness)
 		src.death()
-	///TODO: CONVERT BELOW TO MOB SYSTEM
 	if(!stat && prob(3) && current_feed_amount > 0)
 		current_feed_amount --
 		if(current_feed_amount == 0)
@@ -336,32 +335,9 @@
 			for(var/mob/living/carbon/human/user in users)
 				user.visible_message("[src] starts pecking at the floor, it must be hungry.")
 
+	///TODO: CONVERT BELOW TO MOB SYSTEM
 	if((!stat && prob(10) && eggs_left > 0) && egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && gender == FEMALE)
-		ready_to_lay = TRUE
-
-	if(ready_to_lay == TRUE)
-		if(!movement_target || !(src in viewers(3, movement_target.loc)))
-			movement_target = null
-			stop_automated_movement = 0
-			for(var/obj/structure/nestbox/nesting_box in view(3, src))
-				movement_target = nesting_box
-				break
-		if(movement_target)
-			stop_automated_movement = 1
-			step_to(src, movement_target)
-
-		if(!Adjacent(movement_target)) //can't reach box through windows.
-			return
-
-		if(src.loc == movement_target.loc)
-
-			visible_message("[src] [pick(layMessage)]")
-			var/passes_minimum_checks = FALSE
-			if(src.total_times_eaten > 4 && prob(25))
-				passes_minimum_checks = TRUE
-			SEND_SIGNAL(src, COMSIG_MUTATION_TRIGGER, get_turf(src), passes_minimum_checks)
-			eggs_left--
-			stop_automated_movement = 0
+		ai_controller.blackboard[BB_CHICKEN_READY_LAY] = TRUE
 
 /obj/item/food/egg/process(delta_time)
 	amount_grown += rand(3,6) * delta_time

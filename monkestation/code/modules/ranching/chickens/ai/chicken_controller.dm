@@ -18,6 +18,7 @@
 		BB_CHICKEN_SPECALITY_ABILITY = null,
 		BB_CHICKEN_CURRENT_LEADER = null,
 		BB_CHICKEN_FOOD_COOLDOWN = null,
+		BB_CHICKEN_READY_LAY = FALSE
 	)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
@@ -169,6 +170,8 @@
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
+	if(blackboard[BB_CHICKEN_READY_LAY])
+		queue_behavior(/datum/ai_behavior/find_and_lay)
 	if(DT_PROB(10, delta_time) && blackboard[BB_CHICKEN_FOOD_COOLDOWN] < world.time)
 		if(locate(/obj/item/food) in view(5, pawn))
 			queue_behavior(/datum/ai_behavior/eat_ground_food)

@@ -247,3 +247,26 @@
 		step_to(living_pawn, target,1)
 	else
 		finish_action(controller, TRUE)
+
+/datum/ai_behavior/find_and_lay
+
+/datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+
+	var/obj/structure/nestbox/target
+	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
+		target = nesting_box
+		break
+	SSmove_manager.jps_move(living_pawn, target, 4, 2 SECONDS)
+	if(target.loc == living_pawn.loc)
+		SSmove_manager.stop_looping(living_pawn)
+
+		living_pawn.visible_message("[living_pawn] [pick(living_pawn.layMessage)]")
+		var/passes_minimum_checks = FALSE
+		if(living_pawn.total_times_eaten > 4 && prob(25))
+			passes_minimum_checks = TRUE
+		SEND_SIGNAL(living_pawn, COMSIG_MUTATION_TRIGGER, get_turf(living_pawn), passes_minimum_checks)
+		living_pawn.eggs_left--
+
+		controller.blackboard[BB_CHICKEN_READY_LAY] = FALSE
+		finish_action(controller, TRUE)
