@@ -58,7 +58,7 @@
 	icon_state = "chick_[hatched_type.icon_suffix]"
 	held_state = "chick_[hatched_type.icon_suffix]"
 	icon_living = "chick_[hatched_type.icon_suffix]"
-	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
+	icon_dead = "dead_[hatched_type.icon_suffix]"
 	qdel(hatched_type)
 
 /mob/living/simple_animal/chick/Life()
@@ -142,11 +142,11 @@
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
 	chicken_type = src
-	assign_chicken_icon()
 	AddComponent(/datum/component/mutation, mutation_list, TRUE)
 	if(prob(40))
 		gender = MALE
 
+	assign_chicken_icon()
 	if(gender == MALE && breed_name)
 		if(breed_name_male)
 			name = " [breed_name_male]"
@@ -163,11 +163,13 @@
 /mob/living/simple_animal/chicken/proc/assign_chicken_icon()
 	if(!icon_suffix) // should never be the case but if so default to the first set of icons
 		return
-
-	icon_state = "chicken_[icon_suffix]"
-	held_state = "chicken_[icon_suffix]"
-	icon_living = "chicken_[icon_suffix]"
-	icon_dead = "dead_state" //TODO: add dead sprites for each chick / chicken
+	var/starting_prefix = "chicken"
+	if(gender == MALE)
+		starting_prefix = "rooster"
+	icon_state = "[starting_prefix]_[icon_suffix]"
+	held_state = "[starting_prefix]_[icon_suffix]"
+	icon_living = "[starting_prefix]_[icon_suffix]"
+	icon_dead = "dead_[icon_suffix]" //TODO: add dead sprites for each chick / chicken
 
 /mob/living/simple_animal/chicken/pass_stats(atom/child)
 	var/obj/item/food/egg/layed_egg = child
