@@ -111,3 +111,73 @@
 	build_path = /obj/item/chicken_scanner
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/obj/machinery/feed_machine
+	name = "Feed Producer"
+	desc = "It converts food and reagents into usable feed for chickens"
+
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "juicer1"
+
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 100
+	max_integrity = 300
+	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
+
+	///the current held beaker used when feed is produced to add reagents to it
+	var/obj/item/reagent_containers/beaker = null
+	///list of all currently held foods
+	var/list/held_foods
+	///the first food object put into the feed machine this cycle
+	var/obj/item/food/first_food
+
+
+/obj/machinery/feed_machine/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(!typesof(I, /obj/item/food) || !typesof(I, /obj/item/reagent_containers)) ///if not a food or reagent type early return
+		return
+
+	if(istype(I, /obj/item/food)) // if food we do this
+		var/obj/item/food/attacked_food = I
+
+		if(!first_food) // set the food type to this, used for color and naming
+			first_food = attacked_food
+		held_foods += attacked_food.type //we add the type to this as we don't want a ton of random objects stored inside the feed
+		qdel(I)
+
+	else //if not this
+		var/obj/item/reagent_containers/attacked_reagent_container = I
+		if(!user.transferItemToLoc(attacked_reagent_container, src))
+			return
+		if(beaker)
+			beaker.forceMove(drop_location())
+			if(user && Adjacent(user) && !issiliconoradminghost(user))
+				user.put_in_hands(beaker)
+		beaker = attacked_reagent_container
+
+/obj/machinery/feed_machine/AltClick(mob/user)
+	. = ..()
+	if(!held_foods)
+		return
+	var/obj/item/chicken_feed/produced_feed = new(src.loc)
+
+	produced_feed.name = "[initial(first_food.name)] Chicken Feed"
+	for(var/food in held_foods)
+		var/obj/item/food/listed_food = food
+		produced_feed.held_foods |= listed_food.type
+	if(beaker)
+		produced_feed.reagents.reagent_list |= beaker.reagents.reagent_list
+		beaker.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(beaker)
+
+	first_food = null
+	held_foods = null
+
+/obj/item/chicken_feed
+	name = "chicken feed"
+	icon = 'monkestation/icons/obj/ranching/items.dmi'
+	icon_state = "chicken_feed"
+
+	var/list/held_foods
