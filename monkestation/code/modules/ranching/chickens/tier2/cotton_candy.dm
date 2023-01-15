@@ -20,15 +20,18 @@
 /datum/status_effect/ranching/hen_rush
 	id = "hen_rush"
 	duration = 30 SECONDS
+	tick_interval = 1 SECONDS
 
 /datum/status_effect/ranching/hen_rush/on_apply()
 	owner.AddComponent(/datum/component/after_image)
 	owner.add_movespeed_modifier("sugar_rush", update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
+	return ..()
+
+/datum/status_effect/ranching/hen_rush/tick()
 	var/move_dir = pick(GLOB.alldirs)
 	owner.Move(get_step(owner, move_dir), move_dir)
 	owner.Move(get_step(owner, move_dir), move_dir)
 	owner.Move(get_step(owner, move_dir), move_dir)
-	return ..()
 
 /datum/status_effect/ranching/hen_rush/on_remove()
 	var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
