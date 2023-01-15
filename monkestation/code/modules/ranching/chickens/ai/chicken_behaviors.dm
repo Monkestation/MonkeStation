@@ -257,6 +257,10 @@
 	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
 		target = nesting_box
 		break
+
+	if(!target)
+		finish_action(controller, FALSE)
+
 	SSmove_manager.jps_move(living_pawn, target, 4, 2 SECONDS)
 	if(target.loc == living_pawn.loc)
 		SSmove_manager.stop_looping(living_pawn)
