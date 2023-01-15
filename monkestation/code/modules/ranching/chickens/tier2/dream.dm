@@ -24,7 +24,6 @@
 		carbon_owner.visible_message("<span class='notice'>[owner] goes into a deep sleep!</span>")
 		carbon_owner.fakedeath("dream_state") //play dead
 		carbon_owner.update_stat()
-		carbon_owner.update_mobility()
 		is_sleeping = TRUE
 	return ..()
 
