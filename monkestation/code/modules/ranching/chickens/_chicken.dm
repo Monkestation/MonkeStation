@@ -326,7 +326,7 @@
 
 	if(happiness < minimum_living_happiness)
 		src.death()
-
+	///TODO: CONVERT BELOW TO MOB SYSTEM
 	if(!stat && prob(3) && current_feed_amount > 0)
 		current_feed_amount --
 		if(current_feed_amount == 0)
@@ -370,7 +370,7 @@
 	var/list/final_mutations = list()
 	var/failed_mutations = FALSE
 	for(var/datum/mutation/ranching/chicken/mutation in possible_mutations)
-		if(cycle_requirements(mutation))
+		if(mutation.cycle_requirements(src, TRUE))
 			final_mutations |= mutation
 		else
 			desc = "Huh it seems like nothing is coming out of this one, maybe it needed something else?"
