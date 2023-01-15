@@ -6,12 +6,14 @@
 	egg_type = /obj/item/food/egg/raptor
 	chicken_path = /mob/living/simple_animal/chicken/rev_raptor
 
-	ai_controller = /datum/ai_controller/chicken/hostile/rev
+	ai_controller = /datum/ai_controller/chicken/hostile
 	health = 150
 	maxHealth = 100
 	melee_damage = 6
 	obj_damage = 10
 
+	unique_ability = CHICKEN_REV
+	ability_prob = 5
 
 /obj/item/food/egg/rev_raptor
 	name = "Revolutionary Egg"

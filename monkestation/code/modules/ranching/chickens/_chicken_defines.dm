@@ -55,10 +55,6 @@
 	COOLDOWN_DECLARE(age_cooldown)
 	///Aging Speed
 	var/age_speed = 30 SECONDS
-	///Nestbox to move to
-	var/obj/structure/nestbox/movement_target
-	///Ready to lay egg
-	var/ready_to_lay = FALSE
 	///max generational happiness
 	var/max_happiness_per_generation = 100
 	///How sad until they die of sadness?

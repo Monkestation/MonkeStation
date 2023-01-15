@@ -6,7 +6,7 @@
 	chicken_path = /mob/living/simple_animal/chicken/cotton_candy
 	mutation_list = list(/datum/mutation/ranching/chicken/dreamsicle)
 
-	unique_ability = HEN_RUSH
+	unique_ability = CHICKEN_SUGAR_RUSH
 	ability_prob = 5
 
 /obj/item/food/egg/cotton_candy
@@ -21,15 +21,16 @@
 	id = "hen_rush"
 	duration = 30 SECONDS
 
-/datum/status_effect/ranching/sugar_rush/on_apply()
+/datum/status_effect/ranching/hen_rush/on_apply()
 	owner.AddComponent(/datum/component/after_image)
 	owner.add_movespeed_modifier("sugar_rush", update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
-	owner.Move()
-	owner.Move()
-	owner.Move()
+	var/move_dir = pick(GLOB.alldirs)
+	owner.Move(get_step(owner, move_dir), move_dir)
+	owner.Move(get_step(owner, move_dir), move_dir)
+	owner.Move(get_step(owner, move_dir), move_dir)
 	return ..()
 
-/datum/status_effect/ranching/sugar_rush/on_remove()
+/datum/status_effect/ranching/hen_rush/on_remove()
 	var/datum/component/after_image = owner.GetComponent(/datum/component/after_image)
 	after_image?.RemoveComponent()
 	owner.remove_movespeed_modifier("sugar_rush")

@@ -32,6 +32,8 @@
 #define DEFAULT_HONK_CD 30 SECONDS
 // Chicken is a rev
 #define CHICKEN_REV "rev_chicken"
+///string for hen rush
+#define CHICKEN_SUGAR_RUSH "hen_rush"
 
 // friendship follow threshold
 #define CHICKEN_FRIENDSHIP_FOLLOW 10

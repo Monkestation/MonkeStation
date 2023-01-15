@@ -32,6 +32,7 @@
 	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOVABLE_THROW_LANDED))
 	for(var/obj/after_image/listed_image in src.after_images)
 		listed_image.active = FALSE
+		qdel(listed_image)
 	. = ..()
 
 /datum/component/after_image/Destroy()
@@ -56,6 +57,7 @@
 
 /datum/component/after_image/proc/sync_after_images(dir_override=null)
 	set waitfor = FALSE
+
 	var/obj/after_image/targeted_image = new(null)
 	targeted_image.active = TRUE
 	targeted_image.sync_with_parent(parent)

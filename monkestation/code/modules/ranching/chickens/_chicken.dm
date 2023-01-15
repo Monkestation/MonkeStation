@@ -158,6 +158,9 @@
 		else
 			name = "[breed_name] Hen"
 
+	if(unique_ability)
+		ai_controller.blackboard[BB_CHICKEN_SPECALITY_ABILITY] = unique_ability
+
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/simple_animal/chicken/proc/assign_chicken_icon()
@@ -193,7 +196,6 @@
 			START_PROCESSING(SSobj, layed_egg)
 			flop_animation(layed_egg)
 			layed_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
-	ready_to_lay = FALSE
 
 /mob/living/simple_animal/chicken/death(gibbed)
 	Friends = null
