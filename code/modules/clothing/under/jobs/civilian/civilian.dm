@@ -106,7 +106,7 @@
 	desc = "It's a suit and overalls combo designed to keep the chickens beaks from hurting you."
 	name = "rancher's overalls"
 	icon_state = "rancher"
-	item_state = "g_suit"
+	item_state = "hydroponics"
 	permeability_coefficient = 0.5
 
 /obj/item/clothing/under/rank/civilian/hydroponics/skirt

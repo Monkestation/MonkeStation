@@ -169,12 +169,13 @@
 		target = nesting_box
 		break
 
+	if(!SSmove_manager.jps_move(living_pawn, target, 4, timeout = 5 SECONDS))
+		finish_action(controller, TRUE)
+
 	if(!target)
 		controller.blackboard[BB_CHICKEN_READY_LAY] = FALSE
 		finish_action(controller, TRUE)
 
-	if(!SSmove_manager.jps_move(living_pawn, target, 4, timeout = 5 SECONDS))
-		finish_action(controller, TRUE)
 	if(target.loc == living_pawn.loc)
 		SSmove_manager.stop_looping(living_pawn)
 

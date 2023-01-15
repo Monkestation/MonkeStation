@@ -28,6 +28,7 @@
 	name = "Rancher"
 	jobtype = /datum/job/rancher
 
+	head = /obj/item/clothing/head/oldhat
 	id = /obj/item/card/id/job/serv
 	belt = /obj/item/pda/service
 	ears = /obj/item/radio/headset/headset_srv
