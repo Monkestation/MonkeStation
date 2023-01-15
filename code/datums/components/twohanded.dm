@@ -145,7 +145,13 @@
 	if(wielded)
 		unwield()
 	if(source == offhand_item && !QDELETED(src))
+		offhand_item = null
 		qdel(src)
+
+/// Triggered on destroy of the component's offhand
+/datum/component/two_handed/proc/on_destroy(datum/source)
+	SIGNAL_HANDLER
+	offhand_item = null
 
 /// Triggered on attack self of the item containing the component
 /datum/component/two_handed/proc/on_attack_self(datum/source, mob/user)
@@ -182,7 +188,7 @@
 		else
 			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 		return
-	if(user.get_num_arms() < 2)
+	if(user.usable_hands < 2)
 		if(require_twohands)
 			user.dropItemToGround(parent, force=TRUE)
 		to_chat(user, "<span class='warning'>You don't have enough intact hands.</span>")
@@ -232,6 +238,7 @@
 	offhand_item.desc = "Your second grip on [parent_item]."
 	offhand_item.wielded = TRUE
 	RegisterSignal(offhand_item, COMSIG_ITEM_DROPPED, .proc/on_drop)
+	RegisterSignal(offhand_item, COMSIG_PARENT_QDELETING, .proc/on_destroy)
 	if(swap_hands)
 		user.put_in_active_hand(offhand_item)
 	else
@@ -305,7 +312,7 @@
 
 	// Remove the object in the offhand
 	if(offhand_item)
-		UnregisterSignal(offhand_item, COMSIG_ITEM_DROPPED)
+		UnregisterSignal(offhand_item, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETING))
 		qdel(offhand_item)
 	// Clear any old refrence to an item that should be gone now
 	offhand_item = null

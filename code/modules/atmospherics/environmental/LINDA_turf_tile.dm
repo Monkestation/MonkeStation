@@ -47,7 +47,7 @@
 	return assume_air_ratio(giver, 1)
 
 /turf/open/assume_air_moles(datum/gas_mixture/giver, moles)
-	if(!giver)
+	if(!giver || !giver.total_moles())
 		return FALSE
 	if(SSair.thread_running())
 		SSair.deferred_airs += list(list(giver, air, moles / giver.total_moles()))
@@ -165,9 +165,6 @@
 
 	UNSETEMPTY(new_overlay_types)
 	src.atmos_overlay_types = new_overlay_types
-
-	for(var/obj/effect/overlay/gas/tile_overlay in src.atmos_overlay_types)
-		tile_overlay.alpha /= min((src.atmos_overlay_types.len * 0.25), 1)
 
 /turf/open/proc/set_visuals(list/new_overlay_types)
 	if (atmos_overlay_types)

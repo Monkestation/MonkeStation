@@ -250,7 +250,7 @@ Auto Patrol: []"},
 	if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 		return
 	if(!C.handcuffed)
-		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
+		C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 		C.update_handcuffed()
 		if(EMAGGED && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
 			playsound(src, emagsounds, 50, 0)

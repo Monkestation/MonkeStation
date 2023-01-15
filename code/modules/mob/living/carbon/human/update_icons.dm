@@ -236,7 +236,7 @@ There are several things that need to be remembered:
 			bloody_overlay += mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
 		else
 			bloody_overlay = mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(dna.species.name)]_bloodyhands")
-		if(get_num_arms(FALSE) < 2)
+		if(num_hands < 2)
 			if(has_left_hand(FALSE))
 				if(!dna.species.get_custom_icons("gloves"))
 					bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands_left", -GLOVES_LAYER)
@@ -375,7 +375,7 @@ There are several things that need to be remembered:
 /mob/living/carbon/human/update_inv_shoes()
 	remove_overlay(SHOES_LAYER)
 
-	if(get_num_legs(FALSE) <2)
+	if(num_legs <2)
 		return
 
 	if(client && hud_used)

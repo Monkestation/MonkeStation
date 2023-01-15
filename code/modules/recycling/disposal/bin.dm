@@ -142,7 +142,7 @@
 			. = TRUE
 		update_icon()
 
-/obj/machinery/disposal/relaymove(mob/user)
+/obj/machinery/disposal/relaymove(mob/living/user, direction)
 	attempt_escape(user)
 
 // resist to escape the bin
