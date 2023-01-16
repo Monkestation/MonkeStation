@@ -54,7 +54,7 @@
 	if(!chicken_type) // do we have a grown type?
 		return
 
-	var/mob/living/simple_animal/chicken/hatched_type = new type
+	var/mob/living/simple_animal/chicken/hatched_type = new chicken_type
 	icon_state = "chick_[hatched_type.icon_suffix]"
 	held_state = "chick_[hatched_type.icon_suffix]"
 	icon_living = "chick_[hatched_type.icon_suffix]"
