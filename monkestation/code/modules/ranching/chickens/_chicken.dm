@@ -54,7 +54,7 @@
 	if(!chicken_type) // do we have a grown type?
 		return
 
-	var/mob/living/simple_animal/chicken/hatched_type = new chicken_type
+	var/mob/living/simple_animal/chicken/hatched_type = new type
 	icon_state = "chick_[hatched_type.icon_suffix]"
 	held_state = "chick_[hatched_type.icon_suffix]"
 	icon_living = "chick_[hatched_type.icon_suffix]"
@@ -68,6 +68,8 @@
 	if(!stat && !ckey)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
+			if(!grown_type)
+				grown_type = /mob/living/simple_animal/chicken
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
 			new_chicken.Friends = src.friends
 			new_chicken.age += rand(1,10) //add a bit of age to each chicken causing staggered deaths
@@ -178,7 +180,7 @@
 	var/obj/item/food/egg/layed_egg = child
 
 	layed_egg.Friends = src.Friends
-	layed_egg.layer_hen_type = src.chicken_type
+	layed_egg.layer_hen_type = src.type
 	layed_egg.happiness = src.happiness
 	layed_egg.consumed_food = src.consumed_food
 	layed_egg.consumed_reagents = src.consumed_reagents
@@ -366,8 +368,6 @@
 		birthed.grown_type = chosen_mutation.chicken_type
 		if(chosen_mutation.nearby_items.len)
 			absorbed_required_items(chosen_mutation.nearby_items)
-	else
-		birthed.grown_type = layer_hen_type.chicken_path
 
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/glass)
 		for(var/list_item in src.reagents.reagent_list)

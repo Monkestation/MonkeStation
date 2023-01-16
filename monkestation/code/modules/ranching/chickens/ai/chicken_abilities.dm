@@ -38,11 +38,16 @@
 			controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET] = pick(pick_me)
 	finish_action(controller, TRUE)
 
+/datum/ai_behavior/chicken_honk_target/finish_action(datum/ai_controller/controller, succeeded, ...)
+	. = ..()
+	if(controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET])
+		controller.queue_behavior(/datum/ai_behavior/chicken_honk)
+
 /datum/ai_behavior/chicken_honk
 
 /datum/ai_behavior/chicken_honk/perform(delta_time, datum/ai_controller/controller)
-	var/mob/living/living_pawn = controller.pawn
-	controller.blackboard[BB_CHICKEN_HONKING_COOLDOWN] = world.time + DEFAULT_HONK_CD
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+	controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + living_pawn.cooldown_time
 	var/mob/living/target = controller.blackboard[BB_CHICKEN_CURRENT_ATTACK_TARGET]
 
 	if(living_pawn.next_move > world.time)
@@ -81,7 +86,7 @@
 /datum/ai_behavior/sugar_rush
 
 /datum/ai_behavior/sugar_rush/perform(delta_time, datum/ai_controller/controller)
-	var/mob/living/living_pawn = controller.pawn
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	living_pawn.apply_status_effect(HEN_RUSH)
-	controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + 40 SECONDS
+	controller.blackboard[BB_CHICKEN_ABILITY_COOLDOWN] = world.time + living_pawn.cooldown_time
 	finish_action(controller, TRUE)

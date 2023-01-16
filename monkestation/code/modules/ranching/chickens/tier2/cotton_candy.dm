@@ -7,6 +7,7 @@
 	mutation_list = list(/datum/mutation/ranching/chicken/dreamsicle)
 
 	unique_ability = CHICKEN_SUGAR_RUSH
+	cooldown_time = 40 SECONDS
 	ability_prob = 5
 
 /obj/item/food/egg/cotton_candy

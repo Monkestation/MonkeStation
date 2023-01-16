@@ -11,6 +11,10 @@
 	chicken_type = /mob/living/simple_animal/chicken/clown_sad
 	mutation_list = list()
 
+	unique_ability = CHICKEN_HONK
+	cooldown_time = 30 SECONDS
+	ability_prob = 25
+
 /obj/item/food/egg/clown_sad
 	name = "Clown? Egg"
 	icon_state = "clown"

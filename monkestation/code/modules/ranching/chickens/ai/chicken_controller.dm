@@ -12,13 +12,14 @@
 		BB_CHICKEN_COMBAT_ABILITY = FALSE,
 		BB_CHICKEN_ABILITY_COOLDOWN = null,
 		BB_CHICKEN_SHOOT_PROB = 10,
-		BB_CHICKEN_HONKING_COOLDOWN = null,
 		BB_CHICKEN_HONKS = FALSE,
 		BB_CHICKEN_HONKS_SORROW = FALSE,
 		BB_CHICKEN_SPECALITY_ABILITY = null,
 		BB_CHICKEN_CURRENT_LEADER = null,
 		BB_CHICKEN_FOOD_COOLDOWN = null,
-		BB_CHICKEN_READY_LAY = FALSE
+		BB_CHICKEN_READY_LAY = FALSE,
+		BB_CHICKEN_CURRENTLY_EATING = FALSE,
+		BB_CHICKEN_CURRENTLY_LAYING = FALSE
 	)
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_entered,
@@ -166,10 +167,10 @@
 	if((!blackboard[BB_CHICKEN_READY_LAY]&& DT_PROB(10, delta_time) && living_pawn.eggs_left > 0) && living_pawn.egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && living_pawn.gender == FEMALE)
 		blackboard[BB_CHICKEN_READY_LAY] = TRUE
 
-	if(blackboard[BB_CHICKEN_READY_LAY])
+	if(blackboard[BB_CHICKEN_READY_LAY] && !blackboard[BB_CHICKEN_CURRENTLY_LAYING])
 		queue_behavior(/datum/ai_behavior/find_and_lay)
 
-	if(DT_PROB(10, delta_time) && blackboard[BB_CHICKEN_FOOD_COOLDOWN] < world.time)
+	if(DT_PROB(10, delta_time) && blackboard[BB_CHICKEN_FOOD_COOLDOWN] < world.time && !blackboard[BB_CHICKEN_CURRENTLY_EATING])
 		if(locate(/obj/item/food) in view(5, pawn))
 			queue_behavior(/datum/ai_behavior/eat_ground_food)
 
@@ -180,6 +181,8 @@
 				queue_behavior(/datum/ai_behavior/revolution)
 			if(CHICKEN_SUGAR_RUSH)
 				queue_behavior(/datum/ai_behavior/sugar_rush)
+			if(CHICKEN_HONK)
+				queue_behavior(/datum/ai_behavior/chicken_honk_target)
 
 	if(DT_PROB(25, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
 		var/move_dir = pick(GLOB.alldirs)

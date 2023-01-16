@@ -11,6 +11,10 @@
 	chicken_type = /mob/living/simple_animal/chicken/clown
 	minimum_living_happiness = -2000
 
+	cooldown_time = 30 SECONDS
+	unique_ability = CHICKEN_HONK
+	ability_prob = 25
+
 /obj/item/food/egg/clown
 	name = "Clown Egg?"
 	food_reagents = list(/datum/reagent/water = 50)
