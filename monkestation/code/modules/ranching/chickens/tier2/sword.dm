@@ -9,7 +9,6 @@
 	breed_name_female = "Shieldmaidhen"
 	breed_name_male = "Fowlcion"
 	egg_type = /obj/item/food/egg/sword
-	chicken_type = /mob/living/simple_animal/chicken/sword
 	mutation_list = list()
 
 /obj/item/food/egg/sword

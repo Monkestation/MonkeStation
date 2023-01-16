@@ -143,7 +143,6 @@
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 	GLOB.total_chickens++
-	chicken_type = src
 	AddComponent(/datum/component/mutation, mutation_list, TRUE)
 	if(prob(40))
 		gender = MALE

@@ -3,7 +3,6 @@
 
 	breed_name = "Cotton Candy"
 	egg_type = /obj/item/food/egg/cotton_candy
-	chicken_path = /mob/living/simple_animal/chicken/cotton_candy
 	mutation_list = list(/datum/mutation/ranching/chicken/dreamsicle)
 
 	unique_ability = CHICKEN_SUGAR_RUSH

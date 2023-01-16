@@ -4,7 +4,6 @@
 	breed_name = "Void"
 	egg_type = /obj/item/food/egg/void
 	mutation_list = list()
-	chicken_type = /mob/living/simple_animal/chicken/void
 
 /obj/item/food/egg/void
 	name = "Void Egg"

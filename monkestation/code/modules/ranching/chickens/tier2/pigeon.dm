@@ -4,7 +4,6 @@
 	breed_name_male = "Pigeon"
 	breed_name_female = "Pigeon"
 	egg_type = /obj/item/food/egg/pigeon
-	chicken_path = /mob/living/simple_animal/chicken/pigeon
 
 	///the radio that is inside the pigeon
 	var/obj/item/radio/pigeon/egg_radio = null

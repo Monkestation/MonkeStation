@@ -10,7 +10,6 @@
 	breed_name_male = "Wizter"
 
 	egg_type = /obj/item/food/egg/wiznerd
-	chicken_type = /mob/living/simple_animal/chicken/wiznerd
 	mutation_list = list()
 
 	projectile_type = /obj/item/projectile/magic/magic_missle_weak

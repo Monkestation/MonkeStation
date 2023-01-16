@@ -3,7 +3,6 @@
 
 	breed_name = "Phoenix"
 	egg_type = /obj/item/food/egg/phoenix
-	chicken_path = /mob/living/simple_animal/chicken/phoenix
 	mutation_list = list()
 
 /mob/living/simple_animal/chicken/phoenix/Initialize(mapload)
@@ -18,7 +17,7 @@
 	GLOB.total_chickens++
 	new /obj/effect/decal/cleanable/ash(loc)
 	var/obj/item/food/egg/phoenix/rebirth = new /obj/item/food/egg/phoenix(loc)
-	rebirth.layer_hen_type = src.chicken_type
+	rebirth.layer_hen_type = src.type
 	START_PROCESSING(SSobj, rebirth)
 	del_on_death = TRUE
 	..()

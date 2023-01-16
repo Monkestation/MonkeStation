@@ -3,7 +3,6 @@
 
 	breed_name = "Mime"
 	egg_type = /obj/item/food/egg/mime
-	chicken_type = /mob/living/simple_animal/chicken/mime
 
 /obj/item/food/egg/mime
 	name = "Mime Egg"

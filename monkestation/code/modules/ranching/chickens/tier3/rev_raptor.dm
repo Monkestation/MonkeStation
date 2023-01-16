@@ -4,7 +4,6 @@
 	breed_name = "Revolutionary Raptor"
 	breed_name_male = "Revolutionary Tiercel"
 	egg_type = /obj/item/food/egg/raptor
-	chicken_path = /mob/living/simple_animal/chicken/rev_raptor
 
 	ai_controller = /datum/ai_controller/chicken/hostile
 	health = 150

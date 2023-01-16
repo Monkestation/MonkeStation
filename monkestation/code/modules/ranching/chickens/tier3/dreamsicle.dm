@@ -3,7 +3,6 @@
 
 	breed_name = "Dreamsicle"
 	egg_type = /obj/item/food/egg/dreamsicle
-	chicken_path = /mob/living/simple_animal/chicken/dreamsicle
 	mutation_list = list()
 
 /obj/item/food/egg/dreamsicle

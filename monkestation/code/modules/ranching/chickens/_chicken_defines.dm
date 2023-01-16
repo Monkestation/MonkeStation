@@ -29,8 +29,6 @@
 	var/list/layMessage = EGG_LAYING_MESSAGES
 	//Global amount of chickens
 	var/static/chicken_count = 0
-	///The type of chicken it is
-	var/mob/living/simple_animal/chicken/chicken_type
 	///Needed cause i can't iterate a new spawn with the ref to a mob
 	var/chicken_path = /mob/living/simple_animal/chicken
 	///Breed of the chicken needed for naming

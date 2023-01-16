@@ -3,7 +3,6 @@
 
 	breed_name = "Snow"
 	egg_type = /obj/item/food/egg/snowy
-	chicken_path = /mob/living/simple_animal/chicken/snowy
 	minbodytemp = 0
 	maxbodytemp = 40
 

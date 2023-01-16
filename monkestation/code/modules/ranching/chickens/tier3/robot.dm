@@ -9,7 +9,6 @@
 	ai_controller = /datum/ai_controller/chicken/retaliate
 
 	egg_type = /obj/item/food/egg/robot
-	chicken_type = /mob/living/simple_animal/chicken/robot
 
 /mob/living/simple_animal/chicken/robot/Initialize(mapload)
 	. = ..()

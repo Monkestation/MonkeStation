@@ -13,7 +13,6 @@
 	projectile_type = /obj/item/projectile/magic/venomous_spit
 	shoot_prob = 10
 
-	chicken_type = /mob/living/simple_animal/chicken/cockatrice
 	egg_type = /obj/item/food/egg/cockatrice
 
 /obj/item/food/egg/cockatrice

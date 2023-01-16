@@ -8,7 +8,6 @@
 	ai_controller = /datum/ai_controller/chicken/clown/sad
 
 	egg_type = /obj/item/food/egg/clown_sad
-	chicken_type = /mob/living/simple_animal/chicken/clown_sad
 	mutation_list = list()
 
 	unique_ability = CHICKEN_HONK
