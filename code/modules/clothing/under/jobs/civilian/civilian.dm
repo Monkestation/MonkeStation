@@ -108,6 +108,7 @@
 	icon_state = "rancher"
 	item_state = "hydroponics"
 	permeability_coefficient = 0.5
+	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/hydroponics/skirt
 	name = "botanist's jumpskirt"
