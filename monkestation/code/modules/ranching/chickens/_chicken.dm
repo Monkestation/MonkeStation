@@ -68,8 +68,6 @@
 	if(!stat && !ckey)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			if(!grown_type)
-				grown_type = /mob/living/simple_animal/chicken
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
 			new_chicken.Friends = src.friends
 			new_chicken.age += rand(1,10) //add a bit of age to each chicken causing staggered deaths
@@ -367,6 +365,8 @@
 		birthed.grown_type = chosen_mutation.chicken_type
 		if(chosen_mutation.nearby_items.len)
 			absorbed_required_items(chosen_mutation.nearby_items)
+	else
+		birthed.grown_type = layer_hen_type //if no possible mutations default to layer hen type
 
 	if(birthed.grown_type == /mob/living/simple_animal/chicken/glass)
 		for(var/list_item in src.reagents.reagent_list)

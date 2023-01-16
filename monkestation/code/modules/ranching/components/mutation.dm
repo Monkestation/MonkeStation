@@ -21,7 +21,6 @@
 		var/obj/item/food/egg/layed_egg
 		if(!passes_minimum_checks)
 			layed_egg = new parent_animal.egg_type(source_turf)
-			layed_egg.layer_hen_type = parent_animal.type ///this is set for now but changed later if a possible mutation is met
 			parent_animal.pass_stats(layed_egg)
 			return
 
@@ -36,7 +35,6 @@
 			layed_egg.possible_mutations |= picked_mutation
 		else
 			layed_egg = new parent_animal.egg_type(source_turf)
-		layed_egg.layer_hen_type = parent_animal.type ///this is set for now but changed later if a possible mutation is met
 		parent_animal.pass_stats(layed_egg)
 
 	else
