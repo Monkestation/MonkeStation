@@ -117,41 +117,48 @@
 		finish_action(controller, TRUE)
 
 /datum/ai_behavior/eat_ground_food
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	required_distance = 1
+	action_cooldown = 30 SECONDS
+	var/max_attempts = 3
+	var/obj/item/food/chosen_one
 
-/datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/eat_ground_food/setup(datum/ai_controller/controller, ...)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-	controller.blackboard[BB_CHICKEN_CURRENTLY_EATING] = TRUE
-	if(living_pawn.current_feed_amount > 3) // so no vomit
-		finish_action(controller, TRUE)
-		return
-
 	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
 	var/list/floor_foods = list()
 	for(var/obj/item/food/food_item in view(3, living_pawn.loc))
 		if(!(food_item.type in blacklisted_foods))
 			floor_foods |= food_item
-	if(floor_foods.len)
-		var/obj/item/food/chosen_one = pick(floor_foods)
 
-		if(!SSmove_manager.jps_move(living_pawn, chosen_one, 4, timeout = 5 SECONDS))
-			finish_action(controller, TRUE)
-			return
-		if(living_pawn.CanReach(chosen_one))
-			living_pawn.feed_food(chosen_one)
-			SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
-			finish_action(controller, TRUE)
-			return
-		if(!chosen_one)
-			SSmove_manager.stop_looping(living_pawn) // since we added gotta also remove
-			finish_action(controller, TRUE)
-			return
-	else
+	if(floor_foods.len)
+		chosen_one = pick(floor_foods)
+		controller.current_movement_target = chosen_one
+
+/datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+	if(!controller.current_movement_target)
 		finish_action(controller, TRUE)
+		return
+	if(living_pawn.current_feed_amount > 3) // so no vomit
+		finish_action(controller, TRUE)
+		return
+
+	controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING]++
+	if(controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING] >= max_attempts)
+		finish_action(controller, TRUE)
+		return
+
+	if(living_pawn.CanReach(chosen_one))
+		living_pawn.feed_food(chosen_one)
+		finish_action(controller, TRUE)
+		return
 
 /datum/ai_behavior/eat_ground_food/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
-	controller.blackboard[BB_CHICKEN_CURRENTLY_EATING] = FALSE
-	controller.blackboard[BB_CHICKEN_FOOD_COOLDOWN] = world.time + 15 SECONDS
+	controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING] = 0
 
 /datum/ai_behavior/follow_leader
 
@@ -167,39 +174,44 @@
 		finish_action(controller, TRUE)
 
 /datum/ai_behavior/find_and_lay
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
+	required_distance = 0
+	action_cooldown = 30 SECONDS
+	var/max_attempts = 3
+
+/datum/ai_behavior/find_and_lay/setup(datum/ai_controller/controller, ...)
+	. = ..()
+	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
+		controller.current_movement_target = nesting_box
+		break
 
 /datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
-
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-	controller.blackboard[BB_CHICKEN_CURRENTLY_LAYING] = TRUE
-	var/obj/structure/nestbox/target = null
-	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
-		target = nesting_box
-		break
-	if(!target)
-		finish_action(controller, TRUE)
-		return
-	if(!SSmove_manager.jps_move(living_pawn, target, 4, timeout = 5 SECONDS))
+
+	if(!controller.current_movement_target)
 		finish_action(controller, TRUE)
 		return
 
-	var/turf/target_turf = get_turf(target)
-	if(!target_turf) //for some reason rarely chickens would find a target that had no loc so i need to check for a turf first to avoid runtimes
+	controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING]++
+	if(controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING] >= max_attempts)
 		finish_action(controller, TRUE)
 		return
 
+	var/turf/target_turf = get_turf(controller.current_movement_target)
 	if(target_turf == living_pawn.loc)
-		SSmove_manager.stop_looping(living_pawn)
-
 		living_pawn.visible_message("[living_pawn] [pick(living_pawn.layMessage)]")
+
 		var/passes_minimum_checks = FALSE
 		if(living_pawn.total_times_eaten > 4 && prob(25))
 			passes_minimum_checks = TRUE
+
 		SEND_SIGNAL(living_pawn, COMSIG_MUTATION_TRIGGER, get_turf(living_pawn), passes_minimum_checks)
 		living_pawn.eggs_left--
 		finish_action(controller, TRUE)
 
 /datum/ai_behavior/find_and_lay/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
-	controller.blackboard[BB_CHICKEN_CURRENTLY_LAYING] = FALSE
+	controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING] = 0
 	controller.blackboard[BB_CHICKEN_READY_LAY] = FALSE

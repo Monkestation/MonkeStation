@@ -4,8 +4,6 @@
 	breed_name_female = "Henk"
 	breed_name_male = "Henkster"
 
-	ai_controller = /datum/ai_controller/chicken/clown
-
 	egg_type = /obj/item/food/egg/clown
 	mutation_list = list(/datum/mutation/ranching/chicken/mime, /datum/mutation/ranching/chicken/clown_sad)
 	minimum_living_happiness = -2000
