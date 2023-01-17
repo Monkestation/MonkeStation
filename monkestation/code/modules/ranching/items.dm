@@ -22,7 +22,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = WEIGHT_CLASS_TINY
-	var/scan_mode = FALSE
+	var/scan_mode = TRUE
 
 
 /obj/item/chicken_scanner/attack(mob/living/M, mob/living/carbon/human/user)
