@@ -27,10 +27,13 @@
 		var/list/real_mutation = list()
 		for(var/raw_list_item in parent_animal.mutation_list)
 			var/datum/mutation/ranching/chicken/mutation = new raw_list_item
-			real_mutation |= mutation
+			var/value = 10
+			if(mutation.cycle_requirements(parent_animal))
+				value += 30
+			real_mutation[mutation] = value
 
 		if(real_mutation.len)
-			var/datum/mutation/ranching/chicken/picked_mutation = pick(real_mutation)
+			var/datum/mutation/ranching/chicken/picked_mutation = pickweight(real_mutation)
 			layed_egg = new picked_mutation.egg_type(source_turf)
 			layed_egg.possible_mutations |= picked_mutation
 		else
