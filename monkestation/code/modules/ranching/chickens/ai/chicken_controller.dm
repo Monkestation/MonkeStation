@@ -152,6 +152,7 @@
 
 //When idle just kinda fuck around.
 /datum/ai_controller/chicken/PerformIdleBehavior(delta_time)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
 
 	if((!blackboard[BB_CHICKEN_READY_LAY]&& DT_PROB(10, delta_time) && living_pawn.eggs_left > 0) && living_pawn.egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && living_pawn.gender == FEMALE)

@@ -135,6 +135,8 @@
 	if(floor_foods.len)
 		chosen_one = pick(floor_foods)
 		controller.current_movement_target = chosen_one
+	if(!controller.current_movement_target)
+		return
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
