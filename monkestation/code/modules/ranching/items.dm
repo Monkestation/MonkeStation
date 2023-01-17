@@ -35,7 +35,8 @@
 
 /obj/item/chicken_scanner/AltClick(mob/user)
 	. = ..()
-	scan_mode != scan_mode
+	scan_mode = !scan_mode
+	to_chat(user, "<span class='info'>Switched to Stat Mode</span>")
 
 /obj/item/chicken_scanner/proc/chicken_scan(mob/living/carbon/human/user, mob/living/simple_animal/chicken/scanned_chicken)
 	if(scan_mode)
@@ -109,8 +110,8 @@
 			to_chat(user, examine_block(combined_msg.Join("\n")))
 	else
 		var/list/combined_msg = list()
-		combined_msg += "\t <span class='info'>Age:[scanned_chicken.age]"
-		combined_msg += "\t <span class='info'>Happiness:[round(scanned_chicken.happiness, 1)]"
+		combined_msg += "\t <span class='info'>Age:[scanned_chicken.age]</span>"
+		combined_msg += "\t <span class='info'>Happiness:[round(scanned_chicken.happiness, 1)]</span>"
 		to_chat(user, examine_block(combined_msg.Join("\n")))
 
 /datum/design/chicken_scanner
