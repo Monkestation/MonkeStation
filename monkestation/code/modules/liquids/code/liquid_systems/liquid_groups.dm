@@ -20,7 +20,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	var/list/members = list()
 	var/datum/reagents/reagents
-	var/amount_of_active_turfs = 0
 	var/expected_turf_height = 1
 	var/total_reagent_volume = 0
 	var/reagents_per_turf = 0
@@ -33,7 +32,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/add_to_group(turf/T)
 	members[T] = TRUE
 	T.liquids.liquid_group = src
-	amount_of_active_turfs++
 	reagents.maximum_volume += 1000 /// each turf will hold 1000 units plus the base amount spread across the group
 	updated_total = TRUE
 	if(group_color)
@@ -44,7 +42,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/remove_from_group(turf/T)
 	members -= T
 	T.liquids.liquid_group = null
-	amount_of_active_turfs--
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
 	if(!members.len)
@@ -67,7 +64,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	return FALSE
 
 /datum/liquid_group/proc/merge_group(datum/liquid_group/otherg)
-	amount_of_active_turfs += otherg.amount_of_active_turfs
 	for(var/t in otherg.members)
 		var/turf/T = t
 		if(T.liquids)
@@ -106,10 +102,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		updated_total = FALSE
 		total_reagent_volume = reagents.total_volume
 
-		if(!total_reagent_volume || !amount_of_active_turfs)
+		if(!total_reagent_volume || !members)
 			return
 
-		reagents_per_turf = total_reagent_volume / amount_of_active_turfs
+		reagents_per_turf = total_reagent_volume / length(members)
 		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 		var/old_overlay = group_overlay_state
 		switch(expected_turf_height)
@@ -139,18 +135,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/alpha_setting = 1
 		var/alpha_divisor = 1
 
-		if(amount_of_active_turfs)
-			for(var/r in reagents.reagent_list)
-				var/datum/reagent/R = r
-				alpha_setting += max((R.opacity * R.volume) / amount_of_active_turfs, 1)
-				alpha_divisor += max((1 * R.volume) / amount_of_active_turfs, 1)
+		for(var/r in reagents.reagent_list)
+			var/datum/reagent/R = r
+			alpha_setting += max((R.opacity * R.volume) / length(members), 1)
+			alpha_divisor += max((1 * R.volume) / length(members), 1)
 
-			if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
-				group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 1, 255)
-				for(var/turf/member in members)
-					if(!member.liquids)
-						return
-					member.liquids.alpha = group_alpha
+		if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
+			group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 50, 255)
+			for(var/turf/member in members)
+				if(!member.liquids)
+					return
+				member.liquids.alpha = group_alpha
 
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)

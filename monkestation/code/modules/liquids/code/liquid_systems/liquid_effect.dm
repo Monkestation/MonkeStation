@@ -431,7 +431,7 @@
 			// Single reagent text.
 			var/datum/reagent/reagent_type = liquid_group.reagents.reagent_list[1]
 			var/reagent_name = initial(reagent_type.name)
-			var/volume = round(reagent_type.volume / liquid_group.amount_of_active_turfs, 0.01)
+			var/volume = round(reagent_type.volume / length(liquid_group.members), 0.01)
 
 			examine_list += span_notice("There is [replacetext(liquid_state_template, "$", "[volume] units of [reagent_name]")] here.")
 		else
@@ -440,7 +440,7 @@
 
 			for(var/datum/reagent/reagent_type as anything in liquid_group.reagents.reagent_list)
 				var/reagent_name = initial(reagent_type.name)
-				var/volume = round(reagent_type.volume / liquid_group.amount_of_active_turfs, 0.01)
+				var/volume = round(reagent_type.volume / length(liquid_group.members), 0.01)
 				examine_list += "&bull; [volume] units of [reagent_name]"
 
 		examine_list += span_notice("The solution has a temperature of [liquid_group.group_temperature]K.")
