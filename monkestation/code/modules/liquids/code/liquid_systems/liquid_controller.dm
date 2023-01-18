@@ -27,32 +27,28 @@ SUBSYSTEM_DEF(liquids)
 
 
 /datum/controller/subsystem/liquids/fire(resumed = FALSE)
-	if(run_type == SSLIQUIDS_RUN_TYPE_TURFS)
-		if(!currentrun_active_turfs.len && active_turfs.len)
-			for(var/g in active_groups)
-				var/datum/liquid_group/LG = g
-				currentrun_active_turfs += LG.members
-		for(var/tur in currentrun_active_turfs)
-			if(MC_TICK_CHECK)
-				return
-			var/turf/T = tur
-			if(!T.liquids)
-				currentrun_active_turfs -= T
-			else
-				T.process_liquid_cell()
-				T.liquids.liquid_group.process_member(T)
-				currentrun_active_turfs -= T //work off of index later
-
-		if(!currentrun_active_turfs.len)
-			run_type = SSLIQUIDS_RUN_TYPE_GROUPS
-	if (run_type == SSLIQUIDS_RUN_TYPE_GROUPS)
+	if(!currentrun_active_turfs.len && active_turfs.len)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
-			LG.process_group()
-			if(MC_TICK_CHECK)
-				run_type = SSLIQUIDS_RUN_TYPE_IMMUTABLES //No currentrun here for now
-				return
-		run_type = SSLIQUIDS_RUN_TYPE_IMMUTABLES
+			currentrun_active_turfs += LG.members
+	for(var/tur in currentrun_active_turfs)
+		if(MC_TICK_CHECK)
+			return
+		var/turf/T = tur
+		if(!T.liquids)
+			currentrun_active_turfs -= T
+		else
+			T.process_liquid_cell()
+			T.liquids.liquid_group.process_member(T)
+			currentrun_active_turfs -= T //work off of index later
+
+	for(var/g in active_groups)
+		var/datum/liquid_group/LG = g
+		LG.process_group()
+		if(MC_TICK_CHECK)
+			return
+	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
+
 	if(run_type == SSLIQUIDS_RUN_TYPE_IMMUTABLES)
 		for(var/t in active_immutables)
 			var/turf/T = t
@@ -61,9 +57,8 @@ SUBSYSTEM_DEF(liquids)
 			if(MC_TICK_CHECK)
 				return
 			*/
-		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
-
 	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION)
+		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 		evaporation_counter++
 		if(evaporation_counter >= REQUIRED_EVAPORATION_PROCESSES)
 			for(var/t in evaporation_queue)
@@ -76,7 +71,6 @@ SUBSYSTEM_DEF(liquids)
 				if(MC_TICK_CHECK)
 					return
 			evaporation_counter = 0
-		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
 		fire_counter++
@@ -87,7 +81,6 @@ SUBSYSTEM_DEF(liquids)
 			if(MC_TICK_CHECK)
 				return
 			fire_counter = 0
-		run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
 /datum/controller/subsystem/liquids/proc/add_active_turf(turf/T)
 	if(!active_turfs[T])

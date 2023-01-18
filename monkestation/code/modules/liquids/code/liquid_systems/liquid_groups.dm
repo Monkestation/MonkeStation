@@ -98,6 +98,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/process_group()
 	if(!members || !members.len)
 		return
+	var/old_color = group_color
+
+	if(GLOB.liquid_debug_colors)
+		group_color = color
+	else
+		group_color = mix_color_from_reagent_list(reagents.reagent_list)
+
+	if(group_color != old_color)
+		for(var/turf/member in members)
+			member.liquids.color = group_color
+
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
 		total_reagent_volume = reagents.total_volume
@@ -122,15 +133,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(old_overlay != group_overlay_state)
 			for(var/turf/member in members)
 				member.liquids.set_new_liquid_state(group_overlay_state)
-		var/old_color = group_color
-		group_color = mix_color_from_reagent_list(reagents.reagent_list)
-
-		if(GLOB.liquid_debug_colors)
-			group_color = color
-
-		if(group_color != old_color)
-			for(var/turf/member in members)
-				member.liquids.color = group_color
 		//alpha stuff
 		var/alpha_setting = 1
 		var/alpha_divisor = 1
