@@ -56,7 +56,7 @@
 	planetary_atmos = TRUE
 	var/static/obj/effect/abstract/ocean_overlay/static_overlay
 	var/static/list/ocean_reagents = list(/datum/reagent/water = 100)
-
+	var/ocean_temp = T20C - 150
 	var/list/ocean_turfs = list()
 	var/list/open_turfs = list()
 
@@ -86,7 +86,7 @@
 
 /turf/open/floor/plating/ocean/proc/process_turf()
 	for(var/turf/open/listed_open in open_turfs)
-		listed_open.add_liquid_list(ocean_reagents)
+		listed_open.add_liquid_list(ocean_reagents, FALSE, ocean_temp)
 
 /turf/open/floor/plating/ocean/proc/rebuild_adjacent()
 	ocean_turfs = list()
@@ -110,6 +110,7 @@
 	plane = BLACKNESS_PLANE //Same as weather, etc.
 	layer = ABOVE_MOB_LAYER
 	vis_flags = NONE
+	mouse_opacity = FALSE
 
 /obj/effect/abstract/ocean_overlay/Initialize(mapload, list/ocean_contents)
 	. = ..()
