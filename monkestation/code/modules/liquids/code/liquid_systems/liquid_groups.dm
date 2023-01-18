@@ -362,22 +362,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(remover)
 		check_liquid_removal(remover, amount)
 	else
-		process_removal()
+		process_removal(amount)
 	process_group()
 
-/datum/liquid_group/proc/process_removal()
-	var/looping = TRUE
-	while(looping && reagents_per_turf < 1 || !total_reagent_volume)
-		looping = FALSE
-		if(members && members.len)
-			var/turf/picked_turf = pick(members)
-			if(picked_turf.liquids)
-				remove_from_group(picked_turf)
-				qdel(picked_turf.liquids)
-				if(!total_reagent_volume)
-					reagents_per_turf = 0
-				else
-					reagents_per_turf = total_reagent_volume / length(members)
-			else
-				members -= picked_turf
-			looping = TRUE
+/datum/liquid_group/proc/process_removal(amount)
+	if(amount >= reagents_per_turf)
+		var/turf/remover_turf = pick(members)
+		var/obj/effect/abstract/liquid_turf/remover = remover_turf.liquids
+		remove_from_group(remover_turf)
+		qdel(remover)
+		check_split(remover_turf)

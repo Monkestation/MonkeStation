@@ -50,7 +50,7 @@
 				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
 			if(T.liquids && T.liquids.liquid_group)
-				targeted_group.trans_to_seperate_group(the_mop.reagents, 5)
+				targeted_group.trans_to_seperate_group(the_mop.reagents, min(targeted_group.reagents_per_turf, 5))
 				to_chat(user, "<span class='notice'>You soak up some liquids with the [src.name].</span>")
 			else
 				looping = FALSE
