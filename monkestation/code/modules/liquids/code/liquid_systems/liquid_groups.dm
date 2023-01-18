@@ -209,7 +209,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	water_rush(new_turf, source_turf)
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
-	if(!expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
+	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
 		return
 	var/direction = get_dir(source_turf, new_turf)
 	for(var/atom/movable/target_atom in new_turf)
