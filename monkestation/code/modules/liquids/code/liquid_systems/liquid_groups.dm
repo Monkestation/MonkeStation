@@ -175,7 +175,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
 		if(!adjacent_turf.liquids)
-			if(reagents_per_turf >= 3)
+			if(reagents_per_turf >= 3 && adjacent_turf.turf_height <= expected_turf_height)
 				spread_liquid(adjacent_turf, member)
 		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
