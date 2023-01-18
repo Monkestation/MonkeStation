@@ -9,15 +9,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group
 	var/color
-	var/next_share = 0
-	var/dirty = TRUE
-	var/decay_counter = 0
-	var/list/last_cached_fraction_share
-	var/last_cached_total_volume = 0
-	var/last_cached_thermal = 0
-	var/last_cached_overlay_state = LIQUID_STATE_PUDDLE
-	var/cached_color
-
 	var/list/members = list()
 	var/datum/reagents/reagents
 	var/expected_turf_height = 1
@@ -28,6 +19,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/group_temperature = 300
 	var/group_color
 	var/updated_total = FALSE
+	var/failed_death_check = FALSE
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	members[T] = TRUE
@@ -44,6 +36,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	T.liquids.liquid_group = null
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
+	SSliquids.remove_active_turf(T)
 	if(!members.len)
 		qdel(src)
 		return
@@ -165,6 +158,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			else
 				members -= picked_turf
 			looping = TRUE
+
+/datum/liquid_group/proc/check_dead
+	if(!members && !total_reagent_volume)
+		if(failed_death_check)
+			qdel(src)
+			return
+		failed_death_check = TRUE
 
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
@@ -366,6 +366,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/process_removal(amount)
+
+	total_reagent_volume = reagents.total_volume
+	if(total_reagent_volume)
+		reagents_per_turf = total_reagent_volume / length(members)
+
 	if(amount >= reagents_per_turf)
 		var/turf/remover_turf = pick(members)
 		var/obj/effect/abstract/liquid_turf/remover = remover_turf.liquids

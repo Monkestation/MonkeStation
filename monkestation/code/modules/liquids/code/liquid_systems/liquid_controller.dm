@@ -64,6 +64,9 @@ SUBSYSTEM_DEF(liquids)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 		evaporation_counter++
 		if(evaporation_counter >= REQUIRED_EVAPORATION_PROCESSES)
+			for(var/g in active_groups)
+				var/datum/liquid_group/LG = g
+				LG.check_dead()
 			for(var/t in evaporation_queue)
 				var/turf/T = t
 				if(prob(EVAPORATION_CHANCE))
