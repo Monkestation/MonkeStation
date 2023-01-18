@@ -150,6 +150,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/member in members)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 
+	var/looping = TRUE
+	while(var/looping && reagents_per_turf < 1)
+		looping = FALSE
+		if(members && member.len)
+			var/turf/picked_turf = pick(members)
+			if(picked_turf.liquids)
+				remove_from_group(picked_turf)
+				qdel(picked_turf.liquids)
+				if(!total_reagent_volume)
+					reagents_per_turf = 0
+				else
+					reagents_per_turf = total_reagent_volume / length(members)
+			looping = TRUE
+
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
 		member.liquids.set_new_liquid_state(group_overlay_state)
@@ -193,7 +207,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	water_rush(new_turf, source_turf)
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
-	if(!expected_turf_height > LIQUID_STATE_ANKLES)
+	if(!expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
 		return
 	var/direction = get_dir(source_turf, new_turf)
 	for(var/atom/movable/target_atom in new_turf)
@@ -220,7 +234,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	total_reagent_volume = reagents.total_volume
 
 /datum/liquid_group/proc/remove_specific(obj/effect/abstract/liquid_turf/remover, amount, datum/reagent/reagent_type)
-	reagents.remove_reagent(reagent_type, amount)
+	reagents.remove_reagent(reagent_type.type, amount)
 	if(remover)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
@@ -257,7 +271,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	remove_from_group(member.my_turf)
 	member.liquid_group = new(1, member)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
-	for(var/reagent_type in reagents.reagent_list)
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
 		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 
@@ -271,7 +285,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/transfer_reagents_to_secondary_group(obj/effect/abstract/liquid_turf/member, obj/effect/abstract/liquid_turf/transfer)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
-	for(var/reagent_type in reagents.reagent_list)
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
 		transfer.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 	remove_from_group(member.my_turf)

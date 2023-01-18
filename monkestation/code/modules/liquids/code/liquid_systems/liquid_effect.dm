@@ -141,7 +141,7 @@
 		SSliquids.evaporation_queue -= my_turf
 		return
 
- 	if(liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
+	if(liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
 		SSliquids.evaporation_queue -= my_turf
 		return
 
