@@ -14,7 +14,7 @@
 	var/slowdown_amount = T.liquids.liquid_group.group_overlay_state * 0.5
 	owner.add_movespeed_modifier("water_slow", TRUE, 100, multiplicative_slowdown = slowdown_amount)
 
-datum/status_effect/water_affected/tick()
+/datum/status_effect/water_affected/tick()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.liquids || T.liquids.liquid_group.group_overlay_state == LIQUID_STATE_PUDDLE)
 		qdel(src)

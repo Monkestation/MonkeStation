@@ -233,6 +233,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	total_reagent_volume = reagents.total_volume
 
 /datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member, amount_threshold = 5)
+	if(!member.my_turf)
+		return
 	var/turf/members_turf = member.my_turf
 	var/datum/reagents/exposed_reagents = new(1000)
 	var/list/passed_list = list()
