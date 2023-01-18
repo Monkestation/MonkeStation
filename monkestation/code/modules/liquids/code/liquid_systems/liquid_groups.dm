@@ -117,22 +117,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			return
 
 		reagents_per_turf = total_reagent_volume / length(members)
-		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
-		var/old_overlay = group_overlay_state
-		switch(expected_turf_height)
-			if(0 to LIQUID_ANKLES_LEVEL_HEIGHT-1)
-				group_overlay_state = LIQUID_STATE_PUDDLE
-			if(LIQUID_ANKLES_LEVEL_HEIGHT to LIQUID_WAIST_LEVEL_HEIGHT-1)
-				group_overlay_state = LIQUID_STATE_ANKLES
-			if(LIQUID_WAIST_LEVEL_HEIGHT to LIQUID_SHOULDERS_LEVEL_HEIGHT-1)
-				group_overlay_state = LIQUID_STATE_WAIST
-			if(LIQUID_SHOULDERS_LEVEL_HEIGHT to LIQUID_FULLTILE_LEVEL_HEIGHT-1)
-				group_overlay_state = LIQUID_STATE_SHOULDERS
-			if(LIQUID_FULLTILE_LEVEL_HEIGHT to INFINITY)
-				group_overlay_state = LIQUID_STATE_FULLTILE
-		if(old_overlay != group_overlay_state)
-			for(var/turf/member in members)
-				member.liquids.set_new_liquid_state(group_overlay_state)
 		//alpha stuff
 		var/alpha_setting = 1
 		var/alpha_divisor = 1
@@ -148,6 +132,23 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				if(!member.liquids)
 					return
 				member.liquids.alpha = group_alpha
+
+	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+	var/old_overlay = group_overlay_state
+	switch(expected_turf_height)
+		if(0 to LIQUID_ANKLES_LEVEL_HEIGHT-1)
+			group_overlay_state = LIQUID_STATE_PUDDLE
+		if(LIQUID_ANKLES_LEVEL_HEIGHT to LIQUID_WAIST_LEVEL_HEIGHT-1)
+			group_overlay_state = LIQUID_STATE_ANKLES
+		if(LIQUID_WAIST_LEVEL_HEIGHT to LIQUID_SHOULDERS_LEVEL_HEIGHT-1)
+			group_overlay_state = LIQUID_STATE_WAIST
+		if(LIQUID_SHOULDERS_LEVEL_HEIGHT to LIQUID_FULLTILE_LEVEL_HEIGHT-1)
+			group_overlay_state = LIQUID_STATE_SHOULDERS
+		if(LIQUID_FULLTILE_LEVEL_HEIGHT to INFINITY)
+			group_overlay_state = LIQUID_STATE_FULLTILE
+	if(old_overlay != group_overlay_state)
+		for(var/turf/member in members)
+			member.liquids.set_new_liquid_state(group_overlay_state)
 
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
