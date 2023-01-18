@@ -151,9 +151,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 
 	var/looping = TRUE
-	while(var/looping && reagents_per_turf < 1)
+	while(looping && reagents_per_turf < 1)
 		looping = FALSE
-		if(members && member.len)
+		if(members && members.len)
 			var/turf/picked_turf = pick(members)
 			if(picked_turf.liquids)
 				remove_from_group(picked_turf)
