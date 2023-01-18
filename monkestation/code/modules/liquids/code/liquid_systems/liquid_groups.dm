@@ -117,6 +117,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				member.liquids.set_new_liquid_state(group_overlay_state)
 		var/old_color = group_color
 		group_color = mix_color_from_reagent_list(reagents.reagent_list)
+
+		if(GLOB.liquid_debug_colors)
+			group_color = color
+
 		if(group_color != old_color)
 			for(var/turf/member in members)
 				member.liquids.color = group_color
