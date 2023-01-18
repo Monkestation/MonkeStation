@@ -154,7 +154,7 @@
 		if(initial(R.evaporates))
 			var/evaporation_mult = clamp((liquid_group.group_temperature - T0C)/10, 0.1, 3)
 			passthrough_evaporation_reaction(R, min((initial(R.evaporation_rate) * evaporation_mult), liquid_group.reagents.reagent_list[reagent_type]))
-			liquid_group.remove_specific(src, initial(R.evaporation_rate), liquid_group.reagents.reagent_list[reagent_type])
+			liquid_group.remove_specific(src, initial(R.evaporation_rate) * evaporation_mult, R)
 			any_change = TRUE
 
 	if(!any_change)

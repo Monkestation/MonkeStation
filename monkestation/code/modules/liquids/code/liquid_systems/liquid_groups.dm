@@ -115,6 +115,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(old_overlay != group_overlay_state)
 			for(var/turf/member in members)
 				member.liquids.set_new_liquid_state(group_overlay_state)
+		var/old_color = group_color
+		group_color = mix_color_from_reagent_list(reagents.reagent_list)
+		if(group_color != old_color)
+			for(var/turf/member in members)
+				member.liquids.color = group_color
 		//alpha stuff
 		var/alpha_setting = 1
 		var/alpha_divisor = 1
@@ -133,7 +138,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
 		member.liquids.set_new_liquid_state(group_overlay_state)
-	process_group()
 	SSliquids.evaporation_queue |= member
 	for(var/tur in member.GetAtmosAdjacentTurfs())
 		var/turf/adjacent_turf = tur
@@ -166,10 +170,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(new_turf.liquids)
 		return
 	new_turf.liquids = new(new_turf, src)
-	reagents_per_turf = total_reagent_volume / amount_of_active_turfs
-	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
-	new_turf.liquids.liquid_group.process_member(new_turf)
-	new_turf.liquids.liquid_group.process_group()
 
 /datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
 	if(amount >= reagents_per_turf)
