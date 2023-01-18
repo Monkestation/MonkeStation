@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/turf/adjacent_turf = tur
 		if(!adjacent_turf.liquids)
 			if(reagents_per_turf >= 3)
-				spread_liquid(adjacent_turf)
+				spread_liquid(adjacent_turf, member)
 		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
 
@@ -182,12 +182,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		. = TRUE
 		SSliquids.add_active_turf(adjacent_turf)
 
-/datum/liquid_group/proc/spread_liquid(turf/new_turf)
+/datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
 	if(new_turf.liquids)
 		if(can_merge_group(new_turf.liquids.liquid_group))
 			merge_group(new_turf.liquids.liquid_group)
 		return
 	new_turf.liquids = new(new_turf, src)
+	expose_members_turf(new_turf.liquids, LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
+	water_rush(new_turf, source_turf)
+
+/datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
+	if(!expected_turf_height > LIQUID_STATE_ANKLES)
+		return
+	var/direction = get_dir(source_turf, new_turf)
+	for(var/atom/movable/target_atom in new_turf)
+		if(!target_atom.anchored && !target_atom.pulledby && !isobserver(target_atom) && (target_atom.move_resist < INFINITY))
+			step(target_atom, direction)
+			if(isliving(target_atom) && prob(60))
+				var/mob/living/target_living = target_atom
+				target_living.Paralyze(6 SECONDS)
+				to_chat(target_living, span_danger("You are knocked down by the currents!"))
 
 /datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
 	if(amount >= reagents_per_turf)

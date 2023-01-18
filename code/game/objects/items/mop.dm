@@ -37,6 +37,7 @@
 	var/free_space = the_mop.reagents.maximum_volume - the_mop.reagents.total_volume
 	var/looping = TRUE
 	var/speed_mult = 1
+	var/datum/liquid_group/targeted_group = T.liquids.liquid_group
 	while(looping)
 		if(speed_mult >= 0.2)
 			speed_mult -= 0.05
@@ -49,7 +50,7 @@
 				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
 			if(T.liquids && T.liquids.liquid_group)
-				T.liquids.liquid_group.trans_to_seperate_group(the_mop.reagents, 5)
+				targeted_group.trans_to_seperate_group(the_mop.reagents, 5)
 				to_chat(user, "<span class='notice'>You soak up some liquids with the [src.name].</span>")
 			else
 				looping = FALSE

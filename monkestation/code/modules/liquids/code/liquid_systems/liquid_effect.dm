@@ -243,6 +243,7 @@
 /obj/effect/abstract/liquid_turf/proc/calculate_height()
 	return
 
+///old proc only used on immutables
 /obj/effect/abstract/liquid_turf/proc/set_height(new_height)
 	var/prev_height = liquid_group.expected_turf_height
 	liquid_group.expected_turf_height = new_height
