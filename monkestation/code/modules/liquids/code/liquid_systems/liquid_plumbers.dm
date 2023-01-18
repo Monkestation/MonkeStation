@@ -67,7 +67,7 @@
 	if(!T.liquids)
 		return FALSE
 
-	if(height_regulator && T.liquids.height < height_regulator)
+	if(height_regulator && T.liquids.liquid_group.expected_turf_height < height_regulator)
 		return FALSE
 
 	return TRUE
@@ -82,7 +82,7 @@
 
 	var/turf/T = loc
 
-	var/target_value = delta_time * (drain_flat + (T.liquids.total_reagents * drain_percent))
+	var/target_value = delta_time * (drain_flat + (T.liquids.liquid_group.total_reagent_volume * drain_percent))
 	//Free space handling
 	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(target_value > free_space)
@@ -171,7 +171,7 @@
 		return FALSE
 	if(height_regulator)
 		var/turf/T = loc
-		if(T.liquids && T.liquids.height >= height_regulator)
+		if(T.liquids && T.liquids.liquid_group.expected_turf_height >= height_regulator)
 			return FALSE
 	return TRUE
 

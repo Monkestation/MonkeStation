@@ -8,39 +8,50 @@
 GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group
-	var/list/members = list()
 	var/color
 	var/next_share = 0
 	var/dirty = TRUE
-	var/amount_of_active_turfs = 0
 	var/decay_counter = 0
-	var/expected_turf_height = 0
-	var/cached_color
 	var/list/last_cached_fraction_share
 	var/last_cached_total_volume = 0
 	var/last_cached_thermal = 0
 	var/last_cached_overlay_state = LIQUID_STATE_PUDDLE
+	var/cached_color
+
+	var/list/members = list()
+	var/datum/reagents/reagents
+	var/amount_of_active_turfs = 0
+	var/expected_turf_height = 1
+	var/total_reagent_volume = 0
+	var/reagents_per_turf = 0
+	var/group_overlay_state = LIQUID_STATE_PUDDLE
+	var/group_alpha = 0
+	var/group_temperature = 300
+	var/group_color
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	members[T] = TRUE
-	T.lgroup = src
-	if(SSliquids.active_turfs[T])
-		amount_of_active_turfs++
-	if(T.liquids)
-		T.liquids.has_cached_share = FALSE
+	T.liquids.liquid_group = src
+	amount_of_active_turfs++
+	reagents.maximum_volume += 1000 /// each turf will hold 1000 units plus the base amount spread across the group
+	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T)
 	members -= T
-	T.lgroup = null
-	if(SSliquids.active_turfs[T])
-		amount_of_active_turfs--
+	T.liquids.liquid_group = null
+	amount_of_active_turfs--
 	if(!members.len)
 		qdel(src)
+		return
+	process_group()
 
-/datum/liquid_group/New(height)
+/datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
 	SSliquids.active_groups[src] = TRUE
 	color = "#[random_short_color()]"
 	expected_turf_height = height
+	reagents = new(100000)
+	add_to_group(created_liquid.my_turf)
+	check_adjacency(created_liquid.my_turf)
 
 /datum/liquid_group/proc/can_merge_group(datum/liquid_group/otherg)
 	if(expected_turf_height == otherg.expected_turf_height)
@@ -51,29 +62,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	amount_of_active_turfs += otherg.amount_of_active_turfs
 	for(var/t in otherg.members)
 		var/turf/T = t
-		T.lgroup = src
+		T.liquids.liquid_group = src
 		members[T] = TRUE
-		if(T.liquids)
-			T.liquids.has_cached_share = FALSE
 	otherg.members = list()
 	qdel(otherg)
-	share()
 
 /datum/liquid_group/proc/break_group()
-	//Flag puddles to the evaporation queue
-	for(var/t in members)
-		var/turf/T = t
-		if(T.liquids && T.liquids.liquid_state >= LIQUID_STATE_PUDDLE)
-			SSliquids.evaporation_queue[T] = TRUE
-
-	share(TRUE)
 	qdel(src)
 
 /datum/liquid_group/Destroy()
 	SSliquids.active_groups -= src
 	for(var/t in members)
 		var/turf/T = t
-		T.lgroup = null
+		T.liquids.liquid_group = null
 	members = null
 	return ..()
 
@@ -99,201 +100,139 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	//All adjacent, somehow
 	if(recursive_adjacent.len == members.len)
 		return
-	var/datum/liquid_group/new_group = new(expected_turf_height)
-	for(var/t in members)
-		if(!recursive_adjacent[t])
-			remove_from_group(t)
-			new_group.add_to_group(t)
 
-/datum/liquid_group/proc/share(use_liquids_color = FALSE)
-	var/any_share = FALSE
-	var/cached_shares = 0
-	var/list/cached_add = list()
-	var/cached_volume = 0
-	var/cached_thermal = 0
 
-	var/turf/T
-	var/obj/effect/abstract/liquid_turf/cached_liquids
-	for(var/t in members)
-		T = t
-		if(T.liquids)
-			any_share = TRUE
-			cached_liquids = T.liquids
-
-			if(cached_liquids.has_cached_share && last_cached_fraction_share)
-				cached_shares++
-				continue
-
-			for(var/r_type in cached_liquids.reagent_list)
-				if(!cached_add[r_type])
-					cached_add[r_type] = 0
-				cached_add[r_type] += cached_liquids.reagent_list[r_type]
-			cached_volume += cached_liquids.total_reagents
-			cached_thermal += cached_liquids.total_reagents * cached_liquids.temp
-	if(!any_share)
-		return
-
-	decay_counter = 0
-
-	if(cached_shares)
-		for(var/reagent_type in last_cached_fraction_share)
-			if(!cached_add[reagent_type])
-				cached_add[reagent_type] = 0
-			cached_add[reagent_type] += last_cached_fraction_share[reagent_type] * cached_shares
-		cached_volume += last_cached_total_volume * cached_shares
-		cached_thermal += cached_shares * last_cached_thermal
-
-	for(var/reagent_type in cached_add)
-		cached_add[reagent_type] = cached_add[reagent_type] / members.len
-	cached_volume = cached_volume / members.len
-	cached_thermal = cached_thermal / members.len
-	var/temp_to_set = cached_thermal / max(cached_volume, 1)
-	last_cached_thermal = cached_thermal
-	last_cached_fraction_share = cached_add
-	last_cached_total_volume = cached_volume
-	var/mixed_color = use_liquids_color ? mix_color_from_reagent_list(cached_add) : color
-	if(use_liquids_color)
-		mixed_color = mix_color_from_reagent_list(cached_add)
-	else if (GLOB.liquid_debug_colors)
-		mixed_color = color
-	else
-		if(!cached_color)
-			cached_color = mix_color_from_reagent_list(cached_add)
-		mixed_color = cached_color
-
-	var/height = CEILING(cached_volume/LIQUID_HEIGHT_DIVISOR, 1)
-
-	var/determined_new_state
-	var/state_height = height
-	if(expected_turf_height > 0)
-		state_height += expected_turf_height
-	switch(state_height)
-		if(0 to LIQUID_ANKLES_LEVEL_HEIGHT-1)
-			determined_new_state = LIQUID_STATE_PUDDLE
-		if(LIQUID_ANKLES_LEVEL_HEIGHT to LIQUID_WAIST_LEVEL_HEIGHT-1)
-			determined_new_state = LIQUID_STATE_ANKLES
-		if(LIQUID_WAIST_LEVEL_HEIGHT to LIQUID_SHOULDERS_LEVEL_HEIGHT-1)
-			determined_new_state = LIQUID_STATE_WAIST
-		if(LIQUID_SHOULDERS_LEVEL_HEIGHT to LIQUID_FULLTILE_LEVEL_HEIGHT-1)
-			determined_new_state = LIQUID_STATE_SHOULDERS
-		if(LIQUID_FULLTILE_LEVEL_HEIGHT to INFINITY)
-			determined_new_state = LIQUID_STATE_FULLTILE
-
-	var/new_liquids = FALSE
-	for(var/t in members)
-		T = t
-		new_liquids = FALSE
-		if(!T.liquids)
-			new_liquids = TRUE
-			T.liquids = new(T)
-		cached_liquids = T.liquids
-
-		cached_liquids.reagent_list = cached_add.Copy()
-		cached_liquids.total_reagents = cached_volume
-		cached_liquids.temp = temp_to_set
-
-		cached_liquids.has_cached_share = TRUE
-		cached_liquids.attrition = 0
-
-		cached_liquids.color = mixed_color
-		cached_liquids.set_height(height)
-
-		if(determined_new_state != cached_liquids.liquid_state)
-			cached_liquids.set_new_liquid_state(determined_new_state)
-
-		//Only simulate a turf exposure when we had to create a new liquid tile
-		if(new_liquids)
-			cached_liquids.ExposeMyTurf()
-
-		T.create_reagents(10000)
-		T.reagents.add_reagent_list(T.liquids.reagent_list, no_react = TRUE)
-
-		T.reagents.handle_reactions()//Any reactions happened, so re-calculate our reagents
-		T.liquids.reagent_list = list()
-		T.liquids.total_reagents = 0
+/datum/liquid_group/proc/process_group()
+	if(total_reagent_volume != reagents.total_volume)
+		total_reagent_volume = reagents.total_volume
+		reagents_per_turf = total_reagent_volume / amount_of_active_turfs
+		expected_turf_height = CEILING(total_reagent_volume, 1) / LIQUID_HEIGHT_DIVISOR
+		var/old_overlay = group_overlay_state
+		switch(expected_turf_height)
+			if(0 to LIQUID_ANKLES_LEVEL_HEIGHT-1)
+				group_overlay_state = LIQUID_STATE_PUDDLE
+			if(LIQUID_ANKLES_LEVEL_HEIGHT to LIQUID_WAIST_LEVEL_HEIGHT-1)
+				group_overlay_state = LIQUID_STATE_ANKLES
+			if(LIQUID_WAIST_LEVEL_HEIGHT to LIQUID_SHOULDERS_LEVEL_HEIGHT-1)
+				group_overlay_state = LIQUID_STATE_WAIST
+			if(LIQUID_SHOULDERS_LEVEL_HEIGHT to LIQUID_FULLTILE_LEVEL_HEIGHT-1)
+				group_overlay_state = LIQUID_STATE_SHOULDERS
+			if(LIQUID_FULLTILE_LEVEL_HEIGHT to INFINITY)
+				group_overlay_state = LIQUID_STATE_FULLTILE
+		if(old_overlay != group_overlay_state)
+			for(var/turf/member in members)
+				member.liquids.set_new_liquid_state(group_overlay_state)
 		//alpha stuff
 		var/alpha_setting = 0
 		var/alpha_divisor = 0
 
-		for(var/r in T.reagents.reagent_list)
+		for(var/r in reagents.reagent_list)
 			var/datum/reagent/R = r
-			T.liquids.reagent_list[R.type] = R.volume
-			T.liquids.total_reagents += R.volume
 			alpha_setting += max(R.opacity * R.volume, 0.0001)
 			alpha_divisor += max(1 * R.volume, 0.0001)
 
-		//Ew but this is needed for edge cases in the new evaporation as its "technically" possible for numbers to balance out to 0 and cause division issues
-		if(alpha_divisor == 0)
-			alpha_divisor = 1
-		if(alpha_setting == 0)
-			alpha_setting = 1
+		if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
+			group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 1, 255)
+			for(var/turf/member in members)
+				member.liquids.alpha = group_alpha
 
-		T.liquids.alpha = clamp(round(alpha_setting / alpha_divisor), 0.1, 255)
-		qdel(T.reagents)
-		//Expose turf
-		T.liquids.ExposeMyTurf()
-
-/datum/liquid_group/proc/process_cell(turf/T)
-	if(T.liquids.height <= 1) //Causes a bug when the liquid hangs in the air and is supposed to fall down a level
-		return FALSE
-	for(var/tur in T.GetAtmosAdjacentTurfs())
-		var/turf/T2 = tur
+/datum/liquid_group/proc/process_member(turf/member)
+	for(var/tur in member.GetAtmosAdjacentTurfs())
+		var/turf/adjacent_turf = tur
+		if(!adjacent_turf.liquids)
+			if(reagents_per_turf >= 1)
+				spread_liquid(adjacent_turf)
+			return
 		//Immutable check thing
-		if(T2.liquids && T2.liquids.immutable)
-			if(T.z != T2.z)
-				var/turf/Z_turf_below = SSmapping.get_turf_below(T)
-				if(T2 == Z_turf_below)
-					qdel(T.liquids, TRUE)
+		if(adjacent_turf.liquids && adjacent_turf.liquids.immutable)
+			if(member.z != adjacent_turf.z)
+				var/turf/Z_turf_below = SSmapping.get_turf_below(member)
+				if(adjacent_turf == Z_turf_below)
+					qdel(member.liquids, TRUE)
 					return
 				else
 					continue
-
-			//CHECK DIFFERENT TURF HEIGHT THING
-			if(T.liquid_height != T2.liquid_height)
-				var/my_liquid_height = T.liquid_height + T.liquids.height
-				var/target_liquid_height = T2.liquid_height + T2.liquids.height
-				if(my_liquid_height > target_liquid_height+2)
-					var/coeff = (T.liquids.height / (T.liquids.height + abs(T.liquid_height)))
-					var/height_diff = min(0.4,abs((target_liquid_height / my_liquid_height)-1)*coeff)
-					T.liquid_fraction_delete(height_diff)
-					. = TRUE
-				continue
-
-			if(T2.liquids.height > T.liquids.height + 1)
-				SSliquids.active_immutables[T2] = TRUE
-				. = TRUE
-				continue
-		//END OF IMMUTABLE MADNESS
-
-		if(T.z != T2.z)
-			var/turf/Z_turf_below = SSmapping.get_turf_below(T)
-			if(T2 == Z_turf_below)
-				if(!(T2.liquids && T2.liquids.height + T2.liquid_height >= LIQUID_HEIGHT_CONSIDER_FULL_TILE))
-					T.liquid_fraction_share(T2, 1)
-					qdel(T.liquids, TRUE)
+		if(member.z != adjacent_turf.z)
+			var/turf/Z_turf_below = SSmapping.get_turf_below(member)
+			if(adjacent_turf == Z_turf_below)
+				if(!(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && adjacent_turf.liquids.liquid_group.expected_turf_height >= LIQUID_HEIGHT_CONSIDER_FULL_TILE))
+					member.liquids.liquid_group.transfer_reagents_to_secondary_group(member.liquids, adjacent_turf.liquids)
 					. = TRUE
 			continue
-		//CHECK DIFFERENT TURF HEIGHT THING
-		if(T.liquid_height != T2.liquid_height)
-			var/my_liquid_height = T.liquid_height + T.liquids.height
-			var/target_liquid_height = T2.liquid_height + (T2.liquids ? T2.liquids.height : 0)
-			if(my_liquid_height > target_liquid_height+1)
-				var/coeff = (T.liquids.height / (T.liquids.height + abs(T.liquid_height)))
-				var/height_diff = min(0.4,abs((target_liquid_height / my_liquid_height)-1)*coeff)
-				T.liquid_fraction_share(T2, height_diff)
-				. = TRUE
+		if(!member.can_share_liquids_with(adjacent_turf))
 			continue
-		//END OF TURF HEIGHT
-		if(!T.can_share_liquids_with(T2))
-			continue
-		if(!T2.lgroup)
-			add_to_group(T2)
-		//Try merge groups if possible
-		else if(T2.lgroup != T.lgroup && T.lgroup.can_merge_group(T2.lgroup))
-			T.lgroup.merge_group(T2.lgroup)
+		if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
+			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
 		. = TRUE
-		SSliquids.add_active_turf(T2)
-	if(.)
-		dirty = TRUE
-			//return //Do we want it to spread once per process or many times?
-	//Make sure to handle up/down z levels on adjacency properly
+		SSliquids.add_active_turf(adjacent_turf)
+
+/datum/liquid_group/proc/spread_liquid(turf/new_turf)
+	if(new_turf.liquids)
+		return
+	new_turf.liquids = new(new_turf, src)
+
+/datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
+	if(amount >= reagents_per_turf)
+		remove_from_group(remover.my_turf)
+		qdel(remover)
+	process_group()
+
+/datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
+	reagents.remove_any(amount)
+	if(remover)
+		check_liquid_removal(remover, amount)
+	process_group()
+
+/datum/liquid_group/proc/remove_specific(obj/effect/abstract/liquid_turf/remover, amount, datum/reagent/reagent_type)
+	reagents.remove_reagent(reagent_type, amount)
+	if(remover)
+		check_liquid_removal(remover, amount)
+	process_group()
+
+/datum/liquid_group/proc/transfer_to_atom(obj/effect/abstract/liquid_turf/remover, amount, atom/transfer_target, transfer_method = INGEST)
+	reagents.trans_to(transfer_target, amount, method = transfer_method)
+	if(remover)
+		check_liquid_removal(remover, amount)
+	process_group()
+
+/datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member, amount_threshold = 5)
+	var/turf/members_turf = member.my_turf
+	var/datum/reagents/exposed_reagents = new(1000)
+	var/list/passed_list = list()
+	for(var/reagent_type in reagents.reagent_list)
+		var/amount = reagents.reagent_list[reagent_type]
+		if(amount_threshold && amount < amount_threshold)
+			continue
+		remove_specific(src, amount * 0.2, reagent_type)
+		passed_list[reagent_type] = amount
+
+	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
+	exposed_reagents.chem_temp = group_temperature
+
+	for(var/atom/movable/target_atom in members_turf)
+		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
+	qdel(exposed_reagents)
+
+/datum/liquid_group/proc/move_liquid_group(obj/effect/abstract/liquid_turf/member)
+	remove_from_group(member.my_turf)
+	member.liquid_group = new(1, member)
+	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
+	for(var/reagent_type in reagents.reagent_list)
+		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
+		remove_specific(amount = remove_amount, reagent_type = reagent_type)
+
+/datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list)
+	reagents.add_reagent_list(reagent_list)
+	process_group()
+
+/datum/liquid_group/proc/add_reagent(obj/effect/abstract/liquid_turf/member, datum/reagent/reagent, amount, temperature)
+	reagents.add_reagent(reagent, amount, temperature)
+	process_group()
+
+/datum/liquid_group/proc/transfer_reagents_to_secondary_group(obj/effect/abstract/liquid_turf/member, obj/effect/abstract/liquid_turf/transfer)
+	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
+	for(var/reagent_type in reagents.reagent_list)
+		transfer.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
+		remove_specific(amount = remove_amount, reagent_type = reagent_type)
+	remove_from_group(member.my_turf)
+	process_group()

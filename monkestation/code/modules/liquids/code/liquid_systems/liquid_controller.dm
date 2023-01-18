@@ -21,13 +21,6 @@ SUBSYSTEM_DEF(liquids)
 
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
-/datum/controller/subsystem/liquids/proc/get_immutable(type)
-	if(!singleton_immutables[type])
-		var/obj/effect/abstract/liquid_turf/immutable/new_one = new type()
-		singleton_immutables[type] = new_one
-	return singleton_immutables[type]
-
-
 /datum/controller/subsystem/liquids/stat_entry(msg)
 	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]|PF:[processing_fire.len]"
 	return ..()
@@ -48,14 +41,9 @@ SUBSYSTEM_DEF(liquids)
 	if (run_type == SSLIQUIDS_RUN_TYPE_GROUPS)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
-			if(LG.dirty)
-				LG.share()
-				LG.dirty = FALSE
-			else if(!LG.amount_of_active_turfs)
-				LG.decay_counter++
-				if(LG.decay_counter >= LIQUID_GROUP_DECAY_TIME)
-					//Perhaps check if any turfs in here can spread before removing it? It's not unlikely they would
-					LG.break_group()
+			LG.process_group()
+			for(var/turf/member in LG.members)
+				LG.process_member(member)
 			if(MC_TICK_CHECK)
 				run_type = SSLIQUIDS_RUN_TYPE_IMMUTABLES //No currentrun here for now
 				return
@@ -96,14 +84,10 @@ SUBSYSTEM_DEF(liquids)
 /datum/controller/subsystem/liquids/proc/add_active_turf(turf/T)
 	if(!active_turfs[T])
 		active_turfs[T] = TRUE
-		if(T.lgroup)
-			T.lgroup.amount_of_active_turfs++
 
 /datum/controller/subsystem/liquids/proc/remove_active_turf(turf/T)
 	if(active_turfs[T])
 		active_turfs -= T
-		if(T.lgroup)
-			T.lgroup.amount_of_active_turfs--
 
 /client/proc/toggle_liquid_debug()
 	set category = "Debug"

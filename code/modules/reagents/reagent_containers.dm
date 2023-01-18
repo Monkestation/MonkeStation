@@ -46,7 +46,7 @@
 	if(liquids.fire_state) //Use an extinguisher first
 		to_chat(user, "<span class='warning'>You can't scoop up anything while it's on fire!</span>")
 		return TRUE
-	if(liquids.height == 1)
+	if(liquids.liquid_group.expected_turf_height == 1)
 		to_chat(user, "<span class='warning'>The puddle is too shallow to scoop anything up!</span>")
 		return TRUE
 	var/free_space = my_beaker.reagents.maximum_volume - my_beaker.reagents.total_volume
