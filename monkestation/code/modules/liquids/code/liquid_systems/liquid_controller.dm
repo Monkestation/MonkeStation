@@ -21,6 +21,9 @@ SUBSYSTEM_DEF(liquids)
 
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
+	///debug variable to toggle evaporation from running
+	var/debug_evaporation = FALSE
+
 /datum/controller/subsystem/liquids/stat_entry(msg)
 	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]|PF:[processing_fire.len]"
 	return ..()
@@ -57,7 +60,7 @@ SUBSYSTEM_DEF(liquids)
 			if(MC_TICK_CHECK)
 				return
 			*/
-	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION)
+	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION && !debug_evaporation)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 		evaporation_counter++
 		if(evaporation_counter >= REQUIRED_EVAPORATION_PROCESSES)

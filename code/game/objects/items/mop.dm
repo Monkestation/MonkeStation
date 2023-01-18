@@ -35,27 +35,26 @@
 	if(!user.Adjacent(T))
 		return FALSE
 	var/free_space = the_mop.reagents.maximum_volume - the_mop.reagents.total_volume
-	if(free_space <= 0)
-		to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
-		return TRUE
-	var/list/range_random = list()
-	for(var/turf/temp in view(5, T))
-		if(temp.liquids)
-			range_random += temp
-	for(var/turf in range_random)
-		if(do_after(user, src.mopspeed, target = T))
+	var/looping = TRUE
+	var/speed_mult = 1
+	while(looping)
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
+		if(free_space <= 0)
+			to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
+			looping = FALSE
+			return TRUE
+		if(do_after(user, src.mopspeed * speed_mult, target = T))
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
-				to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
+				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
-			var/turf/choice_turf = get_turf(pick(range_random))
-			if(choice_turf.liquids)
-				var/datum/reagents/tempr = choice_turf.liquids.take_reagents_flat(free_space)
-				tempr.trans_to(the_mop.reagents, tempr.total_volume)
-				range_random -= choice_turf
-				to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
-				qdel(tempr)
+			if(T.liquids && T.liquids.liquid_group)
+				T.liquids.liquid_group.trans_to_seperate_group(the_mop.reagents, 5)
+				to_chat(user, "<span class='notice'>You soak up some liquids with the [src.name].</span>")
+			else
+				looping = FALSE
 		else
-			return FALSE
+			looping = FALSE
 	user.changeNext_move(CLICK_CD_MELEE)
 	return TRUE
 	//MONKESTATION EDIT END
