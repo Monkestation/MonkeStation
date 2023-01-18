@@ -28,12 +28,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/group_alpha = 0
 	var/group_temperature = 300
 	var/group_color
+	var/updated_total = FALSE
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	members[T] = TRUE
 	T.liquids.liquid_group = src
 	amount_of_active_turfs++
 	reagents.maximum_volume += 1000 /// each turf will hold 1000 units plus the base amount spread across the group
+	updated_total = TRUE
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T)
@@ -45,6 +47,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!members.len)
 		qdel(src)
 		return
+	updated_total = TRUE
 	process_group()
 
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -92,7 +95,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	return TRUE
 
 /datum/liquid_group/proc/process_group()
-	if(total_reagent_volume != reagents.total_volume)
+	if(total_reagent_volume != reagents.total_volume || updated_total)
+		updated_total = FALSE
 		total_reagent_volume = reagents.total_volume
 		reagents_per_turf = total_reagent_volume / amount_of_active_turfs
 		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
@@ -112,18 +116,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			for(var/turf/member in members)
 				member.liquids.set_new_liquid_state(group_overlay_state)
 		//alpha stuff
-		var/alpha_setting = 0
-		var/alpha_divisor = 0
+		var/alpha_setting = 1
+		var/alpha_divisor = 1
 
-		for(var/r in reagents.reagent_list)
-			var/datum/reagent/R = r
-			alpha_setting += max(R.opacity * R.volume, 1)
-			alpha_divisor += max(1 * R.volume, 1)
+		if(amount_of_active_turfs)
+			for(var/r in reagents.reagent_list)
+				var/datum/reagent/R = r
+				alpha_setting += max((R.opacity * R.volume) / amount_of_active_turfs, 1)
+				alpha_divisor += max((1 * R.volume) / amount_of_active_turfs, 1)
 
-		if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
-			group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 1, 255)
-			for(var/turf/member in members)
-				member.liquids.alpha = group_alpha
+			if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
+				group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 1, 255)
+				for(var/turf/member in members)
+					member.liquids.alpha = group_alpha
 
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
@@ -170,7 +175,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(amount >= reagents_per_turf)
 		remove_from_group(remover.my_turf)
 		var/turf/remover_turf = remover.my_turf
-		qdel(remover, TRUE)
+		qdel(remover)
 		check_split(remover_turf)
 	process_group()
 
@@ -178,19 +183,22 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	reagents.remove_any(amount)
 	if(remover)
 		check_liquid_removal(remover, amount)
-	process_group()
+	updated_total = TRUE
+	total_reagent_volume = reagents.total_volume
 
 /datum/liquid_group/proc/remove_specific(obj/effect/abstract/liquid_turf/remover, amount, datum/reagent/reagent_type)
 	reagents.remove_reagent(reagent_type, amount)
 	if(remover)
 		check_liquid_removal(remover, amount)
-	process_group()
+	updated_total = TRUE
+	total_reagent_volume = reagents.total_volume
 
 /datum/liquid_group/proc/transfer_to_atom(obj/effect/abstract/liquid_turf/remover, amount, atom/transfer_target, transfer_method = INGEST)
 	reagents.trans_to(transfer_target, amount, method = transfer_method)
 	if(remover)
 		check_liquid_removal(remover, amount)
-	process_group()
+	updated_total = TRUE
+	total_reagent_volume = reagents.total_volume
 
 /datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member, amount_threshold = 5)
 	var/turf/members_turf = member.my_turf
@@ -281,7 +289,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	split(final_adjacent)
 
 /datum/liquid_group/proc/split(list/turfs_to_split)
-	if(!turfs_to_split)
+	if(!turfs_to_split.len)
 		return
 	var/reagents_to_remove = length(turfs_to_split) * reagents_per_turf
 	var/turf/chosen_starting_turf = pick(turfs_to_split)

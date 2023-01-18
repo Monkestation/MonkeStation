@@ -375,8 +375,8 @@
 		SSliquids.evaporation_queue -= my_turf
 	if(SSliquids.processing_fire[my_turf])
 		SSliquids.processing_fire -= my_turf
-	//Is added because it could invoke a change to neighboring liquids
-	SSliquids.add_active_turf(my_turf)
+
+
 	my_turf.liquids = null
 	my_turf = null
 	QUEUE_SMOOTH_NEIGHBORS(src)

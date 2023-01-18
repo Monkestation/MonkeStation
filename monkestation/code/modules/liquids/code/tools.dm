@@ -22,8 +22,8 @@
 	var/volume = input(usr, "Volume:", "Choose volume") as num
 	if(!volume)
 		return
-	if(volume >= 1000)
-		to_chat(usr, span_warning("Please limit the volume to below 1000 units!"))
+	if(volume >= 100000)
+		to_chat(usr, span_warning("Please limit the volume to below 100000 units!"))
 		return
 	var/turf/epicenter = get_turf(mob)
 	epicenter.add_liquid(choice, volume)
