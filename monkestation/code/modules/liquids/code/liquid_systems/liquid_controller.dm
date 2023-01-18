@@ -19,6 +19,10 @@ SUBSYSTEM_DEF(liquids)
 
 	var/list/singleton_immutables = list()
 
+	var/list/active_ocean_turfs = list()
+
+	var/list/ocean_turfs = list()
+
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
 	///debug variable to toggle evaporation from running
@@ -79,6 +83,7 @@ SUBSYSTEM_DEF(liquids)
 			evaporation_counter = 0
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
+		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
 		fire_counter++
 		if(fire_counter >= REQUIRED_FIRE_PROCESSES)
 			for(var/t in processing_fire)
@@ -87,6 +92,10 @@ SUBSYSTEM_DEF(liquids)
 			if(MC_TICK_CHECK)
 				return
 			fire_counter = 0
+
+	if(run_type == SSLIQUIDS_RUN_TYPE_OCEAN)
+		for(var/turf/open/floor/plating/ocean/active_ocean in active_ocean_turfs)
+			active_ocean.process_turf()
 
 /datum/controller/subsystem/liquids/proc/add_active_turf(turf/T)
 	if(!active_turfs[T])
