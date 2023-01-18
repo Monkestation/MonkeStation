@@ -1,5 +1,3 @@
-GLOBAL_LIST_INIT(space_turfs, list())
-
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
@@ -37,8 +35,6 @@ GLOBAL_LIST_INIT(space_turfs, list())
 	icon_state = SPACE_ICON_STATE
 	if(!space_gas)
 		space_gas = new
-	if(istype(src, /turf/open/space))
-		GLOB.space_turfs |= src
 	air = space_gas
 	update_air_ref(0)
 	vis_contents.Cut() //removes inherited overlays
