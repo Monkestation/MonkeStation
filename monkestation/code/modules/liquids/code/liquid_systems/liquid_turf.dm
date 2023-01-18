@@ -115,20 +115,6 @@
 					gas.react()
 
 	if(!liquids)
-		/*
-		if(!lgroup)
-			for(var/tur in GetAtmosAdjacentTurfs())
-				var/turf/T2 = tur
-				if(T2.liquids)
-					if(T2.liquids.immutable)
-						SSliquids.active_immutables[T2] = TRUE
-					else if (T2.can_share_liquids_with(src))
-						if(T2.lgroup)
-							lgroup = new(liquid_height)
-							lgroup.add_to_group(src)
-						SSliquids.add_active_turf(T2)
-						SSliquids.remove_active_turf(src)
-						break*/
 		SSliquids.remove_active_turf(src)
 		return
 	if(QDELETED(liquids)) //Liquids may be deleted in process cell
