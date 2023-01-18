@@ -159,7 +159,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				members -= picked_turf
 			looping = TRUE
 
-/datum/liquid_group/proc/check_dead
+/datum/liquid_group/proc/check_dead()
 	if(!members && !total_reagent_volume)
 		if(failed_death_check)
 			qdel(src)
