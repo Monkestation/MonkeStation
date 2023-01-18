@@ -40,18 +40,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	members -= T
 	T.liquids.liquid_group = null
 	amount_of_active_turfs--
+	if(SSliquids.currentrun_active_turfs[T])
+		SSliquids.currentrun_active_turfs -= T
 	if(!members.len)
 		qdel(src)
 		return
 	process_group()
 
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
-	SSliquids.active_groups[src] = TRUE
+	SSliquids.active_groups |= src
 	color = "#[random_short_color()]"
 	expected_turf_height = height
 	reagents = new(100000)
-	add_to_group(created_liquid.my_turf)
-	check_adjacency(created_liquid.my_turf)
+	if(created_liquid)
+		add_to_group(created_liquid.my_turf)
 
 /datum/liquid_group/proc/can_merge_group(datum/liquid_group/otherg)
 	if(expected_turf_height == otherg.expected_turf_height)
@@ -78,35 +80,22 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	members = null
 	return ..()
 
-/datum/liquid_group/proc/check_adjacency(turf/T)
-	var/list/recursive_adjacent = list()
-	var/list/current_adjacent = list()
-	current_adjacent[T] = TRUE
-	recursive_adjacent[T] = TRUE
-	var/getting_new_turfs = TRUE
-	var/indef_loop_safety = 0
-	while(getting_new_turfs && indef_loop_safety < LIQUID_RECURSIVE_LOOP_SAFETY)
-		indef_loop_safety++
-		getting_new_turfs = FALSE
-		var/list/new_adjacent = list()
-		for(var/t in current_adjacent)
-			var/turf/T2 = t
-			for(var/y in T2.GetAtmosAdjacentTurfs())
-				if(!recursive_adjacent[y])
-					new_adjacent[y] = TRUE
-					recursive_adjacent[y] = TRUE
-					getting_new_turfs = TRUE
-		current_adjacent = new_adjacent
-	//All adjacent, somehow
-	if(recursive_adjacent.len == members.len)
-		return
-
+/datum/liquid_group/proc/check_adjacency(turf/member)
+	var/adjacent_liquid = 0
+	for(var/tur in member.GetAtmosAdjacentTurfs())
+		var/turf/adjacent_turf = tur
+		if(adjacent_turf.liquids)
+			if(adjacent_turf.liquids.liquid_group == member.liquids.liquid_group)
+				adjacent_liquid++
+	if(adjacent_liquid < 2)
+		return FALSE
+	return TRUE
 
 /datum/liquid_group/proc/process_group()
 	if(total_reagent_volume != reagents.total_volume)
 		total_reagent_volume = reagents.total_volume
 		reagents_per_turf = total_reagent_volume / amount_of_active_turfs
-		expected_turf_height = CEILING(total_reagent_volume, 1) / LIQUID_HEIGHT_DIVISOR
+		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 		var/old_overlay = group_overlay_state
 		switch(expected_turf_height)
 			if(0 to LIQUID_ANKLES_LEVEL_HEIGHT-1)
@@ -128,8 +117,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		for(var/r in reagents.reagent_list)
 			var/datum/reagent/R = r
-			alpha_setting += max(R.opacity * R.volume, 0.0001)
-			alpha_divisor += max(1 * R.volume, 0.0001)
+			alpha_setting += max(R.opacity * R.volume, 1)
+			alpha_divisor += max(1 * R.volume, 1)
 
 		if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
 			group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 1, 255)
@@ -137,10 +126,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				member.liquids.alpha = group_alpha
 
 /datum/liquid_group/proc/process_member(turf/member)
+	if(member.liquids.liquid_state != group_overlay_state)
+		member.liquids.set_new_liquid_state(group_overlay_state)
+	process_group()
+	SSliquids.evaporation_queue |= member
 	for(var/tur in member.GetAtmosAdjacentTurfs())
 		var/turf/adjacent_turf = tur
 		if(!adjacent_turf.liquids)
-			if(reagents_per_turf >= 1)
+			if(reagents_per_turf >= 3)
 				spread_liquid(adjacent_turf)
 			return
 		//Immutable check thing
@@ -159,8 +152,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 					member.liquids.liquid_group.transfer_reagents_to_secondary_group(member.liquids, adjacent_turf.liquids)
 					. = TRUE
 			continue
-		if(!member.can_share_liquids_with(adjacent_turf))
-			continue
 		if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
 		. = TRUE
@@ -170,11 +161,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(new_turf.liquids)
 		return
 	new_turf.liquids = new(new_turf, src)
+	reagents_per_turf = total_reagent_volume / amount_of_active_turfs
+	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+	new_turf.liquids.liquid_group.process_member(new_turf)
+	new_turf.liquids.liquid_group.process_group()
 
 /datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
 	if(amount >= reagents_per_turf)
 		remove_from_group(remover.my_turf)
-		qdel(remover)
+		var/turf/remover_turf = remover.my_turf
+		qdel(remover, TRUE)
+		check_split(remover_turf)
 	process_group()
 
 /datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
@@ -235,4 +232,69 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		transfer.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 	remove_from_group(member.my_turf)
+	process_group()
+
+/datum/liquid_group/proc/check_split(turf/checked_turf)
+	var/adjacent = 0
+	var/turf/first_turf
+	for(var/dir in GLOB.cardinals)
+		var/turf/dir_turf = get_step(checked_turf, dir)
+		if(dir_turf.liquids)
+			first_turf = dir_turf
+			break
+	for(var/dir in GLOB.cardinals)
+		var/turf/dir_turf = get_step(checked_turf, dir)
+		if(dir_turf.liquids)
+			if(dir_turf.liquids.liquid_group == first_turf.liquids.liquid_group)
+				adjacent++
+
+	if(adjacent == 0 && first_turf)
+		move_liquid_group(first_turf.liquids)
+		return
+
+	var/list/current_adjacent = list()
+	current_adjacent |= first_turf
+
+	var/list/final_adjacent = list()
+
+	var/getting_new_turfs = TRUE
+	var/indef_loop_safety = 0
+	while(getting_new_turfs && indef_loop_safety < LIQUID_RECURSIVE_LOOP_SAFETY)
+		indef_loop_safety++
+		getting_new_turfs = FALSE
+		var/list/new_adjacent = list()
+		var/list/old_final = list()
+		for(var/turf/listed_turf in current_adjacent)
+			for(var/dir in GLOB.cardinals)
+				var/turf/dir_turf = get_step(listed_turf, dir)
+				if(dir_turf.liquids)
+					if(dir_turf.liquids.liquid_group == first_turf.liquids.liquid_group)
+						new_adjacent |= dir_turf
+						final_adjacent |= dir_turf
+						if(old_final != final_adjacent)
+							getting_new_turfs = TRUE
+		old_final = final_adjacent
+		current_adjacent = new_adjacent
+
+	if(final_adjacent.len == members.len)
+		return
+	split(final_adjacent)
+
+/datum/liquid_group/proc/split(list/turfs_to_split)
+	if(!turfs_to_split)
+		return
+	var/reagents_to_remove = length(turfs_to_split) * reagents_per_turf
+	var/turf/chosen_starting_turf = pick(turfs_to_split)
+	turfs_to_split -= chosen_starting_turf
+	var/datum/liquid_group/new_group = new(1, chosen_starting_turf.liquids)
+
+	for(var/turf/listed_turf in turfs_to_split)
+		remove_from_group(listed_turf)
+		new_group.add_to_group(listed_turf)
+
+	trans_to_seperate_group(new_group.reagents, reagents_to_remove)
+	process_group()
+
+/datum/liquid_group/proc/trans_to_seperate_group(datum/reagents/secondary_reagent, amount)
+	reagents.trans_to(secondary_reagent, amount)
 	process_group()

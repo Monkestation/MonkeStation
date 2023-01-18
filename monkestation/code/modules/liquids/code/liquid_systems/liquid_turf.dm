@@ -32,9 +32,8 @@
 		//Check any cardinals that may have a matching group
 		for(var/direction in GLOB.cardinals)
 			var/turf/T = get_step(src, direction)
-			//Same group of which we do not share atmos adjacency
-			if(!assoc_atmos_turfs[T] && T.liquids.liquid_group && T.liquids.liquid_group == liquids.liquid_group)
-				T.liquids.liquid_group.check_adjacency(T)
+			if(!T.liquids)
+				return
 
 	SSliquids.add_active_turf(src)
 

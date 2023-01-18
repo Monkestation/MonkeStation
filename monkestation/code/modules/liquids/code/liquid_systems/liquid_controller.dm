@@ -29,21 +29,26 @@ SUBSYSTEM_DEF(liquids)
 /datum/controller/subsystem/liquids/fire(resumed = FALSE)
 	if(run_type == SSLIQUIDS_RUN_TYPE_TURFS)
 		if(!currentrun_active_turfs.len && active_turfs.len)
-			currentrun_active_turfs = active_turfs.Copy()
+			for(var/g in active_groups)
+				var/datum/liquid_group/LG = g
+				currentrun_active_turfs += LG.members
 		for(var/tur in currentrun_active_turfs)
 			if(MC_TICK_CHECK)
 				return
 			var/turf/T = tur
-			T.process_liquid_cell()
-			currentrun_active_turfs -= T //work off of index later
+			if(!T.liquids)
+				currentrun_active_turfs -= T
+			else
+				T.process_liquid_cell()
+				T.liquids.liquid_group.process_member(T)
+				currentrun_active_turfs -= T //work off of index later
+
 		if(!currentrun_active_turfs.len)
 			run_type = SSLIQUIDS_RUN_TYPE_GROUPS
 	if (run_type == SSLIQUIDS_RUN_TYPE_GROUPS)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
 			LG.process_group()
-			for(var/turf/member in LG.members)
-				LG.process_member(member)
 			if(MC_TICK_CHECK)
 				run_type = SSLIQUIDS_RUN_TYPE_IMMUTABLES //No currentrun here for now
 				return
@@ -64,6 +69,9 @@ SUBSYSTEM_DEF(liquids)
 			for(var/t in evaporation_queue)
 				var/turf/T = t
 				if(prob(EVAPORATION_CHANCE))
+					if(!T.liquids)
+						evaporation_queue -= T
+						return
 					T.liquids.process_evaporation()
 				if(MC_TICK_CHECK)
 					return

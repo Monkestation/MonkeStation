@@ -24,7 +24,7 @@
 	var/immutable = FALSE
 
 	var/fire_state = LIQUID_FIRE_STATE_NONE
-
+	var/liquid_state = LIQUID_STATE_PUDDLE
 	var/no_effects = FALSE
 
 	/// State-specific message chunks for examine_turf()
@@ -152,10 +152,11 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			var/evaporation_mult = min((liquid_group.group_temperature - T0C)/10, 1)
+			var/evaporation_mult = clamp((liquid_group.group_temperature - T0C)/10, 0.1, 3)
 			passthrough_evaporation_reaction(R, min((initial(R.evaporation_rate) * evaporation_mult), liquid_group.reagents.reagent_list[reagent_type]))
 			liquid_group.remove_specific(src, initial(R.evaporation_rate), liquid_group.reagents.reagent_list[reagent_type])
 			any_change = TRUE
+
 	if(!any_change)
 		SSliquids.evaporation_queue -= my_turf
 		return
@@ -164,8 +165,8 @@
 	if(harderforce)
 		. = ..()
 
-/obj/effect/abstract/liquid_turf/proc/passthrough_evaporation_reaction(reagent, reac_volume)
-	var/datum/reagent/evaporated_reagent = GLOB.chemical_reagents_list[reagent]
+/obj/effect/abstract/liquid_turf/proc/passthrough_evaporation_reaction(datum/reagent/reagent, reac_volume)
+	var/datum/reagent/evaporated_reagent = GLOB.chemical_reagents_list[reagent.type]
 	var/turf/open/evaporated_turf = get_turf(src)
 	evaporated_reagent.reaction_evaporation(evaporated_turf, reac_volume)
 
@@ -173,6 +174,7 @@
 	if(no_effects)
 		return
 	cut_overlays()
+	liquid_state = new_state
 	switch(new_state)
 		if(LIQUID_STATE_PUDDLE)
 			QUEUE_SMOOTH(src)
@@ -209,7 +211,6 @@
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			add_overlay(overlay)
-
 /obj/effect/abstract/liquid_turf/proc/update_liquid_vis()
 	if(no_effects)
 		return
@@ -330,12 +331,7 @@
 		else
 			to_chat(M, span_userdanger("You fall in the water!"))
 
-/obj/effect/abstract/liquid_turf/New(loc, datum/liquid_group/group_to_add)
-	. = ..()
-	if(group_to_add)
-		group_to_add.add_to_group(my_turf)
-
-/obj/effect/abstract/liquid_turf/Initialize()
+/obj/effect/abstract/liquid_turf/Initialize(mapload, datum/liquid_group/group_to_add)
 	. = ..()
 	if(!SSliquids)
 		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
@@ -359,7 +355,11 @@
 	if(!my_turf.liquids)
 		my_turf.liquids = src
 
-	if(!liquid_group)
+	if(group_to_add)
+		group_to_add.add_to_group(my_turf)
+		set_new_liquid_state(liquid_group.group_overlay_state)
+
+	if(!liquid_group && !group_to_add)
 		liquid_group = new(1, src)
 
 	/* //Cant do it immediately, hmhm
@@ -368,21 +368,18 @@
 	*/
 
 /obj/effect/abstract/liquid_turf/Destroy(force)
-	if(force)
-		UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_PARENT_EXAMINE))
-		if(liquid_group)
-			liquid_group.remove_from_group(my_turf)
-		if(SSliquids.evaporation_queue[my_turf])
-			SSliquids.evaporation_queue -= my_turf
-		if(SSliquids.processing_fire[my_turf])
-			SSliquids.processing_fire -= my_turf
-		//Is added because it could invoke a change to neighboring liquids
-		SSliquids.add_active_turf(my_turf)
-		my_turf.liquids = null
-		my_turf = null
-		QUEUE_SMOOTH_NEIGHBORS(src)
-	else
-		return QDEL_HINT_LETMELIVE
+	UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_PARENT_EXAMINE))
+	if(liquid_group)
+		liquid_group.remove_from_group(my_turf)
+	if(SSliquids.evaporation_queue[my_turf])
+		SSliquids.evaporation_queue -= my_turf
+	if(SSliquids.processing_fire[my_turf])
+		SSliquids.processing_fire -= my_turf
+	//Is added because it could invoke a change to neighboring liquids
+	SSliquids.add_active_turf(my_turf)
+	my_turf.liquids = null
+	my_turf = null
+	QUEUE_SMOOTH_NEIGHBORS(src)
 	return ..()
 
 /obj/effect/abstract/liquid_turf/proc/ChangeToNewTurf(turf/NewT)
@@ -434,7 +431,7 @@
 			// Single reagent text.
 			var/datum/reagent/reagent_type = liquid_group.reagents.reagent_list[1]
 			var/reagent_name = initial(reagent_type.name)
-			var/volume = round(liquid_group.reagents.reagent_list[reagent_type] / liquid_group.amount_of_active_turfs, 0.01)
+			var/volume = round(reagent_type.volume / liquid_group.amount_of_active_turfs, 0.01)
 
 			examine_list += span_notice("There is [replacetext(liquid_state_template, "$", "[volume] units of [reagent_name]")] here.")
 		else
@@ -443,7 +440,7 @@
 
 			for(var/datum/reagent/reagent_type as anything in liquid_group.reagents.reagent_list)
 				var/reagent_name = initial(reagent_type.name)
-				var/volume = round(liquid_group.reagents.reagent_list[reagent_type] / liquid_group.amount_of_active_turfs, 0.01)
+				var/volume = round(reagent_type.volume / liquid_group.amount_of_active_turfs, 0.01)
 				examine_list += "&bull; [volume] units of [reagent_name]"
 
 		examine_list += span_notice("The solution has a temperature of [liquid_group.group_temperature]K.")
