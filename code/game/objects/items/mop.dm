@@ -49,9 +49,11 @@
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
 				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
-			if(T.liquids && T.liquids.liquid_group)
+			if(targeted_group.reagents_per_turf)
 				targeted_group.trans_to_seperate_group(the_mop.reagents, min(targeted_group.reagents_per_turf, 5))
 				to_chat(user, "<span class='notice'>You soak up some liquids with the [src.name].</span>")
+			else if(T.liquids.liquid_group)
+				targeted_group = T.liquids.liquid_group
 			else
 				looping = FALSE
 		else

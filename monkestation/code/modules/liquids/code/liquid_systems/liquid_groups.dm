@@ -363,11 +363,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		check_liquid_removal(remover, amount)
 	else
 		process_removal(amount)
-	process_group()
 
 /datum/liquid_group/proc/process_removal(amount)
 
 	total_reagent_volume = reagents.total_volume
+	process_group()
 	if(total_reagent_volume)
 		reagents_per_turf = total_reagent_volume / length(members)
 
