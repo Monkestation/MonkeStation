@@ -17,6 +17,7 @@
 	egg_type = /obj/item/food/egg/onagadori
 	needed_turfs = list(/turf/open/floor/grass)
 
+	can_come_from_string = "White Chicken"
 /datum/mutation/ranching/chicken/ixworth
 	chicken_type = /mob/living/simple_animal/chicken/ixworth
 	egg_type = /obj/item/food/egg/ixworth
