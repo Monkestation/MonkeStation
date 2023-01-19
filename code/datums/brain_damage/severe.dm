@@ -129,6 +129,8 @@
 	var/sleep_chance = 1
 	if(owner.m_intent == MOVE_INTENT_RUN)
 		sleep_chance += 2
+	else if(owner.m_intent == MOVE_INTENT_SPRINT)
+		sleep_chance += 5
 	if(owner.drowsyness)
 		sleep_chance += 3
 	if(prob(sleep_chance))
@@ -193,7 +195,7 @@
 				owner.dizziness += 20
 				owner.confused += 20
 				owner.Jitter(20)
-				owner.adjustStaminaLoss(50)
+				owner.stamina.adjust(-50)
 
 		if(3, 4)
 			if(!high_stress)

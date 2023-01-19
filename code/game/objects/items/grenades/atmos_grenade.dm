@@ -46,7 +46,7 @@
 		if(floor_loc.air.get_gases(GAS_PLASMA))
 			floor_loc.air.adjust_moles(GAS_PLASMA, -(floor_loc.air.get_moles(GAS_PLASMA) * 0.5 / distance_from_center))
 		for(var/mob/living/carbon/live_mob in turf_loc)
-			live_mob.adjustStaminaLoss(stamina_damage / distance_from_center)
+			live_mob.stamina.adjust(-stamina_damage / distance_from_center)
 			live_mob.adjust_bodytemperature(-150 / distance_from_center)
 	qdel(src)
 

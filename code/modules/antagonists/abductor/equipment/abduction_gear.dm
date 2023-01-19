@@ -115,7 +115,7 @@
 			to_chat(loc, "<span class='warning'>Combat injection is still recharging.</span>")
 			return
 		var/mob/living/carbon/human/M = loc
-		M.adjustStaminaLoss(-75)
+		M.stamina.adjust(75)
 		M.SetUnconscious(0)
 		M.SetStun(0)
 		M.SetKnockdown(0)

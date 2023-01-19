@@ -368,14 +368,17 @@
 	switch(hud?.mymob?.m_intent)
 		if(MOVE_INTENT_WALK)
 			icon_state = "walking"
-		if(MOVE_INTENT_RUN)
+		if(MOVE_INTENT_RUN, MOVE_INTENT_SPRINT)
 			icon_state = "running"
 	return ..()
 
 /atom/movable/screen/mov_intent/proc/toggle(mob/user)
 	if(isobserver(user))
 		return
-	user.toggle_move_intent(user)
+	if(user.m_intent != MOVE_INTENT_WALK)
+		user.set_move_intent(MOVE_INTENT_WALK)
+	else
+		user.set_move_intent(MOVE_INTENT_RUN)
 
 /atom/movable/screen/pull
 	name = "stop pulling"
@@ -757,3 +760,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/splash)
 /atom/movable/screen/component_button/Click(params)
 	if(parent)
 		parent.component_click(src, params)
+
+/atom/movable/screen/stamina
+	name = "stamina"
+	icon_state = "stamina0"
+	screen_loc = ui_stamina

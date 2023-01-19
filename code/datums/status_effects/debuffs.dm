@@ -101,8 +101,8 @@
 	return ..()
 
 /datum/status_effect/incapacitating/unconscious/tick()
-	if(owner.getStaminaLoss())
-		owner.adjustStaminaLoss(-0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
+	if(owner.stamina.loss)
+		owner.stamina.adjust(0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
 
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping/on_apply()
@@ -147,7 +147,7 @@
 			owner.adjustBruteLoss(healing)
 			owner.adjustFireLoss(healing)
 			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-			owner.adjustStaminaLoss(healing)
+			owner.stamina.adjust(-healing)
 	if(human_owner?.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -789,7 +789,7 @@
 
 /datum/status_effect/interdiction/tick()
 	if(owner.m_intent == MOVE_INTENT_RUN)
-		owner.toggle_move_intent(owner)
+		owner.set_move_intent(MOVE_INTENT_WALK)
 		if(owner.confused < 10)
 			owner.confused = 10
 		running_toggled = TRUE
@@ -799,7 +799,7 @@
 /datum/status_effect/interdiction/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_INTERDICTION)
 	if(running_toggled && owner.m_intent == MOVE_INTENT_WALK)
-		owner.toggle_move_intent(owner)
+		owner.set_move_intent(MOVE_INTENT_WALK)
 
 /atom/movable/screen/alert/status_effect/interdiction
 	name = "Interdicted"
@@ -913,7 +913,7 @@
 /datum/status_effect/eldritch/ash/on_effect()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
-		carbon_owner.adjustStaminaLoss(10 * repetitions)
+		carbon_owner.stamina.adjust(-10 * repetitions)
 		carbon_owner.adjustFireLoss(5 * repetitions)
 		for(var/mob/living/carbon/victim in ohearers(1,carbon_owner))
 			if(IS_HERETIC(victim))
@@ -957,7 +957,7 @@
 	var/message = "Coder did fucky wucky U w U"
 	switch(chance)
 		if(0 to 39)
-			H.adjustStaminaLoss(20)
+			H.stamina.adjust(-20)
 			message = "<span class='notice'>You feel tired.</span>"
 		if(40 to 59)
 			H.Dizzy(3 SECONDS)

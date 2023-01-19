@@ -135,7 +135,7 @@
 	hit_duration_wall = 5
 
 /obj/item/projectile/hallucination/bullet/hal_apply_effect()
-	hal_target.adjustStaminaLoss(60)
+	hal_target.stamina.adjust(-60)
 
 /obj/item/projectile/hallucination/laser
 	name = "laser"
@@ -151,7 +151,7 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 /obj/item/projectile/hallucination/laser/hal_apply_effect()
-	hal_target.adjustStaminaLoss(20)
+	hal_target.stamina.adjust(-20)
 	hal_target.blur_eyes(2)
 
 /obj/item/projectile/hallucination/taser
@@ -187,7 +187,7 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 /obj/item/projectile/hallucination/disabler/hal_apply_effect()
-	hal_target.adjustStaminaLoss(25)
+	hal_target.stamina.adjust(-25)
 
 /obj/item/projectile/hallucination/ebow
 	name = "bolt"
@@ -202,7 +202,7 @@
 /obj/item/projectile/hallucination/ebow/hal_apply_effect()
 	hal_target.Paralyze(100)
 	hal_target.stuttering += 5
-	hal_target.adjustStaminaLoss(8)
+	hal_target.stamina.adjust(-8)
 
 /obj/item/projectile/hallucination/change
 	name = "bolt of change"

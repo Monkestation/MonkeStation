@@ -291,7 +291,7 @@
 /datum/status_effect/food/stam_regen/tick()
 	if(ishuman(owner))
 		var/mob/living/carbon/user = owner
-		user.adjustStaminaLoss(-regen_increase, 0)
+		user.stamina.adjust(regen_increase, 0)
 
 
 

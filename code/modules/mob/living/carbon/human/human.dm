@@ -675,7 +675,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - getStaminaLoss())
+			var/health_amount = health
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -689,7 +689,7 @@
 			if(stat != DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
 				for(var/obj/item/bodypart/BP as() in bodyparts)
-					var/damage = BP.burn_dam + BP.brute_dam + (hallucination ? BP.stamina_dam : 0)
+					var/damage = BP.burn_dam + BP.brute_dam
 					var/comparison = (BP.max_damage/5)
 					var/icon_num = 0
 					if(damage)
@@ -706,12 +706,6 @@
 						icon_num = 0
 					if(icon_num)
 						hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone][icon_num]"))
-					//Stamina Outline (Communicate that we have stamina damage)
-					//Hallucinations will appear as regular damage
-					if(BP.stamina_dam && !hallucination)
-						var/mutable_appearance/MA = mutable_appearance('icons/mob/screen_gen.dmi', "[BP.body_zone]stam")
-						MA.alpha = (BP.stamina_dam / BP.max_stamina_damage) * 70 + 30
-						hud_used.healthdoll.add_overlay(MA)
 				for(var/t in get_missing_limbs()) //Missing limbs
 					hud_used.healthdoll.add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[t]6"))
 				for(var/t in get_disabled_limbs()) //Disabled limbs
@@ -1031,7 +1025,7 @@
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING)
 		return
-	var/health_deficiency = max((maxHealth - health), staminaloss)
+	var/health_deficiency = maxHealth - health
 	if(health_deficiency >= 40)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, override = TRUE, multiplicative_slowdown = (health_deficiency / 75), blacklisted_movetypes = FLOATING|FLYING)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING, override = TRUE, multiplicative_slowdown = (health_deficiency / 25), movetypes = FLOATING)
@@ -1039,6 +1033,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN_FLYING)
 
+/mob/living/carbon/human/pre_stamina_change(diff as num, forced)
+	if(diff < 0) //Taking damage, not healing
+		return diff * physiology.stamina_mod
+	return diff
 
 /mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))

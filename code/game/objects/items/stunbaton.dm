@@ -129,7 +129,7 @@
 	if(turned_on && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src], electrocuting themselves badly!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src], electrocuting yourself badly!</span>")
-		user.adjustStaminaLoss(stunforce*3)
+		user.stamina.adjust(-stunforce*3)
 		deductcharge(hitcost)
 		return
 
@@ -169,11 +169,8 @@
 	else
 		if(!deductcharge(hitcost))
 			return FALSE
+	target.Disorient(6 SECONDS, stunforce, paralyze = 10 SECONDS, stack_status = FALSE)
 
-	var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
-	var/armor_block = target.run_armor_check(affecting, "stamina")
-	// L.adjustStaminaLoss(stunforce)
-	target.apply_damage(stunforce, STAMINA, affecting, armor_block)
 	target.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(target, COMSIG_LIVING_MINOR_SHOCK)
 	if(user)

@@ -26,6 +26,9 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_RESTRAINED), .proc/on_restrained_trait_gain)
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_RESTRAINED), .proc/on_restrained_trait_loss)
 
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_EXHAUSTED), .proc/on_exhausted_trait_gain)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_EXHAUSTED), .proc/on_exhausted_trait_loss)
+
 ///Called when TRAIT_KNOCKEDOUT is added to the mob.
 /mob/living/proc/on_knockedout_trait_gain(datum/source)
 	SIGNAL_HANDLER
@@ -140,3 +143,15 @@
 /mob/living/proc/on_restrained_trait_loss(datum/source)
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_RESTRAINED)
+
+/// Called when [TRAIT_EXHAUSTED] is added to the mob.
+/mob/living/proc/on_exhausted_trait_gain(datum/source)
+	SIGNAL_HANDLER
+	add_movespeed_modifier("exhausted", TRUE, 100, IGNORE_NOSLOW, TRUE, STAMINA_EXHAUSTION_MOVESPEED_SLOWDOWN)
+	to_chat(src, span_danger("You begin to tire out."))
+
+/// Called when [TRAIT_EXHAUSTED] is removed from the mob.
+/mob/living/proc/on_exhausted_trait_loss(datum/source)
+	SIGNAL_HANDLER
+	if(remove_movespeed_modifier("exhausted"))
+		to_chat(src, span_notice("You catch your breath."))

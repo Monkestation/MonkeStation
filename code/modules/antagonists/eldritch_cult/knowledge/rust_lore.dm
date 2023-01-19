@@ -59,7 +59,7 @@
 	living_user.adjustFireLoss(-2, FALSE)
 	living_user.adjustToxLoss(-2, FALSE, TRUE)
 	living_user.adjustOxyLoss(-0.5, FALSE)
-	living_user.adjustStaminaLoss(-2)
+	living_user.stamina.adjust(2)
 	living_user.AdjustAllImmobility(-5)
 
 /datum/eldritch_knowledge/rust_mark
@@ -132,7 +132,7 @@
 	human_user.adjustFireLoss(-4, FALSE)
 	human_user.adjustToxLoss(-4, FALSE, TRUE)
 	human_user.adjustOxyLoss(-2, FALSE)
-	human_user.adjustStaminaLoss(-20)
+	human_user.stamina.adjust(20)
 	human_user.AdjustAllImmobility(-10)
 
 /**

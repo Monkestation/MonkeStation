@@ -6,6 +6,7 @@
 	create_reagents(1000)
 	update_body_parts() //to update the carbon's new bodyparts appearance
 	GLOB.carbon_list += src
+	AddComponent(/datum/component/carbon_sprint)
 
 /mob/living/carbon/Destroy()
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
@@ -497,7 +498,6 @@
 		total_burn	+= (BP.burn_dam * BP.body_damage_coeff)
 		total_stamina += (BP.stamina_dam * BP.stam_damage_coeff)
 	set_health(round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION))
-	staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	update_stat()
 	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD*2) && stat == DEAD )
 		become_husk("burn")
@@ -508,18 +508,44 @@
 		remove_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE)
 
 
-/mob/living/carbon/update_stamina(extend_stam_crit = FALSE)
-	var/stam = getStaminaLoss()
-	if(stam >= DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat && !HAS_TRAIT(src, TRAIT_NOSTAMCRIT))
-		if(!stat)
-			enter_stamcrit()
-	else if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
-		REMOVE_TRAIT(src, TRAIT_INCAPACITATED, STAMINA)
-		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, STAMINA)
-		REMOVE_TRAIT(src, TRAIT_FLOORED, STAMINA)
-	else
+/mob/living/carbon/on_stamina_update()
+	var/stam = stamina.current
+	var/max = stamina.maximum
+	var/is_exhausted = HAS_TRAIT_FROM(src, TRAIT_EXHAUSTED, STAMINA)
+	var/is_stam_stunned = HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA)
+	if((stam < max * STAMINA_EXHAUSTION_THRESHOLD_MODIFIER) && !is_exhausted)
+		ADD_TRAIT(src, TRAIT_EXHAUSTED, STAMINA)
+		ADD_TRAIT(src, TRAIT_NO_SPRINT, STAMINA)
+	if((stam < max * STAMINA_STUN_THRESHOLD_MODIFIER) && !is_stam_stunned && stat <= SOFT_CRIT)
+		stamina_stun()
+	if(is_exhausted && (stam > max * STAMINA_EXHAUSTION_THRESHOLD_MODIFIER))
+		REMOVE_TRAIT(src, TRAIT_EXHAUSTED, STAMINA)
+		REMOVE_TRAIT(src, TRAIT_NO_SPRINT, STAMINA)
+	update_stamina_hud()
+
+/mob/living/carbon/update_stamina_hud(shown_stamina_amount)
+	if(!client || !hud_used?.stamina)
 		return
-	update_health_hud()
+	if(stat == DEAD)
+		hud_used.stamina.icon_state = "stamina6"
+	else
+		var/max = stamina.maximum
+		if(shown_stamina_amount == null)
+			shown_stamina_amount = stamina.current
+		if(shown_stamina_amount == max)
+			hud_used.stamina.icon_state = "stamina0"
+		else if(shown_stamina_amount > max*0.8)
+			hud_used.stamina.icon_state = "stamina1"
+		else if(shown_stamina_amount > max*0.6)
+			hud_used.stamina.icon_state = "stamina2"
+		else if(shown_stamina_amount > max*0.4)
+			hud_used.stamina.icon_state = "stamina3"
+		else if(shown_stamina_amount > max*0.2)
+			hud_used.stamina.icon_state = "stamina4"
+		else if(shown_stamina_amount > 1)
+			hud_used.stamina.icon_state = "stamina5"
+		else
+			hud_used.stamina.icon_state = "stamina6"
 
 /mob/living/carbon/update_sight()
 	if(!client)
@@ -754,6 +780,7 @@
 				set_stat(CONSCIOUS)
 	update_damage_hud()
 	update_health_hud()
+	update_stamina_hud()
 	med_hud_set_status()
 
 //called when we get cuffed/uncuffed
@@ -1027,7 +1054,7 @@
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
 
-/// Modifies the handcuffed value if a different value is passed, returning FALSE otherwise. The variable should only be changed through this proc.
+// Modifies the handcuffed value if a different value is passed, returning FALSE otherwise. The variable should only be changed through this proc.
 /mob/living/carbon/proc/set_handcuffed(new_value)
 	if(handcuffed == new_value)
 		return FALSE

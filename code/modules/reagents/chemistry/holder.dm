@@ -744,7 +744,6 @@
 
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
-		C.update_stamina()
 	update_total()
 
 //Signals that metabolization has stopped, triggering the end of trait-based effects

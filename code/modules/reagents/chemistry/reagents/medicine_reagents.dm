@@ -251,7 +251,7 @@
 				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
 		else if(M.getFireLoss() && method == PATCH)
 			M.adjustFireLoss(-reac_volume)
-			M.adjustStaminaLoss(reac_volume*2)
+			M.stamina.adjust(-reac_volume*2)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your burns healing! It stings like hell!</span>")
 			M.emote("scream")
@@ -279,7 +279,7 @@
 /datum/reagent/medicine/oxandrolone/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(-3*REM, 0)
 	if(M.getFireLoss() != 0)
-		M.adjustStaminaLoss(3*REM, FALSE)
+		M.stamina.adjust(-3*REM, FALSE)
 	..()
 	. = 1
 
@@ -305,7 +305,7 @@
 				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
 		else if(M.getBruteLoss() && method == PATCH)
 			M.adjustBruteLoss(-reac_volume)
-			M.adjustStaminaLoss(reac_volume*2)
+			M.stamina.adjust(-reac_volume*2)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your bruises healing! It stings like hell!</span>")
 			M.emote("scream")
@@ -411,7 +411,7 @@
 		if(method in list(PATCH))
 			M.adjustBruteLoss(-1 * reac_volume)
 			M.adjustFireLoss(-1 * reac_volume)
-			M.adjustStaminaLoss(reac_volume*2)
+			M.stamina.adjust(-reac_volume*2)
 			if(show_message)
 				to_chat(M, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
@@ -564,7 +564,7 @@
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(-3*REM, 0)
 	if(M.getBruteLoss() != 0)
-		M.adjustStaminaLoss(3*REM, FALSE)
+		M.stamina.adjust(-3*REM, FALSE)
 	..()
 	. = 1
 
@@ -634,7 +634,7 @@
 	if(prob(20) && iscarbon(M))
 		M.Jitter(10)
 	M.AdjustAllImmobility(-20)
-	M.adjustStaminaLoss(-10*REM, FALSE)
+	M.stamina.adjust(10*REM, FALSE)
 	..()
 	return TRUE
 
@@ -792,7 +792,7 @@
 		M.losebreath -= 2
 	if(M.losebreath < 0)
 		M.losebreath = 0
-	M.adjustStaminaLoss(-0.5*REM, 0)
+	M.stamina.adjust(0.5*REM, 0)
 	. = 1
 	if(prob(20))
 		M.AdjustAllImmobility(-20)
@@ -800,7 +800,7 @@
 
 /datum/reagent/medicine/epinephrine/overdose_process(mob/living/M)
 	if(prob(33))
-		M.adjustStaminaLoss(2.5*REM, 0)
+		M.stamina.adjust(-2.5*REM, 0)
 		M.adjustToxLoss(1*REM, 0)
 		M.losebreath++
 		. = 1
@@ -938,13 +938,13 @@
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
 	M.AdjustAllImmobility(-60)
-	M.adjustStaminaLoss(-35*REM, 0)
+	M.stamina.adjust(35*REM, 0)
 	..()
 	. = 1
 
 /datum/reagent/medicine/amphetamine/overdose_process(mob/living/M)
 	if(prob(33))
-		M.adjustStaminaLoss(2.5*REM, 0)
+		M.stamina.adjust(-2.5*REM, 0)
 		M.adjustToxLoss(1*REM, 0)
 		M.losebreath++
 		. = 1
@@ -961,7 +961,7 @@
 
 /datum/reagent/medicine/pumpup/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-80, FALSE)
-	M.adjustStaminaLoss(-80, 0)
+	M.stamina.adjust(80, 0)
 	M.Jitter(300)
 	..()
 	return TRUE
@@ -980,7 +980,7 @@
 
 /datum/reagent/medicine/pumpup/overdose_process(mob/living/M)
 	if(prob(33))
-		M.adjustStaminaLoss(2.5*REM, 0)
+		M.stamina.adjust(-2.5*REM, 0)
 		M.adjustToxLoss(1*REM, 0)
 		M.losebreath++
 		. = 1
@@ -1052,7 +1052,7 @@
 /datum/reagent/medicine/dexalinp/on_mob_life(mob/living/carbon/M)
 	M.adjustOxyLoss(-3*REM, 0)
 	if(M.getOxyLoss() != 0)
-		M.adjustStaminaLoss(3*REM, FALSE)
+		M.stamina.adjust(-3*REM, FALSE)
 	..()
 	. = 1
 
@@ -1282,7 +1282,7 @@
 	M.adjustToxLoss(-3 * REM, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM, 150) //This does, after all, come from ambrosia, and the most powerful ambrosia in existence, at that!
 	M.adjustCloneLoss(-1 * REM, 0)
-	M.adjustStaminaLoss(-30 * REM, 0)
+	M.stamina.adjust(30 * REM, 0)
 	M.jitteriness = min(max(0, M.jitteriness + 3), 30)
 	M.druggy = min(max(0, M.druggy + 10), 15) //See above
 	..()
@@ -1311,7 +1311,7 @@
 		M.hallucination -= 5
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
-	M.adjustStaminaLoss(2.5*REM, 0)
+	M.stamina.adjust(-2.5*REM, 0)
 	..()
 	return TRUE
 
@@ -1343,7 +1343,7 @@
 
 /datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/carbon/M as mob)
 	M.AdjustAllImmobility(-20)
-	M.adjustStaminaLoss(-20, 0)
+	M.stamina.adjust(20, 0)
 	..()
 	return TRUE
 
@@ -1433,7 +1433,7 @@
 	if(!overdosed) // We do not want any effects on OD
 		overdose_threshold = overdose_threshold + rand(-10,10)/10 // for extra fun
 		M.AdjustAllImmobility(-20)
-		M.adjustStaminaLoss(-15*REM, 0)
+		M.stamina.adjust(15*REM, 0)
 		M.Jitter(1)
 		metabolization_rate = 0.01 * REAGENTS_METABOLISM * rand(5,20) // randomizes metabolism between 0.02 and 0.08 per tick
 		. = TRUE
@@ -1454,7 +1454,7 @@
 				M.losebreath++
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
-			M.adjustStaminaLoss(0.1*REM, 0)
+			M.stamina.adjust(-0.1*REM, 0)
 			M.jitteriness = min(M.jitteriness+1, 20)
 			M.stuttering = min(M.stuttering+1, 20)
 			M.Dizzy(10)
@@ -1467,11 +1467,11 @@
 		if(81)
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
-			M.adjustStaminaLoss(0.1*REM, 0)
+			M.stamina.adjust(-0.1*REM, 0)
 		if(82 to INFINITY)
 			M.Sleeping(100)
 			M.adjustOxyLoss(1.5*REM, 0)
-			M.adjustStaminaLoss(1.5*REM, 0)
+			M.stamina.adjust(-1.5*REM, 0)
 	..()
 	return TRUE
 

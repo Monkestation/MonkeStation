@@ -39,7 +39,7 @@
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	if(chem.type == /datum/reagent/toxin/bonehurtingjuice)
-		H.adjustStaminaLoss(7.5, 0)
+		H.stamina.adjust(-7.5, 0)
 		H.adjustBruteLoss(0.5, 0)
 		if(prob(20))
 			switch(rand(1, 3))

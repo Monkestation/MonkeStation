@@ -417,7 +417,7 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			if(L.m_intent != MOVE_INTENT_WALK)
-				L.toggle_move_intent()
+				L.set_move_intent(MOVE_INTENT_WALK)
 
 	//RUN
 	else if((findtext(message, run_words)))
@@ -425,7 +425,7 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			if(L.m_intent != MOVE_INTENT_RUN)
-				L.toggle_move_intent()
+				L.set_move_intent(MOVE_INTENT_RUN)
 
 	//HELP INTENT
 	else if((findtext(message, helpintent_words)))

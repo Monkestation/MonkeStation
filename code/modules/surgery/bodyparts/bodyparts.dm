@@ -291,10 +291,6 @@
 			update_disabled()
 		if(updating_health)
 			owner.updatehealth()
-			if(stamina > DAMAGE_PRECISION)
-				owner.update_stamina()
-				owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
-				. = TRUE
 	return update_bodypart_damage_state()
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
@@ -348,10 +344,8 @@
 		needs_processing = FALSE
 
 //Returns total damage.
-/obj/item/bodypart/proc/get_damage(include_stamina = FALSE)
+/obj/item/bodypart/proc/get_damage()
 	var/total = brute_dam + burn_dam
-	if(include_stamina)
-		total = max(total, stamina_dam)
 	return total
 
 //Checks disabled status thresholds

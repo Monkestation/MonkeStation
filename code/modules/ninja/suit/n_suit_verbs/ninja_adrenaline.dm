@@ -9,7 +9,7 @@
 		H.SetKnockdown(0)
 		H.SetImmobilized(0)
 		H.SetParalyzed(0)
-		H.adjustStaminaLoss(-75)
+		H.stamina.adjust(75)
 		H.stuttering = 0
 		H.lying_angle = 0
 		H.reagents.add_reagent(/datum/reagent/medicine/amphetamine, 5)

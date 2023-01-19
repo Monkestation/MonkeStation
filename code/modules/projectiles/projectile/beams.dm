@@ -76,6 +76,7 @@
 	icon_state = "omnilaser"
 	damage = 28
 	damage_type = STAMINA
+	stamina = 28
 	flag = "energy"
 	hitsound = 'sound/weapons/tap.ogg'
 	eyeblur = 0
@@ -145,7 +146,7 @@
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit))
 			if(M.wear_suit.type in suit_types)
-				M.adjustStaminaLoss(34)
+				M.stamina.adjust(-34)
 
 /obj/item/projectile/beam/lasertag/redtag
 	icon_state = "laser"

@@ -32,7 +32,7 @@
 /datum/action/changeling/strained_muscles/proc/muscle_loop(mob/living/carbon/user)
 	while(active)
 		user.add_movespeed_modifier(MOVESPEED_ID_CHANGELING_MUSCLES, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-		if(user.stat != CONSCIOUS || user.staminaloss >= 90)
+		if(user.stat != CONSCIOUS || HAS_TRAIT(user, TRAIT_EXHAUSTED))
 			active = !active
 			to_chat(user, "<span class='notice'>Our muscles relax without the energy to strengthen them.</span>")
 			user.Paralyze(40)
@@ -41,7 +41,7 @@
 
 		stacks++
 
-		user.adjustStaminaLoss(stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
+		user.stamina.adjust(-stacks * 1.3) //At first the changeling may regenerate stamina fast enough to nullify fatigue, but it will stack
 
 		if(stacks == 11) //Warning message that the stacks are getting too high
 			to_chat(user, "<span class='warning'>Our legs are really starting to hurt...</span>")

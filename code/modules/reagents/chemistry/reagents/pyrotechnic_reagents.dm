@@ -306,7 +306,7 @@
 	if(isjellyperson(M))
 		shock_timer = 0 //immune to shocks
 		M.AdjustAllImmobility(-40)
-		M.adjustStaminaLoss(-2, 0)
+		M.stamina.adjust(2, 0)
 		if(isluminescent(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/species/jelly/luminescent/L = H.dna.species
@@ -325,7 +325,7 @@
 	if(isoozeling(M))
 		shock_timer = 0 //immune to shocks
 		M.AdjustAllImmobility(-40)
-		M.adjustStaminaLoss(-2, 0)
+		M.stamina.adjust(2, 0)
 	..()
 
 /datum/reagent/teslium/energized_jelly/energized_ooze/overdose_process(mob/living/carbon/M)

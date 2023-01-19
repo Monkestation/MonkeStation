@@ -8,7 +8,7 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
+/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, cap_loss_at = 0)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (!forced && hit_percent <= 0))
@@ -26,7 +26,7 @@
 		if(CLONE)
 			adjustCloneLoss(damage_amount, forced = forced)
 		if(STAMINA)
-			adjustStaminaLoss(damage_amount, forced = forced)
+			CRASH("apply_damage stamina damage!")
 	return 1
 
 /mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE) //like apply damage except it always uses the damage procs
@@ -42,7 +42,7 @@
 		if(CLONE)
 			return adjustCloneLoss(damage)
 		if(STAMINA)
-			return adjustStaminaLoss(damage)
+			stamina.adjust(-damage)
 
 /mob/living/proc/get_damage_amount(damagetype = BRUTE)
 	switch(damagetype)
@@ -57,7 +57,7 @@
 		if(CLONE)
 			return getCloneLoss()
 		if(STAMINA)
-			return getStaminaLoss()
+			return stamina.loss
 
 
 /mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = FALSE, stamina = 0, brain = 0)
@@ -74,7 +74,7 @@
 	if(clone)
 		apply_damage(clone, CLONE, def_zone, blocked)
 	if(stamina)
-		apply_damage(stamina, STAMINA, def_zone, blocked)
+		CRASH("Something is using apply_damages to apply stamina damage!")
 	if(brain)
 		apply_damage(brain, BRAIN, def_zone, blocked)
 	return 1
@@ -137,7 +137,7 @@
 	if(drowsy)
 		apply_effect(drowsy, EFFECT_DROWSY, blocked)
 	if(stamina)
-		apply_damage(stamina, STAMINA, null, blocked)
+		src.stamina.adjust(-stamina)
 	if(jitter)
 		apply_effect(jitter, EFFECT_JITTER, blocked)
 	return BULLET_ACT_HIT
@@ -231,12 +231,6 @@
 /mob/living/proc/getOrganLoss(slot)
 	return
 
-/mob/living/proc/getStaminaLoss()
-	return staminaloss
-
-/mob/living/proc/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
-	return
-
 /mob/living/proc/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
 
@@ -244,37 +238,33 @@
 /mob/living/proc/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
 	adjustBruteLoss(-brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(-burn, FALSE)
-	adjustStaminaLoss(-stamina, FALSE)
+	if(stamina)
+		stack_trace("heal_bodypart_damage tried to heal stamina!")
 	if(updating_health)
 		updatehealth()
-		update_stamina()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE)
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
-	adjustStaminaLoss(stamina, FALSE)
+	if(stamina)
+		stack_trace("take_bodypart_damage tried to deal stamina damage!")
 	if(updating_health)
 		updatehealth()
-		update_stamina(stamina >= DAMAGE_PRECISION)
 
 // heal MANY bodyparts, in random order
-/mob/living/proc/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_status, updating_health = TRUE)
+/mob/living/proc/heal_overall_damage(brute = 0, burn = 0, required_status, updating_health = TRUE)
 	adjustBruteLoss(-brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(-burn, FALSE)
-	adjustStaminaLoss(-stamina, FALSE)
 	if(updating_health)
 		updatehealth()
-		update_stamina()
 
 // damage MANY bodyparts, in random order
-/mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null)
+/mob/living/proc/take_overall_damage(brute = 0, burn = 0, updating_health = TRUE, required_status = null)
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
-	adjustStaminaLoss(stamina, FALSE)
 	if(updating_health)
 		updatehealth()
-		update_stamina(stamina >= DAMAGE_PRECISION)
 
 //heal up to amount damage, in a given order
 /mob/living/proc/heal_ordered_damage(amount, list/damage_types)

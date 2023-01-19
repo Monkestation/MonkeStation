@@ -169,8 +169,8 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10) // delayed activation for toxin
-		M.adjustStaminaLoss((current_cycle - 5)*REM, 0)
-	if(M.getStaminaLoss() >= 145 && !HAS_TRAIT(M, TRAIT_FAKEDEATH)) // fake death tied to stamina for interesting interactions - 23 ticks to fake death with pure ZP
+		M.stamina.adjust(-(current_cycle - 5)*REM, 0)
+	if(M.stamina.loss >= 145 && !HAS_TRAIT(M, TRAIT_FAKEDEATH)) // fake death tied to stamina for interesting interactions - 23 ticks to fake death with pure ZP
 		M.fakedeath(type)
 	..()
 
@@ -355,7 +355,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/staminatoxin/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(REM * data, 0)
+	M.stamina.adjust(-REM * data, 0)
 	data = max(data - 1, 3)
 	..()
 	. = 1
@@ -595,7 +595,7 @@
 /datum/reagent/toxin/sodium_thiopental/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10)
 		M.Sleeping(40)
-	M.adjustStaminaLoss(10*REM, 0)
+	M.stamina.adjust(-10*REM, 0)
 	..()
 	return TRUE
 
@@ -872,7 +872,7 @@
 	M.say("Oof ouch my bones!", forced = /datum/reagent/toxin/bonehurtingjuice)
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(7.5, 0)
+	M.stamina.adjust(-7.5, 0)
 	if(prob(20))
 		switch(rand(1, 3))
 			if(1)
@@ -948,7 +948,7 @@
 
 /datum/reagent/toxin/morphvenom/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(5)
-	M.adjustStaminaLoss(30)
+	M.stamina.adjust(-30)
 	M.silent = max(M.silent, 3)
 	M.confused = max(M.confused, 3)
 	..()

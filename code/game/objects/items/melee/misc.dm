@@ -240,7 +240,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
-		user.adjustStaminaLoss(stamina_damage)
+		user.stamina.adjust(-stamina_damage)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))

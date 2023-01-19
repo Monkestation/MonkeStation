@@ -221,13 +221,13 @@
 		H.visible_message("<span class='warning'>[pick(fluffmessages)]</span>", \
 							   "<span class='userdanger'>[pick(fluffmessages)]</span>")
 		playsound(get_turf(user), 'sound/effects/woodhit.ogg', 75, 1, -1)
-		H.adjustStaminaLoss(rand(13,20))
+		H.stamina.adjust(-rand(13,20))
 		if(prob(10))
 			H.visible_message("<span class='warning'>[H] collapses!</span>", \
 								   "<span class='userdanger'>Your legs give out!</span>")
 			H.Paralyze(80)
-		if(H.staminaloss && !H.IsSleeping())
-			var/total_health = (H.health - H.staminaloss)
+		if(H.stamina.loss && !H.IsSleeping())
+			var/total_health = (H.health - H.stamina.loss_as_percent)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking [H.p_them()] out cold!</span>", \
 									   "<span class='userdanger'>[user] knocks you unconscious!</span>")

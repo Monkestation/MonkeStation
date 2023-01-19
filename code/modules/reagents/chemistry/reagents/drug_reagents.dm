@@ -96,7 +96,7 @@
 	M.AdjustImmobilized(-20)
 	M.AdjustParalyzed(-20)
 	M.adjustToxLoss(0.75, 0)
-	M.adjustStaminaLoss(-18, 0)
+	M.stamina.adjust(18, 0)
 	..()
 	. = 1
 
@@ -167,7 +167,7 @@
 	M.AdjustUnconscious(-40)
 	M.AdjustParalyzed(-40)
 	M.AdjustImmobilized(-40)
-	M.adjustStaminaLoss(-40, 0)
+	M.stamina.adjust(40, 0)
 	M.drowsyness = max(0,M.drowsyness-30)
 	M.Jitter(2)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
@@ -229,7 +229,7 @@
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.adjustStaminaLoss(-5, 0)
+	M.stamina.adjust(5, 0)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4)
 	M.hallucination += 5
 	if(!HAS_TRAIT(M, TRAIT_IMMOBILIZED) && !ismovableatom(M.loc))
@@ -269,7 +269,7 @@
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.adjustStaminaLoss(-20, 0)
+	M.stamina.adjust(20, 0)
 	M.adjustToxLoss(0.5, 0)
 	if(prob(50))
 		M.losebreath++
