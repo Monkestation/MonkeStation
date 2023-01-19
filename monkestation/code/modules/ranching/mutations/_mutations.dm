@@ -103,30 +103,25 @@
 	if(is_egg)
 		var/obj/item/food/egg/checked_egg = checkee
 		if(food_requirements.len)
-			var/obj/item/food/eaten_food
 			for(var/food in checked_egg.consumed_food)
-				eaten_food = food
-				if(eaten_food.type in food_requirements)
-					food_requirements -= eaten_food.type
+				if(food in food_requirements)
+					food_requirements -= food
 			if(food_requirements.len)
 				return FALSE
 	else
 		var/mob/living/simple_animal/checked_animal = checkee
 		if(food_requirements.len)
-			var/obj/item/food/eaten_food
 			for(var/food in checked_animal.consumed_food)
-				eaten_food = food
-				if(eaten_food.type in food_requirements)
-					food_requirements -= eaten_food.type
+				if(food in food_requirements)
+					food_requirements -= food
 			if(food_requirements.len)
 				return FALSE
 	return TRUE
 
 /datum/mutation/ranching/proc/check_reagent(atom/checkee, is_egg)
 	if(reagent_requirements.len)
-		var/list/datum/reagent/needed_reagents = new/list
-		var/datum/reagent/eaten_reagent
-		for(var/datum/reagent/reagent in reagent_requirements)
+		var/list/needed_reagents = new/list
+		for(var/reagent in reagent_requirements)
 			needed_reagents += reagent
 		var/list/consumed_reagents = list()
 		if(is_egg)
@@ -137,9 +132,8 @@
 			consumed_reagents = checked_animal.consumed_reagents
 
 		for(var/reagent in consumed_reagents)
-			eaten_reagent = reagent
-			if(eaten_reagent in reagent_requirements)
-				needed_reagents -= eaten_reagent
+			if(reagent in reagent_requirements)
+				needed_reagents -= reagent
 		if(needed_reagents.len)
 			return FALSE
 	return TRUE

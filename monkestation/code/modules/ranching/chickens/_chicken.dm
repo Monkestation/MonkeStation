@@ -247,28 +247,34 @@
 
 /mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item, mob/user)
 	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
-		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
-			adjust_happiness(happy_chems[reagent] * reagent.volume, user)
+		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent.type] * reagent.volume))
+			var/liked_value = happy_chems[reagent.type]
+			adjust_happiness(liked_value * reagent.volume, user)
 		else if(reagent in disliked_chemicals)
-			adjust_happiness(-(disliked_chemicals[reagent] * reagent.volume), user)
+			var/disliked_value = disliked_chemicals[reagent.type]
+			adjust_happiness(-(disliked_value * reagent.volume), user)
 		if(!(reagent in consumed_reagents))
 			consumed_reagents.Add(reagent)
 
 	if(!istype(given_item, /obj/item/food))
 		return
+
 	var/obj/item/food/placeholder_food_item = given_item
-	if(!(placeholder_food_item in consumed_food))
-		consumed_food.Add(given_item)
+	if(!(placeholder_food_item.type in consumed_food))
+		consumed_food.Add(placeholder_food_item.type)
 
 	for(var/food_type in placeholder_food_item.foodtypes)
 		if(food_type in disliked_food_types)
-			adjust_happiness(-(disliked_food_types[food_type]), user)
+			var/type_value = disliked_food_types[food_type]
+			adjust_happiness(-food_value, user)
 
-	if(placeholder_food_item.type in liked_foods && max_happiness_per_generation >= liked_foods[placeholder_food_item])
-		adjust_happiness(liked_foods[placeholder_food_item], user)
+	if((placeholder_food_item.type in liked_foods) && max_happiness_per_generation >= liked_foods[placeholder_food_item.type])
+		var/liked_value = liked_foods[placeholder_food_item.type]
+		adjust_happiness(liked_value, user)
 
 	else if(placeholder_food_item.type in disliked_foods)
-		adjust_happiness(-(disliked_foods[placeholder_food_item]), user)
+		var/disliked_value = disliked_foods[placeholder_food_item.type]
+		adjust_happiness(-disliked_value, user)
 
 /mob/living/simple_animal/chicken/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	. = ..()
