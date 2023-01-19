@@ -62,6 +62,20 @@
 		if(created_mutation.needed_species)
 			species_string = created_mutation.needed_species.name
 
+		var/liked_string
+		var/disliked_string
+		for(var/datum/reagent/listed_reagent as anything in F.happy_chems)
+			liked_string += ",[capitalize(initial(listed_reagent.name))] "
+
+		for(var/datum/reagent/listed_reagent as anything in F.disliked_chemicals)
+			disliked_string += ",[capitalize(initial(listed_reagent.name))] "
+
+		for(var/obj/item/food/listed_food as anything in F.liked_foods)
+			liked_string += ",[capitalize(initial(listed_food.name))] "
+
+		for(var/obj/item/food/listed_food as anything in F.disliked_foods)
+			disliked_string += ",[capitalize(initial(listed_food.name))] "
+
 		details["name"] = "[female_name] / [male_name]"
 		details["desc"] = F.book_desc
 		details["max_age"] = F.max_age
@@ -81,6 +95,8 @@
 		details["needed_turfs"] = turf_names.Join(",")
 		details["nearby_items"] = obj_names.Join(",")
 		details["comes_from"] = created_mutation.can_come_from_string
+		details["likes"] = copytext(liked_string, 2)
+		details["dislikes"] = copytext(disliked_string, 2)
 
 		var/icon/chicken_icon = getFlatIcon(F)
 		var/md5 = md5(fcopy_rsc(chicken_icon))

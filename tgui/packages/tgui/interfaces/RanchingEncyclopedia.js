@@ -65,13 +65,19 @@ const ChickenInfo = (props, context) => {
         {selectedChicken.comes_from && "Mutates from: " + selectedChicken.comes_from}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {"Maximum Living Age: " + selectedChicken.max_age}
+        {"Maximum Living Age:" + selectedChicken.max_age}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.desc && "Description: " + selectedChicken.desc}
+        {selectedChicken.likes && "Likes:" + selectedChicken.likes}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.happiness && "Required Happiness: " + selectedChicken.happiness}
+        {selectedChicken.dislikes && "Dislikes:" + selectedChicken.dislikes}
+      </Flex.Item>
+      <Flex.Item class="chicken-metric">
+        {selectedChicken.desc && "Description:" + selectedChicken.desc}
+      </Flex.Item>
+      <Flex.Item class="chicken-metric">
+        {selectedChicken.happiness && "Required Happiness:" + selectedChicken.happiness}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.temperature && "Requires temperatures within " + selectedChicken.temperature_variance +"K of " + selectedChicken.temperature + "K"}
@@ -80,10 +86,10 @@ const ChickenInfo = (props, context) => {
         {selectedChicken.needed_pressure && "Requires pressure within " + selectedChicken.pressure_variance + " of " + selectedChicken.needed_pressure}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.food_requirements && "Chicken needs to have eaten: " + selectedChicken.food_requirements}
+        {selectedChicken.food_requirements && "Chicken needs to have eaten:" + selectedChicken.food_requirements}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.reagent_requirements && "Chicken needs to have consumed: " + selectedChicken.reagent_requirements}
+        {selectedChicken.reagent_requirements && "Chicken needs to have consumed:" + selectedChicken.reagent_requirements}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.player_job && "A " + selectedChicken.player_job + " needs to be present for this chicken's birth."}
@@ -107,7 +113,7 @@ const ChickenInfo = (props, context) => {
         {selectedChicken.needed_turfs && "Their needs to be " + selectedChicken.needed_turfs + " around at this chickens birth."}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.nearby_items && "You need " + selectedChicken.nearby_items +"to entice the chicken to hatch."}
+        {selectedChicken.nearby_items && "You need " + selectedChicken.nearby_items +" nearby to entice the chicken to hatch."}
       </Flex.Item>
     </Flex>
   );

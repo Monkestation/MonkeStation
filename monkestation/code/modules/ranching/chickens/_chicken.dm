@@ -259,10 +259,10 @@
 
 	if(!istype(given_item, /obj/item/food))
 		return
+	var/obj/item/food/placeholder_food_item = given_item
 	if(!(given_item in placeholder_food_item))
 		consumed_food.Add(given_item)
 
-	var/obj/item/food/placeholder_food_item = given_item
 	for(var/food_type in placeholder_food_item.foodtypes)
 		if(food_type in disliked_food_types)
 			happiness -= disliked_food_types[food_type]
