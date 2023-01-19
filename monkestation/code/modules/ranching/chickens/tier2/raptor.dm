@@ -11,6 +11,8 @@
 	melee_damage = 8
 	obj_damage = 10
 
+	book_desc = "These creatures are bloodthirsty and will attack everything they are not friends with on site, this includes other chickens."
+
 /obj/item/food/egg/raptor
 	name = "Raptor Egg"
 	icon_state = "raptor"

@@ -315,7 +315,7 @@
 		COOLDOWN_START(src, age_cooldown, age_speed)
 		age ++
 
-	if(age > 100)
+	if(age > max_age)
 		src.death()
 
 	var/animal_count = 0

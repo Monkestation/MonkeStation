@@ -24,9 +24,12 @@
 	///required liquid depth
 	var/liquid_depth
 	///Needed species
-	var/needed_species
+	var/datum/species/needed_species
 	///How hurt someone is, invert is so how damaaged is the number you put so for crit you would put 100
 	var/player_health
+
+	///this is used for the guide book to say where it gets this from
+	var/can_come_from_string
 
 /datum/mutation/ranching/chicken
 	///The typepath of the chicken
@@ -34,7 +37,7 @@
 	///Egg type for egg so me don't gotta create new chicken
 	var/obj/item/food/egg/egg_type
 	///Needed Rooster Type
-	var/required_rooster
+	var/mob/living/simple_animal/chicken/required_rooster
 
 /datum/mutation/ranching/proc/cycle_requirements(atom/checkee, is_egg = FALSE)
 	if(check_happiness(checkee, is_egg) && check_temperature(checkee, is_egg) && check_pressure(checkee, is_egg) && check_food(checkee, is_egg) && check_reagent(checkee, is_egg) && check_turfs(checkee, is_egg) && check_items(checkee, is_egg) && check_breathable_atmos(checkee, is_egg) && check_players_job(checkee, is_egg) && check_liquid_depth(checkee, is_egg) && check_species(checkee, is_egg) && check_players_health(checkee, is_egg))

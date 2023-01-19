@@ -49,6 +49,8 @@
 	var/overcrowding = 10
 	///Age of the chicken
 	var/age = 0
+	///max age of a chicken
+	var/max_age = 100
 	///Cooldown for aging
 	COOLDOWN_DECLARE(age_cooldown)
 	///Aging Speed
@@ -86,7 +88,8 @@
 	var/list/speech_buffer = list()
 	/// the icon suffix
 	var/icon_suffix = ""
-
+	///What shows up in the encyclopedia, will need some lovin
+	var/book_desc = "White Chickens lay White Eggs, however, if they are happy they will lay Brown Eggs instead. "
 #undef DEFAULT_CHICKEN_ABILITY_COOLDOWN
 
 /obj/item/food/egg
