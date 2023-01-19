@@ -5,6 +5,8 @@
 	egg_type = /obj/item/food/egg/void
 	mutation_list = list()
 
+	book_desc = "Born from the suffering of White Chickens, they produce eggs that shrink you in size for a short duration. Research has shown this causes increased physical damage during the duration."
+
 /obj/item/food/egg/void
 	name = "Void Egg"
 	icon_state = "void"

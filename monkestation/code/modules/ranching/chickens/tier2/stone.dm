@@ -6,6 +6,7 @@
 	egg_type = /obj/item/food/egg/stone
 	mutation_list = list(/datum/mutation/ranching/chicken/cockatrice)
 
+	book_desc = "These chickens are capable of replicating materials the eggs have been plated with. The downside, you need to break the eggs to get the materials. This will make chickens very sad and make some become hostile."
 /obj/item/food/egg/stone
 	name = "Rocky Egg"
 	icon_state = "stone"

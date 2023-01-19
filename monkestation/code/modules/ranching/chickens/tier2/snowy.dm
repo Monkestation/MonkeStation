@@ -6,6 +6,7 @@
 	minbodytemp = 0
 	maxbodytemp = 40
 
+	book_desc = "These chickens require a sub-zero environment to live. They will melt if its not cold enough for them."
 /obj/item/food/egg/snowy
 	name = "Snowy Egg"
 	icon_state = "snowy"

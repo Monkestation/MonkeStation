@@ -5,6 +5,7 @@
 	egg_type = /obj/item/food/egg/dream
 	mutation_list = list()
 
+	book_desc = "A mystical chicken borne from the dreams of death will only appear when a Black Selkie dies of old age."
 /obj/item/food/egg/dream
 	name = "Dream Egg"
 	icon_state = "dream"

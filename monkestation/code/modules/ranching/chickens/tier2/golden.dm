@@ -4,6 +4,8 @@
 	breed_name = "Golden"
 	egg_type = /obj/item/food/egg/golden
 
+	book_desc = "Incredibly shiny! Cargos bestfriend. These Chickens lay eggs made entirely out of gold, makes you shine when eaten."
+
 /obj/item/food/egg/golden
 	name = "Golden Egg"
 	icon_state = "golden"

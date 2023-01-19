@@ -12,6 +12,7 @@
 	unique_ability = CHICKEN_HONK
 	ability_prob = 25
 
+	book_desc = "Tries very hard to be funny and occasionally honks."
 /obj/item/food/egg/clown
 	name = "Clown Egg?"
 	food_reagents = list(/datum/reagent/water = 50)

@@ -14,6 +14,8 @@
 	unique_ability = CHICKEN_REV
 	ability_prob = 5
 
+	book_desc = "This is what happens when we let the raptors learn from the stations crew."
+
 /obj/item/food/egg/rev_raptor
 	name = "Revolutionary Egg"
 	icon_state = "rev_raptor"

@@ -8,6 +8,8 @@
 	///the radio that is inside the pigeon
 	var/obj/item/radio/pigeon/egg_radio = null
 
+	book_desc = "Message from Nano-Transen: These pigeons are totally real, and not spying devices that will listen in on your conversations for the purpose of union-busting."
+
 /mob/living/simple_animal/chicken/pigeon/Initialize(mapload)
 	. = ..()
 	egg_radio = new /obj/item/radio/pigeon/egg_radio(src)

@@ -9,6 +9,7 @@
 	cooldown_time = 40 SECONDS
 	ability_prob = 5
 
+	book_desc = "Incredibly fluffy, aswell as hyper. Watch out they will sometimes enter a Sugar Rush which will cause them to bounce around and make other chickens unhappy."
 /obj/item/food/egg/cotton_candy
 	name = "Sugary Egg"
 	icon_state = "cotton_candy"

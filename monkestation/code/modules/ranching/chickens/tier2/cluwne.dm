@@ -14,6 +14,7 @@
 	cooldown_time = 30 SECONDS
 	ability_prob = 25
 
+	book_desc = "These are the product of being incredibly cruel to your Henks. Space PETA would be furious."
 /obj/item/food/egg/clown_sad
 	name = "Clown? Egg"
 	icon_state = "clown"

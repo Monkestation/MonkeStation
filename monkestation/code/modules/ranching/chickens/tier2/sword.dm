@@ -11,6 +11,8 @@
 	egg_type = /obj/item/food/egg/sword
 	mutation_list = list()
 
+	book_desc = "They have seemed to have taken an oath to protect, they will protect all chickens from those who would do harm onto them."
+
 /obj/item/food/egg/sword
 	name = "Gallant Egg"
 	icon_state = "sword"

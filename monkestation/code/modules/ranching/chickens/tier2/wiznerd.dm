@@ -14,6 +14,7 @@
 
 	projectile_type = /obj/item/projectile/magic/magic_missle_weak
 
+	book_desc = "It seems the Wizard's Federation has spread its influence into the local chicken population, Nano-Transen higher ups will look into this."
 /obj/item/food/egg/wiznerd
 	name = "Bewitching Egg"
 	icon_state = "wiznerd"

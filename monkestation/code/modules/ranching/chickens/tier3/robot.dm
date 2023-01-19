@@ -10,6 +10,8 @@
 
 	egg_type = /obj/item/food/egg/robot
 
+	book_desc = "I'm not even sure how this is possible. It's like 100% metal."
+
 /mob/living/simple_animal/chicken/robot/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_HOSTILE_ATTACKINGTARGET, .proc/emp_burst)

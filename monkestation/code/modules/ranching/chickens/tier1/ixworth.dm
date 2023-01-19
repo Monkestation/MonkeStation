@@ -5,6 +5,7 @@
 	egg_type = /obj/item/food/egg/ixworth
 	mutation_list = list()
 
+	book_desc = "A very stylish breed."
 /obj/item/food/egg/ixworth
 	name = "Ixworth Egg"
 	icon_state = "ixworth"

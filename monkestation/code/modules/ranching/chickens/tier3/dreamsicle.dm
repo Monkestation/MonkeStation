@@ -5,6 +5,7 @@
 	egg_type = /obj/item/food/egg/dreamsicle
 	mutation_list = list()
 
+	book_desc = "Unlike its parent the dreamsicle is able to survive in normal environments, it has also tamed the hyper nature of its parents. This is the perfect hybrid and consuming the egg will make you bounce of the walls leaving a trail of ice behind you."
 /obj/item/food/egg/dreamsicle
 	name = "Dreamsicle Egg"
 	icon_state = "dreamsicle"

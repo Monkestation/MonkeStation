@@ -4,6 +4,8 @@
 	breed_name = "Mime"
 	egg_type = /obj/item/food/egg/mime
 
+	book_desc = "..."
+
 /obj/item/food/egg/mime
 	name = "Mime Egg"
 	icon_state = "mime"
