@@ -266,7 +266,7 @@
 	for(var/food_type in placeholder_food_item.foodtypes)
 		if(food_type in disliked_food_types)
 			var/type_value = disliked_food_types[food_type]
-			adjust_happiness(-food_value, user)
+			adjust_happiness(-type_value, user)
 
 	if((placeholder_food_item.type in liked_foods) && max_happiness_per_generation >= liked_foods[placeholder_food_item.type])
 		var/liked_value = liked_foods[placeholder_food_item.type]
