@@ -68,12 +68,6 @@ const ChickenInfo = (props, context) => {
         {"Maximum Living Age:" + selectedChicken.max_age}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.likes && "Likes:" + selectedChicken.likes}
-      </Flex.Item>
-      <Flex.Item class="chicken-metric">
-        {selectedChicken.dislikes && "Dislikes:" + selectedChicken.dislikes}
-      </Flex.Item>
-      <Flex.Item class="chicken-metric">
         {selectedChicken.desc && "Description:" + selectedChicken.desc}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
