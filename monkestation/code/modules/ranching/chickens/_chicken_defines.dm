@@ -41,10 +41,6 @@
 	var/total_times_eaten = 0
 	///Current fed level
 	var/current_feed_amount = 0
-	///List of liked foods
-	var/list/liked_foods = list(/obj/item/food/grown/wheat)
-	///list of disliked foods
-	var/list/disliked_food_types = list(MEAT)
 	///Overcrowding amount
 	var/overcrowding = 10
 	///Age of the chicken
@@ -59,11 +55,22 @@
 	var/max_happiness_per_generation = 100
 	///How sad until they die of sadness?
 	var/minimum_living_happiness = -200
+
 	///List of happy chems
 	var/list/happy_chems = list(
-	/datum/reagent/drug/methamphetamine = 1,
+	/datum/reagent/drug/methamphetamine = 0.5,
 	/datum/reagent/toxin/lipolicide = 0.25,
-	/datum/reagent/consumable/sugar = 0.5,)
+	/datum/reagent/consumable/sugar = 0.1,)
+	///List of liked foods
+	var/list/liked_foods = list(/obj/item/food/grown/wheat = 3,)
+	///list of disliked foods
+	var/list/disliked_food_types = list(MEAT = 4,)
+	///list of disliked foods
+	var/list/disliked_foods = list()
+	///list of dislike chemicals
+	var/list/disliked_chemicals = list(/datum/reagent/blood = 1,)
+	///if this chicken likes pets
+	var/likes_pets = TRUE
 
 	///unique ability for chicken
 	var/unique_ability = null

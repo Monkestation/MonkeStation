@@ -209,8 +209,13 @@
 
 /mob/living/simple_animal/chicken/attack_hand(mob/living/carbon/human/user)
 	..()
-	if(user.a_intent == "help")
+	if(user.a_intent == "help" && likes_pets && max_happiness_per_generation >= 3)
+		happiness += 1
 		set_friendship(user, 0.1)
+		max_happiness_per_generation -= 3 ///petting is not efficent
+	else if(user.a_intent == "help" && !likes_pets)
+		happiness -= 1
+		set_friendship(user, -0.1)
 
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
@@ -232,24 +237,7 @@
 	Friends[new_friend] += amount
 
 /mob/living/simple_animal/chicken/proc/feed_food(obj/item/given_item, mob/user)
-	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
-		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
-			happiness += happy_chems[reagent] * reagent.volume
-			max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
-		if(!(reagent in consumed_reagents))
-			consumed_reagents.Add(reagent)
-
-	if(!(given_item in consumed_food))
-		consumed_food.Add(given_item)
-
-	if(given_item.type in liked_foods && max_happiness_per_generation >= 10)
-		happiness += 10
-		max_happiness_per_generation -= 10
-
-	var/obj/item/food/placeholder_food_item = given_item
-	for(var/food_type in placeholder_food_item.foodtypes)
-		if(food_type in disliked_food_types)
-			happiness -= 10
+	handle_happiness_changes(given_item)
 	if(user)
 		var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
 		user.visible_message(feedmsg)
@@ -258,6 +246,33 @@
 	eggs_left += rand(0, 2)
 	current_feed_amount ++
 	total_times_eaten ++
+
+/mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item)
+	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
+		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
+			happiness += happy_chems[reagent] * reagent.volume
+			max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
+		else if(reagent in disliked_chemicals)
+			happiness -= disliked_chemicals[reagent] * reagent.volume
+		if(!(reagent in consumed_reagents))
+			consumed_reagents.Add(reagent)
+
+	if(!istype(given_item, /obj/item/food))
+		return
+	if(!(given_item in placeholder_food_item))
+		consumed_food.Add(given_item)
+
+	var/obj/item/food/placeholder_food_item = given_item
+	for(var/food_type in placeholder_food_item.foodtypes)
+		if(food_type in disliked_food_types)
+			happiness -= disliked_food_types[food_type]
+
+	if(placeholder_food_item.type in liked_foods && max_happiness_per_generation >= liked_foods[placeholder_food_item])
+		happiness += liked_foods[placeholder_food_item]
+		max_happiness_per_generation -= liked_foods[placeholder_food_item]
+
+	else if(placeholder_food_item.type in disliked_foods)
+		happiness -= disliked_foods[placeholder_food_item]
 
 /mob/living/simple_animal/chicken/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	. = ..()
