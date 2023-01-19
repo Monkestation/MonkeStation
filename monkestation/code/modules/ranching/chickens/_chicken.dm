@@ -257,7 +257,7 @@
 	if(!istype(given_item, /obj/item/food))
 		return
 	var/obj/item/food/placeholder_food_item = given_item
-	if(!(given_item in consumed_food))
+	if(!(placeholder_food_item in consumed_food))
 		consumed_food.Add(given_item)
 
 	for(var/food_type in placeholder_food_item.foodtypes)
