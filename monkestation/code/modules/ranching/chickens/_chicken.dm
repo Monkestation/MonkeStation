@@ -245,7 +245,7 @@
 	current_feed_amount ++
 	total_times_eaten ++
 
-/mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item. mob/user)
+/mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item, mob/user)
 	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
 		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
 			adjust_happiness(happy_chems[reagent] * reagent.volume, user)
@@ -257,7 +257,7 @@
 	if(!istype(given_item, /obj/item/food))
 		return
 	var/obj/item/food/placeholder_food_item = given_item
-	if(!(given_item in placeholder_food_item))
+	if(!(given_item in consumed_food))
 		consumed_food.Add(given_item)
 
 	for(var/food_type in placeholder_food_item.foodtypes)
