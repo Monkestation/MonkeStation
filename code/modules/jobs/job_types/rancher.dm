@@ -34,9 +34,11 @@
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/civilian/rancher
 	l_pocket = /obj/item/chicken_scanner
-	r_pocket = /obj/item/chicken_book
 
 	backpack = /obj/item/storage/backpack/botany
 	satchel = /obj/item/storage/backpack/satchel/hyd
 
-
+/datum/job/rancher/after_spawn(mob/living/H, mob/M)
+	. = ..()
+	var/obj/item/chicken_book/created_book = new
+	H.equip_to_slot_or_del(created_book, ITEM_SLOT_BACKPACK)
