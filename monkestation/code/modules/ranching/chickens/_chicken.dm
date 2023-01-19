@@ -210,12 +210,10 @@
 /mob/living/simple_animal/chicken/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(user.a_intent == "help" && likes_pets && max_happiness_per_generation >= 3)
-		happiness += 1
-		set_friendship(user, 0.1)
-		max_happiness_per_generation -= 3 ///petting is not efficent
+		adjust_happiness(1, user)
+		max_happiness_per_generation -= 2 ///petting is not efficent
 	else if(user.a_intent == "help" && !likes_pets)
-		happiness -= 1
-		set_friendship(user, -0.1)
+		adjust_happiness(-1, user)
 
 /mob/living/simple_animal/chicken/attackby(obj/item/given_item, mob/user, params)
 	if(istype(given_item, /obj/item/food)) //feedin' dem chickens
@@ -226,7 +224,7 @@
 			var/turf/vomited_turf = get_turf(src)
 			vomited_turf.add_vomit_floor(src, VOMIT_TOXIC)
 			to_chat(user, "<span class='warning'>[name] can't keep the food down, it vomits all over the floor!</span>")
-			happiness -= 15
+			adjust_happiness(-15, user)
 			current_feed_amount -= 3
 	else
 		..()
@@ -237,7 +235,7 @@
 	Friends[new_friend] += amount
 
 /mob/living/simple_animal/chicken/proc/feed_food(obj/item/given_item, mob/user)
-	handle_happiness_changes(given_item)
+	handle_happiness_changes(given_item, user)
 	if(user)
 		var/feedmsg = "[user] feeds [given_item] to [name]! [pick(feedMessages)]"
 		user.visible_message(feedmsg)
@@ -247,13 +245,12 @@
 	current_feed_amount ++
 	total_times_eaten ++
 
-/mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item)
+/mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item. mob/user)
 	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
 		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent] * reagent.volume))
-			happiness += happy_chems[reagent] * reagent.volume
-			max_happiness_per_generation -= happy_chems[reagent] * reagent.volume
+			adjust_happiness(happy_chems[reagent] * reagent.volume, user)
 		else if(reagent in disliked_chemicals)
-			happiness -= disliked_chemicals[reagent] * reagent.volume
+			adjust_happiness(-(disliked_chemicals[reagent] * reagent.volume), user)
 		if(!(reagent in consumed_reagents))
 			consumed_reagents.Add(reagent)
 
@@ -265,14 +262,13 @@
 
 	for(var/food_type in placeholder_food_item.foodtypes)
 		if(food_type in disliked_food_types)
-			happiness -= disliked_food_types[food_type]
+			adjust_happiness(-(disliked_food_types[food_type]), user)
 
 	if(placeholder_food_item.type in liked_foods && max_happiness_per_generation >= liked_foods[placeholder_food_item])
-		happiness += liked_foods[placeholder_food_item]
-		max_happiness_per_generation -= liked_foods[placeholder_food_item]
+		adjust_happiness(liked_foods[placeholder_food_item], user)
 
 	else if(placeholder_food_item.type in disliked_foods)
-		happiness -= disliked_foods[placeholder_food_item]
+		adjust_happiness(-(disliked_foods[placeholder_food_item]), user)
 
 /mob/living/simple_animal/chicken/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, list/message_mods = list())
 	. = ..()
@@ -337,10 +333,10 @@
 	for(var/mob/living/simple_animal/animals in view(1, src))
 		animal_count ++
 	if(animal_count >= overcrowding)
-		happiness --
+		adjust_happiness(-1)
 
 	if(current_feed_amount == 0)
-		happiness -= 0.01 ///lose happiness really slowly
+		adjust_happiness(-0.01)
 
 	if(happiness < minimum_living_happiness)
 		src.death()
@@ -437,3 +433,10 @@
 /mob/living/simple_animal/chicken/hen/LateInitialize()
 	.=..()
 	gender = FEMALE
+
+/mob/living/simple_animal/chicken/proc/adjust_happiness(amount, atom/source)
+	happiness += amount
+	if(amount > 0)
+		max_happiness_per_generation -= amount
+	if(source)
+		set_friendship(source, amount * 0.1)
