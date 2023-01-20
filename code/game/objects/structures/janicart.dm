@@ -23,8 +23,6 @@
 	var/signs = 0
 	//The max amount of signs the cart can store
 	var/max_signs = 4
-	//Allows for mop to insert into cart after drying
-	var/mop_insert_double_click = FALSE
 
 
 /obj/structure/janitorialcart/Initialize(mapload)
@@ -48,27 +46,25 @@
 	. = ..()
 	if(broken)
 		return
-	. += span_info("<b>Click</b> with a wet mop to wring out the fluids into the mop bucket.")
+	. += span_info("<b>Alt-click</b> with a wet mop to wring out the fluids into the mop bucket.")
 	if(reagents.total_volume > 1)
 		. += span_info("There is currently [reagents.total_volume] units in [src].")
 		. += span_info("<b>Click</b> with a mop to wet it.")
 		. += span_info("<b>Crowbar</b> it to empty it onto [get_turf(src)].")
 	if(!mymop)
-		. += span_info("<b>Click</b> with a dry mop to store it in [src]")
+		. += span_info("<b>Click</b> with a mop to store it in [src]")
 	if(mybag)
 		. += span_info("<b>Click</b> with an object to put it in [mybag].")
 
 /obj/structure/janitorialcart/proc/wet_mop(obj/item/mop/your_mop, mob/user)
 	if(reagents.total_volume < 1)
 		to_chat(user, span_warning("[src]'s mop bucket is empty!"))
-		mop_insert_double_click = TRUE
 		update_icon()
 		return FALSE
 	else
 		reagents.trans_to(your_mop, your_mop.mopcap, transfered_by = user)
 		to_chat(user, span_notice("You wet [your_mop] in [src]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
-		mop_insert_double_click = FALSE
 	update_icon()
 	return TRUE
 
@@ -82,7 +78,6 @@
 	your_mop.reagents.trans_to(src, reagents.maximum_volume, transfered_by = user)
 	to_chat(user, span_notice("You wring [your_mop] out into the mop bucket using the wringer."))
 	playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
-	mop_insert_double_click = TRUE
 	update_icon()
 	return TRUE
 
@@ -179,20 +174,13 @@
 			return
 
 		var/obj/item/mop/your_mop = Item
-		if(your_mop.reagents.total_volume <= 20 && mop_insert_double_click == TRUE)
-			mymop = Item
-			mop_insert_double_click = FALSE
-			if(!put_in_cart(Item, user))
-				mymop = null
-			return
-
-		if(your_mop.reagents.total_volume >= 20 && mop_insert_double_click == FALSE)
-			if(dry_mop(your_mop, user))
-				return
-
 		if(your_mop.reagents.total_volume <= your_mop.reagents.maximum_volume)
 			if(wet_mop(your_mop, user))
 				return
+			else
+				mymop = Item
+				if(!put_in_cart(Item, user))
+					mymop = null
 
 		return
 
@@ -249,6 +237,11 @@
 		return FALSE //so we can fill the cart via our afterattack without bludgeoning it
 
 	return ..()
+
+/obj/structure/janitorialcart/AltClick(mob/living/user)
+	var/obj/item/mop/held_mop = user.get_active_held_item()
+	dry_mop(held_mop, user)
+	.=..()
 
 /obj/structure/janitorialcart/crowbar_act(mob/living/user, obj/item/Crowbar)
 	..()
