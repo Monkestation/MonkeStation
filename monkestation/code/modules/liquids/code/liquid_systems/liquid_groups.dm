@@ -179,8 +179,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				spread_liquid(adjacent_turf, member)
 		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
-		if(adjacent_turf.liquids && member.liquids.fire_state)
-			spread_fire(adjacent_turf, member)
 		//Immutable check thing
 		if(adjacent_turf.liquids && adjacent_turf.liquids.immutable)
 			if(member.z != adjacent_turf.z)
@@ -427,15 +425,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
 	reagents.chem_temp = group_temperature
 
-/datum/liquid_group/proc/spread_fire(turf/new_turf, turf/source)
+/datum/liquid_group/proc/spread_fire(turf/source)
 	if(!group_burn_power)
 		get_group_burn()
 
-	if(new_turf.liquids.fire_state && new_turf.liquids.fire_state == source.liquids.fire_state)
-		return
+	for(var/turf/new_turf in get_adjacent_open_turfs(source))
+		if(!new_turf.liquids || !source.liquids.fire_state)
+			return
 
-	new_turf.liquids.check_fire(TRUE)
-	burning_members |= new_turf
+		if(new_turf.liquids.fire_state && new_turf.liquids.fire_state == source.liquids.fire_state)
+			return
+
+		new_turf.liquids.check_fire(TRUE)
+		burning_members |= new_turf
+		SSliquids.burning_turfs |= new_turf
 
 /datum/liquid_group/proc/get_group_burn()
 	var/total_burn_power = 0
@@ -444,7 +447,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(burn_power)
 			total_burn_power += burn_power * reagent_type.volume
 	if(!total_burn_power)
-		return FALSE
+		if(burning_members.len)
+			extinguish_all()
 	total_burn_power /= reagents.total_volume //We get burn power per unit.
 	if(total_burn_power <= REQUIRED_FIRE_POWER_PER_UNIT)
 		return FALSE
@@ -455,6 +459,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/total_burned = group_burn_power * (burning_members.len * 0.2)
 
 	var/per_turf_burned = total_burned / burning_members.len
+
+	if(!get_group_burn())
+		extinguish_all()
 
 	remove_any(amount = total_burned)
 
@@ -530,3 +537,16 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(final_adjacent.len == members.len)
 			return
 		split(final_adjacent)
+
+/datum/liquid_group/proc/extinguish_all()
+	for(var/turf/member in burning_members)
+		member.liquids.set_fire_state(LIQUID_FIRE_STATE_NONE)
+		if(burning_members[member])
+			burning_members -= member
+		if(SSliquids.burning_turfs[member])
+			SSliquids.burning_turfs -= member
+
+/datum/liquid_group/proc/start_fire(turf/source)
+	source.liquids.check_fire(TRUE)
+	burning_members |= source
+	SSliquids.burning_turfs |= source

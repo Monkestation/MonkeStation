@@ -89,7 +89,7 @@
 		set_fire_state(LIQUID_FIRE_STATE_NONE)
 
 /obj/effect/abstract/liquid_turf/proc/ignite_turf()
-	liquid_group.spread_fire(my_turf)
+	liquid_group.start_fire(my_turf)
 
 /obj/effect/abstract/liquid_turf/proc/process_fire()
 	for(var/A in my_turf.contents)

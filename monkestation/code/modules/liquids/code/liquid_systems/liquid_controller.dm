@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(liquids)
 	var/list/evaporation_queue = list()
 	var/evaporation_counter = 0 //Only process evaporation on intervals
 
+	var/list/burning_turfs = list()
 	var/list/processing_fire = list()
 	var/fire_counter = 0 //Only process fires on intervals
 
@@ -99,6 +100,8 @@ SUBSYSTEM_DEF(liquids)
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
 		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
 		fire_counter++
+		for(var/turf/burning_turf in burning_turfs)
+			burning_turf.liquids.liquid_group.spread_fire(burning_turf)
 		if(fire_counter >= REQUIRED_FIRE_PROCESSES)
 			for(var/g in active_groups)
 				var/datum/liquid_group/LG = g
