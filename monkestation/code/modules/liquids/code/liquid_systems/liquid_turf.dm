@@ -19,9 +19,6 @@
 */
 
 /turf/proc/liquid_update_turf()
-	if(liquids && liquids.immutable)
-		SSliquids.active_immutables[src] = TRUE
-		return
 	if(!liquids)
 		return
 	//Check atmos adjacency to cut off any disconnected groups
@@ -120,17 +117,3 @@
 	if(QDELETED(liquids)) //Liquids may be deleted in process cell
 		SSliquids.remove_active_turf(src)
 		return
-
-/turf/proc/process_immutable_liquid()
-	var/any_share = FALSE
-	for(var/tur in GetAtmosAdjacentTurfs())
-		var/turf/T = tur
-		if(can_share_liquids_with(T))
-			//Move this elsewhere sometime later?
-			if(T.liquids && T.liquids.liquid_group.expected_turf_height > liquids.liquid_group.expected_turf_height)
-				continue
-
-			any_share = TRUE
-			T.add_liquid_list(liquids.liquid_group.reagents.reagent_list, TRUE, liquids.liquid_group.group_temperature)
-	if(!any_share)
-		SSliquids.active_immutables -= src

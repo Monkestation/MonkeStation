@@ -39,66 +39,6 @@
 /obj/effect/abstract/liquid_turf/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	return
 
-/obj/effect/abstract/liquid_turf/proc/check_fire(hotspotted = FALSE)
-	var/my_burn_power = liquid_group.group_burn_power
-	if(!my_burn_power)
-		if(fire_state)
-			//Set state to 0
-			set_fire_state(LIQUID_FIRE_STATE_NONE)
-		return FALSE
-	//Calculate appropriate state
-	var/new_state = LIQUID_FIRE_STATE_SMALL
-	switch(my_burn_power)
-		if(0 to 7)
-			new_state = LIQUID_FIRE_STATE_SMALL
-		if(7 to 8)
-			new_state = LIQUID_FIRE_STATE_MILD
-		if(8 to 9)
-			new_state = LIQUID_FIRE_STATE_MEDIUM
-		if(9 to 10)
-			new_state = LIQUID_FIRE_STATE_HUGE
-		if(10 to INFINITY)
-			new_state = LIQUID_FIRE_STATE_INFERNO
-
-	if(fire_state != new_state)
-		set_fire_state(new_state)
-
-
-/obj/effect/abstract/liquid_turf/proc/set_fire_state(new_state)
-	fire_state = new_state
-	switch(fire_state)
-		if(LIQUID_FIRE_STATE_NONE)
-			set_light_range(0)
-		if(LIQUID_FIRE_STATE_SMALL)
-			set_light_range(LIGHT_RANGE_FIRE)
-		if(LIQUID_FIRE_STATE_MILD)
-			set_light_range(LIGHT_RANGE_FIRE)
-		if(LIQUID_FIRE_STATE_MEDIUM)
-			set_light_range(LIGHT_RANGE_FIRE)
-		if(LIQUID_FIRE_STATE_HUGE)
-			set_light_range(LIGHT_RANGE_FIRE)
-		if(LIQUID_FIRE_STATE_INFERNO)
-			set_light_range(LIGHT_RANGE_FIRE)
-	update_light()
-	update_liquid_vis()
-
-/obj/effect/abstract/liquid_turf/extinguish()
-	if(liquid_group.burning_members[my_turf])
-		liquid_group.burning_members -= my_turf
-	if(fire_state)
-		set_fire_state(LIQUID_FIRE_STATE_NONE)
-
-/obj/effect/abstract/liquid_turf/proc/ignite_turf()
-	liquid_group.start_fire(my_turf)
-
-/obj/effect/abstract/liquid_turf/proc/process_fire()
-	for(var/A in my_turf.contents)
-		var/atom/AT = A
-		if(!QDELETED(AT))
-			AT.fire_act((T20C+50) + (50*fire_state), 125)
-
-	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
-
 
 /obj/effect/abstract/liquid_turf/proc/process_evaporation()
 	if(immutable)
@@ -273,8 +213,6 @@
 		var/mob/living/L = AM
 		if(prob(7) && !(L.movement_type & FLYING))
 			L.slip(30, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
-	if(fire_state)
-		AM.fire_act((T20C+50) + (50*fire_state), 125)
 
 /obj/effect/abstract/liquid_turf/proc/mob_fall(datum/source, mob/M)
 	SIGNAL_HANDLER
@@ -414,20 +352,3 @@
 	icon_state = "splash"
 	layer = FLY_LAYER
 	randomdir = FALSE
-
-//STRICTLY FOR IMMUTABLES DESPITE NOT BEING /immutable
-/obj/effect/abstract/liquid_turf/proc/add_turf(turf/T)
-	T.liquids = src
-	T.vis_contents += src
-	SSliquids.active_immutables[T] = TRUE
-	RegisterSignal(T, COMSIG_ATOM_ENTERED, .proc/movable_entered)
-	RegisterSignal(T, COMSIG_TURF_MOB_FALL, .proc/mob_fall)
-
-/obj/effect/abstract/liquid_turf/proc/remove_turf(turf/T)
-	SSliquids.active_immutables -= T
-	qdel(T.liquids)
-	T.vis_contents -= src
-	UnregisterSignal(T, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL))
-
-
-

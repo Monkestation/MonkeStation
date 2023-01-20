@@ -10,14 +10,8 @@ SUBSYSTEM_DEF(liquids)
 
 	var/list/active_groups = list()
 
-	var/list/active_immutables = list()
-
 	var/list/evaporation_queue = list()
 	var/evaporation_counter = 0 //Only process evaporation on intervals
-
-	var/list/burning_turfs = list()
-	var/list/processing_fire = list()
-	var/fire_counter = 0 //Only process fires on intervals
 
 	var/list/singleton_immutables = list()
 
@@ -32,7 +26,7 @@ SUBSYSTEM_DEF(liquids)
 	var/debug_evaporation = FALSE
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg += "ET:[active_edge_turfs.len] AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]|PF:[processing_fire.len]"
+	msg += "ET:[active_edge_turfs.len]|AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]"
 	return ..()
 
 
@@ -70,14 +64,6 @@ SUBSYSTEM_DEF(liquids)
 			return
 	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
-	if(run_type == SSLIQUIDS_RUN_TYPE_IMMUTABLES)
-		for(var/t in active_immutables)
-			var/turf/T = t
-			T.process_immutable_liquid()
-			/*
-			if(MC_TICK_CHECK)
-				return
-			*/
 	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION && !debug_evaporation)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 		evaporation_counter++
@@ -96,20 +82,6 @@ SUBSYSTEM_DEF(liquids)
 					evaporation_queue -= T
 				if(MC_TICK_CHECK)
 					return
-
-	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
-		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
-		fire_counter++
-		for(var/turf/burning_turf in burning_turfs)
-			burning_turf.liquids.liquid_group.spread_fire(burning_turf)
-		if(fire_counter >= REQUIRED_FIRE_PROCESSES)
-			for(var/g in active_groups)
-				var/datum/liquid_group/LG = g
-				if(LG.burning_members.len)
-					for(var/turf/burning_member in LG.burning_members)
-						burning_member.liquids.process_fire()
-					LG.process_fire()
-			fire_counter = 0
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_OCEAN)
 		ocean_counter++
