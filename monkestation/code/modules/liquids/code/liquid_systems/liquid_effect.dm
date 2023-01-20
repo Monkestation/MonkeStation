@@ -88,15 +88,13 @@
 	if(!hotspotted && !fire_state)
 		return FALSE
 	var/total_burn_power = 0
-	var/datum/reagent/R //Faster declaration
-	for(var/reagent_type in liquid_group.reagents.reagent_list)
-		R = reagent_type
-		var/burn_power = initial(R.liquid_fire_power)
+	for(var/datum/reagent/reagent_type in liquid_group.reagents.reagent_list)
+		var/burn_power = initial(reagent_type.liquid_fire_power)
 		if(burn_power)
-			total_burn_power += burn_power * liquid_group.reagents.reagent_list[reagent_type]
+			total_burn_power += burn_power * (reagent_type.volume / liquid_group.members.len)
 	if(!total_burn_power)
 		return FALSE
-	total_burn_power /= liquid_group.total_reagent_volume //We get burn power per unit.
+	total_burn_power /= liquid_group.reagents_per_turf //We get burn power per unit.
 	if(total_burn_power <= REQUIRED_FIRE_POWER_PER_UNIT)
 		return FALSE
 	//Finally, we burn

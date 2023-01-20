@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(liquids)
 	var/debug_evaporation = FALSE
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]|PF:[processing_fire.len]"
+	msg += "ET:[active_edge_turfs.len] AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]|PF:[processing_fire.len]"
 	return ..()
 
 
@@ -45,10 +45,13 @@ SUBSYSTEM_DEF(liquids)
 		if(MC_TICK_CHECK)
 			return
 		var/turf/edge_turf = get_turf(turf)
-		if(!edge_turf.liquids)
-			active_edge_turfs -= edge_turf
-		else
-			edge_turf.liquids.liquid_group.process_edge(edge_turf)
+
+		edge_turf.liquids.liquid_group.process_edge(edge_turf)
+		edge_turf.process_liquid_cell()
+		edge_turf.liquids.liquid_group.process_member(edge_turf)
+
+		if(currentrun_active_turfs[edge_turf])
+			currentrun_active_turfs -= edge_turf
 
 	for(var/tur in currentrun_active_turfs)
 		if(MC_TICK_CHECK)

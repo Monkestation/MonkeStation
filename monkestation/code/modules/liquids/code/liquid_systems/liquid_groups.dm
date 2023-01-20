@@ -40,8 +40,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		SSliquids.currentrun_active_turfs -= T
 	SSliquids.remove_active_turf(T)
 
-	for(var/turf/open/nearby_turf in T.GetAtmosAdjacentTurfs())
-		if(nearby_turf.liquids && nearby_turf.liquids.liquid_group && nearby_turf.liquids.liquid_group.total_reagent_volume)
+	for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
+		if(nearby_turf.density && nearby_turf.liquids && nearby_turf.liquids.liquid_group && nearby_turf.liquids.liquid_group.total_reagent_volume)
 			SSliquids.active_edge_turfs += nearby_turf
 
 	if(!members.len)
@@ -99,6 +99,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!members || !members.len)
 		return
 	var/old_color = group_color
+
+	if(group_temperature != reagents.chem_temp)
+		reagents.chem_temp = group_temperature
 
 	if(GLOB.liquid_debug_colors)
 		group_color = color
@@ -298,12 +301,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 
-/datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list)
+/datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list, chem_temp)
 	reagents.add_reagent_list(reagent_list)
+	handle_temperature(total_reagent_volume, chem_temp)
 	process_group()
 
 /datum/liquid_group/proc/add_reagent(obj/effect/abstract/liquid_turf/member, datum/reagent/reagent, amount, temperature)
 	reagents.add_reagent(reagent, amount, temperature)
+	handle_temperature(total_reagent_volume, temperature)
 	process_group()
 
 /datum/liquid_group/proc/transfer_reagents_to_secondary_group(obj/effect/abstract/liquid_turf/member, obj/effect/abstract/liquid_turf/transfer)
@@ -400,3 +405,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		remove_from_group(remover_turf)
 		qdel(remover)
 		check_split(remover_turf)
+
+/datum/liquid_group/proc/handle_temperature(previous_reagents, temp)
+	var/old_thermal = previous_reagents * group_temperature
+	var/recieved_thermal = (total_reagent_volume - previous_reagents) * temp
+
+	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
+	reagents.chem_temp = group_temperature

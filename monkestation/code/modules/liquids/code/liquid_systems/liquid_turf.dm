@@ -53,7 +53,7 @@
 /turf/proc/add_liquid_list(reagent_list, no_react = FALSE, chem_temp)
 	if(!liquids)
 		liquids = new(src)
-	liquids.liquid_group.add_reagents(liquids, reagent_list)
+	liquids.liquid_group.add_reagents(liquids, reagent_list, chem_temp)
 	//Expose turf
 	liquids.liquid_group.expose_members_turf(liquids)
 
