@@ -214,5 +214,6 @@
 		finish_action(controller, TRUE)
 
 /datum/ai_behavior/find_and_lay/finish_action(datum/ai_controller/controller, succeeded, ...)
+	. = ..()
 	controller.blackboard[BB_CHICKEN_ATTEMPT_TRACKING] = 0
 	controller.blackboard[BB_CHICKEN_READY_LAY] = FALSE
