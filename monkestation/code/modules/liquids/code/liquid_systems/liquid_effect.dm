@@ -372,6 +372,8 @@
 	UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_PARENT_EXAMINE))
 	if(liquid_group)
 		liquid_group.remove_from_group(my_turf)
+	if(my_turf in SSliquids.active_edge_turfs)
+		SSliquids.active_edge_turfs -= my_turf
 	if(SSliquids.evaporation_queue[my_turf])
 		SSliquids.evaporation_queue -= my_turf
 	if(SSliquids.processing_fire[my_turf])

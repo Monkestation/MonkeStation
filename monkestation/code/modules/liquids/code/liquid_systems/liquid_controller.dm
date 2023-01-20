@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(liquids)
 
 	var/list/active_turfs = list()
 	var/list/currentrun_active_turfs = list()
+	var/list/active_edge_turfs = list()
 
 	var/list/active_groups = list()
 
@@ -39,16 +40,23 @@ SUBSYSTEM_DEF(liquids)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
 			currentrun_active_turfs += LG.members
+
+	for(var/turf in active_edge_turfs)
+		if(MC_TICK_CHECK)
+			return
+		var/turf/edge_turf = get_turf(turf)
+		if(!edge_turf.liquids)
+			active_edge_turfs -= edge_turf
+		else
+			edge_turf.liquids.liquid_group.process_edge(edge_turf)
+
 	for(var/tur in currentrun_active_turfs)
 		if(MC_TICK_CHECK)
 			return
-		var/turf/T = tur
-		if(!T.liquids)
-			currentrun_active_turfs -= T
-		else
-			T.process_liquid_cell()
-			T.liquids.liquid_group.process_member(T)
-			currentrun_active_turfs -= T //work off of index later
+		var/turf/T = get_turf(tur)
+		T.process_liquid_cell()
+		T.liquids.liquid_group.process_member(T)
+		currentrun_active_turfs -= T //work off of index later
 
 	for(var/g in active_groups)
 		var/datum/liquid_group/LG = g
@@ -74,11 +82,11 @@ SUBSYSTEM_DEF(liquids)
 				LG.check_dead()
 			for(var/t in evaporation_queue)
 				var/turf/T = t
-				if(prob(EVAPORATION_CHANCE))
-					if(!T.liquids)
-						evaporation_queue -= T
-						return
-					T.liquids.process_evaporation()
+				if(T.liquids)
+					if(prob(EVAPORATION_CHANCE))
+						T.liquids.process_evaporation()
+				else
+					evaporation_queue -= T
 				if(MC_TICK_CHECK)
 					return
 			evaporation_counter = 0
