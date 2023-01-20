@@ -136,6 +136,7 @@
 		controller.current_movement_target = chosen_one
 	if(!controller.current_movement_target)
 		return FALSE
+	return TRUE
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
@@ -186,6 +187,7 @@
 		break
 	if(!controller.current_movement_target)
 		return FALSE
+	return TRUE
 
 /datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
