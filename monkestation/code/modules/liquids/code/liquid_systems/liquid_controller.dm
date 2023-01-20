@@ -54,8 +54,9 @@ SUBSYSTEM_DEF(liquids)
 		if(MC_TICK_CHECK)
 			return
 		var/turf/T = get_turf(tur)
-		T.process_liquid_cell()
-		T.liquids.liquid_group.process_member(T)
+		if(T.liquids)
+			T.process_liquid_cell()
+			T.liquids.liquid_group.process_member(T)
 		currentrun_active_turfs -= T //work off of index later
 
 	for(var/g in active_groups)
@@ -77,9 +78,11 @@ SUBSYSTEM_DEF(liquids)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE
 		evaporation_counter++
 		if(evaporation_counter >= REQUIRED_EVAPORATION_PROCESSES)
+			evaporation_counter = 0
 			for(var/g in active_groups)
 				var/datum/liquid_group/LG = g
 				LG.check_dead()
+				LG.process_turf_disperse()
 			for(var/t in evaporation_queue)
 				var/turf/T = t
 				if(T.liquids)
@@ -89,7 +92,6 @@ SUBSYSTEM_DEF(liquids)
 					evaporation_queue -= T
 				if(MC_TICK_CHECK)
 					return
-			evaporation_counter = 0
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
 		run_type = SSLIQUIDS_RUN_TYPE_OCEAN

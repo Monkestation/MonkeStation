@@ -152,7 +152,7 @@
 		R = reagent_type
 		//We evaporate. bye bye
 		if(initial(R.evaporates))
-			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, liquid_group.reagents_per_turf)
+			var/remove_amount = min((initial(R.evaporation_rate)), R.volume, (liquid_group.reagents_per_turf / liquid_group.reagents.reagent_list.len))
 			passthrough_evaporation_reaction(R, remove_amount)
 			liquid_group.remove_specific(src, remove_amount, R)
 			any_change = TRUE
@@ -469,7 +469,7 @@
 
 /obj/effect/abstract/liquid_turf/proc/remove_turf(turf/T)
 	SSliquids.active_immutables -= T
-	T.liquids = null
+	qdel(T.liquids)
 	T.vis_contents -= src
 	UnregisterSignal(T, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL))
 
