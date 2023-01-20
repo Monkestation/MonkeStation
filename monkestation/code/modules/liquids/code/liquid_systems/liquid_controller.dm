@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(liquids)
 		if(MC_TICK_CHECK)
 			return
 		var/turf/T = get_turf(tur)
-		if(T.liquids)
+		if(T.liquids) ///there may be a bigger problem as this shouldn't be needed
 			T.process_liquid_cell()
 			T.liquids.liquid_group.process_member(T)
 		currentrun_active_turfs -= T //work off of index later
