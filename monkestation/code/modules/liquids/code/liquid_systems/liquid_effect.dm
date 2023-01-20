@@ -40,7 +40,7 @@
 	return
 
 /obj/effect/abstract/liquid_turf/proc/check_fire(hotspotted = FALSE)
-	var/my_burn_power = get_burn_power(hotspotted)
+	var/my_burn_power = liquid_group.group_burn_power
 	if(!my_burn_power)
 		if(fire_state)
 			//Set state to 0
@@ -63,7 +63,6 @@
 	if(fire_state != new_state)
 		set_fire_state(new_state)
 
-	return TRUE
 
 /obj/effect/abstract/liquid_turf/proc/set_fire_state(new_state)
 	fire_state = new_state
@@ -83,56 +82,23 @@
 	update_light()
 	update_liquid_vis()
 
-/obj/effect/abstract/liquid_turf/proc/get_burn_power(hotspotted = FALSE)
-	//We are not on fire and werent ignited by a hotspot exposure, no fire pls
-	if(!hotspotted && !fire_state)
-		return FALSE
-	var/total_burn_power = 0
-	for(var/datum/reagent/reagent_type in liquid_group.reagents.reagent_list)
-		var/burn_power = initial(reagent_type.liquid_fire_power)
-		if(burn_power)
-			total_burn_power += burn_power * (reagent_type.volume / liquid_group.members.len)
-	if(!total_burn_power)
-		return FALSE
-	total_burn_power /= liquid_group.reagents_per_turf //We get burn power per unit.
-	if(total_burn_power <= REQUIRED_FIRE_POWER_PER_UNIT)
-		return FALSE
-	//Finally, we burn
-	return total_burn_power
-
 /obj/effect/abstract/liquid_turf/extinguish()
+	if(liquid_group.burning_members[my_turf])
+		liquid_group.burning_members -= my_turf
 	if(fire_state)
 		set_fire_state(LIQUID_FIRE_STATE_NONE)
 
+/obj/effect/abstract/liquid_turf/proc/ignite_turf()
+	liquid_group.spread_fire(my_turf)
+
 /obj/effect/abstract/liquid_turf/proc/process_fire()
-	if(!fire_state)
-		SSliquids.processing_fire -= my_turf
-	var/old_state = fire_state
-	if(!check_fire())
-		SSliquids.processing_fire -= my_turf
-	//Try spreading
-	if(fire_state == old_state) //If an extinguisher made our fire smaller, dont spread, else it's too hard to put out
-		for(var/t in my_turf.atmos_adjacent_turfs)
-			var/turf/T = t
-			if(T.liquids && !T.liquids.fire_state && T.liquids.check_fire(TRUE))
-				SSliquids.processing_fire[T] = TRUE
-
-	//Burn our resources
-	var/datum/reagent/R //Faster declaration
-	var/burn_rate
-	for(var/reagent_type in liquid_group.reagents.reagent_list)
-		R = reagent_type
-		burn_rate = initial(R.liquid_fire_burnrate)
-		if(burn_rate)
-			var/amt = liquid_group.reagents.reagent_list[reagent_type].volume
-			liquid_group.remove_specific(src, amt, liquid_group.reagents.reagent_list[reagent_type])
-			my_turf.atmos_spawn_air("co2=[burn_rate/5];TEMP=[liquid_group.group_temperature]")
-
-	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
 	for(var/A in my_turf.contents)
 		var/atom/AT = A
 		if(!QDELETED(AT))
 			AT.fire_act((T20C+50) + (50*fire_state), 125)
+
+	my_turf.hotspot_expose((T20C+50) + (50*fire_state), 125)
+
 
 /obj/effect/abstract/liquid_turf/proc/process_evaporation()
 	if(immutable)
@@ -231,9 +197,7 @@
 	liquid_group.remove_any(src, flat_amount)
 
 /obj/effect/abstract/liquid_turf/fire_act(temperature, volume)
-	if(!fire_state)
-		if(check_fire(TRUE))
-			SSliquids.processing_fire[my_turf] = TRUE
+	return
 
 /obj/effect/abstract/liquid_turf/proc/set_reagent_color_for_liquid()
 	liquid_group.group_color = mix_color_from_reagent_list(liquid_group.reagents.reagent_list)
@@ -374,9 +338,6 @@
 		SSliquids.active_edge_turfs -= my_turf
 	if(SSliquids.evaporation_queue[my_turf])
 		SSliquids.evaporation_queue -= my_turf
-	if(SSliquids.processing_fire[my_turf])
-		SSliquids.processing_fire -= my_turf
-
 
 	my_turf.liquids = null
 	my_turf = null
@@ -394,9 +355,6 @@
 	if(SSliquids.evaporation_queue[my_turf])
 		SSliquids.evaporation_queue -= my_turf
 		SSliquids.evaporation_queue[NewT] = TRUE
-	if(SSliquids.processing_fire[my_turf])
-		SSliquids.processing_fire -= my_turf
-		SSliquids.processing_fire[NewT] = TRUE
 	my_turf.liquids = null
 	my_turf = NewT
 	liquid_group.move_liquid_group(src)

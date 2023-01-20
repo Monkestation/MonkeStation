@@ -6,6 +6,7 @@
 
 #define REQUIRED_FIRE_PROCESSES 2
 #define REQUIRED_FIRE_POWER_PER_UNIT 5
+#define BURNUP_CHANCE 10
 
 #define REQUIRED_OCEAN_PROCESSES 50
 
@@ -59,7 +60,7 @@
 
 #define IMMUTABLE_LIQUID_SHARE 1
 
-#define LIQUID_RECURSIVE_LOOP_SAFETY 100 //Hundred loops at maximum for adjacency checking
+#define LIQUID_RECURSIVE_LOOP_SAFETY 255
 
 //Height at which we consider the tile "full" and dont drop liquids on it from the upper Z level
 #define LIQUID_HEIGHT_CONSIDER_FULL_TILE 50

@@ -10,8 +10,8 @@
 
 /turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	//MONKESTATION EDIT ADDITION
-	if(liquids && !liquids.fire_state && liquids.check_fire(TRUE))
-		SSliquids.processing_fire[src] = TRUE
+	if(liquids && !liquids.fire_state)
+		liquids.ignite_turf()
 	//MONKESTATION EDIT END
 
 	if(!air)

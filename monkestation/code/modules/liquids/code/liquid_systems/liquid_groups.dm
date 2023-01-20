@@ -10,6 +10,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group
 	var/color
 	var/list/members = list()
+	var/list/burning_members = list()
 	var/datum/reagents/reagents
 	var/expected_turf_height = 1
 	var/total_reagent_volume = 0
@@ -20,6 +21,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/group_color
 	var/updated_total = FALSE
 	var/failed_death_check = FALSE
+	var/group_burn_power = 0
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
@@ -33,16 +35,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	SSliquids.currentrun_active_turfs |= T
 	process_group()
 
-/datum/liquid_group/proc/remove_from_group(turf/T)
+/datum/liquid_group/proc/remove_from_group(turf/T, splitting = FALSE)
 	members -= T
 	T.liquids.liquid_group = null
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
 	SSliquids.remove_active_turf(T)
 
-	for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
-		if(nearby_turf.density && nearby_turf.liquids && nearby_turf.liquids.liquid_group && nearby_turf.liquids.liquid_group.total_reagent_volume)
-			SSliquids.active_edge_turfs += nearby_turf
+	if(!splitting)
+		for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
+			if(nearby_turf.liquids && nearby_turf.liquids.liquid_group && nearby_turf.liquids.liquid_group.total_reagent_volume)
+				SSliquids.active_edge_turfs |= nearby_turf
 
 	if(!members.len)
 		qdel(src)
@@ -97,6 +100,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/process_group()
 	if(!members || !members.len)
+		check_dead()
 		return
 	var/old_color = group_color
 
@@ -115,6 +119,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
 		total_reagent_volume = reagents.total_volume
+
+		get_group_burn()
 
 		if(!total_reagent_volume || !members)
 			return
@@ -173,7 +179,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				spread_liquid(adjacent_turf, member)
 		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
-
+		if(adjacent_turf.liquids && member.liquids.fire_state)
+			spread_fire(adjacent_turf, member)
 		//Immutable check thing
 		if(adjacent_turf.liquids && adjacent_turf.liquids.immutable)
 			if(member.z != adjacent_turf.z)
@@ -191,10 +198,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 					. = TRUE
 			continue
 		. = TRUE
-		SSliquids.add_active_turf(adjacent_turf)
+
+		if(!SSliquids.active_turfs[adjacent_turf] && adjacent_turf.liquids)
+			SSliquids.add_active_turf(adjacent_turf)
 
 /datum/liquid_group/proc/process_edge(turf/member)
-	var/list/adjacent_turfs = member.GetAtmosAdjacentTurfs()
+	var/list/adjacent_turfs = get_adjacent_open_turfs(member)
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
@@ -225,10 +234,15 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	SSliquids.active_edge_turfs -= source_turf
-	for(var/turf/open/nearby_turf in source_turf.GetAtmosAdjacentTurfs())
+	var/adjacent = 0
+	var/number_opens = 0
+	for(var/turf/open/nearby_turf in get_adjacent_open_turfs(source_turf))
+		number_opens++
 		if(!nearby_turf.liquids && source_turf.liquids)
-			SSliquids.active_edge_turfs += source_turf
-			break
+			adjacent++
+
+	if(adjacent >= number_opens)
+		SSliquids.active_edge_turfs |= source_turf
 
 	new_turf.liquids = new(new_turf, src)
 	expose_members_turf(new_turf.liquids, LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
@@ -356,7 +370,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			for(var/dir in GLOB.cardinals)
 				var/turf/dir_turf = get_step(listed_turf, dir)
 				if(dir_turf.liquids)
-					if(dir_turf.liquids.liquid_group == first_turf.liquids.liquid_group)
+					if(members[dir_turf])
 						new_adjacent |= dir_turf
 						final_adjacent |= dir_turf
 						if(old_final != final_adjacent)
@@ -377,7 +391,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/datum/liquid_group/new_group = new(1, chosen_starting_turf.liquids)
 
 	for(var/turf/listed_turf in turfs_to_split)
-		remove_from_group(listed_turf)
+		remove_from_group(listed_turf, TRUE)
 		new_group.add_to_group(listed_turf)
 
 	trans_to_seperate_group(new_group.reagents, reagents_to_remove, merge = TRUE)
@@ -412,3 +426,107 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
 	reagents.chem_temp = group_temperature
+
+/datum/liquid_group/proc/spread_fire(turf/new_turf, turf/source)
+	if(!group_burn_power)
+		get_group_burn()
+
+	if(new_turf.liquids.fire_state && new_turf.liquids.fire_state == source.liquids.fire_state)
+		return
+
+	new_turf.liquids.check_fire(TRUE)
+	burning_members |= new_turf
+
+/datum/liquid_group/proc/get_group_burn()
+	var/total_burn_power = 0
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
+		var/burn_power = initial(reagent_type.liquid_fire_power)
+		if(burn_power)
+			total_burn_power += burn_power * reagent_type.volume
+	if(!total_burn_power)
+		return FALSE
+	total_burn_power /= reagents.total_volume //We get burn power per unit.
+	if(total_burn_power <= REQUIRED_FIRE_POWER_PER_UNIT)
+		return FALSE
+	//Finally, we burn
+	group_burn_power = total_burn_power
+
+/datum/liquid_group/proc/process_fire()
+	var/total_burned = group_burn_power * (burning_members.len * 0.2)
+
+	var/per_turf_burned = total_burned / burning_members.len
+
+	remove_any(amount = total_burned)
+
+	if(per_turf_burned >= reagents_per_turf)
+		var/list/removed_turfs = list()
+		for(var/num = 1, num < (burning_members.len * 0.2), num++)
+			var/turf/picked_turf = pick(burning_members)
+			burning_members -= picked_turf
+			remove_from_group(picked_turf)
+			qdel(picked_turf.liquids)
+			for(var/turf/adjacent in get_adjacent_open_turfs(picked_turf))
+				if(adjacent.liquids)
+					removed_turfs |= adjacent
+		check_split_group(removed_turfs)
+
+/datum/liquid_group/proc/check_split_group(list/checked_turfs)
+	if(!members || !members.len)
+		return
+	var/list/all_turfs = checked_turfs
+	var/turf/random_turf = pick(all_turfs)
+	all_turfs -= random_turf
+
+	var/safety_check = 0
+	while(all_turfs.len && safety_check < all_turfs.len)
+		safety_check++
+		for(var/turf/listed_turf in all_turfs)
+			if(!listed_turf.liquids)
+				all_turfs -= listed_turf
+		var/adjacent = 0
+		var/turf/first_turf
+		for(var/dir in GLOB.cardinals)
+			var/turf/dir_turf = get_step(random_turf, dir)
+			if(dir_turf.liquids)
+				first_turf = dir_turf
+				break
+		for(var/dir in GLOB.cardinals)
+			var/turf/dir_turf = get_step(random_turf, dir)
+			if(dir_turf.liquids)
+				if(dir_turf.liquids.liquid_group == first_turf.liquids.liquid_group)
+					adjacent++
+
+		if(adjacent == 0 && first_turf)
+			split(list(first_turf))
+			return
+
+		var/list/current_adjacent = list()
+		current_adjacent |= first_turf
+
+		var/list/final_adjacent = list()
+
+		var/getting_new_turfs = TRUE
+		var/indef_loop_safety = 0
+		while(getting_new_turfs && indef_loop_safety < LIQUID_RECURSIVE_LOOP_SAFETY)
+			indef_loop_safety++
+			getting_new_turfs = FALSE
+			var/list/new_adjacent = list()
+			var/list/old_final = list()
+			for(var/turf/listed_turf in current_adjacent)
+				for(var/dir in GLOB.cardinals)
+					var/turf/dir_turf = get_step(listed_turf, dir)
+					if(dir_turf.liquids)
+						if(dir_turf in all_turfs)
+							all_turfs -= dir_turf
+						if(members[dir_turf])
+							new_adjacent |= dir_turf
+							final_adjacent |= dir_turf
+							if(old_final != final_adjacent && !getting_new_turfs)
+								getting_new_turfs = TRUE
+
+			old_final = final_adjacent
+			current_adjacent = new_adjacent
+
+		if(final_adjacent.len == members.len)
+			return
+		split(final_adjacent)

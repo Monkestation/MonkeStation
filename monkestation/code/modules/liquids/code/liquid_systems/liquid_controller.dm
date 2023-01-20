@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(liquids)
 	if(!currentrun_active_turfs.len && active_turfs.len)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
-			currentrun_active_turfs += LG.members
+			currentrun_active_turfs |= LG.members
 
 	for(var/turf in active_edge_turfs)
 		if(MC_TICK_CHECK)
@@ -100,11 +100,12 @@ SUBSYSTEM_DEF(liquids)
 		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
 		fire_counter++
 		if(fire_counter >= REQUIRED_FIRE_PROCESSES)
-			for(var/t in processing_fire)
-				var/turf/T = t
-				T.liquids.process_fire()
-			if(MC_TICK_CHECK)
-				return
+			for(var/g in active_groups)
+				var/datum/liquid_group/LG = g
+				if(LG.burning_members.len)
+					for(var/turf/burning_member in LG.burning_members)
+						burning_member.liquids.process_fire()
+					LG.process_fire()
 			fire_counter = 0
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_OCEAN)
