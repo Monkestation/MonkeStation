@@ -25,8 +25,11 @@ SUBSYSTEM_DEF(liquids)
 	///debug variable to toggle evaporation from running
 	var/debug_evaporation = FALSE
 
+	var/list/burning_turfs = list()
+	var/fire_counter = 0
+
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg += "ET:[active_edge_turfs.len]|AT:[active_turfs.len]|AG:[active_groups.len]|AIM:[active_immutables.len]|EQ:[evaporation_queue.len]"
+	msg += "ET:[active_edge_turfs.len]|AT:[active_turfs.len]|AG:[active_groups.len]|BT:[burning_turfs.len]|EQ:[evaporation_queue.len]"
 	return ..()
 
 
@@ -82,6 +85,18 @@ SUBSYSTEM_DEF(liquids)
 					evaporation_queue -= T
 				if(MC_TICK_CHECK)
 					return
+
+	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
+		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
+		fire_counter++
+		if(fire_counter > REQUIRED_FIRE_PROCESSES)
+			for(var/g in active_groups)
+				var/datum/liquid_group/LG = g
+				if(LG.burning_members.len)
+					for(var/turf/burning_turf in LG.burning_members)
+						LG.process_spread(burning_turf)
+					LG.process_fire()
+			fire_counter = 0
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_OCEAN)
 		ocean_counter++

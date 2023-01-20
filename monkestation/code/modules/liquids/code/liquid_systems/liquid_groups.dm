@@ -10,6 +10,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group
 	var/color
 	var/list/members = list()
+	var/list/burning_members = list()
 	var/datum/reagents/reagents
 	var/expected_turf_height = 1
 	var/total_reagent_volume = 0
@@ -20,6 +21,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/group_color
 	var/updated_total = FALSE
 	var/failed_death_check = FALSE
+	var/group_burn_power = 0
+	var/group_fire_state = LIQUID_FIRE_STATE_NONE
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
@@ -39,6 +42,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
 	SSliquids.remove_active_turf(T)
+
+	if(burning_members[T])
+		burning_members -= T
+	if(SSliquids.burning_turfs[T])
+		SSlanguage.burning_turfs -= T
 
 	if(!splitting)
 		for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
@@ -420,3 +428,92 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
 	reagents.chem_temp = group_temperature
+
+
+
+///Fire Related Procs / Handling
+
+/datum/liquid_group/proc/get_group_burn()
+	var/total_burn_power = 0
+	for(var/datum/reagent/reagent_type in reagents.reagent_list)
+		var/burn_power = initial(reagent_type.liquid_fire_power)
+		if(burn_power)
+			total_burn_power += burn_power * reagent_type.volume
+
+	if(!total_burn_power)
+		if(burning_members.len)
+			extinguish_all()
+		group_burn_power = 0
+		return
+
+	total_burn_power /= reagents.total_volume //We get burn power per unit.
+	if(total_burn_power <= REQUIRED_FIRE_POWER_PER_UNIT)
+		return FALSE
+	//Finally, we burn
+	var/old_burn = group_burn_power
+
+	group_burn_power = total_burn_power
+
+	if(old_burn == group_burn_power)
+		return
+	switch(group_burn_power)
+		if(0 to 7)
+			group_fire_state = LIQUID_FIRE_STATE_SMALL
+		if(7 to 8)
+			group_fire_state = LIQUID_FIRE_STATE_MILD
+		if(8 to 9)
+			group_fire_state = LIQUID_FIRE_STATE_MEDIUM
+		if(9 to 10)
+			group_fire_state = LIQUID_FIRE_STATE_HUGE
+		if(10 to INFINITY)
+			group_fire_state = LIQUID_FIRE_STATE_INFERNO
+
+/datum/liquid_group/proc/process_fire()
+	get_group_burn()
+
+	var/reagents_to_remove = group_burn_power * (burning_members.len / FIRE_BURN_PERCENT)
+	var/individual_burn = reagents_to_remove / burning_members.len
+
+	if(!group_burn_power)
+		extinguish_all()
+		return
+
+	remove_any(amount = reagents_to_remove)
+
+	if(individual_burn >= reagents_per_turf)
+		for(var/num = 1, num < (burning_members.len / FIRE_BURN_PERCENT), num++)
+			var/turf/picked_turf = burning_members[1]
+			burning_members -= picked_turf
+			remove_from_group(picked_turf)
+			qdel(picked_turf.liquids)
+
+/datum/liquid_group/proc/ignite_turf(turf/member)
+	get_group_burn()
+	if(!group_burn_power)
+		return
+
+	member.liquids.fire_state = group_fire_state
+	member.liquids.update_overlays()
+	burning_members |= member
+	SSliquids.burning_turfs |= member
+
+/datum/liquid_group/proc/process_spread(turf/member)
+	if(member.liquids.fire_state <= LIQUID_FIRE_STATE_MEDIUM) // fires to small to worth spreading
+		return
+	for(var/turf/adjacent_turf in get_adjacent_open_turfs(member))
+		if(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group == src && adjacent_turf.liquids.fire_state < member.liquids.fire_state)
+			adjacent_turf.liquids.fire_state = group_fire_state
+			adjacent_turf.liquids.update_overlays()
+			burning_members |= adjacent_turf
+			SSliquids.burning_turfs |= adjacent_turf
+
+/datum/liquid_group/proc/extinguish_all()
+	group_burn_power = 0
+	group_fire_state = LIQUID_FIRE_STATE_NONE
+	for(var/turf/member in burning_members)
+		member.liquids.fire_state
+		member.liquids.update_overlays()
+		if(burning_members[member])
+			burning_members -= member
+		if(SSliquids.burning_turfs[member])
+			SSliquids.burning_turfs -= member

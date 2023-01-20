@@ -146,10 +146,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(old_liquids)
 		if(W.liquids)
 			var/liquid_cache = W.liquids //Need to cache and re-set some vars due to the cleaning on Destroy(), and turf references
-			if(old_liquids.immutable)
-				old_liquids.remove_turf(src)
-			else
-				qdel(old_liquids, TRUE)
+			qdel(old_liquids, TRUE)
 			W.liquids = liquid_cache
 			W.liquids.my_turf = W
 		else
@@ -158,10 +155,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 				old_liquids.my_turf = W
 				W.reasses_liquids()
 			else
-				if(old_liquids.immutable)
-					old_liquids.remove_turf(src)
-				else
-					qdel(old_liquids, TRUE)
+				qdel(old_liquids, TRUE)
 	//MONKESTATION EDIT END
 	return W
 

@@ -115,22 +115,20 @@
 			overlay.plane = GAME_PLANE
 			overlay.layer = ABOVE_MOB_LAYER
 			add_overlay(overlay)
-/obj/effect/abstract/liquid_turf/proc/update_liquid_vis()
-	if(no_effects)
-		return
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	//Add a fire overlay too
+
+/obj/effect/abstract/liquid_turf/update_overlays()
+	. = ..()
 	switch(fire_state)
 		if(LIQUID_FIRE_STATE_SMALL)
-			SSvis_overlays.add_vis_overlay(src, icon, "fire_small", BELOW_MOB_LAYER, GAME_PLANE, add_appearance_flags = RESET_COLOR|RESET_ALPHA)
+			. += "fire_small"
 		if(LIQUID_FIRE_STATE_MILD)
-			SSvis_overlays.add_vis_overlay(src, icon, "fire_small", BELOW_MOB_LAYER, GAME_PLANE, add_appearance_flags = RESET_COLOR|RESET_ALPHA)
+			. += "fire_small"
 		if(LIQUID_FIRE_STATE_MEDIUM)
-			SSvis_overlays.add_vis_overlay(src, icon, "fire_medium", BELOW_MOB_LAYER, GAME_PLANE, add_appearance_flags = RESET_COLOR|RESET_ALPHA)
+			. += "fire_medium"
 		if(LIQUID_FIRE_STATE_HUGE)
-			SSvis_overlays.add_vis_overlay(src, icon, "fire_big", BELOW_MOB_LAYER, GAME_PLANE, add_appearance_flags = RESET_COLOR|RESET_ALPHA)
+			. += "fire_big"
 		if(LIQUID_FIRE_STATE_INFERNO)
-			SSvis_overlays.add_vis_overlay(src, icon, "fire_big", BELOW_MOB_LAYER, GAME_PLANE, add_appearance_flags = RESET_COLOR|RESET_ALPHA)
+			. += "fire_big"
 
 //Takes a flat of our reagents and returns it, possibly qdeling our liquids
 /obj/effect/abstract/liquid_turf/proc/take_reagents_flat(flat_amount)
@@ -245,7 +243,6 @@
 
 		SEND_SIGNAL(my_turf, COMSIG_TURF_LIQUIDS_CREATION, src)
 
-	update_liquid_vis()
 	if(z)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
@@ -276,7 +273,8 @@
 		SSliquids.active_edge_turfs -= my_turf
 	if(SSliquids.evaporation_queue[my_turf])
 		SSliquids.evaporation_queue -= my_turf
-
+	if(SSliquids.burning_turfs[my_turf])
+		SSliquids.burning_turfs -= my_turf
 	my_turf.liquids = null
 	my_turf = null
 	QUEUE_SMOOTH_NEIGHBORS(src)
