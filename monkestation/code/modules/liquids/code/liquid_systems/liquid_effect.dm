@@ -228,6 +228,9 @@
 		if(prob(7) && !(L.movement_type & FLYING))
 			L.slip(30, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
 
+	if(fire_state)
+		AM.fire_act((T20C+50) + (50*fire_state), 125)
+
 /obj/effect/abstract/liquid_turf/proc/mob_fall(datum/source, mob/M)
 	SIGNAL_HANDLER
 	var/turf/T = source
