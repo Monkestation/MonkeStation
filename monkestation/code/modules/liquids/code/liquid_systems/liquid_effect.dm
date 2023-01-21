@@ -257,6 +257,20 @@
 		medium_fire = new
 	if(!big_fire)
 		big_fire = new
+
+	if(!my_turf)
+		my_turf = loc
+
+	if(!my_turf.liquids)
+		my_turf.liquids = src
+
+	if(group_to_add)
+		group_to_add.add_to_group(my_turf)
+		set_new_liquid_state(liquid_group.group_overlay_state)
+
+	if(!liquid_group && !group_to_add)
+		liquid_group = new(1, src)
+
 	if(!SSliquids)
 		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
 	if(!immutable)
@@ -271,19 +285,6 @@
 	if(z)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
-
-	if(!my_turf)
-		my_turf = loc
-
-	if(!my_turf.liquids)
-		my_turf.liquids = src
-
-	if(group_to_add)
-		group_to_add.add_to_group(my_turf)
-		set_new_liquid_state(liquid_group.group_overlay_state)
-
-	if(!liquid_group && !group_to_add)
-		liquid_group = new(1, src)
 
 	/* //Cant do it immediately, hmhm
 	if(isspaceturf(my_turf))

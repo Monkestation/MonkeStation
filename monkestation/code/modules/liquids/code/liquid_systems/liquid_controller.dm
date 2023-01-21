@@ -49,18 +49,6 @@ SUBSYSTEM_DEF(liquids)
 			return
 	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
-	for(var/turf in active_edge_turfs)
-		if(MC_TICK_CHECK)
-			return
-		var/turf/edge_turf = get_turf(turf)
-
-		edge_turf.liquids.liquid_group.process_edge(edge_turf)
-		edge_turf.process_liquid_cell()
-		edge_turf.liquids.liquid_group.process_member(edge_turf)
-
-		if(currentrun_active_turfs[edge_turf])
-			currentrun_active_turfs -= edge_turf
-
 	for(var/tur in currentrun_active_turfs)
 		if(MC_TICK_CHECK)
 			return

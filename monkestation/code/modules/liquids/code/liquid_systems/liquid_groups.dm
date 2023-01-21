@@ -26,6 +26,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/group_burn_rate = 0
 	var/group_viscosity = 1
 
+	var/merging = FALSE
+
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
 		T.liquids = new(null, src)
@@ -74,17 +76,20 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		add_to_group(created_liquid.my_turf)
 		SSliquids.active_edge_turfs |= created_liquid.my_turf
 
-/datum/liquid_group/proc/can_merge_group(datum/liquid_group/otherg)
-	return TRUE
-
 /datum/liquid_group/proc/merge_group(datum/liquid_group/otherg)
-	for(var/t in otherg.members)
-		var/turf/T = t
-		if(T.liquids)
-			T.liquids.liquid_group = src
-			members[T] = TRUE
-	otherg.trans_to_seperate_group(src, otherg.total_reagent_volume, merge = TRUE)
-	otherg.members = list()
+	if(otherg == src)
+		return
+
+	otherg.merging = TRUE
+	otherg.reagents.copy_to(reagents)
+
+	for(var/turf/liquid_turf in otherg.members)
+		otherg.remove_from_group(liquid_turf)
+		add_to_group(liquid_turf)
+
+	total_reagent_volume = reagents.total_volume
+	reagents_per_turf = total_reagent_volume / length(members)
+
 	qdel(otherg)
 	process_group()
 
@@ -112,6 +117,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	return TRUE
 
 /datum/liquid_group/proc/process_group()
+	if(merging)
+		return
 	if(!members || !members.len)
 		check_dead()
 		return
@@ -185,11 +192,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
-		if(!adjacent_turf.liquids)
-			if(reagents_per_turf >= 3 && adjacent_turf.turf_height + group_viscosity <= expected_turf_height)
-				spread_liquid(adjacent_turf, member)
-		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
-			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
+		spread_liquid(adjacent_turf, member)
 		//Immutable check thing
 		if(adjacent_turf.liquids && adjacent_turf.liquids.immutable)
 			if(member.z != adjacent_turf.z)
@@ -216,11 +219,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
-		if(!adjacent_turf.liquids)
-			if(reagents_per_turf >= 3 && adjacent_turf.turf_height <= expected_turf_height)
-				spread_liquid(adjacent_turf, member)
-		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
-			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
+		spread_liquid(adjacent_turf, member)
 
 /datum/liquid_group/proc/process_turf_disperse()
 	if(reagents_per_turf < 1 || !total_reagent_volume)
@@ -237,28 +236,21 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				members -= picked_turf
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
-	if(new_turf.liquids)
-		if(can_merge_group(new_turf.liquids.liquid_group))
-			merge_group(new_turf.liquids.liquid_group)
+	if(!new_turf.liquids)
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR && new_turf.turf_height + 1 <= expected_turf_height)
+			return
+
+		reagents_per_turf = total_reagent_volume / members.len
+
+		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+
+		new_turf.liquids = new(new_turf, src)
+		water_rush(new_turf, source_turf)
+
+	else if(new_turf.liquids && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
+		merge_group(new_turf.liquids.liquid_group)
 		return
 
-	SSliquids.active_edge_turfs -= source_turf
-	var/adjacent = 0
-	var/number_opens = 0
-	for(var/turf/open/nearby_turf in get_adjacent_open_turfs(source_turf))
-		number_opens++
-		if(!nearby_turf.liquids && source_turf.liquids)
-			adjacent++
-
-	if(adjacent >= number_opens)
-		SSliquids.active_edge_turfs |= source_turf
-
-	reagents_per_turf = total_reagent_volume / members.len
-
-	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
-
-	new_turf.liquids = new(new_turf, src)
-	water_rush(new_turf, source_turf)
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
 	var/direction = get_dir(source_turf, new_turf)
