@@ -23,6 +23,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/failed_death_check = FALSE
 	var/group_burn_power = 0
 	var/group_fire_state = LIQUID_FIRE_STATE_NONE
+	var/group_burn_rate = 0
+	var/group_viscosity = 1
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
@@ -46,7 +48,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(burning_members[T])
 		burning_members -= T
 	if(SSliquids.burning_turfs[T])
-		SSlanguage.burning_turfs -= T
+		SSliquids.burning_turfs -= T
 
 	if(!splitting)
 		for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
@@ -58,6 +60,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 	updated_total = TRUE
 	process_group()
+
+/datum/liquid_group/proc/remove_all()
+	for(var/turf/member in members)
+		qdel(member.liquids)
 
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
 	SSliquids.active_groups |= src
@@ -91,6 +97,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/turf/T = t
 		T.liquids.liquid_group = null
 	members = null
+	burning_members = null
 	return ..()
 
 /datum/liquid_group/proc/check_adjacency(turf/member)
@@ -179,7 +186,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
 		if(!adjacent_turf.liquids)
-			if(reagents_per_turf >= 3 && adjacent_turf.turf_height <= expected_turf_height)
+			if(reagents_per_turf >= 3 && adjacent_turf.turf_height + group_viscosity <= expected_turf_height)
 				spread_liquid(adjacent_turf, member)
 		else if(adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && member.liquids.liquid_group.can_merge_group(adjacent_turf.liquids.liquid_group))
 			member.liquids.liquid_group.merge_group(adjacent_turf.liquids.liquid_group)
@@ -246,16 +253,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(adjacent >= number_opens)
 		SSliquids.active_edge_turfs |= source_turf
 
+	reagents_per_turf = total_reagent_volume / members.len
+	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+
 	new_turf.liquids = new(new_turf, src)
-	expose_members_turf(new_turf.liquids, LIQUID_REAGENT_THRESHOLD_TURF_EXPOSURE)
 	water_rush(new_turf, source_turf)
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
-	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
-		return
 	var/direction = get_dir(source_turf, new_turf)
 	for(var/atom/movable/target_atom in new_turf)
 		if(!target_atom.anchored && !target_atom.pulledby && !isobserver(target_atom) && (target_atom.move_resist < INFINITY))
+			reagents.reaction(target_atom, TOUCH, (reagents_per_turf * 0.5))
+			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
+				return
 			step(target_atom, direction)
 			if(isliving(target_atom) && prob(60))
 				var/mob/living/target_living = target_atom
@@ -276,6 +286,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
 	total_reagent_volume = reagents.total_volume
+	reagents_per_turf = total_reagent_volume / members.len
+	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+	if(!total_reagent_volume && !reagents.total_volume)
+		remove_all()
+		qdel(src)
 
 /datum/liquid_group/proc/remove_specific(obj/effect/abstract/liquid_turf/remover, amount, datum/reagent/reagent_type)
 	reagents.remove_reagent(reagent_type.type, amount)
@@ -290,24 +305,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
 	total_reagent_volume = reagents.total_volume
-
-/datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member, amount_threshold = 5)
-	var/turf/members_turf = member.my_turf
-	var/datum/reagents/exposed_reagents = new(1000)
-	var/list/passed_list = list()
-	for(var/reagent_type in reagents.reagent_list)
-		var/amount = reagents.reagent_list[reagent_type] / members
-		if(amount_threshold && amount < amount_threshold)
-			continue
-		remove_specific(src, amount * 0.2, reagent_type)
-		passed_list[reagent_type] = amount
-
-	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
-	exposed_reagents.chem_temp = group_temperature
-
-	for(var/atom/movable/target_atom in members_turf)
-		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
-	qdel(exposed_reagents)
 
 /datum/liquid_group/proc/move_liquid_group(obj/effect/abstract/liquid_turf/member)
 	remove_from_group(member.my_turf)
@@ -435,11 +432,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/get_group_burn()
 	var/total_burn_power = 0
+	var/total_burn_rate = 0
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
 		var/burn_power = initial(reagent_type.liquid_fire_power)
 		if(burn_power)
 			total_burn_power += burn_power * reagent_type.volume
-
+			total_burn_rate += burn_power
+	group_burn_rate = total_burn_rate
 	if(!total_burn_power)
 		if(burning_members.len)
 			extinguish_all()
@@ -471,8 +470,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/process_fire()
 	get_group_burn()
 
-	var/reagents_to_remove = group_burn_power * (burning_members.len / FIRE_BURN_PERCENT)
-	var/individual_burn = reagents_to_remove / burning_members.len
+	var/reagents_to_remove = group_burn_rate * (burning_members.len)
 
 	if(!group_burn_power)
 		extinguish_all()
@@ -480,10 +478,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	remove_any(amount = reagents_to_remove)
 
-	if(individual_burn >= reagents_per_turf)
-		for(var/num = 1, num < (burning_members.len / FIRE_BURN_PERCENT), num++)
+	if(group_burn_rate >= reagents_per_turf * 0.2)
+		for(var/num = 1, num < (burning_members.len), num++)
 			var/turf/picked_turf = burning_members[1]
-			burning_members -= picked_turf
+			extinguish(picked_turf)
 			remove_from_group(picked_turf)
 			qdel(picked_turf.liquids)
 
@@ -493,7 +491,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	member.liquids.fire_state = group_fire_state
-	member.liquids.update_overlays()
+	member.liquids.set_fire_effect()
 	burning_members |= member
 	SSliquids.burning_turfs |= member
 
@@ -503,7 +501,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	for(var/turf/adjacent_turf in get_adjacent_open_turfs(member))
 		if(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group == src && adjacent_turf.liquids.fire_state < member.liquids.fire_state)
 			adjacent_turf.liquids.fire_state = group_fire_state
-			adjacent_turf.liquids.update_overlays()
+			member.liquids.set_fire_effect()
 			burning_members |= adjacent_turf
 			SSliquids.burning_turfs |= adjacent_turf
 
@@ -511,9 +509,16 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	group_burn_power = 0
 	group_fire_state = LIQUID_FIRE_STATE_NONE
 	for(var/turf/member in burning_members)
-		member.liquids.fire_state
-		member.liquids.update_overlays()
+		member.liquids.fire_state = LIQUID_FIRE_STATE_NONE
+		member.liquids.set_fire_effect()
 		if(burning_members[member])
 			burning_members -= member
 		if(SSliquids.burning_turfs[member])
 			SSliquids.burning_turfs -= member
+
+/datum/liquid_group/proc/extinguish(turf/member)
+	member.liquids.fire_state = LIQUID_FIRE_STATE_NONE
+	member.liquids.set_fire_effect()
+	burning_members -= member
+	if(SSliquids.burning_turfs[member])
+		SSliquids.burning_turfs -= member

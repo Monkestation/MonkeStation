@@ -39,6 +39,16 @@ SUBSYSTEM_DEF(liquids)
 			var/datum/liquid_group/LG = g
 			currentrun_active_turfs |= LG.members
 
+	for(var/g in active_groups)
+		var/datum/liquid_group/LG = g
+		if(LG.burning_members.len)
+			for(var/turf/burning_turf in LG.burning_members)
+				LG.process_spread(burning_turf)
+		LG.process_group()
+		if(MC_TICK_CHECK)
+			return
+	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
+
 	for(var/turf in active_edge_turfs)
 		if(MC_TICK_CHECK)
 			return
@@ -59,13 +69,6 @@ SUBSYSTEM_DEF(liquids)
 			T.process_liquid_cell()
 			T.liquids.liquid_group.process_member(T)
 		currentrun_active_turfs -= T //work off of index later
-
-	for(var/g in active_groups)
-		var/datum/liquid_group/LG = g
-		LG.process_group()
-		if(MC_TICK_CHECK)
-			return
-	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION && !debug_evaporation)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE

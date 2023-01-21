@@ -27,6 +27,12 @@
 	var/liquid_state = LIQUID_STATE_PUDDLE
 	var/no_effects = FALSE
 
+
+	var/static/obj/effect/abstract/fire/small_fire/small_fire
+	var/static/obj/effect/abstract/fire/medium_fire/medium_fire
+	var/static/obj/effect/abstract/fire/big_fire/big_fire
+
+	var/mutable_appearance/displayed_content
 	/// State-specific message chunks for examine_turf()
 	var/static/list/liquid_state_messages = list(
 		"[LIQUID_STATE_PUDDLE]" = "a puddle of $",
@@ -116,19 +122,29 @@
 			overlay.layer = ABOVE_MOB_LAYER
 			add_overlay(overlay)
 
-/obj/effect/abstract/liquid_turf/update_overlays()
-	. = ..()
-	switch(fire_state)
+/obj/effect/abstract/liquid_turf/proc/set_fire_effect()
+	if(displayed_content)
+		vis_contents -= displayed_content
+
+	if(!liquid_group)
+		return
+
+	switch(liquid_group.group_fire_state)
 		if(LIQUID_FIRE_STATE_SMALL)
-			. += "fire_small"
+			displayed_content = small_fire
 		if(LIQUID_FIRE_STATE_MILD)
-			. += "fire_small"
+			displayed_content = small_fire
 		if(LIQUID_FIRE_STATE_MEDIUM)
-			. += "fire_medium"
+			displayed_content = medium_fire
 		if(LIQUID_FIRE_STATE_HUGE)
-			. += "fire_big"
+			displayed_content = big_fire
 		if(LIQUID_FIRE_STATE_INFERNO)
-			. += "fire_big"
+			displayed_content = big_fire
+		else
+			displayed_content = null
+
+	if(displayed_content)
+		vis_contents |= displayed_content
 
 //Takes a flat of our reagents and returns it, possibly qdeling our liquids
 /obj/effect/abstract/liquid_turf/proc/take_reagents_flat(flat_amount)
@@ -232,6 +248,12 @@
 
 /obj/effect/abstract/liquid_turf/Initialize(mapload, datum/liquid_group/group_to_add)
 	. = ..()
+	if(!small_fire)
+		small_fire = new
+	if(!medium_fire)
+		medium_fire = new
+	if(!big_fire)
+		big_fire = new
 	if(!SSliquids)
 		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
 	if(!immutable)
@@ -350,3 +372,19 @@
 	icon_state = "splash"
 	layer = FLY_LAYER
 	randomdir = FALSE
+
+/obj/effect/abstract/fire
+	icon = 'monkestation/code/modules/liquids/icons/obj/effects/liquid.dmi'
+	plane = FLOOR_PLANE
+	layer = BELOW_MOB_LAYER
+	mouse_opacity = FALSE
+	appearance_flags = RESET_COLOR | RESET_ALPHA
+
+/obj/effect/abstract/fire/small_fire
+	icon_state = "fire_small"
+
+/obj/effect/abstract/fire/medium_fire
+	icon_state = "fire_medium"
+
+/obj/effect/abstract/fire/big_fire
+	icon_state = "fire_big"
