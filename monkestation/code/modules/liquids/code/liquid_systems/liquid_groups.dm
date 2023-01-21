@@ -236,8 +236,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				members -= picked_turf
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
-	if(!new_turf.liquids)
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR && new_turf.turf_height + 1 <= expected_turf_height)
+	if(!new_turf.liquids && !isspaceturf(new_turf))
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 <= expected_turf_height)
 			return
 
 		reagents_per_turf = total_reagent_volume / members.len
