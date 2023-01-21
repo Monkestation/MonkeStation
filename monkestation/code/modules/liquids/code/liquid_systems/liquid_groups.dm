@@ -529,7 +529,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/passed_list = list()
 	for(var/reagent_type in reagents.reagent_list)
 		var/amount = reagents.reagent_list[reagent_type] / members
-		if(amount_threshold && amount)
+		if(amount)
 			continue
 		remove_specific(src, amount * 0.2, reagent_type)
 		passed_list[reagent_type] = amount
