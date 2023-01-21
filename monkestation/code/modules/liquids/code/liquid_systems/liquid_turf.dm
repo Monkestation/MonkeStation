@@ -62,7 +62,7 @@
 
 	liquids.liquid_group.add_reagent(liquids, reagent, amount)
 	//Expose turf
-	liquids.liquid_group.expose_members_turf()
+	liquids.liquid_group.expose_members_turf(liquids)
 
 /turf/proc/can_share_liquids_with(turf/T)
 	if(T.z != z) //No Z here handling currently

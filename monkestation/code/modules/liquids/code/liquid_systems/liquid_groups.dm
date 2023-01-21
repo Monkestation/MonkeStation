@@ -522,3 +522,21 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	burning_members -= member
 	if(SSliquids.burning_turfs[member])
 		SSliquids.burning_turfs -= member
+
+/datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member)
+	var/turf/members_turf = member.my_turf
+	var/datum/reagents/exposed_reagents = new(1000)
+	var/list/passed_list = list()
+	for(var/reagent_type in reagents.reagent_list)
+		var/amount = reagents.reagent_list[reagent_type] / members
+		if(amount_threshold && amount)
+			continue
+		remove_specific(src, amount * 0.2, reagent_type)
+		passed_list[reagent_type] = amount
+
+	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
+	exposed_reagents.chem_temp = group_temperature
+
+	for(var/atom/movable/target_atom in members_turf)
+		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
+	qdel(exposed_reagents)

@@ -23,7 +23,7 @@
 	//Make the reagents touch the person
 
 	var/fraction = SUBMERGEMENT_PERCENT(owner, T.liquids)
-	T.liquids.liquid_group.expose_members_turf(T.liquids, SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction)
+	T.liquids.liquid_group.expose_members_turf(T.liquids)
 	T.liquids.liquid_group.transfer_to_atom(T.liquids, ((SUBMERGEMENT_REAGENTS_TOUCH_AMOUNT*fraction/20)), owner)
 
 	return ..()
