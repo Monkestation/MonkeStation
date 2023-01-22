@@ -248,6 +248,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 
 		new_turf.liquids = new(new_turf, src)
+
+		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
+		splashy.color = group_color
+
 		water_rush(new_turf, source_turf)
 
 	else if(new_turf.liquids && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)

@@ -286,10 +286,6 @@
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
-	/* //Cant do it immediately, hmhm
-	if(isspaceturf(my_turf))
-		qdel(src, TRUE)
-	*/
 
 /obj/effect/abstract/liquid_turf/Destroy(force)
 	UnregisterSignal(my_turf, list(COMSIG_ATOM_ENTERED, COMSIG_TURF_MOB_FALL, COMSIG_PARENT_EXAMINE))
