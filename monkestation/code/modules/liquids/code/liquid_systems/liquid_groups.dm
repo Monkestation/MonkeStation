@@ -412,12 +412,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	remove_any(amount = reagents_to_remove)
 
 	if(group_burn_rate >= reagents_per_turf * 0.2)
-		for(var/num = 1, num < (burning_members.len), num++)
+		var/list/removed_turf = list()
+		for(var/num = 1, num < (burning_members.len * 0.2), num++)
 			var/turf/picked_turf = burning_members[1]
 			extinguish(picked_turf)
 			remove_from_group(picked_turf)
 			qdel(picked_turf.liquids)
-			try_split(picked_turf)
+			removed_turf |= picked_turf
+
+		while(removed_turf.len)
+			var/list/output = try_split(pick(removed_turf), TRUE)
+			for(var/turf/outputted_turf in removed_turf)
+				removed_turf -= outputted_turf
+
 
 /datum/liquid_group/proc/ignite_turf(turf/member)
 	get_group_burn()
@@ -519,7 +526,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	return connected_liquids
 
-/datum/liquid_group/proc/try_split(turf/source)
+/datum/liquid_group/proc/try_split(turf/source, return_list = FALSE)
 	var/list/connected_liquids = list()
 
 	var/turf/head_turf = source
@@ -572,5 +579,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!new_group.members.len)
 		qdel(new_group)
 		return FALSE
+
+	if(return_list)
+		return connected_liquids
 
 	return TRUE
