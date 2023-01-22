@@ -297,9 +297,9 @@
 		liquid_group.remove_from_group(my_turf)
 	if(my_turf in SSliquids.active_edge_turfs)
 		SSliquids.active_edge_turfs -= my_turf
-	if(SSliquids.evaporation_queue[my_turf])
+	if(my_turf in SSliquids.evaporation_queue)
 		SSliquids.evaporation_queue -= my_turf
-	if(SSliquids.burning_turfs[my_turf])
+	if(my_turf in SSliquids.burning_turfs)
 		SSliquids.burning_turfs -= my_turf
 	my_turf.liquids = null
 	my_turf = null

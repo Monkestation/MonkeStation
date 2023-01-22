@@ -9,10 +9,10 @@
 	return
 
 /turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
-	/* this needs extensive work
+
 	if(liquids && liquids.liquid_group && !liquids.fire_state)
 		liquids.liquid_group.ignite_turf(src)
-	*/
+
 	if(!air)
 		return
 

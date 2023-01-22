@@ -28,6 +28,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	var/merging = FALSE
 
+	///a unique key that will early return a split_check if all adjacents are still in tact
+	var/temporary_split_key
+
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
 		T.liquids = new(null, src)
@@ -237,7 +240,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
 	if(!new_turf.liquids && !isspaceturf(new_turf))
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 <= expected_turf_height)
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 > expected_turf_height)
 			return
 
 		reagents_per_turf = total_reagent_volume / members.len
@@ -481,7 +484,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 * key as that will be totally unique. this can be used for things aside from splitting by sucking up large groups
 */
 
-/datum/liquid_group/proc/return_connected_liquids(obj/effect/abstract/liquid_turf/source)
+/datum/liquid_group/proc/return_connected_liquids(obj/effect/abstract/liquid_turf/source, adjacent_checks = 0)
+	var/turf/first_turf = source.my_turf
 	var/list/connected_liquids = list()
 	///the current queue
 	var/list/queued_liquids = list(source)
@@ -507,6 +511,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			if(length(previously_visited) != visited_length)
 				queued_liquids |= adjacent_turf.liquids
 				connected_liquids |= adjacent_turf
+				if(adjacent_checks)
+					if(temporary_split_key == adjacent_turf.liquids.liquid_group.temporary_split_key && adjacent_turf != first_turf)
+						adjacent_checks--
+						if(adjacent_checks <= 0)
+							return FALSE
+
 	return connected_liquids
 
 /datum/liquid_group/proc/try_split(turf/source)
@@ -515,12 +525,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/turf/head_turf = source
 	var/obj/effect/abstract/liquid_turf/current_head
 
+	var/generated_key = "[world.time]_activemembers[members.len]"
 	var/adjacent_liquid_count = 0
 	for(var/turf/adjacent_turf in get_adjacent_open_turfs(head_turf))
 		if(!adjacent_turf.liquids || !members[adjacent_turf]) //empty turf or not our group just skip this
 			continue
 		///the section is a little funky, as if say a cross shaped liquid removal occurs this will leave 3 of them in the same group, not a big deal as this only affects turfs that are like 5 tiles total
 		current_head = adjacent_turf.liquids
+		current_head.liquid_group.temporary_split_key = generated_key
 		head_turf = adjacent_turf
 		adjacent_liquid_count++
 
@@ -528,7 +540,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	if(current_head)
-		connected_liquids = return_connected_liquids(current_head)
+		connected_liquids = return_connected_liquids(current_head, adjacent_liquid_count)
 
 	if(!length(connected_liquids) || connected_liquids == members) //no connected liquids or its a match to our current group remove
 		return
@@ -546,5 +558,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	trans_to_seperate_group(new_group.reagents, amount_to_transfer)
 	new_group.total_reagent_volume = new_group.reagents.total_volume
 	new_group.reagents_per_turf = new_group.total_reagent_volume / length(new_group.members)
+
+	///asses the group to see if it should exist
+	var/new_group_length = length(new_group.members)
+	if(new_group.total_reagent_volume == 0 || new_group.reagents_per_turf == 0 || !new_group_length)
+		qdel(new_group)
+		return FALSE
+	for(var/turf/new_turf in new_group.members)
+		if(new_turf in members)
+			new_group_length--
+			new_group.members -= new_turf
+
+	if(!new_group.members.len)
+		qdel(new_group)
+		return FALSE
 
 	return TRUE
