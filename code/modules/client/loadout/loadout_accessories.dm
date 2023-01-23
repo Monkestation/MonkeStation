@@ -197,7 +197,12 @@
 
 /datum/gear/accessory/mask
 	subtype_path = /datum/gear/accessory/mask
-	cost = 1500
+	cost = 2000
+
+/datum/gear/accessory/mask/gondola
+	display_name = "gondola mask :D"
+	description = "Fugg :DDDDD"
+	path = /obj/item/clothing/mask/gondola
 
 /datum/gear/accessory/mask/clown
 	display_name = "clown mask"
@@ -208,7 +213,6 @@
 	display_name = "mime mask"
 	description = "..."
 	path = /obj/item/clothing/mask/gas/mime
-
 
 /datum/gear/accessory/mask/russian_balaclava
 	display_name = "russian balaclava"
