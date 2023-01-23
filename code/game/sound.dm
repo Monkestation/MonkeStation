@@ -433,7 +433,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		if("volume")
 			var/channel = text2num(params["channel"])
 			var/volume = text2num(params["volume"])
-			if(isnull(channel) || isnull(volume))
+			if(isnull(channel))
 				return FALSE
 			usr.client.prefs.channel_volume["[channel]"] = volume
 			usr.client.prefs.save_preferences()
