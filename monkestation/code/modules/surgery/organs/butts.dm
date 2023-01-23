@@ -189,41 +189,7 @@
 			hit_target = TRUE
 			break
 	if(!hit_target)
-		user.audible_message("[pick(
-								"rears up and lets loose a fart of tremendous magnitude!",
-								"farts!",
-								"toots.",
-								"harvests methane from uranus at mach 3!",
-								"assists global warming!",
-								"farts and waves their hand dismissively.",
-								"farts and pretends nothing happened.",
-								"is a farting motherfucker!",
-								"farts.",
-								"unleashes their unholy rectal vapor!",
-								"assblasts gently.",
-								"lets out a wet sounding one!",
-								"exorcises a ferocious colonic demon!",
-								"pledges ass-legience to the flag!",
-								"cracks open a tin of beans!",
-								"tears themselves a new one!",
-								"looses some pure assgas!",
-								"displays the most sophisticated type of humor.",
-								"strains to get the fart out. Is that <font color='red'>blood</font>?",
-								"sighs and farts simultaneously.",
-								"contributes to the erosion of the ozone layer!",
-								"just farts. It's natural, everyone does it.",
-								"had one too many tacos this week!",
-								"has the phantom shits.",
-								"flexes their bunghole.",
-								"'s ass sings the song that ends the earth!",
-								"had to go and ruin the mood!",
-								"unflinchingly farts. True confidence.",
-								"farts so loud it startles them!",
-								"lets loose the farts of justice!",
-								"rips a juicy one!",
-								"'s ass breathes a sigh of relief.",
-								"breaks wind and a nearby wine glass!",
-								"finally achieves the perfect fart. All downhill from here.")]", audible_message_flags = list(CHATMESSAGE_EMOTE = TRUE))
+		user.audible_message("[pick(world.file2list("strings/farts.txt"))]", audible_message_flags = list(CHATMESSAGE_EMOTE = TRUE))
 
 
 	//SOUND HANDLING

@@ -400,7 +400,7 @@
 	if(turns >= 8)
 		STOP_PROCESSING(SSfastprocess, src)
 
-/obj/structure/chair/brass/relaymove(mob/user, direction)
+/obj/structure/chair/brass/relaymove(mob/living/user, direction)
 	if(!direction)
 		return FALSE
 	if(direction == dir)

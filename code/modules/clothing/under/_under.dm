@@ -22,18 +22,16 @@
 	sprite_sheets = FLAG_SIMIAN //monkestation edit: add simians
 
 /obj/item/clothing/under/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
-	. = list()
-	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
-		if(HAS_BLOOD_DNA(src))
-			var/mob/living/carbon/human/M = loc
-			if(!M.dna.species.get_custom_icons("uniform"))//monkestation edit: add simians
-				. += mutable_appearance('icons/effects/blood.dmi', "uniformblood")
-			else
-				. += mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(M.dna.species.name)]_uniformblood")
-		if(accessory_overlay)
-			. += accessory_overlay
+	. = ..()
+	if(isinhands)
+		return
+
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damageduniform")
+	if(HAS_BLOOD_DNA(src))
+		. += mutable_appearance('icons/effects/blood.dmi', "uniformblood")
+	if(accessory_overlay)
+		. += accessory_overlay
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if((has_sensor == BROKEN_SENSORS) && istype(I, /obj/item/stack/cable_coil))

@@ -25,6 +25,7 @@
 	default_price = 30
 	extra_price = 250
 	payment_department = ACCOUNT_SCI
+	light_mask = "modular-light-mask"
 
 /obj/item/vending_refill/modularpc
 	machine_name = "Deluxe Silicate Selections"

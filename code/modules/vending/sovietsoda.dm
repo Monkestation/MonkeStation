@@ -11,6 +11,8 @@
 	default_price = 1
 	extra_price = 1
 	payment_department = NO_FREEBIES
+	light_mask = "soviet-light-mask"
+	light_color = "#ffbe9d"
 
 /obj/item/vending_refill/sovietsoda
 	machine_name = "BODA"

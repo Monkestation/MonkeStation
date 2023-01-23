@@ -27,6 +27,7 @@
 	default_price = 20
 	extra_price = 50
 	payment_department = ACCOUNT_ENG
+	light_mask = "engivend-light-mask"
 
 /obj/item/vending_refill/engivend
 	machine_name = "Engi-Vend"

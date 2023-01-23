@@ -51,35 +51,42 @@
 
 /obj/machinery/vending/cola/blue
 	icon_state = "Cola_Machine"
+	light_mask = "cola-light-mask"
+	light_color = "#555cc2"
 
 /obj/machinery/vending/cola/black
 	icon_state = "cola_black"
 	light_color = LIGHT_COLOR_WHITE
+	light_mask = "cola-light-mask"
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
 	name = "\improper Space Cola Vendor"
 	desc = "It vends cola, in space."
 	product_slogans = "Cola in space!"
-	light_color = LIGHT_COLOR_RED
+	light_mask = "red_cola-light-mask"
+	light_color = "#a50824"
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
 	name = "\improper Space-up! Vendor"
 	desc = "Indulge in an explosion of flavor."
 	product_slogans = "Space-up! Like a hull breach in your mouth."
-	light_color = LIGHT_COLOR_GREEN
+	light_mask = "space_up-light-mask"
+	light_color = "#44964a"
 
 /obj/machinery/vending/cola/starkist
 	icon_state = "starkist"
 	name = "\improper Star-kist Vendor"
 	desc = "The taste of a star in liquid form."
 	product_slogans = "Drink the stars! Star-kist!"
-	light_color = LIGHT_COLOR_ORANGE
+	light_mask = "starkist-light-mask"
+	light_color = "#ffc44d"
 
 /obj/machinery/vending/cola/sodie
 	icon_state = "soda"
 	light_color = LIGHT_COLOR_LAVA
+	light_mask = "soda-light-mask"
 
 /obj/machinery/vending/cola/pwr_game
 	icon_state = "pwr_game"
@@ -87,6 +94,7 @@
 	desc = "You want it, we got it. Brought to you in partnership with Vlad's Salads."
 	product_slogans = "The POWER that gamers crave! PWR GAME!"
 	light_color = LIGHT_COLOR_PURPLE
+	light_mask = "pwr_game-light-mask"
 
 /obj/machinery/vending/cola/shamblers
 	name = "\improper Shambler's Vendor"
@@ -103,3 +111,5 @@
 					/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 10)
 	product_slogans = "~Shake me up some of that Shambler's Juice!~"
 	product_ads = "Refreshing!;Jyrbv dv lg jfdv fw kyrk Jyrdscvi'j Alztv!;Over 1 trillion souls drank!;Thirsty? Nyp efk uizeb kyv uribevjj?;Kyv Jyrdscvi uizebj kyv ezxyk!;Drink up!;Krjkp."
+	light_mask = "shamblers-light-mask"
+	light_mask = "#e4005b"
