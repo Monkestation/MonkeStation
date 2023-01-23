@@ -42,6 +42,8 @@
 		"[LIQUID_STATE_FULLTILE]" = "$ going [span_danger("over your head")]",
 	)
 
+	var/temporary_split_key
+
 /obj/effect/abstract/liquid_turf/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	return
 

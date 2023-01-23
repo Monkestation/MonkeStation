@@ -28,8 +28,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	var/merging = FALSE
 
-	///a unique key that will early return a split_check if all adjacents are still in tact
-	var/temporary_split_key
 	///list of cached edge turfs with a sublist of directions stored
 	var/list/cached_edge_turfs = list()
 
@@ -46,7 +44,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	SSliquids.currentrun_active_turfs |= T
 	process_group()
 
-/datum/liquid_group/proc/remove_from_group(turf/T, splitting = FALSE)
+/datum/liquid_group/proc/remove_from_group(turf/T)
 	members -= T
 	T.liquids.liquid_group = null
 	if(SSliquids.currentrun_active_turfs[T])
@@ -222,8 +220,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				members -= picked_turf
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
-	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs[new_turf])
+	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs)
 		return
+	if(!(new_turf in source_turf.atmos_adjacent_turfs)) //i hate that this is needed
+		return
+	if(!source_turf.atmos_adjacent_turfs[new_turf])
+		return
+
 	if(!new_turf.liquids && !isspaceturf(new_turf))
 		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 > expected_turf_height)
 			return FALSE
@@ -490,6 +493,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 */
 
 /datum/liquid_group/proc/return_connected_liquids(obj/effect/abstract/liquid_turf/source, adjacent_checks = 0)
+	var/temporary_split_key = source.temporary_split_key
 	var/turf/first_turf = source.my_turf
 	var/list/connected_liquids = list()
 	///the current queue
@@ -517,7 +521,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				queued_liquids |= adjacent_turf.liquids
 				connected_liquids |= adjacent_turf
 				if(adjacent_checks)
-					if(temporary_split_key == adjacent_turf.liquids.liquid_group.temporary_split_key && adjacent_turf != first_turf)
+					if(temporary_split_key == adjacent_turf.liquids.temporary_split_key && adjacent_turf != first_turf)
 						adjacent_checks--
 						if(adjacent_checks <= 0)
 							return FALSE
@@ -537,18 +541,19 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			continue
 		///the section is a little funky, as if say a cross shaped liquid removal occurs this will leave 3 of them in the same group, not a big deal as this only affects turfs that are like 5 tiles total
 		current_head = adjacent_turf.liquids
-		current_head.liquid_group.temporary_split_key = generated_key
-		head_turf = adjacent_turf
+		current_head.temporary_split_key = generated_key
 		adjacent_liquid_count++
 
-	if(adjacent_liquid_count > 1) ///if there is only 1 adjacent liquid it physically can't split
-		return
+	if(adjacent_liquid_count <= 1) ///if there is only 1 adjacent liquid it physically can't split
+		return FALSE
 
 	if(current_head)
 		connected_liquids = return_connected_liquids(current_head, adjacent_liquid_count)
 
-	if(!length(connected_liquids) || connected_liquids == members) //no connected liquids or its a match to our current group remove
-		return
+	if(!length(connected_liquids) || connected_liquids.len == members.len) //yes yes i know if two groups are identical in size this will break but fixing this would add to much processing
+		if(return_list)
+			return connected_liquids
+		return FALSE
 
 	var/amount_to_transfer = length(connected_liquids) * reagents_per_turf
 
@@ -561,9 +566,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			new_group.cached_edge_turfs |= connected_liquid
 		if(connected_liquid in burning_members)
 			new_group.burning_members |= connected_liquid
-
 		remove_from_group(connected_liquid, TRUE)
-		add_to_group(connected_liquid)
+		new_group.add_to_group(connected_liquid)
 
 	trans_to_seperate_group(new_group.reagents, amount_to_transfer)
 	new_group.total_reagent_volume = new_group.reagents.total_volume
@@ -576,7 +580,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return FALSE
 	for(var/turf/new_turf in new_group.members)
 		if(new_turf in members)
-			new_group_length--
 			new_group.members -= new_turf
 
 	if(!new_group.members.len)
@@ -586,6 +589,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(return_list)
 		return connected_liquids
 
+	SSliquids.currentrun_active_turfs = list()
 	return TRUE
 
 /datum/liquid_group/proc/process_cached_edges()
