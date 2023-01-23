@@ -6,7 +6,6 @@ SUBSYSTEM_DEF(liquids)
 
 	var/list/active_turfs = list()
 	var/list/currentrun_active_turfs = list()
-	var/list/active_edge_turfs = list()
 
 	var/list/active_groups = list()
 
@@ -29,7 +28,7 @@ SUBSYSTEM_DEF(liquids)
 	var/fire_counter = 0
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg += "ET:[active_edge_turfs.len]|AT:[active_turfs.len]|AG:[active_groups.len]|BT:[burning_turfs.len]|EQ:[evaporation_queue.len]"
+	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|BT:[burning_turfs.len]|EQ:[evaporation_queue.len]"
 	return ..()
 
 
@@ -44,6 +43,8 @@ SUBSYSTEM_DEF(liquids)
 		if(LG.burning_members.len)
 			for(var/turf/burning_turf in LG.burning_members)
 				LG.process_spread(burning_turf)
+
+		LG.process_cached_edges()
 		LG.process_group()
 		if(MC_TICK_CHECK)
 			return

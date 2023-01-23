@@ -30,10 +30,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	///a unique key that will early return a split_check if all adjacents are still in tact
 	var/temporary_split_key
+	///list of cached edge turfs with a sublist of directions stored
+	var/list/cached_edge_turfs = list()
 
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
 		T.liquids = new(null, src)
+		cached_edge_turfs[T] = list(NORTH, SOUTH, EAST, WEST)
 	members[T] = TRUE
 	T.liquids.liquid_group = src
 	reagents.maximum_volume += 1000 /// each turf will hold 1000 units plus the base amount spread across the group
@@ -52,13 +55,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(burning_members[T])
 		burning_members -= T
-	if(SSliquids.burning_turfs[T])
-		SSliquids.burning_turfs -= T
 
-	if(!splitting)
-		for(var/turf/open/nearby_turf in get_adjacent_open_turfs(T))
-			if(nearby_turf.liquids && nearby_turf.liquids.liquid_group && nearby_turf.liquids.liquid_group.total_reagent_volume)
-				SSliquids.active_edge_turfs |= nearby_turf
+	if(T in SSliquids.burning_turfs)
+		SSliquids.burning_turfs -= T
 
 	if(!members.len)
 		qdel(src)
@@ -77,7 +76,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	reagents = new(100000)
 	if(created_liquid)
 		add_to_group(created_liquid.my_turf)
-		SSliquids.active_edge_turfs |= created_liquid.my_turf
+		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
 
 /datum/liquid_group/proc/merge_group(datum/liquid_group/otherg)
 	if(otherg == src)
@@ -195,16 +194,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
-		spread_liquid(adjacent_turf, member)
-		//Immutable check thing
-		if(adjacent_turf.liquids && adjacent_turf.liquids.immutable)
-			if(member.z != adjacent_turf.z)
-				var/turf/Z_turf_below = SSmapping.get_turf_below(member)
-				if(adjacent_turf == Z_turf_below)
-					qdel(member.liquids, TRUE)
-					return
-				else
-					continue
+		// spread_liquid(adjacent_turf, member)
 		if(member.z != adjacent_turf.z)
 			var/turf/Z_turf_below = SSmapping.get_turf_below(member)
 			if(adjacent_turf == Z_turf_below)
@@ -216,13 +206,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		if(!SSliquids.active_turfs[adjacent_turf] && adjacent_turf.liquids)
 			SSliquids.add_active_turf(adjacent_turf)
-
-/datum/liquid_group/proc/process_edge(turf/member)
-	var/list/adjacent_turfs = get_adjacent_open_turfs(member)
-	shuffle(adjacent_turfs)
-	for(var/tur in adjacent_turfs)
-		var/turf/adjacent_turf = tur
-		spread_liquid(adjacent_turf, member)
 
 /datum/liquid_group/proc/process_turf_disperse()
 	if(reagents_per_turf < 1 || !total_reagent_volume)
@@ -239,15 +222,18 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				members -= picked_turf
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
+	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs[new_turf])
+		return
 	if(!new_turf.liquids && !isspaceturf(new_turf))
 		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 > expected_turf_height)
-			return
+			return FALSE
 
 		reagents_per_turf = total_reagent_volume / members.len
 
 		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 
 		new_turf.liquids = new(new_turf, src)
+		check_edges(new_turf)
 
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
 		splashy.color = group_color
@@ -256,8 +242,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	else if(new_turf.liquids && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
 		merge_group(new_turf.liquids.liquid_group)
-		return
-
+		return FALSE
+	return TRUE
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
 	var/direction = get_dir(source_turf, new_turf)
@@ -278,6 +264,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/turf/remover_turf = remover.my_turf
 		qdel(remover)
 		try_split(remover_turf)
+		check_edges(remover_turf)
 	process_group()
 
 /datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
@@ -424,10 +411,17 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			qdel(picked_turf.liquids)
 			removed_turf |= picked_turf
 
+
+		for(var/turf/remover in removed_turf)
+			check_edges(remover)
+
 		while(removed_turf.len)
-			var/list/output = try_split(pick(removed_turf), TRUE)
-			for(var/turf/outputted_turf in removed_turf)
-				removed_turf -= outputted_turf
+			var/turf/picked_turf = pick(removed_turf)
+			var/list/output = try_split(picked_turf, TRUE)
+			removed_turf -= picked_turf
+			for(var/turf/outputted_turf in output)
+				if(outputted_turf in removed_turf)
+					removed_turf -= outputted_turf
 
 
 /datum/liquid_group/proc/ignite_turf(turf/member)
@@ -563,6 +557,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	new_group.members += connected_liquids
 
 	for(var/turf/connected_liquid in connected_liquids)
+		if(connected_liquid in cached_edge_turfs)
+			new_group.cached_edge_turfs |= connected_liquid
+		if(connected_liquid in burning_members)
+			new_group.burning_members |= connected_liquid
+
 		remove_from_group(connected_liquid, TRUE)
 		add_to_group(connected_liquid)
 
@@ -588,3 +587,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return connected_liquids
 
 	return TRUE
+
+/datum/liquid_group/proc/process_cached_edges()
+	for(var/turf/cached_turf in cached_edge_turfs)
+		for(var/direction in cached_edge_turfs[cached_turf])
+			var/turf/directional_turf = get_step(cached_turf, direction)
+			if(isclosedturf(directional_turf))
+				continue
+			if(spread_liquid(directional_turf, cached_turf))
+				cached_edge_turfs[cached_turf] -= direction
+				if(!length(cached_edge_turfs[cached_turf]))
+					cached_edge_turfs -= cached_turf
+
+/datum/liquid_group/proc/check_edges(turf/checker)
+	var/list/passed_directions = list()
+	for(var/direction in GLOB.cardinals)
+		var/turf/directional_turf = get_step(checker, direction)
+		if(directional_turf.liquids)
+			continue
+		passed_directions.Add(direction)
+
+	if(length(passed_directions))
+		cached_edge_turfs |= checker
+		cached_edge_turfs[checker] = passed_directions
