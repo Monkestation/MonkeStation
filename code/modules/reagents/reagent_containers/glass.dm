@@ -251,22 +251,15 @@
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/living/user, params) //MONKESTATION EDIT CHANGE
 	if(istype(O, /obj/item/mop)) //MONKESTATION EDIT CHANGE
-		if(O.reagents.total_volume == 0)
+		if(O.reagents.total_volume < O.reagents.maximum_volume)
 			if(reagents.total_volume < 1)
 				to_chat(user, "<span class='warning'>[src] is out of water!</span>")
 				return
 			else
 				reagents.trans_to(O, 5, transfered_by = user)
 				to_chat(user, "<span class='notice'>You wet [O] in [src].</span>")
-				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE) //MONKESTATION EDIT CHANGE END
+				playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 				return
-		if(reagents.total_volume == reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>[src] is full!</span>")
-			return
-		O.reagents.remove_any(O.reagents.total_volume*SQUEEZING_DISPERSAL_PERCENT)
-		O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
-		to_chat(user, "<span class='notice'>You squeeze the liquids from [O] to [src].</span>")
-
 	else if(isprox(O))
 		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
 		qdel(O)
@@ -274,7 +267,21 @@
 		user.put_in_hands(new /obj/item/bot_assembly/cleanbot)
 	else
 		..()
+
+/obj/item/reagent_containers/glass/bucket/AltClick(mob/living/user)
+	var/obj/item/mop/held_mop = user.get_active_held_item()
+	if(istype(held_mop, /obj/item/mop) && user.CanReach(src))
+		if(reagents.total_volume == reagents.maximum_volume)
+			to_chat(user, "<span class='warning'>[src] is full!</span>")
+			return
+		held_mop.reagents.remove_any(held_mop.reagents.total_volume*SQUEEZING_DISPERSAL_PERCENT)
+		held_mop.reagents.trans_to(src, held_mop.reagents.total_volume, transfered_by = user)
+		to_chat(user, "<span class='notice'>You squeeze the liquids from [held_mop] to [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
+	.=..()	//MONKESTATION EDIT CHANGE END
+
 #undef SQUEEZING_DISPERSAL_PERCENT //MONKESTATION EDIT ADDITION
+
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
 	..()
 	if (slot == ITEM_SLOT_HEAD)

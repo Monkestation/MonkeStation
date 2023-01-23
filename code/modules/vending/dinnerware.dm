@@ -26,6 +26,7 @@
 	default_price = 5
 	extra_price = 50
 	payment_department = ACCOUNT_SRV
+	light_mask = "dinnerware-light-mask"
 
 /obj/item/vending_refill/dinnerware
 	machine_name = "Plasteel Chef's Dinnerware Vendor"

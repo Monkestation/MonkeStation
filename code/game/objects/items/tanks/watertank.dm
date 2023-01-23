@@ -389,6 +389,7 @@
 
 //Todo : cache these.
 /obj/item/reagent_containers/chemtank/worn_overlays(mutable_appearance/standing, isinhands = FALSE) //apply chemcolor and level
+	.=..()
 	. = list()
 	//inhands + reagent_filling
 	if(!isinhands && reagents.total_volume)

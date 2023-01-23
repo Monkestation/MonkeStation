@@ -1,5 +1,6 @@
 /mob/living/carbon
 	blood_volume = BLOOD_VOLUME_NORMAL
+	blocks_emissive = NONE
 
 /mob/living/carbon/Initialize(mapload)
 	. = ..()

@@ -265,15 +265,17 @@
 //monkestation edit end
 
 /obj/item/clothing/head/wig/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use)
-	. = list()
+	. = ..()
 	if(!isinhands)
-		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
-		if(!S)
-			return
-		var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
-		M.appearance_flags |= RESET_COLOR
-		M.color = hair_color
-		. += M
+		return
+
+	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
+	if(!S)
+		return
+	var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
+	M.appearance_flags |= RESET_COLOR
+	M.color = hair_color
+	. += M
 
 //monkestation edit
 /obj/item/clothing/head/wig/attack_self(mob/user)

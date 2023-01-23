@@ -15,6 +15,7 @@
 	default_price = 10
 	extra_price = 40
 	payment_department = NO_FREEBIES
+	light_mask = "generic-light-mask"
 
 /obj/item/vending_refill/assist
 	machine_name = "Vendomat"
