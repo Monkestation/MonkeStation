@@ -23,13 +23,13 @@ export const VolumeMixer = (properties, context) => {
                         name="volume-off"
                         size="1.5"
                         mt="0.1rem"
-                        onClick={() => act("volume", { channel: channel.num, volume: 0 })}
+                        onClick={() => act("volume", { channel: channel.num, volume: 1 })}
                       />
                     </Button>
                   </Flex.Item>
                   <Flex.Item grow="1" mx="1rem">
                     <Slider
-                      minValue={0}
+                      minValue={1}
                       maxValue={100}
                       stepPixelSize={3.13}
                       value={channel.volume}
