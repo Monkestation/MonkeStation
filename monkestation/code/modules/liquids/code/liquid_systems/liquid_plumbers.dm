@@ -195,6 +195,8 @@
 		target_value = free_space
 
 	var/datum/liquid_group/targeted_group = affected_turf.liquids.liquid_group
+	if(!targeted_group.reagents_per_turf)
+		return
 	var/turfs_to_pull = round(target_value / targeted_group.reagents_per_turf,1)
 
 	var/list/removed_turfs = targeted_group.return_connected_liquids_in_range(affected_turf.liquids, turfs_to_pull)
@@ -202,10 +204,19 @@
 	for(var/turf/listed_turf in removed_turfs)
 		targeted_group.remove_from_group(listed_turf)
 		qdel(listed_turf.liquids)
-
 	///recalculate the values here because processing
 	targeted_group.total_reagent_volume = targeted_group.reagents.total_volume
 	targeted_group.reagents_per_turf = targeted_group.total_reagent_volume / length(targeted_group.members)
+
+	if(!removed_turfs.len)
+		return
+	while(removed_turfs.len)
+		var/turf/picked_turf = pick(removed_turfs)
+		var/list/output = targeted_group.try_split(picked_turf, TRUE)
+		removed_turfs -= picked_turf
+		for(var/turf/outputted_turf in output)
+			if(outputted_turf in removed_turfs)
+				removed_turfs -= outputted_turf
 
 /obj/machinery/plumbing/floor_pump/input/on
 	icon_state = "active_input-mapping"
@@ -313,6 +324,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/plumbing/floor_pump/output/on/supply,
 		/obj/machinery/plumbing/disposer = 10,
 		/obj/machinery/plumbing/floor_pump/input = 20,
 		/obj/machinery/plumbing/floor_pump/output = 20,
+		/obj/machinery/plumbing/layer_manifold = 5,
 	)
 
 // Helpers for maps

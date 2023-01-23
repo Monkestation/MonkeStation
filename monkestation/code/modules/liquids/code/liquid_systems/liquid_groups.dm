@@ -257,7 +257,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		water_rush(new_turf, source_turf)
 
-	else if(new_turf.liquids && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
+	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
 		merge_group(new_turf.liquids.liquid_group)
 		return FALSE
 	return TRUE
@@ -350,19 +350,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		reagents_per_turf = total_reagent_volume / length(members)
 	process_group()
 
-	/* needs to be redone
-	if(amount >= reagents_per_turf)
-		if(!members.len)
-			break_group()
-		var/turf/remover_turf = pick(members)
-		var/obj/effect/abstract/liquid_turf/remover = remover_turf.liquids
-		remove_from_group(remover_turf)
-		qdel(remover)
-	*/
-
 /datum/liquid_group/proc/handle_temperature(previous_reagents, temp)
 	var/old_thermal = previous_reagents * group_temperature
 	var/recieved_thermal = (total_reagent_volume - previous_reagents) * temp
+
+	if(!total_reagent_volume)
+		return
 
 	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
 	reagents.chem_temp = group_temperature

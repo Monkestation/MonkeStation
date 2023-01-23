@@ -53,6 +53,12 @@ All the important duct code:
 	if(duct_color)
 		add_atom_colour(duct_color, FIXED_COLOUR_PRIORITY)
 
+	if(no_anchor)
+		active = FALSE
+		set_anchored(FALSE)
+	else if(!can_anchor())
+		if(mapload)
+			log_mapping("Overlapping ducts detected at [AREACOORD(src)], unanchoring one.")
 		// Note that qdeling automatically drops a duct stack
 		return INITIALIZE_HINT_QDEL
 
@@ -330,6 +336,8 @@ All the important duct code:
 	///Default layer of our duct
 	var/duct_layer = "Default Layer"
 
+	var/obj/machinery/duct/duct_type = /obj/machinery/duct
+
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
 	. += span_notice("It's current color and layer are [duct_color] and [duct_layer]. Use in-hand to change.")
@@ -361,8 +369,22 @@ All the important duct code:
 	if(isopenturf(target) && use(1))
 		var/turf/open/open_turf = target
 		var/is_omni = duct_color == DUCT_COLOR_OMNI
-		new /obj/machinery/duct(open_turf, FALSE, GLOB.pipe_paint_colors[duct_color], GLOB.plumbing_layers[duct_layer], null, is_omni)
+		new duct_type(open_turf, FALSE, GLOB.pipe_paint_colors[duct_color], GLOB.plumbing_layers[duct_layer], null, is_omni)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 
 /obj/item/stack/ducts/fifty
 	amount = 50
+
+/obj/item/stack/ducts/industrial
+	name = "industrial ducts"
+	desc = "A stack of industrial grade ducts, can hold more than standard ducts"
+	duct_type = /obj/machinery/duct/industrial
+
+/obj/item/stack/ducts/industrial/fifty
+	amount = 50
+
+
+/obj/machinery/duct/industrial
+	name = "industrial ducts"
+	desc = "Industrial grade ducts, can hold more than standard ducts"
+	capacity = 100
