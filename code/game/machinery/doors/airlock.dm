@@ -1192,7 +1192,7 @@
 		var/time_to_open = 5
 		if(hasPower() && !prying_so_hard)
 			time_to_open = 50
-			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE, , mixer_channel = CHANNEL_SOUND_EFFECTS) //is it aliens or just the CE being a dick?
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE , mixer_channel = CHANNEL_SOUND_EFFECTS) //is it aliens or just the CE being a dick?
 			prying_so_hard = TRUE
 			if(do_after(user, time_to_open, TRUE, src))
 				open(2)
