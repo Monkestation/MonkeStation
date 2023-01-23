@@ -187,7 +187,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		member.liquids.set_new_liquid_state(group_overlay_state)
 	if(member.liquids.color != group_color)
 		member.liquids.color = group_color
-	SSliquids.evaporation_queue |= member
+	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
+		SSliquids.evaporation_queue |= member
 	var/list/adjacent_turfs = member.GetAtmosAdjacentTurfs()
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
@@ -540,6 +541,36 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 							return FALSE
 
 	return connected_liquids
+
+/datum/liquid_group/proc/return_connected_liquids_in_range(obj/effect/abstract/liquid_turf/source, total_turfs = 0)
+	var/list/connected_liquids = list()
+	///the current queue
+	var/list/queued_liquids = list(source)
+	///the turfs that we have previously visited with unique ids
+	var/list/previously_visited = list()
+	///the turf object the liquid resides on
+	var/turf/queued_turf
+
+	var/obj/effect/abstract/liquid_turf/current_head
+	///compares after each iteration to see if we even need to continue
+	var/visited_length = 0
+	while(queued_liquids.len)
+		current_head = queued_liquids[1]
+		queued_turf = current_head.my_turf
+		queued_liquids -= current_head
+
+		for(var/turf/adjacent_turf in get_adjacent_open_turfs(queued_turf))
+			if(!adjacent_turf.liquids || !members[adjacent_turf])
+				continue
+
+			visited_length = length(previously_visited)
+			previously_visited["[adjacent_turf.liquids.x]_[adjacent_turf.liquids.y]"] = adjacent_turf.liquids
+			if(length(previously_visited) != visited_length)
+				queued_liquids |= adjacent_turf.liquids
+				connected_liquids |= adjacent_turf
+				if(total_turfs > 0 && length(connected_liquids) >= total_turfs)
+					return connected_liquids
+
 
 /datum/liquid_group/proc/try_split(turf/source, return_list = FALSE)
 	var/list/connected_liquids = list()
