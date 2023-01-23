@@ -89,6 +89,7 @@
 			add_overlay(tag_overlay)
 
 /obj/item/pizzabox/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	.=..()
 	. = list()
 	var/current_offset = 2
 	if(isinhands)

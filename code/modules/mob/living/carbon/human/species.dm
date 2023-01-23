@@ -619,6 +619,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 			facial_overlay.alpha = hair_alpha
 
+			var/mutable_appearance/facial_em_blocker = mutable_appearance(fhair_file, fhair_state, plane = EMISSIVE_PLANE, alpha = hair_alpha, appearance_flags = KEEP_APART)
+			facial_em_blocker.color = GLOB.em_block_color
+			facial_overlay.overlays += facial_em_blocker
+
 			standing += facial_overlay
 
 	if(human_host.head)
@@ -697,6 +701,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					hair_overlay.pixel_x += human_host.dna.species.offset_features[OFFSET_FACE][1]
 					hair_overlay.pixel_y += human_host.dna.species.offset_features[OFFSET_FACE][2]
 		if(hair_overlay.icon)
+			var/mutable_appearance/hair_em_block = mutable_appearance(hair_overlay.icon, hair_overlay.icon_state, plane = EMISSIVE_PLANE, alpha = hair_alpha, appearance_flags = KEEP_APART)
+			hair_em_block.color = GLOB.em_block_color
+			hair_overlay.overlays += hair_em_block
 			standing += hair_overlay
 			standing += gradient_overlay
 
@@ -726,16 +733,24 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!(NOEYESPRITES in species_traits) && !(ALTEYESPRITES in species_traits))
 			var/obj/item/organ/eyes/E = human_host.getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
+			var/mutable_appearance/eye_emissive
 			if(!E)
 				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
 			else
 				eye_overlay = mutable_appearance('icons/mob/human_face.dmi', E.eye_icon_state, -BODY_LAYER)
+				if (E.is_emissive)
+					eye_emissive = emissive_appearance_copy(eye_overlay)
 			if((EYECOLOR in species_traits) && E)
 				eye_overlay.color = "#" + human_host.eye_color
 			if(OFFSET_FACE in human_host.dna.species.offset_features)
 				eye_overlay.pixel_x += human_host.dna.species.offset_features[OFFSET_FACE][1]
 				eye_overlay.pixel_y += human_host.dna.species.offset_features[OFFSET_FACE][2]
+				if (eye_emissive)
+					eye_emissive.pixel_x += human_host.dna.species.offset_features[OFFSET_FACE][1]
+					eye_emissive.pixel_y += human_host.dna.species.offset_features[OFFSET_FACE][2]
 			standing += eye_overlay
+			if (eye_emissive)
+				standing += eye_emissive
 		//monkestation edit begin: add simian species
 		if(ALTEYESPRITES in species_traits)
 			var/obj/item/organ/eyes/E = human_host.getorganslot(ORGAN_SLOT_EYES)
@@ -984,6 +999,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				accessory_overlay.icon_state = "m_[bodypart]_[accessory_type.icon_state]_[layertext]"
 
+			if(accessory_type.em_block)
+				var/mutable_appearance/em_overlay = mutable_appearance(accessory_overlay.icon, accessory_overlay.icon_state, plane = EMISSIVE_PLANE, alpha = accessory_overlay.alpha, appearance_flags = KEEP_APART)
+				em_overlay.color = GLOB.em_block_color
+				accessory_overlay.overlays |= em_overlay
+
 			if(accessory_type.center)
 				accessory_overlay = center_image(accessory_overlay, accessory_type.dimension_x, accessory_type.dimension_y)
 
@@ -1030,6 +1050,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				tail_body_overlay.icon_state = tail_icon_state
 				tail_body_overlay.color = "#" + human_host.dna.features["bellycolor"]
 
+				if(belly_accessory.uses_emissives)
+					var/mutable_appearance/tail_body_emissive_overlay = emissive_appearance_flagless(accessory_type.icon, layer = -layer)
+					tail_body_emissive_overlay.icon_state = "[belly_accessory.icon_state]_emissive_[accessory_overlay.icon_state]"
+					standing += tail_body_emissive_overlay
+
 				standing += tail_body_overlay
 
 			if(accessory_type.hasinner)
@@ -1043,6 +1068,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					inner_accessory_overlay = center_image(inner_accessory_overlay, accessory_type.dimension_x, accessory_type.dimension_y)
 
 				standing += inner_accessory_overlay
+
+			if(accessory_type.uses_emissives)
+				var/mutable_appearance/emissive_accessory_overlay = emissive_appearance_flagless(accessory_type.icon, layer = -layer)
+				if(accessory_type.gender_specific)
+					emissive_accessory_overlay.icon_state = "[g]_[bodypart]_emissive_[accessory_type.icon_state]_[layertext]"
+				else
+					emissive_accessory_overlay.icon_state = "m_[bodypart]_emissive_[accessory_type.icon_state]_[layertext]"
+
+				if(accessory_type.center)
+					emissive_accessory_overlay = center_image(emissive_accessory_overlay, accessory_type.dimension_x, accessory_type.dimension_y)
+
+				standing += emissive_accessory_overlay
+
 
 		human_host.overlays_standing[layer] = standing.Copy()
 		standing = list()

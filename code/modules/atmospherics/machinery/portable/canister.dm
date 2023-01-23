@@ -323,12 +323,16 @@
 	switch(pressure)
 		if((40 * ONE_ATMOSPHERE) to INFINITY)
 			. += mutable_appearance(canister_overlay_file, "can-3")
+			. += emissive_appearance(canister_overlay_file, "can-3")
 		if((10 * ONE_ATMOSPHERE) to (40 * ONE_ATMOSPHERE))
 			. += mutable_appearance(canister_overlay_file, "can-2")
+			. += emissive_appearance(canister_overlay_file, "can-2")
 		if((5 * ONE_ATMOSPHERE) to (10 * ONE_ATMOSPHERE))
 			. += mutable_appearance(canister_overlay_file, "can-1")
+			. += emissive_appearance(canister_overlay_file, "can-1")
 		if((10) to (5 * ONE_ATMOSPHERE))
 			. += mutable_appearance(canister_overlay_file, "can-0")
+			. += emissive_appearance(canister_overlay_file, "can-0")
 
 	if(update == last_update)
 		return

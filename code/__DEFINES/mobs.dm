@@ -568,6 +568,9 @@
 #define VOMIT_PURPLE 2
 
 
+#define MUTANT_INDEX_EMISSIVE_LIST "emissive"
+
+
 /// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
 #define NO_BUCKLE_LYING -1
 
@@ -579,3 +582,4 @@
 #define STANDING_UP 0
 /// Mob is lying down, usually associated with lying_angle values of 90 or 270.
 #define LYING_DOWN 1
+

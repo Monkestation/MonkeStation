@@ -5,6 +5,7 @@
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	layer = BELOW_OBJ_LAYER
 	pass_flags_self = PASSSTRUCTURE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/climb_time = 20
 	var/climb_stun = 20

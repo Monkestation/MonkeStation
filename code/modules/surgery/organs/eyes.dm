@@ -31,6 +31,8 @@
 	var/no_glasses
 	var/damaged	= FALSE	//damaged indicates that our eyes are undergoing some level of negative effect
 
+	var/is_emissive = FALSE
+
 /obj/item/organ/eyes/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE, initialising)
 	. = ..()
 	if(ishuman(owner))
@@ -421,3 +423,6 @@
 	name = "apid eyes"
 	desc = "Designed for navigating dark hives, these eyes have improvement to low light vision."
 	see_in_dark = 8
+
+/obj/item/organ/eyes/glowing
+	is_emissive = TRUE
