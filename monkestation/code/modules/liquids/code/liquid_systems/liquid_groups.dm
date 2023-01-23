@@ -45,8 +45,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T)
-	members -= T
-	T.liquids.liquid_group = null
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
 	SSliquids.remove_active_turf(T)
@@ -56,6 +54,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(T in SSliquids.burning_turfs)
 		SSliquids.burning_turfs -= T
+
+	members -= T
+	T.liquids.liquid_group = null
 
 	if(!members.len)
 		qdel(src)
@@ -126,15 +127,16 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(group_temperature != reagents.chem_temp)
 		reagents.chem_temp = group_temperature
-
+	var/new_color
 	if(GLOB.liquid_debug_colors)
 		group_color = color
 	else
-		group_color = mix_color_from_reagent_list(reagents.reagent_list)
+		new_color = mix_color_from_reagent_list(reagents.reagent_list)
 
-	if(group_color != old_color)
+	if(new_color != old_color)
 		for(var/turf/member in members)
-			member.liquids.color = group_color
+			member.liquids.color = new_color
+			group_color = new_color
 
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
