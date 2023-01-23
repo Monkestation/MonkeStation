@@ -622,6 +622,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
 	STR.max_w_class = WEIGHT_CLASS_BULKY // Set to this so the  light replacer can fit.
+	STR.allow_big_nesting = TRUE //This allows the trashbag to fit
 	STR.can_hold = typecacheof(list(
 		/obj/item/grenade/chem_grenade,
 		/obj/item/lightreplacer,
@@ -635,7 +636,11 @@
 		/obj/item/melee/flyswatter,
 		/obj/item/assembly/mousetrap,
 		/obj/item/paint/paint_remover,
-		/obj/item/pushbroom
+		/obj/item/pushbroom,
+		/obj/item/storage/bag/trash
+		))
+	STR.exception_hold = typecacheof(list(
+		/obj/item/storage/bag/trash
 		))
 
 /obj/item/storage/belt/janitor/full/PopulateContents()

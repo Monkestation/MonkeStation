@@ -17,7 +17,9 @@
 /datum/chemical_reaction/reagent_explosion/in_progress_explosion/proc/move_explosion()
 	SIGNAL_HANDLER
 	if(src.holder.my_atom)
+		src.turf.remove_emitter("explosion_spark")
 		src.turf = get_turf(src.holder.my_atom)
+		src.turf.add_emitter(/obj/emitter/sparks, "explosion_spark")
 
 /datum/chemical_reaction/reagent_explosion/proc/explode(datum/reagents/holder, created_volume, delay = 0)
 	var/datum/chemical_reaction/reagent_explosion/in_progress_explosion/boom = new()
@@ -26,6 +28,7 @@
 	boom.turf = get_turf(holder.my_atom)
 	boom.lastkey = holder.my_atom?.fingerprintslast
 	if(boom.power > 0)
+		boom.turf.add_emitter(/obj/emitter/sparks, "explosion_spark")
 		RegisterSignal(boom, COMSIG_MOVABLE_MOVED, .in_progress_explosion/proc/move_explosion)
 		sleep(delay)
 		var/inside_msg
@@ -38,6 +41,7 @@
 		if(!istype(boom.holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
 			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(boom.turf)][inside_msg]. Last Fingerprint: [touch_msg].")
 		log_game("Reagent explosion reaction occurred at [AREACOORD(boom.turf)]. Last Fingerprint: [boom.lastkey ? boom.lastkey : "N/A"]." )
+		boom.turf.remove_emitter("explosion_spark")
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(boom.power , boom.turf, 0, 0)
 		e.start()

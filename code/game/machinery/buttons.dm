@@ -26,7 +26,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		panel_open = TRUE
-		update_icon()
+		update_appearance()
 
 
 	if(!built && !device && device_type)
@@ -44,25 +44,27 @@
 
 
 /obj/machinery/button/update_icon()
-	cut_overlays()
+	. = ..()
 	if(panel_open)
 		icon_state = "button-open"
-		if(device)
-			add_overlay("button-device")
-		if(board)
-			add_overlay("button-board")
 
+/obj/machinery/button/update_overlays()
+	. = ..()
+	if(panel_open)
+		if(device)
+			. += mutable_appearance(icon, "button-device")
+		if(board)
+			. += mutable_appearance(icon, "button-board")
 	else
-		if(machine_stat & (NOPOWER|BROKEN))
-			icon_state = "[skin]-p"
-		else
-			icon_state = skin
+		if(!(machine_stat & (NOPOWER|BROKEN)))
+			. += mutable_appearance(icon, "[skin]-default")
+			. += emissive_appearance(icon, "[skin]-default")
 
 /obj/machinery/button/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open || allowed(user))
 			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
-			update_icon()
+			update_appearance()
 		else
 			to_chat(user, "<span class='danger'>Maintenance Access Denied.</span>")
 			flick("[skin]-denied", src)
@@ -96,7 +98,7 @@
 				playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 				qdel(src)
 
-		update_icon()
+		update_appearance()
 		return
 
 	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
@@ -148,7 +150,7 @@
 				req_access = list()
 				req_one_access = list()
 				board = null
-			update_icon()
+			update_appearance()
 			to_chat(user, "<span class='notice'>You remove electronics from the button frame.</span>")
 
 		else
@@ -171,16 +173,16 @@
 		return
 
 	use_power(5)
-	icon_state = "[skin]1"
+	icon_state = "[skin]"
 
 	if(device)
 		device.pulsed()
 
-	addtimer(CALLBACK(src, /atom/.proc/update_icon), 15)
+	addtimer(CALLBACK(src, /atom/.proc/update_appearance), 15)
 
 /obj/machinery/button/power_change()
 	..()
-	update_icon()
+	update_appearance()
 
 
 /obj/machinery/button/door

@@ -30,6 +30,7 @@
 	default_price = 75
 	extra_price = 300
 	payment_department = ACCOUNT_SRV
+	light_mask = "donksoft-light-mask"
 
 /obj/item/vending_refill/donksoft
 	machine_name = "Donksoft Toy Vendor"

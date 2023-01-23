@@ -49,7 +49,7 @@
 		return
 	var/mob/living/carbon/human/H = user
 
-	if(!H.restrained())
+	if(!HAS_TRAIT(H, TRAIT_HANDS_BLOCKED))
 		to_chat(user, "<span class='warning'>You strain your muscles to break your handcuffs, but realize you aren't wearing any!</span>")
 		return 0
 

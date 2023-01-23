@@ -205,6 +205,11 @@
 	description = "The perfect outfit for all of your twisted cosplaying needs."
 	path = /obj/item/clothing/under/costume/schoolgirl
 
+/datum/gear/uniform/misc/shrine_priestess
+	display_name = "shrine priestess outfit"
+	description = "Ceremonial garb worn by shrine priestesses."
+	path = /obj/item/clothing/under/dress/shrine_priestess
+
 /datum/gear/uniform/misc/clown_costume
 	display_name = "clown costume"
 	description = "Dress up just like your hero! The... clown...?"

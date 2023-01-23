@@ -125,6 +125,13 @@
 	. = ..()
 	QDEL_IN(src, 300)
 
+/obj/effect/hallucination/simple/bluespace_stream/Destroy()
+	if(!QDELETED(linked_to))
+		qdel(linked_to)
+		linked_to = null
+	seer = null
+	return ..()
+
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/hallucination/simple/bluespace_stream/attack_hand(mob/user)
 	if(user != seer || !linked_to)
