@@ -68,13 +68,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		qdel(member.liquids)
 
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
-	SSliquids.active_groups |= src
 	color = "#[random_short_color()]"
 	expected_turf_height = height
 	reagents = new(100000)
 	if(created_liquid)
 		add_to_group(created_liquid.my_turf)
 		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
+	SSliquids.active_groups |= src
 
 /datum/liquid_group/proc/merge_group(datum/liquid_group/otherg)
 	if(otherg == src)

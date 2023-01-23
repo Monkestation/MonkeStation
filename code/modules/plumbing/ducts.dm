@@ -128,6 +128,9 @@ All the important duct code:
 
 ///connect to a plumbing object
 /obj/machinery/duct/proc/connect_plumber(datum/component/plumbing/plumbing, direction)
+	if(!plumbing)
+		return
+
 	var/opposite_dir = turn(direction, 180)
 
 	if(!(duct_layer & plumbing.ducting_layer))

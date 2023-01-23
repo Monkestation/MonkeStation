@@ -204,6 +204,8 @@
 	for(var/turf/listed_turf in removed_turfs)
 		targeted_group.remove_from_group(listed_turf)
 		qdel(listed_turf.liquids)
+		targeted_group.check_edges(listed_turf)
+
 	///recalculate the values here because processing
 	targeted_group.total_reagent_volume = targeted_group.reagents.total_volume
 	targeted_group.reagents_per_turf = targeted_group.total_reagent_volume / length(targeted_group.members)
