@@ -206,18 +206,31 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			SSliquids.add_active_turf(adjacent_turf)
 
 /datum/liquid_group/proc/process_turf_disperse()
-	if(reagents_per_turf < 1 || !total_reagent_volume)
+	if(!total_reagent_volume)
+		return
+
+	var/list/removed_turf = list()
+	while(reagents_per_turf < 5)
 		if(members && members.len)
 			var/turf/picked_turf = pick(members)
 			if(picked_turf.liquids)
 				remove_from_group(picked_turf)
 				qdel(picked_turf.liquids)
+				removed_turf |= picked_turf
 				if(!total_reagent_volume)
 					reagents_per_turf = 0
 				else
 					reagents_per_turf = total_reagent_volume / length(members)
 			else
 				members -= picked_turf
+
+	while(removed_turf.len)
+		var/turf/picked_turf = pick(removed_turf)
+		var/list/output = try_split(picked_turf, TRUE)
+		removed_turf -= picked_turf
+		for(var/turf/outputted_turf in output)
+			if(outputted_turf in removed_turf)
+				removed_turf -= outputted_turf
 
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
 	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs)
