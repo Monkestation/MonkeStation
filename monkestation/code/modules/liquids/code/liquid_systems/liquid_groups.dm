@@ -115,6 +115,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			return
 		failed_death_check = TRUE
 
+///PROCESSING
 /datum/liquid_group/proc/process_group()
 	if(merging)
 		return
@@ -182,8 +183,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		member.liquids.color = group_color
 	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
 		SSliquids.evaporation_queue |= member
-	if(member.my_turf.liquid_height != expected_turf_height + member.my_turf.turf_height)
-		member.my_turf.liquid_height = expected_turf_height + member.my_turf.turf_height
+	if(member.liquid_height != expected_turf_height + member.turf_height)
+		member.liquid_height = expected_turf_height + member.turf_height
 
 	var/list/adjacent_turfs = member.GetAtmosAdjacentTurfs()
 	shuffle(adjacent_turfs)
