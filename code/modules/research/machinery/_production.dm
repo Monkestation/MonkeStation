@@ -103,10 +103,11 @@
 
 	var/list/L = list()
 	for(var/datum/material/material as() in materials.mat_container.materials)
-		L[material.id] = list(
+		var/datum/material/M = GET_MATERIAL_REF(material)
+		L[M] = list(
 				name = material.name,
 				amount = materials.mat_container.materials[material]/MINERAL_MATERIAL_AMOUNT,
-				id = material.id,
+				id = M,
 			)
 
 	return list(
@@ -193,7 +194,7 @@
 	if(action == "ejectsheet" && materials && materials.mat_container)
 		var/datum/material/M
 		for(var/datum/material/potential_material as() in materials.mat_container.materials)
-			if(potential_material.id == text2path(params["material_id"]))
+			if(GET_MATERIAL_REF(potential_material) == GET_MATERIAL_REF(text2path(params["material_id"])))
 				M = potential_material
 				break
 		if(M)

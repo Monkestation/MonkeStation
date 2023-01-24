@@ -359,7 +359,7 @@
 		return
 
 	if(istype(O, /obj/item/stack/ore/glass))
-		new /obj/item/stack/sheet/sandstone(loc)
+		new /obj/item/stack/sheet/mineral/sandstone(loc)
 		to_chat(user, "<span class='notice'>You wet the sand in the sink and form it into a block.</span>")
 		O.use(1)
 		return
