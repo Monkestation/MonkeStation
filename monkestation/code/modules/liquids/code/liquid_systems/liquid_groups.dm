@@ -51,7 +51,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
 	color = "#[random_short_color()]"
 	expected_turf_height = height
-	reagents = new(100000)
+	reagents = new(100000) // this is a random number used on creation it expands based on the turfs in the group
 	if(created_liquid)
 		add_to_group(created_liquid.my_turf)
 		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
