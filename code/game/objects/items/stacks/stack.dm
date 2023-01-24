@@ -362,7 +362,7 @@
 		return FALSE
 	amount -= used
 	if(check && zero_amount())
-		return FALSE
+		return TRUE
 	if(length(mats_per_unit))
 		update_custom_materials()
 	update_icon()
