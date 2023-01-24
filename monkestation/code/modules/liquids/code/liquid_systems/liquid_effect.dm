@@ -180,7 +180,7 @@
 				if(listed_reagent.type == /datum/reagent/blood && entered_human.shoes)
 					var/obj/item/clothing/shoes/stepped_shoes = entered_human.shoes
 					stepped_shoes.bloody_shoes[BLOOD_STATE_HUMAN] = min(MAX_SHOE_BLOODINESS, stepped_shoes.bloody_shoes[BLOOD_STATE_HUMAN] + BLOOD_GAIN_PER_STEP)
-
+					stepped_shoes.blood_state = "blood"
 	if(fire_state)
 		AM.fire_act((T20C+50) + (50*fire_state), 125)
 
