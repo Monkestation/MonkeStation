@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	43 //monkestation edit
+#define SAVEFILE_VERSION_MAX	45 //monkestation edit
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -82,7 +82,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["key_bindings"], key_bindings)
 	if(current_version < 38)
 		clientfps = 60
-	if(current_version < 43)
+	if(current_version < 45)
 		channel_volume = list()
 		var/list/channels = list(
 							CHANNEL_LOBBYMUSIC,
@@ -97,6 +97,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		for(var/item in channels)
 			channel_volume += "[item]"
 			channel_volume["[item]"] = 100
+			spawn(10 SECONDS)
+				parent.open_volume_mixer()
 	 //monkestation edit end
 	return
 
