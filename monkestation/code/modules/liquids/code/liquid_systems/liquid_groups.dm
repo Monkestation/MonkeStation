@@ -31,6 +31,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	///list of cached edge turfs with a sublist of directions stored
 	var/list/cached_edge_turfs = list()
 
+///NEW/DESTROY
+/datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
+	color = "#[random_short_color()]"
+	expected_turf_height = height
+	reagents = new(100000)
+	if(created_liquid)
+		add_to_group(created_liquid.my_turf)
+		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
+	SSliquids.active_groups |= src
+
+/datum/liquid_group/Destroy()
+	SSliquids.active_groups -= src
+	for(var/t in members)
+		var/turf/T = t
+		T.liquids.liquid_group = null
+	members = null
+	burning_members = null
+	return ..()
+
+///GROUP CONTROLLING
 /datum/liquid_group/proc/add_to_group(turf/T)
 	if(!T.liquids)
 		T.liquids = new(null, src)
@@ -68,15 +88,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	for(var/turf/member in members)
 		qdel(member.liquids)
 
-/datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
-	color = "#[random_short_color()]"
-	expected_turf_height = height
-	reagents = new(100000)
-	if(created_liquid)
-		add_to_group(created_liquid.my_turf)
-		cached_edge_turfs[created_liquid.my_turf] = list(NORTH, SOUTH, EAST, WEST)
-	SSliquids.active_groups |= src
-
 /datum/liquid_group/proc/merge_group(datum/liquid_group/otherg)
 	if(otherg == src)
 		return
@@ -97,25 +108,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/break_group()
 	qdel(src)
 
-/datum/liquid_group/Destroy()
-	SSliquids.active_groups -= src
-	for(var/t in members)
-		var/turf/T = t
-		T.liquids.liquid_group = null
-	members = null
-	burning_members = null
-	return ..()
-
-/datum/liquid_group/proc/check_adjacency(turf/member)
-	var/adjacent_liquid = 0
-	for(var/tur in member.GetAtmosAdjacentTurfs())
-		var/turf/adjacent_turf = tur
-		if(adjacent_turf.liquids)
-			if(adjacent_turf.liquids.liquid_group == member.liquids.liquid_group)
-				adjacent_liquid++
-	if(adjacent_liquid < 2)
-		return FALSE
-	return TRUE
+/datum/liquid_group/proc/check_dead()
+	if(!members && !total_reagent_volume)
+		if(failed_death_check)
+			qdel(src)
+			return
+		failed_death_check = TRUE
 
 /datum/liquid_group/proc/process_group()
 	if(merging)
@@ -177,13 +175,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/member in members)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 
-/datum/liquid_group/proc/check_dead()
-	if(!members && !total_reagent_volume)
-		if(failed_death_check)
-			qdel(src)
-			return
-		failed_death_check = TRUE
-
 /datum/liquid_group/proc/process_member(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
 		member.liquids.set_new_liquid_state(group_overlay_state)
@@ -237,48 +228,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			if(outputted_turf in removed_turf)
 				removed_turf -= outputted_turf
 
-/datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
-	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs)
-		return
-	if(!(new_turf in source_turf.atmos_adjacent_turfs)) //i hate that this is needed
-		return
-	if(!source_turf.atmos_adjacent_turfs[new_turf])
-		return
-
-	if(!new_turf.liquids && !isspaceturf(new_turf))
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.liquid_height + 1 > expected_turf_height)
-			return FALSE
-
-		reagents_per_turf = total_reagent_volume / members.len
-
-		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
-
-		new_turf.liquids = new(new_turf, src)
-		check_edges(new_turf)
-
-		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
-		splashy.color = group_color
-
-		water_rush(new_turf, source_turf)
-
-	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
-		merge_group(new_turf.liquids.liquid_group)
-		return FALSE
-	return TRUE
-
-/datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
-	var/direction = get_dir(source_turf, new_turf)
-	for(var/atom/movable/target_atom in new_turf)
-		if(!target_atom.anchored && !target_atom.pulledby && !isobserver(target_atom) && (target_atom.move_resist < INFINITY))
-			reagents.reaction(target_atom, TOUCH, (reagents_per_turf * 0.5))
-			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
-				return
-			step(target_atom, direction)
-			if(isliving(target_atom) && prob(60))
-				var/mob/living/target_living = target_atom
-				target_living.Paralyze(6 SECONDS)
-				to_chat(target_living, span_danger("You are knocked down by the currents!"))
-
+///REAGENT ADD/REMOVAL HANDLING
 /datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
 	if(amount >= reagents_per_turf)
 		remove_from_group(remover.my_turf)
@@ -476,24 +426,45 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(SSliquids.burning_turfs[member])
 		SSliquids.burning_turfs -= member
 
-/datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member)
-	var/turf/members_turf = member.my_turf
-	var/datum/reagents/exposed_reagents = new(1000)
-	var/list/passed_list = list()
-	for(var/reagent_type in reagents.reagent_list)
-		var/amount = reagents.reagent_list[reagent_type] / members
-		if(!amount)
+///EDGE COLLECTION AND PROCESSING
+
+/datum/liquid_group/proc/check_adjacency(turf/member)
+	var/adjacent_liquid = 0
+	for(var/tur in member.GetAtmosAdjacentTurfs())
+		var/turf/adjacent_turf = tur
+		if(adjacent_turf.liquids)
+			if(adjacent_turf.liquids.liquid_group == member.liquids.liquid_group)
+				adjacent_liquid++
+	if(adjacent_liquid < 2)
+		return FALSE
+	return TRUE
+
+/datum/liquid_group/proc/process_cached_edges()
+	for(var/turf/cached_turf in cached_edge_turfs)
+		for(var/direction in cached_edge_turfs[cached_turf])
+			var/turf/directional_turf = get_step(cached_turf, direction)
+			if(isclosedturf(directional_turf))
+				continue
+			if(spread_liquid(directional_turf, cached_turf))
+				cached_edge_turfs[cached_turf] -= direction
+				if(!length(cached_edge_turfs[cached_turf]))
+					cached_edge_turfs -= cached_turf
+
+/datum/liquid_group/proc/check_edges(turf/checker)
+	var/list/passed_directions = list()
+	for(var/direction in GLOB.cardinals)
+		var/turf/directional_turf = get_step(checker, direction)
+		if(directional_turf.liquids)
 			continue
-		remove_specific(src, amount * 0.2, reagent_type)
-		passed_list[reagent_type] = amount
+		passed_directions.Add(direction)
 
-	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
-	exposed_reagents.chem_temp = group_temperature
+	if(length(passed_directions))
+		cached_edge_turfs |= checker
+		cached_edge_turfs[checker] = passed_directions
 
-	for(var/atom/movable/target_atom in members_turf)
-		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
-	qdel(exposed_reagents)
 
+
+///SPLITING PROCS AND RETURNING CONNECTED PROCS
 
 /*okay for large groups we need some way to iterate over it without grinding the server to a halt to split them
 * A breadth-first search or depth first search, are the most efficent but still cause issues with larger groups
@@ -633,25 +604,63 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	SSliquids.currentrun_active_turfs = list()
 	return TRUE
 
-/datum/liquid_group/proc/process_cached_edges()
-	for(var/turf/cached_turf in cached_edge_turfs)
-		for(var/direction in cached_edge_turfs[cached_turf])
-			var/turf/directional_turf = get_step(cached_turf, direction)
-			if(isclosedturf(directional_turf))
-				continue
-			if(spread_liquid(directional_turf, cached_turf))
-				cached_edge_turfs[cached_turf] -= direction
-				if(!length(cached_edge_turfs[cached_turf]))
-					cached_edge_turfs -= cached_turf
-
-/datum/liquid_group/proc/check_edges(turf/checker)
-	var/list/passed_directions = list()
-	for(var/direction in GLOB.cardinals)
-		var/turf/directional_turf = get_step(checker, direction)
-		if(directional_turf.liquids)
+///EXPOSURE AND SPREADING
+/datum/liquid_group/proc/expose_members_turf(obj/effect/abstract/liquid_turf/member)
+	var/turf/members_turf = member.my_turf
+	var/datum/reagents/exposed_reagents = new(1000)
+	var/list/passed_list = list()
+	for(var/reagent_type in reagents.reagent_list)
+		var/amount = reagents.reagent_list[reagent_type] / members
+		if(!amount)
 			continue
-		passed_directions.Add(direction)
+		remove_specific(src, amount * 0.2, reagent_type)
+		passed_list[reagent_type] = amount
 
-	if(length(passed_directions))
-		cached_edge_turfs |= checker
-		cached_edge_turfs[checker] = passed_directions
+	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
+	exposed_reagents.chem_temp = group_temperature
+
+	for(var/atom/movable/target_atom in members_turf)
+		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
+	qdel(exposed_reagents)
+
+/datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
+	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs)
+		return
+	if(!(new_turf in source_turf.atmos_adjacent_turfs)) //i hate that this is needed
+		return
+	if(!source_turf.atmos_adjacent_turfs[new_turf])
+		return
+
+	if(!new_turf.liquids && !isspaceturf(new_turf))
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.liquid_height + 1 > expected_turf_height)
+			return FALSE
+
+		reagents_per_turf = total_reagent_volume / members.len
+
+		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
+
+		new_turf.liquids = new(new_turf, src)
+		check_edges(new_turf)
+
+		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
+		splashy.color = group_color
+
+		water_rush(new_turf, source_turf)
+
+	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
+		merge_group(new_turf.liquids.liquid_group)
+		return FALSE
+	return TRUE
+
+/datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
+	var/direction = get_dir(source_turf, new_turf)
+	for(var/atom/movable/target_atom in new_turf)
+		if(!target_atom.anchored && !target_atom.pulledby && !isobserver(target_atom) && (target_atom.move_resist < INFINITY))
+			reagents.reaction(target_atom, TOUCH, (reagents_per_turf * 0.5))
+			if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
+				return
+			step(target_atom, direction)
+			if(isliving(target_atom) && prob(60))
+				var/mob/living/target_living = target_atom
+				target_living.Paralyze(6 SECONDS)
+				to_chat(target_living, span_danger("You are knocked down by the currents!"))
