@@ -140,31 +140,31 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container designed to hold compressed matter awaiting reconstruction."
 	icon_state = "matter_bin"
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 2
 
@@ -174,7 +174,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "adv_capacitor"
 	rating = 2
 	energy_rating = 3
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/adv
 	name = "advanced scanning module"
@@ -182,7 +182,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "adv_scan_module"
 	rating = 2
 	energy_rating = 3
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/nano
 	name = "nano-manipulator"
@@ -190,7 +190,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "nano_mani"
 	rating = 2
 	energy_rating = 3
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/high
 	name = "high-power micro-laser"
@@ -198,7 +198,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "high_micro_laser"
 	rating = 2
 	energy_rating = 3
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/adv
 	name = "advanced matter bin"
@@ -206,7 +206,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "advanced_matter_bin"
 	rating = 2
 	energy_rating = 3
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 3
 
@@ -216,7 +216,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "super_capacitor"
 	rating = 3
 	energy_rating = 5
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
@@ -224,7 +224,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "super_scan_module"
 	rating = 3
 	energy_rating = 5
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/pico
 	name = "pico-manipulator"
@@ -232,7 +232,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "pico_mani"
 	rating = 3
 	energy_rating = 5
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
@@ -240,7 +240,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "A tiny laser used in certain devices."
 	rating = 3
 	energy_rating = 5
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/super
 	name = "super matter bin"
@@ -248,7 +248,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "super_matter_bin"
 	rating = 3
 	energy_rating = 5
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 //Rating 4
 
@@ -258,7 +258,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "quadratic_capacitor"
 	rating = 4
 	energy_rating = 10
-	materials = list(/datum/material/iron=50, /datum/material/glass=50)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=50)
 
 /obj/item/stock_parts/scanning_module/triphasic
 	name = "triphasic scanning module"
@@ -266,7 +266,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "triphasic_scan_module"
 	rating = 4
 	energy_rating = 10
-	materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
 
 /obj/item/stock_parts/manipulator/femto
 	name = "femto-manipulator"
@@ -274,7 +274,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "femto_mani"
 	rating = 4
 	energy_rating = 10
-	materials = list(/datum/material/iron=30)
+	custom_materials = list(/datum/material/iron=30)
 
 /obj/item/stock_parts/micro_laser/quadultra
 	name = "quad-ultra micro-laser"
@@ -282,7 +282,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	desc = "A tiny laser used in certain devices."
 	rating = 4
 	energy_rating = 10
-	materials = list(/datum/material/iron=10, /datum/material/glass=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 
 /obj/item/stock_parts/matter_bin/bluespace
 	name = "bluespace matter bin"
@@ -290,7 +290,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	icon_state = "bluespace_matter_bin"
 	rating = 4
 	energy_rating = 10
-	materials = list(/datum/material/iron=80)
+	custom_materials = list(/datum/material/iron=80)
 
 // Subspace stock parts
 
@@ -298,43 +298,43 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	name = "subspace ansible"
 	icon_state = "subspace_ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/filter
 	name = "hyperwave filter"
 	icon_state = "hyperwave_filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/amplifier
 	name = "subspace amplifier"
 	icon_state = "subspace_amplifier"
 	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/treatment
 	name = "subspace treatment disk"
 	icon_state = "treatment_disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/analyzer
 	name = "subspace wavelength analyzer"
 	icon_state = "wavelength_analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 
 /obj/item/stock_parts/subspace/crystal
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	materials = list(/datum/material/glass=50)
+	custom_materials = list(/datum/material/glass=50)
 
 /obj/item/stock_parts/subspace/transmitter
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
-	materials = list(/datum/material/iron=50)
+	custom_materials = list(/datum/material/iron=50)
 
 /obj/item/research//Makes testing much less of a pain -Sieve
 	name = "research"

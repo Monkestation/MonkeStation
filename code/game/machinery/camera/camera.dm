@@ -15,7 +15,7 @@
 
 	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 50, "stamina" = 0)
 	max_integrity = 100
-	integrity_failure = 50
+	integrity_failure = 0.5
 	var/default_camera_icon = "camera" //the camera's base icon used by update_icon - icon_state is primarily used for mapping display purposes.
 	var/list/network = list("ss13")
 	var/c_tag = null
@@ -331,6 +331,7 @@
 	. = ..()
 
 /obj/machinery/camera/obj_break(damage_flag)
+	.=..()
 	if(status && !(flags_1 & NODECONSTRUCT_1))
 		triggerCameraAlarm()
 		toggle_cam(null, 0)
@@ -347,7 +348,7 @@
 			assembly_ref = null
 		else
 			var/obj/item/I = new /obj/item/wallframe/camera (loc)
-			I.obj_integrity = I.max_integrity * 0.5
+			I.update_integrity(I.max_integrity * 0.5)
 			new /obj/item/stack/cable_coil(loc, 2)
 	qdel(src)
 

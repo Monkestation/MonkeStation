@@ -513,6 +513,7 @@
 	return (iscultist(user) && !isAllPowerCut())
 
 /obj/machinery/door/airlock/cult/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		if(!panel_open)

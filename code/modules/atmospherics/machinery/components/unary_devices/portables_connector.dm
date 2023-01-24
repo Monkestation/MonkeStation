@@ -13,8 +13,15 @@
 
 	pipe_flags = PIPING_ONE_PER_TURF
 	pipe_state = "connector"
+	custom_reconcilation = TRUE
 
 	var/obj/machinery/portable_atmospherics/connected_device
+
+/obj/machinery/atmospherics/components/unary/portables_connector/returnAirsForReconcilation(datum/pipeline/requester)
+	. = ..()
+	if(!connected_device)
+		return
+	. += connected_device.return_air()
 
 /obj/machinery/atmospherics/components/unary/portables_connector/New()
 	..()

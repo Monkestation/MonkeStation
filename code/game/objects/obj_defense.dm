@@ -11,16 +11,45 @@
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
 	if(damage_amount < DAMAGE_PRECISION)
 		return
+	if(SEND_SIGNAL(src, COMSIG_OBJ_TAKE_DAMAGE, damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration) & COMPONENT_NO_TAKE_DAMAGE)
+		return
 	. = damage_amount
 	var/old_integ = obj_integrity
-	obj_integrity = max(old_integ - damage_amount, 0)
+	update_integrity(max(old_integ - damage_amount, 0))
 	//BREAKING FIRST
-	if(integrity_failure && obj_integrity <= integrity_failure)
+	if(integrity_failure && obj_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_flag)
 
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
 		obj_destruction(damage_flag)
+
+/// Proc for recovering obj_integrity. Returns the amount repaired by
+/obj/proc/repair_damage(amount)
+	if(amount <= 0) // We only recover here
+		return
+	var/new_integrity = min(max_integrity, obj_integrity + amount)
+	. = new_integrity - obj_integrity
+
+	update_integrity(new_integrity)
+
+	if(integrity_failure && obj_integrity > integrity_failure * max_integrity)
+		obj_fix()
+
+/// Handles the integrity of an object changing. This must be called instead of changing integrity directly.
+/obj/proc/update_integrity(new_value)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/old_value = obj_integrity
+	new_value = max(0, new_value)
+	if(obj_integrity == new_value)
+		return
+	obj_integrity = new_value
+	SEND_SIGNAL(src, COMSIG_OBJ_INTEGRITY_CHANGED, old_value, new_value)
+
+/// This mostly exists to keep obj_integrity private. Might be useful in the future.
+/obj/proc/get_integrity()
+	SHOULD_BE_PURE(TRUE)
+	return obj_integrity
 
 //returns the damage value of the attack after processing the obj's various armor protections
 /obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
@@ -225,6 +254,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 		SSfire_burning.processing[src] = src
 		add_overlay(GLOB.fire_overlay, TRUE)
 		return 1
+	return ..()
 
 //called when the obj is destroyed by fire
 /obj/proc/burn()
@@ -264,7 +294,13 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 //what happens when the obj's health is below integrity_failure level.
 /obj/proc/obj_break(damage_flag)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_OBJ_BREAK)
+
+/// Called when integrity is repaired above the breaking point having been broken before
+/obj/proc/obj_fix()
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_OBJ_FIX)
 
 //what happens when the obj's integrity reaches zero.
 /obj/proc/obj_destruction(damage_flag)
@@ -277,7 +313,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 //changes max_integrity while retaining current health percentage
 //returns TRUE if the obj broke, FALSE otherwise
-/obj/proc/modify_max_integrity(new_max, can_break = TRUE, damage_type = BRUTE, new_failure_integrity = null)
+/obj/proc/modify_max_integrity(new_max, can_break = TRUE, damage_type = BRUTE)
 	var/current_integrity = obj_integrity
 	var/current_max = max_integrity
 
@@ -288,10 +324,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 	max_integrity = new_max
 
-	if(new_failure_integrity != null)
-		integrity_failure = new_failure_integrity
-
-	if(can_break && integrity_failure && current_integrity <= integrity_failure)
+	if(can_break && integrity_failure && current_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_type)
 		return TRUE
 	return FALSE

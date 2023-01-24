@@ -6,7 +6,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
 	max_integrity = 250
-	integrity_failure = 100
+	integrity_failure = 0.5
 	light_color = LIGHT_COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
 	layer = ABOVE_WINDOW_LAYER
@@ -145,6 +145,7 @@
 			power_change()
 
 /obj/machinery/flasher/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
 			set_machine_stat(machine_stat | BROKEN)

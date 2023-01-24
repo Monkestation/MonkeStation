@@ -529,8 +529,9 @@ export const SidePanel = (props, context) => {
   ] = useLocalState(context, 'queueRepeat', 0);
   return (
     <Section
+      overflowY="scroll"
       width="100%"
-      height="100%">
+      height="85%">
       <MaterialData />
       <Divider />
       <Flex align="center">

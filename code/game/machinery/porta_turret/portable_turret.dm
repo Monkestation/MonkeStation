@@ -28,7 +28,7 @@
 	var/raising= 0			//if the turret is currently opening or closing its cover
 
 	max_integrity = 160		//the turret's health
-	integrity_failure = 80
+	integrity_failure = 0.33
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90, "stamina" = 0)
 
 	var/locked = TRUE			//if the turret's behaviour control access is locked
@@ -358,6 +358,7 @@
 	qdel(src)
 
 /obj/machinery/porta_turret/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1) && !(machine_stat & BROKEN))
 		set_machine_stat(machine_stat | BROKEN)	//enables the BROKEN bit
 		power_change()
@@ -1013,7 +1014,7 @@
 	desc = "Used for building turret control panels."
 	icon_state = "apc"
 	result_path = /obj/machinery/turretid
-	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/gun/proc/get_turret_properties()
 	. = list()

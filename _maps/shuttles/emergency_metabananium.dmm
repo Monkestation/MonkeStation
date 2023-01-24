@@ -881,7 +881,7 @@
 /area/shuttle/escape)
 "DK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /turf/open/floor/mineral/bananium,
 /area/shuttle/escape)
 "Gk" = (

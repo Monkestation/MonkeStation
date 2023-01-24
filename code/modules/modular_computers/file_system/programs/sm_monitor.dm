@@ -82,7 +82,7 @@
 			if(A)
 				SMS.Add(list(list(
 				"area_name" = A.name,
-				"integrity" = S.get_integrity(),
+				"integrity" = S.get_integrity_percent(),
 				"uid" = S.unique_id
 				)))
 

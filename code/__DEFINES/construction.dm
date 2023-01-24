@@ -55,6 +55,11 @@
 #define FLOODLIGHT_NEEDS_SECURING 2
 #define FLOODLIGHT_NEEDS_WRENCHING 3
 
+
+// Stationary gas tanks
+#define TANK_FRAME 0
+#define TANK_PLATING_UNSECURED 1
+
 //! ## other construction-related things
 
 /// windows affected by Nar'Sie turn this color.

@@ -31,17 +31,28 @@
 		return
 
 	var/obj/item/stack/material = I
-	if (istype(I, /obj/item/stack) && material?.tableVariant)
-		if(material.get_amount() < 1)
-			to_chat(user, "<span class='warning'>You need one [material.name] sheet to do this!</span>")
-			return
-		to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
-		if(do_after(user, 20, target = src) && material.use(1))
-			make_new_table(material.tableVariant, user)
+	if (istype(I, /obj/item/stack))
+		if(material?.tableVariant)
+			if(material.get_amount() < 1)
+				to_chat(user, "<span class='warning'>You need one [material.name] sheet to do this!</span>")
+				return
+			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
+			if(do_after(user, 20, target = src) && material.use(1))
+				make_new_table(material.tableVariant)
+		else
+			if(material.get_amount() < 1)
+				to_chat(user, "<span class='warning'>You need one metal sheet to do this!</span>")
+				return
+			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
+			if(do_after(user, 20, target = src) && material.use(1))
+				var/list/material_list
+				if(material.material_type)
+					material_list = list(material.material_type = MINERAL_MATERIAL_AMOUNT)
+				make_new_table(/obj/structure/table/greyscale, material_list)
 	else
 		return ..()
 
-/obj/structure/table_frame/proc/make_new_table(table_type, user = null) //makes sure the new table made retains what we had as a frame
+/obj/structure/table_frame/proc/make_new_table(table_type, list/custom_materials, user = null) //makes sure the new table made retains what we had as a frame
 	for(var/obj/A in get_turf(loc))
 		if(istype(A, /obj/structure/table))
 			to_chat(user, "<span class='danger'>There is already a table here.</span>")
@@ -53,6 +64,8 @@
 	T.frame = type
 	T.framestack = framestack
 	T.framestackamount = framestackamount
+	if(custom_materials)
+		T.set_custom_materials(custom_materials)
 	qdel(src)
 
 /obj/structure/table_frame/deconstruct(disassembled = TRUE)

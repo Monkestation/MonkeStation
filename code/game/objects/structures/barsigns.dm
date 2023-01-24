@@ -5,7 +5,7 @@
 	icon_state = "empty"
 	req_access = list(ACCESS_BAR)
 	max_integrity = 500
-	integrity_failure = 250
+	integrity_failure = 0.5
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 0)
 	buildable_sign = 0
 
@@ -43,6 +43,7 @@
 			return set_sign(new_sign)
 
 /obj/structure/sign/barsign/obj_break(damage_flag)
+	.=..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		broken = TRUE
 

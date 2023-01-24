@@ -14,7 +14,7 @@
 	density = TRUE
 	use_power = NO_POWER_USE
 	max_integrity = 250
-	integrity_failure = 50
+	integrity_failure = 0.25
 
 	var/id = 0
 	var/obj/machinery/power/solar_control/control
@@ -123,6 +123,7 @@
 	return TRUE
 
 /obj/machinery/power/tracker/obj_break(damage_flag)
+	.=..()
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
 		set_machine_stat(machine_stat | BROKEN)

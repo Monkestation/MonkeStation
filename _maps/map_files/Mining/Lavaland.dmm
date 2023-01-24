@@ -4663,7 +4663,7 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "Gs" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 8
 	},
 /turf/open/floor/plating,

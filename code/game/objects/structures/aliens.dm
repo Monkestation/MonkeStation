@@ -223,7 +223,7 @@
 	density = FALSE
 	anchored = TRUE
 	max_integrity = 100
-	integrity_failure = 5
+	integrity_failure = 0.05
 	var/status = GROWING	//can be GROWING, GROWN or BURST; all mutually exclusive
 	layer = MOB_LAYER
 	var/obj/item/clothing/mask/facehugger/child
@@ -237,7 +237,7 @@
 		addtimer(CALLBACK(src, .proc/Grow), rand(MIN_GROWTH_TIME, MAX_GROWTH_TIME))
 	proximity_monitor = new(src, status == GROWN ? 1 : 0)
 	if(status == BURST)
-		obj_integrity = integrity_failure
+		obj_integrity = integrity_failure * max_integrity
 
 /obj/structure/alien/egg/update_icon()
 	..()
@@ -311,6 +311,7 @@
 						break
 
 /obj/structure/alien/egg/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(status != BURST)
 			Burst(kill=TRUE)

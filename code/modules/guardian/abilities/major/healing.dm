@@ -41,7 +41,7 @@
 		else if(isobj(target))
 			var/obj/O = target
 			guardian.do_attack_animation(O)
-			O.obj_integrity = min(O.obj_integrity + (O.max_integrity * 0.1), O.max_integrity)
+			O.update_integrity(min(O.get_integrity() + (O.max_integrity * 0.1), O.max_integrity))
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(O))
 			H.color = guardian.guardiancolor
 			return TRUE

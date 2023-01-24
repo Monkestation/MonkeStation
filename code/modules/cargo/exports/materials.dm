@@ -1,6 +1,6 @@
 /datum/export/material
 	cost = 5 // Cost per MINERAL_MATERIAL_AMOUNT, which is 2000cm3 as of April 2016.
-	message = "cm3 of developer's tears. Please, report this on github"
+	message = "cm<sup>3</sup> developer's tears. Please, report this on github"
 	var/material_id = null
 	export_types = list(
 		/obj/item/stack/sheet/mineral, /obj/item/stack/tile/mineral,
@@ -14,10 +14,10 @@
 	if(!isitem(O))
 		return 0
 	var/obj/item/I = O
-	if(!(getmaterialref(material_id) in I.materials))
+	if(!(GET_MATERIAL_REF(material_id) in I.custom_materials))
 		return 0
 
-	var/amount = I.materials[getmaterialref(material_id)]
+	var/amount = I.custom_materials[GET_MATERIAL_REF(material_id)]
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
@@ -32,52 +32,52 @@
 /datum/export/material/bananium
 	cost = 1000
 	material_id = /datum/material/bananium
-	message = "cm3 of bananium"
+	message = "cm<sup>3</sup> bananium"
 
 /datum/export/material/diamond
 	cost = 500
 	material_id = /datum/material/diamond
-	message = "cm3 of diamonds"
+	message = "cm<sup>3</sup> diamonds"
 
 /datum/export/material/plasma
 	cost = 200
 	k_elasticity = 0
 	material_id = /datum/material/plasma
-	message = "cm3 of plasma"
+	message = "cm<sup>3</sup> plasma"
 
 /datum/export/material/uranium
 	cost = 100
 	material_id = /datum/material/uranium
-	message = "cm3 of uranium"
+	message = "cm<sup>3</sup> uranium"
 
 /datum/export/material/gold
 	cost = 125
 	material_id = /datum/material/gold
-	message = "cm3 of gold"
+	message = "cm<sup>3</sup> gold"
 
 /datum/export/material/copper
 	cost = 15
 	material_id = /datum/material/copper
-	message = "cm3 of copper"
+	message = "cm<sup>3</sup> copper"
 
 /datum/export/material/silver
 	cost = 50
 	material_id = /datum/material/silver
-	message = "cm3 of silver"
+	message = "cm<sup>3</sup> silver"
 
 /datum/export/material/titanium
 	cost = 125
 	material_id = /datum/material/titanium
-	message = "cm3 of titanium"
+	message = "cm<sup>3</sup> titanium"
 
 /datum/export/material/plastitanium
 	cost = 325 // plasma + titanium costs
 	material_id = /datum/material/titanium // code can only check for one material_id; plastitanium is half plasma, half titanium
-	message = "cm3 of plastitanium"
+	message = "cm<sup>3</sup> plastitanium"
 
 /datum/export/material/iron
 	cost = 5
-	message = "cm3 of metal"
+	message = "cm<sup>3</sup> metal"
 	material_id = /datum/material/iron
 	export_types = list(
 		/obj/item/stack/sheet/iron, /obj/item/stack/tile/plasteel,
@@ -85,7 +85,21 @@
 
 /datum/export/material/glass
 	cost = 5
-	message = "cm3 of glass"
+	message = "cm<sup>3</sup> glass"
 	material_id = /datum/material/glass
 	export_types = list(/obj/item/stack/sheet/glass, /obj/item/stack/ore,
 		/obj/item/shard)
+
+/datum/export/material/adamantine
+	cost = 500
+	material_id = /datum/material/adamantine
+	message = "cm<sup>3</sup> of adamantine"
+/datum/export/material/bscrystal
+	cost = 300
+	message = "of bluespace crystals"
+	material_id = /datum/material/bluespace
+
+/datum/export/material/plastic
+	cost = 25
+	message = "cm<sup>3</sup> of plastic"
+	material_id = /datum/material/plastic

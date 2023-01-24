@@ -4,7 +4,6 @@
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "robocolorer"
 	density = TRUE
-	obj_integrity = 200
 	max_integrity = 200
 	var/obj/item/bodypart/storedpart
 	var/initial_icon_state
@@ -95,6 +94,7 @@
 		return ..()
 
 /obj/machinery/aug_manipulator/obj_break(damage_flag)
+	.=..()
 	if(!(flags_1 & NODECONSTRUCT_1))
 		if(!(machine_stat & BROKEN))
 			set_machine_stat(machine_stat | BROKEN)

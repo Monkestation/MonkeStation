@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	name = "newscaster frame"
 	desc = "Used to build newscasters, just secure to the wall."
 	icon_state = "newscaster"
-	materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
+	custom_materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster
 
 
@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	verb_exclaim = "beeps"
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 30, "stamina" = 0)
 	max_integrity = 200
-	integrity_failure = 50
+	integrity_failure = 0.25
 	layer = ABOVE_WINDOW_LAYER
 	var/screen = 0
 	var/paper_remaining = 15
@@ -773,6 +773,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	qdel(src)
 
 /obj/machinery/newscaster/obj_break()
+	.=..()
 	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_machine_stat(machine_stat | BROKEN)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)

@@ -28,7 +28,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30, "stamina" = 0)
 	resistance_flags = FIRE_PROOF
 
-	materials = list(/datum/material/iron=70, /datum/material/glass=30)
+	custom_materials = list(/datum/material/iron=70, /datum/material/glass=30)
 	///Whether the welding tool is on or off.
 	var/welding = FALSE
 	var/status = TRUE 		//Whether the welder is secured or unsecured (able to attach rods to it to make a flamethrower)
@@ -322,7 +322,7 @@
 	desc = "A slightly larger welder with a larger tank."
 	icon_state = "indwelder"
 	max_fuel = 40
-	materials = list(/datum/material/glass=60)
+	custom_materials = list(/datum/material/glass=60)
 
 /obj/item/weldingtool/largetank/flamethrower_screwdriver()
 	return
@@ -345,7 +345,7 @@
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(/datum/material/iron=30, /datum/material/glass=10)
+	custom_materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	change_icons = 0
 
 /obj/item/weldingtool/mini/flamethrower_screwdriver()
@@ -373,7 +373,7 @@
 	icon_state = "upindwelder"
 	item_state = "upindwelder"
 	max_fuel = 80
-	materials = list(/datum/material/iron=70, /datum/material/glass=120)
+	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
@@ -381,7 +381,7 @@
 	icon_state = "exwelder"
 	item_state = "exwelder"
 	max_fuel = 40
-	materials = list(/datum/material/iron=70, /datum/material/glass=120)
+	custom_materials = list(/datum/material/iron=70, /datum/material/glass=120)
 	var/last_gen = 0
 	change_icons = 0
 	can_off_process = 1

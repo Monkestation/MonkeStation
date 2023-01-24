@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 200
-	integrity_failure = 50
+	integrity_failure = 0.25
 	layer = ABOVE_WINDOW_LAYER
 	var/obj/item/extinguisher/stored_extinguisher
 	var/opened = FALSE
@@ -134,6 +134,7 @@
 		icon_state = "extinguisher_empty"
 
 /obj/structure/extinguisher_cabinet/obj_break(damage_flag)
+	.=..()
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
 		broken = 1
 		opened = 1

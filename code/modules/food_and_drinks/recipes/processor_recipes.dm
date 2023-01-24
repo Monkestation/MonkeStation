@@ -1,8 +1,16 @@
 /datum/food_processor_process
+	/// What this recipe takes
 	var/input
+	/// What this recipe creates
 	var/output
+	/// The amount of time this recipe takes.
 	var/time = 40
+	/// The machine required to do this recipe
 	var/required_machine = /obj/machinery/processor
+	/// The number of products this recipe creates.
+	var/multiplier = 1 //This multiplies the number of products produced per object processed.
+	/// Whether to copy the materials from the input to the output
+	var/preserve_materials = TRUE
 	//var/multiplier = 1 //This multiplies the number of products produced per object processed. This requires a full rewrite of processeror code and this pr is already to big
 
 /datum/food_processor_process/meat

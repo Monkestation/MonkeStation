@@ -7,7 +7,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
-	materials = list(/datum/material/iron = 500)
+	custom_materials = list(/datum/material/iron = 500)
 	var/fire_sound = null						//What sound should play when this ammo is fired
 	var/caliber = null							//Which kind of guns it can be loaded into
 	var/projectile_type = null					//The bullet type to create when New() is called
@@ -46,6 +46,18 @@
 	..()
 	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
 	desc = "[initial(desc)][BB ? "" : " This one is spent."]"
+
+/*
+ * On accidental consumption, 'spend' the ammo, and add in some gunpowder
+ */
+/obj/item/ammo_casing/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
+	if(BB)
+		BB = null
+		update_appearance()
+		victim.reagents?.add_reagent(/datum/reagent/blackpowder, 3)
+		source_item?.reagents?.add_reagent(/datum/reagent/blackpowder, source_item.reagents.total_volume*(2/3))
+
+	return ..()
 
 //proc to magically refill a casing with a new projectile
 /obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).

@@ -333,7 +333,6 @@
 	name = "normal blob"
 	icon_state = "blob"
 	light_range = 0
-	obj_integrity = 21 //doesn't start at full health
 	max_integrity = 25
 	health_regen = 1
 	brute_resist = 0.25

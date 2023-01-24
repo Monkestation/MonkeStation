@@ -1218,7 +1218,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "aqG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/tank/toxins{
 	dir = 4
 	},
 /obj/effect/turf_decal/delivery,
@@ -7874,7 +7874,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -49528,7 +49528,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "luC" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -58768,7 +58768,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
@@ -65920,7 +65920,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "pxk" = (
-/obj/machinery/atmospherics/components/unary/tank/air,
+/obj/machinery/atmospherics/components/tank/air,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -74981,7 +74981,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "rAT" = (
-/obj/machinery/atmospherics/components/unary/tank/toxins{
+/obj/machinery/atmospherics/components/tank/toxins{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
@@ -79429,7 +79429,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "sEb" = (
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,

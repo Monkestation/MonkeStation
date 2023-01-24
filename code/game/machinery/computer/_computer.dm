@@ -7,7 +7,7 @@
 	idle_power_usage = 300
 	active_power_usage = 300
 	max_integrity = 200
-	integrity_failure = 100
+	integrity_failure = 0.5
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 20, "stamina" = 0)
 	light_system = STATIC_LIGHT
 	light_range = 1
@@ -102,6 +102,7 @@
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
 /obj/machinery/computer/obj_break(damage_flag)
+	.=..()
 	if(circuit && !(flags_1 & NODECONSTRUCT_1)) //no circuit, no breaking
 		if(!(machine_stat & BROKEN))
 			playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)

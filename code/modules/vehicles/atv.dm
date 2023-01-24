@@ -6,7 +6,7 @@
 	max_integrity = 150
 	armor = list("melee" = 50, "bullet" = 25, "laser" = 20, "energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60, "stamina" = 0)
 	key_type = /obj/item/key
-	integrity_failure = 70
+	integrity_failure = 0.25
 	var/static/mutable_appearance/atvcover
 
 /obj/vehicle/ridden/atv/Initialize(mapload)
@@ -76,11 +76,12 @@
 	return ..()
 
 /obj/vehicle/ridden/secway/obj_break()
+	.=..()
 	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/vehicle/ridden/atv/process(delta_time)
-	if(obj_integrity >= integrity_failure)
+	if(obj_integrity >= integrity_failure * max_integrity)
 		return PROCESS_KILL
 	if(DT_PROB(10, delta_time))
 		return

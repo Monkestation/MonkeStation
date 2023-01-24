@@ -31,8 +31,9 @@
 	var/framestackamount = 2
 	var/deconstruction_ready = 1
 	var/last_bump = 0
+	custom_materials = list(/datum/material/iron = 2000)
 	max_integrity = 100
-	integrity_failure = 30
+	integrity_failure = 0.33
 	/* //MONKESTATION REMOVAL
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
@@ -257,6 +258,9 @@
 			return TRUE
 	return FALSE
 
+/obj/structure/table/greyscale
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+
 /*
  * Glass tables
  */
@@ -478,7 +482,7 @@
 	buildstack = /obj/item/stack/sheet/plasteel
 	//canSmoothWith = list(/obj/structure/table/reinforced, /obj/structure/table) //MONKESTATION REMOVAL
 	max_integrity = 200
-	integrity_failure = 50
+	integrity_failure = 0.25
 	armor = list("melee" = 10, "bullet" = 30, "laser" = 30, "energy" = 100, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70, "stamina" = 0)
 
 
@@ -704,7 +708,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
-	materials = list(/datum/material/iron=2000)
+	custom_materials = list(/datum/material/iron=2000)
 	var/building = FALSE
 
 /obj/item/rack_parts/attackby(obj/item/W, mob/user, params)

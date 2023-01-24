@@ -181,8 +181,16 @@
 		if(user && !silent)
 			to_chat(user, "<span class='notice'>You remove the floor tile.</span>")
 		if(floor_tile && make_tile)
-			new floor_tile(src)
+			spawn_tile()
 	return make_plating()
+
+/turf/open/floor/proc/has_tile()
+	return floor_tile
+
+/turf/open/floor/proc/spawn_tile()
+	if(!has_tile())
+		return null
+	return new floor_tile(src)
 
 /turf/open/floor/singularity_pull(S, current_size)
 	..()
@@ -325,3 +333,19 @@
 			return TRUE
 
 	return FALSE
+
+/turf/open/floor/material
+	name = "plating"
+	desc = "A flooring made out of a certain material"
+	icon_state = "materialfloor"
+	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
+	floor_tile = /obj/item/stack/tile/material
+
+/turf/open/floor/material/has_tile()
+	return LAZYLEN(custom_materials)
+
+/turf/open/floor/material/spawn_tile()
+	. = ..()
+	if(.)
+		var/obj/item/stack/tile = .
+		tile.set_mats_per_unit(custom_materials, 1)

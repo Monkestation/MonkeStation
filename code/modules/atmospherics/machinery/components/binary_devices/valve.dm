@@ -22,7 +22,17 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "mvalve"
 
+	custom_reconcilation = TRUE
 	var/switching = FALSE
+
+// This is what handles the actual functionality of combining 2 pipenets when the valve is open
+// Basically when a pipenet updates it will consider both sides to be the same for the purpose of the gas update
+/obj/machinery/atmospherics/components/binary/valve/returnPipenetsForReconcilation(datum/pipeline/requester)
+	. = ..()
+	if(!on)
+		return
+	. += parents[1]
+	. += parents[2]
 
 /obj/machinery/atmospherics/components/binary/valve/Destroy()
 	//Should only happen on extreme circumstances

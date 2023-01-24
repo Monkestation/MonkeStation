@@ -248,7 +248,7 @@ Nothing else in the console has ID requirements.
 		if(linked_destroy.loaded_item && (!QDELETED(linked_destroy.loaded_item)))
 			var/list/techyitems = techweb_item_boost_check(linked_destroy.loaded_item)
 			var/list/pointss = techweb_item_point_check(linked_destroy.loaded_item)
-			var/list/materials = linked_destroy.loaded_item.materials
+			var/list/materials = linked_destroy.loaded_item.custom_materials
 			var/list/matstuff = list()
 
 			if(length(techyitems))
@@ -502,14 +502,14 @@ Nothing else in the console has ID requirements.
 		if(QDELETED(linked_imprinter))
 			return FALSE
 		for(var/M in D.materials + D.reagents_list)
-			amount = min(amount, linked_imprinter.check_mat(D, M))
+			amount = min(amount, linked_imprinter.check_material_req(D, M))
 			if(amount < 1)
 				return FALSE
 	else if(buildtype == PROTOLATHE)
 		if(QDELETED(linked_lathe))
 			return FALSE
 		for(var/M in D.materials + D.reagents_list)
-			amount = min(amount, linked_lathe.check_mat(D, M))
+			amount = min(amount, linked_lathe.check_material_req(D, M))
 			if(amount < 1)
 				return FALSE
 	else
