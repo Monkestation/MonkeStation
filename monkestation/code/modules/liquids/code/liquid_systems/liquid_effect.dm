@@ -161,10 +161,25 @@
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
 			C.apply_status_effect(/datum/status_effect/water_affected)
+		if(isliving(AM))
+			var/mob/living/carbon/human/stepped_human = AM
+			liquid_group.expose_atom(stepped_human, stepped_human.get_permeability_protection(), TOUCH)
 	else if (isliving(AM))
 		var/mob/living/L = AM
 		if(prob(7) && !(L.movement_type & FLYING))
 			L.slip(30, T, NO_SLIP_WHEN_WALKING, 0, TRUE)
+		if(ishuman(L))
+			var/mob/living/carbon/human/entered_human = L
+			if(entered_human.shoes)
+				var/obj/item/clothing/shoes/stepped_shoes = entered_human.shoes
+				if(stepped_shoes.permeability_coefficient) //may want to snowflake this into a waterproofing variable.
+					liquid_group.expose_atom(entered_human, stepped_shoes.permeability_coefficient, TOUCH)
+			else
+				liquid_group.expose_atom(entered_human, 0 , TOUCH)
+			for(var/datum/reagent/listed_reagent in liquid_group.reagents.reagent_list)
+				if(listed_reagent.type == /datum/reagent/blood && entered_human.shoes)
+					var/obj/item/clothing/shoes/stepped_shoes = entered_human.shoes
+					stepped_shoes.bloody_shoes[BLOOD_STATE_HUMAN] = min(MAX_SHOE_BLOODINESS, stepped_shoes.bloody_shoes[BLOOD_STATE_HUMAN] + BLOOD_GAIN_PER_STEP)
 
 	if(fire_state)
 		AM.fire_act((T20C+50) + (50*fire_state), 125)

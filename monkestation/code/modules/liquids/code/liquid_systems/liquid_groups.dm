@@ -640,6 +640,23 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		exposed_reagents.reaction(target_atom, TOUCH, liquid = TRUE)
 	qdel(exposed_reagents)
 
+/datum/liquid_group/proc/expose_atom(atom/target, modifier = 0, method)
+	var/datum/reagents/exposed_reagents = new(1000)
+	var/list/passed_list = list()
+	for(var/reagent_type in reagents.reagent_list)
+		var/amount = reagents.reagent_list[reagent_type] / members
+		if(!amount)
+			continue
+		passed_list[reagent_type] = amount
+
+	exposed_reagents.add_reagent_list(passed_list, no_react = TRUE)
+	exposed_reagents.chem_temp = group_temperature
+
+	if(modifier)
+		exposed_reagents.remove_any((exposed_reagents.total_volume * modifier))
+
+	exposed_reagents.reaction(target, method, liquid = TRUE)
+
 /datum/liquid_group/proc/spread_liquid(turf/new_turf, turf/source_turf)
 	if(isclosedturf(new_turf) || !source_turf.atmos_adjacent_turfs)
 		return
@@ -648,7 +665,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!source_turf.atmos_adjacent_turfs[new_turf])
 		return
 
-	if(!new_turf.liquids && !isspaceturf(new_turf))
+	if(!new_turf.liquids && !isspaceturf(new_turf) && !istype(new_turf, /turf/open/floor/plating/ocean)) // no space turfs, or oceans turfs, also don't attempt to spread onto a turf that already has liquids wastes processing time
 		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.liquid_height + 1 > expected_turf_height)
 			return FALSE
 
