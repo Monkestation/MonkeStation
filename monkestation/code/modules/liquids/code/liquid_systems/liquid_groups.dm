@@ -191,11 +191,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		member.liquids.color = group_color
 	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
 		SSliquids.evaporation_queue |= member
+	if(member.my_turf.liquid_height != expected_turf_height + member.my_turf.turf_height)
+		member.my_turf.liquid_height = expected_turf_height + member.my_turf.turf_height
+
 	var/list/adjacent_turfs = member.GetAtmosAdjacentTurfs()
 	shuffle(adjacent_turfs)
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = tur
-		// spread_liquid(adjacent_turf, member)
 		if(member.z != adjacent_turf.z)
 			var/turf/Z_turf_below = SSmapping.get_turf_below(member)
 			if(adjacent_turf == Z_turf_below)
@@ -244,7 +246,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	if(!new_turf.liquids && !isspaceturf(new_turf))
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.turf_height + 1 > expected_turf_height)
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.liquid_height + 1 > expected_turf_height)
 			return FALSE
 
 		reagents_per_turf = total_reagent_volume / members.len

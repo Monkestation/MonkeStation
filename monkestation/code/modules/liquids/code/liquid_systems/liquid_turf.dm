@@ -10,14 +10,6 @@
 		liquids.liquid_group = new(1, liquids)
 	SSliquids.add_active_turf(src)
 
-/*
-/turf/proc/liquid_fraction_delete(fraction)
-	for(var/r_type in liquids.reagent_list)
-		var/volume_change = liquids.reagent_list[r_type] * fraction
-		liquids.reagent_list[r_type] -= volume_change
-		liquids.total_reagents -= volume_change
-*/
-
 /turf/proc/liquid_update_turf()
 	if(!liquids)
 		return
@@ -63,34 +55,6 @@
 	liquids.liquid_group.add_reagent(liquids, reagent, amount)
 	//Expose turf
 	liquids.liquid_group.expose_members_turf(liquids)
-
-/turf/proc/can_share_liquids_with(turf/T)
-	if(T.z != z) //No Z here handling currently
-		return FALSE
-
-	if(T.liquids)
-		return FALSE
-
-	if(istype(T, /turf/open/space)) //No space liquids - Maybe add an ice system later
-		return FALSE
-
-	var/my_liquid_height = liquids ? liquids.liquid_group.expected_turf_height : 0
-	if(my_liquid_height < 1)
-		return FALSE
-	var/target_height = T.liquids ? T.liquids.liquid_group.expected_turf_height : 0
-
-	//Varied heights handling:
-	if(liquid_height != T.liquid_height)
-		if(my_liquid_height+liquid_height < target_height + T.liquid_height + 1)
-			return FALSE
-		else
-			return TRUE
-
-	var/difference = abs(target_height - my_liquid_height)
-	//The: sand effect or "piling" Very good for performance
-	if(difference >= 1) //SHOULD BE >= 1 or > 1? '>= 1' can lead into a lot of unnessecary processes, while ' > 1' will lead to a "piling" phenomena
-		return TRUE
-	return FALSE
 
 /turf/proc/process_liquid_cell()
 
