@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	40 //monkestation edit
+#define SAVEFILE_VERSION_MAX	41 //monkestation edit
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -82,17 +82,20 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["key_bindings"], key_bindings)
 	if(current_version < 38)
 		clientfps = 60
-	if(current_version < 40)
-		channel_volume = list(
-							CHANNEL_LOBBYMUSIC = 100,
-							CHANNEL_ADMIN = 100,
-							CHANNEL_VOX = 100,
-							CHANNEL_JUKEBOX = 100,
-							CHANNEL_HEARTBEAT = 100,
-							CHANNEL_AMBIENT_EFFECTS = 100,
-							CHANNEL_AMBIENT_MUSIC = 100,
-							CHANNEL_BUZZ = 100,
-							CHANNEL_ENGINE_ALERT = 100,)
+	if(current_version < 41)
+		var/list/channels = list(
+							CHANNEL_LOBBYMUSIC,
+							CHANNEL_ADMIN,
+							CHANNEL_VOX,
+							CHANNEL_JUKEBOX,
+							CHANNEL_HEARTBEAT,
+							CHANNEL_AMBIENT_EFFECTS,
+							CHANNEL_AMBIENT_MUSIC,
+							CHANNEL_BUZZ,
+							CHANNEL_ENGINE_ALERT)
+		for(var/item in channels)
+			channel_volume |= "[item]"
+			channel_volume[item] = 100
 	 //monkestation edit end
 	return
 
