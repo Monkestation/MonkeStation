@@ -8,26 +8,42 @@
 GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group
+	///the generated color given to the group on creation for debugging
 	var/color
+	///list of all current members of the group saved in true/false format
 	var/list/members = list()
+	///list of all current burning members of our group
 	var/list/burning_members = list()
+	///our reagent holder, where the entire liquid groups reagents are stored
 	var/datum/reagents/reagents
+	///the expected height of all the collective turfs
 	var/expected_turf_height = 1
+	///A saved variable of the total reagent volumes to avoid calling reagents.total_volume constantly
 	var/total_reagent_volume = 0
+	///a cached value of our reagents per turf, used to determine liquid height and state
 	var/reagents_per_turf = 0
+	///the icon state our group currently uses
 	var/group_overlay_state = LIQUID_STATE_PUDDLE
+	///the calculated alpha cache for our group
 	var/group_alpha = 0
+	///the calculated temperature cache for our group
 	var/group_temperature = 300
+	///the generated color used to apply coloring to all the members
 	var/group_color
+	///a variable to forcibly trigger a recount of our reagents
 	var/updated_total = FALSE
+	///have we failed a process? if so we are added to a death check so it will gracefully die on its own
 	var/failed_death_check = FALSE
+	///the burn power of our group, used to determine how strong we burn each process_fire()
 	var/group_burn_power = 0
+	///the icon state of our fire
 	var/group_fire_state = LIQUID_FIRE_STATE_NONE
+	///the amount of reagents we attempt to burn each process_fire()
 	var/group_burn_rate = 0
+	///the viscosity of our group, determines how much we can spread with our total reagent pool, higher means less turfs per reagent
 	var/group_viscosity = 1
-
+	///are we currently attempting a merge? if so don't process groups
 	var/merging = FALSE
-
 	///list of cached edge turfs with a sublist of directions stored
 	var/list/cached_edge_turfs = list()
 
