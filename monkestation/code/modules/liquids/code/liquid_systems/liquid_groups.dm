@@ -109,14 +109,18 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	otherg.merging = TRUE
-	otherg.reagents.copy_to(reagents)
+	otherg.reagents.trans_to(reagents, otherg.reagents.total_volume)
+
+	cached_edge_turfs |= otherg.cached_edge_turfs
 
 	for(var/turf/liquid_turf in otherg.members)
 		otherg.remove_from_group(liquid_turf)
 		add_to_group(liquid_turf)
 
+
 	total_reagent_volume = reagents.total_volume
 	reagents_per_turf = total_reagent_volume / length(members)
+	updated_total = TRUE
 
 	qdel(otherg)
 	process_group()
@@ -135,7 +139,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/process_group()
 	if(merging)
 		return
-	if(!members || !members.len)
+	if(!members || !members.len) // this ideally shouldn't exist, ideally groups would die before they got to this point but alas here we are
 		check_dead()
 		return
 	var/old_color = group_color
@@ -676,6 +680,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 
 		new_turf.liquids = new(new_turf, src)
+		new_turf.liquids.alpha = group_alpha
 		check_edges(new_turf)
 
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
