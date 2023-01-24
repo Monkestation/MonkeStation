@@ -21,8 +21,6 @@
 	var/datum/liquid_group/liquid_group
 	var/turf/my_turf
 
-	var/immutable = FALSE
-
 	var/fire_state = LIQUID_FIRE_STATE_NONE
 	var/liquid_state = LIQUID_STATE_PUDDLE
 	var/no_effects = FALSE
@@ -43,9 +41,6 @@
 	)
 
 	var/temporary_split_key
-
-/obj/effect/abstract/liquid_turf/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
-	return
 
 
 /obj/effect/abstract/liquid_turf/proc/process_evaporation()
@@ -148,61 +143,6 @@
 /obj/effect/abstract/liquid_turf/proc/take_reagents_flat(flat_amount)
 	liquid_group.remove_any(src, flat_amount)
 
-/obj/effect/abstract/liquid_turf/fire_act(temperature, volume)
-	return
-
-/obj/effect/abstract/liquid_turf/proc/set_reagent_color_for_liquid()
-	liquid_group.group_color = mix_color_from_reagent_list(liquid_group.reagents.reagent_list)
-
-/obj/effect/abstract/liquid_turf/proc/calculate_height()
-	return
-
-///old proc only used on immutables
-/obj/effect/abstract/liquid_turf/proc/set_height(new_height)
-	var/prev_height = liquid_group.expected_turf_height
-	liquid_group.expected_turf_height = new_height
-	if(abs(liquid_group.expected_turf_height - prev_height) > WATER_HEIGH_DIFFERENCE_DELTA_SPLASH)
-		//Splash
-		if(prob(WATER_HEIGH_DIFFERENCE_SOUND_CHANCE))
-			var/sound_to_play = pick(list(
-				'monkestation/code/modules/liquids/sound/effects/water_wade1.ogg',
-				'monkestation/code/modules/liquids/sound/effects/water_wade2.ogg',
-				'monkestation/code/modules/liquids/sound/effects/water_wade3.ogg',
-				'monkestation/code/modules/liquids/sound/effects/water_wade4.ogg'
-				))
-			playsound(my_turf, sound_to_play, 60, 0)
-		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(my_turf)
-		splashy.color = color
-		if(liquid_group.expected_turf_height >= LIQUID_WAIST_LEVEL_HEIGHT)
-			//Push things into some direction, like space wind
-			var/turf/dest_turf
-			var/last_height = liquid_group.expected_turf_height
-			for(var/turf in my_turf.atmos_adjacent_turfs)
-				var/turf/T = turf
-				if(T.z != my_turf.z)
-					continue
-				if(!T.liquids) //Automatic winner
-					dest_turf = T
-					break
-				if(T.liquids.liquid_group.expected_turf_height < last_height)
-					dest_turf = T
-					last_height = T.liquids.liquid_group.expected_turf_height
-			if(dest_turf)
-				var/dir = get_dir(my_turf, dest_turf)
-				var/atom/movable/AM
-				for(var/thing in my_turf)
-					AM = thing
-					if(!AM.anchored && !AM.pulledby && !isobserver(AM) && (AM.move_resist < INFINITY))
-						if(iscarbon(AM))
-							var/mob/living/carbon/C = AM
-							if(!(C.shoes && C.shoes.clothing_flags & NOSLIP))
-								step(C, dir)
-								if(prob(60) && MOBILITY_STAND)
-									to_chat(C, span_userdanger("The current knocks you down!"))
-									C.Paralyze(60)
-						else
-							step(AM, dir)
-
 /obj/effect/abstract/liquid_turf/proc/movable_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 
@@ -271,14 +211,13 @@
 
 	if(!SSliquids)
 		CRASH("Liquid Turf created with the liquids sybsystem not yet initialized!")
-	if(!immutable)
-		my_turf = loc
-		RegisterSignal(my_turf, COMSIG_ATOM_ENTERED, .proc/movable_entered)
-		RegisterSignal(my_turf, COMSIG_TURF_MOB_FALL, .proc/mob_fall)
-		RegisterSignal(my_turf, COMSIG_PARENT_EXAMINE, .proc/examine_turf)
-		SSliquids.add_active_turf(my_turf)
+	my_turf = loc
+	RegisterSignal(my_turf, COMSIG_ATOM_ENTERED, .proc/movable_entered)
+	RegisterSignal(my_turf, COMSIG_TURF_MOB_FALL, .proc/mob_fall)
+	RegisterSignal(my_turf, COMSIG_PARENT_EXAMINE, .proc/examine_turf)
+	SSliquids.add_active_turf(my_turf)
 
-		SEND_SIGNAL(my_turf, COMSIG_TURF_LIQUIDS_CREATION, src)
+	SEND_SIGNAL(my_turf, COMSIG_TURF_LIQUIDS_CREATION, src)
 
 	if(z)
 		QUEUE_SMOOTH(src)

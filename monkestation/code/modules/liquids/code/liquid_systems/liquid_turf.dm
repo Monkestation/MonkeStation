@@ -68,7 +68,7 @@
 	if(T.z != z) //No Z here handling currently
 		return FALSE
 
-	if(T.liquids && T.liquids.immutable)
+	if(T.liquids)
 		return FALSE
 
 	if(istype(T, /turf/open/space)) //No space liquids - Maybe add an ice system later
