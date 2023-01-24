@@ -193,7 +193,7 @@
 	if(action == "ejectsheet" && materials && materials.mat_container)
 		var/datum/material/M
 		for(var/datum/material/potential_material as() in materials.mat_container.materials)
-			if(potential_material.id == params["material_id"])
+			if(potential_material.id == text2path(params["material_id"]))
 				M = potential_material
 				break
 		if(M)
