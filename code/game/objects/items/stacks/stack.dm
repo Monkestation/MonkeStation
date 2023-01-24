@@ -98,8 +98,10 @@
 	return TRUE
 
 /obj/item/stack/proc/get_main_recipes()
-	SHOULD_CALL_PARENT(1)
-	return list()//empty list
+	RETURN_TYPE(/list)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return list() //empty list
 
 /obj/item/stack/proc/check_max_amount()
 	while(amount > max_amount)
