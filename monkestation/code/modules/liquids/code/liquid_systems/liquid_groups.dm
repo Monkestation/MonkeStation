@@ -424,6 +424,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			member.liquids.set_fire_effect()
 			burning_members |= adjacent_turf
 			SSliquids.burning_turfs |= adjacent_turf
+			for(var/atom/movable/movable in adjacent_turf)
+				movable.fire_act((T20C+50) + (50*adjacent_turf.liquids.fire_state), 125)
 
 /datum/liquid_group/proc/extinguish_all()
 	group_burn_power = 0
