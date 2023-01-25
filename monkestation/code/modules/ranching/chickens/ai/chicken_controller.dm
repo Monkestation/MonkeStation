@@ -155,13 +155,13 @@
 	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = pawn
 
-	if((!blackboard[BB_CHICKEN_READY_LAY]&& DT_PROB(10, delta_time) && living_pawn.eggs_left > 0) && living_pawn.egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && living_pawn.gender == FEMALE)
+	if((!blackboard[BB_CHICKEN_READY_LAY]&& DT_PROB(10, delta_time) && living_pawn.eggs_left > 0) && living_pawn.egg_type && GLOB.total_chickens < CONFIG_GET(number/max_chickens) && living_pawn.gender == FEMALE && behavior_cooldowns[/datum/ai_behavior/find_and_lay] < world.time)
 		blackboard[BB_CHICKEN_READY_LAY] = TRUE
 
 	if(blackboard[BB_CHICKEN_READY_LAY])
 		queue_behavior(/datum/ai_behavior/find_and_lay)
 
-	if(DT_PROB(10, delta_time) < world.time)
+	if(DT_PROB(10, delta_time) && behavior_cooldowns[/datum/ai_behavior/eat_ground_food] < world.time)
 		if(locate(/obj/item/food) in view(5, pawn))
 			queue_behavior(/datum/ai_behavior/eat_ground_food)
 
