@@ -207,3 +207,10 @@
 			adjust_item_drop_location(item)
 			SSblackbox.record_feedback("tally", "slime_core_harvested", 1, S.colour)
 	..()
+
+/obj/machinery/processor/ghetto
+	use_power = FALSE
+	idle_power_usage = 0
+	active_power_usage = 0
+	circuit = null
+	rating_speed = 0.1
