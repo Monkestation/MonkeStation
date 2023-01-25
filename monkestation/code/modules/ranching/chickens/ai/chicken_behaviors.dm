@@ -127,6 +127,7 @@
 	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
+	var/datum/weakref/target_ref
 	var/list/floor_foods = list()
 	for(var/obj/item/food/food_item in view(3, living_pawn.loc))
 		if(!(food_item.type in blacklisted_foods))
@@ -134,9 +135,10 @@
 
 	if(floor_foods.len)
 		chosen_one = pick(floor_foods)
-		controller.current_movement_target = chosen_one
-	if(!controller.current_movement_target)
+		target_ref = WEAKREF(chosen_one)
+	if(!target_ref)
 		return FALSE
+	controller.current_movement_target = target_ref
 	return TRUE
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
@@ -185,11 +187,13 @@
 /datum/ai_behavior/find_and_lay/setup(datum/ai_controller/controller, ...)
 	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
+	var/datum/weakref/target_ref
 	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
-		controller.current_movement_target = nesting_box
+		target_ref = WEAKREF(nesting_box)
 		break
-	if(!controller.current_movement_target)
+	if(!target_ref)
 		return FALSE
+	controller.current_movement_target = target_ref
 	return TRUE
 
 /datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
