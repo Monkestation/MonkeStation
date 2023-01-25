@@ -138,7 +138,7 @@
 		target_ref = WEAKREF(chosen_one)
 	if(!target_ref)
 		return FALSE
-	controller.current_movement_target = target_ref
+	controller.current_movement_target = target_ref.resolve()
 	return TRUE
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
@@ -193,7 +193,7 @@
 		break
 	if(!target_ref)
 		return FALSE
-	controller.current_movement_target = target_ref
+	controller.current_movement_target = target_ref.resolve()
 	return TRUE
 
 /datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
