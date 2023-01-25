@@ -15,9 +15,9 @@ SUBSYSTEM_DEF(liquids)
 	var/list/singleton_immutables = list()
 
 	var/list/active_ocean_turfs = list()
-	var/ocean_counter = 0
-
 	var/list/ocean_turfs = list()
+	var/list/currentrun_active_ocean_turfs = list()
+	var/ocean_counter = 0
 
 	var/run_type = SSLIQUIDS_RUN_TYPE_TURFS
 
@@ -28,9 +28,8 @@ SUBSYSTEM_DEF(liquids)
 	var/fire_counter = 0
 
 /datum/controller/subsystem/liquids/stat_entry(msg)
-	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|BT:[burning_turfs.len]|EQ:[evaporation_queue.len]"
+	msg += "AT:[active_turfs.len]|AG:[active_groups.len]|BT:[burning_turfs.len]|EQ:[evaporation_queue.len]|AO:[active_ocean_turfs.len]"
 	return ..()
-
 
 /datum/controller/subsystem/liquids/fire(resumed = FALSE)
 	if(!active_turfs.len && !active_groups.len && !evaporation_queue.len && !active_ocean_turfs.len && !burning_turfs.len)
@@ -77,7 +76,6 @@ SUBSYSTEM_DEF(liquids)
 					evaporation_queue -= T
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
-		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
 		fire_counter++
 		if(fire_counter > REQUIRED_FIRE_PROCESSES)
 			for(var/g in active_groups)
@@ -90,10 +88,15 @@ SUBSYSTEM_DEF(liquids)
 					LG.process_fire()
 			fire_counter = 0
 
+	run_type = SSLIQUIDS_RUN_TYPE_OCEAN
+	if(!currentrun_active_ocean_turfs.len)
+		currentrun_active_ocean_turfs = active_ocean_turfs
 	if(run_type == SSLIQUIDS_RUN_TYPE_OCEAN)
 		ocean_counter++
 		if(ocean_counter >= REQUIRED_OCEAN_PROCESSES)
-			for(var/turf/open/floor/plating/ocean/active_ocean in active_ocean_turfs)
+			for(var/turf/open/floor/plating/ocean/active_ocean in currentrun_active_ocean_turfs)
+				if(MC_TICK_CHECK)
+					return
 				active_ocean.process_turf()
 			ocean_counter = 0
 

@@ -23,3 +23,8 @@
 #define COMSIG_TURF_MOB_FALL "turf_mob_fall" //MONKESTATION ADDITION
 
 #define COMSIG_TURF_LIQUIDS_CREATION "turf_liquids_creation" //MONKESTATION ADDITION
+
+///this is called whenever a turf is destroyed
+#define COMSIG_TURF_DESTROY "turf_destroy"
+///this is called whenever a turfs air is updated
+#define COMSIG_TURF_UPDATE_AIR "turf_air_change"

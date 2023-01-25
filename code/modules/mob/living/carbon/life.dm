@@ -139,7 +139,7 @@
 							//MONKESTATION EDIT ADDITION
 				//Underwater breathing
 				var/turf/T = loc
-				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_FULLTILE)))
+				if(istype(T, /turf/open/floor/plating/ocean) || (T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_FULLTILE))))
 					//Officially trying to breathe underwater
 					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
 						failed_last_breath = FALSE

@@ -170,6 +170,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	..()
 
 	vis_contents.Cut()
+	SEND_SIGNAL(src, COMSIG_TURF_DESTROY)
 
 /// WARNING WARNING
 /// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
