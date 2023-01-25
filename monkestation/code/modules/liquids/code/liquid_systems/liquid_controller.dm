@@ -33,31 +33,31 @@ SUBSYSTEM_DEF(liquids)
 
 
 /datum/controller/subsystem/liquids/fire(resumed = FALSE)
-	if(!currentrun_active_turfs.len && active_turfs.len)
+	if(!active_turfs.len && !active_groups.len && !evaporation_queue.len && !active_ocean_turfs.len && !burning_turfs.len)
+		return
+	if(!currentrun_active_turfs.len && active_turfs.len && active_groups.len)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
 			currentrun_active_turfs |= LG.members
 
-	for(var/g in active_groups)
-		var/datum/liquid_group/LG = g
-		if(LG.burning_members.len)
-			for(var/turf/burning_turf in LG.burning_members)
-				LG.process_spread(burning_turf)
+	if(active_groups.len)
+		for(var/g in active_groups)
+			var/datum/liquid_group/LG = g
+			if(LG.burning_members.len)
+				for(var/turf/burning_turf in LG.burning_members)
+					LG.process_spread(burning_turf)
 
-		LG.process_cached_edges()
-		LG.process_group()
-		if(MC_TICK_CHECK)
-			return
-	run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
+			LG.process_cached_edges()
+			LG.process_group()
+		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
-	for(var/tur in currentrun_active_turfs)
-		if(MC_TICK_CHECK)
-			return
-		var/turf/T = get_turf(tur)
-		if(T.liquids) ///there may be a bigger problem as this shouldn't be needed
-			T.process_liquid_cell()
-			T.liquids.liquid_group.process_member(T)
-		currentrun_active_turfs -= T //work off of index later
+	if(currentrun_active_turfs.len)
+		for(var/tur in currentrun_active_turfs)
+			var/turf/T = get_turf(tur)
+			if(T.liquids) ///there may be a bigger problem as this shouldn't be needed
+				T.process_liquid_cell()
+				T.liquids.liquid_group.process_member(T)
+			currentrun_active_turfs -= T //work off of index later
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION && !debug_evaporation)
 		run_type = SSLIQUIDS_RUN_TYPE_FIRE
@@ -75,14 +75,14 @@ SUBSYSTEM_DEF(liquids)
 						T.liquids.process_evaporation()
 				else
 					evaporation_queue -= T
-				if(MC_TICK_CHECK)
-					return
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
 		run_type = SSLIQUIDS_RUN_TYPE_OCEAN
 		fire_counter++
 		if(fire_counter > REQUIRED_FIRE_PROCESSES)
 			for(var/g in active_groups)
+				if(MC_TICK_CHECK)
+					return
 				var/datum/liquid_group/LG = g
 				if(LG.burning_members.len)
 					for(var/turf/burning_turf in LG.burning_members)
