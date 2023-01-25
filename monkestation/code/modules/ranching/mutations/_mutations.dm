@@ -181,7 +181,9 @@
 			return FALSE
 	return TRUE
 
+
 /datum/mutation/ranching/proc/check_liquid_depth(atom/checkee, is_egg)
+	/* FOR THE LIQUIDS TM
 	var/passed_check = FALSE
 	if(liquid_depth)
 		var/turf/open/egg_location = get_turf(checkee.loc)
@@ -190,6 +192,7 @@
 				passed_check = TRUE
 		if(passed_check == FALSE)
 			return FALSE
+	*/
 	return TRUE
 
 /datum/mutation/ranching/proc/check_species(atom/checkee, is_egg)
