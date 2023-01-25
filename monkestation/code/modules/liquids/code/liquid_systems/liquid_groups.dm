@@ -109,8 +109,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	otherg.merging = TRUE
-	otherg.reagents.trans_to(reagents, otherg.reagents.total_volume)
+	var/list/created_reagent_list = list()
+	for(var/datum/reagent/reagent in otherg.reagents.reagent_list)
+		created_reagent_list |= reagent.type
+		created_reagent_list[reagent.type] = reagent.volume
 
+	add_reagents(reagent_list = created_reagent_list, chem_temp = otherg.group_temperature)
 	cached_edge_turfs |= otherg.cached_edge_turfs
 
 	for(var/turf/liquid_turf in otherg.members)
@@ -296,11 +300,15 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list, chem_temp)
 	reagents.add_reagent_list(reagent_list)
 	handle_temperature(total_reagent_volume, chem_temp)
+
+	handle_visual_changes()
 	process_group()
 
 /datum/liquid_group/proc/add_reagent(obj/effect/abstract/liquid_turf/member, datum/reagent/reagent, amount, temperature)
 	reagents.add_reagent(reagent, amount, temperature)
 	handle_temperature(total_reagent_volume, temperature)
+
+	handle_visual_changes()
 	process_group()
 
 /datum/liquid_group/proc/transfer_reagents_to_secondary_group(obj/effect/abstract/liquid_turf/member, obj/effect/abstract/liquid_turf/transfer)
@@ -309,6 +317,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		transfer.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 	remove_from_group(member.my_turf)
+	handle_visual_changes()
 	process_group()
 
 /datum/liquid_group/proc/trans_to_seperate_group(datum/reagents/secondary_reagent, amount, obj/effect/abstract/liquid_turf/remover, merge = FALSE)
@@ -317,6 +326,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		check_liquid_removal(remover, amount)
 	else if(!merge)
 		process_removal(amount)
+
+	handle_visual_changes()
 
 /datum/liquid_group/proc/process_removal(amount)
 
@@ -335,7 +346,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
 	reagents.chem_temp = group_temperature
 
+/datum/liquid_group/proc/handle_visual_changes()
+	var/new_color
+	if(GLOB.liquid_debug_colors)
+		new_color = color
+	else
+		new_color = mix_color_from_reagent_list(reagents.reagent_list)
 
+	var/alpha_setting = 1
+	var/alpha_divisor = 1
+
+	for(var/r in reagents.reagent_list)
+		var/datum/reagent/R = r
+		alpha_setting += max((R.opacity * R.volume), 1)
+		alpha_divisor += max((1 * R.volume), 1)
+
+	group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
+	group_color = new_color
+	for(var/turf/member in members)
+		member.liquids.alpha = group_alpha
+		member.liquids.color = group_color
 
 ///Fire Related Procs / Handling
 
