@@ -36,7 +36,7 @@
 	///How close to being an adult is this chicken
 	var/amount_grown = 0
 	///What type of chicken is this?
-	var/grown_type
+	var/grown_type = /mob/living/simple_animal/chicken
 	///Glass chicken exclusive:what reagent were the eggs filled with?
 	var/list/glass_egg_reagent = list()
 	///Stone Chicken Exclusive: what ore type is in the eggs?
@@ -54,7 +54,7 @@
 	if(!chicken_type) // do we have a grown type?
 		return
 
-	var/mob/living/simple_animal/chicken/hatched_type = new chicken_type
+	var/mob/living/simple_animal/chicken/hatched_type = new chicken_type(src)
 	icon_state = "chick_[hatched_type.icon_suffix]"
 	held_state = "chick_[hatched_type.icon_suffix]"
 	icon_living = "chick_[hatched_type.icon_suffix]"
