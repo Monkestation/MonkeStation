@@ -363,6 +363,8 @@ SUBSYSTEM_DEF(air)
 	while(currentrun.len)
 		var/obj/machinery/M = currentrun[currentrun.len]
 		currentrun.len--
+		if(M == null)
+			atmos_air_machinery.Remove(M)
 		// Prevents uninitalized atmos machinery from processing.
 		if (!(M.flags_1 & INITIALIZED_1))
 			continue
