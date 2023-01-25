@@ -22,7 +22,7 @@
 	var/list/chicken_list = list()
 	for(var/datum/mutation/ranching/chicken/chicken as anything in subtypesof(/datum/mutation/ranching/chicken))
 		var/datum/mutation/ranching/chicken/created_mutation = new chicken
-		var/mob/living/simple_animal/chicken/F = new created_mutation.chicken_type
+		var/mob/living/simple_animal/chicken/F = new created_mutation.chicken_type(src.loc)
 		var/male_name
 		var/female_name
 		if(F.breed_name_male)
