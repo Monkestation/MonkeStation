@@ -458,7 +458,8 @@
 					grinded.reagents.trans_to(src, grinded.reagents.total_volume, transfered_by = user)
 				if(grinded.juice_results) //prioritize juicing
 					if(istype(grinded, /obj/item/stack))
-						for(var/num = 1, num < amount, num ++)
+						var/obj/item/stack/grinded_stack = grinded
+						for(var/num = 1, num < grinded_stack.amount, num ++)
 							grinded.on_juice()
 							reagents.add_reagent_list(grinded.juice_results)
 					else
