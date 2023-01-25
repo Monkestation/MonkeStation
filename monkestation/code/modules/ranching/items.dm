@@ -192,3 +192,18 @@
 	icon_state = "chicken_feed"
 
 	var/list/held_foods
+
+/obj/item/storage/bag/egg
+	name = "egg bag"
+	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon_state = "plantbag"
+	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/egg/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+	STR.can_hold = typecacheof(list(/obj/item/food/egg))
