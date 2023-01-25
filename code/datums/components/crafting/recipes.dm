@@ -839,7 +839,7 @@
 	time = 65
 	reqs = list(/obj/item/grown/log = 5,
 							/obj/item/stack/sheet/iron = 10)
-	result = /obj/structure/processor/ghetto
+	result = /obj/machinery/processor/ghetto
 	category = CAT_PRIMAL
 
 
