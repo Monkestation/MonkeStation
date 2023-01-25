@@ -837,7 +837,7 @@
 /datum/crafting_recipe/processor
 	name = "Meat Processor"
 	time = 65
-	reqs = listreqs = list(/obj/item/grown/log = 5,
+	reqs = list(/obj/item/grown/log = 5,
 							/obj/item/stack/sheet/iron = 10)
 	result = /obj/structure/processor/ghetto
 	category = CAT_PRIMAL
