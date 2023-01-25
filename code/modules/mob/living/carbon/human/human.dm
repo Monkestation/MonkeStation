@@ -561,6 +561,8 @@
 	if(C.is_mouth_covered())
 		to_chat(src, "<span class='warning'>Remove [p_their()] mask first!</span>")
 		return 0
+	if(C == src)
+		to_chat(src, span_notice("You can't perform CPR on yourself"))
 
 	if(C.cpr_time < world.time + 30)
 		visible_message("<span class='notice'>[src] is trying to perform CPR on [C.name]!</span>", \
