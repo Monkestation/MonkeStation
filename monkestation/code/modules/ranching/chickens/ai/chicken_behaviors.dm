@@ -124,6 +124,7 @@
 	var/obj/item/food/chosen_one
 
 /datum/ai_behavior/eat_ground_food/setup(datum/ai_controller/controller, ...)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
 	var/list/floor_foods = list()
@@ -139,6 +140,7 @@
 	return TRUE
 
 /datum/ai_behavior/eat_ground_food/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	if(!controller.current_movement_target)
 		finish_action(controller, TRUE)
@@ -181,6 +183,7 @@
 	var/max_attempts = 3
 
 /datum/ai_behavior/find_and_lay/setup(datum/ai_controller/controller, ...)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 	for(var/obj/structure/nestbox/nesting_box in view(3, living_pawn.loc))
 		controller.current_movement_target = nesting_box
@@ -190,6 +193,7 @@
 	return TRUE
 
 /datum/ai_behavior/find_and_lay/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
 
 	if(!controller.current_movement_target)
