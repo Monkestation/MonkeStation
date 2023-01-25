@@ -10,18 +10,20 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 // The dirs are connected turfs in the same space
 // break_if_found is a typecache of turf/area types to return false if found
 // Please keep this proc type agnostic. If you need to restrict it do it elsewhere or add an arg.
-/proc/detect_room(turf/origin, list/break_if_found)
+/proc/detect_room(turf/origin, list/break_if_found, max_size=INFINITY)
 	if(origin.blocks_air)
 		return list(origin)
 
 	. = list()
 	var/list/checked_turfs = list()
 	var/list/found_turfs = list(origin)
-	while(found_turfs.len)
+	while(length(found_turfs))
 		var/turf/sourceT = found_turfs[1]
 		found_turfs.Cut(1, 2)
 		var/dir_flags = checked_turfs[sourceT]
 		for(var/dir in GLOB.alldirs)
+			if(length(.) > max_size)
+				return
 			if(dir_flags & dir) // This means we've checked this dir before, probably from the other turf
 				continue
 			var/turf/checkT = get_step(sourceT, dir)
@@ -34,9 +36,10 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 			if(break_if_found[checkT.type] || break_if_found[checkT.loc.type])
 				return FALSE
 			var/static/list/cardinal_cache = list("[NORTH]"=TRUE, "[EAST]"=TRUE, "[SOUTH]"=TRUE, "[WEST]"=TRUE)
-			if(!cardinal_cache["[dir]"] || checkT.blocks_air || !CANATMOSPASS(sourceT, checkT))
+			if(!cardinal_cache["[dir]"] || !TURFS_CAN_SHARE(sourceT, checkT))
 				continue
 			found_turfs += checkT // Since checkT is connected, add it to the list to be processed
+
 
 /proc/create_area(mob/creator)
 	// Passed into the above proc as list/break_if_found
