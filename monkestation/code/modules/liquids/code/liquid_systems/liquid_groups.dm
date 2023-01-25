@@ -228,6 +228,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/process_turf_disperse()
 	if(!total_reagent_volume)
+		for(var/turf/member in members)
+			remove_from_group(member)
+			qdel(member.liquids)
 		return
 
 	var/list/removed_turf = list()
@@ -334,6 +337,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	total_reagent_volume = reagents.total_volume
 	if(total_reagent_volume)
 		reagents_per_turf = total_reagent_volume / length(members)
+	else
+		reagents_per_turf = 0
+	process_turf_disperse()
 	process_group()
 
 /datum/liquid_group/proc/handle_temperature(previous_reagents, temp)
