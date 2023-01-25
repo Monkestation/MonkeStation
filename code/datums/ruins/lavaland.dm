@@ -50,7 +50,7 @@
 	description = "A race of unbreathing lizards live here, that run faster than a human can, worship a broken dead city, and are capable of reproducing by something involving tentacles? \
 	Probably best to stay clear."
 	suffix = "lavaland_surface_ash_walker1.dmm"
-	cost = 20
+	always_place = TRUE
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/syndicate_base
@@ -222,7 +222,7 @@
 	description = "Mystery to be solved."
 	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5
-  
+
 /datum/map_template/ruin/lavaland/elite_tumor
 	name = "Pulsating Tumor"
 	id = "tumor"
