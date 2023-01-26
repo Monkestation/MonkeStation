@@ -316,6 +316,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/transfer_reagents_to_secondary_group(obj/effect/abstract/liquid_turf/member, obj/effect/abstract/liquid_turf/transfer)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
+	if(!transfer.liquids)
+		transfer.liquids = new()
 	if(!transfer.liquids.liquid_group)
 		transfer.liquids.liquid_group = new(1, transfer.liquids)
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
