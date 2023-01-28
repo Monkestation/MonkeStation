@@ -11,7 +11,7 @@
 		return TRUE
 	return FALSE
 
-//extract brain
+//extract organ
 /datum/surgery_step/extract_mimic_organ
 	name = "extract organ"
 	accept_hand = TRUE

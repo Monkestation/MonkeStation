@@ -3789,6 +3789,8 @@
 #include "monkestation\code\modules\antagonists\living_lube\living_lube.dm"
 #include "monkestation\code\modules\antagonists\living_lube\living_lube_abilities.dm"
 #include "monkestation\code\modules\antagonists\living_lube\living_lube_event.dm"
+#include "monkestation\code\modules\neuromods\surgery.dm"
+#include "monkestation\code\modules\neuromods\neuromod_items.dm"
 #include "monkestation\code\modules\antagonists\mimic\mimic.dm"
 #include "monkestation\code\modules\antagonists\mimic\mimic_antag.dm"
 #include "monkestation\code\modules\antagonists\wizard\equipment\spellbook.dm"
