@@ -712,7 +712,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		return
 
 	if(!new_turf.liquids && !isspaceturf(new_turf) && !istype(new_turf, /turf/open/floor/plating/ocean)) // no space turfs, or oceans turfs, also don't attempt to spread onto a turf that already has liquids wastes processing time
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || new_turf.liquid_height + 1 > expected_turf_height)
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || expected_turf_height + source_turf.turf_height < new_turf.turf_height + 1)
 			return FALSE
 
 		reagents_per_turf = total_reagent_volume / members.len
