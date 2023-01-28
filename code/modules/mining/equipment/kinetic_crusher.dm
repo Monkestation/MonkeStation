@@ -22,6 +22,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 5
 	light_on = FALSE
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	var/list/trophies = list()
 	var/charged = TRUE
 	var/charge_time = 15
