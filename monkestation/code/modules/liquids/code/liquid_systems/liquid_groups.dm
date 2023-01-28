@@ -724,7 +724,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		check_edges(new_turf)
 
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(new_turf.liquids.my_turf)
-		splashy.color = group_color
+		if(new_turf.liquids.liquid_group)
+			splashy.color = new_turf.liquids.liquid_group.group_color
 
 		water_rush(new_turf, source_turf)
 
