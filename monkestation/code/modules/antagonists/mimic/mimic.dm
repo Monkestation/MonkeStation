@@ -304,7 +304,23 @@
 		return FALSE
 	..()
 
+/mob/living/simple_animal/hostile/alien_mimic/attackby(obj/item/item, mob/living/target)
+	if(stat == DEAD && surgeries.len)
+		if(target.a_intent == INTENT_HELP || target.a_intent == INTENT_DISARM)
+			for(var/datum/surgery/current_surgery in surgeries)
+				if(current_surgery.next_step(target,target.a_intent))
+					return TRUE
+	if(src in target.buckled_mobs) //Can't attack if its Got ya
+		to_chat(target,"<span class='userdanger'>You can't manage to hit \the [src] wrapped around you.</span>")
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/alien_mimic/attack_hand(mob/living/target)
+	if(stat == DEAD && surgeries.len)
+		if(target.a_intent == INTENT_HELP || target.a_intent == INTENT_DISARM)
+			for(var/datum/surgery/current_surgery in surgeries)
+				if(current_surgery.next_step(target,target.a_intent))
+					return TRUE
 	if(src in target.buckled_mobs)
 		return FALSE
 	if(disguised)
