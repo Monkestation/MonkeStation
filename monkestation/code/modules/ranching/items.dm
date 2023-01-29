@@ -139,10 +139,9 @@
 	///the current held beaker used when feed is produced to add reagents to it
 	var/obj/item/reagent_containers/beaker = null
 	///list of all currently held foods
-	var/list/held_foods
+	var/list/held_foods = list()
 	///the first food object put into the feed machine this cycle
 	var/obj/item/food/first_food
-
 
 /obj/machinery/feed_machine/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -173,7 +172,7 @@
 		return
 	var/obj/item/chicken_feed/produced_feed = new(src.loc)
 
-	produced_feed.name = "[initial(first_food.name)] Chicken Feed"
+	produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
 	for(var/food in held_foods)
 		var/obj/item/food/listed_food = food
 		produced_feed.held_foods |= listed_food.type
@@ -191,8 +190,20 @@
 	icon = 'monkestation/icons/obj/ranching/items.dmi'
 	icon_state = "chicken_feed"
 
-	var/list/held_foods
+	///list of contained foods
+	var/list/held_foods = list()
 
+	///how many placements left
+	var/placements_left = 5
+
+/obj/effect/chicken_feed
+	name = "chicken feed"
+	icon = 'monkestation/icons/obj/ranching/items.dmi'
+	icon_state = "chicken_feed_floor"
+
+	var/list/held_foods = list()
+
+	var/list/held_reagents = list()
 /obj/item/storage/bag/egg
 	name = "egg bag"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
