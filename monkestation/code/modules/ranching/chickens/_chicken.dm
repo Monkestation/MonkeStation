@@ -252,8 +252,6 @@
 			consumed_reagents |= listed_reagent
 
 	for(var/listed_item in eaten_feed.held_foods)
-		if(!istype(listed_item, /obj/item/food))
-			continue
 		var/obj/item/food/listed_food = new listed_item
 		consumed_food |= listed_food.type
 
