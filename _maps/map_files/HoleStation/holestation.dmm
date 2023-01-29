@@ -16070,8 +16070,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/door/window/eastright{
+	dir = 1;
+	name = "Ranch Door";
+	req_access_txt = "36"
 	},
 /turf/open/floor/grass,
 /area/ranch)
@@ -18380,10 +18382,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/window/eastright{
-	dir = 1;
-	name = "Ranch Door";
-	req_access_txt = "36"
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/grass,
 /area/ranch)
@@ -22130,6 +22130,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/window/eastright{
+	dir = 8;
+	name = "Ranch Door";
+	req_access_txt = "36"
+	},
 /turf/open/floor/wood,
 /area/ranch)
 "xNr" = (
@@ -116226,7 +116231,7 @@ ajb
 avN
 cPL
 aRK
-xId
+dlh
 aRa
 haP
 xoy
@@ -116483,7 +116488,7 @@ akX
 aLY
 qSr
 aRK
-dlh
+xId
 aRa
 aDG
 bGl

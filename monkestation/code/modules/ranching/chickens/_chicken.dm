@@ -245,6 +245,34 @@
 	current_feed_amount ++
 	total_times_eaten ++
 
+/mob/living/simple_animal/chicken/proc/eat_feed(obj/effect/chicken_feed/eaten_feed)
+	if(eaten_feed.held_reagents.len)
+		for(var/datum/reagent/listed_reagent in eaten_feed.held_reagents)
+			listed_reagent.feed_interaction(src, listed_reagent.volume)
+			consumed_reagents |= listed_reagent
+
+	for(var/listed_item in eaten_feed.held_foods)
+		if(!istype(listed_item, /obj/item/food))
+			continue
+		var/obj/item/food/listed_food = new listed_item
+		consumed_food |= listed_food.type
+
+		for(var/food_type in listed_food.foodtypes)
+			if(food_type in disliked_food_types)
+				var/type_value = disliked_food_types[food_type]
+				adjust_happiness(-type_value)
+
+		if((listed_food.type in liked_foods) && max_happiness_per_generation >= liked_foods[listed_food.type])
+			var/liked_value = liked_foods[listed_food.type]
+			adjust_happiness(liked_value)
+
+		else if(listed_food.type in disliked_foods)
+			var/disliked_value = disliked_foods[listed_food.type]
+			adjust_happiness(-disliked_value)
+
+		qdel(listed_food)
+	qdel(eaten_feed)
+
 /mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item, mob/user)
 	for(var/datum/reagent/reagent in given_item.reagents.reagent_list)
 		if(reagent in happy_chems && max_happiness_per_generation >= (happy_chems[reagent.type] * reagent.volume))

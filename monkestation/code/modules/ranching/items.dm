@@ -217,7 +217,11 @@
 		compiled_reagents += new listed_reagent
 		compiled_reagents[listed_reagent] = listed_reagent.volume
 
-	new /obj/effect/chicken_feed(targetted_turf, held_foods, compiled_reagents, mix_color_from_reagent_list(reagents.reagent_list))
+	new /obj/effect/chicken_feed(targetted_turf, held_foods, compiled_reagents, mix_color_from_reagent_list(reagents.reagent_list), name)
+	placements_left--
+
+	if(placements_left = 0)
+		qdel(src)
 
 /obj/effect/chicken_feed
 	name = "chicken feed"
@@ -227,8 +231,9 @@
 
 	var/list/held_reagents = list()
 
-/obj/effect/chicken_feed/New(loc, list/held_foods, list/held_reagents, color)
+/obj/effect/chicken_feed/New(loc, list/held_foods, list/held_reagents, color, name)
 	. = ..()
+	src.name = name
 	src.held_foods = held_foods
 	src.held_reagents = held_reagents
 	if(color)

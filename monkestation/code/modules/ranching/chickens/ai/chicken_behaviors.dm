@@ -126,12 +126,10 @@
 /datum/ai_behavior/eat_ground_food/setup(datum/ai_controller/controller, ...)
 	. = ..()
 	var/mob/living/simple_animal/chicken/living_pawn = controller.pawn
-	var/list/blacklisted_foods = typesof(/obj/item/food/egg) //blacklist all eggs as they hate eggs
 	var/datum/weakref/target_ref
 	var/list/floor_foods = list()
-	for(var/obj/item/food/food_item in view(3, living_pawn.loc))
-		if(!(food_item.type in blacklisted_foods))
-			floor_foods |= food_item
+	for(var/obj/effect/chicken_feed/food_item in view(3, living_pawn.loc))
+		floor_foods |= food_item
 
 	if(floor_foods.len)
 		chosen_one = pick(floor_foods)
@@ -157,7 +155,7 @@
 		return
 
 	if(living_pawn.CanReach(chosen_one))
-		living_pawn.feed_food(chosen_one)
+		living_pawn.eat_feed(chosen_one)
 		finish_action(controller, TRUE)
 		return
 
