@@ -11,6 +11,8 @@
 	name = "Snowy Egg"
 	icon_state = "snowy"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/snowy
+
 
 /obj/item/food/egg/snowy/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(SNOWY_EGG)

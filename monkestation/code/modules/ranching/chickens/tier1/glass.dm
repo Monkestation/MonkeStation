@@ -11,3 +11,5 @@
 	food_reagents = list()
 	max_volume = 5
 	icon_state = "glass"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/glass

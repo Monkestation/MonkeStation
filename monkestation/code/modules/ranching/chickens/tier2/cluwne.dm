@@ -19,6 +19,8 @@
 	name = "Clown? Egg"
 	icon_state = "clown"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/clown_sad
+
 /datum/status_effect/ranching/angry_honk
 	id = "pissed_sad_clown"
 	duration = 5 SECONDS

@@ -28,6 +28,8 @@
 	name = "Burning Egg"
 	icon_state = "phoenix"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/phoenix
+
 /obj/item/food/egg/phoenix/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(/datum/status_effect/ranching/phoenix)
 

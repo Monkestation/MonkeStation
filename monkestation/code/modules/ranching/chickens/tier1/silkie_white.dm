@@ -10,3 +10,5 @@
 /obj/item/food/egg/silkie_white
 	name = "White Selkie Egg"
 	icon_state = "silkie_white"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/silkie_white

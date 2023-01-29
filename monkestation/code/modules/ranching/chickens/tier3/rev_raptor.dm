@@ -19,3 +19,5 @@
 /obj/item/food/egg/rev_raptor
 	name = "Revolutionary Egg"
 	icon_state = "rev_raptor"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/rev_raptor

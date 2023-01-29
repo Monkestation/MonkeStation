@@ -10,6 +10,8 @@
 	name = "Dream Egg"
 	icon_state = "dream"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/dream
+
 /obj/item/food/egg/dream/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(DREAM_STATE)
 

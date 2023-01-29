@@ -16,3 +16,5 @@
 /obj/item/food/egg/raptor
 	name = "Raptor Egg"
 	icon_state = "raptor"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/raptor

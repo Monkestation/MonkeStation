@@ -36,6 +36,8 @@
 			var/datum/mutation/ranching/chicken/picked_mutation = pickweight(real_mutation)
 			layed_egg = new picked_mutation.egg_type(source_turf)
 			layed_egg.possible_mutations |= picked_mutation
+			if(layed_egg.type != parent_animal.egg_type)
+				layed_egg.fresh_mutation = TRUE
 		else
 			layed_egg = new parent_animal.egg_type(source_turf)
 		parent_animal.pass_stats(layed_egg)

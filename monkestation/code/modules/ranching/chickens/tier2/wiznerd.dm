@@ -19,6 +19,8 @@
 	name = "Bewitching Egg"
 	icon_state = "wiznerd"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/wiznerd
+
 /obj/item/food/egg/wiznerd/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(WIZNERD_EGG)
 

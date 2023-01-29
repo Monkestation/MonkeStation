@@ -11,3 +11,5 @@
 /obj/item/food/egg/onagadori
 	name = "Onagadori Egg"
 	icon_state = "onagadori"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/onagadori

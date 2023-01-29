@@ -27,3 +27,5 @@
 /obj/item/food/egg/robot
 	name = "Robotic Egg"
 	icon_state = "robot"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/robot

@@ -28,6 +28,8 @@
 	name = "Pigeon Egg"
 	icon_state = "pigeon"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/pigeon
+
 	///the radio inside the egg
 	var/obj/item/radio/pigeon/egg_radio = null
 

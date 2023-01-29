@@ -9,3 +9,5 @@
 /obj/item/food/egg/spicy
 	name = "Spicy Egg"
 	icon_state = "spicy"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/spicy

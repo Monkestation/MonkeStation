@@ -17,6 +17,8 @@
 	name = "Gallant Egg"
 	icon_state = "sword"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/sword
+
 /obj/item/food/egg/sword/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()
 	eater.apply_status_effect(ARMORED_EGG)

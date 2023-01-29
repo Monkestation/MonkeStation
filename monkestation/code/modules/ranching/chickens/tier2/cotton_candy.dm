@@ -14,6 +14,8 @@
 	name = "Sugary Egg"
 	icon_state = "cotton_candy"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/cotton_candy
+
 /obj/item/food/egg/cotton_candy/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	eater.apply_status_effect(SUGAR_RUSH)
 

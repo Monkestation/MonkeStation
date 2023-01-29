@@ -136,6 +136,8 @@
 	max_integrity = 300
 	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
 
+	circuit = /obj/item/circuitboard/machine/feed_machine
+
 	///the current held beaker used when feed is produced to add reagents to it
 	var/obj/item/reagent_containers/beaker = null
 	///list of all currently held foods
@@ -174,8 +176,9 @@
 
 	produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
 	for(var/food in held_foods)
-		var/obj/item/food/listed_food = food
+		var/obj/item/food/listed_food = new food(src.loc)
 		produced_feed.held_foods |= listed_food.type
+		qdel(listed_food)
 	if(beaker)
 		produced_feed.reagents.reagent_list |= beaker.reagents.reagent_list
 		beaker.forceMove(drop_location())
@@ -196,14 +199,44 @@
 	///how many placements left
 	var/placements_left = 5
 
+/obj/item/chicken_feed/Initialize(mapload)
+	. = ..()
+	reagents = new(1000)
+
+/obj/item/chicken_feed/afterattack(atom/attacked_atom, mob/user)
+	if(!user.Adjacent(attacked_atom))
+		return
+	try_place(attacked_atom)
+
+/obj/item/chicken_feed/proc/try_place(atom/target)
+	if(!isopenturf(target))
+		return FALSE
+	var/turf/open/targetted_turf = get_turf(target)
+	var/list/compiled_reagents = list()
+	for(var/datum/reagent/listed_reagent in reagents.reagent_list)
+		compiled_reagents += new listed_reagent
+		compiled_reagents[listed_reagent] = listed_reagent.volume
+
+	new /obj/effect/chicken_feed(targetted_turf, held_foods, compiled_reagents, mix_color_from_reagent_list(reagents.reagent_list))
+
 /obj/effect/chicken_feed
 	name = "chicken feed"
-	icon = 'monkestation/icons/obj/ranching/items.dmi'
-	icon_state = "chicken_feed_floor"
+	icon = 'monkestation/icons/effects/feed.dmi'
 
 	var/list/held_foods = list()
 
 	var/list/held_reagents = list()
+
+/obj/effect/chicken_feed/New(loc, list/held_foods, list/held_reagents, color)
+	. = ..()
+	src.held_foods = held_foods
+	src.held_reagents = held_reagents
+	if(color)
+		src.color = color
+	else
+		src.color = "#cacc52"
+	icon_state = "feed_[rand(1,4)]"
+
 /obj/item/storage/bag/egg
 	name = "egg bag"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
@@ -218,3 +251,152 @@
 	STR.max_combined_w_class = 100
 	STR.max_items = 100
 	STR.can_hold = typecacheof(list(/obj/item/food/egg))
+
+/obj/machinery/egg_incubator
+	name = "Incubator"
+	desc = "For most eggs this can force them to hatch, that is unless a fresh mutation."
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 500
+
+	max_integrity = 300
+	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
+	circuit = /obj/item/circuitboard/machine/egg_incubator
+
+	icon = 'monkestation/icons/obj/structures.dmi'
+	icon_state = "nestbox"
+
+	var/current_state = FALSE
+
+/obj/machinery/egg_incubator/attack_hand(mob/living/user)
+	. = ..()
+	current_state = !current_state
+	var/extra_text = current_state ? "On" : "Off"
+	to_chat(user,  span_notice("You flip the [src] [extra_text]"))
+	desc = null
+	if(current_state)
+		START_PROCESSING(SSobj, src)
+		desc += "For most eggs this can force them to hatch, that is unless a fresh mutation."
+		desc += "\n The incubator glows with a soft orange hue, it appears to be on."
+	else
+		STOP_PROCESSING(SSobj, src)
+		desc += "For most eggs this can force them to hatch, that is unless a fresh mutation."
+		desc += "\n The incubator appears cold and dark, unsuitable for incubation"
+
+/obj/machinery/egg_incubator/process()
+	. = ..()
+	for(var/obj/item/food/egg/contained_egg in loc.contents)
+		if(contained_egg.fresh_mutation)
+			continue
+		if(contained_egg.datum_flags & DF_ISPROCESSING)
+			continue
+		START_PROCESSING(SSobj, contained_egg)
+		flop_animation(contained_egg)
+		contained_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
+
+/obj/machinery/egg_incubator/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/bag/tray))
+		var/obj/item/storage/bag/tray/T = I
+		if(T.contents.len > 0) // If the tray isn't empty
+			SEND_SIGNAL(I, COMSIG_TRY_STORAGE_QUICK_EMPTY, drop_location())
+			user.visible_message("[user] empties [I] on [src].")
+			return
+
+	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
+		if(user.transferItemToLoc(I, drop_location(), silent = FALSE))
+			var/list/click_params = params2list(params)
+			//Center the icon where the user clicked.
+			if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+				return
+			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			return TRUE
+	else
+		return ..()
+
+/obj/machinery/chicken_grinder
+	name = "The Grinder"
+	desc = "This is how chicken nuggets are made boys and girls."
+	density = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 500
+
+	///placeholder
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "grinder"
+
+	max_integrity = 300
+	armor = list("melee" = 50, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "stamina" = 0)
+	circuit = /obj/item/circuitboard/machine/chicken_grinder
+	///the amount of chicken soul stored
+	var/stored_chicken_soul = 0
+
+	var/static/list/grinded_types = list()
+
+/obj/machinery/chicken_grinder/attack_hand(mob/user)
+	if(machine_stat & (NOPOWER|BROKEN))
+		return
+
+	if(!anchored)
+		to_chat(user, "<span class='notice'>[src] cannot be used unless bolted to the ground.</span>")
+		return
+
+	if(user.pulling && user.a_intent == INTENT_GRAB && istype(user.pulling, /mob/living/simple_animal/chicken))
+		var/mob/living/L = user.pulling
+		var/mob/living/simple_animal/chicken/C = L
+		if(C.buckled ||C.has_buckled_mobs())
+			to_chat(user, "<span class='warning'>[C] is attached to something!</span>")
+			return
+
+		user.visible_message("<span class='danger'>[user] starts to put [C] into the gibber!</span>")
+
+		add_fingerprint(user)
+
+		if(do_after(user, 1 SECONDS, target = src))
+			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
+				user.visible_message("<span class='danger'>[user] stuffs [C] into the gibber!</span>")
+				C.forceMove(src)
+				set_occupant(C)
+				update_icon()
+	else
+		startgibbing(user)
+
+/obj/machinery/chicken_grinder/proc/startgibbing(mob/user)
+	if(!occupant)
+		visible_message("<span class='italics'>You hear a loud metallic grinding sound.</span>")
+		return
+	use_power(1000)
+	visible_message("<span class='italics'>You hear a loud squelchy grinding sound.</span>")
+	playsound(loc, 'sound/machines/juicer.ogg', 50, 1)
+	update_icon()
+
+	var/offset = prob(50) ? -2 : 2
+	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
+
+	var/mob/living/simple_animal/chicken/mob_occupant = occupant
+
+	if(!(mob_occupant.chicken_path in grinded_types))
+		grinded_types |= mob_occupant.type
+	log_combat(user, occupant, "gibbed")
+	mob_occupant.death(1)
+	mob_occupant.ghostize()
+	set_occupant(null)
+	qdel(mob_occupant)
+	stored_chicken_soul += 20
+/obj/machinery/chicken_grinder/AltClick(mob/user)
+	. = ..()
+	var/list/input_list = list()
+	for(var/listed_item in grinded_types)
+		var/mob/living/simple_animal/chicken/listed_chicken = new listed_item (src.loc)
+		input_list += listed_chicken.egg_type
+		qdel(listed_chicken)
+
+	var/choice = input(user, "Choose an eggtype, Egg Creation") as null|anything in input_list
+	if(!choice)
+		return
+	if(stored_chicken_soul >= 40)
+		new choice (src.loc)
+	else
+		to_chat(user, span_notice("You don't have enough chicken essence to produce an egg"))

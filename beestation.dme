@@ -3902,6 +3902,7 @@
 #include "monkestation\code\modules\procedural_mapping\mapGenerators\jungle.dm"
 #include "monkestation\code\modules\projectiles\guns\launchers\srn_rocketlauncher.dm"
 #include "monkestation\code\modules\ranching\chicken_book.dm"
+#include "monkestation\code\modules\ranching\circuits.dm"
 #include "monkestation\code\modules\ranching\items.dm"
 #include "monkestation\code\modules\ranching\chickens\_chicken.dm"
 #include "monkestation\code\modules\ranching\chickens\_chicken_defines.dm"

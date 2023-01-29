@@ -10,6 +10,8 @@
 	name = "Mime Egg"
 	icon_state = "mime"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/mime
+
 /obj/item/food/egg/mime/Initialize(mapload)
 	. = ..()
 	icon_state = "mime-[rand(1,3)]"

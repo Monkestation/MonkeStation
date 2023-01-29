@@ -11,6 +11,8 @@
 	name = "Rocky Egg"
 	icon_state = "stone"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/stone
+
 /obj/item/food/egg/stone/attackby(obj/item/attacked_item, mob/user, params)
 	. = ..()
 	if(istype(attacked_item, /obj/item/stack/ore))

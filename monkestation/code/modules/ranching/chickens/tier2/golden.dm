@@ -10,6 +10,8 @@
 	name = "Golden Egg"
 	icon_state = "golden"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/golden
+
 /obj/item/food/egg/golden/consumed_egg(datum/source, mob/living/eater, mob/living/feeder)
 	. = ..()
 	eater.apply_status_effect(GOLD_SPARKLE)

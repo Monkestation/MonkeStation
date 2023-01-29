@@ -18,6 +18,8 @@
 	food_reagents = list(/datum/reagent/water = 50)
 	icon_state = "clown"
 
+	layer_hen_type = /mob/living/simple_animal/chicken/clown
+
 /obj/item/food/egg/clown/attack_self(mob/user)
 	. = ..()
 	to_chat(user, "Upon further inspection the [src.name] doesn't appear to be an egg at all instead it seems to be a water ballon?")

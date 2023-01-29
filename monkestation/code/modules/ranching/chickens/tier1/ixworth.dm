@@ -9,3 +9,5 @@
 /obj/item/food/egg/ixworth
 	name = "Ixworth Egg"
 	icon_state = "ixworth"
+
+	layer_hen_type = /mob/living/simple_animal/chicken/ixworth

@@ -118,3 +118,5 @@
 	var/list/possible_mutations = list()
 	///list of all friends will not attack them and can be ordered around by them if high enough
 	var/list/Friends = list()
+	///was this just layed as a mutation if so don't let it grow via incubators
+	var/fresh_mutation = FALSE
