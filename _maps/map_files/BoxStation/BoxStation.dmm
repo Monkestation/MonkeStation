@@ -14666,7 +14666,6 @@
 /obj/effect/turf_decal/trimline/green/filled/end{
 	dir = 8
 	},
-/obj/machinery/rnd/production/techfab/department/service,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aKY" = (
@@ -19805,6 +19804,14 @@
 /obj/effect/turf_decal/stripes/closeup,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"bcv" = (
+/obj/machinery/rnd/production/techfab/department/service,
+/obj/machinery/door/window/eastleft{
+	name = "Hydroponics Desk";
+	req_access_txt = "35"
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/kitchen)
 "bcE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -53517,6 +53524,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"jQl" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "jQE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -74173,6 +74186,12 @@
 /obj/effect/turf_decal/trimline/green/filled/corner,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"xma" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Holodeck Door"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "xmh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -115102,7 +115121,7 @@ gia
 aGP
 uIV
 aJK
-aJI
+bcv
 aJI
 aNO
 aOT
@@ -115603,7 +115622,7 @@ aaf
 aaf
 alO
 alP
-alP
+xma
 dYO
 aJK
 aJK
@@ -116374,7 +116393,7 @@ apC
 apC
 apC
 apC
-apC
+jQl
 rSq
 awF
 sqa
