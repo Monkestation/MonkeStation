@@ -220,7 +220,7 @@
 	new /obj/effect/chicken_feed(targetted_turf, held_foods, compiled_reagents, mix_color_from_reagent_list(reagents.reagent_list), name)
 	placements_left--
 
-	if(placements_left = 0)
+	if(placements_left <= 0)
 		qdel(src)
 
 /obj/effect/chicken_feed
