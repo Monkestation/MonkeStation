@@ -35,7 +35,7 @@
 			toolspeed = max(0.1, toolspeed - 0.1)
 			to_chat(user, span_notice("You apply a Goliath Plate to the pickaxe making it sturdier"))
 		else
-			to_chat(user, span_noticew("You can't reinforce the pickaxe anymore!"))
+			to_chat(user, span_notice("You can't reinforce the pickaxe anymore!"))
 /obj/item/pickaxe/mini
 	name = "compact pickaxe"
 	desc = "A smaller, compact version of the standard pickaxe."
