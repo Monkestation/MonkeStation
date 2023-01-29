@@ -12749,15 +12749,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/item/storage/toolbox/artistic{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/storage/toolbox/artistic{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/airlock_painter,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aFw" = (
@@ -13867,6 +13858,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
@@ -14198,6 +14192,9 @@
 	c_tag = "Central Primary Hallway Bathroom";
 	dir = 1
 	},
+/obj/structure/sign/departments/restroom{
+	pixel_y = -32
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
@@ -14499,27 +14496,35 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aKJ" = (
-/obj/machinery/door/window/westright{
-	dir = 4;
-	name = "Chicken Pen";
-	req_access_txt = "36"
-	},
-/turf/open/floor/grass,
-/area/ranch)
-"aKL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/closed/wall,
+/area/storage/art)
+"aKK" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/ranch)
+/area/storage/art)
+"aKL" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Art Storage"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aKM" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
-/area/ranch)
+/area/crew_quarters/cafeteria)
 "aKO" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Ranch";
-	req_access_txt = "36"
+	name = "Cafeteria"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -14532,20 +14537,30 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
-/area/ranch)
+/area/crew_quarters/cafeteria)
 "aKP" = (
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ranch)
+/turf/closed/wall,
+/area/crew_quarters/cafeteria)
 "aKQ" = (
-/obj/effect/landmark/start/rancher,
-/turf/open/floor/wood,
-/area/ranch)
+/turf/closed/wall,
+/area/crew_quarters/toilet/auxiliary)
 "aKR" = (
+/obj/machinery/door/airlock{
+	id_tag = "Potty1";
+	name = "Unisex Restrooms"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/closed/wall,
-/area/ranch)
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
 "aKS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -14698,44 +14713,78 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aLx" = (
+/obj/structure/easel,
+/obj/item/canvas/twentythree_nineteen,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aLy" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aLz" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/photocopier,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 23
 	},
-/obj/structure/disposalpipe/segment{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/item/trash/cheesie,
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aLA" = (
-/obj/machinery/smartfridge,
-/turf/open/floor/wood,
-/area/ranch)
+/obj/structure/table,
+/obj/item/food/friedegg,
+/obj/item/kitchen/fork,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
 "aLB" = (
+/obj/structure/chair{
+	dir = 8;
+	name = "Defense"
+	},
+/obj/effect/landmark/start/assistant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/wood,
-/area/ranch)
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
 "aLC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -14746,39 +14795,64 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/wood,
-/area/ranch)
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
 "aLD" = (
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
-/turf/open/floor/wood,
-/area/ranch)
+/obj/machinery/vending/cola,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
 "aLE" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
 "aLF" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
 "aLG" = (
+/obj/structure/urinal{
+	pixel_y = 32
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/button/door{
+	id = "Potty1";
+	name = "Bathroom Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	pixel_y = 4;
+	specialfunctions = 4
+	},
 /obj/machinery/light_switch{
 	pixel_x = 36;
 	pixel_y = 6
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
 "aLH" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -15249,62 +15323,128 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMV" = (
-/mob/living/simple_animal/chicken/hen,
-/turf/open/floor/grass,
-/area/ranch)
+/obj/structure/table,
+/obj/item/storage/toolbox/artistic{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/artistic{
+	pixel_x = -3
+	},
+/obj/machinery/light_switch{
+	dir = 9;
+	pixel_x = -22
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aMW" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aMX" = (
-/turf/open/floor/grass,
-/area/ranch)
-"aMY" = (
-/turf/open/floor/wood,
-/area/ranch)
-"aMZ" = (
-/obj/structure/table/wood,
-/obj/item/clothing/head/chicken_head_retro,
-/obj/item/clothing/head/chicken_head_retro,
-/obj/item/clothing/head/chicken_head_retro,
-/turf/open/floor/wood,
-/area/ranch)
-"aNa" = (
+/obj/structure/table,
+/obj/item/airlock_painter,
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
+	icon_state = "0-8"
 	},
-/turf/open/floor/wood,
-/area/ranch)
-"aNb" = (
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Art Storage APC";
+	pixel_x = 24
 	},
-/turf/open/floor/grass,
-/area/ranch)
-"aNc" = (
-/obj/machinery/door/window/westright{
-	name = "Chicken Pen";
-	req_access_txt = "36"
-	},
-/turf/open/floor/grass,
-/area/ranch)
-"aNd" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/light/small{
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/art)
+"aMY" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	dir = 9;
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
+"aMZ" = (
+/obj/machinery/light,
+/obj/machinery/camera{
+	c_tag = "Cafeteria";
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
+"aNa" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	name = "Cafeteria APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
+"aNb" = (
+/obj/machinery/vending/sustenance,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/cafeteria)
+"aNc" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/landmark/start/assistant,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
+"aNd" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
+"aNe" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/highcap/five_k{
+	name = "Auxiliary Restrooms APC";
+	pixel_y = -24
+	},
+/obj/item/soap/nanotrasen,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/auxiliary)
 "aNf" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating{
@@ -15344,12 +15484,9 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "aNm" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Hydroponics Maintenance";
-	req_access_txt = "35"
-	},
+/obj/structure/grille,
 /turf/open/floor/plating,
-/area/ranch)
+/area/maintenance/department/crew_quarters/bar)
 "aNp" = (
 /obj/structure/rack,
 /obj/item/clothing/shoes/magboots{
@@ -15683,18 +15820,72 @@
 /turf/closed/wall,
 /area/hallway/secondary/exit/departure_lounge)
 "aOt" = (
-/obj/structure/nestbox,
-/turf/open/floor/grass,
-/area/ranch)
+/obj/structure/table,
+/obj/item/instrument/glockenspiel{
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aOu" = (
+/obj/structure/table,
+/obj/item/storage/crayons,
+/obj/item/storage/crayons,
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Art Storage";
 	dir = 1
 	},
-/mob/living/simple_animal/chicken,
-/turf/open/floor/grass,
-/area/ranch)
+/obj/item/hand_labeler,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/art)
+"aOv" = (
+/obj/structure/table,
+/obj/item/stack/sheet/iron{
+	amount = 20;
+	layer = 3.1
+	},
+/obj/item/stack/sheet/glass{
+	amount = 20;
+	layer = 3.2
+	},
+/obj/item/stack/rods{
+	amount = 20;
+	layer = 3.3
+	},
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/canvas/nineteen_nineteen,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/art)
 "aOw" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating{
@@ -16084,26 +16275,31 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "aPx" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/open/floor/grass,
-/area/ranch)
+/obj/item/kirbyplants{
+	icon_state = "plant-22"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "aPy" = (
-/turf/closed/wall,
-/area/ranch)
+/obj/item/kirbyplants{
+	icon_state = "plant-22"
+	},
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/department/crew_quarters/bar)
 "aPz" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/department/crew_quarters/bar)
 "aPA" = (
-/obj/structure/table/wood,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/turf/open/floor/wood,
-/area/ranch)
+/obj/item/trash/cheesie,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "aPB" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -16531,13 +16727,21 @@
 	},
 /area/maintenance/department/crew_quarters/bar)
 "aQK" = (
-/obj/machinery/power/apc{
-	name = "Cafeteria APC";
-	pixel_y = -24
+/obj/structure/grille,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow,
-/turf/open/floor/wood,
-/area/ranch)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "aQL" = (
 /obj/structure/grille/broken,
 /obj/structure/cable/yellow{
@@ -20149,9 +20353,9 @@
 "bbV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright{
-	name = "Chicken Pen";
-	req_access_txt = "36";
-	dir = 2
+	dir = 1;
+	name = "Security Checkpoint";
+	req_access_txt = "1"
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "papersplease";
@@ -22370,11 +22574,6 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/canvas/nineteen_nineteen,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "biN" = (
@@ -40809,7 +41008,8 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgm" = (
-/obj/structure/nestbox,
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/watermelon/holy,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgq" = (
@@ -40857,9 +41057,8 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgK" = (
-/obj/structure/railing{
-	dir = 10
-	},
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/sugarcane,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cgL" = (
@@ -41057,9 +41256,8 @@
 /turf/open/floor/plasteel,
 /area/chapel/main/monastery)
 "chG" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
 /obj/machinery/hydroponics/soil,
+/obj/item/seeds/wheat,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "chK" = (
@@ -41270,6 +41468,7 @@
 /area/hydroponics/garden/monastery)
 "ciT" = (
 /obj/machinery/hydroponics/soil,
+/obj/item/seeds/harebell,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "ciV" = (
@@ -41326,21 +41525,23 @@
 "cjo" = (
 /obj/machinery/hydroponics/soil,
 /obj/machinery/light/small,
+/obj/item/seeds/poppy,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cjp" = (
 /turf/closed/wall,
 /area/library)
 "cjq" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/palebush,
-/obj/machinery/vending/hydroseeds{
-	slogan_delay = 700
-	},
-/turf/open/floor/wood,
+/turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cjr" = (
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/wood,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cju" = (
 /turf/closed/mineral,
@@ -43783,12 +43984,11 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cup" = (
+/obj/machinery/hydroponics/soil,
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/railing{
-	dir = 8
-	},
+/obj/item/seeds/watermelon/holy,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cus" = (
@@ -43861,9 +44061,8 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuE" = (
-/obj/structure/railing{
-	dir = 8
-	},
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/carrot,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuG" = (
@@ -43911,11 +44110,10 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuO" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/sugarcane,
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/structure/railing{
-	dir = 11
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
@@ -44014,10 +44212,11 @@
 /turf/open/floor/plasteel,
 /area/chapel/main/monastery)
 "cvb" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/wheat,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvd" = (
@@ -44049,9 +44248,8 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvh" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/ppflowers,
-/mob/living/simple_animal/chicken,
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/poppy,
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvi" = (
@@ -44060,13 +44258,15 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvj" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
 /obj/machinery/light/small,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
 	},
-/obj/machinery/seed_extractor,
-/turf/open/floor/wood,
+/turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cvk" = (
 /obj/machinery/light/small{
@@ -48352,12 +48552,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "gwH" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gwL" = (
@@ -50518,10 +50719,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"jrr" = (
-/mob/living/simple_animal/chicken,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "jrG" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -50564,11 +50761,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"jtt" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "juh" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -52092,12 +52284,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"lDh" = (
-/obj/structure/railing{
-	dir = 11
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden/monastery)
 "lDJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -57397,6 +57583,9 @@
 /turf/open/floor/engine,
 /area/engine/engine_core)
 "sng" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
@@ -60223,10 +60412,12 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "wBg" = (
-/obj/machinery/light,
-/mob/living/simple_animal/chicken,
-/turf/open/floor/grass,
-/area/ranch)
+/obj/machinery/door/airlock/maintenance{
+	id_tag = "Potty1";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "wBE" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -77743,7 +77934,7 @@ cuM
 chj
 cvb
 ciT
-ciT
+cvh
 cgG
 cvy
 cvF
@@ -77998,9 +78189,9 @@ cid
 cuA
 cib
 cqo
-ciT
-jtt
-chG
+cgH
+ciS
+cid
 cgG
 cvy
 cvH
@@ -78255,7 +78446,7 @@ cun
 cuB
 cic
 eRI
-ciT
+chG
 ciT
 cjo
 bWV
@@ -79279,9 +79470,9 @@ cfm
 mHk
 cvy
 cgG
-cvh
+ciV
 cgH
-lDh
+cgH
 cgH
 cic
 ciV
@@ -79537,7 +79728,7 @@ ctO
 cvy
 cgG
 cgm
-jrr
+cuE
 cuO
 cgH
 ciE
@@ -86142,11 +86333,11 @@ aBi
 hqo
 aIO
 oxl
-aPy
-aKM
-aPy
-aKM
-aPy
+aKJ
+aKK
+aKJ
+aKK
+aKJ
 aQD
 aRI
 coV
@@ -86399,11 +86590,11 @@ aGX
 bdo
 aIO
 wzo
-aKM
+aKK
 aLx
 aMV
 aOt
-aPy
+aKJ
 aKT
 aKT
 aKT
@@ -86655,12 +86846,12 @@ cou
 aGY
 aHI
 aIN
-gwH
+tfj
 aKL
 aLy
 aMW
 aOu
-aPy
+aKJ
 aQE
 aRJ
 lsJ
@@ -86913,11 +87104,11 @@ aGX
 bdo
 aIO
 wzo
-aKM
+aKK
+aLz
 aMX
-aMX
-aMX
-aPy
+aOv
+aKJ
 aRJ
 aRK
 aRL
@@ -87170,11 +87361,11 @@ aBi
 aHJ
 nfk
 ljW
-aPy
-aPx
 aKJ
-aPx
-aPy
+aKJ
+aKJ
+aKJ
+aKJ
 coW
 aRL
 aRL
@@ -87430,9 +87621,9 @@ wzo
 aKM
 aLA
 aMY
-aMY
+aKP
 aNm
-aNd
+coW
 aRL
 aUS
 aTQ
@@ -87686,9 +87877,9 @@ aIO
 wzo
 aKM
 aLB
-aKQ
+aMZ
 aKP
-aPy
+aPx
 aQH
 aRM
 aSB
@@ -87944,7 +88135,7 @@ tfj
 aKO
 aLC
 aNa
-aQK
+aKP
 aPy
 aQI
 aRL
@@ -88198,11 +88389,11 @@ onX
 qXH
 lQA
 mYX
-aPy
+aKP
 aLD
-aMY
-aMZ
-aPy
+aNb
+aKP
+aPz
 aQJ
 aRL
 aSD
@@ -88455,12 +88646,12 @@ aGX
 xvO
 aIO
 wzo
-aPy
-aMY
 aKQ
-aPA
-aPy
-aQN
+aKQ
+aKQ
+aKQ
+aLL
+aQK
 aRL
 aSE
 aTU
@@ -88712,11 +88903,11 @@ aAN
 gNG
 aIO
 aJM
-aPy
+aKQ
 aLE
 aNc
-aNb
-aPy
+aKQ
+aLL
 aQL
 aRL
 aSF
@@ -88967,13 +89158,13 @@ aFw
 awR
 aHb
 xvO
-riM
+gwH
 sng
 aKR
 aLF
-aMX
+aNd
 wBg
-aPy
+aLL
 aQM
 aRL
 aSG
@@ -89226,12 +89417,12 @@ aHc
 aHO
 aIO
 wzo
-aPy
+aKQ
 aLG
-aMV
-aOt
-aPy
-aLz
+aNe
+aKQ
+aPA
+aQN
 aRN
 aRN
 aRN
@@ -89483,11 +89674,11 @@ awR
 xvO
 aIO
 oxl
-aPy
-aPy
-aPy
-aPy
-aPy
+aKQ
+aKQ
+aKQ
+aKQ
+aLL
 aQN
 aRN
 aRN
