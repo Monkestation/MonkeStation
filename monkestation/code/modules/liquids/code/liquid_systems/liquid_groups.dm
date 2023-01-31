@@ -711,8 +711,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!source_turf.atmos_adjacent_turfs[new_turf])
 		return
 
-	if(!new_turf.liquids && !isspaceturf(new_turf) && !istype(new_turf, /turf/open/floor/plating/ocean)) // no space turfs, or oceans turfs, also don't attempt to spread onto a turf that already has liquids wastes processing time
-		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR || expected_turf_height + source_turf.turf_height < new_turf.turf_height + 1)
+	if(!new_turf.liquids && !isspaceturf(new_turf) && !istype(new_turf, /turf/open/floor/plating/ocean) && source_turf.turf_height == new_turf.turf_height) // no space turfs, or oceans turfs, also don't attempt to spread onto a turf that already has liquids wastes processing time
+		if(reagents_per_turf < LIQUID_HEIGHT_DIVISOR)
 			return FALSE
 
 		reagents_per_turf = total_reagent_volume / members.len
@@ -729,9 +729,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		water_rush(new_turf, source_turf)
 
-	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group)
+	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group && source_turf.turf_height == new_turf.turf_height)
 		merge_group(new_turf.liquids.liquid_group)
 		return FALSE
+	else if(source_turf.turf_height != new_turf.turf_height)
+		if(new_turf.turf_height < source_turf.turf_height) // your going down
+			if(!new_turf.liquids)
+				new_turf.liquids = new(new_turf)
+			if(new_turf.turf_height + new_turf.liquids.liquid_group.expected_turf_height < source_turf.turf_height)
+				var/obj/effect/abstract/liquid_turf/turf_liquids = new_turf.liquids
+				trans_to_seperate_group(turf_liquids.liquid_group.reagents, reagents_per_turf, source_turf)
+				turf_liquids.liquid_group.process_group()
+		else if(source_turf.turf_height < new_turf.turf_height)
+			if(source_turf.turf_height + expected_turf_height < new_turf.turf_height)
+				return
+			if(!new_turf.liquids)
+				new_turf.liquids = new(new_turf)
+			var/obj/effect/abstract/liquid_turf/turf_liquids = new_turf.liquids
+			trans_to_seperate_group(turf_liquids.liquid_group.reagents, 10, source_turf) //overflows out
+			turf_liquids.liquid_group.process_group()
+
 	return TRUE
 
 /datum/liquid_group/proc/water_rush(turf/new_turf, turf/source_turf)
