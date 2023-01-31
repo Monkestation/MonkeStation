@@ -94,15 +94,13 @@
 	if(!ducts.Find(num2text(dir)))
 		return
 	net = ducts[num2text(dir)]
-	for(var/A in net.suppliers)
-		var/datum/component/plumbing/supplier = A
+	for(var/datum/component/plumbing/supplier as anything in net.suppliers)
 		if(supplier.can_give(amount, reagent, net))
 			valid_suppliers += supplier
 	// Need to ask for each in turn very carefully, making sure we get the total volume. This is to avoid a division that would always round down and become 0
 	var/targetVolume = reagents.total_volume + amount
 	var/suppliersLeft = valid_suppliers.len
-	for(var/A in valid_suppliers)
-		var/datum/component/plumbing/give = A
+	for(var/datum/component/plumbing/give as anything in valid_suppliers)
 		var/currentRequest = (targetVolume - reagents.total_volume) / suppliersLeft
 		give.transfer_to(src, currentRequest, reagent, net)
 		suppliersLeft--
@@ -123,9 +121,9 @@
 	if(!reagents || !target || !target.reagents)
 		return FALSE
 	if(reagent)
-		reagents.trans_id_to(target.recipient_reagents_holder, reagent, amount)
+		reagents.trans_id_to(target.parent, reagent, amount)
 	else
-		reagents.trans_to(target.recipient_reagents_holder, amount, round_robin = TRUE, method = methods)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
+		reagents.trans_to(target.parent, amount, round_robin = TRUE, method = methods)//we deal with alot of precise calculations so we round_robin=TRUE. Otherwise we get floating point errors, 1 != 1 and 2.5 + 2.5 = 6
 
 ///We create our luxurious piping overlays/underlays, to indicate where we do what. only called once if use_overlays = TRUE in Initialize()
 /datum/component/plumbing/proc/create_overlays(atom/movable/AM, list/overlays)
@@ -213,29 +211,34 @@
 	if(active || (component && component != src))
 		UnregisterSignal(parent, list(COMSIG_COMPONENT_ADDED))
 		return
+
 	update_dir()
 	active = TRUE
 
-	var/atom/movable/AM = parent
-	for(var/obj/machinery/duct/D in AM.loc) //Destroy any ducts under us. Ducts also self-destruct if placed under a plumbing machine. machines disable when they get moved
-		if(D.anchored) //that should cover everything
-			D.disconnect_duct()
+	var/atom/movable/parent_movable = parent
+	// Destroy any ducts under us on the same layer.
+	// Ducts also self-destruct if placed under a plumbing machine.
+	// Machines disable when they get moved
+	for(var/obj/machinery/duct/duct in parent_movable.loc)
+		if(duct.anchored && (duct.duct_layer & ducting_layer))
+			duct.disconnect_duct()
 
 	if(demand_connects)
 		START_PROCESSING(SSplumbing, src)
 
-	for(var/D in GLOB.cardinals)
+	for(var/direction in GLOB.cardinals)
+		if(!(direction & (demand_connects | supply_connects)))
+			continue
+		for(var/atom/movable/found_atom in get_step(parent, direction))
+			if(istype(found_atom, /obj/machinery/duct))
+				var/obj/machinery/duct/duct = found_atom
+				duct.attempt_connect()
+				continue
 
-		if(D & (demand_connects | supply_connects))
-			for(var/atom/movable/A in get_step(parent, D))
+			for(var/datum/component/plumbing/plumber as anything in found_atom.GetComponents(/datum/component/plumbing))
+				if(plumber.ducting_layer & ducting_layer)
+					direct_connect(plumber, direction)
 
-				if(istype(A, /obj/machinery/duct))
-					var/obj/machinery/duct/duct = A
-					duct.attempt_connect()
-				else
-					for(var/datum/component/plumbing/plumber as anything in A.GetComponents(/datum/component/plumbing))
-						if(plumber.ducting_layer == ducting_layer)
-							direct_connect(plumber, D)
 
 /// Toggle our machinery on or off. This is called by a hook from default_unfasten_wrench with anchored as only param, so we dont have to copypaste this on every object that can move
 /datum/component/plumbing/proc/toggle_active(obj/O, new_state)

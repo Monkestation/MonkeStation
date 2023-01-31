@@ -256,8 +256,6 @@ All the important duct code:
 
 /obj/machinery/duct/set_anchored(anchorvalue)
 	. = ..()
-	if(isnull(.))
-		return
 	if(anchorvalue)
 		active = TRUE
 		attempt_connect()
