@@ -16,6 +16,8 @@
 	RegisterSignal(parent, COMSIG_MUTATION_TRIGGER, .proc/trigger_mutation)
 
 /datum/component/mutation/proc/trigger_mutation(atom/source, turf/source_turf, passes_minimum_checks)
+	SIGNAL_HANDLER
+
 	var/mob/living/simple_animal/parent_animal = parent
 	if(produces_eggs)
 		var/obj/item/food/egg/layed_egg
@@ -27,9 +29,10 @@
 		var/list/real_mutation = list()
 		for(var/raw_list_item in parent_animal.mutation_list)
 			var/datum/mutation/ranching/chicken/mutation = new raw_list_item
-			var/value = 10
-			if(mutation.cycle_requirements(parent_animal))
-				value += 30
+			var/value = 100
+			if(!mutation.cycle_requirements(parent_animal))
+				continue
+			real_mutation |= mutation
 			real_mutation[mutation] = value
 
 		if(real_mutation.len)
