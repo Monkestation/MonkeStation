@@ -136,6 +136,34 @@
 	egg_type = /obj/item/food/egg
 	mutation_list = list(/datum/mutation/ranching/chicken/spicy, /datum/mutation/ranching/chicken/brown)
 
+/obj/effect/proc_holder/spell/self/lay_egg
+	name = "Lay Egg"
+	desc = "Lays an egg assuming you've been fed"
+	school = "mime"
+	antimagic_allowed = TRUE
+	clothes_req = TRUE
+	human_req = FALSE
+	charge_max = 60 SECONDS
+	charge_counter = 3
+
+	action_icon = 'monkestation/icons/obj/ranching/eggs.dmi'
+	action_icon_state = "chicken"
+
+/obj/effect/proc_holder/spell/self/lay_egg/can_cast(mob/user = usr)
+	. = ..()
+	if(!isturf(user.loc))
+		return FALSE
+
+/obj/effect/proc_holder/spell/self/lay_egg/cast(mob/living/simple_animal/chicken/user = usr)
+	if(user.eggs_left <= 0)
+		to_chat(user, span_notice("You can't seem to lay any eggs"))
+		return
+	var/passes_minimum_checks = FALSE
+	if(user.total_times_eaten > 4 && prob(25))
+		passes_minimum_checks = TRUE
+	SEND_SIGNAL(user, COMSIG_MUTATION_TRIGGER, get_turf(user), passes_minimum_checks)
+	user.eggs_left--
+
 /mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-6, 6)
@@ -160,6 +188,7 @@
 	if(unique_ability)
 		ai_controller.blackboard[BB_CHICKEN_SPECALITY_ABILITY] = unique_ability
 
+	AddSpell(new /obj/effect/proc_holder/spell/self/lay_egg)
 	return INITIALIZE_HINT_LATELOAD
 
 /mob/living/simple_animal/chicken/proc/assign_chicken_icon()
