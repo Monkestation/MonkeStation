@@ -1,11 +1,8 @@
 /obj/item/chicken_book
 	name = "chicken encyclopedia"
 	desc = "The exciting sequel to the encyclopedia of twenty first century trains!"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "bible"
-	item_state = "bible"
-	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
+	icon = 'monkestation/icons/obj/ranching.dmi'
+	icon_state = "chicken_book"
 
 /obj/item/chicken_book/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user,src,ui)

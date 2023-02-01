@@ -127,8 +127,8 @@
 	name = "Feed Producer"
 	desc = "It converts food and reagents into usable feed for chickens. \n Alt-Click the machine in order to produce feed"
 
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "juicer1"
+	icon = 'monkestation/icons/obj/structures.dmi'
+	icon_state = "feed_producer"
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
@@ -144,6 +144,8 @@
 	var/list/held_foods = list()
 	///the first food object put into the feed machine this cycle
 	var/obj/item/food/first_food
+	///number of food inserted
+	var/food_inserted = 0
 
 /obj/machinery/feed_machine/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -151,7 +153,7 @@
 		return
 
 	if(istype(I, /obj/item/food)) // if food we do this
-		if(length(held_foods) > 4)
+		if(food_inserted > 4)
 			to_chat(user, span_notice("The [src] is filled to the brim, it can't hold anymore."))
 			return
 		var/obj/item/food/attacked_food = I
@@ -159,6 +161,7 @@
 		if(!first_food) // set the food type to this, used for color and naming
 			first_food = attacked_food
 		held_foods |= attacked_food.type //we add the type to this as we don't want a ton of random objects stored inside the feed
+		food_inserted++
 		qdel(I)
 
 	else //if not this
@@ -176,7 +179,7 @@
 	if(!held_foods)
 		return
 	var/obj/item/chicken_feed/produced_feed = new(src.loc)
-	produced_feed.placements_left *= length(held_foods)
+	produced_feed.placements_left *= food_inserted
 
 	produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
 	for(var/food in held_foods)
@@ -191,6 +194,7 @@
 
 	first_food = null
 	held_foods = null
+	food_inserted = 0
 
 /obj/item/chicken_feed
 	name = "chicken feed"
@@ -248,8 +252,8 @@
 
 /obj/item/storage/bag/egg
 	name = "egg bag"
-	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "plantbag"
+	icon = 'monkestation/icons/obj/ranching.dmi'
+	icon_state = "egg_bag"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
@@ -273,7 +277,7 @@
 	circuit = /obj/item/circuitboard/machine/egg_incubator
 
 	icon = 'monkestation/icons/obj/structures.dmi'
-	icon_state = "nestbox"
+	icon_state = "incubator"
 
 	var/current_state = FALSE
 
