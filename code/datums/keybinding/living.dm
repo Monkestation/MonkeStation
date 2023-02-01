@@ -16,9 +16,8 @@
 
 /datum/keybinding/living/resist/down(client/user)
 	. = ..()
-	if(.)
+	if(. || !isliving(user.mob))
 		return
-	if (!isliving(user.mob)) return
 	var/mob/living/L = user.mob
 	L.resist()
 	return TRUE
@@ -34,9 +33,7 @@
 
 /datum/keybinding/living/rest/down(client/user)
 	. = ..()
-	if(.)
-		return
-	if(!isliving(user.mob))
+	if(. || !isliving(user.mob))
 		return
 	var/mob/living/L = user.mob
 	L.toggle_resting()

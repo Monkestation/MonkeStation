@@ -298,13 +298,14 @@
 
 /mob/living/silicon/robot/proc/ionpulse()
 	if(!ionpulse_on)
-		return
+		return FALSE
 
 	if(cell.charge <= 10)
 		toggle_ionpulse()
-		return
+		return FALSE
 
-	cell.charge -= 10
+	if(use_fuel)
+		cell.charge -= (thrust * 1000)
 	return TRUE
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()

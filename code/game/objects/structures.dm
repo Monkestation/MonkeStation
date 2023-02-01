@@ -28,9 +28,15 @@
 
 /obj/structure/Destroy()
 	GLOB.cameranet.updateVisibility(src)
-	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))  //MONKESTATION CHANGE
-		QUEUE_SMOOTH_NEIGHBORS(src) //MONKESTATION CHANGE
-	return ..()
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH_NEIGHBORS(src)
+	var/turf/current_turf = loc
+	. = ..()
+	// Attempt zfalling for anything standing on this structure
+	if(!isopenspace(current_turf))
+		return
+	for(var/atom/movable/A in current_turf)
+		current_turf.try_start_zFall(A)
 
 /obj/structure/attack_hand(mob/user)
 	. = ..()
@@ -136,3 +142,6 @@
 		take_damage(power/8000, BURN, "energy")
 	power -= power/2000 //walls take a lot out of ya
 	. = ..()
+/// If you can climb WITHIN this structure, lattices for example. Used by z_transit (Move Upwards verb)
+/obj/structure/proc/can_climb_through()
+	return FALSE
