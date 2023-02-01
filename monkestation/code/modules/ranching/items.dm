@@ -181,7 +181,10 @@
 	var/obj/item/chicken_feed/produced_feed = new(src.loc)
 	produced_feed.placements_left *= food_inserted
 
-	produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
+	if(beaker && beaker.reagents)
+		produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
+	else
+		produced_feed.name = "[initial(first_food.name)] Chicken Feed"
 	for(var/food in held_foods)
 		var/obj/item/food/listed_food = new food(src.loc)
 		produced_feed.held_foods |= listed_food.type
