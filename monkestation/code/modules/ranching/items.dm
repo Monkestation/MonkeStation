@@ -330,7 +330,7 @@
 
 /obj/machinery/chicken_grinder
 	name = "The Grinder"
-	desc = "This is how chicken nuggets are made boys and girls."
+	desc = "This is how chicken nuggets are made boys and girls. \nAlt-Clicking will let you create eggs out of the dead bodies of chickens."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
