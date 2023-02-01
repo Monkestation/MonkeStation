@@ -125,7 +125,7 @@
 
 /obj/machinery/feed_machine
 	name = "Feed Producer"
-	desc = "It converts food and reagents into usable feed for chickens"
+	desc = "It converts food and reagents into usable feed for chickens. \n Alt-Click the machine in order to produce feed"
 
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
@@ -151,11 +151,14 @@
 		return
 
 	if(istype(I, /obj/item/food)) // if food we do this
+		if(length(held_foods) > 4)
+			to_chat(user, span_notice("The [src] is filled to the brim, it can't hold anymore."))
+			return
 		var/obj/item/food/attacked_food = I
 
 		if(!first_food) // set the food type to this, used for color and naming
 			first_food = attacked_food
-		held_foods += attacked_food.type //we add the type to this as we don't want a ton of random objects stored inside the feed
+		held_foods |= attacked_food.type //we add the type to this as we don't want a ton of random objects stored inside the feed
 		qdel(I)
 
 	else //if not this
@@ -173,6 +176,7 @@
 	if(!held_foods)
 		return
 	var/obj/item/chicken_feed/produced_feed = new(src.loc)
+	produced_feed.placements_left *= length(held_foods)
 
 	produced_feed.name = "[initial(first_food.name)] Chicken Feed infused with [beaker?.reagents.reagent_list[1].name]"
 	for(var/food in held_foods)
