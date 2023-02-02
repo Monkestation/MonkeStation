@@ -92,7 +92,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		SSliquids.burning_turfs -= T
 
 	members -= T
-	T.liquids.liquid_group = null
+	if(T.liquids)
+		T.liquids.liquid_group = null
 
 	if(!members.len)
 		qdel(src)
@@ -387,7 +388,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(burn_power)
 			total_burn_power += burn_power * reagent_type.volume
 			total_burn_rate += burn_power
-	group_burn_rate = total_burn_rate
+	group_burn_rate = total_burn_rate * 0.5 //half power because reasons
 	if(!total_burn_power)
 		if(burning_members.len)
 			extinguish_all()
@@ -483,11 +484,13 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			SSliquids.burning_turfs -= member
 
 /datum/liquid_group/proc/extinguish(turf/member)
-	member.liquids.fire_state = LIQUID_FIRE_STATE_NONE
-	member.liquids.set_fire_effect()
-	burning_members -= member
 	if(SSliquids.burning_turfs[member])
 		SSliquids.burning_turfs -= member
+	burning_members -= member
+	if(!member.liquids)
+		return
+	member.liquids.fire_state = LIQUID_FIRE_STATE_NONE
+	member.liquids.set_fire_effect()
 
 ///EDGE COLLECTION AND PROCESSING
 
