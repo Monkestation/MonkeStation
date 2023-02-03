@@ -730,6 +730,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		if(!Z_turf_below.liquids)
 			Z_turf_below.liquids = new(Z_turf_below)
 		source_turf.liquids.liquid_group.transfer_reagents_to_secondary_group(source_turf.liquids, Z_turf_below.liquids)
+
 		var/obj/splashy = new /obj/effect/temp_visual/liquid_splash(Z_turf_below)
 		if(Z_turf_below.liquids.liquid_group)
 			splashy.color = Z_turf_below.liquids.liquid_group.group_color
