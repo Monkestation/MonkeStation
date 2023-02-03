@@ -195,8 +195,8 @@
 		if(user && Adjacent(user) && !issiliconoradminghost(user))
 			user.put_in_hands(beaker)
 
-	first_food = null
-	held_foods = null
+	first_food = list()
+	held_foods = list()
 	food_inserted = 0
 
 /obj/item/chicken_feed
@@ -401,6 +401,7 @@
 	set_occupant(null)
 	qdel(mob_occupant)
 	stored_chicken_soul += 20
+
 /obj/machinery/chicken_grinder/AltClick(mob/user)
 	. = ..()
 	var/list/input_list = list()

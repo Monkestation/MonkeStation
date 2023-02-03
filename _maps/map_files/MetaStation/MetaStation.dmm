@@ -45017,6 +45017,9 @@
 /area/ranch)
 "diH" = (
 /obj/machinery/light,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/grass,
 /area/ranch)
 "diL" = (
@@ -48275,6 +48278,9 @@
 	areastring = "/area/hydroponics";
 	name = "Hydroponics APC";
 	pixel_y = -24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
 	},
 /turf/open/floor/grass,
 /area/ranch)
@@ -57379,6 +57385,9 @@
 /obj/structure/nestbox,
 /obj/structure/window/reinforced/tinted{
 	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/open/floor/grass,
 /area/ranch)
@@ -117497,7 +117506,7 @@ bZv
 dHE
 ccz
 bST
-djm
+kxm
 cgq
 cgq
 cgq
