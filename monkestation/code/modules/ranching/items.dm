@@ -333,7 +333,7 @@
 
 /obj/machinery/chicken_grinder
 	name = "The Grinder"
-	desc = "This is how chicken nuggets are made boys and girls. \nAlt-Clicking will let you create eggs out of the dead bodies of chickens."
+	desc = "This is how chicken nuggets are made boys and girls. \nAlt-Clicking will let you create eggs out of the dead bodies of chickens.\nUses 40 chicken essence per egg, grinded chickens give 20 essence."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
@@ -401,6 +401,7 @@
 	set_occupant(null)
 	qdel(mob_occupant)
 	stored_chicken_soul += 20
+	desc = "This is how chicken nuggets are made boys and girls. \nAlt-Clicking will let you create eggs out of the dead bodies of chickens.\nUses 40 chicken essence per egg, grinded chickens give 20 essence. Current stored chicken essense:[stored_chicken_soul]"
 
 /obj/machinery/chicken_grinder/AltClick(mob/user)
 	. = ..()
