@@ -266,7 +266,7 @@
 	if(!C.handcuffed)
 		C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 		C.update_handcuffed()
-		if((bot_cover_flags & BOT_COVER_EMAGGED)  && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
+		if((bot_cover_flags & BOT_COVER_EMAGGED)  && prob(50)) //if it's emagged, there's a chance it'll play a special sound  instead
 			playsound(src, emagsounds, 50, 0)
 		else
 			playsound(src, arrestsounds, 50, 0)//monkestation edit for custom arrest sounds
@@ -306,15 +306,13 @@
 
 	switch(mode)
 
-		if(BOT_IDLE)		// idle
-
+		if(BOT_IDLE) // idle
 			SSmove_manager.stop_looping(src)
-			look_for_perp()	// see if any criminals are in range
-			if(!mode && bot_mode_flags & BOT_MODE_AUTOPATROL)	// still idle, and set to patrol
-				mode = BOT_START_PATROL	// switch to patrol mode
+			look_for_perp() // see if any criminals are in range
+			if((mode == BOT_IDLE) && bot_mode_flags & BOT_MODE_AUTOPATROL) // didn't start hunting during look_for_perp, and set to patrol
+				mode = BOT_START_PATROL // switch to patrol mode
 
-		if(BOT_HUNT)		// hunting for perp
-
+		if(BOT_HUNT) // hunting for perp
 			// if can't reach perp for long enough, go idle
 			if(frustration >= 8)
 				SSmove_manager.stop_looping(src)
@@ -330,29 +328,27 @@
 				else
 					stun_attack(target)
 
-				mode = BOT_PREP_ARREST
 				anchored = TRUE
-				target_lastloc = target.loc
 				return
 
 			// not next to perp
 			var/turf/olddist = get_dist(src, target)
-			walk_to(src, target,1,4)
+			SSmove_manager.move_to(src, target, 1, 4)
 			if((get_dist(src, target)) >= (olddist))
 				frustration++
 			else
 				frustration = 0
 
-		if(BOT_PREP_ARREST)		// preparing to arrest target
-
+		if(BOT_PREP_ARREST) // preparing to arrest target
 			// see if he got away. If he's no no longer adjacent or inside a closet or about to get up, we hunt again.
-			if( !Adjacent(target) || !isturf(target.loc) ||  target.AmountParalyzed() < 40)
+			if(!Adjacent(target) || !isturf(target.loc) || !HAS_TRAIT(target, TRAIT_FLOORED))
 				back_to_hunt()
 				return
 
 			if(!iscarbon(target) || !target.canBeHandcuffed())
 				back_to_idle()
 				return
+
 			if(security_mode_flags & SECBOT_HANDCUFF_TARGET)
 				if(!target.handcuffed) //he's not cuffed? Try to cuff him!
 					start_handcuffing(target)
@@ -369,10 +365,13 @@
 				return
 
 			if(target.handcuffed) //no target or target cuffed? back to idle.
+				if(!check_nap_violations())
+					stun_attack(target, TRUE)
+					return
 				back_to_idle()
 				return
 
-			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && target.AmountParalyzed() < 40)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
+			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && !HAS_TRAIT(target, TRAIT_FLOORED))) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
 				back_to_hunt()
 				return
 			else //Try arresting again if the target escapes.
