@@ -26,8 +26,6 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/affected = user
 			affected.fakedeath("changeling") //play dead
-		user.update_stat()
-		user.update_mobility()
 		addtimer(CALLBACK(src, .proc/ready_to_regenerate, user), LING_FAKEDEATH_TIME, TIMER_UNIQUE)
 	return TRUE
 

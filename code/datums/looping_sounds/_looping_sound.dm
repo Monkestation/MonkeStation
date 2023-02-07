@@ -78,6 +78,10 @@
 		S.volume = volume
 	for(var/i in 1 to atoms_cache.len)
 		var/atom/thing = atoms_cache[i]
+		if(ismob(thing))
+			var/mob/holder = thing
+			if(holder.client)
+				S.volume *= (holder.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"] * 0.01)
 		if(direct)
 			SEND_SOUND(thing, S)
 		else

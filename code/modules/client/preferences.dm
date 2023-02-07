@@ -161,6 +161,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/action_buttons_screen_locs = list()
 
+	var/datum/ui_module/volume_mixer/pref_mixer
+	var/list/channel_volume = list()
+
 /datum/preferences/New(client/C)
 	parent = C
 

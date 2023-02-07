@@ -264,9 +264,9 @@
 	if(!(bot_mode_flags & BOT_MODE_ON) || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 		return
 	if(!C.handcuffed)
-		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
+		C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 		C.update_handcuffed()
-		if(EMAGGED && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
+		if(emagged == 1  && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
 			playsound(src, emagsounds, 50, 0)
 		else
 			playsound(src, arrestsounds, 50, 0)//monkestation edit for custom arrest sounds

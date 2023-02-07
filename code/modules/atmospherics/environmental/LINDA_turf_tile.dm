@@ -47,7 +47,7 @@
 	return assume_air_ratio(giver, 1)
 
 /turf/open/assume_air_moles(datum/gas_mixture/giver, moles)
-	if(!giver)
+	if(!giver || !giver.total_moles())
 		return FALSE
 	if(SSair.thread_running())
 		SSair.deferred_airs += list(list(giver, air, moles / giver.total_moles()))

@@ -18,7 +18,7 @@
 	var/mopping = 0
 	var/mopcount = 0
 	var/mopcap = 100 //MONKESTATION EDIT CHANGE
-	var/mopspeed = 15
+	var/mopspeed = 8
 	var/insertable = TRUE
 
 /obj/item/mop/Initialize(mapload)
@@ -35,27 +35,29 @@
 	if(!user.Adjacent(T))
 		return FALSE
 	var/free_space = the_mop.reagents.maximum_volume - the_mop.reagents.total_volume
-	if(free_space <= 0)
-		to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
-		return TRUE
-	var/list/range_random = list()
-	for(var/turf/temp in view(5, T))
-		if(temp.liquids)
-			range_random += temp
-	for(var/turf in range_random)
-		if(do_after(user, src.mopspeed, target = T))
+	var/looping = TRUE
+	var/speed_mult = 1
+	var/datum/liquid_group/targeted_group = T.liquids.liquid_group
+	while(looping)
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
+		if(free_space <= 0)
+			to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
+			looping = FALSE
+			return TRUE
+		if(do_after(user, src.mopspeed * speed_mult, target = T))
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
-				to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
+				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
-			var/turf/choice_turf = get_turf(pick(range_random))
-			if(choice_turf.liquids)
-				var/datum/reagents/tempr = choice_turf.liquids.take_reagents_flat(free_space)
-				tempr.trans_to(the_mop.reagents, tempr.total_volume)
-				range_random -= choice_turf
-				to_chat(user, "<span class='notice'>You soak the mop with some liquids.</span>")
-				qdel(tempr)
+			if(targeted_group.reagents_per_turf)
+				targeted_group.trans_to_seperate_group(the_mop.reagents, min(targeted_group.reagents_per_turf, 5))
+				to_chat(user, "<span class='notice'>You soak up some liquids with the [src.name].</span>")
+			else if(T.liquids.liquid_group)
+				targeted_group = T.liquids.liquid_group
+			else
+				looping = FALSE
 		else
-			return FALSE
+			looping = FALSE
 	user.changeNext_move(CLICK_CD_MELEE)
 	return TRUE
 	//MONKESTATION EDIT END
@@ -85,7 +87,7 @@
 
 	var/turf/T = get_turf(A)
 
-	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart))
+	if(istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/janitorialcart) || istype(A, /obj/structure/mopbucket))
 		return
 
 	if(T)
@@ -101,6 +103,10 @@
 		return
 	else
 		return ..()
+
+/obj/item/mop/examine(mob/user)
+	. = ..()
+	. += span_info("<b>Alt-click</b> a bucket to wring out the fluids.")
 
 
 /obj/item/mop/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J)
@@ -126,7 +132,7 @@
 	force = 12
 	throwforce = 14
 	throw_range = 4
-	mopspeed = 8
+	mopspeed = 4
 	var/refill_enabled = TRUE //Self-refill toggle for when a janitor decides to mop with something other than water.
 	/// Amount of reagent to refill per second
 	var/refill_rate = 0.5

@@ -59,15 +59,15 @@
 		if(A.z in impacted_z_levels)
 			impacted_areas |= A
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
-	SSweather.processing |= src
+	START_PROCESSING(SSweather, src)
 	update_areas()
-	for(var/M in GLOB.player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
 		if(mob_turf && (mob_turf.z in impacted_z_levels))
 			if(telegraph_message)
 				to_chat(M, telegraph_message)
 			if(telegraph_sound)
-				SEND_SOUND(M, sound(telegraph_sound))
+				SEND_SOUND(M, sound(telegraph_sound, volume = M.client.prefs.channel_volume["[CHANNEL_WEATHER]"]))
 	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 
 /datum/weather/proc/start()
@@ -75,13 +75,13 @@
 		return
 	stage = MAIN_STAGE
 	update_areas()
-	for(var/M in GLOB.player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
 		if(mob_turf && (mob_turf.z in impacted_z_levels))
 			if(weather_message)
 				to_chat(M, weather_message)
 			if(weather_sound)
-				SEND_SOUND(M, sound(weather_sound))
+				SEND_SOUND(M, sound(weather_sound, volume = M.client.prefs.channel_volume["[CHANNEL_WEATHER]"]))
 	addtimer(CALLBACK(src, .proc/wind_down), weather_duration)
 
 /datum/weather/proc/wind_down()
@@ -89,20 +89,20 @@
 		return
 	stage = WIND_DOWN_STAGE
 	update_areas()
-	for(var/M in GLOB.player_list)
+	for(var/mob/M as anything in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
 		if(mob_turf && (mob_turf.z in impacted_z_levels))
 			if(end_message)
 				to_chat(M, end_message)
 			if(end_sound)
-				SEND_SOUND(M, sound(end_sound))
+				SEND_SOUND(M, sound(end_sound, volume = M.client.prefs.channel_volume["[CHANNEL_WEATHER]"]))
 	addtimer(CALLBACK(src, .proc/end), end_duration)
 
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
 		return 1
 	stage = END_STAGE
-	SSweather.processing -= src
+	STOP_PROCESSING(SSweather, src)
 	update_areas()
 
 /datum/weather/proc/can_weather_act(mob/living/L) //Can this weather impact a mob?

@@ -165,7 +165,9 @@
 	if(stat)
 		return FALSE
 	bot_mode_flags |= BOT_MODE_ON
-	update_mobility()
+	REMOVE_TRAIT(src, TRAIT_INCAPACITATED, POWER_LACK_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, POWER_LACK_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, POWER_LACK_TRAIT)
 	set_light_on(bot_mode_flags & BOT_MODE_ON ? TRUE : FALSE)
 	update_icon()
 	diag_hud_set_botstat()
@@ -174,7 +176,9 @@
 
 /mob/living/simple_animal/bot/proc/turn_off()
 	bot_mode_flags &= ~BOT_MODE_ON
-	update_mobility()
+	ADD_TRAIT(src, TRAIT_INCAPACITATED, POWER_LACK_TRAIT)
+	ADD_TRAIT(src, TRAIT_IMMOBILIZED, POWER_LACK_TRAIT)
+	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, POWER_LACK_TRAIT)
 	set_light_on(bot_mode_flags & BOT_MODE_ON ? TRUE : FALSE)
 	bot_reset() //Resets an AI's call, should it exist.
 	balloon_alert(src, "turned off")
@@ -214,11 +218,6 @@
 	if(path_hud)
 		path_hud.add_to_hud(src)
 		path_hud.add_hud_to(src)
-
-/mob/living/simple_animal/bot/update_mobility()
-	. = ..()
-	if(!(bot_mode_flags & BOT_MODE_ON))
-		mobility_flags = NONE
 
 /mob/living/simple_animal/bot/Destroy()
 	if(path_hud)

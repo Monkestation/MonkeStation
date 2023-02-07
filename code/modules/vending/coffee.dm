@@ -13,6 +13,9 @@
 	default_price = 10
 	extra_price = 25
 	payment_department = ACCOUNT_SRV
+	light_mask = "coffee-light-mask"
+	light_color = "#8b633b"
+
 /obj/item/vending_refill/coffee
 	machine_name = "Solar's Best Hot Drinks"
 	icon_state = "refill_joe"

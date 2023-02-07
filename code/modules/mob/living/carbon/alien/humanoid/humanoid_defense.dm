@@ -27,7 +27,7 @@
 				log_combat(M, src, "attacked")
 
 			if ("disarm")
-				if (!(mobility_flags & MOBILITY_STAND))
+				if (body_position == LYING_DOWN)
 					if (prob(5))
 						Unconscious(40)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

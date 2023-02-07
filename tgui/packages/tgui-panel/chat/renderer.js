@@ -7,7 +7,7 @@
 import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { createLogger } from 'tgui/logging';
-import { COMBINE_MAX_MESSAGES, COMBINE_MAX_TIME_WINDOW, IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MAX_PERSISTED_MESSAGES, MAX_VISIBLE_MESSAGES, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_UNKNOWN } from './constants';
+import { COMBINE_MAX_MESSAGES, COMBINE_MAX_TIME_WINDOW, IMAGE_RETRY_DELAY, IMAGE_RETRY_LIMIT, IMAGE_RETRY_MESSAGE_AGE, MAX_PERSISTED_MESSAGES, MAX_VISIBLE_MESSAGES, MESSAGE_PRUNE_INTERVAL, MESSAGE_TYPES, MESSAGE_TYPE_INTERNAL, MESSAGE_TYPE_OOC, MESSAGE_TYPE_UNKNOWN } from './constants';
 import { canPageAcceptType, createMessage, isSameMessage } from './model';
 import { highlightNode, linkifyNode, replaceInTextNode } from './replaceInTextNode';
 
@@ -345,6 +345,12 @@ class ChatRenderer {
       const combinable = this.getCombinableMessage(message);
       if (combinable) {
         combinable.times = (combinable.times || 1) + 1;
+        if (!(combinable.type === MESSAGE_TYPE_OOC)) {
+          let muhstyle = combinable.node.style;
+          let fontsize = document.documentElement.style.getPropertyValue('font-size');
+          let basesize = parseInt(fontsize.slice(0, -2), 10);
+          muhstyle.setProperty('font-size', basesize + (2*combinable.times) + 'px');
+        }
         updateMessageBadge(combinable);
         continue;
       }

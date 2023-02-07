@@ -136,7 +136,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(QDELETED(real_src))
 			return
 
+	//fun fact: Topic() acts like a verb and is executed at the end of the tick like other verbs. So we have to queue it if the server is
+	//overloaded
+	if(hsrc && hsrc != holder && DEFAULT_TRY_QUEUE_VERB(VERB_CALLBACK(src, .proc/_Topic, hsrc, href, href_list)))
+		return
+
 	..()	//redirect to hsrc.Topic()
+
+///dumb workaround because byond doesnt seem to recognize the .proc/Topic() typepath for /datum/proc/Topic() from the client Topic,
+///so we cant queue it without this
+/client/proc/_Topic(datum/hsrc, href, list/href_list)
+	return hsrc.Topic(href, href_list)
 
 /client/proc/is_content_unlocked()
 	if(!prefs.unlock_content)
@@ -896,7 +906,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (minute != clicklimiter[CURRENT_MINUTE])
 			clicklimiter[CURRENT_MINUTE] = minute
 			clicklimiter[MINUTE_COUNT] = 0
-		clicklimiter[MINUTE_COUNT] += 1+(ab)
+
+		clicklimiter[MINUTE_COUNT] += 1 + (ab)
+
 		if (clicklimiter[MINUTE_COUNT] > mcl)
 			var/msg = "Your previous click was ignored because you've done too many in a minute."
 			if (minute != clicklimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
@@ -920,10 +932,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (second != clicklimiter[CURRENT_SECOND])
 			clicklimiter[CURRENT_SECOND] = second
 			clicklimiter[SECOND_COUNT] = 0
-		clicklimiter[SECOND_COUNT] += 1+(!!ab)
+
+		clicklimiter[SECOND_COUNT] += 1 + (!!ab)
+
 		if (clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
 			return
+	//check if the server is overloaded and if it is then queue up the click for next tick
+	//yes having it call a wrapping proc on the subsystem is fucking stupid glad we agree unfortunately byond insists its reasonable
+	if(!QDELETED(object) && TRY_QUEUE_VERB(VERB_CALLBACK(object, /atom/proc/_Click, location, control, params), VERB_HIGH_PRIORITY_QUEUE_THRESHOLD, SSinput, control))
+		return
 
 	if (prefs.hotkeys)
 		// If hotkey mode is enabled, then clicking the map will automatically
@@ -1024,18 +1042,27 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(prefs && prefs.chat_toggles & CHAT_PULLR)
 		to_chat(src, announcement)
 
-/client/proc/show_character_previews(mutable_appearance/MA)
+/client/proc/show_character_previews(mutable_appearance/source)
+	LAZYINITLIST(char_render_holders)
+	if(!LAZYLEN(char_render_holders))
+		for(var/plane_master_path as anything in subtypesof(/atom/movable/screen/plane_master))
+			var/atom/movable/screen/plane_master/plane_master = new plane_master_path()
+			char_render_holders["plane_master-[plane_master.plane]"] = plane_master
+			plane_master.backdrop(mob)
+			screen |= plane_master
+			plane_master.screen_loc = "character_preview_map:0,CENTER"
+
 	var/pos = 0
-	for(var/D in GLOB.cardinals)
+	for(var/dir in GLOB.cardinals)
 		pos++
-		var/atom/movable/screen/O = LAZYACCESS(char_render_holders, "[D]")
-		if(!O)
-			O = new
-			LAZYSET(char_render_holders, "[D]", O)
-			screen |= O
-		O.appearance = MA
-		O.dir = D
-		O.screen_loc = "character_preview_map:0,[pos]"
+		var/atom/movable/screen/preview = char_render_holders["preview-[dir]"]
+		if(!preview)
+			preview = new
+			char_render_holders["preview-[dir]"] = preview
+			screen |= preview
+		preview.appearance = source
+		preview.dir = dir
+		preview.screen_loc = "character_preview_map:0,[pos]"
 
 /client/proc/clear_character_previews()
 	for(var/index in char_render_holders)

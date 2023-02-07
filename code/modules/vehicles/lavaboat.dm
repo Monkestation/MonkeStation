@@ -10,6 +10,7 @@
 	can_buckle = TRUE
 	legs_required = 0
 	arms_required = 0
+	has_engine = FALSE
 
 /obj/vehicle/ridden/lavaboat/Initialize(mapload)
 	. = ..()

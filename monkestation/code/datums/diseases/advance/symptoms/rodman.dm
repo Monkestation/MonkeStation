@@ -73,7 +73,7 @@
 					"Eek-eek!!",
 					"Hoo hoo!!",
 					"SCREE!!") )) //More volume means shouted messages now
-					playsound(M.loc, pick( list('sound/creatures/monkey/monkey_screech_1.ogg','sound/creatures/monkey/monkey_screech_2.ogg','sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')), 100, 1)
+					playsound(M.loc, pick( list('sound/creatures/monkey/monkey_screech_1.ogg','sound/creatures/monkey/monkey_screech_2.ogg','sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')), 100, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 					return
 				if(prob(20))
 					M.say( pick( list(
@@ -84,7 +84,7 @@
 					"Aak-eek.",
 					"Chee."
 					) )) //Return to monke.
-					playsound(M.loc, pick( list('sound/creatures/monkey/monkey_screech_1.ogg','sound/creatures/monkey/monkey_screech_2.ogg','sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')), 50, 1)
+					playsound(M.loc, pick( list('sound/creatures/monkey/monkey_screech_1.ogg','sound/creatures/monkey/monkey_screech_2.ogg','sound/creatures/monkey/monkey_screech_3.ogg','sound/creatures/monkey/monkey_screech_4.ogg','sound/creatures/monkey/monkey_screech_5.ogg','sound/creatures/monkey/monkey_screech_6.ogg','sound/creatures/monkey/monkey_screech_7.ogg')), 50, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 			if(!ishuman(M) && awaken_monkey && is_monkey) //Confirm they were a monkey from the start, currently a monkey and that the threshold is hit.
 				awaken_monkey = FALSE // Only one attempt at this, to minimize spam.
 				if(!M.mind && isliving(M)) //Confirm they are mindless and alive

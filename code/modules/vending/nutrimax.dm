@@ -21,6 +21,7 @@
 	default_price = 10
 	extra_price = 50
 	payment_department = ACCOUNT_SRV
+	light_mask = "nutri-light-mask"
 
 /obj/item/vending_refill/hydronutrients
 	machine_name = "NutriMax"
