@@ -55565,8 +55565,6 @@
 /area/engine/atmos)
 "naI" = (
 /mob/living/simple_animal/bot/floorbot{
-	locked = 0;
-	on = 0
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
