@@ -176,7 +176,7 @@
 
 /obj/machinery/feed_machine/AltClick(mob/user)
 	. = ..()
-	if(!held_foods)
+	if(!held_foods.len)
 		return
 	var/obj/item/chicken_feed/produced_feed = new(src.loc)
 	produced_feed.placements_left *= food_inserted

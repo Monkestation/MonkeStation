@@ -97,6 +97,11 @@
 	var/icon_suffix = ""
 	///What shows up in the encyclopedia, will need some lovin
 	var/book_desc = "White Chickens lay White Eggs, however, if they are happy they will lay Brown Eggs instead. "
+	///if this chicken is marked, will add a sigil above it to show its marked
+	var/is_marked = FALSE
+	///the current visual effect applied
+	var/mutable_appearance/applied_visual
+
 #undef DEFAULT_CHICKEN_ABILITY_COOLDOWN
 
 /obj/item/food/egg
@@ -120,3 +125,5 @@
 	var/list/Friends = list()
 	///was this just layed as a mutation if so don't let it grow via incubators
 	var/fresh_mutation = FALSE
+	///is this egg fertile? used when picked up / dropped
+	var/is_fertile = TRUE

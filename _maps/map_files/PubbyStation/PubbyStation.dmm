@@ -14764,10 +14764,6 @@
 	},
 /turf/open/floor/wood,
 /area/ranch)
-"aLH" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
 "aLI" = (
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/plating,
@@ -15307,12 +15303,6 @@
 	},
 /turf/open/floor/grass,
 /area/ranch)
-"aNf" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/maintenance/department/crew_quarters/bar)
 "aNg" = (
 /obj/item/storage/box/lights/mixed,
 /turf/open/floor/plating,
@@ -89722,8 +89712,8 @@ aHQ
 aIO
 iXF
 aKT
-aLH
-aNf
+aKT
+aKT
 aKT
 aLL
 aQO

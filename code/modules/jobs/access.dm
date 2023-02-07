@@ -371,7 +371,7 @@
 /proc/get_all_jobs()
 	return list("Captain",
 				// Service
-				"Assistant", "Head of Personnel", "Bartender", "Cook", "Botanist", "Janitor", "Curator",
+				"Assistant", "Head of Personnel", "Bartender", "Cook", "Botanist", "Rancher", "Janitor", "Curator",
 				"Chaplain", "Lawyer", "Clown", "Mime", "Barber", "Stage Magician",
 				// Cargo
 				"Quartermaster", "Cargo Technician","Shaft Miner",

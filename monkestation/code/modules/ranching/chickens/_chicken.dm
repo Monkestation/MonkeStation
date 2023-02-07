@@ -126,6 +126,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2)
 	ventcrawler = VENTCRAWLER_ALWAYS
 	worn_slot_flags = ITEM_SLOT_HEAD
+	can_be_held = TRUE
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
 	chat_color = "#FFDC9B"
@@ -202,6 +203,22 @@
 	icon_living = "[starting_prefix]_[icon_suffix]"
 	icon_dead = "dead_[icon_suffix]"
 
+/mob/living/simple_animal/chicken/update_overlays()
+	. = ..()
+	if(is_marked)
+		.+= mutable_appearance('monkestation/icons/effects/ranching.dmi', "marked", FLOAT_LAYER, src.plane)
+
+/mob/living/simple_animal/chicken/proc/add_visual(method)
+	if(applied_visual)
+		return
+	applied_visual = mutable_appearance('monkestation/icons/effects/ranching_text.dmi', "chicken_[method]", FLOAT_LAYER, src.plane)
+	add_overlay(applied_visual)
+	addtimer(CALLBACK(src, .proc/remove_visual), 3 SECONDS)
+
+/mob/living/simple_animal/chicken/proc/remove_visual()
+	cut_overlay(applied_visual)
+	applied_visual = null
+
 /mob/living/simple_animal/chicken/pass_stats(atom/child)
 	var/obj/item/food/egg/layed_egg = child
 
@@ -222,6 +239,7 @@
 	if(eggs_fertile)
 		if(prob(40) || layed_egg.possible_mutations.len) //25
 			START_PROCESSING(SSobj, layed_egg)
+			layed_egg.is_fertile = TRUE
 			flop_animation(layed_egg)
 			layed_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
 
@@ -235,6 +253,11 @@
 	if(stat != DEAD)
 		GLOB.total_chickens--
 	return ..()
+
+/mob/living/simple_animal/chicken/AltClick(mob/user)
+	. = ..()
+	is_marked = !is_marked
+	update_appearance()
 
 /mob/living/simple_animal/chicken/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -397,7 +420,7 @@
 		adjust_happiness(-1)
 
 	if(current_feed_amount == 0)
-		adjust_happiness(-0.01)
+		adjust_happiness(-0.01, natural_cause = TRUE)
 
 	if(happiness < minimum_living_happiness)
 		src.death()
@@ -412,6 +435,15 @@
 	amount_grown += rand(3,6) * delta_time
 	if(amount_grown >= 100)
 		pre_hatch()
+
+/obj/item/food/egg/pickup(mob/user)
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
+/obj/item/food/egg/dropped(mob/user, silent)
+	. = ..()
+	if(is_fertile)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/food/egg/proc/pre_hatch()
 	var/list/final_mutations = list()
@@ -495,9 +527,13 @@
 	.=..()
 	gender = FEMALE
 
-/mob/living/simple_animal/chicken/proc/adjust_happiness(amount, atom/source)
+/mob/living/simple_animal/chicken/proc/adjust_happiness(amount, atom/source, natural_cause = FALSE)
 	happiness += amount
 	if(amount > 0)
 		max_happiness_per_generation -= amount
+		add_visual("love")
+	else
+		if(!natural_cause)
+			add_visual("angry")
 	if(source)
 		set_friendship(source, amount * 0.1)
