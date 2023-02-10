@@ -727,6 +727,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(new_turf.allow_z_travel)
 		var/turf/Z_turf_below = SSmapping.get_turf_below(new_turf)
+		if(!Z_turf_below)
+			return
 		if(isspaceturf(Z_turf_below))
 			return FALSE
 		if(!Z_turf_below.liquids)
