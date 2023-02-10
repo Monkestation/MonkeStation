@@ -68,6 +68,8 @@
 	if(!stat && !ckey)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
+			if(!grown_type)
+				return
 			var/mob/living/simple_animal/chicken/new_chicken = new grown_type(src.loc)
 			new_chicken.Friends = src.friends
 			new_chicken.age += rand(1,10) //add a bit of age to each chicken causing staggered deaths
