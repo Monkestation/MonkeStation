@@ -322,7 +322,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	var/flags = NONE
 	for(var/i in contents)
 		var/atom/thing = i
-		flags |= thing.intercept_zImpact(falling_atom, levels)
+		flags |= thing.intercept_zImpact(A, levels)
 		if(flags & FALL_STOP_INTERCEPTING)
 			break
 	if(prev_turf && !(flags & FALL_NO_MESSAGE))

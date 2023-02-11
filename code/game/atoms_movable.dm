@@ -486,13 +486,11 @@
  **/
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	if(OldLoc)
-		var/turf/old_turf = get_turf(OldLoc)
+	if(old_loc)
+		var/turf/old_turf = get_turf(old_loc)
 		var/turf/new_turf = get_turf(src)
 		if(old_turf && new_turf && old_turf.z != new_turf.z)
 			onTransitZ(old_turf.z, new_turf.z)
-	if (!inertia_moving)
-		newtonian_move(Dir)
 
 	if (!inertia_moving && momentum_change)
 		newtonian_move(movement_dir)

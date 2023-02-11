@@ -214,13 +214,6 @@
 	var/obj/emitter/right_emitter
 	var/tilt_timer = 0
 
-/obj/item/tank/jetpack/combustion/Initialize(mapload)
-	. = ..()
-	single_left_emitter = new /obj/emitter/fire_jet/single/left
-	single_right_emitter = new /obj/emitter/fire_jet/single/right
-	left_emitter = new /obj/emitter/fire_jet/left
-	right_emitter = new /obj/emitter/fire_jet/right
-
 /obj/item/tank/jetpack/combustion/on_user_add()
 	..()
 	on_user_dir_change(null, null, known_user.dir)
