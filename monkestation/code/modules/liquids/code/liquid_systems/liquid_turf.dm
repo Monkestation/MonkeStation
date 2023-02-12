@@ -74,7 +74,10 @@
 					liquids.liquid_group.group_temperature = increaser
 					gas.set_temperature(increaser)
 					gas.react()
-		liquids.liquid_group.expose_members_turf(liquids)
+
+		liquids.liquid_group.expose_atom(src)
+		for(var/atom/movable/target_atom in src)
+			liquids.liquid_group.expose_atom(target_atom)
 
 	if(!liquids)
 		SSliquids.remove_active_turf(src)
