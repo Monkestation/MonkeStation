@@ -126,4 +126,4 @@
 	///was this just layed as a mutation if so don't let it grow via incubators
 	var/fresh_mutation = FALSE
 	///is this egg fertile? used when picked up / dropped
-	var/is_fertile = TRUE
+	var/is_fertile = FALSE
