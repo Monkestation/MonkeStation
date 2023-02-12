@@ -201,8 +201,8 @@
 
 /obj/item/chicken_feed
 	name = "chicken feed"
-	icon = 'monkestation/icons/obj/ranching/items.dmi'
-	icon_state = "chicken_feed"
+	icon = 'monkestation/icons/obj/ranching/feed.dmi'
+	icon_state = "feed_sack"
 
 	///list of contained foods
 	var/list/held_foods = list()
@@ -213,6 +213,12 @@
 /obj/item/chicken_feed/Initialize(mapload)
 	. = ..()
 	reagents = new(1000)
+	var/mutable_appearance/feed_top = mutable_appearance(src.icon, "feed_seed")
+	if(reagents?.reagent_list.len)
+		feed_top.color = mix_color_from_reagent_list(reagents.reagent_list)
+	else
+		feed_top.color = "#cacc52"
+	add_overlay(feed_top)
 
 /obj/item/chicken_feed/afterattack(atom/attacked_atom, mob/user)
 	if(!user.Adjacent(attacked_atom))
