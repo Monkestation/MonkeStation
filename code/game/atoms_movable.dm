@@ -1012,6 +1012,7 @@
 	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 	VV_DROPDOWN_OPTION(VV_HK_EDIT_PARTICLES, "Edit Particles")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_DISPLACEMENT_LARGE, "Edit Large Displacement")
 	VV_DROPDOWN_OPTION(VV_HK_ADD_EMITTER, "Add Emitter")
 	VV_DROPDOWN_OPTION(VV_HK_REMOVE_EMITTER, "Remove Emitter")
 
@@ -1022,6 +1023,20 @@
 			return
 		var/client/interacted_client = usr.client
 		interacted_client?.open_particle_editor(src)
+
+	if(href_list[VV_HK_EDIT_DISPLACEMENT_LARGE])
+		if(!check_rights(R_VAREDIT))
+			return
+		switch(alert("Should this be a pre-filled displacement (Note: If you choose a blank one directional displacement may prove more difficult)?",,"Yes","No","Cancel"))
+			if("Yes")
+				var/choice = input(usr, "Choose a displacement to add", "Choose a Displacement") as null|anything in subtypesof(/obj/effect/distortion/large)
+				if(!choice)
+					return
+				apply_large_displacement_icon(choice)
+			if("No")
+				apply_large_displacement_icon(/obj/effect/distortion/large)
+			else
+				return
 
 	if(href_list[VV_HK_ADD_EMITTER])
 		if(!check_rights(R_VAREDIT))
