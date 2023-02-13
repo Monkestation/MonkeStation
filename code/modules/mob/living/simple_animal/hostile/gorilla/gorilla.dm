@@ -100,7 +100,7 @@
 
 /mob/living/simple_animal/hostile/gorilla/handle_automated_speech(override)
 	if(speak_chance && (override || prob(speak_chance)))
-		playsound(src, 'sound/creatures/gorilla.ogg', 50)
+		playsound(src, 'sound/creatures/gorilla.ogg', 50, mixer_channel = CHANNEL_MOB_SOUNDS)
 	..()
 
 /mob/living/simple_animal/hostile/gorilla/can_use_guns(obj/item/G)
@@ -111,7 +111,7 @@
 /mob/living/simple_animal/hostile/gorilla/proc/oogaooga()
 	oogas++
 	if(oogas >= rand(2,6))
-		playsound(src, 'sound/creatures/gorilla.ogg', 50)
+		playsound(src, 'sound/creatures/gorilla.ogg', 50, mixer_channel = CHANNEL_MOB_SOUNDS)
 		oogas = 0
 
 /mob/living/simple_animal/hostile/gorilla/rabid

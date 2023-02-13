@@ -130,6 +130,8 @@
 	default_price = 40
 	extra_price = 60
 	payment_department = NO_FREEBIES
+	light_mask = "wardrobe-light-mask"
+	light_color = "#00FF00"
 
 /obj/item/vending_refill/clothing
 	machine_name = "ClothesMate"

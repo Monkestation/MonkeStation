@@ -352,7 +352,8 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
-	SEND_SOUND(world, sound(SSstation.announcer.get_rand_welcome_sound()))
+	for(var/mob/M as anything in GLOB.player_list)
+		SEND_SOUND(M, sound(SSstation.announcer.get_rand_welcome_sound(), volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -368,6 +369,23 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 	SSstat.clear_global_alert()
+
+	//Toggle lightswitches on in occupied departments
+	var/discrete_areas = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		var/area/A = get_area(H)
+		if(!(A in discrete_areas)) //We've already added their department
+			discrete_areas += get_department_areas(H)
+	for(var/area/area in discrete_areas)
+		if(area.lights_always_start_on)
+			continue
+		area.lightswitch = TRUE
+		area.update_appearance()
+
+		for(var/obj/machinery/light_switch/L in area)
+			L.update_appearance()
+
+		area.power_change()
 
 	return TRUE
 
@@ -724,6 +742,6 @@ SUBSYSTEM_DEF(ticker)
 		var/list/tracks = flist("sound/roundend/")
 		if(tracks.len)
 			round_end_sound = "sound/roundend/[pick(tracks)]"
-
-	SEND_SOUND(world, sound(round_end_sound))
+	for(var/mob/M as anything in GLOB.player_list)
+		SEND_SOUND(M, sound(round_end_sound, volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 	rustg_file_append(login_music, "data/last_round_lobby_music.txt")

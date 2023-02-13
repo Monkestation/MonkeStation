@@ -136,6 +136,7 @@
 	default_price = 50
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
+	light_mask="theater-light-mask"
 /obj/machinery/vending/autodrobe/all_access
 	desc = "A vending machine for costumes. This model appears to have no access restrictions."
 	req_access = null

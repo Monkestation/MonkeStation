@@ -183,7 +183,7 @@
 		if(world.time < reactivearmor_cooldown)
 			owner.visible_message("<span class='danger'>The monkey generator is still recharging!</span>")
 			return FALSE
-		playsound(get_turf(src),'sound/creatures/monkey/monkey_screech_1.ogg', 100, 1)
+		playsound(get_turf(src),'sound/creatures/monkey/monkey_screech_1.ogg', 100, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 		owner.visible_message("<span class='danger'>[src] blocks [attack_text], and screeches with the voices of a million monkeys!</span>")
 		return_to_monkey(owner)
 

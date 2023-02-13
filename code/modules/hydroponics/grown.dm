@@ -48,6 +48,9 @@
 
 	..() //Only call it here because we want all the genes and shit to be applied before we add edibility. God this code is a mess.
 
+	for(var/datum/plant_gene/trait/T in seed.genes)
+		T.on_new_late(src, loc) //we want this here because reagents are created after genes are added god this code is a mess
+
 	if(discovery_points)
 		AddComponent(/datum/component/discoverable, discovery_points)
 	seed.prepare_result(src)

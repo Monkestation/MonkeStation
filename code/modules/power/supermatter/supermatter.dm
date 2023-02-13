@@ -364,7 +364,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/turf/source_turf = get_turf(src)
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
-			SEND_SOUND(M, 'sound/magic/charge.ogg')
+			SEND_SOUND(M, sound('sound/magic/charge.ogg', volume = M.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"]))
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 	if(combined_gas > MOLE_PENALTY_THRESHOLD)
@@ -718,7 +718,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	visible_message("<span class='userdanger'>[src] is consumed by the singularity!</span>")
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z)
-			SEND_SOUND(M, 'sound/effects/supermatter.ogg') //everyone goan know bout this
+			SEND_SOUND(M, sound('sound/effects/supermatter.ogg', volume = M.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"])) //everyone goan know bout this
 			to_chat(M, "<span class='boldannounce'>A horrible screeching fills your ears, and a wave of dread washes over you...</span>")
 	qdel(src)
 	return gain

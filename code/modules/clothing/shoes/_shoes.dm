@@ -42,22 +42,14 @@
 		return(BRUTELOSS)
 
 /obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
-	. = list()
-	if(!isinhands)
-		var/bloody = FALSE
-		if(HAS_BLOOD_DNA(src))
-			bloody = TRUE
-		else
-			bloody = bloody_shoes[BLOOD_STATE_HUMAN]
+	. = ..()
+	if(isinhands)
+		return
 
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
-		if(bloody)
-			var/mob/living/carbon/human/M = loc
-			if(!M.dna.species.get_custom_icons("shoes"))//monkestation edit: add simians
-				. += mutable_appearance('icons/effects/blood.dmi', "shoeblood")
-			else
-				. += mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(M.dna.species.name)]_shoeblood")//considering and upstream does not use them, pathing should be fine.
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
+	if(HAS_BLOOD_DNA(src))
+		. += mutable_appearance('icons/effects/blood.dmi', "shoeblood")
 
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)

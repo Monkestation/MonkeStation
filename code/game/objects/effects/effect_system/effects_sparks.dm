@@ -29,7 +29,7 @@
 
 /obj/effect/particle_effect/sparks/LateInitialize()
 	flick("sparks", src) // replay the animation
-	playsound(src, "sparks", 100, TRUE)
+	playsound(src, "sparks", 100, TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 	var/turf/T = loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)

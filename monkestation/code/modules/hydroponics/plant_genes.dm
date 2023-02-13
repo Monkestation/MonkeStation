@@ -2,7 +2,7 @@
 	// Makes plant reagents not react until squashed.
 	name = "Separated Chemicals"
 
-/datum/plant_gene/trait/noreact/on_new(obj/item/food/grown/G, newloc)
+/datum/plant_gene/trait/noreact/on_new_late(obj/item/food/grown/G, newloc)
 	..()
 	ENABLE_BITFIELD(G.reagents.flags, NO_REACT)
 

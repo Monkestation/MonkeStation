@@ -16,6 +16,7 @@
 	default_price = 0
 	extra_price = 0
 	payment_department = NO_FREEBIES
+	light_mask = "robotics-light-mask"
 
 /obj/item/vending_refill/mining
 	machine_name = "Mining Nutrition Vendor"

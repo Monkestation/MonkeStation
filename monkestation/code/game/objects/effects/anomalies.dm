@@ -325,7 +325,7 @@
 /obj/effect/anomaly/monkey/anomalyEffect(delta_time)
 	..()
 
-	playsound(src, pick(MONKEY_SOUNDS), vol = 33, vary = 1)
+	playsound(src, pick(MONKEY_SOUNDS), vol = 33, vary = 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 
 	if(isinspace(src) || !isopenturf(get_turf(src)))
 		return

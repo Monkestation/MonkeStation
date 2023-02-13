@@ -28,6 +28,7 @@
 	default_price = 10
 	extra_price = 80
 	payment_department = ACCOUNT_ENG
+	light_mask = "tool-light-mask"
 
 /obj/item/vending_refill/tool
 	machine_name = "YouTool"

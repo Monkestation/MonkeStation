@@ -453,6 +453,10 @@
 	set name = "quick-equip"
 	set hidden = 1
 
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/execute_quick_equip))
+
+///proc extender of [/mob/verb/quick_equip] used to make the verb queuable if the server is overloaded
+/mob/proc/execute_quick_equip()
 	var/obj/item/I = get_active_held_item()
 	if (I)
 		I.equip_to_best_slot(src)
@@ -500,7 +504,7 @@
 			var/obj/item/bodypart/BP = new path ()
 			BP.owner = src
 			BP.held_index = i
-			bodyparts += BP
+			add_bodypart(BP)
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
 

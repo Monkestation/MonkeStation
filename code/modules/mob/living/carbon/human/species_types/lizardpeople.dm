@@ -27,6 +27,8 @@
 	species_language_holder = /datum/language_holder/lizard
 	digitigrade_customization = DIGITIGRADE_OPTIONAL
 
+	mutanteyes = /obj/item/organ/eyes/glowing
+
 	species_chest = /obj/item/bodypart/chest/lizard
 	species_head = /obj/item/bodypart/head/lizard
 	species_l_arm = /obj/item/bodypart/l_arm/lizard
