@@ -10,7 +10,8 @@
 #define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"
 /// called in /obj/structure/set_anchored(): (value)
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"
-
+///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
+#define COMSIG_OBJ_HIDE "obj_hide"
 
 // /obj/machinery signals
 /// Sent from /obj/machinery/open_machine(): (drop)

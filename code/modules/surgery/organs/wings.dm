@@ -182,7 +182,7 @@
 	var/obj/item/organ/wings/bee/wings = locate(/obj/item/organ/wings/bee) in L.internal_organs
 	var/jumpdistance = wings.jumpdist
 
-	if(L.stat != CONSCIOUS || L.buckling || L.restrained()) // Has to be concious and unbuckled
+	if(L.stat != CONSCIOUS || L.buckling || HAS_TRAIT(L, TRAIT_HANDS_BLOCKED)) // Has to be concious and unbuckled
 		return
 	if(recharging_time > world.time)
 		to_chat(L, "<span class='warning'>The wings aren't ready to dash yet!</span>")
@@ -213,7 +213,7 @@
 	if(hoppingtable)
 		crashcallback = CALLBACK(src, .proc/crash_into_table, get_step(checkjump, L.dir))
 	if(L.throw_at(target, jumpdistancemoved, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = crashcallback, force = MOVE_FORCE_WEAK))
-		playsound(L, 'sound/creatures/bee.ogg', 50, 1, 1)
+		playsound(L, 'sound/creatures/bee.ogg', 50, 1, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 		L.visible_message("<span class='warning'>[usr] dashes forward into the air!</span>")
 		recharging_time = world.time + recharging_rate
 	else
@@ -230,7 +230,7 @@
 
 /datum/action/innate/flight
 	name = "Toggle Flight"
-	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_STUN
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_IMMOBILE
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "flight"
 

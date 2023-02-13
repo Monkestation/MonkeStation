@@ -220,6 +220,11 @@
 	description = "..."
 	path = /obj/item/clothing/under/rank/civilian/mime
 
+/datum/gear/uniform/misc/gondola_costume
+	display_name = "gondola cosdume"
+	description = ":DDD"
+	path = /obj/item/clothing/under/costume/gondola
+
 /datum/gear/uniform/misc/swagoutfit
 	display_name = "swag outfit"
 	path = /obj/item/clothing/under/costume/swagoutfit

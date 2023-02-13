@@ -68,6 +68,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	payment_department = ACCOUNT_SRV
 
 	light_color = LIGHT_COLOR_BLUE
+	light_power = 0.5
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 
 	/// Is the machine active (No sales pitches if off)!
 	var/active = 1
@@ -187,6 +189,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	/// how many items have been inserted in a vendor
 	var/loaded_items = 0
 
+	///Name of lighting mask for the vending machine
+	var/light_mask = "generic-light-mask"
+
 /obj/item/circuitboard
     ///determines if the circuit board originated from a vendor off station or not.
 	var/onstation = TRUE
@@ -262,33 +267,54 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	else
 		..()
 
-/obj/machinery/vending/obj_break(damage_flag)
-	if(!(machine_stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		set_machine_stat(machine_stat | BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+/obj/machinery/vending/update_appearance(updates=ALL)
+	. = ..()
+	if(machine_stat & BROKEN)
 		set_light(0)
-		var/dump_amount = 0
-		var/found_anything = TRUE
-		while (found_anything)
-			found_anything = FALSE
-			for(var/record in shuffle(product_records))
-				var/datum/data/vending_product/R = record
-				if(R.amount <= 0) //Try to use a record that actually has something to dump.
-					continue
-				var/dump_path = R.product_path
-				if(!dump_path)
-					continue
-				R.amount--
-				// busting open a vendor will destroy some of the contents
-				if(found_anything && prob(80))
-					continue
+		return
+	set_light(powered() ? MINIMUM_USEFUL_LIGHT_RANGE : 0)
 
-				var/obj/O = new dump_path(loc)
-				step(O, pick(GLOB.alldirs))
-				found_anything = TRUE
-				dump_amount++
-				if (dump_amount >= 16)
-					return
+/obj/machinery/vending/update_icon_state()
+	if(machine_stat & BROKEN)
+		icon_state = "[initial(icon_state)]-broken"
+		return ..()
+	icon_state = "[initial(icon_state)][powered() ? null : "-off"]"
+	return ..()
+
+/obj/machinery/vending/update_overlays()
+	. = ..()
+	if(!light_mask)
+		return
+	if(!(machine_stat & BROKEN) && powered())
+		. += emissive_appearance(icon, light_mask)
+
+/obj/machinery/vending/obj_break(damage_flag)
+	. = ..()
+	if(!.)
+		return
+
+	var/dump_amount = 0
+	var/found_anything = TRUE
+	while (found_anything)
+		found_anything = FALSE
+		for(var/record in shuffle(product_records))
+			var/datum/data/vending_product/R = record
+			if(R.amount <= 0) //Try to use a record that actually has something to dump.
+				continue
+			var/dump_path = R.product_path
+			if(!dump_path)
+				continue
+			R.amount--
+			// busting open a vendor will destroy some of the contents
+			if(found_anything && prob(80))
+				continue
+
+			var/obj/O = new dump_path(loc)
+			step(O, pick(GLOB.alldirs))
+			found_anything = TRUE
+			dump_amount++
+			if (dump_amount >= 16)
+				return
 
 GLOBAL_LIST_EMPTY(vending_products)
 /**
@@ -1030,17 +1056,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/power_change()
 	. = ..()
 	if(machine_stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
+		return
+
+	if(powered())
+		machine_stat &= ~NOPOWER
+		START_PROCESSING(SSmachines, src)
 	else
-		if(powered())
-			icon_state = initial(icon_state)
-			set_machine_stat(machine_stat & ~NOPOWER)
-			START_PROCESSING(SSmachines, src)
-			set_light(2)
-		else
-			icon_state = "[initial(icon_state)]-off"
-			set_machine_stat(machine_stat | NOPOWER)
-			set_light(0)
+		machine_stat |= NOPOWER
+
+	update_appearance()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**

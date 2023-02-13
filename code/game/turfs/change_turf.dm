@@ -83,11 +83,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
-	//MONKESTATION EDIT CHANGE
 	var/obj/effect/abstract/liquid_turf/old_liquids = liquids
-	if(lgroup)
-		lgroup.remove_from_group(src)
-	//MONKESTATION EDIT END
 
 	var/old_exl = explosion_level
 	var/old_exi = explosion_id
@@ -150,25 +146,16 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(old_liquids)
 		if(W.liquids)
 			var/liquid_cache = W.liquids //Need to cache and re-set some vars due to the cleaning on Destroy(), and turf references
-			if(old_liquids.immutable)
-				old_liquids.remove_turf(src)
-			else
-				qdel(old_liquids, TRUE)
+			qdel(old_liquids, TRUE)
 			W.liquids = liquid_cache
 			W.liquids.my_turf = W
 		else
 			if(flags & CHANGETURF_INHERIT_AIR)
 				W.liquids = old_liquids
 				old_liquids.my_turf = W
-				if(old_liquids.immutable)
-					W.convert_immutable_liquids()
-				else
-					W.reasses_liquids()
+				W.reasses_liquids()
 			else
-				if(old_liquids.immutable)
-					old_liquids.remove_turf(src)
-				else
-					qdel(old_liquids, TRUE)
+				qdel(old_liquids, TRUE)
 	//MONKESTATION EDIT END
 	return W
 

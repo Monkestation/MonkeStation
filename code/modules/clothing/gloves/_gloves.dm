@@ -33,16 +33,17 @@
 	return OXYLOSS
 
 /obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
-	. = list()
+	. = ..()
 	if(!isinhands)
-		if(damaged_clothes)
-			. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
-		if(HAS_BLOOD_DNA(src))
-			var/mob/living/carbon/human/M = loc
-			if(!M.dna.species.get_custom_icons("gloves"))//monkestation edit: add simians
-				. += mutable_appearance('icons/effects/blood.dmi', "bloodyhands")
-			else
-				. += mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(M.dna.species.name)]_bloodyhands")//considering sprite_sheets is leaving at some point, and upstream does not use them, pathing should be fine.
+		return
+
+	if(damaged_clothes)
+		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
+	if(HAS_BLOOD_DNA(src))
+		. += mutable_appearance('icons/effects/blood.dmi', "bloodyhands")
+	else
+		var/mob/living/carbon/human/M = loc
+		. += mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(M.dna.species.name)]_bloodyhands")//considering sprite_sheets is leaving at some point, and upstream does not use them, pathing should be fine.
 
 /obj/item/clothing/gloves/update_clothes_damaged_state(damaging = TRUE)
 	..()

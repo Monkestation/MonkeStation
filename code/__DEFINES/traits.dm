@@ -127,6 +127,21 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 */
 
 //mob traits
+// Forces the user to stay unconscious.
+#define TRAIT_KNOCKEDOUT		"knockedout"
+// Prevents voluntary movement.
+#define TRAIT_IMMOBILIZED		"immobilized"
+// Prevents voluntary standing or staying up on its own.
+#define TRAIT_FLOORED			"floored"
+/// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
+#define TRAIT_HANDS_BLOCKED		"handsblocked"
+/// Inability to access UI hud elements. Turned into a trait from [MOBILITY_UI] to be able to track sources.
+#define TRAIT_UI_BLOCKED		"uiblocked"
+/// Inability to pull things. Turned into a trait from [MOBILITY_PULL] to be able to track sources.
+#define TRAIT_PULL_BLOCKED		"pullblocked"
+/// Abstract condition that prevents movement if being pulled and might be resisted against. Handcuffs and straight jackets, basically.
+#define TRAIT_RESTRAINED		"restrained"
+#define TRAIT_INCAPACITATED 	"incapacitated"
 #define TRAIT_BLIND 			"blind"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
@@ -242,7 +257,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BLOODSHOT_EYES "bloodshot_eyes"
 
 //non-mob traits
-#define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
+/// Used for limb-based paralysis, where replacing the limb will fix it.
+#define TRAIT_PARALYSIS				"paralysis"
 
 
 //important_recursive_contents traits
@@ -271,6 +287,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FOOD_GRILLED "food_grilled"
 
 #define TRAIT_AI_BAGATTACK "bagattack" // This atom can ignore the "is on a turf" check for simple AI datum attacks, allowing them to attack from bags or lockers as long as any other conditions are met
+
+/// Buckling yourself to objects with this trait won't immobilize you
+#define TRAIT_NO_IMMOBILIZE "no_immobilize"
 
 //quirk traits
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
@@ -317,6 +336,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
+#define UNCONSCIOUS_TRAIT "unconscious"
 #define GENERIC_ITEM_TRAIT "generic_item"
 #define EYE_DAMAGE "eye_damage"
 #define GENETIC_MUTATION "genetic"
@@ -339,11 +359,22 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define CLOTHING_FEET_TRAIT "feet"
 #define VEHICLE_TRAIT "vehicle" // inherited from riding vehicles
 #define INNATE_TRAIT "innate"
+#define CRIT_HEALTH_TRAIT "crit_health"
+#define OXYLOSS_TRAIT "oxyloss"
 #define GLASSES_TRAIT "glasses"
 #define CURSE_TRAIT "eldritch"
 #define STATION_TRAIT "station-trait"
 #define TRAIT_RUSTY "rust_trait"
 #define TURF_TRAIT "turf"
+#define BUCKLED_TRAIT "buckled" //trait associated to being buckled
+#define CHOKEHOLD_TRAIT "chokehold" //trait associated to being held in a chokehold
+#define RESTING_TRAIT "resting" //trait associated to resting
+/// Trait associated to wearing a suit
+#define SUIT_TRAIT "suit"
+/// Trait associated to lying down (having a [lying_angle] of a different value than zero).
+#define LYING_DOWN_TRAIT "lying-down"
+/// Trait associated to lacking electrical power.
+#define POWER_LACK_TRAIT "power-lack"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -403,6 +434,21 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_VAULTING "vaulting" //simian trait
 ///Turf trait for when a turf is transparent
 #define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
+#define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
+#define LOCKED_BORG_TRAIT "locked-borg"
+#define LACKING_LOCOMOTION_APPENDAGES_TRAIT "lacking-locomotion-appengades" //trait associated to not having locomotion appendages nor the ability to fly or float
+#define LACKING_MANIPULATION_APPENDAGES_TRAIT "lacking-manipulation-appengades" //trait associated to not having fine manipulation appendages such as hands
+#define HANDCUFFED_TRAIT "handcuffed"
+/// Trait applied by by [/datum/component/soulstoned]
+#define SOULSTONE_TRAIT "soulstone"
+/// Trait applied to slimes by low temperature
+#define SLIME_COLD "slime-cold"
+/// Trait applied to bots by being tipped over
+#define BOT_TIPPED_OVER "bot-tipped-over"
+/// Trait applied to PAIs by being folded
+#define PAI_FOLDED "pai-folded"
+/// Trait applied to brain mobs when they lack external aid for locomotion, such as being inside a mech.
+#define BRAIN_UNAIDED "brain-unaided"
 // Monkestation Changes End
 #define TRAIT_PRESERVE_UI_WITHOUT_CLIENT "preserve_ui_without_client" //this mob should never close ui even if it doesn't have a client
 

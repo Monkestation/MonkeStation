@@ -24,6 +24,7 @@
 	default_price = 50 //MonkeStation Edit: Reduction of junk food
 	extra_price = 30
 	payment_department = NO_FREEBIES //MonkeStation Edit: NO FREE LUNCH
+	light_mask = "snack-light-mask"
 
 /obj/item/vending_refill/snack
 	machine_name = "Getmore Chocolate Corp"

@@ -109,6 +109,8 @@
 	var/list/air_vent_info = list()
 	var/list/air_scrub_info = list()
 
+	var/lights_always_start_on = FALSE
+
 /**
   * A list of teleport locations
   *

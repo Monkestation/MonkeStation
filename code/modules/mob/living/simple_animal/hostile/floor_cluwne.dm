@@ -189,7 +189,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
 		mobility_flags &= ~MOBILITY_MOVE
-		update_mobility()
 		cluwnehole = new(src.loc)
 		addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Appear), MANIFEST_DELAY)
 	else
@@ -197,7 +196,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		invisibility = INVISIBILITY_OBSERVER
 		density = FALSE
 		mobility_flags |= MOBILITY_MOVE
-		update_mobility()
 		if(cluwnehole)
 			qdel(cluwnehole)
 

@@ -56,13 +56,10 @@
 	if(isnull(refined_type))
 		return
 	else
-		var/probability = (rand(0,100))/100
-		var/burn_value = probability*amount
-		var/amountrefined = round(burn_value, 1)
-		if(amountrefined < 1)
+		if(amount < 1)
 			qdel(src)
 		else
-			new refined_type(drop_location(),amountrefined)
+			new refined_type(drop_location(),amount)
 			qdel(src)
 
 /obj/item/stack/ore/uranium
@@ -129,6 +126,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "volcanic_sand"
 	icon_state = "volcanic_sand"
 	singular_name = "volcanic ash pile"
+	juice_results = list(/datum/reagent/ash = 10)
 
 /obj/item/stack/ore/plasma
 	name = "plasma ore"

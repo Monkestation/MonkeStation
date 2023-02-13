@@ -115,6 +115,7 @@
 #define INIT_ORDER_DBCORE			95
 #define INIT_ORDER_BLACKBOX			94
 #define INIT_ORDER_SERVER_MAINT		93
+#define INIT_ORDER_SPEECH_CONTROLLER 92
 #define INIT_ORDER_INPUT			85
 #define INIT_ORDER_TOPIC			84
 #define INIT_ORDER_SOUNDS			83
@@ -200,6 +201,8 @@
 #define FIRE_PRIORITY_EXPLOSIONS	666
 #define FIRE_PRIORITY_TIMER			700
 #define FIRE_PRIORITY_SOUND_LOOPS	800
+#define FIRE_PRIORITY_DELAYED_VERBS 900
+#define FIRE_PRIORITY_SPEECH_CONTROLLER 950
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels
@@ -244,6 +247,7 @@
 #define SSLIQUIDS_RUN_TYPE_IMMUTABLES 3
 #define SSLIQUIDS_RUN_TYPE_EVAPORATION 4
 #define SSLIQUIDS_RUN_TYPE_FIRE 5
+#define SSLIQUIDS_RUN_TYPE_OCEAN 6
 //MONKESTATION ADDITION END
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1
@@ -289,6 +293,7 @@
 
 // Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
 // Only use these defines if you want to access some other objects processing delta_time, otherwise use the delta_time that is sent as a parameter to process()
+#define SSFLUIDS_DT (SSplumbing.wait/10)
 #define SSMACHINES_DT (SSmachines.wait/10)
 #define SSMOBS_DT (SSmobs.wait/10)
 #define SSOBJ_DT (SSobj.wait/10)

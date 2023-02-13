@@ -363,7 +363,6 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYREMOVE(user.do_afters, target)
 		LAZYREMOVE(target.targeted_by, user)
 
-
 /proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, required_mobility_flags = MOBILITY_STAND, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
 	if(!user || !targets)
 		return 0
@@ -391,9 +390,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/endtime = world.time + time
 	var/starttime = world.time
-	var/mob/living/L
-	if(isliving(user))
-		L = user
 	. = 1
 	mainloop:
 		while(world.time < endtime)
@@ -409,10 +405,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(drifting && SSmove_manager.processing_on(user, SSspacedrift))
 				drifting = 0
 				user_loc = user.loc
-
-			if(L && !CHECK_MULTIPLE_BITFIELDS(L.mobility_flags, required_mobility_flags))
-				. = 0
-				break
 
 			for(var/atom/target in targets)
 				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
@@ -626,7 +618,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	/*This can be used to add additional effects on interactions between mobs depending on how the mobs are facing each other, such as adding a crit damage to blows to the back of a guy's head.
 	Given how click code currently works (Nov '13), the initiating mob will be facing the target mob most of the time
 	That said, this proc should not be used if the change facing proc of the click code is overridden at the same time*/
-	if(!ismob(target) || !(target.mobility_flags & MOBILITY_STAND))
+	if(!isliving(target) || target.body_position == LYING_DOWN)
 	//Make sure we are not doing this for things that can't have a logical direction to the players given that the target would be on their side
 		return FALSE
 	if(initator.dir == target.dir) //mobs are facing the same direction

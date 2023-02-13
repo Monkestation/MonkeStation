@@ -39,5 +39,5 @@
 	if(!isliving(user.mob))
 		return
 	var/mob/living/L = user.mob
-	L.lay_down()
+	L.toggle_resting()
 	return TRUE

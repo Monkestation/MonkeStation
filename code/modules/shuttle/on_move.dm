@@ -62,16 +62,9 @@ All ShuttleMove procs go here
 	if(!depth)
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
 	//MONKESTATION EDIT ADDITION
-	if(newT.lgroup)
-		newT.lgroup.remove_from_group(newT)
 	if(newT.liquids)
-		if(newT.liquids.immutable)
-			newT.liquids.remove_turf(src)
-		else
-			qdel(newT.liquids, TRUE)
+		qdel(newT.liquids, TRUE)
 
-	if(lgroup)
-		lgroup.remove_from_group(src)
 	if(liquids)
 		liquids.ChangeToNewTurf(newT)
 		newT.reasses_liquids()

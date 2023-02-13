@@ -184,3 +184,20 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 				if(target_z == 0 || target_z == T.z)
 					turfs += T
 	return turfs
+
+//Gets all areas within a department
+/proc/get_department_areas(atom/AM)
+	var/department_type
+	var/area/our_area = get_area(AM)
+	var/all_master_types = direct_subtypesof(/area)
+	for(var/checkable in all_master_types)
+		if(istype(our_area,checkable))
+			department_type = checkable
+			break
+	if(!department_type)
+		department_type = our_area.type
+	var/list/department_areas = list()
+	for(var/area/A in GLOB.sortedAreas)
+		if(istype(A,department_type))
+			department_areas += A
+	return department_areas

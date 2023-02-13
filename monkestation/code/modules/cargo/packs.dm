@@ -39,3 +39,13 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
+/datum/supply_pack/medical/experimental_cloner
+	name = "Experimental Cloner Crate"
+	desc = "A complete build set to a Experimental Cloner Pod and Scanner. Caution: Highly Experimental"
+	cost = 5000
+	access = ACCESS_CARGO
+	contains = list(/obj/item/circuitboard/machine/clonepod/experimental,
+					/obj/item/circuitboard/machine/clonescanner)
+	crate_name = "Experimental Cloner Crate"
+	crate_type = /obj/structure/closet/crate/medical
+	dangerous = TRUE

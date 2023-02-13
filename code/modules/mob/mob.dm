@@ -296,10 +296,6 @@
 /mob/proc/get_item_by_slot(slot_id)
 	return null
 
-///Is the mob restrained
-/mob/proc/restrained(ignore_grab)
-	return
-
 ///Is the mob incapacitated
 /mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
 	return
@@ -477,6 +473,9 @@
 	set name = "Examine"
 	set category = "IC"
 
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/run_examinate, A))
+
+/mob/proc/run_examinate(atom/A)
 	if(isturf(A) && !(sight & SEE_TURFS) && !(A in view(client ? client.view : world.view, src)))
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
 		return
@@ -498,23 +497,14 @@
 
 /mob/living/blind_examine_check(atom/examined_thing)
 	//need to be next to something and awake
-	if(!Adjacent(examined_thing) || incapacitated())
+	if(!in_range(examined_thing, src) || incapacitated())
 		to_chat(src, "<span class='warning'>Something is there, but you can't see it!</span>")
 		return FALSE
-
-	var/active_item = get_active_held_item()
-	if(active_item && active_item != examined_thing)
-		to_chat(src, "<span class='warning'>Your hands are too full to examine this!</span>")
-		return FALSE
-
-	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
-	/// our active hand, to check if it's disabled/detatched
-	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
-	if(!active_hand || active_hand.is_disabled() || LAZYLEN(do_afters) >= get_num_arms())
+	//also neeed an empty hand, and you can only initiate as many examines as you have hands
+	if(LAZYLEN(do_afters) >= usable_hands || get_active_held_item())
 		to_chat(src, "<span class='warning'>You don't have a free hand to examine this!</span>")
 		return FALSE
-
-	//you can only queue up one examine on something at a time
+	//can only queue up one examine on something at a time
 	if(examined_thing in do_afters)
 		return FALSE
 
@@ -538,7 +528,6 @@
 	a_intent = INTENT_HELP
 	examined_thing.attack_hand(src)
 	a_intent = previous_intent
-
 	return TRUE
 
 /**
@@ -558,20 +547,25 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
-		return FALSE
 	if(istype(A, /obj/effect/temp_visual/point))
 		return FALSE
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/_pointed, A))
 
-	var/turf/tile = get_turf(A)
+/// possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
+/// either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro
+/mob/proc/_pointed(atom/pointing_at)
+	if(client && !(pointing_at in view(client.view, src)))
+		return FALSE
+
+	var/turf/tile = get_turf(pointing_at)
 	if (!tile)
 		return FALSE
 
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointing_at.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointing_at.pixel_y, time = 1.7, easing = EASE_OUT)
 
-	SEND_SIGNAL(src, COMSIG_MOB_POINTED, A)
+	SEND_SIGNAL(src, COMSIG_MOB_POINTED, pointing_at)
 	return TRUE
 
 /**
@@ -625,7 +619,10 @@
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, .proc/execute_mode))
 
+///proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called
+/mob/proc/execute_mode()
 	if(ismecha(loc))
 		return
 
@@ -831,7 +828,7 @@
 		return FALSE
 	if(notransform)
 		return FALSE
-	if(restrained())
+	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
 		return FALSE
 	return TRUE
 
@@ -1121,7 +1118,8 @@
 /mob/proc/update_mouse_pointer()
 	if (!client)
 		return
-	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+	if(client.mouse_pointer_icon != initial(client.mouse_pointer_icon))//only send changes to the client if theyre needed
+		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 	if (ismecha(loc))
 		var/obj/mecha/M = loc
 		if(M.mouse_pointer)
@@ -1253,18 +1251,11 @@
 /mob/proc/set_nutrition(var/change) //Seriously fuck you oldcoders.
 	nutrition = max(0, change)
 
-///Set the movement type of the mob and update it's movespeed
-/mob/setMovetype(newval)
+/mob/setMovetype(newval) //Set the movement type of the mob and update it's movespeed
 	. = ..()
+	if(isnull(.))
+		return
 	update_movespeed(FALSE)
-
-/// Updates the grab state of the mob and updates movespeed
-/mob/setGrabState(newstate)
-	. = ..()
-	if(grab_state == GRAB_PASSIVE)
-		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE)
-	else
-		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=grab_state*3, blacklisted_movetypes=FLOATING)
 
 /mob/proc/update_equipment_speed_mods()
 	var/speedies = equipped_speed_mods()

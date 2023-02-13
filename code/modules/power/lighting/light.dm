@@ -1,3 +1,6 @@
+#define LIGHT_ON_DELAY_UPPER 3 SECONDS
+#define LIGHT_ON_DELAY_LOWER 1 SECONDS
+
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
@@ -71,6 +74,10 @@
 	var/bulb_low_power_pow_min = 0.5
 	///Power usage - W per unit of luminosity
 	var/power_consumption_rate = 20
+	///So we don't have a lot of stress on startup.
+	var/maploaded = FALSE
+	///More stress stuff.
+	var/turning_on = FALSE
 
 /obj/machinery/light/Move()
 	if(status != LIGHT_BROKEN)
@@ -78,9 +85,9 @@
 	return ..()
 
 // create a new lighting fixture
-/obj/machinery/light/Initialize(mapload)
+/obj/machinery/light/Initialize(mapload = TRUE)
 	. = ..()
-
+	maploaded = TRUE
 	//Setup area colours
 	var/area/our_area = get_area(src)
 	if(bulb_colour == initial(bulb_colour))
@@ -183,38 +190,13 @@
 			on = FALSE
 	low_power_mode = FALSE
 	if(on)
-		var/brightness_set = brightness
-		var/power_set = bulb_power
-		var/color_set = bulb_colour
-		if(color)
-			color_set = color
-		var/area/local_area = get_area(src)
-		if (local_area?.fire)
-			color_set = bulb_low_power_colour
-		else if (nightshift_enabled)
-			brightness_set = nightshift_brightness
-			power_set = nightshift_light_power
-			if(!color)
-				color_set = nightshift_light_color
-		else if (major_emergency)
-			color_set = bulb_low_power_colour
-			brightness_set = brightness * bulb_major_emergency_brightness_mul
-		var/matching = light && brightness_set == light.light_range && power_set == light.light_power && color_set == light.light_color
-		if(!matching)
-			switchcount++
-			if(rigged)
-				if(status == LIGHT_OK && trigger)
-					explode()
-			else if( prob( min(60, (switchcount**2)*0.01) ) )
-				if(trigger)
-					burn_out()
-			else
-				use_power = ACTIVE_POWER_USE
-				set_light(
-					l_range = brightness_set,
-					l_power = power_set,
-					l_color = color_set
-					)
+		if(maploaded)
+			turn_on(trigger)
+			maploaded = FALSE
+		else if(!turning_on)
+			turning_on = TRUE
+			addtimer(CALLBACK(src, .proc/turn_on, trigger), rand(LIGHT_ON_DELAY_LOWER, LIGHT_ON_DELAY_UPPER))
+
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		low_power_mode = TRUE
@@ -663,3 +645,40 @@
 	plane = FLOOR_PLANE
 	light_type = /obj/item/light/bulb
 	fitting = "bulb"
+
+
+/obj/machinery/light/proc/turn_on(trigger)
+	if(QDELETED(src))
+		return
+	turning_on = FALSE
+	if(!on)
+		return
+	var/BR = brightness
+	var/PO = bulb_power
+	var/CO = bulb_colour
+	if(color)
+		CO = color
+	var/area/A = get_area(src)
+	if (A?.fire)
+		CO = bulb_emergency_colour
+	else if (nightshift_enabled)
+		BR = nightshift_brightness
+		PO = nightshift_light_power
+		if(!color)
+			CO = nightshift_light_color
+	var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+	if(!matching)
+		switchcount++
+		if(rigged)
+			if(status == LIGHT_OK && trigger)
+				explode()
+		else if( prob( min(60, (switchcount^2)*0.01) ) )
+			if(trigger)
+				burn_out()
+		else
+			use_power = ACTIVE_POWER_USE
+			set_light(BR, PO, CO)
+			playsound(src.loc, 'sound/effects/lights/light_on.ogg', 65, 1)
+
+#undef LIGHT_ON_DELAY_UPPER
+#undef LIGHT_ON_DELAY_LOWER
