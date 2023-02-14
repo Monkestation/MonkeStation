@@ -189,7 +189,7 @@
 		var/obj/item/food/listed_food = new food(src.loc)
 		produced_feed.held_foods |= listed_food.type
 		qdel(listed_food)
-	if(beaker)
+	if(beaker && beaker.reagents)
 		produced_feed.reagents.reagent_list |= beaker.reagents.reagent_list
 		beaker.forceMove(drop_location())
 		if(user && Adjacent(user) && !issiliconoradminghost(user))
