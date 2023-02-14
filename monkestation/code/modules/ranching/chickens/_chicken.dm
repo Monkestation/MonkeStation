@@ -321,7 +321,8 @@
 		else if(listed_food.type in disliked_foods)
 			var/disliked_value = disliked_foods[listed_food.type]
 			adjust_happiness(-disliked_value)
-
+	total_times_eaten++
+	eggsleft += rand(1,3)
 		qdel(listed_food)
 	qdel(eaten_feed)
 
