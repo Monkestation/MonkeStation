@@ -323,7 +323,7 @@
 			adjust_happiness(-disliked_value)
 		qdel(listed_food)
 	total_times_eaten++
-	eggs_left += rand(1,3)
+	eggs_left += rand(1, 3)
 	qdel(eaten_feed)
 
 /mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item, mob/user)
