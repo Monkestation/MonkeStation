@@ -321,9 +321,9 @@
 		else if(listed_food.type in disliked_foods)
 			var/disliked_value = disliked_foods[listed_food.type]
 			adjust_happiness(-disliked_value)
-	total_times_eaten++
-	eggsleft += rand(1,3)
 		qdel(listed_food)
+	total_times_eaten++
+	eggs_left += rand(1,3)
 	qdel(eaten_feed)
 
 /mob/living/simple_animal/chicken/proc/handle_happiness_changes(obj/given_item, mob/user)
