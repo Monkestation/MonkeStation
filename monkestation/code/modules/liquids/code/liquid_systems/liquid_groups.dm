@@ -214,6 +214,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 
 /datum/liquid_group/proc/update_visuals(turf/member)
+	if(!member)
+		return
 	if(member.liquids.liquid_state != group_overlay_state)
 		member.liquids.set_new_liquid_state(group_overlay_state)
 	if(member.liquids.color != group_color)
