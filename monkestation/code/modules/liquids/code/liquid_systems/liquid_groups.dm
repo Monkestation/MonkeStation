@@ -46,6 +46,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/merging = FALSE
 	///list of cached edge turfs with a sublist of directions stored
 	var/list/cached_edge_turfs = list()
+	///list of cached adjacent turfs for each member
+	var/list/cached_adjacent_turfs = list()
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -91,6 +93,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(SSliquids.currentrun_active_turfs[T])
 		SSliquids.currentrun_active_turfs -= T
 	SSliquids.remove_active_turf(T)
+
+	if(cached_adjacent_turfs[T])
+		cached_adjacent_turfs -= T
 
 	if(burning_members[T])
 		burning_members -= T
@@ -208,27 +213,36 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/member in members)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 
-/datum/liquid_group/proc/process_member(turf/member)
+/datum/liquid_group/proc/update_visuals(turf/member)
 	if(member.liquids.liquid_state != group_overlay_state)
 		member.liquids.set_new_liquid_state(group_overlay_state)
 	if(member.liquids.color != group_color)
 		member.liquids.color = group_color
-	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT)
+	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT && !SSliquids.evaporation_queue[member])
 		SSliquids.evaporation_queue |= member
 	if(member.liquid_height != expected_turf_height + member.turf_height)
 		member.liquid_height = expected_turf_height + member.turf_height
 
-	var/list/adjacent_turfs = member.GetAtmosAdjacentTurfs()
-	shuffle(adjacent_turfs)
+/datum/liquid_group/proc/process_member(turf/member)
+	var/list/adjacent_turfs  = list()
+	if(!length(cached_adjacent_turfs[member]))
+		cached_adjacent_turfs |= member
+		var/list/temporary_list = member.GetAtmosAdjacentTurfs()
+		cached_adjacent_turfs[member] = temporary_list
+
+	adjacent_turfs |= cached_adjacent_turfs[member]
+
 	for(var/tur in adjacent_turfs)
-		var/turf/adjacent_turf = tur
+		var/turf/adjacent_turf = pick(adjacent_turfs)
+		adjacent_turfs -= adjacent_turf
 		if(member.z != adjacent_turf.z)
-			var/turf/Z_turf_below = SSmapping.get_turf_below(member)
-			if(adjacent_turf == Z_turf_below)
-				if(!(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && adjacent_turf.liquids.liquid_group.expected_turf_height >= LIQUID_HEIGHT_CONSIDER_FULL_TILE))
-					member.liquids.liquid_group.transfer_reagents_to_secondary_group(member.liquids, adjacent_turf.liquids)
-					. = TRUE
-			continue
+			if(member.z != adjacent_turf.z)
+				var/turf/Z_turf_below = SSmapping.get_turf_below(member)
+				if(adjacent_turf == Z_turf_below)
+					if(!(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && adjacent_turf.liquids.liquid_group.expected_turf_height >= LIQUID_HEIGHT_CONSIDER_FULL_TILE))
+						member.liquids.liquid_group.transfer_reagents_to_secondary_group(member.liquids, adjacent_turf.liquids)
+						. = TRUE
+				continue
 		. = TRUE
 
 		if(!SSliquids.active_turfs[adjacent_turf] && adjacent_turf.liquids)
