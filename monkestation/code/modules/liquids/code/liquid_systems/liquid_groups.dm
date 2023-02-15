@@ -212,18 +212,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(old_overlay != group_overlay_state)
 		for(var/turf/member in members)
 			member.liquids.set_new_liquid_state(group_overlay_state)
-
-/datum/liquid_group/proc/update_visuals(turf/member)
-	if(!member)
-		return
-	if(member.liquids.liquid_state != group_overlay_state)
-		member.liquids.set_new_liquid_state(group_overlay_state)
-	if(member.liquids.color != group_color)
-		member.liquids.color = group_color
-	if(expected_turf_height < LIQUID_ANKLES_LEVEL_HEIGHT && !SSliquids.evaporation_queue[member])
-		SSliquids.evaporation_queue |= member
-	if(member.liquid_height != expected_turf_height + member.turf_height)
-		member.liquid_height = expected_turf_height + member.turf_height
+			member.liquid_height = expected_turf_height + member.turf_height
 
 /datum/liquid_group/proc/process_member(turf/member)
 	var/list/adjacent_turfs  = list()

@@ -52,8 +52,6 @@ SUBSYSTEM_DEF(liquids)
 					LG.process_spread(burning_turf)
 
 			LG.process_cached_edges()
-			for(var/turf/member in LG.members)
-				LG.update_visuals()
 			LG.process_group()
 		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
