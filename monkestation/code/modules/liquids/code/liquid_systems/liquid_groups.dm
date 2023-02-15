@@ -234,6 +234,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	for(var/tur in adjacent_turfs)
 		var/turf/adjacent_turf = pick(adjacent_turfs)
+		if(!adjacent_turf)
+			continue
 		adjacent_turfs -= adjacent_turf
 		if(member.z != adjacent_turf.z)
 			if(member.z != adjacent_turf.z)
