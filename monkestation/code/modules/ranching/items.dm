@@ -422,5 +422,6 @@
 		return
 	if(stored_chicken_soul >= 40)
 		new choice (src.loc)
+		stored_chicken_soul -= 40
 	else
 		to_chat(user, span_notice("You don't have enough chicken essence to produce an egg"))
