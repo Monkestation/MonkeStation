@@ -57,24 +57,6 @@
 	liquids.liquid_group.expose_members_turf(liquids)
 
 /turf/proc/process_liquid_cell()
-
-	if(liquids)
-		var/turf/open/temp_turf = get_turf(src)
-		var/datum/gas_mixture/gas = temp_turf.air
-		if(gas)
-			if(gas.return_temperature() > liquids.liquid_group.group_temperature)
-				var/increaser =((gas.return_temperature() * gas.total_moles()) + (liquids.liquid_group.group_temperature * liquids.liquid_group.total_reagent_volume)) / (2 + liquids.liquid_group.total_reagent_volume + gas.total_moles())
-				if(increaser > liquids.liquid_group.group_temperature + 3)
-					gas.set_temperature(increaser)
-					liquids.liquid_group.group_temperature = increaser
-					gas.react()
-			else if(liquids.liquid_group.group_temperature > gas.return_temperature())
-				var/increaser =((gas.return_temperature() * gas.total_moles()) + (liquids.liquid_group.group_temperature * liquids.liquid_group.total_reagent_volume)) / (2 + liquids.liquid_group.total_reagent_volume + gas.total_moles())
-				if(increaser > gas.return_temperature() + 3)
-					liquids.liquid_group.group_temperature = increaser
-					gas.set_temperature(increaser)
-					gas.react()
-
 	if(!liquids)
 		SSliquids.remove_active_turf(src)
 		return

@@ -165,6 +165,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(group_temperature != reagents.chem_temp)
 		reagents.chem_temp = group_temperature
+
 	var/new_color
 	if(GLOB.liquid_debug_colors)
 		group_color = color
@@ -287,6 +288,29 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/outputted_turf in output)
 			if(outputted_turf in removed_turf)
 				removed_turf -= outputted_turf
+
+///currently shelved while this gets reworked
+/datum/liquid_group/proc/handle_group_temperature_shift()
+	var/turf/open/picked_turf = pick(members)
+	var/datum/gas_mixture/math_cache = picked_turf.air
+	if(!math_cache)
+		return //we may or may not lose some air processing
+	var/increaser =((math_cache.return_temperature() * math_cache.total_moles()) + (group_temperature * total_reagent_volume)) / (2 + total_reagent_volume + math_cache.total_moles())
+
+	for(var/turf/member in members)
+		var/turf/open/member_open = member
+		var/datum/gas_mixture/gas = member_open.air
+		if(gas)
+			if(gas.return_temperature() > group_temperature)
+				if(increaser > group_temperature + 3)
+					gas.set_temperature(increaser)
+					group_temperature = increaser
+					gas.react()
+			else if(group_temperature > gas.return_temperature())
+				if(increaser > gas.return_temperature() + 3)
+					group_temperature = increaser
+					gas.set_temperature(increaser)
+					gas.react()
 
 ///REAGENT ADD/REMOVAL HANDLING
 /datum/liquid_group/proc/check_liquid_removal(obj/effect/abstract/liquid_turf/remover, amount)
