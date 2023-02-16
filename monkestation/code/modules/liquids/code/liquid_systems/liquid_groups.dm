@@ -48,6 +48,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/cached_edge_turfs = list()
 	///list of cached adjacent turfs for each member
 	var/list/cached_adjacent_turfs = list()
+	///should we bother processing members?
+	var/should_skip = FALSE
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -214,13 +216,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 			member.liquid_height = expected_turf_height + member.turf_height
 
+/datum/liquid_group/proc/build_liquid_cache(turf/member)
+	var/cached_openspace = FALSE
+	cached_adjacent_turfs |= member
+	var/list/temporary_list = member.GetAtmosAdjacentTurfs()
+	cached_adjacent_turfs[member] = temporary_list
+	if(!cached_openspace)
+		for(var/turf in temporary_list)
+			var/turf/listed_turf = turf
+			if(istype(listed_turf, /turf/open/openspace))
+				cached_openspace = TRUE
+				continue
+	return cached_openspace
+
 /datum/liquid_group/proc/process_member(turf/member)
 	var/list/adjacent_turfs  = list()
 	if(!length(cached_adjacent_turfs[member]))
-		cached_adjacent_turfs |= member
-		var/list/temporary_list = member.GetAtmosAdjacentTurfs()
-		cached_adjacent_turfs[member] = temporary_list
-
+		if(!build_liquid_cache(member))
+			should_skip = TRUE
+	if(should_skip)
+		return
 	adjacent_turfs |= cached_adjacent_turfs[member]
 
 	for(var/tur in adjacent_turfs)
