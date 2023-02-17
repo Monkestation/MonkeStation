@@ -372,7 +372,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoke_all = TRUE
 
 /obj/item/clothing/mask/cigarette/rollie/Initialize(mapload)
-		name = pick(list(
+	name = pick(list(
 		"bifta",
 		"bifter",
 		"bird",
