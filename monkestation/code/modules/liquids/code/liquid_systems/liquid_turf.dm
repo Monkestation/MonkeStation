@@ -8,7 +8,6 @@
 		return
 	if(!liquids.liquid_group)
 		liquids.liquid_group = new(1, liquids)
-	SSliquids.add_active_turf(src)
 
 /turf/proc/liquid_update_turf()
 	if(!liquids)
@@ -23,8 +22,6 @@
 			var/turf/T = get_step(src, direction)
 			if(!T.liquids)
 				return
-
-	SSliquids.add_active_turf(src)
 
 /turf/proc/add_liquid_from_reagents(datum/reagents/giver, no_react = FALSE)
 	var/list/compiled_list = list()
@@ -55,11 +52,3 @@
 	liquids.liquid_group.add_reagent(liquids, reagent, amount)
 	//Expose turf
 	liquids.liquid_group.expose_members_turf(liquids)
-
-/turf/proc/process_liquid_cell()
-	if(!liquids)
-		SSliquids.remove_active_turf(src)
-		return
-	if(QDELETED(liquids)) //Liquids may be deleted in process cell
-		SSliquids.remove_active_turf(src)
-		return

@@ -48,8 +48,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/cached_edge_turfs = list()
 	///list of cached adjacent turfs for each member
 	var/list/cached_adjacent_turfs = list()
-	///should we bother processing members?
-	var/should_skip = FALSE
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -88,13 +86,9 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	updated_total = TRUE
 	if(group_color)
 		T.liquids.color = group_color
-	SSliquids.currentrun_active_turfs |= T
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T)
-	if(SSliquids.currentrun_active_turfs[T])
-		SSliquids.currentrun_active_turfs -= T
-	SSliquids.remove_active_turf(T)
 
 	if(cached_adjacent_turfs[T])
 		cached_adjacent_turfs -= T
@@ -229,33 +223,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				cached_openspace = TRUE
 				continue
 	return cached_openspace
-
-/datum/liquid_group/proc/process_member(turf/member)
-	var/list/adjacent_turfs  = list()
-	if(!length(cached_adjacent_turfs[member]))
-		if(!build_liquid_cache(member))
-			should_skip = TRUE
-	if(should_skip)
-		return
-	adjacent_turfs |= cached_adjacent_turfs[member]
-
-	for(var/tur in adjacent_turfs)
-		var/turf/adjacent_turf = pick(adjacent_turfs)
-		if(!adjacent_turf)
-			continue
-		adjacent_turfs -= adjacent_turf
-		if(member.z != adjacent_turf.z)
-			if(member.z != adjacent_turf.z)
-				var/turf/Z_turf_below = SSmapping.get_turf_below(member)
-				if(adjacent_turf == Z_turf_below)
-					if(!(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group != member.liquids.liquid_group && adjacent_turf.liquids.liquid_group.expected_turf_height >= LIQUID_HEIGHT_CONSIDER_FULL_TILE))
-						member.liquids.liquid_group.transfer_reagents_to_secondary_group(member.liquids, adjacent_turf.liquids)
-						. = TRUE
-				continue
-		. = TRUE
-
-		if(!SSliquids.active_turfs[adjacent_turf] && adjacent_turf.liquids)
-			SSliquids.add_active_turf(adjacent_turf)
 
 /datum/liquid_group/proc/process_turf_disperse()
 	if(!total_reagent_volume)
@@ -724,7 +691,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(return_list)
 		return connected_liquids
 
-	SSliquids.currentrun_active_turfs = list()
 	return TRUE
 
 ///EXPOSURE AND SPREADING
