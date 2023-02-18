@@ -393,10 +393,10 @@ Behavior that's still missing from this component that original food items had t
 			eater.visible_message("<span class='warning'>[feeder] cannot force any more of [parent] down [eater]'s throat!</span>", \
 									"<span class='warning'>[feeder] cannot force any more of [parent] down your throat!</span>")
 			return
-		if(!do_mob(feeder, eater)) //Wait 3 seconds before you can feed
+		if(!do_mob(feeder, eater, show_to_world = TRUE, add_image = owner.appearance)) //Wait 3 seconds before you can feed
 			return
 
-		if(IsFoodGone(owner, feeder, show_to_world = TRUE, add_image = owner.appearance))
+		if(IsFoodGone(owner, feeder))
 			return
 
 		log_combat(feeder, eater, "fed", owner.reagents.log_list())
