@@ -195,6 +195,7 @@
 	plane = RUNECHAT_PLANE
 	layer = FLY_LAYER
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	name = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	base_pixel_y = 20
 	pixel_y = 20
@@ -334,6 +335,7 @@
 	base_pixel_y = 20
 	pixel_y = 20
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	name = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/additional_image
@@ -341,6 +343,7 @@
 	base_pixel_y = 36
 	pixel_y = 36
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	name = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/border_accessory
@@ -348,6 +351,7 @@
 	base_pixel_y = 20
 	pixel_y = 20
 	appearance_flags = RESET_ALPHA | RESET_COLOR | RESET_TRANSFORM | KEEP_APART | TILE_BOUND
+	name = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /proc/machine_do_after_visable(atom/source, delay, progress = TRUE, border_look = "border", border_look_accessory, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, image/add_image, has_outline = TRUE, y_multiplier = 1)
