@@ -39,9 +39,6 @@ SUBSYSTEM_DEF(liquids)
 	if(active_groups.len)
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
-			if(length(LG.burning_members))
-				for(var/turf/burning_turf in LG.burning_members)
-					LG.process_spread(burning_turf)
 
 			LG.process_cached_edges()
 			LG.process_group()

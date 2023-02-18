@@ -109,7 +109,6 @@
 				name = "The True Hat Tower"
 				desc = "<span class='narsiesmall'>AFTER NINE YEARS IN DEVELOPMENT, HOPEFULLY IT WILL HAVE BEEN WORTH THE WAIT</span>"
 
-	worn_overlays() //This is where the actual worn icon is generated
 	user.update_inv_head() //Regenerate the wearer's head appearance so that they have real-time hat updates.
 
 

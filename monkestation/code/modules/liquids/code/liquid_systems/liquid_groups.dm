@@ -46,8 +46,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/merging = FALSE
 	///list of cached edge turfs with a sublist of directions stored
 	var/list/cached_edge_turfs = list()
-	///list of cached adjacent turfs for each member
-	var/list/cached_adjacent_turfs = list()
+	///list of cached spreadable turfs for each burning member
+	var/list/cached_fire_spreads = list()
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -89,9 +89,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/remove_from_group(turf/T)
-
-	if(cached_adjacent_turfs[T])
-		cached_adjacent_turfs -= T
 
 	if(burning_members[T])
 		burning_members -= T
@@ -210,19 +207,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/member in members)
 			member.liquids.set_new_liquid_state(group_overlay_state)
 			member.liquid_height = expected_turf_height + member.turf_height
-
-/datum/liquid_group/proc/build_liquid_cache(turf/member)
-	var/cached_openspace = FALSE
-	cached_adjacent_turfs |= member
-	var/list/temporary_list = member.GetAtmosAdjacentTurfs()
-	cached_adjacent_turfs[member] = temporary_list
-	if(!cached_openspace)
-		for(var/turf in temporary_list)
-			var/turf/listed_turf = turf
-			if(istype(listed_turf, /turf/open/openspace))
-				cached_openspace = TRUE
-				continue
-	return cached_openspace
 
 /datum/liquid_group/proc/process_turf_disperse()
 	if(!total_reagent_volume)
@@ -484,10 +468,26 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	burning_members |= member
 	SSliquids.burning_turfs |= member
 
+/datum/liquid_group/proc/build_fire_cache(turf/burning_member)
+	cached_fire_spreads |= burning_member
+	var/list/directions = list(NORTH, SOUTH, EAST, WEST)
+	var/list/spreading_turfs = list()
+	for(var/dir in directions)
+		var/turf/open/open_adjacent = get_step(burning_member, dir)
+		if(!open_adjacent || !open_adjacent.liquids)
+			continue
+		spreading_turfs |= open_adjacent
+
+	cached_fire_spreads[burning_member] = spreading_turfs
+
 /datum/liquid_group/proc/process_spread(turf/member)
 	if(member.liquids.fire_state <= LIQUID_FIRE_STATE_MEDIUM) // fires to small to worth spreading
 		return
-	for(var/turf/adjacent_turf in get_adjacent_open_turfs(member))
+
+	if(!cached_fire_spreads[member])
+		build_fire_cache(member)
+
+	for(var/turf/open/adjacent_turf in cached_fire_spreads[member])
 		if(adjacent_turf.liquids && adjacent_turf.liquids.liquid_group == src && adjacent_turf.liquids.fire_state < member.liquids.fire_state)
 			adjacent_turf.liquids.fire_state = group_fire_state
 			member.liquids.set_fire_effect()

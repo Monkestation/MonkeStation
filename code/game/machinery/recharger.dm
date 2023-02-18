@@ -2,6 +2,7 @@
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger"
+	base_icon_state = "recharger"
 	desc = "A charging dock for energy based weaponry."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
@@ -95,7 +96,8 @@
 		return 1
 
 	if(anchored && !charging)
-		if(default_deconstruction_screwdriver(user, "rechargeropen", "recharger0", G))
+		if(default_deconstruction_screwdriver(user, "recharger", "recharger", G))
+			update_appearance()
 			return
 
 		if(panel_open && G.tool_behaviour == TOOL_CROWBAR)
