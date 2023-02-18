@@ -34,15 +34,15 @@
 	var/looping = TRUE
 	var/speed_mult = 1
 	while(looping)
-		if(do_after(user, W.pull_effort * speed_mult))
-			if(speed_mult >= 0.2)
-				speed_mult -= 0.05
-			if(W.amount >= FABRIC_PER_SHEET)
-				new W.loom_result(drop_location())
-				W.use(FABRIC_PER_SHEET)
-				user.show_message("<span class='notice'>You weave \the [W.name] into a workable fabric.</span>", MSG_VISUAL)
-			else
-				looping = FALSE
+		if(!do_after(user, W.pull_effort * speed_mult))
+			looping = FALSE
+			return
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
+		if(W.amount >= FABRIC_PER_SHEET)
+			new W.loom_result(drop_location())
+			W.use(FABRIC_PER_SHEET)
+			user.show_message("<span class='notice'>You weave \the [W.name] into a workable fabric.</span>", MSG_VISUAL)
 	return TRUE
 
 #undef FABRIC_PER_SHEET
