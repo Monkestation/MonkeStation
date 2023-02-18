@@ -1067,7 +1067,7 @@
 	var/looping = TRUE
 	var/speed_mult = 1
 	while(looping)
-		if(!do_after(living, 2 SECONDS * speed_mult, target = living) || ant_covered.ants_remaining >= 0)
+		if(!do_after(living, 2 SECONDS * speed_mult, target = living))
 			looping = FALSE
 			return
 		if(speed_mult >= 0.2)
@@ -1075,6 +1075,9 @@
 		for (var/datum/status_effect/ants/ant_covered in living.status_effects)
 			to_chat(living, "<span class='notice'>You manage to get some of the ants off!</span>")
 			ant_covered.ants_remaining -= 10 // 5 Times more ants removed per second than just waiting in place
+			if(ant_covered.ants_remaining >= 0)
+				looping = FALSE
+				return
 
 /datum/status_effect/ghoul
 	id = "ghoul"
