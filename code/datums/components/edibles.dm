@@ -361,7 +361,7 @@ Behavior that's still missing from this component that original food items had t
 	if(eater == feeder)//If you're eating it yourself.
 		if(HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			eat_time = eat_time * 0.5
-		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
+		if(!do_mob(feeder, eater, eat_time, show_to_world = TRUE, add_image = owner.appearance)) //Gotta pass the minimal eat time
 			return
 		if(IsFoodGone(owner, feeder))
 			return
@@ -396,7 +396,7 @@ Behavior that's still missing from this component that original food items had t
 		if(!do_mob(feeder, eater)) //Wait 3 seconds before you can feed
 			return
 
-		if(IsFoodGone(owner, feeder))
+		if(IsFoodGone(owner, feeder, show_to_world = TRUE, add_image = owner.appearance))
 			return
 
 		log_combat(feeder, eater, "fed", owner.reagents.log_list())

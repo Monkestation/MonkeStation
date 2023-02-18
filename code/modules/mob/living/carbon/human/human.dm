@@ -564,12 +564,17 @@
 	if(C == src)
 		to_chat(src, span_notice("You can't perform CPR on yourself"))
 
-	if(C.cpr_time < world.time + 30)
+	var/looping = TRUE
+	var/speed_mult = 1
+	while(looping)
 		visible_message("<span class='notice'>[src] is trying to perform CPR on [C.name]!</span>", \
 						"<span class='notice'>You try to perform CPR on [C.name]... Hold still!</span>")
-		if(!do_mob(src, C))
+		if(!do_mob(src, C, 3 SECONDS * speed_mult, show_to_world = TRUE))
 			to_chat(src, "<span class='warning'>You fail to perform CPR on [C]!</span>")
-			return 0
+			looping = FALSE
+			return FALSE
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
 
 		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
@@ -579,7 +584,6 @@
 
 		src.visible_message("[src] performs CPR on [C.name]!", "<span class='notice'>You perform CPR on [C.name].</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
-		C.cpr_time = world.time
 		log_combat(src, C, "CPRed")
 
 		if(they_breathe && they_lung)

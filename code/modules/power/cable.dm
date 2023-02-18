@@ -555,13 +555,18 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 	if(affecting && (!IS_ORGANIC_LIMB(affecting)))
-		if(user == H)
-			user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [parse_zone(affecting.body_zone)].</span>", "<span class='notice'>You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [parse_zone(affecting.body_zone)].</span>")
-			if(!do_mob(user, H, 50))
-				return
-		if(item_heal_robotic(H, user, 0, 15))
-			use(1)
-		return
+		var/looping = TRUE
+		var/speed_mult = 1
+		while(looping)
+			if(user == H)
+				user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [parse_zone(affecting.body_zone)].</span>", "<span class='notice'>You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [parse_zone(affecting.body_zone)].</span>")
+				if(!do_mob(user, H, 3 SECONDS * speed_mult) || !affecting.brute_dam)
+					looping = FALSE
+					return
+				if(speed_mult >= 0.25)
+					speed_mult -= 0.03
+			if(item_heal_robotic(H, user, 0, 15))
+				use(1)
 	else
 		return ..()
 

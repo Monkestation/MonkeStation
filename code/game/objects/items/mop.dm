@@ -45,7 +45,7 @@
 			to_chat(user, "<span class='warning'>Your mop can't absorb any more!</span>")
 			looping = FALSE
 			return TRUE
-		if(do_after(user, src.mopspeed * speed_mult, target = T))
+		if(do_after(user, src.mopspeed * speed_mult, target = T, add_image = src.appearance, show_to_world = TRUE))
 			if(the_mop.reagents.total_volume == the_mop.mopcap)
 				to_chat(user, "<span class='warning'>Your [src.name] can't absorb any more!</span>")
 				return TRUE
