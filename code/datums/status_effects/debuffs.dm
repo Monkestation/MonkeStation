@@ -1067,7 +1067,7 @@
 	var/looping = TRUE
 	var/speed_mult = 1
 	while(looping)
-		if(!do_after(living, 2 SECONDS * speed_mult, target = living) || ants_remaining >= 0)
+		if(!do_after(living, 2 SECONDS * speed_mult, target = living) || ant_covered.ants_remaining >= 0)
 			looping = FALSE
 			return
 		if(speed_mult >= 0.2)
