@@ -1064,11 +1064,17 @@
 	if(!istype(living) || !living.can_resist() || living != owner)
 		return
 	to_chat(living, "<span class='notice'>You start to shake the ants off!</span>")
-	if(!do_after(living, 2 SECONDS, target = living))
-		return
-	for (var/datum/status_effect/ants/ant_covered in living.status_effects)
-		to_chat(living, "<span class='notice'>You manage to get some of the ants off!</span>")
-		ant_covered.ants_remaining -= 10 // 5 Times more ants removed per second than just waiting in place
+	var/looping = TRUE
+	var/speed_mult = 1
+	while(looping)
+		if(!do_after(living, 2 SECONDS * speed_mult, target = living) || ants_remaining >= 0)
+			looping = FALSE
+			return
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.1
+		for (var/datum/status_effect/ants/ant_covered in living.status_effects)
+			to_chat(living, "<span class='notice'>You manage to get some of the ants off!</span>")
+			ant_covered.ants_remaining -= 10 // 5 Times more ants removed per second than just waiting in place
 
 /datum/status_effect/ghoul
 	id = "ghoul"
