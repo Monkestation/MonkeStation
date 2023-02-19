@@ -564,7 +564,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 					looping = FALSE
 					return
 				if(speed_mult >= 0.25)
-					speed_mult -= 0.2
+					speed_mult -= 0.15
 			if(item_heal_robotic(H, user, 0, 15))
 				use(1)
 	else
