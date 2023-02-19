@@ -138,6 +138,10 @@
 					if(speed_mult >= 0.25)
 						speed_mult -= 0.03
 				item_heal_robotic(H, user, 15, 0)
+
+			else
+				looping = FALSE
+				return
 	else
 		return ..()
 
