@@ -277,7 +277,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
-	reagents.remove_any(amount, no_react)
+	reagents.remove_any(amount, TRUE)
 	if(remover)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
