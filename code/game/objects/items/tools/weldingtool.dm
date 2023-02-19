@@ -136,7 +136,7 @@
 						looping = FALSE
 						return
 					if(speed_mult >= 0.25)
-						speed_mult -= 0.03
+						speed_mult -= 0.2
 				item_heal_robotic(H, user, 15, 0)
 
 			else
