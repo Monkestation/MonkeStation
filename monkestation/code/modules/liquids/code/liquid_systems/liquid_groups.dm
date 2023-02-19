@@ -173,6 +173,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
 		total_reagent_volume = reagents.total_volume
+		reagents.handle_reactions()
 
 		if(!total_reagent_volume || !members)
 			return
@@ -276,7 +277,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
-	reagents.remove_any(amount)
+	reagents.remove_any(amount, no_react)
 	if(remover)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
@@ -288,7 +289,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		qdel(src)
 
 /datum/liquid_group/proc/remove_specific(obj/effect/abstract/liquid_turf/remover, amount, datum/reagent/reagent_type)
-	reagents.remove_reagent(reagent_type.type, amount)
+	reagents.remove_reagent(reagent_type.type, amount, no_react = TRUE)
 	if(remover)
 		check_liquid_removal(remover, amount)
 	updated_total = TRUE
@@ -306,18 +307,18 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	member.liquid_group = new(1, member)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
-		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount)
+		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount, no_react = TRUE)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 
 /datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list, chem_temp)
-	reagents.add_reagent_list(reagent_list)
+	reagents.add_reagent_list(reagent_list, no_react = TRUE)
 	handle_temperature(total_reagent_volume, chem_temp)
 
 	handle_visual_changes()
 	process_group()
 
 /datum/liquid_group/proc/add_reagent(obj/effect/abstract/liquid_turf/member, datum/reagent/reagent, amount, temperature)
-	reagents.add_reagent(reagent, amount, temperature)
+	reagents.add_reagent(reagent, amount, temperature, no_react = TRUE)
 	handle_temperature(total_reagent_volume, temperature)
 
 	handle_visual_changes()
@@ -331,7 +332,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!transfer.liquid_group)
 		transfer.liquid_group = new(1, transfer)
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
-		transfer.liquid_group.reagents.add_reagent(reagent_type.type, remove_amount)
+		transfer.liquid_group.reagents.add_reagent(reagent_type.type, remove_amount, no_react = TRUE)
 		remove_specific(amount = remove_amount, reagent_type = reagent_type)
 		total_removed += remove_amount
 	check_liquid_removal(member, total_removed)
