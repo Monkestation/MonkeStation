@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(liquids)
 				LG.process_turf_disperse()
 			for(var/t in evaporation_queue)
 				if(!prob(EVAPORATION_CHANCE))
-					evaporation_queue -= T
+					evaporation_queue -= t
 					continue
 				var/turf/T = t
 				if(T.liquids)
