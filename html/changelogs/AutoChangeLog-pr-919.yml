@@ -1,4 +1,0 @@
-author: dwasint
-delete-after: true
-changes:
-  - code_imp: invoke_async is now improved

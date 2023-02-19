@@ -3770,6 +3770,7 @@
 #include "monkestation\code\game\objects\items\stickables.dm"
 #include "monkestation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "monkestation\code\game\objects\items\circuitboards\machine_circuitboards.dm"
+#include "monkestation\code\game\objects\items\devices\traitordevices.dm"
 #include "monkestation\code\game\objects\items\grenades\monkey_barrel.dm"
 #include "monkestation\code\game\objects\items\implants\implant_hard_spear.dm"
 #include "monkestation\code\game\objects\items\melee\misc.dm"
