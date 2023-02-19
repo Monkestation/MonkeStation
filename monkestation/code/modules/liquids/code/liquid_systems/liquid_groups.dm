@@ -48,6 +48,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/cached_edge_turfs = list()
 	///list of cached spreadable turfs for each burning member
 	var/list/cached_fire_spreads = list()
+	///list of old reagents
+	var/list/cached_reagent_list = list()
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -367,10 +369,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/handle_visual_changes()
 	var/new_color
+	var/old_color = group_color
+
 	if(GLOB.liquid_debug_colors)
 		new_color = color
-	else
+	else if(cached_reagent_list.len != reagents.reagent_list.len)
 		new_color = mix_color_from_reagent_list(reagents.reagent_list)
+		cached_reagent_list = list()
+		cached_reagent_list |= reagents.reagent_list
 
 	var/alpha_setting = 1
 	var/alpha_divisor = 1
@@ -380,8 +386,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		alpha_setting += max((R.opacity * R.volume), 1)
 		alpha_divisor += max((1 * R.volume), 1)
 
+	var/old_alpha = group_alpha
 	group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
 	group_color = new_color
+	if(new_color == old_color && group_alpha == old_alpha)
+		return
 	for(var/turf/member in members)
 		member.liquids.alpha = group_alpha
 		member.liquids.color = group_color

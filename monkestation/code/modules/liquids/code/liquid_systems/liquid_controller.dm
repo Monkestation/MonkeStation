@@ -37,11 +37,16 @@ SUBSYSTEM_DEF(liquids)
 			unvalidated_turf.assume_self()
 
 	if(active_groups.len)
+		var/populate_evaporation = FALSE
+		if(!evaporation_queue.len)
+			populate_evaporation = TRUE
 		for(var/g in active_groups)
 			var/datum/liquid_group/LG = g
 
 			LG.process_cached_edges()
 			LG.process_group()
+			if(populate_evaporation && LG.expected_turf_height >= LIQUID_STATE_ANKLES)
+				evaporation_queue |= LG.members
 		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_EVAPORATION && !debug_evaporation)
@@ -54,12 +59,12 @@ SUBSYSTEM_DEF(liquids)
 				LG.check_dead()
 				LG.process_turf_disperse()
 			for(var/t in evaporation_queue)
+				if(!prob(EVAPORATION_CHANCE))
+					evaporation_queue -= T
+					continue
 				var/turf/T = t
 				if(T.liquids)
-					if(prob(EVAPORATION_CHANCE))
-						T.liquids.process_evaporation()
-				else
-					evaporation_queue -= T
+					T.liquids.process_evaporation()
 
 	if(run_type == SSLIQUIDS_RUN_TYPE_FIRE)
 		fire_counter++
