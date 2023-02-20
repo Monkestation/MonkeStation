@@ -159,16 +159,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(group_temperature != reagents.chem_temp)
 		reagents.chem_temp = group_temperature
 
-	var/new_color
-	if(GLOB.liquid_debug_colors)
-		group_color = color
-	else
-		new_color = mix_color_from_reagent_list(reagents.reagent_list)
-
-	if(new_color != old_color)
-		for(var/turf/member in members)
-			member.liquids.color = new_color
-			group_color = new_color
+	handle_visual_changes()
 
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
@@ -179,19 +170,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 			return
 
 		reagents_per_turf = total_reagent_volume / length(members)
-		//alpha stuff
-		var/alpha_setting = 1
-		var/alpha_divisor = 1
-
-		for(var/r in reagents.reagent_list)
-			var/datum/reagent/R = r
-			alpha_setting += max((R.opacity * R.volume), 1)
-			alpha_divisor += max((1 * R.volume), 1)
-
-		if(round(group_alpha, 1) != clamp(round(alpha_setting / alpha_divisor, 1), 1, 255))
-			group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
-			for(var/turf/member in members)
-				member.liquids.alpha = group_alpha
 
 	expected_turf_height = CEILING(reagents_per_turf, 1) / LIQUID_HEIGHT_DIVISOR
 	var/old_overlay = group_overlay_state
@@ -388,10 +366,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		alpha_divisor += max((1 * R.volume), 1)
 
 	var/old_alpha = group_alpha
-	group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
-	group_color = new_color
 	if(new_color == old_color && group_alpha == old_alpha)
 		return
+	group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
+	group_color = new_color
 	for(var/turf/member in members)
 		member.liquids.alpha = group_alpha
 		member.liquids.color = group_color
