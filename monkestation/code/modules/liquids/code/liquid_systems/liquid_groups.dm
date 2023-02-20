@@ -154,7 +154,6 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!members || !members.len) // this ideally shouldn't exist, ideally groups would die before they got to this point but alas here we are
 		check_dead()
 		return
-	var/old_color = group_color
 
 	if(group_temperature != reagents.chem_temp)
 		reagents.chem_temp = group_temperature
@@ -251,7 +250,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		var/turf/remover_turf = remover.my_turf
 		qdel(remover)
 		try_split(remover_turf)
-		check_edges(remover_turf)
+
+		for(var/dir in GLOB.cardinals)
+			var/turf/open/open_turf = get_step(remover_turf, dir)
+			if(!isopenturf(open_turf) || !open_turf.liquids)
+				continue
+			check_edges(open_turf)
 	process_group()
 
 /datum/liquid_group/proc/remove_any(obj/effect/abstract/liquid_turf/remover, amount)
@@ -435,7 +439,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 
 		for(var/turf/remover in removed_turf)
-			check_edges(remover)
+			for(var/dir in GLOB.cardinals)
+				var/turf/open/open_turf = get_step(remover, dir)
+				if(!isopenturf(open_turf) || !open_turf.liquids)
+					continue
+				check_edges(open_turf)
 
 		while(removed_turf.len)
 			var/turf/picked_turf = pick(removed_turf)
@@ -652,8 +660,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	new_group.members += connected_liquids
 
 	for(var/turf/connected_liquid in connected_liquids)
-		if(connected_liquid in cached_edge_turfs)
-			new_group.cached_edge_turfs |= connected_liquid
+		new_group.check_edges(connected_liquid)
+
 		if(connected_liquid in burning_members)
 			new_group.burning_members |= connected_liquid
 		remove_from_group(connected_liquid, TRUE)
