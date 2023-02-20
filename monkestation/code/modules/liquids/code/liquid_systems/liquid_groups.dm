@@ -370,7 +370,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		alpha_divisor += max((1 * R.volume), 1)
 
 	var/old_alpha = group_alpha
-	if(new_color == old_color && group_alpha == old_alpha)
+	if(new_color == old_color && group_alpha == old_alpha || !new_color)
 		return
 	group_alpha = clamp(round(alpha_setting / alpha_divisor, 1), 120, 255)
 	group_color = new_color
@@ -582,7 +582,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		for(var/turf/adjacent_turf in get_adjacent_open_turfs(queued_turf))
 			if(!adjacent_turf.liquids || !members[adjacent_turf])
 				continue
-
+			if(!(adjacent_turf in queued_turf.atmos_adjacent_turfs)) //i hate that this is needed
+				continue
 			visited_length = length(previously_visited)
 			previously_visited["[adjacent_turf.liquids.x]_[adjacent_turf.liquids.y]"] = adjacent_turf.liquids
 			if(length(previously_visited) != visited_length)

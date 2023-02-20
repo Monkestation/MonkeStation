@@ -45,8 +45,9 @@ SUBSYSTEM_DEF(liquids)
 
 			LG.process_cached_edges()
 			LG.process_group()
-			if(populate_evaporation && LG.expected_turf_height >= LIQUID_STATE_ANKLES)
-				for(var/turf/listed_turf in LG.members)
+			if(populate_evaporation && LG.expected_turf_height < LIQUID_STATE_ANKLES)
+				for(var/tur in LG.members)
+					var/turf/listed_turf = tur
 					evaporation_queue |= listed_turf
 		run_type = SSLIQUIDS_RUN_TYPE_EVAPORATION
 
