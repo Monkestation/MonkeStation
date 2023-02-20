@@ -132,11 +132,11 @@
 				if(user == H)
 					user.visible_message("<span class='notice'>[user] starts to fix some of the dents on [H]'s [parse_zone(affecting.body_zone)].</span>",
 						"<span class='notice'>You start fixing some of the dents on [H == user ? "your" : "[H]'s"] [parse_zone(affecting.body_zone)].</span>")
-					if(!do_mob(user, H, 3 SECONDS * speed_mult) || !affecting.brute_dam)
-						looping = FALSE
-						return
-					if(speed_mult >= 0.25)
-						speed_mult -= 0.2
+				if(!do_mob(user, H, 3 SECONDS * speed_mult) || !affecting.brute_dam)
+					looping = FALSE
+					return
+				if(speed_mult >= 0.25)
+					speed_mult -= 0.15
 				item_heal_robotic(H, user, 15, 0)
 
 			else
