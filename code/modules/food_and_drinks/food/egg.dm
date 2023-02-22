@@ -55,10 +55,9 @@
 		new /obj/effect/decal/cleanable/food/egg_smudge(T)
 		if(prob(13)) //Roughly a 1/8 (12.5%) chance to make a chick, as in Minecraft. I decided not to include the chances for the creation of multiple chicks from the impact of one egg, since that'd probably require nested prob()s or something (and people might think that it was a bug, anyway).
 			if(chick_count < 5) //Chicken code uses this MAX_CHICKENS variable, so I figured that I'd use it again here. Even this check and the check in chicken code both use the MAX_CHICKENS variable, they use independent counter variables and thus are independent of each other.
-				new /mob/living/simple_animal/chick(T)
+				pre_hatch()
 				chick_count++
 		reagents.reaction(hit_atom, TOUCH)
-		qdel(src)
 
 /obj/item/food/egg/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
