@@ -50,6 +50,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/cached_fire_spreads = list()
 	///list of old reagents
 	var/list/cached_reagent_list = list()
+	///cached temperature between turfs recalculated on group_process
+	var/cached_temperature_shift = 0
 
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
@@ -159,6 +161,14 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		reagents.chem_temp = group_temperature
 
 	handle_visual_changes()
+
+
+	var/turf/open/open_turf = pick(members)
+	var/datum/gas_mixture/math_cache = open_turf.air
+
+	if(math_cache)
+		if(group_temperature != math_cache.return_temperature())
+			cached_temperature_shift =((math_cache.return_temperature() * math_cache.total_moles()) + ((group_temperature * total_reagent_volume) * 0.025)) / ((total_reagent_volume * 0.025) + math_cache.total_moles())
 
 	if(total_reagent_volume != reagents.total_volume || updated_total)
 		updated_total = FALSE
@@ -294,15 +304,18 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 /datum/liquid_group/proc/add_reagents(obj/effect/abstract/liquid_turf/member, reagent_list, chem_temp)
 	reagents.add_reagent_list(reagent_list, no_react = TRUE)
-	handle_temperature(total_reagent_volume, chem_temp)
 
+	var/amount = 0
+	for(var/list_item in reagent_list)
+		amount += reagent_list[list_item]
+	handle_temperature(amount, chem_temp)
 	handle_visual_changes()
 	process_group()
 
 /datum/liquid_group/proc/add_reagent(obj/effect/abstract/liquid_turf/member, datum/reagent/reagent, amount, temperature)
 	reagents.add_reagent(reagent, amount, temperature, no_react = TRUE)
-	handle_temperature(total_reagent_volume, temperature)
 
+	handle_temperature(amount, temperature)
 	handle_visual_changes()
 	process_group()
 
@@ -341,13 +354,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	process_group()
 
 /datum/liquid_group/proc/handle_temperature(previous_reagents, temp)
-	var/old_thermal = previous_reagents * group_temperature
-	var/recieved_thermal = (total_reagent_volume - previous_reagents) * temp
-
-	if(!total_reagent_volume)
-		return
-
-	group_temperature = (recieved_thermal + old_thermal) / total_reagent_volume
+	var/baseline_temperature = ((total_reagent_volume * group_temperature) + (previous_reagents * temp)) / (total_reagent_volume + previous_reagents)
+	group_temperature = baseline_temperature
 	reagents.chem_temp = group_temperature
 
 /datum/liquid_group/proc/handle_visual_changes()
@@ -805,3 +813,25 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				var/mob/living/target_living = target_atom
 				target_living.Paralyze(6 SECONDS)
 				to_chat(target_living, span_danger("You are knocked down by the currents!"))
+
+/datum/liquid_group/proc/fetch_temperature_queue()
+	if(!cached_temperature_shift)
+		return list()
+
+	var/list/returned =  list()
+	for(var/tur in members)
+		var/turf/open/member = tur
+		returned |= member
+
+	return returned
+
+/datum/liquid_group/proc/act_on_queue(turf/member)
+	var/turf/open/member_open = member
+	var/datum/gas_mixture/gas = member_open.air
+	if(!gas)
+		return
+
+	if((cached_temperature_shift > group_temperature + 5) || cached_temperature_shift > gas.return_temperature() + 5 || gas.return_temperature() + 5  > cached_temperature_shift || group_temperature + 5 > cached_temperature_shift)
+		gas.set_temperature(cached_temperature_shift)
+		if(group_temperature != cached_temperature_shift)
+			group_temperature = cached_temperature_shift
