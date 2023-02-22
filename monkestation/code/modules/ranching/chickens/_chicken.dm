@@ -263,7 +263,7 @@
 
 /mob/living/simple_animal/chicken/attack_hand(mob/living/carbon/human/user)
 	..()
-	if(stat = DEAD)
+	if(stat == DEAD)
 		return
 	if(user.a_intent == "help" && likes_pets && max_happiness_per_generation >= 3)
 		adjust_happiness(1, user)
