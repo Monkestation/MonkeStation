@@ -312,6 +312,9 @@
 "aU" = (
 /obj/structure/table/reinforced,
 /obj/item/pen/blue,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/turretedoutpost)
 "aV" = (

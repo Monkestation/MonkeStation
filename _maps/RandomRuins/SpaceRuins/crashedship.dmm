@@ -21,6 +21,12 @@
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plating/asteroid/airless,
 /area/awaymission/BMPship)
+"bu" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/awaymission/BMPship/Aft)
 "bS" = (
 /obj/item/shard{
 	icon_state = "medium"
@@ -4534,7 +4540,7 @@ Br
 lA
 lA
 lA
-lA
+bu
 kC
 lA
 qq

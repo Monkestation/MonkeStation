@@ -375,6 +375,12 @@
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating/asteroid,
 /area/ruin/powered/clownplanet)
+"ck" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/engine,
+/area/ruin/powered/clownplanet)
 
 (1,1,1) = {"
 aa
@@ -692,7 +698,7 @@ ae
 ae
 ac
 ah
-ag
+ck
 aN
 aL
 aj

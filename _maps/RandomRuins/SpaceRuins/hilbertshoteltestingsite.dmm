@@ -202,6 +202,15 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/unpowered/no_grav)
+"M" = (
+/obj/structure/table/glass,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/grimy{
+	icon_state = "engine"
+	},
+/area/ruin/space/has_grav/hilbertresearchfacility)
 "U" = (
 /turf/open/floor/plasteel/stairs/medium{
 	initial_gas_mix = "TEMP=2.7"
@@ -756,7 +765,7 @@ g
 q
 g
 y
-g
+M
 f
 e
 f

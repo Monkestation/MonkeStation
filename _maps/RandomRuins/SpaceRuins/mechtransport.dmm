@@ -79,6 +79,9 @@
 /area/ruin/space/has_grav/powered/mechtransport)
 "u" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
 /turf/open/floor/mineral/titanium/airless,
 /area/ruin/space/has_grav/powered/mechtransport)
 "v" = (

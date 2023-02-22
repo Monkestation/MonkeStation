@@ -372,6 +372,12 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"hN" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/djstation)
 "Co" = (
 /obj/machinery/door/airlock/external{
 	name = "Ruskie DJ Station"
@@ -539,7 +545,7 @@ ac
 ac
 ac
 ag
-ah
+hN
 ah
 ah
 am

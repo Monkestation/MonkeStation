@@ -5194,6 +5194,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
+"Qc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/ancientstation/engi)
 "Ql" = (
 /obj/machinery/door/airlock,
 /turf/open/floor/plating,
@@ -6557,7 +6565,7 @@ em
 fF
 gl
 em
-em
+Qc
 hP
 em
 iw
