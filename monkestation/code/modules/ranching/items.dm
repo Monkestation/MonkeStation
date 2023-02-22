@@ -313,7 +313,7 @@
 		if(contained_egg.datum_flags & DF_ISPROCESSING)
 			continue
 		if(!contained_egg.layer_hen_type)
-			layer_hen_type = /mob/living/simple_animal/chicken
+			contained_egg.layer_hen_type = /mob/living/simple_animal/chicken
 		START_PROCESSING(SSobj, contained_egg)
 		flop_animation(contained_egg)
 		contained_egg.desc = "You can hear pecking from the inside of this seems it may hatch soon."
