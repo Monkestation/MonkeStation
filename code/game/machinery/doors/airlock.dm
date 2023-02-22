@@ -302,7 +302,7 @@
 	if(locked || protected_door)
 		return
 	set_bolt(TRUE)
-	playsound(src, boltDown, 30, 0, 3)
+	playsound(src, boltDown, 30, 0, 3, mixer_channel = CHANNEL_MACHINERY)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
 	update_icon()
 
@@ -321,7 +321,7 @@
 	if(!locked)
 		return
 	set_bolt(FALSE)
-	playsound(src,boltUp,30,0,3)
+	playsound(src,boltUp,30,0,3, mixer_channel = CHANNEL_MACHINERY)
 	audible_message("<span class='italics'>You hear a click from the bottom of the door.</span>", null,  1)
 	update_icon()
 
@@ -870,7 +870,7 @@
 	if(ishuman(user) && prob(40) && density)
 		var/mob/living/carbon/human/H = user
 		if((HAS_TRAIT(H, TRAIT_DUMB)) && Adjacent(user))
-			playsound(src, 'sound/effects/bang.ogg', 25, TRUE)
+			playsound(src, 'sound/effects/bang.ogg', 25, TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
 				H.visible_message("<span class='danger'>[user] headbutts the airlock.</span>", \
 									"<span class='userdanger'>You headbutt the airlock!</span>")
@@ -1192,7 +1192,7 @@
 		var/time_to_open = 5
 		if(hasPower() && !prying_so_hard)
 			time_to_open = 50
-			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE , mixer_channel = CHANNEL_SOUND_EFFECTS) //is it aliens or just the CE being a dick?
 			prying_so_hard = TRUE
 			if(do_after(user, time_to_open, TRUE, src))
 				open(2)
@@ -1208,10 +1208,10 @@
 	if(fake.uses)
 		if(check_access_list(fake.access))
 			user.visible_message("<span class='warning'>[user] starts fumbling at \the [src] with a piece of paper!</span>", "<span class='userwarning'>You start swiping \the [fake] in \the [src]!</span>")
-			playsound(src, 'sound/items/handling/paper_pickup.ogg', 100, TRUE)
+			playsound(src, 'sound/items/handling/paper_pickup.ogg', 100, TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 			if(do_after(user, 50, TRUE, src))
 				if(open()) //only take a use away if the door actually opens
-					playsound(src, 'sound/items/poster_ripped.ogg', 100, TRUE)
+					playsound(src, 'sound/items/poster_ripped.ogg', 100, TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 					fake.used()
 					if(fake.uses == 0)
 						to_chat(user, "<span class='warning'>It's no good, this ID is so torn up it won't fit in another door.</span>")
@@ -1248,12 +1248,12 @@
 			return FALSE
 		if(!protected_door)
 			use_power(50)
-		playsound(src, doorOpen, 30, 1)
+		playsound(src, doorOpen, 30, 1, mixer_channel = CHANNEL_MACHINERY)
 		if(closeOther != null && istype(closeOther, /obj/machinery/door/airlock/) && !closeOther.density)
 			closeOther.close()
 	else
 		//playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE) //ORIGINAL
-		playsound(src, forcedOpen, 30, TRUE) //MONKESTATION EDIT - AIRLOCK RESPRITE
+		playsound(src, forcedOpen, 30, TRUE, mixer_channel = CHANNEL_MACHINERY) //MONKESTATION EDIT - AIRLOCK RESPRITE
 
 	if(autoclose)
 		autoclose_in(normalspeed ? 150 : 15)
@@ -1300,10 +1300,10 @@
 			return
 		if(!protected_door)
 			use_power(50)
-		playsound(src, doorClose, 30, TRUE)
+		playsound(src, doorClose, 30, TRUE, mixer_channel = CHANNEL_MACHINERY)
 	else
 		//playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE) //ORIGINAL
-		playsound(src, forcedOpen, 30, TRUE) //MONKESTATION EDIT - AIRLOCK RESPRITE
+		playsound(src, forcedOpen, 30, TRUE, mixer_channel = CHANNEL_MACHINERY) //MONKESTATION EDIT - AIRLOCK RESPRITE
 
 	var/obj/structure/window/killthis = (locate(/obj/structure/window) in get_turf(src))
 	if(killthis)
@@ -1416,7 +1416,7 @@
 	var/time_to_open = 5
 	if(hasPower())
 		time_to_open = 50 //Powered airlocks take longer to open, and are loud.
-		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1)
+		playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, 1, mixer_channel = CHANNEL_SOUND_EFFECTS)
 
 
 	if(do_after(user, time_to_open, TRUE, src))

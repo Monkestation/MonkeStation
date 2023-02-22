@@ -102,6 +102,14 @@
 	item_state = "g_suit"
 	permeability_coefficient = 0.5
 
+/obj/item/clothing/under/rank/civilian/rancher
+	desc = "It's a suit and overalls combo designed to keep the chickens beaks from hurting you."
+	name = "rancher's overalls"
+	icon_state = "rancher"
+	item_state = "hydroponics"
+	permeability_coefficient = 0.5
+	can_adjust = FALSE
+
 /obj/item/clothing/under/rank/civilian/hydroponics/skirt
 	name = "botanist's jumpskirt"
 	desc = "It's a jumpskirt designed to protect against minor plant-related hazards."

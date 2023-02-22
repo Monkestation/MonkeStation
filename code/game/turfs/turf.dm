@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY(station_turfs)
+GLOBAL_LIST_EMPTY(created_baseturf_lists)
 
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
@@ -60,6 +61,9 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	var/holodeck_compatible = FALSE
 
 	var/list/fixed_underlay = null //MONKESTATION ADDITION
+
+	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
+	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
 
 /turf/vv_edit_var(var_name, new_value)
 	var/static/list/banned_edits = list("x", "y", "z")
@@ -166,6 +170,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	..()
 
 	vis_contents.Cut()
+	SEND_SIGNAL(src, COMSIG_TURF_DESTROY)
 
 /// WARNING WARNING
 /// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
@@ -441,7 +446,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 // A proc in case it needs to be recreated or badmins want to change the baseturfs
 /turf/proc/assemble_baseturfs(turf/fake_baseturf_type)
-	var/static/list/created_baseturf_lists = list()
 	var/turf/current_target
 	if(fake_baseturf_type)
 		if(length(fake_baseturf_type)) // We were given a list, just apply it and move on
@@ -458,8 +462,8 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			current_target = baseturfs
 
 	// If we've made the output before we don't need to regenerate it
-	if(created_baseturf_lists[current_target])
-		var/list/premade_baseturfs = created_baseturf_lists[current_target]
+	if(GLOB.created_baseturf_lists[current_target])
+		var/list/premade_baseturfs = GLOB.created_baseturf_lists[current_target]
 		if(length(premade_baseturfs))
 			baseturfs = premade_baseturfs.Copy()
 		else
@@ -470,7 +474,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	//Most things only have 1 baseturf so this loop won't run in most cases
 	if(current_target == next_target)
 		baseturfs = current_target
-		created_baseturf_lists[current_target] = current_target
+		GLOB.created_baseturf_lists[current_target] = current_target
 		return current_target
 	var/list/new_baseturfs = list(current_target)
 	for(var/i=0;current_target != next_target;i++)
@@ -485,12 +489,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		next_target = initial(current_target.baseturfs)
 
 	baseturfs = new_baseturfs
-	created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
+	GLOB.created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
 	return new_baseturfs
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		if(O.level == 1 && (O.flags_1 & INITIALIZED_1))
+			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, underfloor_accessibility < UNDERFLOOR_VISIBLE)
 			O.hide(src.intact)
 
 // override for space turfs, since they should never hide anything
@@ -672,9 +677,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 
 	AddElement(/datum/element/rust)
 
-/turf/handle_fall(mob/faller, forced)
-	if(!forced)
-		return
+/turf/handle_fall(mob/faller)
 	if(has_gravity(src))
 		playsound(src, "bodyfall", 50, 1)
 

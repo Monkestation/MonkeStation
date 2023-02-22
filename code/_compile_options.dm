@@ -57,7 +57,7 @@
 								//	2 for preloading absolutely everything;
 
 #ifdef LOWMEMORYMODE
-#define FORCE_MAP "runtimestation"
+#define FORCE_MAP "debug-liquid"
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features

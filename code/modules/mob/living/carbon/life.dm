@@ -139,7 +139,7 @@
 							//MONKESTATION EDIT ADDITION
 				//Underwater breathing
 				var/turf/T = loc
-				if(T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_state >= LIQUID_STATE_FULLTILE)))
+				if(istype(T, /turf/open/floor/plating/ocean) || (T.liquids && !HAS_TRAIT(src, TRAIT_NOBREATH) && ((!MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_WAIST) || (MOBILITY_STAND && T.liquids.liquid_group.group_overlay_state >= LIQUID_STATE_FULLTILE))))
 					//Officially trying to breathe underwater
 					if(HAS_TRAIT(src, TRAIT_WATER_BREATHING))
 						failed_last_breath = FALSE
@@ -150,10 +150,7 @@
 					if(oxyloss <= OXYGEN_DAMAGE_CHOKING_THRESHOLD && stat == CONSCIOUS)
 						to_chat(src, "<span class='userdanger'>You hold in your breath!</span>")
 					else
-						//Try and drink water#]
-						var/datum/reagents/tempr = T.liquids.take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT)
-						tempr.trans_to(src, tempr.total_volume, method = INGEST)
-						qdel(tempr)
+						T.liquids.liquid_group.transfer_to_atom(T.liquids, CHOKE_REAGENTS_INGEST_ON_BREATH_AMOUNT, src)
 						visible_message("<span class='warning'>[src] chokes on water!</span>", \
 									"<span class='userdanger'>You're choking on water!</span>")
 					return FALSE
@@ -327,7 +324,7 @@
 	var/stam_regen = FALSE
 	if(stam_regen_start_time <= world.time)
 		stam_regen = TRUE
-		if(stam_paralyzed)
+		if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 			. |= BODYPART_LIFE_UPDATE_HEALTH //make sure we remove the stamcrit
 	var/bodyparts_with_stam = 0
 	var/stam_heal_multiplier = 1
@@ -360,20 +357,13 @@
 
 /mob/living/carbon/proc/handle_traits()
 	//Eyes
-	if(eye_blind)			//blindness, heals slowly over time
-		if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
-			eye_blind = max(eye_blind-1,0)
-			if(client && !eye_blind)
-				clear_alert("blind")
-				clear_fullscreen("blind")
-			//Prevents healing blurryness while blind from normal means
-			return
-		else
-			eye_blind = max(eye_blind-1,1)
-	if(eye_blurry)			//blurry eyes heal slowly
-		eye_blurry = max(eye_blurry-1, 0)
-		if(client)
-			update_eye_blur()
+	if(eye_blind)	//blindness, heals slowly over time
+		if(HAS_TRAIT_FROM(src, TRAIT_BLIND, EYES_COVERED)) //covering your eyes heals blurry eyes faster
+			adjust_blindness(-3)
+		else if(!stat && !(HAS_TRAIT(src, TRAIT_BLIND)))
+			adjust_blindness(-1)
+	else if(eye_blurry)			//blurry eyes heal slowly
+		adjust_blurriness(-1)
 
 /mob/living/carbon/proc/handle_mutations_and_radiation()
 	if(dna && dna.temporary_mutations.len)

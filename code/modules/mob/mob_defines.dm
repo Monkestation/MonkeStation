@@ -227,3 +227,4 @@
 
 	///should this mob show damage numbers?
 	var/shows_damage_number = FALSE
+

@@ -59,6 +59,8 @@
 
 	var/datum/team/mimic/mimic_team
 
+	var/has_organ = TRUE
+
 	var/fleeing = FALSE
 	mobchatspan = "blob"
 	discovery_points = 2000
@@ -286,6 +288,10 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/alien_mimic/Life()
+	if(!has_organ) //incase someone uses a lazarus after stealing a mimic's organ
+		if(health == maxHealth)
+			to_chat(src,"<span class='userdanger'>You can't survive without any organs!</span>")
+		adjustBruteLoss(20)
 	if(isliving(buckled))
 		var/mob/living/living_food = buckled
 		if(living_food.stat == DEAD)
@@ -298,7 +304,23 @@
 		return FALSE
 	..()
 
+/mob/living/simple_animal/hostile/alien_mimic/attackby(obj/item/item, mob/living/target)
+	if(stat == DEAD && surgeries.len)
+		if(target.a_intent == INTENT_HELP || target.a_intent == INTENT_DISARM)
+			for(var/datum/surgery/current_surgery in surgeries)
+				if(current_surgery.next_step(target,target.a_intent))
+					return TRUE
+	if(src in target.buckled_mobs) //Can't attack if its Got ya
+		to_chat(target,"<span class='userdanger'>You can't manage to hit \the [src] wrapped around you.</span>")
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/alien_mimic/attack_hand(mob/living/target)
+	if(stat == DEAD && surgeries.len)
+		if(target.a_intent == INTENT_HELP || target.a_intent == INTENT_DISARM)
+			for(var/datum/surgery/current_surgery in surgeries)
+				if(current_surgery.next_step(target,target.a_intent))
+					return TRUE
 	if(src in target.buckled_mobs)
 		return FALSE
 	if(disguised)

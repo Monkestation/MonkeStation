@@ -76,6 +76,10 @@ SUBSYSTEM_DEF(sound_effects)
 
 /datum/sound_effect/proc/send_sound()
 	for(var/reciever in listeners)
+		if(ismob(reciever))
+			var/mob/reciever_mob
+			if(reciever_mob.client)
+				sound.volume *= (reciever_mob.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"] * 0.01)
 		SEND_SOUND(reciever, sound)
 
 /datum/sound_effect/proc/update_effect()
@@ -120,6 +124,11 @@ SUBSYSTEM_DEF(sound_effects)
 	sound.volume = current_vol
 
 	for(var/reciever in listeners)
+		if(ismob(reciever))
+			var/mob/reciever_mob
+			if(reciever_mob.client)
+				sound.volume *= (reciever_mob.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"] * 0.01)
+
 		SEND_SOUND(reciever, sound)
 
 /datum/sound_effect/fade/end_effect()

@@ -202,7 +202,7 @@
 	else if(DT_PROB(15, delta_time))
 		living_pawn.manual_emote("[pick("barks", "growls", "stares")] menacingly at [harass_target]!")
 		if(DT_PROB(40, delta_time))
-			playsound(living_pawn, pick('sound/creatures/dog/growl1.ogg', 'sound/creatures/dog/growl2.ogg'), 50, TRUE, -1)
+			playsound(living_pawn, pick('sound/creatures/dog/growl1.ogg', 'sound/creatures/dog/growl2.ogg'), 50, TRUE, -1, mixer_channel = CHANNEL_MOB_SOUNDS)
 
 /datum/ai_behavior/harass/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()

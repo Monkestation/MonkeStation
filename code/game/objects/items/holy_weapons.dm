@@ -318,6 +318,7 @@
 	var/shield_icon = "shield-red"
 
 /obj/item/nullrod/staff/worn_overlays(mutable_appearance/standing, isinhands)
+	.=..()
 	. = list()
 	if(isinhands)
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_LAYER + 0.01)
@@ -489,7 +490,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/possessed = FALSE
 
-/obj/item/nullrod/scythe/talking/relaymove(mob/user)
+/obj/item/nullrod/scythe/talking/relaymove(mob/living/user, direction)
 	return //stops buckled message spam for the ghost.
 
 /obj/item/nullrod/scythe/talking/attack_self(mob/living/user)

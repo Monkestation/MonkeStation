@@ -23,12 +23,18 @@
 	restricted_roles = list("Stage Magician")
 	surplus = 0
 
-/datum/uplink_item/implants/freedom
+/datum/uplink_item/implants/hardlight
 	name = "Hardlight Spear Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. It will summon a spear \
 			made out of hardlight that the user can use to wreak havoc."
 	item = /obj/item/storage/box/syndie_kit/imp_hard_spear
 	cost = 10
+
+/datum/uplink_item/device_tools/bearserum
+	name = "Werebear Serum"
+	desc = "This serum made by BEAR Co (A group of very wealthy bears) will give other species the chance to be bear."
+	item = /obj/item/bearserum
+	cost = 12
 
 //Species Specific Items
 

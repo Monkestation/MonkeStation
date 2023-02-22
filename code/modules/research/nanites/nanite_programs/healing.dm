@@ -53,6 +53,8 @@
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
 /datum/nanite_program/purging/check_conditions()
+	if(!. || !host_mob.reagents)
+		return FALSE // No trying to purge simple mobs
 	var/foreign_reagent = length(host_mob.reagents?.reagent_list)
 	if(!host_mob.getToxLoss() && !foreign_reagent)
 		return FALSE
@@ -149,6 +151,8 @@
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
 /datum/nanite_program/purging_advanced/check_conditions()
+	if(!. || !host_mob.reagents)
+		return FALSE
 	var/foreign_reagent = FALSE
 	for(var/datum/reagent/toxin/R in host_mob.reagents.reagent_list)
 		foreign_reagent = TRUE

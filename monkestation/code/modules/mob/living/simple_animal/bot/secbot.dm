@@ -26,8 +26,8 @@
 		playsound(src, messagevoice[message], 40, 0) //and pretty quiet
 		last_grumble_speak = world.time
 
-/mob/living/simple_animal/bot/secbot/pizzky/New()
-	..()
+/mob/living/simple_animal/bot/secbot/pizzky/Initialize(mapload)
+	. = ..()
 	last_grumble_speak = world.time //so he doesn't grumble on spawn
 	var/list/messagevoice = list("I AM NOW ALIVE AND I'M ABOUT TO MAKE IT EVERYONE ELSE'S PROBLEM!" = 'monkestation/sound/voice/pizzky/spawn1.ogg',
 								 "WHY THE FUCK WOULD YOU BUILD THIS? WHAT THE FUCK IS WRONG WITH YOU?!" = 'monkestation/sound/voice/pizzky/spawn2.ogg')

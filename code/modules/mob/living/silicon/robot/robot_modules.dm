@@ -536,7 +536,7 @@
 		/obj/item/borg/charger,
 		/obj/item/rsf,
 		/obj/item/cookiesynth,
-		/obj/item/instrument/piano_synth,
+		/obj/item/instrument/piano_synth/robot,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/borg/apparatus/beaker/service,

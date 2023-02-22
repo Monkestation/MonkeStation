@@ -158,13 +158,17 @@
 	overdose_threshold = 200 // Hyperglycaemic shock
 	taste_description = "sweetness"
 
+/datum/reagent/consumable/sugar/feed_interaction(mob/living/simple_animal/chicken/target, volume)
+	.=..()
+	target.adjust_happiness(0.1*volume)
+
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
 	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
-	M.AdjustSleeping(600, FALSE)
+	M.AdjustSleeping(600)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
-	M.AdjustSleeping(40, FALSE)
+	M.AdjustSleeping(40)
 	..()
 	. = 1
 

@@ -106,9 +106,8 @@
 	icon_state = "b_rabbit"
 	icon_living = "b_rabbit"
 	icon_dead = "b_rabbit_dead"
-	icon_prefix = "b_rabbit"
 	minbodytemp = 0
-	eggsleft = 0
+	eggs_left = 0
 	egg_type = null
 	speak = list()
 	mobchatspan = "assistant"

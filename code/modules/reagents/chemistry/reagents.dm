@@ -215,3 +215,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		. = "[src.type]"
 		if(!(. in cached_gas_data.ids))
 			create_gas()
+
+/datum/reagent/proc/feed_interaction(mob/living/simple_animal/chicken/target, volume)
+	return
