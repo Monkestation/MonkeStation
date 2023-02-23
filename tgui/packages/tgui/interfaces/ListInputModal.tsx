@@ -33,7 +33,7 @@ export const ListInputModal = (_, context) => {
   const [searchBarVisible, setSearchBarVisible] = useLocalState<boolean>(
     context,
     'searchBarVisible',
-    items.length > 9
+    items.length > 100
   );
   const [searchQuery, setSearchQuery] = useLocalState<string>(
     context,
