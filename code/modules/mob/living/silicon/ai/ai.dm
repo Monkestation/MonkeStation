@@ -482,14 +482,14 @@
 			to_chat(src, "<span class='danger'>Error: Your last call bot command is still processing, please wait for the bot to finish calculating a route.</span>")
 			return
 		Bot = locate(href_list["callbot"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
+		if(!Bot || !(Bot.bot_mode_flags & BOT_MODE_REMOTE_ENABLED)|| control_disabled)
 			return //True if there is no bot found, the bot is manually emagged, or the AI is carded with wireless off.
 		waypoint_mode = 1
 		to_chat(src, "<span class='notice'>Set your waypoint by clicking on a valid location free of obstructions.</span>")
 		return
 	if(href_list["interface"]) //Remotely connect to a bot!
 		Bot = locate(href_list["interface"]) in GLOB.alive_mob_list
-		if(!Bot || Bot.remote_disabled || control_disabled)
+		if(!Bot || !(Bot.bot_mode_flags & BOT_MODE_REMOTE_ENABLED) || control_disabled)
 			return
 		Bot.attack_ai(src)
 	if(href_list["botrefresh"]) //Refreshes the bot control panel.
@@ -554,9 +554,9 @@
 	d += "<table width='100%'><tr><td width='40%'><h3>Name</h3></td><td width='30%'><h3>Status</h3></td><td width='30%'><h3>Location</h3></td><td width='10%'><h3>Control</h3></td></tr>"
 
 	for (Bot in GLOB.alive_mob_list)
-		if(Bot.get_virtual_z_level() == ai_Zlevel && !Bot.remote_disabled) //Only non-emagged bots on the same Z-level are detected!
+		if(Bot.get_virtual_z_level() == ai_Zlevel && (Bot.bot_mode_flags & BOT_MODE_REMOTE_ENABLED)) //Only non-emagged bots on the same Z-level are detected!
 			var/bot_mode = Bot.get_mode()
-			d += "<tr><td width='30%'>[Bot.hacked ? "<span class='bad'>(!)</span>" : ""] [Bot.name]</A> ([Bot.model])</td>"
+			d += "<tr><td width='30%'>[Bot.bot_cover_flags & BOT_COVER_HACKED ? "<span class='bad'>(!)</span>" : ""] [Bot.name]</A> ([Bot.bot_type])</td>"
 			//If the bot is on, it will display the bot's current mode status. If the bot is not mode, it will just report "Idle". "Inactive if it is not on at all.
 			d += "<td width='30%'>[bot_mode]</td>"
 			d += "<td width='30%'>[get_area_name(Bot, TRUE)]</td>"

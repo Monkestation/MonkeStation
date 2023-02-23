@@ -64,3 +64,10 @@
 	#define MOB_DEADSAY_SIGNAL_INTERCEPT 1
 ///from base of /mob/verb/pointed: (atom/A)
 #define COMSIG_MOB_POINTED "mob_pointed"
+
+/// From base of /mob/living/simple_animal/bot/proc/bot_step()
+#define COMSIG_MOB_BOT_PRE_STEP "mob_bot_pre_step"
+	/// Should always match COMPONENT_MOVABLE_BLOCK_PRE_MOVE as these are interchangeable and used to block movement.
+	#define COMPONENT_MOB_BOT_BLOCK_PRE_STEP COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+/// From base of /mob/living/simple_animal/bot/proc/bot_step()
+#define COMSIG_MOB_BOT_STEP "mob_bot_step"

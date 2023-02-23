@@ -109,11 +109,6 @@
 	ignore_list = list()
 	update_icon()
 
-/mob/living/simple_animal/bot/atmosbot/set_custom_texts()
-	text_hack = "You corrupt [name]'s safety protocols."
-	text_dehack = "You detect errors in [name] and reset his programming."
-	text_dehack_fail = "[name] is not responding to reset commands!"
-
 /mob/living/simple_animal/bot/atmosbot/emag_act(mob/user)
 	. = ..()
 	if(emagged == 2)
@@ -347,7 +342,7 @@
 	update_icon()
 
 /mob/living/simple_animal/bot/atmosbot/update_icon()
-	if(action == ATMOSBOT_VENT_AIR && emagged == 2)
+	if(action == ATMOSBOT_VENT_AIR && emagged)
 		icon_state = "atmosbot[on][on?"_5":""]"
 		return
 	icon_state = "atmosbot[on][on?"_[action]":""]"

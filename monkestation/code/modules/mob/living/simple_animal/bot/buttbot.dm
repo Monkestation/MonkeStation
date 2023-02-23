@@ -8,23 +8,20 @@
 	health = 25
 	maxHealth = 25
 	bot_type = BUTTS_BOT
-	model = "buttbot"
-	window_id = "butt"
-	window_name = "butts"
+	hackables = "butt construction protocols"
 	pass_flags = PASSMOB
 	has_unlimited_silicon_privilege = FALSE
-	remote_disabled = TRUE
-	allow_pai = FALSE
+	bot_mode_flags = ~BOT_MODE_PAI_CONTROLLABLE | ~BOT_MODE_REMOTE_ENABLED
 	var/cooling_down = FALSE
 	var/butt_probability = 15
 	var/listen_probability = 30
 
 /mob/living/simple_animal/bot/buttbot/emag_act(mob/user)
-	if(!emagged)
+	if(!(bot_cover_flags & BOT_COVER_EMAGGED))
 		visible_message("<span class='warning'>[user] swipes a card through the [src]'s crack!</span>", "<span class='notice'>You swipe a card through the [src]'s crack.</span>")
 		listen_probability = 75
 		butt_probability = 30
-		emagged = TRUE
+		bot_cover_flags |= BOT_COVER_EMAGGED
 		var/turf/butt = get_turf(src)
 		butt.atmos_spawn_air("miasma=5;TEMP=310.15")
 		playsound(src, pick('sound/misc/fart1.ogg', 'monkestation/sound/effects/fart2.ogg', 'monkestation/sound/effects/fart3.ogg', 'monkestation/sound/effects/fart4.ogg'), 100 ,use_reverb = TRUE)
@@ -37,7 +34,7 @@
 		for (var/i in 1 to length(split_message))
 			if(prob(butt_probability))
 				split_message[i] = pick("butt", "butts")
-		if(emagged)
+		if(bot_cover_flags & BOT_COVER_EMAGGED)
 			var/turf/butt = get_turf(src)
 			butt.atmos_spawn_air("miasma=5;TEMP=310.15")
 		var/joined_text = jointext(split_message, " ")

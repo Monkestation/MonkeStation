@@ -12,8 +12,8 @@
 	..()
 
 /datum/wires/mulebot/interactable(mob/user)
-	var/mob/living/simple_animal/bot/mulebot/M = holder
-	if(M.open)
+	var/mob/living/simple_animal/bot/mulebot/mule = holder
+	if(mule.bot_cover_flags & BOT_COVER_OPEN)
 		return TRUE
 
 /datum/wires/mulebot/on_pulse(wire)

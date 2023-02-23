@@ -20,6 +20,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	CanAtmosPassVertical = ATMOS_PASS_YES
 	allow_z_travel = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pathing_pass_method = TURF_PATHING_PASS_PROC
 
 	FASTDMM_PROP(\
 		pipe_astar_cost = 100\
@@ -164,6 +165,9 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	return FALSE
 
 /turf/open/openspace/rust_heretic_act()
+	return FALSE
+
+/turf/open/openspace/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	return FALSE
 
 //Returns FALSE if gravity is force disabled. True if grav is possible

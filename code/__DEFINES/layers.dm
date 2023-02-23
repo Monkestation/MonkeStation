@@ -46,6 +46,7 @@
 #define GAS_FILTER_LAYER 2.48
 #define PRESSURE_PLATE_LAYER 2.49
 #define PLUMBING_PIPE_VISIBILE_LAYER 2.495//layer = initial(layer) + ducting_layer / 3333 in atmospherics/handle_layer() to determine order of duct overlap
+#define BOT_PATH_LAYER 2.497
 #define LOW_OBJ_LAYER 2.5
 #define LOW_SIGIL_LAYER 2.52
 #define SIGIL_LAYER 2.54

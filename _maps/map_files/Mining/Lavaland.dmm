@@ -1311,9 +1311,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/mob/living/simple_animal/bot/atmosbot{
-	name = "Officer Fastmosky"
-	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "fi" = (
@@ -5737,10 +5734,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 8
-	},
-/obj/item/bot_assembly/atmosbot{
-	created_name = "Fastmosky Senior";
-	name = "old atmosbot assembly"
 	},
 /turf/open/floor/plasteel,
 /area/mine/science)

@@ -7,7 +7,6 @@
 	maxHealth = 150
 	baton_type = /obj/item/melee/transforming/energy/sword/saber
 	base_speed = 4 //he's a fast fucker
-	var/obj/item/weapon
 	var/block_chance = 50
 	noloot = FALSE
 
@@ -22,7 +21,7 @@
 /mob/living/simple_animal/bot/secbot/grievous/nullcrate
 	name = "General Griefsky"
 	desc = "The Syndicate sends their regards."
-	emagged = 2
+	bot_cover_flags = BOT_COVER_EMAGGED
 	noloot = TRUE
 	faction = list(ROLE_SYNDICATE)
 
@@ -48,7 +47,7 @@
 	weapon.attack_self(src)
 
 /mob/living/simple_animal/bot/secbot/grievous/Destroy()
-	QDEL_NULL(weapon)
+	QDEL_NULL(baton_type)
 	return ..()
 
 /mob/living/simple_animal/bot/secbot/grievous/special_retaliate_after_attack(mob/user)
@@ -68,14 +67,14 @@
 
 
 /mob/living/simple_animal/bot/secbot/grievous/handle_automated_action()
-	if(!on)
+	if(!(bot_mode_flags & BOT_MODE_ON))
 		return
 	switch(mode)
 		if(BOT_IDLE)		// idle
 			update_icon()
 			SSmove_manager.stop_looping(src)
 			look_for_perp()	// see if any criminals are in range
-			if(!mode && auto_patrol)	// still idle, and set to patrol
+			if(!mode && bot_mode_flags & BOT_MODE_AUTOPATROL) // still idle, and set to patrol
 				mode = BOT_START_PATROL	// switch to patrol mode
 		if(BOT_HUNT)		// hunting for perp
 			update_icon()
@@ -141,22 +140,8 @@
 
 
 /mob/living/simple_animal/bot/secbot/grievous/explode()
-
-	visible_message("<span class='boldannounce'>[src] lets out a huge cough as it blows apart!</span>")
+	..()
 	var/atom/Tsec = drop_location()
-
-	var/obj/item/bot_assembly/secbot/Sa = new (Tsec)
-	Sa.build_step = 1
-	Sa.add_overlay("hs_hole")
-	Sa.created_name = name
-	new /obj/item/assembly/prox_sensor(Tsec)
-
-	if(prob(50))
-		drop_part(robot_arm, Tsec)
-
-	do_sparks(3, TRUE, src)
-	if(!noloot)
-		for(var/IS = 0 to 4)
-			drop_part(baton_type, Tsec)
-	new /obj/effect/decal/cleanable/oil(Tsec)
-	qdel(src)
+	//Parent is dropping the weapon, so let's drop 3 more to make up for it.
+	for(var/IS = 0 to 3)
+		drop_part(weapon, Tsec)

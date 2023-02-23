@@ -119,14 +119,15 @@
 #define HONK_BOT "Honkbot"
 /// Firebots
 #define FIRE_BOT "Firebot"
+/// Hygienebots
+#define HYGIENE_BOT "Hygienebot"
+/// Vibe bots
+#define VIBE_BOT "Vibebot"
 
 ///Monkestation Edit
 
 /// ButtsBot
 #define BUTTS_BOT "Buttsbot"
-/// Atmosbots
-#define ATMOS_BOT "Atmosbot"
-
 ///Monkestation Edit End
 
 

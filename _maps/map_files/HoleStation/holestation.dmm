@@ -17934,12 +17934,9 @@
 /area/crew_quarters/theatre)
 "myQ" = (
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	health = 45;
 	icon_state = "secbot1";
-	idcheck = 1;
 	name = "Sergeant-at-Armsky";
-	weaponscheck = 1
 	},
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
