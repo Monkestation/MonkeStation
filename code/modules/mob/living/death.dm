@@ -95,6 +95,8 @@
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
 
+	set_ssd_indicator(FALSE)
+
 	if(mind?.current)
 		client?.tgui_panel?.give_dead_popup()
 

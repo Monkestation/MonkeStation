@@ -27,7 +27,7 @@
 /**
   * Don't run if there is an identical unique timer active
   *
-  * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+  * if the arguments to  are the same as an existing timer, it doesn't create a new timer,
   * and returns the id of the existing timer
   */
 #define TIMER_UNIQUE			(1<<0)

@@ -143,6 +143,10 @@
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 	molarity = 10 /// i want people to be able to have meth internals
 
+/datum/reagent/drug/methamphetamine/feed_interaction(mob/living/simple_animal/chicken/target, volume)
+	.=..()
+	target.adjust_happiness(0.5*volume)
+
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
 	if(L.client)

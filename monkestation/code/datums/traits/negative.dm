@@ -100,3 +100,9 @@
 		message = replacetext(message, "r", "w")
 		message = replacetext(message, "l", "w")
 	speech_args[SPEECH_MESSAGE] = message
+
+/datum/quirk/no_soul
+	name = "No Soul"
+	desc = "For some reason electronics and sensors tend not to respond to you.  You have to open airlocks by hand."
+	value = -1
+	//Effects are handled directly in door.dm

@@ -74,7 +74,7 @@
 		return
 	if(buckled || now_pushing)
 		return
-	if((confused || is_blind()) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && m_intent == "run" && !ismovableatom(A) && !HAS_MOB_PROPERTY(src, PROP_CANTBUMPSLAM))  // ported from VORE, sue me
+	if((confused || is_blind()) && stat == CONSCIOUS && (mobility_flags & MOBILITY_STAND) && m_intent == "run" && (!ismovableatom(A)) && !HAS_MOB_PROPERTY(src, PROP_CANTBUMPSLAM) &&!has_status_effect(SUGAR_RUSH) && !has_status_effect(HEN_RUSH))  // ported from VORE, sue me
 		APPLY_MOB_PROPERTY(src, PROP_CANTBUMPSLAM, src.type) //Bump() is called continuously so ratelimit the check to 20 seconds if it passes or 5 if it doesn't
 		if(prob(10))
 			playsound(get_turf(src), "punch", 25, 1, -1)
@@ -85,10 +85,13 @@
 		else
 			addtimer(CALLBACK(src, .proc/can_bumpslam), 50)
 
-
 	if(ismob(A))
 		var/mob/M = A
 		if(MobBump(M))
+			return
+	if(isturf(A))
+		var/turf/bump_turf = A
+		if(TurfBump(bump_turf))
 			return
 	if(isobj(A))
 		var/obj/O = A
@@ -110,6 +113,15 @@
 
 	if(now_pushing)
 		return TRUE
+	if(has_status_effect(SUGAR_RUSH) || has_status_effect(HEN_RUSH))
+		visible_message("<span class='warning'>[src] bounces off [M]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, get_dir(M, src))
+		var/atom/throw_target_mob = get_edge_target_turf(M, get_dir(src, M))
+
+		playsound(src, 'sound/effects/boing1.ogg', 50)
+		src.throw_at(throw_target, 20, 3, force = 0)
+		if(has_status_effect(SUGAR_RUSH))
+			M.throw_at(throw_target_mob, 20, 3, force = 0)
 
 	var/they_can_move = TRUE
 	if(isliving(M))
@@ -213,6 +225,20 @@
 
 //Called when we bump onto an obj
 /mob/living/proc/ObjBump(obj/O)
+	if(has_status_effect(SUGAR_RUSH) || has_status_effect(HEN_RUSH))
+		visible_message("<span class='warning'>[src] bounces off  \the [O]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, turn(get_dir(O, src), rand(-1,1) * 45))
+		playsound(src, 'sound/effects/boing1.ogg', 50)
+		src.throw_at(throw_target, 20, 3, force = 0)
+	return
+
+//Called when we bump onto an obj
+/mob/living/proc/TurfBump(turf/T)
+	if(has_status_effect(SUGAR_RUSH) || has_status_effect(HEN_RUSH))
+		visible_message("<span class='warning'>[src] bounces off  \the [T]!</span>")
+		var/atom/throw_target = get_edge_target_turf(src, turn(get_dir(T, src), rand(-1,1) * 45))
+		playsound(src, 'sound/effects/boing1.ogg', 50)
+		src.throw_at(throw_target, 20, 3, force = 0)
 	return
 
 //Called when we want to push an atom/movable

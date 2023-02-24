@@ -57,6 +57,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_map = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
+	var/pointed_color = "#FF0000"
 	var/show_credits = TRUE
 
 	// Custom Keybindings
@@ -629,6 +630,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			dat += "<b>Hotkey Mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "No Hotkeys"]</a><br>" //MONKESTATION CHANGE: makes hotkey mode on by default
 			dat += "<br>"
+			dat += "<b>Pointed Color:</b><span style='border:1px solid #161616; background-color: [pointed_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pointed_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
 			dat += "<br>"
@@ -1821,6 +1823,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedstyle = input(user, "Choose how you want balloon alerts displayed", "Balloon alert preference", BALLOON_ALERT_ALWAYS) as null|anything in list(BALLOON_ALERT_ALWAYS, BALLOON_ALERT_WITH_CHAT, BALLOON_ALERT_NEVER)
 					if (!isnull(pickedstyle))
 						see_balloon_alerts = pickedstyle
+				if("pointed_color")
+					var/pickedPointedColor = input(user, "Choose the color of the arrow you point with.", "Character Preference", pointed_color) as color|null
+					if(pickedPointedColor)
+						pointed_color = pickedPointedColor
 
 		else
 			switch(href_list["preference"])

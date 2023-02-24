@@ -131,8 +131,13 @@ multiple modular subtrees with behaviors
 		SSmove_manager.stop_looping(pawn) //stop moving
 		return //this should remove them from processing in the future through event-based stuff.
 
-	if(!LAZYLEN(current_behaviors) && idle_behavior)
-		idle_behavior.perform_idle_behavior(delta_time, src) //Do some stupid shit while we have nothing to do
+
+	if(!LAZYLEN(current_behaviors))
+		//Perform idle behavior when otherwise inactive
+		if(!idle_behavior)
+			PerformIdleBehavior(delta_time)
+		else
+			idle_behavior.perform_idle_behavior(delta_time, src)
 		return
 
 	if(current_movement_target && get_dist(pawn, current_movement_target) > max_target_distance) //The distance is out of range
@@ -174,6 +179,9 @@ multiple modular subtrees with behaviors
 				continue
 			ProcessBehavior(action_delta_time, current_behavior)
 			return
+///Perform some dumb idle behavior.
+/datum/ai_controller/proc/PerformIdleBehavior(delta_time)
+	return
 
 ///This is where you decide what actions are taken by the AI.
 /datum/ai_controller/proc/SelectBehaviors(delta_time)

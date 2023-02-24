@@ -92,22 +92,20 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(!totalMembers.len)
 		return
 
-	if(client)
-		for(var/X in totalMembers)
-			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
-			if(in_view_range(client.mob, A))
-				if(!A.pipe_vision_img)
-					A.pipe_vision_img = image(A, A.loc, dir = A.dir)
-					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
-				client.images += A.pipe_vision_img
-				pipes_shown += A.pipe_vision_img
+	if(client) //MONKESTATION EDIT: Refactors Ventcawling to be less laggy
+		for(var/obj/machinery/atmospherics/member in range(8,get_turf(src)))
+			if(member in totalMembers)
+				if(!member.pipe_vision_img)
+					member.pipe_vision_img = image(member, member.loc, dir = member.dir)
+					member.pipe_vision_img.plane = ABOVE_HUD_PLANE
+				client.images += member.pipe_vision_img
+				pipes_shown += member.pipe_vision_img
 	setMovetype(movement_type | VENTCRAWLING)
 
 
 /mob/living/proc/remove_ventcrawl()
 	if(client)
-		for(var/image/current_image in pipes_shown)
-			client.images -= current_image
+		client.images -= pipes_shown
 	pipes_shown.len = 0
 	setMovetype(movement_type & ~VENTCRAWLING)
 
