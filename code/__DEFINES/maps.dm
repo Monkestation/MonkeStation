@@ -137,9 +137,6 @@ require only minor tweaks.
 #define GENTURF_HINT_OPEN "open"
 #define GENTURF_HINT_CLOSED "closed"
 
-
-#define SPACE_KEY "space"
-
 // Bluespace shelter deploy checks for survival capsules
 /// Shelter spot is allowed
 #define SHELTER_DEPLOY_ALLOWED "allowed"

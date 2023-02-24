@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
 	wait = 10
 	init_order = INIT_ORDER_SHUTTLE
-	flags = SS_KEEP_TIMING|SS_NO_TICK_CHECK
+	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/mobile = list()
@@ -59,9 +59,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/obj/docking_port/mobile/existing_shuttle
 
+	var/obj/docking_port/mobile/preview_shuttle
 	var/datum/map_template/shuttle/preview_template
 
-	var/obj/docking_port/mobile/preview_shuttle
 	var/datum/turf_reservation/preview_reservation
 
 	var/shuttles_loaded = FALSE
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(owner)
 			var/idle = owner.mode == SHUTTLE_IDLE
 			var/not_centcom_evac = owner.launch_status == NOLAUNCH
-			var/not_in_use = (!T.docked)
+			var/not_in_use = (!T.get_docked())
 			if(idle && not_centcom_evac && not_in_use)
 				qdel(T, force=TRUE)
 	CheckAutoEvac()
@@ -392,7 +392,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
 	if(!M)
 		return 1
-	var/obj/docking_port/stationary/dockedAt = M.docked
+	var/obj/docking_port/stationary/dockedAt = M.get_docked()
 	var/destination = dockHome
 	if(dockedAt && dockedAt.id == dockHome)
 		destination = dockAway
@@ -444,9 +444,13 @@ SUBSYSTEM_DEF(shuttle)
 
 	// Shuttles travelling on their side have their dimensions swapped
 	// from our perspective
-	var/list/union_coords = M.return_union_coords(M.get_all_towed_shuttles(), 0, 0, dock_dir)
-	transit_width += union_coords[3] - union_coords[1] + 1
-	transit_height += union_coords[4] - union_coords[2] + 1
+	switch(dock_dir)
+		if(NORTH, SOUTH)
+			transit_width += M.width
+			transit_height += M.height
+		if(EAST, WEST)
+			transit_width += M.height
+			transit_height += M.width
 
 /*
 	to_chat(world, "The attempted transit dock will be [transit_width] width, and \)
@@ -471,10 +475,25 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/turf/bottomleft = locate(proposal.bottom_left_coords[1], proposal.bottom_left_coords[2], proposal.bottom_left_coords[3])
 	// Then create a transit docking port in the middle
-	// union coords (1,2) points from the docking port to the bottom left corner of the bounding box
-	// So if we negate those coordinates, we get the vector pointing from the bottom left of the bounding box to the docking port
-	var/transit_x = bottomleft.x + SHUTTLE_TRANSIT_BORDER + abs(union_coords[1])
-	var/transit_y = bottomleft.y + SHUTTLE_TRANSIT_BORDER + abs(union_coords[2])
+	var/coords = M.return_coords(0, 0, dock_dir)
+	/*  0------2
+        |      |
+        |      |
+        |  x   |
+        3------1
+	*/
+
+	var/x0 = coords[1]
+	var/y0 = coords[2]
+	var/x1 = coords[3]
+	var/y1 = coords[4]
+	// Then we want the point closest to -infinity,-infinity
+	var/x2 = min(x0, x1)
+	var/y2 = min(y0, y1)
+
+	// Then invert the numbers
+	var/transit_x = bottomleft.x + SHUTTLE_TRANSIT_BORDER + abs(x2)
+	var/transit_y = bottomleft.y + SHUTTLE_TRANSIT_BORDER + abs(y2)
 
 	var/turf/midpoint = locate(transit_x, transit_y, bottomleft.z)
 	if(!midpoint)
@@ -552,6 +571,7 @@ SUBSYSTEM_DEF(shuttle)
 
 	existing_shuttle = SSshuttle.existing_shuttle
 
+	preview_shuttle = SSshuttle.preview_shuttle
 	preview_template = SSshuttle.preview_template
 
 	preview_reservation = SSshuttle.preview_reservation
@@ -630,21 +650,19 @@ SUBSYSTEM_DEF(shuttle)
 	QDEL_LIST(remove_images)
 
 
-/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port, datum/variable_ref/loaded_shuttle_reference)
-	if (!loaded_shuttle_reference)
-		loaded_shuttle_reference = new()
-	var/datum/map_generator/shuttle_loader = load_template(loading_template, loaded_shuttle_reference)
-	shuttle_loader.on_completion(CALLBACK(src, .proc/linkup_shuttle_after_load, loading_template, destination_port, loaded_shuttle_reference))
-	shuttle_loader.on_completion(CALLBACK(src, .proc/action_load_completed, destination_port, loaded_shuttle_reference))
-	preview_template = loading_template
-	return shuttle_loader
+/datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port)
+	// Check for an existing preview
+	if(preview_shuttle && (loading_template != preview_template))
+		preview_shuttle.jumpToNullSpace()
+		preview_shuttle = null
+		preview_template = null
+		QDEL_NULL(preview_reservation)
 
-/datum/controller/subsystem/shuttle/proc/linkup_shuttle_after_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port, datum/variable_ref/shuttle_reference)
-	var/obj/docking_port/mobile/loaded_shuttle = shuttle_reference.value
-	loaded_shuttle.linkup(loading_template, destination_port)
+	if(!preview_shuttle)
+		if(load_template(loading_template))
+			preview_shuttle.linkup(loading_template, destination_port)
+		preview_template = loading_template
 
-/datum/controller/subsystem/shuttle/proc/action_load_completed(obj/docking_port/stationary/destination_port, datum/variable_ref/shuttle_reference)
-	var/obj/docking_port/mobile/loaded_shuttle = shuttle_reference.value
 	// get the existing shuttle information, if any
 	var/timer = 0
 	var/mode = SHUTTLE_IDLE
@@ -655,62 +673,58 @@ SUBSYSTEM_DEF(shuttle)
 	else if(existing_shuttle)
 		timer = existing_shuttle.timer
 		mode = existing_shuttle.mode
-		D = existing_shuttle.docked
+		D = existing_shuttle.get_docked()
 
 	if(!D)
-		D = generate_transit_dock(loaded_shuttle)
+		D = generate_transit_dock(preview_shuttle)
 
 	if(!D)
 		CRASH("No dock found for preview shuttle ([preview_template.name]), aborting.")
 
-	var/result = loaded_shuttle.canDock(D)
+	var/result = preview_shuttle.canDock(D)
 	// truthy value means that it cannot dock for some reason
 	// but we can ignore the someone else docked error because we'll
 	// be moving into their place shortly
 	if((result != SHUTTLE_CAN_DOCK) && (result != SHUTTLE_SOMEONE_ELSE_DOCKED))
-		WARNING("Template shuttle [loaded_shuttle] cannot dock at [D] ([result]).")
+		WARNING("Template shuttle [preview_shuttle] cannot dock at [D] ([result]).")
 		return
 
 	if(existing_shuttle)
 		existing_shuttle.jumpToNullSpace()
 
-	var/list/force_memory = loaded_shuttle.movement_force
-	loaded_shuttle.movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
-	loaded_shuttle.initiate_docking(D)
-	loaded_shuttle.movement_force = force_memory
+	var/list/force_memory = preview_shuttle.movement_force
+	preview_shuttle.movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
+	preview_shuttle.initiate_docking(D)
+	preview_shuttle.movement_force = force_memory
 
-	. = loaded_shuttle
+	. = preview_shuttle
 
 	// Shuttle state involves a mode and a timer based on world.time, so
 	// plugging the existing shuttles old values in works fine.
-	loaded_shuttle.timer = timer
-	loaded_shuttle.mode = mode
+	preview_shuttle.timer = timer
+	preview_shuttle.mode = mode
 
-	loaded_shuttle.register()
+	preview_shuttle.register()
 
-	loaded_shuttle.reset_air()
+	preview_shuttle.reset_air()
 
 	// TODO indicate to the user that success happened, rather than just
 	// blanking the modification tab
+	preview_shuttle = null
 	preview_template = null
 	existing_shuttle = null
 	selected = null
 	QDEL_NULL(preview_reservation)
 
-/datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/S, datum/variable_ref/shuttle_reference)
+/datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/S)
 	. = FALSE
 	// load shuttle template, centred at shuttle import landmark,
 	preview_reservation = SSmapping.RequestBlockReservation(S.width, S.height, SSmapping.transit.z_value, /datum/turf_reservation/transit)
 	if(!preview_reservation)
 		CRASH("failed to reserve an area for shuttle template loading")
 	var/turf/BL = TURF_FROM_COORDS_LIST(preview_reservation.bottom_left_coords)
-	var/datum/map_generator/shuttle_loader = S.load(BL, FALSE, TRUE, TRUE, FALSE)
-	shuttle_loader.on_completion(CALLBACK(src, .proc/template_loaded, S, BL, shuttle_reference))
-	return shuttle_loader
+	S.load(BL, centered = FALSE, register = FALSE)
 
-/// Template loaded completed.
-/// Parameters preceeded by _ are discarded and not used.
-/datum/controller/subsystem/shuttle/proc/template_loaded(datum/map_template/shuttle/S, turf/BL, datum/variable_ref/shuttle_reference)
 	var/affected = S.get_affected_turfs(BL, centered=FALSE)
 
 	var/found = 0
@@ -720,14 +734,16 @@ SUBSYSTEM_DEF(shuttle)
 	// - We need to check that no additional ports have slipped in from the
 	//   template, because that causes unintended behaviour.
 	for(var/T in affected)
-		for(var/obj/docking_port/mobile/P in T)
-			if(!P.docked)
+		for(var/obj/docking_port/P in T)
+			if(istype(P, /obj/docking_port/mobile))
 				found++
 				if(found > 1)
 					qdel(P, force=TRUE)
 					log_world("Map warning: Shuttle Template [S.mappath] has multiple mobile docking ports.")
 				else
-					shuttle_reference.value = P
+					preview_shuttle = P
+			if(istype(P, /obj/docking_port/stationary))
+				log_world("Map warning: Shuttle Template [S.mappath] has a stationary docking port.")
 	if(!found)
 		var/msg = "load_template(): Shuttle Template [S.mappath] has no mobile docking port. Aborting import."
 		for(var/T in affected)
@@ -738,7 +754,7 @@ SUBSYSTEM_DEF(shuttle)
 		WARNING(msg)
 		return
 	//Everything fine
-	S.post_load(shuttle_reference.value)
+	S.post_load(preview_shuttle)
 	return TRUE
 
 /datum/controller/subsystem/shuttle/proc/unload_preview()
@@ -869,10 +885,10 @@ SUBSYSTEM_DEF(shuttle)
 			if(S)
 				. = TRUE
 				unload_preview()
-				var/datum/variable_ref/loaded_shuttle_reference = new()
-				var/datum/map_generator/shuttle_loader = load_template(S, loaded_shuttle_reference)
-				shuttle_loader.on_completion(CALLBACK(src, .proc/jump_to_preview, user, loaded_shuttle_reference))
-				preview_template = S
+				load_template(S)
+				if(preview_shuttle)
+					preview_template = S
+					user.forceMove(get_turf(preview_shuttle))
 		if("load")
 			if(existing_shuttle == backup_shuttle)
 				// TODO make the load button disabled
@@ -882,20 +898,9 @@ SUBSYSTEM_DEF(shuttle)
 			else if(S)
 				. = TRUE
 				// If successful, returns the mobile docking port
-				var/datum/variable_ref/loaded_shuttle_reference = new()
-				var/datum/map_generator/shuttle_loader = action_load(S, null, loaded_shuttle_reference)
-				shuttle_loader.on_completion(CALLBACK(src, .proc/shuttle_manipulator_on_load, user, loaded_shuttle_reference))
-
-/datum/controller/subsystem/shuttle/proc/shuttle_manipulator_on_load(mob/user, datum/variable_ref/loaded_shuttle_reference)
-	var/obj/docking_port/mobile/mdp = loaded_shuttle_reference.value
-	if(mdp)
-		user.forceMove(get_turf(mdp))
-		message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
-		log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
-		SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
-
-/datum/controller/subsystem/shuttle/proc/jump_to_preview(mob/user, datum/variable_ref/loaded_shuttle_reference)
-	var/obj/docking_port/mobile/loaded_shuttle = loaded_shuttle_reference.value
-	preview_shuttle = loaded_shuttle_reference.value
-	if(loaded_shuttle)
-		user.forceMove(get_turf(loaded_shuttle))
+				var/obj/docking_port/mobile/mdp = action_load(S)
+				if(mdp)
+					user.forceMove(get_turf(mdp))
+					message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
+					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
+					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")

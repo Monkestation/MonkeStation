@@ -201,12 +201,12 @@
 /obj/docking_port/mobile{
 	dir = 4;
 	dwidth = 10;
-	height = 8;
+	height = 9;
 	id = "exploration";
 	name = "Exploration Shuttle";
 	port_direction = 8;
 	shuttle_object_type = /datum/orbital_object/shuttle/custom_shuttle;
-	width = 14
+	width = 15
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)

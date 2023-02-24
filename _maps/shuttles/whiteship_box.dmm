@@ -2137,7 +2137,7 @@
 	name = "Hospital Ship";
 	port_direction = 8;
 	preferred_direction = 4;
-	width = 30
+	width = 34
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/crew)

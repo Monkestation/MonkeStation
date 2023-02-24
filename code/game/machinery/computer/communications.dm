@@ -203,6 +203,7 @@
 			if (bank_account.account_balance < shuttle.credit_cost)
 				return
 			SSshuttle.shuttle_purchased = TRUE
+			SSshuttle.unload_preview()
 			SSshuttle.existing_shuttle = SSshuttle.emergency
 			SSshuttle.action_load(shuttle)
 			bank_account.adjust_money(-shuttle.credit_cost)

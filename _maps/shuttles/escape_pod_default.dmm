@@ -15,18 +15,19 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
 "N" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod Airlock"
+	},
 /obj/docking_port/mobile/pod{
 	port_direction = 2;
 	dwidth = 1;
 	width = 3;
 	height = 4
 	},
-/obj/machinery/door/airlock/shuttle/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
 "Q" = (
-/obj/structure/window/shuttle,
-/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/pod_1)
 "U" = (

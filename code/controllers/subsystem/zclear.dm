@@ -139,14 +139,13 @@ SUBSYSTEM_DEF(zclear)
 			if(!living_levels["[level.z_value]"] && mob_levels["[level.z_value]"] && !announced_zombie_levels["[level.z_value]"])
 				//Zombie level detected.
 				announced_zombie_levels["[level.z_value]"] = TRUE
-				var/datum/orbital_object/linked_object = SSorbits.assoc_z_levels["[level.z_value]"]
-				if(linked_object)
-					priority_announce("All sentient life forms at [linked_object.name] have perished. You are recommended to establish a rescue operation to recover the bodies.", "Exploration Crew Monitor", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
+				if(level.orbital_body)
+					priority_announce("All sentient life forms at [level.orbital_body.name] have perished. You are recommended to establish a rescue operation to recover the bodies.", "Exploration Crew Monitor", 'sound/misc/notice1.ogg') // MONKESTATION EDIT
 			continue
 		//Level is free, do the wiping thing.
 		LAZYREMOVE(autowipe, level)
 		//Reset orbital body.
-		QDEL_NULL(SSorbits.assoc_z_levels["[level.z_value]"])
+		QDEL_NULL(level.orbital_body)
 		//Continue tracking after
 		wipe_z_level(level.z_value, TRUE)
 

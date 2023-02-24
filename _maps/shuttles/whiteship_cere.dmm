@@ -401,7 +401,7 @@
 /obj/docking_port/mobile{
 	dheight = 0;
 	dir = 2;
-	dwidth = 6;
+	dwidth = 8;
 	dynamic_id = 1;
 	height = 16;
 	id = "whiteship";
@@ -409,7 +409,7 @@
 	name = "NT Recovery White-Ship";
 	port_direction = 8;
 	preferred_direction = 1;
-	width = 13
+	width = 16
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
