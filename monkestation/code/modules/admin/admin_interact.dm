@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 			var/chosen_id = tgui_input_list(usr, "Choose a reagent to add.", "Choose a reagent.", subtypesof(/datum/reagent))
 			if(!chosen_id)
 				return
-			var/liquid_amount = tgui_input_number(usr, "How much liquid should we spawn", "Choose a reagent", 10, 1000, 1)
+			var/liquid_amount = tgui_input_number(usr, "How much liquid should we spawn", "Choose a reagent", 10, 10000000, 1)
 			targeted_turf.add_liquid(chosen_id, liquid_amount)
 			message_admins("[ADMIN_LOOKUPFLW(usr)] spawned liquid at [targeted_turf.loc] ([chosen_id] - [liquid_amount]).")
 			log_admin("[key_name(usr)] spawned liquid at [targeted_turf.loc] ([chosen_id] - [liquid_amount]).")
