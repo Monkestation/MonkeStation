@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 
 			for(var/increment = 0, increment < spawn_amount, increment++)
 				new chosen_mob(targeted_turf)
-				admin_ticket_log("[key_name_admin(usr)] created a [choen_mob.name] at [targeted_turf]")
+				admin_ticket_log("[key_name_admin(usr)] created a [chosen_mob.name] at [targeted_turf]")
 
 		if("Spawn Liquid")
 			if(!check_rights(!R_FUN))
