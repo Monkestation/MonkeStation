@@ -148,6 +148,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 				return
 			if(result)
 				new result(targeted_mob, TRUE)
+			log_admin("[key_name(usr)] has caused [key_name(targeted_mob)] to hallucinate [result].")
 
 		if("Cure Brain Trauma")
 			if(!iscarbon(targeted_mob))
@@ -292,6 +293,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 			var/spawn_amount = tgui_input_number(usr, "How many [initial(chosen_object.name)]s would you like to spawn?", "Create_Object", 1, 100, 1)
 			for(var/increment = 0, increment < spawn_amount, increment++)
 				new chosen_object(targeted_turf)
+			admin_ticket_log("[key_name_admin(usr)] created [spawn_amount] of [chosen_object.name] at [targeted_turf]")
 
 		if("Create Mob")
 			if(!check_rights(R_SPAWN))
@@ -303,6 +305,7 @@ GLOBAL_LIST_INIT(mob_type_list, subtypesof(/mob))
 
 			for(var/increment = 0, increment < spawn_amount, increment++)
 				new chosen_mob(targeted_turf)
+				admin_ticket_log("[key_name_admin(usr)] created a [choen_mob.name] at [targeted_turf]")
 
 		if("Spawn Liquid")
 			if(!check_rights(!R_FUN))
