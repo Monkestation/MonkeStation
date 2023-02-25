@@ -84,21 +84,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		clientfps = 60
 	if(current_version < 45)
 		channel_volume = list()
-		var/list/channels = list(
-							CHANNEL_LOBBYMUSIC,
-							CHANNEL_ADMIN,
-							CHANNEL_VOX,
-							CHANNEL_JUKEBOX,
-							CHANNEL_HEARTBEAT,
-							CHANNEL_AMBIENT_EFFECTS,
-							CHANNEL_AMBIENT_MUSIC,
-							CHANNEL_BUZZ,
-							CHANNEL_ENGINE_ALERT)
-		for(var/item in channels)
+		for(var/item in  GLOB.used_sound_channels)
 			channel_volume += "[item]"
 			channel_volume["[item]"] = 100
-			spawn(10 SECONDS)
-				parent.open_volume_mixer()
 	 //monkestation edit end
 	return
 
