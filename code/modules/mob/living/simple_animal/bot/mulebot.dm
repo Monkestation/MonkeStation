@@ -792,8 +792,8 @@
 	else
 		return null
 
-/mob/living/simple_animal/bot/mulebot/execute_resist()
-	. = ..()
+/mob/living/simple_animal/bot/mulebot/resist()
+	..()
 	if(load)
 		unload()
 
