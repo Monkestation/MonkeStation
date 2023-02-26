@@ -881,6 +881,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/abandonedzoo)
+"En" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/abandonedzoo)
 "Hx" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Bio Containment";
@@ -1102,7 +1118,7 @@ ay
 ay
 aO
 ay
-ay
+En
 tP
 ay
 ay

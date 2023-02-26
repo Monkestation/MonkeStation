@@ -12,9 +12,6 @@
 "d" = (
 /turf/open/floor/wood/airless,
 /area/ruin/unpowered)
-"e" = (
-/turf/open/floor/wood/airless,
-/area/ruin/unpowered)
 "f" = (
 /obj/machinery/door/airlock/wood,
 /obj/structure/punji_sticks,
@@ -38,14 +35,13 @@
 /obj/machinery/hydroponics,
 /turf/open/floor/wood/airless,
 /area/ruin/unpowered)
-"l" = (
-/obj/machinery/hydroponics,
-/turf/open/floor/wood/airless,
-/area/ruin/unpowered)
 "m" = (
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
+	},
+/obj/item/gps{
+	gpstag = "Signal"
 	},
 /turf/open/floor/wood/airless,
 /area/ruin/unpowered)
@@ -390,8 +386,8 @@ g
 b
 c
 d
-e
-e
+d
+d
 f
 j
 g
@@ -424,8 +420,8 @@ h
 g
 g
 b
-l
-l
+k
+k
 m
 b
 g

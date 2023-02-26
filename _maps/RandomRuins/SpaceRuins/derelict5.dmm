@@ -66,6 +66,12 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/ruin/unpowered)
+"P" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating,
+/area/ruin/unpowered)
 "V" = (
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
@@ -648,7 +654,7 @@ g
 i
 i
 m
-g
+P
 f
 g
 g

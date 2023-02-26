@@ -2586,7 +2586,7 @@
 	input_tag = "o2_in_bunker";
 	name = "Oxygen Supply Control";
 	output_tag = "o2_out_bunker";
-	sensors = list("o2_sensor_bunker" = "Tank")
+	sensors = list("o2_sensor_bunker"="Tank")
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -2947,7 +2947,7 @@
 	input_tag = "n2_in_bunker";
 	name = "Nitrogen Supply Control";
 	output_tag = "n2_out_bunker";
-	sensors = list("n2_sensor_bunker" = "Tank")
+	sensors = list("n2_sensor_bunker"="Tank")
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -3304,6 +3304,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/crusher)
+"FJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/deepstorage/airlock)
 "Rs" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -4535,7 +4542,7 @@ dX
 eq
 eI
 eU
-fi
+FJ
 ft
 eq
 hn

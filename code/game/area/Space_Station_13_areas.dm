@@ -1297,6 +1297,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mood_message = "<span class='warning'>It feels dirty in here!\n</span>"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
+/area/ranch
+	name = "Ranch"
+	icon_state = "hydro"
+	sound_environment = SOUND_AREA_STANDARD_STATION
 /area/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"

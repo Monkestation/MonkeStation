@@ -339,6 +339,15 @@
 "V" = (
 /turf/closed/wall/r_wall/rust,
 /area/space/nearstation)
+"W" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered/ancient_shuttle)
 
 (1,1,1) = {"
 a
@@ -445,7 +454,7 @@ b
 b
 u
 I
-I
+W
 c
 a
 a

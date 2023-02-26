@@ -905,6 +905,12 @@
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating,
 /area/tcommsat/oldaisat)
+"ST" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/tcommsat/oldaisat)
 
 (1,1,1) = {"
 aa
@@ -2646,7 +2652,7 @@ ac
 bU
 bZ
 ce
-bw
+ST
 ac
 ag
 cn

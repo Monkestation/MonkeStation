@@ -151,16 +151,22 @@
 		return
 
 	else
+		var/turf/target_turf = target
 		if(isturf(target))
-			var/turf/T = target
-			if(istype(T, /turf/open))
-				T.add_liquid_from_reagents(reagents)
+			if(istype(target_turf, /turf/open))
+				target_turf.add_liquid_from_reagents(reagents)
 			if(reagents.reagent_list.len && thrown_by)
 				log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
 				log_game("[key_name(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
 				message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
 		else
 			reagents.reaction(target, TOUCH)
+			var/turf/targets_loc = target.loc
+			if(istype(targets_loc, /turf/open))
+				targets_loc.add_liquid_from_reagents(reagents)
+			else
+				targets_loc = get_step_towards(targets_loc, thrown_by)
+				targets_loc.add_liquid_from_reagents(reagents) //not perfect but i can't figure out how to move something to the nearest visible turf from throw_target
 		//MONKESTATION EDIT END
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
 		if(QDELETED(src))
