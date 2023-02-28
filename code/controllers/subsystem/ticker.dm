@@ -354,8 +354,8 @@ SUBSYSTEM_DEF(ticker)
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
 	for(var/mob/M as anything in GLOB.player_list)
 		if(!M.client)
-			continue
-		if("[CHANNEL_VOX]" in M.client.prefs.channel_volume)
+			SEND_SOUND(M, sound(SSstation.announcer.get_rand_welcome_sound(), volume = 100))
+		else if("[CHANNEL_VOX]" in M.client.prefs.channel_volume)
 			SEND_SOUND(M, sound(SSstation.announcer.get_rand_welcome_sound(), volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 
 	current_state = GAME_STATE_PLAYING
