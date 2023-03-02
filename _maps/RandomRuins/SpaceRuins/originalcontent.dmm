@@ -914,6 +914,15 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/indestructible/paper,
 /area/ruin/powered)
+"Ky" = (
+/obj/structure/fluff/paper{
+	dir = 4
+	},
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/indestructible/paper,
+/area/ruin/powered)
 
 (1,1,1) = {"
 aa
@@ -2288,7 +2297,7 @@ az
 af
 af
 am
-aq
+Ky
 aq
 aT
 af

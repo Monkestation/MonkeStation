@@ -41,6 +41,6 @@
 		living_victim.throw_at(throw_target, 4, 5)
 		living_victim.Knockdown(4 SECONDS)
 		living_victim.adjustStaminaLoss(20)
-		playsound(src, 'sound/effects/bang.ogg', 50, 1)
+		playsound(src, 'sound/effects/bang.ogg', 50, 1, mixer_channel = CHANNEL_MOB_SOUNDS)
 		last_bump = world.time + 1 SECONDS
 

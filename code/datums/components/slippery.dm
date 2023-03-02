@@ -136,7 +136,7 @@
  */
 /datum/component/slippery/proc/slip_on_wearer(datum/source, atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SIGNAL_HANDLER
-	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
+	if(holder.body_position == LYING_DOWN && !holder.buckled)
 		Slip(source, arrived)
 
 /datum/component/slippery/UnregisterFromParent()
@@ -148,7 +148,7 @@
 
 /datum/component/slippery/clowning/slip_on_wearer(datum/source, atom/movable/AM)
 	var/obj/item/slot_item = holder.get_item_by_slot(ITEM_SLOT_FEET)
-	if(!(holder.mobility_flags & MOBILITY_STAND) && !holder.buckled)
+	if(holder.body_position == LYING_DOWN && !holder.buckled)
 		if(istype(slot_item, /obj/item/clothing/shoes/clown_shoes))
 			Slip(source, AM)
 		else if(holder?.mind.assigned_role == "Clown")

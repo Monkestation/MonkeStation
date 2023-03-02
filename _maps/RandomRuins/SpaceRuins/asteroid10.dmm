@@ -255,6 +255,12 @@
 /obj/item/food/nugget/dog,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered)
+"Nr" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
 aa
@@ -873,7 +879,7 @@ ad
 ad
 ad
 aK
-ae
+Nr
 ae
 bh
 aw

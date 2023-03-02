@@ -73,6 +73,7 @@
 			M.icon_state = icon_dead
 			M.name = name
 			M.reagents.add_reagent(/datum/reagent/blood, 2, data)
+			M.ratdisease = src.ratdisease
 			if(toast)
 				M.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
 				M.desc = "It's toast."
@@ -177,6 +178,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	foodtypes = GROSS | MEAT | RAW
 	w_class = WEIGHT_CLASS_TINY
+	var/list/ratdisease = list()
 	grind_results = list(/datum/reagent/blood = 20, /datum/reagent/liquidgibs = 5)
 
 
@@ -194,3 +196,12 @@
 /obj/item/food/deadmouse/on_grind()
 	.=..()
 	reagents.clear_reagents()
+
+/obj/item/food/deadmouse/extrapolator_act(mob/user, var/obj/item/extrapolator/E, scan = TRUE)
+	if(!ratdisease.len)
+		return FALSE
+	if(scan)
+		E.scan(src, ratdisease, user)
+	else
+		E.extrapolate(src, ratdisease, user)
+	return TRUE

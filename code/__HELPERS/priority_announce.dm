@@ -42,8 +42,9 @@
 	if(auth_id)
 		announcement += "<span class='alert'>-[auth_id]</span><br>"
 
-	var/s = sound(sound)
+	var/sound/s = sound(sound)
 	for(var/mob/M in GLOB.player_list)
+		s.volume = M.client?.prefs.channel_volume["[CHANNEL_VOX]"]
 		if(!isnewplayer(M) && M.can_hear())
 			to_chat(M, announcement)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
@@ -91,8 +92,8 @@
 			to_chat(M, complete_msg)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(alert)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+					SEND_SOUND(M, sound('sound/misc/notice1.ogg', volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					SEND_SOUND(M, sound('sound/misc/notice2.ogg', volume = M.client.prefs.channel_volume["[CHANNEL_VOX]"]))
 
 #undef DEFAULT_ALERT

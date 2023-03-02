@@ -71,6 +71,12 @@
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
+"T" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -734,7 +740,7 @@ e
 e
 e
 e
-e
+T
 c
 b
 a

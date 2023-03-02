@@ -986,6 +986,12 @@
 /obj/item/toy/figure/md,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/macspace)
+"lK" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/macspace)
 "mo" = (
 /obj/structure/chair/stool/bar,
 /obj/item/toy/figure/engineer,
@@ -1529,7 +1535,7 @@ ae
 af
 aj
 al
-ag
+lK
 ag
 aW
 ag

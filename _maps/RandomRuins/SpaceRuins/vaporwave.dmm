@@ -208,6 +208,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/vaporwave,
 /area/ruin/space/has_grav/powered/aesthetic)
+"Q" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/ruin/space/has_grav/powered/aesthetic)
 "R" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -360,7 +366,7 @@ a
 d
 d
 f
-k
+Q
 k
 k
 k

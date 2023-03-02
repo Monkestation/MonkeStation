@@ -45,6 +45,7 @@
 #define GAS_PIPE_VISIBLE_LAYER 2.47
 #define GAS_FILTER_LAYER 2.48
 #define PRESSURE_PLATE_LAYER 2.49
+#define PLUMBING_PIPE_VISIBILE_LAYER 2.495//layer = initial(layer) + ducting_layer / 3333 in atmospherics/handle_layer() to determine order of duct overlap
 #define LOW_OBJ_LAYER 2.5
 #define LOW_SIGIL_LAYER 2.52
 #define SIGIL_LAYER 2.54
@@ -135,7 +136,7 @@
 #define CAMERA_STATIC_LAYER 19
 #define CAMERA_STATIC_RENDER_TARGET "CAMERA_STATIC_PLANE"
 
-#define RUNECHAT_PLANE 20
+#define RUNECHAT_PLANE 24
 
 /// Plane for balloon text (text that fades up)
 #define BALLOON_CHAT_PLANE 20.5
@@ -151,15 +152,15 @@
 #define CURSE_LAYER 21.5
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
-#define HUD_PLANE 22
-#define HUD_LAYER 22
+#define HUD_PLANE 24
+#define HUD_LAYER 24
 #define HUD_RENDER_TARGET "HUD_PLANE"
-#define ABOVE_HUD_PLANE 23
+#define ABOVE_HUD_PLANE 25
 #define ABOVE_HUD_RENDER_TARGET "ABOVE_HUD_PLANE"
-#define RADIAL_LAYER 23
+#define RADIAL_LAYER 25
 
-#define SPLASHSCREEN_LAYER 24
-#define SPLASHSCREEN_PLANE 24
+#define SPLASHSCREEN_LAYER 26
+#define SPLASHSCREEN_PLANE 26
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
 
 ///Plane master controller keys

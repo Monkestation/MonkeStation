@@ -92,6 +92,12 @@
 /obj/structure/statue/gold/ce,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered)
+"F" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
 a
@@ -378,7 +384,7 @@ b
 d
 d
 d
-d
+F
 b
 k
 a

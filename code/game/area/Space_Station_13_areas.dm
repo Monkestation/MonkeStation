@@ -333,6 +333,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Hallway
 /area/hallway
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 
 /area/hallway
 	lighting_colour_tube = "#ffce99"
@@ -1296,6 +1297,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mood_message = "<span class='warning'>It feels dirty in here!\n</span>"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
+/area/ranch
+	name = "Ranch"
+	icon_state = "hydro"
+	sound_environment = SOUND_AREA_STANDARD_STATION
 /area/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
@@ -1434,6 +1439,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Storage
 /area/storage
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	lights_always_start_on = TRUE
 
 /area/storage/tools
 	name = "Auxiliary Tool Storage"

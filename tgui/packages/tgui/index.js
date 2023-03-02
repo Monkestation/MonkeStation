@@ -18,6 +18,8 @@ import './styles/themes/paper.scss';
 import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
 
+import './styles/themes/chicken_book.scss';
+
 import { perf } from 'common/perf';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
 import { setupHotKeys } from './hotkeys';

@@ -5008,6 +5008,12 @@
 	},
 /turf/template_noop,
 /area/ruin/unpowered/no_grav)
+"sC" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/hotel/bar)
 "sN" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/structure/cable{
@@ -6706,7 +6712,7 @@ gc
 gq
 gE
 gV
-fx
+sC
 hy
 hK
 gp

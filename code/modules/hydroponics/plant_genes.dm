@@ -196,6 +196,9 @@
 /datum/plant_gene/trait/proc/on_new(obj/item/food/grown/G, newloc)
 	return
 
+/datum/plant_gene/trait/proc/on_new_late(obj/item/food/grown/G, newloc)
+	return
+
 /datum/plant_gene/trait/proc/on_consume(obj/item/food/grown/G, mob/living/carbon/target)
 	return
 

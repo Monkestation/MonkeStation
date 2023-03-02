@@ -1,0 +1,9 @@
+{
+	"map_name": "Liquid Station",
+	"map_link": "None",
+	"map_path": "map_files/debug",
+	"map_file": "debug-liquid.dmm",
+	"shuttles": {
+		"cargo": "cargo_delta"
+	}
+}

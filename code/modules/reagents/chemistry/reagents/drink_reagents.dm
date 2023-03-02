@@ -301,7 +301,7 @@
 /datum/reagent/consumable/coffee/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	//310.15 is the normal bodytemp.
 	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
@@ -323,7 +323,7 @@
 	M.dizziness = max(0,M.dizziness-2)
 	M.drowsyness = max(0,M.drowsyness-1)
 	M.jitteriness = max(0,M.jitteriness-3)
-	M.AdjustSleeping(-20, FALSE)
+	M.AdjustSleeping(-20)
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
@@ -371,7 +371,7 @@
 /datum/reagent/consumable/icecoffee/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	M.Jitter(5)
 	..()
@@ -390,7 +390,7 @@
 /datum/reagent/consumable/icetea/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-2)
 	M.drowsyness = max(0,M.drowsyness-1)
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
@@ -434,7 +434,7 @@
 	M.set_drugginess(30)
 	M.dizziness += 1.5
 	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	M.radiation += 4
 	..()
@@ -462,7 +462,7 @@
 	M.Jitter(20)
 	M.dizziness +=1
 	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -477,7 +477,7 @@
 
 /datum/reagent/consumable/spacemountainwind/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(0,M.drowsyness-7)
-	M.AdjustSleeping(-20, FALSE)
+	M.AdjustSleeping(-20)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	M.Jitter(5)
 	..()
@@ -577,7 +577,7 @@
 /datum/reagent/consumable/tonic/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 	. = 1
@@ -595,7 +595,7 @@
 	M.Jitter(20)
 	M.dizziness +=1
 	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
+	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -635,7 +635,7 @@
 /datum/reagent/consumable/soy_latte/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
-	M.SetSleeping(0, FALSE)
+	M.SetSleeping(0)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 	M.Jitter(5)
 	if(M.getBruteLoss() && prob(20))
@@ -656,7 +656,7 @@
 /datum/reagent/consumable/cafe_latte/on_mob_life(mob/living/carbon/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
-	M.SetSleeping(0, FALSE)
+	M.SetSleeping(0)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 	M.Jitter(5)
 	if(M.getBruteLoss() && prob(20))

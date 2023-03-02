@@ -2236,6 +2236,17 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost)
+"XA" = (
+/obj/structure/alien/weeds{
+	color = "#4BAE56";
+	desc = "A thick gelatinous surface covers the floor.  Someone get the golashes.";
+	name = "gelatinous floor"
+	},
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost)
 
 (1,1,1) = {"
 aa
@@ -3263,7 +3274,7 @@ bj
 cz
 bF
 ci
-bl
+XA
 dm
 dC
 dC

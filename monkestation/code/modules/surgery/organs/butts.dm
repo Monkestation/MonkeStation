@@ -35,7 +35,7 @@
 		cooling_down = TRUE
 		user.audible_message("[user] <font color='green'>farts.</font>")
 		if(prob(fart_instability))
-			playsound(user, "sound/machines/alarm.ogg", 100, FALSE, 50, ignore_walls=TRUE)
+			playsound(user, "sound/machines/alarm.ogg", 100, FALSE, 50, ignore_walls=TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 			minor_announce("The detonation of a nuclear posterior has been detected in your area. All crew are required to exit the blast radius.", "Nanotrasen Atomics", 0)
 			Person.Paralyze(120)
 			Person.electrocution_animation(120)
@@ -44,7 +44,7 @@
 				dyn_explosion(Location, 20,10)
 				cooling_down = FALSE
 		else
-			playsound(user, pick(sound_effect), 50, TRUE)
+			playsound(user, pick(sound_effect), 50, TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 			Location.atmos_spawn_air(atmos_gas)
 			spawn(20)
 				cooling_down = FALSE
@@ -136,7 +136,7 @@
 	src.SpinAnimation(5, -1)
 
 /obj/effect/immovablerod/butt/Bump(atom/clong)
-	playsound(src,'sound/misc/fart1.ogg', 100, TRUE, 10, pressure_affected = FALSE)
+	playsound(src,'sound/misc/fart1.ogg', 100, TRUE, 10, pressure_affected = FALSE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 	..()
 
 //ACTUAL FART PROC
@@ -164,8 +164,8 @@
 			T.Beam(Person, icon_state="lightning[rand(1,12)]", time = 15)
 			Person.Paralyze(15)
 			Person.visible_message("<span class='warning'>[Person] attempts to fart on the [Holy], uh oh.<span>","<span class='ratvar'>What a grand and intoxicating innocence. Perish.</span>")
-			playsound(user,'sound/magic/lightningshock.ogg', 50, 1)
-			playsound(user,	'monkestation/sound/misc/dagothgod.ogg', 80)
+			playsound(user,'sound/magic/lightningshock.ogg', 50, 1, mixer_channel = CHANNEL_SOUND_EFFECTS)
+			playsound(user,	'monkestation/sound/misc/dagothgod.ogg', 80, mixer_channel = CHANNEL_SOUND_EFFECTS)
 			Person.electrocution_animation(15)
 			spawn(15)
 				Person.gib()
@@ -193,7 +193,7 @@
 
 
 	//SOUND HANDLING
-	playsound(user, pick(sound_effect), volume , use_reverb = TRUE, pressure_affected = FALSE)
+	playsound(user, pick(sound_effect), volume , use_reverb = TRUE, pressure_affected = FALSE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 
 	//GAS CREATION, ASS DETACHMENT & COOLDOWNS
 	if(!cooling_down)
@@ -256,6 +256,6 @@
 				new_butt.desc = "hiss!"
 				new_butt.icon_state = "buttbot_xeno"
 
-		playsound(src, pick('sound/misc/fart1.ogg', 'monkestation/sound/effects/fart2.ogg', 'monkestation/sound/effects/fart3.ogg', 'monkestation/sound/effects/fart4.ogg'), 25 ,use_reverb = TRUE)
+		playsound(src, pick('sound/misc/fart1.ogg', 'monkestation/sound/effects/fart2.ogg', 'monkestation/sound/effects/fart3.ogg', 'monkestation/sound/effects/fart4.ogg'), 25 ,use_reverb = TRUE, mixer_channel = CHANNEL_SOUND_EFFECTS)
 		qdel(src)
 

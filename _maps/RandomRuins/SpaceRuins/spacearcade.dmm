@@ -105,6 +105,12 @@
 "s" = (
 /turf/closed/mineral,
 /area/ruin/space/has_grav/powered)
+"R" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/eighties,
+/area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
 a
@@ -310,7 +316,7 @@ s
 s
 s
 b
-c
+R
 c
 c
 h

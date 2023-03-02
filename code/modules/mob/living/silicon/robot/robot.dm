@@ -95,7 +95,7 @@
 	)
 
 	can_buckle = TRUE
-	buckle_lying = FALSE
+	buckle_lying = 0
 	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 
 /mob/living/silicon/robot/get_cell()
@@ -152,7 +152,7 @@
 		mmi.brain.organ_flags |= ORGAN_FROZEN
 		mmi.brain.name = "[real_name]'s brain"
 		mmi.name = "[initial(mmi.name)]: [real_name]"
-		mmi.brainmob = new(mmi)
+		mmi.set_brainmob(new /mob/living/brain(mmi))
 		mmi.brainmob.name = src.real_name
 		mmi.brainmob.real_name = src.real_name
 		mmi.brainmob.container = mmi
@@ -346,9 +346,6 @@
 /mob/living/silicon/robot/proc/alarm_cleared(datum/source, alarm_type, area/source_area)
 	SIGNAL_HANDLER
 	queueAlarm("--- [alarm_type] alarm in [source_area.name] has been cleared.", alarm_type, FALSE)
-
-/mob/living/silicon/robot/restrained(ignore_grab)
-	. = 0
 
 /mob/living/silicon/robot/can_interact_with(atom/A)
 	if (low_power_mode)
@@ -605,7 +602,7 @@
 /mob/living/silicon/robot/update_icons()
 	cut_overlays()
 	icon_state = module.cyborg_base_icon
-	if(stat != DEAD && !(IsUnconscious() || IsStun() || IsParalyzed() || low_power_mode)) //Not dead, not stunned.
+	if(stat != DEAD && !(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || IsStun() || IsParalyzed() || low_power_mode)) //Not dead, not stunned.
 		if(!eye_lights)
 			eye_lights = new()
 		if(lamp_intensity > 2)
@@ -642,8 +639,7 @@
 		connected_ai.connected_robots -= src
 		src.connected_ai = null
 	lawupdate = FALSE
-	lockcharge = FALSE
-	mobility_flags |= MOBILITY_FLAGS_DEFAULT
+	set_lockcharge(FALSE)
 	scrambledcodes = TRUE_DEVIL
 	//Disconnect it's camera so it's not so easily tracked.
 	if(!QDELETED(builtInCamera))
@@ -674,8 +670,20 @@
 		throw_alert("locked", /atom/movable/screen/alert/locked)
 	else
 		clear_alert("locked")
-	lockcharge = state
-	update_mobility()
+	set_lockcharge(state)
+
+
+///Reports the event of the change in value of the lockcharge variable.
+/mob/living/silicon/robot/proc/set_lockcharge(new_lockcharge)
+	if(new_lockcharge == lockcharge)
+		return
+	. = lockcharge
+	lockcharge = new_lockcharge
+	if(lockcharge)
+		if(!.)
+			ADD_TRAIT(src, TRAIT_IMMOBILIZED, LOCKED_BORG_TRAIT)
+	else if(.)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, LOCKED_BORG_TRAIT)
 
 /mob/living/silicon/robot/proc/SetEmagged(new_state)
 	emagged = new_state
@@ -973,18 +981,11 @@
 		if(health <= -maxHealth) //die only once
 			death()
 			return
-		if(IsUnconscious() || IsStun() || IsKnockdown() || IsParalyzed() || getOxyLoss() > maxHealth*0.5)
-			if(stat == CONSCIOUS)
-				set_stat(UNCONSCIOUS)
-				blind_eyes(1)
-				update_mobility()
-				update_headlamp()
+		if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || IsStun() || IsKnockdown() || IsParalyzed())
+			set_stat(UNCONSCIOUS)
 		else
-			if(stat == UNCONSCIOUS)
-				set_stat(CONSCIOUS)
-				adjust_blindness(-1)
-				update_mobility()
-				update_headlamp()
+			set_stat(CONSCIOUS)
+	update_headlamp()
 	diag_hud_set_status()
 	diag_hud_set_health()
 	diag_hud_set_aishell()
@@ -1190,7 +1191,7 @@
 			M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
 			return
 	if(iscarbon(M) && (!riding_datum.equip_buckle_inhands(M, 1)))
-		if (M.get_num_arms() <= 0)
+		if (M.num_hands == 0)
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_they()] don't have any usable arms!</span>")
 		else
 			M.visible_message("<span class='boldwarning'>[M] can't climb onto [src] because [M.p_their()] hands are full!</span>")

@@ -19,6 +19,12 @@
 /obj/item/pickaxe/diamond,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered/no_grav)
+"k" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
 
 (1,1,1) = {"
 a
@@ -191,7 +197,7 @@ c
 b
 b
 e
-b
+k
 b
 b
 c
