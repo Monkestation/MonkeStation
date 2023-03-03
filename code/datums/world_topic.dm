@@ -186,10 +186,10 @@
 	response = "Names fetched"
 	data = keywords_lookup(input["target"], TRUE)
 
-/datum/world_topic/adminwho
-	key = "adminwho"
+/datum/world_topic/getadmins
+	key = "getadmins"
 
-/datum/world_topic/adminwho/Run(list/input)
+/datum/world_topic/getadmins/Run(list/input)
 	. = ..()
 	var/list/admins = list()
 	for(var/client/admin in GLOB.admins)
@@ -202,11 +202,11 @@
 	response = "Admin list fetched"
 	data = admins
 
-/datum/world_topic/playerlist
-	key = "playerlist"
+/datum/world_topic/whois
+	key = "whoIs"
 	anonymous = TRUE
 
-/datum/world_topic/playerlist/Run(list/input)
+/datum/world_topic/whois/Run(list/input)
 	. = ..()
 	data = list()
 	for(var/client/C as() in GLOB.clients)
@@ -399,25 +399,3 @@
 #undef TOPIC_VERSION_MAJOR
 #undef TOPIC_VERSION_MINOR
 #undef TOPIC_VERSION_PATCH
-
-/datum/world_topic/whois
-	key = "whoIs"
-
-/datum/world_topic/whois/Run(list/input)
-	. = list()
-	.["players"] = GLOB.clients
-
-	return list2params(.)
-
-/datum/world_topic/getadmins
-	key = "getAdmins"
-
-/datum/world_topic/getadmins/Run(list/input)
-	. = list()
-	var/list/adm = get_admin_counts()
-	var/list/presentmins = adm["present"]
-	var/list/afkmins = adm["afk"]
-	.["admins"] = presentmins
-	.["admins"] += afkmins
-
-	return list2params(.)
