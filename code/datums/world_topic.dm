@@ -424,7 +424,6 @@
 /datum/world_topic/whois/Run(list/input)
 	. = ..()
 	data = list()
-	for(var/client/C as() in GLOB.clients)
-		data["players"] += C.ckey
+	data["players"] = GLOB.clients
 	statuscode = 200
 	response = "Player list fetched"
