@@ -151,7 +151,6 @@
 		return
 
 	else
-		var/turf/target_turf = target
 		if(isturf(target))
 			var/turf/T = target
 			if(istype(T, /turf/open))
