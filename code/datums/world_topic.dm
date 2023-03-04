@@ -407,16 +407,16 @@
 
 /datum/world_topic/getadmins/Run(list/input)
 	. = ..()
-	var/list/adm = get_admin_counts()
-	var/list/presentmins = adm["present"]
-	var/list/afkmins = adm["afk"]
+	var/list/admins = list()
+	for(admin in GLOB.admins)
+		var/client/admin_client = admin
+		if(!admin_client.holder.fakekey)
+			admins += "[admin_client][admin_client.is_afk() ? "(AFK)" : ""]"
 
 	statuscode = 200
 	response = "Admin list fetched"
 
-	data["admins"] = presentmins
-	data["admins"] += afkmins
-
+	data["admins"] = admins
 /datum/world_topic/whois
 	key = "whoIs"
 	anonymous = TRUE
