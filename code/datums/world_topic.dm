@@ -408,7 +408,7 @@
 /datum/world_topic/getadmins/Run(list/input)
 	. = ..()
 	var/list/admins = list()
-	for(admin in GLOB.admins)
+	for(var/admin in GLOB.admins)
 		var/client/admin_client = admin
 		if(!admin_client.holder.fakekey)
 			admins += "[admin_client][admin_client.is_afk() ? "(AFK)" : ""]"
