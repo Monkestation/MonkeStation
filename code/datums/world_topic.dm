@@ -190,7 +190,7 @@
 	key = "adminwho"
 	anonymous = TRUE
 
-/datum/world_topic/getadmins/Run(list/input)
+/datum/world_topic/adminwho/Run(list/input)
 	. = ..()
 	var/list/admins = list()
 	for(var/client/admin in GLOB.admins)
@@ -203,11 +203,11 @@
 	response = "Admin list fetched"
 	data = admins
 
-/datum/world_topic/whois
-	key = "whoIs"
+/datum/world_topic/playerlist
+	key = "playerlist"
 	anonymous = TRUE
 
-/datum/world_topic/whois/Run(list/input)
+/datum/world_topic/playerlist/Run(list/input)
 	. = ..()
 	data = list()
 	for(var/client/C as() in GLOB.clients)
@@ -407,16 +407,15 @@
 
 /datum/world_topic/getadmins/Run(list/input)
 	. = ..()
-	var/list/admins = list()
-	for(var/client/admin in GLOB.admins)
-		admins[++admins.len] = list("ckey" = admin.ckey,
-			            "key" = admin.key,
-			            "rank" = admin.holder.rank.name,
-			            "stealth" = admin.holder.fakekey ? TRUE : FALSE,
-			            "afk" = admin.is_afk())
+	var/list/adm = get_admin_counts()
+	var/list/presentmins = adm["present"]
+	var/list/afkmins = adm["afk"]
+
 	statuscode = 200
 	response = "Admin list fetched"
-	data = admins
+
+	data["admins"] = presentmins
+	data["admins"] += afkmins
 
 /datum/world_topic/whois
 	key = "whoIs"
@@ -426,7 +425,6 @@
 	. = ..()
 	data = list()
 	for(var/client/C as() in GLOB.clients)
-		data += C.ckey
+		data["players"] += C.ckey
 	statuscode = 200
 	response = "Player list fetched"
-  
