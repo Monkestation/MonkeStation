@@ -190,7 +190,7 @@
 	key = "adminwho"
 	anonymous = TRUE
 
-/datum/world_topic/adminwho/Run(list/input)
+/datum/world_topic/getadmins/Run(list/input)
 	. = ..()
 	var/list/admins = list()
 	for(var/client/admin in GLOB.admins)
@@ -203,11 +203,11 @@
 	response = "Admin list fetched"
 	data = admins
 
-/datum/world_topic/playerlist
-	key = "playerlist"
+/datum/world_topic/whois
+	key = "whoIs"
 	anonymous = TRUE
 
-/datum/world_topic/playerlist/Run(list/input)
+/datum/world_topic/whois/Run(list/input)
 	. = ..()
 	data = list()
 	for(var/client/C as() in GLOB.clients)
@@ -429,3 +429,4 @@
 		data += C.ckey
 	statuscode = 200
 	response = "Player list fetched"
+  
