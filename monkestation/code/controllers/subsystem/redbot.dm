@@ -25,4 +25,3 @@ SUBSYSTEM_DEF(redbot)
 	data["announce_channel"] = channel
 	data["announce"] = message
 	world.Export("http://[bot_ip]/?[list2params(data)]")
-
