@@ -161,7 +161,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 		reagents.chem_temp = group_temperature
 
 	handle_visual_changes()
-
+	reagents.my_atom = pick(members) /// change the location of explosions and sounds every group process
 
 	var/turf/open/open_turf = pick(members)
 	var/datum/gas_mixture/math_cache = open_turf.air
@@ -831,7 +831,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	if(!gas)
 		return
 
-	if((cached_temperature_shift > group_temperature + 5) || cached_temperature_shift > gas.return_temperature() + 5 || gas.return_temperature() + 5  > cached_temperature_shift || group_temperature + 5 > cached_temperature_shift)
+	var/rounder = round(cached_temperature_shift - group_temperature, 1)
+	var/rounder_gas = round(cached_temperature_shift - gas.return_temperature(), 1)
+
+	if(rounder_gas >= 5 || rounder >= 5 || rounder <= -5 || rounder_gas <= -5)
 		gas.set_temperature(cached_temperature_shift)
 		if(group_temperature != cached_temperature_shift)
 			group_temperature = cached_temperature_shift
