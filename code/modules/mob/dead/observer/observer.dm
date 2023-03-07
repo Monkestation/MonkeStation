@@ -678,6 +678,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		overlays = to_copy.overlays
 		alpha = 127
 
+	set_invisibility(GLOB.observer_default_invisibility)
+
 /mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)
 
