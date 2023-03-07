@@ -184,6 +184,12 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered)
+"O" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered)
 
 (1,1,1) = {"
 a
@@ -459,7 +465,7 @@ b
 b
 b
 o
-q
+O
 v
 q
 z

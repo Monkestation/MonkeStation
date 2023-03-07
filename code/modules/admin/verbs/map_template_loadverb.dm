@@ -20,12 +20,11 @@
 		preview += item
 	images += preview
 	if(alert(src,"Confirm location.","Template Confirm","Yes","No") == "Yes")
-		var/datum/map_generator/template_placer = template.load(T, centered = TRUE)
-		template_placer.on_completion(CALLBACK(src, .proc/after_map_load, template.name))
+		if(template.load(T, centered = TRUE))
+			message_admins("<span class='adminnotice'>[key_name_admin(src)] has placed a map template ([template.name]) at [ADMIN_COORDJMP(T)]</span>")
+		else
+			to_chat(src, "Failed to place map")
 	images -= preview
-
-/client/proc/after_map_load(template_name, datum/map_generator/map_place/map_generator, turf/T)
-	message_admins("<span class='adminnotice'>[key_name_admin(src)] has placed a map template ([template_name]) at [ADMIN_COORDJMP(T)]</span>")
 
 /client/proc/map_template_upload()
 	set category = "Debug"

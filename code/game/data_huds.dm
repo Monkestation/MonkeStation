@@ -36,7 +36,7 @@
 	if(check_sensors(H))
 		..()
 
-/datum/atom_hud/data/human/medical/basic/proc/update_suit_sensors(mob/living/carbon/H)
+/datum/atom_hud/data/human/medical/basic/proc/update_sensors(mob/living/carbon/H)
 	check_sensors(H) ? add_to_hud(H) : remove_from_hud(H)
 
 /datum/atom_hud/data/human/medical/advanced
@@ -153,9 +153,9 @@
 //HOOKS
 
 //called when a human changes suit sensors
-/mob/living/carbon/proc/update_suit_sensors()
+/mob/living/carbon/proc/update_sensors()
 	var/datum/atom_hud/data/human/medical/basic/B = GLOB.huds[DATA_HUD_MEDICAL_BASIC]
-	B.update_suit_sensors(src)
+	B.update_sensors(src)
 
 //called when a living mob changes health
 /mob/living/proc/med_hud_set_health()

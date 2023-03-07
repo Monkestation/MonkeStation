@@ -1,5 +1,4 @@
 GLOBAL_LIST_EMPTY(station_turfs)
-GLOBAL_LIST_EMPTY(created_baseturf_lists)
 
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
@@ -30,9 +29,6 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 
 	//If true, turf will allow users to float up and down in 0 grav.
 	var/allow_z_travel = FALSE
-
-	/// Whether the turf blocks atmos from passing through it or not
-	var/blocks_air = FALSE
 
 	flags_1 = CAN_BE_DIRTY_1
 
@@ -446,6 +442,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 
 // A proc in case it needs to be recreated or badmins want to change the baseturfs
 /turf/proc/assemble_baseturfs(turf/fake_baseturf_type)
+	var/static/list/created_baseturf_lists = list()
 	var/turf/current_target
 	if(fake_baseturf_type)
 		if(length(fake_baseturf_type)) // We were given a list, just apply it and move on
@@ -462,8 +459,8 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 			current_target = baseturfs
 
 	// If we've made the output before we don't need to regenerate it
-	if(GLOB.created_baseturf_lists[current_target])
-		var/list/premade_baseturfs = GLOB.created_baseturf_lists[current_target]
+	if(created_baseturf_lists[current_target])
+		var/list/premade_baseturfs = created_baseturf_lists[current_target]
 		if(length(premade_baseturfs))
 			baseturfs = premade_baseturfs.Copy()
 		else
@@ -474,7 +471,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	//Most things only have 1 baseturf so this loop won't run in most cases
 	if(current_target == next_target)
 		baseturfs = current_target
-		GLOB.created_baseturf_lists[current_target] = current_target
+		created_baseturf_lists[current_target] = current_target
 		return current_target
 	var/list/new_baseturfs = list(current_target)
 	for(var/i=0;current_target != next_target;i++)
@@ -489,7 +486,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 		next_target = initial(current_target.baseturfs)
 
 	baseturfs = new_baseturfs
-	GLOB.created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
+	created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
 	return new_baseturfs
 
 /turf/proc/levelupdate()

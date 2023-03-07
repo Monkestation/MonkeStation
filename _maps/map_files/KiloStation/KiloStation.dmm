@@ -75083,7 +75083,7 @@
 /obj/docking_port/stationary{
 	dir = 4;
 	dwidth = 3;
-	height = 15;
+	height = 14;
 	id = "arrivals_stationary";
 	name = "kilo arrivals";
 	roundstart_template = /datum/map_template/shuttle/arrival/kilo;
@@ -86072,6 +86072,7 @@
 /area/construction/mining/aux_base)
 "cDZ" = (
 /obj/docking_port/stationary{
+	area_type = /area/construction/mining/aux_base;
 	dheight = 4;
 	dir = 8;
 	dwidth = 4;

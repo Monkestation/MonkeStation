@@ -88,9 +88,20 @@
 	name = "Afro 2"
 	icon_state = "hair_afro2"
 
+/datum/sprite_accessory/hair/afro3
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Bigger Afro"
+	icon_state = "big_afro"
+
 /datum/sprite_accessory/hair/afro_large
 	name = "Afro (Large)"
 	icon_state = "hair_bigafro"
+
+/datum/sprite_accessory/hair/gigafro
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "GigAfro"
+	icon_state = "giga_fro"
+	locked = TRUE
 
 /datum/sprite_accessory/hair/antenna
 	name = "Ahoge"
@@ -240,6 +251,11 @@
 	name = "Business Hair 4"
 	icon_state = "hair_business4"
 
+/datum/sprite_accessory/hair/butters
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Butters"
+	icon_state = "butters"
+
 /datum/sprite_accessory/hair/buzz
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
@@ -355,6 +371,11 @@
 /datum/sprite_accessory/hair/father
 	name = "Father"
 	icon_state = "hair_father"
+
+/datum/sprite_accessory/hair/flippyfringe
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Flippy Fringe"
+	icon_state = "flippy_fringe"
 
 /datum/sprite_accessory/hair/sargeant
 	name = "Flat Top"
@@ -472,6 +493,11 @@
 	name = "Long Side Part"
 	icon_state = "hair_longsidepart"
 
+/datum/sprite_accessory/hair/marge
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Marge"
+	icon_state = "marge"
+
 /datum/sprite_accessory/hair/megaeyebrows
 	name = "Mega Eyebrows"
 	icon_state = "hair_megaeyebrows"
@@ -564,6 +590,17 @@
 	name = "Pixie Cut"
 	icon_state = "hair_pixie"
 
+/datum/sprite_accessory/hair/polnareff
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Polnareff"
+	icon_state = "polnareff"
+
+/datum/sprite_accessory/hair/poooooooooolnareff
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Poooooooooolnareff"
+	icon_state = "poooooooooolnareff"
+	locked = TRUE
+
 /datum/sprite_accessory/hair/pompadour
 	name = "Pompadour"
 	icon_state = "hair_pompadour"
@@ -575,6 +612,12 @@
 /datum/sprite_accessory/hair/hugepompadour
 	name = "Pompadour (Huge)"
 	icon_state = "hair_hugepompadour"
+
+/datum/sprite_accessory/hair/gigapomp
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Gigapompadour"
+	icon_state = "gigapomp"
+	locked = TRUE
 
 /datum/sprite_accessory/hair/ponytail1
 	name = "Ponytail"
@@ -724,6 +767,11 @@
 	name = "Shoulder-length Hair"
 	icon_state = "hair_b"
 
+/datum/sprite_accessory/hair/shrinepriestess
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Shrine Priestess"
+	icon_state = "shrine_priestess"
+
 /datum/sprite_accessory/hair/sidecut
 	name = "Sidecut"
 	icon_state = "hair_sidecut"
@@ -807,6 +855,11 @@
 /datum/sprite_accessory/hair/unkept
 	name = "Unkept"
 	icon_state = "hair_unkept"
+
+/datum/sprite_accessory/hair/unkemptcurls
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Unkempt Curls"
+	icon_state = "unkempt_curls"
 
 /datum/sprite_accessory/hair/updo
 	name = "Updo"
@@ -2016,12 +2069,12 @@
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/moth_wings.dmi'
+	icon = 'icons/mob/species/moth/moth_wings.dmi'
 	color_src = null
 	em_block = TRUE
 
 /datum/sprite_accessory/moth_wingsopen
-	icon = 'icons/mob/moth_wingsopen.dmi'
+	icon = 'icons/mob/species/moth/moth_wingsopen.dmi'
 	color_src = null
 	dimension_x = 76
 	center = TRUE
@@ -2106,12 +2159,10 @@
 /datum/sprite_accessory/moth_wings/punished
 	name = "Burnt Off"
 	icon_state = "punished"
-	locked = TRUE
 
 /datum/sprite_accessory/moth_wingsopen/punished
 	name = "Burnt Off"
 	icon_state = "punished"
-	locked = TRUE
 
 /datum/sprite_accessory/moth_wings/firewatch
 	name = "Firewatch"
@@ -2160,6 +2211,19 @@
 /datum/sprite_accessory/moth_wingsopen/snow
 	name = "Snow"
 	icon_state = "snow"
+
+//Monkestation moff wings
+
+/datum/sprite_accessory/moth_wings/winter
+	icon = 'monkestation/icons/mob/species/moth/moth_wings.dmi'
+	name = "Winter"
+	icon_state = "snowy"
+
+/datum/sprite_accessory/moth_wings/moonlight
+	icon = 'monkestation/icons/mob/species/moth/moth_wings.dmi'
+	name = "Moonlight"
+	icon_state = "moon"
+
 
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"

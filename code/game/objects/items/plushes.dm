@@ -514,6 +514,12 @@
 	desc = "An adorable stuffed toy that resembles a green lizardperson. This one fills you with nostalgia and soul."
 	greyscale_colors = "#66ff33#000000"
 
+// Preset lizard plushie for the admin Ceres/Nederneuk/Provides-the-Service
+/obj/item/toy/plush/lizard_plushie/provides
+	name = "Provides-the-Service plushie"
+	desc = "An adorable stuffed toy that resembles the lizardperson Provides-the-Service."
+	greyscale_colors = "#0000a8#000000"
+
 /obj/item/toy/plush/space_lizard_plushie
 	name = "space lizard plushie"
 	desc = "An adorable stuffed toy that resembles a very determined spacefaring lizardperson. To infinity and beyond, little guy."

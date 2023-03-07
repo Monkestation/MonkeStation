@@ -62,7 +62,7 @@
 			R.place_on_head(src) //hats aren't designed to snugly fit borg heads or w/e so they'll always manage to knock eachother off
 
 /obj/item/clothing/head/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
-	. = ..()
+	. = list()
 	if(isinhands)
 		return
 
@@ -72,17 +72,17 @@
 		. += mutable_appearance('icons/effects/blood.dmi', "helmetblood")
 	//MonkeStation Edit: Hat Stacking
 	//This section handles the worn icon itself, not the item icon.
-		if(contents)
-			var/current_hat = 1
-			for(var/obj/item/clothing/head/selected_hat in contents)
-				var/head_icon = 'icons/mob/clothing/head.dmi'
-				if(selected_hat.worn_icon)
-					head_icon = selected_hat.icon
-				var/mutable_appearance/hat_adding = selected_hat.build_worn_icon(HEAD_LAYER, head_icon, FALSE, FALSE)
-				hat_adding.pixel_y = ((current_hat * 4) - 1)
-				hat_adding.pixel_x = (rand(-1, 1))
-				current_hat++
-				. += hat_adding
+	if(contents)
+		var/current_hat = 1
+		for(var/obj/item/clothing/head/selected_hat in contents)
+			var/head_icon = 'icons/mob/clothing/head.dmi'
+			if(selected_hat.worn_icon)
+				head_icon = selected_hat.icon
+			var/mutable_appearance/hat_adding = selected_hat.build_worn_icon(HEAD_LAYER, head_icon, FALSE, FALSE)
+			hat_adding.pixel_y = ((current_hat * 4) - 1)
+			hat_adding.pixel_x = (rand(-1, 1))
+			current_hat++
+			. += hat_adding
 	//MonkeStation Edit End
 
 /obj/item/clothing/head/update_clothes_damaged_state(damaging = TRUE)

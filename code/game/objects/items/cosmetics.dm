@@ -107,6 +107,7 @@
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_TINY
 	var/extended = 1
+	var/unlocked = FALSE //for unlocking super hairstyles
 
 /obj/item/razor/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins shaving [user.p_them()]self without the razor guard! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -210,7 +211,11 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.hair_styles_list
+	var/new_style
+	if(src.unlocked)
+		new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.hair_styles_list
+	else
+		new_style = input(user, "Select a hair style", "Grooming")  as null|anything in GLOB.roundstart_hair_styles_list
 	if(!get_location_accessible(H, location))
 		to_chat(user, "<span class='warning'>The headgear is in the way!</span>")
 		return
@@ -267,6 +272,16 @@
 		if(H.bleed_rate >= 10)
 			to_chat(M, "<span class='userdanger'>You're losing blood fast!</span>")
 
+/obj/item/razor/attackby(obj/item/item, mob/user, params)
+	.=..()
+	if(istype(item, /obj/item/stack/sheet/mineral/bananium))
+		if(unlocked)
+			to_chat(user, "<span class='userdanger'>[src] is already powered by bananium!</span>")
+			return
+		item.use_tool(src, user, amount=1)
+		unlocked = TRUE
+		to_chat(user, "<span class='userdanger'>You insert the bananium into the battery pack.</span>")
+
 /obj/item/razor/straightrazor/attack_self(mob/user)
 	extended = !extended
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
@@ -305,3 +320,8 @@
 	to_chat(user, "<span class='notice'>You look into the mirror</span>")
 	sleep(150)
 	REMOVE_TRAIT(user, TRAIT_SELF_AWARE, "mirror_trait")
+
+/obj/item/razor/gigarazor
+	name = "shmick 9000"
+	desc = "It gets the job done."
+	unlocked = TRUE

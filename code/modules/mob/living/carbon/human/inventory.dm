@@ -124,7 +124,7 @@
 			update_inv_wear_suit()
 		if(ITEM_SLOT_ICLOTHING)
 			w_uniform = I
-			update_suit_sensors()
+			update_sensors()
 			update_inv_w_uniform()
 		if(ITEM_SLOT_LPOCKET)
 			l_store = I
@@ -174,7 +174,7 @@
 			if(belt)
 				dropItemToGround(belt)
 		w_uniform = null
-		update_suit_sensors()
+		update_sensors()
 		if(!QDELETED(src))
 			update_inv_w_uniform()
 	else if(I == gloves)

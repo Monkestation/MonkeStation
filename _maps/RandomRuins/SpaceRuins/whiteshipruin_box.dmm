@@ -210,6 +210,12 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/whiteship/box)
+"Jn" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/ruin/space/has_grav/whiteship/box)
 "Kq" = (
 /obj/structure/light_construct/small{
 	dir = 4
@@ -868,7 +874,7 @@ Bk
 Wt
 Bk
 Kq
-Bk
+Jn
 Yr
 iw
 Bk

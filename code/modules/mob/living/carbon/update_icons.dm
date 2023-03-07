@@ -209,13 +209,9 @@
 //eg: ammo counters, primed grenade flashing, etc.
 //"icon_file" is used automatically for inhands etc. to make sure it gets the right inhand file
 /obj/item/proc/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file)
-	SHOULD_CALL_PARENT(TRUE)
-	RETURN_TYPE(/list)
-
 	. = list()
 	if(!blocks_emissive)
 		return
-
 	var/mutable_appearance/blocker_overlay = mutable_appearance(standing.icon, standing.icon_state, plane = EMISSIVE_PLANE, appearance_flags = KEEP_APART)
 	blocker_overlay.color = GLOB.em_block_color
 	. += blocker_overlay

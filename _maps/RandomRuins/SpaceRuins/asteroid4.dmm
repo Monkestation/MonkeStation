@@ -57,6 +57,9 @@
 /obj/item/storage/pod{
 	pixel_x = -26
 	},
+/obj/item/gps{
+	gpstag = "SOS"
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/unpowered)
 "o" = (

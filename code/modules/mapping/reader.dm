@@ -1,6 +1,7 @@
 ///////////////////////////////////////////////////////////////
 //SS13 Optimized Map loader
 //////////////////////////////////////////////////////////////
+#define SPACE_KEY "space"
 
 /datum/grid_set
 	var/xcrd
@@ -31,9 +32,9 @@
 	var/static/regex/trimQuotesRegex = new(@'^[\s\n]+"?|"?[\s\n]+$|^"|"$', "g")
 	var/static/regex/trimRegex = new(@'^[\s\n]+|[\s\n]+$', "g")
 
-#ifdef TESTING
+	#ifdef TESTING
 	var/turfsSkipped = 0
-#endif
+	#endif
 
 /// Shortcut function to parse a map and apply it to the world.
 ///
@@ -136,17 +137,6 @@
 		bounds = null
 	parsed_bounds = bounds
 
-/datum/parsed_map/proc/copy()
-	var/datum/parsed_map/copy = new()
-	copy.original_path = original_path
-	copy.key_len = key_len
-	copy.grid_models = grid_models
-	copy.gridSets = gridSets
-	copy.modelCache = modelCache
-	copy.parsed_bounds = parsed_bounds
-	copy.turf_blacklist = list()
-	return copy
-
 /// Load the parsed map into the world. See [/proc/load_map] for arguments.
 /datum/parsed_map/proc/load(x_offset, y_offset, z_offset, cropMap, no_changeturf, x_lower, x_upper, y_lower, y_upper, placeOnTop)
 	//How I wish for RAII
@@ -155,7 +145,7 @@
 	Master.StopLoadingMap()
 
 // Do not call except via load() above.
-/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, check_tick = TRUE)
+/datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE)
 	var/list/areaCache = list()
 	var/list/modelCache = build_cache(no_changeturf)
 	var/space_key = modelCache[SPACE_KEY]
@@ -213,10 +203,10 @@
 							bounds[MAP_MAXX] = max(bounds[MAP_MAXX], xcrd)
 							bounds[MAP_MAXY] = max(bounds[MAP_MAXY], ycrd)
 							bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], zcrd)
-#ifdef TESTING
+						#ifdef TESTING
 						else
 							++turfsSkipped
-#endif
+						#endif
 						CHECK_TICK
 					++xcrd
 			--ycrd
@@ -229,10 +219,10 @@
 			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
 
-#ifdef TESTING
+	#ifdef TESTING
 	if(turfsSkipped)
 		testing("Skipped loading [turfsSkipped] default turfs")
-#endif
+	#endif
 
 	if(did_expand)
 		world.refresh_atmos_grid()
@@ -319,7 +309,6 @@
 		.[model_key] = list(members, members_attributes)
 
 /datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num)
-	SHOULD_NOT_SLEEP(TRUE)
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
@@ -360,8 +349,6 @@
 	var/first_turf_index = 1
 	while(!ispath(members[first_turf_index], /turf)) //find first /turf object in members
 		first_turf_index++
-		if(first_turf_index > length(members))
-			CRASH("No turf found on x [crds.x] y [crds.y] z [crds.z] at [areaCache[1]]")
 
 	//turn off base new Initialization until the whole thing is loaded
 	SSatoms.map_loader_begin()
@@ -421,6 +408,12 @@
 
 	if(GLOB.use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
 		world.preloader_load(.)
+
+	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
+	if(TICK_CHECK)
+		SSatoms.map_loader_stop()
+		stoplag()
+		SSatoms.map_loader_begin()
 
 /datum/parsed_map/proc/create_atom(path, crds)
 	set waitfor = FALSE

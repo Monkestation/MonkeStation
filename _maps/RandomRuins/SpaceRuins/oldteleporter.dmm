@@ -68,6 +68,12 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/oldteleporter)
+"U" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/oldteleporter)
 
 (1,1,1) = {"
 a
@@ -203,7 +209,7 @@ b
 c
 d
 f
-e
+U
 j
 e
 e

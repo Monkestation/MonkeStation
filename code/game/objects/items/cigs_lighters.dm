@@ -261,7 +261,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.remove_any(to_smoke)
 		return
 
-	reagents.reaction(smoker, INGEST, to_smoke)
+	reagents.reaction(smoker, INGEST, min(to_smoke / reagents.total_volume, 1))
 	if(!reagents.trans_to(smoker, to_smoke, method = INGEST))
 		reagents.remove_any(to_smoke)
 
@@ -369,8 +369,50 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime = 240
 	chem_volume = 50
 	list_reagents = null
+	smoke_all = TRUE
 
 /obj/item/clothing/mask/cigarette/rollie/Initialize(mapload)
+	name = pick(list(
+		"bifta",
+		"bifter",
+		"bird",
+		"blunt",
+		"bloint",
+		"boof",
+		"boofer",
+		"bomber",
+		"bone",
+		"bun",
+		"doink",
+		"doob",
+		"doober",
+		"doobie",
+		"dutch",
+		"fatty",
+		"hogger",
+		"hooter",
+		"hootie",
+		"\improper J",
+		"jay",
+		"jimmy",
+		"joint",
+		"juju",
+		"jeebie weebie",
+		"number",
+		"owl",
+		"phattie",
+		"puffer",
+		"reef",
+		"reefer",
+		"rollie",
+		"scoobie",
+		"shorty",
+		"spiff",
+		"spliff",
+		"toke",
+		"torpedo",
+		"zoot",
+		"zooter"))
 	. = ..()
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
