@@ -25,13 +25,6 @@
 	desc= "A gun magazine. Loaded with rounds which penetrate armour, but are less effective against normal targets."
 	ammo_type = /obj/item/ammo_casing/c10mm/ap
 
-/obj/item/ammo_box/magazine/m10mm/makeshift
-	name = "makeshift pistol magazine (10mm)"
-	desc = "A hastily made gun magazine that can only store 4 bullets."
-	icon_state = "9x19pM"
-	max_ammo = 4
-	start_empty = TRUE
-
 /obj/item/ammo_box/magazine/m45
 	name = "handgun magazine (.45)"
 	icon_state = "45-8"

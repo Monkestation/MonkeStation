@@ -255,17 +255,3 @@
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
-
-/obj/item/kitchen/knife/makeshift
-	name = "makeshift knife"
-	icon_state = "knife_makeshift"
-	desc = "A flimsy, poorly made replica of a classic cooking utensil."
-	force = 8
-	throwforce = 8
-
-/obj/item/kitchen/knife/makeshift/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	..()
-	if(prob(5))
-		to_chat(user, span_danger("[src] crumbles apart in your hands!"))
-		qdel(src)
-		return

@@ -1032,35 +1032,3 @@
 	reqs = list(/obj/item/paper = 1)
 	category = CAT_MISC
 	tools = list(TOOL_WIRECUTTER)
-
-/datum/crafting_recipe/titanium_baseball_bat
-	name = "Titanium Baseball Bat"
-	result = /obj/item/melee/baseball_bat/ablative
-	reqs = list(/obj/item/stack/sheet/mineral/titanium = 10
-				)
-	tools = list(TOOL_WELDER) //to weld the bat together
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/knife_boxing
-	name = "Knife-boxing Gloves"
-	result = /obj/item/clothing/gloves/knifeboxing
-	reqs = list(/obj/item/clothing/gloves/boxing = 1,
-				/obj/item/kitchen/knife = 2,
-				/obj/item/stack/tape = 2)
-	time = 10 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/pipebomb
-	name = "Pipe Bomb"
-	result = /obj/item/grenade/pipebomb
-	reqs = list(/datum/reagent/fuel = 50,
-				/obj/item/stack/cable_coil = 1,
-				/obj/item/assembly/igniter = 1,
-				/obj/item/pipe = 1,
-				/obj/item/assembly/mousetrap = 1)
-	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
-	time = 1.5 SECONDS
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
