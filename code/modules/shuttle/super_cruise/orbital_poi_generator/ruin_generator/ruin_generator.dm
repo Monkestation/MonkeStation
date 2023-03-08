@@ -393,9 +393,9 @@
 
 	ruin_event?.post_spawn(floor_turfs, center_z)
 
-	//Start running event
-	if(ruin_event)
-		SSorbits.ruin_events += ruin_event
+	//Start running event			// MonkeStation edit: ruins/objectives disabled
+	// if(ruin_event)
+	// 	SSorbits.ruin_events += ruin_event
 
 	SSair.unpause_z(center_z)
 

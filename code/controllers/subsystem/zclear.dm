@@ -146,6 +146,11 @@ SUBSYSTEM_DEF(zclear)
 		LAZYREMOVE(autowipe, level)
 		//Reset orbital body.
 		QDEL_NULL(level.orbital_body)
+
+		// MonkeStation edit: if only asteroids are cleared orbital bodies, we can subtract the asteroid counter here
+		// Otherwise, we need a way to distinguish between asteroids and other orbital bodies
+		SSorbits.current_asteroids --
+
 		//Continue tracking after
 		wipe_z_level(level.z_value, TRUE)
 

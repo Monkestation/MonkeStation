@@ -36,6 +36,7 @@ GLOBAL_VAR_INIT(exploration_points, 0)
 	GLOB.exploration_points -= amount
 
 /obj/machinery/vendor/exploration/get_points(obj/item/card/id/I)
-	if(!(ACCESS_EXPLORATION in I.access))
-		return 0
-	return GLOB.exploration_points
+	// if(!(ACCESS_EXPLORATION in I.access))
+	// 	return 0
+	// return GLOB.exploration_points
+	return 0
