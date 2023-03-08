@@ -1,5 +1,6 @@
 //Preferences stuff
 	//Hairstyles
+GLOBAL_LIST_EMPTY(roundstart_hair_styles_list)			//stores /datum/sprite_accessory/hair indexed by name, available at roundstart
 GLOBAL_LIST_EMPTY(hair_styles_list)			//stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(hair_styles_male_list)		//stores only hair names
 GLOBAL_LIST_EMPTY(hair_styles_female_list)	//stores only hair names
@@ -37,9 +38,10 @@ GLOBAL_LIST_EMPTY(animated_tails_list_human)
 GLOBAL_LIST_EMPTY(ears_list)
 GLOBAL_LIST_EMPTY(wings_list)
 GLOBAL_LIST_EMPTY(wings_open_list)
-GLOBAL_LIST_EMPTY(r_wings_list)
+GLOBAL_LIST_EMPTY(roundstart_wings_list)
 GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_wingsopen_list)
+GLOBAL_LIST_EMPTY(roundstart_moth_wings_list)
 GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)

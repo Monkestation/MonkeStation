@@ -332,6 +332,7 @@
 	icon_state = "frame-empty"
 	result_path = /obj/structure/sign/painting
 	pixel_shift = 30
+	inverse = TRUE
 
 /obj/structure/sign/painting
 	name = "Painting"

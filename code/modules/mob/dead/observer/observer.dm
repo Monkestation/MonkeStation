@@ -11,6 +11,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	layer = GHOST_LAYER
 	stat = DEAD
 	density = FALSE
+	appearance_flags = KEEP_TOGETHER
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
@@ -233,7 +234,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				facial_hair_overlay.alpha = 200
 				add_overlay(facial_hair_overlay)
 		if(hair_style)
-			S = GLOB.hair_styles_list[hair_style]
+			S = GLOB.roundstart_hair_styles_list[hair_style]
 			if(S)
 				hair_overlay = mutable_appearance(S.icon, "[S.icon_state]", -HAIR_LAYER)
 				if(hair_color)

@@ -51,10 +51,10 @@
 	. = ..()
 	. += span_infoplain("The [name] uses precision injection tools to fill a variety of bottles, pills, and even the microcapsules that align the patented NanoTrasen chemical delivery patches. And with the power of bluespace it can materialize the products into the nearest Nanotrasen brand Smart Chemical Storage Unit.")
 
-/obj/machinery/plumbing/chemical_press/Initialize(mapload, bolt)
+/obj/machinery/plumbing/chemical_press/Initialize(mapload, bolt, layer)
 	. = ..()
 	update_icon()
-	AddComponent(/datum/component/plumbing/simple_demand, bolt)
+	AddComponent(/datum/component/plumbing/simple_demand, bolt, layer)
 
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()

@@ -27,7 +27,7 @@
 /**
   * Don't run if there is an identical unique timer active
   *
-  * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+  * if the arguments to  are the same as an existing timer, it doesn't create a new timer,
   * and returns the id of the existing timer
   */
 #define TIMER_UNIQUE			(1<<0)
@@ -244,6 +244,7 @@
 #define SSLIQUIDS_RUN_TYPE_IMMUTABLES 3
 #define SSLIQUIDS_RUN_TYPE_EVAPORATION 4
 #define SSLIQUIDS_RUN_TYPE_FIRE 5
+#define SSLIQUIDS_RUN_TYPE_OCEAN 6
 //MONKESTATION ADDITION END
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1
@@ -289,6 +290,7 @@
 
 // Subsystem delta times or tickrates, in seconds. I.e, how many seconds in between each process() call for objects being processed by that subsystem.
 // Only use these defines if you want to access some other objects processing delta_time, otherwise use the delta_time that is sent as a parameter to process()
+#define SSFLUIDS_DT (SSplumbing.wait/10)
 #define SSMACHINES_DT (SSmachines.wait/10)
 #define SSMOBS_DT (SSmobs.wait/10)
 #define SSOBJ_DT (SSobj.wait/10)

@@ -834,6 +834,15 @@
 	result = /obj/structure/headpike/bamboo
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/processor
+	name = "Meat Processor"
+	time = 65
+	reqs = list(/obj/item/grown/log = 5,
+							/obj/item/stack/sheet/iron = 10)
+	result = /obj/machinery/processor/ghetto
+	category = CAT_PRIMAL
+
+
 /datum/crafting_recipe/pressureplate
 	name = "Pressure Plate"
 	result = /obj/item/pressure_plate
@@ -912,14 +921,6 @@
 	reqs = list(/obj/item/tank/internals/oxygen/red = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = 30)//red oxygen tank so it looks right
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
-
-/datum/crafting_recipe/multiduct
-	name = "Multi-layer duct"
-	result = /obj/machinery/duct/multilayered
-	time = 5
-	reqs = list(/obj/item/stack/ducts = 5)
-	category = CAT_MISC
-	tools = list(TOOL_WELDER)
 
 /datum/crafting_recipe/upgraded_gauze
 	name = "Improved Gauze"

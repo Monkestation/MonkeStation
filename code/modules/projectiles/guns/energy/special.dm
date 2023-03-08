@@ -152,6 +152,7 @@
 	weapon_weight = WEAPON_LIGHT
 	fire_rate = 3
 	automatic = 1
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/energy/plasmacutter/Initialize(mapload)
 	. = ..()

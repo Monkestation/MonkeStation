@@ -82,7 +82,7 @@
 		user.emote("scream")
 
 		for(var/mob/player as anything in GLOB.player_list)
-			SEND_SOUND(player, 'sound/magic/charge.ogg')
+			SEND_SOUND(player, sound('sound/magic/charge.ogg', volume = player.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"]))
 			to_chat(player, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			shake_camera(player, 15, 3)
 
@@ -95,7 +95,7 @@
 		user.emote("scream")
 
 		for(var/mob/player as anything in GLOB.player_list)
-			SEND_SOUND(player, 'sound/magic/charge.ogg')
+			SEND_SOUND(player, sound('sound/magic/charge.ogg', volume = player.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"]))
 			to_chat(player, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			shake_camera(player, 15, 3)
 
@@ -108,7 +108,7 @@
 		user.emote("scream")
 
 		for(var/mob/player as anything in GLOB.player_list)
-			SEND_SOUND(player, 'sound/magic/charge.ogg')
+			SEND_SOUND(player, sound('sound/magic/charge.ogg', volume = player.client.prefs.channel_volume["[CHANNEL_SOUND_EFFECTS]"]))
 			to_chat(player, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
 			shake_camera(player, 15, 5)
 

@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(ambience)
 /datum/controller/subsystem/ambience/proc/play_buzz(mob/M, area/A)
 	if (A.ambient_buzz && (M.client.prefs.toggles & SOUND_SHIP_AMBIENCE) && M.can_hear_ambience())
 		if (!M.client.buzz_playing || (A.ambient_buzz != M.client.buzz_playing))
-			SEND_SOUND(M, sound(A.ambient_buzz, repeat = 1, wait = 0, volume = 40, channel = CHANNEL_BUZZ))
+			SEND_SOUND(M, sound(A.ambient_buzz, repeat = 1, wait = 0, volume = 40 * (M.client.prefs.channel_volume["[CHANNEL_BUZZ]"] * 0.01), channel = CHANNEL_BUZZ))
 			M.client.buzz_playing = A.ambient_buzz // It's done this way so I can tell when the user switches to an area that has a different buzz effect, so we can seamlessly swap over to that one
 
 	else if (M.client.buzz_playing) // If it's playing, and it shouldn't be, stop it
@@ -46,8 +46,8 @@ SUBSYSTEM_DEF(ambience)
 
 /datum/controller/subsystem/ambience/proc/play_ambience_music(mob/M, _ambi_music, area/A) // Background music, the more OOC ambience, like eerie space music
 	if(A.ambientmusic && !M.client?.channel_in_use(CHANNEL_AMBIENT_MUSIC))
-		SEND_SOUND(M, sound(_ambi_music, repeat = 0, wait = 0, volume = 75, channel = CHANNEL_AMBIENT_MUSIC))
+		SEND_SOUND(M, sound(_ambi_music, repeat = 0, wait = 0, volume = 75 * (M.client.prefs.channel_volume["[CHANNEL_AMBIENT_MUSIC]"] * 0.01), channel = CHANNEL_AMBIENT_MUSIC))
 
 /datum/controller/subsystem/ambience/proc/play_ambience_effects(mob/M, _ambi_fx, area/A) // Effect, random sounds that will play at random times, IC (requires the user to be able to hear)
 	if (length(A.ambientsounds) && M.can_hear_ambience() && !M.client?.channel_in_use(CHANNEL_AMBIENT_EFFECTS))
-		SEND_SOUND(M, sound(_ambi_fx, repeat = 0, wait = 0, volume = 45, channel = CHANNEL_AMBIENT_EFFECTS))
+		SEND_SOUND(M, sound(_ambi_fx, repeat = 0, wait = 0, volume = 45 * (M.client.prefs.channel_volume["[CHANNEL_AMBIENT_EFFECTS]"] * 0.01), channel = CHANNEL_AMBIENT_EFFECTS))

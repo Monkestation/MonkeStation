@@ -242,13 +242,13 @@
 
 //Monkestation edits: wigs now use a radial menu, there is only one wig that can toggle "natural mode", wigs no longer use overlays for their item icon
 /obj/item/clothing/head/wig/Initialize(mapload)
-	hair_style = pick(GLOB.hair_styles_list) //Bald now just defaults
+	hair_style = pick(GLOB.roundstart_hair_styles_list) //Bald now just defaults
 	hair_color = "#[random_short_color()]"
 	. = ..()
 	update_icon()
 
 /obj/item/clothing/head/wig/update_icon()
-	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
+	var/datum/sprite_accessory/S = GLOB.roundstart_hair_styles_list[hair_style]
 	if(!S || S.icon_state == "bald" || S.icon_state == "hair_bald2")
 		icon = 'icons/mob/human_face.dmi'
 		icon_state = "hair_vlong"
@@ -256,6 +256,7 @@
 		icon = S.icon
 		icon_state = S.icon_state
 	color = hair_color
+	. = ..()
 
 /obj/item/clothing/head/wig/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD && natural )
@@ -265,15 +266,17 @@
 //monkestation edit end
 
 /obj/item/clothing/head/wig/worn_overlays(mutable_appearance/standing, isinhands = FALSE, file2use)
-	. = list()
-	if(!isinhands)
-		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
-		if(!S)
-			return
-		var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
-		M.appearance_flags |= RESET_COLOR
-		M.color = hair_color
-		. += M
+	. = ..()
+	if(isinhands)
+		return
+
+	var/datum/sprite_accessory/S = GLOB.roundstart_hair_styles_list[hair_style]
+	if(!S)
+		return
+	var/mutable_appearance/M = mutable_appearance(S.icon, S.icon_state,layer = -HAIR_LAYER)
+	M.appearance_flags |= RESET_COLOR
+	M.color = hair_color
+	. += M
 
 //monkestation edit
 /obj/item/clothing/head/wig/attack_self(mob/user)
@@ -297,11 +300,11 @@
 		return
 	switch(choice)
 		if("Style")
-			var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.hair_styles_list + "Random")
+			var/new_style = input(user, "Select a hair style", "Wig Styling")  as null|anything in (GLOB.roundstart_hair_styles_list + "Random")
 			if(!user.canUseTopic(src, BE_CLOSE))
 				return
 			if(new_style == "Random") //Monkestation Edit: Adds random option
-				hair_style = pick(GLOB.hair_styles_list)
+				hair_style = pick(GLOB.roundstart_hair_styles_list)
 				if(!natural)
 					hair_color = "#[random_color()]"
 				update_icon()

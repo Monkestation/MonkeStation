@@ -20,3 +20,4 @@
 	default_price = 25
 	extra_price = 50
 	payment_department = ACCOUNT_SRV
+	light_mask = "magivend-light-mask"

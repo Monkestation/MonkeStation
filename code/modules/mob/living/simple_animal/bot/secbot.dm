@@ -250,9 +250,9 @@ Auto Patrol: []"},
 	if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 		return
 	if(!C.handcuffed)
-		C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
+		C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 		C.update_handcuffed()
-		if(EMAGGED && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
+		if(emagged == 1  && prob(50)) //if it's emagged, there's a chance it'll play a special sound instead
 			playsound(src, emagsounds, 50, 0)
 		else
 			playsound(src, arrestsounds, 50, 0)//monkestation edit for custom arrest sounds
@@ -295,7 +295,7 @@ Auto Patrol: []"},
 
 			SSmove_manager.stop_looping(src)
 			look_for_perp()	// see if any criminals are in range
-			if(!mode && auto_patrol)	// still idle, and set to patrol
+			if(mode == BOT_IDLE && auto_patrol)	// still idle, and set to patrol
 				mode = BOT_START_PATROL	// switch to patrol mode
 
 		if(BOT_HUNT)		// hunting for perp

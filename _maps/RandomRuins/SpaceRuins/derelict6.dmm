@@ -503,6 +503,12 @@
 	},
 /turf/template_noop,
 /area/ruin/unpowered)
+"WD" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 aa
@@ -765,7 +771,7 @@ ag
 an
 ag
 ag
-ag
+WD
 ag
 ai
 aL

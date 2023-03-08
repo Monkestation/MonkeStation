@@ -3499,22 +3499,13 @@
 /turf/open/floor/engine,
 /area/engine/engine_room)
 "anF" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	desc = "Salt. From space oceans, presumably. A staple of modern medicine.";
-	pixel_x = -8;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/kitchen/fork,
-/obj/machinery/airalarm/directional/south,
 /obj/effect/turf_decal/tile/bar/tile_marquee,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Ranch";
+	req_access_txt = "36"
+	},
 /turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar/lounge)
+/area/ranch)
 "anG" = (
 /obj/machinery/holopad,
 /obj/structure/cable/yellow{
@@ -5820,10 +5811,8 @@
 /turf/open/floor/plasteel,
 /area/security/nuke_storage)
 "awk" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/bar/tile_marquee,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar/lounge)
+/turf/closed/wall/r_wall,
+/area/ranch)
 "awm" = (
 /obj/machinery/light{
 	dir = 1
@@ -7653,11 +7642,15 @@
 /turf/open/floor/wood,
 /area/quartermaster/storage)
 "aDG" = (
-/obj/machinery/atmospherics/pipe/layer_manifold{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
 	},
-/turf/closed/wall,
-/area/maintenance/central)
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/mob/living/simple_animal/chicken/hen,
+/turf/open/floor/grass,
+/area/ranch)
 "aDI" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -8378,12 +8371,11 @@
 /turf/open/openspace,
 /area/engine/engine_room)
 "aGq" = (
-/obj/structure/closet/emcloset/anchored,
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume{
-	dir = 4
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/open/floor/plating,
-/area/maintenance/central)
+/turf/open/floor/grass,
+/area/ranch)
 "aGs" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/effect/turf_decal/stripes/line{
@@ -8784,8 +8776,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/engine/airless/light,
-/area/space/nearstation)
+/area/ranch)
 "aHI" = (
 /obj/machinery/door/airlock/grunge,
 /obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
@@ -11347,8 +11340,8 @@
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "aRa" = (
-/turf/open/floor/plating,
-/area/maintenance/central)
+/turf/open/floor/wood,
+/area/ranch)
 "aRb" = (
 /obj/structure/easel,
 /obj/item/canvas/twentyfour_twentyfour{
@@ -11539,11 +11532,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "aRK" = (
-/obj/effect/turf_decal/trimline/yellow/corner{
-	dir = 4
-	},
-/turf/open/floor/engine/airless/light,
-/area/space/nearstation)
+/turf/open/floor/grass,
+/area/ranch)
 "aRL" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -13910,11 +13900,11 @@
 /turf/closed/wall,
 /area/maintenance/disposal/incinerator)
 "bll" = (
-/obj/structure/table,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/table,
 /turf/open/floor/plasteel/techmaint,
 /area/crew_quarters/bar/lounge)
 "blM" = (
@@ -14062,9 +14052,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/door/window/eastleft,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/turf/open/floor/grass,
+/area/ranch)
 "bGA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -14199,6 +14188,13 @@
 	},
 /turf/open/openspace,
 /area/maintenance/central)
+"bVj" = (
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/wood,
+/area/ranch)
 "bWZ" = (
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -14470,6 +14466,10 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar/atrium)
+"cPL" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/ranch)
 "cSg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable/yellow{
@@ -14649,6 +14649,14 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"dlh" = (
+/obj/machinery/door/window/eastright{
+	dir = 2;
+	name = "Ranch Door";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "dmN" = (
 /obj/machinery/shower{
 	pixel_y = 12
@@ -15888,10 +15896,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gxP" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/railing/corner{
-	dir = 1
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
@@ -15901,8 +15905,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
-/turf/open/openspace,
-/area/maintenance/central)
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/nestbox,
+/turf/open/floor/grass,
+/area/ranch)
 "gyn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -16062,8 +16070,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/turf/closed/wall,
-/area/maintenance/central)
+/obj/machinery/door/window/eastright{
+	dir = 1;
+	name = "Ranch Door";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "hch" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -16535,17 +16548,15 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "izU" = (
-/obj/machinery/door/airlock/external/glass,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/external,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/turf/closed/wall/r_wall,
+/area/ranch)
 "iCl" = (
 /obj/machinery/door/airlock/security/glass,
 /obj/structure/cable/yellow{
@@ -16781,6 +16792,10 @@
 	},
 /turf/open/openspace,
 /area/maintenance/central)
+"jgT" = (
+/obj/machinery/smartfridge,
+/turf/closed/wall/r_wall,
+/area/ranch)
 "jhe" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -16817,8 +16832,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/maintenance/central)
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "jiF" = (
 /obj/effect/landmark/start/assistant,
 /obj/effect/turf_decal/tile/bar/tile_marquee,
@@ -16896,6 +16914,10 @@
 /obj/machinery/vending/wardrobe/det_wardrobe,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"jub" = (
+/obj/machinery/chicken_grinder,
+/turf/open/floor/wood,
+/area/ranch)
 "juU" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/door/firedoor,
@@ -17015,6 +17037,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"jLr" = (
+/turf/closed/wall,
+/area/ranch)
 "jMp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -17330,6 +17355,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"kCF" = (
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/wood,
+/area/ranch)
 "kEw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17381,6 +17410,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kLH" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/wood,
+/area/ranch)
 "kOD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -17646,15 +17681,13 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/fore)
 "lGa" = (
-/obj/machinery/door/airlock/external/glass,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/turf/closed/wall/r_wall,
+/area/ranch)
 "lHn" = (
 /obj/effect/landmark/start/exploration,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -18340,6 +18373,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/openspace,
 /area/maintenance/fore)
+"ofB" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "ogk" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -18350,9 +18397,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/advanced_airlock_controller/directional/north,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/mob/living/simple_animal/chicken/hen,
+/obj/machinery/light,
+/turf/open/floor/grass,
+/area/ranch)
 "oiq" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -18373,6 +18421,10 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/plating,
 /area/medical/medbay/balcony)
+"ois" = (
+/obj/structure/nestbox,
+/turf/open/floor/grass,
+/area/ranch)
 "oiV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -18563,6 +18615,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"oBc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/grass,
+/area/ranch)
 "oBG" = (
 /obj/structure/railing,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -18815,6 +18874,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/exploration_dock)
+"oYa" = (
+/obj/machinery/door/window/eastright{
+	dir = 8;
+	name = "Ranch Door";
+	req_access_txt = "36"
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "oZf" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
@@ -19238,6 +19305,17 @@
 	},
 /turf/open/openspace,
 /area/maintenance/starboard/aft/secondary)
+"qAD" = (
+/obj/machinery/hydroponics/constructable,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ranch)
+"qCA" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/engine/airless/light,
+/area/ranch)
 "qCY" = (
 /turf/open/floor/plasteel/ameridiner,
 /area/medical/virology)
@@ -19319,6 +19397,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/heads/captain)
+"qSr" = (
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/engine/airless/light,
+/area/ranch)
 "qSM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -19768,6 +19853,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"siR" = (
+/obj/effect/turf_decal/trimline/yellow/line{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/engine/airless/light,
+/area/ranch)
 "sji" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -19884,7 +19976,7 @@
 	dir = 10
 	},
 /turf/closed/wall/r_wall,
-/area/maintenance/central)
+/area/ranch)
 "sti" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -19961,6 +20053,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"syz" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/engine/airless,
+/area/ranch)
 "sBA" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/structure/cable/yellow{
@@ -20299,19 +20395,20 @@
 /turf/closed/wall,
 /area/hallway/secondary/exit)
 "txb" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/autoname,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/nestbox,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/ranch)
 "txM" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -20617,14 +20714,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "unv" = (
-/obj/effect/turf_decal/tile/bar/tile_marquee,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/bar/lounge)
+/turf/closed/wall,
+/area/ranch)
 "unA" = (
 /obj/effect/landmark/start/assistant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -20753,6 +20849,11 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/main)
+"uAc" = (
+/obj/effect/turf_decal/tile/bar/tile_marquee,
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/bar/lounge)
 "uGl" = (
 /obj/structure/railing{
 	dir = 1
@@ -20810,6 +20911,21 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/medical/sleeper)
+"uRk" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/grass,
+/area/ranch)
 "uTz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -20825,6 +20941,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"uUN" = (
+/obj/structure/table/wood,
+/obj/machinery/feed_machine,
+/turf/open/floor/wood,
+/area/ranch)
 "uUR" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -20975,6 +21096,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"vli" = (
+/obj/machinery/egg_incubator,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ranch)
 "vlp" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -21353,6 +21479,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"wky" = (
+/obj/effect/landmark/start/rancher,
+/turf/open/floor/wood,
+/area/ranch)
 "wmZ" = (
 /obj/vehicle/ridden/wheelchair,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -21734,18 +21864,17 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "xoy" = (
-/obj/machinery/door/airlock/maintenance/external,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/autoname,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/turf/open/floor/plating,
-/area/maintenance/central)
+/mob/living/simple_animal/chicken,
+/obj/machinery/light,
+/turf/open/floor/grass,
+/area/ranch)
 "xoR" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -21945,6 +22074,10 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"xId" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/grass,
+/area/ranch)
 "xIs" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -21992,17 +22125,18 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/balcony)
 "xKW" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/openspace,
-/area/maintenance/central)
+/obj/machinery/door/window/eastright{
+	dir = 8;
+	name = "Ranch Door";
+	req_access_txt = "36"
+	},
+/turf/open/floor/wood,
+/area/ranch)
 "xNr" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -22058,6 +22192,10 @@
 /obj/effect/turf_decal/monke/siding/thinplating,
 /turf/open/floor/plasteel/techmaint,
 /area/medical/office)
+"xVs" = (
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/wood,
+/area/ranch)
 "xWM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -22170,6 +22308,13 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"yla" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/ranch)
 
 (1,1,1) = {"
 anZ
@@ -114542,12 +114687,12 @@ arj
 avN
 avN
 ajb
-aSE
-aTV
-aSE
-aTV
-aSE
-aSE
+awk
+cPL
+awk
+cPL
+jgT
+awk
 aom
 aXI
 aYY
@@ -114799,12 +114944,12 @@ ajb
 avN
 ahG
 aGl
-aZt
-aqy
-aqy
-aqy
-aqy
-aSE
+jLr
+kCF
+bVj
+wky
+xVs
+awk
 aPJ
 aUE
 aTk
@@ -115055,13 +115200,13 @@ amI
 ats
 ats
 aIH
-amI
-aZt
-aqy
-aqy
-aqy
-aqy
-aSE
+uAc
+jLr
+qAD
+kLH
+aRa
+jub
+awk
 aIj
 aaq
 aoE
@@ -115313,12 +115458,12 @@ awS
 awS
 irD
 anM
-aZt
-aZt
-aqy
-aqy
-aqy
-aSE
+jLr
+aRa
+kLH
+aRa
+vli
+awk
 aIj
 aaq
 aoE
@@ -115569,14 +115714,14 @@ auX
 azP
 aWl
 jlp
-awk
+amI
 anF
-aZt
-aqy
-aqy
-aqy
-aSE
-aSE
+aRa
+kLH
+aRa
+uUN
+awk
+awk
 aZd
 atW
 aiR
@@ -115829,11 +115974,11 @@ epL
 knW
 unv
 txb
+uRk
 xKW
-xKW
-xKW
+ofB
 gxP
-aSE
+awk
 aXL
 aoE
 arJ
@@ -116084,13 +116229,13 @@ avN
 ajb
 ajb
 avN
-ajb
-aSE
-aSE
+cPL
+aRK
+dlh
 aRa
 haP
 xoy
-aSE
+awk
 aSE
 aSE
 aSE
@@ -116341,13 +116486,13 @@ akX
 akX
 akX
 aLY
-akX
+qSr
 aRK
-aSE
-aSE
+xId
+aRa
 aDG
 bGl
-aZt
+awk
 jfT
 meW
 meW
@@ -116599,9 +116744,9 @@ axV
 axV
 agj
 aHH
-aAN
-aUd
-aTV
+siR
+yla
+oYa
 aGq
 jiu
 lGa
@@ -116856,12 +117001,12 @@ aUd
 aAp
 aLs
 afF
-aAp
-aAp
-aSE
-aPZ
+syz
+syz
+ois
+oBc
 ogk
-aSE
+awk
 aSE
 aTV
 aTV
@@ -117114,11 +117259,11 @@ ajh
 aSp
 ajj
 aAN
-aUd
-aAp
+qCA
+syz
 srN
 izU
-aSE
+awk
 aUd
 aAp
 aUd

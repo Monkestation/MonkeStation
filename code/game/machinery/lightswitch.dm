@@ -13,15 +13,13 @@
 	///Range of the light emitted when powered, but off
 	var/light_on_range = 1
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
+
 /obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 
 	AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/light_switch()), SHELL_CAPACITY_SMALL)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
-
-/obj/machinery/light_switch/Initialize(mapload)
-	. = ..()
 	if(istext(area))
 		area = text2path(area)
 	if(ispath(area))
@@ -33,6 +31,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 		name = "light switch ([area.name])"
 
 	update_appearance()
+
+/obj/machinery/light_switch/LateInitialize()
+	. = ..()
+	var/area/source_area = get_area(get_turf(src))
+	if(source_area.lights_always_start_on)
+		return
+	turn_off()
 
 /obj/machinery/light_switch/update_appearance(updates=ALL)
 	. = ..()
@@ -140,3 +145,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 		return
 	shell.set_lights(on_setting.input_value ? TRUE : FALSE)
 
+/obj/machinery/light_switch/proc/turn_off()
+	if(!area.lightswitch)
+		return
+	area.lightswitch = FALSE
+	area.update_icon()
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_icon()
+
+	area.power_change()

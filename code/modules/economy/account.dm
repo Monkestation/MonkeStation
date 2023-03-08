@@ -98,7 +98,7 @@
 			if(card_holder.client && !(card_holder.client.prefs.chat_toggles & CHAT_BANKCARD) && !force)
 				return
 
-			card_holder.playsound_local(get_turf(card_holder), 'sound/machines/twobeep_high.ogg', 50, TRUE)
+			card_holder.playsound_local(get_turf(card_holder), 'sound/machines/twobeep_high.ogg', 50, TRUE, mixer_channel = CHANNEL_MACHINERY)
 			if(card_holder.can_hear())
 				to_chat(card_holder, "[icon2html(A, card_holder)] *[message]*")
 		else if(isturf(A.loc)) //If on the ground

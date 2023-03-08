@@ -79,6 +79,13 @@
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
+"Q" = (
+/obj/structure/alien/weeds,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -679,7 +686,7 @@ f
 f
 f
 f
-f
+Q
 f
 f
 f

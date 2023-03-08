@@ -19,6 +19,12 @@
 /obj/effect/decal/remains/robot,
 /turf/open/floor/plating/asteroid/airless,
 /area/ruin/unpowered)
+"Q" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
 a
@@ -287,7 +293,7 @@ d
 d
 b
 d
-d
+Q
 d
 b
 c

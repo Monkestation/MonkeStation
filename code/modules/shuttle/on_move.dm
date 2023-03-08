@@ -56,16 +56,9 @@ All ShuttleMove procs go here
 		CRASH("A turf queued to move via shuttle somehow had no skipover in baseturfs. [src]([type]):[loc]")
 	var/depth = baseturfs.len - shuttle_boundary + 1
 	//MONKESTATION EDIT ADDITION
-	if(newT.lgroup)
-		newT.lgroup.remove_from_group(newT)
 	if(newT.liquids)
-		if(newT.liquids.immutable)
-			newT.liquids.remove_turf(src)
-		else
-			qdel(newT.liquids, TRUE)
+		qdel(newT.liquids, TRUE)
 
-	if(lgroup)
-		lgroup.remove_from_group(src)
 	if(liquids)
 		liquids.ChangeToNewTurf(newT)
 		newT.reasses_liquids()
@@ -100,9 +93,7 @@ All ShuttleMove procs go here
 	return TRUE
 
 /turf/proc/lateShuttleMove(turf/oldT)
-	blocks_air = initial(blocks_air)
 	air_update_turf(TRUE)
-	oldT.blocks_air = initial(oldT.blocks_air)
 	oldT.air_update_turf(TRUE)
 
 

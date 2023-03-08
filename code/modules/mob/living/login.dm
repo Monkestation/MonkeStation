@@ -24,6 +24,8 @@
 	if(ranged_ability)
 		ranged_ability.add_ranged_ability(src, "<span class='notice'>You currently have <b>[ranged_ability]</b> active!</span>")
 
+	set_ssd_indicator(FALSE)
+
 	var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 	if(changeling)
 		changeling.regain_powers()

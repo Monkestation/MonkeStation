@@ -64,6 +64,10 @@
 	var/limbs_id // The limbs id supplied for full-body replacing features.
 
 	var/head_icon = "" //the icon for the decapped head needed because yippee
+	var/uses_emissives = FALSE
+
+	/// Should this sprite block emissives?
+	var/em_block = FALSE
 
 //////////////////////
 // Hair Definitions //
@@ -84,9 +88,20 @@
 	name = "Afro 2"
 	icon_state = "hair_afro2"
 
+/datum/sprite_accessory/hair/afro3
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Bigger Afro"
+	icon_state = "big_afro"
+
 /datum/sprite_accessory/hair/afro_large
 	name = "Afro (Large)"
 	icon_state = "hair_bigafro"
+
+/datum/sprite_accessory/hair/gigafro
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "GigAfro"
+	icon_state = "giga_fro"
+	locked = TRUE
 
 /datum/sprite_accessory/hair/antenna
 	name = "Ahoge"
@@ -236,6 +251,11 @@
 	name = "Business Hair 4"
 	icon_state = "hair_business4"
 
+/datum/sprite_accessory/hair/butters
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Butters"
+	icon_state = "butters"
+
 /datum/sprite_accessory/hair/buzz
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
@@ -351,6 +371,11 @@
 /datum/sprite_accessory/hair/father
 	name = "Father"
 	icon_state = "hair_father"
+
+/datum/sprite_accessory/hair/flippyfringe
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Flippy Fringe"
+	icon_state = "flippy_fringe"
 
 /datum/sprite_accessory/hair/sargeant
 	name = "Flat Top"
@@ -468,6 +493,11 @@
 	name = "Long Side Part"
 	icon_state = "hair_longsidepart"
 
+/datum/sprite_accessory/hair/marge
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Marge"
+	icon_state = "marge"
+
 /datum/sprite_accessory/hair/megaeyebrows
 	name = "Mega Eyebrows"
 	icon_state = "hair_megaeyebrows"
@@ -560,6 +590,17 @@
 	name = "Pixie Cut"
 	icon_state = "hair_pixie"
 
+/datum/sprite_accessory/hair/polnareff
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Polnareff"
+	icon_state = "polnareff"
+
+/datum/sprite_accessory/hair/poooooooooolnareff
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Poooooooooolnareff"
+	icon_state = "poooooooooolnareff"
+	locked = TRUE
+
 /datum/sprite_accessory/hair/pompadour
 	name = "Pompadour"
 	icon_state = "hair_pompadour"
@@ -571,6 +612,12 @@
 /datum/sprite_accessory/hair/hugepompadour
 	name = "Pompadour (Huge)"
 	icon_state = "hair_hugepompadour"
+
+/datum/sprite_accessory/hair/gigapomp
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Gigapompadour"
+	icon_state = "gigapomp"
+	locked = TRUE
 
 /datum/sprite_accessory/hair/ponytail1
 	name = "Ponytail"
@@ -720,6 +767,11 @@
 	name = "Shoulder-length Hair"
 	icon_state = "hair_b"
 
+/datum/sprite_accessory/hair/shrinepriestess
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Shrine Priestess"
+	icon_state = "shrine_priestess"
+
 /datum/sprite_accessory/hair/sidecut
 	name = "Sidecut"
 	icon_state = "hair_sidecut"
@@ -803,6 +855,11 @@
 /datum/sprite_accessory/hair/unkept
 	name = "Unkept"
 	icon_state = "hair_unkept"
+
+/datum/sprite_accessory/hair/unkemptcurls
+	icon = 'monkestation/icons/mob/human_face.dmi'
+	name = "Unkempt Curls"
+	icon_state = "unkempt_curls"
 
 /datum/sprite_accessory/hair/updo
 	name = "Updo"
@@ -901,7 +958,8 @@
 
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/human_face.dmi'
-	gender = MALE // barf (unless you're a dorf, dorfs dig chix w/ beards :P)
+	em_block = TRUE
+
 
 // please make sure they're sorted alphabetically and categorized
 
@@ -1078,6 +1136,8 @@
 /datum/sprite_accessory/underwear
 	icon = 'icons/mob/clothing/underwear.dmi'
 	use_static = FALSE
+	em_block = TRUE
+
 
 
 //MALE UNDERWEAR
@@ -1254,6 +1314,8 @@
 
 /datum/sprite_accessory/undershirt
 	icon = 'icons/mob/clothing/underwear.dmi'
+	em_block = TRUE
+
 
 /datum/sprite_accessory/undershirt/nude
 	name = "Nude"
@@ -1538,6 +1600,8 @@
 
 /datum/sprite_accessory/socks
 	icon = 'icons/mob/clothing/underwear.dmi'
+	em_block = TRUE
+
 
 /datum/sprite_accessory/socks/nude
 	name = "Nude"
@@ -1675,11 +1739,19 @@
 	icon_state = "lbelly"
 	gender_specific = 1
 
+/datum/sprite_accessory/body_markings/glow_belly
+	name = "Glow Belly"
+	icon_state = "lbelly"
+	gender_specific = 1
+	uses_emissives = TRUE
 /datum/sprite_accessory/tails
 	icon = 'icons/mob/mutant_bodyparts.dmi'
+	em_block = TRUE
+
 
 /datum/sprite_accessory/tails_animated
 	icon = 'icons/mob/mutant_bodyparts.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/tails/lizard
 	icon = 'icons/mob/species/lizard/tails.dmi'
@@ -1753,6 +1825,7 @@
 
 /datum/sprite_accessory/snouts
 	icon = 'icons/mob/species/lizard/snouts.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/snouts/sharp
 	name = "Sharp"
@@ -1776,6 +1849,7 @@
 
 /datum/sprite_accessory/horns
 	icon = 'icons/mob/species/lizard/horns.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/horns/none
 	name = "None"
@@ -1805,9 +1879,11 @@
 	name = "Angeler"
 	icon_state = "angler"
 	head_icon = "m_horns_angler_ADJ"
+	uses_emissives = TRUE
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/mutant_bodyparts.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/ears/none
 	name = "None"
@@ -1825,9 +1901,11 @@
 
 /datum/sprite_accessory/wings_open
 	icon = 'icons/mob/wings.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/wings
 	icon = 'icons/mob/wings.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/wings/angel
 	name = "Angel"
@@ -1917,9 +1995,11 @@
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/species/lizard/spines.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/spines_animated
 	icon = 'icons/mob/species/lizard/spines.dmi'
+	em_block = TRUE
 
 /datum/sprite_accessory/spines/none
 	name = "None"
@@ -1971,6 +2051,7 @@
 
 /datum/sprite_accessory/legs 	//legs are a special case, they aren't actually sprite_accessories but are updated with them.
 	icon = null					//These datums exist for selecting legs on preference, and little else
+	em_block = TRUE
 
 /datum/sprite_accessory/legs/none
 	name = "Normal Legs"
@@ -1981,17 +2062,19 @@
 /datum/sprite_accessory/caps
 	icon = 'icons/mob/mutant_bodyparts.dmi'
 	color_src = HAIR
+	em_block = TRUE
 
 /datum/sprite_accessory/caps/round
 	name = "Round"
 	icon_state = "round"
 
 /datum/sprite_accessory/moth_wings
-	icon = 'icons/mob/moth_wings.dmi'
+	icon = 'icons/mob/species/moth/moth_wings.dmi'
 	color_src = null
+	em_block = TRUE
 
 /datum/sprite_accessory/moth_wingsopen
-	icon = 'icons/mob/moth_wingsopen.dmi'
+	icon = 'icons/mob/species/moth/moth_wingsopen.dmi'
 	color_src = null
 	dimension_x = 76
 	center = TRUE
@@ -2076,12 +2159,10 @@
 /datum/sprite_accessory/moth_wings/punished
 	name = "Burnt Off"
 	icon_state = "punished"
-	locked = TRUE
 
 /datum/sprite_accessory/moth_wingsopen/punished
 	name = "Burnt Off"
 	icon_state = "punished"
-	locked = TRUE
 
 /datum/sprite_accessory/moth_wings/firewatch
 	name = "Firewatch"
@@ -2130,6 +2211,19 @@
 /datum/sprite_accessory/moth_wingsopen/snow
 	name = "Snow"
 	icon_state = "snow"
+
+//Monkestation moff wings
+
+/datum/sprite_accessory/moth_wings/winter
+	icon = 'monkestation/icons/mob/species/moth/moth_wings.dmi'
+	name = "Winter"
+	icon_state = "snowy"
+
+/datum/sprite_accessory/moth_wings/moonlight
+	icon = 'monkestation/icons/mob/species/moth/moth_wings.dmi'
+	name = "Moonlight"
+	icon_state = "moon"
+
 
 /datum/sprite_accessory/moth_wings/angel
 	name = "Angel"

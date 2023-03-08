@@ -76,8 +76,8 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
 	if(!GLOB.wings_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.wings_list)
-	if(!GLOB.moth_wings_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
+	if(!GLOB.roundstart_moth_wings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.roundstart_moth_wings_list)
 	if(!GLOB.ipc_screens_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	if(!GLOB.ipc_antennas_list.len)
@@ -109,7 +109,7 @@
 		"body_markings" = pick(GLOB.body_markings_list),
 		"legs" = "Normal Legs",
 		"caps" = pick(GLOB.caps_list),
-		"moth_wings" = pick(GLOB.moth_wings_list),
+		"moth_wings" = pick(GLOB.roundstart_moth_wings_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
 		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
@@ -125,7 +125,7 @@
 		if(FEMALE)
 			return pick(GLOB.hair_styles_female_list)
 		else
-			return pick(GLOB.hair_styles_list)
+			return pick(GLOB.roundstart_hair_styles_list)
 
 /proc/random_facial_hair_style(gender)
 	switch(gender)
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYREMOVE(target.targeted_by, user)
 
 
-/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks, required_mobility_flags = MOBILITY_STAND)
+/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks)
 	if(!user || !targets)
 		return 0
 	if(!islist(targets))
@@ -370,9 +370,6 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/endtime = world.time + time
 	var/starttime = world.time
-	var/mob/living/L
-	if(isliving(user))
-		L = user
 	. = 1
 	mainloop:
 		while(world.time < endtime)
@@ -388,10 +385,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(drifting && SSmove_manager.processing_on(user, SSspacedrift))
 				drifting = 0
 				user_loc = user.loc
-
-			if(L && !CHECK_MULTIPLE_BITFIELDS(L.mobility_flags, required_mobility_flags))
-				. = 0
-				break
 
 			for(var/atom/target in targets)
 				if((!drifting && user_loc != user.loc) || QDELETED(target) || originalloc[target] != target.loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
@@ -604,7 +597,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	/*This can be used to add additional effects on interactions between mobs depending on how the mobs are facing each other, such as adding a crit damage to blows to the back of a guy's head.
 	Given how click code currently works (Nov '13), the initiating mob will be facing the target mob most of the time
 	That said, this proc should not be used if the change facing proc of the click code is overridden at the same time*/
-	if(!ismob(target) || !(target.mobility_flags & MOBILITY_STAND))
+	if(!isliving(target) || target.body_position == LYING_DOWN)
 	//Make sure we are not doing this for things that can't have a logical direction to the players given that the target would be on their side
 		return FALSE
 	if(initator.dir == target.dir) //mobs are facing the same direction

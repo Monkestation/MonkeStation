@@ -78,6 +78,9 @@
 "r" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/beacon,
+/obj/item/gps{
+	gpstag = "Signal"
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "s" = (

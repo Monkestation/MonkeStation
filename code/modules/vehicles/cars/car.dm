@@ -3,9 +3,6 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	default_driver_move = FALSE
 	var/car_traits = NONE //Bitflag for special behavior such as kidnapping
-	var/engine_sound = 'sound/vehicles/carrev.ogg'
-	var/last_enginesound_time
-	var/engine_sound_length = 20 //Set this to the length of the engine sound
 	var/escape_time = 60 //Time it takes to break out of the car
 
 /obj/vehicle/sealed/car/Initialize(mapload)
@@ -26,10 +23,6 @@
 		return FALSE
 	var/datum/component/riding/R = GetComponent(/datum/component/riding)
 	R.handle_ride(user, direction)
-	if(world.time < last_enginesound_time + engine_sound_length)
-		return
-	last_enginesound_time = world.time
-	playsound(src, engine_sound, 100, TRUE)
 	return TRUE
 
 /obj/vehicle/sealed/car/proc/RunOver(mob/living/carbon/human/H) //pasted right out of mulebot code
@@ -50,7 +43,7 @@
 	T.add_mob_blood(H)
 
 /obj/vehicle/sealed/car/MouseDrop_T(atom/dropping, mob/M)
-	if(M.stat || M.restrained())
+	if(M.stat != CONSCIOUS || HAS_TRAIT(M, TRAIT_HANDS_BLOCKED))
 		return FALSE
 	if((car_traits & CAN_KIDNAP) && isliving(dropping) && M != dropping)
 		var/mob/living/L = dropping

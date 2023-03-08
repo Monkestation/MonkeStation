@@ -364,6 +364,12 @@
 "W" = (
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/gasthelizard)
+"Y" = (
+/obj/item/gps{
+	gpstag = "Signal"
+	},
+/turf/open/floor/plasteel/airless/dark,
+/area/ruin/space/has_grav/gasthelizard)
 "Z" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -634,7 +640,7 @@ a
 b
 c
 o
-r
+Y
 y
 D
 I

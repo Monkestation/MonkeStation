@@ -96,7 +96,7 @@
 			if(world.time - M.last_bumped <= 10)
 				return	//Can bump-open one airlock per second. This is to prevent shock spam.
 			M.last_bumped = world.time
-			if(M.restrained() && !check_access(null))
+			if(HAS_TRAIT(M, TRAIT_HANDS_BLOCKED) && !check_access(null) || M.has_quirk(/datum/quirk/no_soul))
 				return
 			bumpopen(M)
 			return
@@ -238,13 +238,13 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(glass)
-				playsound(loc, 'sound/effects/glasshit.ogg', 90, 1)
+				playsound(loc, 'sound/effects/glasshit.ogg', 90, 1, mixer_channel = CHANNEL_MACHINERY)
 			else if(damage_amount)
-				playsound(loc, 'sound/weapons/smash.ogg', 50, 1)
+				playsound(loc, 'sound/weapons/smash.ogg', 50, 1, mixer_channel = CHANNEL_MACHINERY)
 			else
-				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
+				playsound(src, 'sound/weapons/tap.ogg', 50, 1, mixer_channel = CHANNEL_MACHINERY)
 		if(BURN)
-			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
+			playsound(src.loc, 'sound/items/welder.ogg', 100, 1, mixer_channel = CHANNEL_MACHINERY)
 
 /obj/machinery/door/emp_act(severity)
 	. = ..()
@@ -313,6 +313,19 @@
 	operating = TRUE
 
 	do_animate("closing")
+
+	var/turf/open/open_turf = get_turf(src)
+	if(open_turf.liquids)
+		var/datum/liquid_group/turfs_group = open_turf.liquids.liquid_group
+		turfs_group.remove_from_group(open_turf)
+		qdel(open_turf.liquids)
+		turfs_group.try_split(open_turf)
+		for(var/dir in GLOB.cardinals)
+			var/turf/open/direction_turf = get_step(open_turf, dir)
+			if(!isopenturf(direction_turf) || !direction_turf.liquids)
+				continue
+			turfs_group.check_edges(direction_turf)
+
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE

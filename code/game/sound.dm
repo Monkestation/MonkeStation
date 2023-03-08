@@ -40,8 +40,53 @@ ignore_walls - Whether or not the sound can pass through walls.
 falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
 
 */
+GLOBAL_LIST_INIT(used_sound_channels, list(
+	CHANNEL_LOBBYMUSIC,
+	CHANNEL_ADMIN,
+	CHANNEL_VOX,
+	CHANNEL_JUKEBOX,
+	CHANNEL_HEARTBEAT,
+	CHANNEL_AMBIENT_EFFECTS,
+	CHANNEL_AMBIENT_MUSIC,
+	CHANNEL_BUZZ,
+	CHANNEL_ENGINE_ALERT,
+	CHANNEL_SOUND_EFFECTS,
+	CHANNEL_SOUND_FOOTSTEPS,
+	CHANNEL_WEATHER,
+	CHANNEL_MACHINERY,
+	CHANNEL_INSTRUMENTS,
+	CHANNEL_INSTRUMENTS_ROBOT,
+	CHANNEL_MOB_SOUNDS,
+))
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE)
+GLOBAL_LIST_INIT(proxy_sound_channels, list(
+	CHANNEL_SOUND_EFFECTS,
+	CHANNEL_SOUND_FOOTSTEPS,
+	CHANNEL_WEATHER,
+	CHANNEL_MACHINERY,
+	CHANNEL_INSTRUMENTS,
+	CHANNEL_INSTRUMENTS_ROBOT,
+	CHANNEL_MOB_SOUNDS,
+))
+
+/proc/guess_mixer_channel(soundin)
+	var/sound_text_string = "[soundin]"
+	if(findtext(sound_text_string, "effects/"))
+		return CHANNEL_SOUND_EFFECTS
+	if(findtext(sound_text_string, "machines/"))
+		return CHANNEL_MACHINERY
+	if(findtext(sound_text_string, "creatures/"))
+		return CHANNEL_MOB_SOUNDS
+	if(findtext(sound_text_string, "/ai/"))
+		return CHANNEL_VOX
+	if(findtext(sound_text_string, "chatter/"))
+		return CHANNEL_MOB_SOUNDS
+	if(findtext(sound_text_string, "items/"))
+		return CHANNEL_SOUND_EFFECTS
+	if(findtext(sound_text_string, "weapons/"))
+		return CHANNEL_SOUND_EFFECTS
+	return FALSE
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mixer_channel)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -49,6 +94,9 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 
 	if (!turf_source)
 		return
+
+	if(!mixer_channel)
+		mixer_channel = guess_mixer_channel(soundin)
 
 	var/maxdistance = (SOUND_RANGE + extrarange)
 	var/max_z_range = maxdistance / (MULTI_Z_DISTANCE + 1)
@@ -69,10 +117,11 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		listeners = listeners & hearers(maxdistance,turf_source)
 	for(var/mob/M as() in listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, mixer_channel)
 	for(var/mob/M as() in dead_listeners)
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb, mixer_channel)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SOUND_PLAYED, source, soundin)
 
 /*! playsound
 
@@ -92,8 +141,7 @@ falloff_distance - Distance at which falloff begins, if this is a 3D sound
 distance_multiplier - Can be used to multiply the distance at which the sound is heard
 
 */
-
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, mixer_channel = 0)
 	if(!client || !can_hear())
 		return
 
@@ -149,6 +197,17 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 			S.volume *= pressure_factor
 			//End Atmosphere affecting sound
+
+		if((channel in GLOB.used_sound_channels) || (mixer_channel in GLOB.used_sound_channels))
+			var/used_channel = 0
+			if(channel in GLOB.used_sound_channels)
+				used_channel = channel
+			else
+				used_channel = mixer_channel
+			if("[used_channel]" in client.prefs.channel_volume)
+				S.volume *= (client.prefs.channel_volume["[used_channel]"] * 0.01)
+			else
+				S.volume = 0
 
 		if(S.volume <= 0)
 			return //No sound
@@ -226,7 +285,10 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 /client/proc/playtitlemusic(vol = 85)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
-
+	if("[CHANNEL_LOBBYMUSIC]" in prefs.channel_volume)
+		vol *= prefs.channel_volume["[CHANNEL_LOBBYMUSIC]"] * 0.01
+	else
+		return
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
 		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
@@ -322,3 +384,111 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		return FALSE
 
 	return TRUE
+
+///sound volume handling here
+
+/client/verb/open_volume_mixer()
+	set category = "Preferences"
+	set name = "Volume Mixer"
+	set desc = "Opens the volume mixer UI"
+
+	if(!prefs.pref_mixer)
+		prefs.pref_mixer = new
+	prefs.pref_mixer.open_ui(src.mob)
+
+/datum/ui_module/volume_mixer/proc/open_ui(mob/user)
+	ui_interact(user)
+
+/datum/ui_module/volume_mixer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "VolumeMixer", "Volume Mixer")
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/datum/ui_module/volume_mixer/ui_data(mob/user)
+	var/list/data = list()
+
+	var/list/channels = list()
+	for(var/channel in GLOB.used_sound_channels)
+		if(!user.client.prefs.channel_volume["[channel]"])
+			user.client.prefs.channel_volume["[channel]"] = 100
+			user.client.prefs.save_preferences()
+		channels += list(list(
+			"num" = channel,
+			"name" = get_channel_name(channel),
+			"volume" = user.client.prefs.channel_volume["[channel]"]
+		))
+	data["channels"] = channels
+
+	return data
+
+
+/datum/ui_module/volume_mixer/ui_act(action, list/params)
+	if(..())
+		return
+
+	. = TRUE
+	switch(action)
+		if("volume")
+			var/channel = text2num(params["channel"])
+			var/volume = text2num(params["volume"])
+			if(isnull(channel))
+				return FALSE
+			usr.client.prefs.channel_volume["[channel]"] = volume
+			usr.client.prefs.save_preferences()
+			var/list/instrument_channels = list(
+				CHANNEL_INSTRUMENTS,
+				CHANNEL_INSTRUMENTS_ROBOT,)
+			if(!(channel in GLOB.proxy_sound_channels)) //if its a proxy we are just wasting time
+				set_channel_volume(channel, volume, usr)
+
+			else if((channel in instrument_channels))
+				var/datum/song/holder_song = new
+				for(var/used_channel in holder_song.channels_playing)
+					set_channel_volume(used_channel, volume, usr)
+		else
+			return FALSE
+
+/datum/ui_module/volume_mixer/ui_state()
+	return GLOB.always_state
+
+/datum/ui_module/volume_mixer/proc/set_channel_volume(channel, vol, mob/user)
+	var/sound/S = sound(null, channel = channel, volume = vol)
+	S.status = SOUND_UPDATE
+	SEND_SOUND(usr, S)
+
+/proc/get_channel_name(channel)
+	switch(channel)
+		if(CHANNEL_LOBBYMUSIC)
+			return "Lobby Music"
+		if(CHANNEL_ADMIN)
+			return "Admin MIDIs"
+		if(CHANNEL_VOX)
+			return "Announcements / AI Noise"
+		if(CHANNEL_JUKEBOX)
+			return "Dance Machines"
+		if(CHANNEL_HEARTBEAT)
+			return "Heartbeat"
+		if(CHANNEL_BUZZ)
+			return "White Noise"
+		if(CHANNEL_AMBIENT_EFFECTS)
+			return "Ambient Effects"
+		if(CHANNEL_AMBIENT_MUSIC)
+			return "Ambient Music"
+		if(CHANNEL_ENGINE_ALERT)
+			return "Engine Alerts"
+		if(CHANNEL_SOUND_EFFECTS)
+			return "Sound Effects"
+		if(CHANNEL_SOUND_FOOTSTEPS)
+			return "Footsteps"
+		if(CHANNEL_WEATHER)
+			return "Weather"
+		if(CHANNEL_MACHINERY)
+			return "Machinery"
+		if(CHANNEL_INSTRUMENTS)
+			return "Player Instruments"
+		if(CHANNEL_INSTRUMENTS_ROBOT)
+			return "Robot Instruments" //you caused this DONGLE
+		if(CHANNEL_MOB_SOUNDS)
+			return "Mob Sounds"

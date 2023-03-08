@@ -262,7 +262,7 @@ SERVER  byond://sage.beestation13.com:7878
 FORUMURL https://forums.beestation13.com
 
 ## Wiki address
-WIKIURL https://wiki.beestation13.com/view
+WIKIURL https://monkestation.miraheze.org/wiki/Main_Page
 
 ## Rules address
 RULESURL https://beestation13.com/rules
@@ -602,4 +602,4 @@ ELASTICSEARCH_METRICS_APIKEY thisIsSomethingThatsBased64Encoded==
 ## The cache is assumed to be cleared by TGS recompiling, which deletes `tmp`.
 ## This should be disabled (through `CACHE_ASSETS 0`) on development,
 ## but enabled on production (the default).
-CACHE_ASSETS 1
+CACHE_ASSETS 0

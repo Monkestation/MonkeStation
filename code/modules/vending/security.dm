@@ -28,6 +28,7 @@
 	default_price = 100
 	extra_price = 150
 	payment_department = ACCOUNT_SEC
+	light_mask = "sec-light-mask"
 
 /obj/machinery/vending/security/pre_throw(obj/item/I)
 	if(istype(I, /obj/item/grenade))

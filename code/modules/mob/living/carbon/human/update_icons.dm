@@ -236,7 +236,7 @@ There are several things that need to be remembered:
 			bloody_overlay += mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
 		else
 			bloody_overlay = mutable_appearance('monkestation/icons/effects/blood.dmi', "[lowertext(dna.species.name)]_bloodyhands")
-		if(get_num_arms(FALSE) < 2)
+		if(num_hands < 2)
 			if(has_left_hand(FALSE))
 				if(!dna.species.get_custom_icons("gloves"))
 					bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands_left", -GLOVES_LAYER)
@@ -375,7 +375,7 @@ There are several things that need to be remembered:
 /mob/living/carbon/human/update_inv_shoes()
 	remove_overlay(SHOES_LAYER)
 
-	if(get_num_legs(FALSE) <2)
+	if(num_legs <2)
 		return
 
 	if(client && hud_used)
@@ -665,10 +665,13 @@ There are several things that need to be remembered:
 	remove_overlay(LEGCUFF_LAYER)
 	clear_alert("legcuffed")
 	if(legcuffed)
-		var/path = dna?.species.get_custom_icons("generic")
-		if(!path)
-			path = 'icons/mob/mob.dmi'
-		overlays_standing[LEGCUFF_LAYER] = mutable_appearance(path, "legcuff1", -LEGCUFF_LAYER)
+		var/mutable_appearance/legcuff_overlay = mutable_appearance('icons/mob/mob.dmi', "legcuff1", -LEGCUFF_LAYER)
+		if(legcuffed.blocks_emissive)
+			var/mutable_appearance/legcuff_blocker = mutable_appearance('icons/mob/mob.dmi', "legcuff1", plane = EMISSIVE_PLANE, appearance_flags = KEEP_APART)
+			legcuff_blocker.color = GLOB.em_block_color
+			legcuff_overlay.overlays += legcuff_blocker
+
+		overlays_standing[LEGCUFF_LAYER] = legcuff_overlay
 		apply_overlay(LEGCUFF_LAYER)
 		throw_alert("legcuffed", /atom/movable/screen/alert/restrained/legcuffed, new_master = src.legcuffed)
 
@@ -928,6 +931,14 @@ generate/load female uniform sprites matching all previously decided variables
 				eye_overlay.pixel_x += dna.species.offset_features[OFFSET_FACE][1]
 				eye_overlay.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
 			add_overlay(eye_overlay)
+
+			if (E && E.is_emissive)
+				var/mutable_appearance/emissive_appearance = emissive_appearance('icons/mob/human_face.dmi', E ? E.eye_icon_state : "eyes_missing", -BODY_LAYER)
+				emissive_appearance.appearance_flags &= ~RESET_TRANSFORM
+				if(OFFSET_FACE in dna.species.offset_features)
+					emissive_appearance.pixel_x += dna.species.offset_features[OFFSET_FACE][1]
+					emissive_appearance.pixel_y += dna.species.offset_features[OFFSET_FACE][2]
+				add_overlay(emissive_appearance)
 
 	dna.species.handle_hair(src)
 

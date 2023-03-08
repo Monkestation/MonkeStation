@@ -483,7 +483,7 @@
 		if("update_ui")
 			return TRUE
 
-/datum/reagents/proc/remove_any(amount = 1)
+/datum/reagents/proc/remove_any(amount = 1, no_react = FALSE)
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element = 1
@@ -506,7 +506,8 @@
 		total_transfered++
 		update_total()
 
-	handle_reactions()
+	if(!no_react)
+		handle_reactions()
 	return total_transfered
 
 /datum/reagents/proc/remove_all(amount = 1)
@@ -665,6 +666,22 @@
 	//MONKESTATION EDIT CHANGE END
 	return amount
 
+///Multiplies the reagents inside this holder by a specific amount
+/datum/reagents/proc/multiply_reagents(multiplier=1)
+	var/list/cached_reagents = reagent_list
+	if(!total_volume)
+		return
+	var/change = (multiplier - 1) //Get the % change
+	for(var/reagent in cached_reagents)
+		var/datum/reagent/T = reagent
+		if(change > 0)
+			add_reagent(T.type, T.volume * change)
+		else
+			remove_reagent(T.type, abs(T.volume * change)) //absolute value to prevent a double negative situation (removing -50% would be adding 50%)
+
+	update_total()
+	handle_reactions()
+
 /datum/reagents/proc/trans_id_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
 	var/list/cached_reagents = reagent_list
 	if (!target)
@@ -728,7 +745,6 @@
 
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
-		C.update_mobility()
 		C.update_stamina()
 	update_total()
 

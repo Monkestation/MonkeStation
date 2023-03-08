@@ -243,7 +243,7 @@
 					debrain_overlay.icon_state = "debrained"
 				. += debrain_overlay
 			else
-				var/datum/sprite_accessory/S2 = GLOB.hair_styles_list[hair_style]
+				var/datum/sprite_accessory/S2 = GLOB.roundstart_hair_styles_list[hair_style]
 				if(S2)
 					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
 					hair_overlay.color = "#" + hair_color

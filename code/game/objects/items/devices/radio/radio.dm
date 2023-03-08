@@ -19,6 +19,8 @@
 	var/on = TRUE
 	var/frequency = FREQ_COMMON
 	var/canhear_range = 3  // The range around the radio in which mobs can hear what it receives.
+	///Range that they can listen from different than canhear_range
+	var/listening_range
 	var/emped = 0  // Tracks the number of EMPs currently stacked.
 	var/headset = FALSE
 
@@ -306,7 +308,13 @@
 
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
-	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
+	if(radio_freq || !broadcasting)
+		return
+
+	if(!listening_range &&  get_dist(src, speaker) > canhear_range)
+		return
+
+	if(listening_range && get_dist(src, speaker) > listening_range)
 		return
 
 	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)

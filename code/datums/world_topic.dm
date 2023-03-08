@@ -188,6 +188,7 @@
 
 /datum/world_topic/adminwho
 	key = "adminwho"
+	anonymous = TRUE
 
 /datum/world_topic/adminwho/Run(list/input)
 	. = ..()
@@ -400,24 +401,29 @@
 #undef TOPIC_VERSION_MINOR
 #undef TOPIC_VERSION_PATCH
 
-/datum/world_topic/whois
-	key = "whoIs"
-
-/datum/world_topic/whois/Run(list/input)
-	. = list()
-	.["players"] = GLOB.clients
-
-	return list2params(.)
-
 /datum/world_topic/getadmins
 	key = "getAdmins"
+	anonymous = TRUE
 
 /datum/world_topic/getadmins/Run(list/input)
-	. = list()
-	var/list/adm = get_admin_counts()
-	var/list/presentmins = adm["present"]
-	var/list/afkmins = adm["afk"]
-	.["admins"] = presentmins
-	.["admins"] += afkmins
+	. = ..()
+	var/list/admins = list()
+	for(var/admin in GLOB.admins)
+		var/client/admin_client = admin
+		if(!admin_client.holder.fakekey)
+			admins += "[admin_client][admin_client.is_afk() ? "(AFK)" : ""]"
 
-	return list2params(.)
+	statuscode = 200
+	response = "Admin list fetched"
+
+	data["admins"] = admins
+/datum/world_topic/whois
+	key = "whoIs"
+	anonymous = TRUE
+
+/datum/world_topic/whois/Run(list/input)
+	. = ..()
+	data = list()
+	data["players"] = GLOB.clients
+	statuscode = 200
+	response = "Player list fetched"

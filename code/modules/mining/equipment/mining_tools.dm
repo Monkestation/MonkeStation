@@ -26,6 +26,16 @@
 	user.visible_message("<span class='suicide'>[user] couldn't do it!</span>")
 	return SHAME
 
+
+/obj/item/pickaxe/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/stack/sheet/animalhide/goliath_hide))
+		if(toolspeed != 0.1)
+			I.use(1)
+			toolspeed = max(0.1, toolspeed - 0.1)
+			to_chat(user, span_notice("You apply a Goliath Plate to the pickaxe making it sturdier"))
+		else
+			to_chat(user, span_notice("You can't reinforce the pickaxe anymore!"))
 /obj/item/pickaxe/mini
 	name = "compact pickaxe"
 	desc = "A smaller, compact version of the standard pickaxe."

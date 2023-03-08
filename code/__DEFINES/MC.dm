@@ -104,3 +104,6 @@
 }\
 /datum/controller/subsystem/processing/##X/fire() {..() /*just so it shows up on the profiler*/} \
 /datum/controller/subsystem/processing/##X
+
+//If the MC goes for longer than 5 seconds, provide a warning for investigation
+#define MASTER_CONTROLLER_DELAY_WARN_TIME 2 SECONDS
