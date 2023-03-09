@@ -106,7 +106,14 @@
 #define rustg_dbp_generate(seed, accuracy, stamp_size, world_size, lower_range, upper_range) \
 	call(RUST_G, "dbp_generate")(seed, accuracy, stamp_size, world_size, lower_range, upper_range)
 
+#define RUSTG_HASH_MD5 "md5"
+#define RUSTG_HASH_SHA1 "sha1"
 #define RUSTG_HASH_SHA256 "sha256"
+#define RUSTG_HASH_SHA512 "sha512"
+
+#ifdef RUSTG_OVERRIDE_BUILTINS
+#define md5(thing) (isfile(thing) ? rustg_hash_file(RUSTG_HASH_MD5, "[thing]") : rustg_hash_string(RUSTG_HASH_MD5, thing))
+#endif
 
 #define RUSTG_HTTP_METHOD_GET "get"
 #define RUSTG_HTTP_METHOD_PUT "put"
