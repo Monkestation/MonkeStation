@@ -480,6 +480,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src << link("[redirect_address]")
 	qdel(src)
 
+/* this needs to be locked because sha256 won't work without openssl
 /client/proc/generate_uuid()
 	if(IsAdminAdvancedProcCall())
 		log_admin("Attempted admin generate_uuid() proc call blocked.")
@@ -501,7 +502,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	qdel(query_update_uuid)
 
 	return uuid
-
+*/
 /client/proc/fetch_uuid()
 	if(IsAdminAdvancedProcCall())
 		log_admin("Attempted admin fetch_uuid() proc call blocked.")
@@ -829,7 +830,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return TRUE
 
 /client/proc/cid_check_reconnect()
-	var/token = rustg_hash_string(RUSTG_HASH_MD5, "[rand(0,9999)][world.time][rand(0,9999)][ckey][rand(0,9999)][address][rand(0,9999)][computer_id][rand(0,9999)]")
+	var/token = md5("[rand(0,9999)][world.time][rand(0,9999)][ckey][rand(0,9999)][address][rand(0,9999)][computer_id][rand(0,9999)]")
 	. = token
 	log_access("Failed Login: [key] [computer_id] [address] - CID randomizer check")
 	var/url = winget(src, null, "url")
