@@ -4,7 +4,7 @@
 
 /datum/supply_pack/security/armory/revolver
 	name = "Revolver Single-Pack"
-	desc = "Contains one revolver, of the sort detectives are known to habitually smuggle on board.  Ammo not included."
+	desc = "Contains one revolver, of the sort detectives are known to habitually smuggle on board."
 	cost = 1000
 	contraband = TRUE
 	small_item = TRUE
