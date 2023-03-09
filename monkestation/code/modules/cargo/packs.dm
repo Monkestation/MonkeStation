@@ -15,14 +15,14 @@
 /////////////////////// Canisters & Materials ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-/datum/supply_pack/materials/randommaterials
+/datum/supply_pack/materials/random_materials
 	name = "Contracted Materials"
 	desc = "No miners? We'll contract the work and send you the materials! Contains random processed materials, good luck!"
 	cost = 3000
 	contains = list()
 	crate_name = "contracted materials crate"
 
-/datum/supply_pack/materials/randommaterials/fill(obj/structure/closet/crate/C)
+/datum/supply_pack/materials/random_materials/fill(obj/structure/closet/crate/C)
 	for(var/i in 1 to 5)
 		var/item = pick(
 			prob(200);
