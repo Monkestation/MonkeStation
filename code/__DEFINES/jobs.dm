@@ -20,7 +20,6 @@
 
 #define RD_JF			(1<<0)
 #define SCIENTIST		(1<<1)
-// #define EXPLORATION_CREW (1<<2) // MonkeStation edit: Exploration temporarily disabled
 #define CHEMIST			(1<<2)
 #define CMO_JF			(1<<3)
 #define DOCTOR			(1<<4)
@@ -92,7 +91,6 @@
 #define JOB_DISPLAY_ORDER_VIROLOGIST 24
 #define JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR 25
 #define JOB_DISPLAY_ORDER_SCIENTIST 26
-// #define JOB_DISPLAY_ORDER_EXPLORATION 27 // MonkeStation edit: Exploration temporarily disabled
 #define JOB_DISPLAY_ORDER_ROBOTICIST 28
 #define JOB_DISPLAY_ORDER_HEAD_OF_SECURITY 29
 #define JOB_DISPLAY_ORDER_WARDEN 30

@@ -393,10 +393,6 @@
 
 	ruin_event?.post_spawn(floor_turfs, center_z)
 
-	//Start running event			// MonkeStation edit: ruins/objectives disabled
-	// if(ruin_event)
-	// 	SSorbits.ruin_events += ruin_event
-
 	SSair.unpause_z(center_z)
 
 	log_mapping("Finished generating ruin at [center_x], [center_y], [center_z]")
