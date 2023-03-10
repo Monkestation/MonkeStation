@@ -5,7 +5,7 @@
 /datum/supply_pack/security/armory/revolver
 	name = "Revolver Single-Pack"
 	desc = "Contains one revolver, of the sort detectives are known to habitually smuggle on board."
-	cost = 1000
+	cost = 1500
 	contraband = TRUE
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/revolver/detective)
