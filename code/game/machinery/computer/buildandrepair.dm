@@ -14,6 +14,17 @@
 					set_anchored(TRUE)
 					state = 1
 				return
+
+			if(P.tool_behaviour == TOOL_CROWBAR && circuit)
+				P.play_tool_sound(src)
+				to_chat(user, "<span class='notice'>You remove [circuit].</span>")
+				state = 1
+				icon_state = "0"
+				circuit.forceMove(drop_location())
+				circuit.add_fingerprint(user)
+				circuit = null
+				return
+
 			if(P.tool_behaviour == TOOL_WELDER)
 				if(!P.tool_start_check(user, amount=0))
 					return
