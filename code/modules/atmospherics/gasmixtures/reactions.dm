@@ -438,7 +438,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/fusion
 	exclude = FALSE
-	priority = 2
+	priority = 3
 	name = "Plasmic Fusion"
 	id = "fusion"
 
@@ -534,7 +534,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
-	priority = 3
+	priority = 4
 	name = "Nitryl formation"
 	id = "nitrylformation"
 
@@ -565,7 +565,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
-	priority = 4
+	priority = 5
 	name = "BZ Gas formation"
 	id = "bzformation"
 
@@ -600,7 +600,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
-	priority = 5
+	priority = 6
 	name = "Stimulum formation"
 	id = "stimformation"
 
@@ -632,7 +632,7 @@ nobliumformation = 1001
 		return REACTING
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
-	priority = 6
+	priority = 7
 	name = "Hyper-Noblium condensation"
 	id = "nobformation"
 
@@ -685,7 +685,7 @@ nobliumformation = 1001
 	SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, cleaned_air*MIASMA_RESEARCH_AMOUNT)//Turns out the burning of miasma is kinda interesting to scientists
 
 /datum/gas_reaction/stim_ball
-	priority = 7
+	priority = 8
 	name ="Stimulum Energy Ball"
 	id = "stimball"
 
@@ -780,7 +780,7 @@ nobliumformation = 1001
 			air.set_temperature((old_thermal_energy + energy_released) / new_heat_capacity)
 
 /datum/gas_reaction/freonformation
-	priority = 5
+	priority = 9
 	name = "Freon formation"
 	id = "freonformation"
 
@@ -859,7 +859,7 @@ nobliumformation = 1001
 	return cached_results["fire"] ? REACTING : NO_REACTION
 
 /datum/gas_reaction/halon_formation
-	priority = 12
+	priority = 10
 	name = "Halon formation"
 	id = "halon_formation"
 
@@ -891,7 +891,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/healium_formation
-	priority = 9
+	priority = 11
 	name = "Healium formation"
 	id = "healium_formation"
 
@@ -923,7 +923,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_formation
-	priority = 10
+	priority = 12
 	name = "Pluonium formation"
 	id = "pluonium_formation"
 
@@ -955,7 +955,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/zauker_formation
-	priority = 11
+	priority = 13
 	name = "Zauker formation"
 	id = "zauker_formation"
 
@@ -1018,7 +1018,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/zauker_decomp
-	priority = 8
+	priority = 14
 	name = "Zauker decomposition"
 	id = "zauker_decomp"
 
@@ -1049,7 +1049,7 @@ nobliumformation = 1001
 	return NO_REACTION
 
 /datum/gas_reaction/pluonium_bz_response
-	priority = 14
+	priority = 15
 	name = "Pluonium bz response"
 	id = "pluonium_bz_response"
 
@@ -1086,7 +1086,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_tritium_response
-	priority = 15
+	priority = 16
 	name = "Pluonium tritium response"
 	id = "pluonium_tritium_response"
 
@@ -1121,7 +1121,7 @@ nobliumformation = 1001
 	return REACTING
 
 /datum/gas_reaction/pluonium_hydrogen_response
-	priority = 16
+	priority = 17
 	name = "Pluonium hydrogen response"
 	id = "pluonium_hydrogen_response"
 
