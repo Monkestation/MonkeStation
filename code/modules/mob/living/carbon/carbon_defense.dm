@@ -112,6 +112,19 @@
 				playsound(get_turf(src), I.get_dismember_sound(), 80, 1)
 		return TRUE //successful attack
 
+/mob/living/carbon/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
+	if(user.a_intent == INTENT_HARM)
+		if(HAS_TRAIT(user, TRAIT_PACIFISM))
+			to_chat(user, "<span class='notice'>You don't want to hurt [src]!</span>")
+			return FALSE
+		..(user, 1)
+		playsound(loc, "punch", 25, 1, -1)
+		visible_message("<span class='danger'>[user] punches [src]!</span>", \
+			"<span class='userdanger'>[user] punches you!</span>", null, COMBAT_MESSAGE_RANGE)
+		adjustBruteLoss(20)
+		return TRUE
+
+
 /mob/living/carbon/attack_drone(mob/living/simple_animal/drone/user)
 	return //so we don't call the carbon's attack_hand().
 
