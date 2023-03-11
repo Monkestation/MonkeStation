@@ -1090,6 +1090,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/brig
 	name = "Brig"
 	icon_state = "brig"
+	immune_jobs = list("Brig Physician", "Warden")
 	mood_bonus = -3
 	mood_message = "<span class='warning'>I hate cramped brig cells.\n</span>"
 	network = list("interrogation")
