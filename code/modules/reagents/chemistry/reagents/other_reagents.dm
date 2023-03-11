@@ -106,7 +106,7 @@
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 
 	if(iscarbon(L))
-		var/mob/living/carbon/cured
+		var/mob/living/carbon/cured = L
 		if(islist(data) && (method == INGEST || method == INJECT))
 			for(var/thing in cured.diseases)
 				var/datum/disease/D = thing
