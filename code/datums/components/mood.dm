@@ -389,7 +389,7 @@
 	if(A.mood_bonus)
 		if(ishuman(owner))
 			var/mob/living/carbon/human/human_owner = owner
-			if(owner.mind.assigned_role in A.immune_jobs)
+			if(human_owner.mind.assigned_role in A.immune_jobs)
 				return
 		if(get_event("area"))	//walking between areas that give mood bonus should first clear the bonus from the previous one
 			clear_event(null, "area")
