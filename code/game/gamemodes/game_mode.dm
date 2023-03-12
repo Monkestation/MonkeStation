@@ -1,4 +1,8 @@
+#ifndef SPACEMAN_DMM
 GLOBAL_LIST_INIT(streamer_keys, json_decode(rustg_file_read("config/streamers/ckeys.json")))
+#else
+GLOBAL_LIST_INIT(streamer_keys, list())
+#endif
 
 /*
  * GAMEMODES (by Rastaf0)
