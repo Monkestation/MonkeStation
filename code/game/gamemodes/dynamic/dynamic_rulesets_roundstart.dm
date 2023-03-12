@@ -714,7 +714,10 @@
 /datum/dynamic_ruleset/proc/pick_n_take_streamer_weight(list/choice_list)
 	if(CONFIG_GET(flag/streamer_luck) && prob(streamer_weight))
 		for(var/mob/listed_mob in choice_list)
+			var/mob/list/streamers = list()
 			if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
-				choice_list -= listed_mob
-				return listed_mob
+				streamers += listed_mob
+				applicant = pick(streamers)
+			return pick_n_take(streamers)
+
 	return pick_n_take(choice_list)
