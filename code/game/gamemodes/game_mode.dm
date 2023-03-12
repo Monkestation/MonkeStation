@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(streamer_keys, json_decode(rustg_file_read("data/streamers/ckeys.json")))
+GLOBAL_LIST_INIT(streamer_keys, json_decode(rustg_file_read("config/streamers/ckeys.json")))
 
 /*
  * GAMEMODES (by Rastaf0)
