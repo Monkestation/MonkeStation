@@ -126,7 +126,7 @@
 			break
 		var/mob/applicant
 		if(CONFIG_GET(flag/streamer_luck) && prob(streamer_weight))
-			var/mob/list/streamers = list()
+			var/list/mob/streamers = list()
 			for(var/mob/listed_mob in candidates)
 				if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
 					streamers += listed_mob
