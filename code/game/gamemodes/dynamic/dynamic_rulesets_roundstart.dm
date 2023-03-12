@@ -717,7 +717,6 @@
 			var/mob/list/streamers = list()
 			if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
 				streamers += listed_mob
-				applicant = pick(streamers)
-			return pick_n_take(streamers)
+		return pick_n_take(streamers)
 
 	return pick_n_take(choice_list)
