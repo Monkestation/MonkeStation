@@ -680,6 +680,7 @@
 "ch" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
+/obj/item/circuitboard/machine/plasma_refiner,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "ci" = (
