@@ -35,6 +35,10 @@
 	display_name = "black cowboy boots"
 	path = /obj/item/clothing/shoes/cowboyboots/black
 
+/datum/gear/footwear/driscoll
+	display_name = "driscoll boots"
+	path = /obj/item/clothing/shoes/driscoll
+
 /datum/gear/footwear/phantom
 	display_name = "phantom shoes"
 	path = /obj/item/clothing/shoes/phantom

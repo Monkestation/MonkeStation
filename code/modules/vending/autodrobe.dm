@@ -116,6 +116,7 @@
 					/obj/item/clothing/suit/driscoll = 1,
 					/obj/item/clothing/under/driscoll = 1,
 					/obj/item/clothing/mask/gas/driscoll_mask = 1,
+					/obj/item/clothing/shoes/driscoll = 1,
 					/obj/item/clothing/suit/deckers = 1,
 					/obj/item/clothing/under/deckers = 1,
 					/obj/item/clothing/head/deckers = 1,
@@ -131,6 +132,7 @@
 					/obj/item/clothing/suit/phantom = 1,
 					/obj/item/clothing/under/phantom = 1,
 					/obj/item/clothing/shoes/phantom = 1,
+					/obj/item/clothing/glasses/phantom = 1,
 					/obj/item/clothing/ears/headphones = 2)
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 		              /obj/item/clothing/head/powdered_wig = 1,

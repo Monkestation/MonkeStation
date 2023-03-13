@@ -165,6 +165,10 @@
 	display_name = "red glasses"
 	path = /obj/item/clothing/glasses/red
 
+/datum/gear/accessory/glasses/phantom
+	display_name = "phantom glasses"
+	path = /obj/item/clothing/glasses/phantom
+
 //LIPSTICK
 
 /datum/gear/accessory/cosmetics

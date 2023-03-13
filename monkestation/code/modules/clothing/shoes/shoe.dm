@@ -30,6 +30,14 @@
 	icon_state = "decker_shoes"
 	item_state = "decker_shoes"
 
+/obj/item/clothing/shoes/driscoll
+	name = "driscoll boots"
+	desc = "A special pair of leather boots, for those who dont need spurs"
+	icon = 'monkestation/icons/obj/clothing/shoes.dmi'
+	worn_icon = 'monkestation/icons/mob/feet.dmi'
+	icon_state = "driscoll_boots"
+	item_state = "driscoll_boots"
+
 /obj/item/clothing/shoes/cowboyboots
 	name = "cowboy boots"
 	desc = "A standard pair of brown cowboy boots."
