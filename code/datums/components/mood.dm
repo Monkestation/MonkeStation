@@ -384,7 +384,13 @@
 /datum/component/mood/proc/check_area_mood(datum/source, var/area/A)
 	SIGNAL_HANDLER
 
+	var/mob/living/owner = parent
+
 	if(A.mood_bonus)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/human_owner = owner
+			if(human_owner.mind.assigned_role in A.immune_jobs)
+				return
 		if(get_event("area"))	//walking between areas that give mood bonus should first clear the bonus from the previous one
 			clear_event(null, "area")
 		add_event(null, "area", /datum/mood_event/area, list(A.mood_bonus, A.mood_message))

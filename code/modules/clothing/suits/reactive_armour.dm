@@ -4,9 +4,6 @@
 	icon_state = "reactiveoff"
 	icon = 'icons/obj/clothing/suits.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/reactive_armour_shell/attackby(obj/item/I, mob/user, params)
-	..()
 	var/static/list/anomaly_armour_types = list(
 		/obj/effect/anomaly/grav	                = /obj/item/clothing/suit/armor/reactive/repulse,
 		/obj/effect/anomaly/flux 	           		= /obj/item/clothing/suit/armor/reactive/tesla,
@@ -24,6 +21,9 @@
 		//MONKESTATION EDIT END
 		)
 
+/obj/item/reactive_armour_shell/attackby(obj/item/I, mob/user, params)
+	..()
+
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
 		var/obj/item/assembly/signaler/anomaly/A = I
 		var/armour_path = anomaly_armour_types[A.anomaly_type]
@@ -33,6 +33,16 @@
 		new armour_path(get_turf(src))
 		qdel(src)
 		qdel(A)
+
+/obj/item/reactive_armour_shell/random
+	name = "randomized reactive armor"
+	desc = "Oddly reality breaking. must be a bug."
+
+/obj/item/reactive_armour_shell/random/Initialize(mapload)
+	. = ..()
+	var/armour_path = anomaly_armour_types[pick(anomaly_armour_types)]
+	new armour_path(loc)
+	qdel(src)
 
 //Reactive armor
 /obj/item/clothing/suit/armor/reactive

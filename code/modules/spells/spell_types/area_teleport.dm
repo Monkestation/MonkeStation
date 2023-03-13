@@ -15,6 +15,7 @@
 	if(!thearea || !cast_check(1))
 		revert_cast()
 		return
+	use_charge(user)
 	invocation(thearea,user)
 	if(charge_type == "recharge" && recharge)
 		INVOKE_ASYNC(src, .proc/start_recharge)

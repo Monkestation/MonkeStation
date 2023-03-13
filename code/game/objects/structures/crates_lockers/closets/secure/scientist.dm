@@ -13,7 +13,7 @@
 	new /obj/item/tank/internals/air(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/storage/lockbox/medal/sci(src)
-	new /obj/item/clothing/suit/armor/reactive/teleport(src)
+	new /obj/item/reactive_armour_shell/random(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/laser_pointer(src)
 	new /obj/item/door_remote/research_director(src)

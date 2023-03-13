@@ -34,9 +34,7 @@
 /datum/component/construction/proc/action(datum/source, obj/item/I, mob/living/user)
 	SIGNAL_HANDLER
 
-	spawn(-1)
-		. = check_step(I, user)
-	return .
+	return INVOKE_ASYNC(src, .proc/check_step, I, user)
 
 /datum/component/construction/proc/update_index(diff)
 	index += diff

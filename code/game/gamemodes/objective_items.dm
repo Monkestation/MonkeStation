@@ -83,8 +83,8 @@
 	excludefromjob = list("Head of Security", "Warden")
 
 /datum/objective_item/steal/reactive
-	name = "the reactive teleport armor."
-	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
+	name = "the reactive armor."
+	targetitem = /obj/item/clothing/suit/armor/reactive
 	difficulty = 5
 	excludefromjob = list("Research Director")
 
