@@ -28,6 +28,7 @@
 /obj/effect/spawner/lootdrop/seed_vault,
 /obj/item/stock_parts/matter_bin/super,
 /obj/item/stock_parts/matter_bin/super,
+/obj/effect/spawner/lootdrop/seed_vault,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "al" = (
@@ -327,6 +328,15 @@
 /obj/item/stock_parts/scanning_module/phasic,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"rm" = (
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
 "sY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/seed_vault,
@@ -334,6 +344,7 @@
 /obj/item/stock_parts/micro_laser/ultra{
 	pixel_x = 8
 	},
+/obj/effect/spawner/lootdrop/seed_vault,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "tE" = (
@@ -345,6 +356,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "vC" = (
@@ -513,6 +528,13 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4/lavaland{
 	dir = 1
 	},
+/turf/open/floor/plasteel/freezer,
+/area/ruin/powered/seedvault)
+"WQ" = (
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen,
+/obj/item/tank/internals/oxygen,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 
@@ -856,8 +878,8 @@ aj
 aQ
 aj
 aQ
-ah
-ah
+rm
+WQ
 aQ
 aj
 aQ
