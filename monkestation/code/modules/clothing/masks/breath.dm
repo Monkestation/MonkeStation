@@ -37,3 +37,14 @@
 /obj/item/clothing/mask/breath/sec_bandana/science
 	icon_state = "sec_bandana_science"
 	item_state = "sec_bandana_science"
+
+/obj/item/clothing/mask/gas/driscoll_mask
+	name = "Driscoll mask"
+	desc = "Great for train hijackings. Works like a normal full face gas mask, but won't conceal your identity."
+	worn_icon = 'monkestation/icons/mob/mask.dmi'
+	icon = 'monkestation/icons/obj/clothing/masks.dmi'
+	icon_state = "driscoll_mask"
+	item_state = "driscoll_mask"
+	flags_inv = HIDEFACIALHAIR
+	w_class = WEIGHT_CLASS_NORMAL
+	actions_types = null

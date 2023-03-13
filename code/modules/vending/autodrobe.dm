@@ -112,6 +112,25 @@
 					/obj/item/clothing/under/dress/sailor = 1,
         			/obj/item/clothing/head/wig = 3, //monkestation edit
 					/obj/item/clothing/head/delinquent = 1,
+					/obj/item/clothing/suit/delinquent = 1,
+					/obj/item/clothing/suit/driscoll = 1,
+					/obj/item/clothing/under/driscoll = 1,
+					/obj/item/clothing/mask/gas/driscoll_mask = 1,
+					/obj/item/clothing/suit/deckers = 1,
+					/obj/item/clothing/under/deckers = 1,
+					/obj/item/clothing/head/deckers = 1,
+					/obj/item/clothing/shoes/deckers = 1,
+					/obj/item/clothing/suit/morningstar = 1,
+					/obj/item/clothing/under/morningstar = 1,
+					/obj/item/clothing/head/morningstar = 1,
+					/obj/item/clothing/shoes/morningstar = 1,
+					/obj/item/clothing/suit/saints = 1,
+					/obj/item/clothing/under/saints = 1,
+					/obj/item/clothing/head/saints = 1,
+					/obj/item/clothing/shoes/saints = 1,
+					/obj/item/clothing/suit/phantom = 1,
+					/obj/item/clothing/under/phantom = 1,
+					/obj/item/clothing/shoes/phantom = 1,
 					/obj/item/clothing/ears/headphones = 2)
 	contraband = list(/obj/item/clothing/suit/judgerobe = 1,
 		              /obj/item/clothing/head/powdered_wig = 1,
@@ -129,6 +148,7 @@
 				   /obj/item/shield/riot/roman/fake = 1,
 				   /obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
 				   /obj/item/clothing/head/clownmitre = 1,
+				   /obj/item/clothing/suit/gothcoat = 1,
 				   /obj/item/toy/whoopee = 1,
 		           /obj/item/skub = 1)
 

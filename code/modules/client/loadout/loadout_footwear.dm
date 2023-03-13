@@ -27,6 +27,31 @@
 	description = "The premier choice of oppressors for over 50 years!"
 	path = /obj/item/clothing/shoes/jackboots
 
+/datum/gear/footwear/cowboyboots
+	display_name = "cowboy boots"
+	path = /obj/item/clothing/shoes/cowboyboots
+
+/datum/gear/footwear/cowboyboots_black
+	display_name = "black cowboy boots"
+	path = /obj/item/clothing/shoes/cowboyboots/black
+
+/datum/gear/footwear/phantom
+	display_name = "phantom shoes"
+	path = /obj/item/clothing/shoes/phantom
+
+/datum/gear/footwear/morningstar
+	display_name = "morningstar boots"
+	path = /obj/item/clothing/shoes/morningstar
+
+/datum/gear/footwear/saints
+	display_name = "saints sneakers"
+	path = /obj/item/clothing/shoes/saints
+
+/datum/gear/footwear/deckers
+	display_name = "deckers rollerskates"
+	description = "t3h c00L3st sh03z j00'LL 3v3r f1nd. Disclaimer : The wheels dont work"
+	path = /obj/item/clothing/shoes/phantom
+
 /datum/gear/footwear/blue_perfomer
 	display_name = "blue performer's boots"
 	description = "oo-ee-oo"

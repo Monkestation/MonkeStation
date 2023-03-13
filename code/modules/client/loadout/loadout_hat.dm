@@ -59,6 +59,22 @@
 	display_name = "green sombrero"
 	path = /obj/item/clothing/head/sombrero/green
 
+/datum/gear/hat/cowboyhat_poly
+	display_name = "polychromatic Cowboy Hat"
+	path = /obj/item/clothing/head/polycowboyhat
+
+/datum/gear/hat/sunflower_crown
+	display_name = "sunflower crown"
+	path = /obj/item/clothing/head/sunflowercrown
+
+/datum/gear/hat/poppy_crown
+	display_name = "poppy crown"
+	path = /obj/item/clothing/head/poppycrown
+
+/datum/gear/hat/lily_crown
+	display_name = "lily crown"
+	path = /obj/item/clothing/head/lilycrown
+
 //SOFT CAPS
 
 /datum/gear/hat/soft
@@ -179,6 +195,11 @@
 	path = /obj/item/clothing/head/delinquent
 	cost = 5000
 
+/datum/gear/donator/head/gangster_wig
+	display_name = "gangster wig"
+	path = /obj/item/clothing/head/gangsterwig
+	cost = 5000
+
 /datum/gear/hat/cueball
 	display_name = "cubeball helmet"
 	path = /obj/item/clothing/head/cueball
@@ -189,6 +210,22 @@
 	description = "Yarr. Comes with one free pirate speak manual."
 	path = /obj/item/clothing/head/pirate
 	cost = 5000
+
+/datum/gear/hat/deckers
+	display_name = "decker headphones"
+	path = /obj/item/clothing/head/deckers
+
+/datum/gear/hat/morningstar
+	display_name = "morningstar beret"
+	path = /obj/item/clothing/head/morningstar
+
+/datum/gear/hat/saints
+	display_name = "saints hat"
+	path = /obj/item/clothing/head/saints
+
+/datum/gear/hat/widered
+	display_name = "wide red hat"
+	path = /obj/item/clothing/head/widered
 
 //CHAPLAIN HATS
 

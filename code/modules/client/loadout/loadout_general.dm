@@ -117,6 +117,22 @@
 	display_name = "bee plushie"
 	path = /obj/item/toy/plush/beeplushie
 
+/datum/gear/misc/plush/plush_ian
+	display_name = "ian plushie"
+	path = /obj/item/toy/plush/ian
+
+/datum/gear/misc/plush/plush_lisa
+	display_name = "lisa plushie"
+	path = /obj/item/toy/plush/lisa
+
+/datum/gear/misc/plush/plush_renault
+	display_name  = "renault plushie"
+	path = /obj/item/toy/plush/renault
+
+/datum/gear/misc/plush/plush_opa
+	display_name = "metal opa plushie"
+	path = /obj/item/toy/plush/opa
+
 /datum/gear/misc/plush/tyriaplush
 	display_name = "tyria plushie"
 	description = "The cryptid has breached containment."
@@ -133,3 +149,28 @@
 	path = /obj/item/toy/plush/moth/ookplush
 	cost = 10000
 
+//BACKPACKS
+/datum/gear/misc/backpack
+	subtype_path = /datum/gear/misc/backpack
+	slot = ITEM_SLOT_BACK
+	cost = 10000
+
+/datum/gear/misc/backpack/ian
+	display_name = "ian backpack"
+	path = /obj/item/storage/backpack/ian
+
+/datum/gear/misc/backpack/lisa
+	display_name = "lisa backpack"
+	path = /obj/item/storage/backpack/lisa
+
+/datum/gear/misc/backpack/renault
+	display_name = "renault backpack"
+	path = /obj/item/storage/backpack/renault
+
+/datum/gear/misc/backpack/cak
+	display_name = "cak catpack"
+	path = /obj/item/storage/backpack/cak
+
+/datum/gear/donator/backpack/runtime
+	display_name = "runtime catpack"
+	path = /obj/item/storage/backpack/runtime

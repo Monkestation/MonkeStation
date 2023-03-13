@@ -165,6 +165,38 @@
 	subtype_path = /datum/gear/uniform/misc
 	cost = 5000
 
+/datum/gear/uniform/misc/bloodred
+	display_name = "blood-red pajamas"
+	path = /obj/item/clothing/under/bloodred
+
+/datum/gear/uniform/misc/driscoll
+	display_name = "o'driscoll outfit"
+	path = /obj/item/clothing/under/driscoll
+
+/datum/gear/uniform/misc/deckers
+	display_name = "deckers outfit"
+	path = /obj/item/clothing/under/deckers
+
+/datum/gear/uniform/misc/morningstar
+	display_name = "morningstar suit"
+	path = /obj/item/clothing/under/morningstar
+
+/datum/gear/uniform/misc/saints
+	display_name = "saints outfit"
+	path = /obj/item/clothing/under/saints
+
+/datum/gear/uniform/misc/phantom
+	display_name = "phantom thief outfit"
+	path = /obj/item/clothing/under/phantom
+
+/datum/gear/uniform/misc/gangster
+	display_name = "gangster suit"
+	path = /obj/item/clothing/under/gangster
+
+/datum/gear/uniform/misc/gangster_purple
+	display_name = "purple gangster suit"
+	path = /obj/item/clothing/under/gangster/purple
+
 /datum/gear/uniform/misc/jabroni
 	display_name = "jabroni leathers"
 	path = /obj/item/clothing/under/costume/jabroni

@@ -79,6 +79,19 @@
 	path = /obj/item/clothing/suit/hooded/wintercoat/miner
 	allowed_roles = list("Shaft Miner")
 
+/datum/gear/suit/wintercoat/cosmic
+	display_name = "cosmic winter coat"
+	path = /obj/item/clothing/suit/hooded/wintercoat/cosmic
+
+/datum/gear/suit/wintercoat/ratvar
+	display_name = "brass winter coat"
+	path = /obj/item/clothing/suit/hooded/wintercoat/ratvar
+
+/datum/gear/suit/wintercoat/narsie
+	display_name = "runed winter coat"
+	path = /obj/item/clothing/suit/hooded/wintercoat/narsie
+
+
 //JACKETS
 
 /datum/gear/suit/jacket
@@ -180,3 +193,48 @@
 	display_name = "suspenders"
 	description = "..."
 	path = /obj/item/clothing/suit/suspenders
+
+/datum/gear/suit/renault_costume
+	display_name = "renault costume"
+	path = /obj/item/clothing/suit/hooded/renault_costume
+
+/datum/gear/suit/ian_costume
+	display_name = "ian costume"
+	path = /obj/item/clothing/suit/hooded/ian_costume
+
+/datum/gear/suit/carp_costume
+	display_name = "carp costume"
+	path = /obj/item/clothing/suit/hooded/carp_costume
+
+/datum/gear/suit/delinquent
+	display_name = "deliquent jacket"
+	path = /obj/item/clothing/suit/delinquent
+
+/datum/gear/suit/driscoll
+	display_name = "driscoll poncho"
+	path = /obj/item/clothing/suit/driscoll
+
+/datum/gear/suit/deckers
+	display_name = "decker hoodie"
+	path = /obj/item/clothing/suit/deckers
+
+/datum/gear/suit/morningstar
+	display_name = "morningstar coat"
+	path = /obj/item/clothing/suit/morningstar
+
+/datum/gear/suit/saints
+	display_name = "third street saints fur coat"
+	path = /obj/item/clothing/suit/saints
+
+/datum/gear/suit/phantom
+	display_name = "phantom thief coat"
+	path = /obj/item/clothing/suit/phantom
+
+/datum/gear/suit/heartcoat
+	display_name = "heart coat"
+	description = "A soft coat with a TailorCo brand on the tag. The tag also has a disclaimer that it is not a winter coat."
+	path = /obj/item/clothing/suit/heartcoat
+
+/datum/gear/suit/gothcoat
+	display_name = "gothic coat"
+	path = /obj/item/clothing/suit/gothcoat

@@ -34,6 +34,8 @@
 
 /obj/item/clothing/suit/hooded/proc/RemoveHood()
 	src.icon_state = "[initial(icon_state)]"
+	if(worn_icon)
+		src.worn_icon_state = "[initial(worn_icon_state)]"
 	suittoggled = FALSE
 	if(ishuman(hood.loc))
 		var/mob/living/carbon/H = hood.loc
@@ -62,6 +64,8 @@
 			else if(H.equip_to_slot_if_possible(hood,ITEM_SLOT_HEAD,0,0,1))
 				suittoggled = TRUE
 				src.icon_state = "[initial(icon_state)]_t"
+				if(worn_icon)
+					src.worn_icon_state = "[initial(worn_icon_state)]_t"
 				H.update_inv_wear_suit()
 				for(var/X in actions)
 					var/datum/action/A = X
