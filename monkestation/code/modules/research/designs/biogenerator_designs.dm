@@ -110,6 +110,14 @@
 	build_path = /obj/item/paper_bin/construction
 	category = list("initial","Organic Materials")
 
+/datum/design/rollingpapers // Why couldn't botanists make their own papers!?
+	name = "Rolling Paper Pack"
+	id = "rollingpapers"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 1000)
+	build_path = /obj/item/storage/fancy/rollingpapers
+	category = list("initial","Organic Materials")
+
 /datum/design/cloth
 	category = list("tier_three","Organic Materials")
 
