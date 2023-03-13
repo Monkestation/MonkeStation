@@ -717,6 +717,7 @@
 		for(var/mob/listed_mob in choice_list)
 			if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
 				streamers += listed_mob
-		return pick_n_take(streamers)
+		if(streamers.len)
+			return pick_n_take(streamers)
 
 	return pick_n_take(choice_list)
