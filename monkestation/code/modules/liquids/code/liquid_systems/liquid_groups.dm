@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	///cached temperature between turfs recalculated on group_process
 	var/cached_temperature_shift = 0
 	///does temperature need action
-	var/temperature_shift_needs_action = TRUE
+	var/temperature_shift_needs_action = FALSE
 	///this groups list of currently running turfs, we iterate over this to stop redundancy
 	var/list/current_temperature_queue = list()
 
@@ -171,8 +171,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/datum/gas_mixture/math_cache = open_turf.air
 
 	if(math_cache && total_reagent_volume)
-		if(!(group_temperature <= math_cache.return_temperature() + 5 && math_cache.return_temperature() - 5 <= group_temperature))
-			cached_temperature_shift =((math_cache.return_temperature() * math_cache.total_moles()) + ((group_temperature * (total_reagent_volume * 0.025)))) / ((total_reagent_volume * 0.025) + math_cache.total_moles())
+		if(!(group_temperature <= math_cache.return_temperature() + 5 && math_cache.return_temperature() - 5 <= group_temperature) && !temperature_shift_needs_action)
+			cached_temperature_shift =((math_cache.return_temperature() * max(1, math_cache.total_moles())) + ((group_temperature * max(1, (total_reagent_volume * 0.025))))) / (max(1, (total_reagent_volume * 0.025)) + max(1, math_cache.total_moles()))
 			temperature_shift_needs_action = TRUE
 
 	if(total_reagent_volume != reagents.total_volume || updated_total)

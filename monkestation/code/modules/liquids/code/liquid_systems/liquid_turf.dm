@@ -49,6 +49,6 @@
 	if(!liquids)
 		liquids = new(src)
 
-	liquids.liquid_group.add_reagent(liquids, reagent, amount)
+	liquids.liquid_group.add_reagent(liquids, reagent, amount, chem_temp)
 	//Expose turf
 	liquids.liquid_group.expose_members_turf(liquids)
