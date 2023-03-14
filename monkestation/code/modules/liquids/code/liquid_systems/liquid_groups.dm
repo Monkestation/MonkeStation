@@ -172,7 +172,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	if(math_cache && total_reagent_volume)
 		if(!(group_temperature <= math_cache.return_temperature() + 5 && math_cache.return_temperature() - 5 <= group_temperature))
-			cached_temperature_shift =((math_cache.return_temperature() * math_cache.total_moles()) + ((group_temperature * total_reagent_volume) * 0.025)) / ((total_reagent_volume * 0.025) + math_cache.total_moles())
+			cached_temperature_shift =((math_cache.return_temperature() * math_cache.total_moles()) + ((group_temperature * (total_reagent_volume * 0.025)))) / ((total_reagent_volume * 0.025) + math_cache.total_moles())
 			temperature_shift_needs_action = TRUE
 
 	if(total_reagent_volume != reagents.total_volume || updated_total)

@@ -26,7 +26,7 @@
 		to_chat(usr, span_warning("Please limit the volume to below 100000 units!"))
 		return
 	var/turf/epicenter = get_turf(mob)
-	epicenter.add_liquid(choice, volume)
+	epicenter.add_liquid(choice, volume, FALSE, 300)
 	message_admins("[ADMIN_LOOKUPFLW(usr)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 	log_admin("[key_name(usr)] spawned liquid at [epicenter.loc] ([choice] - [volume]).")
 
