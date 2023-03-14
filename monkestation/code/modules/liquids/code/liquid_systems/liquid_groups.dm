@@ -166,7 +166,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/turf/open/open_turf = pick(members)
 	var/datum/gas_mixture/math_cache = open_turf.air
 
-	if(math_cache)
+	if(math_cache && total_reagent_volume)
 		if(group_temperature != math_cache.return_temperature())
 			cached_temperature_shift =((math_cache.return_temperature() * math_cache.total_moles()) + ((group_temperature * total_reagent_volume) * 0.025)) / ((total_reagent_volume * 0.025) + math_cache.total_moles())
 
@@ -779,7 +779,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 		water_rush(new_turf, source_turf)
 
-	else if(new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group && source_turf.turf_height == new_turf.turf_height)
+	else if(source_turf.liquids && source_turf.liquids.liquid_group && new_turf.liquids && new_turf.liquids.liquid_group && new_turf.liquids.liquid_group != source_turf.liquids.liquid_group && source_turf.turf_height == new_turf.turf_height)
 		merge_group(new_turf.liquids.liquid_group)
 		return FALSE
 	else if(source_turf.turf_height != new_turf.turf_height)
