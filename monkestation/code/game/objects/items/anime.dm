@@ -137,6 +137,7 @@
 		weeb.add_splatter_floor(location)
 		var/msg = "<span class=danger>You feel the power of God and Anime flow through you!</span>"
 		to_chat(weeb, msg)
+		to_chat(weeb, "<span class=danger>Through the power of Anime, your food preferences now match your new form!</span>")
 		playsound(location, 'sound/weapons/circsawhit.ogg', 50, 1)
 		weeb.update_body()
 		weeb.update_hair()
