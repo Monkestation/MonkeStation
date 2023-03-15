@@ -364,6 +364,17 @@ There are several things that need to be remembered:
 				var/obj/item/N = wear_neck
 				if(N.sprite_sheets & dna?.species.bodyflag)
 					icon_file = dna.species.get_custom_icons("neck")
+					if(findtextEx("[N.worn_icon]", "monkestation"))
+						N.worn_icon = icon_file
+					if(N.greyscale_config)
+						N.greyscale_config_worn = text2path("[initial(N.greyscale_config_worn)]"+"/"+"[lowertext(dna.species.name)]")
+						N.update_greyscale()
+					else
+						if(N.worn_icon != initial(N.worn_icon) && initial(N.worn_icon) != null)
+							N.worn_icon = initial(N.worn_icon)
+						if(N.greyscale_config_worn)
+							N.greyscale_config_worn = initial(N.greyscale_config_worn)
+							N.update_greyscale()
 			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = icon_file)
 			var/mutable_appearance/neck_overlay = overlays_standing[NECK_LAYER]
 			if(OFFSET_NECK in dna.species.offset_features)
