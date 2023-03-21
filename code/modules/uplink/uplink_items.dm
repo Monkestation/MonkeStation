@@ -650,12 +650,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 50
 	purchasable_from = ~UPLINK_CLOWN_OPS
 
-/datum/uplink_item/dangerous/lever_action
-	name = "Lever Action Shotgun"
-	desc = "A western lever action shotgun we found on a planet in the frontier, fits in your backpack unlike most shotguns, and can be levered with one hand. Fits five shells."
-	item = /obj/item/gun/ballistic/shotgun/lever_action
-	cost = 9
-
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
 	desc = "A fully-loaded Donksoft bullpup submachine gun that fires riot grade darts with a 20-round magazine."
@@ -868,27 +862,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	purchasable_from = ~UPLINK_CLOWN_OPS
 	illegal_tech = FALSE
-
-//NEW TOT SHOTGUN AMMO BOXES
-/datum/uplink_item/ammo/trickshot
-	name = "Trickshot Shell Box"
-	desc = "A box with 10 trickshot shells, capable of bouncing up to five times, they are made for the most talented trickshooters around."
-	cost = 3
-	item = /obj/item/storage/box/trickshot
-
-/datum/uplink_item/ammo/uraniumpen
-	name = "Uranium Penetrator Box"
-	desc = "A box with 10 uranium penetrators, capable to penetrating walls and objects, but not people. Works best with thermals!"
-	cost = 4
-	item = /obj/item/storage/box/uraniumpen
-
-/datum/uplink_item/ammo/beeshot
-	name = "Beeshot Box"
-	desc = "A box with 10 Beeshot shells. Creates very angry bees upon impact. Not as strong as buckshot."
-	cost = 4
-	item = /obj/item/storage/box/beeshot
-
-//END OF NEW TOT SHOTGUN AMMO
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2

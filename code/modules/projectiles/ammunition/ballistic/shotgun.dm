@@ -161,26 +161,3 @@
 	icon_state = "breacher"
 	projectile_type = /obj/item/projectile/bullet/shotgun_breaching
 	materials = list(/datum/material/iron=4000)
-
-//EDIT THE ACTUAL SHELL HERE, THE ONES YOU LOAD INTO THE GUN
-/obj/item/ammo_casing/shotgun/trickshot
-	name = "trickshot shell"
-	desc = "A 12 gauge trickshot shell. Specially made to bounce up to five times!"
-	icon_state = "trickshell"
-	projectile_type = /obj/item/projectile/bullet/pellet/trickshot
-	pellets = 6
-	variance = 8
-
-/obj/item/ammo_casing/shotgun/uraniumpen
-	name = "uranium penetrator"
-	desc = "A uranium penetrator. Not radioactive, but capable of punching through walls and objects."
-	icon_state = "uraniumpenetrator"
-	projectile_type = /obj/item/projectile/bullet/uraniumpen
-
-/obj/item/ammo_casing/shotgun/beeshot
-	name = "beeshot"
-	desc = "A strange buzzing shell. It sort of resembles a bee."
-	icon_state = "beeshot"
-	projectile_type = /obj/item/projectile/bullet/pellet/beeshot
-	pellets = 3
-	variance = 5
