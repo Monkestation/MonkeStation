@@ -14,7 +14,7 @@
 	name ="uranium penetrator"
 	icon = 'monkestation/icons/obj/guns/projectiles.dmi'
 	icon_state = "uraniumpen"
-	damage = 50
+	damage = 35
 	projectile_piercing = (ALL & (~PASSMOB))
 
 /obj/item/projectile/bullet/pellet/beeshot
