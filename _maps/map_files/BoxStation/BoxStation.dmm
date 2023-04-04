@@ -3473,6 +3473,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel/white,
 /area/security/brig)
 "ahv" = (
@@ -10704,6 +10705,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
+/obj/structure/drain,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aBA" = (
@@ -10713,6 +10715,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/structure/drain,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aBC" = (
@@ -24097,6 +24100,7 @@
 /obj/machinery/door/window/northleft{
 	name = "Shower Door"
 	},
+/obj/structure/drain,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/heads/captain)
 "bpn" = (
@@ -52277,7 +52281,7 @@
 /obj/machinery/door/airlock/security{
 	aiControlDisabled = 1;
 	id_tag = "prisonereducation";
-	name = "Prisoner Education Chamber";
+	name = "The Bye Bye room";
 	req_access_txt = "3"
 	},
 /obj/structure/cable/yellow{
@@ -76782,6 +76786,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 5
 	},
+/obj/structure/drain,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "wQl" = (
@@ -77808,6 +77813,9 @@
 "xtN" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
+	},
+/obj/machinery/camera/motion{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -78841,6 +78849,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
+/obj/structure/drain,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "xXa" = (
