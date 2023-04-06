@@ -517,6 +517,7 @@
 	id_tag = "highleft"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "abu" = (
@@ -36201,6 +36202,7 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/door/airlock/public/glass,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "ccP" = (
@@ -52288,6 +52290,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
 /turf/open/floor/plasteel/dark,
 /area/security/execution)
 "itZ" = (
@@ -59393,6 +59396,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "mwb" = (
@@ -60845,6 +60849,7 @@
 	},
 /obj/machinery/door/airlock/security/glass,
 /obj/effect/turf_decal/tile/red/tile_full,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "nst" = (
@@ -64236,6 +64241,7 @@
 	id_tag = "highright"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "pyr" = (
@@ -65645,11 +65651,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"qgK" = (
-/turf/open/floor/engine{
-	name = "Holodeck Projector Floor"
-	},
-/area/janitor)
 "qgW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -66124,6 +66125,7 @@
 	id_tag = "highleft"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "quB" = (
@@ -68256,6 +68258,7 @@
 /area/maintenance/port/aft)
 "rHg" = (
 /obj/machinery/door/airlock,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/prison)
 "rHZ" = (
@@ -69004,6 +69007,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "shp" = (
@@ -71563,6 +71567,7 @@
 	id_tag = "highright"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/autoname,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "tVE" = (
@@ -116985,7 +116990,7 @@ aaa
 aaa
 auB
 aro
-qgK
+aro
 aro
 aro
 aro
