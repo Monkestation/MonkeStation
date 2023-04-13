@@ -58,6 +58,7 @@
 
 // Keep Alphabetical Order
 #include "dynamic_ruleset_sanity.dm"
+#include "enumerables.dm"
 #include "greyscale_config.dm"
 #include "keybinding_init.dm"
 #include "metabolizing.dm"
