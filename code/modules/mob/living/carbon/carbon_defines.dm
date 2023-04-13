@@ -81,6 +81,10 @@
 
 	/// Timer id of any transformation
 	var/transformation_timer
+
+	///SKILL CHIPS
+	/// Simple modifier for whether this mob can handle greater or lesser skillchip complexity. See /datum/mutation/human/biotechcompat/ for example.
+	var/skillchip_complexity_modifier = 0
 	/// How many food buffs we have at once
 	var/applied_food_buffs = 0
 	//Max amount of food buffs

@@ -55,3 +55,9 @@
 			else
 				A.aidisabled = TRUE
 	ui_update()
+
+/datum/wires/apc/can_reveal_wires(mob/user)
+	if(HAS_TRAIT(user, TRAIT_KNOW_ENGI_WIRES))
+		return TRUE
+
+	return ..()

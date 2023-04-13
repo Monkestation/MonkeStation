@@ -46,3 +46,5 @@
 
 	chameleon_extras = /obj/item/gun/syringe
 
+	skillchip = /obj/item/skillchip/job/chemist
+

@@ -313,11 +313,30 @@
 	throwforce = 13
 	throw_speed = 2
 	throw_range = 4
+	/// Can this plant be trimmed by someone with TRAIT_BONSAI
+	var/trimmable = TRUE
+	var/list/static/random_plant_states
 
 /obj/item/kirbyplants/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=10, force_wielded=10)
 	AddComponent(/datum/component/storage/concrete/kirbyplants)
+
+/obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(trimmable && HAS_TRAIT(user,TRAIT_BONSAI) && isturf(loc) && I.sharpness == IS_SHARP)
+		to_chat(user,"<span class='notice'>You start trimming [src].</span>")
+		if(do_after(user,3 SECONDS,target=src))
+			to_chat(user,"<span class='notice'>You finish trimming [src].</span>")
+			change_visual()
+
+/// Cycle basic plant visuals
+/obj/item/kirbyplants/proc/change_visual()
+	if(!random_plant_states)
+		generate_states()
+	var/current = random_plant_states.Find(icon_state)
+	var/next = WRAP(current+1,1,length(random_plant_states))
+	icon_state = random_plant_states[next]
 
 /datum/component/storage/concrete/kirbyplants
 	max_items = 1
@@ -339,31 +358,31 @@
 /obj/item/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
 	icon_state = "random_plant"
-	var/list/static/states
 
 /obj/item/kirbyplants/random/Initialize(mapload)
 	. = ..()
 	icon = 'icons/obj/flora/plants.dmi'
-	if(!states)
+	if(!random_plant_states)
 		generate_states()
-	icon_state = pick(states)
+	icon_state = pick(random_plant_states)
 
-/obj/item/kirbyplants/random/proc/generate_states()
-	states = list()
+/obj/item/kirbyplants/proc/generate_states()
+	random_plant_states = list()
 	for(var/i in 1 to 34)
 		var/number
 		if(i < 10)
 			number = "0[i]"
 		else
 			number = "[i]"
-		states += "plant-[number]"
-	states += "applebush"
+		random_plant_states += "plant-[number]"
+	random_plant_states += "applebush"
 
 
 /obj/item/kirbyplants/dead
 	name = "RD's potted plant"
 	desc = "A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says \"Y'all come back now, y'hear?\"\nIt doesn't look very healthy..."
 	icon_state = "plant-25"
+	trimmable = FALSE
 
 /obj/item/kirbyplants/photosynthetic
 	name = "photosynthetic potted plant"
@@ -371,6 +390,7 @@
 	icon_state = "plant-09"
 	light_color = "#2cb2e8"
 	light_range = 3
+	trimmable = FALSE
 
 
 //a rock is flora according to where the icon file is
