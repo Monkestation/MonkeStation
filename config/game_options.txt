@@ -285,6 +285,11 @@ INCURSION_OBJECTIVE_AMOUNT 4
 ## For details See the comments for /datum/game_mode/proc/antag_pick in code/game/gamemodes/game_mode.dm
 USE_ANTAG_REP
 
+## Comment this out to disable the streamer rng system
+##
+## For details See the comments for /datum/game_mode/proc/antag_pick in code/game/gamemodes/game_mode.dm
+STREAMER_LUCK
+
 ## The maximum amount of antagonist reputation tickets a player can bank (not use at once)
 ANTAG_REP_MAXIMUM 200
 

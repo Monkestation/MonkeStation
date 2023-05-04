@@ -31,7 +31,7 @@
 	for (var/i = 1 to num_traitors)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = pick_n_take_streamer_weight(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_TRAITOR
 		M.mind.restricted_roles = restricted_roles
@@ -75,7 +75,7 @@
 			break
 		var/datum/team/brother_team/team = new
 		for(var/k = 1 to antag_cap)
-			var/mob/bro = pick_n_take(candidates)
+			var/mob/bro = pick_n_take_streamer_weight(candidates)
 			assigned += bro.mind
 			team.add_member(bro.mind)
 			bro.mind.special_role = "brother"
@@ -119,7 +119,7 @@
 	for (var/i = 1 to num_changelings)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = pick_n_take_streamer_weight(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_CHANGELING
@@ -159,7 +159,7 @@
 	for (var/i = 1 to num_ecult)
 		if(candidates.len <= 0)
 			break
-		var/mob/picked_candidate = pick_n_take(candidates)
+		var/mob/picked_candidate = pick_n_take_streamer_weight(candidates)
 		assigned += picked_candidate.mind
 		picked_candidate.mind.restricted_roles = restricted_roles
 		picked_candidate.mind.special_role = ROLE_HERETIC
@@ -207,7 +207,7 @@
 	if(GLOB.wizardstart.len == 0)
 		return FALSE
 	mode.antags_rolled += 1
-	var/mob/M = pick_n_take(candidates)
+	var/mob/M = pick_n_take_streamer_weight(candidates)
 	if (M)
 		assigned += M.mind
 		M.mind.assigned_role = ROLE_WIZARD
@@ -252,7 +252,7 @@
 	for(var/cultists_number = 1 to cultists)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = pick_n_take_streamer_weight(candidates)
 		assigned += M.mind
 		M.mind.special_role = ROLE_CULTIST
 		M.mind.restricted_roles = restricted_roles
@@ -310,7 +310,7 @@
 	for(var/operatives_number = 1 to operatives)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = pick_n_take_streamer_weight(candidates)
 		assigned += M.mind
 		M.mind.assigned_role = "Nuclear Operative"
 		M.mind.special_role = "Nuclear Operative"
@@ -397,7 +397,7 @@
 	for(var/i = 1 to max_candidates)
 		if(candidates.len <= 0)
 			break
-		var/mob/M = pick_n_take(candidates)
+		var/mob/M = pick_n_take_streamer_weight(candidates)
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = antag_flag
@@ -523,7 +523,7 @@
 	for(var/j = 0, j < num_devils, j++)
 		if (!candidates.len)
 			break
-		var/mob/devil = pick_n_take(candidates)
+		var/mob/devil = pick_n_take_streamer_weight(candidates)
 		assigned += devil.mind
 		devil.mind.special_role = ROLE_DEVIL
 		devil.mind.restricted_roles = restricted_roles
@@ -579,7 +579,7 @@
 	for(var/j = 0, j < carriers_to_make, j++)
 		if (candidates.len <= 0)
 			break
-		var/mob/carrier = pick_n_take(candidates)
+		var/mob/carrier = pick_n_take_streamer_weight(candidates)
 		assigned += carrier.mind
 		carrier.mind.special_role = "Monkey Leader"
 		carrier.mind.restricted_roles = restricted_roles
@@ -679,7 +679,7 @@
 		starter_servants += round(number_players / 10)
 	starter_servants = min(starter_servants, 8)
 	for (var/i in 1 to starter_servants)
-		var/mob/servant = pick_n_take(candidates)
+		var/mob/servant = pick_n_take_streamer_weight(candidates)
 		assigned += servant.mind
 		servant.mind.assigned_role = ROLE_SERVANT_OF_RATVAR
 		servant.mind.special_role = ROLE_SERVANT_OF_RATVAR
@@ -693,7 +693,7 @@
 	main_cult.setup_objectives()
 	//Create team
 	for(var/datum/mind/servant_mind in assigned)
-		servant_mind.current.forceMove(pick_n_take(spawns))
+		servant_mind.current.forceMove(pick_n_take_streamer_weight(spawns))
 		servant_mind.current.set_species(/datum/species/human)
 		var/datum/antagonist/servant_of_ratvar/S = add_servant_of_ratvar(servant_mind.current, team=main_cult)
 		S.equip_carbon(servant_mind.current)
@@ -710,3 +710,14 @@
 	else
 		SSticker.news_report = CULT_FAILURE
 		SSticker.mode_result = "loss - servants failed their objective (summon ratvar)"
+
+/datum/dynamic_ruleset/proc/pick_n_take_streamer_weight(list/choice_list)
+	if(CONFIG_GET(flag/streamer_luck) && prob(streamer_weight))
+		var/list/mob/streamers = list()
+		for(var/mob/listed_mob in choice_list)
+			if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
+				streamers += listed_mob
+		if(streamers.len)
+			return pick_n_take(streamers)
+
+	return pick_n_take(choice_list)

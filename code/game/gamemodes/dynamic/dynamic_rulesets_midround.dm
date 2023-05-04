@@ -124,7 +124,15 @@
 				// We have found no candidates so far and we are out of applicants.
 				mode.executed_rules -= src
 			break
-		var/mob/applicant = pick(candidates)
+		var/mob/applicant
+		if(CONFIG_GET(flag/streamer_luck) && prob(streamer_weight))
+			var/list/mob/streamers = list()
+			for(var/mob/listed_mob in candidates)
+				if(ckey(listed_mob.mind.key) in GLOB.streamer_keys)
+					streamers += listed_mob
+			applicant = pick(streamers)
+		else
+			applicant = pick(candidates)
 		candidates -= applicant
 		if(!isobserver(applicant))
 			if(applicant.stat == DEAD) // Not an observer? If they're dead, make them one.

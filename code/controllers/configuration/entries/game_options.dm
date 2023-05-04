@@ -147,8 +147,9 @@
 
 /datum/config_entry/flag/allow_latejoin_antagonists	// If late-joining players can be traitor/changeling
 
-/datum/config_entry/flag/use_antag_rep // see game_options.txt for details
+/datum/config_entry/flag/streamer_luck // see game_options.txt for details
 
+/datum/config_entry/flag/use_antag_rep // see game_options.txt for details
 /datum/config_entry/number/antag_rep_maximum
 	config_entry_value = 200
 	integer = FALSE

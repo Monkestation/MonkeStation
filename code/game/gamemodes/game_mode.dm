@@ -1,3 +1,9 @@
+#ifndef SPACEMAN_DMM
+GLOBAL_LIST_INIT(streamer_keys, json_decode(rustg_file_read("config/streamers/ckeys.json")))
+#else
+GLOBAL_LIST_INIT(streamer_keys, list())
+#endif
+
 /*
  * GAMEMODES (by Rastaf0)
  *
@@ -57,6 +63,7 @@
 	/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
 	var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
 
+	var/streamer_pick_chance = 50
 
 /datum/game_mode/proc/announce() //Shows the gamemode's name and a fast description.
 	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
@@ -457,7 +464,9 @@
 		var/previous = current
 		var/spend = min(((role in player.client.prefs.be_special) ? p_rep : 0) + DEFAULT_ANTAG_TICKETS, MAX_TICKETS_PER_ROLL)
 		current += spend
-
+		if(CONFIG_GET(flag/streamer_luck))
+			if(ckey(mind.key) in GLOB.streamer_keys && prob(streamer_pick_chance)) //variable so admins can tinker with streamers random antag chance pre-roundstart
+				return mind
 		if(antag_select >= previous && antag_select <= (current-1))
 			SSpersistence.antag_rep_change[p_ckey] = -(spend - DEFAULT_ANTAG_TICKETS)
 //			WARNING("AR_DEBUG: Player [mind.key] won spending [spend] tickets from starting value [SSpersistence.antag_rep[p_ckey]]")
