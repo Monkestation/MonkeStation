@@ -31,7 +31,14 @@
 		user.show_message("<span class='notice'>You need at least [FABRIC_PER_SHEET] units of fabric before using this.</span>", MSG_VISUAL)
 		return FALSE
 	user.show_message("<span class='notice'>You start weaving \the [W.name] through the loom..</span>", MSG_VISUAL)
-	if(W.use_tool(src, user, W.pull_effort))
+	var/looping = TRUE
+	var/speed_mult = 1
+	while(looping)
+		if(!do_after(user, W.pull_effort * speed_mult))
+			looping = FALSE
+			return
+		if(speed_mult >= 0.2)
+			speed_mult -= 0.05
 		if(W.amount >= FABRIC_PER_SHEET)
 			new W.loom_result(drop_location())
 			W.use(FABRIC_PER_SHEET)

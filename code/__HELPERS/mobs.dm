@@ -214,21 +214,29 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
-/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
+/proc/do_mob(mob/user, mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
-
 	var/drifting = FALSE
 	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = 1
 
 	var/target_loc = target.loc
 
+	if(target)
+		if(target in user.do_afters)
+			return FALSE
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
+
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if (progress)
-		progbar = new(user, time, target)
+		if(show_to_world)
+			progbar = new /obj/effect/world_progressbar(null, user, time, target, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
+		else
+			progbar = new(user, time, target, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
@@ -251,8 +259,12 @@ GLOBAL_LIST_EMPTY(species_list)
 			. = 0
 			break
 	if (progress)
+		progbar.end_progress()
 		qdel(progbar)
 
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks)
@@ -268,7 +280,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
@@ -276,6 +288,8 @@ GLOBAL_LIST_EMPTY(species_list)
 		Tloc = target.loc
 
 	if(target)
+		if(target in user.do_afters)
+			return FALSE
 		LAZYADD(user.do_afters, target)
 		LAZYADD(target.targeted_by, user)
 
@@ -294,8 +308,11 @@ GLOBAL_LIST_EMPTY(species_list)
 	delay *= user.cached_multiplicative_actions_slowdown
 
 	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, delay, target)
+	if(progress)
+		if(show_to_world)
+			progbar = new /obj/effect/world_progressbar(null, user, delay, target || user, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
+		else
+			progbar = new(user, delay, target || user, border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
@@ -339,14 +356,14 @@ GLOBAL_LIST_EMPTY(species_list)
 				. = 0
 				break
 	if (progress)
+		progbar.end_progress()
 		qdel(progbar)
 
 	if(!QDELETED(target))
 		LAZYREMOVE(user.do_afters, target)
 		LAZYREMOVE(target.targeted_by, user)
 
-
-/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks)
+/proc/do_after_mob(mob/user, list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null, required_mobility_flags = MOBILITY_STAND, show_to_world = FALSE, image/add_image, bar_look = "prog_bar", active_color = "#6699FF", finish_color = "#FFEE8C", fail_color = "#FF0033", old_format = FALSE, border_look = "border", border_look_accessory, has_outline = TRUE, y_multiplier = 1)
 	if(!user || !targets)
 		return 0
 	if(!islist(targets))
@@ -366,7 +383,10 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/holding = user.get_active_held_item()
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, time, targets[1])
+		if(show_to_world)
+			progbar = new /obj/effect/world_progressbar(null, user, time, targets[1], border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
+		else
+			progbar = new(user, time, targets[1], border_look, border_look_accessory, bar_look, old_format, active_color, finish_color, fail_color, add_image, has_outline, y_multiplier)
 
 	var/endtime = world.time + time
 	var/starttime = world.time
@@ -391,6 +411,7 @@ GLOBAL_LIST_EMPTY(species_list)
 					. = 0
 					break mainloop
 	if(progbar)
+		progbar.end_progress()
 		qdel(progbar)
 
 /proc/is_species(A, species_datum)

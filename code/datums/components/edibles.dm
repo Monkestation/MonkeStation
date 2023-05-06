@@ -361,7 +361,7 @@ Behavior that's still missing from this component that original food items had t
 	if(eater == feeder)//If you're eating it yourself.
 		if(HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			eat_time = eat_time * 0.5
-		if(!do_mob(feeder, eater, eat_time)) //Gotta pass the minimal eat time
+		if(!do_mob(feeder, eater, eat_time, show_to_world = TRUE, add_image = owner.appearance)) //Gotta pass the minimal eat time
 			return
 		if(IsFoodGone(owner, feeder))
 			return
@@ -393,7 +393,7 @@ Behavior that's still missing from this component that original food items had t
 			eater.visible_message("<span class='warning'>[feeder] cannot force any more of [parent] down [eater]'s throat!</span>", \
 									"<span class='warning'>[feeder] cannot force any more of [parent] down your throat!</span>")
 			return
-		if(!do_mob(feeder, eater)) //Wait 3 seconds before you can feed
+		if(!do_mob(feeder, eater, show_to_world = TRUE, add_image = owner.appearance)) //Wait 3 seconds before you can feed
 			return
 
 		if(IsFoodGone(owner, feeder))
