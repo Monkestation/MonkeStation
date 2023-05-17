@@ -6,10 +6,13 @@ $nanotrasen: #6d697a;
 @use '../colors.scss' with (
   $fg-map-keys: (),
   $bg-map-keys: (),
+  $primary: #ffbf00,
+  $yellow: #ffbf00
 );
 @use '../base.scss' with (
   $color-bg: color.scale($nanotrasen, $lightness: -45%),
   $border-radius: 2px,
+  $color-bg-grad-spread: 3%
 );
 
 .theme-admin {
@@ -32,6 +35,6 @@ $nanotrasen: #6d697a;
   ));
 
   .Layout__content {
-    background-image: none;
+    background-image: url('../../assets/bg-ook.svg');
   }
 }

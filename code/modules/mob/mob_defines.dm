@@ -225,3 +225,6 @@
 	///Currently possesses a typing indicator icon
 	var/typing_indicator = FALSE
 
+	///should this mob show damage numbers?
+	var/shows_damage_number = FALSE
+

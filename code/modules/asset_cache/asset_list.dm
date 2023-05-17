@@ -128,7 +128,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	return should_refresh
 
 /datum/asset/spritesheet/register()
-	SHOULD_NOT_OVERRIDE(TRUE)
 	if (!name)
 		CRASH("spritesheet [type] cannot register without a name")
 	if (!should_refresh() && read_from_cache())
