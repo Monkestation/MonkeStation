@@ -27,7 +27,7 @@
 		suffix = admin_load
 		port_id = "custom"
 		can_be_bought = FALSE
-	shuttle_id = "[port_id]_[suffix]"
+	shuttle_id = "[port_id][port_id ? "_" : ""][suffix]"
 	if(!admin_load)
 		mappath = "[prefix][shuttle_id].dmm"
 	. = ..()

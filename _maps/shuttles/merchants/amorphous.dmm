@@ -1,0 +1,435 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/merchant)
+"ah" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/shuttle/merchant)
+"an" = (
+/obj/structure/statue/silver/medborg,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"ao" = (
+/obj/structure/table/optable,
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"av" = (
+/obj/machinery/door/airlock/hatch,
+/area/shuttle/merchant)
+"aK" = (
+/turf/template_noop,
+/area/template_noop)
+"bk" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"bm" = (
+/obj/machinery/door/airlock/hatch,
+/obj/docking_port/mobile/merchant{
+	dir = 8;
+	dwidth = 8;
+	height = 12;
+	name = "silicon shuttle";
+	width = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/merchant)
+"bG" = (
+/turf/open/floor/black,
+/area/shuttle/merchant)
+"bS" = (
+/obj/structure/railing,
+/obj/structure/statue/silver/secborg,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"cC" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"dM" = (
+/obj/effect/gibspawner/robot,
+/area/shuttle/merchant)
+"fW" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/merchant)
+"gW" = (
+/obj/structure/table/wood/fancy/black,
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"hg" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"hi" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"jy" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/bodypart/head/robot,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"jG" = (
+/obj/structure/railing,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"pg" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/bodypart/l_leg/robot,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"sU" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/circuit/red/anim,
+/area/shuttle/merchant)
+"tF" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"uG" = (
+/turf/open/floor/circuit/red,
+/area/shuttle/merchant)
+"vh" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"vv" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/organ/eyes/robotic/flashlight{
+	pixel_y = 8
+	},
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"wL" = (
+/mob/living/simple_animal/bot/medbot/amorphous/shambles,
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"yc" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"El" = (
+/mob/living/simple_animal/hostile/retaliate/trader/amorphous,
+/obj/effect/gibspawner/robot,
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"Fi" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Hy" = (
+/obj/effect/gibspawner/robot,
+/mob/living/simple_animal/bot/medbot/amorphous/disarray,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Kf" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Kr" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/nanite_programmer,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Lg" = (
+/obj/structure/railing/corner,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"LL" = (
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Oe" = (
+/turf/open/floor/pod,
+/area/shuttle/merchant)
+"OL" = (
+/turf/open/floor/circuit/red/anim,
+/area/shuttle/merchant)
+"OR" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Pj" = (
+/obj/structure/railing,
+/turf/open/floor/circuit/red/anim,
+/area/shuttle/merchant)
+"Qc" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/bodypart/r_arm/robot,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"RY" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/merchant)
+"Tu" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/circuit/red/anim,
+/area/shuttle/merchant)
+"Ua" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/merchant)
+"Ze" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+"Zi" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/circuit/red/anim,
+/area/shuttle/merchant)
+"Zs" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/bodypart/r_leg/robot,
+/turf/open/floor/monotile/dark,
+/area/shuttle/merchant)
+
+(1,1,1) = {"
+aK
+RY
+RY
+RY
+RY
+RY
+RY
+RY
+fW
+fW
+fW
+RY
+RY
+RY
+RY
+RY
+RY
+RY
+RY
+RY
+aK
+"}
+(2,1,1) = {"
+RY
+RY
+OL
+bG
+OL
+uG
+uG
+OL
+Kr
+Hy
+jG
+OL
+uG
+uG
+OL
+OL
+uG
+OL
+bG
+Ua
+RY
+"}
+(3,1,1) = {"
+ad
+ah
+hi
+hi
+Zi
+hi
+hi
+hi
+yc
+LL
+Ze
+Zs
+jy
+Qc
+pg
+hi
+Zi
+hi
+OR
+OL
+fW
+"}
+(4,1,1) = {"
+ad
+ah
+an
+tF
+wL
+Oe
+LL
+LL
+LL
+LL
+LL
+LL
+bk
+LL
+LL
+LL
+Oe
+Oe
+bS
+uG
+fW
+"}
+(5,1,1) = {"
+ad
+ah
+Tu
+gW
+cC
+ao
+dM
+LL
+LL
+LL
+LL
+LL
+LL
+LL
+LL
+Oe
+El
+Oe
+Pj
+OL
+fW
+"}
+(6,1,1) = {"
+ad
+ah
+an
+vv
+Oe
+Oe
+LL
+LL
+LL
+LL
+LL
+LL
+LL
+LL
+LL
+Oe
+Oe
+Oe
+bS
+bG
+fW
+"}
+(7,1,1) = {"
+ad
+ah
+Fi
+Fi
+sU
+Fi
+Kf
+Lg
+Fi
+Fi
+Fi
+Kf
+Lg
+Fi
+Fi
+Fi
+sU
+Fi
+hg
+bG
+fW
+"}
+(8,1,1) = {"
+RY
+RY
+uG
+OL
+OL
+bG
+vh
+jG
+bG
+bG
+bG
+vh
+jG
+uG
+uG
+bG
+OL
+uG
+OL
+Ua
+RY
+"}
+(9,1,1) = {"
+aK
+RY
+RY
+RY
+RY
+RY
+av
+RY
+RY
+fW
+RY
+RY
+bm
+RY
+RY
+RY
+RY
+RY
+RY
+RY
+aK
+"}

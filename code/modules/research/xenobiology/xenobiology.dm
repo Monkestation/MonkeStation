@@ -691,59 +691,23 @@
 	desc = "A miraculous chemical mix that grants human like intelligence to living beings."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potpink"
-	var/list/not_interested = list()
-	var/being_used = FALSE
-	var/sentience_type = SENTIENCE_ORGANIC
+	///whether to add a callback for post sentience to the component (TRUE if you're going to use on_sentience)
+	var/callback_used = FALSE
 
-/obj/item/slimepotion/slime/sentience/attack(mob/living/M, mob/user)
-	if(being_used || !ismob(M))
-		return
-	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(user, "<span class='warning'>[src] seems to fizzle out of existance. Guess the universe is unable to support more intelligence right now.</span>")
-		do_sparks(5, FALSE, get_turf(src))
-		qdel(src)
-		return
-	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
-		to_chat(user, "<span class='warning'>[M] is already too intelligent for this to work!</span>")
-		return
-	if(M.stat)
-		to_chat(user, "<span class='warning'>[M] is dead!</span>")
-		return
-	var/mob/living/simple_animal/SM = M
-	if(SM.sentience_type != sentience_type)
-		to_chat(user, "<span class='warning'>[src] won't work on [SM].</span>")
-		return
+/obj/item/slimepotion/slime/sentience/Initialize()
+	. = ..()
+	var/datum/callback/component_callback = callback_used ? CALLBACK(src, .proc/on_sentience) : null
+	AddComponent(/datum/component/sentience_granter, SENTIENCE_ORGANIC, component_callback)
 
-	to_chat(user, "<span class='notice'>You offer [src] to [SM]...</span>")
-	being_used = TRUE
-
-	var/list/candidates = pollCandidatesForMob("Do you want to play as [SM.name]? (Sentience Potion)", ROLE_SENTIENCE, null, ROLE_SENTIENCE, 50, SM, POLL_IGNORE_SENTIENCE_POTION) // see poll_ignore.dm
-	if(length(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		SM.key = C.key
-		SM.mind.enslave_mind_to_creator(user)
-		SM.sentience_act()
-		to_chat(SM, "<span class='warning'>All at once it makes sense: you know what you are and who you are! Self awareness is yours!</span>")
-		to_chat(SM, "<span class='userdanger'>You are grateful to be self aware and owe [user.real_name] a great debt. Serve [user.real_name], and assist [user.p_them()] in completing [user.p_their()] goals at any cost.</span>")
-		if(SM.flags_1 & HOLOGRAM_1) //Check to see if it's a holodeck creature
-			to_chat(SM, "<span class='userdanger'>You also become depressingly aware that you are not a real creature, but instead a holoform. Your existence is limited to the parameters of the holodeck.</span>")
-		to_chat(user, "<span class='notice'>[SM] accepts [src] and suddenly becomes attentive and aware. It worked!</span>")
-		SM.copy_languages(user)
-		after_success(user, SM)
-		qdel(src)
-	else
-		to_chat(user, "<span class='notice'>[SM] looks interested for a moment, but then looks back down. Maybe you should try again later.</span>")
-		being_used = FALSE
-		..()
-
-/obj/item/slimepotion/slime/sentience/proc/after_success(mob/living/user, mob/living/simple_animal/SM)
+///callback from a successful sentience, only called if "callback_used" is TRUE
+/obj/item/slimepotion/slime/sentience/proc/on_sentience(mob/living/user, mob/living/simple_animal/sentience_target)
 	return
 
 /obj/item/slimepotion/slime/sentience/nuclear
 	name = "syndicate intelligence potion"
 	desc = "A miraculous chemical mix that grants human like intelligence to living beings. It has been modified with Syndicate technology to also grant an internal radio implant to the target and authenticate with identification systems."
 
-/obj/item/slimepotion/slime/sentience/nuclear/after_success(mob/living/user, mob/living/simple_animal/SM)
+/obj/item/slimepotion/slime/sentience/nuclear/on_sentience(mob/living/user, mob/living/simple_animal/SM)
 	var/obj/item/implant/radio/syndicate/imp = new(src)
 	imp.implant(SM, user)
 
