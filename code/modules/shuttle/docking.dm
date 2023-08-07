@@ -130,6 +130,7 @@
 
 		old_turfs[oldT] = move_mode
 
+
 /obj/docking_port/mobile/proc/takeoff(list/old_turfs, list/new_turfs, list/moved_atoms, rotation, movement_direction, old_dock, area/underlying_old_area)
 	for(var/i in 1 to old_turfs.len)
 		var/turf/oldT = old_turfs[i]

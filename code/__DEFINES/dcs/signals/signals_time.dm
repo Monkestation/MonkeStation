@@ -1,0 +1,7 @@
+#define COMSIG_TIME_CHANGE "generic_time_change"
+#define COMSIG_TIME_DAWN "dawn_time_change"
+#define COMSIG_TIME_SUNRISE "sunrise_time_change"
+#define COMSIG_TIME_DAYTIME "daytime_time_change"
+#define COMSIG_TIME_SUNSET "sunset_time_change"
+#define COMSIG_TIME_DUSK "dusk_time_change"
+#define COMSIG_TIME_MIDNIGHT "midnight_time_change"

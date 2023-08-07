@@ -575,6 +575,9 @@ BOMBCAP 24
 ## of ruins.
 LAVALAND_BUDGET 60
 
+## Jungleland Budget
+JUNGLELAND_BUDGET 40
+
 ## Space Ruin Budget
 Space_Budget 8
 

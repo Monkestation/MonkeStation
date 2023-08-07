@@ -21,7 +21,7 @@ RUN dpkg --add-architecture i386 \
 # Build rust-g
 FROM rust-build as rustg
 RUN git init \
-    && git remote add origin https://github.com/BeeStation/rust-g \
+    && git remote add origin https://github.com/tgstation/rust-g \
     && /bin/bash -c "source dependencies.sh \
     && git fetch --depth 1 origin \$RUST_G_VERSION" \
     && git checkout FETCH_HEAD \

@@ -82,6 +82,10 @@
 	depressurization_margin = ONE_ATMOSPHERE
 	skip_delay = 30
 
+/obj/machinery/advanced_airlock_controller/jungleland
+	exterior_pressure = 101
+	depressurization_margin = ONE_ATMOSPHERE
+	skip_delay = 30
 /obj/machinery/advanced_airlock_controller/mix_chamber
 	depressurization_margin = 0.15 // The minimum - We really don't want contamination.
 
@@ -188,7 +192,7 @@
 		var/matrix/TR = new
 		TR.Translate(0, 16)
 		TR.Multiply(new /matrix(s_dx, f_dx, 0, s_dy, f_dy, 0))
-		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+		var/mutable_appearance/M = mutable_appearance(icon, "hologram-line", FLOAT_LAYER, ABOVE_LIGHTING_PLANE)
 		M.transform = TR
 		add_overlay(M)
 

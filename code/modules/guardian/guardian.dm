@@ -116,19 +116,18 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(sx - range < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
 		return
 	for(var/turf/T in get_line(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
-		barrier_images += image('icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
+		barrier_images += image('icons/effects/effects.dmi', T, "barrier", 0, SOUTH)
 	for(var/turf/T in get_line(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
-		barrier_images += image('icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+		barrier_images += image('icons/effects/effects.dmi', T, "barrier", 0, NORTH)
 	for(var/turf/T in get_line(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
-		barrier_images += image('icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+		barrier_images += image('icons/effects/effects.dmi', T, "barrier", 0, EAST)
 	for(var/turf/T in get_line(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
-		barrier_images += image('icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, WEST)
-	barrier_images += image('icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
-	barrier_images += image('icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
-	barrier_images += image('icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
-	barrier_images += image('icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
+		barrier_images += image('icons/effects/effects.dmi', T, "barrier", 0, WEST)
+	barrier_images += image('icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", 0, SOUTHEAST)
+	barrier_images += image('icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", 0, SOUTHWEST)
+	barrier_images += image('icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", 0, NORTHWEST)
+	barrier_images += image('icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", 0, NORTHEAST)
 	for(var/image/I in barrier_images)
-		I.layer = ABOVE_LIGHTING_LAYER
 		I.plane = ABOVE_LIGHTING_PLANE
 		client.images += I
 

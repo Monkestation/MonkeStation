@@ -10,11 +10,14 @@
 	var/datum/orbital_object/z_linked/orbital_body
 	//Is something generating on this level?
 	var/generating = FALSE
+	///list of all possible weather_effects this z can have
+	var/list/weather_effects
 
-/datum/space_level/New(new_z, new_name, list/new_traits = list(), orbital_body_type)
+/datum/space_level/New(new_z, new_name, list/new_traits = list(), orbital_body_type, new_weather_effects)
 	z_value = new_z
 	name = new_name
 	traits = new_traits
+	weather_effects = new_weather_effects
 	set_linkage(new_traits[ZTRAIT_LINKAGE])
 	if(orbital_body_type)
 		orbital_body = new orbital_body_type()

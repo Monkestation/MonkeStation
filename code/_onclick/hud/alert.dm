@@ -699,7 +699,6 @@ so as to remain in compliance with the most up-to-date laws."
 
 /mob
 	var/list/alerts = list() // contains /atom/movable/screen/alert only // On /mob so clientless mobs will throw alerts properly
-
 /atom/movable/screen/alert/Click(location, control, params)
 	if(!usr || !usr.client)
 		return

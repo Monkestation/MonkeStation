@@ -12,7 +12,6 @@
 	ambience_index = AMBIENCE_SPACE
 	flags_1 = CAN_BE_DIRTY_1
 	sound_environment = SOUND_AREA_SPACE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/ruin/ocean
 	has_gravity = TRUE

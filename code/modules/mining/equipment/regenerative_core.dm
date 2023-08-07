@@ -31,6 +31,7 @@
 	actions_types = list(/datum/action/item_action/organ_action/use)
 	var/inert = 0
 	var/preserved = 0
+	var/status_effect = STATUS_EFFECT_REGENERATIVE_CORE
 
 /obj/item/organ/regenerative_core/Initialize(mapload)
 	. = ..()
@@ -63,7 +64,8 @@
 	else if(inert)
 		to_chat(owner, "<span class='notice'>[src] breaks down as it tries to activate.</span>")
 	else
-		owner.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
+		owner.apply_status_effect(status_effect)
+		SEND_SIGNAL(owner,COMSIG_REGEN_CORE_HEALED)
 	qdel(src)
 
 /obj/item/organ/regenerative_core/on_life()
@@ -96,8 +98,9 @@
 			if(HAS_TRAIT(H, TRAIT_NECROPOLIS_INFECTED))
 				H.ForceContractDisease(new /datum/disease/transformation/legion())
 				to_chat(H, "<span class='userdanger'>You feel the necropolis strengthen its grip on your heart and soul... You're powerless to resist for much longer...</span>")
-			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
+			H.apply_status_effect(status_effect)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
+			SEND_SIGNAL(H,COMSIG_REGEN_CORE_HEALED)
 			qdel(src)
 
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)

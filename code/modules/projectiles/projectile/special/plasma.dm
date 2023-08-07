@@ -11,6 +11,12 @@
 	muzzle_type = /obj/effect/projectile/muzzle/plasma_cutter
 	impact_type = /obj/effect/projectile/impact/plasma_cutter
 
+/obj/item/projectile/plasma/Move(atom/newloc, dir)
+	. = ..()
+	if(istype(newloc,/turf/open/floor/plating/dirt/jungleland))
+		var/turf/open/floor/plating/dirt/jungleland/JG = newloc
+		JG.spawn_rock()
+
 /obj/item/projectile/plasma/on_hit(atom/target)
 	. = ..()
 	if(ismineralturf(target))

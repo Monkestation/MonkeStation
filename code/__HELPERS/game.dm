@@ -320,6 +320,8 @@
 	var/pressure = environment.return_pressure()
 	if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = TRUE
+	if(pressure >= 200)
+		. = TRUE
 
 /proc/ispipewire(item)
 	var/static/list/pire_wire = list(

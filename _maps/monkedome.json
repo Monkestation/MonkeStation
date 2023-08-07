@@ -1,0 +1,15 @@
+{
+	"map_name": "MonkeDome",
+	"map_link": "MonkeDome",
+	"map_path": "map_files/MonkeDome",
+	"map_file": "MonkeDome.dmm",
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_box"
+	},
+	"minetype": "jungleland",
+	"traits": [{"Baseturf" : "/turf/open/floor/plating/dirt/jungle/wasteland", "Gravity" : "1"}],
+	"planetary": 1
+}

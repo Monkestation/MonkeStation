@@ -22,10 +22,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/ai_monitored/turret_protected
 
 /area/space
+	static_lighting = FALSE
 	icon_state = "space"
 	requires_power = TRUE
 	always_unpowered = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	base_lighting_alpha = 70
+	base_lighting_color = COLOR_WHITE
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
@@ -38,13 +40,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/space/nearstation
 	icon_state = "space_near"
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
-
+	area_flags = UNIQUE_AREA | NO_ALERTS | AREA_USES_STARLIGHT
 /area/start
 	name = "start area"
 	icon_state = "start"
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	static_lighting = FALSE
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = null
 	ambient_buzz = null
@@ -66,7 +67,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	area_flags = UNIQUE_AREA
 
 /area/asteroid/nearstation
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = COLOR_WHITE
 	ambience_index = AMBIENCE_RUINS
 	always_unpowered = FALSE
 	requires_power = TRUE
@@ -338,7 +341,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway
 	lighting_colour_tube = "#ffce99"
 	lighting_colour_bulb = "#ffdbb4"
-	lighting_brightness_tube = 8
+	lighting_brightness_tube = 10
 
 /area/hallway/primary
 	name = "Primary Hallway"
@@ -448,7 +451,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	lighting_colour_tube = "#ffce99"
 	lighting_colour_bulb = "#ffdbb4"
-	lighting_brightness_tube = 8
+	lighting_brightness_tube = 10
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/bridge/meeting_room
@@ -513,7 +516,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters
 	lighting_colour_tube = "#ffce99"
 	lighting_colour_bulb = "#ffdbb4"
-	lighting_brightness_tube = 8
+	lighting_brightness_tube = 10
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/crew_quarters/dorms
@@ -583,6 +586,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Unisex Locker Room"
 	icon_state = "fitness"
 
+/area/crew_quarters/fitness/pool
+	name = "Pool"
+	icon_state = "rec"
+
 /area/crew_quarters/fitness/recreation
 	name = "Recreation Area"
 	icon_state = "fitness"
@@ -590,6 +597,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/fitness/recreation/upper
 	name = "Upper Recreation Area"
 	icon_state = "fitness"
+
+/area/crew_quarters/fitness/recreation/holodeckcontrol
+	name = "Holodeck Controls Room"
+	icon_state = "rec"
 
 /area/crew_quarters/park
 	name = "Recrational Park"
@@ -628,6 +639,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/crew_quarters/bar/lounge
 	name = "Bar lounge"
+	icon_state = "lounge"
+	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/crew_quarters/bar/bartendersquarters
+	name = "Bartender's Quarters"
 	icon_state = "lounge"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
@@ -676,7 +692,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	lighting_colour_tube = "#ffce99"
 	lighting_colour_bulb = "#ffdbb4"
-	lighting_brightness_tube = 8
+	lighting_brightness_tube = 10
 
 /area/library/lounge
 	name = "Library Lounge"
@@ -687,6 +703,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Abandoned Library"
 	icon_state = "library"
 	flags_1 = NONE
+
+/area/library/curator
+	name = "Curator's Office"
+	icon_state = "library"
 
 /area/chapel
 	icon_state = "chapel"
@@ -717,6 +737,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/chapel/dock
 	name = "Chapel Dock"
 	icon_state = "construction"
+
+/area/chapel/crematorium
+	name = "Chapel Crematorium"
+	icon_state = "chapel"
 
 /area/lawoffice
 	name = "Law Office"
@@ -816,8 +840,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/solar
 	requires_power = FALSE
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
-	area_flags = UNIQUE_AREA
+	area_flags = UNIQUE_AREA | AREA_USES_STARLIGHT
+	false_outdoors = TRUE
 	flags_1 = NONE
 	ambience_index = AMBIENCE_ENGI
 	sound_environment = SOUND_AREA_SPACE
@@ -1067,6 +1091,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "cloning"
 	network = list("ss13", "medbay")
 
+/area/medical/genetics/monkeydome
+	name = "Genetics Monkey Dome"
+	icon_state = "genetics"
+	network = list("ss13", "medbay")
+
 /area/medical/sleeper
 	name = "Medbay Treatment Center"
 	icon_state = "exam_room"
@@ -1148,6 +1177,18 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/execution/education
 	name = "Prisoner Education Chamber"
 	network = list("ss13", "prison")
+
+/area/security/lockerroom
+	name = "Security Locker Room"
+
+/area/security/evidencestorage
+	name = "Security Evidence Storage"
+
+/area/security/doctor
+	name = "Brig Infirmary"
+
+/area/security/interrogation
+	name = "Security Interrogation Room"
 
 /area/security/nuke_storage
 	name = "Vault"
@@ -1643,3 +1684,221 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Telecommunications Relay"
 	icon_state = "tcom_sat_cham"
 	network = list("ss13", "tcomms")
+
+// MonkeDome Areas for the crew's sanity
+
+/// LS = Life Support, or where all the power, atmos, and pipe connections are
+/area/maintenance/monkedome/ls/civ/englifesupport
+	name = "Civilian Hub LS Engineering Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/civ/seclifesupport
+	name = "Civilian Hub LS ComSec Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/civ/reslifesupport
+	name = "Civilian Hub LS Research Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/civ/medlifesupport
+	name = "Civilian Hub LS Medical Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/eng/lifesupport
+	name = "Engineering Hub LS Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/med/lifesupport
+	name = "Medical Hub LS Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/med/virolifesupport
+	name = "Medical Hub Virology LS Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/res/lifesupport
+	name = "Research Hub LS Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/res/xenooutlifesupport
+	name = "Research Hub Xenobio LS Connection"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/ls/comsec/lifesupport
+	name = "ComSec Hub LS Connection"
+	icon_state = "engine"
+
+/area/hallway/monkedome/security
+	name = "Security Hub Primary Hallway"
+	icon_state = "hallA"
+
+/area/hallway/monkedome/comsec
+	name = "ComSec Hub Entry Hallway"
+	icon_state = "entry"
+
+/area/maintenance/monkedome/comsec/fore
+	name = "ComSec Hub Fore Maintenance"
+	icon_state = "foremaint"
+
+/area/maintenance/monkedome/comsec/central
+	name = "ComSec Hub Central Maintenance"
+	icon_state = "centralmaint"
+
+/area/maintenance/monkedome/comsec/aft
+	name = "ComSec Hub Aft Maintenance"
+	icon_state = "aftmaint"
+
+/area/medical/monkedome/constructionarea
+	name = "Medical Hub Construction Area"
+
+/area/medical/monkedome/storageroom
+	name = "Medical Hub Storage Room"
+
+/area/hallway/monkedome/medical
+	name = "Medical Hub Primary Hallway"
+	icon_state = "hallA"
+
+/area/maintenance/monkedome/medical/port
+	name = "Medical Hub Port Maintenance"
+	icon_state = "portmaint"
+
+/area/maintenance/monkedome/medical/starboard
+	name = "Medical Hub Starboard Maintenance"
+	icon_state = "starboardmaint"
+
+/area/maintenance/monkedome/medical/fore
+	name = "Medical Hub Fore Maintenance"
+	icon_state = "foremaint"
+
+/area/hallway/monkedome/civilian/central
+	name = "Civilian Hub Central Primary Hallway"
+	icon_state = "hallC"
+
+/area/hallway/monkedome/civilian/fore
+	name = "Civilian Hub Fore Primary Hallway"
+	icon_state = "hallF"
+
+/area/hallway/monkedome/civilian/aft
+	name = "Civilian Hub Aft Primary Hallway"
+	icon_state = "hallA"
+
+/area/hallway/monkedome/civilian/port
+	name = "Civilian Hub Port Primary Hallway"
+	icon_state = "hallP"
+
+/area/maintenance/monkedome/civilian/upperfore
+	name = "Civilian Hub Upper Fore Maintenance"
+	icon_state = "upperforemaint"
+
+/area/maintenance/monkedome/civilian/upperstarboard
+	name = "Civilian Hub Upper Starboard Maintenance"
+	icon_state = "upperstarboardmaint"
+
+/area/maintenance/monkedome/civilian/upperport
+	name = "Civilian Hub Upper Port Maintenance"
+	icon_state = "upperportmaint"
+
+/area/maintenance/monkedome/civilian/port
+	name = "Civilian Hub Port Maintenance"
+	icon_state = "portmaint"
+
+/area/maintenance/monkedome/civilian/starboard
+	name = "Civilian Hub Starboard Maintenance"
+	icon_state = "starboardmaint"
+
+/area/maintenance/monkedome/civilian/central
+	name = "Civilian Hub Central Maint"
+	icon_state = "centralmaint"
+
+/area/hallway/monkedome/science
+	name = "Science Hub Primary Hallway"
+	icon_state = "hallP"
+
+/area/maintenance/monkedome/science/port
+	name = "Science Hub Port Maintenance"
+	icon_state = "portmaint"
+
+/area/maintenance/monkedome/science/starboard
+	name = "Science Hub Starboard Maintenance"
+	icon_state = "starboardmaint"
+
+/area/maintenance/monkedome/science/aft
+	name = "Science Hub Aft Maintenance"
+	icon_state = "aftmaint"
+
+/area/science/monkedome/xenobiohall
+	name = "Xenobio Outpost Primary Hallway"
+	icon_state = "hallP"
+
+/area/science/monkedome/xenobiostorage
+	name = "Xenobio Outpost Storage"
+	icon_state = "science"
+
+/area/science/monkedome/xenobioconstructionarea
+	name = "Xenobio Outpost Construction Area"
+	icon_state = "construction"
+
+/area/science/monkedome/xenobiooutdoor //make work with outdoor lighting
+	name = "Xenobio Outdoor Testing"
+	icon_state = "science"
+	false_outdoors = TRUE
+	area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA | XENOBIOLOGY_COMPATIBLE
+
+/area/science/monkedome/constructionarea
+	name = "Research Hub Construction Area"
+	icon_state = "construction"
+
+/area/hallway/monkedome/engineering
+	name = "Engineering Hub Primary Hallway"
+	icon_state = "hallC"
+
+/area/hallway/monkedome/engineering/fore
+	name = "Engineering Hub Fore Primary Hallway"
+	icon_state = "hallF"
+
+/area/engine/monkedome/constructionarea
+	name = "Engineering Hub Construction Area"
+	icon_state = "construction"
+
+/area/engine/monkedome/peepeeroom //yes
+	name = "Engineering Hub Restrooms"
+	icon_state = "toilet"
+
+/area/engine/monkedome/storageroom
+	name = "Engineering Hub Storage"
+	icon_state = "engine"
+
+/area/engine/monkedome/freezer
+	name = "Engineering Freezer Room"
+	icon_state = "engine"
+
+/area/maintenance/monkedome/engine/port
+	name = "Engineering Hub Port Maintenance"
+	icon_state = "portmaint"
+
+/area/maintenance/monkedome/engine/upperport
+	name = "Engineering Hub Upper Port Maintenance"
+	icon_state = "upperportmaint"
+
+/area/maintenance/monkedome/engine/central
+	name = "Engineering Hub Central Maintenance"
+	icon_state = "centralmaint"
+
+/area/maintenance/monkedome/engine/upperstarboard
+	name = "Engineering Hub Upper Starboard Maintenance"
+	icon_state = "upperstarboardmaint"
+
+/area/engine/monkedome/upperairlock
+	name = "Engineering Hub TComm Access Airlock"
+	icon_state = "tcom_sat_entrance"
+
+/area/maintenance/solars/monkedome/southprimary
+	name = "South Primary Solar Maintenance"
+	icon_state = "yellow"
+
+/area/solarsouthprimary
+	name = "South Primary Solar Array"
+	icon_state = "yellow"
+	static_lighting = FALSE
+	base_lighting_alpha = 255
+	base_lighting_color = COLOR_VERY_SOFT_YELLOW

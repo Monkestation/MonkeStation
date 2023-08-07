@@ -215,6 +215,16 @@
 	access_list += ACCESS_RD
 	return access_list
 
+/obj/effect/mapping_helpers/airlock/access/any/science/rndserver/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_RD_SERVER
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/any/science/exploration/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_EXPLORATION
+	return access_list
+
 // -------------------- Security access helpers
 /obj/effect/mapping_helpers/airlock/access/any/security
 	icon_state = "access_helper_sec"
@@ -532,6 +542,16 @@
 /obj/effect/mapping_helpers/airlock/access/all/science/rd/get_access()
 	var/list/access_list = ..()
 	access_list += ACCESS_RD
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/all/science/rndserver/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_RD_SERVER
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/all/science/exploration/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_EXPLORATION
 	return access_list
 
 // -------------------- Security access helpers

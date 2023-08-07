@@ -26,8 +26,10 @@
 	var/max_loops
 	var/direct
 	var/extra_range
-
 	var/timerid
+
+	///are we running a current sound loop?
+	var/loop_started = FALSE
 
 /datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
@@ -60,8 +62,11 @@
 	on_stop()
 	deltimer(timerid, SSsound_loops)
 	timerid = null
+	loop_started = FALSE
+
 
 /datum/looping_sound/proc/sound_loop(starttime)
+	loop_started = TRUE
 	if(max_loops && world.time >= starttime + mid_length * max_loops)
 		stop()
 		return
@@ -100,5 +105,5 @@
 	addtimer(CALLBACK(src, .proc/sound_loop), start_wait, TIMER_CLIENT_TIME, SSsound_loops)
 
 /datum/looping_sound/proc/on_stop()
-	if(end_sound)
+	if(loop_started)
 		play(end_sound)

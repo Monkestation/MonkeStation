@@ -301,6 +301,10 @@
 
 
 // SPACE VINES (Note that this code is very similar to Biomass code)
+/obj/structure/spacevine/dense
+	name = "dense space vines"
+	opacity = TRUE
+	icon_state = "Hvy1"
 /obj/structure/spacevine
 	name = "space vines"
 	desc = "An extremely expansionistic species of vine."

@@ -86,5 +86,5 @@
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord)
 
 /area/asteroid/generated
-	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
+	area_flags = AREA_USES_STARLIGHT
 	outdoors = TRUE

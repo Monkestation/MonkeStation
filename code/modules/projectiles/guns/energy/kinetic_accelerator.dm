@@ -215,6 +215,14 @@
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
 		M.gets_drilled(firer)
+
+	if(istype(target_turf,/turf/open/floor/plating/dirt/jungleland))
+		var/turf/open/floor/plating/dirt/jungleland/JG = target_turf
+		JG.spawn_rock()
+
+	if(istype(target,/obj/structure/flora))
+		qdel(target)
+
 	var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 	K.color = color
 
@@ -387,6 +395,9 @@
 	if(turf_aoe)
 		for(var/turf/closed/mineral/M in RANGE_TURFS(1, target_turf) - target_turf)
 			M.gets_drilled(K.firer)
+		for(var/turf/open/floor/plating/dirt/jungleland/turf in RANGE_TURFS(1, target_turf) - target_turf)
+			turf.spawn_rock()
+
 	if(modifier)
 		for(var/mob/living/L in range(1, target_turf) - K.firer - target)
 			var/armor = L.run_armor_check(K.def_zone, K.flag, "", "", K.armour_penetration)

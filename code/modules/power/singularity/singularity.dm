@@ -8,7 +8,7 @@
 	anchored = TRUE
 	density = TRUE
 	move_resist = INFINITY
-	layer = MASSIVE_OBJ_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	light_range = 6
 	appearance_flags = LONG_GLIDE
 	var/current_size = 1
@@ -385,13 +385,17 @@
 	qdel(src)
 	return(gain)
 
-/obj/anomaly/singularity/deadchat_controlled
+/obj/anomaly/singularity/deadchat_plays(mode = DEMOCRACY_MODE, cooldown = 12 SECONDS)
+	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, .proc/stop_deadchat_plays))
+
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+
 	move_self = FALSE
+
+/obj/anomaly/singularity/proc/stop_deadchat_plays()
+	move_self = TRUE
 
 /obj/anomaly/singularity/deadchat_controlled/Initialize(mapload, starting_energy)
 	. = ..()
-	AddComponent(/datum/component/deadchat_control, DEMOCRACY_MODE, list(
-	 "up" = CALLBACK(GLOBAL_PROC, .proc/_step, src, NORTH),
-	 "down" = CALLBACK(GLOBAL_PROC, .proc/_step, src, SOUTH),
-	 "left" = CALLBACK(GLOBAL_PROC, .proc/_step, src, WEST),
-	 "right" = CALLBACK(GLOBAL_PROC, .proc/_step, src, EAST)))
+	deadchat_plays(mode = DEMOCRACY_MODE)

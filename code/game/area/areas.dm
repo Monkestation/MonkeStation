@@ -36,6 +36,10 @@
 	/// For space, the asteroid, lavaland, etc. Used with blueprints or with weather to determine if we are adding a new area (vs editing a station room)
 	var/outdoors = FALSE
 
+	/// fake outdoors for sunlight  and weather purposes
+
+	var/false_outdoors = FALSE
+
 	var/areasize = 0 //Size of the area in open turfs, only calculated for indoors areas.
 
 	var/mood_bonus = 0 //Mood for being here
@@ -173,6 +177,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(!ambientsounds && ambience_index)
 		ambientsounds = GLOB.ambience_assoc[ambience_index]
 
+	if(area_flags & AREA_USES_STARLIGHT)
+		static_lighting = CONFIG_GET(flag/starlight)
+
 	if(!ambientmusic && ambient_music_index)
 		ambientmusic = GLOB.ambient_music_assoc[ambient_music_index]
 
@@ -183,20 +190,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		power_equip = TRUE
 		power_environ = TRUE
 
-		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
-			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+		if(static_lighting)
 			luminosity = 0
-		else if(dynamic_lighting != DYNAMIC_LIGHTING_IFSTARLIGHT)
-			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	if(dynamic_lighting == DYNAMIC_LIGHTING_IFSTARLIGHT)
-		dynamic_lighting = CONFIG_GET(flag/starlight) ? DYNAMIC_LIGHTING_ENABLED : DYNAMIC_LIGHTING_DISABLED
 
 	. = ..()
 
-	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
-
-	if(!IS_DYNAMIC_LIGHTING(src))
-		add_overlay(/obj/effect/fullbright)
+	if(!static_lighting)
+		blend_mode = BLEND_MULTIPLY
+		blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
 	else if(lighting_overlay_opacity && lighting_overlay_colour)
 		lighting_overlay = new /obj/effect/fullbright
 		lighting_overlay.color = lighting_overlay_colour
@@ -204,6 +205,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		add_overlay(lighting_overlay)
 	reg_in_areas_in_z()
 
+	update_base_lighting()
 	return INITIALIZE_HINT_LATELOAD
 
 /area/proc/RunGeneration()
@@ -586,7 +588,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			for(var/obj/machinery/gravity_generator/main/G in GLOB.gravity_generators["[T.get_virtual_z_level()]"])
 				max_grav = max(G.setting,max_grav)
 			return max_grav
-	return SSmapping.level_trait(T.z, ZTRAIT_GRAVITY)
+	return text2num(SSmapping.level_trait(T.z, ZTRAIT_GRAVITY))
 /**
   * Setup an area (with the given name)
   *

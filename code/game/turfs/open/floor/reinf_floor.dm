@@ -198,3 +198,6 @@
 
 /turf/open/floor/engine/vacuum/light
 	icon_state = "engine_light"
+
+/turf/open/floor/engine/outdoor //Monkedome. Replace with monkedome airmix later
+	initial_gas_mix = AIRLESS_ATMOS
