@@ -247,7 +247,7 @@
 	if(path.len > 8 && target_fire)
 		frustration++
 
-	if(auto_patrol && !target_fire)
+	if(auto_patrol && !target_fire && !stationary_mode)
 		if(mode == BOT_IDLE || mode == BOT_START_PATROL)
 			start_patrol()
 
