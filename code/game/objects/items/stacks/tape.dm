@@ -1,5 +1,3 @@
-
-
 /obj/item/stack/sticky_tape
 	name = "sticky tape"
 	singular_name = "sticky tape"

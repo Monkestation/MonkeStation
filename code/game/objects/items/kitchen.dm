@@ -7,6 +7,7 @@
  *		Combat Knife
  *		Rolling Pins
  *      Poison Knife
+ *		Makeshift knives
  */
 
 /obj/item/kitchen
