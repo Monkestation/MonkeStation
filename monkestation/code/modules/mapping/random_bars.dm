@@ -80,6 +80,26 @@
 	weight = 1
 	station_name = "Box Station"
 
+/datum/map_template/random_bars/box_zoo_bar
+	name = "Box Station Animal Exhibit Bar"
+	room_id = "box_zoo_bar"
+	mappath = "monkestation/_maps/RandomRooms/_Bars/Box/zoo_bar.dmm"
+	centerspawner = FALSE
+	template_height = 9
+	template_width = 15
+	weight = 1
+	station_name = "Box Station"
+
+/datum/map_template/random_bars/box_fancy_bar1
+	name = "Box Station Fancy Bar"
+	room_id = "box_fancy_bar1"
+	mappath = "monkestation/_maps/RandomRooms/_Bars/Box/fancy_bar1.dmm"
+	centerspawner = FALSE
+	template_height = 9
+	template_width = 15
+	weight = 1
+	station_name = "Box Station"
+
 
 /// METASTATION BARS
 /datum/map_template/random_bars/meta_default_bar

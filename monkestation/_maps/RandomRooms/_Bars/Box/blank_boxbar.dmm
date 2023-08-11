@@ -1,0 +1,412 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"bI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"hS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"io" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"is" = (
+/obj/machinery/newscaster{
+	pixel_y = -28
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"iT" = (
+/obj/machinery/disposal/bin,
+/obj/structure/sign/plaques/deempisi{
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "barShutters";
+	name = "bar shutters";
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"kN" = (
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"mh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"mQ" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"nl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"nu" = (
+/obj/effect/landmark/event_spawn,
+/obj/effect/spawner/xmastree,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"sm" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ve" = (
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 30;
+	receive_ore_updates = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"vY" = (
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"yr" = (
+/obj/structure/noticeboard{
+	pixel_y = -27
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"yL" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"zf" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Diner"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"CV" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Et" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Fd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"GC" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Mw" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"MB" = (
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"NG" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Py" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Qr" = (
+/obj/machinery/button/door{
+	desc = "Stay off my FUCKING counter.";
+	id = "barsec";
+	name = "Bar Security Shutters";
+	pixel_x = -24;
+	pixel_y = 21;
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Qy" = (
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"QD" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"So" = (
+/obj/structure/table,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -31
+	},
+/obj/item/clothing/head/hardhat/cakehat,
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Vl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -31
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"WE" = (
+/obj/structure/sign/barsign,
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"Xr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"XH" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -22
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ZI" = (
+/obj/effect/spawner/structure/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "barShutters";
+	name = "privacy shutters"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
+
+(1,1,1) = {"
+MB
+MB
+ZI
+MB
+zf
+MB
+ZI
+MB
+MB
+"}
+(2,1,1) = {"
+So
+hS
+Qy
+XH
+Qy
+Vl
+Qy
+Py
+MB
+"}
+(3,1,1) = {"
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+QD
+MB
+"}
+(4,1,1) = {"
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+is
+MB
+"}
+(5,1,1) = {"
+Qy
+Qy
+Qy
+Xr
+Qy
+Qy
+Qy
+vY
+MB
+"}
+(6,1,1) = {"
+Qy
+Et
+nl
+nu
+mQ
+Qy
+Qy
+Qy
+zf
+"}
+(7,1,1) = {"
+Qy
+mh
+Qy
+Fd
+Qy
+Qy
+Qy
+Qy
+ZI
+"}
+(8,1,1) = {"
+Qy
+mh
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+zf
+"}
+(9,1,1) = {"
+Qy
+mh
+Qy
+Qy
+Qy
+Qy
+Qy
+GC
+WE
+"}
+(10,1,1) = {"
+nl
+bG
+Qy
+Qy
+Qy
+Qy
+Qy
+yL
+MB
+"}
+(11,1,1) = {"
+io
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+yr
+MB
+"}
+(12,1,1) = {"
+MB
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+Mw
+MB
+"}
+(13,1,1) = {"
+iT
+Qr
+Qy
+Qy
+Qy
+Qy
+Qy
+kN
+MB
+"}
+(14,1,1) = {"
+bI
+Qy
+Qy
+Qy
+Qy
+Qy
+Qy
+sm
+MB
+"}
+(15,1,1) = {"
+NG
+Qy
+Qy
+ve
+Qy
+CV
+Qy
+Qy
+MB
+"}
