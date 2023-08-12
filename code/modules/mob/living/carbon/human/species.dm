@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/fixed_mut_color = ""
 	//Blood color for decals
 	var/blood_color // this may become un-needed we should be able to read the color of the reagent
+	//For GAGS items
+	var/greyscale_suffix //any GAGS items applicable to your species will need a child config with this suffix as the child name, ex /datum/greyscale_config/sneakers/simian
 //----------------------------------------------------------
 
 //LISTS-----------------------------------------------------
@@ -770,9 +772,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/mutable_appearance/underwear_overlay
 			if(underwear)
 				if(human_host.dna.species.sexes && human_host.gender == FEMALE && (underwear.gender == MALE))
-					underwear_overlay = wear_female_version(underwear.icon_state, underwear.icon, BODY_LAYER, FEMALE_UNIFORM_FULL)
+					if(human_host.dna.species.get_custom_icons("underwear"))
+						underwear_overlay = wear_female_version(underwear.icon_state, human_host.dna.species.get_custom_icons("underwear"), BODY_LAYER, FEMALE_UNIFORM_FULL)
+					else
+						underwear_overlay = wear_female_version(underwear.icon_state, initial(underwear.icon_state), BODY_LAYER, FEMALE_UNIFORM_FULL)
 				else
-					underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
+					if(human_host.dna.species.get_custom_icons("underwear"))
+						underwear_overlay = mutable_appearance(human_host.dna.species.get_custom_icons("underwear"), underwear.icon_state, -BODY_LAYER)
+					else
+						underwear_overlay = mutable_appearance(initial(underwear.icon), underwear.icon_state, -BODY_LAYER)
 				if(!underwear.use_static)
 					underwear_overlay.color = "#" + human_host.underwear_color
 				standing += underwear_overlay
@@ -781,14 +789,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[human_host.undershirt]
 			if(undershirt)
 				if(human_host.dna.species.sexes && human_host.gender == FEMALE)
-					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+					if(human_host.dna.species.get_custom_icons("underwear"))
+						standing += wear_female_version(undershirt.icon_state, human_host.dna.species.get_custom_icons("underwear"), BODY_LAYER)
+					else
+						standing += wear_female_version(undershirt.icon_state, initial(undershirt.icon), BODY_LAYER)
 				else
-					standing += mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
+					if(human_host.dna.species.get_custom_icons("underwear"))
+						standing += mutable_appearance(human_host.dna.species.get_custom_icons("underwear"), undershirt.icon_state, -BODY_LAYER)
+					else
+						standing += mutable_appearance(initial(undershirt.icon), undershirt.icon_state, -BODY_LAYER)
 
-		if(human_host.socks && human_host.num_legs >= 2 && !(human_host.dna.species.bodytype & BODYTYPE_DIGITIGRADE) && !(NOSOCKS in species_traits))
+		if(human_host.socks && human_host.num_legs >= 2 && !(NOSOCKS in species_traits))
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[human_host.socks]
 			if(socks)
-				standing += mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
+				if(human_host.dna.species.get_custom_icons("underwear"))
+					standing += mutable_appearance(human_host.dna.species.get_custom_icons("underwear"), socks.icon_state, -BODY_LAYER)
+				else
+					standing += mutable_appearance(initial(socks.icon), socks.icon_state, -BODY_LAYER)
 
 	if(standing.len)
 		human_host.overlays_standing[BODY_LAYER] = standing
@@ -944,29 +961,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	// off loading this to a secondary proc for easier reading of the code
 	bodyparts_to_add = handle_mutant_bodylist(human_host)
 
-	////PUT ALL YOUR WEIRD ASS REAL-LIMB HANDLING HERE
-	///Digi handling
-	if(human_host.dna.species.bodytype & BODYTYPE_DIGITIGRADE)
-		var/uniform_compatible = FALSE
-		var/suit_compatible = FALSE
-		if(!(human_host.w_uniform) || (human_host.w_uniform.supports_variations & DIGITIGRADE_VARIATION) || (human_host.w_uniform.supports_variations & DIGITIGRADE_VARIATION_NO_NEW_ICON)) //Checks uniform compatibility
-			uniform_compatible = TRUE
-		if((!human_host.wear_suit) || (human_host.wear_suit.supports_variations & DIGITIGRADE_VARIATION) || !(human_host.wear_suit.body_parts_covered & LEGS) || (human_host.wear_suit.supports_variations & DIGITIGRADE_VARIATION_NO_NEW_ICON)) //Checks suit compatability
-			suit_compatible = TRUE
-
-		if((uniform_compatible && suit_compatible) || (suit_compatible && human_host.wear_suit?.flags_inv & HIDEJUMPSUIT)) //If the uniform is hidden, it doesnt matter if its compatible
-			for(var/obj/item/bodypart/BP as() in human_host.bodyparts)
-				if(BP.bodytype & BODYTYPE_DIGITIGRADE)
-					BP.limb_id = "digitigrade"
-
-		else
-			for(var/obj/item/bodypart/BP as() in human_host.bodyparts)
-				if(BP.bodytype & BODYTYPE_DIGITIGRADE)
-					BP.limb_id = "lizard"
-	///End digi handling
-
-
-	////END REAL-LIMB HANDLING
 	human_host.update_body_parts()
 
 
@@ -1173,10 +1167,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
 			if(human_host.num_legs < 2)
-				return FALSE
-			if((bodytype & BODYTYPE_DIGITIGRADE) && !(I.supports_variations & DIGITIGRADE_VARIATION))
-				if(!disable_warning)
-					to_chat(human_host, "<span class='warning'>The footwear around here isn't compatible with your feet!</span>")
 				return FALSE
 			return equip_delay_self_check(I, human_host, bypass_equip_delay_self)
 		if(ITEM_SLOT_BELT)

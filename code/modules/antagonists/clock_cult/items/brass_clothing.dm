@@ -9,6 +9,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/clockwork, /obj/item/stack/tile/brass, /obj/item/clockwork, /obj/item/gun/ballistic/bow/clockwork)
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/clockwork/equipped(mob/living/user, slot)
 	. = ..()

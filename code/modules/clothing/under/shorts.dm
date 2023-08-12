@@ -8,7 +8,6 @@
 	gender = PLURAL
 	body_parts_covered = GROIN
 	fitted = NO_FEMALE_UNIFORM
-	supports_variations = DIGITIGRADE_VARIATION
 	can_adjust = FALSE
 	flags_1 = IS_PLAYER_COLORABLE_1
 

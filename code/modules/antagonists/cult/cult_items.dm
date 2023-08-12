@@ -294,6 +294,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 
 /obj/item/clothing/head/culthood/alt
@@ -331,6 +332,7 @@
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 50,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10, "stamina" = 50)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/magusred
 	name = "magus robes"

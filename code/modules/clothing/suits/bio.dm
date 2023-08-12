@@ -27,6 +27,7 @@
 	strip_delay = 70
 	equip_delay_other = 70
 	resistance_flags = ACID_PROOF
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 //Standard biosuit, orange stripe
 /obj/item/clothing/head/bio_hood/general

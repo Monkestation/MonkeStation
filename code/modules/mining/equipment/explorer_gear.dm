@@ -15,6 +15,7 @@
 	resistance_flags = FIRE_PROOF
 	high_pressure_multiplier = 0.4
 	flags_inv = HIDEJUMPSUIT
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/head/hooded/explorer
 	name = "explorer hood"

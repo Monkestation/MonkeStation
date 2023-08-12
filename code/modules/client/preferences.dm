@@ -103,7 +103,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"frills" = "None",
 							"spines" = "None",
 							"body_markings" = "None",
-							"legs" = "Normal Legs",
 							"moth_wings" = "Plain",
 							"ipc_screen" = "Blue",
 							"ipc_antenna" = "None",
@@ -455,19 +454,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Body Markings</h3>"
 
 				dat += "<a href='?_src_=prefs;preference=body_markings;task=input'>[features["body_markings"]]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			if("legs" in pref_species.default_features)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
-				dat += "<h3>Legs</h3>"
-
-				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1693,12 +1679,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_body_markings = input(user, "Choose your character's body markings:", "Character Preference") as null|anything in GLOB.body_markings_list
 					if(new_body_markings)
 						features["body_markings"] = new_body_markings
-
-				if("legs")
-					var/new_legs
-					new_legs = input(user, "Choose your character's legs:", "Character Preference") as null|anything in GLOB.legs_list
-					if(new_legs)
-						features["legs"] = new_legs
 
 				if("moth_wings")
 					var/new_moth_wings

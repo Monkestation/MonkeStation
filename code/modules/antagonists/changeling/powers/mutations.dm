@@ -479,6 +479,7 @@
 	heat_protection = 0
 	blocks_shove_knockdown = TRUE
 	slowdown = 0.2
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/changeling/Initialize(mapload)
 	. = ..()

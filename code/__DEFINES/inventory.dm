@@ -91,12 +91,12 @@
 //flags for outfits that have mutantrace variants (try not to use this): Currently only needed if you're trying to add tight fitting bootyshorts
 //This system takes priority over Sprite Sheets.
 #define NO_VARIATION			(1<<0)
-#define DIGITIGRADE_VARIATION	(1<<1)
-#define DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
+// #define DIGITIGRADE_VARIATION	(1<<1)
+// #define DIGITIGRADE_VARIATION_NO_NEW_ICON (1<<2)
 
-#define NOT_DIGITIGRADE				0
-#define FULL_DIGITIGRADE			1
-#define SQUISHED_DIGITIGRADE		2
+// #define NOT_DIGITIGRADE				0
+// #define FULL_DIGITIGRADE			1
+// #define SQUISHED_DIGITIGRADE		2
 
 //! ## flags for covering body parts
 #define GLASSESCOVERSEYES	(1<<0)

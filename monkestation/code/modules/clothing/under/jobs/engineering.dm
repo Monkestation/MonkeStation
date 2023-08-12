@@ -8,7 +8,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/engineering/atmospheric_technician/skirt
 	desc = "It's a jumpskirt worn by atmospheric technicians."
@@ -20,7 +20,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/engineering/engineer/skirt
 	desc = "It's an orange high visibility jumpskirt worn by engineers. It has minor radiation shielding."
@@ -32,4 +32,4 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN

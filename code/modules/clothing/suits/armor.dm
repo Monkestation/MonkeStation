@@ -112,12 +112,14 @@
 	name = "syndicate captain's vest"
 	desc = "A sinister looking vest of advanced armor worn over a black and red fireproof jacket. The gold collar and shoulders denote that this belongs to a high ranking syndicate officer."
 	icon_state = "syndievest"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/vest/capcarapace/alt
 	name = "captain's parade jacket"
 	desc = "For when an armoured vest isn't fashionable enough."
 	icon_state = "capformal"
 	item_state = "capspacesuit"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/vest/capcarapace/jacket
 	name = "captain's jacket"
@@ -141,6 +143,7 @@
 	equip_delay_other = 60
 	slowdown = 0.05
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/bone
 	name = "bone armor"
@@ -150,6 +153,7 @@
 	blood_overlay_type = "armor"
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 30, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 20)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
@@ -204,6 +208,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90, "stamina" = 70)
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
@@ -217,6 +222,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90, "stamina" = 60)
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -225,6 +231,7 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90, "stamina" = 0)
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "thunderdome suit"
@@ -311,3 +318,4 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD

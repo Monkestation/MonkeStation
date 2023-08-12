@@ -11,6 +11,7 @@
 	var/adjusted_flags = null
 	var/masktype = /obj/item/clothing/mask/breath/sec_bandana
 	actions_types = list(/datum/action/item_action/toggle_mask)
+	sprite_sheets = FLAG_LIZARD | FLAG_SIMIAN
 
 /obj/item/clothing/suit/armor/secduster/attack_self(mob/user)
 	user.changeNext_move(CLICK_CD_MELEE)

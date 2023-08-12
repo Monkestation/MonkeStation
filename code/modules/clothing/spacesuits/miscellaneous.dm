@@ -557,6 +557,7 @@ Contains:
 	heat_protection = NONE
 	max_heat_protection_temperature = 100
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/skinsuit
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/space/hardsuit/skinsuit/attackby(obj/item/I, mob/user, params)
 	return

@@ -5,7 +5,7 @@
 	bodyflag = FLAG_LIZARD
 	say_mod = "hisses"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,NO_UNDERWEAR)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings", "legs")
 	mutanttongue = /obj/item/organ/tongue/lizard
@@ -25,7 +25,9 @@
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	species_language_holder = /datum/language_holder/lizard
-	digitigrade_customization = DIGITIGRADE_OPTIONAL
+	digitigrade_customization = DIGITIGRADE_FORCED
+
+	greyscale_suffix = "lizard"
 
 	mutanteyes = /obj/item/organ/eyes/glowing
 
@@ -57,4 +59,17 @@
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_NOGUNS,TRAIT_NOBREATH)
 	species_language_holder = /datum/language_holder/lizard/ash
-	digitigrade_customization = DIGITIGRADE_FORCED
+
+
+/datum/species/lizard/get_custom_icons(var/part)
+	switch(part)
+		if("uniform")
+			return 'monkestation/icons/mob/species/lizard/lizard_uniforms.dmi'
+		if("shoes")
+			return 'monkestation/icons/mob/species/lizard/lizard_shoes.dmi'
+		if("suit")
+			return 'monkestation/icons/mob/species/lizard/lizard_suits.dmi'
+		if("underwear")
+			return 'monkestation/icons/mob/species/lizard/lizard_underwear.dmi'
+		else
+			return

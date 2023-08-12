@@ -12,6 +12,7 @@
 	body_parts_covered = CHEST|GROIN
 	allowed = list(/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyzer, /obj/item/seeds, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/cultivator, /obj/item/reagent_containers/spray/pestspray, /obj/item/hatchet, /obj/item/storage/bag/plants)
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/exo/large
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 //Captain
 /obj/item/clothing/suit/captunic
@@ -22,7 +23,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
 	allowed = list(/obj/item/disk, /obj/item/stamp, /obj/item/reagent_containers/food/drinks/flask, /obj/item/melee, /obj/item/storage/lockbox/medal, /obj/item/assembly/flash/handheld, /obj/item/storage/box/matches, /obj/item/lighter, /obj/item/clothing/mask/cigarette, /obj/item/storage/fancy/cigarettes, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
-
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 //Chef
 /obj/item/clothing/suit/toggle/chef
 	name = "chef's apron"
@@ -66,6 +67,7 @@
 	desc = "A hard-boiled private investigator's grey trenchcoat."
 	icon_state = "greydet"
 	item_state = "greydet"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/det_suit/noir
 	name = "noir suit coat"

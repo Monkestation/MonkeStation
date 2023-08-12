@@ -2,7 +2,7 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 	body_parts_covered = CHEST|GROIN
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/dress/striped
 	name = "striped dress"

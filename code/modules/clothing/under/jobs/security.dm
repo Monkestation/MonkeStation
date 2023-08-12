@@ -40,7 +40,7 @@
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE //you know now that i think of it if you adjust the skirt and the sprite disappears isn't that just like flashing everyone
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/security/officer/blueshirt
 	name = "blue shirt and tie"
@@ -75,7 +75,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/security/warden/white
 	name = "white security suit"
@@ -105,7 +105,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/security/detective/grey
 	name = "noir suit"
@@ -122,7 +122,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /*
  * Head of Security
@@ -146,7 +146,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/rank/security/head_of_security/white
 	name = "head of security's white jumpsuit"
@@ -168,7 +168,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /*
  * Brig Physician
@@ -188,7 +188,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
+	sprite_sheets = FLAG_SIMIAN
 
 /*
  * Navy uniforms

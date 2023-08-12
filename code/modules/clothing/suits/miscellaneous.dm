@@ -87,6 +87,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	allowed = list(/obj/item/melee/transforming/energy/sword/pirate, /obj/item/clothing/glasses/eyepatch, /obj/item/reagent_containers/food/drinks/bottle/rum)
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/pirate/captain
 	name = "pirate captain coat"
@@ -111,6 +112,7 @@
 	icon_state = "justice"
 	item_state = "justice"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 
 /obj/item/clothing/suit/judgerobe
@@ -129,6 +131,7 @@
 	icon_state = "overalls"
 	item_state = "overalls"
 	body_parts_covered = CHEST|GROIN|LEGS
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/apron/purple_bartender
 	name = "purple bartender apron"
@@ -146,6 +149,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	resistance_flags = NONE
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/hastur
 	name = "\improper Hastur's robe"
@@ -154,6 +158,7 @@
 	item_state = "hastur"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 
 /obj/item/clothing/suit/imperium_monk
@@ -164,7 +169,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen)
-
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/chickensuit
 	name = "chicken suit"
@@ -173,7 +178,7 @@
 	item_state = "chickensuit"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS|FEET
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
-
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/monkeysuit
 	name = "monkey suit"
@@ -182,6 +187,7 @@
 	item_state = "monkeysuit"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 //monkestation edit: add monkeyfriend trait
 /obj/item/clothing/suit/monkeysuit/equipped(mob/living/user, slot)
@@ -204,6 +210,7 @@
 	togglename = "wings"
 	body_parts_covered = ARMS|CHEST
 	actions_types = list(/datum/action/item_action/toggle_wings)
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/toggle/owlwings/Initialize(mapload)
 	. = ..()
@@ -223,6 +230,7 @@
 	body_parts_covered = CHEST|GROIN
 	flags_inv = HIDEJUMPSUIT
 	dog_fashion = /datum/dog_fashion/back
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/cardborg/equipped(mob/living/user, slot)
 	..()
@@ -298,6 +306,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT	//Space carp like space, so you should too
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/pneumatic_cannon/speargun)
 	hoodtype = /obj/item/clothing/head/hooded/carp_hood
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/head/hooded/carp_hood
 	name = "carp hood"
@@ -337,6 +346,7 @@
 	allowed = list()
 	hoodtype = /obj/item/clothing/head/hooded/ian_hood
 	dog_fashion = /datum/dog_fashion/back
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/head/hooded/ian_hood
 	name = "corgi hood"
@@ -382,6 +392,7 @@
 	allowed = list()
 	actions_types = list(/datum/action/item_action/toggle_human_head)
 	hoodtype = /obj/item/clothing/head/hooded/human_head
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 
 /obj/item/clothing/head/hooded/human_head
@@ -407,17 +418,20 @@
 	name = "deliquent jacket"
 	desc = "Yare yare daze."
 	icon_state = "jocoat"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/madsci
 	name = "mad scientist labcoat"
 	desc = "El psy congroo."
 	icon_state = "madsci"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/hooded/renault_costume
 	name = "renault costume"
 	desc = "The cutest pair of pajamas you've ever seen."
 	icon_state = "renault_suit"
 	hoodtype = /obj/item/clothing/head/hooded/renault_hood
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/head/hooded/renault_hood
 	name = "renault hoodie"
@@ -445,6 +459,7 @@
 	strip_delay = 60
 	breakouttime = 3000
 	pocket_storage_component_path = FALSE
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"
@@ -548,18 +563,21 @@
 	desc = "Looks like this belongs in a very old movie set."
 	icon_state = "draculacoat"
 	item_state = "draculacoat"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/drfreeze_coat
 	name = "doctor freeze's labcoat"
 	desc = "A labcoat imbued with the power of features and freezes."
 	icon_state = "drfreeze_coat"
 	item_state = "drfreeze_coat"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/gothcoat
 	name = "gothic coat"
 	desc = "Perfect for those who want stalk in a corner of a bar."
 	icon_state = "gothcoat"
 	item_state = "gothcoat"
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
@@ -569,6 +587,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	allowed = list(/obj/item/clothing/mask/facehugger/toy)
+	sprite_sheets = FLAG_SIMIAN | FLAG_LIZARD
 
 /obj/item/clothing/suit/nemes
 	name = "pharoah tunic"

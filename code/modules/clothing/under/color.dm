@@ -12,11 +12,11 @@
 	dying_key = DYE_REGISTRY_UNDER
 
 /obj/item/clothing/under/color/jumpskirt
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON //Doesn't require a new icon.
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	icon_state = "jumpskirt"
+	sprite_sheets = FLAG_SIMIAN
 
 /obj/item/clothing/under/color/random
 	icon_state = "random_jumpsuit"

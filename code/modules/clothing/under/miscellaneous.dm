@@ -90,6 +90,8 @@
 	var/extinguish_cooldown = 100
 	var/extinguishes_left = 5
 	envirosealed = TRUE
+	species_restricted = FLAG_SIMIAN | FLAG_LIZARD
+
 
 
 /obj/item/clothing/under/plasmaman/examine(mob/user)

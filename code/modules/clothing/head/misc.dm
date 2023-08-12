@@ -199,6 +199,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = SNUG_FIT
 
+
 /obj/item/clothing/head/fedora
 	name = "fedora"
 	icon_state = "fedora"
