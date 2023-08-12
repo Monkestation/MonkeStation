@@ -16,7 +16,7 @@
 
 /datum/quirk/anime
 	name = "Anime"
-	desc = "You are an anime enjoyer! Show your enthusiasm with some fashionable attire."
+	desc = "You are an anime enjoyer! These fashionable bodymods are extensive enough to even change your food preferences!"
 	mob_trait = TRAIT_ANIME
 	value = 0
 
