@@ -45,7 +45,8 @@
 	blacklist = list(
 		/datum/station_trait/announcement_intern,
 		/datum/station_trait/announcement_baystation,
-		/datum/station_trait/announcement_duke
+		/datum/station_trait/announcement_duke,
+		/datum/station_trait/announcement_dagoth
 		)
 
 /datum/station_trait/announcement_medbot/New()
@@ -60,7 +61,8 @@
 	report_message = "We lost the primary datatape that holds the announcement system's voice responses. We did however find an older backup."
 	blacklist = list(/datum/station_trait/announcement_intern,
 	/datum/station_trait/announcement_medbot,
-	/datum/station_trait/announcement_duke
+	/datum/station_trait/announcement_duke,
+	/datum/station_trait/announcement_dagoth
 	)
 
 /datum/station_trait/announcement_baystation/New()
