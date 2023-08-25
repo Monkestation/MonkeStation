@@ -81,6 +81,14 @@
 	icon_state = "translator_emag"
 	playsound(src, "sparks", 100, 1)
 
+/obj/item/clothing/mask/dagoth
+	name = "\improper The Mask of Dagoth-Ur"
+	desc = "Where in the Seven Hells did this come from?"
+	icon = 'monkestation/icons/obj/clothing/masks.dmi'
+	worn_icon = 'monkestation/icons/mob/mask.dmi'
+	icon_state = "dagoth"
+	item_state = "dagoth"
+	slot_flags = ITEM_SLOT_MASK
 /obj/item/clothing/mask/kitsuneblack
 	name = "Black Kitsune Mask"
 	desc = "An oriental styled porcelain mask, this one is black and gold."

@@ -355,6 +355,8 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 				soundin = pick('monkestation/sound/voice/pizzky/criminal.ogg','monkestation/sound/voice/pizzky/god.ogg','monkestation/sound/voice/pizzky/lmaoing.ogg','monkestation/sound/voice/pizzky/justice.ogg','monkestation/sound/voice/pizzky/secureday.ogg','monkestation/sound/voice/pizzky/radio.ogg','monkestation/sound/voice/pizzky/insult.ogg')
 			if("sec_emag")
 				soundin = pick('monkestation/sound/voice/pizzky/lmaoing.ogg','monkestation/sound/voice/pizzky/getowned.ogg','monkestation/sound/voice/pizzky/creep.ogg','monkestation/sound/voice/pizzky/secureday.ogg')
+			if("dagsky")
+				soundin = pick('monkestation/sound/voice/dagsky/arrest1.ogg','monkestation/sound/voice/dagsky/arrest2.ogg','monkestation/sound/voice/dagsky/arrest3.ogg','monkestation/sound/voice/dagsky/arrest4.ogg','monkestation/sound/voice/dagsky/arrest5.ogg','monkestation/sound/voice/dagsky/arrest6.ogg','monkestation/sound/voice/dagsky/arrest7.ogg','monkestation/sound/voice/dagsky/arrest8.ogg','monkestation/sound/voice/dagsky/arrest9.ogg')
 			//Monkestation edit end
 			if("honkbot_e")
 				soundin = pick('sound/items/bikehorn.ogg', 'sound/items/AirHorn2.ogg', 'sound/misc/sadtrombone.ogg', 'sound/items/AirHorn.ogg', 'sound/effects/reee.ogg',  'sound/items/WEEOO1.ogg', 'sound/voice/beepsky/iamthelaw.ogg', 'sound/voice/beepsky/creep.ogg','sound/magic/Fireball.ogg' ,'sound/effects/pray.ogg', 'sound/voice/hiss1.ogg','sound/machines/buzz-sigh.ogg', 'sound/machines/ping.ogg', 'sound/weapons/flashbang.ogg', 'sound/weapons/bladeslice.ogg')

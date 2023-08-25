@@ -413,6 +413,9 @@
 				if(prob(80))//lol
 					to_chat(user, "<span class='notice'>You complete the Securitron! Beep boop.</span>")
 					S = new(Tsec)
+				else if(prob(50))
+					to_chat(user, "<span class='notice'>You complete the... Wait is that Dagoth Ur? Oh, sweet Nerevar...</span>")
+					S = new /mob/living/simple_animal/bot/secbot/dagsky(Tsec)
 				else
 					to_chat(user, "<span class='notice'>You complete the... Shitcuritron? Are you sure you did that right?</span>")
 					S = new /mob/living/simple_animal/bot/secbot/pizzky(Tsec)
