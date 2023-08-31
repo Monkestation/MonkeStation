@@ -9749,15 +9749,6 @@
 /obj/item/bedsheet/dorms,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
-"ayk" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/sign/plaques/deempisi{
-	pixel_y = 28
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/dorms)
 "ayl" = (
 /obj/machinery/button/door{
 	id = "Dorm2";
@@ -41371,6 +41362,18 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main/monastery)
+"cjD" = (
+/obj/docking_port/stationary{
+	dheight = 4;
+	dwidth = 4;
+	height = 9;
+	id = "aux_base_zone";
+	name = "aux base zone";
+	roundstart_template = /datum/map_template/shuttle/aux_base/small;
+	width = 9
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "cjH" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Chapel Garden"
@@ -50983,6 +50986,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kdM" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/sign/plaques/deempisi{
+	pixel_y = 28
+	},
+/mob/living/simple_animal/chicken/crow/Gary,
+/turf/open/floor/carpet,
+/area/crew_quarters/dorms)
 "kem" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/neutral{
@@ -57057,18 +57070,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"rJZ" = (
-/obj/docking_port/stationary{
-	dheight = 4;
-	dwidth = 4;
-	height = 9;
-	id = "aux_base_zone";
-	name = "aux base zone";
-	roundstart_template = /datum/map_template/shuttle/aux_base/small;
-	width = 9
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "rKr" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -84057,7 +84058,7 @@ oEA
 uoS
 uoS
 uoS
-rJZ
+cjD
 uoS
 uoS
 tCP
@@ -99207,7 +99208,7 @@ apX
 avf
 awo
 apX
-ayk
+kdM
 azs
 apX
 aBN

@@ -542,3 +542,173 @@
 			add_visual("angry")
 	if(source)
 		set_friendship(source, amount * 0.1)
+
+/mob/living/simple_animal/chicken/crow
+	name = "\improper crow"
+	desc = "I wuv my fwiends!"
+	breed_name = null
+	icon_state = "crow"
+	icon_living = "crow"
+	icon_dead = "crow_dead" //TODO make dead state
+	speak = list("CAW!","CORN!","KWEH!","CAW CAW CAW!!")
+	speak_emote = list("caws","quarks", "coos")
+	emote_hear = list("caws.")
+	emote_see = list("pecks at the ground.","flaps its wings viciously.")
+	density = FALSE
+	health = 15
+	maxHealth = 15
+	attacktext = "pecks"
+	attack_sound = "monkestation/sound/creatures/crow/crow1.ogg"
+	ventcrawler = VENTCRAWLER_ALWAYS
+	feedMessages = list("It gobbles up the food voraciously.","It kwehs happily.")
+	chat_color = "#1bbbbb"
+	breed_name_male = "Crow"
+	breed_name_female = "Crow"
+	melee_damage = 5
+
+	var/obj/item/hold_item //birb can carry some items
+	ai_controller = /datum/ai_controller/chicken/retaliate
+
+	mutation_list = list()
+
+/mob/living/simple_animal/chicken/crow/LateInitialize()
+	. = ..()
+	icon_state = "crow"
+	icon_living = "crow"
+	icon_dead = "crow_dead"
+
+/mob/living/simple_animal/chicken/crow/Gary
+	name = "Gary"
+	desc = "Gary the Crow.  An inquisitive, yet cruel barterer."
+	speak = list("Pickle Pee!", "Pump-a-rum!","KWEH!","The stash is behind the bar.")
+	gold_core_spawnable = NO_SPAWN
+	speak_chance = 3
+	var/memory_saved = FALSE
+	var/rounds_survived = 0
+	var/longest_survival = 0
+	var/longest_deathstreak = 0
+	var/held_coins = 0
+
+/mob/living/simple_animal/chicken/crow/LateInitialize()
+	. = ..()
+	name = "Gary"
+
+/mob/living/simple_animal/chicken/crow/attackby(obj/item/given_item, mob/user, params)
+	if(istype(given_item, /obj/item/kitchen/knife))//if its a knife
+		if(hold_item)
+			. = ..()
+		else
+			hold_item = given_item //put knife in hand
+			attacktext = "cut"
+			attack_sound = 'sound/weapons/bladeslice.ogg'
+			melee_damage = given_item.force //attack dmg inherits knife dmg
+			icon_state = "crow_knife"
+			qdel(given_item)
+	else if(istype(src, /mob/living/simple_animal/chicken/crow/Gary))
+		adjust_happiness(3, user)
+		var/mob/living/simple_animal/chicken/crow/Gary/gary_tide = src
+		if(istype(given_item, /obj/item/coin))
+			gary_tide.held_coins ++
+			qdel(given_item)
+	else
+		. = ..()
+
+
+/mob/living/simple_animal/chicken/crow/Gary/Life()
+	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
+		Write_Memory(FALSE)
+		memory_saved = TRUE
+	..()
+
+/mob/living/simple_animal/chicken/crow/Gary/death(gibbed)
+	if(!memory_saved)
+		Write_Memory(TRUE)
+	..(gibbed)
+
+/mob/living/simple_animal/chicken/crow/Gary/proc/Read_Memory()
+	if(fexists("data/npc_saves/Gary.sav")) //legacy compatability to convert old format to new
+		var/savefile/S = new /savefile("data/npc_saves/Gary.sav")
+		S["roundssurvived"]		>> rounds_survived
+		S["longestsurvival"]	>> longest_survival
+		S["longestdeathstreak"] >> longest_deathstreak
+		S["heldcoins"] 			>> held_coins
+		fdel("data/npc_saves/Gary.sav")
+	else
+		var/json_file = file("data/npc_saves/Gary.json")
+		if(!fexists(json_file))
+			return
+		var/list/json = json_decode(rustg_file_read(json_file))
+		rounds_survived = json["roundssurvived"]
+		longest_survival = json["longestsurvival"]
+		longest_deathstreak = json["longestdeathstreak"]
+		held_coins = json["held_coins"]
+
+/mob/living/simple_animal/chicken/crow/Gary/proc/Write_Memory(dead)
+	var/json_file = file("data/npc_saves/Gary.json")
+	var/list/file_data = list()
+	if(dead)
+		file_data["roundssurvived"] = min(rounds_survived - 1, 0)
+		file_data["longestsurvival"] = longest_survival
+		file_data["heldcoins"] = 0 //punished for killing
+		if(rounds_survived - 1 < longest_deathstreak)
+			file_data["longestdeathstreak"] = rounds_survived - 1
+		else
+			file_data["longestdeathstreak"] = longest_deathstreak
+	else
+		file_data["roundssurvived"] = rounds_survived + 1
+		if(rounds_survived + 1 > longest_survival)
+			file_data["longestsurvival"] = rounds_survived + 1
+		else
+			file_data["longestsurvival"] = longest_survival
+		file_data["longestdeathstreak"] = longest_deathstreak
+	file_data["heldcoins"] = held_coins + file_data["heldcoins"]
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(file_data))
+
+
+/obj/item/storage/backpack/satchel/flat/crow
+	name = "Gary's stash"
+	desc = "An inconspicuous coin purse."
+	icon = 'monkestation/icons/obj/objects.dmi'
+	icon_state = "coinpurse"
+	w_class = WEIGHT_CLASS_TINY
+	slot_flags = 0	//not actually a bag
+
+/obj/item/storage/backpack/satchel/flat/crow/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.can_hold = typecacheof(list(/obj/item/coin)) //will spawn with contraband but can only add coins to it
+	STR.max_combined_w_class = 100
+	STR.max_w_class = WEIGHT_CLASS_TINY
+	STR.max_items = 100
+
+/obj/item/storage/backpack/satchel/flat/crow/PopulateContents()
+	var/json_file = file("data/npc_saves/Gary.json")
+	if(!fexists(json_file))
+		new /obj/item/trash //you get NOTHING because there ain't nothing!
+		return
+	var/list/file_data = json_decode(rustg_file_read(json_file))
+	var/amount = file_data["heldcoins"]
+	while(amount > 0) //base amount
+		new /obj/item/coin/gold(src)
+		amount --
+	amount = file_data["roundssurvived"] + 1
+	while(amount > 0) //bonus for surviving rounds
+		new /obj/item/coin/gold(src)
+		amount --
+	if(file_data["roundssurvived"] + 1  > file_data["longestsurvival"])
+		amount = 10 //bonus round
+		while(amount > 1)
+			new /obj/item/coin/gold(src)
+			amount --
+	..()
+
+
+
+
+
+
+
+
+
+

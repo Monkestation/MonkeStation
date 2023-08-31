@@ -33,6 +33,10 @@ SUBSYSTEM_DEF(minor_mapping)
 		S.hide(intact=TRUE)
 		amount--
 
+	var/turf/T = pick_n_take(turfs)
+	var/obj/item/storage/backpack/satchel/flat/crow/S = new(T)
+	S.hide(intact=TRUE)
+
 
 /proc/find_exposed_wires()
 	var/list/exposed_wires = list()

@@ -53900,6 +53900,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/mob/living/simple_animal/chicken/crow/Gary,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "ibC" = (
