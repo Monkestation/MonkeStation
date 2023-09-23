@@ -1,3 +1,15 @@
+/datum/reagent/toxin/mimic
+	name = "Mimic Toxin"
+	description = "A toxin produced by infesting mimics."
+	color = "#47194b"
+	toxpwr = 1
+
+/datum/reagent/toxin/mimic/on_mob_life(mob/living/carbon/victim)
+	victim.adjustStaminaLoss(15)
+	victim.adjustCloneLoss(2)
+	victim.Jitter(15)
+	return ..()
+
 //The following is all part of the botany chemical rebalance
 /datum/reagent/toxin/lexorin
 	can_synth = FALSE //Extremely deadly

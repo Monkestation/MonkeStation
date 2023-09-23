@@ -44,6 +44,7 @@
 	var/total_people_absorbed = 0
 
 	var/list/datum/mind/original_members = list()
+	var/list/datum/mind/evolved_members = list()
 
 	//List of all mimics, both sentient and non sentient
 	var/list/mob/living/mimics = list()
@@ -66,8 +67,12 @@
 		parts += "<span class='header'>The original mimics were:</span>"
 		parts += printplayerlist(original_members)
 
+	if(evolved_members.len)
+		parts += "<span class='header'>The evolved mimics were:</span>"
+		parts += printplayerlist(evolved_members)
+
 	if(members.len)
 		parts += "<span class='header'>The mimics were:</span>"
-		parts += printplayerlist(members - original_members)
+		parts += printplayerlist(members - (evolved_members + original_members))
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

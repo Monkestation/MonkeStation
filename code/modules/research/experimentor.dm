@@ -137,7 +137,7 @@
 		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_HEAT]'>Burn</A></b>"
 		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_COLD]'>Freeze</A></b>"
 		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_OBLITERATE]'>Destroy</A></b></div>"
-		if(istype(loaded_item,/obj/item/relic))
+		if(istype(loaded_item,/obj/item/relic) || istype(loaded_item,/obj/item/mimic_organ))
 			dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_DISCOVER]'>Discover</A></b>"
 		dat += "<b><a href='byond://?src=[REF(src)];function=eject'>Eject</A>"
 		var/list/listin = techweb_item_boost_check(src)
@@ -458,12 +458,20 @@
 		visible_message("<span class='warning'>[exp_on] [a], and [b], the experiment was a failure.</span>")
 
 	if(exp == SCANTYPE_DISCOVER)
-		visible_message("[src] scans the [exp_on], revealing its true nature!")
-		playsound(src, 'sound/effects/supermatter.ogg', 50, 3, -1)
-		var/obj/item/relic/R = loaded_item
-		R.reveal(linked_console.stored_research)
-		investigate_log("Experimentor has revealed a relic with <span class='danger'>[R.realProc]</span> effect.", INVESTIGATE_EXPERIMENTOR)
-		ejectItem()
+		if(istype(loaded_item,/obj/item/mimic_organ))
+			visible_message("[src] scans the [exp_on], and prints out a neuromod!")
+			playsound(src, 'sound/effects/supermatter.ogg', 50, 3, -1)
+			var/obj/item/mimic_organ/organ = loaded_item
+			organ.roll_neuromod()
+			investigate_log("Experimentor has printed a neuromod.", INVESTIGATE_EXPERIMENTOR)
+			loaded_item = null
+		else
+			visible_message("[src] scans the [exp_on], revealing its true nature!")
+			playsound(src, 'sound/effects/supermatter.ogg', 50, 3, -1)
+			var/obj/item/relic/R = loaded_item
+			R.reveal(linked_console.stored_research)
+			investigate_log("Experimentor has revealed a relic with <span class='danger'>[R.realProc]</span> effect.", INVESTIGATE_EXPERIMENTOR)
+			ejectItem()
 
 	//Global reactions
 	if(prob(EFFECT_PROB_VERYLOW-badThingCoeff) && loaded_item)

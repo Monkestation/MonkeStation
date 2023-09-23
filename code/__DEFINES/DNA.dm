@@ -155,6 +155,8 @@
 #define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
 #define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_BRAIN_SURGICAL_IMPLANT "brain_surgical"
+//MonkeStation Edit: Neuromods
+#define ORGAN_SLOT_BRAIN_NEUROMOD "brain_neuromod"
 #define ORGAN_SLOT_TAIL "tail"
 #define ORGAN_SLOT_WINGS "wings"
 //MonkeStation Edit: Butt Organ
