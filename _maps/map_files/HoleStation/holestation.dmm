@@ -2215,9 +2215,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/airless,
 /area/space/nearstation)
-"aiQ" = (
-/turf/closed/wall/r_wall,
-/area/quartermaster/exploration_dock)
 "aiR" = (
 /obj/machinery/computer/camera_advanced/xenobio,
 /obj/structure/cable/yellow{
@@ -5044,9 +5041,6 @@
 	},
 /turf/open/openspace,
 /area/engine/atmos)
-"atn" = (
-/turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
 "atp" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5575,10 +5569,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"avp" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/quartermaster/exploration_dock)
 "avq" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -6420,9 +6410,6 @@
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"ayy" = (
-/turf/closed/wall,
-/area/quartermaster/exploration_dock)
 "ayA" = (
 /obj/machinery/door/window/westleft,
 /obj/structure/cable/yellow{
@@ -7651,19 +7638,6 @@
 /mob/living/simple_animal/chicken/hen,
 /turf/open/floor/grass,
 /area/ranch)
-"aDI" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	dwidth = 2;
-	height = 13;
-	id = "exploration_home";
-	name = "Exploration Dock";
-	roundstart_template = /datum/map_template/shuttle/exploration/holestation;
-	width = 16;
-	dheight = 1
-	},
-/turf/open/space/basic,
-/area/space)
 "aDJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -9908,7 +9882,7 @@
 /obj/structure/sign/warning/vacuum/external,
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "aMg" = (
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/wood,
@@ -11552,7 +11526,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "aRN" = (
 /obj/machinery/light{
 	dir = 4
@@ -12347,7 +12321,7 @@
 "aUP" = (
 /obj/structure/sign/warning/docking,
 /turf/closed/wall/r_wall,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "aUQ" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/shutter,
 /turf/open/floor/plating,
@@ -12588,7 +12562,7 @@
 "aVK" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "aVL" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -12747,7 +12721,7 @@
 	req_access_txt = "47"
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "aWl" = (
 /obj/structure/window,
 /obj/structure/chair/sofa/corp/right{
@@ -14098,7 +14072,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "bLW" = (
 /obj/effect/turf_decal/tile/blue/tile_marquee,
 /obj/effect/turf_decal/tile/neutral/tile_marquee{
@@ -14523,7 +14497,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "cXw" = (
 /obj/machinery/space_heater,
 /obj/effect/turf_decal/stripes/line{
@@ -15549,10 +15523,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "fEi" = (
-/obj/effect/landmark/start/exploration,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "fHt" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/yellow{
@@ -16171,13 +16144,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "hyz" = (
-/obj/effect/landmark/start/exploration,
 /obj/machinery/firealarm/directional/north,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "hEQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -16703,9 +16675,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "iWg" = (
-/obj/machinery/computer/shuttle_flight/custom_shuttle/exploration{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -16715,7 +16684,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "iXN" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall,
@@ -17689,12 +17658,11 @@
 /turf/closed/wall/r_wall,
 /area/ranch)
 "lHn" = (
-/obj/effect/landmark/start/exploration,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "lHt" = (
 /obj/machinery/camera/autoname,
 /obj/structure/window/reinforced/survival_pod/spawner/east,
@@ -17763,7 +17731,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "lTd" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/structure/cable/yellow{
@@ -17805,7 +17773,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "lYE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -18864,7 +18832,6 @@
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "oWT" = (
-/obj/machinery/vendor/exploration,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -18873,7 +18840,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "oYa" = (
 /obj/machinery/door/window/eastright{
 	dir = 8;
@@ -20310,11 +20277,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
-/obj/machinery/telecomms/relay/preset/exploration,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "tnZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -20612,7 +20578,7 @@
 	req_access_txt = "47"
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "tSm" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -20898,7 +20864,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "uNf" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -21545,7 +21511,7 @@
 	dir = 8
 	},
 /turf/closed/wall,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "wvk" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -21574,9 +21540,6 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "wBP" = (
-/obj/machinery/computer/objective{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -21585,7 +21548,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/exploration_dock)
+/area/science/lab)
 "wCr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -46594,7 +46557,7 @@ anZ
 anZ
 anZ
 anZ
-aDI
+anZ
 anZ
 anZ
 anZ
@@ -47362,7 +47325,7 @@ anZ
 anZ
 anZ
 anZ
-aiQ
+abV
 aRM
 lXz
 aRM
@@ -47619,11 +47582,11 @@ anZ
 anZ
 anZ
 anZ
-aiQ
+abV
 hyz
 uLw
 fEi
-atn
+arg
 lHn
 aWj
 aSC
@@ -47882,7 +47845,7 @@ iWg
 wBP
 tlT
 bKp
-aiQ
+abV
 aOT
 gpo
 wcb
@@ -48133,13 +48096,13 @@ anZ
 anZ
 anZ
 aJi
-aiQ
-aiQ
-ayy
-ayy
-avp
+abV
+abV
+aSV
+aSV
+avP
 tPt
-aiQ
+abV
 abV
 abV
 abV
