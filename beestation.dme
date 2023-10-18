@@ -3711,6 +3711,7 @@
 #include "monkestation\code\datums\votesounds.dm"
 #include "monkestation\code\datums\announcers\duke_announcer.dm"
 #include "monkestation\code\datums\brain_damage\mild.dm"
+#include "monkestation\code\datums\components\chain.dm"
 #include "monkestation\code\datums\components\hot_ice.dm"
 #include "monkestation\code\datums\components\pricetag.dm"
 #include "monkestation\code\datums\components\strong_pull.dm"

@@ -512,6 +512,10 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	full_w_class = WEIGHT_CLASS_SMALL
 	grind_results = list(/datum/reagent/copper = 2) //2 copper per cable in the coil
 	usesound = 'sound/items/deconstruct.ogg'
+	//MONKESTATION EDIT: The target when tethering two things together
+	var/atom/movable/tether_target
+	//MONKESTATION EDIT: A temporary tether before they attach the vehicle to the second thing
+	var/datum/component/chain/temp_tether
 
 /obj/item/stack/cable_coil/cyborg
 	is_cyborg = 1
@@ -589,6 +593,46 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		amount += extra
 	update_icon()
 
+//MONKESTATION EDIT: Tethering people to vehicles
+/obj/item/stack/cable_coil/afterattack(atom/movable/target, mob/user, proximity_flag)
+	if(!proximity_flag)
+		return
+
+	if(!istype(target))
+		return ..()
+
+	if(QDELETED(temp_tether))
+		tether_target = null
+		temp_tether = null
+
+	if(target == tether_target)
+		to_chat(user,"<span class='notice'>You untie the cable from [target].</span>")
+		qdel(temp_tether)
+		tether_target = null
+		temp_tether = null
+		return
+
+	if(!tether_target)
+		if(istype(target, /obj/vehicle))
+			to_chat(user,"<span class='notice'>You tie one end of the cable around [target]</span>")
+			tether_target = target
+			temp_tether = target.AddComponent(/datum/component/chain, user, 4)
+		return
+
+	user.visible_message("<span class='notice'>[user] begins tying the other end of the cable [target]</span>","<span class='notice'>You begin tying the other end of the cable [target]</span>")
+	if(do_after(user, 8 SECONDS, target=target))
+		target.AddComponent(/datum/component/chain, tether_target, 4)
+		use(1)
+		qdel(temp_tether)
+		temp_tether = null
+		tether_target = null
+
+/obj/item/stack/cable_coil/dropped(mob/user)
+	. = ..()
+	if(temp_tether)
+		qdel(temp_tether)
+	temp_tether = null
+	tether_target = null
 
 
 ///////////////////////////////////////////////
