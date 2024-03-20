@@ -101,6 +101,34 @@
 		message = replacetext(message, "l", "w")
 	speech_args[SPEECH_MESSAGE] = message
 
+/datum/quirk/nugget
+	name = "Nugget"
+	desc = "An accident caused you to lose ALL of your limbs. There's no way your insurance payed for all those prosthetics!"
+	value = -1
+	var/slot_string = "limb"
+
+/datum/quirk/nugget/on_spawn()
+	var/mob/living/carbon/human/nuggeted = quirk_holder
+	for(var/obj/item/bodypart/bodypart in nuggeted.bodyparts)
+		if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)
+			if(bodypart.dismemberable)
+				bodypart.dismember()
+	if(nuggeted.buckled)
+		nuggeted.buckled.unbuckle_mob(nuggeted)
+	nuggeted.suppress_bloodloss(1800) //stop them from bleeding out
+	nuggeted.update_body_parts(TRUE)
+
+/datum/quirk/nugget/post_add()
+	to_chat(quirk_holder, "<span class='boldannounce'>What cruel twist of fate has led to you arriving aboard a space station with no limbs?")
+
+/datum/quirk/corpse
+	name = "Corpse"
+	desc = "Something terrible happened on the shuttle to the station, you arrive dead as a doornail!"
+	value = -1
+
+/datum/quirk/corpse/post_add()
+	to_chat(quirk_holder, pick("<span class='boldannounce'>F", "<span class='boldannounce'>RIP", "<span class='boldannounce'>RIP in peace", "<span class='boldannounce'>RIP in pepperoni", "<span class='boldannounce'>You were THIS close to surviving"))
+	quirk_holder.adjustBruteLoss(300)
 /datum/quirk/no_soul
 	name = "No Soul"
 	desc = "For some reason electronics and sensors tend not to respond to you.  You have to open airlocks by hand."

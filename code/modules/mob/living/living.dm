@@ -1476,12 +1476,9 @@
 
 	if(new_value > .) // Gained leg usage.
 		REMOVE_TRAIT(src, TRAIT_FLOORED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
-		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
 	else if(!(movement_type & (FLYING | FLOATING))) //Lost leg usage, not flying.
 		if(!usable_legs)
 			ADD_TRAIT(src, TRAIT_FLOORED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
-			if(!usable_hands)
-				ADD_TRAIT(src, TRAIT_IMMOBILIZED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
 
 	if(usable_legs < default_num_legs)
 		var/limbless_slowdown = (default_num_legs - usable_legs) * 3
@@ -1505,11 +1502,6 @@
 		return
 	. = usable_hands
 	usable_hands = new_value
-
-	if(new_value > .) // Gained hand usage.
-		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
-	else if(!(movement_type & (FLYING | FLOATING)) && !usable_hands && !usable_legs) //Lost a hand, not flying, no hands left, no legs.
-		ADD_TRAIT(src, TRAIT_IMMOBILIZED, LACKING_LOCOMOTION_APPENDAGES_TRAIT)
 
 /// Changes the value of the [living/body_position] variable.
 /mob/living/proc/set_body_position(new_value)
