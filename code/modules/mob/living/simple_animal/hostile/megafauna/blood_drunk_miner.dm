@@ -14,7 +14,7 @@ The blood-drunk miner's attacks are as follows
 	Untransformed, it attacks very rapidly for smaller amounts of damage
 	Transformed, it attacks at normal speed for higher damage and cleaves enemies hit
 
-When the blood-drunk miner dies, it leaves behind the cleaving saw it was using and its kinetic accelerator.
+When the blood-drunk miner dies, it leaves behind the cleaving saw it was using and (new) the KA disks originally from tendrils.
 
 Difficulty: Medium
 

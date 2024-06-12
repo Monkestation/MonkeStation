@@ -26,49 +26,41 @@
 
 	if(!istype(item, /obj/item/skeleton_key) || spawned_loot)
 		return FALSE
-	var/loot = rand(1,25)
+	var/loot = rand(1,17)
 	switch(loot)
-		if(1 to 2)
-			new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src)  //Doubled chance to receive upgrade disk that is directly relevant to mining
-		if(3 to 4)
-			new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
-		if(5 to 6)
-			new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
-		if(7 to 8)
-			new /obj/item/disk/design_disk/modkit_disc/bounty(src)
-		if(9)
-			new /obj/item/borg/upgrade/modkit/lifesteal(src)
-		if(10)
+		if(1)
+			new /obj/item/borg/upgrade/modkit/lifesteal(src) //This KA mod stays despite the tech disc move, as its an actual mod, and didnt have a stupid double drop chance like the others
+		if(2)
 			new /obj/item/shared_storage/red(src)
-		if(11)
+		if(3)
 			new /obj/item/clothing/glasses/godeye(src)
-		if(12)
+		if(4)
 			new /obj/item/reagent_containers/glass/bottle/potion/flight(src)
-		if(13)
+		if(5)
 			new /obj/item/pickaxe/diamond(src) //Ashwalkers exist. This is actually a great drop for them
-		if(14)
+		if(6)
 			new /obj/item/rod_of_asclepius(src)
-		if(15)
+		if(7)
 			new /obj/item/organ/heart/cursed/wizard(src)
-		if(16)
+		if(8)
 			new /obj/item/ship_in_a_bottle(src)
-		if(17)
+		if(9)
 			new /obj/item/jacobs_ladder(src)
-		if(18)
+		if(10)
 			new /obj/item/warp_cube/red(src)
-		if(19)
+		if(11)
 			new /obj/item/wisp_lantern(src)
-		if(20)
+		if(12)
 			new /obj/item/immortality_talisman(src)
-		if(21)
+		if(13)
 			new /obj/item/gun/magic/hook(src)
-		if(22)
+		if(14)
 			new /obj/item/book_of_babel(src)
-		if(23)
+		if(15)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(24)
+		if(16)
 			new /obj/item/reagent_containers/glass/waterbottle/relic(src)
-		if(25)
+		if(17)
 			new /obj/item/reagent_containers/glass/bottle/necropolis_seed(src)
 	spawned_loot = TRUE
 	qdel(item)
@@ -85,67 +77,6 @@
 	if(!spawned_loot)
 		. += "<span class='notice'>You need a skeleton key to open it.</span>"
 
-
-//KA modkit design discs
-/obj/item/disk/design_disk/modkit_disc
-	name = "KA Mod Disk"
-	desc = "A design disc containing the design for a unique kinetic accelerator modkit. It's compatible with a research console."
-	icon_state = "datadisk1"
-	var/modkit_design = /datum/design/unique_modkit
-
-/obj/item/disk/design_disk/modkit_disc/Initialize(mapload)
-	. = ..()
-	blueprints[1] = new modkit_design
-
-/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
-	name = "Offensive Mining Explosion Mod Disk"
-	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
-
-/obj/item/disk/design_disk/modkit_disc/rapid_repeater
-	name = "Rapid Repeater Mod Disk"
-	modkit_design = /datum/design/unique_modkit/rapid_repeater
-
-/obj/item/disk/design_disk/modkit_disc/resonator_blast
-	name = "Resonator Blast Mod Disk"
-	modkit_design = /datum/design/unique_modkit/resonator_blast
-
-/obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
-	modkit_design = /datum/design/unique_modkit/bounty
-
-/datum/design/unique_modkit
-	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
-	build_type = PROTOLATHE | MECHFAB
-	departmental_flags = DEPARTMENTAL_FLAG_CARGO
-
-/datum/design/unique_modkit/offensive_turf_aoe
-	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
-	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
-	id = "hyperaoemod"
-	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
-	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
-
-/datum/design/unique_modkit/rapid_repeater
-	name = "Kinetic Accelerator Rapid Repeater Mod"
-	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
-	id = "repeatermod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
-	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
-
-/datum/design/unique_modkit/resonator_blast
-	name = "Kinetic Accelerator Resonator Blast Mod"
-	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
-	id = "resonatormod"
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
-	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
-
-/datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
-	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
-	id = "bountymod"
-	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
-	reagents_list = list(/datum/reagent/blood = 40)
-	build_path = /obj/item/borg/upgrade/modkit/bounty
 
 //Spooky special loot
 
@@ -763,6 +694,74 @@
 /obj/structure/closet/crate/necropolis/bdm/PopulateContents()
 	new /obj/item/melee/transforming/cleaving_saw(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
+	new /obj/item/disk/design_disk/modkit_disc/resonator_blast(src) 	//Moved from the tendril loot pool to guranteed on blood drunk
+	new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
+	new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
+	new /obj/item/disk/design_disk/modkit_disc/bounty(src)
+
+//KA modkit design discs
+/obj/item/disk/design_disk/modkit_disc
+	name = "KA Mod Disk"
+	desc = "A design disc containing the design for a unique kinetic accelerator modkit. It's compatible with a research console."
+	icon_state = "datadisk0"
+	var/modkit_design = /datum/design/unique_modkit
+
+/obj/item/disk/design_disk/modkit_disc/Initialize(mapload)
+	. = ..()
+	blueprints[1] = new modkit_design
+
+/obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
+	name = "Offensive Mining Explosion Mod Disk"
+	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
+
+/obj/item/disk/design_disk/modkit_disc/rapid_repeater
+	name = "Rapid Repeater Mod Disk"
+	modkit_design = /datum/design/unique_modkit/rapid_repeater
+
+/obj/item/disk/design_disk/modkit_disc/resonator_blast
+	name = "Resonator Blast Mod Disk"
+	modkit_design = /datum/design/unique_modkit/resonator_blast
+
+/obj/item/disk/design_disk/modkit_disc/bounty
+	name = "Death Syphon Mod Disk"
+	modkit_design = /datum/design/unique_modkit/bounty
+
+/datum/design/unique_modkit
+	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
+	build_type = PROTOLATHE | MECHFAB
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/unique_modkit/offensive_turf_aoe
+	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
+	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
+	id = "hyperaoemod"
+	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
+	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
+
+/datum/design/unique_modkit/rapid_repeater
+	name = "Kinetic Accelerator Rapid Repeater Mod"
+	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
+	id = "repeatermod"
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
+	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
+
+/datum/design/unique_modkit/resonator_blast
+	name = "Kinetic Accelerator Resonator Blast Mod"
+	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
+	id = "resonatormod"
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
+	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
+
+/datum/design/unique_modkit/bounty
+	name = "Kinetic Accelerator Death Syphon Mod"
+	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
+	id = "bountymod"
+	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
+	reagents_list = list(/datum/reagent/blood = 40)
+	build_path = /obj/item/borg/upgrade/modkit/bounty
+
+
+
 
 /obj/item/melee/transforming/cleaving_saw
 	name = "cleaving saw"
